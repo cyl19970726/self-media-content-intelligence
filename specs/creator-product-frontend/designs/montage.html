@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Phase 4 并排验收 · 设计图 vs 实际实现</title>
+<style>
+  :root { --paper:#f3f0e8; --ink:#171713; --teal:#2e6b4f; --orange:#e4572e; --line:rgba(23,23,19,.18); }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans Condensed",system-ui,sans-serif; }
+  header { padding:22px 28px; border-bottom:1px solid var(--ink); display:flex; justify-content:space-between; align-items:center; }
+  header h1 { margin:0; font-size:20px; } header small { font-family:"IBM Plex Mono",monospace; font-size:11px; color:#66706c; }
+  main { padding:26px; display:grid; gap:30px; }
+  figure { margin:0; border:1px solid var(--ink); background:#fff; }
+  figcaption { padding:12px 16px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; font-family:"IBM Plex Mono",monospace; font-size:11px; }
+  figcaption b { color:var(--teal); }
+  img { display:block; width:100%; height:auto; }
+  .legend { padding:0 2px; display:flex; gap:22px; font:400 11px "IBM Plex Mono",monospace; color:#66706c; }
+  .legend i { display:inline-block; width:10px; height:10px; margin-right:6px; background:var(--ink); }
+  .legend .actual i { background:var(--orange); }
+  .note { color:#66706c; font-size:13px; } .note b { color:var(--orange); }
+</style>
+</head>
+<body>
+<header><h1>Phase 4 · 并排验收（设计图 vs 实际实现）</h1><small>左 = 方向图 · 右 = 4310 实际渲染（agent-browser 截图）</small></header>
+<main>
+  <div class="legend"><span><i></i>设计方向图（v2，已冻结）</span><span class="actual"><i></i>实际实现（viewport 截图）</span></div>
+  <figure><img src="montage-1-overview.png" alt="montage overview"/><figcaption><b>01 · 博主总览 /creators</b><span>实际页：http://127.0.0.1:4310/creators</span></figcaption></figure>
+  <figure><img src="montage-2-creator.png" alt="montage creator"/><figcaption><b>02 · 博主页研究台 /creators/:id</b><span>实际页：http://127.0.0.1:4310/creators/ai-red-witch</span></figcaption></figure>
+  <figure><img src="montage-3-benchmark.png" alt="montage benchmark"/><figcaption><b>03 · 对比台 /benchmark</b><span>实际页：http://127.0.0.1:4310/benchmark</span></figcaption></figure>
+  <figure><img src="montage-4-video.png" alt="montage video"/><figcaption><b>04 · 视频证据页 /creators/:id/videos/:videoId</b><span>实际页：http://127.0.0.1:4310/creators/ai-red-witch/videos/6801c0750000000007037156</span></figcaption></figure>
+  <p class="note"><b>判断权在 Owner：</b>实际截图是首屏 viewport（页面可滚动），设计图是整页示意——对比看方向/密度/层级是否一致。批注请写"第 N 组 + 位置 + 问题"。</p>
+</main>
+</body>
+</html>
