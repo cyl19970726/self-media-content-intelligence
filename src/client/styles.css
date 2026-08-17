@@ -279,6 +279,10 @@ a { color: inherit; text-decoration: none; }
 .creator-card__entries a:hover { color: var(--paper); background: var(--ink); }
 .creator-card__entries small { color: #7a817d; font: 400 9px "IBM Plex Mono"; letter-spacing: .04em; text-transform: uppercase; }
 .creator-card__entries a:hover small { color: #b9c0bc; }
+.benchmark-banner { margin-top: 30px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; border: 1px solid var(--orange); border-left: 6px solid var(--orange); color: var(--paper); background: var(--orange); font-size: 14px; }
+.benchmark-banner span { font-weight: 600; letter-spacing: .02em; }
+.benchmark-banner b { flex: 1; color: rgba(255,255,255,.86); font: 400 10px "IBM Plex Mono"; letter-spacing: .06em; }
+.benchmark-banner:hover { background: #c43f1c; }
 .console { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: calc(100vh - 122px); }
 .console-rail { position: sticky; top: 0; align-self: start; height: calc(100vh - 122px); display: flex; flex-direction: column; border-right: 1px solid var(--ink); background: rgba(242,239,231,.96); }
 .console-rail__head { height: 48px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); font: 400 9px "IBM Plex Mono"; letter-spacing: .12em; }

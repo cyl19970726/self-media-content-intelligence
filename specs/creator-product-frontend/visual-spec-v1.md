@@ -58,6 +58,7 @@ section 标题 24px、正文 13px、mono 元信息 9-11px。图确认的方向�
 | Finding 卡 | 左边框 5px 档色（track teal / ip amber / gap orange） | — | — | — | 已有 |
 | FrameCard | 白卡 9:16 图 | — | — | 无帧→具名缺省 | 已有 |
 | Missing 块 | 虚线框+琥珀警示 | — | — | — | 已有 |
+| BenchmarkBanner | 橙底白字，左边框 6px，hover 加深 | hover 加深 | — | 有卡片才渲染 | 新增（2026-08-17 round1，对齐图1行动收口） |
 
 ## 元素 → 数据映射（转引自合同 v2 §5，实现已满足）
 

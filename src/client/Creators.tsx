@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ExternalLink, LoaderCircle, UserRound } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ExternalLink, LoaderCircle, UserRound } from "lucide-react";
 import { listCreators } from "./api";
 import type { CreatorSummary } from "../shared/schema";
 
@@ -50,6 +51,11 @@ export default function CreatorsOverview() {
             {creators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}/>)}
             {creators.length === 0 && <div className="rail-empty"><UserRound size={20}/>还没有博主分析产物。</div>}
           </div>}
+      {creators && creators.length > 0 && <Link to="/benchmark" className="benchmark-banner">
+        <span>进入跨 IP 对比台</span>
+        <b>规律可信度：赛道规律 / IP 能力 / 定位空缺</b>
+        <ArrowRight size={16}/>
+      </Link>}
     </section>
   </main>;
 }
