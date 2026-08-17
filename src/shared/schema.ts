@@ -477,3 +477,102 @@ export const creatorSummarySchema = z.object({
   entries: z.array(z.object({ label: z.string(), href: z.string(), note: z.string().optional() }))
 });
 export type CreatorSummary = z.infer<typeof creatorSummarySchema>;
+
+export const tierVideoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  likes: z.number(),
+  collections: z.number(),
+  publishedLabel: z.string().nullable(),
+  cover: z.string().nullable(),
+  selected: z.boolean(),
+  archetype: z.string().nullable()
+});
+export type TierVideo = z.infer<typeof tierVideoSchema>;
+
+export const tierSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  conclusion: z.string(),
+  videos: z.array(tierVideoSchema)
+});
+
+export const distributionBucketSchema = z.object({ label: z.string(), count: z.number(), share: z.number() });
+
+export const contentMapItemSchema = z.object({
+  name: z.string(),
+  signal: z.string().nullable(),
+  mechanism: z.string().nullable(),
+  decision: z.string().nullable()
+});
+
+export const launchSchema = z.object({
+  summary: z.string(),
+  engines: z.array(z.object({ name: z.string(), decision: z.string() })),
+  steps: z.array(z.object({ name: z.string(), rule: z.string() }))
+});
+
+export const creatorConsoleSchema = z.object({
+  meta: z.object({
+    id: z.string(),
+    name: z.string(),
+    positioning: z.string(),
+    profileUrl: z.string(),
+    followers: z.string(),
+    likesAndCollections: z.string(),
+    capturedAt: z.string().nullable()
+  }),
+  baseline: z.object({
+    postCount: z.number(),
+    medianLikes: z.number(),
+    meanLikes: z.number(),
+    maxLikes: z.number(),
+    distribution: z.array(distributionBucketSchema),
+    averageNote: z.string().nullable()
+  }).nullable(),
+  baselineMissing: z.string().nullable(),
+  tiers: z.array(tierSchema),
+  contentMap: z.object({ slotName: z.string(), items: z.array(contentMapItemSchema) }),
+  rhythm: z.object({
+    conclusion: z.string(),
+    weekdays: z.array(z.object({ name: z.string(), count: z.number(), medianLikes: z.number().nullable() })),
+    dayparts: z.array(z.object({ name: z.string(), count: z.number(), medianLikes: z.number().nullable() }))
+  }).nullable(),
+  rhythmMissing: z.string().nullable(),
+  launch: launchSchema.nullable(),
+  launchLink: z.object({ label: z.string(), href: z.string() }).nullable(),
+  boundaries: z.array(z.string()),
+  evidenceLinks: z.array(z.object({ label: z.string(), href: z.string(), count: z.number() }))
+});
+export type CreatorConsole = z.infer<typeof creatorConsoleSchema>;
+
+export const benchmarkIpSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  sampleSize: z.number(),
+  aggregateCollectionToLike: z.number(),
+  medianLikes: z.number()
+});
+export const benchmarkSchema = z.object({
+  metric: z.string(),
+  metricNote: z.string(),
+  ips: z.array(benchmarkIpSchema),
+  findings: z.array(z.object({ kind: z.enum(["track", "ip", "gap"]), text: z.string() }))
+});
+export type Benchmark = z.infer<typeof benchmarkSchema>;
+
+export const videoEvidenceSchema = z.object({
+  id: z.string(),
+  creatorId: z.string(),
+  title: z.string(),
+  lead: z.string(),
+  architecture: z.string().nullable(),
+  engagement: z.object({ likes: z.number(), collections: z.number(), comments: z.number(), shares: z.number() }).nullable(),
+  frames: z.array(z.object({ id: z.string(), time: z.string().nullable(), src: z.string() })),
+  cues: z.array(z.object({ id: z.string(), start: z.number().nullable(), text: z.string(), frame: z.string().nullable() })),
+  knowledgeUnits: z.array(z.object({ id: z.string(), title: z.string(), statement: z.string() })),
+  unknowns: z.array(z.string()),
+  sourceLabel: z.string(),
+  reportHref: z.string().nullable()
+});
+export type VideoEvidence = z.infer<typeof videoEvidenceSchema>;

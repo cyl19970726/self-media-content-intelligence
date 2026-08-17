@@ -7,6 +7,9 @@ import {
 import { createRun, getRun, listRuns, retryRun } from "./api";
 import { ReportV2 } from "./ReportV2";
 import CreatorsOverview from "./Creators";
+import CreatorConsolePage from "./CreatorConsole";
+import BenchmarkPage from "./Benchmark";
+import VideoEvidencePage from "./VideoEvidence";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -31,8 +34,8 @@ function Shell({ children }: { children: React.ReactNode }) {
     </header>
     <nav className="section-nav" aria-label="主导航">
       <Link className={location.pathname === "/" ? "active" : ""} to="/"><Search size={16}/> 链接分析</Link>
-      <Link className={location.pathname.startsWith("/creators") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
-      <span><BarChart3 size={16}/> 复盘档案</span>
+      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/benchmark") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
+      <Link className={location.pathname.startsWith("/benchmark") ? "active" : ""} to="/benchmark"><BarChart3 size={16}/> 对比台</Link>
       <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
     {children}
@@ -172,6 +175,9 @@ export default function App() {
   return <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/creators" element={<Shell><CreatorsOverview/></Shell>}/>
+    <Route path="/creators/:id" element={<Shell><CreatorConsolePage/></Shell>}/>
+    <Route path="/creators/:id/videos/:videoId" element={<Shell><VideoEvidencePage/></Shell>}/>
+    <Route path="/benchmark" element={<Shell><BenchmarkPage/></Shell>}/>
     <Route path="/runs/:id" element={<Detail/>}/>
     <Route path="*" element={<Home/>}/>
   </Routes>;

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 920" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrV" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4f46e5"/>
+    </marker>
+    <marker id="arrA" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <rect width="1180" height="920" fill="#ffffff"/>
+  <text x="20" y="34" font-size="24" font-weight="bold" fill="#0f172a">Cordis 大白话图:一家公司 —— 用 DeepSeek Harness 实景说明</text>
+  <text x="20" y="56" font-size="13" fill="#64748b">每个功能是一名员工;大家只报部门名、互相不记名字;部门齐了人事叫号上岗,离职前按领用清单逆序交接。</text>
+
+  <!-- ① 公司花名册 -->
+  <rect x="20" y="75" width="1140" height="255" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M20,83 a8,8 0 0 1 8,-8 h1124 a8,8 0 0 1 8,8 v26 h-1140 z" fill="#475569"/>
+  <text x="36" y="102" font-size="14" font-weight="bold" fill="#ffffff">① 公司 = 运行中的 dsh(花名册 cordis.yml:一行一个人 + 工牌号 + 工位配置)</text>
+
+  <rect x="40" y="120" width="1100" height="115" rx="10" fill="#1e293b"/>
+  <text x="69" y="142" font-size="12" fill="#94a3b8">▏公司大厅:在岗名单 · 谁在等哪个部门 · 谁领了什么(领用清单)</text>
+
+  <g font-weight="bold">
+    <rect x="69" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="128" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">模型部</text><text x="128" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-llm-deepseek</text>
+    <rect x="201" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="260" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">文件部</text><text x="260" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-fs-sandbox</text>
+    <rect x="333" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="392" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">工具部</text><text x="392" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-tools</text>
+    <rect x="465" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="524" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">调度部</text><text x="524" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-agent</text>
+    <rect x="597" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="656" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">档案部</text><text x="656" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-session</text>
+    <rect x="729" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="788" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">话术部</text><text x="788" y="192" text-anchor="middle" font-size="8.5" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-system-prompt</text>
+    <rect x="861" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="920" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">安保部</text><text x="920" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-sandbox-local</text>
+    <rect x="993" y="150" width="118" height="56" rx="6" fill="#dbeafe" stroke="#3b82f6"/><text x="1052" y="172" text-anchor="middle" font-size="14" fill="#1e3a8a">审批部</text><text x="1052" y="192" text-anchor="middle" font-size="9" font-family="SF Mono, Menlo, monospace" fill="#1e40af">dsh-user-approval</text>
+  </g>
+  <text x="69" y="227" font-size="12" fill="#94a3b8">部门名 = ctx.llm / ctx.fs / ctx.tools …;同事之间写"找文件部办事",不记对方姓名、不 import 任何人</text>
+
+  <rect x="40" y="250" width="600" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="52" y="267" font-size="11" font-family="SF Mono, Menlo, monospace" fill="#334155">- id: llm-deepseek                  ← 工牌号</text>
+  <text x="52" y="282" font-size="11" font-family="SF Mono, Menlo, monospace" fill="#334155">  name: '@deepseek-ai/dsh-llm-deepseek'  ← 员工</text>
+  <text x="52" y="297" font-size="11" font-family="SF Mono, Menlo, monospace" fill="#334155">  config: { thinking: enabled }    ← 工位配置</text>
+  <text x="52" y="312" font-size="11" fill="#475569">profile 叠加 bundle + patch = 最终花名册(dsh --dump-config 打印在岗名单)</text>
+
+  <text x="670" y="272" font-size="12.5" fill="#0f172a">· 没有 main()、没有组装代码:一张名单就是公司</text>
+  <text x="670" y="293" font-size="12.5" fill="#0f172a">· 部门可以换人(供应商):本地 ⇄ 沙箱 ⇄ 远程(E2B)</text>
+  <text x="670" y="314" font-size="12.5" fill="#0f172a">· 配置传错?入职即拒,Config schema 把关</text>
+
+  <!-- ② 等人齐 -->
+  <rect x="20" y="345" width="560" height="255" rx="8" fill="#f8fafc" stroke="#a5b4fc" stroke-width="1.5"/>
+  <path d="M20,353 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#4f46e5"/>
+  <text x="36" y="374" font-size="14" font-weight="bold" fill="#ffffff">② 等人齐才上岗:大脑也只是个新员工</text>
+
+  <rect x="45" y="405" width="200" height="80" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="62" y="430" font-size="14" font-weight="bold" fill="#3730a3">AgentLoop(新员工)</text>
+  <text x="62" y="451" font-size="12" fill="#4f46e5">入职表 inject = 5 个部门</text>
+  <text x="62" y="472" font-size="12" fill="#4f46e5">等候区坐着…(PENDING)</text>
+
+  <path d="M245,485 L268,485 L286,420 M268,485 L286,448 M268,485 L286,476 M268,485 L286,504 M268,485 L286,532" fill="none" stroke="#4f46e5" stroke-width="1.2"/>
+  <g font-size="12" fill="#0f172a">
+    <rect x="288" y="408" width="240" height="24" rx="5" fill="#eef2ff" stroke="#a5b4fc"/><text x="298" y="425">调度部 agents ✓</text>
+    <rect x="288" y="436" width="240" height="24" rx="5" fill="#eef2ff" stroke="#a5b4fc"/><text x="298" y="453">档案部 sessions ✓</text>
+    <rect x="288" y="464" width="240" height="24" rx="5" fill="#eef2ff" stroke="#a5b4fc"/><text x="298" y="481">模型部 llm ✓</text>
+    <rect x="288" y="492" width="240" height="24" rx="5" fill="#eef2ff" stroke="#a5b4fc"/><text x="298" y="509">工具部 tools ✓</text>
+    <rect x="288" y="520" width="240" height="24" rx="5" fill="#eef2ff" stroke="#a5b4fc"/><text x="298" y="537">话术部 systemPrompt ✓</text>
+  </g>
+
+  <text x="36" y="568" font-size="12.5" fill="#334155">缺一个部门 → 一直坐等候区(PENDING),一个字不干</text>
+  <text x="36" y="589" font-size="12.5" fill="#334155">五个都到岗 → 人事叫号:办手续(LOADING)→ 上岗(ACTIVE)</text>
+
+  <!-- ③ 领用清单 -->
+  <rect x="600" y="345" width="560" height="255" rx="8" fill="#f8fafc" stroke="#fca5a5" stroke-width="1.5"/>
+  <path d="M600,353 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#b91c1c"/>
+  <text x="616" y="374" font-size="14" font-weight="bold" fill="#ffffff">③ 领用清单:离职前,逆序交还每一件</text>
+
+  <text x="616" y="398" font-size="12.5" fill="#0f172a">上岗领的每样东西,前台记进清单:</text>
+  <g font-size="11" font-family="SF Mono, Menlo, monospace" fill="#7f1d1d">
+    <rect x="616" y="406" width="250" height="32" rx="6" fill="#fef2f2" stroke="#fca5a5"/><text x="628" y="426">① 门禁卡 ctx.on('tools/pre-execute')</text>
+    <rect x="616" y="446" width="250" height="32" rx="6" fill="#fef2f2" stroke="#fca5a5"/><text x="628" y="466">② 工位电脑 ctx.provide('agentLoop')</text>
+    <rect x="616" y="486" width="250" height="32" rx="6" fill="#fef2f2" stroke="#fca5a5"/><text x="628" y="506">③ 定时器 ctx.effect(定时器)</text>
+  </g>
+
+  <g font-size="12.5" fill="#0f172a">
+    <text x="892" y="425">· 依赖的部门撤了 / 换人了</text>
+    <text x="892" y="465">· 人事广播:你的条件变了</text>
+    <text x="892" y="505">· 按清单逆序交还:③ → ② → ①</text>
+    <text x="892" y="545">· 回到等候区,交接干干净净</text>
+  </g>
+
+  <text x="616" y="588" font-size="12" fill="#64748b">这就是 DSH 敢热重载、敢让 agent 改自己部门的底气。</text>
+
+  <!-- ④ 换供应商 -->
+  <rect x="20" y="615" width="560" height="250" rx="8" fill="#f8fafc" stroke="#6ee7b7" stroke-width="1.5"/>
+  <path d="M20,623 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#047857"/>
+  <text x="36" y="644" font-size="14" font-weight="bold" fill="#ffffff">④ 换供应商(seam)= 换部门里的办事员</text>
+
+  <rect x="60" y="660" width="190" height="60" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="75" y="688" font-size="14" font-weight="bold" fill="#065f46">文件部: ctx.fs</text>
+  <text x="75" y="708" font-size="11" fill="#047857">大家只认部门,不认办事员</text>
+  <rect x="60" y="740" width="190" height="36" rx="6" fill="#d1fae5" stroke="#059669"/><text x="75" y="763" font-size="12" fill="#064e3b">dsh-fs-local(本地柜员)</text>
+  <rect x="60" y="790" width="190" height="36" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="75" y="813" font-size="12" fill="#78350f">dsh-fs-sandbox(沙箱柜员)</text>
+  <path d="M250,758 C 274,770 274,798 250,808" fill="none" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrA)"/>
+  <text x="262" y="788" font-size="11" fill="#b45309">换人</text>
+
+  <text x="300" y="678" font-size="13" font-weight="bold" fill="#0f172a">客户(只认部门,不认办事员):</text>
+  <text x="300" y="700" font-size="12.5" fill="#0f172a">· bash 执行器 dsh-bash-sandbox</text>
+  <text x="300" y="722" font-size="12.5" fill="#0f172a">· 文件工具 read / write / edit</text>
+  <text x="300" y="744" font-size="12.5" fill="#0f172a">· LSP 语言服务</text>
+  <text x="300" y="776" font-size="12.5" fill="#334155">把本地柜员换成沙箱柜员 →</text>
+  <text x="300" y="798" font-size="12.5" fill="#334155">三个客户一句话没改,</text>
+  <text x="300" y="820" font-size="12.5" fill="#334155">行为全变:写被拦、读受限。</text>
+  <text x="300" y="849" font-size="12" fill="#64748b">本地 / 远程 / 测试桩 = 同部门不同办事员</text>
+
+  <!-- ⑤ 会签 -->
+  <rect x="600" y="615" width="560" height="250" rx="8" fill="#f8fafc" stroke="#fcd34d" stroke-width="1.5"/>
+  <path d="M600,623 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#b45309"/>
+  <text x="616" y="644" font-size="14" font-weight="bold" fill="#ffffff">⑤ 会签流程(waterfall)= 审批的实现</text>
+
+  <rect x="620" y="662" width="240" height="36" rx="6" fill="#ffffff" stroke="#475569"/><text x="632" y="684" font-size="12.5" fill="#0f172a">员工:我要跑 bash(报销)</text>
+  <line x1="740" y1="698" x2="740" y2="708" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="620" y="712" width="240" height="36" rx="6" fill="#fffbeb" stroke="#d97706"/><text x="632" y="734" font-size="12.5" fill="#78350f">审批部 approval 插件</text>
+  <line x1="740" y1="748" x2="740" y2="758" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="620" y="762" width="240" height="36" rx="6" fill="#fffbeb" stroke="#d97706"/><text x="632" y="784" font-size="12.5" fill="#78350f">安保部 sandbox 插件</text>
+  <line x1="740" y1="798" x2="740" y2="808" stroke="#475569" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="620" y="812" width="240" height="36" rx="6" fill="#ecfdf5" stroke="#059669"/><text x="632" y="834" font-size="12.5" fill="#064e3b">出纳:真正执行命令</text>
+
+  <g font-size="12.5" fill="#0f172a">
+    <text x="890" y="682">会签规则(waterfall):</text>
+    <text x="890" y="704">· 签完 → 传给下一个人</text>
+    <text x="890" y="726">· 不签 → 单据卡住 = 否决</text>
+  </g>
+  <g font-size="12.5">
+    <text x="890" y="766" fill="#b45309">policy = ask → 停!等老板签字 ✋</text>
+    <text x="890" y="826" fill="#047857">policy = never → 直接过!→ 传下去</text>
+  </g>
+  <text x="616" y="858" font-size="11" fill="#64748b">审批 = 改审批部的规则(换 config),公司流程一行不动</text>
+
+  <!-- 收尾 -->
+  <rect x="20" y="878" width="1140" height="36" rx="8" fill="#0f172a"/>
+  <text x="590" y="901" text-anchor="middle" font-size="13.5" fill="#e2e8f0">一句话:每个功能是一名员工;大家只报部门名、互相不记名字;部门齐了人事叫号上岗,离职前按领用清单逆序交接 —— 改产品 = 换办事员 / 改花名册。</text>
+</svg>

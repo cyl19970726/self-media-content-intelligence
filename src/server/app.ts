@@ -6,6 +6,7 @@ import { AnalysisService } from "../core/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
 import { createRunInputSchema } from "../shared/schema.js";
 import { loadCreatorSummaries } from "./creators.js";
+import { loadBenchmark, loadCreatorConsole, loadVideoEvidence } from "./console.js";
 
 export function createApp(service = new AnalysisService()) {
   const app = express();
@@ -32,6 +33,22 @@ export function createApp(service = new AnalysisService()) {
 
   app.get("/api/creators", (_request, response) => {
     response.json({ creators: loadCreatorSummaries() });
+  });
+
+  app.get("/api/creators/:id", (request, response) => {
+    const consoleData = loadCreatorConsole(request.params.id);
+    if (!consoleData) return response.status(404).json({ error: "博主研究台不存在" });
+    return response.json(consoleData);
+  });
+
+  app.get("/api/creators/:id/videos/:videoId", (request, response) => {
+    const evidence = loadVideoEvidence(request.params.id, request.params.videoId);
+    if (!evidence) return response.status(404).json({ error: "视频证据不存在" });
+    return response.json(evidence);
+  });
+
+  app.get("/api/benchmark", (_request, response) => {
+    response.json(loadBenchmark());
   });
 
   app.get("/api/runs", (request, response) => {
