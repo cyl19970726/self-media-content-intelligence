@@ -1,34 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { projectRoot } from "../core/config.js";
+import { asNumber, asRecord, asString, asStringOrNull, positioningOf, readJson, redWitchFocusCount, researchDir, videoEvidenceCount } from "./creator-meta.js";
 import type { Benchmark, CreatorConsole, VideoEvidence } from "../shared/schema.js";
-
-const researchDir = path.join(projectRoot, "artifacts", "creator-research");
-
-function readJson(relativePath: string): Record<string, unknown> | null {
-  const file = path.join(researchDir, relativePath);
-  try {
-    return JSON.parse(fs.readFileSync(file, "utf-8")) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
-}
-
-function asRecord(value: unknown): Record<string, unknown> {
-  return value && typeof value === "object" ? (value as Record<string, unknown>) : {};
-}
-
-function asString(value: unknown, fallback = ""): string {
-  return typeof value === "string" ? value : fallback;
-}
-
-function asNumber(value: unknown): number | null {
-  return typeof value === "number" ? value : null;
-}
-
-function asStringOrNull(value: unknown): string | null {
-  return typeof value === "string" ? value : null;
-}
 
 const distributionLabels = ["<100", "100–499", "500–999", "1k–4,999", "5k–9,999", "≥10k"];
 
@@ -147,7 +120,7 @@ function redWitchConsole(): CreatorConsole | null {
     meta: {
       id: "ai-red-witch",
       name: asString(creator.name, "AI红发魔女"),
-      positioning: "AI 工具实操型博主：把抽象 AI 能力翻译成具体任务、结果与用途",
+      positioning: positioningOf["ai-red-witch"],
       profileUrl: asString(creator.profile) || asString(creator.profileUrl),
       followers: asString(creator.followers),
       likesAndCollections: asString(creator.likesAndCollections),
@@ -190,8 +163,8 @@ function redWitchConsole(): CreatorConsole | null {
       missing.fullCorpusRows === true ? "331 条全量公开盘面只保留了聚合摘要，逐条原始行未落盘（需重新采集）。" : ""
     ].filter(Boolean),
     evidenceLinks: [
-      { label: "19 个视频逐条还原库", href: "/research/ai-red-witch/video-library/index.html", count: 19 },
-      { label: "高中低 21 条 · 增长引擎研究台", href: "/research/ai-red-witch/selected-high-like/report.html", count: 21 }
+      { label: "视频逐条还原库", href: "/research/ai-red-witch/video-library/index.html", count: videoEvidenceCount("ai-red-witch") },
+      { label: `高中低 ${redWitchFocusCount()} 条 · 增长引擎研究台`, href: "/research/ai-red-witch/selected-high-like/report.html", count: redWitchFocusCount() }
     ]
   };
 }
@@ -254,7 +227,7 @@ function humanDirectorConsole(): CreatorConsole | null {
     meta: {
       id: "human-director",
       name: asString(creator.name, "人类最强编导").split("（")[0]?.trim() || "人类最强编导",
-      positioning: "编导能力模型拆解：成绩证明、平台趋势、垂直教程与价值观转粉四种样本",
+      positioning: positioningOf["human-director"],
       profileUrl: asString(creator.profile) || asString(creator.profileUrl),
       followers: asString(creator.followers),
       likesAndCollections: asString(creator.likesAndCollections),
@@ -279,7 +252,7 @@ function humanDirectorConsole(): CreatorConsole | null {
       backfillMissing.archetypeMissingCount === 11 ? "19 条中 11 条无内容样本类型标签（archetype），内容地图只覆盖 8 条深样本。" : ""
     ].filter(Boolean),
     evidenceLinks: [
-      { label: "19 条全量分析 · 8 条真实拉片", href: "/research/human-director/report.html", count: 19 }
+      { label: `${videoEvidenceCount("human-director")} 条全量分析 · 8 条真实拉片`, href: "/research/human-director/report.html", count: videoEvidenceCount("human-director") }
     ]
   };
 }

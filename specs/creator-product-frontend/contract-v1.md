@@ -1,6 +1,6 @@
-# Creator Product Frontend · Phase 0 产品合同 v1
+# Creator Product Frontend · Phase 0 产品合同 v1 — DEAD
 
-> 状态：草稿待 Owner 确认。确认后才进入 Phase 1 出稿（设计图）。
+> **状态：已被 contract-v2.md 取代（2026-08-17）。仅存档，不作为任何实现依据。**
 > 依据：harness-frontend-product-design（Phase 0 文字合同，判断权归属 Owner）。
 
 ## 0. 目标与非目标

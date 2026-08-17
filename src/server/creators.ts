@@ -1,36 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
-import { projectRoot } from "../core/config.js";
+import { asNumber, asRecord, asString, formatCount, positioningOf, readJson, videoEvidenceCount } from "./creator-meta.js";
 import type { CreatorSummary } from "../shared/schema.js";
-
-const researchDir = path.join(projectRoot, "artifacts", "creator-research");
-
-function readJson(relativePath: string): Record<string, unknown> | null {
-  const file = path.join(researchDir, relativePath);
-  try {
-    return JSON.parse(fs.readFileSync(file, "utf-8")) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
-}
-
-function asRecord(value: unknown): Record<string, unknown> {
-  return value && typeof value === "object" ? (value as Record<string, unknown>) : {};
-}
-
-function asString(value: unknown, fallback = ""): string {
-  return typeof value === "string" ? value : fallback;
-}
-
-function asNumber(value: unknown): number | null {
-  return typeof value === "number" ? value : null;
-}
-
-function formatCount(value: number | null): string {
-  if (value === null) return "—";
-  if (value >= 10_000) return `${(value / 10_000).toFixed(1)}万`;
-  return String(value);
-}
 
 function redWitch(): CreatorSummary | null {
   const analysis = readJson("ai-red-witch/selected-high-like/analysis.json");
@@ -47,13 +16,13 @@ function redWitch(): CreatorSummary | null {
     followers: asString(creator.followers),
     likesAndCollections: asString(creator.likesAndCollections),
     profileUrl: asString(creator.profile) || asString(creator.profileUrl),
-    positioning: "AI 工具实操型博主：把抽象 AI 能力翻译成具体任务、结果与用途",
+    positioning: positioningOf["ai-red-witch"],
     summary: conclusion || "高赞由三台增长引擎驱动：可保存的解决方案、可转发的社交梗、商业叙事。",
     tags: engineTags.length > 0 ? engineTags : ["保存引擎", "传播引擎", "商业引擎"],
     stats: [
       { label: "公开笔记", value: formatCount(asNumber(coverage.capturedNotes)) },
       { label: "高赞拆解", value: formatCount(asNumber(coverage.selectedVideos)) },
-      { label: "逐条还原", value: "19" }
+      { label: "逐条还原", value: String(videoEvidenceCount("ai-red-witch")) }
     ],
     entries: [
       { label: "高中低 21 条 · 增长引擎", href: "/research/ai-red-witch/selected-high-like/report.html" },
@@ -83,7 +52,7 @@ function humanDirector(): CreatorSummary | null {
     followers: asString(creator.followers),
     likesAndCollections: asString(creator.likesAndCollections),
     profileUrl: asString(creator.profile) || asString(creator.profileUrl),
-    positioning: "编导能力模型拆解：成绩证明、平台趋势、垂直教程与价值观转粉四种样本",
+    positioning: positioningOf["human-director"],
     summary: selection,
     tags: archetypes,
     stats: [
@@ -92,7 +61,7 @@ function humanDirector(): CreatorSummary | null {
       { label: "字幕可用", value: formatCount(asNumber(coverage.subtitleAvailable)) }
     ],
     entries: [
-      { label: "19 条全量分析 · 四种关键样本", href: "/research/human-director/report.html" }
+      { label: `${videoEvidenceCount("human-director")} 条全量分析 · 四种关键样本`, href: "/research/human-director/report.html" }
     ]
   };
 }
@@ -106,8 +75,4 @@ export function loadCreatorSummaries(): CreatorSummary[] {
   return Object.values(loaders)
     .map((load) => load())
     .filter((summary): summary is CreatorSummary => summary !== null);
-}
-
-export function creatorIndexFile(): string {
-  return researchDir;
 }
