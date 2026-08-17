@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "video-contract-1.0",
+  "schemaVersion": "1.1",
   "title": "视频级证据页 · 统一 JSON 契约（Video Contract）",
   "description": "把四个异构数据源归一成一个视频级对象，供博主页 06 节「证据级还原」和视频级证据页 `/creators/:id/videos/:videoId` 复用同一套渲染逻辑。本文件只定义契约字段的语义与来源映射（哪个字段来自哪个数据源的哪条路径），不包含适配器代码；适配器按本映射实现时，数据有就填、没有就具名缺省（null / 空数组），绝不伪造。",
-  "honestyRule": "每个字段都标注 optional（可缺省）。映射表中的 present=false 表示该数据源没有该字段，适配器应填 null 或空数组并在前端标「未采集」；present=\"derive\" 表示需从路径/join 推导而非直接字段。",
+  "honestyRule": "每个字段都标注 optional（可缺省）。映射表中的 present=false 表示该数据源没有该字段，适配器应填 null 或空数组并在前端标「未采集」；present=\"derive\" 表示需从路径/join 推导而非直接字段。 v1.1: transcript.cues 来源改为官方字幕 .srt（实现真值）；cue↔帧对齐为 future 字段（needs-backend），不虚构。",
   "dataSources": [
     {
       "id": "red-witch-report",
@@ -41,10 +41,22 @@
       "required": true,
       "semantics": "视频/笔记的稳定唯一 id（小红书 note id）。",
       "sources": {
-        "red-witch-report": { "path": "id", "present": true },
-        "red-witch-reconstruction": { "path": "content-reconstruction-v1/videos/<id>（目录名）", "present": "derive" },
-        "zhang-deepdive": { "path": "deepDives[i].postId", "present": true },
-        "human-director-analysis": { "path": "videos[i].id", "present": true }
+        "red-witch-report": {
+          "path": "id",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "content-reconstruction-v1/videos/<id>（目录名）",
+          "present": "derive"
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].postId",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "videos[i].id",
+          "present": true
+        }
       }
     },
     {
@@ -53,10 +65,22 @@
       "required": true,
       "semantics": "作品标题（原文）。",
       "sources": {
-        "red-witch-report": { "path": "title", "present": true },
-        "red-witch-reconstruction": { "path": "无；需按目录 id join library.json#videos[].title", "present": "derive" },
-        "zhang-deepdive": { "path": "无；需按 postId join posts[].title", "present": "derive" },
-        "human-director-analysis": { "path": "videos[i].title", "present": true }
+        "red-witch-report": {
+          "path": "title",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "无；需按目录 id join library.json#videos[].title",
+          "present": "derive"
+        },
+        "zhang-deepdive": {
+          "path": "无；需按 postId join posts[].title",
+          "present": "derive"
+        },
+        "human-director-analysis": {
+          "path": "videos[i].title",
+          "present": true
+        }
       }
     },
     {
@@ -65,10 +89,22 @@
       "required": false,
       "semantics": "一句话主旨/结论，把视频读成文章的导语。",
       "sources": {
-        "red-witch-report": { "path": "articleLead（备用：contentIntent / coreClaim）", "present": true },
-        "red-witch-reconstruction": { "path": "viewerChange.after（备用：scopeStatement）", "present": true },
-        "zhang-deepdive": { "path": "deepDives[i].viewerChange.after", "present": true },
-        "human-director-analysis": { "path": "无；需 join inventory.json#videos[].summary", "present": "derive" }
+        "red-witch-report": {
+          "path": "articleLead（备用：contentIntent / coreClaim）",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "viewerChange.after（备用：scopeStatement）",
+          "present": true
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].viewerChange.after",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "无；需 join inventory.json#videos[].summary",
+          "present": "derive"
+        }
       }
     },
     {
@@ -77,10 +113,22 @@
       "required": false,
       "semantics": "内容架构：钩子/承诺/证明/回报的阶段结构、阶段数与前后观众认知变化（它怎样让观众继续看）。",
       "sources": {
-        "red-witch-report": { "path": "contentArchitecture（pattern/stageCount/hook/payoff/proofChain/stages）", "present": true },
-        "red-witch-reconstruction": { "path": "viewerChange（before/after）+ relations（hook_paid_off_by_* 等）", "present": "partial" },
-        "zhang-deepdive": { "path": "representedMechanism + viewerChange（无阶段级结构）", "present": "partial" },
-        "human-director-analysis": { "path": "无（archetype 是题材类别，不是结构）", "present": false }
+        "red-witch-report": {
+          "path": "contentArchitecture（pattern/stageCount/hook/payoff/proofChain/stages）",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "viewerChange（before/after）+ relations（hook_paid_off_by_* 等）",
+          "present": "partial"
+        },
+        "zhang-deepdive": {
+          "path": "representedMechanism + viewerChange（无阶段级结构）",
+          "present": "partial"
+        },
+        "human-director-analysis": {
+          "path": "无（archetype 是题材类别，不是结构）",
+          "present": false
+        }
       }
     },
     {
@@ -89,10 +137,22 @@
       "required": false,
       "semantics": "稀疏帧（少量看懂故事线）与密集帧（不漏视觉转折）。",
       "sources": {
-        "red-witch-report": { "path": "frames.sparse[]（{time,src}）/ frames.dense[]（{time,src}）", "present": true },
-        "red-witch-reconstruction": { "path": "帧在 evidence-pack.json：frameIndex[] 或 shots[]（稀疏）、denseProbe.frames[]（密集）", "present": "derive" },
-        "zhang-deepdive": { "path": "deepDives[i].sparseFrames[]（{id,path,timecode,caption}）/ denseFrames[]", "present": true },
-        "human-director-analysis": { "path": "evidence.contactSheet / transcriptContactSheet（联系表，非稀疏/密集列表）；sampleTimes", "present": "partial" }
+        "red-witch-report": {
+          "path": "frames.sparse[]（{time,src}）/ frames.dense[]（{time,src}）",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "帧在 evidence-pack.json：frameIndex[] 或 shots[]（稀疏）、denseProbe.frames[]（密集）",
+          "present": "derive"
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].sparseFrames[]（{id,path,timecode,caption}）/ denseFrames[]",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "evidence.contactSheet / transcriptContactSheet（联系表，非稀疏/密集列表）；sampleTimes",
+          "present": "partial"
+        }
       }
     },
     {
@@ -101,10 +161,22 @@
       "required": false,
       "semantics": "逐字稿 + 逐句 cue（cue ↔ 帧对齐）。",
       "sources": {
-        "red-witch-report": { "path": "transcript.cues[]（{id,start,end,midpoint,text,frame}）+ transcript.fullText", "present": true },
-        "red-witch-reconstruction": { "path": "transcript.cues[]（{id,start,end,text,representativeFrame,overlappingShots}）", "present": true },
-        "zhang-deepdive": { "path": "deepDives[i].transcript[]（直接数组，非 {cues} 包裹；元素 {id,start,end,text,representativeFrame,overlappingShots}）", "present": true },
-        "human-director-analysis": { "path": "transcript.cues[]（{id,index,start,end,duration,midpoint,text,frame}）+ transcript.fullText/first3Seconds/first6Seconds", "present": true }
+        "red-witch-report": {
+          "path": "transcript.cues[]（{id,start,end,midpoint,text,frame}）+ transcript.fullText",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "transcript.cues[]（{id,start,end,text,representativeFrame,overlappingShots}）",
+          "present": true
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].transcript[]（直接数组，非 {cues} 包裹；元素 {id,start,end,text,representativeFrame,overlappingShots}）",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "transcript.cues[]（{id,index,start,end,duration,midpoint,text,frame}）+ transcript.fullText/first3Seconds/first6Seconds",
+          "present": true
+        }
       }
     },
     {
@@ -113,10 +185,22 @@
       "required": false,
       "semantics": "知识单元：可独立陈述、带时间码/证据来源与置信度的知识点。",
       "sources": {
-        "red-witch-report": { "path": "knowledgeExtraction.items[]（常为空，status=needs_visual_review；降级：keyPoints[]/sections[]/coreClaim）", "present": "partial" },
-        "red-witch-reconstruction": { "path": "knowledgeUnits[]（{id,title,importance,statement,provenance,timeRange,evidence,confidence,unknowns}）", "present": true },
-        "zhang-deepdive": { "path": "deepDives[i].knowledgeUnits[]（{id,title,statement,timecode,provenance,confidence,unknowns}）", "present": true },
-        "human-director-analysis": { "path": "无", "present": false }
+        "red-witch-report": {
+          "path": "knowledgeExtraction.items[]（常为空，status=needs_visual_review；降级：keyPoints[]/sections[]/coreClaim）",
+          "present": "partial"
+        },
+        "red-witch-reconstruction": {
+          "path": "knowledgeUnits[]（{id,title,importance,statement,provenance,timeRange,evidence,confidence,unknowns}）",
+          "present": true
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].knowledgeUnits[]（{id,title,statement,timecode,provenance,confidence,unknowns}）",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "无",
+          "present": false
+        }
       }
     },
     {
@@ -125,10 +209,22 @@
       "required": false,
       "semantics": "未知边界：这条内容里没被证明、无法证明或尚未核验的断言。",
       "sources": {
-        "red-witch-report": { "path": "knowledgeExtraction.unresolved[] + boundary", "present": true },
-        "red-witch-reconstruction": { "path": "coverageMatrix.unknowns[] + coverageMatrix.criticalQuestions[] + coverageMatrix.uncheckedChannels[] + metaGate", "present": true },
-        "zhang-deepdive": { "path": "deepDives[i].unknowns[]", "present": true },
-        "human-director-analysis": { "path": "无", "present": false }
+        "red-witch-report": {
+          "path": "knowledgeExtraction.unresolved[] + boundary",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "coverageMatrix.unknowns[] + coverageMatrix.criticalQuestions[] + coverageMatrix.uncheckedChannels[] + metaGate",
+          "present": true
+        },
+        "zhang-deepdive": {
+          "path": "deepDives[i].unknowns[]",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "无",
+          "present": false
+        }
       }
     },
     {
@@ -137,10 +233,22 @@
       "required": false,
       "semantics": "公开互动数据：点赞/收藏/评论/分享及其比值。",
       "sources": {
-        "red-witch-report": { "path": "engagement（likes/collections/comments/shares/collectionToLike/commentToLike/shareToLike）", "present": true },
-        "red-witch-reconstruction": { "path": "无（重建产物不含公开互动）", "present": false },
-        "zhang-deepdive": { "path": "无；需 join posts[].likes/collections/comments/shares", "present": "derive" },
-        "human-director-analysis": { "path": "videos[i].engagement（likes/collections/comments/shares + 比值）", "present": true }
+        "red-witch-report": {
+          "path": "engagement（likes/collections/comments/shares/collectionToLike/commentToLike/shareToLike）",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "无（重建产物不含公开互动）",
+          "present": false
+        },
+        "zhang-deepdive": {
+          "path": "无；需 join posts[].likes/collections/comments/shares",
+          "present": "derive"
+        },
+        "human-director-analysis": {
+          "path": "videos[i].engagement（likes/collections/comments/shares + 比值）",
+          "present": true
+        }
       }
     },
     {
@@ -149,24 +257,102 @@
       "required": false,
       "semantics": "证据引用：支撑上述结论的可定位文件/路径/时间码/来源。",
       "sources": {
-        "red-witch-report": { "path": "reportUrl / mediaPath / subtitlePath / sections[].evidence", "present": true },
-        "red-witch-reconstruction": { "path": "evidencePack / derivedSources[]（{id,path,kind}）/ knowledgeUnits[].evidence[] / coverageMatrix.coreEvidence", "present": true },
-        "zhang-deepdive": { "path": "reportPath（可为 null）/ sparseFrames[].path / knowledgeUnits[].provenance", "present": true },
-        "human-director-analysis": { "path": "evidence（contactSheet/transcriptContactSheet/sampleTimes）/ media.file / media.subtitle", "present": true }
+        "red-witch-report": {
+          "path": "reportUrl / mediaPath / subtitlePath / sections[].evidence",
+          "present": true
+        },
+        "red-witch-reconstruction": {
+          "path": "evidencePack / derivedSources[]（{id,path,kind}）/ knowledgeUnits[].evidence[] / coverageMatrix.coreEvidence",
+          "present": true
+        },
+        "zhang-deepdive": {
+          "path": "reportPath（可为 null）/ sparseFrames[].path / knowledgeUnits[].provenance",
+          "present": true
+        },
+        "human-director-analysis": {
+          "path": "evidence（contactSheet/transcriptContactSheet/sampleTimes）/ media.file / media.subtitle",
+          "present": true
+        }
       }
     }
   ],
   "sourceMappingTable": [
-    { "field": "id", "red-witch-report": "id", "red-witch-reconstruction": "目录名 derive", "zhang-deepdive": "postId", "human-director-analysis": "videos[i].id" },
-    { "field": "title", "red-witch-report": "title", "red-witch-reconstruction": "join library.json derive", "zhang-deepdive": "join posts[] derive", "human-director-analysis": "videos[i].title" },
-    { "field": "lead", "red-witch-report": "articleLead", "red-witch-reconstruction": "viewerChange.after", "zhang-deepdive": "viewerChange.after", "human-director-analysis": "join inventory.json#summary" },
-    { "field": "architecture", "red-witch-report": "contentArchitecture", "red-witch-reconstruction": "viewerChange+relations(partial)", "zhang-deepdive": "representedMechanism(partial)", "human-director-analysis": "—（缺）" },
-    { "field": "frames.sparse", "red-witch-report": "frames.sparse[]", "red-witch-reconstruction": "evidence-pack.json#frameIndex/shots", "zhang-deepdive": "sparseFrames[]", "human-director-analysis": "evidence.contactSheet(partial)" },
-    { "field": "frames.dense", "red-witch-report": "frames.dense[]", "red-witch-reconstruction": "evidence-pack.json#denseProbe.frames[]", "zhang-deepdive": "denseFrames[]", "human-director-analysis": "—（缺）" },
-    { "field": "transcript.cues", "red-witch-report": "transcript.cues[]", "red-witch-reconstruction": "transcript.cues[]", "zhang-deepdive": "transcript[]（直接数组）", "human-director-analysis": "transcript.cues[]" },
-    { "field": "knowledgeUnits", "red-witch-report": "knowledgeExtraction.items[](常空)", "red-witch-reconstruction": "knowledgeUnits[]", "zhang-deepdive": "knowledgeUnits[]", "human-director-analysis": "—（缺）" },
-    { "field": "unknowns", "red-witch-report": "knowledgeExtraction.unresolved+boundary", "red-witch-reconstruction": "coverageMatrix.unknowns/criticalQuestions", "zhang-deepdive": "unknowns[]", "human-director-analysis": "—（缺）" },
-    { "field": "engagement", "red-witch-report": "engagement", "red-witch-reconstruction": "—（缺）", "zhang-deepdive": "join posts[] derive", "human-director-analysis": "engagement" },
-    { "field": "evidenceRefs", "red-witch-report": "reportUrl/mediaPath/subtitlePath", "red-witch-reconstruction": "evidencePack/derivedSources[]", "zhang-deepdive": "reportPath/sparseFrames[].path", "human-director-analysis": "evidence/media.file" }
+    {
+      "field": "id",
+      "red-witch-report": "id",
+      "red-witch-reconstruction": "目录名 derive",
+      "zhang-deepdive": "postId",
+      "human-director-analysis": "videos[i].id"
+    },
+    {
+      "field": "title",
+      "red-witch-report": "title",
+      "red-witch-reconstruction": "join library.json derive",
+      "zhang-deepdive": "join posts[] derive",
+      "human-director-analysis": "videos[i].title"
+    },
+    {
+      "field": "lead",
+      "red-witch-report": "articleLead",
+      "red-witch-reconstruction": "viewerChange.after",
+      "zhang-deepdive": "viewerChange.after",
+      "human-director-analysis": "join inventory.json#summary"
+    },
+    {
+      "field": "architecture",
+      "red-witch-report": "contentArchitecture",
+      "red-witch-reconstruction": "viewerChange+relations(partial)",
+      "zhang-deepdive": "representedMechanism(partial)",
+      "human-director-analysis": "—（缺）"
+    },
+    {
+      "field": "frames.sparse",
+      "red-witch-report": "frames.sparse[]",
+      "red-witch-reconstruction": "evidence-pack.json#frameIndex/shots",
+      "zhang-deepdive": "sparseFrames[]",
+      "human-director-analysis": "evidence.contactSheet(partial)"
+    },
+    {
+      "field": "frames.dense",
+      "red-witch-report": "frames.dense[]",
+      "red-witch-reconstruction": "evidence-pack.json#denseProbe.frames[]",
+      "zhang-deepdive": "denseFrames[]",
+      "human-director-analysis": "—（缺）"
+    },
+    {
+      "field": "transcript.cues",
+      "red-witch-report": "transcript.cues[]",
+      "red-witch-reconstruction": "transcript.cues[]",
+      "zhang-deepdive": "transcript[]（直接数组）",
+      "human-director-analysis": "transcript.cues[]"
+    },
+    {
+      "field": "knowledgeUnits",
+      "red-witch-report": "knowledgeExtraction.items[](常空)",
+      "red-witch-reconstruction": "knowledgeUnits[]",
+      "zhang-deepdive": "knowledgeUnits[]",
+      "human-director-analysis": "—（缺）"
+    },
+    {
+      "field": "unknowns",
+      "red-witch-report": "knowledgeExtraction.unresolved+boundary",
+      "red-witch-reconstruction": "coverageMatrix.unknowns/criticalQuestions",
+      "zhang-deepdive": "unknowns[]",
+      "human-director-analysis": "—（缺）"
+    },
+    {
+      "field": "engagement",
+      "red-witch-report": "engagement",
+      "red-witch-reconstruction": "—（缺）",
+      "zhang-deepdive": "join posts[] derive",
+      "human-director-analysis": "engagement"
+    },
+    {
+      "field": "evidenceRefs",
+      "red-witch-report": "reportUrl/mediaPath/subtitlePath",
+      "red-witch-reconstruction": "evidencePack/derivedSources[]",
+      "zhang-deepdive": "reportPath/sparseFrames[].path",
+      "human-director-analysis": "evidence/media.file"
+    }
   ]
 }

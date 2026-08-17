@@ -77,13 +77,13 @@ function ContentMap({ data }: { data: CreatorConsoleData }) {
 }
 
 function Rhythm({ data }: { data: CreatorConsoleData }) {
-  if (data.rhythmMissing) {
+  if (!data.rhythm) {
     return <section id="rhythm" className="console-section">
       <header className="console-section__head">
         <span className="console-section__index">"06"</span>
         <div><h2>发布节奏与画面</h2></div>
       </header>
-      <Missing reason={data.rhythmMissing}/>
+      <Missing reason={data.rhythmHealth?.reason ?? "发布节奏数据缺失"}/>
     </section>;
   }
   return <section id="rhythm" className="console-section">
@@ -202,9 +202,9 @@ export default function CreatorConsolePage() {
               <Distribution data={data.baseline}/>
               {data.baseline.averageNote && <p className="console-note"><CircleAlert size={14}/>{data.baseline.averageNote}</p>}
             </section>}
-            {data.baselineMissing && <section className="console-section">
-              <header className="console-section__head"><span className="console-section__index">01</span><div><h2>基本盘</h2></div></header>
-              <Missing reason={data.baselineMissing}/>
+            {!data.baseline && <section className="console-section">
+              <header className="console-section__head"><span className="console-section__index">"01"</span><div><h2>基本盘</h2></div></header>
+              <Missing reason={data.baselineHealth?.reason ?? "基本盘数据缺失"}/>
             </section>}
             <TierSection data={data}/>
             <section id="evidence" className="console-section">

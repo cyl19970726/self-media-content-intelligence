@@ -154,7 +154,11 @@ function redWitchConsole(): CreatorConsole | null {
       capturedAt: asStringOrNull(coverage.capturedAt)
     },
     baseline,
-    baselineMissing: baseline ? null : "基本盘数据缺失",
+    baselineHealth: baseline ? {
+      status: "partial" as const,
+      reason: "21 条分层样本（7/7/7）；331 条全量只有聚合摘要，逐条原始行未落盘。",
+      capturedAt: asStringOrNull(coverage.capturedAt)
+    } : { status: "missing" as const, reason: "基本盘数据缺失", capturedAt: null },
     tiers: redWitchTiers(),
     contentMap: {
       slotName: "增长引擎",
@@ -170,7 +174,11 @@ function redWitchConsole(): CreatorConsole | null {
       weekdays: weekdays.map((day) => ({ name: asString(day.name), count: asNumber(day.count) ?? 0, medianLikes: asNumber(day.medianLikes) })),
       dayparts: dayparts.map((part) => ({ name: asString(part.name), count: asNumber(part.count) ?? 0, medianLikes: asNumber(part.medianLikes) }))
     } : null,
-    rhythmMissing: backfill ? null : "发布节奏数据缺失",
+    rhythmHealth: backfill ? {
+      status: "partial" as const,
+      reason: "21 条分层样本的发布节奏，反映选样结构而非账号真实节奏。",
+      capturedAt: asStringOrNull(coverage.capturedAt)
+    } : { status: "missing" as const, reason: "发布节奏数据缺失", capturedAt: null },
     launch: strategy ? {
       summary: asString(strategy.executiveConclusion),
       engines: engines.map((engine) => ({ name: asString(engine.name), decision: asString(engine.decision) })),
@@ -253,7 +261,7 @@ function humanDirectorConsole(): CreatorConsole | null {
       capturedAt: asStringOrNull(coverage.capturedAt)
     },
     baseline,
-    baselineMissing: null,
+    baselineHealth: { status: "full" as const, reason: "19 条全量公开数据现算", capturedAt: asStringOrNull(coverage.capturedAt) },
     tiers,
     contentMap: {
       slotName: "内容样本类型",
@@ -262,8 +270,8 @@ function humanDirectorConsole(): CreatorConsole | null {
       }))
     },
     rhythm: null,
-    rhythmMissing: backfillMissing.publishedAt === true
-      ? "19 条均无发布时间字段，发布节奏（星期/时段）无法计算。" : "发布节奏数据缺失",
+    rhythmHealth: { status: "missing" as const, reason: backfillMissing.publishedAt === true
+      ? "19 条均无发布时间字段，发布节奏（星期/时段）无法计算。" : "发布节奏数据缺失", capturedAt: null },
     launch: null,
     launchLink: { label: "起号方案（原报告第 6 节）", href: "/research/human-director/report.html" },
     boundaries: [

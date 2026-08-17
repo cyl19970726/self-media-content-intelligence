@@ -7,6 +7,8 @@ describe("loadCreatorConsole", () => {
     expect(consoleData).not.toBeNull();
     expect(consoleData?.meta.id).toBe("ai-red-witch");
     expect(consoleData?.baseline).not.toBeNull();
+    expect(consoleData?.baselineHealth?.status).toBe("partial");
+    expect(consoleData?.baselineHealth?.reason).toContain("21 条分层样本");
     expect(consoleData?.baseline?.distribution.length).toBe(6);
     expect(consoleData?.baseline?.averageNote).toContain("断层");
     expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "median", "low"]);
@@ -22,9 +24,11 @@ describe("loadCreatorConsole", () => {
     const consoleData = loadCreatorConsole("human-director");
     expect(consoleData).not.toBeNull();
     expect(consoleData?.baseline?.postCount).toBe(19);
+    expect(consoleData?.baselineHealth?.status).toBe("full");
     expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "average", "median", "low"]);
     expect(consoleData?.rhythm).toBeNull();
-    expect(consoleData?.rhythmMissing).toContain("发布时间");
+    expect(consoleData?.rhythmHealth?.status).toBe("missing");
+    expect(consoleData?.rhythmHealth?.reason).toContain("发布时间");
     expect(consoleData?.launch).toBeNull();
     expect(consoleData?.launchLink?.href).toContain("/research/human-director/");
   });

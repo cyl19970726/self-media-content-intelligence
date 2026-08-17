@@ -506,6 +506,13 @@ export const contentMapItemSchema = z.object({
   decision: z.string().nullable()
 });
 
+export const dataHealthSchema = z.object({
+  status: z.enum(["full", "partial", "missing"]),
+  reason: z.string(),
+  capturedAt: z.string().nullable()
+});
+export type DataHealth = z.infer<typeof dataHealthSchema>;
+
 export const launchSchema = z.object({
   summary: z.string(),
   engines: z.array(z.object({ name: z.string(), decision: z.string() })),
@@ -530,7 +537,7 @@ export const creatorConsoleSchema = z.object({
     distribution: z.array(distributionBucketSchema),
     averageNote: z.string().nullable()
   }).nullable(),
-  baselineMissing: z.string().nullable(),
+  baselineHealth: dataHealthSchema.nullable(),
   tiers: z.array(tierSchema),
   contentMap: z.object({ slotName: z.string(), items: z.array(contentMapItemSchema) }),
   rhythm: z.object({
@@ -538,7 +545,7 @@ export const creatorConsoleSchema = z.object({
     weekdays: z.array(z.object({ name: z.string(), count: z.number(), medianLikes: z.number().nullable() })),
     dayparts: z.array(z.object({ name: z.string(), count: z.number(), medianLikes: z.number().nullable() }))
   }).nullable(),
-  rhythmMissing: z.string().nullable(),
+  rhythmHealth: dataHealthSchema.nullable(),
   launch: launchSchema.nullable(),
   launchLink: z.object({ label: z.string(), href: z.string() }).nullable(),
   boundaries: z.array(z.string()),
