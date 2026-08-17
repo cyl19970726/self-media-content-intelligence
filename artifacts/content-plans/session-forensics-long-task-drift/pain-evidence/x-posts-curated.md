@@ -30,8 +30,27 @@
 2. @Yuchenj_UW 4056 赞——热度最高、画面感强（盯屏 60 分钟），适合做"你是不是也这样"共鸣钩；
 3. @vojtechcekal 50 md + 80 smoke tests——痛点 1 的最佳具象数字。
 
-## 待办
+## 核验与截图状态（2026-08-18，ego-browser 已登录态）
 
-- [ ] 在已登录 X 的浏览器逐条打开核验 + 高清截图（竖屏裁切用）→ 存本目录
-- [ ] 截图后做手绘圈注版（马克笔圈关键句）
+- [x] 11/11 帖子逐条打开核验为真实存在，2x 高清截图已存本目录（文件名=内容代号_作者.png）
+- 42h 帖补充信息：视频里说话的人是 **Thomas Dohmke（前 GitHub CEO，现 Entire CEO）**，画面帧含
+  "for, like, 42 hours straight" 字幕——开场素材价值高于其点赞数（73 赞/1.25 万播放，故事>热度）
+- vojtechcekal（50md/80tests）注意：是**楼中回复**，不是独立帖；截图为回复本体，用作痛点1辅证
+- 截图均为 X 暗色主题；上片时装进白色圆角卡放在亮底画布上（参考条自己也是"暗截图+亮画框"用法）
+- [ ] 待做：马克笔手绘圈注版（圈 "42 hours" / "completely different" / "80 .py smoke tests" 等关键句）
 - 原始检索全文：x-posts-overengineering-raw.md（第 1 类）；第 2 类首轮 stdout 未全存，精选已录入本文件
+
+## 附媒体收割（media/，2026-08-18）
+
+| 文件 | 内容 | 素材等级 |
+|---|---|---|
+| 42h_dohmke_clip.mp4（49s） | Thomas Dohmke 访谈原片段，含 "42 hours straight" 字幕帧 | ⭐ 开场可直接引用（标注 @MTSlive / @EntireHQ） |
+| 42h_video_poster.jpg | 视频封面帧 | 开场静帧备选 |
+| shocking-mistakes_catalinmpit_img1.jpg | **真实 Claude Code 会话截图**："why tf did you remove getTeamSettings?" → agent："**No good reason** — let me revert it" | ⭐⭐ 目标漂移实锤画面，痛点段主力 |
+| messy-code_SebAaltonen_before/after.jpg | Codex 防御性烂代码 vs 修复后对比（真代码截图） | 痛点1辅证 |
+| tired-overeng_kr0der_img1.jpg | 他的 stop-hook 提示词截图 | 弱，备用 |
+| 7h-limit_saltyAom_img1.jpg | 动漫梗图 "ABSOLUTE CINEMA"（非界面） | 梗位备选 |
+
+其余 6 条帖为纯文字——**agent 界面类素材主力仍需自录**：等待转圈录屏（倍速）、
+城墙重演录屏（简单任务→文件树疯长）、`git diff --stat` 一天百行截图。
+使用纪律：所有外部素材上片必须带来源角标（@handle）；只截最小必要区域。

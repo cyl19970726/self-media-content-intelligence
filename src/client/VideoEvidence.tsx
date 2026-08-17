@@ -13,7 +13,7 @@ export default function VideoEvidencePage() {
       setError(cause instanceof Error ? cause.message : "无法读取视频证据");
     });
   }, [id, videoId]);
-  return <main className="console">
+  return <main className="console console--solo">
     {error ? <div className="page-error"><CircleAlert/><h1>证据读取失败</h1><p>{error}</p></div>
       : !data ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在还原视频证据</p></div>
         : <article className="evidence-page">
@@ -48,18 +48,7 @@ export default function VideoEvidencePage() {
                   </figure>)}
                 </div>}
             </section>
-            <section className="evidence-column">
-              <h2>逐字稿与逐句画面</h2>
-              {data.cues.length === 0
-                ? <p className="console-note"><CircleAlert size={14}/>字幕未获取。</p>
-                : <div className="cue-list">
-                  {data.cues.map((cue) => <div key={cue.id} className="cue-row">
-                    <time>{cue.start !== null ? `${Math.floor(cue.start / 60)}:${String(Math.floor(cue.start % 60)).padStart(2, "0")}` : "—"}</time>
-                    <p>{cue.text}</p>
-                  </div>)}
-                </div>}
-            </section>
-            <section className="evidence-column">
+            <section className="evidence-column evidence-column--side">
               <h2>知识单元</h2>
               {data.knowledgeUnits.length === 0
                 ? <p className="console-note"><CircleAlert size={14}/>知识单元未结构化。</p>
@@ -70,13 +59,22 @@ export default function VideoEvidencePage() {
                 <h3>未知边界</h3>
                 {data.unknowns.map((unknown) => <p key={unknown.slice(0, 20)}>{unknown}</p>)}
               </div>}
+              <details className="cue-drawer">
+                <summary>逐字稿（{data.cues.length} 句）</summary>
+                <div className="cue-list">
+                  {data.cues.map((cue) => <div key={cue.id} className="cue-row">
+                    <time>{cue.start !== null ? `${Math.floor(cue.start / 60)}:${String(Math.floor(cue.start % 60)).padStart(2, "0")}` : "—"}</time>
+                    <p>{cue.text}</p>
+                  </div>)}
+                </div>
+              </details>
             </section>
           </div>
           <footer className="evidence-foot">
             {data.reportHref && <a className="console-link-card" href={data.reportHref}>
               <span>完整证据报告（帧 + 文字稿 + 时间码）</span><ExternalLink size={15}/>
             </a>}
-            <Link className="text-button" to={`/creators/${data.creatorId}`}><ArrowLeft size={14}/> 回到研究台</Link>
+            <Link className="evidence-back" to={`/creators/${data.creatorId}`}><ArrowLeft size={16}/> 回到研究台</Link>
           </footer>
         </article>}
   </main>;

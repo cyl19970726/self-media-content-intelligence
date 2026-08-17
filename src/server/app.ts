@@ -86,9 +86,15 @@ export function createApp(service = new AnalysisService()) {
   });
 
   if (fs.existsSync(path.join(clientDirectory, "index.html"))) {
-    app.use(express.static(clientDirectory));
+    app.use(express.static(clientDirectory, {
+      setHeaders: (response, filePath) => {
+        // SPA entry must never be cached — stale bundles show outdated pages.
+        if (filePath.endsWith("index.html")) response.setHeader("Cache-Control", "no-cache");
+      }
+    }));
     app.use((request, response, next) => {
       if (request.method === "GET" && !request.path.startsWith("/api") && !request.path.startsWith("/artifacts")) {
+        response.setHeader("Cache-Control", "no-cache");
         return response.sendFile(path.join(clientDirectory, "index.html"));
       }
       return next();

@@ -5,6 +5,8 @@ import { listCreators } from "./api";
 import type { CreatorSummary } from "../shared/schema";
 
 function CreatorCard({ creator, index }: { creator: CreatorSummary; index: number }) {
+  const consoleHref = `/creators/${creator.id}`;
+  const evidenceHref = creator.entries[0]?.href;
   return <article className="creator-card">
     <header className="creator-card__head">
       <span className="creator-card__number">{String(index + 1).padStart(2, "0")}</span>
@@ -17,17 +19,17 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
       </a>
     </header>
     <div className="creator-card__metrics">
-      <span><b>{creator.followers}</b> 粉丝</span>
-      <span><b>{creator.likesAndCollections}</b> 赞藏</span>
-      {creator.stats.map((stat) => <span key={stat.label}><b>{stat.value}</b> {stat.label}</span>)}
+      <div><b>{creator.followers}</b><span>粉丝</span></div>
+      <div><b>{creator.likesAndCollections}</b><span>赞藏</span></div>
+      {creator.stats.slice(0, 1).map((stat) => <div key={stat.label}><b>{stat.value}</b><span>{stat.label}</span></div>)}
     </div>
     <p className="creator-card__summary">{creator.summary}</p>
     <div className="creator-card__tags">
-      {creator.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+      {creator.tags.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}
     </div>
     <nav className="creator-card__entries">
-      {creator.entries.map((entry) =>
-        <a key={entry.href} href={entry.href}>{entry.label}<small>{entry.note ?? "进入研究档案"}</small></a>)}
+      <Link to={consoleHref}><span>进入研究台</span><small>9 节 · 归纳决策循环</small><ArrowRight size={15}/></Link>
+      {evidenceHref && <a href={evidenceHref}><span>查看内容证据</span><small>{creator.entries[0]?.label}</small><ArrowRight size={15}/></a>}
     </nav>
   </article>;
 }
@@ -43,8 +45,8 @@ export default function CreatorsOverview() {
   return <main className="workspace workspace--solo">
     <section className="creators-page">
       <div className="eyebrow"><span>CREATOR RESEARCH</span><span>AI 赛道 · 博主组合研究</span></div>
-      <h1>AI 赛道博主分析。<br/><em>从一个总览进入每个人的证据档案。</em></h1>
-      <p className="intake__lede">每个卡片从已完成的分析产物自动汇总：定位、增长引擎与内容支柱都来自可复核的证据数据，不是新写的摘要。</p>
+      <h1>AI 赛道博主分析</h1>
+      <p className="intake__lede">从总览进入每个人的证据档案：每个卡片从已完成的分析产物自动汇总。</p>
       {error ? <div className="page-error"><h1>读取失败</h1><p>{error}</p></div>
         : creators === null ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在汇总博主档案</p></div>
           : <div className="creators-grid">

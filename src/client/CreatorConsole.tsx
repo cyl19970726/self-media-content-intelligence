@@ -142,6 +142,7 @@ function Launch({ data }: { data: CreatorConsoleData }) {
         </div>)}
       </div>
     </div>
+    <Link to="/benchmark" className="launch-cta">制定我的内容组合 <ArrowRight size={15}/></Link>
   </section>;
 }
 

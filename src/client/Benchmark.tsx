@@ -14,7 +14,8 @@ export default function BenchmarkPage() {
       setError(cause instanceof Error ? cause.message : "无法读取对比数据");
     });
   }, []);
-  return <main className="console">
+  const maxRatio = Math.max(1, ...(data?.ips.map((ip) => ip.aggregateCollectionToLike) ?? [1]));
+  return <main className="console console--solo">
     <article className="benchmark">
       <nav className="breadcrumb">
         <Link to="/creators">博主总览</Link><span>/</span><b>跨 IP 对比台</b>
@@ -32,23 +33,27 @@ export default function BenchmarkPage() {
             <section className="benchmark-metric">
               <h2>{data.metric}</h2>
               <p className="benchmark-note">{data.metricNote}</p>
-              <div className="benchmark-strip">
-                {data.ips.map((ip) => {
-                  const ratio = Math.min(1.2, ip.aggregateCollectionToLike);
-                  return <div key={ip.id} className="benchmark-ip">
-                    <header><Link to={`/creators/${ip.id}`}>{ip.name}<ArrowRight size={13}/></Link><span>{ip.sampleSize} 条样本</span></header>
-                    <div className="benchmark-ip__bar"><i style={{ width: `${(ratio / 1.2) * 100}%` }}/></div>
-                    <div className="benchmark-ip__values">
-                      <div><b>{ip.aggregateCollectionToLike.toFixed(2)}</b><span>收藏/点赞</span></div>
-                      <div><b>{ip.medianLikes.toLocaleString()}</b><span>互动中位</span></div>
-                    </div>
-                  </div>;
-                })}
+              <div className="benchmark-table">
+                <div className="benchmark-row benchmark-row--head">
+                  <span>#</span><span>账号</span><span>收藏/点赞（共享轴 0–{maxRatio.toFixed(1)}）</span><span>值</span><span>互动中位</span><span>样本</span>
+                </div>
+                {data.ips.map((ip, index) => (
+                  <div key={ip.id} className="benchmark-row">
+                    <span className="benchmark-row__rank">{String(index + 1).padStart(2, "0")}</span>
+                    <span><Link to={`/creators/${ip.id}`}>{ip.name}<ArrowRight size={12}/></Link></span>
+                    <span className="benchmark-row__track">
+                      <i style={{ width: `${(ip.aggregateCollectionToLike / maxRatio) * 100}%` }}/>
+                    </span>
+                    <span className="benchmark-row__value">{ip.aggregateCollectionToLike.toFixed(2)}</span>
+                    <span>{ip.medianLikes.toLocaleString()}</span>
+                    <span>{ip.sampleSize} 条</span>
+                  </div>
+                ))}
               </div>
             </section>
             <section className="benchmark-findings">
               <h2>规律可信度分层</h2>
-              <div className="finding-list">
+              <div className="finding-grid">
                 {data.findings.map((finding) => <article key={finding.text.slice(0, 24)} className={`finding finding--${finding.kind}`}>
                   <span className="finding__kind">{kindLabels[finding.kind]}</span>
                   <p>{finding.text}</p>
