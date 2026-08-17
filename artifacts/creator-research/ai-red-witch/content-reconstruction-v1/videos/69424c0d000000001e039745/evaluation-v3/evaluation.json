@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationOrder": "GATE_then_JUDGE",
+  "videoId": "69424c0d000000001e039745",
+  "scope": {
+    "included": [
+      "current evidence/evidence-pack.json and indexed frames",
+      "current skill-run candidate and derived evidence",
+      "current independent audit/audit.json and audit/audit.md",
+      "canonical evaluation protocol/schema",
+      "evaluator-design GATE/JUDGE and empty-gate rules"
+    ],
+    "excluded": [
+      "all prior evaluation verdicts, scores, and discrepancy conclusions",
+      "legacy reports, analyses, and video-library conclusions",
+      "other candidates and other evaluations",
+      "external web verification"
+    ],
+    "candidateModified": false
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 6,
+      "denominator": 6,
+      "examples": [
+        {
+          "status": "covered",
+          "item": "The candidate preserves the central proposition and the scare-to-self-recognition-to-product-to-trust progression.",
+          "candidateRefs": ["KU-05", "KU-08", "KU-31"]
+        },
+        {
+          "status": "correct_unknown",
+          "item": "It rejects causal proof for the stroke framing, clinical proof for AI advice, proof of complete privacy, and a definite paid-ad status.",
+          "candidateRefs": ["KU-04", "KU-26", "KU-28", "KU-37"]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 30,
+      "denominator": 30,
+      "examples": [
+        {
+          "status": "covered",
+          "item": "All 30 core units have resolvable transcript, shot, targeted-frame, OCR, or registered-source evidence."
+        },
+        {
+          "status": "covered",
+          "item": "The diagnostic UI wording, reference/seek-care limits, commercial-control unknown, and OCR-only recovery statement retain exact evidence and scope.",
+          "candidateRefs": ["KU-25", "KU-35", "KU-36", "KU-37"]
+        },
+        {
+          "status": "covered",
+          "item": "The non-speech carrier now has a registered full-stream PCM source and bounded semantic observations over 22 gap-free timeline windows plus nine transition windows.",
+          "candidateRefs": ["KU-33", "SRC-AUDIO-NON-SPEECH"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 31,
+      "examples": [
+        {
+          "status": "supported_or_qualified",
+          "item": "All 31 positive knowledge-unit statements have direct evidence and preserve material limits."
+        },
+        {
+          "status": "bounded_audio_inference",
+          "item": "Music-like continuity and transition-accent roles are presented as possibilities from mixed-track model observations, not literal sound identities or editorial intent.",
+          "candidateRefs": ["KU-33", "SRC-AUDIO-NON-SPEECH"]
+        },
+        {
+          "status": "not_overclaimed",
+          "item": "Clinical suitability, live continuity, longitudinal benefit, corporate provenance, privacy guarantees, and commercial control remain unproven.",
+          "candidateRefs": ["KU-09", "KU-18", "KU-22", "KU-26", "KU-28", "KU-32", "KU-37"]
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 37,
+      "denominator": 37,
+      "examples": [
+        {
+          "status": "localized",
+          "item": "Every knowledge unit keeps its checked direct evidence inside its declared time range."
+        },
+        {
+          "status": "localized",
+          "item": "KU-25 uses only later UI/reference evidence, KU-28 uses only closing evidence, and KU-36 uses only 40.0-56.667 second diagnostic/reference evidence.",
+          "candidateRefs": ["KU-25", "KU-28", "KU-36"]
+        },
+        {
+          "status": "localized_audio",
+          "item": "KU-33 and SRC-AUDIO-NON-SPEECH are bounded to the independently re-decoded 0-105.629 second stream."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 13,
+      "denominator": 13,
+      "rationale": "All 13 audited relation groups are represented with direct evidence at their semantic endpoints: news material to presenter identification, illustrations to target-user referent, visible product identity to narrated provenance, health fields to privacy relevance, fatigue answer to follow-up sequence, coffee narration to UI conditions, body inputs to plan output, goal states to unproven persistence, reminder language to non-urging narration, UI progress/edit order to non-continuous workflow, diagnostic framing to reference/seek-care limits, opening fear to closing trust promise, and branded product-experience framing to unknown payment/control."
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 13,
+      "examples": [
+        {
+          "status": "correct_unknown",
+          "item": "The candidate preserves unknowns for case authenticity/causation, clinical validation, demo continuity, data identity, professional standards, privacy controls, commercial relationships, outcomes, access conditions, presenter identity, and source authorization."
+        },
+        {
+          "status": "correct_audio_unknown",
+          "item": "Audio title, creator, provenance, license, source separation, literal transient labels, foreground/background placement, and editorial intent remain unknown.",
+          "candidateRefs": ["KU-33", "SRC-AUDIO-NON-SPEECH"]
+        },
+        {
+          "status": "residual_omission",
+          "item": "The candidate does not separately state whether the opening narration accurately quotes a doctor or reporter, although the broader source and authenticity boundary is retained.",
+          "candidateRefs": ["KU-01", "KU-02", "KU-04"]
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "gateAssessment": {
+    "thresholds": {
+      "criticalQuestionRecall": ">=0.85",
+      "evidenceCoverage": ">=0.90",
+      "unsupportedInference": "<=0.05",
+      "timestampAccuracy": ">=0.90",
+      "processDependencyCompleteness": ">=0.85",
+      "unknownDiscipline": ">=0.90",
+      "uncheckedChannels": "0",
+      "metaGate": "pass"
+    },
+    "results": {
+      "criticalQuestionRecall": "pass",
+      "evidenceCoverage": "pass",
+      "unsupportedInference": "pass",
+      "timestampAccuracy": "pass",
+      "processDependencyCompleteness": "pass",
+      "unknownDiscipline": "pass",
+      "uncheckedChannels": "pass",
+      "metaGate": "pass"
+    },
+    "overall": "pass",
+    "judgeExecuted": true
+  },
+  "canonicalValidation": {
+    "schema": {
+      "pass": true,
+      "validated": ["probe", "protocol", "reconstruction", "evaluation", "ocr"],
+      "failures": []
+    },
+    "deterministic": {
+      "passed": 22,
+      "total": 22,
+      "failedGateIds": []
+    }
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 5,
+    "compressionWithoutLoss": 4
+  },
+  "judgeRationale": {
+    "readability": "The article follows the video's persuasion sequence and consistently separates visible facts, author claims, inferences, and unknowns.",
+    "knowledgePrioritization": "Medical causality, diagnostic framing, privacy, commercial disclosure, carrier conflicts, and use boundaries receive priority over decorative detail.",
+    "evidenceUsefulness": "Exact text, bounded timestamps, targeted frames, OCR rows, UI states, and the hashed audio ledger make material findings auditable.",
+    "executionValue": "A reader can distinguish what the demo establishes from what still requires clinical, privacy, commercial, or access verification before relying on it.",
+    "compressionWithoutLoss": "The reconstruction preserves unusually strong boundary detail, but repeats several medical/privacy caveats and the final inventory, making it longer than necessary for a fast decision read."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent checks found no available carrier, material meaning change, or audited relation outside the current protocol/evaluation topology. The source video's complete audio stream was independently re-decoded to the same PCM SHA-256 recorded in SRC-AUDIO-NON-SPEECH. Its 22 timeline windows cover 0-105.629 seconds with zero gaps, all nine specified narrative-transition windows are present, and the candidate preserves classifier and source-separation limits rather than treating labels as literal truth. All 17 coverage-matrix relationships use resolvable first-order cue/shot/frame/OCR/source references with no KU-* evidence refs, and canonical localization checks confirm the three previously vulnerable knowledge units now keep direct evidence within their time ranges."
+  },
+  "examples": [
+    {
+      "type": "focused_check",
+      "id": "AUDIO-22+9",
+      "result": "pass",
+      "evidence": ["SRC-AUDIO-NON-SPEECH", "KU-33"]
+    },
+    {
+      "type": "focused_check",
+      "id": "RELATIONSHIP-FIRST-ORDER-EVIDENCE",
+      "result": "pass",
+      "evidence": ["coverageMatrix.relationships"]
+    },
+    {
+      "type": "focused_check",
+      "id": "TIMESTAMP-LOCALIZATION",
+      "result": "pass",
+      "evidence": ["KU-25", "KU-28", "KU-36"]
+    },
+    {
+      "type": "residual",
+      "id": "UNKNOWN-QUOTE-ATTRIBUTION",
+      "result": "non_blocking",
+      "evidence": ["KU-01", "KU-02", "KU-04"]
+    },
+    {
+      "type": "verdict",
+      "item": "All independent hard gates pass and JUDGE was completed. This evaluation result is not a downstream-readiness announcement."
+    }
+  ]
+}

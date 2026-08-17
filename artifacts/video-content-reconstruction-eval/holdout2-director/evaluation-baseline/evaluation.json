@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "answered",
+          "ids": ["Q-01", "Q-03", "Q-08", "Q-09", "Q-10", "Q-11"],
+          "note": "四项必要条件、三类机制、普通人的选题分支、两类形式与隐藏热点打法均有直接答案。"
+        },
+        {
+          "status": "answered_with_boundary",
+          "id": "Q-12",
+          "note": "正文明确说框架不能保证每条视频达到百万，并把王虹案例限定为视频自身说法、未外部核验。"
+        },
+        {
+          "status": "answered",
+          "id": "Q-02",
+          "note": "候选保留了作者排除点赞/收藏、强调评论与分享的定义，同时用“更强的行动意愿”避免断言点赞收藏毫无价值。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 31,
+      "denominator": 31,
+      "examples": [
+        {
+          "status": "covered",
+          "ids": ["K-01", "K-02", "K-03", "K-04", "K-05"],
+          "evidence": "候选在“结构”中把必要条件定位到约 00:10 起，并在正文逐项展开；下一节点约 00:46 构成可检查的宏观窗口。"
+        },
+        {
+          "status": "covered",
+          "ids": ["K-06", "K-07", "K-08", "K-09", "K-10", "K-11", "K-12", "K-13", "K-14", "K-15"],
+          "evidence": "候选把三种类型定位到约 00:46–01:50，并保留情感排序、硬素材门槛、两种99%定义、猫例与节奏公式。"
+        },
+        {
+          "status": "covered",
+          "ids": ["K-16", "K-17", "K-18", "K-19", "K-20", "K-21", "K-22", "K-23", "K-24", "K-25", "K-26", "K-27", "K-28", "K-29", "K-30", "K-31"],
+          "evidence": "候选依次给出约 01:50、02:08、02:41、03:06、03:29 的章节锚点，覆盖案例、两步法、形式、热点与结尾强保证。"
+        },
+        {
+          "limitation": "证据是7个宏观章节时间锚点，没有逐原子时间窗、cue、frame或载体映射；因此覆盖计数通过，但证据可用性只给3/5。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 10,
+      "total": 74,
+      "examples": [
+        {
+          "claim": "开头数据截图‘证明自己并非只讲理论’",
+          "problem": "画面只显示数据拼贴，平台、账号和归属未知，也不能证明方法有效。"
+        },
+        {
+          "claim": "开头嵌入的是‘旧视频画面’",
+          "problem": "可见面罩讲者画面与‘开头展示教资’字幕，但是否旧视频、教资具体所指均未知。"
+        },
+        {
+          "claim": "需要补背景、反复思考的用户‘多半已经划走’",
+          "problem": "这是候选新增的用户行为因果，片中没有数据或实验。"
+        },
+        {
+          "claim": "大群体可以通过自己、亲友或社会处境投射建立",
+          "problem": "这是候选扩写的受众机制，不是片中陈述。"
+        },
+        {
+          "claim": "共同情感排序表达的是传播半径，而非个人情感高低",
+          "problem": "片中只给排序，没有这层免责声明或因果解释。"
+        },
+        {
+          "claim": "罕见经历、极端能力和巨大改变天然拥有注意力",
+          "problem": "把作者的策略主张升级成一般事实。"
+        },
+        {
+          "claim": "愤怒、忧愁、矛盾分别对应未满足期待、普遍情绪和讨论冲突",
+          "problem": "片中只列三个观察口，没有给出这组三项对应关系。"
+        },
+        {
+          "claim": "完整叙事应交代起因、过程、困难和结果",
+          "problem": "片中只要求说清楚并采用完整叙事的中长视频，没有规定四段结构。"
+        },
+        {
+          "claim": "热点不能自动沉淀稳定能力，是加速器而不是内容本身",
+          "problem": "这是候选的审慎建议，不是视频给出的结论。"
+        },
+        {
+          "claim": "框架把网感改写成检查项，并先后解决停留、理解和参与",
+          "problem": "属于候选新增的价值判断与因果总结。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 7,
+      "denominator": 7,
+      "examples": [
+        {
+          "checked": "必要条件约00:10；三类约00:46；王虹案例约01:50",
+          "result": "均落入审计窗口00:09.730、00:45.625、00:01:49.770附近。"
+        },
+        {
+          "checked": "两步法约02:08；形式约02:41；热点约03:06；收尾约03:29",
+          "result": "均与审计起点00:02:07.926、00:02:41.730、00:03:05.954、00:03:28.800一致。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 10,
+      "denominator": 10,
+      "rationale": "按审计 actionableProcess 的10项依赖核算：四项前置检查、三机制选择、先看自己、普通时回退看世界、共情形式+BGM、特长完整叙事、热点即时路线均保留；先选题后选形式的顺序与条件分支未被颠倒。"
+    },
+    "unknownDiscipline": {
+      "numerator": 7,
+      "denominator": 10,
+      "examples": [
+        {
+          "status": "correct",
+          "ids": ["U-02", "U-04", "U-05", "U-06", "U-07", "U-08", "U-09"],
+          "note": "候选未擅自定义百万指标、确认讲者真实身份、确认猫帖主体、确认原片BGM或断言16个真实剪辑镜头；王虹事实明确标为未外部核验。"
+        },
+        {
+          "status": "incorrect",
+          "id": "U-01",
+          "note": "把无平台与归属信息的成绩拼贴写成讲者‘证明自己并非只讲理论’。"
+        },
+        {
+          "status": "incorrect",
+          "id": "U-03",
+          "note": "把只显示‘教资’的短暂画面确定为一条旧视频，而‘教资’具体所指和素材性质均未知。"
+        },
+        {
+          "status": "incorrect",
+          "id": "U-10",
+          "note": "正文用‘跨行业的爆款，大体只有三类’承接普遍化分类，虽在结尾否定必然保证，却没有保留不同平台/垂类适用性未知。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "原始音频的实际听辨/声学层：baseline-process只记录通读SRT、检查视频流画面和确认‘含音频轨’，没有说明听检口播音色、语气节奏或是否存在低音量BGM。"
+    ]
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 3,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "元审计重新检查了身份反转、开闭限定、视觉文字纠错、开头拼贴归属、必要条件/充分性、看自己到看世界的条件分支、两步法与隐藏第三路、固定机位与scene-detection关系及负证据边界。发现的问题均已被unsupportedInference、unknownDiscipline或uncheckedChannels闸计入，没有额外未守载体、意义变化或关系。"
+  },
+  "examples": [
+    {
+      "type": "strength",
+      "item": "内容召回",
+      "detail": "baseline完整保留31个核心知识原子与12个关键问题的答案。"
+    },
+    {
+      "type": "failure",
+      "item": "证据边界",
+      "detail": "10/74正向主张无片内支持，超过≤0.05阈值；7/10未知纪律低于≥0.90阈值。"
+    },
+    {
+      "type": "failure",
+      "item": "载体闭包",
+      "detail": "仍有原始音频声学层未显示被检查，违反unchecked channels必须为零。"
+    },
+    {
+      "type": "judge_constraint",
+      "item": "GATE优先",
+      "detail": "可读性和知识排序虽高，不能覆盖unsupported inference、unknown discipline与unchecked channel的硬闸失败。"
+    }
+  ]
+}

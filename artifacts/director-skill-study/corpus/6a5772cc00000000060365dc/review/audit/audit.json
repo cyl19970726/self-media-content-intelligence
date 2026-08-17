@@ -1,0 +1,129 @@
+{
+  "videoId": "6a5772cc00000000060365dc",
+  "auditRole": "independent_ground_truth_audit",
+  "scope": {
+    "durationSeconds": 139.833,
+    "inputsRead": [
+      "artifacts/creator-research/human-director/media/6a5772cc00000000060365dc.mp4",
+      "artifacts/creator-research/human-director/media/6a5772cc00000000060365dc.srt",
+      "artifacts/director-skill-study/corpus/6a5772cc00000000060365dc/evidence/evidence-pack.json",
+      "artifacts/director-skill-study/corpus/6a5772cc00000000060365dc/evidence/frames/**"
+    ],
+    "excluded": ["run candidate", "prior report/analysis", "study plan", "cross-video conclusions"],
+    "timelineInspection": "0.000-139.833 全时轴；2.5 秒 dense sweep、54 个 cue 代表帧、9 个技术 shot 代表帧，并回看原 MP4 的开头/转折/结尾",
+    "audioDecision": "媒体含 AAC 音轨；语音由原 MP4 与提供字幕共同检查。无可靠工具可把背景音乐/音效与语音作语义级分离，因此非语音音频被登记为已发现但作用 unknown，不用于支持核心事实。"
+  },
+  "viewerCognitiveChange": {
+    "before": "观众可能把涨数据、涨粉、变现、账号调性和表达混成同一目标，也可能认为普通人可复制自带流量者的轻量内容路径。",
+    "after": "观众被要求先区分 IP 型与内容型创作者，再按每条作品的具体使命设计内容；普通人被作者强烈定位为必须依赖高成本内容能力的一方。",
+    "status": "这是作者提出的策略框架，不是视频独立验证出的普遍规律。"
+  },
+  "criticalQuestions": [
+    {"id":"CQ01","question":"开头用什么现象和画面作钩子？","requiredAnswer":"恋综/职场综艺素人成为自媒体孵化对象的作者判断，并叠加多张高互动/高播放样例拼贴；样例账号、来源与可比性未建立。","evidence":["0.000-7.950","CUE-001..004","DENSE-0001..0004"]},
+    {"id":"CQ02","question":"作者明确说开头不是为了什么、而是为了什么？","requiredAnswer":"不是为了激化矛盾，而是引入两个主题。","evidence":["7.950-18.505","CUE-005..008"]},
+    {"id":"CQ03","question":"两个主题是什么？","requiredAnswer":"博主可被作者分成 IP 型与内容型；单条作品有不同目的/使命。","evidence":["11.761-18.505","CUE-007..008","FRAME-CUE-007"]},
+    {"id":"CQ04","question":"IP 型博主的作者定义、例子和限制是什么？","requiredAnswer":"公众人物、综艺素人、名校/职场精英、热点舆情相关人物等自带流量；短平快数据强、个人 IP 属性强，但作者断言内容能力较弱。","evidence":["18.505-37.510","CUE-009..013"]},
+    {"id":"CQ05","question":"为什么这类账号仍做数据较差的 vlog？","requiredAnswer":"作者称短平快内容植入空间小；vlog/长内容提供商业植入空间，且其广告报价仍可能高于同量级博主。","evidence":["37.520-47.450","CUE-014..018"]},
+    {"id":"CQ06","question":"内容型博主对普通人意味着什么？","requiredAnswer":"作者先自我修正“适合普通人”为“普通人只能做内容型”，并称其需策划、选题、创意、后期、拍摄，成本高。","evidence":["47.460-63.320","CUE-019..023","FRAME-CUE-021"]},
+    {"id":"CQ07","question":"作者列出哪些内容决定因素？","requiredAnswer":"用户画像、用户需求、市场需求、平台喜好、创作者自身条件，以及该作品的目的/使命。","evidence":["63.320-75.726","CUE-024..027"]},
+    {"id":"CQ08","question":"数据、涨粉和变现之间是什么关系？","requiredAnswer":"作者强调不必由同一种视频同时完成，作品要按使命分工。","evidence":["75.726-81.851","CUE-028..029","FRAME-CUE-028"]},
+    {"id":"CQ09","question":"“数据”使命为何可能独立存在，举了哪些例子？","requiredAnswer":"可为稳定创作者心态或提高广告报价；例子含热点、观点、共鸣、氛围感及单图+BGM的颜值作品。","evidence":["81.851-95.220","CUE-030..034"]},
+    {"id":"CQ10","question":"“涨粉”使命下有哪些手法或子型？","requiredAnswer":"作者称有其所谓“装逼型视频”（SRT 误作“装逼型饰品”），以名校 logo、毕业证/录取通知书等身份信号；另有讲磨难与成果的传奇型视频。干货型被紧接着列出，但其究竟仍属涨粉还是独立项，视频编号表达有歧义。","evidence":["95.220-114.841","CUE-035..041","FRAME-CUE-036..041"]},
+    {"id":"CQ11","question":"“商业”使命对应哪些形式？","requiredAnswer":"变现或接广告；作者举 vlog、植入空间多的视频、好物分享。","evidence":["114.841-120.640","CUE-042..044"]},
+    {"id":"CQ12","question":"“调性”使命为何可能接受低数据高成本？","requiredAnswer":"作者称几十分钟视频博客和时尚类视频可提高账号调性、展示审美，即使制作成本高、数据未必好。","evidence":["120.650-132.354","CUE-045..050"]},
+    {"id":"CQ13","question":"第五个目的“表达”如何收束全片？","requiredAnswer":"作者称没有表达欲就不适合做博主；它把前面的商业/策略分类收束到创作者动机。","evidence":["132.354-139.100","CUE-051..053"]},
+    {"id":"CQ14","question":"可见账号身份、蒙面人物与蜘蛛侠造型分别能证明什么？","requiredAnswer":"水印可见“小红书/人类最强编导”；只能证明发布画面中的账号标识与角色造型，不能证明蒙面人的真实身份或与蜘蛛侠权利方有关。","evidence":["0.000-139.833","DENSE-0001..0057"]},
+    {"id":"CQ15","question":"视频是否证明样例数据、广告报价、涨粉效果或类型规律？","requiredAnswer":"没有；它展示拼贴数字并给出作者断言，但无样本来源、口径、对照、后台或因果证明。","evidence":["0.000-139.833","CUE-001..054","DENSE-0001..0057"]}
+  ],
+  "coreKnowledgeUnits": [
+    {"id":"KU01","provenance":"visual_observation","time":"0.000-0.833","statement":"开场短暂叠加多个短视频页面/数据切片，能读到多组十万到千万量级数字，但来源、账号、时间窗和指标口径不可完整辨认。","evidence":["SHOT-001","DENSE-0001"]},
+    {"id":"KU02","provenance":"author_claim","time":"1.605-7.950","statement":"恋综和职场综艺像一些素人的自媒体孵化器；作者称其中有些人内容能力不强却快速涨粉赚钱。","evidence":["CUE-002..004","FRAME-CUE-003","FRAME-CUE-004"]},
+    {"id":"KU03","provenance":"author_claim","time":"7.950-18.505","statement":"开头争议现象是导入：作者提出博主二分和作品使命分工。","evidence":["CUE-005..008"]},
+    {"id":"KU04","provenance":"author_claim","time":"18.505-33.181","statement":"IP 型博主靠公众身份、综艺/名校/职场/舆情等先验关注，自带流量且短平快内容数据好，但作者认为其内容能力弱。","evidence":["CUE-009..012"]},
+    {"id":"KU05","provenance":"author_claim","time":"33.181-47.450","statement":"IP 型账号的 vlog 可能更无聊、数据更差，但因短片缺植入空间而仍需 vlog；作者又称其报价可高于同量级博主。","evidence":["CUE-013..018"]},
+    {"id":"KU06","provenance":"author_claim","time":"47.460-63.320","statement":"普通人不要期待简单获流；内容型创作需策划、选题、创意、后期、拍摄等高成本工作。作者把“适合普通人”改口为“普通人只能做”。","evidence":["CUE-019..023","FRAME-CUE-021"]},
+    {"id":"KU07","provenance":"author_claim","time":"63.320-79.980","statement":"内容由受众、市场、平台、自身条件和作品使命共同决定；数据、涨粉、变现不必由同类视频一次完成。","evidence":["CUE-024..028"]},
+    {"id":"KU08","provenance":"author_claim","time":"81.851-95.220","statement":"数据型作品可不直接涨粉或变现，而用于情绪稳定或报价锚定；作者列举热点、观点、共鸣、氛围感、单图+BGM颜值作品。","evidence":["CUE-030..034"]},
+    {"id":"KU09","provenance":"author_claim","time":"95.220-107.210","statement":"涨粉型可借名校 logo、毕业证、录取通知书等身份信号，作者自命名为“装逼型视频”，并断言毕业/高考季有效。","evidence":["CUE-035..038","FRAME-CUE-036..038"]},
+    {"id":"KU10","provenance":"author_claim","time":"107.220-114.841","statement":"传奇型通过讲磨难、选择与新成果来涨粉；随后又出现“干货类型视频”，但层级归属不清。","evidence":["CUE-039..041"]},
+    {"id":"KU11","provenance":"author_claim","time":"114.841-120.640","statement":"商业使命指变现/广告，适配 vlog、植入空间大的内容和好物分享。","evidence":["CUE-042..044"]},
+    {"id":"KU12","provenance":"author_claim","time":"120.650-132.354","statement":"调性使命允许高成本、低数据，以长视频博客或时尚内容提高账号调性和展示审美。","evidence":["CUE-045..050"]},
+    {"id":"KU13","provenance":"author_claim","time":"132.354-139.100","statement":"第五个目的为表达；作者称没有表达欲就不适合做博主。","evidence":["CUE-051..053"]},
+    {"id":"KU14","provenance":"raw_fact","time":"135.610-139.923","statement":"结尾自称“人类最强编导”并说下期再见。","evidence":["CUE-053..054","FRAME-CUE-054"]},
+    {"id":"KU15","provenance":"visual_observation","time":"10.400-136.767","statement":"白板以“IP型博主 VS 内容型博主”和多列手写词组织讲解；手写小字只部分可读，不能独立当作完整事实清单。","evidence":["SHOT-004..008","FRAME-CUE-021","FRAME-CUE-045"]}
+  ],
+  "carriers": [
+    {"id":"CR01","modality":"speech","scope":"0.000-139.923","role":"主要论证与分类","checked":true},
+    {"id":"CR02","modality":"provided SRT","scope":"0.000-139.923","role":"语音索引；存在转写错误","checked":true},
+    {"id":"CR03","modality":"burned captions","scope":"0.000-139.833","role":"纠正若干 SRT 关键词并显示强调","checked":true},
+    {"id":"CR04","modality":"opening inserted collage/metrics","scope":"0.000-0.833","role":"钩子与示例性数据印象，不足以作验证","checked":true},
+    {"id":"CR05","modality":"whiteboard text/layout + marker gesture","scope":"10.400-136.767","role":"外化二分、列表和层级；部分小字不可读","checked":true},
+    {"id":"CR06","modality":"costume, set, watermark, presenter gesture","scope":"0.000-139.833","role":"账号/角色风格、讲师式语境和指示关系","checked":true},
+    {"id":"CR07","modality":"editing/shot order","scope":"0.000-139.833","role":"先拼贴钩子，再单一白板讲解，最后近景告别","checked":true},
+    {"id":"CR08","modality":"non-speech audio","scope":"0.000-139.833","role":"存在音轨但语义作用未可靠判定","checked":"registered_unknown"}
+  ],
+  "meaningChanges": [
+    {"id":"MC01","time":"0.000-0.833","change":"数据拼贴先制造‘素人爆发’印象。","evidence":["SHOT-001","DENSE-0001"]},
+    {"id":"MC02","time":"7.950-18.505","change":"从争议钩子转为二分框架和作品使命。","evidence":["CUE-005..008"]},
+    {"id":"MC03","time":"37.520-47.450","change":"把‘差数据 vlog’从内容失败重解释为商业承载工具。","evidence":["CUE-014..018"]},
+    {"id":"MC04","time":"59.090-63.320","change":"从‘内容型适合普通人’加强为‘普通人只能做内容型’。","evidence":["CUE-022..023"]},
+    {"id":"MC05","time":"71.860-79.980","change":"在内容决定因素中新增‘作品使命’，并拆开数据/涨粉/变现。","evidence":["CUE-027..028"]},
+    {"id":"MC06","time":"81.851-132.354","change":"逐项展开数据、涨粉、商业、调性；干货型归属保持歧义。","evidence":["CUE-030..050"]},
+    {"id":"MC07","time":"132.354-139.923","change":"由策略目的转到表达欲和创作者资格，并以账号身份告别。","evidence":["CUE-051..054"]}
+  ],
+  "relationships": [
+    {"id":"REL01","type":"setup_to","from":"开头素人/数据拼贴","to":"IP型与内容型二分","evidence":["CUE-001..008"]},
+    {"id":"REL02","type":"contrasts_with","from":"IP型博主","to":"内容型博主","evidence":["CUE-009..023","FRAME-CUE-007"]},
+    {"id":"REL03","type":"claim_limited_by","from":"短平快数据强","to":"植入空间小，所以仍需 vlog","evidence":["CUE-011..018"]},
+    {"id":"REL04","type":"depends_on","from":"普通人获得流量","to":"内容策划与制作能力/成本","evidence":["CUE-020..023"]},
+    {"id":"REL05","type":"determines","from":"作品使命","to":"内容形式选择","evidence":["CUE-025..050"]},
+    {"id":"REL06","type":"compared_with","from":"数据","to":"涨粉/商业/调性/表达","evidence":["CUE-028..051"]},
+    {"id":"REL07","type":"payoff_for","from":"结尾表达欲","to":"开头对‘简单流量’的质疑","evidence":["CUE-020..023","CUE-051..053"]},
+    {"id":"REL08","type":"stands_in_for","from":"蜘蛛侠式蒙面角色","to":"账号‘人类最强编导’的表演人格","certainty":"probable, not literal identity","evidence":["DENSE-0001..0057","CUE-053"]}
+  ],
+  "dependencies": {"applicable":false,"reason":"视频讲策略分类，没有展示可复现的软件/物理流程；不得臆造输入-操作-输出链。","auditedCount":0},
+  "carrierConflicts": [
+    {"id":"CF01","time":"4.692-6.670","suppliedSrt":"他们其实没有什么的能力拍出的费用","burnedCaption":"他们（有些）其实没有什么内容能力","impact":"高；SRT 破坏谓词，审计采用冲突并存，核心意义以可见字幕+语境标为作者主张。","evidence":["CUE-003","FRAME-CUE-003"]},
+    {"id":"CF02","time":"41.258-42.893","suppliedSrt":"但是偏偏那什么好事到什么站了","burnedCaption":"什么好事都让他们占了","impact":"中；修复作者讽刺句。","evidence":["CUE-016","FRAME-CUE-016"]},
+    {"id":"CF03","time":"53.130-59.080","suppliedSrt":"他们个人ip也乱画，做策划...","burnedCaption":"重策划选题创意后期和拍摄","impact":"高；SRT 插入无意义词，实际重点是重制作链和高成本。","evidence":["CUE-021","FRAME-CUE-021"]},
+    {"id":"CF04","time":"75.726-79.980","suppliedSrt":"数据涨粉和变现，可能不是一个类型的视频的使命就完成的","burnedCaption":"数据涨粉和变现 / 不同类型视频的使命","impact":"中；可见字幕更清楚表达使命分工，仍属作者主张。","evidence":["CUE-028","FRAME-CUE-028"]},
+    {"id":"CF05","time":"97.470-99.467","suppliedSrt":"装逼型饰品","burnedCaption":"我的专用名词叫装逼型视频","impact":"高；类别名由‘饰品’变为‘视频’。","evidence":["CUE-036","FRAME-CUE-036"]},
+    {"id":"CF06","time":"102.588-107.210","suppliedSrt":"攒下需要的logo","burnedCaption":"拍一张毕业证明和录取通知书啊","impact":"中；身份信号具体物件以可见字幕为准，但音频精确措辞仍可能含 logo。","evidence":["CUE-038","FRAME-CUE-038"]}
+  ],
+  "challengeLedger": [
+    {"probe":"identity inversion","status":"challenged","finding":"可见账号水印是‘人类最强编导’，真实人物被面罩遮挡；不得把蜘蛛侠造型或账号名升级成真实身份。"},
+    {"probe":"boundary","status":"challenged","finding":"视频没有平台之外的样例来源、统计口径、时间窗、价格、服务或验证边界；小红书水印只标示画面平台/导出来源。"},
+    {"probe":"referent","status":"challenged","finding":"开场拼贴中的账号/人物未可识别；‘他们’指作者概括的综艺/职场素人群体，而非已逐一证明的具体样本。"},
+    {"probe":"absence","status":"challenged","finding":"全时轴未见样本出处、后台、合同/报价单、增长前后对照或因果测试；该否定只限 0.000-139.833 的画面、字幕与语音。"},
+    {"probe":"carrier conflict","status":"applicable","finding":"至少 6 个有意义冲突，尤其‘内容能力’与‘装逼型视频’。"},
+    {"probe":"segmentation","status":"challenged","finding":"9 个技术 shot 主要由开场插图、身体遮挡/运动或构图变化触发；10.4-136.767 基本是同一白板讲解语义场，shot 数不等于场景数。"},
+    {"probe":"opening-closing","status":"challenged","finding":"开头以自带流量者制造不公平感，结尾以‘表达欲’和账号告别把策略讨论回收到创作者动机；不是同一现场操作的前后状态。"},
+    {"probe":"literal failure/result signature","status":"not_applicable","reason":"没有展示软件/操作失败与修复后的结果状态；数据拼贴不是 before/after。"},
+    {"probe":"UI progress/status","status":"not_applicable","reason":"无过程型 UI；开场仅短暂页面/指标拼贴。"},
+    {"probe":"edited chronology vs dependency order","status":"challenged","finding":"剪辑顺序是钩子→二分→使命列表→表达；这是论述顺序，不证明创作执行的时间或因果顺序。"}
+  ],
+  "unknownOpportunities": [
+    {"id":"UO01","unknown":"开场每个样例的账号身份、来源、发布时间与指标口径。","evidenceScope":"0.000-0.833 全开场拼贴"},
+    {"id":"UO02","unknown":"作者所谓广告报价更高的样本与数值。","evidenceScope":"37.520-47.450 及全时轴"},
+    {"id":"UO03","unknown":"IP型/内容型二分是否穷尽、是否适用于所有平台与阶段。","evidenceScope":"11.761-63.320 及全时轴"},
+    {"id":"UO04","unknown":"‘同量级’按粉丝、播放、互动还是商业能力衡量。","evidenceScope":"44.294-47.450"},
+    {"id":"UO05","unknown":"名校凭证内容的真实涨粉幅度、条件与反例。","evidenceScope":"95.220-107.210"},
+    {"id":"UO06","unknown":"‘干货类型视频’是涨粉子型、第三种内容型，还是编号口误。","evidenceScope":"107.220-116.232"},
+    {"id":"UO07","unknown":"白板全部手写小字的可靠逐字内容。","evidenceScope":"10.400-136.767；部分被人物遮挡或分辨率不足"},
+    {"id":"UO08","unknown":"蒙面人物的真实身份及蜘蛛侠造型的授权/关联。","evidenceScope":"0.000-139.833"},
+    {"id":"UO09","unknown":"非语音音频是否承担节奏、反讽或强调。","evidenceScope":"0.000-139.833；语义分离能力不足"},
+    {"id":"UO10","unknown":"所述策略的适用平台、账号阶段、地区、成本门槛与失败条件。","evidenceScope":"全时轴未明确"}
+  ],
+  "denominators": {
+    "criticalQuestions": 15,
+    "coreKnowledgeUnits": 15,
+    "evidenceWindows": 15,
+    "availableCarriers": 8,
+    "meaningChanges": 7,
+    "relationships": 8,
+    "processDependencies": {"applicable":false,"denominator":0},
+    "unknownOpportunities": 10,
+    "carrierConflicts": 6,
+    "challengeProbes": 10
+  }
+}

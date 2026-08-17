@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "66ee9136000000001201188a",
+  "auditedAt": "2026-08-16T03:06:27Z",
+  "auditMode": "independent_ground_truth",
+  "scope": {
+    "read": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66ee9136000000001201188a.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66ee9136000000001201188a.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/evidence/frames"
+    ],
+    "notRead": [
+      "skill instructions",
+      "candidate reconstruction",
+      "prior reports",
+      "skill-run artifacts"
+    ]
+  },
+  "overallVerdict": {
+    "status": "partially_supported_with_major_gaps",
+    "summary": "The video directly shows a Runway-like interface containing an already-loaded 10-second source clip, an English prompt, an In queue state, a Gen-3 Alpha result pane, and a 10-second animated result. It does not show an end-to-end one-minute workflow, a file-selection/upload action, prompt entry, generation submission, elapsed generation time, completion event, or any export/download action. The visible queue message says the video will start in a few minutes, which conflicts with treating the on-screen one-minute headline as a demonstrated guarantee.",
+    "confidence": "high"
+  },
+  "mediaGroundTruth": {
+    "containerDurationSeconds": 18.13619,
+    "videoStreamDurationSeconds": 18.133333,
+    "dimensions": {
+      "width": 720,
+      "height": 1280
+    },
+    "frameRate": "30/1",
+    "videoCodec": "h264",
+    "audioPresent": true,
+    "audioCodec": "aac",
+    "subtitleCueCount": 4,
+    "subtitleCoverage": {
+      "start": 0.0,
+      "end": 18.134
+    },
+    "evidencePackConsistency": "consistent_with_media_probe"
+  },
+  "demonstrationTimeline": [
+    {
+      "start": 0.0,
+      "end": 9.1,
+      "observation": "Fast split-screen comparison montage labelled AI生成 above and 实拍 below. It shows several stylized/action examples but no provenance, settings, generation interaction, or timing for those examples.",
+      "evidence": [
+        "evidence/frames/dense/dense-0002.jpg",
+        "evidence/frames/dense/dense-0005.jpg",
+        "evidence/frames/dense/dense-0009.jpg",
+        "evidence/frames/dense/dense-0013.jpg"
+      ]
+    },
+    {
+      "start": 9.2,
+      "end": 10.9,
+      "observation": "Edited monitor shot of an already-loaded source clip and an In queue panel. The source player reports a 10-second duration. No file picker or upload progress is shown.",
+      "evidence": [
+        "mp4@9.25s",
+        "evidence/frames/dense/dense-0014.jpg",
+        "evidence/frames/dense/dense-0015.jpg"
+      ]
+    },
+    {
+      "start": 11.0,
+      "end": 13.4,
+      "observation": "The edit zooms to the source player and a pre-existing English prompt. Yellow Chinese text is an editorial translation overlay, not text entered into the product UI. No typing or generate click is shown.",
+      "evidence": [
+        "evidence/frames/dense/dense-0016.jpg",
+        "evidence/frames/dense/dense-0017.jpg",
+        "evidence/frames/dense/dense-0018.jpg"
+      ]
+    },
+    {
+      "start": 13.5,
+      "end": 15.4,
+      "observation": "A cut reveals source and animated result side by side. This establishes that a result is displayed, not how long its generation took or that it was generated during this recording.",
+      "evidence": [
+        "evidence/frames/dense/dense-0019.jpg",
+        "evidence/frames/dense/dense-0020.jpg",
+        "evidence/frames/dense/dense-0021.jpg"
+      ]
+    },
+    {
+      "start": 15.5,
+      "end": 18.136,
+      "observation": "The edit zooms into the result pane. Gen-3 Alpha is visible, the result player reports 10 seconds, and a toast reads You're ready to generate. No export or download action occurs.",
+      "evidence": [
+        "evidence/frames/dense/dense-0022.jpg",
+        "evidence/frames/dense/dense-0023.jpg",
+        "evidence/frames/dense/dense-0024.jpg",
+        "evidence/frames/dense/dense-0025.jpg",
+        "evidence/frames/dense/dense-0026.jpg"
+      ]
+    }
+  ],
+  "workflowGroundTruth": {
+    "toolBrand": {
+      "value": "Runway",
+      "status": "supported_by_spoken_and_on_screen_context",
+      "basis": "The narration says runway and the shown interface is presented as that tool; the audit does not independently authenticate the website or account."
+    },
+    "input": {
+      "displayedFileName": "9月21日(1).mp4",
+      "displayedDurationSeconds": 10,
+      "visualDescription": "A red-haired woman in a gray sleeveless top speaking/gesturing in a bright room.",
+      "status": "visible_as_already_loaded",
+      "notShown": [
+        "local file selection",
+        "upload initiation",
+        "upload progress",
+        "upload completion",
+        "source codec, resolution, frame rate, audio properties, or file size"
+      ]
+    },
+    "prompt": {
+      "visibleText": "Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation",
+      "status": "directly_visible",
+      "entryActionShown": false,
+      "note": "The yellow Chinese phrase 科幻风格，女士坐着发表演讲，CG动画 is an editorial overlay and not product-field evidence."
+    },
+    "queue": {
+      "visibleStatus": "In queue",
+      "visibleMessage": "Your video is in queue and will start in a few minutes.",
+      "status": "directly_visible",
+      "elapsedQueueTimeShown": false,
+      "queueCompletionShown": false
+    },
+    "model": {
+      "visibleLabel": "Gen-3 Alpha",
+      "status": "visible_on_result_pane",
+      "limitation": "The recording does not show model selection or prove that the displayed result was generated in the captured session."
+    },
+    "result": {
+      "displayedDurationSeconds": 10,
+      "visualDescription": "A red-haired animated/CG woman in a metallic dark outfit gesturing as if speaking in a blue-gray interior.",
+      "promptMatch": "broad visual match for sci-fi/CG female speaker; seated posture is not clearly verifiable",
+      "status": "result_directly_visible",
+      "visibleActions": [
+        "Extend",
+        "Lip Sync"
+      ],
+      "audioOrLipSyncApplied": "unknown",
+      "outputProvenance": "not independently established"
+    },
+    "generationChain": {
+      "status": "partial_and_editorially_compressed",
+      "shown": [
+        "already-loaded source",
+        "pre-existing prompt",
+        "In queue state",
+        "displayed result"
+      ],
+      "notShown": [
+        "typing the prompt",
+        "selecting Gen-3 Alpha",
+        "generation settings",
+        "clicking Generate",
+        "continuous waiting period",
+        "processing progress",
+        "completion notification tied to this result",
+        "measured end-to-end elapsed time"
+      ]
+    },
+    "exportChain": {
+      "status": "not_shown",
+      "notShown": [
+        "opening an export/download menu",
+        "choosing format, resolution, frame rate, bitrate, or audio",
+        "starting export or download",
+        "export progress",
+        "saved output file",
+        "playback of an exported artifact"
+      ]
+    }
+  },
+  "uiStates": [
+    {
+      "time": 9.25,
+      "state": "source_loaded_and_queued",
+      "visibleText": [
+        "In queue",
+        "Your video is in queue and will start in a few minutes."
+      ]
+    },
+    {
+      "time": 11.25,
+      "state": "source_and_prompt_displayed",
+      "visibleText": [
+        "0:05 / 0:10",
+        "Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation"
+      ]
+    },
+    {
+      "time": 13.5,
+      "state": "source_and_result_side_by_side",
+      "visibleText": []
+    },
+    {
+      "time": 15.75,
+      "state": "result_pane",
+      "visibleText": [
+        "Gen-3 Alpha",
+        "You're ready to generate.",
+        "0:00 / 0:10",
+        "Extend",
+        "Lip Sync"
+      ]
+    },
+    {
+      "time": 17.25,
+      "state": "result_playback",
+      "visibleText": [
+        "Gen-3 Alpha",
+        "You're ready to generate.",
+        "0:02 / 0:10"
+      ]
+    }
+  ],
+  "claimChecks": [
+    {
+      "id": "CLAIM-01",
+      "claim": "1分钟做科幻大片",
+      "claimSource": "on-screen headline from approximately 9.2 seconds to the end",
+      "verdict": "not_demonstrated_and_in_tension_with_ui",
+      "evidence": "No continuous start-to-finish timer is shown. The queue panel explicitly says the job will start in a few minutes.",
+      "qualification": "The 18-second edited post is not evidence that the underlying workflow completed in one minute."
+    },
+    {
+      "id": "CLAIM-02",
+      "claim": "直接在Runway里上传一段实拍，再写一段提示词",
+      "claimSource": "subtitle cue 3, 9.100-13.820",
+      "verdict": "partially_supported",
+      "evidence": "An already-loaded live-action clip and an English prompt are visible.",
+      "qualification": "The video does not show selecting/uploading the file or typing the prompt."
+    },
+    {
+      "id": "CLAIM-03",
+      "claim": "很快呀，一段视频就渲染好了",
+      "claimSource": "subtitle cues 3-4, 9.100-18.134",
+      "verdict": "result_visible_but_speed_unverified",
+      "evidence": "A 10-second animated result is shown after an editorial cut.",
+      "qualification": "There is no elapsed-time measurement, and the prior queue state predicts a wait of a few minutes."
+    },
+    {
+      "id": "CLAIM-04",
+      "claim": "操作非常简单 / 真的有手就行 / 小白有手就行",
+      "claimSource": "subtitle cues 2 and 4 plus on-screen headline",
+      "verdict": "subjective_and_not_demonstrated_end_to_end",
+      "evidence": "The edit presents only a source, prompt, queue, and result.",
+      "qualification": "Omitted settings, generation submission, waiting, failure handling, and export prevent an end-to-end ease-of-use assessment."
+    },
+    {
+      "id": "CLAIM-05",
+      "claim": "在家也能拍好莱坞大片",
+      "claimSource": "subtitle cues 1-2, 0.000-9.090",
+      "verdict": "marketing_hyperbole_not_objectively_verified",
+      "evidence": "The montage and result show stylized sci-fi/CG imagery.",
+      "qualification": "No production-quality benchmark, provenance, cost, workflow completeness, or comparison methodology is supplied."
+    }
+  ],
+  "unknowns": [
+    "Whether the shown interface is a live Runway session or a prerecorded/staged display",
+    "Whether the displayed result was generated from the displayed source and prompt",
+    "Actual queue time, generation time, and total workflow time",
+    "Account plan, credit cost, retries, failures, and regional availability",
+    "Generation settings such as aspect ratio, resolution, seed, motion controls, and variations",
+    "Whether the source or generated result contains usable audio",
+    "Whether Lip Sync was applied",
+    "Export/download settings and exported file integrity",
+    "Provenance of the first-half AI生成/实拍 comparison clips",
+    "Whether third-party editing, compositing, color work, or post-processing was used"
+  ],
+  "evidenceIntegrity": {
+    "providedSubtitleOrigin": "provided_subtitles",
+    "providedSubtitleVerbatimPreserved": true,
+    "evidencePackFrameIntervalSeconds": 0.75,
+    "denseFrameCount": 26,
+    "sceneCutCountInPack": 1,
+    "sceneCutAtSeconds": [
+      2.1
+    ],
+    "auditNote": "The evidence-pack cut detector is too coarse for the internal screen-edit changes, so timeline findings also use direct inspection of the original MP4 at cited timestamps."
+  }
+}

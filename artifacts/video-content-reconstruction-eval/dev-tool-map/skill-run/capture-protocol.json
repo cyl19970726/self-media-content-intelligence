@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/skill-run/probe.json",
+  "protocolName": "Six-card referent, juxtaposition, and visual-result protocol",
+  "rationale": "The transcript contains six deictic ‘这个’ claims whose referents exist only in short-lived tool cards. Each pairing is followed by a different edited result, and several meanings depend on motion or before/after state. The protocol therefore captures each name card at exact times, then densely samples the adjacent result sequence, while treating absent UI, prompts, parameters, and causality as explicit unknowns.",
+  "knowledgeUnitFields": [
+    {"name": "visibleToolIdentity", "required": true, "reason": "Each spoken ‘这个’ is otherwise unresolved.", "derivedFrom": ["CAR-TOOL-CARDS", "RISK-01", "CQ-01"]},
+    {"name": "statedCapability", "required": true, "reason": "The six author claims are the verbal backbone and must remain verbatim-traceable.", "derivedFrom": ["CAR-SPEECH", "CAR-SUBTITLE", "CQ-01"]},
+    {"name": "exampleSetup", "required": true, "reason": "The viewer must know the visible state before each edited change when one exists.", "derivedFrom": ["CAR-MOTION", "REL-03", "RISK-03"]},
+    {"name": "visibleTransition", "required": true, "reason": "Several examples change meaning through wipes, appearance, splash escalation, or motion rather than a single pose.", "derivedFrom": ["CAR-MOTION", "MC-01", "MC-02", "MC-03", "MC-04", "MC-06", "CQ-05"]},
+    {"name": "visibleResult", "required": true, "reason": "Each claim is illustrated by a distinct adjacent output/result state.", "derivedFrom": ["CAR-VISUAL-EXAMPLES", "REL-02", "CQ-02"]},
+    {"name": "claimResultAlignment", "required": true, "reason": "The video presents claim and result as paired through editing but does not show causal generation.", "derivedFrom": ["CAR-EDITING", "REL-05", "RISK-02", "CQ-04"]},
+    {"name": "aiLabelObservation", "required": true, "reason": "The visible corner label affects how footage is framed but cannot identify a tool by itself.", "derivedFrom": ["CAR-AI-LABEL", "REL-04", "CQ-07"]},
+    {"name": "unestablishedWorkflowAndLimits", "required": true, "reason": "No UI, prompt, parameters, run, price, version, or conditions are shown.", "derivedFrom": ["CAR-UI-PARAMETERS", "RISK-02", "CQ-03", "CQ-08"]},
+    {"name": "identityDiscipline", "required": true, "reason": "The second-person example contains a recognizable resemblance but no identity evidence.", "derivedFrom": ["RISK-04", "CQ-06"]},
+    {"name": "evidenceRefsAndBoundedTime", "required": true, "reason": "Every pairing and observation must resolve to cues, shots, and frames with a bounded interval.", "derivedFrom": ["RISK-01", "RISK-03", "RISK-06"]}
+  ],
+  "captureActions": [
+    {
+      "id": "CAP-01-CARD",
+      "range": {"start": 0, "end": 0.75},
+      "carrier": "on-screen tool-name card and subtitle",
+      "mode": "exact_times",
+      "times": [0.05, 0.3, 0.6],
+      "reason": "Resolve the first deictic referent and preserve only legible card text.",
+      "expectedObservation": "通义万相AI视频 card adjacent to the 换人物 claim.",
+      "derivedFrom": ["CAR-TOOL-CARDS", "MC-01", "RISK-01", "RISK-05", "CQ-01"]
+    },
+    {
+      "id": "CAP-01-RESULT",
+      "range": {"start": 0, "end": 2.1},
+      "carrier": "character setup, transformation, and result",
+      "mode": "before_during_after",
+      "times": [0.2, 0.75, 1.05, 1.5, 1.9],
+      "densitySeconds": 0.25,
+      "reason": "A midpoint only shows the result and would hide the character-change transition.",
+      "expectedObservation": "Presenter changes from her baseline appearance into a sailor-style character with a VR headset.",
+      "derivedFrom": ["MC-01", "REL-03", "RISK-03", "CQ-02", "CQ-05"]
+    },
+    {
+      "id": "CAP-02-CARD",
+      "range": {"start": 2.1, "end": 2.8},
+      "carrier": "on-screen tool-name card and subtitle",
+      "mode": "exact_times",
+      "times": [2.15, 2.3, 2.55],
+      "reason": "Resolve the second deictic referent before the effect covers the frame.",
+      "expectedObservation": "PixVerse card adjacent to the 做特效 claim.",
+      "derivedFrom": ["CAR-TOOL-CARDS", "MC-02", "RISK-01", "RISK-05", "CQ-01"]
+    },
+    {
+      "id": "CAP-02-MOTION",
+      "range": {"start": 2.5, "end": 5.167},
+      "carrier": "effect progression and presenter reaction",
+      "mode": "motion_sequence",
+      "times": [2.7, 3.2, 3.7, 4.2, 4.7, 5.05],
+      "densitySeconds": 0.25,
+      "reason": "The water-like effect escalates and cannot be represented by one pose.",
+      "expectedObservation": "A splash/flood-like overlay grows around the presenter while she reacts.",
+      "derivedFrom": ["MC-02", "CAR-MOTION", "RISK-03", "CQ-02", "CQ-05"]
+    },
+    {
+      "id": "CAP-03-CARD",
+      "range": {"start": 5.167, "end": 5.8},
+      "carrier": "on-screen tool-name card and subtitle",
+      "mode": "exact_times",
+      "times": [5.2, 5.35, 5.6],
+      "reason": "Resolve the third deictic referent and avoid reading the small subline beyond what is legible.",
+      "expectedObservation": "Vidu card adjacent to the 与任何人同框 claim.",
+      "derivedFrom": ["CAR-TOOL-CARDS", "MC-03", "RISK-01", "RISK-05", "CQ-01"]
+    },
+    {
+      "id": "CAP-03-SEQUENCE",
+      "range": {"start": 5.5, "end": 9.067},
+      "carrier": "second-person appearance and composited staging",
+      "mode": "before_during_after",
+      "times": [5.6, 6.1, 6.6, 7.2, 7.8, 8.4, 8.9],
+      "densitySeconds": 0.3,
+      "reason": "Capture the initially empty background, appearance, and subsequent staging without assigning an unsupported identity.",
+      "expectedObservation": "An older man in a black turtleneck holding a laptop appears behind the presenter; no visible name establishes identity.",
+      "derivedFrom": ["MC-03", "REL-03", "RISK-03", "RISK-04", "CQ-02", "CQ-06"]
+    },
+    {
+      "id": "CAP-04-CARD",
+      "range": {"start": 8.8, "end": 9.3},
+      "carrier": "rapid tool-card boundary",
+      "mode": "interval_density",
+      "times": [8.82, 8.92, 9.02, 9.12, 9.22],
+      "densitySeconds": 0.1,
+      "reason": "The initial evidence has boundary ambiguity near the Runway card and the previous shot.",
+      "expectedObservation": "Runway card paired with the upcoming CUE-004 segment (SRT: 一键穿搭; burned-in subtitle: 一键换穿搭) rather than the preceding co-frame example.",
+      "derivedFrom": ["MC-04", "RISK-01", "RISK-06", "CQ-01"]
+    },
+    {
+      "id": "CAP-04-OUTFITS",
+      "range": {"start": 9.067, "end": 11.267},
+      "carrier": "outfit states and wipe transitions",
+      "mode": "before_during_after",
+      "times": [9.15, 9.55, 9.95, 10.35, 10.75, 11.15],
+      "densitySeconds": 0.2,
+      "reason": "Multiple outfit states and a bright vertical wipe occur inside a short interval.",
+      "expectedObservation": "Presenter appears in successive hats, glasses, striped top, and jacket styling states.",
+      "derivedFrom": ["MC-04", "CAR-MOTION", "REL-03", "RISK-03", "CQ-02", "CQ-05"]
+    },
+    {
+      "id": "CAP-05-CARD",
+      "range": {"start": 11.267, "end": 12.0},
+      "carrier": "on-screen tool-name card and subtitle",
+      "mode": "ocr_review",
+      "times": [11.3, 11.5, 11.75],
+      "reason": "Resolve the Manus referent and inspect, without guessing, its small descriptive line.",
+      "expectedObservation": "Manus card adjacent to the 设计ppt claim.",
+      "derivedFrom": ["CAR-TOOL-CARDS", "MC-05", "RISK-01", "RISK-05", "CQ-01"]
+    },
+    {
+      "id": "CAP-05-PPT",
+      "range": {"start": 11.7, "end": 13.7},
+      "carrier": "PPT slide collages and layout changes",
+      "mode": "interval_density",
+      "times": [11.8, 12.1, 12.4, 12.7, 13.0, 13.3, 13.6],
+      "densitySeconds": 0.2,
+      "reason": "The result is a rapid montage of small slide thumbnails whose overall form is visible but detailed copy may not be legible.",
+      "expectedObservation": "At least two coordinated slide-deck collages with portrait, chart, quote, and layout variations; detailed copy remains unresolved unless legible.",
+      "derivedFrom": ["MC-05", "RISK-05", "CQ-02"]
+    },
+    {
+      "id": "CAP-06-CARD",
+      "range": {"start": 13.7, "end": 14.3},
+      "carrier": "on-screen tool-name card and subtitle",
+      "mode": "exact_times",
+      "times": [13.72, 13.9, 14.1],
+      "reason": "Resolve the final deictic referent before the illustration replaces the presenter shot.",
+      "expectedObservation": "即梦 card adjacent to the 做动漫 claim.",
+      "derivedFrom": ["CAR-TOOL-CARDS", "MC-06", "RISK-01", "RISK-05", "CQ-01"]
+    },
+    {
+      "id": "CAP-06-ANIMATION",
+      "range": {"start": 14.2, "end": 16.556},
+      "carrier": "illustration motion, pose changes, and final state",
+      "mode": "motion_sequence",
+      "times": [14.25, 14.65, 15.05, 15.45, 15.85, 16.2, 16.5],
+      "densitySeconds": 0.2,
+      "reason": "Subtle changes in head/hand pose and butterfly position distinguish an animation-like sequence from a static image; the last referenced dense frame is missing.",
+      "expectedObservation": "AI-labeled illustrated girl with headset and deer changes pose while butterflies move; direct resampling covers the missing final dense frame.",
+      "derivedFrom": ["MC-06", "CAR-MOTION", "RISK-03", "RISK-06", "CQ-02", "CQ-05"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "visibleToolIdentity identifies_referent_of statedCapability", "derivedFrom": ["REL-01", "CQ-01"]},
+    {"relation": "statedCapability illustrated_by visibleResult", "derivedFrom": ["REL-02", "CQ-02"]},
+    {"relation": "exampleSetup precedes_visual_change_to visibleResult", "derivedFrom": ["REL-03", "RISK-03", "CQ-05"]},
+    {"relation": "AI生成 label labels_as_ai_generated visible footage but does_not_identify generating tool", "derivedFrom": ["REL-04", "CQ-07"]},
+    {"relation": "named tool presented_as_capable_of visibleResult without causal demonstration", "derivedFrom": ["REL-05", "RISK-02", "CQ-03", "CQ-04"]}
+  ],
+  "stoppingRules": [
+    "Stop only when all six visible tool cards are captured at legible times and mapped to the correct cue and result interval.",
+    "Stop only when every critical question is answered or explicitly preserved as unknown.",
+    "Stop only when all six meaning-changing segments have evidence for card, claim, and result.",
+    "For character change, splash, co-frame appearance, outfit transitions, and illustration motion, stop only after before/during/after or sequence evidence has been captured.",
+    "Stop only when no supplied carrier remains unchecked, including the AI生成 label and editing juxtaposition.",
+    "Stop only when absent workflow UI, prompts, parameters, causality, identity, price, version, success rate, and usage conditions remain explicit unknowns rather than inferred facts.",
+    "Stop only when the missing DENSE-0024 ending interval has been resampled directly from the video.",
+    "Stop only when the meta-gate finds no unchecked carrier, meaning change, or relationship."
+  ],
+  "declaredUnknowns": [
+    "No tool UI, prompt, input asset provenance, parameter, generation run, model/version, or export action is shown.",
+    "The montage does not establish that any named tool causally produced its adjacent result.",
+    "The older composited man's identity is not established.",
+    "Price, access requirements, availability, success rate, output consistency, and usage conditions are not established.",
+    "Small tool-card sublines and most PPT thumbnail copy may remain illegible even after high-resolution capture.",
+    "The evidence pack's DENSE-0024 frame file is missing; only direct video resampling can cover that instant."
+  ]
+}

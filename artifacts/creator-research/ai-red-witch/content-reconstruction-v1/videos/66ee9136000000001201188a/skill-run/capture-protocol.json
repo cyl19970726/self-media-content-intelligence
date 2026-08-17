@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/probe.json",
+  "protocolName": "18秒剪辑式Runway科幻化演示：承诺—输入—提示词—结果—边界双账本协议",
+  "rationale": "该视频用极短时长同时承载强时间/门槛承诺、实拍与AI成片并置、小字号UI、提示词、结果预览和评论CTA。协议必须保留完整队列微文案‘will start in a few minutes’并直接连接‘1分钟’标题，分别保存可见编辑顺序与未被证明的真实执行依赖，捕获结果区Lip Sync分支，并对结果音频、Gen-3 Alpha选择、live/staged状态、版本、账号、导出和因果做有界unknown核查。",
+  "knowledgeUnitFields": [
+    {"name": "headlinePromise", "required": true, "reason": "固定大标题提出口播之外的‘1分钟’和‘小白有手就行’承诺，必须与事实证明分开。", "derivedFrom": ["CAR-02", "MC-01", "CQ-01", "RISK-01"]},
+    {"name": "visualContrast", "required": true, "reason": "上下分屏和输入/输出并排是主要效果载体，需保留实拍环境、人物造型与AI科幻化结果的可见差异。", "derivedFrom": ["CAR-05", "CAR-06", "MC-01", "MC-06", "CQ-05"]},
+    {"name": "visibleIdentity", "required": true, "reason": "口播把工具称为Runway；UI自身可见Sessions/Prompt/Presets、文件名、In queue和Gen-3 Alpha，但取景内无可读Runway品牌字样，精确版本仍未知。", "derivedFrom": ["CAR-03", "CQ-02", "RISK-04"]},
+    {"name": "observedChronology", "required": true, "reason": "编辑顺序是输入预览→提示词→结果，不等于完整实时执行。", "derivedFrom": ["CAR-07", "MC-04", "MC-05", "MC-06", "RISK-02"]},
+    {"name": "inputState", "required": true, "reason": "真人女性讲话视频是界面中可见输入，必须与前段其他实拍示例区分。", "derivedFrom": ["CAR-04", "MC-04", "CQ-03"]},
+    {"name": "promptText", "required": true, "reason": "英文提示词是教程中唯一接近可复现参数的信息，需OCR后人工核对并保留不确定字符。", "derivedFrom": ["CAR-04", "MC-05", "RISK-03", "CQ-03"]},
+    {"name": "visibleActionState", "required": true, "reason": "区分已展示的页面状态与未展示的文件选择、点击、排队、生成完成等动作。", "derivedFrom": ["RISK-02", "CQ-04"]},
+    {"name": "resultState", "required": true, "reason": "结果是红发科幻女性士兵/装甲角色视频，需要记录并排预览和后续播放状态。", "derivedFrom": ["MC-06", "CQ-05"]},
+    {"name": "causalStatus", "required": true, "reason": "编辑后对照支持‘作者将其框定为结果’，但不证明同一次连续生成因果。", "derivedFrom": ["REL-04", "REL-05", "RISK-05", "CQ-06"]},
+    {"name": "timeClaimStatus", "required": true, "reason": "必须区分18.133秒视频、‘1分钟’标题、‘很快’口播与缺失的计时证明。", "derivedFrom": ["CQ-01", "RISK-01"]},
+    {"name": "boundaryUnknowns", "required": true, "reason": "价格、版本、账号/订阅、平台/地区、格式、硬件/网络、导出均影响可复现性但未建立。", "derivedFrom": ["CAR-09", "CQ-07", "CQ-08", "RISK-06", "RISK-07"]},
+    {"name": "ctaTerms", "required": true, "reason": "结尾只要求评论666，交付物、费用和路径未知。", "derivedFrom": ["MC-07", "CQ-10", "RISK-08"]},
+    {"name": "nonSpeechAudioDecision", "required": true, "reason": "0–18.137秒机器听检必须区分音乐跨段存在/变化、间歇effect-like候选和结果片段原声不可独立归因，并保留身份unknown。", "derivedFrom": ["CAR-08", "CQ-11", "RISK-10"]}
+    ,{"name": "queueMicrocopy", "required": true, "reason": "‘Your video is in queue and will start in a few minutes.’是与1分钟标题形成直接张力的最强字面证据。", "derivedFrom": ["CQ-12", "RISK-11", "REL-08"]}
+    ,{"name": "resultControls", "required": true, "reason": "结果区可见Lip Sync分支，是否应用必须单独保留。", "derivedFrom": ["CAR-10", "CQ-13", "RISK-12"]}
+    ,{"name": "resultAudioStatus", "required": true, "reason": "整条帖子有音轨不等于屏幕中结果素材含可用音频或已同步口型。", "derivedFrom": ["CAR-10", "CQ-14", "RISK-12"]}
+    ,{"name": "modelSelectionStatus", "required": true, "reason": "Gen-3 Alpha标签可见，但模型选择动作未展示。", "derivedFrom": ["CQ-15", "RISK-13"]}
+    ,{"name": "sessionAuthenticity", "required": true, "reason": "必须保留live会话、预录录屏或摆拍展示无法区分的边界。", "derivedFrom": ["CQ-15", "RISK-13"]}
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {"start": 0, "end": 9.1},
+      "carrier": "上下分屏、烧录字幕、人物动作、服装道具、家庭/专业设备环境与编辑变化",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.35,
+      "reason": "核查开场承诺、AI生成/实拍标签、旧成本叙述、AI低门槛转折和多组动作/设备对照，避免把技术shot边界当语义分段。",
+      "expectedObservation": "多组上方科幻成片/专业设备与下方居家实拍/家用设备的并置；逐句烧录字幕；分屏语义连续但内容频繁切换。",
+      "derivedFrom": ["CS-01", "CS-02", "CS-03", "CAR-02", "CAR-05", "CAR-06", "CAR-07", "MC-01", "MC-02", "MC-03", "RISK-09"]
+    },
+    {
+      "id": "ACT-02",
+      "range": {"start": 9.1, "end": 18.133},
+      "carrier": "固定标题、烧录字幕、桌面显示器中的Runway界面、模型/状态标签与CTA",
+      "mode": "ocr_review",
+      "times": [9.2, 9.75, 10.25, 10.75, 11.25, 11.75, 12.25, 12.75, 13.25, 13.75, 14.25, 14.75, 15.25, 15.75, 16.25, 16.75, 17.25, 17.75, 18.0],
+      "reason": "读取‘1分钟’固定标题、口播所称Runway与UI自身可见的Gen-3 Alpha/页面字段、提示词、状态文字、结果字幕和评论666 CTA。",
+      "expectedObservation": "固定标题全程可读；Runway与Gen-3 Alpha标签在部分帧出现；提示词英文和黄色中文概括可读取；结尾字幕完整。",
+      "derivedFrom": ["CS-04", "CS-05", "CAR-02", "CAR-03", "CAR-04", "CQ-01", "CQ-02", "CQ-03", "CQ-10", "RISK-03", "RISK-04", "RISK-08"]
+    },
+    {
+      "id": "ACT-03",
+      "range": {"start": 9.1, "end": 16.3},
+      "carrier": "Runway输入、提示词、生成/结果页面状态和可能的鼠标/键盘操作",
+      "mode": "ui_state_review",
+      "times": [9.15, 9.5, 9.85, 10.2, 10.55, 10.9, 11.25, 11.6, 11.95, 12.3, 12.65, 13.0, 13.35, 13.7, 14.05, 14.4, 14.75, 15.1, 15.45, 15.8, 16.15],
+      "reason": "建立观察到的屏幕时序，判断哪些动作/状态确实显示，哪些依赖被剪辑跳过。",
+      "expectedObservation": "可见输入视频预览、提示词填写后的状态、输入/输出并排和结果播放；可能未见文件选择器、生成按钮点击、排队/进度、完成日志。",
+      "derivedFrom": ["MC-04", "MC-05", "MC-06", "REL-03", "REL-04", "REL-05", "RISK-02", "RISK-05", "CQ-04", "CQ-06"]
+    },
+    {
+      "id": "ACT-04",
+      "range": {"start": 9.1, "end": 16.3},
+      "carrier": "输入—提示词—结果的操作前/中/后画面",
+      "mode": "before_during_after",
+      "times": [9.2, 10.2, 11.0, 11.7, 12.5, 13.3, 13.9, 14.5, 15.2, 16.0],
+      "reason": "为过程单元提供before/during/after证据，同时避免虚构未显示的点击和后台调用。",
+      "expectedObservation": "before为真人视频输入页，during为提示词页和编辑切换，after为输入/输出并排及结果播放；桥接动作缺失。",
+      "derivedFrom": ["CAR-04", "CAR-07", "RISK-02", "CQ-03", "CQ-04"]
+    },
+    {
+      "id": "ACT-05",
+      "range": {"start": 11.0, "end": 13.82},
+      "carrier": "显示器内英文提示词、黄色中文提示词概括和相邻UI控件",
+      "mode": "ocr_review",
+      "times": [11.0, 11.25, 11.5, 11.75, 12.0, 12.25, 12.5, 12.75, 13.0, 13.25, 13.5, 13.75],
+      "reason": "提示词字号小且部分被烧录字幕覆盖，需要多帧OCR并人工确认最稳定读法。",
+      "expectedObservation": "英文内容为‘Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation’；中文概括为‘科幻风格，女士坐着发表演讲，CG动画’。OCR可能有误拼，需以帧中人工读法为准并保留原OCR。",
+      "derivedFrom": ["CAR-04", "MC-05", "RISK-03", "CQ-03"]
+    },
+    {
+      "id": "ACT-06",
+      "range": {"start": 13.82, "end": 18.133},
+      "carrier": "真人输入/科幻女兵输出对照、输出视频运动、Gen-3 Alpha与状态文字、导出控件候选",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.2,
+      "reason": "核查结果具体形态、播放连续性、模型/状态标签，并检查是否出现保存/下载/导出证明。",
+      "expectedObservation": "结果由红发科幻女兵在蓝绿色室内讲话构成；界面有结果播放进度，但未必出现导出操作或文件落盘。",
+      "derivedFrom": ["CS-05", "CAR-03", "CAR-05", "MC-06", "RISK-05", "RISK-07", "CQ-05", "CQ-06", "CQ-08"]
+    },
+    {
+      "id": "ACT-07",
+      "range": {"start": 0, "end": 18.133},
+      "carrier": "全时间线的文字、UI、口播、状态与可能出现的决策边界",
+      "mode": "interval_density",
+      "densitySeconds": 0.4,
+      "reason": "对‘1分钟真实计时、精确版本、价格、平台/系统、账号/订阅、地区、硬件/网络、文件要求、生成进度、保存/导出、CTA交付条件’做有界缺失检查。",
+      "expectedObservation": "可见‘1分钟’承诺与‘很快’口播，但没有连续计时、价格/账号/地区/平台条件、文件规格、完整进度、导出和CTA交付条款。结论只限本视频0–18.133秒。",
+      "derivedFrom": ["CAR-09", "CQ-01", "CQ-07", "CQ-08", "CQ-10", "RISK-01", "RISK-06", "RISK-07", "RISK-08"]
+    },
+    {
+      "id": "ACT-08",
+      "range": {"start": 9.1, "end": 10.0},
+      "carrier": "队列状态标题、完整微文案与同屏1分钟固定标题",
+      "mode": "ocr_review",
+      "times": [9.1, 9.2, 9.25, 9.35, 9.5, 9.75],
+      "reason": "逐字保留‘In queue / Your video is in queue and will start in a few minutes.’，并建立与‘1分钟做科幻大片’的直接时间张力。",
+      "expectedObservation": "同一画面上方是1分钟承诺，右侧状态说明视频在队列中且几分钟后才开始；这不是完成态。",
+      "derivedFrom": ["MC-01", "MC-04", "REL-08", "CQ-12", "RISK-11"]
+    },
+    {
+      "id": "ACT-09",
+      "range": {"start": 13.35, "end": 15.45},
+      "carrier": "结果窗下方Extend/Lip Sync控件、结果播放器及可能的音频/口型状态",
+      "mode": "ui_state_review",
+      "times": [13.35, 13.7, 14.0, 14.25, 14.5, 14.75, 15.0, 15.25, 15.45],
+      "reason": "确认Lip Sync控件可见，检查是否点击/应用，并区分结果运动可见与结果自身可用音频未知。",
+      "expectedObservation": "Extend与Lip Sync控件在并排结果区可见；没有点击或应用状态；结果角色嘴部/动作在动，但帖子口播覆盖下不能证明结果自身音轨。",
+      "derivedFrom": ["CAR-10", "MC-06", "CQ-13", "CQ-14", "RISK-12"]
+    },
+    {
+      "id": "ACT-10",
+      "range": {"start": 9.1, "end": 18.133},
+      "carrier": "Gen-3 Alpha标签、模型选择候选、会话连续性/live指示与摆拍/预录可能性",
+      "mode": "ui_state_review",
+      "times": [9.25, 10.25, 11.5, 12.5, 13.5, 14.25, 15.8, 17.8, 18.0],
+      "reason": "检查Gen-3 Alpha是否只作为标签出现、选择动作是否展示，以及界面是否有足够证据证明live会话。",
+      "expectedObservation": "Gen-3 Alpha在结果阶段可见，但无模型选择动作；画面是拍摄显示器的剪辑展示，无法仅凭内容确认live、预录录屏或摆拍。",
+      "derivedFrom": ["CAR-03", "CAR-07", "CQ-15", "RISK-13"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "旧式高成本/复杂技术 reversal_of AI在家低门槛", "derivedFrom": ["REL-01"]},
+    {"relation": "开场实拍/AI分屏 opening_promise_illustrated_by 结尾Runway结果", "derivedFrom": ["REL-02"]},
+    {"relation": "输入页 precedes_in_edited_demonstration 提示词页", "derivedFrom": ["REL-03"]},
+    {"relation": "真人输入 input_visually_compared_with 科幻女兵输出", "derivedFrom": ["REL-04"]},
+    {"relation": "提示词 framed_as_instruction_producing_result 结果，但连续因果未知", "derivedFrom": ["REL-05", "RISK-05"]},
+    {"relation": "结果 result_used_to_support_low_barrier_cta 评论666", "derivedFrom": ["REL-06"]},
+    {"relation": "结尾‘有手就行’ closing_strengthens_opening_promise ‘1分钟/在家大片’", "derivedFrom": ["REL-07"]}
+    ,{"relation": "‘1分钟’ headline_in_direct_tension_with 队列说明‘will start in a few minutes’", "derivedFrom": ["REL-08", "RISK-11"]}
+  ],
+  "stoppingRules": [
+    "0–18.133秒时间线无缝覆盖，且语音、提供字幕、烧录文字、UI、提示词、动作/编辑、输入/结果对照、环境、非语音音频和决策相关缺失均已检查。",
+    "所有OCR/UI动作都完成macOS Vision OCR并逐帧人工核查；小字无法确认时保留部分读法或unknown。",
+    "‘1分钟’、‘很快’与实际18.133秒视频时长分别建模，不以剪辑时长代替生成耗时。",
+    "可见编辑顺序和推定操作依赖顺序分别记录；文件选择、点击生成、排队、完成、保存、导出未显示时不得补写。",
+    "author-stated Runway、UI-observed Gen-3 Alpha/页面字段与精确产品版本、账号/订阅等unknown分开。",
+    "真人输入与科幻女兵输出两端均有证据，但只写为视频框定/视觉对照，不升级为已证明的一次连续因果。",
+    "价格、平台/系统、账号/地区、硬件/网络、输入格式、输出规格、导出和CTA条款的缺失结论明确限定于0–18.133秒检查范围。",
+    "结尾CTA与开场承诺的强化关系进入知识单元和关系图，而不只停留在cue台账。",
+    "非语音音频必须实际机器听检0–18.137秒：开场、输入/排队、结果、结尾四段无缝覆盖；音乐absent/constant/change、短效果候选及结果原声分别记录，身份与归属无法确认时保持unknown。",
+    "技术shot边界不被写成语义场景数或真实剪辑数。",
+    "完整队列子文案逐字保留，并在知识单元和关系图中直接连接1分钟标题。",
+    "结果区Lip Sync控件被捕获；未见应用时保留unknown，不把嘴部运动升级为已同步音频。",
+    "整条帖子有AAC音轨与结果素材自身有可用音频分开；无声道或静音分析证据时不声明stereo或无静音。",
+    "Gen-3 Alpha标签与模型选择动作分开；未显示选择则明确unknown。",
+    "live会话、预录录屏和摆拍展示无法由画面区分时保留sessionAuthenticity unknown。",
+    "每个critical question均可由证据回答或正确标为unknown。"
+  ],
+  "declaredUnknowns": [
+    "实际生成耗时以及是否满足1分钟",
+    "Runway与Gen-3 Alpha的精确版本、日期、地区可用性和账号/订阅层级",
+    "输入文件名、格式、时长、分辨率和上传完成状态",
+    "除提示词外的种子、比例、时长、运动、镜头、质量等生成参数",
+    "文件选择、点击生成、排队、进度和完成是否在该会话实际发生",
+    "结果是否由当前所示输入和提示词在同一次连续操作中生成",
+    "保存/下载/导出操作、文件格式、分辨率和水印",
+    "价格、硬件、网络、浏览器或系统门槛",
+    "评论666后的交付物、费用、路径、时效与责任主体",
+    "非语音音频的具体类型、来源与叙事作用",
+    "提示词个别低分辨率字符和精确标点",
+    "In queue微文案所称几分钟后开始与1分钟标题如何同时成立",
+    "Lip Sync是否点击或应用",
+    "屏幕中结果素材是否含可用音频或同步口型音频",
+    "Gen-3 Alpha是否由作者在该流程中主动选择",
+    "界面是否为live会话、预录录屏或摆拍展示",
+    "音乐曲目/风格/来源和严格采样连续性",
+    "短促effect-like候选的字面身份、准确数量及是否独立SFX",
+    "源音轨声道布局和静音结构",
+    "隐藏剪辑、加速或屏外操作"
+  ],
+  "audioListeningProtocol": {
+    "scope": {"start": 0, "end": 18.137},
+    "regions": [
+      {"id": "AUD-SEG-01", "range": {"start": 0, "end": 9.1}, "question": "opening narration之外音乐和短促效果是absent、constant还是change？"},
+      {"id": "AUD-SEG-02", "range": {"start": 9.1, "end": 13.35}, "question": "input/queue/prompt阶段音乐与effect-like内容是否延续或变化？"},
+      {"id": "AUD-SEG-03", "range": {"start": 13.35, "end": 16.15}, "question": "result reveal是否引入可独立归因的结果原声，音乐/效果如何变化？"},
+      {"id": "AUD-SEG-04", "range": {"start": 16.15, "end": 18.137}, "question": "closing阶段音乐/效果是否继续，结果原声是否可独立归因？"}
+    ],
+    "method": "AudioSet machine listening over decoded full mix in overlapping windows plus supplementary L-R residual",
+    "requiredOutputs": ["audio-evidence/machine-listening-raw.json", "audio-evidence/listening-segments.json", "audio-evidence/listening-notes.md"],
+    "stoppingRule": "四段与19个滑窗覆盖0–18.137秒无缺口；每段分别记录narration、music、short effects和displayed result clip own audio，无法归因时明确unknown。"
+  }
+}

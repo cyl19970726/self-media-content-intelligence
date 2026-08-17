@@ -1,0 +1,42 @@
+{
+  "protocolName": "零代码 HTML Slides—生成—批量修改—分享导出捕捉协议",
+  "rationale": "本片是短教程，知识主要存在于 AnyGen 界面状态而非观点。需要恢复进入 Build Slides/Frontend、选模板、白话输入、三分多钟结果、评论批量改样式、分享/下载/全屏、拖图修改，以及模板来源。所有步骤都要保留剪辑桥接、版本/费用/导出和第三方参考授权边界。",
+  "viewerBefore": "观众可能认为好看的 HTML Slides 需要编程基础或复杂设计能力。",
+  "viewerAfter": "观众获得一条低门槛流程：在 AnyGen 选 Frontend Slides 模板，用白话输入内容，生成后用评论批量修改，再通过链接分享或导出；模板质量来自长期收集视觉参考。",
+  "intendedChanges": ["从需要编程转向模板+白话生成", "从生成即结束转向评论式批量修改", "从工具技巧转向日常建立视觉参考库"],
+  "scopeStatement": "仅重建 0–118.92 秒内 AnyGen/Slides 界面、作者步骤和模板来源自述。机器转写不是官方字幕；AnyGen、Build Slides、Frontend、PPT 等名称需 UI/OCR 支持。三分多钟、所有文字可点击、分享/下载格式、当前可用性、零代码普适性和第三方设计参考授权均有边界。",
+  "defaultDensity": 2,
+  "audioSource": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a05780c0000000006020d23/audio-16k.wav",
+  "audioLedger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a05780c0000000006020d23/skill-run/audio/audio-carrier.json",
+  "globalUnknowns": ["AnyGen 当前产品名、版本、账号、费用、地区和配额", "模板数量、许可证和第三方视觉参考授权", "生成时间起止口径与镜头外编辑", "分享链接权限、寿命和外部访问结果", "导出 PPT/PDF 的排版、字体和可编辑性"],
+  "termConflictStatement": "机器转写把 AnyGen、从零到一、编程、PPT、评论、链接、Claude Design 等识别为 any 镇、充灵到一、变成、PBT、天涯评论、电接、Claw Design。报告保留原始 cue，并通过 UI、烧录字幕和语境提供规范化阅读建议。",
+  "termUnknowns": ["模板功能当前正式名称", "Claude Design/Designer 的准确产品身份", "部分分享与下载按钮小字"],
+  "audioStatement": "完整混合轨无缝机器检查主要支持连续口播，未建立独立 UI 点击、生成完成、分享成功或下载成功声音证据；具体配乐和权利未知。",
+  "rightsHints": ["SWEEP-05", "SWEEP-06"],
+  "visualCarriers": [
+    {"name": "AnyGen/Slides 生成与编辑界面", "modalityKeys": ["visual.ui", "visual.state", "ocr"], "segmentIndexes": [0,1,2,3,4], "roles": ["承载操作对象和前中后状态", "展示模板、结果、评论、分享与下载"], "omissionImpact": "会把教程降成口播清单，或虚构连续点击和任务因果。"},
+    {"name": "模板成品、视觉参考与主讲人画中画", "modalityKeys": ["visual.result", "visual.design", "visual.person"], "segmentIndexes": [0,1,5], "roles": ["先建立结果欲望", "说明模板参考来源与审美积累"], "omissionImpact": "会漏掉内容传播的视觉结果钩子和模板方法。"}
+  ],
+  "segments": [
+    {
+      "start": 0, "end": 14.32, "title": "结果承诺与入口：无需编程进入 Build Slides", "question": "开场承诺什么结果，实际入口在哪里？", "signals": ["先展示好看模板", "手把手从零到一", "无需编程基础", "进入 AnyGen/Build Slides"], "alternatives": ["是否真正完全零代码", "入口当前是否仍存在"], "meaning": "把漂亮 HTML Slides 从设计/编程任务改写成可从模板开始的操作。", "trigger": "结果样例、零代码承诺和入口", "linkFromPrevious": "无", "risk": "把拍摄时入口写成当前仍可用且对任何人零门槛。", "riskWhy": "缺版本、账号、地区、费用和失败状态。", "followup": "捕捉产品身份、功能入口和零代码措辞，保持当前性未知。", "expectedObservation": "入口和承诺可见，当前可用性未证。", "carrier": "模板结果、AnyGen 首页/Build Slides 与字幕", "density": 1.2, "cueHints": ["CUE-001", "CUE-004"], "statement": "作者先回顾好看的 HTML Slides 模板，承诺无需编程基础即可从零到一制作，并进入 AnyGen 的 Build Slides。片内可证明拍摄时存在相关界面，不能证明当前名称、入口、费用或所有用户都无需任何技术判断。", "provenance": "author_claim", "reasoning": "结果、承诺与入口在短时间内连续出现。", "unknowns": ["当前入口", "账户/地区", "费用配额", "零代码适用范围"], "core": true
+    },
+    {
+      "start": 14.32, "end": 30.68, "title": "选择 Frontend 模板并用白话输入内容", "question": "生成前的输入、选择和提交顺序是什么？", "signals": ["选择 Frontend", "从下方模板中选择一个", "直接输入 Slides 内容", "大白话即可", "三分多钟后切到结果"], "alternatives": ["是否展示完整提交和等待", "结果是否同一任务生成"], "meaning": "把输入门槛压缩成模板选择和自然语言内容。", "trigger": "Frontend—模板—白话需求—发送—结果", "linkFromPrevious": "入口承诺落到实际生成输入", "risk": "把剪辑后的选择、提交、等待和结果当成无中断端到端因果。", "riskWhy": "中间等待被剪掉，任务 ID 和镜头外修改未展示。", "followup": "加密捕捉生成前/中/后，记录缺失桥接和时间主张。", "expectedObservation": "局部顺序清楚，连续任务和三分钟计时未知。", "carrier": "Frontend 选择、模板、输入框、提交和完成态", "density": 1.2, "cueHints": ["CUE-005", "CUE-012"], "statement": "可恢复的生成顺序是：选择 Frontend Slides，选一个模板，输入希望 Slides 包含的内容，用白话发送；视频随后剪到作者称三分多钟后的结果。界面与口播支持步骤概念，不证明等待过程连续、结果任务绑定或没有镜头外修改。", "provenance": "system_inference", "reasoning": "口播给出程序顺序，界面显示对应状态；剪辑阻断完整因果。", "unknowns": ["完整提示词", "提交点击", "真实耗时", "任务绑定", "镜头外修改"], "core": true,
+      "procedural": {"input": "一个 Frontend 模板和 Slides 内容需求", "actions": ["进入 Build Slides", "选择 Frontend", "选择模板", "输入白话内容", "发送生成", "等待并查看结果"], "parameters": ["模板", "内容", "语言与长度"], "output": "套用模板风格的 HTML Slides", "unknowns": ["生成参数", "失败重试", "真实等待", "任务连续性"]}
+    },
+    {
+      "start": 30.68, "end": 54.72, "title": "结果可编辑，并通过评论批量发送修改", "question": "作者如何修改文字、字体、颜色和排版？", "signals": ["结果复刻模板", "作者称文字可点击", "点评论针对性添加要求", "改字体/页面蓝色", "Apply 后批量给 AI"], "alternatives": ["所有元素是否都可编辑", "批量修改是否一次成功"], "meaning": "从生成完成转向对结果进行局部、可视化的自然语言修改。", "trigger": "点击文字、评论和 Apply", "linkFromPrevious": "生成结果继续进入编辑闭环", "risk": "把单例编辑升级为所有元素、所有修改一次成功。", "riskWhy": "没有失败、冲突评论、撤销或复杂排版案例。", "followup": "捕捉选择前、评论中、Apply 后状态和未展示桥接。", "expectedObservation": "评论式修改入口可见，批量成功范围未知。", "carrier": "完成态、文字选择、评论面板、Apply 和修改后结果", "density": 1, "cueHints": ["CUE-012", "CUE-021"], "statement": "作者称结果复刻模板、文字可直接点击；需要改字体、颜色或排版时，可在对应位置添加评论，点击 Apply 后批量交给 AI 修改。片内是有限示例，不能推出所有元素可编辑、所有评论一次成功或修改没有副作用。", "provenance": "author_claim", "reasoning": "口播步骤和界面状态对应，但成功范围仅限单例。", "unknowns": ["失败/撤销", "复杂修改", "批量冲突处理", "编辑保真度"], "core": true
+    },
+    {
+      "start": 54.72, "end": 75.4, "title": "分享链接、下载 PPT/PDF 与全屏演示形成交付路径", "question": "做完后有哪些交付方式，哪些成功未闭环？", "signals": ["点击分享并复制链接", "对方像网页打开", "下载按钮", "作者称可导出 PPT/PDF", "全屏投屏演示"], "alternatives": ["外部接收者是否真的打开", "PPT 是否可编辑且排版一致"], "meaning": "从制作工具扩展为链接交付和传统文件交付。", "trigger": "分享、下载、PPT/PDF 和全屏", "linkFromPrevious": "编辑完成后进入交付与展示", "risk": "把按钮和口播升级为外部访问成功、格式完整和当前长期可用。", "riskWhy": "没有接收端、导出文件或跨设备核验。", "followup": "OCR 按钮和格式，明确未展示外部接收、文件内容和权限。", "expectedObservation": "交付选项有界面证据，结果保真与可用性未知。", "carrier": "分享/下载 UI、链接字段和全屏结果", "density": 1.5, "cueHints": ["CUE-022", "CUE-026"], "statement": "作者给出两类交付：点击分享、复制链接让他人像网页一样打开；或下载为 PPT/PDF，并在演讲时全屏投屏。片内没有展示接收者成功打开、链接权限/寿命、导出文件内容、字体和可编辑性。", "provenance": "author_claim", "reasoning": "按钮和口播支持选项存在，缺少交付闭环。", "unknowns": ["链接权限和寿命", "外部访问", "PPT/PDF 保真和可编辑性", "下载当前可用性"], "core": true
+    },
+    {
+      "start": 75.4, "end": 89.32, "title": "拖入图片和继续对话支持增量修改", "question": "图片插入和任意修改实际展示了什么？", "signals": ["拖图片到框", "要求插到最后一页", "作者称任何东西都可直接跟 AI 说"], "alternatives": ["是否展示最终插图结果", "任何修改是否过度普遍化"], "meaning": "从结构/样式编辑扩展到素材插入和持续对话。", "trigger": "拖图、指定页面和自然语言修改", "linkFromPrevious": "交付前仍可增量加入素材", "risk": "把一个插图示例写成任何素材、任意修改都可靠。", "riskWhy": "缺上传、处理、最终结果、版权和失败状态完整链。", "followup": "捕捉上传前/中/后，保持结果绑定和素材权利未知。", "expectedObservation": "入口和口播可见，端到端插图成功未闭环。", "carrier": "图片拖放框、对话输入与页面结果", "density": 1.2, "cueHints": ["CUE-027", "CUE-027"], "statement": "作者称可把图片拖入输入框，并要求插到最后一页；其他修改也可直接用自然语言提出。该段给出操作意图和界面入口，但未完整展示上传—处理—指定页面—最终结果的连续链，也没有处理图片来源和授权。", "provenance": "author_claim", "reasoning": "口播给出单个插图用法，缺少全链和普遍验证。", "unknowns": ["上传限制", "图片处理", "插入结果", "素材授权", "任意修改范围"], "core": false
+    },
+    {
+      "start": 89.32, "end": 118.92, "title": "模板能力的上游是持续收集视觉参考", "question": "好看模板从哪里来，作者给出的审美方法是什么？", "signals": ["收集海报、书封面和平面设计", "交给 Claude Design 参考风格和配色", "来源包括小红书/Pinterest/Twitter", "任何好看的东西和配色都可成为参考"], "alternatives": ["参考是否构成复制", "第三方图片是否可用于模板和商用"], "meaning": "从工具操作回到长期审美资产积累。", "trigger": "模板来源和跨平台参考库", "linkFromPrevious": "使用教程最后解释结果质量的上游来源", "risk": "把参考公开图片写成可自由复制、训练、发布和商用。", "riskWhy": "公开可见不等于获得版权、字体、肖像或设计许可。", "followup": "恢复参考—风格/配色—模板关系，明确借鉴与复制、权利未知。", "expectedObservation": "审美积累是方法核心，权利边界缺失。", "carrier": "模板结果、参考来源口播和主讲人画中画", "density": 2, "cueHints": ["CUE-028", "CUE-031"], "statement": "作者解释模板来自日常收集的海报、书封面和平面设计等视觉参考，交给 Claude Design/Designer 类工具借鉴风格和配色生成模板；来源包括小红书、Pinterest 和 Twitter。核心方法是建立参考库，不等于第三方图片、字体、版式或肖像可直接复制和商用。", "provenance": "author_claim", "reasoning": "作者明确给出参考来源、处理方式和习惯建议；权利未出现。", "unknowns": ["工具准确身份", "参考与输出相似度", "版权/字体/肖像授权", "模板许可证"], "core": true,
+      "argument": {"claim": "低门槛生成好看 HTML Slides 的上限主要来自模板和视觉参考，而不只来自提示词。", "evidenceUnitIndexes": [0,1,2,5], "conditions": ["模板与内容匹配", "参考使用合法", "AI 能保持信息正确", "用户复核排版与交付"], "counterexamples": ["模板会造成同质化", "复杂数据和长文可能破坏版式", "导出格式可能失真"], "actions": ["建立视觉参考库", "提炼风格和配色", "生成模板", "用白话填内容", "评论修改", "核对交付"], "limits": ["单一平台和单例", "缺少版权与稳定性验证"]}
+    }
+  ]
+}

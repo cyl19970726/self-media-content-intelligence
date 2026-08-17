@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "v0-holdout-generalization-evaluation-1.0",
+  "corpusId": "6a39118d000000002200a5e9",
+  "evaluatorRole": "independent_v0_holdout_generalization_evaluator",
+  "v0": {
+    "version": "v0",
+    "sha256": "5266b285afdb8b23d05a433e1a7f34b177ae6f93a78acaf53ccf4761748c95db",
+    "mutationPerformed": false
+  },
+  "inputIsolation": {
+    "compliant": true,
+    "read": [
+      "artifacts/director-skill-study/v0-method.md",
+      "artifacts/director-skill-study/v0-freeze.json",
+      "artifacts/director-skill-study/holdout-evaluation-contract.md",
+      "artifacts/director-skill-study/corpus/6a39118d000000002200a5e9/run/reconstruction.json",
+      "artifacts/director-skill-study/corpus/6a39118d000000002200a5e9/run/article.md",
+      "artifacts/director-skill-study/corpus/6a39118d000000002200a5e9/review/audit/audit.json",
+      "artifacts/director-skill-study/corpus/6a39118d000000002200a5e9/review/audit/audit.md",
+      "artifacts/director-skill-study/corpus/6a39118d000000002200a5e9/review/evaluation-v4/"
+    ],
+    "excluded": [
+      "other observations",
+      "other corpus contents",
+      "other holdout-generalization reports",
+      "final Skill"
+    ]
+  },
+  "h0ReconstructionGate": {
+    "ready": true,
+    "passedGates": 22,
+    "totalGates": 22,
+    "failedGateIds": [],
+    "source": "review/evaluation-v4/gate-report.json"
+  },
+  "scoringRule": {
+    "unit": "distinct audit question derived from the independent audit",
+    "applicableDenominatorExcludesNA": true,
+    "noBroadLabelCredit": true,
+    "recallFormula": "recalled / (recalled + missed)",
+    "falsePositiveDefinition": "a non-applicable V0 requirement asserted as if present in the source"
+  },
+  "dimensions": [
+    {
+      "id": "D1",
+      "name": "account/identity purpose",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 2,
+      "missed": 1,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D1-Q1","status":"recalled","auditBasis":["CQ-17","UNK-02"],"question":"What is the visible account/persona identity, and what identity or credential claims remain unproved?","v0Basis":["P02","P08"],"finding":"P02's identity/proof-object split and P08's scope rule recover 人类最强编导, the mask and promotion as visible framing without upgrading them to real identity, credentials or ownership."},
+        {"id":"D1-Q2","status":"recalled","auditBasis":["CQ-01","OPEN-04","OPEN-05"],"question":"What continuing promise does this account/post make and what scope qualifier is stated?","v0Basis":["P01","P05","closure-1","closure-5"],"finding":"The promise and founder/non-founder scope can be recorded rather than inferred from the strong persona label."},
+        {"id":"D1-Q3","status":"missed","auditBasis":["CQ-04","REL-02"],"question":"Which audience relationship-state transition is the story intended to produce?","v0Basis":[],"finding":"V0 mentions attention, trust and user relevance, but has no specific field for an intended relational transition such as 认识→信任 and 喜欢→爱上; treating this as generic account promise would be too broad."}
+      ]
+    },
+    {
+      "id": "D2",
+      "name": "audience, situation and demand",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 3,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D2-Q1","status":"recalled","auditBasis":["CQ-01","UNK-03"],"question":"Who is the method for, and what adaptation for non-founders remains unknown?","v0Basis":["P01","P06","closure-3"],"finding":"Target, use case and exception responsibility recover the stated scope while forcing the absent adaptation method to remain unknown."},
+        {"id":"D2-Q2","status":"recalled","auditBasis":["CQ-06","CQ-08","REL-04"],"question":"How are audience wants related to creator/brand assets?","v0Basis":["P04","P01","closure-3","closure-6"],"finding":"P04 specifically starts from demand and conflict; P01 then requires a sustainable, differentiated supply-side promise."},
+        {"id":"D2-Q3","status":"recalled","auditBasis":["CQ-07","CQ-12","UNK-04","UNK-06","UNK-07"],"question":"Are the personal and product-demand taxonomies exhaustive, universal or mutually exclusive?","v0Basis":["P04","P07","section-3-hypotheses"],"finding":"V0 treats need classifications as heuristic hypotheses, so 必火, universality and overlap rules stay bounded rather than becoming laws."}
+      ]
+    },
+    {
+      "id": "D3",
+      "name": "single-post job and portfolio role",
+      "applicable": true,
+      "denominator": 2,
+      "recalled": 2,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "items": [
+        {"id":"D3-Q1","status":"recalled","auditBasis":["CQ-01","CQ-17"],"question":"What is the post's main job and what secondary commercial framing is visible?","v0Basis":["P03","P20","closure-2"],"finding":"The body primarily teaches a founder-IP story framework; the persistent discount/account header is a secondary commercial frame, not proof that conversion is the main task."},
+        {"id":"D3-Q2","status":"recalled","auditBasis":["CQ-18","ABS-01","ABS-02"],"question":"Does the post deliver instruction, proof, or a worked transformation?","v0Basis":["P03","P08","P11"],"finding":"V0 separates teaching from proof and requires reconstruction beyond labels; this restores that the video supplies a framework and examples but no finished story or before/after."},
+        {"id":"D3-NA1","status":"N/A","auditBasis":[],"question":"What role does this post play in the creator's wider published portfolio?","v0Basis":["P03"],"finding":"The inspected single video does not expose the surrounding portfolio; no acquisition/trust/search-series role is asserted beyond this post."}
+      ]
+    },
+    {
+      "id": "D4",
+      "name": "opening, delivery and closing contracts",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 3,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D4-Q1","status":"recalled","auditBasis":["OPEN-01","OPEN-03","OPEN-04","OPEN-05","CQ-02"],"question":"What does the opening promise, qualify and use as authority?","v0Basis":["P05","P06","P08"],"finding":"The method question, non-founder qualifier and analytics proof insert are kept separate, including the insert's limited scope."},
+        {"id":"D4-Q2","status":"recalled","auditBasis":["CQ-06","CQ-09","CQ-10","CQ-11"],"question":"What concrete delivery answers the opening question?","v0Basis":["P06","closure-6","closure-7"],"finding":"The two-sided rule, asset prompts, outline and personal-to-brand transfer are the delivered cognitive nodes."},
+        {"id":"D4-Q3","status":"recalled","auditBasis":["CQ-18","CLOSE-03","CLOSE-04"],"question":"Does the ending close the method and opening proof responsibilities?","v0Basis":["P05","P06"],"finding":"The body answers with frameworks, but the signoff neither demonstrates a finished story nor connects the opening analytics to method effectiveness; 下期再见 alone is not a follow contract."}
+      ]
+    },
+    {
+      "id": "D5",
+      "name": "narrative/process/story relations",
+      "applicable": true,
+      "denominator": 5,
+      "recalled": 4,
+      "missed": 1,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D5-Q1","status":"recalled","auditBasis":["CQ-06","REL-04","REL-09"],"question":"What dependency links demand-side selection to supply-side story material across personal and brand halves?","v0Basis":["P04","P11","closure-6","closure-7"],"finding":"V0 recovers demand-before-form plus the need to reconstruct and transfer the mechanism rather than merely quote the slogan."},
+        {"id":"D5-Q2","status":"recalled","auditBasis":["CQ-09","REL-06","REL-07"],"question":"How do personal inputs become an ordered story?","v0Basis":["P11","P12","closure-7"],"finding":"The input inventory and its conversion to beginning/difficulty/turn/rise are recoverable as process dependencies and production decisions."},
+        {"id":"D5-Q3","status":"missed","auditBasis":["CQ-10","REL-08"],"question":"Which elements are chronological stages and which are non-chronological emotional modifiers?","v0Basis":[],"finding":"V0 asks for story/cognition nodes but does not require typed narrative relations; it would not force 亲情/爱情/义气 to stay modifiers rather than additional timeline stages."},
+        {"id":"D5-Q4","status":"recalled","auditBasis":["CQ-11","REL-09","REL-10"],"question":"How does the personal half structurally parallel the brand half, and where is founder-brand causality only claimed?","v0Basis":["P07","P11","closure-6","closure-7"],"finding":"V0 supports structural reconstruction while narrowing the causal founder-to-brand claim."},
+        {"id":"D5-Q5","status":"recalled","auditBasis":["CQ-12","CQ-13","CQ-14","CQ-15","REL-11","REL-12","REL-13","REL-14"],"question":"How do product traits, brand directions, named brands and culture/slogan examples map across the rapid final sequence?","v0Basis":["P08","P09","P11"],"finding":"Proof-object scope, carrier conflicts and reconstruction requirements recover the mapping dependencies without making the categories or slogans authoritative."}
+      ]
+    },
+    {
+      "id": "D6",
+      "name": "proof objects and causal scope",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 4,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "critical": true,
+      "items": [
+        {"id":"D6-Q1","status":"recalled","auditBasis":["CQ-02","UNK-01"],"question":"What do the opening analytics prove and not prove?","v0Basis":["P08","P16"],"finding":"They prove visible counts only, not account/post ownership, window, framework effectiveness, conversion or causality."},
+        {"id":"D6-Q2","status":"recalled","auditBasis":["CQ-05","CQ-16","UNK-05","REL-03"],"question":"Does the Xiaomi SU7 example establish that IP causes purchase or lowers decision cost?","v0Basis":["P07","P08","P16"],"finding":"It remains an author illustration/causal hypothesis, with no comparison or purchase-motive evidence."},
+        {"id":"D6-Q3","status":"recalled","auditBasis":["CQ-07","CQ-12","UNK-04","UNK-06","UNK-07","ABS-03","ABS-04"],"question":"Do 必火, universal-desire and taxonomy claims have evidence, failure cases and scope?","v0Basis":["P04","P07","section-3-hypotheses"],"finding":"V0 explicitly prevents heuristic classifications and absolute hooks from becoming universal rules."},
+        {"id":"D6-Q4","status":"recalled","auditBasis":["CQ-14","CQ-15","UNK-10","ABS-06"],"question":"Do culture/slogan examples prove official attribution, brand trait or founder causality?","v0Basis":["P08","P10","closure-8","closure-12"],"finding":"Visible or spoken phrases are examples only; source, authorization, completeness and causal coverage remain open."}
+      ]
+    },
+    {
+      "id": "D7",
+      "name": "speech/image/text/audio carrier functions",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 3,
+      "missed": 1,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D7-Q1","status":"recalled","auditBasis":["CF-01","CF-02","CF-03","CF-15"],"question":"How should SRT conflicts with burned captions and persistent identity text be handled?","v0Basis":["P09"],"finding":"P09 directly requires retaining carrier conflict and not silently correcting it; stronger visible carriers can resolve only the supported portion."},
+        {"id":"D7-Q2","status":"recalled","auditBasis":["CF-04","CF-05","CF-06","CF-07","CF-08","CF-09","CF-10"],"question":"What information exists only or more reliably in overlays, whiteboard layout and pointing?","v0Basis":["P09","P10"],"finding":"The three-logics, five-trait and six-direction structures require functional visual reading, while small illegible board text remains unknown."},
+        {"id":"D7-Q3","status":"recalled","auditBasis":["CQ-17","CAR-05","CAR-07"],"question":"What do mask, setting, gesture and persistent promotion do?","v0Basis":["P02","P10","P20"],"finding":"They provide persona, recognition, emphasis/referent and commercial framing, not real identity or credential proof."},
+        {"id":"D7-Q4","status":"missed","auditBasis":["CAR-08","UNK-12"],"question":"Was non-speech audio inspected, and what semantic work or uncertainty does it carry?","v0Basis":[],"finding":"V0's carrier contract names image, speech and text but not music/SFX as a mandatory carrier. The holdout required a full-timeline audio disposition; exact semantic role remained unknown after classification."}
+      ]
+    },
+    {
+      "id": "D8",
+      "name": "follow/series/CTA handoff",
+      "applicable": true,
+      "denominator": 2,
+      "recalled": 2,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "items": [
+        {"id":"D8-Q1","status":"recalled","auditBasis":["CLOSE-03","ABS-07"],"question":"Is 下期再见 a concrete follow/series contract?","v0Basis":["P05"],"finding":"No: it does not specify the next object, progress, variant or unfinished problem."},
+        {"id":"D8-Q2","status":"recalled","auditBasis":["OPEN-02","CQ-17","CLOSE-03"],"question":"Is there no CTA at all, or only no explicit spoken CTA?","v0Basis":["P09","P20","closure-11"],"finding":"The bounded conclusion is no explicit spoken buy/follow/comment CTA; persistent account and discount overlays retain a visual commercial handoff."}
+      ]
+    },
+    {
+      "id": "D9",
+      "name": "publishing, metrics and review logic",
+      "applicable": false,
+      "denominator": 0,
+      "recalled": 0,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 3,
+      "items": [
+        {"id":"D9-NA1","status":"N/A","auditBasis":["ABS-05"],"question":"What publishing plan or observation window is taught?","v0Basis":["P14","P16"],"finding":"None is taught; no platform, timing or observation window is inferred."},
+        {"id":"D9-NA2","status":"N/A","auditBasis":["CQ-02","UNK-01"],"question":"Are the opening counts a preregistered experiment?","v0Basis":["P16"],"finding":"No. They are an unscoped proof insert and are scored under proof scope, not treated as source publishing logic."},
+        {"id":"D9-NA3","status":"N/A","auditBasis":["ABS-05"],"question":"What post-publication layered review and next-version rule is supplied?","v0Basis":["P17","P18"],"finding":"None is supplied; applying P17/P18 as if they were in the video would be a false positive, so the dimension is N/A."}
+      ]
+    },
+    {
+      "id": "D10",
+      "name": "rights, safety and unknowns",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 4,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "critical": true,
+      "items": [
+        {"id":"D10-Q1","status":"recalled","auditBasis":["CQ-17","UNK-02"],"question":"What identity and credential facts remain unknown?","v0Basis":["P02","P08","closure-12"],"finding":"The mask, account label and follower/promotion overlay do not establish real identity, credentials or account ownership."},
+        {"id":"D10-Q2","status":"recalled","auditBasis":["CQ-15","UNK-10","ABS-06"],"question":"What source and attribution rights remain unresolved for named slogans and stories?","v0Basis":["P10","closure-12"],"finding":"Official wording, version, ownership and permission are not established inside the video."},
+        {"id":"D10-Q3","status":"recalled","auditBasis":["CQ-17","CAR-07"],"question":"Does the Spider-Man-style mask prove authorization or official affiliation?","v0Basis":["P08","P10","closure-12"],"finding":"No; it is a visible persona object with authorization and affiliation unknown."},
+        {"id":"D10-Q4","status":"recalled","auditBasis":["UNK-03","UNK-04","UNK-06","UNK-07","UNK-08","UNK-09","UNK-11","UNK-12"],"question":"Are applicability, failure conditions, execution details, mappings and effectiveness preserved as unknown where evidence is absent or conflicted?","v0Basis":["P06","P07","P08","P12","closure-12"],"finding":"V0's boundary and unknown discipline recovers these gaps without plausible completion."},
+        {"id":"D10-NA1","status":"N/A","auditBasis":[],"question":"What depicted physical, medical or procedural safety incident requires a safety protocol?","v0Basis":["P12","closure-12"],"finding":"No such incident or instruction is present; no safety event is invented."}
+      ]
+    }
+  ],
+  "totals": {
+    "applicableQuestions": 30,
+    "recalled": 27,
+    "missed": 3,
+    "false_positive": 0,
+    "na": 5,
+    "recall": 0.9
+  },
+  "criticalRecall": {
+    "scope": "proof, causal, rights/safety and material-unknown questions in D6 and D10",
+    "denominator": 8,
+    "recalled": 8,
+    "missed": 0,
+    "recall": 1.0
+  },
+  "unsupportedCausalUpgrades": [],
+  "deltas": [
+    {"type":"confirmed","v0Basis":["P04","P01"],"holdoutBasis":["CQ-06","CQ-08","REL-04","REL-09"],"finding":"The unseen personal/brand lesson independently instantiates demand-first selection followed by matching existing creator or brand assets."},
+    {"type":"confirmed","v0Basis":["P08","P16"],"holdoutBasis":["CQ-02","CQ-05","CQ-16"],"finding":"A high-count analytics insert and famous-brand examples function as proof framing but do not establish attribution, method causality or purchase conversion."},
+    {"type":"confirmed","v0Basis":["P09"],"holdoutBasis":["CF-01","CF-02","CF-03","CF-04","CF-05","CF-06","CF-07","CF-08","CF-09","CF-10","CF-11","CF-12","CF-13","CF-14","CF-15"],"finding":"Carrier-role separation is essential: overlays, burned captions, pointing and persistent headers repeatedly correct or qualify the SRT."},
+    {"type":"limited","v0Basis":["closure-7"],"holdoutBasis":["CQ-10","REL-08"],"finding":"A list of cognition/story nodes is insufficient when narrative relations have types; chronology must be distinguished from emotional modifiers."},
+    {"type":"limited","v0Basis":["P09","closure-9"],"holdoutBasis":["CAR-08","UNK-12"],"finding":"The V0 carrier contract is too narrow because it does not explicitly require a disposition for non-speech audio."},
+    {"type":"novel","v0Basis":[],"holdoutBasis":["CQ-04","REL-02"],"finding":"The holdout introduces an explicit relationship-state objective for story direction—e.g. moving from knowing to trusting or liking to loving—which V0 does not encode as a distinct planning field."},
+    {"type":"unresolved","v0Basis":["P06","P07","P08"],"holdoutBasis":["UNK-03","UNK-04","UNK-05","UNK-06","UNK-07","UNK-09","UNK-10"],"finding":"Non-founder adaptation, taxonomy boundaries, effectiveness, purchase causality and official slogan attribution remain unresolved; this holdout cannot decide them."}
+  ],
+  "hypotheses": {
+    "H0": {"pass":true,"hardGate":true,"result":"22/22 reconstruction gates ready."},
+    "H1": {"pass":true,"hardGate":true,"result":"27/30 applicable audit questions recalled = 90.0%, above 85%."},
+    "H2": {"pass":true,"hardGate":true,"result":"8/8 critical proof/causal/rights-safety questions recalled = 100%."},
+    "H3": {"pass":true,"hardGate":true,"result":"0 unsupported causal upgrades."},
+    "H4": {"pass":true,"hardGate":true,"result":"Five non-applicable questions are explicitly N/A; publishing/review logic, wider portfolio role and a safety incident are not hard-fitted."},
+    "H5": {"pass":true,"hardGate":true,"result":"Confirmations, two limitations, one novelty and unresolved items are identified; the report does not claim total coverage."},
+    "H6": {"pass":true,"hardGate":true,"result":"One original production action below defines a new artifact, controlled variant, metrics, window and decision threshold."}
+  },
+  "overall": {
+    "pass": true,
+    "failedHardGates": [],
+    "interpretation": "V0 generalizes to this founder/brand teaching video with high recall and perfect critical-scope discipline, but it needs a typed narrative-relation field, an explicit relationship-state objective and mandatory non-speech-audio disposition to close the three misses."
+  },
+  "originalAction": {
+    "name": "关系状态证据故事卡 A/B",
+    "originality": "This does not reuse the video's six topic labels, brand mappings or 1+2=3 slogan; it converts the holdout insight into a bounded trust-transition experiment.",
+    "audienceAndSituation": "First-time viewers who know a small-business founder's role but have not yet seen evidence of the founder's judgment under pressure.",
+    "relationshipStateObjective": "认识其身份 → 信任其判断；do not target 爱上 or purchase in the same post.",
+    "production": [
+      "Create one 60–75 second story about a consequential customer decision: dilemma → rejected easy option → dated decision artifact → reasoning → counterexample/limit → observed outcome → next unresolved case.",
+      "Show one dated, redacted proof object for the decision and state exactly what it proves and does not prove.",
+      "Version A opens for 3 seconds with an achievement/analytics card. Version B opens with the customer's dilemma plus a bounded promise. Keep speaker, body, cover, title, CTA, audience targeting and budget identical.",
+      "End with a concrete follow contract: the next post tests the same decision rule on the opposite case, not merely 下期再见."
+    ],
+    "test": {
+      "mainVariable": "first 3-second opening: authority proof versus audience dilemma",
+      "primaryMetric": "qualified follow rate = follows / viewers reaching 10 seconds",
+      "guardMetrics": ["30-second retention", "skepticism-comment rate among comments", "hide/not-interested rate if available"],
+      "window": "7 days after both variants have each reached at least 5000 impressions in the same audience stratum",
+      "successRule": "Choose B only if qualified follow rate is at least 15% higher than A, 30-second retention is not more than 2 percentage points lower, and skepticism-comment rate is not more than 2 percentage points higher.",
+      "failureRule": "If neither variant reaches the sample floor, mark inconclusive; if B fails any guard, keep the body and test proof placement next rather than claiming the relationship-state hypothesis is false.",
+      "knownConfounds": ["delivery time", "auction/audience mix", "repeat exposure", "comment seeding"],
+      "requiredRecord": "Archive the two cuts, targeting/budget settings, raw numerator/denominator for every metric, proof scope statement and the next-version decision."
+    }
+  }
+}

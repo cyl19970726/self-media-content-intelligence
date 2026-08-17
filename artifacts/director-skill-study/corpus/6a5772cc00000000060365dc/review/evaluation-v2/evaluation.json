@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        "KU-11/KU-16 correctly recover the burned-caption category as 装13型视频 (the visible euphemistic spelling of 装逼型视频), while preserving the conflicting SRT 饰品 wording.",
+        "KU-19 correctly records the occurrence of 干货型 and abstains on its hierarchy.",
+        "KU-17 bounds the absence of platform rules, prices, execution steps, validation and CTA to the inspected 0.000–139.833 second source."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        "All 15 audited core evidence windows are represented by evidenced units, including the opening metric collage, the IP/content distinction, all five missions, and the closing expression criterion.",
+        "The 97.470–107.210 second high-impact subtitle conflicts cite both cue and targeted-frame evidence.",
+        "The full visible setting, whiteboard limits and bounded negative-evidence scope are retained."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 30,
+      "examples": [
+        "Audited 16 non-unknown knowledge-unit claims and 14 explicit relations; author assertions remain author_claim rather than verified fact.",
+        "The category correction from 饰品 to 视频 is supported by TARGET-0059 and is not silently normalized.",
+        "No real identity, platform effect, price, success rate or causality is invented."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 62,
+      "denominator": 62,
+      "examples": [
+        "All 62 knowledge-unit evidence references were checked against their unit ranges; no cue, targeted frame or OCR row fell outside its bounded interval.",
+        "KU-19 is correctly localized to 113.450–114.841 seconds.",
+        "The opening collage is correctly limited to 0.000–0.833 seconds."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "The source is an argumentative taxonomy and strategy talk, not a reproducible software or physical operation with input/action/parameter/result dependencies."
+    },
+    "unknownDiscipline": {
+      "numerator": 10,
+      "denominator": 10,
+      "examples": [
+        "The opening sample source and metric scope, quote samples, same-level definition, school-signal effects and framework boundaries remain unknown.",
+        "The 干货型 hierarchy, whiteboard small text, speaker identity/authorization and non-speech audio role remain unknown.",
+        "Platform, account-stage, region, cost and failure-condition boundaries are not filled from outside knowledge."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent comparison against the audit found every material carrier checked: speech/SRT, burned captions, opening inserts and metrics, whiteboard/spatial layout, gesture and visible persona, edit/shot structure, and non-speech audio as an explicit unknown. All seven audited meaning changes and eight audited relationship families survive in the units, article or relation graph, including the opening-to-closing payoff. The probe's early MC-06 wording groups 干货 with growth forms, but the final reconstruction explicitly reopens that hierarchy as KU-19 unknown; therefore the channel and ambiguity are guarded rather than silently closed."
+  },
+  "examples": [
+    {
+      "type": "carrier_conflict",
+      "result": "pass",
+      "detail": "SRT 装逼型饰品 is not accepted as the category; the visible 装13型视频 wording is preserved and interpreted as the euphemistic visual spelling of 装逼型视频."
+    },
+    {
+      "type": "unknown_boundary",
+      "result": "pass",
+      "detail": "The candidate does not force 干货型 into the growth mission, a legendary subtype or a new mission."
+    },
+    {
+      "type": "opening_closing_relation",
+      "result": "pass",
+      "detail": "The opening easy-growth tension is related to the later mission decomposition and the closing expression motive."
+    }
+  ]
+}

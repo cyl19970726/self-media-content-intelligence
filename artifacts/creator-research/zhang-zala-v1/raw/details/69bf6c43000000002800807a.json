@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69bf6c43000000002800807a",
+  "capturedAt": "2026-08-16T11:10:51.471Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "我在twitter上靠真诚分享涨粉5万的心得",
+    "postCopy": "多发，真诚互动，发富媒体，坚持\n\t\n#twitter[话题]# #内容创作[话题]#",
+    "hashtags": [
+      "twitter",
+      "内容创作"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69bf6c43000000002800807a",
+    "mediaType": "video",
+    "publishedAt": "2026-03-22T04:12:51.000Z",
+    "likes": "966",
+    "collections": "431",
+    "comments": "19",
+    "shares": "116",
+    "expectedDurationSec": 254
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 254
+    }
+  ]
+}

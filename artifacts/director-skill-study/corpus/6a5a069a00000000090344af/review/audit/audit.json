@@ -1,0 +1,138 @@
+{
+  "videoId": "6a5a069a00000000090344af",
+  "auditRole": "independent_ground_truth_audit",
+  "scope": {
+    "durationSeconds": 225.675,
+    "inputsRead": [
+      "artifacts/creator-research/human-director/media/6a5a069a00000000090344af.mp4",
+      "artifacts/creator-research/human-director/media/6a5a069a00000000090344af.srt",
+      "artifacts/director-skill-study/corpus/6a5a069a00000000090344af/evidence/evidence-pack.json",
+      "artifacts/director-skill-study/corpus/6a5a069a00000000090344af/evidence/frames/**"
+    ],
+    "excluded": ["run candidate", "prior report/analysis", "study plan", "cross-video conclusions"],
+    "timelineInspection": "0.000-225.675 全时轴；2.5 秒 dense sweep、38 个 cue 代表帧、1 个技术 shot 代表帧，并回看原 MP4 的编号转换和结尾",
+    "audioDecision": "媒体含 AAC 音轨；语音由原 MP4 与提供字幕共同检查。非语音音频无法可靠与语音作语义级分离，登记为已发现但作用 unknown，不用于核心事实。"
+  },
+  "viewerCognitiveChange": {
+    "before": "观众可能把自媒体当低门槛兼职，把投流、养号、坚持或做老板个人 IP 当作捷径。",
+    "after": "作者用十条强硬建议要求创作者从用户/平台/商业目的出发，把作品当产品和工作；同时反对投流救差作品、养号迷信、盲目坚持、裸辞和低价期待。",
+    "status": "这是作者的规范性意见与因果断言；视频没有独立数据验证。"
+  },
+  "criticalQuestions": [
+    {"id":"CQ01","question":"视频承诺给多少条建议，编号是否完整？","requiredAnswer":"画面字幕为“给自媒体人的10大建议”；实际包含第一至第九及未报数字的“最后”一条。SRT 把标题转成“十大件”，并在第八处漏掉关键开头。","evidence":["0.000-6.890","DENSE-0003","CUE-001","169.730-175.050","DENSE-0069..0071"]},
+    {"id":"CQ02","question":"第一条如何平衡赚钱目的、用户需求与个人特色？","requiredAnswer":"前期压低“我想做什么”，先想用户要什么，但不是抹掉个人特色，而是用自己对齐用户，并保留真诚。","evidence":["9.200-31.180","CUE-002..005","DENSE-0006..0013"]},
+    {"id":"CQ03","question":"第二条把视频视为什么，还要考虑什么？","requiredAnswer":"把视频视为产品；除用户需求，还看平台喜好、大方向/风口，避免在 2026 年仍拍过时的“摇花手”。","evidence":["32.009-48.680","CUE-006..007","DENSE-0014..0021"]},
+    {"id":"CQ04","question":"第三条为什么反对给差数据视频投流？","requiredAnswer":"作者称普通人不会投，可能扰乱账号且浪费钱；投流应锦上添花而非雪中送炭。","evidence":["51.380-70.600","CUE-008..012","DENSE-0022..0029"]},
+    {"id":"CQ05","question":"第四条面向哪类老板，收入门槛和目标优先级是什么？","requiredAnswer":"画面字幕称“商企的老板”；作者提出年营收过千万前没资格做 IP，应先转化，IP 是先提品牌影响力再反哺转化。具体‘商企’指代及门槛依据未知。","evidence":["71.490-96.500","CUE-013..017","DENSE-0031..0039"]},
+    {"id":"CQ06","question":"第五条反对什么账号理论？","requiredAnswer":"反对‘养号/活跃度/系统判定真人’说法；作者把不火主要归因于作品差而非账号。","evidence":["97.600-115.630","CUE-018..020","DENSE-0041..0047"]},
+    {"id":"CQ07","question":"第六条如何理解‘轻松、高薪’及其后文？","requiredAnswer":"SRT 连写成‘很轻松，高薪’，但画面和后文形成强反讽/转折：高薪要求全力以赴、用生活滋养创作，不能幻想无比轻松赚大钱，并要尊重用户和品牌方、认真制作。","evidence":["116.480-148.990","CUE-021..026","DENSE-0048..0059"]},
+    {"id":"CQ08","question":"第七条对普通人的流量建议是什么？","requiredAnswer":"不要幻想简单获流，要认真整活并承受一定颜面/自我形象成本；作者用工资翻倍反问强化投入要求。","evidence":["149.630-169.720","CUE-027..029","DENSE-0061..0068"]},
+    {"id":"CQ09","question":"SRT 漏掉的第八条是什么？","requiredAnswer":"画面字幕明确为“第八 起号是一夜之间，不是日积月累”；接着主张单条数据不好就别坚持、换方向。该说法是作者断言，未被验证。","evidence":["169.730-185.660","CUE-030..032","DENSE-0069..0075"]},
+    {"id":"CQ10","question":"第九条如何改变刷短视频的方法？","requiredAnswer":"从享受转为品鉴，带目的积累 BGM、热点、剪辑手法；非颜值博主不要给擦边/帅哥美女内容点赞，应善用点赞收藏。","evidence":["186.130-206.470","CUE-033..035","DENSE-0076..0083"]},
+    {"id":"CQ11","question":"最后一条对普通人和老板分别说什么？","requiredAnswer":"普通人不要全职/裸辞/辞职做自媒体；老板不要幻想 6000 元运营拍出爆款，并应对打工人好一点。","evidence":["207.270-224.200","CUE-036..038","DENSE-0084..0090"]},
+    {"id":"CQ12","question":"笔记本和读稿动作是什么载体？","requiredAnswer":"它是贯穿全片的可见表演/结构道具，暗示逐条宣读；内页虽短暂可见红字笔记但不可可靠逐字读取，不能当独立文本来源。","evidence":["0.000-225.675","DENSE-0001..0092"]},
+    {"id":"CQ13","question":"可见身份能确认到哪一层？","requiredAnswer":"可见“小红书/人类最强编导”水印和蜘蛛侠式面罩；真实人物、账号所有权、造型授权或权利关联均未建立。","evidence":["0.000-225.675","DENSE-0001..0092"]},
+    {"id":"CQ14","question":"视频是否证明十条建议中的因果、门槛或普遍性？","requiredAnswer":"没有；无数据后台、投流案例、账号对照、营收证据、平台规则或失败率，均应保留为作者主张。","evidence":["0.000-225.675","CUE-001..038"]},
+    {"id":"CQ15","question":"结尾是否有 CTA、平台/价格/服务路径？","requiredAnswer":"没有可见下载、课程、咨询或购买 CTA；结尾只是对老板/打工人的告诫与一个‘啊’。该否定限完整视频范围。","evidence":["207.270-225.675","CUE-036..038","DENSE-0084..0092"]}
+  ],
+  "coreKnowledgeUnits": [
+    {"id":"KU01","provenance":"raw_fact","time":"1.880-6.890","statement":"画面字幕标题为“给自媒体人的10大建议”；SRT 误作“十大件”。","evidence":["CUE-001","DENSE-0003"]},
+    {"id":"KU02","provenance":"author_claim","time":"9.200-31.180","statement":"以赚钱为目的时，前期先对齐用户需求，但不抹掉个人特色和真诚。","evidence":["CUE-002..005","DENSE-0006..0013"]},
+    {"id":"KU03","provenance":"author_claim","time":"32.009-48.680","statement":"视频是产品，需同时考虑用户、平台与大方向/风口，并避免过时内容形式。","evidence":["CUE-006..007","DENSE-0014..0021"]},
+    {"id":"KU04","provenance":"author_claim","time":"51.380-70.600","statement":"普通人不应给数据差作品投流；作者认为投流只能放大好作品，不能挽救差作品。","evidence":["CUE-008..012","DENSE-0022..0029"]},
+    {"id":"KU05","provenance":"author_claim","time":"71.490-96.500","statement":"作者给“商企老板”设年营收千万门槛，要求先做转化；IP 的中间作用是品牌影响力再反哺转化。","evidence":["CUE-013..017","DENSE-0031..0039"]},
+    {"id":"KU06","provenance":"author_claim","time":"97.600-115.630","statement":"作者否定养号/活跃度/真人判定说法，把作品不火主要归因于作品本身而非账号。","evidence":["CUE-018..020","DENSE-0041..0047"]},
+    {"id":"KU07","provenance":"author_claim","time":"116.480-148.990","statement":"第六条以‘轻松/高薪’的反讽式表述转入高投入要求：全力创作、尊重用户和品牌、认真选题拍摄剪辑。","evidence":["CUE-021..026","DENSE-0048..0059"]},
+    {"id":"KU08","provenance":"author_claim","time":"149.630-169.720","statement":"普通人不要幻想简单获流，要用力整活并承担形象成本；作者以工资翻倍的反问强调交换关系。","evidence":["CUE-027..029","DENSE-0061..0068"]},
+    {"id":"KU09","provenance":"author_claim","time":"169.730-185.660","statement":"第八条是“起号是一夜之间，不是日积月累”；作者据此要求数据不好时不要坚持而要换方向。","evidence":["CUE-030..032","DENSE-0069..0075"]},
+    {"id":"KU10","provenance":"author_claim","time":"186.130-206.470","statement":"刷短视频应从消费转为有目的品鉴，积累 BGM、热点和剪辑手法，并策略性使用点赞收藏。","evidence":["CUE-033..035","DENSE-0076..0083"]},
+    {"id":"KU11","provenance":"author_claim","time":"207.270-224.200","statement":"普通人不要辞职/裸辞全职做自媒体；老板不要期待低薪运营制造爆款，并应善待员工。","evidence":["CUE-036..038","DENSE-0084..0090"]},
+    {"id":"KU12","provenance":"visual_observation","time":"0.000-225.675","statement":"单一室内近景中，蒙面者反复低头翻看/举起笔记本并逐条报数；本子是表演与节奏载体，内页不可可靠逐字读。","evidence":["SHOT-001","DENSE-0001..0092"]}
+  ],
+  "carriers": [
+    {"id":"CR01","modality":"speech","scope":"1.880-224.200","role":"十条建议的主载体","checked":true},
+    {"id":"CR02","modality":"provided SRT","scope":"1.880-224.200","role":"语音索引；存在漏词、误词、标点/反讽丢失","checked":true},
+    {"id":"CR03","modality":"yellow burned captions","scope":"0.000-225.675","role":"恢复编号和关键词，构成关键纠错载体","checked":true},
+    {"id":"CR04","modality":"notebook, page movement, gaze, gestures","scope":"0.000-225.675","role":"逐条宣读/喜剧表演和节奏，不证明建议来源","checked":true},
+    {"id":"CR05","modality":"mask, room, watermark, close framing","scope":"0.000-225.675","role":"账号人格、直面训诫语气和身份边界","checked":true},
+    {"id":"CR06","modality":"editing/semantic numbering","scope":"0.000-225.675","role":"按十条建议推进；技术场景检测仅 1 shot，但并不等于无剪辑","checked":true},
+    {"id":"CR07","modality":"non-speech audio","scope":"0.000-225.675","role":"存在音轨但语义作用未可靠判定","checked":"registered_unknown"}
+  ],
+  "meaningChanges": [
+    {"id":"MC01","time":"1.880-6.890","change":"标题建立十条承诺，后续编号成为覆盖契约。","evidence":["CUE-001","DENSE-0003"]},
+    {"id":"MC02","time":"9.200-31.180","change":"赚钱导向先压低自我表达，再以个人特色/真诚作限制，避免变成彻底迎合。","evidence":["CUE-002..005"]},
+    {"id":"MC03","time":"32.009-48.680","change":"从用户需求扩到平台与时代风口。","evidence":["CUE-006..007"]},
+    {"id":"MC04","time":"51.380-70.600","change":"投流从‘救作品’被重释为只适合放大已有质量。","evidence":["CUE-008..012"]},
+    {"id":"MC05","time":"71.490-96.500","change":"老板做 IP 被改写为营收阶段与转化优先级问题。","evidence":["CUE-013..017"]},
+    {"id":"MC06","time":"97.600-115.630","change":"从账号机制解释转向作品质量解释。","evidence":["CUE-018..020"]},
+    {"id":"MC07","time":"116.480-148.990","change":"‘轻松/高薪’表面说法立即转成高投入义务，反讽若丢失会完全反转意义。","evidence":["CUE-021..026","DENSE-0048..0059"]},
+    {"id":"MC08","time":"149.630-169.720","change":"普通人获取高回报被框为必须付出劳动与形象成本。","evidence":["CUE-027..029"]},
+    {"id":"MC09","time":"169.730-185.660","change":"画面字幕恢复 SRT 漏掉的第八条，并由‘一夜起号’推出不坚持差方向。","evidence":["CUE-030..032","DENSE-0069..0075"]},
+    {"id":"MC10","time":"186.130-206.470","change":"刷视频由消遣转为职业化采样/收藏。","evidence":["CUE-033..035"]},
+    {"id":"MC11","time":"207.270-224.200","change":"从创作者建议转向风险边界：普通人不裸辞，老板不低价期待爆款。","evidence":["CUE-036..038"]}
+  ],
+  "relationships": [
+    {"id":"REL01","type":"claim_limited_by","from":"前期泯灭想做什么","to":"不泯灭个人特色、保留真诚","evidence":["CUE-002..005"]},
+    {"id":"REL02","type":"product_requires","from":"视频作为产品","to":"用户需求+平台喜好+大方向","evidence":["CUE-006..007"]},
+    {"id":"REL03","type":"chosen_when","from":"投流","to":"已有好作品/锦上添花","evidence":["CUE-008..012"]},
+    {"id":"REL04","type":"depends_on","from":"老板做IP","to":"作者设定的营收阶段与转化目标","evidence":["CUE-013..017"]},
+    {"id":"REL05","type":"contrasts_with","from":"养号解释","to":"作品质量解释","evidence":["CUE-018..020"]},
+    {"id":"REL06","type":"reversal_of","from":"轻松/高薪表面句","to":"全力以赴、不能轻松赚大钱","evidence":["CUE-021..026"]},
+    {"id":"REL07","type":"framed_as_exchange_for","from":"高收入/流量","to":"创作劳动、生活素材和形象成本","evidence":["CUE-021..029"]},
+    {"id":"REL08","type":"claim_supported_by_rhetoric","from":"不坚持差方向","to":"起号一夜发生+马桶比喻","evidence":["CUE-030..032"]},
+    {"id":"REL09","type":"maps_to","from":"职业化刷视频","to":"BGM/热点/剪辑素材与点赞收藏","evidence":["CUE-033..035"]},
+    {"id":"REL10","type":"parallel_warning","from":"普通人不要裸辞","to":"老板不要低价期待爆款","evidence":["CUE-036..038"]},
+    {"id":"REL11","type":"stands_in_for","from":"蜘蛛侠式蒙面角色+笔记本","to":"账号训诫型表演人格/逐条清单装置","certainty":"probable, not literal identity or documented source","evidence":["DENSE-0001..0092"]}
+  ],
+  "dependencies": {"applicable":false,"reason":"视频给策略建议但未示范可复现操作；不存在可审计的输入-动作-参数-输出过程链。","auditedCount":0},
+  "carrierConflicts": [
+    {"id":"CF01","time":"1.880-6.890","suppliedSrt":"给自媒体人的十大件","burnedCaption":"给自媒体人的10大建议","impact":"高；标题和数量契约。","evidence":["CUE-001","DENSE-0003"]},
+    {"id":"CF02","time":"22.400-24.860","suppliedSrt":"用自己去对其用户","burnedCaption":"用自己去对齐用户","impact":"高；‘对齐’是策略动作，‘对其’无明确意义。","evidence":["CUE-004","DENSE-0010"]},
+    {"id":"CF03","time":"40.340-48.680","suppliedSrt":"也不要在二六年还偏","burnedCaption":"也不要在26年还拍摇花手","impact":"高；SRT 截断具体反例。","evidence":["CUE-007","DENSE-0020..0021"]},
+    {"id":"CF04","time":"71.490-75.230","suppliedSrt":"生企的老板","burnedCaption":"商企的老板","impact":"中；受众指代不稳定，应保留原形并标 unknown。","evidence":["CUE-013","DENSE-0031"]},
+    {"id":"CF05","time":"116.480-136.240","suppliedSrt":"自媒体是一份工作，并且很轻松，高薪非常高薪。所以请全力以赴...不要妄想无比轻松...","burnedCaption":"自媒体是一份工作 / 高薪非常高薪 / 所以请全力以赴 / 不要妄想无比轻松地赚到那么多钱","impact":"高；SRT 标点和压缩会把反讽/转折读成作者声称工作轻松。","evidence":["CUE-021..024","DENSE-0048..0055"]},
+    {"id":"CF06","time":"169.730-175.050","suppliedSrt":"对吧，喜好是一夜之间，不是日积月累","burnedCaption":"第八 起号是一夜之间 / 不是日积月累","impact":"极高；恢复缺失编号与核心概念‘起号’，否则十条结构断裂。","evidence":["CUE-030","DENSE-0069..0071"]},
+    {"id":"CF07","time":"193.020-200.970","suppliedSrt":"积累b e,M热点和剪辑手法","burnedCaption":"积累BGM热点和剪辑手法","impact":"中；恢复素材清单。","evidence":["CUE-034","DENSE-0079"]},
+    {"id":"CF08","time":"207.270-224.200","suppliedSrt":"老板不要妄想用六千块钱请一个运营...老板对打工人情好一点吧","burnedCaption":"老板不要妄想用6,000块钱请一个运营给你拍爆款...老板对打工人请好一点吧","impact":"低到中；数额一致，但措辞需按原载体分别保存。","evidence":["CUE-037..038","DENSE-0087..0090"]}
+  ],
+  "challengeLedger": [
+    {"probe":"identity inversion","status":"challenged","finding":"水印只显示‘人类最强编导’，面罩遮蔽真实人物；不得把蜘蛛侠造型、账号名或呈现者升级为法律身份/资历。"},
+    {"probe":"boundary","status":"challenged","finding":"十条建议未给平台差异、账号阶段、预算、行业、营收口径、地区或时间有效期；‘2026’仅是作者的时代类比。"},
+    {"probe":"referent","status":"challenged","finding":"‘普通人’‘商企老板’‘博主’‘品牌方’‘运营’均是宽泛受众标签，未对应具体样本；笔记本不被证明是外部权威来源。"},
+    {"probe":"absence","status":"challenged","finding":"完整视频内未见投流后台、养号实验、营收凭证、账号曲线、平台规则、合同或课程/服务 CTA；否定范围限 0.000-225.675 的画面/语音/字幕。"},
+    {"probe":"carrier conflict","status":"applicable","finding":"至少 8 个冲突；第八条漏失和第六条反讽最可能改变结论。"},
+    {"probe":"segmentation","status":"challenged","finding":"evidence pack 只有 1 个技术 shot，但全片有多次构图、翻页和可能的跳切；单一技术 shot 不证明连续一镜或同一次实时宣读。"},
+    {"probe":"opening-closing","status":"challenged","finding":"开头承诺‘10大建议’，结尾的未编号‘最后’是第十条，完成数量闭环；最后没有销售 CTA。"},
+    {"probe":"literal failure/result signature","status":"not_applicable","reason":"没有展示操作前失败状态与操作后结果；所有效果说法是口头主张。"},
+    {"probe":"UI progress/status","status":"not_applicable","reason":"无软件/UI 操作或进度状态。"},
+    {"probe":"edited chronology vs dependency order","status":"challenged","finding":"建议编号是修辞顺序，不是账号成长的执行时间线；不能推出必须按 1→10 实施。"}
+  ],
+  "unknownOpportunities": [
+    {"id":"UO01","unknown":"十条建议基于何种样本、经验或数据。","evidenceScope":"全时轴"},
+    {"id":"UO02","unknown":"建议适用的平台、账号阶段、行业、地区和时间范围。","evidenceScope":"全时轴未明确"},
+    {"id":"UO03","unknown":"‘数据不好’的阈值、观察窗口和统计口径。","evidenceScope":"51.380-70.600、175.510-185.660"},
+    {"id":"UO04","unknown":"投流会扰乱账号的机制、概率与反例。","evidenceScope":"54.410-70.600"},
+    {"id":"UO05","unknown":"‘商企老板’具体指代以及年营收千万门槛的依据/币种/口径。","evidenceScope":"71.490-96.500"},
+    {"id":"UO06","unknown":"养号、活跃度和账号因素在何种条件下完全无效或仍有效。","evidenceScope":"97.600-115.630"},
+    {"id":"UO07","unknown":"第六条‘轻松’是完整语音中的反讽、口误还是被剪辑省略的连接词；后文明确反对轻松赚钱。","evidenceScope":"116.480-136.240"},
+    {"id":"UO08","unknown":"一条广告十几万指谁、何平台、何币种及频率。","evidenceScope":"144.140-148.990"},
+    {"id":"UO09","unknown":"‘起号是一夜之间’的定义、观察窗和成功率。","evidenceScope":"169.730-175.050"},
+    {"id":"UO10","unknown":"6000 元运营说法的城市、职责、团队资源与绩效边界。","evidenceScope":"214.780-224.200"},
+    {"id":"UO11","unknown":"笔记本红字内容及其作者/来源。","evidenceScope":"0.000-225.675；分辨率与遮挡不足"},
+    {"id":"UO12","unknown":"蒙面人物真实身份、资历与造型授权/关联。","evidenceScope":"全时轴"},
+    {"id":"UO13","unknown":"非语音音频是否承担反讽、节奏或强调。","evidenceScope":"全时轴；语义分离能力不足"},
+    {"id":"UO14","unknown":"是否存在课程、咨询、购买或下载路径。","evidenceScope":"完整视频未见，仅能得出本视频范围内 absent"}
+  ],
+  "denominators": {
+    "criticalQuestions": 15,
+    "coreKnowledgeUnits": 12,
+    "evidenceWindows": 12,
+    "availableCarriers": 7,
+    "meaningChanges": 11,
+    "relationships": 11,
+    "processDependencies": {"applicable":false,"denominator":0},
+    "unknownOpportunities": 14,
+    "carrierConflicts": 8,
+    "challengeProbes": 10
+  }
+}

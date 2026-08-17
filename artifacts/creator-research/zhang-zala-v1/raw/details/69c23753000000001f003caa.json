@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69c23753000000001f003caa",
+  "capturedAt": "2026-08-16T11:10:49.287Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "这可能是AI时代学习编程最好的方式",
+    "postCopy": "做了个skill：codebase to course，把自己的vibe coding项目变成量身定制的代码课\n\t\n#vibecoding[话题]# #独立开发[话题]# #coding[话题]# #写代码[话题]# #skill[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "独立开发",
+      "coding",
+      "写代码",
+      "skill"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69c23753000000001f003caa",
+    "mediaType": "video",
+    "publishedAt": "2026-03-24T07:03:47.000Z",
+    "likes": "5034",
+    "collections": "5471",
+    "comments": "132",
+    "shares": "1120",
+    "expectedDurationSec": 263
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 263
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a7993e60000000028032339",
+  "capturedAt": "2026-08-16T11:07:49.259Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "在AI-native团队里，HTML正在取代PPT",
+    "postCopy": "AI圈的人已经基本不用PPT了",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a7993e60000000028032339",
+    "mediaType": "video",
+    "publishedAt": "2026-08-10T09:03:34.000Z",
+    "likes": "6997",
+    "collections": "5735",
+    "comments": "257",
+    "shares": "1709",
+    "expectedDurationSec": 147
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 147
+    }
+  ]
+}

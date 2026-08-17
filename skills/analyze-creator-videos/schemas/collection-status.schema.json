@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/collection-status.schema.json",
+  "title": "Creator collection status",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "snapshotId", "creator", "route", "crawl", "counts", "missingness", "media", "subtitles", "readiness", "gates", "blockers"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "creator": { "type": "object" },
+    "route": { "type": "object" },
+    "crawl": { "type": "object" },
+    "counts": { "type": "object" },
+    "missingness": { "type": "object" },
+    "media": { "type": "object" },
+    "subtitles": { "type": "object" },
+    "readiness": { "enum": ["blocked", "partial", "inventory_ready", "deep_media_ready"] },
+    "gates": { "type": "array", "items": { "type": "object", "required": ["id", "pass"] } },
+    "blockers": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

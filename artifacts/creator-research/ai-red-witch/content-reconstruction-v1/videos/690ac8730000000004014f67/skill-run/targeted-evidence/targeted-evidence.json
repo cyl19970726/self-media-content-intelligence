@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T03:23:28.344Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/690ac8730000000004014f67.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/690ac8730000000004014f67/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-CARD-JM",
+      "time": 0.12,
+      "frame": "frames/ACT-CARD-JM-001.jpg",
+      "carrier": "工具名称卡、Logo、副文案、出镜者指向手势与固定环境",
+      "reason": "逐字确认即梦短卡，并保留第一处‘这个’的指向。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-CARD-JM",
+      "time": 0.25,
+      "frame": "frames/ACT-CARD-JM-002.jpg",
+      "carrier": "工具名称卡、Logo、副文案、出镜者指向手势与固定环境",
+      "reason": "逐字确认即梦短卡，并保留第一处‘这个’的指向。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-CARD-JM",
+      "time": 0.4,
+      "frame": "frames/ACT-CARD-JM-003.jpg",
+      "carrier": "工具名称卡、Logo、副文案、出镜者指向手势与固定环境",
+      "reason": "逐字确认即梦短卡，并保留第一处‘这个’的指向。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-POSTER",
+      "time": 0.55,
+      "frame": "frames/ACT-POSTER-001.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-POSTER",
+      "time": 0.9,
+      "frame": "frames/ACT-POSTER-002.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-POSTER",
+      "time": 1.35,
+      "frame": "frames/ACT-POSTER-003.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-POSTER",
+      "time": 1.8,
+      "frame": "frames/ACT-POSTER-004.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-POSTER",
+      "time": 2.25,
+      "frame": "frames/ACT-POSTER-005.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-POSTER",
+      "time": 2.7,
+      "frame": "frames/ACT-POSTER-006.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-POSTER",
+      "time": 3.02,
+      "frame": "frames/ACT-POSTER-007.jpg",
+      "carrier": "红石榴海报结果、烧录字幕、版式运动、嵌入文字与来源水印",
+      "reason": "捕获海报的多种裁切/版式，识别主标题、年份与‘豆包AI生成’水印，避免把同一主题的变化误算为多张独立交付物，并保留它与即梦卡的身份冲突。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-LOGO",
+      "time": 3.1,
+      "frame": "frames/ACT-LOGO-001.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-LOGO",
+      "time": 3.45,
+      "frame": "frames/ACT-LOGO-002.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-LOGO",
+      "time": 4,
+      "frame": "frames/ACT-LOGO-003.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-LOGO",
+      "time": 4.55,
+      "frame": "frames/ACT-LOGO-004.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-LOGO",
+      "time": 5.1,
+      "frame": "frames/ACT-LOGO-005.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-LOGO",
+      "time": 5.3,
+      "frame": "frames/ACT-LOGO-006.jpg",
+      "carrier": "Lovart 工具卡、Logo/视觉识别板、烧录字幕、布局与嵌入文字",
+      "reason": "捕获 source representative frame 漏掉的 3.10–3.45 秒 Lovart 短卡，记录蓝白 Logo 应用的分组与文字，并把相邻映射与真实生成因果分开。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-CARD-MANUS",
+      "time": 5.36,
+      "frame": "frames/ACT-CARD-MANUS-001.jpg",
+      "carrier": "Manus 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Manus 短卡及限定性副文案。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-CARD-MANUS",
+      "time": 5.55,
+      "frame": "frames/ACT-CARD-MANUS-002.jpg",
+      "carrier": "Manus 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Manus 短卡及限定性副文案。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-CARD-MANUS",
+      "time": 5.73,
+      "frame": "frames/ACT-CARD-MANUS-003.jpg",
+      "carrier": "Manus 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Manus 短卡及限定性副文案。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-PPT",
+      "time": 5.8,
+      "frame": "frames/ACT-PPT-001.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-PPT",
+      "time": 6.15,
+      "frame": "frames/ACT-PPT-002.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-PPT",
+      "time": 6.5,
+      "frame": "frames/ACT-PPT-003.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-PPT",
+      "time": 6.85,
+      "frame": "frames/ACT-PPT-004.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-PPT",
+      "time": 7.2,
+      "frame": "frames/ACT-PPT-005.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-PPT",
+      "time": 7.55,
+      "frame": "frames/ACT-PPT-006.jpg",
+      "carrier": "PPT 缩略图拼板、烧录字幕、缩略图布局与可读页标题",
+      "reason": "保守统计可见幻灯片缩略图，记录它是一张多页拼板而不是已证明的可编辑 PPT 文件。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-CARD-CLAUDE",
+      "time": 7.72,
+      "frame": "frames/ACT-CARD-CLAUDE-001.jpg",
+      "carrier": "Claude 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Claude 短卡及公司/产品类型文案。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-CARD-CLAUDE",
+      "time": 7.934,
+      "frame": "frames/ACT-CARD-CLAUDE-002.jpg",
+      "carrier": "Claude 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Claude 短卡及公司/产品类型文案。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-CARD-CLAUDE",
+      "time": 8.14,
+      "frame": "frames/ACT-CARD-CLAUDE-003.jpg",
+      "carrier": "Claude 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Claude 短卡及公司/产品类型文案。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-UI",
+      "time": 8.2,
+      "frame": "frames/ACT-UI-001.jpg",
+      "carrier": "移动 UI 展板、烧录字幕、界面文本和重复布局",
+      "reason": "确认可读 UI 签名和上下两组三屏的重复/分组，而不把静态展板写成交互流程。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-UI",
+      "time": 8.5,
+      "frame": "frames/ACT-UI-002.jpg",
+      "carrier": "移动 UI 展板、烧录字幕、界面文本和重复布局",
+      "reason": "确认可读 UI 签名和上下两组三屏的重复/分组，而不把静态展板写成交互流程。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-UI",
+      "time": 8.9,
+      "frame": "frames/ACT-UI-003.jpg",
+      "carrier": "移动 UI 展板、烧录字幕、界面文本和重复布局",
+      "reason": "确认可读 UI 签名和上下两组三屏的重复/分组，而不把静态展板写成交互流程。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-UI",
+      "time": 9.3,
+      "frame": "frames/ACT-UI-004.jpg",
+      "carrier": "移动 UI 展板、烧录字幕、界面文本和重复布局",
+      "reason": "确认可读 UI 签名和上下两组三屏的重复/分组，而不把静态展板写成交互流程。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-UI",
+      "time": 9.65,
+      "frame": "frames/ACT-UI-005.jpg",
+      "carrier": "移动 UI 展板、烧录字幕、界面文本和重复布局",
+      "reason": "确认可读 UI 签名和上下两组三屏的重复/分组，而不把静态展板写成交互流程。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-CARD-TRIPO",
+      "time": 9.72,
+      "frame": "frames/ACT-CARD-TRIPO-001.jpg",
+      "carrier": "Tripo AI 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Tripo AI 卡及‘文本、图像一键转 3D’属性文案。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-CARD-TRIPO",
+      "time": 9.95,
+      "frame": "frames/ACT-CARD-TRIPO-002.jpg",
+      "carrier": "Tripo AI 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Tripo AI 卡及‘文本、图像一键转 3D’属性文案。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-CARD-TRIPO",
+      "time": 10.17,
+      "frame": "frames/ACT-CARD-TRIPO-003.jpg",
+      "carrier": "Tripo AI 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Tripo AI 卡及‘文本、图像一键转 3D’属性文案。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-3D",
+      "time": 10.22,
+      "frame": "frames/ACT-3D-001.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-3D",
+      "time": 10.55,
+      "frame": "frames/ACT-3D-002.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-3D",
+      "time": 10.9,
+      "frame": "frames/ACT-3D-003.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-3D",
+      "time": 11.25,
+      "frame": "frames/ACT-3D-004.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-3D",
+      "time": 11.6,
+      "frame": "frames/ACT-3D-005.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-3D",
+      "time": 11.95,
+      "frame": "frames/ACT-3D-006.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-3D",
+      "time": 12.24,
+      "frame": "frames/ACT-3D-007.jpg",
+      "carrier": "3D 查看器状态、角色模型、底部控件、烧录字幕和角度变化",
+      "reason": "用序列证明画面只直接显示数字角色模型的视角/姿态变化，区分口播‘手办’与实体制造。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-CARD-LOVABLE",
+      "time": 12.29,
+      "frame": "frames/ACT-CARD-LOVABLE-001.jpg",
+      "carrier": "Lovable 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Lovable 卡及‘一句话构建网站应用’承诺性文案。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-CARD-LOVABLE",
+      "time": 12.517,
+      "frame": "frames/ACT-CARD-LOVABLE-002.jpg",
+      "carrier": "Lovable 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Lovable 卡及‘一句话构建网站应用’承诺性文案。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-CARD-LOVABLE",
+      "time": 12.74,
+      "frame": "frames/ACT-CARD-LOVABLE-003.jpg",
+      "carrier": "Lovable 名称卡、副文案、出镜者手势",
+      "reason": "逐字确认 Lovable 卡及‘一句话构建网站应用’承诺性文案。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-WEB",
+      "time": 12.78,
+      "frame": "frames/ACT-WEB-001.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-WEB",
+      "time": 13.05,
+      "frame": "frames/ACT-WEB-002.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-WEB",
+      "time": 13.35,
+      "frame": "frames/ACT-WEB-003.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-WEB",
+      "time": 13.7,
+      "frame": "frames/ACT-WEB-004.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-WEB",
+      "time": 14.05,
+      "frame": "frames/ACT-WEB-005.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-WEB",
+      "time": 14.4,
+      "frame": "frames/ACT-WEB-006.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-WEB",
+      "time": 14.78,
+      "frame": "frames/ACT-WEB-007.jpg",
+      "carrier": "网页 UI 状态、滚动/段落切换、品牌标题、按钮、版块与结尾",
+      "reason": "记录 NEUROBUS 网页的多段状态与结尾语义，验证只展示页面外观而未展示构建、运行或部署。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 0,
+      "frame": "frames/ACT-FULL-ABSENCE-001.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 0.5,
+      "frame": "frames/ACT-FULL-ABSENCE-002.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 1,
+      "frame": "frames/ACT-FULL-ABSENCE-003.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 1.5,
+      "frame": "frames/ACT-FULL-ABSENCE-004.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 2,
+      "frame": "frames/ACT-FULL-ABSENCE-005.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 2.5,
+      "frame": "frames/ACT-FULL-ABSENCE-006.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 3,
+      "frame": "frames/ACT-FULL-ABSENCE-007.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 3.5,
+      "frame": "frames/ACT-FULL-ABSENCE-008.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 4,
+      "frame": "frames/ACT-FULL-ABSENCE-009.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 4.5,
+      "frame": "frames/ACT-FULL-ABSENCE-010.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 5,
+      "frame": "frames/ACT-FULL-ABSENCE-011.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 5.5,
+      "frame": "frames/ACT-FULL-ABSENCE-012.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 6,
+      "frame": "frames/ACT-FULL-ABSENCE-013.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 6.5,
+      "frame": "frames/ACT-FULL-ABSENCE-014.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 7,
+      "frame": "frames/ACT-FULL-ABSENCE-015.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 7.5,
+      "frame": "frames/ACT-FULL-ABSENCE-016.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 8,
+      "frame": "frames/ACT-FULL-ABSENCE-017.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 8.5,
+      "frame": "frames/ACT-FULL-ABSENCE-018.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 9,
+      "frame": "frames/ACT-FULL-ABSENCE-019.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 9.5,
+      "frame": "frames/ACT-FULL-ABSENCE-020.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 10,
+      "frame": "frames/ACT-FULL-ABSENCE-021.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 10.5,
+      "frame": "frames/ACT-FULL-ABSENCE-022.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 11,
+      "frame": "frames/ACT-FULL-ABSENCE-023.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 11.5,
+      "frame": "frames/ACT-FULL-ABSENCE-024.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 12,
+      "frame": "frames/ACT-FULL-ABSENCE-025.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 12.5,
+      "frame": "frames/ACT-FULL-ABSENCE-026.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 13,
+      "frame": "frames/ACT-FULL-ABSENCE-027.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 13.5,
+      "frame": "frames/ACT-FULL-ABSENCE-028.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 14,
+      "frame": "frames/ACT-FULL-ABSENCE-029.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 14.5,
+      "frame": "frames/ACT-FULL-ABSENCE-030.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-FULL-ABSENCE",
+      "time": 14.78,
+      "frame": "frames/ACT-FULL-ABSENCE-031.jpg",
+      "carrier": "全片 speech/SRT、烧录字幕、工具卡、UI/结果画面、转场和结尾机会窗",
+      "reason": "范围受限地搜索输入、点击、提示词、参数、生成进度、导出、价格、入口、平台、账户、地区、版本、支持/部署条件和明确 CTA；这些内容如果存在最可能出现在卡片、操作 UI、结果前后或结尾。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-STRUCTURE",
+      "time": 0.25,
+      "frame": "frames/ACT-STRUCTURE-001.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-STRUCTURE",
+      "time": 1.2,
+      "frame": "frames/ACT-STRUCTURE-002.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-STRUCTURE",
+      "time": 2.5,
+      "frame": "frames/ACT-STRUCTURE-003.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-STRUCTURE",
+      "time": 4.216,
+      "frame": "frames/ACT-STRUCTURE-004.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-STRUCTURE",
+      "time": 5.55,
+      "frame": "frames/ACT-STRUCTURE-005.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-STRUCTURE",
+      "time": 6.734,
+      "frame": "frames/ACT-STRUCTURE-006.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-STRUCTURE",
+      "time": 7.934,
+      "frame": "frames/ACT-STRUCTURE-007.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-STRUCTURE",
+      "time": 8.933,
+      "frame": "frames/ACT-STRUCTURE-008.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-STRUCTURE",
+      "time": 9.95,
+      "frame": "frames/ACT-STRUCTURE-009.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-STRUCTURE",
+      "time": 11.233,
+      "frame": "frames/ACT-STRUCTURE-010.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-STRUCTURE",
+      "time": 12.517,
+      "frame": "frames/ACT-STRUCTURE-011.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-STRUCTURE",
+      "time": 13.834,
+      "frame": "frames/ACT-STRUCTURE-012.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-STRUCTURE",
+      "time": 14.78,
+      "frame": "frames/ACT-STRUCTURE-013.jpg",
+      "carrier": "工具卡复现、同一出镜者/环境、段间编辑顺序、技术 shot 边界与语义连续性",
+      "reason": "比较六个卡片—结果段，证明其并列而非流程，并防止把 12 个技术 shot 升级为语义场景或确定剪辑数；Lovart 卡另由 ACT-LOGO 的 3.10/3.45 秒帧补齐。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 0.25,
+      "frame": "frames/ACT-AUDIO-LISTEN-001.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 2.25,
+      "frame": "frames/ACT-AUDIO-LISTEN-002.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 3.5,
+      "frame": "frames/ACT-AUDIO-LISTEN-003.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 5,
+      "frame": "frames/ACT-AUDIO-LISTEN-004.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 6.25,
+      "frame": "frames/ACT-AUDIO-LISTEN-005.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 7.4,
+      "frame": "frames/ACT-AUDIO-LISTEN-006.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 8.5,
+      "frame": "frames/ACT-AUDIO-LISTEN-007.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 10.5,
+      "frame": "frames/ACT-AUDIO-LISTEN-008.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 12,
+      "frame": "frames/ACT-AUDIO-LISTEN-009.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 13.2,
+      "frame": "frames/ACT-AUDIO-LISTEN-010.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-AUDIO-LISTEN",
+      "time": 14.5,
+      "frame": "frames/ACT-AUDIO-LISTEN-011.jpg",
+      "carrier": "完整音频样本的 speech/music/可能转场纹理及其与十个口播/间隙阶段的对齐；targeted manifest 帧仅作为阶段视觉锚点，不作为音频证据",
+      "reason": "对完整 0–14.9 秒音频样本执行 29 个 1 秒、0.5 秒重叠 SoundAnalysis 窗，并按 5 个 SRT cue、4 个句间空档和结尾尾声汇总阶段；同步抓取的 11 帧只用于对齐视觉段落，音频内容由 audio-listen-evidence.json 与 audio-stage-observations.json 关闭。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-CARD-JM",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003"
+      ]
+    },
+    {
+      "id": "ACT-POSTER",
+      "frameIds": [
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010"
+      ]
+    },
+    {
+      "id": "ACT-LOGO",
+      "frameIds": [
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016"
+      ]
+    },
+    {
+      "id": "ACT-CARD-MANUS",
+      "frameIds": [
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019"
+      ]
+    },
+    {
+      "id": "ACT-PPT",
+      "frameIds": [
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025"
+      ]
+    },
+    {
+      "id": "ACT-CARD-CLAUDE",
+      "frameIds": [
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028"
+      ]
+    },
+    {
+      "id": "ACT-UI",
+      "frameIds": [
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033"
+      ]
+    },
+    {
+      "id": "ACT-CARD-TRIPO",
+      "frameIds": [
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036"
+      ]
+    },
+    {
+      "id": "ACT-3D",
+      "frameIds": [
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043"
+      ]
+    },
+    {
+      "id": "ACT-CARD-LOVABLE",
+      "frameIds": [
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046"
+      ]
+    },
+    {
+      "id": "ACT-WEB",
+      "frameIds": [
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053"
+      ]
+    },
+    {
+      "id": "ACT-FULL-ABSENCE",
+      "frameIds": [
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084"
+      ]
+    },
+    {
+      "id": "ACT-STRUCTURE",
+      "frameIds": [
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097"
+      ]
+    },
+    {
+      "id": "ACT-AUDIO-LISTEN",
+      "frameIds": [
+        "TARGET-0098",
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108"
+      ]
+    }
+  ]
+}

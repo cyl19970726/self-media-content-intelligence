@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "682a792f0000000021001039",
+  "evaluationOrder": "GATE_then_JUDGE",
+  "verdict": "FAIL",
+  "scope": {
+    "read": [
+      "current evidence/evidence-pack.json and evidence frames",
+      "current repaired skill-run artifacts",
+      "independent audit/audit.json and audit/audit.md",
+      "prior evaluation/discrepancies.md as closure targets only",
+      "canonical evaluation protocol and schema",
+      "evaluator-design and gate-antipatterns"
+    ],
+    "excluded": [
+      "prior evaluation verdict and scores",
+      "other candidates and evaluations",
+      "candidate modification"
+    ]
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 9,
+      "denominator": 9,
+      "examples": [
+        {
+          "status": "correct",
+          "items": [
+            "actual URL input versus untested file-upload option",
+            "visible instruction and missing parameters",
+            "edited input-queue-editor bridge",
+            "visible output components and attribution limits",
+            "export remains unproved",
+            "Medeo Beta identity and marketing-claim limits",
+            "cold-open/editor/full-screen continuity with final duck separated",
+            "speed/world-first/public-access boundaries",
+            "access, price, account, region, platform and support unknowns"
+          ]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "status": "covered",
+          "items": [
+            "Medeo Beta identity",
+            "Labubu article and WeChat URL",
+            "instruction text",
+            "13/13 queue with over-ten-minutes warning",
+            "editable project components",
+            "same-project continuity",
+            "export and public-access limits"
+          ]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 21,
+      "examples": [
+        {
+          "status": "no_error",
+          "note": "All 21 positive knowledge units either report an author claim, state a directly visible fact, or give an inference with evidence and an explicit boundary."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 69,
+      "denominator": 69,
+      "examples": [
+        {
+          "status": "correct",
+          "items": [
+            "queue state at 17.0 seconds",
+            "editor project start at 18.0 seconds",
+            "growth-chart continuation at 19.5 seconds",
+            "map/store segment at 25.9-30.5 seconds",
+            "duck switch after 30.53 seconds"
+          ]
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 7,
+      "denominator": 7,
+      "rationale": "The candidate accounts for the seven audited display/dependency stages: cold-open result window, product home, article, URL plus instruction, queue, editable Labubu project, and later Labubu playback followed by the separate duck sample. Missing submission, elapsed processing, manual edits and export are explicitly retained as unknown rather than invented."
+    },
+    "unknownDiscipline": {
+      "numerator": 16,
+      "denominator": 17,
+      "examples": [
+        {
+          "status": "correct",
+          "items": [
+            "actual generation time",
+            "file-upload execution",
+            "manual intervention",
+            "voiceover attribution",
+            "export success and file properties",
+            "access, price, account, region, platform, version and support conditions",
+            "content provenance and permissions"
+          ]
+        },
+        {
+          "status": "incorrect_method",
+          "item": "non-speech audio semantics",
+          "note": "The abstention is not backed by a listening-derived inspection; extraction and a spectrogram establish availability and activity only."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-08 non-speech audio semantics: audio.wav and audio-spectrogram.png establish an available active track, but no listening-derived evidence checks music, effects, pauses, audio transitions, or their relation to the visual edits."
+    ]
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "CAR-08 non-speech audio: CA-09 uses full-track extraction, spectrogram/silence inspection, and video-frame sampling, none of which inspects sound semantics."
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The repaired continuity invariant now independently cross-matches the cold open, editor 0:00 script/preview/timeline, later 00:23 map/store material, and the final duck switch, so no relationship gap remains there. The meta-gate still fails because the candidate marks CAR-08 inspected and reports no unchecked channels even though its method cannot determine whether music, sound effects, pauses, or audio transitions carry meaning. Treating track existence and spectral energy as semantic inspection is a fake-position gate."
+  },
+  "examples": [
+    {
+      "id": "CLOSURE-01",
+      "result": "closed",
+      "finding": "The cold open and later Labubu editor/playback windows are now correctly linked as one project, while the post-30.53-second duck is separated."
+    },
+    {
+      "id": "CLOSURE-02",
+      "result": "closed_for_continuity",
+      "finding": "CA-12 states a falsifiable same-project invariant and applies it across visual sequence, numeric script, project time and timeline thumbnails."
+    },
+    {
+      "id": "NEW-01",
+      "result": "hard_gate_failure",
+      "finding": "Non-speech audio remains an available but semantically unchecked carrier, invalidating uncheckedChannels=[] and the independent meta-gate."
+    }
+  ]
+}

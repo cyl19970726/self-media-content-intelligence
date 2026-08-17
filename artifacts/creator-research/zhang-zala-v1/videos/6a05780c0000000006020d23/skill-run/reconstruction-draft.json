@@ -1,0 +1,755 @@
+{
+  "scopeStatement": "仅重建 0–118.92 秒内 AnyGen/Slides 界面、作者步骤和模板来源自述。机器转写不是官方字幕；AnyGen、Build Slides、Frontend、PPT 等名称需 UI/OCR 支持。三分多钟、所有文字可点击、分享/下载格式、当前可用性、零代码普适性和第三方设计参考授权均有边界。",
+  "transcriptOrigin": "local machine transcription from the complete decoded source audio; not official subtitles",
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a05780c0000000006020d23/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "6 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 118.933
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a05780c0000000006020d23/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 98 targeted frames; 387 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 118.933
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a05780c0000000006020d23/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 118.933
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "结果承诺与入口：无需编程进入 Build Slides",
+      "importance": "core",
+      "statement": "作者先回顾好看的 HTML Slides 模板，承诺无需编程基础即可从零到一制作，并进入 AnyGen 的 Build Slides。片内可证明拍摄时存在相关界面，不能证明当前名称、入口、费用或所有用户都无需任何技术判断。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 14.32
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-001",
+          "endCue": "CUE-004"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0007",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0013",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "结果、承诺与入口在短时间内连续出现。",
+      "unknowns": [
+        "当前入口",
+        "账户/地区",
+        "费用配额",
+        "零代码适用范围"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "选择 Frontend 模板并用白话输入内容",
+      "importance": "core",
+      "statement": "可恢复的生成顺序是：选择 Frontend Slides，选一个模板，输入希望 Slides 包含的内容，用白话发送；视频随后剪到作者称三分多钟后的结果。界面与口播支持步骤概念，不证明等待过程连续、结果任务绑定或没有镜头外修改。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 14.32,
+        "end": 30.68
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-005",
+          "endCue": "CUE-011"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0014",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0021",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0028",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播给出程序顺序，界面显示对应状态；剪辑阻断完整因果。",
+      "unknowns": [
+        "完整提示词",
+        "提交点击",
+        "真实耗时",
+        "任务绑定",
+        "镜头外修改"
+      ],
+      "procedural": {
+        "input": "一个 Frontend 模板和 Slides 内容需求",
+        "actions": [
+          "进入 Build Slides",
+          "选择 Frontend",
+          "选择模板",
+          "输入白话内容",
+          "发送生成",
+          "等待并查看结果"
+        ],
+        "parameters": [
+          "模板",
+          "内容",
+          "语言与长度"
+        ],
+        "output": "套用模板风格的 HTML Slides",
+        "unknowns": [
+          "生成参数",
+          "失败重试",
+          "真实等待",
+          "任务连续性",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0014"
+        ],
+        "duringFrames": [
+          "TARGET-0021"
+        ],
+        "afterFrames": [
+          "TARGET-0028"
+        ]
+      }
+    },
+    {
+      "id": "KU-03",
+      "title": "结果可编辑，并通过评论批量发送修改",
+      "importance": "core",
+      "statement": "作者称结果复刻模板、文字可直接点击；需要改字体、颜色或排版时，可在对应位置添加评论，点击 Apply 后批量交给 AI 修改。片内是有限示例，不能推出所有元素可编辑、所有评论一次成功或修改没有副作用。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 30.68,
+        "end": 54.72
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-012",
+          "endCue": "CUE-021"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0029",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0042",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0054",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播步骤和界面状态对应，但成功范围仅限单例。",
+      "unknowns": [
+        "失败/撤销",
+        "复杂修改",
+        "批量冲突处理",
+        "编辑保真度"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "分享链接、下载 PPT/PDF 与全屏演示形成交付路径",
+      "importance": "core",
+      "statement": "作者给出两类交付：点击分享、复制链接让他人像网页一样打开；或下载为 PPT/PDF，并在演讲时全屏投屏。片内没有展示接收者成功打开、链接权限/寿命、导出文件内容、字体和可编辑性。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 54.72,
+        "end": 75.4
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-022",
+          "endCue": "CUE-026"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0062",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0069",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "按钮和口播支持选项存在，缺少交付闭环。",
+      "unknowns": [
+        "链接权限和寿命",
+        "外部访问",
+        "PPT/PDF 保真和可编辑性",
+        "下载当前可用性"
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "拖入图片和继续对话支持增量修改",
+      "importance": "supporting",
+      "statement": "作者称可把图片拖入输入框，并要求插到最后一页；其他修改也可直接用自然语言提出。该段给出操作意图和界面入口，但未完整展示上传—处理—指定页面—最终结果的连续链，也没有处理图片来源和授权。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 75.4,
+        "end": 89.32
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-027",
+          "endCue": "CUE-027"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0076",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0082",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播给出单个插图用法，缺少全链和普遍验证。",
+      "unknowns": [
+        "上传限制",
+        "图片处理",
+        "插入结果",
+        "素材授权",
+        "任意修改范围"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "模板能力的上游是持续收集视觉参考",
+      "importance": "core",
+      "statement": "作者解释模板来自日常收集的海报、书封面和平面设计等视觉参考，交给 Claude Design/Designer 类工具借鉴风格和配色生成模板；来源包括小红书、Pinterest 和 Twitter。核心方法是建立参考库，不等于第三方图片、字体、版式或肖像可直接复制和商用。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 89.32,
+        "end": 118.92
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-028",
+          "endCue": "CUE-031"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0083",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0091",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0098",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "作者明确给出参考来源、处理方式和习惯建议；权利未出现。",
+      "unknowns": [
+        "工具准确身份",
+        "参考与输出相似度",
+        "版权/字体/肖像授权",
+        "模板许可证"
+      ],
+      "argument": {
+        "claim": "低门槛生成好看 HTML Slides 的上限主要来自模板和视觉参考，而不只来自提示词。",
+        "evidenceUnitIndexes": [
+          0,
+          1,
+          2,
+          5
+        ],
+        "conditions": [
+          "模板与内容匹配",
+          "参考使用合法",
+          "AI 能保持信息正确",
+          "用户复核排版与交付"
+        ],
+        "counterexamples": [
+          "模板会造成同质化",
+          "复杂数据和长文可能破坏版式",
+          "导出格式可能失真"
+        ],
+        "actions": [
+          "建立视觉参考库",
+          "提炼风格和配色",
+          "生成模板",
+          "用白话填内容",
+          "评论修改",
+          "核对交付"
+        ],
+        "limits": [
+          "单一平台和单例",
+          "缺少版权与稳定性验证"
+        ],
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-06"
+        ]
+      }
+    },
+    {
+      "id": "KU-07",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "机器转写把 AnyGen、从零到一、编程、PPT、评论、链接、Claude Design 等识别为 any 镇、充灵到一、变成、PBT、天涯评论、电接、Claw Design。报告保留原始 cue，并通过 UI、烧录字幕和语境提供规范化阅读建议。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 118.933
+      },
+      "confidence": "high",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ],
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "模板功能当前正式名称",
+        "Claude Design/Designer 的准确产品身份",
+        "部分分享与下载按钮小字"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整混合轨无缝机器检查主要支持连续口播，未建立独立 UI 点击、生成完成、分享成功或下载成功声音证据；具体配乐和权利未知。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 118.933
+      },
+      "confidence": "medium",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ],
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ]
+    }
+  ],
+  "cueMap": [
+    {
+      "startCue": "CUE-001",
+      "endCue": "CUE-004",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-01"
+      ],
+      "rationale": "归入语义段：结果承诺与入口：无需编程进入 Build Slides"
+    },
+    {
+      "startCue": "CUE-005",
+      "endCue": "CUE-011",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-02"
+      ],
+      "rationale": "归入语义段：选择 Frontend 模板并用白话输入内容"
+    },
+    {
+      "startCue": "CUE-012",
+      "endCue": "CUE-021",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-03"
+      ],
+      "rationale": "归入语义段：结果可编辑，并通过评论批量发送修改"
+    },
+    {
+      "startCue": "CUE-022",
+      "endCue": "CUE-026",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-04"
+      ],
+      "rationale": "归入语义段：分享链接、下载 PPT/PDF 与全屏演示形成交付路径"
+    },
+    {
+      "startCue": "CUE-027",
+      "endCue": "CUE-027",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-05"
+      ],
+      "rationale": "归入语义段：拖入图片和继续对话支持增量修改"
+    },
+    {
+      "startCue": "CUE-028",
+      "endCue": "CUE-031",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-06"
+      ],
+      "rationale": "归入语义段：模板能力的上游是持续收集视觉参考"
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "入口承诺落到实际生成输入",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "生成结果继续进入编辑闭环",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "编辑完成后进入交付与展示",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "交付前仍可增量加入素材",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "使用教程最后解释结果质量的上游来源",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "meaningChanges": {
+      "MC-01": [
+        "KU-01"
+      ],
+      "MC-02": [
+        "KU-02"
+      ],
+      "MC-03": [
+        "KU-03"
+      ],
+      "MC-04": [
+        "KU-04"
+      ],
+      "MC-05": [
+        "KU-05"
+      ],
+      "MC-06": [
+        "KU-06"
+      ]
+    },
+    "relationships": {
+      "REL-01": [
+        "CUE-004",
+        "CUE-005"
+      ],
+      "REL-02": [
+        "CUE-011",
+        "CUE-012"
+      ],
+      "REL-03": [
+        "CUE-021",
+        "CUE-022"
+      ],
+      "REL-04": [
+        "CUE-026",
+        "CUE-027"
+      ],
+      "REL-05": [
+        "CUE-027",
+        "CUE-028"
+      ]
+    },
+    "criticalQuestions": {
+      "CQ-01": {
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0007"
+        ]
+      },
+      "CQ-02": {
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-005",
+          "TARGET-0021"
+        ]
+      },
+      "CQ-03": {
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-012",
+          "TARGET-0042"
+        ]
+      },
+      "CQ-04": {
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-022",
+          "TARGET-0062"
+        ]
+      },
+      "CQ-05": {
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-027",
+          "TARGET-0076"
+        ]
+      },
+      "CQ-06": {
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "CUE-028",
+          "TARGET-0091"
+        ]
+      },
+      "CQ-07": {
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      "CQ-08": {
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05",
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0098"
+        ]
+      },
+      "CQ-09": {
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    }
+  },
+  "unknowns": [
+    "AnyGen 当前产品名、版本、账号、费用、地区和配额",
+    "模板数量、许可证和第三方视觉参考授权",
+    "生成时间起止口径与镜头外编辑",
+    "分享链接权限、寿命和外部访问结果",
+    "导出 PPT/PDF 的排版、字体和可编辑性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

@@ -1,0 +1,4555 @@
+{
+  "frames" : [
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0001",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41658029500892624,
+            0.6279222394926353,
+            0.30017274220784507,
+            0.041030521690845534
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00001",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2777777827222222,
+            0.57812500015625,
+            0.49444444444444446,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00002",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00003",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.11666666638888891,
+            0.47812500002297786,
+            0.18888888888888888,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00004",
+          "text" : "◎心◎新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00005",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 ZiagcoyeM！ 的推環代鷗舶模型收"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00006",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00007",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00008",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.36659836091251213,
+            0.1967373844300916,
+            0.2779143863254124,
+            0.04402523040771478
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00009",
+          "text" : "昆仑万维"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-001.jpg",
+      "status" : "processed",
+      "time" : 2.2
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0002",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4165565135333527,
+            0.6278660788676741,
+            0.30022029876708994,
+            0.04114284217357633
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00010",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2722222273888888,
+            0.5750000001875,
+            0.5166666666666667,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00011",
+          "text" : "SkyReels V2：无限长胶片生成模型："
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00012",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.11666666638888891,
+            0.47812500002297786,
+            0.18888888888888888,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00013",
+          "text" : "◎心◎新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00014",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型收"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00015",
+          "text" : "•2005年2月18日：01行放市7200443.Y1，这 第一个数是期天进物开源。以人力本約根提基提程密。"
+        },
+        {
+          "boundingBox" : [
+            0.11666674266329961,
+            0.39375000015624995,
+            0.6722221374511719,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00016",
+          "text" : "•5年2具18日：0北5室他了308楼641。3星一公开翠盟有路路人售出省路云9附"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00017",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.2555555525,
+            0.1968749998437499,
+            0.488888888888889,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00018",
+          "text" : "开源了全球首个"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-002.jpg",
+      "status" : "processed",
+      "time" : 3.6
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0003",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41653871161282074,
+            0.6278239249717181,
+            0.30025590260823565,
+            0.04122714847326281
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00019",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2777777827222222,
+            0.57812500015625,
+            0.49444444444444446,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00020",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00021",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.15277777750816993,
+            0.47812500002297786,
+            0.15277777777777776,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00022",
+          "text" : "心。新闻！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00023",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型你"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00024",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00025",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00026",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.08333332812500005,
+            0.1968749998437499,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00027",
+          "text" : "支持无限时长高质量电影的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-003.jpg",
+      "status" : "processed",
+      "time" : 4.8
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0004",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.69375000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00028",
+          "text" : "欢级来时s你看e V2存健攫！在欢禦，狠精找影我行的无宕长嘞夥辈摸模鑒矜穫型杈蠹稆榷理1弱"
+        },
+        {
+          "boundingBox" : [
+            0.17777777751262627,
+            0.6656250000355114,
+            0.1277777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00029",
+          "text" : "• 新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.5624999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00030",
+          "text" : "•2045第2月18B：0我行发化了20包a的.Y！，这是第一个你民最我进的开源。以人为本的校姨那裂程到。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.5781250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00031",
+          "text" : "•2005年2月18日：0頁行发书7200c3-A！、这量一个开源是有效的人像迷您的美名限。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.531249999765625,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00032",
+          "text" : "籌 演示"
+        },
+        {
+          "boundingBox" : [
+            0.11081393330125308,
+            0.3084071217647597,
+            0.1839276843600803,
+            0.020685756206512473
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00033",
+          "text" : "②待办事瑛列畏"
+        },
+        {
+          "boundingBox" : [
+            0.11666666824074068,
+            0.2843750001041666,
+            0.09444444444444444,
+            0.012500000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00034",
+          "text" : "• 豉式报告"
+        },
+        {
+          "boundingBox" : [
+            0.27762200779915247,
+            0.1963686271090307,
+            0.44475597805447054,
+            0.04476274400949476
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00035",
+          "text" : "SkyReels-V2"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-004.jpg",
+      "status" : "processed",
+      "time" : 6.4
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0005",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2944444479166666,
+            0.19687500015624992,
+            0.41666666666666663,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00036",
+          "text" : "它暴力突破了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-001.jpg",
+      "status" : "processed",
+      "time" : 7.6
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0006",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3051543100289741,
+            0.19569997447460918,
+            0.39524692959255636,
+            0.04610005021095276
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00037",
+          "text" : "不是生成5秒"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-002.jpg",
+      "status" : "processed",
+      "time" : 10.2
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0007",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888889281249988,
+            0.19687500015625015,
+            0.6277777777777778,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00038",
+          "text" : "而是可以无限时长的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-003.jpg",
+      "status" : "processed",
+      "time" : 12.8
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0008",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333746391008,
+            0.65000000015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00039",
+          "text" : "Al规久"
+        },
+        {
+          "boundingBox" : [
+            0.5277777787037037,
+            0.65000000015625,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00040",
+          "text" : "AI團"
+        },
+        {
+          "boundingBox" : [
+            0.027777777037037037,
+            0.428124999765625,
+            0.24444444444444446,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00041",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.04444444648148143,
+            0.40937500031249996,
+            0.25555555555555554,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00042",
+          "text" : "poe sowce Brettroueh M utote Lene"
+        },
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00043",
+          "text" : "在处处都是闭源模型的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-004.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0009",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.04444443793650797,
+            0.19687499986607138,
+            0.9111111111111112,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00044",
+          "text" : "还推出了免部署的在线体验版"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-005.jpg",
+      "status" : "processed",
+      "time" : 17.6
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0010",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.15000000388888882,
+            0.19687500017361115,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00045",
+          "text" : "这无疑是影视圈的狂欢"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-006.jpg",
+      "status" : "processed",
+      "time" : 19.8
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0011",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00046",
+          "text" : "你们看我刚刚生成这段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-001.jpg",
+      "status" : "processed",
+      "time" : 25.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0012",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00047",
+          "text" : "你们看我刚刚生成这段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-002.jpg",
+      "status" : "processed",
+      "time" : 25.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0013",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00048",
+          "text" : "你们看我刚刚生成这段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-003.jpg",
+      "status" : "processed",
+      "time" : 26.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0014",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499982142853,
+            0.6277777777777779,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00049",
+          "text" : "由于突破了时长限制"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-004.jpg",
+      "status" : "processed",
+      "time" : 26.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0015",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499982142853,
+            0.6277777777777779,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00050",
+          "text" : "由于突破了时长限制"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-005.jpg",
+      "status" : "processed",
+      "time" : 27.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0016",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499982142853,
+            0.6277777777777779,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00051",
+          "text" : "由于突破了时长限制"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-006.jpg",
+      "status" : "processed",
+      "time" : 27.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0017",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499986607138,
+            0.6277777777777779,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00052",
+          "text" : "它不再是零散的片段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-007.jpg",
+      "status" : "processed",
+      "time" : 28.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0018",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499986607138,
+            0.6277777777777779,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00053",
+          "text" : "它不再是零散的片段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-008.jpg",
+      "status" : "processed",
+      "time" : 28.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0019",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499986607138,
+            0.6277777777777779,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00054",
+          "text" : "它不再是零散的片段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-009.jpg",
+      "status" : "processed",
+      "time" : 29.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0020",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333928571428,
+            0.1968750001785715,
+            0.8333333333333334,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00055",
+          "text" : "而是有连续剧情的完整短片"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-010.jpg",
+      "status" : "processed",
+      "time" : 29.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0021",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333854166654,
+            0.19687500019531257,
+            0.8333333333333333,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00056",
+          "text" : "而是有连续剧情的完整短片"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-011.jpg",
+      "status" : "processed",
+      "time" : 30.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0022",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333854166654,
+            0.19687500019531257,
+            0.8333333333333333,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00057",
+          "text" : "而是有连续剧情的完整短片"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-012.jpg",
+      "status" : "processed",
+      "time" : 30.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0023",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333854166654,
+            0.19687500019531257,
+            0.8333333333333333,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00058",
+          "text" : "而是有连续剧情的完整短片"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-013.jpg",
+      "status" : "processed",
+      "time" : 31.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0024",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.39444444625,
+            0.20000000013020836,
+            0.21666666666666662,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00059",
+          "text" : "不卡顿"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-014.jpg",
+      "status" : "processed",
+      "time" : 31.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0025",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.39444444477777774,
+            0.19687499956249999,
+            0.21111111111111114,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00060",
+          "text" : "不扭曲"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-015.jpg",
+      "status" : "processed",
+      "time" : 32.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0026",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666187500006,
+            0.1968749998437499,
+            0.7666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00061",
+          "text" : "流畅度和画质也非常出色"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-016.jpg",
+      "status" : "processed",
+      "time" : 32.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0027",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667092592581,
+            0.19687500013888892,
+            0.7666666666666666,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00062",
+          "text" : "流畅度和画质也非常出色"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-017.jpg",
+      "status" : "processed",
+      "time" : 33.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0028",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666240740745,
+            0.19687499986111112,
+            0.7666666666666667,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00063",
+          "text" : "流畅度和画质也非常出色"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-018.jpg",
+      "status" : "processed",
+      "time" : 33.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0029",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667092592581,
+            0.19687500013888892,
+            0.7666666666666666,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00064",
+          "text" : "流畅度和画质也非常出色"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-019.jpg",
+      "status" : "processed",
+      "time" : 34.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0030",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00065",
+          "text" : "一镜到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-020.jpg",
+      "status" : "processed",
+      "time" : 34.52
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0031",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00066",
+          "text" : "一镜到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-001.jpg",
+      "status" : "processed",
+      "time" : 34.52
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0032",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00067",
+          "text" : "一鏡到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-002.jpg",
+      "status" : "processed",
+      "time" : 34.92
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0033",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00068",
+          "text" : "一镜到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-003.jpg",
+      "status" : "processed",
+      "time" : 35.32
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0034",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00069",
+          "text" : "一镜到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-004.jpg",
+      "status" : "processed",
+      "time" : 35.72
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0035",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555545,
+            0.19687499956249999,
+            0.4944444444444446,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00070",
+          "text" : "是它的独家功能"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-005.jpg",
+      "status" : "processed",
+      "time" : 36.12
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0036",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555545,
+            0.19687499956249999,
+            0.4944444444444446,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00071",
+          "text" : "是它的独家功能"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-006.jpg",
+      "status" : "processed",
+      "time" : 36.52
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0037",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555545,
+            0.19687499956249999,
+            0.4944444444444446,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00072",
+          "text" : "是它的独家功能"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-007.jpg",
+      "status" : "processed",
+      "time" : 36.92
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0038",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555143518527,
+            0.1968749998437499,
+            0.49444444444444435,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00073",
+          "text" : "且持续无限延长"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-008.jpg",
+      "status" : "processed",
+      "time" : 37.32
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0039",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555143518527,
+            0.1968749998437499,
+            0.49444444444444435,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00074",
+          "text" : "且持续无限延长"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-009.jpg",
+      "status" : "processed",
+      "time" : 37.72
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0040",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555061111124,
+            0.1968749998125,
+            0.49444444444444446,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00075",
+          "text" : "且持续无限延长"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-010.jpg",
+      "status" : "processed",
+      "time" : 38.12
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0041",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555967592575,
+            0.19687500015624992,
+            0.4944444444444445,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00076",
+          "text" : "且持续无限延长"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-011.jpg",
+      "status" : "processed",
+      "time" : 38.52
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0042",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2942876633616991,
+            0.1963975401586524,
+            0.41698023478190116,
+            0.044704921543598064
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00077",
+          "text" : "无论航拍水拍"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-012.jpg",
+      "status" : "processed",
+      "time" : 38.92
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0043",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2942865194487,
+            0.19639402346348533,
+            0.41698252360026045,
+            0.04471195489168167
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00078",
+          "text" : "无论航拍水拍"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-013.jpg",
+      "status" : "processed",
+      "time" : 39.32
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0044",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.29428442136518773,
+            0.19638754294859007,
+            0.41698671976725266,
+            0.044724914431572005
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00079",
+          "text" : "无论航拍水拍"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-014.jpg",
+      "status" : "processed",
+      "time" : 39.72
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0045",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888115746746294,
+            0.19663766013443185,
+            0.4223768446180555,
+            0.044224677979946114
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00080",
+          "text" : "都能一气呵成"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-015.jpg",
+      "status" : "processed",
+      "time" : 40.12
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0046",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28879557413878,
+            0.1965882568253159,
+            0.4224088456895615,
+            0.044323486089706376
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00081",
+          "text" : "都能一气呵成"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-016.jpg",
+      "status" : "processed",
+      "time" : 40.52
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0047",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28829951514208463,
+            0.19499725092673548,
+            0.4234009636773004,
+            0.04750549644231783
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00082",
+          "text" : "都能一气呵成"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-017.jpg",
+      "status" : "processed",
+      "time" : 40.92
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0048",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999500000005,
+            0.19687499982142853,
+            0.7000000000000001,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00083",
+          "text" : "再试试最近这种很火的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-018.jpg",
+      "status" : "processed",
+      "time" : 41.12
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0049",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999500000005,
+            0.19687499982142853,
+            0.7000000000000001,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00084",
+          "text" : "再试试最近这种很火的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-001.jpg",
+      "status" : "processed",
+      "time" : 41.12
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0050",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00085",
+          "text" : "再试试最近这种很火的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-002.jpg",
+      "status" : "processed",
+      "time" : 41.52
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0051",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00086",
+          "text" : "再试试最近这种很火的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-003.jpg",
+      "status" : "processed",
+      "time" : 41.92
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0052",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00087",
+          "text" : "再试试最近这种很火的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-004.jpg",
+      "status" : "processed",
+      "time" : 42.32
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0053",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2944444421296296,
+            0.19687499982638879,
+            0.41666666666666674,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00088",
+          "text" : "乡村怀旧视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-005.jpg",
+      "status" : "processed",
+      "time" : 42.72
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0054",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2944444421296296,
+            0.19687499982638879,
+            0.41666666666666674,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00089",
+          "text" : "乡村怀旧视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-006.jpg",
+      "status" : "processed",
+      "time" : 43.12
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0055",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2944444479629629,
+            0.19687500015624992,
+            0.42222222222222217,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00090",
+          "text" : "乡村怀旧视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-007.jpg",
+      "status" : "processed",
+      "time" : 43.52
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0056",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1499999941666668,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00091",
+          "text" : "也能处理得氛围感极高"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-008.jpg",
+      "status" : "processed",
+      "time" : 43.92
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0057",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1499999941666668,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00092",
+          "text" : "也能处理得氛围感极高"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-009.jpg",
+      "status" : "processed",
+      "time" : 44.32
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0058",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00093",
+          "text" : "也能处理得氛围感极高"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-010.jpg",
+      "status" : "processed",
+      "time" : 44.72
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0059",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1499999941666668,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00094",
+          "text" : "也能处理得氛围感极高"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-011.jpg",
+      "status" : "processed",
+      "time" : 45.12
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0060",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.12777777298611118,
+            0.60624999984375,
+            0.3833333333333334,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00095",
+          "text" : "VISUALIZE YOUR STORY"
+        },
+        {
+          "boundingBox" : [
+            0.1444444441880342,
+            0.5625000000600962,
+            0.07777777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00096",
+          "text" : "AI规频"
+        },
+        {
+          "boundingBox" : [
+            0.5777777768518518,
+            0.5624999998437501,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00097",
+          "text" : "AI"
+        },
+        {
+          "boundingBox" : [
+            0.17777779374452926,
+            0.3437500001041667,
+            0.32222220102945964,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00098",
+          "text" : "Join the SkyReels Discerd！"
+        },
+        {
+          "boundingBox" : [
+            0.3222222197777777,
+            0.19687499956249999,
+            0.35555555555555557,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00099",
+          "text" : "如此强大的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-012.jpg",
+      "status" : "processed",
+      "time" : 45.52
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0061",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1277777715740743,
+            0.6062500003645833,
+            0.3833333333333333,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00100",
+          "text" : "VISUALIZE YOUR STORY"
+        },
+        {
+          "boundingBox" : [
+            0.1444444484824286,
+            0.5625000001562499,
+            0.0833333280351427,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00101",
+          "text" : "Al梘頻"
+        },
+        {
+          "boundingBox" : [
+            0.5777777787037036,
+            0.5625000001562499,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00102",
+          "text" : "AIBM"
+        },
+        {
+          "boundingBox" : [
+            0.41666666625,
+            0.36562499964843753,
+            0.14444444444444443,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00103",
+          "text" : "SkyRee"
+        },
+        {
+          "boundingBox" : [
+            0.12777777425925937,
+            0.34687500031249996,
+            0.22222222222222224,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00104",
+          "text" : "SayReels Discerd！"
+        },
+        {
+          "boundingBox" : [
+            0.3222222251851851,
+            0.19687500020833326,
+            0.35555555555555557,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00105",
+          "text" : "如此强大的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-013.jpg",
+      "status" : "processed",
+      "time" : 45.92
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0062",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.5777777774999999,
+            0.6218750000625,
+            0.05555555555555558,
+            0.012500000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00106",
+          "text" : "AIW！"
+        },
+        {
+          "boundingBox" : [
+            0.13885019312604108,
+            0.42489069272174873,
+            0.2222996181911892,
+            0.02521861344575882
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00107",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.21111110880952377,
+            0.19687499966517863,
+            0.5777777777777777,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00108",
+          "text" : "SkyReels-V2模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-014.jpg",
+      "status" : "processed",
+      "time" : 46.32
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0063",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.13861583296561256,
+            0.5929578544425569,
+            0.22276833852132163,
+            0.026584291458129905
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00109",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.21111110880952377,
+            0.19687499966517863,
+            0.5777777777777777,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00110",
+          "text" : "SkyReels-V2模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-015.jpg",
+      "status" : "processed",
+      "time" : 46.72
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0064",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.13861407396634357,
+            0.5929526032732466,
+            0.222771856519911,
+            0.026594793796539395
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00111",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.21111110880952377,
+            0.19687499966517863,
+            0.5777777777777777,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00112",
+          "text" : "SkyReels-V2模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-016.jpg",
+      "status" : "processed",
+      "time" : 47.12
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0065",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.13857794030666173,
+            0.5928438352251587,
+            0.222844123840332,
+            0.02681232839822767
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00113",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.42777777687500007,
+            0.19999999986328132,
+            0.1444444444444445,
+            0.04062499999999991
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00114",
+          "text" : "背后"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-017.jpg",
+      "status" : "processed",
+      "time" : 47.52
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0066",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22777778327777773,
+            0.19687500018749993,
+            0.5499999999999999,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00115",
+          "text" : "是通过620万小时"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-018.jpg",
+      "status" : "processed",
+      "time" : 47.82
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0067",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000259259249,
+            0.65312500015625,
+            0.15555555555555556,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00116",
+          "text" : "淅进式分脾軍预混些"
+        },
+        {
+          "boundingBox" : [
+            0.29444444687499993,
+            0.47500000011718746,
+            0.19444444444444448,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00117",
+          "text" : "B82：拟议方法概述。"
+        },
+        {
+          "boundingBox" : [
+            1.2430555311008599e-08,
+            0.42812500007812504,
+            0.9944444444444444,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00118",
+          "text" : "程序。所提出的模型还支持多种盘用，包括故事生成、阳像到视须合成、相机导演和元累到视操生成，"
+        },
+        {
+          "boundingBox" : [
+            -2.777777612866177e-10,
+            0.3750000000043645,
+            0.9944444444444446,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00119",
+          "text" : "用扩散强制架构的开源视频生成模型，在公开可用的模型中获得了最高的V-Bench分数，血"
+        },
+        {
+          "boundingBox" : [
+            2.1296295591197474e-09,
+            0.39375000005208327,
+            0.1277777777777778,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00120",
+          "text" : "实验表明，"
+        },
+        {
+          "boundingBox" : [
+            0.12222220768518569,
+            0.3906249998958333,
+            0.8722222222222223,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00121",
+          "text" : "与目前最先进的方法相比，SkyReels-V2的性能更优慈。据我们所知，它代表了"
+        },
+        {
+          "boundingBox" : [
+            -9.944444280386556e-09,
+            0.33437499987499997,
+            0.9944444444444445,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00122",
+          "text" : "生行的人类评估进一步表明，我们的模型优于几种闭源替代方案，并与该领城領先的视频生成"
+        },
+        {
+          "boundingBox" : [
+            9.944444280386556e-09,
+            0.3531250001249999,
+            0.9944444444444445,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00123",
+          "text" : "是，我们的解决方案解锁了前所未有的无限长度生成功能，如图1所示。通过SkyReels Ben"
+        },
+        {
+          "boundingBox" : [
+            7.870370113652016e-09,
+            0.3156250002083334,
+            0.4722222222222222,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00124",
+          "text" : "出可比的结果。我们的主要秀献总结如下："
+        },
+        {
+          "boundingBox" : [
+            0.22777777437500007,
+            0.1968749998437499,
+            0.5444444444444443,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00125",
+          "text" : "是通过620万小时"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-001.jpg",
+      "status" : "processed",
+      "time" : 48.4
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0068",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.005555558888888789,
+            0.628125,
+            0.19999999999999998,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00126",
+          "text" : "的相同系统提示。"
+        },
+        {
+          "boundingBox" : [
+            0.011111123124999662,
+            0.6437500001562501,
+            0.961111111111111,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00127",
+          "text" : "表3：視觉理解测试集的综合模型性能比铰（所有模型都使用附愛C中为视频生成结构字幕"
+        },
+        {
+          "boundingBox" : [
+            0.005555549444444649,
+            0.5968750005729166,
+            0.7333333333333333,
+            0.034375000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00128",
+          "text" : "因为區不能真授輸出熱料格或以用王其為師發選左法。） 款2他0.30"
+        },
+        {
+          "boundingBox" : [
+            0.2000000050408259,
+            0.6281249997916667,
+            0.3333333121405707,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00129",
+          "text" : "对于Tarsier2-recap-7B基线，"
+        },
+        {
+          "boundingBox" : [
+            0.5444444512037034,
+            0.628125,
+            0.40555555555555556,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00130",
+          "text" : "我们实现了一个字幕到json的转換器，"
+        },
+        {
+          "boundingBox" : [
+            0.7722222248148147,
+            0.59687500015625,
+            0.15555555555555556,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00131",
+          "text" : "TScotke-y"
+        },
+        {
+          "boundingBox" : [
+            0.03888889301946564,
+            0.5093750001562499,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00132",
+          "text" : "货型肉型"
+        },
+        {
+          "boundingBox" : [
+            0.04444444546296293,
+            0.4468750002604167,
+            0.11666666666666665,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00133",
+          "text" : "amshatjet"
+        },
+        {
+          "boundingBox" : [
+            0.005555539444445006,
+            0.36874999984375,
+            0.9666666666666666,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00134",
+          "text" : "64个NMDIA ABDO GPU上分布512个全局批量进行训练。该模型使用学习事为10-5的AdamW进行了"
+        },
+        {
+          "boundingBox" : [
+            0.011111099097222481,
+            0.38437499988281254,
+            0.961111111111111,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00135",
+          "text" : "训练细节我们采用Qwen2.5-VL.-78-instruct作为基裂模型，使用4个微挖量和2个秘度累积步骤，在"
+        },
+        {
+          "boundingBox" : [
+            0.005555588229799232,
+            0.3375000001562499,
+            0.6888888465033638,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00136",
+          "text" : "练配置确保了稳定的收效，阔时保持了大規模视频字幕任多的计算效事。"
+        },
+        {
+          "boundingBox" : [
+            0.011111095277778323,
+            0.35312499979166667,
+            0.95,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00137",
+          "text" : "优化，井训练了2个这代周期，想据我们测试集中的综合评结指标选择了住能最佳的检蠢点。这种训"
+        },
+        {
+          "boundingBox" : [
+            0.18888888905555554,
+            0.19687499956249999,
+            0.6277777777777778,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00138",
+          "text" : "电影素材训练出来的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-002.jpg",
+      "status" : "processed",
+      "time" : 50
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0069",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.9333333340972222,
+            0.6875000000781251,
+            0.061111111111111116,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00139",
+          "text" : "无，"
+        },
+        {
+          "boundingBox" : [
+            0.3388888913194444,
+            0.32500000011718755,
+            0.19444444444444448,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00140",
+          "text" : "一只海物在沉经谢近想净。"
+        },
+        {
+          "boundingBox" : [
+            -1.6574073511163886e-08,
+            0.2999999998437499,
+            0.9944444444444446,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00141",
+          "text" : "图1:SkyRcels-V2制作了几乎无限长度的逼爽和电影般的高分辨率視頻。该模聖擅长在所有效中保持"
+        },
+        {
+          "boundingBox" : [
+            4.1666665377230554e-09,
+            0.2812500001562499,
+            0.24999999999999997,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00142",
+          "text" : "主要主縣的视觉一致性，"
+        },
+        {
+          "boundingBox" : [
+            0.24999999064814843,
+            0.2781249998958334,
+            0.5611111111111111,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00143",
+          "text" : "确保无失真，共在整个扩展说须序列中提供卓题的质量。"
+        },
+        {
+          "boundingBox" : [
+            0.28888888566666665,
+            0.19687499956249999,
+            0.4222222222222222,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00144",
+          "text" : "相当于把世界"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-003.jpg",
+      "status" : "processed",
+      "time" : 52
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0070",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.9333333340972222,
+            0.6875000000781251,
+            0.061111111111111116,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00145",
+          "text" : "无，"
+        },
+        {
+          "boundingBox" : [
+            0.3388888913194444,
+            0.32500000011718755,
+            0.19444444444444448,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00146",
+          "text" : "一只海场在式经谢近游汤。"
+        },
+        {
+          "boundingBox" : [
+            -1.6574073511163886e-08,
+            0.2999999998437499,
+            0.9944444444444446,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00147",
+          "text" : "图1:SkyRcels-V2制作了几乎无限长度的逼真和电影般的高分辨率視頻。该模聖擅长在所有效中保持"
+        },
+        {
+          "boundingBox" : [
+            4.1666665377230554e-09,
+            0.2812500001562499,
+            0.24999999999999997,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00148",
+          "text" : "主要主题的视觉一致性，"
+        },
+        {
+          "boundingBox" : [
+            0.24999999064814843,
+            0.2812499998437501,
+            0.5611111111111111,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00149",
+          "text" : "确保无失真，并在整个扩展视须序列中提供卓题的质量。"
+        },
+        {
+          "boundingBox" : [
+            0.18888888496527784,
+            0.1968749998437499,
+            0.6277777777777778,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00150",
+          "text" : "顶级导演的拍摄经验"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-004.jpg",
+      "status" : "processed",
+      "time" : 54
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0071",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.044444451249999836,
+            0.35625000011718755,
+            0.5444444444444445,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00151",
+          "text" : "图9:SkRook-V2型号使用膜序投示生战超长搅熱的示例。"
+        },
+        {
+          "boundingBox" : [
+            0.14999999976190478,
+            0.1968749996875001,
+            0.6999999999999998,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00152",
+          "text" : "全部装进了一个模型里"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-005.jpg",
+      "status" : "processed",
+      "time" : 56
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0072",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41666666555555554,
+            0.19687499982142853,
+            0.15555555555555556,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00153",
+          "text" : "所以"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-006.jpg",
+      "status" : "processed",
+      "time" : 58
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0073",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333334172222209,
+            0.19687500018749993,
+            0.8388888888888889,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00154",
+          "text" : "它才能真正理解我们的需求"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-007.jpg",
+      "status" : "processed",
+      "time" : 59.8
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0074",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555967592575,
+            0.19687500015624992,
+            0.4944444444444445,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00155",
+          "text" : "不管是处理运镜"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-001.jpg",
+      "status" : "processed",
+      "time" : 60.5
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0075",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.36099221873928716,
+            0.19663494649176028,
+            0.27801556057400173,
+            0.0442301064729691
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00156",
+          "text" : "人物表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-002.jpg",
+      "status" : "processed",
+      "time" : 62
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0076",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3222222197222223,
+            0.19999999984375005,
+            0.35,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00157",
+          "text" : "都非常出色"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-003.jpg",
+      "status" : "processed",
+      "time" : 64
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0077",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666187500006,
+            0.1968749998437499,
+            0.7666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00158",
+          "text" : "简直是一个资深电影大师"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-004.jpg",
+      "status" : "processed",
+      "time" : 66
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0078",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555206349206,
+            0.19687499986607138,
+            0.4888888888888889,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00159",
+          "text" : "在背后为你服务"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-005.jpg",
+      "status" : "processed",
+      "time" : 68
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0079",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.32222222476190476,
+            0.1968750001785715,
+            0.3555555555555556,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00160",
+          "text" : "给你吐素材"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-001.jpg",
+      "status" : "processed",
+      "time" : 69
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0080",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777778622222213,
+            0.19687500018749993,
+            0.8444444444444444,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00161",
+          "text" : "现在你用AI写一个短剧剧本"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-002.jpg",
+      "status" : "processed",
+      "time" : 70.5
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0081",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28860107299418525,
+            0.19597833916318064,
+            0.42279786003960507,
+            0.04554332196712485
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00162",
+          "text" : "再用这样的AI"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-003.jpg",
+      "status" : "processed",
+      "time" : 72
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0082",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667145833326,
+            0.19687500015625015,
+            0.7666666666666666,
+            0.043749999999999845
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00163",
+          "text" : "就能制作一部完整的短剧"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-004.jpg",
+      "status" : "processed",
+      "time" : 73.5
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0083",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667145833326,
+            0.19687500015625015,
+            0.7666666666666666,
+            0.043749999999999845
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00164",
+          "text" : "就能制作一部完整的短剧"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-001.jpg",
+      "status" : "processed",
+      "time" : 74.2
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0084",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000499999986,
+            0.19687500017361115,
+            0.8999999999999999,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00165",
+          "text" : "然后说不定你也能混娱乐圈了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-002.jpg",
+      "status" : "processed",
+      "time" : 75.5
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0085",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.36059969622105115,
+            0.1958242638468487,
+            0.2788006040785048,
+            0.045851472020149164
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00166",
+          "text" : "不得不说"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-003.jpg",
+      "status" : "processed",
+      "time" : 77
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0086",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000646825392,
+            0.1968750001785715,
+            0.9055555555555557,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00167",
+          "text" : "可能彻底改变视频创作的流程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-004.jpg",
+      "status" : "processed",
+      "time" : 78.5
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0087",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000646825392,
+            0.1968750001785715,
+            0.9055555555555557,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00168",
+          "text" : "可能彻底改变视频创作的流程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-005.jpg",
+      "status" : "processed",
+      "time" : 79.8
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0088",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.04444443793650797,
+            0.19687499986607138,
+            0.9111111111111112,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00169",
+          "text" : "趁现在它还处于免费开源阶段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-001.jpg",
+      "status" : "processed",
+      "time" : 80.5
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0089",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.04444443793650797,
+            0.19687499986607138,
+            0.9111111111111112,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00170",
+          "text" : "趁现在它还处于免费开源阶段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-002.jpg",
+      "status" : "processed",
+      "time" : 82
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0090",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333857638886,
+            0.2000000001367187,
+            0.8388888888888888,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00171",
+          "text" : "我强烈建议你们赶紧去试试"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-003.jpg",
+      "status" : "processed",
+      "time" : 83.5
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0091",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666027777792,
+            0.19687499979166678,
+            0.7666666666666666,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00172",
+          "text" : "因为整个内容创作行业的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-004.jpg",
+      "status" : "processed",
+      "time" : 85
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0092",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.19687500018749993,
+            0.5666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00173",
+          "text" : "都会被AI彻底改写"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-005.jpg",
+      "status" : "processed",
+      "time" : 86.5
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0093",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.19687500018749993,
+            0.5666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00174",
+          "text" : "都会被AI彻底改写"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-006.jpg",
+      "status" : "processed",
+      "time" : 87.6
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0094",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.15000000499999994,
+            0.1968750001785715,
+            0.7,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00175",
+          "text" : "这两天AI圈又出大事了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-001.jpg",
+      "status" : "processed",
+      "time" : 0.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0095",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42211206163340487,
+            0.6278708751896968,
+            0.2946647644042968,
+            0.04113324880599978
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00176",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2722222180555556,
+            0.57499999984375,
+            0.5,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00177",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00178",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.21736111083333334,
+            0.47812500002297786,
+            0.08819444444444444,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00179",
+          "text" : "新闻！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00180",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型你"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00181",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00182",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00183",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.08333332812500005,
+            0.1968749998437499,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00184",
+          "text" : "支持无限时长高质量电影的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-002.jpg",
+      "status" : "processed",
+      "time" : 4.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0096",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1888888933730158,
+            0.1968750001785715,
+            0.6277777777777778,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00185",
+          "text" : "而是可以无限时长的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-003.jpg",
+      "status" : "processed",
+      "time" : 12
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0097",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.04444443793650797,
+            0.19687499986607138,
+            0.9111111111111112,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00186",
+          "text" : "还推出了免部署的在线体验版"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-004.jpg",
+      "status" : "processed",
+      "time" : 18
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0098",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888888440476193,
+            0.19687499982142853,
+            0.6277777777777779,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00187",
+          "text" : "由于突破了时长限制"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-005.jpg",
+      "status" : "processed",
+      "time" : 27
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0099",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00188",
+          "text" : "一镜到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-006.jpg",
+      "status" : "processed",
+      "time" : 36
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0100",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2944444479629629,
+            0.19687500015624992,
+            0.42222222222222217,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00189",
+          "text" : "乡村怀旧视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-007.jpg",
+      "status" : "processed",
+      "time" : 43.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0101",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.9333333340972222,
+            0.6875000000781251,
+            0.061111111111111116,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00190",
+          "text" : "无，"
+        },
+        {
+          "boundingBox" : [
+            0.3388888913194444,
+            0.32500000011718755,
+            0.19444444444444448,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00191",
+          "text" : "一只海场在式经謝近想净。"
+        },
+        {
+          "boundingBox" : [
+            -1.6574073511163886e-08,
+            0.2999999998437499,
+            0.9944444444444446,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00192",
+          "text" : "图1:SkyRcels-V2制作了几乎无限长度的逼爽和电影般的高分辨率視頻。该模聖擅长在所有效中保持"
+        },
+        {
+          "boundingBox" : [
+            4.1666665377230554e-09,
+            0.2812500001562499,
+            0.24999999999999997,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00193",
+          "text" : "主要主縣的视觉一致性，"
+        },
+        {
+          "boundingBox" : [
+            0.2499999929861113,
+            0.278124999921875,
+            0.5611111111111112,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00194",
+          "text" : "确保无失真，共在整个扩展说须序列中提供卓题的质量。"
+        },
+        {
+          "boundingBox" : [
+            0.28888888566666665,
+            0.19687499956249999,
+            0.4222222222222222,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00195",
+          "text" : "相当于把世界"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-008.jpg",
+      "status" : "processed",
+      "time" : 52.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0102",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666198412703,
+            0.1968749996875001,
+            0.7666666666666667,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00196",
+          "text" : "还是意味深长的镜头语言"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-009.jpg",
+      "status" : "processed",
+      "time" : 63
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0103",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777778622222213,
+            0.19687500018749993,
+            0.8444444444444444,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00197",
+          "text" : "现在你用AI写一个短剧剧本"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-010.jpg",
+      "status" : "processed",
+      "time" : 70.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0104",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000499999986,
+            0.19687500017361115,
+            0.8999999999999999,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00198",
+          "text" : "然后说不定你也能混娱乐圈了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-011.jpg",
+      "status" : "processed",
+      "time" : 76
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0105",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333532407403,
+            0.19687499963541666,
+            0.8388888888888889,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00199",
+          "text" : "我强烈建议你们赶紧去试试"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-012.jpg",
+      "status" : "processed",
+      "time" : 82.5
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0106",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.19687500018749993,
+            0.5666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00200",
+          "text" : "都会被AI彻底改写"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-013.jpg",
+      "status" : "processed",
+      "time" : 87
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0107",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.15000000499999994,
+            0.1968750001785715,
+            0.7,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00201",
+          "text" : "这两天AI圈又出大事了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-001.jpg",
+      "status" : "processed",
+      "time" : 0.5
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0108",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41653871161282074,
+            0.6278239249717181,
+            0.30025590260823565,
+            0.04122714847326281
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00202",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2777777827222222,
+            0.57812500015625,
+            0.49444444444444446,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00203",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00204",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.15277777983522778,
+            0.47812499984375,
+            0.15277777247958713,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00205",
+          "text" : "心。新闻！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00206",
+          "text" : "• 205年8月21日：看段门友布了232ads.U2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型你"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00207",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00208",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00209",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.08333332812500005,
+            0.1968749998437499,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00210",
+          "text" : "支持无限时长高质量电影的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-002.jpg",
+      "status" : "processed",
+      "time" : 5
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0109",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3050926602813569,
+            0.19551372784387477,
+            0.39537022908528646,
+            0.04647254347801211
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00211",
+          "text" : "不是生成5秒"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-003.jpg",
+      "status" : "processed",
+      "time" : 10
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0110",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333746391008,
+            0.65000000015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00212",
+          "text" : "Al规久"
+        },
+        {
+          "boundingBox" : [
+            0.5277777787037037,
+            0.65000000015625,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00213",
+          "text" : "AI團"
+        },
+        {
+          "boundingBox" : [
+            0.027777777037037037,
+            0.428124999765625,
+            0.24444444444444446,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00214",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.04444444648148143,
+            0.40937500031249996,
+            0.25555555555555554,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00215",
+          "text" : "poe sowce Brettroueh M utote Lene"
+        },
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00216",
+          "text" : "在处处都是闭源模型的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-004.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0111",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.8166666689814813,
+            0.3375000001041666,
+            0.13888888888888884,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00217",
+          "text" : "rine Eoge"
+        },
+        {
+          "boundingBox" : [
+            0.15000000388888882,
+            0.19687500017361115,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00218",
+          "text" : "这无疑是影视圈的狂欢"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-005.jpg",
+      "status" : "processed",
+      "time" : 20
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0112",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666187500006,
+            0.1968749998437499,
+            0.7666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00219",
+          "text" : "彻底告别高门槛拍摄成本"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-006.jpg",
+      "status" : "processed",
+      "time" : 25
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0113",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333333928571428,
+            0.1968750001785715,
+            0.8333333333333334,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00220",
+          "text" : "而是有连续剧情的完整短片"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-007.jpg",
+      "status" : "processed",
+      "time" : 30
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0114",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444445027777766,
+            0.1968750001041666,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00221",
+          "text" : "一鏡到底的30s长镜头"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-008.jpg",
+      "status" : "processed",
+      "time" : 35
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0115",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2942870911571043,
+            0.19639573562805757,
+            0.4169813791910807,
+            0.04470853060483926
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00222",
+          "text" : "无论航拍水拍"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-009.jpg",
+      "status" : "processed",
+      "time" : 40
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0116",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1499999941666668,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00223",
+          "text" : "也能处理得氛围感极高"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-010.jpg",
+      "status" : "processed",
+      "time" : 45
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0117",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.005555558888888789,
+            0.628125,
+            0.19999999999999998,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00224",
+          "text" : "的相同系统提示。"
+        },
+        {
+          "boundingBox" : [
+            0.011111123124999662,
+            0.6437500001562501,
+            0.961111111111111,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00225",
+          "text" : "表3：視觉理解测试集的综合模型性能比铰（所有模型都使用附愛C中为视频生成结构字幕"
+        },
+        {
+          "boundingBox" : [
+            0.005555549444444649,
+            0.5968750005729166,
+            0.7333333333333333,
+            0.034375000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00226",
+          "text" : "因为區不能真授輸出熱料格或以用王其為師發選左法。） 款2他0.30"
+        },
+        {
+          "boundingBox" : [
+            0.2000000050408259,
+            0.6281249997916667,
+            0.3333333121405707,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00227",
+          "text" : "对于Tarsier2-recap-7B基线，"
+        },
+        {
+          "boundingBox" : [
+            0.5444444512037034,
+            0.628125,
+            0.40555555555555556,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00228",
+          "text" : "我们实现了一个字幕到json的转換器，"
+        },
+        {
+          "boundingBox" : [
+            0.7722222248148147,
+            0.59687500015625,
+            0.15555555555555556,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00229",
+          "text" : "TScotke-y"
+        },
+        {
+          "boundingBox" : [
+            0.03888889301946564,
+            0.5093750001562499,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00230",
+          "text" : "货型肉型"
+        },
+        {
+          "boundingBox" : [
+            0.04444444546296293,
+            0.4468750002604167,
+            0.11666666666666665,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00231",
+          "text" : "amshatjet"
+        },
+        {
+          "boundingBox" : [
+            0.005555539444445006,
+            0.36874999984375,
+            0.9666666666666666,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00232",
+          "text" : "64个NMDIA ABDO GPU上分布512个全局批量进行训练。该模型使用学习事为10-5的AdamW进行了"
+        },
+        {
+          "boundingBox" : [
+            0.011111099097222481,
+            0.38437499988281254,
+            0.961111111111111,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00233",
+          "text" : "训练细节我们采用Qwen2.5-VL.-78-instruct作为基裂模型，使用4个微挖量和2个秘度累积步骤，在"
+        },
+        {
+          "boundingBox" : [
+            0.005555588229799232,
+            0.3375000001562499,
+            0.6888888465033638,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00234",
+          "text" : "练配置确保了稳定的收效，阔时保持了大規模视频字幕任多的计算效事。"
+        },
+        {
+          "boundingBox" : [
+            0.011111095277778323,
+            0.35312499979166667,
+            0.95,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00235",
+          "text" : "优化，井训练了2个这代周期，想据我们测试集中的综合评结指标选择了住能最佳的检蠢点。这种训"
+        },
+        {
+          "boundingBox" : [
+            0.18888888905555554,
+            0.19687499956249999,
+            0.6277777777777778,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00236",
+          "text" : "电影素材训练出来的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-011.jpg",
+      "status" : "processed",
+      "time" : 50
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0118",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3222222226388889,
+            0.19687499963541666,
+            0.35,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00237",
+          "text" : "和镜头语言"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-012.jpg",
+      "status" : "processed",
+      "time" : 55
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0119",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08333332738095246,
+            0.19687499986607138,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00238",
+          "text" : "它才能真正理解我们的需求"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-013.jpg",
+      "status" : "processed",
+      "time" : 60
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0120",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3221126747972197,
+            0.19659157656603043,
+            0.35577464633517797,
+            0.04431684762239452
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00239",
+          "text" : "这哪里是AI"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-014.jpg",
+      "status" : "processed",
+      "time" : 65
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0121",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.36099762590638845,
+            0.19664589875577254,
+            0.2780047522650824,
+            0.044208201766014255
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00240",
+          "text" : "想象一下"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-015.jpg",
+      "status" : "processed",
+      "time" : 70
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0122",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000499999986,
+            0.19687500017361115,
+            0.8999999999999999,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00241",
+          "text" : "然后说不定你也能混娱乐圈了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-016.jpg",
+      "status" : "processed",
+      "time" : 75
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0123",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000646825392,
+            0.1968750001785715,
+            0.9055555555555557,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00242",
+          "text" : "可能彻底改变视频创作的流程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-017.jpg",
+      "status" : "processed",
+      "time" : 80
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0124",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666027777792,
+            0.19687499979166678,
+            0.7666666666666666,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00243",
+          "text" : "因为整个内容创作行业的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-018.jpg",
+      "status" : "processed",
+      "time" : 85
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0125",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.19687500018749993,
+            0.5666666666666667,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00244",
+          "text" : "都会被AI彻底改写"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-019.jpg",
+      "status" : "processed",
+      "time" : 87.6
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0126",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42211206163340487,
+            0.6278708751896968,
+            0.2946647644042968,
+            0.04113324880599978
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00245",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2722222180555556,
+            0.57499999984375,
+            0.5,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00246",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00247",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.21736111083333334,
+            0.47812500002297786,
+            0.08819444444444444,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00248",
+          "text" : "新闻！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00249",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型你"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00250",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00251",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00252",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.08333332812500005,
+            0.1968749998437499,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00253",
+          "text" : "支持无限时长高质量电影的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-001.jpg",
+      "status" : "processed",
+      "time" : 4.6
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0127",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.69375000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00254",
+          "text" : "欢级来时s你e V2存健攫！在欢禦，狠精找影我行診无宕长嘞夥辈摸模鑒矜稹型杈蠹稆榷理1弱"
+        },
+        {
+          "boundingBox" : [
+            0.17777777751262627,
+            0.6656250000355114,
+            0.1277777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00255",
+          "text" : "• 新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.5624999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00256",
+          "text" : "•2045第2月18B：0我行发化了20包a的.Y！，这是第一个你民最我进的开源。以人为本的校姨那裂程到。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.5781250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00257",
+          "text" : "•2005年2月18日：0頁行发书7200c3-A！、这量一个开源是有效的人像迷您的美名限。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.531249999765625,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00258",
+          "text" : "籌 演示"
+        },
+        {
+          "boundingBox" : [
+            0.11081393330125308,
+            0.3084071217647597,
+            0.1839276843600803,
+            0.020685756206512473
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00259",
+          "text" : "②待办事瑛列畏"
+        },
+        {
+          "boundingBox" : [
+            0.11666666824074068,
+            0.2843750001041666,
+            0.09444444444444444,
+            0.012500000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00260",
+          "text" : "• 豉式报告"
+        },
+        {
+          "boundingBox" : [
+            0.27762200779915247,
+            0.1963686271090307,
+            0.44475597805447054,
+            0.04476274400949476
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00261",
+          "text" : "SkyReels-V2"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-002.jpg",
+      "status" : "processed",
+      "time" : 6.64
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0128",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.011111103888889121,
+            0.6343749998958333,
+            0.43333333333333335,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00262",
+          "text" : "VISUALIZE YOUR STORY"
+        },
+        {
+          "boundingBox" : [
+            0.033333336630576776,
+            0.5843750003125,
+            0.08333332803514269,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00263",
+          "text" : "AI 视頻"
+        },
+        {
+          "boundingBox" : [
+            0.5222222232407407,
+            0.58437500015625,
+            0.061111111111111116,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00264",
+          "text" : "AI廚"
+        },
+        {
+          "boundingBox" : [
+            0.06666666064814836,
+            0.33749999989583335,
+            0.36111111111111105,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00265",
+          "text" : "voin the skyieels uiscerd！"
+        },
+        {
+          "boundingBox" : [
+            0.14999999562500008,
+            0.1968749998437499,
+            0.7000000000000001,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00266",
+          "text" : "在处处都是闭源模型的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-003.jpg",
+      "status" : "processed",
+      "time" : 14.045
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0129",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.13867417664015633,
+            0.4806313993297696,
+            0.2226516511705187,
+            0.026237201690673784
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00267",
+          "text" : "SkyReels V2"
+        },
+        {
+          "boundingBox" : [
+            0.21111110880952377,
+            0.19687499966517863,
+            0.5777777777777777,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00268",
+          "text" : "SkyReels-V2模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-004.jpg",
+      "status" : "processed",
+      "time" : 46.565
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0130",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3609854832488982,
+            0.1966161267792469,
+            0.28358459472656244,
+            0.044267743825912476
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00269",
+          "text" : "人物表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-005.jpg",
+      "status" : "processed",
+      "time" : 61.89
+    },
+    {
+      "actionId" : "ACT-13",
+      "frameId" : "TARGET-0131",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.05000000646825392,
+            0.1968750001785715,
+            0.9055555555555557,
+            0.043749999999999845
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00270",
+          "text" : "可能彻底改变视频创作的流程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-13-006.jpg",
+      "status" : "processed",
+      "time" : 78.294
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "TARGET-0132",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41658029500892624,
+            0.6279222394926353,
+            0.30017274220784507,
+            0.041030521690845534
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00271",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2777777827222222,
+            0.57812500015625,
+            0.49444444444444446,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00272",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00273",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.11666666638888891,
+            0.47812500002297786,
+            0.18888888888888888,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00274",
+          "text" : "◎心◎新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00275",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 ZiagcoyeM！ 的推環代鷗舶模型收"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00276",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00277",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00278",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.36659836091251213,
+            0.1967373844300916,
+            0.2779143863254124,
+            0.04402523040771478
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00279",
+          "text" : "昆仑万维"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-14-001.jpg",
+      "status" : "processed",
+      "time" : 2.2
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "TARGET-0133",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.41653871161282074,
+            0.6278239249717181,
+            0.30025590260823565,
+            0.04122714847326281
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00280",
+          "text" : "SkyReels"
+        },
+        {
+          "boundingBox" : [
+            0.2777777827222222,
+            0.57812500015625,
+            0.49444444444444446,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00281",
+          "text" : "SkyReels V2：无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.50625000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00282",
+          "text" : "欢症来影 Skyfees V2 存修隊！在这累，辽情找鲜我们的无凉长電影堡或模紧的模型校重稽禮理代弱"
+        },
+        {
+          "boundingBox" : [
+            0.15277777750816993,
+            0.47812500002297786,
+            0.15277777777777776,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00283",
+          "text" : "心。新闻！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665296296341,
+            0.44999999984375005,
+            0.8222222222222222,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00284",
+          "text" : "• 205年8月21日：看段门友布了232adsAU2 系列模型剩提教享基模型 3iagcoyeM！ 的推環代鷗舶模型你"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.3749999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00285",
+          "text" : "•2005年2月18日：01行放市7200a44M1 这部第一个也是期天迎物开第。以人力本約花奶基烈程配。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.3906250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00286",
+          "text" : "•2025年2升18日：0推日孩市7208043-At，这星一个开源韭有效的人像迷今础盖组鼠。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.34374999976562504,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00287",
+          "text" : "¾ 演示"
+        },
+        {
+          "boundingBox" : [
+            0.08333332812500005,
+            0.1968749998437499,
+            0.8333333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00288",
+          "text" : "支持无限时长高质量电影的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-14-002.jpg",
+      "status" : "processed",
+      "time" : 4.8
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "TARGET-0134",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555558860016956,
+            0.69375000015625,
+            0.7111110687255859,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00289",
+          "text" : "欢级来时s你看e V2存健攫！在欢禦，狠精找影我行的无宕长嘞夥辈摸模鑒矜穫型杈蠹稆榷理1弱"
+        },
+        {
+          "boundingBox" : [
+            0.17777777751262627,
+            0.6656250000355114,
+            0.1277777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00290",
+          "text" : "• 新间！！"
+        },
+        {
+          "boundingBox" : [
+            0.11666665351851893,
+            0.5624999998437501,
+            0.7888888888888889,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00291",
+          "text" : "•2045第2月18B：0我行发化了20包a的.Y！，这是第一个你民最我进的开源。以人为本的校姨那裂程到。"
+        },
+        {
+          "boundingBox" : [
+            0.11666669915572514,
+            0.5781250001562499,
+            0.6777777353922526,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00292",
+          "text" : "•2005年2月18日：0頁行发书7200c3-A！、这量一个开源是有效的人像迷您的美名限。"
+        },
+        {
+          "boundingBox" : [
+            0.11111111069444447,
+            0.531249999765625,
+            0.08888888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00293",
+          "text" : "籌 演示"
+        },
+        {
+          "boundingBox" : [
+            0.11081393330125308,
+            0.3084071217647597,
+            0.1839276843600803,
+            0.020685756206512473
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00294",
+          "text" : "②待办事瑛列畏"
+        },
+        {
+          "boundingBox" : [
+            0.11666666824074068,
+            0.2843750001041666,
+            0.09444444444444444,
+            0.012500000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00295",
+          "text" : "• 豉式报告"
+        },
+        {
+          "boundingBox" : [
+            0.27762200779915247,
+            0.1963686271090307,
+            0.44475597805447054,
+            0.04476274400949476
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00296",
+          "text" : "SkyReels-V2"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-14-003.jpg",
+      "status" : "processed",
+      "time" : 6.4
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "RESAMPLED-0001",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2790697782740204,
+            0.5769531253191117,
+            0.4935400221082899,
+            0.02188408374786377
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00297",
+          "text" : "SkyReels V2： 无限长胶片生成模型"
+        },
+        {
+          "boundingBox" : [
+            0.11111112483227682,
+            0.5085937498474242,
+            0.7002583821614583,
+            0.011755087226629324
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00298",
+          "text" : "欢迎来到 SkyReels V2 存储库！在这里，您将找到我们的无限长电影生成模型的模型权重和推理代码"
+        }
+      ],
+      "sourceFrame" : "resampled/project-page-2.2s.jpg",
+      "status" : "processed",
+      "time" : 2.2
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "RESAMPLED-0002",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11111112483227682,
+            0.5085937498474242,
+            0.7002583821614583,
+            0.011755087226629324
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00299",
+          "text" : "欢迎来到 SkyReels V2 存储库！在这里，您将找到我们的无限长电影生成模型的模型权重和推理代码"
+        }
+      ],
+      "sourceFrame" : "resampled/project-page-4.8s.jpg",
+      "status" : "processed",
+      "time" : 4.8
+    },
+    {
+      "actionId" : "ACT-14",
+      "frameId" : "RESAMPLED-0003",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10852713536935252,
+            0.6933139539299621,
+            0.7028423733181424,
+            0.014534883201122284
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00300",
+          "text" : "欢迎来到 SkyReels V2 存储库！在这里，您将找到我们的无限长电影生成模型的模型权重和推理代码"
+        },
+        {
+          "boundingBox" : [
+            0.10852713730275715,
+            0.3401162788584775,
+            0.5322997199164496,
+            0.013081395626068137
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00301",
+          "text" : "上面的演示展示了使用我们的SkyReels-V2扩散强迫模型生成的30秒视频。"
+        }
+      ],
+      "sourceFrame" : "resampled/project-page-6.4s.jpg",
+      "status" : "processed",
+      "time" : 6.4
+    }
+  ],
+  "generatedAt" : "2026-08-16T03:42:50Z",
+  "manifest" : "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6808e742000000001e000b85/skill-run/targeted-evidence/targeted-evidence.json",
+  "recognitionLanguages" : [
+    "zh-Hans",
+    "en-US"
+  ],
+  "schemaVersion" : "ocr-evidence-1.0"
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "human-ocr-review-1.0",
+  "ocrEvidence": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/targeted-evidence/ocr-evidence.json",
+  "reviewMethod": "Each accepted row was checked against its full-resolution targeted frame. Proposal text is preserved verbatim; a humanCheckedReading is supplied only where the visible caption supports it. Low-contrast whiteboard proposals were not accepted as exact text.",
+  "acceptedRows": [
+    {"ocrId": "OCR-00021", "frameId": "TARGET-0002", "time": 0.25, "proposal": "611.9万", "humanCheckedReading": "611.9万", "decision": "accepted", "role": "opening metric"},
+    {"ocrId": "OCR-00034", "frameId": "TARGET-0003", "time": 0.5, "proposal": "976.0万浏览", "humanCheckedReading": "976.0万浏览", "decision": "accepted", "role": "opening metric"},
+    {"ocrId": "OCR-00045", "frameId": "TARGET-0004", "time": 0.7, "proposal": "832.7万", "humanCheckedReading": "832.7万", "decision": "accepted", "role": "opening metric"},
+    {"ocrId": "OCR-00063", "frameId": "TARGET-0005", "time": 1.033, "proposal": "今天我只说一件事情", "humanCheckedReading": "今天我只说一件事情", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00070", "frameId": "TARGET-0006", "time": 2.5, "proposal": "就是不要用AI做自媒体", "humanCheckedReading": "就是不要用AI做自媒体", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00118", "frameId": "TARGET-0012", "time": 16.71, "proposal": "他们为什么让你用AI做自媒体", "humanCheckedReading": "他们为什么让你用AI做自媒体", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00126", "frameId": "TARGET-0013", "time": 19.004, "proposal": "很显然你点开他主页就会发现", "humanCheckedReading": "很显然你点开他主页就会发现", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00137", "frameId": "TARGET-0014", "time": 21.36, "proposal": "卖他的小程序了", "humanCheckedReading": "卖他的小程序了", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00181", "frameId": "TARGET-0020", "time": 32.375, "proposal": "如果他有好数据的视频", "humanCheckedReading": "如果他有好数据的视频", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00241", "frameId": "TARGET-0028", "time": 44.375, "proposal": "我们要去做离爆款最近的事情", "humanCheckedReading": "我们要去做离爆款最近的事情", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00250", "frameId": "TARGET-0029", "time": 46.085, "proposal": "那么做爆款最近的事情是什么呢", "humanCheckedReading": "那么做爆款最近的事情是什么呢", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00365", "frameId": "TARGET-0044", "time": 80.376, "proposal": "但是爆款有一定几率", "humanCheckedReading": "但是爆款有一定几率（caption continues in adjacent frames as 不可复制的）", "decision": "accepted_partial", "role": "burned caption qualifier"},
+    {"ocrId": "OCR-00383", "frameId": "TARGET-0046", "time": 87.535, "proposal": "如果你试图用机器去共情人类的话", "humanCheckedReading": "如果你试图用机器去共情人类的话", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00393", "frameId": "TARGET-0047", "time": 90, "proposal": "你就是对人类的蔑视", "humanCheckedReading": "你就是对人类的蔑视", "decision": "accepted", "role": "burned caption emphasis"},
+    {"ocrId": "OCR-00420", "frameId": "TARGET-0050", "time": 93.305, "proposal": "我沒有一棒子打死", "humanCheckedReading": "我没有一棒子打死", "decision": "accepted_with_script_variant", "role": "burned caption qualifier"},
+    {"ocrId": "OCR-00435", "frameId": "TARGET-0052", "time": 99.688, "proposal": "你做60分的视频有什么用呢", "humanCheckedReading": "你做60分的视频有什么用呢", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00454", "frameId": "TARGET-0054", "time": 103.171, "proposal": "这里我们讲的一个东西叫权重", "humanCheckedReading": "这里我们讲的一个东西叫权重", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00464", "frameId": "TARGET-0055", "time": 105.424, "proposal": "他们的点赞只有1,000", "humanCheckedReading": "他们的点赞只有1,000", "decision": "accepted", "role": "burned caption number"},
+    {"ocrId": "OCR-00487", "frameId": "TARGET-0057", "time": 111.537, "proposal": "优质的平均内容是5万点赞", "humanCheckedReading": "优质的平均内容是5万点赞（SRT supplies 点赞量）", "decision": "accepted_partial", "role": "burned caption number"},
+    {"ocrId": "OCR-00497", "frameId": "TARGET-0058", "time": 114.613, "proposal": "3,000点赞量的积频的时候", "humanCheckedReading": "3,000点赞量的视频的时候", "decision": "accepted_with_visible_correction", "role": "burned caption number", "note": "Proposal's 积频 is a recognition error; the source frame visibly reads 视频."},
+    {"ocrId": "OCR-00516", "frameId": "TARGET-0060", "time": 120.279, "proposal": "并且把你的基础播放给降低", "humanCheckedReading": "并且把你的基础播放给降低", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00558", "frameId": "TARGET-0065", "time": 129.841, "proposal": "一个厚积薄发的过程", "humanCheckedReading": "一个厚积薄发的过程（preceded by 不是 in adjacent cue/frame）", "decision": "accepted_partial", "role": "burned caption"},
+    {"ocrId": "OCR-00566", "frameId": "TARGET-0066", "time": 132.749, "proposal": "已不是一个这样缓慢上升的曲线", "humanCheckedReading": "它不是一个这样缓慢上升的曲线", "decision": "accepted_with_visible_correction", "role": "burned caption", "note": "Proposal's 已 is a recognition error; the frame visibly reads 它."},
+    {"ocrId": "OCR-00597", "frameId": "TARGET-0070", "time": 142.084, "proposal": "然后你突然开窍了", "humanCheckedReading": "然后你突然开窍了", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00611", "frameId": "TARGET-0072", "time": 143.7, "proposal": "你可以让AI在你写作的过程中", "humanCheckedReading": "你可以让AI在你写作的过程中", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00622", "frameId": "TARGET-0074", "time": 148.358, "proposal": "去头脑风暴", "humanCheckedReading": "去头脑风暴", "decision": "accepted", "role": "burned caption"},
+    {"ocrId": "OCR-00632", "frameId": "TARGET-0075", "time": 150.503, "proposal": "AI一键生成你的脚本", "humanCheckedReading": "AI一键生成你的脚本", "decision": "accepted", "role": "burned caption prohibition"},
+    {"ocrId": "OCR-00644", "frameId": "TARGET-0076", "time": 152.5, "proposal": "然后你拿着脚本去拍这种事情", "humanCheckedReading": "然后你拿着脚本去拍这种事情", "decision": "accepted", "role": "burned caption prohibition"},
+    {"ocrId": "OCR-00656", "frameId": "TARGET-0078", "time": 155.15, "proposal": "我是人类最强编导", "humanCheckedReading": "我是人类最强编导", "decision": "accepted", "role": "burned caption carrier conflict"}
+  ],
+  "rejectedOrUnresolved": [
+    {"scope": "whiteboard small handwriting", "decision": "not accepted as exact text", "reason": "Most proposals are low-confidence, incomplete, or contradicted by visual inspection; the board is retained as an outline/diagram carrier only."},
+    {"ocrId": "OCR-00428", "proposal": "它可以做60分的親频", "decision": "rejected for exact wording", "reason": "親频 is an OCR error; use the raw SRT and checked frame for semantic evidence."},
+    {"scope": "CUE-001 initial spoken fragment", "decision": "unresolved", "reason": "Vision OCR sees the insert and current caption but cannot establish the exact audible first phrase."},
+    {"scope": "closing self-label", "decision": "carrier conflict preserved", "reason": "OCR/frame establish 人类最强编导, while SRT and machine audition say 人类智商编导; neither is silently normalized into the other."}
+  ]
+}

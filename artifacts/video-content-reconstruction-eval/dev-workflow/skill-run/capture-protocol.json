@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-workflow/skill-run/probe.json",
+  "protocolName": "代理式乙女文游开发依赖与状态转移取证协议",
+  "rationale": "本视频的认知变化依赖一条被快速剪辑的开发链：工具/API 准备 → 游戏需求输入 → 框架输出 → 用户自备美术资产 → 代理接入资产 → 预览与对话评价 → 自然语言布局返修。口播、字幕、短暂屏幕文字、终端/UI 状态与结果预览承担不同信息，且 SRT 对品牌名有明显歧义。因此协议按每次输入—操作—参数—输出和 before/during/after 状态取证，同时把三小时、零代码、文本质量和普适性保留为作者主张，不把剪辑顺序当作连续执行证明。",
+  "knowledgeUnitFields": [
+    {"name": "workflow_phase", "required": true, "reason": "需要保存 API 准备、框架生成、美术接入、预览评价和布局返修的依赖顺序。", "derivedFrom": ["MC-02", "MC-05", "MC-07", "MC-10", "REL-H01"]},
+    {"name": "named_tool_or_service", "required": true, "reason": "字幕对 Claude Code、Kimi K2 与 Kimi CLI 的识别不一致，规范名称必须由屏幕证据支撑。", "derivedFrom": ["CAR-02", "CAR-03", "RISK-01", "CQ-01"]},
+    {"name": "input_or_precondition", "required": true, "reason": "每一步都依赖用户已有代理、API、游戏需求或美术资产，缺一项就不能解释流程。", "derivedFrom": ["REL-H01", "REL-H03", "REL-H04", "REL-H05", "CQ-02", "CQ-05"]},
+    {"name": "ordered_action", "required": true, "reason": "静态中点帧不能证明复制、替换、发送、查找资产、打开预览或再次运行代码。", "derivedFrom": ["CAR-05", "RISK-03", "CQ-02", "CQ-05", "CQ-07"]},
+    {"name": "visible_parameter_or_value", "required": true, "reason": "命令、配置键、占位符与游戏字段是教程可执行性的关键，但不可把模糊文字或密钥猜成事实。", "derivedFrom": ["CAR-06", "RISK-02", "RISK-04", "CQ-02", "CQ-03"]},
+    {"name": "before_state", "required": true, "reason": "API 配置、缺图和旧布局都以问题状态作为操作起点。", "derivedFrom": ["CAR-07", "MC-04", "MC-07", "MC-09", "RISK-03", "RISK-07"]},
+    {"name": "during_state", "required": true, "reason": "需要区分视频实际展示的运行中界面与被剪辑跳过的操作。", "derivedFrom": ["CAR-04", "CAR-05", "RISK-03", "CQ-07"]},
+    {"name": "after_state_or_output", "required": true, "reason": "成功运行、生成框架、带图预览和新布局是作者声称步骤有效的可见结果。", "derivedFrom": ["CAR-07", "CAR-08", "MC-04", "MC-06", "MC-08", "MC-10"]},
+    {"name": "spoken_or_authored_claim", "required": true, "reason": "三小时、零代码、自然对话、优于多数编剧和新手可做均须与可见状态分开。", "derivedFrom": ["MC-01", "MC-09", "MC-11", "RISK-06", "REL-H09"]},
+    {"name": "demonstrated_example_scope", "required": true, "reason": "预览中的人物对话与多题材画面只能支撑其可见范围，不能自动证明整个生成过程或普适性。", "derivedFrom": ["CAR-08", "MC-09", "MC-11", "RISK-08", "CQ-06", "CQ-09"]},
+    {"name": "editing_or_transition_caveat", "required": true, "reason": "过程被快速剪辑，必须指出每个状态链中的跳步与未证明连续性。", "derivedFrom": ["CAR-09", "RISK-03", "REL-H09"]},
+    {"name": "unknown_or_unestablished", "required": true, "reason": "密钥、完整模板、跑图方法、耗时验证、版本、价格、失败条件和复现率不能补写。", "derivedFrom": ["RISK-02", "RISK-04", "RISK-05", "RISK-06", "CQ-08", "CQ-10"]}
+  ],
+  "captureActions": [
+    {
+      "id": "CAP-HOOK-RESULT",
+      "range": {"start": 0, "end": 14.252},
+      "carrier": "on-screen text, result preview, editing order",
+      "mode": "exact_times",
+      "times": [0.3, 1.5, 3.0, 4.5, 6.0, 7.5, 9.0, 10.5, 12.0, 13.8],
+      "reason": "确认开场游戏成品、作者出镜、三小时/零代码/提示词模板承诺如何被并置，避免把承诺改写成已验证事实。",
+      "expectedObservation": "乙女文游标题/人物/对话预览、作者口播字幕与提示词模板画面。",
+      "derivedFrom": ["MC-01", "CAR-08", "CAR-09", "RISK-06", "CQ-08"]
+    },
+    {
+      "id": "CAP-API-ENTRY",
+      "range": {"start": 14.252, "end": 17.48},
+      "carrier": "step overlay, software state, model/API labels",
+      "mode": "ocr_review",
+      "densitySeconds": 0.25,
+      "reason": "短时间内出现 step1、代理和 API/模型名称，需核对字幕歧义并确认本步前置条件。",
+      "expectedObservation": "step1 配置 API 标题、Claude Code 界面或配置入口、Kimi K2 Thinking 等可读名称。",
+      "derivedFrom": ["MC-02", "CAR-03", "CAR-04", "RISK-01", "CQ-01"]
+    },
+    {
+      "id": "CAP-INSTALL-ALTERNATIVE",
+      "range": {"start": 17.48, "end": 28.91},
+      "carrier": "terminal command, Kimi CLI page, spoken alternative path",
+      "mode": "ocr_review",
+      "densitySeconds": 0.5,
+      "reason": "区分 Claude Code 安装命令与不想配置时的 Kimi CLI 替代路径，并只记录清晰可见的命令/名称。",
+      "expectedObservation": "终端安装命令、Kimi CLI 安装页面或基准介绍、替代路径的口播字幕。",
+      "derivedFrom": ["MC-03", "REL-H02", "RISK-01", "CQ-01", "CQ-02"]
+    },
+    {
+      "id": "CAP-API-CREATE",
+      "range": {"start": 28.867, "end": 32.817},
+      "carrier": "developer platform UI and cursor/action sequence",
+      "mode": "before_during_after",
+      "times": [28.9, 29.8, 30.65, 31.5, 32.4, 32.8],
+      "reason": "保留进入开发者平台、获取 API 的界面前后状态，不把单张 API 页面当成已完成复制。",
+      "expectedObservation": "Kimi/Moonshot 开发者平台、API Key 管理/创建区域以及是否可见已创建条目；真实密钥值不应被推断。",
+      "derivedFrom": ["MC-04", "CAR-04", "CAR-05", "RISK-02", "RISK-03", "CQ-02"]
+    },
+    {
+      "id": "CAP-CONFIG-TEXT",
+      "range": {"start": 32.433, "end": 37.2},
+      "carrier": "configuration text, environment variables, terminal",
+      "mode": "ocr_review",
+      "densitySeconds": 0.2,
+      "reason": "配置键、端点、模型 ID 与 API 占位符只在短暂屏幕文字中出现，是输入/参数的核心证据。",
+      "expectedObservation": "配置提示中的环境变量或模型名称、API 占位符/遮挡状态、发送到终端后的界面；不可恢复真实密钥。",
+      "derivedFrom": ["MC-04", "CAR-03", "CAR-06", "RISK-02", "CQ-02"]
+    },
+    {
+      "id": "CAP-CONFIG-SUCCESS",
+      "range": {"start": 36.986, "end": 44.88},
+      "carrier": "terminal/UI state, step transition, spoken result",
+      "mode": "before_during_after",
+      "times": [37.0, 38.0, 39.0, 40.0, 41.0, 42.0, 43.0, 43.8, 44.8],
+      "reason": "确认模型配置后出现的成功运行状态，以及流程何时从准备环境转向发送游戏需求。",
+      "expectedObservation": "终端或 Claude Code 成功信息、可接受需求的界面、step2 搭框架标题与提示词入口。",
+      "derivedFrom": ["MC-04", "MC-05", "REL-H01", "RISK-03", "CQ-02"]
+    },
+    {
+      "id": "CAP-GAME-PROMPT",
+      "range": {"start": 43.767, "end": 51.8},
+      "carrier": "prompt text, spoken fields, editor/terminal UI",
+      "mode": "ocr_review",
+      "densitySeconds": 0.5,
+      "reason": "核对需求输入的世界观、主角、剧情、玩法与数值字段，并判断屏幕是否完整展示模板正文。",
+      "expectedObservation": "长提示词/需求文档的可读标题与字段、发送或运行入口；可能存在正文被截断或字号过小。",
+      "derivedFrom": ["MC-05", "MC-06", "REL-H03", "RISK-04", "CQ-03"]
+    },
+    {
+      "id": "CAP-FRAMEWORK-OUTPUT",
+      "range": {"start": 50.16, "end": 61.7},
+      "carrier": "generated document/UI state and spoken output description",
+      "mode": "ui_state_review",
+      "densitySeconds": 0.75,
+      "reason": "区分框架生成的执行界面、生成文档和作者口述的主题、男性角色、核心数值。",
+      "expectedObservation": "生成中的界面或文档、都市生存困境主题、角色/核心数值条目，以及进入缺图问题前的文字框架状态。",
+      "derivedFrom": ["MC-06", "CAR-04", "CAR-06", "REL-H03", "CQ-04"]
+    },
+    {
+      "id": "CAP-ART-GAP",
+      "range": {"start": 60.55, "end": 65.2},
+      "carrier": "before-state UI, missing-image claim, step3 overlay",
+      "mode": "before_during_after",
+      "times": [60.6, 61.5, 62.5, 63.3, 64.2, 64.8, 65.2],
+      "reason": "保留文字框架已有但角色形象仍缺少的 before 状态，以及 step3 美术资产的转场。",
+      "expectedObservation": "生成文档/角色信息、缺图问题、角色示意图和 step3 美术资产标题。",
+      "derivedFrom": ["MC-07", "REL-H04", "RISK-05", "CQ-05"]
+    },
+    {
+      "id": "CAP-ASSET-INTEGRATION",
+      "range": {"start": 64.829, "end": 77.29},
+      "carrier": "asset folder, natural-language instruction, agent run, preview result",
+      "mode": "before_during_after",
+      "times": [64.9, 65.5, 66.0, 66.4, 67.0, 68.0, 69.0, 70.2, 71.5, 72.8, 74.0, 75.0, 76.0, 77.2],
+      "reason": "记录用户自备资产、文件夹、告诉代理查找/放入游戏、执行后打开带图预览的完整可见链条。",
+      "expectedObservation": "图片文件夹、提示代理使用美术资产的文本、代理执行界面和角色图片进入游戏后的预览。",
+      "derivedFrom": ["MC-07", "MC-08", "REL-H04", "REL-H05", "RISK-05", "CQ-05"]
+    },
+    {
+      "id": "CAP-DIALOGUE-EXAMPLES",
+      "range": {"start": 74.033, "end": 90.86},
+      "carrier": "game preview, dialogue text, character art, author assessment",
+      "mode": "exact_times",
+      "times": [74.1, 75.5, 77.0, 78.5, 80.0, 81.5, 83.0, 84.5, 86.0, 87.5, 89.0, 90.5],
+      "reason": "用多张结果帧限定作者对自然、有生活气息、有情绪和优于多数编剧的评价对象。",
+      "expectedObservation": "不同角色与对白框的游戏预览、作者口播评价字幕、布局不喜欢的转折。",
+      "derivedFrom": ["MC-08", "MC-09", "REL-H06", "RISK-06", "CQ-06"]
+    },
+    {
+      "id": "CAP-LAYOUT-REVISION",
+      "range": {"start": 89.23, "end": 98.833},
+      "carrier": "old layout, revision instruction, code/run state, new layout",
+      "mode": "before_during_after",
+      "times": [89.3, 90.0, 90.7, 91.0, 91.5, 92.0, 92.5, 93.0, 93.5, 94.0, 94.5, 95.0, 95.5, 96.0, 96.5, 97.0, 97.5, 98.0, 98.8],
+      "reason": "该段在约九秒内快速切换旧预览、自然语言修改、代码与新版本，必须用高密度前/中/后帧避免遗漏具体状态变化。",
+      "expectedObservation": "作者不喜欢的旧布局、可读修改要求、代理再次运行/编辑代码、新版本预览和『效果好多了』的评价。",
+      "derivedFrom": ["MC-09", "MC-10", "REL-H07", "RISK-03", "RISK-07", "CQ-07"]
+    },
+    {
+      "id": "CAP-GENERALIZATION",
+      "range": {"start": 97.695, "end": 111.061},
+      "carrier": "genre examples, presenter text overlays, spoken generalization",
+      "mode": "exact_times",
+      "times": [97.8, 98.8, 99.6, 100.5, 101.4, 102.2, 103.0, 104.0, 105.0, 106.0, 107.5, 109.0, 110.5],
+      "reason": "分别记录职场、古风、悬疑镜头与『不懂开发/代码/AI也能做』的作者主张，避免把并置画面误当成逐个被演示的生成链。",
+      "expectedObservation": "不同题材示例、低门槛大字、独立文游结果承诺和索取文档的收尾。",
+      "derivedFrom": ["MC-11", "REL-H08", "REL-H09", "RISK-06", "RISK-08", "CQ-08", "CQ-09"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "API/configuration precondition_for agent request", "derivedFrom": ["REL-H01", "CQ-02"]},
+    {"relation": "installation or CLI alternative_path_to usable agent", "derivedFrom": ["REL-H02", "CQ-01"]},
+    {"relation": "game requirement input_to generated framework", "derivedFrom": ["REL-H03", "CQ-03", "CQ-04"]},
+    {"relation": "missing character images resolved_by user-prepared art assets", "derivedFrom": ["REL-H04", "RISK-05"]},
+    {"relation": "asset folder plus instruction precedes preview with art", "derivedFrom": ["REL-H05", "CQ-05"]},
+    {"relation": "dialogue examples used_as_rationale_for author quality claim", "derivedFrom": ["REL-H06", "CQ-06"]},
+    {"relation": "old layout plus revision request before/during/after new layout", "derivedFrom": ["REL-H07", "CQ-07"]},
+    {"relation": "single edited case framed_as_support_for broad multi-genre low-skill claim", "derivedFrom": ["REL-H08", "REL-H09", "CQ-08", "CQ-09"]}
+  ],
+  "stoppingRules": [
+    "CQ-01 至 CQ-10 均能由可解析 cue/shot/targeted frame 回答，或以有范围证据的 unknown 明确说明视频未建立。",
+    "MC-01 至 MC-11 每项都至少有一组口播/字幕证据和相应的视觉或 UI 检查结果。",
+    "CAR-01 至 CAR-09 全部被检查；若某个精确文本仍不可读，必须列为 unknown，不能用常识补齐。",
+    "API 配置、资产接入和布局返修均具备 before、一个或多个 during、after 帧；剪辑跳步被明确记录。",
+    "每个 required relation 的两端都有证据，或关系被降级为作者表述/剪辑呈现而非客观因果。",
+    "真实 API 密钥、完整提示词、跑图方法、耗时验证、版本/价格/失败条件和复现率均未被伪造。",
+    "逐字稿保持 evidence-pack 中 32 个 cue 的原文、起止时间、代表帧与全部 overlappingShots。",
+    "元问题『原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？』回答为无，且列出检查范围与未建立项。"
+  ],
+  "declaredUnknowns": [
+    "API 密钥真实值、账户权限、价格、额度、地区限制和完整安全配置。",
+    "视频中长提示词模板的完整全文，以及作者对外提供文档是否与屏幕版本完全一致。",
+    "美术资产的生成工具、图像提示词、模型、参数、版权和一致性控制方法。",
+    "剪辑未展示的依赖安装、命令执行细节、报错恢复、部署、保存和分享步骤。",
+    "三小时与完全零代码是否有连续过程记录；作者是否曾手动编辑代码。",
+    "对话质量优于多数编剧、所有新手都能复现和所有题材都适用的外部真实性。",
+    "结尾不同题材镜头是否均由本次案例、同一套提示词和同一执行过程生成。"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "corpusId": "6a438b7100000000070124b6",
+  "independent": true,
+  "materialDiscrepancyCount": 0,
+  "items": [
+    {
+      "id": "D-01",
+      "severity": "minor_non_failing",
+      "area": "coverage_denominators",
+      "auditExpectation": "Use 18 independent critical questions and 16 independent core units.",
+      "candidateState": "coverageMatrix.criticalQuestions enumerates the probe's 8 questions and coverageMatrix.coreEvidence reports 15/15.",
+      "evaluation": "Direct comparison confirms that the reconstruction answers all 18 audit questions and represents all 16 audit core units. The mismatch is in self-reported denominator construction, not content recall or evidence coverage.",
+      "gateImpact": "none"
+    }
+  ]
+}

@@ -1,0 +1,616 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "只重建 87.9 秒原视频、提供的 SRT、证据包和本次定向取帧/OCR。产品性能、开源状态、训练数据、授权、在线服务可用性与样片归属均未做外部核验；作者主张、画面观察、系统推断和未知严格分开。",
+  "viewerChange": {
+    "before": "观众可能把 AI 视频视为只能生成 5 秒或 10 秒碎片、完整短片仍有高拍摄门槛。",
+    "after": "作者希望观众把 SkyReels-V2 视为支持无限时长、开源且有在线体验、能够生成连续电影感样片并降低普通创作者门槛的工具，并趁‘免费开源阶段’立即尝试；本重建同时明确视频内短样片与截图没有证明这些主张的全部范围和条件。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-directed frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs from the supplied local video and capture-protocol.json",
+      "timeRange": {"start": 0, "end": 87.9},
+      "limitations": ["每帧只证明该时刻可见状态", "运动连续性由定向序列近似检查，不能排除帧间问题或隐藏剪辑", "重复动作间可能产生相同时间帧"]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift over targeted-evidence manifest, followed by visual review",
+      "timeRange": {"start": 0, "end": 87.9},
+      "limitations": ["OCR 是提议而非地面真值", "中文技术页面小字大量低置信度或误读", "仅引用经源帧复核的高影响行；项目页原 360×640 帧不足以读取小字，另以原视频 1440×2560 重采样复核"]
+    },
+    {
+      "id": "SRC-MEDIA-METADATA",
+      "path": "../evidence/evidence-pack.json",
+      "kind": "supplied evidence-pack media metadata",
+      "producedBy": "build-evidence-pack.mjs from the supplied local video and SRT before this fresh run",
+      "timeRange": {"start": 0, "end": 87.9},
+      "limitations": ["媒体元数据只确认音轨存在和编码，不识别背景音乐、音效或插入音频的语义角色"]
+    },
+    {
+      "id": "SRC-RESAMPLED",
+      "path": "targeted-evidence/resampled-evidence.json",
+      "kind": "original-resolution targeted frame manifest",
+      "producedBy": "ffmpeg extraction at 1440×2560 from the supplied local video after the 360×640 probe left project-page small text unreadable",
+      "timeRange": {"start": 1.867, "end": 6.967},
+      "limitations": ["页面文字是项目页自身陈述，不是外部核验", "原分辨率帧能读取仓库说明和 demos 说明，但不能证明链接当前可用、许可范围或视频播放器完整内容"]
+    },
+    {
+      "id": "SRC-RESAMPLED-OCR",
+      "path": "targeted-evidence/resampled-ocr-evidence.json",
+      "kind": "macOS Vision OCR evidence for original-resolution project-page frames",
+      "producedBy": "ocr-frames.swift over targeted-evidence/resampled-evidence.json, followed by direct comparison with the 1440×2560 source frames",
+      "timeRange": {"start": 1.867, "end": 6.967},
+      "limitations": ["OCR 行使用 derived-artifact namespaced IDs", "页面文字是提供方陈述而非外部真实性验证", "新闻行分行 OCR 需要与原分辨率源帧合读"]
+    },
+    {
+      "id": "SRC-AUDIO-NON-SPEECH",
+      "path": "audio/audio-semantic-evidence.json",
+      "kind": "audio.non_speech full-track semantic evidence",
+      "producedBy": "ffmpeg 16 kHz mono extraction plus MIT Audio Spectrogram Transformer AudioSet classification over the complete track in overlapping 10-second windows with 5-second hop",
+      "timeRange": {"start": 0, "end": 87.9},
+      "limitations": ["17 个窗口均为机器语义听检提议", "音乐可稳定接受为全程共现载体，但低分且不稳定的喷雾、拉链、啪声等标签不接受为具体音效事实", "不能识别曲名、作者、授权、插入素材原声或精确起止帧"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id":"CUE-001","start":0,"end":3.12,"text":"这两天ai圈又出大事儿了，昆仑万维开源了","representativeFrame":"frames/cues/cue-001.jpg","overlappingShots":["SHOT-001","SHOT-002"]},
+      {"id":"CUE-002","start":3.12,"end":6.08,"text":"全球首个支持无线时长的高质量电影大模型","representativeFrame":"frames/cues/cue-002.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-003","start":6.08,"end":7.2,"text":"Skyrise v二它","representativeFrame":"frames/cues/cue-003.jpg","overlappingShots":["SHOT-002","SHOT-003"]},
+      {"id":"CUE-004","start":7.21,"end":11.93,"text":"暴力突破了现有的ai视频时长，不是生成五秒或者十秒的拼接小短片","representativeFrame":"frames/cues/cue-004.jpg","overlappingShots":["SHOT-003"]},
+      {"id":"CUE-005","start":11.93,"end":16.16,"text":"而是可以无限时长的生成高清视频，在处处都是边缘模型的丛林中","representativeFrame":"frames/cues/cue-005.jpg","overlappingShots":["SHOT-003"]},
+      {"id":"CUE-006","start":16.17,"end":21.05,"text":"它直接免费开源，还推出了免部署的在线体验版，这无疑是影视圈的狂欢","representativeFrame":"frames/cues/cue-006.jpg","overlappingShots":["SHOT-003","SHOT-004"]},
+      {"id":"CUE-007","start":21.05,"end":25.19,"text":"也是普通小白临阵起步的创作红利，彻底告别了高门槛的拍摄成本","representativeFrame":"frames/cues/cue-007.jpg","overlappingShots":["SHOT-004","SHOT-005"]},
+      {"id":"CUE-008","start":25.2,"end":29.48,"text":"你们看我刚刚生成的这段，由于突破了时长限制，它不再是零散的片段","representativeFrame":"frames/cues/cue-008.jpg","overlappingShots":["SHOT-005"]},
+      {"id":"CUE-009","start":29.48,"end":34.52,"text":"而是有连续剧情的完整短片，不卡顿不扭曲，流畅度和画质也非常出色","representativeFrame":"frames/cues/cue-009.jpg","overlappingShots":["SHOT-005"]},
+      {"id":"CUE-010","start":34.53,"end":38.69,"text":"一镜到底的三十秒长镜头是它的独家功能，且持续无限延长","representativeFrame":"frames/cues/cue-010.jpg","overlappingShots":["SHOT-005"]},
+      {"id":"CUE-011","start":38.69,"end":41.11,"text":"无论是航拍水拍都能一气呵成","representativeFrame":"frames/cues/cue-011.jpg","overlappingShots":["SHOT-005","SHOT-006"]},
+      {"id":"CUE-012","start":41.12,"end":45.32,"text":"再试试最近这种很火的乡村怀旧视频，也能处理的氛围感极高","representativeFrame":"frames/cues/cue-012.jpg","overlappingShots":["SHOT-006","SHOT-007","SHOT-008"]},
+      {"id":"CUE-013","start":45.32,"end":47.81,"text":"如此强大的scarios v二模型背后","representativeFrame":"frames/cues/cue-013.jpg","overlappingShots":["SHOT-008","SHOT-009"]},
+      {"id":"CUE-014","start":47.82,"end":51.622,"text":"是通过六百二十万小时电影素材训练出来的，什么概念呢？","representativeFrame":"frames/cues/cue-014.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-015","start":51.622,"end":54.99,"text":"相当于把世界顶级导演的拍摄经验和镜头语言","representativeFrame":"frames/cues/cue-015.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-016","start":55,"end":60.12,"text":"全部装进了一个模型里，任由你来操控，所以它才能真正的理解我们的需求","representativeFrame":"frames/cues/cue-016.jpg","overlappingShots":["SHOT-009","SHOT-010"]},
+      {"id":"CUE-017","start":60.12,"end":63.66,"text":"不管是处理运境人物表情还是意味深长的镜头语言","representativeFrame":"frames/cues/cue-017.jpg","overlappingShots":["SHOT-010","SHOT-011"]},
+      {"id":"CUE-018","start":63.67,"end":68.63,"text":"都非常出色，这哪里是ai，这简直就是一个资深电影大师在背后为你服务","representativeFrame":"frames/cues/cue-018.jpg","overlappingShots":["SHOT-011"]},
+      {"id":"CUE-019","start":68.63,"end":72,"text":"给你吐素材。想象一下，你现在用ai写一个短剧剧本","representativeFrame":"frames/cues/cue-019.jpg","overlappingShots":["SHOT-011","SHOT-012"]},
+      {"id":"CUE-020","start":72,"end":76.41,"text":"再用这样的ai就能制作一部完整的短剧，然后说不定你就能混进娱乐圈了","representativeFrame":"frames/cues/cue-020.jpg","overlappingShots":["SHOT-012"]},
+      {"id":"CUE-021","start":76.42,"end":80.168,"text":"不得不说scarios的出现可能彻底改变视频创作的流程","representativeFrame":"frames/cues/cue-021.jpg","overlappingShots":["SHOT-012","SHOT-013"]},
+      {"id":"CUE-022","start":80.168,"end":84.26,"text":"趁现在它还属于免费开源的阶段，我强烈建议你们赶紧去试试","representativeFrame":"frames/cues/cue-022.jpg","overlappingShots":["SHOT-013","SHOT-014"]},
+      {"id":"CUE-023","start":84.26,"end":86.36,"text":"因为整个内容创作行业的游戏规则","representativeFrame":"frames/cues/cue-023.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-024","start":86.37,"end":87.934,"text":"都会被ai彻底改写","representativeFrame":"frames/cues/cue-024.jpg","overlappingShots":["SHOT-014"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "可见产品身份是 SkyReels-V2",
+      "importance": "core",
+      "statement": "项目页面可见 SkyReels 标志和标题‘SkyReels V2：无限长胶片生成模型’，烧录字幕也显示‘SkyReels-V2’；提供的 SRT 则写成‘Skyrise v二’或‘scarios v二’，所以重建采用可见身份并原样保留 SRT 冲突。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 1.867, "end": 7.21},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"RESAMPLED-0001","supports":"原分辨率项目页 Logo 和标题可见‘SkyReels V2：无限长胶片生成模型’。"},
+        {"refType":"ocr","ref":"OCR-00297","supports":"原分辨率 OCR 经源帧复核为‘SkyReels V2：无限长胶片生成模型’。"},
+        {"refType":"ocr","ref":"OCR-00035","supports":"6.4 秒烧录字幕经复核为 SkyReels-V2。"},
+        {"refType":"cue","ref":"CUE-003","supports":"SRT 原文保留 Skyrise v二冲突。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["视频内未完整建立页面 URL、仓库归属与口播人物身份。"]
+    },
+    {
+      "id": "KU-02",
+      "title": "作者的时长主张",
+      "importance": "core",
+      "statement": "作者声称 SkyReels-V2 突破 5 秒或 10 秒拼接小短片的限制，可以生成无限时长高清视频，并把 30 秒一镜到底、持续无限延长称为其独家功能。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 7.21, "end": 41.11},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-004","supports":"作者设置 5/10 秒拼接限制作为对照。"},
+        {"refType":"cue","ref":"CUE-005","supports":"作者声称无限时长生成高清视频。"},
+        {"refType":"cue","ref":"CUE-010","supports":"作者声称 30 秒一镜到底、独家功能和持续无限延长。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "SkyReels-V2 能突破短片时长限制并持续延长。",
+        "evidenceUnitIds": ["KU-03", "KU-04", "KU-05", "KU-12", "KU-23"],
+        "conditions": ["项目页把页面 demos 说明为扩散强迫模型生成的 30 秒视频；社交视频没有完整播放其 30 秒源文件，也没有给出提示词、参数或连续计时界面。"],
+        "counterexamples": ["当前嵌入窗口内存在化妆镜、草原和海龟之间的跨场景切换。"],
+        "actions": ["作者建议观众尝试产品。"],
+        "limits": ["当前视频本身没有连续播放 30 秒单镜头，也无法展示字面意义上的无限时长。"]
+      },
+      "unknowns": ["未剪辑源序列是否达到 30 秒或可无限延长。"]
+    },
+    {
+      "id": "KU-03",
+      "title": "时长主张所覆盖的可见样片窗口",
+      "importance": "core",
+      "statement": "25.2-41.12 秒的定向样片窗口约 15.92 秒，依次出现化妆镜前女子、草原航拍和水下海龟；最长可清楚核验的同场景窗口约 8.8 秒，34.2-34.52 秒可见转场，约 38.92 秒切到海龟。这个社交视频嵌入窗口只能证明几段短样片被展示；它不否定项目页另行声称 demos 为 30 秒视频，但自身不能证明一个 30 秒无切长镜头或无限延长。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 25.2, "end": 41.12},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0011","supports":"25.2 秒进入化妆镜前女子样片。"},
+        {"refType":"targeted_frame","ref":"TARGET-0029","supports":"34.2 秒女子与草原画面交叠转场。"},
+        {"refType":"targeted_frame","ref":"TARGET-0032","supports":"34.92 秒为草原航拍。"},
+        {"refType":"targeted_frame","ref":"TARGET-0042","supports":"38.92 秒已切为水下海龟。"},
+        {"refType":"targeted_frame","ref":"TARGET-0048","supports":"41.12 秒转入乡村画面。"}
+      ],
+      "confidence": "high",
+      "reasoning": "窗口长度由协议边界 41.12-25.2 计算；场景切换由连续定向帧观察。技术 shot ID 仅辅助定位，不被当作语义场景数证明。",
+      "unknowns": ["三个画面是否来自同一次生成或三个独立生成", "原始未嵌入样片的总时长。"]
+    },
+    {
+      "id": "KU-04",
+      "title": "化妆镜样片的可见连续性",
+      "importance": "core",
+      "statement": "25.2-34.2 秒每 0.5 秒取帧持续显示同一名女子、同一圆镜/化妆台环境和连续的持刷动作；扣除可见转场边界，最长可清楚核验的同场景窗口约 8.8 秒。样本帧未见语义场景硬切，但这种序列不足以证明所有帧都不卡顿、完全无形变或原始视频有连续剧情。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 25.2, "end": 34.2},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0011","supports":"序列起点人物和环境。"},
+        {"refType":"targeted_frame","ref":"TARGET-0019","supports":"29.2 秒同一环境、人物动作变化。"},
+        {"refType":"targeted_frame","ref":"TARGET-0027","supports":"33.2 秒仍为同一人物和环境。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "三帧代表 0.5 秒密度序列的起中后状态；对运动质量的判断受采样与画中画遮挡限制。",
+      "unknowns": ["帧间是否存在微小卡顿/形变", "‘连续剧情’所指的故事因果", "样片原始长度与生成来源。"]
+    },
+    {
+      "id": "KU-05",
+      "title": "作者对样片连续性和画质的评价",
+      "importance": "core",
+      "statement": "作者把其所称‘刚刚生成’的片段评价为不是零散片段，而是有连续剧情的完整短片，并声称不卡顿、不扭曲、流畅度和画质出色；这些是作者评价，不等同于当前嵌入样片对完整源序列的验证。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 25.2, "end": 34.52},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-008","supports":"作者称这是自己刚生成的片段并非零散。"},
+        {"refType":"cue","ref":"CUE-009","supports":"作者声称连续剧情、不卡顿、不扭曲和画质流畅。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "所示样片具有连续剧情且运动/画质稳定。",
+        "evidenceUnitIds": ["KU-04"],
+        "conditions": ["最长可清楚核验的同场景窗口约 8.8 秒；完整源文件未提供。"],
+        "counterexamples": [],
+        "actions": [],
+        "limits": ["视频未定义不卡顿、不扭曲、画质出色的评测标准。"]
+      },
+      "unknowns": ["‘刚刚生成’的实际操作、提示词、参数和文件 provenance。"]
+    },
+    {
+      "id": "KU-06",
+      "title": "航拍、水拍与乡村例子的可见范围",
+      "importance": "core",
+      "statement": "34.52-41.12 秒依次展示约 4.4 秒草原航拍和约 2.2 秒海龟水下镜头；41.12-47.82 秒又展示黄昏炊烟院落与秋日村道/农产品两种乡村构图。它们可见地说明题材和氛围多样性，但跨场景切换使其不能成为同一镜头持续无限延长或同一连续故事的证明。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 34.52, "end": 47.82},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0032","supports":"草原航拍画面。"},
+        {"refType":"targeted_frame","ref":"TARGET-0042","supports":"水下海龟画面。"},
+        {"refType":"targeted_frame","ref":"TARGET-0049","supports":"黄昏炊烟院落画面。"},
+        {"refType":"targeted_frame","ref":"TARGET-0055","supports":"约 43.52 秒切入秋日村道画面。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["各片段是否同一生成、同一提示词或同一模型输出", "乡村两画面是否属于同一故事。"]
+    },
+    {
+      "id": "KU-07",
+      "title": "乡村怀旧的氛围评价",
+      "importance": "supporting",
+      "statement": "作者称当下流行的乡村怀旧视频也能被该模型处理得‘氛围感极高’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 41.12, "end": 45.32},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-012","supports":"完整主张。"},
+        {"refType":"targeted_frame","ref":"TARGET-0057","supports":"口播期间可见秋日乡村构图。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["氛围评价的客观标准和生成参数。"]
+    },
+    {
+      "id": "KU-08",
+      "title": "免费开源与在线体验主张",
+      "importance": "core",
+      "statement": "作者声称产品‘直接免费开源’，并推出免部署的在线体验版；结尾又以‘免费开源阶段’作为立即尝试的理由。项目页另有更具体的权重/推理代码提供陈述（见 KU-22），但视频没有外部验证免费状态、许可范围或在线服务当前可用性。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 16.17, "end": 84.26},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-006","supports":"免费开源和免部署在线体验版主张。"},
+        {"refType":"cue","ref":"CUE-022","supports":"免费开源阶段和立即尝试 CTA。"},
+        {"refType":"ocr","ref":"OCR-00169","supports":"结尾烧录字幕经复核为‘趁现在它还处于免费开源阶段’。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "产品在免费开源阶段且有免部署在线体验。",
+        "evidenceUnitIds": ["KU-01", "KU-22"],
+        "conditions": ["视频未显示许可、权重范围、在线版价格/额度和服务条件。"],
+        "counterexamples": [],
+        "actions": ["赶紧去试试。"],
+        "limits": ["视频内未显示明确访问 URL、二维码或下载步骤。"]
+      },
+      "unknowns": ["免费范围与截止时间", "开源对象和许可", "在线体验可用性。"]
+    },
+    {
+      "id": "KU-09",
+      "title": "降低普通创作者门槛是作者的受众收益判断",
+      "importance": "core",
+      "statement": "作者把免费开源与在线体验描述为影视圈狂欢和普通小白起步红利，并声称可彻底告别高门槛拍摄成本；视频没有展示成本表、制作耗时、硬件或人力对比。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 16.17, "end": 25.19},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-006","supports":"影视圈狂欢和访问形式。"},
+        {"refType":"cue","ref":"CUE-007","supports":"普通小白红利与告别高门槛拍摄成本。"},
+        {"refType":"shot","ref":"SHOT-004","supports":"该主张期间画面为插入人物图与讲述者画中画，无成本比较。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["实际部署/在线生成/后期成本", "学习门槛", "‘告别’是否仅指实拍环节。"]
+    },
+    {
+      "id": "KU-10",
+      "title": "访问、许可与成本条件未建立",
+      "importance": "core",
+      "statement": "对 0-87.9 秒全片的项目页、界面、正文、字幕和结尾机会窗口检查后，没有观察到清晰的访问 URL/二维码、价格或额度、账号/地区条件、开源许可/商用边界、支持责任、生成参数或原始样片时长。因此视频不足以把‘免费开源、在线体验、低门槛’解释为无条件零成本或可立即复现。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 87.9},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0107","supports":"全片缺席审计的开场检查点。"},
+        {"refType":"targeted_frame","ref":"TARGET-0121","supports":"约 70 秒工作流界面检查点。"},
+        {"refType":"targeted_frame","ref":"TARGET-0125","supports":"87.6 秒结尾检查点。"},
+        {"refType":"targeted_frame","ref":"TARGET-0009","supports":"在线体验口播附近仅见样片拼贴，无清晰条件信息。"}
+      ],
+      "confidence": "high",
+      "reasoning": "ACT-12 以 19 个检查点覆盖全片，并与 ACT-01/02/06/08/10 的 OCR/UI 细查交叉；结论严格限定为视频检查范围内未观察到。",
+      "unknowns": ["上述条件在视频之外是否存在。"]
+    },
+    {
+      "id": "KU-11",
+      "title": "620 万小时训练规模是作者主张",
+      "importance": "core",
+      "statement": "作者声称模型由 620 万小时电影素材训练而成。烧录字幕清楚显示该数值；技术页面虽可见正文、表格和图组，但小字 OCR 不足以独立确认数值的完整来源、训练数据构成或授权。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 47.82, "end": 51.622},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-014","supports":"SRT 原文提出 620 万小时电影素材。"},
+        {"refType":"ocr","ref":"OCR-00125","supports":"48.4 秒烧录字幕经复核显示‘是通过620万小时’。"},
+        {"refType":"targeted_frame","ref":"TARGET-0067","supports":"同一时段可见技术页面，但页面小字不足以核实完整上下文。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["数值出处与定义", "训练素材构成、版权与授权", "外部真实性。"]
+    },
+    {
+      "id": "KU-12",
+      "title": "可见技术页面把无限长度、视觉一致性和无失真写作模型能力",
+      "importance": "supporting",
+      "statement": "52-54 秒可见中文技术页面的图 1 说明文字；OCR 提议并经画面复核到的可读部分称 SkyReels-V2 制作‘几乎无限长度’的电影般高分辨率视频，并在扩展序列中保持主要主题视觉一致性、无失真和质量。‘几乎无限’是带限定的页面文字，范围弱于口播‘无限时长/持续无限延长’的绝对化说法；它仍只是视频内展示的文档陈述，不是本重建对性能的独立验证。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 52, "end": 54},
+      "evidence": [
+        {"refType":"ocr","ref":"OCR-00141","supports":"图 1 说明的产品名、几乎无限长度和电影般高分辨率文字；OCR 有 SkyRcels 拼写误识别风险，已对源帧确认语义。"},
+        {"refType":"ocr","ref":"OCR-00142","supports":"主要主题视觉一致性文字。"},
+        {"refType":"ocr","ref":"OCR-00143","supports":"无失真与扩展序列质量文字。"},
+        {"refType":"targeted_frame","ref":"TARGET-0069","supports":"对应页面源帧和图组布局。"}
+      ],
+      "confidence": "medium",
+      "unknowns": ["文档来源 URL、指标定义、测试序列长度和外部真实性。"]
+    },
+    {
+      "id": "KU-13",
+      "title": "训练规模到‘资深电影大师’的类比链",
+      "importance": "core",
+      "statement": "作者把 620 万小时训练解释为将世界顶级导演的拍摄经验和镜头语言装入模型，并进一步声称模型能理解需求、处理运镜、人物表情和意味深长的镜头语言，像资深电影大师服务。这是作者的因果解释和修辞类比。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 51.622, "end": 68.63},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-015","supports":"顶级导演经验和镜头语言类比起点。"},
+        {"refType":"cue","ref":"CUE-016","supports":"‘装进模型’与理解需求因果说法。"},
+        {"refType":"cue","ref":"CUE-017","supports":"运镜、人物表情与镜头语言能力。"},
+        {"refType":"cue","ref":"CUE-018","supports":"资深电影大师拟人化结论。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "大规模电影素材训练使模型具备接近资深电影大师的镜头能力。",
+        "evidenceUnitIds": ["KU-11", "KU-12", "KU-14"],
+        "conditions": ["训练规模、数据构成和测试方法未在视频中完整展开。"],
+        "counterexamples": [],
+        "actions": [],
+        "limits": ["可见样例只能说明若干画面存在，不能证明吸收导演经验的因果机制或普遍性能。"]
+      },
+      "unknowns": ["训练规模与能力之间的因果强度", "‘理解需求’的评测标准。"]
+    },
+    {
+      "id": "KU-14",
+      "title": "运镜和表情的可见例子",
+      "importance": "supporting",
+      "statement": "60.5-68 秒画面依次出现城市大屏/仰拍人物和两名近景人物的表情变化，可作为‘运镜、人物表情、镜头语言’主张的视觉例子；视频内没有建立这些镜头均由 SkyReels-V2 生成，也没有给出对照或评测。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 60.12, "end": 68.63},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0074","supports":"城市大屏/仰拍人物镜头。"},
+        {"refType":"targeted_frame","ref":"TARGET-0076","supports":"女性表情近景。"},
+        {"refType":"targeted_frame","ref":"TARGET-0078","supports":"男性表情近景。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["镜头生成来源", "人物身份与授权", "是否存在后期或参考视频。"]
+    },
+    {
+      "id": "KU-15",
+      "title": "从 AI 剧本到完整短剧是设想性流程",
+      "importance": "core",
+      "statement": "作者以‘想象一下’为框架，提出先用 AI 写短剧剧本，再用‘这样的 AI’制作完整短剧，甚至可能进入娱乐圈，并推测 SkyReels 的出现可能彻底改变视频创作流程。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 68.63, "end": 80.168},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-019","supports":"‘想象一下’和 AI 写剧本。"},
+        {"refType":"cue","ref":"CUE-020","supports":"制作完整短剧和进入娱乐圈的推测。"},
+        {"refType":"cue","ref":"CUE-021","supports":"可能改变创作流程。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "AI 剧本结合该类视频模型可制作完整短剧并改变创作流程。",
+        "evidenceUnitIds": ["KU-16"],
+        "conditions": ["作者以设想语气提出，未展示端到端执行。"],
+        "counterexamples": [],
+        "actions": ["尝试该产品。"],
+        "limits": ["未说明分镜、角色一致性、声音、剪辑、后期与导出依赖。"]
+      },
+      "unknowns": ["完整短剧所需工具链、人工步骤、成本和成功率。"]
+    },
+    {
+      "id": "KU-16",
+      "title": "画面是工作流与剧情镜头蒙太奇，不是端到端执行证据",
+      "importance": "core",
+      "statement": "69-74 秒出现舞台片段和黑色卡片/节点式界面，74-80 秒再切到男女剧情、婚礼及婴儿到黑色角色的变形片段。定向帧没有显示剧本输入、提交/运行、生成完成、选择、剪辑或导出等前中后状态，因此视频不建立从剧本到完整短剧的可复现操作链。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 68.63, "end": 80.168},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0079","supports":"舞台片段。"},
+        {"refType":"targeted_frame","ref":"TARGET-0080","supports":"黑色卡片/节点式 UI。"},
+        {"refType":"targeted_frame","ref":"TARGET-0083","supports":"男女剧情镜头。"},
+        {"refType":"targeted_frame","ref":"TARGET-0085","supports":"婚礼镜头。"},
+        {"refType":"targeted_frame","ref":"TARGET-0087","supports":"婴儿到黑色角色的变形结果镜头。"}
+      ],
+      "confidence": "high",
+      "reasoning": "画面编辑顺序只有示意性并置；缺失操作步骤不由前后画面自动补全。",
+      "unknowns": ["界面具体产品身份和小字", "插入结果的生成来源", "端到端操作是否在视频外执行。"]
+    },
+    {
+      "id": "KU-17",
+      "title": "立即尝试 CTA 与行业规则终局判断",
+      "importance": "core",
+      "statement": "结尾作者以产品仍处‘免费开源阶段’为紧迫性理由，强烈建议观众赶紧尝试，并断言整个内容创作行业的游戏规则都会被 AI 彻底改写。结尾将开场的‘AI 圈大事’强化为限时行动和行业级结果。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 80.168, "end": 87.9},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-022","supports":"免费开源阶段和立即尝试 CTA。"},
+        {"refType":"cue","ref":"CUE-023","supports":"行业游戏规则句子的前半。"},
+        {"refType":"cue","ref":"CUE-024","supports":"AI 彻底改写的结尾。"},
+        {"refType":"ocr","ref":"OCR-00171","supports":"烧录字幕复核‘我强烈建议你们赶紧去试试’。"},
+        {"refType":"ocr","ref":"OCR-00173","supports":"烧录字幕复核‘都会被AI彻底改写’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["免费阶段期限和实际访问方式。"]
+    },
+    {
+      "id": "KU-18",
+      "title": "样片与材料归属未被视频证明",
+      "importance": "core",
+      "statement": "作者口头称 25 秒起的片段是自己‘刚刚生成’，但视频没有展示生成操作、文件信息、平台回执或来源标签；其他样片、技术截图和人物镜头也主要通过剪辑并置。除可见 SkyReels 品牌和作者说法外，不能确认每一段素材均由 SkyReels-V2 生成、来自官方或已获授权。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 87.9},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-008","supports":"作者称‘我刚刚生成’。"},
+        {"refType":"targeted_frame","ref":"TARGET-0011","supports":"所指画面只有样片和讲述者画中画，没有生成回执。"},
+        {"refType":"targeted_frame","ref":"TARGET-0067","supports":"技术页面与口播并置。"},
+        {"refType":"targeted_frame","ref":"TARGET-0087","supports":"结尾插入结果没有来源标签。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["每段素材的生成模型、作者、文件 provenance、许可与授权。"]
+    },
+    {
+      "id": "KU-19",
+      "title": "固定讲述者画中画是贯穿全片的主张来源",
+      "importance": "context",
+      "statement": "同一女性真人头像以左上角圆形画中画贯穿项目页、样片、技术页面和短剧蒙太奇，视觉上把不同材料框成她的解说证据；画面不提供其姓名，也不能把插入素材中的人物当作讲述者本人或真实用户。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 87.9},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0094","supports":"开场固定讲述者画中画。"},
+        {"refType":"targeted_frame","ref":"TARGET-0100","supports":"约 36 秒样片期间同一画中画。"},
+        {"refType":"targeted_frame","ref":"TARGET-0104","supports":"约 76 秒短剧镜头期间同一画中画。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["讲述者真实身份", "插入人物身份与授权。"]
+    },
+    {
+      "id": "KU-20",
+      "title": "SRT 与烧录文字的后果性冲突",
+      "importance": "supporting",
+      "statement": "提供的 SRT 把‘SkyReels-V2’多次记作‘Skyrise v二/scarios v二’，把烧录字幕可见的‘无限时长’记作‘无线时长’，把‘闭源模型’记作‘边缘模型’，并把‘运镜’记作‘运境’。原始 SRT 不改写；可见产品/关键词读取由 Logo、烧录字幕和上下文支持。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 3.12, "end": 80.168},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-002","supports":"SRT 原文‘无线时长’。"},
+        {"refType":"ocr","ref":"OCR-00253","supports":"烧录字幕可见‘支持无限时长高质量电影的’。"},
+        {"refType":"cue","ref":"CUE-005","supports":"SRT 原文‘边缘模型’。"},
+        {"refType":"ocr","ref":"OCR-00266","supports":"烧录字幕可见‘在处处都是闭源模型的’。"},
+        {"refType":"cue","ref":"CUE-013","supports":"SRT 原文 scarios v二。"},
+        {"refType":"ocr","ref":"OCR-00268","supports":"烧录字幕可见 SkyReels-V2模型。"},
+        {"refType":"cue","ref":"CUE-017","supports":"SRT 原文‘运境’；烧录字幕上下文为运镜能力。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["无法由静态帧独立复核所有口播语音字形，但 consequential meanings 有可见文本支持。"]
+    },
+    {
+      "id": "KU-21",
+      "title": "全程口播下持续存在背景音乐",
+      "importance": "supporting",
+      "statement": "对完整 87.96 秒音轨进行重叠 10 秒窗口的 AudioSet 语义听检后，17/17 窗口都同时把 Speech 与 Music 列为前两位标签，Music 分数约 0.366–0.937；因此可接受为‘全程口播下持续存在背景音乐’。其他 Plop、Spray、Zipper 等标签分数低且跨窗口不稳定，不足以确认具体音效事件。背景音乐主要提供连续节奏/情绪底层，并未承载产品参数或论证内容。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 87.9},
+      "evidence": [
+        {"refType":"source","ref":"SRC-AUDIO-NON-SPEECH","supports":"完整音轨 17 个重叠窗口均检测到 Speech 与 Music 共现；机器听检窗口、分数和限制保存在派生证据中。"},
+        {"refType":"source","ref":"SRC-MEDIA-METADATA","supports":"证据包媒体元数据标记 hasAudio=true、audioCodec=aac。"}
+      ],
+      "confidence": "high",
+      "reasoning": "音乐在所有完整轨检查窗口中稳定出现，而具体音效标签没有稳定跨窗支持；因此接受背景音乐连续共现，拒绝把低分候选写成具体音效。",
+      "unknowns": ["背景音乐曲名、作者、授权与精确起止", "是否混有插入样片原声", "低分事件标签对应的真实声源。"]
+    },
+    {
+      "id": "KU-22",
+      "title": "项目页明确写明提供模型权重和推理代码",
+      "importance": "core",
+      "statement": "1.867-6.967 秒可见的 SkyReels V2 仓库页面写道，访问者可在仓库找到其无限长电影生成模型的‘模型权重和推理代码’；新闻行还写明发布 SkyReels-V2 系列模型及 SkyCaptioner-V1 的推理代码和模型权重。这是页面直接可见的发布产物陈述，比只复述作者‘免费开源’更具体；但它不等于本重建已验证开源许可、零价格、文件完整性或当前可下载状态。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 1.867, "end": 6.967},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"RESAMPLED-0001","supports":"原分辨率页面可读仓库介绍：可找到模型权重和推理代码；新闻行写发布推理代码和模型权重。"},
+        {"refType":"targeted_frame","ref":"RESAMPLED-0002","supports":"4.8 秒原分辨率复核同一仓库介绍和新闻行。"},
+        {"refType":"ocr","ref":"OCR-00298","supports":"原分辨率 OCR 经源帧复核，仓库介绍包含‘模型权重和推理代码’。"},
+        {"refType":"ocr","ref":"OCR-00299","supports":"4.8 秒原分辨率 OCR 对同一仓库介绍的复核。"}
+      ],
+      "confidence": "high",
+      "reasoning": "陈述范围只到‘页面这样写’，不把页面声明升级为对仓库许可、价格或当前下载可用性的外部核验。",
+      "unknowns": ["具体开源许可", "模型权重/推理代码的完整性和当前下载状态", "是否覆盖所有模型尺寸与平台", "零价格与商用条件。"]
+    },
+    {
+      "id": "KU-23",
+      "title": "项目页把 demos 说明为扩散强迫模型生成的 30 秒视频",
+      "importance": "core",
+      "statement": "6.4 秒原分辨率项目页在三个 demo 播放器下方写道：‘上面的演示展示了使用我们的 SkyReels-V2 扩散强迫模型生成的 30 秒视频。’这是页面提供方对 demos 时长和生成模型的限定陈述；页面没有在该时刻完整播放 30 秒源文件，也没有把这句话写成‘30 秒一镜到底’或‘持续无限延长’。社交视频自身的可核播放窗口另由 KU-03/KU-04 记录，并通过关系连接。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 1.867, "end": 6.967},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"RESAMPLED-0003","supports":"页面 demos 下方 30 秒 + SkyReels-V2 扩散强迫模型说明清晰可见。"},
+        {"refType":"ocr","ref":"OCR-00301","supports":"原分辨率 OCR 经源帧复核，完整读取‘SkyReels-V2 扩散强迫模型生成的 30 秒视频’。"}
+      ],
+      "confidence": "high",
+      "reasoning": "本单元只陈述 1.867-6.967 秒页面文字；25.2 秒后的社交视频样片帧不再作为本单元证据，而由 KU-03/KU-04 及跨单元关系承载。",
+      "unknowns": ["三个 demo 播放器内源文件是否完整为 30 秒", "30 秒 demos 是否单镜头无切", "页面视频文件是否可下载和未经后期", "30 秒声明与口播‘独家功能’的具体技术条件。"]
+    }
+  ],
+  "relations": [
+    {"from":"KU-01","to":"KU-02","relation":"visible_identity_anchors_author_duration_claim","evidence":[{"refType":"targeted_frame","ref":"RESAMPLED-0001","supports":"项目页可见 SkyReels-V2 与无限长胶片生成模型标题。"},{"refType":"cue","ref":"CUE-004","supports":"紧接产品命名的时长主张。"}]},
+    {"from":"KU-02","to":"KU-08","relation":"duration_claim_combines_with_open_access_claim","evidence":[{"refType":"cue","ref":"CUE-005","supports":"无限时长。"},{"refType":"cue","ref":"CUE-006","supports":"开源与在线体验。"}]},
+    {"from":"KU-08","to":"KU-09","relation":"access_claim_is_used_to_frame_low_barrier","evidence":[{"refType":"cue","ref":"CUE-006","supports":"访问/开源形式。"},{"refType":"cue","ref":"CUE-007","supports":"普通小白和拍摄成本收益。"}]},
+    {"from":"KU-03","to":"KU-02","relation":"visible_samples_illustrate_but_do_not_establish_claim_scope","evidence":[{"refType":"targeted_frame","ref":"TARGET-0011","supports":"样片窗口起点。"},{"refType":"targeted_frame","ref":"TARGET-0042","supports":"窗口内切换到海龟。"},{"refType":"cue","ref":"CUE-010","supports":"作者提出 30 秒/无限主张。"}]},
+    {"from":"KU-04","to":"KU-05","relation":"visible_makeup_sequence_partially_illustrates_author_continuity_evaluation","evidence":[{"refType":"targeted_frame","ref":"TARGET-0019","supports":"同一环境连续动作。"},{"refType":"cue","ref":"CUE-009","supports":"作者的完整质量评价。"}]},
+    {"from":"KU-06","to":"KU-07","relation":"rural_frames_are_example_for_atmosphere_claim","evidence":[{"refType":"targeted_frame","ref":"TARGET-0055","supports":"秋日乡村画面。"},{"refType":"cue","ref":"CUE-012","supports":"乡村氛围评价。"}]},
+    {"from":"KU-11","to":"KU-13","relation":"training_scale_is_author_rationale_for_directorial_capability","evidence":[{"refType":"cue","ref":"CUE-014","supports":"训练规模。"},{"refType":"cue","ref":"CUE-015","supports":"导演经验类比。"},{"refType":"cue","ref":"CUE-016","supports":"由此理解需求的因果说法。"}]},
+    {"from":"KU-14","to":"KU-13","relation":"visible_shots_illustrate_but_do_not_verify_directorial_capability","evidence":[{"refType":"targeted_frame","ref":"TARGET-0074","supports":"运镜类例子。"},{"refType":"targeted_frame","ref":"TARGET-0076","supports":"表情例子。"}]},
+    {"from":"KU-13","to":"KU-15","relation":"claimed_movie_capability_enables_speculative_short_drama_workflow","evidence":[{"refType":"cue","ref":"CUE-018","supports":"电影大师能力结论。"},{"refType":"cue","ref":"CUE-019","supports":"转入想象的短剧流程。"}]},
+    {"from":"KU-16","to":"KU-15","relation":"edited_montage_visualizes_but_does_not_execute_workflow","evidence":[{"refType":"targeted_frame","ref":"TARGET-0080","supports":"工作流 UI 示意。"},{"refType":"targeted_frame","ref":"TARGET-0085","supports":"结果式婚礼镜头。"},{"refType":"cue","ref":"CUE-020","supports":"完整短剧主张。"}]},
+    {"from":"KU-15","to":"KU-17","relation":"workflow_disruption_claim_motivates_immediate_try_cta","evidence":[{"refType":"cue","ref":"CUE-021","supports":"改变流程推测。"},{"refType":"cue","ref":"CUE-022","supports":"立即尝试 CTA。"}]},
+    {"from":"KU-17","to":"KU-01","relation":"closing_strengthens_opening_product_event_into_industry_rule_change","evidence":[{"refType":"cue","ref":"CUE-001","supports":"开场 AI 圈大事。"},{"refType":"cue","ref":"CUE-024","supports":"结尾行业规则被改写。"}]},
+    {"from":"KU-19","to":"KU-18","relation":"recurring_presenter_frames_inserted_material_as_her_presented_evidence_without_proving_attribution","evidence":[{"refType":"targeted_frame","ref":"TARGET-0094","supports":"讲述者与插入乡村画面并置。"},{"refType":"targeted_frame","ref":"TARGET-0099","supports":"讲述者与航拍样片并置。"}]},
+    {"from":"KU-20","to":"KU-01","relation":"burned_caption_and_logo_resolve_visible_name_while_preserving_srt_conflict","evidence":[{"refType":"cue","ref":"CUE-003","supports":"SRT 错写。"},{"refType":"ocr","ref":"OCR-00035","supports":"烧录字幕可见 SkyReels-V2。"}]},
+    {"from":"KU-10","to":"KU-08","relation":"missing_conditions_limit_open_and_free_claim","evidence":[{"refType":"cue","ref":"CUE-006","supports":"开放与在线主张。"},{"refType":"targeted_frame","ref":"TARGET-0125","supports":"87.6 秒结尾仍无可见入口/条件。"}]},
+    {"from":"KU-22","to":"KU-08","relation":"provider_page_release_artifacts_support_but_do_not_fully_verify_open_and_free_claim","evidence":[{"refType":"targeted_frame","ref":"RESAMPLED-0001","supports":"页面直接写模型权重和推理代码。"},{"refType":"cue","ref":"CUE-006","supports":"作者进一步声称免费开源。"}]},
+    {"from":"KU-23","to":"KU-02","relation":"provider_page_30_second_demo_statement_narrows_support_for_narrated_duration_claim","evidence":[{"refType":"targeted_frame","ref":"RESAMPLED-0003","supports":"页面写 30 秒扩散强迫模型 demos。"},{"refType":"ocr","ref":"OCR-00301","supports":"OCR 经原分辨率源帧复核完整读取 30 秒 + 扩散强迫说明。"},{"refType":"cue","ref":"CUE-010","supports":"口播进一步绝对化为 30 秒一镜到底与持续无限延长。"}]},
+    {"from":"KU-23","to":"KU-03","relation":"provider_page_statement_is_distinct_from_shorter_social_video_observation_window","evidence":[{"refType":"targeted_frame","ref":"RESAMPLED-0003","supports":"页面 30 秒声明。"},{"refType":"targeted_frame","ref":"TARGET-0029","supports":"社交视频约 34.2 秒发生转场。"},{"refType":"targeted_frame","ref":"TARGET-0042","supports":"社交视频约 38.92 秒切到海龟。"}]},
+    {"from":"KU-12","to":"KU-02","relation":"qualified_page_wording_limits_absolute_narration","evidence":[{"refType":"ocr","ref":"OCR-00141","supports":"技术页面图注为‘几乎无限长度’。"},{"refType":"cue","ref":"CUE-005","supports":"口播为‘无限时长’。"},{"refType":"cue","ref":"CUE-010","supports":"口播为‘持续无限延长’。"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id":"CAR-01","available":true,"inspected":true},
+      {"id":"CAR-02","available":true,"inspected":true},
+      {"id":"CAR-03","available":true,"inspected":true},
+      {"id":"CAR-04","available":true,"inspected":true},
+      {"id":"CAR-05","available":true,"inspected":true},
+      {"id":"CAR-06","available":true,"inspected":true},
+      {"id":"CAR-07","available":true,"inspected":true},
+      {"id":"CAR-08","available":true,"inspected":true}
+    ],
+    "meaningChanges": [
+      {"id":"MC-01","captured":true,"unitIds":["KU-01","KU-20","KU-22","KU-23"]},
+      {"id":"MC-02","captured":true,"unitIds":["KU-02","KU-03"]},
+      {"id":"MC-03","captured":true,"unitIds":["KU-08","KU-09","KU-10"]},
+      {"id":"MC-04","captured":true,"unitIds":["KU-03","KU-04","KU-05"]},
+      {"id":"MC-05","captured":true,"unitIds":["KU-06","KU-07"]},
+      {"id":"MC-06","captured":true,"unitIds":["KU-11","KU-12","KU-13"]},
+      {"id":"MC-07","captured":true,"unitIds":["KU-13","KU-14"]},
+      {"id":"MC-08","captured":true,"unitIds":["KU-15","KU-16"]},
+      {"id":"MC-09","captured":true,"unitIds":["KU-17"]}
+    ],
+    "relationships": [
+      {"id":"REL-01","evidenced":true,"evidenceRefs":["RESAMPLED-0001","RESAMPLED-0003","CUE-004"]},
+      {"id":"REL-02","evidenced":true,"evidenceRefs":["CUE-005","CUE-006","CUE-007"]},
+      {"id":"REL-03","evidenced":true,"evidenceRefs":["TARGET-0011","TARGET-0042","CUE-010"]},
+      {"id":"REL-04","evidenced":true,"evidenceRefs":["TARGET-0055","CUE-012"]},
+      {"id":"REL-05","evidenced":true,"evidenceRefs":["CUE-014","CUE-015","CUE-016"]},
+      {"id":"REL-06","evidenced":true,"evidenceRefs":["CUE-018","CUE-019","CUE-020"]},
+      {"id":"REL-07","evidenced":true,"evidenceRefs":["CUE-021","CUE-022"]},
+      {"id":"REL-08","evidenced":true,"evidenceRefs":["CUE-001","CUE-024"]},
+      {"id":"REL-09","evidenced":true,"evidenceRefs":["TARGET-0094","TARGET-0099"]},
+      {"id":"REL-10","evidenced":true,"evidenceRefs":["TARGET-0029","TARGET-0032","TARGET-0042"]}
+    ],
+    "criticalQuestions": [
+      {"id":"CQ-01","status":"answered","unitIds":["KU-01","KU-20"],"evidenceRefs":["RESAMPLED-0001","OCR-00297","OCR-00035","CUE-003"]},
+      {"id":"CQ-02","status":"answered","unitIds":["KU-02","KU-12","KU-23"],"evidenceRefs":["CUE-004","CUE-005","CUE-010","RESAMPLED-0003","OCR-00301","OCR-00141"]},
+      {"id":"CQ-03","status":"answered","unitIds":["KU-03","KU-04","KU-06","KU-23"],"evidenceRefs":["RESAMPLED-0003","TARGET-0011","TARGET-0029","TARGET-0042","TARGET-0048"]},
+      {"id":"CQ-04","status":"answered","unitIds":["KU-04","KU-05","KU-07"],"evidenceRefs":["CUE-008","CUE-009","CUE-012"]},
+      {"id":"CQ-05","status":"answered","unitIds":["KU-08"],"evidenceRefs":["CUE-006","CUE-022"]},
+      {"id":"CQ-06","status":"unknown","unitIds":["KU-10"],"evidenceRefs":["TARGET-0107","TARGET-0121","TARGET-0125"]},
+      {"id":"CQ-07","status":"answered","unitIds":["KU-09"],"evidenceRefs":["CUE-007"]},
+      {"id":"CQ-08","status":"answered","unitIds":["KU-11","KU-12","KU-13","KU-14"],"evidenceRefs":["CUE-014","CUE-015","CUE-016","TARGET-0069"]},
+      {"id":"CQ-09","status":"answered","unitIds":["KU-15","KU-16"],"evidenceRefs":["CUE-019","CUE-020","TARGET-0080","TARGET-0085"]},
+      {"id":"CQ-10","status":"unknown","unitIds":["KU-18"],"evidenceRefs":["CUE-008","TARGET-0011","TARGET-0067","TARGET-0087"]},
+      {"id":"CQ-11","status":"answered","unitIds":["KU-17"],"evidenceRefs":["CUE-001","CUE-022","CUE-024"]},
+      {"id":"CQ-12","status":"answered","unitIds":["KU-03"],"evidenceRefs":["SHOT-001","SHOT-014","TARGET-0029"]},
+      {"id":"CQ-13","status":"answered","unitIds":["KU-21"],"evidenceRefs":["SRC-AUDIO-NON-SPEECH","SRC-MEDIA-METADATA"]},
+      {"id":"CQ-14","status":"answered","unitIds":["KU-22","KU-08","KU-10"],"evidenceRefs":["RESAMPLED-0001","RESAMPLED-0002","OCR-00298","OCR-00299","CUE-006"]},
+      {"id":"CQ-15","status":"answered","unitIds":["KU-23","KU-02","KU-03","KU-04","KU-12"],"evidenceRefs":["RESAMPLED-0003","OCR-00301","CUE-005","CUE-010","TARGET-0011","TARGET-0029","OCR-00141"]}
+    ],
+    "cueAccountability": [
+      {"cueId":"CUE-001","disposition":"knowledge","unitIds":["KU-17","KU-22"],"rationale":"开场行业大事/开源钩子覆盖项目页发布产物画面，并与结尾规则改写构成强化关系。"},
+      {"cueId":"CUE-002","disposition":"knowledge","unitIds":["KU-01","KU-02","KU-20","KU-23"],"rationale":"无限时长承诺、无线/无限冲突及同一页面的 30 秒 demos 说明。"},
+      {"cueId":"CUE-003","disposition":"knowledge","unitIds":["KU-01","KU-20","KU-22","KU-23"],"rationale":"产品名冲突及项目页权重/代码、30 秒 demos 直接陈述。"},
+      {"cueId":"CUE-004","disposition":"knowledge","unitIds":["KU-02"],"rationale":"5/10 秒旧限制对照。"},
+      {"cueId":"CUE-005","disposition":"knowledge","unitIds":["KU-02","KU-20"],"rationale":"无限高清主张与闭源/边缘冲突。"},
+      {"cueId":"CUE-006","disposition":"knowledge","unitIds":["KU-08","KU-09"],"rationale":"免费开源、在线体验与受众收益。"},
+      {"cueId":"CUE-007","disposition":"knowledge","unitIds":["KU-09"],"rationale":"普通小白和拍摄成本门槛主张。"},
+      {"cueId":"CUE-008","disposition":"knowledge","unitIds":["KU-03","KU-05","KU-18"],"rationale":"作者归属与连续样片引入。"},
+      {"cueId":"CUE-009","disposition":"knowledge","unitIds":["KU-04","KU-05"],"rationale":"连续剧情/不卡顿/画质评价。"},
+      {"cueId":"CUE-010","disposition":"knowledge","unitIds":["KU-02","KU-03"],"rationale":"30 秒一镜到底与无限延长。"},
+      {"cueId":"CUE-011","disposition":"knowledge","unitIds":["KU-06"],"rationale":"航拍水拍例子。"},
+      {"cueId":"CUE-012","disposition":"knowledge","unitIds":["KU-06","KU-07"],"rationale":"乡村怀旧与氛围评价。"},
+      {"cueId":"CUE-013","disposition":"knowledge","unitIds":["KU-01","KU-20"],"rationale":"再次出现产品名 ASR 冲突并转入训练解释。"},
+      {"cueId":"CUE-014","disposition":"knowledge","unitIds":["KU-11","KU-13"],"rationale":"620 万小时训练主张。"},
+      {"cueId":"CUE-015","disposition":"knowledge","unitIds":["KU-13"],"rationale":"导演经验类比。"},
+      {"cueId":"CUE-016","disposition":"knowledge","unitIds":["KU-13"],"rationale":"能力因果链。"},
+      {"cueId":"CUE-017","disposition":"knowledge","unitIds":["KU-13","KU-14","KU-20"],"rationale":"运镜/表情/镜头语言能力与运镜 ASR 冲突。"},
+      {"cueId":"CUE-018","disposition":"knowledge","unitIds":["KU-13"],"rationale":"电影大师拟人化结论。"},
+      {"cueId":"CUE-019","disposition":"knowledge","unitIds":["KU-15","KU-16"],"rationale":"设想性短剧流程开端。"},
+      {"cueId":"CUE-020","disposition":"knowledge","unitIds":["KU-15","KU-16"],"rationale":"完整短剧和娱乐圈推测。"},
+      {"cueId":"CUE-021","disposition":"knowledge","unitIds":["KU-15","KU-20"],"rationale":"流程改变主张与产品名冲突。"},
+      {"cueId":"CUE-022","disposition":"knowledge","unitIds":["KU-08","KU-17"],"rationale":"免费开源阶段和立即尝试 CTA。"},
+      {"cueId":"CUE-023","disposition":"knowledge","unitIds":["KU-17"],"rationale":"行业规则终局判断前半。"},
+      {"cueId":"CUE-024","disposition":"knowledge","unitIds":["KU-17"],"rationale":"AI 彻底改写的最后落点。"}
+    ],
+    "coreEvidence": {"covered": 17, "total": 17},
+    "unknowns": [
+      "项目页声称 30 秒扩散强迫 demos，但 30 秒一镜到底和无限延长未由当前社交视频嵌入窗口证明",
+      "样片的实际生成模型、作者、原始时长、提示词、参数和文件 provenance",
+      "免费/在线体验的访问、价格/额度、账号、地区和时限条件",
+      "项目页虽写提供模型权重和推理代码，但开源许可、代码/模型/权重完整范围、当前下载状态、部署硬件、商用与支持责任仍未知",
+      "620 万小时训练的完整来源、数据构成和授权",
+      "完整短剧生产的端到端依赖",
+      "讲述者、插入人物和素材的身份/授权",
+      "背景音乐曲名、作者、来源、授权、精确起止，是否混有插入样片原声，以及低分事件候选对应的真实声源"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "协议覆盖口播/SRT、烧录字幕冲突、项目/技术页面、原分辨率项目页重采样、UI、运动样片、固定讲述者与插入人物 referent、剪辑连续性、完整音轨非语音语义听检、全片缺席条件以及开场到结尾 CTA 强化关系。项目页‘模型权重和推理代码’与‘扩散强迫模型生成的 30 秒视频’已分别建单元；‘无限长胶片’标题、‘几乎无限长度’页面图注和口播绝对化‘无限时长/持续无限延长’没有合并。技术 shot 未被升级为语义场景数；不可读文本、具体音效候选和未展示依赖均保留为未知。"
+  }
+}

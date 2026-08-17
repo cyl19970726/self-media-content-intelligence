@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "candidate": "run/reconstruction.json",
+  "audit": "review/audit/audit.json",
+  "items": [
+    {
+      "id": "D-01",
+      "severity": "critical",
+      "auditRefs": ["CQ-02", "KU-01", "MC-01", "REL-15", "UNK-01", "CAR-04", "OPEN-01"],
+      "candidateRefs": ["KU-25", "coverageMatrix.channels", "metaGate"],
+      "evidenceRefs": ["DENSE-0001@0.000"],
+      "problem": "The opening analytics/social-proof insert is omitted, then contradicted by the candidate's claim that no conversion/playback performance data were observed.",
+      "repair": "Add the opening insert as a visual-observation unit; describe only that large analytics counts are shown; keep post/account/date ownership and causality unknown; revise all scoped absence claims to acknowledge that the insert exists but is not tied to a demonstrated application."
+    },
+    {
+      "id": "D-02",
+      "severity": "critical",
+      "auditRefs": ["CQ-07", "KU-08", "REL-05", "UNK-11", "CF-03"],
+      "candidateRefs": ["KU-07"],
+      "evidenceRefs": ["CUE-013@37.358-41.480", "CUE-014@41.490-44.047", "CUE-015@44.047-48.260", "CUE-016@48.270-51.495", "DENSE-0017@40.000", "DENSE-0020@47.500"],
+      "problem": "The candidate silently resolves a cue-boundary/referent conflict as 苟富贵勿相忘—于东来、刘强东 and omits the audited 刘强东/曹德旺 ambiguity.",
+      "repair": "Restore all six topic directions, correct 于东来 against SRT 刘向东, and explicitly preserve uncertainty around 刘强东/曹德旺 punctuation and assignment rather than inventing a two-person sixth item."
+    },
+    {
+      "id": "D-03",
+      "severity": "major",
+      "auditRefs": ["CQ-13", "KU-22", "CF-08"],
+      "candidateRefs": ["KU-13"],
+      "evidenceRefs": ["CUE-033@102.980-104.830", "DENSE-0044@107.500"],
+      "problem": "The consequential visible correction 行业先锋 is compressed to 先锋.",
+      "repair": "Use the full displayed direction 行业先锋—字节跳动 in the knowledge unit, article, and coverage/accountability links."
+    },
+    {
+      "id": "D-04",
+      "severity": "major",
+      "auditRefs": ["UNK-03", "CQ-01", "OPEN-05"],
+      "candidateRefs": ["KU-01"],
+      "evidenceRefs": ["CUE-003@7.322-8.984"],
+      "problem": "Applicability to non-founder IP is repeated as a claim, but the adaptation method is not retained as an unresolved decision boundary.",
+      "repair": "Add an explicit unknown stating that the video does not explain how non-founder IP should adapt the founder-story framework."
+    }
+  ]
+}

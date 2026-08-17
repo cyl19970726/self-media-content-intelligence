@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "video-content-reconstruction-discrepancies-1.0",
+  "corpusId": "6a32842e000000000702e153",
+  "blockingCount": 0,
+  "nonBlockingCount": 2,
+  "items": [
+    {
+      "id": "DISC-V2-001",
+      "severity": "non_blocking",
+      "category": "timestamp_localization",
+      "location": "run/reconstruction.json#KU-04",
+      "observed": "KU-04 timeRange is 8.003—12.210, while evidence CUE-036 is 92.897—96.740 and supports the later branch transition stated in the same unit.",
+      "expected": "Either widen/split the unit's time scope or move CUE-036 to a separately localized relation/transition unit.",
+      "metricImpact": "timestampAccuracy 136/137 = 0.993; hard threshold still passes."
+    },
+    {
+      "id": "DISC-V2-002",
+      "severity": "non_blocking",
+      "category": "provenance_granularity",
+      "location": "run/reconstruction.json#KU-25",
+      "observed": "The visible presenter/costume/gesture description is visual_observation, but the phrase that it forms a self-demonstration of the ID/persona advice is interpretive.",
+      "expected": "Split the interpretive clause into a system_inference with reasoning while retaining the visible description as visual_observation.",
+      "metricImpact": "No unsupported-inference error: evidence is present and the interpretation is bounded; this is a classification precision issue."
+    }
+  ]
+}

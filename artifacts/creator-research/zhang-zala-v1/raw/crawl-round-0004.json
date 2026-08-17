@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "1.0",
+  "round": 4,
+  "capturedAt": "2026-08-16T11:04:20.218Z",
+  "strategy": "visible_dom",
+  "artifactRef": null,
+  "items": [
+    {
+      "id": "69eefa6d000000003700eade",
+      "title": "全程回放（1）Demo Day：我如何与agent共事",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69eefa6d000000003700eade",
+      "mediaType": "video",
+      "likes": "823",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69eac78d000000002202b86e",
+      "title": "Tab out的想法是怎么来的？我跟AI的聊天方式",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69eac78d000000002202b86e",
+      "mediaType": "video",
+      "likes": "1400",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69e97f1a00000000230175f1",
+      "title": "AI 能写诗，但是功夫在诗外",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69e97f1a00000000230175f1",
+      "mediaType": "image",
+      "likes": "565",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69e8618a000000002301475b",
+      "title": "我的粉丝可能是小红书上最好学的26万人",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69e8618a000000002301475b",
+      "mediaType": "video",
+      "likes": "508",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69e72660000000001f0055b6",
+      "title": "活动干货总结：如何打造AI native的组织",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69e72660000000001f0055b6",
+      "mediaType": "image",
+      "likes": "864",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69e17ae8000000002003ba1f",
+      "title": "线上Demo Day：来演示你与agents的协作方式",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69e17ae8000000002003ba1f",
+      "mediaType": "image",
+      "likes": "788",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69e04b91000000001a02e03f",
+      "title": "Frontend slides的小白友好版已上线",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69e04b91000000001a02e03f",
+      "mediaType": "video",
+      "likes": "3991",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69ded448000000001a02f276",
+      "title": "做了个插件，让关浏览器tabs变得上瘾",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69ded448000000001a02f276",
+      "mediaType": "video",
+      "likes": "3720",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69db48b4000000002202aeaf",
+      "title": "推荐一本非常老的书",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69db48b4000000002202aeaf",
+      "mediaType": "image",
+      "likes": "1651",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69d73389000000002202bd0a",
+      "title": "我的产品灵感都是怎么来的？",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69d73389000000002202bd0a",
+      "mediaType": "video",
+      "likes": "2692",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69d33c53000000001e00f5a3",
+      "title": "当我决定不再用“文科生”的标签定义自己",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69d33c53000000001e00f5a3",
+      "mediaType": "video",
+      "likes": "512",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69d151680000000023007bb9",
+      "title": "带着“玩”的心态学AI ，有松弛感才可持续",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69d151680000000023007bb9",
+      "mediaType": "video",
+      "likes": "683",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69cef878000000001e00c6bc",
+      "title": "用AI实现视频长剪短！自动提取高光片段",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69cef878000000001e00c6bc",
+      "mediaType": "video",
+      "likes": "1669",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69cd5129000000001e00ea7a",
+      "title": "湾区线下研讨会：如何打造AI native组织",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69cd5129000000001e00ea7a",
+      "mediaType": "image",
+      "likes": "316",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69cb06c1000000001a036164",
+      "title": "做了个飞书CLI skill，让会议todo变成done！",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69cb06c1000000001a036164",
+      "mediaType": "video",
+      "likes": "4541",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69c98d04000000001e00cc19",
+      "title": "感觉自己的context window快不够用了。。",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69c98d04000000001e00cc19",
+      "mediaType": "image",
+      "likes": "1589",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69c5e1f4000000002003a17d",
+      "title": "Builder和influencer的交集 才是最大杠杆",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69c5e1f4000000002003a17d",
+      "mediaType": "video",
+      "likes": "569",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69c23753000000001f003caa",
+      "title": "这可能是AI时代学习编程最好的方式",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69c23753000000001f003caa",
+      "mediaType": "video",
+      "likes": "5034",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69bf6c43000000002800807a",
+      "title": "我在twitter上靠真诚分享涨粉5万的心得",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69bf6c43000000002800807a",
+      "mediaType": "video",
+      "likes": "966",
+      "publishedLabel": null,
+      "cover": null
+    },
+    {
+      "id": "69bd897c0000000020039e66",
+      "title": "我办的Vibe coding活动 氛围好好啊 🥹",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69bd897c0000000020039e66",
+      "mediaType": "video",
+      "likes": "857",
+      "publishedLabel": null,
+      "cover": null
+    }
+  ],
+  "scroll": {
+    "y": 4029,
+    "pageHeight": 5109
+  },
+  "page": {
+    "url": "https://www.xiaohongshu.com/user/profile/59757acd50c4b45e6e9a90df",
+    "explicitEnd": false,
+    "needsUser": false,
+    "error": null
+  }
+}

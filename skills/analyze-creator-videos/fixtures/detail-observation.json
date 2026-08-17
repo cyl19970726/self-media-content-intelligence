@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "id": "fixture-note-1",
+  "capturedAt": "2026-08-16T00:02:00.000Z",
+  "strategy": "structured_state",
+  "artifactRef": "fixtures/detail-snapshot.json",
+  "fields": {
+    "title": "一句话完成办公任务",
+    "sourceUrl": "https://www.xiaohongshu.com/explore/fixture-note-1",
+    "mediaType": "video",
+    "publishedAt": "2026-08-16T00:00:00.000Z",
+    "likes": 12000,
+    "collections": 18000,
+    "comments": 120,
+    "shares": 380,
+    "expectedDurationSec": 29.1
+  },
+  "subtitleStatus": "available",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "privateRef": "private-transient-ref",
+      "expectedDurationSec": 29.1
+    },
+    {
+      "kind": "subtitle",
+      "availability": "available",
+      "privateRef": "private-transient-subtitle-ref",
+      "expectedDurationSec": null
+    }
+  ],
+  "error": null
+}

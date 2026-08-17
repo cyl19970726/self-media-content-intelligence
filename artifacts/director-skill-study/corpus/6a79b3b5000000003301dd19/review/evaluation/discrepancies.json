@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "candidate": "run",
+  "status": "NOT_READY",
+  "items": [
+    {
+      "id": "D-01",
+      "severity": "hard_gate",
+      "gate": "eval_unknown_discipline",
+      "auditRefs": ["UNK-07"],
+      "candidateRefs": ["run/capture-protocol.json#declaredUnknowns", "run/reconstruction.json#coverageMatrix.unknowns", "run/article.md"],
+      "finding": "未把‘如何实际找到并触达首批买家’作为明确未知机会。",
+      "repair": "在 protocol declaredUnknowns、reconstruction unknown/absence 单元、coverageMatrix.unknowns 与文章限制段中明确加入首批买家的搜索、筛选、联系和触达路径未建立，并给出 24.665-64.860 的有界检查范围。"
+    },
+    {
+      "id": "D-02",
+      "severity": "hard_gate",
+      "gate": "eval_unknown_discipline",
+      "auditRefs": ["UNK-14", "ABS-08"],
+      "candidateRefs": ["run/capture-protocol.json#declaredUnknowns", "run/reconstruction.json#coverageMatrix.unknowns", "run/article.md"],
+      "finding": "未明确登记视频是否提供失败案例、不适用人群或失败条件这一未知机会。",
+      "repair": "新增全片范围的 scoped absence/unknown：视频未展示失败案例、反例、不适用人群或失败条件，因此不能宣称方法普适。"
+    },
+    {
+      "id": "D-03",
+      "severity": "hard_gate",
+      "gate": "coverage_matrix",
+      "auditRefs": [],
+      "candidateRefs": ["run/reconstruction.json#coverageMatrix.relationships", "run/reconstruction.json#coverageMatrix.criticalQuestions"],
+      "finding": "coverageMatrix 的 evidenceRefs 混入 KU-xx；canonical deterministic validator 只接受 cue/shot/frame/targeted/OCR/source 引用，导致 coverage_matrix gate 失败。",
+      "repair": "从 evidenceRefs 移除 KU-xx，保留可解析证据引用；知识单元关联只放在 unitIds。"
+    },
+    {
+      "id": "D-04",
+      "severity": "reporting",
+      "gate": "none",
+      "auditRefs": ["CC-02", "CC-04", "CC-08"],
+      "candidateRefs": ["run/reconstruction.json#knowledgeUnits/KU-22", "run/article.md#字幕冲突：逐字层不能被静默改写"],
+      "finding": "最终冲突清单没有逐项列出品牌投放‘越来越少’、‘锁定/脑定’和开头‘教子/教资’不可靠三项；其中前两项规范语义已在正文恢复，开头未知名词也未被错误补写。",
+      "repair": "把三项补入 carrier-conflict 清单，明确原始 SRT、可见读法/不可判定读法与处理规则。"
+    }
+  ]
+}

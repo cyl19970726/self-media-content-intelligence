@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "noteId": "6a05780c0000000006020d23",
+  "downloadedAt": "2026-08-16T12:38:09.776Z",
+  "file": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a05780c0000000006020d23/source.mp4",
+  "bytes": 8923949,
+  "sha256": "0dc8c1a5a9d5459abb54c0e50b4311487a82bd6ba9d510211f3e9c2cec79b2c5",
+  "httpStatus": 200,
+  "sourceRedacted": true,
+  "stream": {
+    "width": 1918,
+    "height": 1080,
+    "expectedSize": 8923949,
+    "durationMs": 118955,
+    "format": "mp4",
+    "qualityType": "HD",
+    "videoCodec": "EF5"
+  }
+}

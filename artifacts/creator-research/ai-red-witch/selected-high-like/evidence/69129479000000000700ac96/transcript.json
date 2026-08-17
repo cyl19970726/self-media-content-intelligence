@@ -1,0 +1,59 @@
+{
+  "id": "69129479000000000700ac96",
+  "cues": [
+    {
+      "id": "CUE-001",
+      "index": 1,
+      "start": 0,
+      "end": 1.6800000000000002,
+      "duration": 1.68,
+      "midpoint": 0.84,
+      "text": "这个可以帮你换人物"
+    },
+    {
+      "id": "CUE-002",
+      "index": 2,
+      "start": 2,
+      "end": 3.83,
+      "duration": 1.83,
+      "midpoint": 2.915,
+      "text": "这个可以帮你做特效"
+    },
+    {
+      "id": "CUE-003",
+      "index": 3,
+      "start": 5.09,
+      "end": 7.9399999999999995,
+      "duration": 2.85,
+      "midpoint": 6.515,
+      "text": "这个可以让你和任何人同框拍短视频"
+    },
+    {
+      "id": "CUE-004",
+      "index": 4,
+      "start": 8.91,
+      "end": 11.02,
+      "duration": 2.11,
+      "midpoint": 9.965,
+      "text": "这个可以给你一键穿搭"
+    },
+    {
+      "id": "CUE-005",
+      "index": 5,
+      "start": 11.38,
+      "end": 13.09,
+      "duration": 1.71,
+      "midpoint": 12.235,
+      "text": "这个可以给你设计ppt"
+    },
+    {
+      "id": "CUE-006",
+      "index": 6,
+      "start": 13.73,
+      "end": 15.31,
+      "duration": 1.58,
+      "midpoint": 14.52,
+      "text": "这个可以给你做动漫"
+    }
+  ]
+}

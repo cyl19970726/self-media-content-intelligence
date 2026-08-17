@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "judgeEligible": false,
+  "judgeStatus": "not_run_hard_gate_failed",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 14,
+      "denominator": 15,
+      "examples": [
+        {"status": "pass", "items": "CQ01-CQ09,CQ11-CQ15", "note": "主线、身份边界、全片有界缺失及开闭场关系均得到回答。"},
+        {"status": "fail", "item": "CQ10", "note": "候选未恢复画面字幕中的类别名‘装逼型视频’，且把审计要求保持歧义的‘干货型’直接并入涨粉型。"}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 14,
+      "denominator": 15,
+      "examples": [
+        {"status": "covered", "items": "audit KU01-KU09,KU11-KU15", "note": "对应候选知识单元均有可解析时段与证据引用。"},
+        {"status": "not_fully_covered", "item": "audit KU10", "note": "传奇型内容被覆盖，但‘干货型’层级归属的证据边界没有保留。"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 43,
+      "examples": [
+        {"item": "candidate KU-11", "note": "把‘干货内容’无保留地列入涨粉型，超过视频内部可确定的层级关系。"}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 45,
+      "denominator": 46,
+      "examples": [
+        {"status": "pass", "note": "45/46 个抽查引用正确定位，仍高于门槛；本门只判断定位，不替代载体冲突闭合。"},
+        {"status": "fail", "note": "确定性验证发现 KU-15 引用 OCR-00013 落在其声明时段之外。"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "独立复核 audit、完整候选内容及目标证据后确认：本片为策略讲解，没有可复现的软件或物理操作链；before/during/after 流程依赖不适用。"
+    },
+    "unknownDiscipline": {
+      "numerator": 9,
+      "denominator": 10,
+      "examples": [
+        {"status": "pass", "note": "样例口径、报价、身份、平台边界、白板小字、非语音音频及外部验证等均保留未知。"},
+        {"status": "fail", "note": "‘干货型’层级本应保持未知，候选却将其确定归入涨粉型。"}
+      ]
+    },
+    "uncheckedChannels": [
+      "97.470-99.467 的黄色烧录字幕未被候选知识层有效读取：画面为‘装逼型视频’，候选仍称准确口播词未关闭。",
+      "102.588-107.210 的烧录字幕与 SRT 物件表述冲突未被显式保留，候选静默合并为 logo/毕业证/录取通知书。"
+    ]
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "黄色烧录字幕在 97.470-99.467 与 102.588-107.210 的高影响纠错信息"
+    ],
+    "unguardedMeaningChanges": [
+      "SRT 的‘装逼型饰品’应被画面字幕纠正为作者自造类别‘装逼型视频’",
+      "‘干货型’紧随传奇型出现，但其层级归属不能被确定"
+    ],
+    "unguardedRelationships": [
+      "烧录字幕与提供 SRT 的冲突关系未在知识层逐项保存",
+      "干货型与涨粉使命之间应保持未决，而非确定从属"
+    ],
+    "rationale": "候选声明所有载体已检查，但两处会改变类别名称和层级的烧录字幕冲突没有被关闭，因此自报 meta-gate 不能成立。"
+  },
+  "examples": [
+    {"kind": "judge_not_run", "note": "硬门失败；judges 中的 1 仅为 evaluation.schema.json 强制数值字段的未评分哨兵，不是 JUDGE 结果。"},
+    {"kind": "high_impact_conflict", "auditRef": "CF05", "candidateRef": "KU-11", "effect": "类别名被漏失。"},
+    {"kind": "ambiguity_flattened", "auditRef": "KU10/CQ10", "candidateRef": "KU-11", "effect": "未知层级被写成确定从属。"},
+    {"kind": "deterministic_validation", "gate": "internal_timestamp_bounds", "candidateRef": "KU-15/OCR-00013", "effect": "引用落在单元声明时段外。"}
+  ]
+}

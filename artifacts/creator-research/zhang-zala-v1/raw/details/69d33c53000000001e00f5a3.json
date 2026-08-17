@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69d33c53000000001e00f5a3",
+  "capturedAt": "2026-08-16T12:27:45.724Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "当我决定不再用“文科生”的标签定义自己",
+    "postCopy": "Technically curious，有好奇心和动手的意愿，是AI时代最重要的能力\n\t\n来自跟@Koji杨远骋 的十字路口播客\n\t\n#不被定义的女性[话题]# #文科生[话题]#",
+    "hashtags": [
+      "不被定义的女性",
+      "文科生"
+    ],
+    "topComments": [
+      {
+        "content": "technically curious [派对R]",
+        "likes": "2",
+        "ipLocation": "广东",
+        "author": "Lemon",
+        "replies": []
+      },
+      {
+        "content": "看越多你的分享，越喜欢你，很多观点都不能认同更多！",
+        "likes": "0",
+        "ipLocation": "以色列",
+        "author": "YoYo Tang",
+        "replies": []
+      },
+      {
+        "content": "这是最喜欢的一期十字路口👍",
+        "likes": "0",
+        "ipLocation": "广东",
+        "author": "Tianhan老师",
+        "replies": []
+      },
+      {
+        "content": "有意思",
+        "likes": "0",
+        "ipLocation": "福建",
+        "author": "憧憬四平八稳小榴莲",
+        "replies": []
+      },
+      {
+        "content": "如何用好AI",
+        "likes": "0",
+        "ipLocation": "江苏",
+        "author": "苹果古董电脑",
+        "replies": []
+      },
+      {
+        "content": "要行动起来！",
+        "likes": "0",
+        "ipLocation": "上海",
+        "author": "SSpring🦈",
+        "replies": []
+      },
+      {
+        "content": "@三层吉士堡 宝宝快来听 适合咱俩[doge]",
+        "likes": "0",
+        "ipLocation": "云南",
+        "author": "Gato",
+        "replies": [
+          {
+            "content": "捂住耳朵",
+            "author": "三层吉士堡"
+          }
+        ]
+      },
+      {
+        "content": "@问一问站在一个挑剔同行的角度，找出这个视频最脆弱的三个推理环节。",
+        "likes": "0",
+        "ipLocation": "浙江",
+        "author": "Bayes的AI学习之旅",
+        "replies": [
+          {
+            "content": "从一个“挑剔同行”的视角来看，这个视频的核心论点虽然鼓舞人心，但在逻辑链条上确实存在几个可以深挖的脆弱环节：\n“起跑线归零”的绝对化陷阱：视频中提到“新的技术浪潮来的时候，一切都是归零的”。这个前提在逻辑上是 最脆弱的 。技术演进往往具有路径依赖和累积效应，早期的“技术好奇”积累（如编程思维、数据敏感度）会在后期形成巨大的复利优势。所谓的“归零”更多是心理上的破除心魔，而非客观事实，忽略了先发者在资源、认知和试错成本上的真实优势。\n“文科生优势”的泛化与反向歧视：将“对人性和用户的洞察更深”、“沟通和分发能力更强”归因为文科生的群体特质，这本质上是用 新标签替代旧标签 。这种概括忽略了理科生中同样大量存在的优秀产品思维和沟通能力者，也否定了文科生中可能存在的技术深潜者，反而削弱了“不被定义”这一核心主张的说服力。\n“动手实践”的可行性断层：视频将“动手实践”作为核心解法，但对“非技术背景者”在实际落地时面临的 系统性壁垒 （如复杂的技术文档、工程化部署、高昂的试错成本）着墨不足。仅靠“自然语言编程”和“好奇心”能否真正跨越从“小想法”到“可运行系统”的鸿沟，这一点在视频中缺乏有力的实证支撑，容易让内容显得过于理想化。",
+            "author": "问一问"
+          }
+        ]
+      },
+      {
+        "content": "tech curious 才是天生的，有人天生愛玩新的用新的知道新的，有人覺得能用的就好，兩種個性差很多",
+        "likes": "11",
+        "ipLocation": "美国",
+        "author": "rereoo",
+        "replies": []
+      },
+      {
+        "content": "@哆啦A萌的奇思妙想 [派对R]",
+        "likes": "0",
+        "ipLocation": "广东",
+        "author": "哈基彤updating",
+        "replies": [
+          {
+            "content": "[哇R][哇R][哇R][派对R]salute",
+            "author": "哆啦A萌的奇思妙想"
+          }
+        ]
+      }
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69d33c53000000001e00f5a3",
+    "mediaType": "video",
+    "publishedAt": "2026-04-06T04:53:39.000Z",
+    "likes": "512",
+    "collections": "201",
+    "comments": "13",
+    "shares": "118",
+    "expectedDurationSec": 128
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 128
+    }
+  ]
+}

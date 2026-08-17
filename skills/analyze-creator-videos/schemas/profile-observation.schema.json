@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/profile-observation.schema.json",
+  "title": "Creator profile identity observation",
+  "type": "object",
+  "required": ["schemaVersion", "capturedAt", "strategy", "profileUrl", "fields"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "strategy": { "enum": ["structured_state", "visible_dom", "network_response", "fallback_evidence", "local_import"] },
+    "profileUrl": { "type": "string", "minLength": 1 },
+    "taskSpaceId": { "type": ["string", "number", "null"] },
+    "ownership": { "enum": ["agent_control", "user_control", "released", "unknown"] },
+    "artifactRef": { "type": ["string", "null"] },
+    "fields": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "xiaohongshuId": { "type": ["string", "null"] },
+        "bio": { "type": ["string", "null"] },
+        "followers": { "type": ["number", "string", "null"] },
+        "likesAndCollections": { "type": ["number", "string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "needsUser": { "type": "boolean" },
+    "error": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

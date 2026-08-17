@@ -1,0 +1,1406 @@
+{
+  "schemaVersion": "video-evidence-pack-1.0",
+  "generatedAt": "2026-08-16T02:44:04.795Z",
+  "source": {
+    "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6832e96a000000002100405d.mp4",
+    "videoName": "6832e96a000000002100405d.mp4",
+    "subtitles": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6832e96a000000002100405d.srt",
+    "subtitleOrigin": "provided_subtitles"
+  },
+  "media": {
+    "duration": 83.167,
+    "sizeBytes": 16643974,
+    "format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "hevc",
+    "width": 1440,
+    "height": 2560,
+    "frameRate": "30/1",
+    "hasAudio": true,
+    "audioCodec": "aac"
+  },
+  "sceneDetection": {
+    "threshold": 0.24,
+    "cuts": [
+      2.433,
+      6.167,
+      10.8,
+      18,
+      19.633,
+      21.1,
+      21.967,
+      22.9,
+      23.867,
+      24.7,
+      25.7,
+      25.833,
+      26.3,
+      26.767,
+      28.533,
+      39.233,
+      44.6,
+      48.7,
+      58.267,
+      62.2,
+      62.833,
+      64.233,
+      70.033,
+      70.867,
+      72.667,
+      74.133,
+      77.033,
+      80.267
+    ]
+  },
+  "shots": [
+    {
+      "id": "SHOT-001",
+      "start": 0,
+      "end": 2.433,
+      "representativeTime": 1.216,
+      "representativeFrame": "frames/shots/shot-001.jpg"
+    },
+    {
+      "id": "SHOT-002",
+      "start": 2.433,
+      "end": 6.167,
+      "representativeTime": 4.3,
+      "representativeFrame": "frames/shots/shot-002.jpg"
+    },
+    {
+      "id": "SHOT-003",
+      "start": 6.167,
+      "end": 10.8,
+      "representativeTime": 8.483,
+      "representativeFrame": "frames/shots/shot-003.jpg"
+    },
+    {
+      "id": "SHOT-004",
+      "start": 10.8,
+      "end": 18,
+      "representativeTime": 14.4,
+      "representativeFrame": "frames/shots/shot-004.jpg"
+    },
+    {
+      "id": "SHOT-005",
+      "start": 18,
+      "end": 19.633,
+      "representativeTime": 18.816,
+      "representativeFrame": "frames/shots/shot-005.jpg"
+    },
+    {
+      "id": "SHOT-006",
+      "start": 19.633,
+      "end": 21.1,
+      "representativeTime": 20.367,
+      "representativeFrame": "frames/shots/shot-006.jpg"
+    },
+    {
+      "id": "SHOT-007",
+      "start": 21.1,
+      "end": 21.967,
+      "representativeTime": 21.534,
+      "representativeFrame": "frames/shots/shot-007.jpg"
+    },
+    {
+      "id": "SHOT-008",
+      "start": 21.967,
+      "end": 22.9,
+      "representativeTime": 22.433,
+      "representativeFrame": "frames/shots/shot-008.jpg"
+    },
+    {
+      "id": "SHOT-009",
+      "start": 22.9,
+      "end": 23.867,
+      "representativeTime": 23.383,
+      "representativeFrame": "frames/shots/shot-009.jpg"
+    },
+    {
+      "id": "SHOT-010",
+      "start": 23.867,
+      "end": 24.7,
+      "representativeTime": 24.284,
+      "representativeFrame": "frames/shots/shot-010.jpg"
+    },
+    {
+      "id": "SHOT-011",
+      "start": 24.7,
+      "end": 25.7,
+      "representativeTime": 25.2,
+      "representativeFrame": "frames/shots/shot-011.jpg"
+    },
+    {
+      "id": "SHOT-012",
+      "start": 25.7,
+      "end": 25.833,
+      "representativeTime": 25.767,
+      "representativeFrame": "frames/shots/shot-012.jpg"
+    },
+    {
+      "id": "SHOT-013",
+      "start": 25.833,
+      "end": 26.3,
+      "representativeTime": 26.066,
+      "representativeFrame": "frames/shots/shot-013.jpg"
+    },
+    {
+      "id": "SHOT-014",
+      "start": 26.3,
+      "end": 26.767,
+      "representativeTime": 26.534,
+      "representativeFrame": "frames/shots/shot-014.jpg"
+    },
+    {
+      "id": "SHOT-015",
+      "start": 26.767,
+      "end": 28.533,
+      "representativeTime": 27.65,
+      "representativeFrame": "frames/shots/shot-015.jpg"
+    },
+    {
+      "id": "SHOT-016",
+      "start": 28.533,
+      "end": 39.233,
+      "representativeTime": 33.883,
+      "representativeFrame": "frames/shots/shot-016.jpg"
+    },
+    {
+      "id": "SHOT-017",
+      "start": 39.233,
+      "end": 44.6,
+      "representativeTime": 41.916,
+      "representativeFrame": "frames/shots/shot-017.jpg"
+    },
+    {
+      "id": "SHOT-018",
+      "start": 44.6,
+      "end": 48.7,
+      "representativeTime": 46.65,
+      "representativeFrame": "frames/shots/shot-018.jpg"
+    },
+    {
+      "id": "SHOT-019",
+      "start": 48.7,
+      "end": 58.267,
+      "representativeTime": 53.484,
+      "representativeFrame": "frames/shots/shot-019.jpg"
+    },
+    {
+      "id": "SHOT-020",
+      "start": 58.267,
+      "end": 62.2,
+      "representativeTime": 60.234,
+      "representativeFrame": "frames/shots/shot-020.jpg"
+    },
+    {
+      "id": "SHOT-021",
+      "start": 62.2,
+      "end": 62.833,
+      "representativeTime": 62.517,
+      "representativeFrame": "frames/shots/shot-021.jpg"
+    },
+    {
+      "id": "SHOT-022",
+      "start": 62.833,
+      "end": 64.233,
+      "representativeTime": 63.533,
+      "representativeFrame": "frames/shots/shot-022.jpg"
+    },
+    {
+      "id": "SHOT-023",
+      "start": 64.233,
+      "end": 70.033,
+      "representativeTime": 67.133,
+      "representativeFrame": "frames/shots/shot-023.jpg"
+    },
+    {
+      "id": "SHOT-024",
+      "start": 70.033,
+      "end": 70.867,
+      "representativeTime": 70.45,
+      "representativeFrame": "frames/shots/shot-024.jpg"
+    },
+    {
+      "id": "SHOT-025",
+      "start": 70.867,
+      "end": 72.667,
+      "representativeTime": 71.767,
+      "representativeFrame": "frames/shots/shot-025.jpg"
+    },
+    {
+      "id": "SHOT-026",
+      "start": 72.667,
+      "end": 74.133,
+      "representativeTime": 73.4,
+      "representativeFrame": "frames/shots/shot-026.jpg"
+    },
+    {
+      "id": "SHOT-027",
+      "start": 74.133,
+      "end": 77.033,
+      "representativeTime": 75.583,
+      "representativeFrame": "frames/shots/shot-027.jpg"
+    },
+    {
+      "id": "SHOT-028",
+      "start": 77.033,
+      "end": 80.267,
+      "representativeTime": 78.65,
+      "representativeFrame": "frames/shots/shot-028.jpg"
+    },
+    {
+      "id": "SHOT-029",
+      "start": 80.267,
+      "end": 83.167,
+      "representativeTime": 81.717,
+      "representativeFrame": "frames/shots/shot-029.jpg"
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cueCount": 21,
+    "fullText": "你肯定想不到ai主播已经开始带货了，就在刚刚我参加完京东云大会 在现场体验了不少京东云出品的神器，比如零代码做app和agent 但最让我惊艳的是这些已经上岗直播带货的京东数字人 这些数字人已经有超过一万家品牌都在用，一年带货超过一百四十亿 想想你最近买的那些东西，说不定都是ai卖给你的，说实话啊 我知道京东在电商加ai上憋大招，但没想到他们把数字人做到了这么逼真 嘴型和语音的完全同步，这都是一些基本功了，而数字人加真人的双人直播 Ai和人类一起直播讲解商品，数字人还能走秀展示穿搭 这个就太赛博了，完全看不出来任何猫腻，就拿大家都知道的安踏来说 他们已经在线下旗舰店打造了数字人直播间 什么商品讲解折扣情况，爆款穿搭的信息全靠这个数字人在讲解 也可以和运动裤混搭，打造出不同的时尚造型 无论哪种搭配，大家都可以轻松驾驭，另外一个童装品牌巴拉巴拉也借助了数字人 搭建了近十个直播间 并且数字人直播在整个gmv占比高达百分之十五 所有的这些技术都是基于京东数字人 这次六幺八更是推出了行业首批高盛宴可用的数字人 它不仅定制的音色有感情有起伏 嘴型同步的很自然，而且针对不同的品类有各种各样的特色主播 更重要的是也没有那种ai味儿，各种场景的带货话术，真的就是信手拈来 分分钟带火，你会在ai直播间买东西吗？",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 4.92,
+        "text": "你肯定想不到ai主播已经开始带货了，就在刚刚我参加完京东云大会",
+        "representativeTime": 2.46,
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 4.92,
+        "end": 9.48,
+        "text": "在现场体验了不少京东云出品的神器，比如零代码做app和agent",
+        "representativeTime": 7.2,
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 9.49,
+        "end": 13.527,
+        "text": "但最让我惊艳的是这些已经上岗直播带货的京东数字人",
+        "representativeTime": 11.508,
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 13.527,
+        "end": 17.97,
+        "text": "这些数字人已经有超过一万家品牌都在用，一年带货超过一百四十亿",
+        "representativeTime": 15.748,
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 17.98,
+        "end": 21.74,
+        "text": "想想你最近买的那些东西，说不定都是ai卖给你的，说实话啊",
+        "representativeTime": 19.86,
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005",
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 21.74,
+        "end": 26.77,
+        "text": "我知道京东在电商加ai上憋大招，但没想到他们把数字人做到了这么逼真",
+        "representativeTime": 24.255,
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008",
+          "SHOT-009",
+          "SHOT-010",
+          "SHOT-011",
+          "SHOT-012",
+          "SHOT-013",
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 26.78,
+        "end": 31.958,
+        "text": "嘴型和语音的完全同步，这都是一些基本功了，而数字人加真人的双人直播",
+        "representativeTime": 29.369,
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 31.958,
+        "end": 36.31,
+        "text": "Ai和人类一起直播讲解商品，数字人还能走秀展示穿搭",
+        "representativeTime": 34.134,
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 36.32,
+        "end": 40.92,
+        "text": "这个就太赛博了，完全看不出来任何猫腻，就拿大家都知道的安踏来说",
+        "representativeTime": 38.62,
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-016",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 40.92,
+        "end": 43.79,
+        "text": "他们已经在线下旗舰店打造了数字人直播间",
+        "representativeTime": 42.355,
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 43.8,
+        "end": 48.76,
+        "text": "什么商品讲解折扣情况，爆款穿搭的信息全靠这个数字人在讲解",
+        "representativeTime": 46.28,
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-017",
+          "SHOT-018",
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 48.76,
+        "end": 51.52,
+        "text": "也可以和运动裤混搭，打造出不同的时尚造型",
+        "representativeTime": 50.14,
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 51.53,
+        "end": 56.73,
+        "text": "无论哪种搭配，大家都可以轻松驾驭，另外一个童装品牌巴拉巴拉也借助了数字人",
+        "representativeTime": 54.13,
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 56.73,
+        "end": 58.27,
+        "text": "搭建了近十个直播间",
+        "representativeTime": 57.5,
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 58.28,
+        "end": 62.32,
+        "text": "并且数字人直播在整个gmv占比高达百分之十五",
+        "representativeTime": 60.3,
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-020",
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 62.32,
+        "end": 64.78,
+        "text": "所有的这些技术都是基于京东数字人",
+        "representativeTime": 63.55,
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-021",
+          "SHOT-022",
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 64.79,
+        "end": 68.71,
+        "text": "这次六幺八更是推出了行业首批高盛宴可用的数字人",
+        "representativeTime": 66.75,
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 68.71,
+        "end": 71.13,
+        "text": "它不仅定制的音色有感情有起伏",
+        "representativeTime": 69.92,
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-023",
+          "SHOT-024",
+          "SHOT-025"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 71.14,
+        "end": 75.54,
+        "text": "嘴型同步的很自然，而且针对不同的品类有各种各样的特色主播",
+        "representativeTime": 73.34,
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-025",
+          "SHOT-026",
+          "SHOT-027"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 75.54,
+        "end": 80.42,
+        "text": "更重要的是也没有那种ai味儿，各种场景的带货话术，真的就是信手拈来",
+        "representativeTime": 77.98,
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-027",
+          "SHOT-028",
+          "SHOT-029"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 80.43,
+        "end": 83.173,
+        "text": "分分钟带火，你会在ai直播间买东西吗？",
+        "representativeTime": 81.802,
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-029"
+        ]
+      }
+    ]
+  },
+  "denseProbe": {
+    "intervalSeconds": 1.5,
+    "frames": [
+      {
+        "id": "DENSE-0001",
+        "time": 0,
+        "frame": "frames/dense/dense-0001.jpg"
+      },
+      {
+        "id": "DENSE-0002",
+        "time": 1.5,
+        "frame": "frames/dense/dense-0002.jpg"
+      },
+      {
+        "id": "DENSE-0003",
+        "time": 3,
+        "frame": "frames/dense/dense-0003.jpg"
+      },
+      {
+        "id": "DENSE-0004",
+        "time": 4.5,
+        "frame": "frames/dense/dense-0004.jpg"
+      },
+      {
+        "id": "DENSE-0005",
+        "time": 6,
+        "frame": "frames/dense/dense-0005.jpg"
+      },
+      {
+        "id": "DENSE-0006",
+        "time": 7.5,
+        "frame": "frames/dense/dense-0006.jpg"
+      },
+      {
+        "id": "DENSE-0007",
+        "time": 9,
+        "frame": "frames/dense/dense-0007.jpg"
+      },
+      {
+        "id": "DENSE-0008",
+        "time": 10.5,
+        "frame": "frames/dense/dense-0008.jpg"
+      },
+      {
+        "id": "DENSE-0009",
+        "time": 12,
+        "frame": "frames/dense/dense-0009.jpg"
+      },
+      {
+        "id": "DENSE-0010",
+        "time": 13.5,
+        "frame": "frames/dense/dense-0010.jpg"
+      },
+      {
+        "id": "DENSE-0011",
+        "time": 15,
+        "frame": "frames/dense/dense-0011.jpg"
+      },
+      {
+        "id": "DENSE-0012",
+        "time": 16.5,
+        "frame": "frames/dense/dense-0012.jpg"
+      },
+      {
+        "id": "DENSE-0013",
+        "time": 18,
+        "frame": "frames/dense/dense-0013.jpg"
+      },
+      {
+        "id": "DENSE-0014",
+        "time": 19.5,
+        "frame": "frames/dense/dense-0014.jpg"
+      },
+      {
+        "id": "DENSE-0015",
+        "time": 21,
+        "frame": "frames/dense/dense-0015.jpg"
+      },
+      {
+        "id": "DENSE-0016",
+        "time": 22.5,
+        "frame": "frames/dense/dense-0016.jpg"
+      },
+      {
+        "id": "DENSE-0017",
+        "time": 24,
+        "frame": "frames/dense/dense-0017.jpg"
+      },
+      {
+        "id": "DENSE-0018",
+        "time": 25.5,
+        "frame": "frames/dense/dense-0018.jpg"
+      },
+      {
+        "id": "DENSE-0019",
+        "time": 27,
+        "frame": "frames/dense/dense-0019.jpg"
+      },
+      {
+        "id": "DENSE-0020",
+        "time": 28.5,
+        "frame": "frames/dense/dense-0020.jpg"
+      },
+      {
+        "id": "DENSE-0021",
+        "time": 30,
+        "frame": "frames/dense/dense-0021.jpg"
+      },
+      {
+        "id": "DENSE-0022",
+        "time": 31.5,
+        "frame": "frames/dense/dense-0022.jpg"
+      },
+      {
+        "id": "DENSE-0023",
+        "time": 33,
+        "frame": "frames/dense/dense-0023.jpg"
+      },
+      {
+        "id": "DENSE-0024",
+        "time": 34.5,
+        "frame": "frames/dense/dense-0024.jpg"
+      },
+      {
+        "id": "DENSE-0025",
+        "time": 36,
+        "frame": "frames/dense/dense-0025.jpg"
+      },
+      {
+        "id": "DENSE-0026",
+        "time": 37.5,
+        "frame": "frames/dense/dense-0026.jpg"
+      },
+      {
+        "id": "DENSE-0027",
+        "time": 39,
+        "frame": "frames/dense/dense-0027.jpg"
+      },
+      {
+        "id": "DENSE-0028",
+        "time": 40.5,
+        "frame": "frames/dense/dense-0028.jpg"
+      },
+      {
+        "id": "DENSE-0029",
+        "time": 42,
+        "frame": "frames/dense/dense-0029.jpg"
+      },
+      {
+        "id": "DENSE-0030",
+        "time": 43.5,
+        "frame": "frames/dense/dense-0030.jpg"
+      },
+      {
+        "id": "DENSE-0031",
+        "time": 45,
+        "frame": "frames/dense/dense-0031.jpg"
+      },
+      {
+        "id": "DENSE-0032",
+        "time": 46.5,
+        "frame": "frames/dense/dense-0032.jpg"
+      },
+      {
+        "id": "DENSE-0033",
+        "time": 48,
+        "frame": "frames/dense/dense-0033.jpg"
+      },
+      {
+        "id": "DENSE-0034",
+        "time": 49.5,
+        "frame": "frames/dense/dense-0034.jpg"
+      },
+      {
+        "id": "DENSE-0035",
+        "time": 51,
+        "frame": "frames/dense/dense-0035.jpg"
+      },
+      {
+        "id": "DENSE-0036",
+        "time": 52.5,
+        "frame": "frames/dense/dense-0036.jpg"
+      },
+      {
+        "id": "DENSE-0037",
+        "time": 54,
+        "frame": "frames/dense/dense-0037.jpg"
+      },
+      {
+        "id": "DENSE-0038",
+        "time": 55.5,
+        "frame": "frames/dense/dense-0038.jpg"
+      },
+      {
+        "id": "DENSE-0039",
+        "time": 57,
+        "frame": "frames/dense/dense-0039.jpg"
+      },
+      {
+        "id": "DENSE-0040",
+        "time": 58.5,
+        "frame": "frames/dense/dense-0040.jpg"
+      },
+      {
+        "id": "DENSE-0041",
+        "time": 60,
+        "frame": "frames/dense/dense-0041.jpg"
+      },
+      {
+        "id": "DENSE-0042",
+        "time": 61.5,
+        "frame": "frames/dense/dense-0042.jpg"
+      },
+      {
+        "id": "DENSE-0043",
+        "time": 63,
+        "frame": "frames/dense/dense-0043.jpg"
+      },
+      {
+        "id": "DENSE-0044",
+        "time": 64.5,
+        "frame": "frames/dense/dense-0044.jpg"
+      },
+      {
+        "id": "DENSE-0045",
+        "time": 66,
+        "frame": "frames/dense/dense-0045.jpg"
+      },
+      {
+        "id": "DENSE-0046",
+        "time": 67.5,
+        "frame": "frames/dense/dense-0046.jpg"
+      },
+      {
+        "id": "DENSE-0047",
+        "time": 69,
+        "frame": "frames/dense/dense-0047.jpg"
+      },
+      {
+        "id": "DENSE-0048",
+        "time": 70.5,
+        "frame": "frames/dense/dense-0048.jpg"
+      },
+      {
+        "id": "DENSE-0049",
+        "time": 72,
+        "frame": "frames/dense/dense-0049.jpg"
+      },
+      {
+        "id": "DENSE-0050",
+        "time": 73.5,
+        "frame": "frames/dense/dense-0050.jpg"
+      },
+      {
+        "id": "DENSE-0051",
+        "time": 75,
+        "frame": "frames/dense/dense-0051.jpg"
+      },
+      {
+        "id": "DENSE-0052",
+        "time": 76.5,
+        "frame": "frames/dense/dense-0052.jpg"
+      },
+      {
+        "id": "DENSE-0053",
+        "time": 78,
+        "frame": "frames/dense/dense-0053.jpg"
+      },
+      {
+        "id": "DENSE-0054",
+        "time": 79.5,
+        "frame": "frames/dense/dense-0054.jpg"
+      },
+      {
+        "id": "DENSE-0055",
+        "time": 81,
+        "frame": "frames/dense/dense-0055.jpg"
+      },
+      {
+        "id": "DENSE-0056",
+        "time": 82.5,
+        "frame": "frames/dense/dense-0056.jpg"
+      },
+      {
+        "id": "DENSE-0057",
+        "time": 83.047,
+        "frame": "frames/dense/dense-0057.jpg"
+      }
+    ]
+  },
+  "frameIndex": [
+    {
+      "id": "FRAME-SHOT-001",
+      "time": 1.216,
+      "frame": "frames/shots/shot-001.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-002",
+      "time": 4.3,
+      "frame": "frames/shots/shot-002.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-003",
+      "time": 8.483,
+      "frame": "frames/shots/shot-003.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-004",
+      "time": 14.4,
+      "frame": "frames/shots/shot-004.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-005",
+      "time": 18.816,
+      "frame": "frames/shots/shot-005.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-006",
+      "time": 20.367,
+      "frame": "frames/shots/shot-006.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-007",
+      "time": 21.534,
+      "frame": "frames/shots/shot-007.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-008",
+      "time": 22.433,
+      "frame": "frames/shots/shot-008.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-009",
+      "time": 23.383,
+      "frame": "frames/shots/shot-009.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-010",
+      "time": 24.284,
+      "frame": "frames/shots/shot-010.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-011",
+      "time": 25.2,
+      "frame": "frames/shots/shot-011.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-012",
+      "time": 25.767,
+      "frame": "frames/shots/shot-012.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-013",
+      "time": 26.066,
+      "frame": "frames/shots/shot-013.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-014",
+      "time": 26.534,
+      "frame": "frames/shots/shot-014.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-015",
+      "time": 27.65,
+      "frame": "frames/shots/shot-015.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-016",
+      "time": 33.883,
+      "frame": "frames/shots/shot-016.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-017",
+      "time": 41.916,
+      "frame": "frames/shots/shot-017.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-018",
+      "time": 46.65,
+      "frame": "frames/shots/shot-018.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-019",
+      "time": 53.484,
+      "frame": "frames/shots/shot-019.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-020",
+      "time": 60.234,
+      "frame": "frames/shots/shot-020.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-021",
+      "time": 62.517,
+      "frame": "frames/shots/shot-021.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-022",
+      "time": 63.533,
+      "frame": "frames/shots/shot-022.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-023",
+      "time": 67.133,
+      "frame": "frames/shots/shot-023.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-024",
+      "time": 70.45,
+      "frame": "frames/shots/shot-024.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-025",
+      "time": 71.767,
+      "frame": "frames/shots/shot-025.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-026",
+      "time": 73.4,
+      "frame": "frames/shots/shot-026.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-027",
+      "time": 75.583,
+      "frame": "frames/shots/shot-027.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-028",
+      "time": 78.65,
+      "frame": "frames/shots/shot-028.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-029",
+      "time": 81.717,
+      "frame": "frames/shots/shot-029.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-CUE-001",
+      "time": 2.46,
+      "frame": "frames/cues/cue-001.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-002",
+      "time": 7.2,
+      "frame": "frames/cues/cue-002.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-003",
+      "time": 11.508,
+      "frame": "frames/cues/cue-003.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-004",
+      "time": 15.748,
+      "frame": "frames/cues/cue-004.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-005",
+      "time": 19.86,
+      "frame": "frames/cues/cue-005.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-006",
+      "time": 24.255,
+      "frame": "frames/cues/cue-006.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-007",
+      "time": 29.369,
+      "frame": "frames/cues/cue-007.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-008",
+      "time": 34.134,
+      "frame": "frames/cues/cue-008.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-009",
+      "time": 38.62,
+      "frame": "frames/cues/cue-009.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-010",
+      "time": 42.355,
+      "frame": "frames/cues/cue-010.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-011",
+      "time": 46.28,
+      "frame": "frames/cues/cue-011.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-012",
+      "time": 50.14,
+      "frame": "frames/cues/cue-012.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-013",
+      "time": 54.13,
+      "frame": "frames/cues/cue-013.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-014",
+      "time": 57.5,
+      "frame": "frames/cues/cue-014.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-015",
+      "time": 60.3,
+      "frame": "frames/cues/cue-015.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-016",
+      "time": 63.55,
+      "frame": "frames/cues/cue-016.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-017",
+      "time": 66.75,
+      "frame": "frames/cues/cue-017.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-018",
+      "time": 69.92,
+      "frame": "frames/cues/cue-018.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-019",
+      "time": 73.34,
+      "frame": "frames/cues/cue-019.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-020",
+      "time": 77.98,
+      "frame": "frames/cues/cue-020.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-021",
+      "time": 81.802,
+      "frame": "frames/cues/cue-021.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "DENSE-0001",
+      "time": 0,
+      "frame": "frames/dense/dense-0001.jpg"
+    },
+    {
+      "id": "DENSE-0002",
+      "time": 1.5,
+      "frame": "frames/dense/dense-0002.jpg"
+    },
+    {
+      "id": "DENSE-0003",
+      "time": 3,
+      "frame": "frames/dense/dense-0003.jpg"
+    },
+    {
+      "id": "DENSE-0004",
+      "time": 4.5,
+      "frame": "frames/dense/dense-0004.jpg"
+    },
+    {
+      "id": "DENSE-0005",
+      "time": 6,
+      "frame": "frames/dense/dense-0005.jpg"
+    },
+    {
+      "id": "DENSE-0006",
+      "time": 7.5,
+      "frame": "frames/dense/dense-0006.jpg"
+    },
+    {
+      "id": "DENSE-0007",
+      "time": 9,
+      "frame": "frames/dense/dense-0007.jpg"
+    },
+    {
+      "id": "DENSE-0008",
+      "time": 10.5,
+      "frame": "frames/dense/dense-0008.jpg"
+    },
+    {
+      "id": "DENSE-0009",
+      "time": 12,
+      "frame": "frames/dense/dense-0009.jpg"
+    },
+    {
+      "id": "DENSE-0010",
+      "time": 13.5,
+      "frame": "frames/dense/dense-0010.jpg"
+    },
+    {
+      "id": "DENSE-0011",
+      "time": 15,
+      "frame": "frames/dense/dense-0011.jpg"
+    },
+    {
+      "id": "DENSE-0012",
+      "time": 16.5,
+      "frame": "frames/dense/dense-0012.jpg"
+    },
+    {
+      "id": "DENSE-0013",
+      "time": 18,
+      "frame": "frames/dense/dense-0013.jpg"
+    },
+    {
+      "id": "DENSE-0014",
+      "time": 19.5,
+      "frame": "frames/dense/dense-0014.jpg"
+    },
+    {
+      "id": "DENSE-0015",
+      "time": 21,
+      "frame": "frames/dense/dense-0015.jpg"
+    },
+    {
+      "id": "DENSE-0016",
+      "time": 22.5,
+      "frame": "frames/dense/dense-0016.jpg"
+    },
+    {
+      "id": "DENSE-0017",
+      "time": 24,
+      "frame": "frames/dense/dense-0017.jpg"
+    },
+    {
+      "id": "DENSE-0018",
+      "time": 25.5,
+      "frame": "frames/dense/dense-0018.jpg"
+    },
+    {
+      "id": "DENSE-0019",
+      "time": 27,
+      "frame": "frames/dense/dense-0019.jpg"
+    },
+    {
+      "id": "DENSE-0020",
+      "time": 28.5,
+      "frame": "frames/dense/dense-0020.jpg"
+    },
+    {
+      "id": "DENSE-0021",
+      "time": 30,
+      "frame": "frames/dense/dense-0021.jpg"
+    },
+    {
+      "id": "DENSE-0022",
+      "time": 31.5,
+      "frame": "frames/dense/dense-0022.jpg"
+    },
+    {
+      "id": "DENSE-0023",
+      "time": 33,
+      "frame": "frames/dense/dense-0023.jpg"
+    },
+    {
+      "id": "DENSE-0024",
+      "time": 34.5,
+      "frame": "frames/dense/dense-0024.jpg"
+    },
+    {
+      "id": "DENSE-0025",
+      "time": 36,
+      "frame": "frames/dense/dense-0025.jpg"
+    },
+    {
+      "id": "DENSE-0026",
+      "time": 37.5,
+      "frame": "frames/dense/dense-0026.jpg"
+    },
+    {
+      "id": "DENSE-0027",
+      "time": 39,
+      "frame": "frames/dense/dense-0027.jpg"
+    },
+    {
+      "id": "DENSE-0028",
+      "time": 40.5,
+      "frame": "frames/dense/dense-0028.jpg"
+    },
+    {
+      "id": "DENSE-0029",
+      "time": 42,
+      "frame": "frames/dense/dense-0029.jpg"
+    },
+    {
+      "id": "DENSE-0030",
+      "time": 43.5,
+      "frame": "frames/dense/dense-0030.jpg"
+    },
+    {
+      "id": "DENSE-0031",
+      "time": 45,
+      "frame": "frames/dense/dense-0031.jpg"
+    },
+    {
+      "id": "DENSE-0032",
+      "time": 46.5,
+      "frame": "frames/dense/dense-0032.jpg"
+    },
+    {
+      "id": "DENSE-0033",
+      "time": 48,
+      "frame": "frames/dense/dense-0033.jpg"
+    },
+    {
+      "id": "DENSE-0034",
+      "time": 49.5,
+      "frame": "frames/dense/dense-0034.jpg"
+    },
+    {
+      "id": "DENSE-0035",
+      "time": 51,
+      "frame": "frames/dense/dense-0035.jpg"
+    },
+    {
+      "id": "DENSE-0036",
+      "time": 52.5,
+      "frame": "frames/dense/dense-0036.jpg"
+    },
+    {
+      "id": "DENSE-0037",
+      "time": 54,
+      "frame": "frames/dense/dense-0037.jpg"
+    },
+    {
+      "id": "DENSE-0038",
+      "time": 55.5,
+      "frame": "frames/dense/dense-0038.jpg"
+    },
+    {
+      "id": "DENSE-0039",
+      "time": 57,
+      "frame": "frames/dense/dense-0039.jpg"
+    },
+    {
+      "id": "DENSE-0040",
+      "time": 58.5,
+      "frame": "frames/dense/dense-0040.jpg"
+    },
+    {
+      "id": "DENSE-0041",
+      "time": 60,
+      "frame": "frames/dense/dense-0041.jpg"
+    },
+    {
+      "id": "DENSE-0042",
+      "time": 61.5,
+      "frame": "frames/dense/dense-0042.jpg"
+    },
+    {
+      "id": "DENSE-0043",
+      "time": 63,
+      "frame": "frames/dense/dense-0043.jpg"
+    },
+    {
+      "id": "DENSE-0044",
+      "time": 64.5,
+      "frame": "frames/dense/dense-0044.jpg"
+    },
+    {
+      "id": "DENSE-0045",
+      "time": 66,
+      "frame": "frames/dense/dense-0045.jpg"
+    },
+    {
+      "id": "DENSE-0046",
+      "time": 67.5,
+      "frame": "frames/dense/dense-0046.jpg"
+    },
+    {
+      "id": "DENSE-0047",
+      "time": 69,
+      "frame": "frames/dense/dense-0047.jpg"
+    },
+    {
+      "id": "DENSE-0048",
+      "time": 70.5,
+      "frame": "frames/dense/dense-0048.jpg"
+    },
+    {
+      "id": "DENSE-0049",
+      "time": 72,
+      "frame": "frames/dense/dense-0049.jpg"
+    },
+    {
+      "id": "DENSE-0050",
+      "time": 73.5,
+      "frame": "frames/dense/dense-0050.jpg"
+    },
+    {
+      "id": "DENSE-0051",
+      "time": 75,
+      "frame": "frames/dense/dense-0051.jpg"
+    },
+    {
+      "id": "DENSE-0052",
+      "time": 76.5,
+      "frame": "frames/dense/dense-0052.jpg"
+    },
+    {
+      "id": "DENSE-0053",
+      "time": 78,
+      "frame": "frames/dense/dense-0053.jpg"
+    },
+    {
+      "id": "DENSE-0054",
+      "time": 79.5,
+      "frame": "frames/dense/dense-0054.jpg"
+    },
+    {
+      "id": "DENSE-0055",
+      "time": 81,
+      "frame": "frames/dense/dense-0055.jpg"
+    },
+    {
+      "id": "DENSE-0056",
+      "time": 82.5,
+      "frame": "frames/dense/dense-0056.jpg"
+    },
+    {
+      "id": "DENSE-0057",
+      "time": 83.047,
+      "frame": "frames/dense/dense-0057.jpg"
+    }
+  ],
+  "contracts": {
+    "cueFrameShotMapping": true,
+    "verbatimTranscriptPreserved": true
+  }
+}

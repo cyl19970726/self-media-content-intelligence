@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="基于真实小红书视频、官方字幕、公开指标和评论样本的 V3 单帖研究台。" />
+  <title>Signal Room V3｜Codex 自动化视频单帖研究</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="../../../node_modules/@fontsource/ibm-plex-sans-condensed/400.css" />
+  <link rel="stylesheet" href="../../../node_modules/@fontsource/ibm-plex-sans-condensed/600.css" />
+  <link rel="stylesheet" href="../../../node_modules/@fontsource/ibm-plex-mono/400.css" />
+  <link rel="stylesheet" href="workbench.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="rail" aria-label="研究项目章节">
+      <a class="rail-brand mono" href="#overview" aria-label="Signal Room V3">SR<br />V3</a>
+      <div class="rail-nav" id="railNav"></div>
+      <div class="rail-spacer"></div>
+      <a class="rail-source mono" href="analysis.json" title="打开分析 JSON">JSON</a>
+    </nav>
+
+    <main class="workspace" id="workspace">
+      <header class="topbar">
+        <div class="project-switcher">
+          <span class="mono">研究台 / 单帖项目</span>
+          <strong>Codex 自动化视频</strong>
+        </div>
+        <label class="mobile-view-label" for="mobileViewSelect">章节</label>
+        <select id="mobileViewSelect" class="mobile-view-select" aria-label="切换研究章节"></select>
+        <div class="top-actions">
+          <a href="source.json">源数据</a>
+          <a href="source.zh-CN.srt">官方字幕</a>
+          <button type="button" class="primary-action" data-action="brief">生成 Brief</button>
+        </div>
+      </header>
+
+      <div id="app" class="app-loading" aria-live="polite" aria-busy="true">
+        <div class="loading-state">
+          <span class="loading-mark mono">01</span>
+          <div><strong>正在装载真实研究证据</strong><p>视频、官方字幕、41 个候选切点和可审计 Findings。</p></div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="evidence-panel" id="evidencePanel" aria-label="证据检查器">
+      <header class="evidence-head">
+        <div><span class="mono">EVIDENCE INSPECTOR</span><strong>证据检查器</strong></div>
+        <button type="button" id="closeEvidence" aria-label="关闭证据检查器">关闭</button>
+      </header>
+      <div id="evidenceContent" class="evidence-content">
+        <p class="empty-evidence">选择一个 Finding、指标、叙事段或候选镜头，查看原始证据与边界。</p>
+      </div>
+    </aside>
+  </div>
+
+  <button type="button" class="evidence-fab" id="openEvidence" aria-controls="evidencePanel">证据</button>
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+  <dialog class="action-dialog" id="actionDialog" aria-labelledby="actionTitle">
+    <form method="dialog">
+      <header><span class="mono">PROJECT ACTION</span><button value="cancel" aria-label="关闭">关闭</button></header>
+      <div id="actionDialogBody"></div>
+    </form>
+  </dialog>
+
+  <noscript>此研究台需要 JavaScript 来联动时间轴、视频和证据检查器。</noscript>
+  <script type="module" src="workbench.js"></script>
+</body>
+</html>

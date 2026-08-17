@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a455a080000000021016e35",
+  "capturedAt": "2026-08-16T11:09:05.641Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "做skill是你工作流的最后一步，不是第一步",
+    "postCopy": "如何做一个自己的skill。不是一上来就做skill，而是先跟AI完成正常的工作流，不断迭代，然后最后再让AI把刚刚的过程变成skill\n\t\n#howto实现一万种vibecoding[话题]# #howto手搓skill[话题]#",
+    "hashtags": [
+      "howto实现一万种vibecoding",
+      "howto手搓skill"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a455a080000000021016e35",
+    "mediaType": "video",
+    "publishedAt": "2026-07-01T18:18:48.000Z",
+    "likes": "904",
+    "collections": "603",
+    "comments": "23",
+    "shares": "109",
+    "expectedDurationSec": 56
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 56
+    }
+  ]
+}

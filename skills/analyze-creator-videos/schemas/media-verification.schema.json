@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/media-verification.schema.json",
+  "title": "Downloaded media verification",
+  "type": "object",
+  "required": ["schemaVersion", "checkedAt", "file", "status", "transport", "container", "timeline", "contentContinuity", "gates", "unknowns"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "checkedAt": { "type": "string", "format": "date-time" },
+    "file": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["verified_complete", "verified_visual_short_no_subtitle", "partial_or_frozen_tail", "decode_failed", "metadata_mismatch", "unknown_completeness"] },
+    "transport": { "type": "object", "required": ["bytes", "sha256"], "additionalProperties": true },
+    "container": { "type": "object", "required": ["durationSec", "streams", "decodePass"], "additionalProperties": true },
+    "timeline": { "type": "object", "required": ["probeTimes", "frameHashes", "allProbeFramesDecoded"], "additionalProperties": true },
+    "contentContinuity": { "type": "object", "required": ["freezeEvents", "blackEvents", "tailMotionStatus"], "additionalProperties": true },
+    "gates": { "type": "array", "items": { "type": "object", "required": ["id", "pass"] } },
+    "unknowns": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

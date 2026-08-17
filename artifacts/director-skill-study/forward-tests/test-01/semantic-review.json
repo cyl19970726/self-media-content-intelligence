@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "reviewedAt": "2026-08-16T00:00:00+08:00",
+  "candidateHash": "31c0971d353a13a8c72e4d7db40923443df9ab20b2e9a4d975645941c6d57587",
+  "candidateHashes": {
+    "directing-brief.json": "31c0971d353a13a8c72e4d7db40923443df9ab20b2e9a4d975645941c6d57587",
+    "brief.md": "60f0009f134ebed9f0330c7cdad73e0338a00fff4daeaf16fc0c1f27a98ff14e"
+  },
+  "taskHash": "967f01da6ce1dd58bb9b9eef2712493ce616472bc84403d88a3a50bcebd009e9",
+  "inputHashes": {
+    "test-01-codex-flova.md": "967f01da6ce1dd58bb9b9eef2712493ce616472bc84403d88a3a50bcebd009e9"
+  },
+  "evidenceHashes": [
+    "no-external-evidence-supplied; original task is the sole source-evidence input and is hashed as taskHash"
+  ],
+  "structuralReportHash": "eac3a3f1c103125e714b2fa61004a7589bccd00d0c90dac6a47465d125c27e14",
+  "reviewer": {
+    "id": "/root/semantic_review_flova",
+    "independenceStatement": "Fresh independent semantic reviewer; did not author or repair the candidate and did not inspect V0, observations, holdouts, other forward outputs, or prior reviews."
+  },
+  "gates": [
+    {
+      "id": "G0",
+      "name": "Coverage",
+      "passed": true,
+      "evidence": [
+        "directing-brief.json: accountContext, singlePlan.audience, demandEvidence, primaryJob/guardrailJob, contracts, contentMechanism, evidencePlan, beats, shots, packaging, experiment, production, assets/carrierEvidence/safety.",
+        "brief.md: 发布后复盘 supplies the review sequence and separately requires checking execution compliance and directional support.",
+        "Unknown price, compatibility, analytics fields, and actual device/tool are explicit in unknowns with owners and resolution paths."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G1",
+      "name": "Evidence fidelity",
+      "passed": true,
+      "evidence": [
+        "Claims are classified as user_claim, unknown, or system_inference; no claim is promoted to verified_observation.",
+        "claim_demand confines the four question classes to topic clues and expressly rejects population, search-volume, priority, and conversion inferences.",
+        "claim_import_scope and claim_final_object limit the proof to one file/one project/one version and one result object; they reject universal compatibility, automation, performance, and causal attribution.",
+        "Price and compatibility remain unknown unless current official evidence is captured on recording day."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G2",
+      "name": "Promise closure",
+      "passed": true,
+      "evidence": [
+        "The title promises four pre-use checks; the cover lists price/system/material/cover; the opening discloses Flova plus human checking within 4 seconds and maps all four items by 12 seconds.",
+        "beats verify/import/cover repay each promised item with an operation and explicit proof boundary.",
+        "beat_close and contracts.promiseClosure close all four statuses without asserting free use, universal compatibility, automation, or traffic outcomes.",
+        "The save CTA is tied to the delivered checklist, and the follow contract names future real-world tests, failure boundaries, and manual corrections."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G3",
+      "name": "Executability",
+      "passed": true,
+      "evidence": [
+        "Six timed beats and six linked shots specify speech, screen text, image content, function, evidence responsibility, assets, transitions, and edit decisions for a 76-second cut.",
+        "Production assigns verification, capture, narration, edit, and publication review to the creator and gives a 255-minute schedule.",
+        "Fallbacks cover absent official facts and failed import capture; packaging, CTA, comment coding, metrics, windows, and review order specify publishing and measurement actions."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G4",
+      "name": "Production feasibility",
+      "passed": true,
+      "evidence": [
+        "The supplied existing screen recording, final vertical clip, and .md file are mapped to shots; only official-page, import, cover, and voice captures must be added.",
+        "One creator, desk/screen locations, common recording/editing/browser tools, a 255-minute allocation, and a 70-82-second duration fit the one-person half-day constraint.",
+        "Unknown device/tool details have a pre-shoot owner and resolution, and unavailable facts/import success have content fallbacks."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G5",
+      "name": "Original transfer",
+      "passed": true,
+      "evidence": [
+        "The original task supplies no reference creator or source work, so transfer is explicitly not applicable rather than fabricated.",
+        "The plan uses the creator's own project, workflow file, recording, and result and explicitly rejects copied wording, identity symbols, case ownership, and third-party comment identities."
+      ],
+      "failures": []
+    },
+    {
+      "id": "G6",
+      "name": "Measurement",
+      "passed": true,
+      "evidence": [
+        "singlePlan.experiment declares exactly one primary variable, opening, and locks audience, body order, proof objects, title/cover system, CTA, duration, and publishing conditions.",
+        "The main save-rate metric matches the search/save job; 12-second retention and tool-misattribution comments guard comprehension and trust.",
+        "The plan includes 24-hour/7-day windows, a four-post A/B minimum, proxy definitions, non-random confounds, and an explicit retain/undecided/stop-change rule."
+      ],
+      "failures": [],
+      "nonblockingRisks": [
+        "The B-opening description should explicitly retain Flova disclosure within the first 12 seconds and state its target duration; otherwise a later operator could accidentally vary disclosure amount and duration in addition to opening structure."
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Safety and rights",
+      "passed": false,
+      "evidence": [
+        "The plan protects comment privacy, rejects prohibited free/universal/automatic/traffic claims, scopes official facts to recording-day evidence, and conditionally requires commercial disclosure.",
+        "carrierEvidence.referent_flova_ui acknowledges that the product interface and marks belong to their respective rights holder, but only says to review display rules before publication.",
+        "carrierEvidence.referent_final_clip says to confirm that the result contains no unauthorized third-party content, while assets still label the clip and recordings owned."
+      ],
+      "failures": [
+        "Authorization for publishing the Flova interface/marks is not established, and the plan does not explicitly block those shots or provide a safe substitute if the display review is unresolved or adverse. Under G7, missing authorization must block asset use or trigger a safe fallback.",
+        "The final clip's embedded third-party-content check is pending, but the plan gives no explicit remove/replace/block fallback if that audit finds unlicensed footage, music, fonts, likenesses, or other material."
+      ]
+    }
+  ],
+  "failedGateIds": [
+    "G7"
+  ],
+  "blocking": [
+    {
+      "gateId": "G7",
+      "issue": "Publication rights for product UI/marks and any embedded third-party elements in the final clip are not closed by authorization or an enforceable no-use fallback.",
+      "requiredRevision": "For each affected asset, record the verification owner and pre-publication deadline, then state: if public-display rights or applicable display terms cannot be confirmed, the asset is prohibited from the cut and must be replaced with a creator-made schematic, rights-cleared crop/mockup, or other non-infringing carrier. If the final-clip audit finds any unlicensed component, remove or replace it and re-audit before use."
+    }
+  ],
+  "nonblocking": [
+    {
+      "gateId": "G6",
+      "issue": "B-opening operational detail is ambiguous.",
+      "recommendedRevision": "Define B's exact duration and explicitly preserve Flova dependency disclosure by 12 seconds so the tested change remains the opening structure rather than disclosure compliance."
+    }
+  ],
+  "requiredRevisions": [
+    "Close G7 by making unresolved/adverse product-UI display rights an explicit no-use condition with a rights-safe substitute.",
+    "Close G7 by adding an explicit remove/replace/block rule for unauthorized third-party components found inside the final clip."
+  ],
+  "judgeStatus": "not_run_hard_gate_failed",
+  "judgeScores": [],
+  "semanticReady": false,
+  "finalStatus": "NOT_READY",
+  "humanApproval": {
+    "owner": "账号创作者本人",
+    "status": "pending",
+    "note": "Human approval remains separate from reviewer readiness and cannot override failed G7."
+  }
+}

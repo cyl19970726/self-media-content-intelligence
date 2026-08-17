@@ -1,0 +1,544 @@
+{
+  "id": "6784e718000000000b0227d9",
+  "tier": "low",
+  "title": "天塌了！教你用Ai做海报，只要10秒",
+  "mediaPath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/6784e718000000000b0227d9.mp4",
+  "subtitlePath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/6784e718000000000b0227d9.srt",
+  "subtitleOrigin": "Whisper base 机器转写草稿",
+  "publishedAt": "2025-01-13T10:12:40.000Z",
+  "duration": 48.667,
+  "engagement": {
+    "likes": 27,
+    "collections": 40,
+    "comments": 9,
+    "shares": 8,
+    "collectionToLike": 1.481,
+    "commentToLike": 0.333,
+    "shareToLike": 0.296
+  },
+  "sourceUrl": "https://www.xiaohongshu.com/explore/6784e718000000000b0227d9",
+  "primaryCategory": "任务解法",
+  "secondaryTags": [
+    "AI海报",
+    "Coze",
+    "Recraft",
+    "设计"
+  ],
+  "contentIntent": "教观众用 Coze 中的海报生成能力，在十秒左右创建并继续编辑海报。",
+  "coreClaim": "描述主题和视觉结构后，AI 可以快速生成中文海报，并继续修改、高清化、加 Logo 或复用模板。",
+  "articleLead": "内容结构实际上非常接近高赞任务解法：结果先行、步骤清楚、收藏率也高。但 27 赞和 40 藏说明它更像‘小范围看见后愿意保存’，不能直接解释为内容无用。",
+  "keyPoints": [
+    "先用多张完成稿证明十秒生成",
+    "进入 Coze 海报工具并描述主题与结构",
+    "生成后还能修改、高清化、添加品牌 Logo 和复制模板",
+    "结尾用‘基础设计师危险’扩大话题"
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "end": 15.5,
+      "keyFrameAt": 7,
+      "heading": "先展示四类成品和中文排版",
+      "body": "开场展示电影、活动、节日海报和菜单，强调每张图生成不到十秒，并用创意、审美、字体、排版和中文没有崩坏来证明结果质量。",
+      "evidence": "多张海报完成稿"
+    },
+    {
+      "start": 15.5,
+      "end": 28.7,
+      "keyFrameAt": 22,
+      "heading": "输入主题和结构",
+      "body": "教程进入 Coze 的营销海报生成能力，要求填写海报主题，并按给定结构组织提示词；示例是一张特定风格的圣诞海报。",
+      "evidence": "Coze 输入界面与提示词"
+    },
+    {
+      "start": 28.7,
+      "end": 40.6,
+      "keyFrameAt": 34,
+      "heading": "继续修改、高清化和品牌化",
+      "body": "生成结果不满意时可以继续提出修改，还能高清化、加入品牌 Logo、复制预设模板并自行调整。",
+      "evidence": "生成后编辑与 Logo 功能"
+    },
+    {
+      "start": 40.6,
+      "end": 48.67,
+      "keyFrameAt": 45,
+      "heading": "从工具能力推到职业冲击",
+      "body": "结尾判断该工具足以应付多数基础设计场景，并用基础设计师危险制造讨论，最后把入口放到评论区。",
+      "evidence": "结尾结果与评论引导"
+    }
+  ],
+  "boundary": "官方字幕不可用，本页文字稿来自 Whisper base 机器转写，Coze、Recraft 和设计术语可能有错。公开视频无法判断曝光规模、封面点击或发布时间竞争。",
+  "publishedLabel": "2025/01/13周一 18:12",
+  "media": {
+    "durationSeconds": 48.667,
+    "width": 720,
+    "height": 1280,
+    "codec": "h264",
+    "bytes": 3525753
+  },
+  "editing": {
+    "detectedSceneCuts": [
+      0.767,
+      1.433,
+      2.133,
+      2.767,
+      3.467,
+      3.933,
+      6.767,
+      9.233,
+      10.6,
+      12.1,
+      15.367,
+      17.733,
+      21.9,
+      26.9,
+      27.533,
+      34.367,
+      36.267,
+      40.6,
+      41.8,
+      43,
+      44.267,
+      45.567,
+      46.667,
+      48.467
+    ],
+    "cutsPerMinute": 29.6
+  },
+  "contentArchitecture": {
+    "pattern": "钩子 / 问题 → 承诺 / 定义 → 展开 / 证明 → 回报 / 收束",
+    "stageCount": 4,
+    "hook": {
+      "index": 1,
+      "role": "钩子 / 问题",
+      "viewerQuestion": "这和我有什么关系，为什么继续看？",
+      "start": 0,
+      "end": 15.5,
+      "heading": "先展示四类成品和中文排版",
+      "function": "开场展示电影、活动、节日海报和菜单，强调每张图生成不到十秒，并用创意、审美、字体、排版和中文没有崩坏来证明结果质量。",
+      "visualEvidence": "多张海报完成稿"
+    },
+    "payoff": {
+      "index": 4,
+      "role": "回报 / 收束",
+      "viewerQuestion": "我最后得到什么，下一步做什么？",
+      "start": 40.6,
+      "end": 48.67,
+      "heading": "从工具能力推到职业冲击",
+      "function": "结尾判断该工具足以应付多数基础设计场景，并用基础设计师危险制造讨论，最后把入口放到评论区。",
+      "visualEvidence": "结尾结果与评论引导"
+    },
+    "proofChain": [
+      "Coze 输入界面与提示词",
+      "生成后编辑与 Logo 功能",
+      "结尾结果与评论引导"
+    ],
+    "stages": [
+      {
+        "index": 1,
+        "role": "钩子 / 问题",
+        "viewerQuestion": "这和我有什么关系，为什么继续看？",
+        "start": 0,
+        "end": 15.5,
+        "heading": "先展示四类成品和中文排版",
+        "function": "开场展示电影、活动、节日海报和菜单，强调每张图生成不到十秒，并用创意、审美、字体、排版和中文没有崩坏来证明结果质量。",
+        "visualEvidence": "多张海报完成稿"
+      },
+      {
+        "index": 2,
+        "role": "承诺 / 定义",
+        "viewerQuestion": "这条内容承诺解决什么？",
+        "start": 15.5,
+        "end": 28.7,
+        "heading": "输入主题和结构",
+        "function": "教程进入 Coze 的营销海报生成能力，要求填写海报主题，并按给定结构组织提示词；示例是一张特定风格的圣诞海报。",
+        "visualEvidence": "Coze 输入界面与提示词"
+      },
+      {
+        "index": 3,
+        "role": "展开 / 证明",
+        "viewerQuestion": "这个主张如何成立？",
+        "start": 28.7,
+        "end": 40.6,
+        "heading": "继续修改、高清化和品牌化",
+        "function": "生成结果不满意时可以继续提出修改，还能高清化、加入品牌 Logo、复制预设模板并自行调整。",
+        "visualEvidence": "生成后编辑与 Logo 功能"
+      },
+      {
+        "index": 4,
+        "role": "回报 / 收束",
+        "viewerQuestion": "我最后得到什么，下一步做什么？",
+        "start": 40.6,
+        "end": 48.67,
+        "heading": "从工具能力推到职业冲击",
+        "function": "结尾判断该工具足以应付多数基础设计场景，并用基础设计师危险制造讨论，最后把入口放到评论区。",
+        "visualEvidence": "结尾结果与评论引导"
+      }
+    ]
+  },
+  "knowledgeExtraction": {
+    "status": "needs_visual_review",
+    "captureMode": "字幕＋章节摘要；尚未完成逐帧视觉知识核验",
+    "channels": [
+      "字幕",
+      "章节摘要"
+    ],
+    "spokenClaims": 25,
+    "mappedKnowledgeUnits": 0,
+    "coveragePercent": null,
+    "items": [],
+    "unresolved": [
+      "画面文字和非口播知识尚未逐帧核验，当前页面不能声称捕捉了全部关键内容"
+    ]
+  },
+  "transcript": {
+    "origin": "Whisper base 机器转写草稿",
+    "cueCount": 25,
+    "totalCharacters": 316,
+    "charactersPerMinute": 389.6,
+    "fullText": "没设计试天塌了 这几张电影海报活动海报节日海报和菜单都是我用了i设计的 每张图只用了不到10秒 A看这图片的创意审美自体和排版真的高级到过于离谱 很难搞的中文也没有崩 今天就叫大家做这样的海报超级简单 而且还免费 我们来到coz找到营销海报声称 在这里写着与描述你的海报主题 终于结构可以按照这个来写 A比如我要做一张笔目风格的圣诞海报提示词就是这样 你们可以直接复制A不到10秒 真的不到10秒 一张高质量海报就做好了 如果不满意 还可以在这里继续提修改一件 或者让它变高轻 还可以一件加自己的品牌logo 还可以一件复制预设的海报模板自己修改定义 甚至自己开发AI应用 真的 这个AI应付大部分基础设计的场景完全够了 同时那些基础设计师真的危险了 就与我放评论区了 朋友们自取",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 1.08,
+        "midpoint": 0.54,
+        "text": "没设计试天塌了",
+        "frame": "frames-transcript/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "start": 1.08,
+        "end": 5.24,
+        "midpoint": 3.16,
+        "text": "这几张电影海报活动海报节日海报和菜单都是我用了i设计的",
+        "frame": "frames-transcript/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "start": 5.24,
+        "end": 6.72,
+        "midpoint": 5.98,
+        "text": "每张图只用了不到10秒",
+        "frame": "frames-transcript/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "start": 6.72,
+        "end": 10.6,
+        "midpoint": 8.66,
+        "text": "A看这图片的创意审美自体和排版真的高级到过于离谱",
+        "frame": "frames-transcript/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "start": 10.6,
+        "end": 12.08,
+        "midpoint": 11.34,
+        "text": "很难搞的中文也没有崩",
+        "frame": "frames-transcript/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "start": 12.08,
+        "end": 14.48,
+        "midpoint": 13.28,
+        "text": "今天就叫大家做这样的海报超级简单",
+        "frame": "frames-transcript/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "start": 14.48,
+        "end": 15.52,
+        "midpoint": 15,
+        "text": "而且还免费",
+        "frame": "frames-transcript/cue-007.jpg"
+      },
+      {
+        "id": "CUE-008",
+        "start": 15.52,
+        "end": 17.72,
+        "midpoint": 16.62,
+        "text": "我们来到coz找到营销海报声称",
+        "frame": "frames-transcript/cue-008.jpg"
+      },
+      {
+        "id": "CUE-009",
+        "start": 17.72,
+        "end": 19.8,
+        "midpoint": 18.76,
+        "text": "在这里写着与描述你的海报主题",
+        "frame": "frames-transcript/cue-009.jpg"
+      },
+      {
+        "id": "CUE-010",
+        "start": 19.8,
+        "end": 21.8,
+        "midpoint": 20.8,
+        "text": "终于结构可以按照这个来写",
+        "frame": "frames-transcript/cue-010.jpg"
+      },
+      {
+        "id": "CUE-011",
+        "start": 21.8,
+        "end": 25.68,
+        "midpoint": 23.74,
+        "text": "A比如我要做一张笔目风格的圣诞海报提示词就是这样",
+        "frame": "frames-transcript/cue-011.jpg"
+      },
+      {
+        "id": "CUE-012",
+        "start": 25.68,
+        "end": 27.84,
+        "midpoint": 26.76,
+        "text": "你们可以直接复制A不到10秒",
+        "frame": "frames-transcript/cue-012.jpg"
+      },
+      {
+        "id": "CUE-013",
+        "start": 27.84,
+        "end": 28.72,
+        "midpoint": 28.28,
+        "text": "真的不到10秒",
+        "frame": "frames-transcript/cue-013.jpg"
+      },
+      {
+        "id": "CUE-014",
+        "start": 28.72,
+        "end": 30.52,
+        "midpoint": 29.62,
+        "text": "一张高质量海报就做好了",
+        "frame": "frames-transcript/cue-014.jpg"
+      },
+      {
+        "id": "CUE-015",
+        "start": 30.52,
+        "end": 31.28,
+        "midpoint": 30.9,
+        "text": "如果不满意",
+        "frame": "frames-transcript/cue-015.jpg"
+      },
+      {
+        "id": "CUE-016",
+        "start": 31.28,
+        "end": 33.24,
+        "midpoint": 32.26,
+        "text": "还可以在这里继续提修改一件",
+        "frame": "frames-transcript/cue-016.jpg"
+      },
+      {
+        "id": "CUE-017",
+        "start": 33.24,
+        "end": 34.32,
+        "midpoint": 33.78,
+        "text": "或者让它变高轻",
+        "frame": "frames-transcript/cue-017.jpg"
+      },
+      {
+        "id": "CUE-018",
+        "start": 34.32,
+        "end": 36.32,
+        "midpoint": 35.32,
+        "text": "还可以一件加自己的品牌logo",
+        "frame": "frames-transcript/cue-018.jpg"
+      },
+      {
+        "id": "CUE-019",
+        "start": 36.32,
+        "end": 39.2,
+        "midpoint": 37.76,
+        "text": "还可以一件复制预设的海报模板自己修改定义",
+        "frame": "frames-transcript/cue-019.jpg"
+      },
+      {
+        "id": "CUE-020",
+        "start": 39.2,
+        "end": 40.6,
+        "midpoint": 39.9,
+        "text": "甚至自己开发AI应用",
+        "frame": "frames-transcript/cue-020.jpg"
+      },
+      {
+        "id": "CUE-021",
+        "start": 40.6,
+        "end": 41.2,
+        "midpoint": 40.9,
+        "text": "真的",
+        "frame": "frames-transcript/cue-021.jpg"
+      },
+      {
+        "id": "CUE-022",
+        "start": 41.2,
+        "end": 44.12,
+        "midpoint": 42.66,
+        "text": "这个AI应付大部分基础设计的场景完全够了",
+        "frame": "frames-transcript/cue-022.jpg"
+      },
+      {
+        "id": "CUE-023",
+        "start": 44.12,
+        "end": 46.36,
+        "midpoint": 45.24,
+        "text": "同时那些基础设计师真的危险了",
+        "frame": "frames-transcript/cue-023.jpg"
+      },
+      {
+        "id": "CUE-024",
+        "start": 46.36,
+        "end": 47.68,
+        "midpoint": 47.02,
+        "text": "就与我放评论区了",
+        "frame": "frames-transcript/cue-024.jpg"
+      },
+      {
+        "id": "CUE-025",
+        "start": 47.68,
+        "end": 48.48,
+        "midpoint": 48.08,
+        "text": "朋友们自取",
+        "frame": "frames-transcript/cue-025.jpg"
+      }
+    ]
+  },
+  "frames": {
+    "sparse": [
+      {
+        "time": 0,
+        "src": "frames-sparse/frame-001.jpg"
+      },
+      {
+        "time": 6.941,
+        "src": "frames-sparse/frame-002.jpg"
+      },
+      {
+        "time": 13.882,
+        "src": "frames-sparse/frame-003.jpg"
+      },
+      {
+        "time": 20.823,
+        "src": "frames-sparse/frame-004.jpg"
+      },
+      {
+        "time": 27.764,
+        "src": "frames-sparse/frame-005.jpg"
+      },
+      {
+        "time": 34.705,
+        "src": "frames-sparse/frame-006.jpg"
+      },
+      {
+        "time": 41.646,
+        "src": "frames-sparse/frame-007.jpg"
+      },
+      {
+        "time": 48.587,
+        "src": "frames-sparse/frame-008.jpg"
+      }
+    ],
+    "dense": [
+      {
+        "time": 0,
+        "src": "frames-dense/frame-001.jpg"
+      },
+      {
+        "time": 2,
+        "src": "frames-dense/frame-002.jpg"
+      },
+      {
+        "time": 4,
+        "src": "frames-dense/frame-003.jpg"
+      },
+      {
+        "time": 6,
+        "src": "frames-dense/frame-004.jpg"
+      },
+      {
+        "time": 8,
+        "src": "frames-dense/frame-005.jpg"
+      },
+      {
+        "time": 10,
+        "src": "frames-dense/frame-006.jpg"
+      },
+      {
+        "time": 12,
+        "src": "frames-dense/frame-007.jpg"
+      },
+      {
+        "time": 14,
+        "src": "frames-dense/frame-008.jpg"
+      },
+      {
+        "time": 16,
+        "src": "frames-dense/frame-009.jpg"
+      },
+      {
+        "time": 18,
+        "src": "frames-dense/frame-010.jpg"
+      },
+      {
+        "time": 20,
+        "src": "frames-dense/frame-011.jpg"
+      },
+      {
+        "time": 22,
+        "src": "frames-dense/frame-012.jpg"
+      },
+      {
+        "time": 24,
+        "src": "frames-dense/frame-013.jpg"
+      },
+      {
+        "time": 26,
+        "src": "frames-dense/frame-014.jpg"
+      },
+      {
+        "time": 28,
+        "src": "frames-dense/frame-015.jpg"
+      },
+      {
+        "time": 30,
+        "src": "frames-dense/frame-016.jpg"
+      },
+      {
+        "time": 32,
+        "src": "frames-dense/frame-017.jpg"
+      },
+      {
+        "time": 34,
+        "src": "frames-dense/frame-018.jpg"
+      },
+      {
+        "time": 36,
+        "src": "frames-dense/frame-019.jpg"
+      },
+      {
+        "time": 38,
+        "src": "frames-dense/frame-020.jpg"
+      },
+      {
+        "time": 40,
+        "src": "frames-dense/frame-021.jpg"
+      },
+      {
+        "time": 42,
+        "src": "frames-dense/frame-022.jpg"
+      },
+      {
+        "time": 44,
+        "src": "frames-dense/frame-023.jpg"
+      },
+      {
+        "time": 46,
+        "src": "frames-dense/frame-024.jpg"
+      },
+      {
+        "time": 48,
+        "src": "frames-dense/frame-025.jpg"
+      }
+    ],
+    "sparseSheet": "sparse-sheet.jpg",
+    "denseSheet": "dense-sheet.jpg"
+  },
+  "reportUrl": "reports/6784e718000000000b0227d9/report.html"
+}

@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "68663c61000000000b01dca6",
+  "auditedAt": "2026-08-16T11:10:42+08:00",
+  "scope": {
+    "readOnlyInputs": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/68663c61000000000b01dca6.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/68663c61000000000b01dca6.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/68663c61000000000b01dca6/evidence/evidence-pack.json"
+    ],
+    "excluded": [
+      "skills",
+      "candidate outputs",
+      "prior reports"
+    ],
+    "method": "Independent frame-level review of the original video, verbatim comparison with the provided SRT, and structural review of the new evidence pack. Visual presence is distinguished from successful execution and from externally verified business outcomes."
+  },
+  "media": {
+    "videoDurationSeconds": 93.576417,
+    "evidencePackDurationSeconds": 93.533,
+    "dimensions": "2160x3840",
+    "frameRate": 30,
+    "orientation": "vertical",
+    "transcriptOrigin": "provided_subtitles",
+    "subtitleCueCount": 25,
+    "shotCount": 18,
+    "evidencePackSchemaVersion": "video-evidence-pack-1.0",
+    "evidencePackContracts": {
+      "cueFrameShotMapping": true,
+      "verbatimTranscriptPreserved": true
+    },
+    "evidencePackLimit": "The pack indexes cues, frames, and shots. Its contracts establish mapping and transcript preservation, not OCR accuracy, claim truth, workflow execution, pricing, or business-result verification."
+  },
+  "overallVerdict": {
+    "label": "partially_supported_with_material_misrepresentation_risk",
+    "confidence": "high",
+    "summary": "The footage visibly demonstrates a DingTalk multidimensional-table template, populated AI-output fields, a dashboard, workflow configuration screens, and a formatted notification card. It does not establish automatic Tmall/Taobao collection, a five-negative-review aggregate trigger, delivery to a configured group, current free availability, or the claimed 3-day-to-10-minute/96% customer result. The automation sequence materially conflates a scheduled dashboard push with a separate record-triggered messaging workflow."
+  },
+  "groundTruth": {
+    "inputAndAcquisition": {
+      "verdict": "manual_or_prepopulated_input_shown; automatic_platform_collection_not_proven",
+      "observations": [
+        {
+          "time": "00:05-00:15",
+          "cueIds": [2, 3, 4],
+          "finding": "An ecommerce review/list view and an Excel-like sheet are shown side by side, supporting the depiction of a manual copy-and-organize baseline. The Zhejiang customer identity, weekly cadence, staffing, and three-day duration are narration only."
+        },
+        {
+          "time": "00:22-00:35",
+          "cueIds": [7, 8, 9],
+          "finding": "The narration claims automatic Tmall/Taobao review collection, but the screen shows an already-populated multidimensional table. No marketplace login, authorization, connector, crawler, API, source URL, sync run, or ingestion log is shown."
+        },
+        {
+          "time": "00:39-00:46",
+          "cueIds": [11, 12],
+          "finding": "The ecommerce AI review-analysis template is opened. The table already contains 212 records, then a block of review text is pasted into rows and a '粘贴成功' toast appears. The narration says to upload an Excel file, but no file picker or import flow is visible."
+        }
+      ]
+    },
+    "aiFieldChain": {
+      "verdict": "outputs_visible; causal_chain_partially_demonstrated; accuracy_unverified",
+      "visibleFields": [
+        "用户评价提取 AI",
+        "用户评价截图",
+        "商品信息",
+        "评价等级（AI分析） AI",
+        "问题类型（AI打标） AI",
+        "核心问题 AI",
+        "客服回复话术 AI",
+        "反馈日期",
+        "负责人",
+        "跟进情况",
+        "是否转好评"
+      ],
+      "visibleOutputExamples": {
+        "sentimentLabels": [
+          "好评",
+          "中等",
+          "差评"
+        ],
+        "problemLabels": [
+          "产品质量",
+          "包邮问题",
+          "物流问题",
+          "购物体验",
+          "服务态度"
+        ]
+      },
+      "observations": [
+        {
+          "time": "00:44-00:52",
+          "cueIds": [12, 13],
+          "finding": "After the paste, spinner/sparkle states and populated analysis cells are visible, supporting that the template can produce structured outputs."
+        },
+        {
+          "time": "00:52-01:06",
+          "cueIds": [14, 15, 16, 17],
+          "finding": "Sentiment, problem category, core issue, and customer-service reply fields are visibly populated. No model/prompt configuration, run duration, error state, source-grounding trace, benchmark, or human accuracy check is shown."
+        },
+        {
+          "time": "01:04-01:07",
+          "cueIds": [17],
+          "finding": "A dashboard with charts is visible, but large '空值' segments are also visible. Chart existence is demonstrated; data completeness and correctness are not."
+        }
+      ]
+    },
+    "automation": {
+      "verdict": "two_distinct_configurations_shown; claimed_end_to_end_scenario_not_proven",
+      "observations": [
+        {
+          "time": "01:08-01:10",
+          "cueIds": [18],
+          "finding": "The '设置仪表盘推送' dialog shows a scheduled push set to 2025-07-01 20:46, repeated daily, never ending. The target '发送仪表盘给' remains '请选择人或群'. This is a time schedule, not a five-negative-review condition."
+        },
+        {
+          "time": "01:10-01:13",
+          "cueIds": [18, 19],
+          "finding": "After a cut, a different automation editor shows trigger '新增或修改的记录满足条件时' and action '发送消息到指定用户或群（新）'. The actual condition/filter panel and any count threshold are not shown. The visible trigger is record-based, not visibly an aggregate count of five."
+        },
+        {
+          "time": "01:12-01:14",
+          "cueIds": [19],
+          "finding": "The group field remains '选择群组', while the person field contains dynamic value '1.负责人'. A warning states that the DingTalk document automation assistant will be added to the group and the user must have group-admin permission or workflow execution will fail."
+        },
+        {
+          "time": "01:14-01:17",
+          "cueIds": [19, 20],
+          "finding": "A formatted notification card is shown with title '有一条商品差评亟需你的处理', product information, user review, automated reply, and a link back to the table. This proves a card view exists, but not its recipient, delivery success, timestamp, execution log, or five-review trigger. The singular '一条' conflicts with the narrated five-review scenario."
+        }
+      ],
+      "groupPermissionConstraint": "The shown group-send path requires the automation assistant to join the group and the configuring user to have group-admin permission; otherwise execution fails. The footage does not show these requirements being satisfied."
+    }
+  },
+  "claimAudit": [
+    {
+      "id": "C01",
+      "claim": "The old process manually copied reviews into Excel and required repeated cleaning.",
+      "time": "00:05-00:15",
+      "cueIds": [2, 3, 4],
+      "verdict": "partially_supported",
+      "risk": "medium",
+      "basis": "The visual depicts manual browser-to-spreadsheet work. The specific brand, weekly process, labor cost, and three-day duration are not independently identified or measured."
+    },
+    {
+      "id": "C02",
+      "claim": "The multidimensional table automatically captures Tmall/Taobao review data.",
+      "time": "00:22-00:28",
+      "cueIds": [7],
+      "verdict": "unsupported_by_shown_workflow",
+      "risk": "high",
+      "basis": "No marketplace connection or collection run is shown. The demonstrated input is an existing 212-row table followed by a visible bulk paste."
+    },
+    {
+      "id": "C03",
+      "claim": "More than 100 ecommerce templates are available.",
+      "time": "00:20-00:23",
+      "cueIds": [6],
+      "verdict": "unsupported",
+      "risk": "medium",
+      "basis": "The template center is visible, but the footage does not show a count of more than 100 ecommerce templates."
+    },
+    {
+      "id": "C04",
+      "claim": "An ecommerce-review AI analysis template is available and can be opened.",
+      "time": "00:39-00:44",
+      "cueIds": [11],
+      "verdict": "supported_at_time_of_capture",
+      "risk": "low",
+      "basis": "The template center visibly lists '电商评价AI分析表' in the ecommerce category with approximately 3.4万人使用, and the template opens into a table. Current availability is not established."
+    },
+    {
+      "id": "C05",
+      "claim": "The setup step is to upload an Excel containing review data.",
+      "time": "00:39-00:46",
+      "cueIds": [11, 12],
+      "verdict": "narrated_but_not_visually_demonstrated",
+      "risk": "medium",
+      "basis": "The screen shows a pre-populated table and a batch paste with a success toast, not an Excel upload/import dialog."
+    },
+    {
+      "id": "C06",
+      "claim": "AI extracts the review, sentiment, product, issue category, core issue, and suggested service response.",
+      "time": "00:44-01:02",
+      "cueIds": [12, 13, 14, 15, 16],
+      "verdict": "partially_supported",
+      "risk": "medium",
+      "basis": "The corresponding structured fields and populated values are visible, with processing states after paste. Accuracy, source fidelity, full automation, and performance across the dataset are not verified."
+    },
+    {
+      "id": "C07",
+      "claim": "The results can be turned into a visualization/dashboard with one click.",
+      "time": "01:01-01:07",
+      "cueIds": [17],
+      "verdict": "partially_supported",
+      "risk": "low",
+      "basis": "A dashboard is shown and appears linked to the table. The exact click sequence and result quality are not fully demonstrated, and charts contain substantial empty-value categories."
+    },
+    {
+      "id": "C08",
+      "claim": "A scheduled dashboard push can be configured.",
+      "time": "01:08-01:10",
+      "cueIds": [18],
+      "verdict": "configuration_ui_supported; execution_not_proven",
+      "risk": "low",
+      "basis": "A daily scheduled-push dialog is visible, but its recipient is unselected and no save or successful delivery is shown."
+    },
+    {
+      "id": "C09",
+      "claim": "Once there are five negative reviews, the system automatically sends a message to the group.",
+      "time": "01:06-01:15",
+      "cueIds": [18, 19],
+      "verdict": "contradicted_by_visible_configuration",
+      "risk": "critical",
+      "basis": "The footage first shows a time-scheduled dashboard push, then cuts to a record-triggered workflow whose condition is hidden. No count-of-five threshold appears. The group selector is blank, a dynamic responsible person is selected, and the resulting card says there is one negative review."
+    },
+    {
+      "id": "C10",
+      "claim": "The full workflow is automated end to end.",
+      "time": "01:14-01:17",
+      "cueIds": [20],
+      "verdict": "unsupported_as_end_to_end_claim",
+      "risk": "high",
+      "basis": "Individual UI capabilities are visible, but the sequence does not show verified marketplace ingestion, a saved and enabled condition, required group permissions, a successful execution log, and confirmed delivery as one continuous workflow."
+    },
+    {
+      "id": "C11",
+      "claim": "A Zhejiang womenswear brand reduced a three-day task to ten minutes.",
+      "time": "01:16-01:23",
+      "cueIds": [21, 22],
+      "verdict": "unsupported_testimonial",
+      "risk": "high",
+      "basis": "The claim is narration-only. The brand is unnamed, and no before/after timing, workload definition, dataset size, process log, customer testimony, or external record is shown."
+    },
+    {
+      "id": "C12",
+      "claim": "Efficiency improved by 96%.",
+      "time": "01:21-01:25",
+      "cueIds": [22],
+      "verdict": "unsupported_and_numerically_underdefined",
+      "risk": "high",
+      "basis": "No formula or baseline is supplied. If treated as time reduction, 96% with a 10-minute result implies a 250-minute baseline, not an ordinarily understood three-day baseline. Three 8-hour workdays to 10 minutes is a 99.31% time reduction; 72 hours to 10 minutes is 99.77%. If 'efficiency' means throughput, the percentage requires a different definition and is still unsupported."
+    },
+    {
+      "id": "C13",
+      "claim": "Even a small shop can use the capability for free.",
+      "time": "01:28-01:32",
+      "cueIds": [23, 24],
+      "verdict": "unknown",
+      "risk": "high",
+      "basis": "No pricing page, account plan, AI quota, template entitlement, usage limit, marketplace-connection cost, or organizational-permission requirement is shown. Account identity/tier and current pricing are unknown."
+    }
+  ],
+  "subtitleAndNarrationConflicts": [
+    {
+      "time": "00:22-00:28",
+      "cueIds": [7],
+      "type": "transcription",
+      "finding": "The SRT says '多表可以自动的抓取', while the hard caption/product context indicates '多维表可以自动的抓取'. The SRT wording should not be normalized silently in a verbatim transcript."
+    },
+    {
+      "time": "00:39-00:46",
+      "cueIds": [11, 12],
+      "type": "narration_vs_screen",
+      "finding": "Narration says to upload Excel; the screen shows bulk paste into an already-populated table and a '粘贴成功' toast."
+    },
+    {
+      "time": "00:28-00:56",
+      "cueIds": [8, 12, 14],
+      "type": "terminology",
+      "finding": "Narration uses positive/negative/neutral, while the visible template labels are good/medium/bad (好评/中等/差评). These are related but not an exact label match."
+    },
+    {
+      "time": "01:01-01:06",
+      "cueIds": [17],
+      "type": "transcription",
+      "finding": "The SRT phrase '一键把它作为可视画图' conflicts with the hard caption's intended phrase '一键把它作为可视化图'."
+    },
+    {
+      "time": "01:06-01:15",
+      "cueIds": [18, 19],
+      "type": "narration_vs_screen",
+      "finding": "Narration presents one continuous conditional workflow, but the screen cuts from a scheduled dashboard push to a separate record-triggered message workflow."
+    },
+    {
+      "time": "01:10-01:17",
+      "cueIds": [18, 19, 20],
+      "type": "narration_vs_screen",
+      "finding": "Narration says five negative reviews trigger a group message. No five-count condition is visible, the group is unselected, and the shown card says '有一条商品差评'."
+    }
+  ],
+  "unknowns": [
+    "The identity of the Zhejiang womenswear brand and whether it consented to or corroborates the testimonial.",
+    "The exact workload and definition behind 'three days', 'ten minutes', and '96%'.",
+    "Whether Tmall/Taobao automatic review ingestion exists, was configured, and was used in this example.",
+    "Whether the shown 212 records originated from a marketplace, an Excel file, manual paste, or template sample data.",
+    "The AI model, prompt logic, quota, latency, error rate, and field-level accuracy.",
+    "Whether the automation was saved, enabled, and successfully executed.",
+    "Whether any group was selected, the bot was admitted, and the operator had group-admin permission.",
+    "Whether the notification card was actually delivered, to whom, and by which trigger.",
+    "The filmed account identity, subscription tier, AI allowance, and template entitlement.",
+    "Current pricing, free-tier limits, and current template/feature availability."
+  ],
+  "requiredDisclosuresForReuse": [
+    "Describe automatic Tmall/Taobao collection only as an unverified narrated capability unless a continuous connector setup and sync run is added.",
+    "Do not describe the shown automation as 'five bad reviews trigger a group message'; the footage does not show that threshold or a configured group.",
+    "State that group delivery requires bot access and group-admin permission, and show the target, saved workflow, execution log, and delivered message if claiming completion.",
+    "Label the Zhejiang-brand result and 96% figure as an unverified case claim, or remove them until source records and a defined calculation are supplied.",
+    "Do not claim current free availability without a dated pricing/account-entitlement source.",
+    "If retaining the Excel step, align narration and visuals by showing an actual import flow or describe the demonstrated action as bulk paste.",
+    "Preserve the SRT verbatim when it is used as source material, but separately flag transcription errors rather than treating them as product facts."
+  ]
+}

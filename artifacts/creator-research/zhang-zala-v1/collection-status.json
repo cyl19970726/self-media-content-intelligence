@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-16T12:45:26.645Z",
+  "snapshotId": "2026-08-16T11-00-14-029Z",
+  "creator": {
+    "id": "59757acd50c4b45e6e9a90df",
+    "name": "张咋啦",
+    "identityStatus": "confirmed"
+  },
+  "route": {
+    "adapter": "ego-browser",
+    "mode": "read_only",
+    "serverLabel": "default",
+    "taskSpaceId": 11,
+    "ownership": "agent"
+  },
+  "crawl": {
+    "rounds": 5,
+    "zeroGrowthRounds": 4,
+    "zeroGrowthRoundsRequired": 3,
+    "completed": true,
+    "stopReason": "converged",
+    "declaredLimit": null,
+    "duplicateIds": [],
+    "lastScrollY": 4029,
+    "lastPageHeight": 5109
+  },
+  "counts": {
+    "items": 62,
+    "videos": 53,
+    "images": 9,
+    "articles": 0,
+    "unknownMediaType": 0,
+    "detailReady": 12,
+    "selectedForDeep": 12
+  },
+  "missingness": {
+    "likes": 0,
+    "collections": 50,
+    "comments": 50,
+    "shares": 50
+  },
+  "media": {
+    "reusedOrDownloaded": 12,
+    "verified": 12,
+    "failed": 0
+  },
+  "subtitles": {
+    "available": 0,
+    "absent": 12,
+    "failed": 0,
+    "unchecked": 50
+  },
+  "readiness": "deep_media_ready",
+  "gates": [
+    {
+      "id": "creator_identity",
+      "pass": true,
+      "detail": "confirmed"
+    },
+    {
+      "id": "crawl_stop_reason",
+      "pass": true,
+      "detail": "converged"
+    },
+    {
+      "id": "unique_ids",
+      "pass": true,
+      "detail": "62 rows"
+    },
+    {
+      "id": "snapshot_time",
+      "pass": true,
+      "detail": "2026-08-16T11:00:14.029Z"
+    },
+    {
+      "id": "media_type_accounted",
+      "pass": true,
+      "detail": "0 unresolved"
+    },
+    {
+      "id": "deep_media_complete",
+      "pass": true,
+      "detail": "12/12"
+    },
+    {
+      "id": "deep_subtitle_accounted",
+      "pass": true,
+      "detail": "12/12"
+    }
+  ],
+  "blockers": [],
+  "nextActions": []
+}

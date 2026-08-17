@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="证据化博主内容研究与起号决策工作台" />
+    <title>博主视频研究台</title>
+    <script>if (new URLSearchParams(location.search).get('embed') === '1') document.documentElement.classList.add('is-embedded')</script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="shell">
+      <aside class="rail">
+        <a class="brand" href="#position"><span>SR</span><b>Signal Room<small>Creator OS</small></b></a>
+        <nav aria-label="研究导航">
+          <a href="#position">01 定位</a><a href="#baseline">02 基本盘</a>
+          <a href="#portfolio">03 内容地图</a><a href="#tiers">04 表现分层</a>
+          <a href="#library">05 全部内容</a><a href="#evidence">06 深层证据</a>
+          <a href="#rhythm">07 发布与画面</a><a href="#launch">08 起号方案</a>
+          <a href="#limits">09 方法边界</a>
+        </nav>
+        <div id="railCoverage" class="rail-coverage"></div>
+      </aside>
+
+      <main id="main">
+        <header class="hero"><div><p class="eyebrow">CREATOR OPERATING SYSTEM</p><h1 id="title">正在载入研究台</h1><p id="heroSentence" class="hero-copy"></p></div><div id="profileFacts" class="profile-facts"></div></header>
+
+        <section id="position" class="section">
+          <header class="section-head"><div><span class="eyebrow">01 / WHY, HOW, SO WHAT</span><h2>为什么分析、如何分析、要得到什么</h2></div></header>
+          <div id="analysisContract" class="contract-grid"></div>
+          <article id="positionCard" class="position-card"></article>
+        </section>
+
+        <section id="baseline" class="section shade">
+          <header class="section-head"><div><span class="eyebrow">02 / FULL PUBLIC CORPUS</span><h2>先看基本盘，再解释爆发与失效</h2></div><p>中位数代表常态，平均值揭示长尾拉动，最高值标记上限；三者不能互相替代。</p></header>
+          <div id="metricStrip" class="metric-strip"></div>
+          <article class="panel"><header class="panel-head"><div><span class="eyebrow">LIKES DISTRIBUTION</span><h3>公开点赞分布</h3></div><span class="pill">不是播放量</span></header><div id="distribution" class="distribution"></div></article>
+        </section>
+
+        <section id="portfolio" class="section">
+          <header class="section-head"><div><span class="eyebrow">03 / CONTENT PORTFOLIO</span><h2>主题方向与内容形式</h2></div><p>统计标签可以重叠；每组同时展示数量、中位数、平均值和最高点赞。</p></header>
+          <div class="portfolio-grid"><article class="panel"><header class="panel-head"><h3>主题方向</h3></header><div id="topicClusters"></div></article><article class="panel"><header class="panel-head"><h3>内容形式</h3></header><div id="formatClusters"></div></article></div>
+        </section>
+
+        <section id="tiers" class="section shade">
+          <header class="section-head"><div><span class="eyebrow">04 / PERFORMANCE TIERS</span><h2>高、中位、平均值附近、低表现分别在做什么</h2></div><p>“平均值附近”只在样本自然聚集时成立；长尾断层时改为上下边界诊断。</p></header>
+          <div id="averageDiagnostic" class="diagnostic"></div>
+          <div id="crossFindings" class="cross-findings"></div>
+          <div id="tierGrid" class="tier-grid"></div>
+        </section>
+
+        <section id="library" class="section">
+          <header class="section-head"><div><span class="eyebrow">05 / ALL POSTS</span><h2>完整内容库，两种阅读方式</h2></div><p>List 用于密集比较；Gallery 用真实贴片与主旨快速浏览。</p></header>
+          <div class="toolbar"><div id="tierFilters" class="filters" role="group" aria-label="表现筛选"></div><div class="view-toggle" role="group" aria-label="视图切换"><button class="active" data-view="list">List 列表</button><button data-view="gallery">Gallery 画廊</button></div></div>
+          <div id="posts" class="posts"></div>
+        </section>
+
+        <section id="evidence" class="section shade">
+          <header class="section-head"><div><span class="eyebrow">06 / CONTENT RECONSTRUCTION</span><h2>从结论回到真实帧、文字稿与知识关系</h2></div><label>选择视频 <select id="deepSelect"></select></label></header>
+          <div id="deepDive"></div>
+        </section>
+
+        <section id="rhythm" class="section">
+          <header class="section-head"><div><span class="eyebrow">07 / RHYTHM & VISUAL LANGUAGE</span><h2>发布时间和画面语法是辅助变量</h2></div></header>
+          <p id="publishingConclusion" class="lead"></p><div class="rhythm-grid"><article class="panel"><header class="panel-head"><h3>星期</h3></header><div id="weekdays"></div></article><article class="panel"><header class="panel-head"><h3>时段</h3></header><div id="dayparts"></div></article></div>
+          <div id="visualLanguage" class="language-grid"></div>
+        </section>
+
+        <section id="launch" class="section dark">
+          <header class="section-head"><div><span class="eyebrow">08 / OUR LAUNCH SYSTEM</span><h2>最终交付：我们明天怎么开始</h2></div></header>
+          <div id="launchPlan"></div>
+        </section>
+
+        <section id="limits" class="section">
+          <header class="section-head"><div><span class="eyebrow">09 / METHOD & LIMITS</span><h2>知道什么、推断什么、不知道什么</h2></div></header>
+          <div id="boundaries" class="boundary-list"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

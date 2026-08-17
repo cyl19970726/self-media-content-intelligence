@@ -1,0 +1,579 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a505705000000002100a5e5/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能继续沿用学校式、教材驱动、先打完整基础再使用的学习路径，并把坚持不下去归因于没有天赋。",
+    "after": "观众被引导先定义现实问题或项目，把感兴趣的内容当教材，遇到知识缺口再用 AI 解释；对于成年人，保持内在动力和持续产出比追求系统完整更重要。",
+    "intendedChanges": [
+      "从先系统学后使用转向先做后学",
+      "从天赋标签转向学习路径问题",
+      "从把代码当目标转向把代码当解决问题的工具"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {
+        "start": 0,
+        "end": 40.72
+      },
+      "cognitiveQuestion": "开场如何把一个人的英语坚持失败归因到学校式学习？",
+      "observedSignals": [
+        "推文截图出现 3.3M Views",
+        "朋友给自己贴无语言天赋标签",
+        "语法书/发音课/词汇表被描述为系统学习",
+        "作者把问题归因到学生思维"
+      ],
+      "checkedAlternatives": [
+        "坚持失败是否只由学习路径造成",
+        "浏览量是否证明观点正确"
+      ],
+      "remainingUnknowns": [
+        "浏览量口径",
+        "朋友真实学习周期",
+        "其他失败因素"
+      ],
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-018"
+      ]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {
+        "start": 40.72,
+        "end": 83.44
+      },
+      "cognitiveQuestion": "英语案例给出的替代学习流程是什么？",
+      "observedSignals": [
+        "寻找本来感兴趣的英文内容",
+        "不懂就查或让 AI 讲解",
+        "把真实内容当教材",
+        "从现实问题倒推需要学什么"
+      ],
+      "checkedAlternatives": [
+        "是否完全不需要基础和系统知识",
+        "兴趣内容是否覆盖必要知识"
+      ],
+      "remainingUnknowns": [
+        "如何判断知识缺口",
+        "错误解释校验",
+        "何时系统回补"
+      ],
+      "evidenceHints": [
+        "CUE-019",
+        "CUE-041"
+      ]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {
+        "start": 83.44,
+        "end": 141.22
+      },
+      "cognitiveQuestion": "作者自己的编程经历实际支持到什么程度？",
+      "observedSignals": [
+        "大学 CS 入门讲座很快放弃",
+        "coding agent 将产品想法变成可运行产品",
+        "让 AI 解释文件结构和加注释",
+        "称几个项目学得比一年讲座多"
+      ],
+      "checkedAlternatives": [
+        "是否真的达到工程师水平",
+        "项目学习是否覆盖基础与工程质量"
+      ],
+      "remainingUnknowns": [
+        "项目数量和难度",
+        "代码质量",
+        "学习测量",
+        "实际工具名和版本"
+      ],
+      "evidenceHints": [
+        "CUE-042",
+        "CUE-066"
+      ]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {
+        "start": 141.22,
+        "end": 177.58
+      },
+      "cognitiveQuestion": "作者用哪些成人/学生差异支撑逆向学习？",
+      "observedSignals": [
+        "成年人时间和精力有限",
+        "学习靠个人选择而非考试出勤",
+        "目标必须自己定义",
+        "内在动力成为核心"
+      ],
+      "checkedAlternatives": [
+        "学生是否也需要内在动力",
+        "成年人是否都没有外部约束"
+      ],
+      "remainingUnknowns": [
+        "不同成人群体差异",
+        "正式认证学习",
+        "组织培训场景"
+      ],
+      "evidenceHints": [
+        "CUE-067",
+        "CUE-087"
+      ]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {
+        "start": 177.58,
+        "end": 199.22
+      },
+      "cognitiveQuestion": "观众看完能立即执行的动作是什么？",
+      "observedSignals": [
+        "从问题或项目开始",
+        "倒退回去学",
+        "忘掉先学后做",
+        "通过不断产出变强"
+      ],
+      "checkedAlternatives": [
+        "产出是否自动带来正确学习",
+        "何时需要系统训练"
+      ],
+      "remainingUnknowns": [
+        "反馈来源",
+        "质量门槛",
+        "停止条件"
+      ],
+      "evidenceHints": [
+        "CUE-088",
+        "CUE-098"
+      ]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-01",
+      "name": "完整机器转写口播",
+      "modalityKeys": [
+        "audio.speech",
+        "transcript.machine"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供叙事主线、步骤、论点与行动建议"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 199.3
+        }
+      ],
+      "omissionImpact": "会丢失作者真正提出的方法、条件和结论。"
+    },
+    {
+      "id": "CAR-02",
+      "name": "烧录字幕与画面文字",
+      "modalityKeys": [
+        "visual.caption",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "校正专有名词",
+        "锚定章节、数字、按钮和引语"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 199.3
+        }
+      ],
+      "omissionImpact": "会把机器转写误识别静默升级为原话，并漏掉只在画面出现的信息。"
+    },
+    {
+      "id": "CAR-03",
+      "name": "开场 X/Twitter 推文截图",
+      "modalityKeys": [
+        "visual.social_post",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供社会证明和原始文章钩子"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 40.72
+        }
+      ],
+      "omissionImpact": "会漏掉 330 万浏览的权威/社会证明包装。"
+    },
+    {
+      "id": "CAR-04",
+      "name": "全程正面 talking-head 与烧录字幕",
+      "modalityKeys": [
+        "visual.person",
+        "visual.caption",
+        "visual.layout"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "建立真人经验叙述",
+        "让长观点通过短句字幕推进"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 40.72
+        },
+        {
+          "start": 40.72,
+          "end": 83.44
+        },
+        {
+          "start": 83.44,
+          "end": 141.22
+        },
+        {
+          "start": 141.22,
+          "end": 177.58
+        },
+        {
+          "start": 177.58,
+          "end": 199.22
+        }
+      ],
+      "omissionImpact": "会漏掉几乎无 B-roll 的低视觉复杂度内容形式。"
+    },
+    {
+      "id": "CAR-05",
+      "name": "非语音音频机器语义检查",
+      "modalityKeys": [
+        "audio.non_speech"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "检查配乐或音效是否承担独立叙事/操作证明"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 199.3
+        }
+      ],
+      "omissionImpact": "会凭音频存在臆测配乐、点击或生成成功音。"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {
+        "start": 0,
+        "end": 40.72
+      },
+      "description": "从天赋不足转向质疑自下而上、教材驱动的学习路径。",
+      "trigger": "英语案例与‘问题就出在这儿’",
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-018"
+      ]
+    },
+    {
+      "id": "MC-02",
+      "range": {
+        "start": 40.72,
+        "end": 83.44
+      },
+      "description": "从教材定义顺序转向任务和理解目标定义顺序。",
+      "trigger": "目的—内容—知识缺口的倒推链",
+      "evidenceHints": [
+        "CUE-019",
+        "CUE-041"
+      ]
+    },
+    {
+      "id": "MC-03",
+      "range": {
+        "start": 83.44,
+        "end": 141.22
+      },
+      "description": "把英语方法迁移到技术学习：代码从知识目标变为产品手段。",
+      "trigger": "课程失败与项目成功的个人反差",
+      "evidenceHints": [
+        "CUE-042",
+        "CUE-066"
+      ]
+    },
+    {
+      "id": "MC-04",
+      "range": {
+        "start": 141.22,
+        "end": 177.58
+      },
+      "description": "从方法选择上升到成人学习的动力结构。",
+      "trigger": "时间、强制性和目标三项差异",
+      "evidenceHints": [
+        "CUE-067",
+        "CUE-087"
+      ]
+    },
+    {
+      "id": "MC-05",
+      "range": {
+        "start": 177.58,
+        "end": 199.22
+      },
+      "description": "把长论证收束为一个可记住、可行动的口号。",
+      "trigger": "先做后学与产出—变强闭环",
+      "evidenceHints": [
+        "CUE-088",
+        "CUE-098"
+      ]
+    }
+  ],
+  "relationshipHypotheses": [
+    {
+      "id": "REL-01",
+      "from": "MC-01",
+      "to": "MC-02",
+      "relation": "对学校式路径的批评转成可执行替代方案",
+      "evidenceHints": [
+        "CUE-018",
+        "CUE-019"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "from": "MC-02",
+      "to": "MC-03",
+      "relation": "抽象学习法通过作者 AI 编程经历获得个人案例",
+      "evidenceHints": [
+        "CUE-041",
+        "CUE-042"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "from": "MC-03",
+      "to": "MC-04",
+      "relation": "个人案例被概括为成人学习的三项条件",
+      "evidenceHints": [
+        "CUE-066",
+        "CUE-067"
+      ]
+    },
+    {
+      "id": "REL-04",
+      "from": "MC-04",
+      "to": "MC-05",
+      "relation": "动力结构最终转为项目化行动指令",
+      "evidenceHints": [
+        "CUE-087",
+        "CUE-088"
+      ]
+    }
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "把单一朋友案例和高浏览量写成因果或普遍真理。",
+      "why": "没有排除时间、基础、环境、焦虑和教学质量等因素。",
+      "where": [
+        {
+          "start": 0,
+          "end": 40.72
+        }
+      ],
+      "requiredFollowup": "捕捉推文截图、案例链和因果措辞，区分社会证明与证据。"
+    },
+    {
+      "id": "RISK-02",
+      "risk": "把逆向学习误写成拒绝基础、课程和系统知识。",
+      "why": "片内主张改变顺序与入口，而不是证明基础无用。",
+      "where": [
+        {
+          "start": 40.72,
+          "end": 83.44
+        }
+      ],
+      "requiredFollowup": "恢复输入—动作—输出，并补充系统知识何时回补。"
+    },
+    {
+      "id": "RISK-03",
+      "risk": "把主观成长感和几个项目写成等价于一年大学课程或普遍结果。",
+      "why": "学习目标、内容、考核和时间都不可比。",
+      "where": [
+        {
+          "start": 83.44,
+          "end": 141.22
+        }
+      ],
+      "requiredFollowup": "恢复前后对比和具体动作，标明比较口径未知。"
+    },
+    {
+      "id": "RISK-04",
+      "risk": "把学生和成年人二分成绝对、互斥群体。",
+      "why": "成人也可能有考试和课程，学生也有项目与内在动机。",
+      "where": [
+        {
+          "start": 141.22,
+          "end": 177.58
+        }
+      ],
+      "requiredFollowup": "恢复三项理由并加入反例。"
+    },
+    {
+      "id": "RISK-05",
+      "risk": "把持续产出写成无需反馈、复盘和基础校验即可自动成长。",
+      "why": "错误实践也可能被重复固化。",
+      "where": [
+        {
+          "start": 177.58,
+          "end": 199.22
+        }
+      ],
+      "requiredFollowup": "恢复行动关系并补反馈、校验和回补基础条件。"
+    },
+    {
+      "id": "RISK-06",
+      "risk": "把机器转写、烧录字幕或 UI 中的专有名词冲突静默改写。",
+      "why": "专有名词误识别会改变工具身份、案例身份或方法含义。",
+      "where": [
+        {
+          "start": 0,
+          "end": 199.3
+        }
+      ],
+      "requiredFollowup": "保留原始 cue，并用 OCR/画面建立规范化建议和 unresolved。"
+    },
+    {
+      "id": "RISK-07",
+      "risk": "把非语音音频机器候选升级为具体声音事实或因果证明。",
+      "why": "混合音轨分类只能提供候选，不能确认声源、版权或 UI 动作。",
+      "where": [
+        {
+          "start": 0,
+          "end": 199.3
+        }
+      ],
+      "requiredFollowup": "注册完整音频账本，并把精确声源与权利保持未知。"
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "CQ-01",
+      "question": "开场如何把一个人的英语坚持失败归因到学校式学习？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "RISK-01"
+      ]
+    },
+    {
+      "id": "CQ-02",
+      "question": "英语案例给出的替代学习流程是什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "RISK-02"
+      ]
+    },
+    {
+      "id": "CQ-03",
+      "question": "作者自己的编程经历实际支持到什么程度？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "RISK-03"
+      ]
+    },
+    {
+      "id": "CQ-04",
+      "question": "作者用哪些成人/学生差异支撑逆向学习？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "RISK-04"
+      ]
+    },
+    {
+      "id": "CQ-05",
+      "question": "观众看完能立即执行的动作是什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-05",
+        "RISK-05"
+      ]
+    },
+    {
+      "id": "CQ-06",
+      "question": "哪些专有名词、界面身份或数字存在转写/画面冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "CAR-02",
+        "RISK-06"
+      ]
+    },
+    {
+      "id": "CQ-07",
+      "question": "平台可用性、费用、账号地区、隐私、素材和结果权利有哪些仍未知？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "SWEEP-03",
+        "SWEEP-05"
+      ]
+    },
+    {
+      "id": "CQ-08",
+      "question": "非语音音频是否承载独立知识或操作证明？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "CAR-05"
+      ]
+    }
+  ],
+  "unresolved": [
+    "推文真实浏览量与统计时间",
+    "逆向学习相对系统学习的长期效果",
+    "AI 回答准确性和错误校验方法",
+    "作者几个项目和一年大学讲座的可比口径",
+    "不同成人学习目标的适用边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ]
+}

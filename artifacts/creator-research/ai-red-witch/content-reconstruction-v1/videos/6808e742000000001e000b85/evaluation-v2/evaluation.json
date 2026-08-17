@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationMode": "fresh-context repair evaluation; prior evaluation verdict excluded",
+  "inputs": [
+    "current audit/audit.json and audit/audit.md",
+    "current repaired skill-run artifacts and targeted evidence",
+    "new resampled project-page evidence",
+    "prior discrepancies.md used only as repair closure targets",
+    "canonical evaluation protocol and schema",
+    "evaluator-design GATE-before-JUDGE rules"
+  ],
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "status": "answered",
+          "item": "Visible identity and SRT/burned-text conflict",
+          "candidateEvidence": ["KU-01", "KU-20", "RESAMPLED-0001", "OCR-00035", "CUE-003"]
+        },
+        {
+          "status": "answered",
+          "item": "Project page release statement and its narrower evidentiary scope",
+          "candidateEvidence": ["KU-22", "RESAMPLED-0001", "RESAMPLED-0002"]
+        },
+        {
+          "status": "answered",
+          "item": "Project page 30-second demo statement versus actual social-video playback",
+          "candidateEvidence": ["KU-23", "RESAMPLED-0003", "TARGET-0011", "TARGET-0029", "TARGET-0042"]
+        },
+        {
+          "status": "correctly_unknown",
+          "item": "License, access, price, account, region, commercial-use and support conditions",
+          "candidateEvidence": ["KU-10", "ACT-12", "TARGET-0107", "TARGET-0121", "TARGET-0125"]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "covered": true,
+          "item": "Page says model weights and inference code are provided",
+          "candidateEvidence": ["KU-22", "RESAMPLED-0001", "RESAMPLED-0002"]
+        },
+        {
+          "covered": true,
+          "item": "Page describes its demos as 30-second diffusion-forcing outputs without proving a played 30-second one-take",
+          "candidateEvidence": ["KU-23", "RESAMPLED-0003"]
+        },
+        {
+          "covered": true,
+          "item": "Longest clearly checkable same-scene window is about 8.8 seconds and the later grassland/turtle material changes scene",
+          "candidateEvidence": ["KU-03", "KU-04", "KU-06", "TARGET-0011", "TARGET-0029", "TARGET-0042"]
+        },
+        {
+          "covered": true,
+          "item": "Opening-to-closing escalation and CTA",
+          "candidateEvidence": ["KU-17", "CUE-001", "CUE-022", "CUE-024"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 34,
+      "examples": [
+        {
+          "supported": true,
+          "claim": "The page title is ‘SkyReels V2：无限长胶片生成模型’",
+          "evidence": ["KU-01", "RESAMPLED-0001"]
+        },
+        {
+          "supported": true,
+          "claim": "The repository-like page states that model weights and inference code are provided",
+          "evidence": ["KU-22", "RESAMPLED-0001", "RESAMPLED-0002"]
+        },
+        {
+          "supported": true,
+          "claim": "The page's 30-second statement is provider-side text, not proof that this social edit plays a 30-second one-take",
+          "evidence": ["KU-23", "RESAMPLED-0003", "TARGET-0011", "TARGET-0029", "TARGET-0042"]
+        },
+        {
+          "supported": true,
+          "claim": "Free access, licensing, commercial use, sample provenance and end-to-end execution remain unknown",
+          "evidence": ["KU-10", "KU-16", "KU-18"]
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 49,
+      "denominator": 52,
+      "examples": [
+        {
+          "correct": true,
+          "reference": "RESAMPLED-0001",
+          "localizedAtSeconds": 2.2,
+          "auditWindow": "1.867-6.967"
+        },
+        {
+          "correct": true,
+          "reference": "RESAMPLED-0003",
+          "localizedAtSeconds": 6.4,
+          "auditWindow": "1.867-6.967"
+        },
+        {
+          "correct": false,
+          "reference": "TARGET-0011",
+          "localizedAtSeconds": 25.2,
+          "auditWindow": "25.167-about 34.0",
+          "problem": "KU-23 declares timeRange 6.0-6.967 while citing this later comparison frame"
+        },
+        {
+          "correct": false,
+          "reference": "TARGET-0029",
+          "localizedAtSeconds": 34.2,
+          "auditWindow": "about 34.0-34.7 transition",
+          "problem": "KU-23 declares timeRange 6.0-6.967 while citing this later comparison frame"
+        },
+        {
+          "correct": false,
+          "reference": "TARGET-0042",
+          "localizedAtSeconds": 38.92,
+          "auditWindow": "about 38.6-41.067",
+          "problem": "KU-23 declares timeRange 6.0-6.967 while citing this later comparison frame"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 12,
+      "denominator": 13,
+      "rationale": "The video makes a script-to-complete-short-drama workflow material. The candidate correctly preserves 12 of the audit's 13 dependency groups as missing or unknown, including prompts/inputs, model/version, parameters and target duration, execution states, output linkage, editing, consistency, sound, export, provenance and cost. It does not explicitly preserve whether the visible interface was live or prerecorded.",
+      "examples": [
+        {
+          "covered": true,
+          "item": "No script/prompt-to-output execution chain",
+          "candidateEvidence": ["KU-15", "KU-16"]
+        },
+        {
+          "covered": true,
+          "item": "No job/output provenance, model/version, parameters, editing or export proof",
+          "candidateEvidence": ["KU-03", "KU-05", "KU-16", "KU-18"]
+        },
+        {
+          "covered": false,
+          "item": "Whether the shown interface was live or prerecorded is not explicitly retained"
+        }
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        {
+          "correct": true,
+          "item": "Company ownership/attribution remains narration-only",
+          "candidateEvidence": ["KU-01"]
+        },
+        {
+          "correct": true,
+          "item": "A page release statement does not establish license, zero price, commercial use or current availability",
+          "candidateEvidence": ["KU-08", "KU-10", "KU-22"]
+        },
+        {
+          "correct": true,
+          "item": "30-second page text does not establish uncut playback or infinite continuation",
+          "candidateEvidence": ["KU-02", "KU-03", "KU-23"]
+        },
+        {
+          "correct": true,
+          "item": "Sample provenance, training-data authorization and end-to-end workflow remain unknown",
+          "candidateEvidence": ["KU-11", "KU-16", "KU-18"]
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-07 non-speech audio: the source has an AAC audio track, but the repaired run cites only media metadata. No audio-derived artifact or audio inspection action establishes music, effects, inserted audio, silence, rhythm, or their relation to the visual edit. Marking CAR-07 inspected=true is therefore a self-asserted/empty gate."
+    ]
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgeStatus": {
+    "run": false,
+    "reason": "JUDGE is prohibited because the unchecked-channel and independent meta gates fail. The five numeric values are schema-required non-evaluative sentinels and must not be interpreted as scores."
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "Available non-speech audio was not actually inspected: SRC-MEDIA-METADATA proves only that an AAC track exists, while CAR-07 and the internal metaGate claim closure without audio evidence."
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The repair closes the four prior content discrepancies, but it still lets the candidate prove its own audio closure. Probe CAR-07 says the channel is available and inspected, while its only downstream evidence explicitly says the toolchain cannot identify the channel's content or narrative role. This is the evaluator-design empty-gate anti-pattern, so the independent meta-gate fails."
+  },
+  "closureTargets": [
+    {
+      "id": "D-01",
+      "status": "closed",
+      "evidence": ["KU-22", "RESAMPLED-0001", "RESAMPLED-0002"]
+    },
+    {
+      "id": "D-02",
+      "status": "closed",
+      "evidence": ["KU-23", "RESAMPLED-0003", "TARGET-0011", "TARGET-0029", "TARGET-0042"]
+    },
+    {
+      "id": "D-03",
+      "status": "closed",
+      "evidence": ["KU-01", "RESAMPLED-0001"]
+    },
+    {
+      "id": "D-04",
+      "status": "closed",
+      "evidence": ["skill-run/notes.md method note", "independent evidence count 15/15"]
+    }
+  ],
+  "gateDecision": {
+    "pass": false,
+    "failed": [
+      "full_timeline_carrier_sweep",
+      "ocr_and_ui_evidence_execution",
+      "internal_timestamp_bounds",
+      "uncheckedChannels",
+      "metaAudit"
+    ],
+    "rationale": "All six counted content metrics pass their thresholds and all four prior repair targets are closed, but hard gates are conjunctive. Canonical deterministic validation passes 17/22 checks and independently confirms five failures: the non-speech-audio sweep, unregistered resampled OCR execution, three out-of-range comparison frames in KU-23, the evaluator's unchecked-channel gate, and the independent meta-gate. JUDGE does not run."
+  },
+  "deterministicValidation": {
+    "ready": false,
+    "passed": 17,
+    "total": 22,
+    "failedGateIds": [
+      "full_timeline_carrier_sweep",
+      "ocr_and_ui_evidence_execution",
+      "internal_timestamp_bounds",
+      "eval_unchecked_channels",
+      "eval_meta_gate"
+    ],
+    "details": [
+      {
+        "id": "full_timeline_carrier_sweep",
+        "examples": ["non_speech_audio:not_explicitly_inspected"]
+      },
+      {
+        "id": "ocr_and_ui_evidence_execution",
+        "examples": [
+          "ACT-14:RESAMPLED-0001:ocr_not_processed",
+          "ACT-14:RESAMPLED-0002:ocr_not_processed",
+          "ACT-14:RESAMPLED-0003:ocr_not_processed"
+        ]
+      },
+      {
+        "id": "internal_timestamp_bounds",
+        "examples": [
+          "KU-23:frame_outside_range:TARGET-0011",
+          "KU-23:frame_outside_range:TARGET-0029",
+          "KU-23:frame_outside_range:TARGET-0042"
+        ]
+      },
+      {
+        "id": "eval_unchecked_channels",
+        "examples": ["CAR-07 non-speech audio remains unchecked"]
+      },
+      {
+        "id": "eval_meta_gate",
+        "examples": ["Available non-speech audio is an unguarded carrier"]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "type": "repair_closure",
+      "item": "The repaired output now retains both project-page statements and the exact title without upgrading page text into external verification."
+    },
+    {
+      "type": "residual_hard_failure",
+      "item": "CAR-07 is declared inspected even though only audio metadata is cited; no evidence establishes non-speech audio content or role."
+    },
+    {
+      "type": "deterministic_contract_failure",
+      "item": "ACT-14's three resampled OCR frames are not registered as processed OCR input, and KU-23 cites three comparison frames outside its declared time range."
+    },
+    {
+      "type": "judge_guardrail",
+      "item": "No quality score is used to offset the failed audio/meta gates."
+    }
+  ]
+}

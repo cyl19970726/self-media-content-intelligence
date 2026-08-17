@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能把账号增长、单条作品数据、涨粉、商业变现、账号调性和表达混成同一个目标，也可能默认普通人与自带流量者能沿用同一种内容策略。",
+    "after": "观众被引导先区分 IP 型与内容型博主，再把单条作品按具体使命规划，并接受普通人通常必须依靠更高内容投入的判断。",
+    "intendedChanges": ["区分两类博主的流量来源与内容能力", "把作品目标拆成数据、涨粉、商业、调性、表达", "按自身条件和作品使命选择内容形式"]
+  },
+  "carrierSweep": [
+    {"id":"SW-01","range":{"start":0,"end":10.4},"cognitiveQuestion":"开场案例建立了什么问题？","observedSignals":["口播以恋综/职综素人涨粉赚钱作引子","烧录字幕逐句强化口播","蒙面讲述者站在白板前并用笔指示"],"checkedAlternatives":["SRT 全文","0-10.4 秒密集帧","开场镜头与烧录字幕","音频流存在性"],"remainingUnknowns":["首句 SRT 中‘展示教资’疑似识别错误，需与烧录字幕核对","非语音音频的具体作用无法由静帧确定"],"evidenceHints":["CUE-001","CUE-002","SHOT-001","SHOT-002","DENSE-0001","DENSE-0002"]},
+    {"id":"SW-02","range":{"start":10.4,"end":49.3},"cognitiveQuestion":"IP 型博主如何定义、为何仍拍低数据 vlog？","observedSignals":["口播列出自带流量人群、短平快内容表现、内容能力弱、vlog 植入空间与报价","白板呈现手写关系结构","画面主体和环境连续，仅技术镜头边界变化"],"checkedAlternatives":["CUE-007 至 CUE-019","密集帧 12.5-47.5 秒","所有重叠 shot 代表帧","白板、手势、烧录字幕"],"remainingUnknowns":["白板小字完整内容在初始帧中不可全读","报价高低无外部证据"],"evidenceHints":["CUE-007","CUE-018","SHOT-004","SHOT-005","DENSE-0006","DENSE-0019"]},
+    {"id":"SW-03","range":{"start":49.3,"end":79.99},"cognitiveQuestion":"内容型博主与作品使命框架如何衔接？","observedSignals":["口播强调普通人不能靠简单方式获流量并列出策划、选题、创意、后期、拍摄成本","随后提出作品由用户画像、用户/市场需求、平台喜好、自身条件和使命决定"],"checkedAlternatives":["CUE-019 至 CUE-029","密集帧 50-77.5 秒","白板与指示动作","烧录字幕"],"remainingUnknowns":["SRT 的‘个人ip也乱画’等词存在识别冲突","白板是否给出额外层级需 OCR/人工核查"],"evidenceHints":["CUE-020","CUE-021","CUE-025","CUE-028","DENSE-0021","DENSE-0032"]},
+    {"id":"SW-04","range":{"start":79.99,"end":121.867},"cognitiveQuestion":"数据、涨粉与商业分别对应哪些作品形式？","observedSignals":["口播依次讲数据型、涨粉型和商业型作品并给出热点/观点/共鸣/氛围、名校身份符号、传奇故事、干货、vlog/好物分享等例子","97.47-99.467 秒烧录字幕明确为‘装逼型视频’，与 SRT‘装逼型饰品’冲突","102.588-107.21 秒 SRT 与烧录字幕对名校身份物件的表达并不完全一致","干货型紧接传奇型出现，但其层级归属没有被明确关闭"],"checkedAlternatives":["CUE-029 至 CUE-045","密集帧 80-120 秒","白板分组与手势","烧录字幕","97.47-99.467 与 102.588-107.21 秒冲突窗口"],"remainingUnknowns":["干货型究竟属于涨粉方式、下一层分类还是过渡项","例子是作者经验性主张而非效果证明"],"evidenceHints":["CUE-030","CUE-036","CUE-037","CUE-038","CUE-041","CUE-044","SHOT-006","SHOT-007"]},
+    {"id":"SW-05","range":{"start":121.867,"end":139.833},"cognitiveQuestion":"调性与表达如何收束全片？","observedSignals":["口播把高成本、可能低数据的视频博客和时尚内容联系到账号调性","最后把表达欲说成做博主的必要条件并告别","蒙面讲述者与白板环境延续"],"checkedAlternatives":["CUE-045 至 CUE-054","密集帧 122.5 秒至结尾","结尾镜头和烧录字幕","账号水印/身份标签"],"remainingUnknowns":["可见账号标签是否能证明讲述者真实身份未知","结尾无可见访问路径或进一步 CTA"],"evidenceHints":["CUE-045","CUE-050","CUE-053","CUE-054","SHOT-008","SHOT-009","DENSE-0057"]}
+  ],
+  "informationCarriers": [
+    {"id":"CAR-01","name":"口播与提供的字幕","modalityKeys":["speech","subtitles"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["提出分类和策略主张","给出例子与因果解释","完成开场到结尾的论证"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"会丢失全部主要论点、术语、条件和例子。"},
+    {"id":"CAR-02","name":"烧录字幕与账号水印","modalityKeys":["on_screen_text","burned_captions","watermark"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["提供与 SRT 对照的逐句文本","显示平台/账号样式的可见标签"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"会掩盖 SRT 识别冲突和画面中的来源标识。"},
+    {"id":"CAR-03","name":"白板结构与手写词","modalityKeys":["whiteboard","diagram","spatial_grouping","handwriting"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["把博主类型和作品使命组织为空间关系","作为讲述者指示的视觉提纲"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"可能丢失平行分组、层级和口播未逐字说明的标签。"},
+    {"id":"CAR-04","name":"蒙面讲述者、手势与教室式环境","modalityKeys":["person_likeness","gesture","environment","prop"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["以蜘蛛侠风格面罩形成匿名化人设","用笔指向白板项目","连续环境连接各段"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"会丢失讲述者呈现方式、白板指代关系和视觉连续性。"},
+    {"id":"CAR-05","name":"技术分镜与剪辑顺序","modalityKeys":["editing_order","scene_detection"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["提供时间定位","显示单一白板环境中的取景/运动变化"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"若把 9 个技术 shot 当作 9 个语义场景会制造不存在的结构。"},
+    {"id":"CAR-06","name":"开场插入的短视频界面与互动数字拼贴","modalityKeys":["inserted_clip","ui_state","count","juxtaposition"],"discoveredIn":["SW-01"],"available":true,"inspected":true,"roles":["把‘开头展示教资’与多组可见互动/浏览数字并置，作为综艺素人涨粉问题的视觉引子"],"intervals":[{"start":0,"end":0.833}],"omissionImpact":"会丢失开场并非纯口播，而是用平台界面和结果数字建立注意力的事实。"},
+    {"id":"CAR-07","name":"非语音音频","modalityKeys":["non_speech_audio"],"discoveredIn":["SW-01","SW-02","SW-03","SW-04","SW-05"],"available":true,"inspected":true,"roles":["音轨存在；工具未能可靠区分背景音乐、环境声或音效，故保留为未知"],"intervals":[{"start":0,"end":139.833}],"omissionImpact":"可能遗漏节奏、强调或情绪信息；现有证据无法安全定性。"}
+  ],
+  "meaningChanges": [
+    {"id":"MC-01","range":{"start":0,"end":11.761},"description":"从综艺素人涨粉现象转为两个分析框架。","trigger":"讲述者声明引入经典主题。","evidenceHints":["CUE-001","CUE-006","CUE-007"]},
+    {"id":"MC-02","range":{"start":11.761,"end":49.299},"description":"建立 IP 型博主定义，并用短内容、vlog 和报价差异解释其商业逻辑。","trigger":"提出‘什么叫做 IP 型博主’并连续列举。","evidenceHints":["CUE-008","CUE-009","CUE-018"]},
+    {"id":"MC-03","range":{"start":49.299,"end":63.32},"description":"转到内容型博主，并把普通人的可行路径收窄为高投入内容能力。","trigger":"‘第二种类型就是内容型博主’。","evidenceHints":["CUE-019","CUE-023"]},
+    {"id":"MC-04","range":{"start":63.32,"end":79.98},"description":"从博主类型转到单条作品的目的和使命。","trigger":"明确提出第二个框架及决定因素。","evidenceHints":["CUE-024","CUE-028"]},
+    {"id":"MC-05","range":{"start":81.851,"end":95.22},"description":"第一个使命为数据，且数据可服务心态或广告报价而非直接涨粉/变现。","trigger":"‘意义与数据’及例子列表。","evidenceHints":["CUE-030","CUE-034"]},
+    {"id":"MC-06","range":{"start":95.22,"end":114.841},"description":"第二个使命为涨粉，包含身份符号、传奇故事和干货等内容形式。","trigger":"‘第二种就是涨粉类型视频’。","evidenceHints":["CUE-035","CUE-041"]},
+    {"id":"MC-07","range":{"start":114.841,"end":121.821},"description":"第三个使命转为商业，强调植入空间。","trigger":"‘第三个目的就是商业’。","evidenceHints":["CUE-042","CUE-044"]},
+    {"id":"MC-08","range":{"start":121.821,"end":133.866},"description":"第四个使命为调性，用高成本视频博客和时尚审美举例。","trigger":"‘第四个目的就是调性’。","evidenceHints":["CUE-045","CUE-050"]},
+    {"id":"MC-09","range":{"start":133.866,"end":139.833},"description":"第五个使命为表达，并把表达欲上升为适合做博主的必要条件。","trigger":"‘第五个目的是表达’和结尾判断。","evidenceHints":["CUE-051","CUE-053","CUE-054"]}
+  ],
+  "relationshipHypotheses": [
+    {"id":"REL-01","from":"综艺素人现象","to":"博主类型框架","relation":"setup_to","evidenceHints":["CUE-001","CUE-006","CUE-007"]},
+    {"id":"REL-02","from":"IP 型博主","to":"短平快内容数据","relation":"author_claims_advantage_in","evidenceHints":["CUE-011","CUE-012"]},
+    {"id":"REL-03","from":"IP 型博主的 vlog","to":"商业报价/植入空间","relation":"framed_as_serving","evidenceHints":["CUE-014","CUE-018"]},
+    {"id":"REL-04","from":"普通人","to":"内容型博主路径","relation":"framed_as_only_viable_path","evidenceHints":["CUE-020","CUE-023"]},
+    {"id":"REL-05","from":"博主类型框架","to":"作品使命框架","relation":"precedes_and_contextualizes","evidenceHints":["CUE-024","CUE-027"]},
+    {"id":"REL-06","from":"作品使命","to":"内容形式选择","relation":"determines","evidenceHints":["CUE-027","CUE-029","CUE-044"]},
+    {"id":"REL-07","from":"开场的涨粉赚钱合并想象","to":"五种作品使命","relation":"decomposed_by","evidenceHints":["CUE-004","CUE-028","CUE-051"]},
+    {"id":"REL-08","from":"蒙面讲述者","to":"可见账号标签/作者身份","relation":"stands_in_for_unknown","evidenceHints":["DENSE-0001","DENSE-0057"]}
+  ],
+  "omissionRisks": [
+    {"id":"RISK-01","risk":"把作者主张写成已验证事实。","why":"视频给出经验判断但没有外部数据或效果验证。","where":[{"start":18.505,"end":139.1}],"requiredFollowup":"所有效果、适合性和因果句均标 author_claim，并写明证明边界。"},
+    {"id":"RISK-02","risk":"漏掉白板的空间分组或小字。","why":"初始接触表中白板小字不可全读，可能承载独立标签。","where":[{"start":0,"end":139.833}],"requiredFollowup":"对稳定白板视角做 OCR 和人工逐帧检查。"},
+    {"id":"RISK-03","risk":"静默修正 SRT 中明显疑似错词。","why":"提供字幕、烧录字幕与可听口播可能冲突。","where":[{"start":0,"end":1.605},{"start":49.299,"end":59.08},{"start":95.22,"end":102.588}],"requiredFollowup":"保留原 SRT，并以 OCR 行/画面记录支持的解释另建原子单元。"},
+    {"id":"RISK-04","risk":"把蜘蛛侠风格面罩升级为角色授权、真实身份或官方关系。","why":"只观察到外观相似和平台标签。","where":[{"start":0,"end":139.833}],"requiredFollowup":"描述为可见造型，身份与授权保持未知。"},
+    {"id":"RISK-05","risk":"把技术 shot 数当成语义场景或剪辑次数。","why":"画面持续处于同一白板环境，边界可能由动作/遮挡触发。","where":[{"start":0,"end":139.833}],"requiredFollowup":"对各 shot 边界取帧，记录连续性及隐藏剪辑未知。"},
+    {"id":"RISK-06","risk":"把未出现的价格、平台条件、访问路径或 CTA 说成普遍不存在。","why":"这些条件会影响策略可执行性，但视频仅可支持有界未观察。","where":[{"start":0,"end":139.833}],"requiredFollowup":"检查完整时间轴所有可出现位置，仅陈述‘全片未观察到’。"}
+    ,{"id":"RISK-07","risk":"把开场界面的互动数字当成经验证的涨粉或收入证明。","why":"画面只展示若干可见数字和平台式界面，账号归属、统计口径及与作者论点的因果关系未建立。","where":[{"start":0,"end":0.833}],"requiredFollowup":"逐帧记录可见拼贴与数字存在，身份、归属、因果和收入保持未知。"}
+  ],
+  "criticalQuestions": [
+    {"id":"Q-01","question":"作者如何区分 IP 型与内容型博主，普通人被建议走哪条路径？","criticality":"critical","evidenceHints":["CUE-007","CUE-023"]},
+    {"id":"Q-02","question":"为何 IP 型博主仍制作数据较弱的 vlog？","criticality":"critical","evidenceHints":["CUE-014","CUE-018"]},
+    {"id":"Q-03","question":"单条作品由哪些因素决定，作者列出的五个使命是什么？","criticality":"critical","evidenceHints":["CUE-025","CUE-051"]},
+    {"id":"Q-04","question":"每个使命对应哪些作者给出的内容形式或结果？","criticality":"critical","evidenceHints":["CUE-030","CUE-050"]},
+    {"id":"Q-05","question":"白板和烧录字幕如何补充或纠正 SRT 的关键术语，尤其是‘装逼型视频’与名校身份物件？","criticality":"supporting","evidenceHints":["DENSE-0001","DENSE-0040","CUE-036","CUE-038"]},
+    {"id":"Q-06","question":"视频是否证明这些策略的普遍有效性，或给出价格、平台、账号条件与执行路径？","criticality":"supporting","evidenceHints":["CUE-018","CUE-038","CUE-048"]},
+    {"id":"Q-07","question":"蒙面人物、账号标签和讲述者真实身份之间的关系是否得到视频建立？","criticality":"supporting","evidenceHints":["DENSE-0001","DENSE-0057"]}
+  ],
+  "unresolved": ["非语音音频的类别和语义作用无法由现有静帧与字幕确定。","白板全部手写小字需二轮 OCR 与人工复核。","除已由烧录字幕关闭的‘装逼型视频’外，其他 SRT 疑似错词只能保留原文并记录受支持解释，不能静默改写。","干货型在 113.45-114.841 秒出现，但所属层级未由视频明确建立。","讲述者真实身份、面罩授权关系及账号归属未由视频内部证据建立。"]
+}

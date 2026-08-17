@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a2761520000000008032277/skill-run/probe.json",
+  "protocolName": "身份反差—Opinionated Products—人机职责捕捉协议",
+  "rationale": "本片不是 GitHub 教程，而是以量化身份反差建立可信度，再用 Frontend Slides、Follow Builders、Tab Out、飞书画板四类案例证明产品可固化个人观点、信息品味、交互偏好和审美，最后抽象出代码作为表达媒介及人机职责分工。协议需恢复每个案例的主张—例证—反例—限制，并单独审计强钩子后的社群导流。",
+  "knowledgeUnitFields": [
+    {"name": "身份反差与量化结果", "required": true, "reason": "这是传播钩子和可信度入口。", "derivedFrom": ["MC-01", "CQ-01"]},
+    {"name": "社群导流与叙事位置", "required": true, "reason": "这是内容转化动作，也会打断主论证。", "derivedFrom": ["MC-02", "CQ-04"]},
+    {"name": "论点—案例—反例—受众", "required": true, "reason": "恢复 opinionated product 的完整思想而非案例清单。", "derivedFrom": ["MC-03", "RISK-06"]},
+    {"name": "四个产品的观点载荷", "required": true, "reason": "区分信息品味、体验偏好和视觉审美。", "derivedFrom": ["MC-03", "MC-04", "MC-05", "CQ-03"]},
+    {"name": "人—AI 职责与未展示桥接", "required": true, "reason": "避免把 AI 写/传代码主张升级为已证流程。", "derivedFrom": ["MC-06", "CQ-05"]},
+    {"name": "专有名词和数字冲突", "required": true, "reason": "ASR 存在大量英文和产品名误识别。", "derivedFrom": ["RISK-05", "CQ-07"]},
+    {"name": "非语音音频作用", "required": true, "reason": "完成所有信息通道审计。", "derivedFrom": ["RISK-07", "CQ-08"]}
+  ],
+  "captureActions": [
+    {"id": "ACT-01", "range": {"start": 0, "end": 31.76}, "carrier": "GitHub profile, star counts, growth chart and burned captions", "mode": "interval_density", "densitySeconds": 1.5, "reason": "恢复身份反差的视觉证据并分开页面事实与作者因果。", "expectedObservation": "个人页、Stars 和增长图可见；‘不会写代码’与 AI 导致增长仍主要是作者自述。", "derivedFrom": ["SWEEP-01", "RISK-01", "CQ-01"]},
+    {"id": "ACT-02", "range": {"start": 0, "end": 31.76}, "carrier": "GitHub metrics and timeline text", "mode": "ocr_review", "times": [1, 5, 10, 16, 22, 28], "reason": "核对 3 万、五个千星项目与时间轴文字。", "expectedObservation": "只采用高置信可见数字，截图日期和贡献边界保留未知。", "derivedFrom": ["CAR-03", "RISK-05"]},
+    {"id": "ACT-03", "range": {"start": 31.76, "end": 56.76}, "carrier": "community promo card and entry", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复社群导流的完整承诺与主叙事占比。", "expectedObservation": "内容分享、产品/Skills 与活动承诺可见；当前入口和服务条件不由画面推断。", "derivedFrom": ["SWEEP-02", "RISK-02", "CQ-04"]},
+    {"id": "ACT-04", "range": {"start": 56.76, "end": 107.76}, "carrier": "Frontend Slides pages, principle cards and disagreement framing", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复 opinionated product 定义与首个案例。", "expectedObservation": "产品结果与观点句配对，并保留 PowerPoint 反对者/非目标用户。", "derivedFrom": ["SWEEP-03", "RISK-06", "CQ-02"]},
+    {"id": "ACT-05", "range": {"start": 107.76, "end": 149.63}, "carrier": "Follow Builders UI, list and principle text", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复中心化信息筛选的产品观点。", "expectedObservation": "名单与页面可见；更新、覆盖和质量不由 Stars 或页面存在证明。", "derivedFrom": ["SWEEP-04", "RISK-03", "CQ-03"]},
+    {"id": "ACT-06", "range": {"start": 149.63, "end": 212.03}, "carrier": "Tab Out and whiteboard result examples", "mode": "interval_density", "densitySeconds": 1.5, "reason": "恢复交互摩擦与审美偏好如何进入产品。", "expectedObservation": "Tab 可视化关闭体验和画板前后差异可见；完整开发/运行链不可见。", "derivedFrom": ["SWEEP-05", "RISK-03", "CQ-03"]},
+    {"id": "ACT-07", "range": {"start": 56.76, "end": 212.03}, "carrier": "product names, star counts, slogans and UI labels", "mode": "ocr_review", "times": [60, 70, 82, 96, 112, 124, 138, 154, 166, 184, 198, 208], "reason": "校正产品名、英文原则和关键数字。", "expectedObservation": "OCR 建立产品身份；当前性、许可和普遍效果仍未知。", "derivedFrom": ["CAR-02", "CAR-04", "RISK-05"]},
+    {"id": "ACT-08", "range": {"start": 212.03, "end": 263.833}, "carrier": "closing cards, GitHub/code screens and responsibility claims", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复代码作为表达媒介与人机职责分工。", "expectedObservation": "结论卡与页面结果可见；AI 自动上传、调试和权限链不连续展示。", "derivedFrom": ["SWEEP-06", "RISK-04", "CQ-05"]}
+  ],
+  "requiredRelations": [
+    {"relation": "identity contrast + social proof → thesis credibility", "derivedFrom": ["REL-01"]},
+    {"relation": "opinionated-product thesis → information-taste example → interaction/aesthetic examples", "derivedFrom": ["REL-02", "REL-03"]},
+    {"relation": "case set → code as expression → human/AI role split", "derivedFrom": ["REL-04"]},
+    {"relation": "social proof → community conversion", "derivedFrom": ["REL-05"]},
+    {"relation": "author claim ↔ visible page evidence ↔ missing execution bridge", "derivedFrom": ["RISK-01", "RISK-03", "RISK-04"]}
+  ],
+  "stoppingRules": ["0–263.833 秒全部载体阶段无缝检查。", "四个产品案例均恢复观点、可见例证、反例/条件和未知。", "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。", "所有 OCR/UI actions 已执行且产品名/数字冲突有账本。", "‘不会写代码’、3 万 Stars、AI 写/传代码、产品效果均按事实/主张/推断分层。", "社群导流与主论证分别建模，不把服务承诺写成已兑现。", "完整混合音轨已有无缝机器提议账本，弱标签不升级。", "meta-gate 列出尚未检查的载体、意义变化与关系。"],
+  "declaredUnknowns": ["Stars 和截图的拍摄时间、当前值与贡献边界", "作者编程能力定义以及人工审阅/调试投入", "产品版本、兼容性、费用、许可证和维护状态", "社群入口、费用、服务频率与隐私规则", "AI 写码、授权、调试和上传的连续流程", "产品观点对用户效果和分发结果的普遍因果", "非语音音频具体声源、曲目和权利"],
+  "audioInspection": {"source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a2761520000000008032277/audio-16k.wav", "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a2761520000000008032277/skill-run/audio/audio-carrier.json", "method": "MIT AudioSet AST over gap-free 10-second windows of the complete mixed track", "boundary": "machine proposals only; no human-listening, source-identity or licensing claim"}
+}

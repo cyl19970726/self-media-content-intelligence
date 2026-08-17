@@ -1,0 +1,452 @@
+{
+  "id": "688445a10000000020019210",
+  "tier": "median",
+  "title": "3个宝藏AI，搞创意效率起飞！",
+  "mediaPath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/688445a10000000020019210.mp4",
+  "subtitlePath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/688445a10000000020019210.srt",
+  "subtitleOrigin": "小红书官方 zh-CN 字幕",
+  "publishedAt": "2025-07-26T03:04:01.000Z",
+  "duration": 47.578,
+  "engagement": {
+    "likes": 307,
+    "collections": 664,
+    "comments": 10,
+    "shares": 95,
+    "collectionToLike": 2.163,
+    "commentToLike": 0.033,
+    "shareToLike": 0.309
+  },
+  "sourceUrl": "https://www.xiaohongshu.com/explore/688445a10000000020019210",
+  "primaryCategory": "工具地图",
+  "secondaryTags": [
+    "Bagel",
+    "Kontext",
+    "ThinkSound",
+    "创意工具"
+  ],
+  "contentIntent": "用三个开源工具覆盖图片编辑、角色一致性、多图融合、3D生成和视频音效。",
+  "coreClaim": "创意工作可以用 Bagel 做多模态改图与3D、用 Kontext 保持角色一致并融合人物、用 ThinkSound 自动匹配视频音效。",
+  "articleLead": "这是中位层里保存意图最强的一条：307赞、664藏。它证明‘工具清单’仍然是稳定收藏结构，但没有教程、直达链接和免费边界，评论甚至明确写出‘没教程没直达链接，没赞’，说明可保存不等于立即满意。",
+  "keyPoints": [
+    "开场直接给出三个工具和创意用途",
+    "Bagel负责一句话改图、动作、风格和3D",
+    "Kontext负责角色一致与多人融合",
+    "ThinkSound用有声/无声对照证明匹配能力",
+    "开源是结尾的行动理由，但不等于零门槛"
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "end": 4.8,
+      "keyFrameAt": 2,
+      "heading": "先承诺三个工具覆盖创意工作",
+      "body": "开场直接说明找到三个适合创意工作的宝藏 AI，不铺垫具体痛点，依赖‘数量+宝藏’形成收藏预期。",
+      "evidence": "三工具标题与快速结果预览"
+    },
+    {
+      "start": 4.8,
+      "end": 16.53,
+      "keyFrameAt": 11,
+      "heading": "Bagel：一句话改图与生成3D",
+      "body": "介绍 Bagel 是国产开源多模态模型，展示换表情、改动作、变风格和生成3D模型等多个用途。",
+      "evidence": "Bagel多种图像编辑结果"
+    },
+    {
+      "start": 16.53,
+      "end": 31.91,
+      "keyFrameAt": 24,
+      "heading": "Kontext：一致性与多人物融合",
+      "body": "用加墨镜、换雪山背景和两个人物融合到同一场景，证明角色一致性与场景迁移。",
+      "evidence": "角色前后对照与多人融合"
+    },
+    {
+      "start": 31.91,
+      "end": 44.88,
+      "keyFrameAt": 36,
+      "heading": "ThinkSound：用前后声音完成可感知证明",
+      "body": "先播放没有音效的视频，再播放自动配音效结果，环境音与物体运动变化形成直接听觉对照。",
+      "evidence": "无音效/有音效前后对照"
+    },
+    {
+      "start": 44.88,
+      "end": 47.58,
+      "keyFrameAt": 46,
+      "heading": "用开源属性催促行动",
+      "body": "最后强调三个工具都是开源并要求观众去试，但没有给安装、入口、费用和硬件要求。",
+      "evidence": "开源标签与结尾CTA"
+    }
+  ],
+  "boundary": "公开互动显示高收藏意图，但不能证明实际使用率。‘开源’不代表免费托管或低门槛，工具版本、入口和部署条件需另行核实。",
+  "publishedLabel": "2025/07/26周六 11:04",
+  "media": {
+    "durationSeconds": 47.578,
+    "width": 1080,
+    "height": 1920,
+    "codec": "hevc",
+    "bytes": 3657816
+  },
+  "editing": {
+    "detectedSceneCuts": [
+      2.4,
+      3.767,
+      8.867,
+      9.8,
+      12.433,
+      13.667,
+      14.7,
+      14.9,
+      16.533,
+      22.833,
+      25.367,
+      28.833,
+      31.867,
+      35.633,
+      39.8,
+      44.833
+    ],
+    "cutsPerMinute": 20.2
+  },
+  "contentArchitecture": {
+    "pattern": "钩子 / 问题 → 承诺 / 定义 → 展开 / 证明 → 展开 / 证明 → 回报 / 收束",
+    "stageCount": 5,
+    "hook": {
+      "index": 1,
+      "role": "钩子 / 问题",
+      "viewerQuestion": "这和我有什么关系，为什么继续看？",
+      "start": 0,
+      "end": 4.8,
+      "heading": "先承诺三个工具覆盖创意工作",
+      "function": "开场直接说明找到三个适合创意工作的宝藏 AI，不铺垫具体痛点，依赖‘数量+宝藏’形成收藏预期。",
+      "visualEvidence": "三工具标题与快速结果预览"
+    },
+    "payoff": {
+      "index": 5,
+      "role": "回报 / 收束",
+      "viewerQuestion": "我最后得到什么，下一步做什么？",
+      "start": 44.88,
+      "end": 47.58,
+      "heading": "用开源属性催促行动",
+      "function": "最后强调三个工具都是开源并要求观众去试，但没有给安装、入口、费用和硬件要求。",
+      "visualEvidence": "开源标签与结尾CTA"
+    },
+    "proofChain": [
+      "Bagel多种图像编辑结果",
+      "角色前后对照与多人融合",
+      "无音效/有音效前后对照",
+      "开源标签与结尾CTA"
+    ],
+    "stages": [
+      {
+        "index": 1,
+        "role": "钩子 / 问题",
+        "viewerQuestion": "这和我有什么关系，为什么继续看？",
+        "start": 0,
+        "end": 4.8,
+        "heading": "先承诺三个工具覆盖创意工作",
+        "function": "开场直接说明找到三个适合创意工作的宝藏 AI，不铺垫具体痛点，依赖‘数量+宝藏’形成收藏预期。",
+        "visualEvidence": "三工具标题与快速结果预览"
+      },
+      {
+        "index": 2,
+        "role": "承诺 / 定义",
+        "viewerQuestion": "这条内容承诺解决什么？",
+        "start": 4.8,
+        "end": 16.53,
+        "heading": "Bagel：一句话改图与生成3D",
+        "function": "介绍 Bagel 是国产开源多模态模型，展示换表情、改动作、变风格和生成3D模型等多个用途。",
+        "visualEvidence": "Bagel多种图像编辑结果"
+      },
+      {
+        "index": 3,
+        "role": "展开 / 证明",
+        "viewerQuestion": "这个主张如何成立？",
+        "start": 16.53,
+        "end": 31.91,
+        "heading": "Kontext：一致性与多人物融合",
+        "function": "用加墨镜、换雪山背景和两个人物融合到同一场景，证明角色一致性与场景迁移。",
+        "visualEvidence": "角色前后对照与多人融合"
+      },
+      {
+        "index": 4,
+        "role": "展开 / 证明",
+        "viewerQuestion": "这个主张如何成立？",
+        "start": 31.91,
+        "end": 44.88,
+        "heading": "ThinkSound：用前后声音完成可感知证明",
+        "function": "先播放没有音效的视频，再播放自动配音效结果，环境音与物体运动变化形成直接听觉对照。",
+        "visualEvidence": "无音效/有音效前后对照"
+      },
+      {
+        "index": 5,
+        "role": "回报 / 收束",
+        "viewerQuestion": "我最后得到什么，下一步做什么？",
+        "start": 44.88,
+        "end": 47.58,
+        "heading": "用开源属性催促行动",
+        "function": "最后强调三个工具都是开源并要求观众去试，但没有给安装、入口、费用和硬件要求。",
+        "visualEvidence": "开源标签与结尾CTA"
+      }
+    ]
+  },
+  "knowledgeExtraction": {
+    "status": "needs_visual_review",
+    "captureMode": "字幕＋章节摘要；尚未完成逐帧视觉知识核验",
+    "channels": [
+      "字幕",
+      "章节摘要"
+    ],
+    "spokenClaims": 12,
+    "mappedKnowledgeUnits": 0,
+    "coveragePercent": null,
+    "items": [],
+    "unresolved": [
+      "画面文字和非口播知识尚未逐帧核验，当前页面不能声称捕捉了全部关键内容"
+    ]
+  },
+  "transcript": {
+    "origin": "小红书官方 zh-CN 字幕",
+    "cueCount": 12,
+    "totalCharacters": 307,
+    "charactersPerMinute": 387.2,
+    "fullText": "朋友们给你们找到三个宝藏ai非常适合用来搞创意，第一个bagel 这是一个国产开源的多模态大模型 也可以说是开源版的gpt四o，你可以用一句话就可以p图改图 比如给图片换表情，改动作，变风格都超级简单，它甚至能一键生成三d模型 第二个context，这也是一个动嘴p图的开源模型，比如给这个人物加墨镜 再换个雪山的背景，可以看到角色一致性都保持得非常的不错 还可以让两张图的人物融合迁移到同一个场景里面去 第三个think sound,这是一个给视频配音效的神器 比如这是我生成的视频，没有音效 用它配完音效以后就是这样 可以听到效果非常的不错，里面的环境音和物体的运动变化基本上都是和画面匹配的 对了，这三个ai都是开源的，朋友们赶紧冲",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 4.8,
+        "midpoint": 2.4,
+        "text": "朋友们给你们找到三个宝藏ai非常适合用来搞创意，第一个bagel",
+        "frame": "frames-transcript/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "start": 4.8,
+        "end": 6.9,
+        "midpoint": 5.85,
+        "text": "这是一个国产开源的多模态大模型",
+        "frame": "frames-transcript/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "start": 6.91,
+        "end": 11.03,
+        "midpoint": 8.97,
+        "text": "也可以说是开源版的gpt四o，你可以用一句话就可以p图改图",
+        "frame": "frames-transcript/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "start": 11.03,
+        "end": 16.52,
+        "midpoint": 13.775,
+        "text": "比如给图片换表情，改动作，变风格都超级简单，它甚至能一键生成三d模型",
+        "frame": "frames-transcript/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "start": 16.53,
+        "end": 21.525,
+        "midpoint": 19.027,
+        "text": "第二个context，这也是一个动嘴p图的开源模型，比如给这个人物加墨镜",
+        "frame": "frames-transcript/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "start": 21.525,
+        "end": 25.38,
+        "midpoint": 23.453,
+        "text": "再换个雪山的背景，可以看到角色一致性都保持得非常的不错",
+        "frame": "frames-transcript/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "start": 25.39,
+        "end": 28.87,
+        "midpoint": 27.13,
+        "text": "还可以让两张图的人物融合迁移到同一个场景里面去",
+        "frame": "frames-transcript/cue-007.jpg"
+      },
+      {
+        "id": "CUE-008",
+        "start": 28.87,
+        "end": 31.91,
+        "midpoint": 30.39,
+        "text": "第三个think sound,这是一个给视频配音效的神器",
+        "frame": "frames-transcript/cue-008.jpg"
+      },
+      {
+        "id": "CUE-009",
+        "start": 31.91,
+        "end": 34.07,
+        "midpoint": 32.99,
+        "text": "比如这是我生成的视频，没有音效",
+        "frame": "frames-transcript/cue-009.jpg"
+      },
+      {
+        "id": "CUE-010",
+        "start": 34.08,
+        "end": 35.69,
+        "midpoint": 34.885,
+        "text": "用它配完音效以后就是这样",
+        "frame": "frames-transcript/cue-010.jpg"
+      },
+      {
+        "id": "CUE-011",
+        "start": 39.72,
+        "end": 44.88,
+        "midpoint": 42.3,
+        "text": "可以听到效果非常的不错，里面的环境音和物体的运动变化基本上都是和画面匹配的",
+        "frame": "frames-transcript/cue-011.jpg"
+      },
+      {
+        "id": "CUE-012",
+        "start": 44.88,
+        "end": 47.577,
+        "midpoint": 46.228,
+        "text": "对了，这三个ai都是开源的，朋友们赶紧冲",
+        "frame": "frames-transcript/cue-012.jpg"
+      }
+    ]
+  },
+  "frames": {
+    "sparse": [
+      {
+        "time": 0,
+        "src": "frames-sparse/frame-001.jpg"
+      },
+      {
+        "time": 6.785,
+        "src": "frames-sparse/frame-002.jpg"
+      },
+      {
+        "time": 13.571,
+        "src": "frames-sparse/frame-003.jpg"
+      },
+      {
+        "time": 20.356,
+        "src": "frames-sparse/frame-004.jpg"
+      },
+      {
+        "time": 27.142,
+        "src": "frames-sparse/frame-005.jpg"
+      },
+      {
+        "time": 33.927,
+        "src": "frames-sparse/frame-006.jpg"
+      },
+      {
+        "time": 40.712,
+        "src": "frames-sparse/frame-007.jpg"
+      },
+      {
+        "time": 47.498,
+        "src": "frames-sparse/frame-008.jpg"
+      }
+    ],
+    "dense": [
+      {
+        "time": 0,
+        "src": "frames-dense/frame-001.jpg"
+      },
+      {
+        "time": 2,
+        "src": "frames-dense/frame-002.jpg"
+      },
+      {
+        "time": 4,
+        "src": "frames-dense/frame-003.jpg"
+      },
+      {
+        "time": 6,
+        "src": "frames-dense/frame-004.jpg"
+      },
+      {
+        "time": 8,
+        "src": "frames-dense/frame-005.jpg"
+      },
+      {
+        "time": 10,
+        "src": "frames-dense/frame-006.jpg"
+      },
+      {
+        "time": 12,
+        "src": "frames-dense/frame-007.jpg"
+      },
+      {
+        "time": 14,
+        "src": "frames-dense/frame-008.jpg"
+      },
+      {
+        "time": 16,
+        "src": "frames-dense/frame-009.jpg"
+      },
+      {
+        "time": 18,
+        "src": "frames-dense/frame-010.jpg"
+      },
+      {
+        "time": 20,
+        "src": "frames-dense/frame-011.jpg"
+      },
+      {
+        "time": 22,
+        "src": "frames-dense/frame-012.jpg"
+      },
+      {
+        "time": 24,
+        "src": "frames-dense/frame-013.jpg"
+      },
+      {
+        "time": 26,
+        "src": "frames-dense/frame-014.jpg"
+      },
+      {
+        "time": 28,
+        "src": "frames-dense/frame-015.jpg"
+      },
+      {
+        "time": 30,
+        "src": "frames-dense/frame-016.jpg"
+      },
+      {
+        "time": 32,
+        "src": "frames-dense/frame-017.jpg"
+      },
+      {
+        "time": 34,
+        "src": "frames-dense/frame-018.jpg"
+      },
+      {
+        "time": 36,
+        "src": "frames-dense/frame-019.jpg"
+      },
+      {
+        "time": 38,
+        "src": "frames-dense/frame-020.jpg"
+      },
+      {
+        "time": 40,
+        "src": "frames-dense/frame-021.jpg"
+      },
+      {
+        "time": 42,
+        "src": "frames-dense/frame-022.jpg"
+      },
+      {
+        "time": 44,
+        "src": "frames-dense/frame-023.jpg"
+      },
+      {
+        "time": 46,
+        "src": "frames-dense/frame-024.jpg"
+      },
+      {
+        "time": 47.498,
+        "src": "frames-dense/frame-025.jpg"
+      }
+    ],
+    "sparseSheet": "sparse-sheet.jpg",
+    "denseSheet": "dense-sheet.jpg"
+  },
+  "reportUrl": "reports/688445a10000000020019210/report.html"
+}

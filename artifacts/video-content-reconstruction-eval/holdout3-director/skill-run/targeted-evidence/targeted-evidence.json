@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T20:03:12.741Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a3ba6950000000007027cc5.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 0,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 0.25,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 0.5,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 0.7,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 1.033,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 2.5,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-01",
+      "time": 4.133,
+      "frame": "frames/ACT-01-007.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-01",
+      "time": 6,
+      "frame": "frames/ACT-01-008.jpg",
+      "carrier": "opening inserted collage, burned captions, masked presenter, and SRT/audible-speech conflict",
+      "reason": "The sub-second insert carries metrics and proof-like framing, while the first SRT fragment is unresolved and the hook must be paired with its later qualification."
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-02",
+      "time": 7.664,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-02",
+      "time": 11.358,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-02",
+      "time": 14.726,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-02",
+      "time": 16.71,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-02",
+      "time": 19.004,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-02",
+      "time": 21.36,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-02",
+      "time": 23.268,
+      "frame": "frames/ACT-02-007.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-02",
+      "time": 25.367,
+      "frame": "frames/ACT-02-008.jpg",
+      "carrier": "burned captions, presenter pointing, and persistent whiteboard outline",
+      "reason": "The audience qualifier, promoter motive claim, generic product labels, and whiteboard grouping must remain separate from external truth."
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-03",
+      "time": 26,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-03",
+      "time": 27.735,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-03",
+      "time": 30.211,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-03",
+      "time": 32.375,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-03",
+      "time": 35.12,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-03",
+      "time": 37.2,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-03",
+      "time": 38.517,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-03",
+      "time": 39.655,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-03",
+      "time": 40,
+      "frame": "frames/ACT-03-009.jpg",
+      "carrier": "burned captions, speech-linked whiteboard list, and gesture sequence",
+      "reason": "The two-branch profile-data test and its unsupported absolute extension are core argument structure."
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-04",
+      "time": 40.2,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-04",
+      "time": 42.971,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-04",
+      "time": 44.375,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-04",
+      "time": 46.085,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-04",
+      "time": 48.895,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-04",
+      "time": 50.4,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-04",
+      "time": 52.083,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-04",
+      "time": 54.883,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-04",
+      "time": 57.262,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-04",
+      "time": 59.575,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-04",
+      "time": 62.557,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-04",
+      "time": 64,
+      "frame": "frames/ACT-04-012.jpg",
+      "carrier": "burned captions, whiteboard headings, and presenter gesture",
+      "reason": "The best-topic action, one-click rejection, account specificity, and training overhead form a contrast that a summary could flatten."
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-05",
+      "time": 64.2,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-05",
+      "time": 65.109,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-05",
+      "time": 68.574,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-05",
+      "time": 71.788,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-05",
+      "time": 74.568,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-05",
+      "time": 77.617,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-05",
+      "time": 80.376,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-05",
+      "time": 83.5,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-05",
+      "time": 87.535,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-05",
+      "time": 90,
+      "frame": "frames/ACT-05-010.jpg",
+      "carrier": "burned captions, persistent whiteboard, and semantic-continuity boundary",
+      "reason": "Traffic irregularity, limited reproducibility, and empathy claims are sequential conditions on the strategy, not independent scene changes."
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-06",
+      "time": 90.4,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-06",
+      "time": 91.281,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-06",
+      "time": 93.305,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-06",
+      "time": 96.164,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-06",
+      "time": 99.688,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-06",
+      "time": 101.886,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-06",
+      "time": 103.171,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-06",
+      "time": 105.424,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-06",
+      "time": 108.394,
+      "frame": "frames/ACT-06-009.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-06",
+      "time": 111.537,
+      "frame": "frames/ACT-06-010.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-06",
+      "time": 114.613,
+      "frame": "frames/ACT-06-011.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-06",
+      "time": 117.249,
+      "frame": "frames/ACT-06-012.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-06",
+      "time": 120.279,
+      "frame": "frames/ACT-06-013.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-06",
+      "time": 123.024,
+      "frame": "frames/ACT-06-014.jpg",
+      "carrier": "burned captions, numeric speech example, and whiteboard decline marks",
+      "reason": "The not-total-ban qualifier, undefined 60-point scale, audience split, and 1,000/1,000,000/50,000/3,000 numerical scenario must be exact and provenance-bounded."
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-07",
+      "time": 124.2,
+      "frame": "frames/ACT-07-001.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-07",
+      "time": 125.012,
+      "frame": "frames/ACT-07-002.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-07",
+      "time": 126.929,
+      "frame": "frames/ACT-07-003.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-07",
+      "time": 129.841,
+      "frame": "frames/ACT-07-004.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-07",
+      "time": 132.749,
+      "frame": "frames/ACT-07-005.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-07",
+      "time": 135,
+      "frame": "frames/ACT-07-006.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-07",
+      "time": 136.124,
+      "frame": "frames/ACT-07-007.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-07",
+      "time": 139.561,
+      "frame": "frames/ACT-07-008.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-07",
+      "time": 142.084,
+      "frame": "frames/ACT-07-009.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-07",
+      "time": 143.5,
+      "frame": "frames/ACT-07-010.jpg",
+      "carrier": "motion-dependent whiteboard curve drawing, pointing sequence, and burned captions",
+      "reason": "The visual contrast between a slow rising curve and sudden jump supports the author's account-launch model and cannot be proven by one midpoint."
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-08",
+      "time": 143.7,
+      "frame": "frames/ACT-08-001.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-08",
+      "time": 145.627,
+      "frame": "frames/ACT-08-002.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-08",
+      "time": 148.358,
+      "frame": "frames/ACT-08-003.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-08",
+      "time": 150.503,
+      "frame": "frames/ACT-08-004.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-08",
+      "time": 152.5,
+      "frame": "frames/ACT-08-005.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-08",
+      "time": 154.125,
+      "frame": "frames/ACT-08-006.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-08",
+      "time": 155.15,
+      "frame": "frames/ACT-08-007.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-08",
+      "time": 156.2,
+      "frame": "frames/ACT-08-008.jpg",
+      "carrier": "closing burned captions, presenter self-label, and opening-closing semantic relation",
+      "reason": "The final assistance/substitution boundary narrows the hook and the self-label resolves only the presentational referent, not literal identity."
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-09",
+      "time": 0.65,
+      "frame": "frames/ACT-09-001.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-09",
+      "time": 0.8,
+      "frame": "frames/ACT-09-002.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-09",
+      "time": 22.2,
+      "frame": "frames/ACT-09-003.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-09",
+      "time": 22.4,
+      "frame": "frames/ACT-09-004.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-09",
+      "time": 25.75,
+      "frame": "frames/ACT-09-005.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-09",
+      "time": 25.95,
+      "frame": "frames/ACT-09-006.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-09",
+      "time": 36.9,
+      "frame": "frames/ACT-09-007.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-09",
+      "time": 37.1,
+      "frame": "frames/ACT-09-008.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-09",
+      "time": 39.95,
+      "frame": "frames/ACT-09-009.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-09",
+      "time": 40.15,
+      "frame": "frames/ACT-09-010.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-09",
+      "time": 48.9,
+      "frame": "frames/ACT-09-011.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-09",
+      "time": 49.1,
+      "frame": "frames/ACT-09-012.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-09",
+      "time": 64,
+      "frame": "frames/ACT-09-013.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-09",
+      "time": 64.2,
+      "frame": "frames/ACT-09-014.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-09",
+      "time": 143.45,
+      "frame": "frames/ACT-09-015.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-09",
+      "time": 143.65,
+      "frame": "frames/ACT-09-016.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-09",
+      "time": 153.95,
+      "frame": "frames/ACT-09-017.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-09",
+      "time": 154.15,
+      "frame": "frames/ACT-09-018.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-09",
+      "time": 156.2,
+      "frame": "frames/ACT-09-019.jpg",
+      "carrier": "technical shot-boundary neighborhoods versus recurring presenter, clothing, board, room, and camera axis",
+      "reason": "The source's 11 technical segments must not become a semantic-scene or edit count; paired boundary frames test continuity/discontinuity."
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-10",
+      "time": 0,
+      "frame": "frames/ACT-10-001.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-10",
+      "time": 15,
+      "frame": "frames/ACT-10-002.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-10",
+      "time": 30,
+      "frame": "frames/ACT-10-003.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-10",
+      "time": 45,
+      "frame": "frames/ACT-10-004.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-10",
+      "time": 60,
+      "frame": "frames/ACT-10-005.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-10",
+      "time": 75,
+      "frame": "frames/ACT-10-006.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-10",
+      "time": 90,
+      "frame": "frames/ACT-10-007.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-10",
+      "time": 105,
+      "frame": "frames/ACT-10-008.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-10",
+      "time": 120,
+      "frame": "frames/ACT-10-009.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-10",
+      "time": 135,
+      "frame": "frames/ACT-10-010.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-10",
+      "time": 150,
+      "frame": "frames/ACT-10-011.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-10",
+      "time": 156.2,
+      "frame": "frames/ACT-10-012.jpg",
+      "carrier": "full-timeline speech/SRT, burned captions, opening insert, whiteboard, and visible environment for bounded absence claims",
+      "reason": "Specific tool/platform/access/price/account/region/support identities and empirical workflow proof would materially change the viewer's decision but were not observed in the probe's full evidence-pack sweep."
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061"
+      ]
+    },
+    {
+      "id": "ACT-07",
+      "frameIds": [
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071"
+      ]
+    },
+    {
+      "id": "ACT-08",
+      "frameIds": [
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079"
+      ]
+    },
+    {
+      "id": "ACT-09",
+      "frameIds": [
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098"
+      ]
+    },
+    {
+      "id": "ACT-10",
+      "frameIds": [
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110"
+      ]
+    }
+  ]
+}

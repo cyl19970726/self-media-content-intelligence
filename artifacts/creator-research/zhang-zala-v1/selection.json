@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "creatorId": "59757acd50c4b45e6e9a90df",
+  "selectedAt": "2026-08-16T11:28:00.000Z",
+  "rule": "62 条可见作品按点赞分布分为高表现、典型中位、算术平均值附近和低表现；每档选择 3 条视频，优先覆盖不同内容机制，并保留同题材跨档对照。",
+  "boundaries": [
+    "点赞是当前公开累计快照，不等于播放、留存、涨粉或转化。",
+    "全量层只采主页公开指标；详情、评论和媒体仅对代表集深采。"
+  ],
+  "deepSet": [
+    {"id":"69fe6f3a000000001a036be4","tier":"high","likes":43000,"selectionReason":"全量最高赞，且与平均档同题材样本形成直接对照。","representedMechanism":"结果墙前置 + 30余模板稀缺资产 + 小白与进阶双路径","mechanismQuestion":"结果前置的实用教程为何形成最大爆发？"},
+    {"id":"6a2761520000000008032277","tier":"high","likes":27000,"selectionReason":"高赞第二，代表非技术身份反差与公开产品社会证明。","representedMechanism":"身份反差 + 3万星硬数字 + GitHub公开作品证据链","mechanismQuestion":"非程序员身份反差与 GitHub 3 万星社会证明如何共同工作？"},
+    {"id":"6a31edc300000000200387f4","tier":"high","likes":9444,"selectionReason":"高表现中兼具账号增长结果与内容方法论。","representedMechanism":"个人增长结果 + 可执行创作系统 + 价值观表达","mechanismQuestion":"创作者方法论如何把账号增长结果转成可收藏知识？"},
+    {"id":"6a02a261000000000702ccfa","tier":"median","likes":1505,"selectionReason":"最接近点赞中位数，代表多工具前沿工作流。","representedMechanism":"多工具组合演示 + 新能力信息差 + 较长证明路径","mechanismQuestion":"新工具组合演示为何只达到典型水平？"},
+    {"id":"69eac78d000000002202b86e","tier":"median","likes":1400,"selectionReason":"位于中位附近，代表产品灵感与创业故事。","representedMechanism":"产品灵感故事 + 需求洞察 + 抽象案例叙述","mechanismQuestion":"产品灵感故事的具体性与受众门槛如何平衡？"},
+    {"id":"69f302a500000000220243fc","tier":"median","likes":1356,"selectionReason":"位于中位附近，代表泛学习建议型内容。","representedMechanism":"低门槛行动建议 + 认知安慰 + 弱外部证明","mechanismQuestion":"泛学习建议为何更像稳定基本盘而非爆发内容？"},
+    {"id":"6a505705000000002100a5e5","tier":"average","likes":3261,"selectionReason":"最接近算术均值，代表宏观学习认知内容。","representedMechanism":"时代议题 + 先做后学记忆句 + 个人经验支撑","mechanismQuestion":"宏观学习议题如何到达被长尾抬高后的平均值附近？"},
+    {"id":"6a6815b2000000001002477b","tier":"average","likes":3463,"selectionReason":"位于均值附近，代表创作者表达痛点解法。","representedMechanism":"具体表达痛点 + 说两遍练习 + 即时可执行方法","mechanismQuestion":"直接解决创作者表达痛点的内容为何高于中位但未爆发？"},
+    {"id":"6a05780c0000000006020d23","tier":"average","likes":3013,"selectionReason":"均值附近且与4.3万赞样本同为 HTML Slides 教程。","representedMechanism":"单平台零代码教程 + 模板与白话 + 收藏型实用价值","mechanismQuestion":"与 4.3 万赞 HTML Slides 同题材，包装和证据链差在哪里？"},
+    {"id":"69f1a54500000000360023e7","tier":"low","likes":309,"selectionReason":"代表集最低赞，且是明显的平台格式错配样本。","representedMechanism":"42分钟活动原始回放 + 多议题堆叠 + 结果延迟","mechanismQuestion":"超长活动回放为什么不适合小红书的即时消费场景？"},
+    {"id":"69d33c53000000001e00f5a3","tier":"low","likes":512,"selectionReason":"低表现中的身份反思样本，可检验定位相关性。","representedMechanism":"文科生身份表达 + 情绪共鸣 + 缺少具体任务资产","mechanismQuestion":"个人身份反思为何与账号核心价值承诺错位？"},
+    {"id":"69c5e1f4000000002003a17d","tier":"low","likes":569,"selectionReason":"低表现中的 Builder/Influencer 抽象观点样本。","representedMechanism":"抽象职业观点 + 讲座切片语境 + 缺少即时结果","mechanismQuestion":"抽象观点缺少具体任务和证据时如何失效？"}
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67af1032000000001902d33d/skill-run/probe.json",
+  "protocolName": "Ray2 edited-workflow, UI-state, and motion-claim capture",
+  "rationale": "这条 26.7 秒视频把主持人口播、烧录字幕、裁切的软件界面、输入图、模型/时长/分辨率控件、连续背景音乐和多个高动态样片快速并置。协议必须同时恢复可见工作流、结果样片与非语音音频角色，并专门阻止三种误读：把 SRT 拼写当产品名、把硬切补成已执行操作、把蒙太奇升级为 Ray2 的普遍因果证明。",
+  "knowledgeUnitFields": [
+    {"name": "author_statement", "required": true, "reason": "训练、能力、连贯性和物理效果主要由口播提出，需保持为作者主张。", "derivedFrom": ["MC-02", "MC-06", "CQ-06"]},
+    {"name": "visible_identity_and_carrier_conflict", "required": true, "reason": "SRT 的 dipsick/re二 与烧录字幕 DeepSeek/Ray2 冲突，界面品牌又被裁切。", "derivedFrom": ["RISK-04", "CQ-01", "CAR-02", "CAR-04"]},
+    {"name": "input_and_prompt", "required": true, "reason": "一张中国龙与人物的起始图及英文动作描述是本次示意流程的核心输入。", "derivedFrom": ["CAR-05", "CQ-02", "RISK-02"]},
+    {"name": "observed_ui_chronology", "required": true, "reason": "需要按真实剪辑顺序记录空 Keyframe、输入图、参数/提示词状态与 Describe 空框，而不是整理成假连续教程。", "derivedFrom": ["MC-03", "MC-04", "MC-05", "REL-04", "RISK-01"]},
+    {"name": "parameters", "required": true, "reason": "5s、1080p、Ray2/Ray1.6、Videos、Keyframe 与空 END FRAME 只在短 UI 窗口可见。", "derivedFrom": ["CQ-03", "RISK-02", "MC-04"]},
+    {"name": "result_sample_groups", "required": true, "reason": "能力印象来自多个不同风格和动作的样片组，需保守计数并按时段区分。", "derivedFrom": ["CAR-06", "CQ-04", "RISK-03"]},
+    {"name": "motion_and_continuity_observation", "required": true, "reason": "作者的连贯/物理/大动作不扭曲主张必须与短序列中真正可见的运动分开。", "derivedFrom": ["MC-06", "CQ-04", "CQ-05"]},
+    {"name": "execution_and_causality_boundary", "required": true, "reason": "视频没有连续显示上传、点击、进度、耗时和所示设置到样片的绑定。", "derivedFrom": ["RISK-01", "RISK-03", "CQ-05", "REL-05"]},
+    {"name": "version_availability_cost_license_boundary", "required": true, "reason": "结尾号召使用使版本、访问、费用、权限、授权和责任成为决策相关未知。", "derivedFrom": ["RISK-05", "RISK-07", "CQ-07", "CQ-08"]},
+    {"name": "opening_closing_relation", "required": true, "reason": "最后的‘快去玩’把开场推荐转成行动号召，但不补访问边界。", "derivedFrom": ["MC-01", "MC-07", "REL-06", "CQ-09"]}
+    ,{"name": "non_speech_audio_region_status", "required": true, "reason": "媒体有音轨，必须用实际有界听检判断开场、样片、UI、过渡和结尾中非语音音频是 absent、constant 还是 change。", "derivedFrom": ["CAR-08", "RISK-08", "CQ-10"]}
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01-CAPTION-CONFLICT",
+      "range": {"start": 0, "end": 8.07},
+      "carrier": "supplied SRT versus burned captions and presenter context",
+      "mode": "exact_times",
+      "times": [0.4, 2.4, 4.8, 6.2],
+      "reason": "核对 dipsick/re二 与 DeepSeek/Ray2 的原始冲突，同时保留推荐语境。",
+      "expectedObservation": "烧录字幕清晰给出 DeepSeek 与 Ray2；SRT 原文保持不改。",
+      "derivedFrom": ["RISK-04", "CQ-01", "CAR-02"]
+    },
+    {
+      "id": "ACT-02-EARLY-EXAMPLES",
+      "range": {"start": 5.433, "end": 12.367},
+      "carrier": "gallery UI and inserted moving examples",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.3,
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。",
+      "expectedObservation": "可见绵羊、胖人骑车、雪地溪流/金鱼等不同示例或缩略图；同段运动可观察，但输入和任务归因不可见。",
+      "derivedFrom": ["SWEEP-03", "CAR-06", "RISK-03", "CQ-04"]
+    },
+    {
+      "id": "ACT-03-WORKFLOW-STATES",
+      "range": {"start": 13.667, "end": 20.967},
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "mode": "before_during_after",
+      "times": [13.8, 14.5, 15.5, 16.2, 16.9, 17.5, 18.5, 19.5, 20.5],
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。",
+      "expectedObservation": "Keyframe 空 START/END FRAME → 输入图硬切 → 起始图/提示词/5s/1080p/Ray2 状态 → 模型菜单 → Describe/VIDEO 16:9 空输入；没有文件选择、点击、进度、耗时或输出任务绑定。",
+      "derivedFrom": ["RISK-01", "MC-03", "MC-04", "MC-05", "REL-04", "CQ-02"]
+    },
+    {
+      "id": "ACT-04-UI-OCR",
+      "range": {"start": 13.667, "end": 19},
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "mode": "ui_state_review",
+      "times": [14.5, 16.2, 16.9, 17.5, 18.5],
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。",
+      "expectedObservation": "Describe/Keyframe/Reference/Modify、Videos、5s、1080p、Ray2、Ray1.6、START FRAME/END FRAME、提示词近似‘dragon and the charactor is doing reaction,ocean wave’。",
+      "derivedFrom": ["RISK-02", "CQ-02", "CQ-03", "CAR-04", "CAR-05"]
+    },
+    {
+      "id": "ACT-05-RESULT-MOTION",
+      "range": {"start": 20.967, "end": 25.5},
+      "carrier": "four edited result clips and motion continuity",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.15,
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。",
+      "expectedObservation": "三组连续短段：火焰手掌、海边人物、白发人物进入红色机械/战斗动作；最后一组持续到约 25.500s，只能对取样窗口作视觉观察。",
+      "derivedFrom": ["MC-06", "RISK-03", "CQ-04", "CQ-05"]
+    },
+    {
+      "id": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "range": {"start": 0, "end": 26.733},
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "mode": "interval_density",
+      "densitySeconds": 0.5,
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。",
+      "expectedObservation": "在完整抽样时间线中寻找但预计不见版本号、发布日期、URL、价格/额度、账号/地区、授权、提交进度、耗时或输入输出任务标识；结论必须保持为‘在检查范围内未观察到’。",
+      "derivedFrom": ["RISK-05", "RISK-07", "CQ-07", "CQ-08", "CAR-09"]
+    },
+    {
+      "id": "ACT-07-CLOSING",
+      "range": {"start": 25.5, "end": 26.733},
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "mode": "exact_times",
+      "times": [25.5, 25.6, 25.7, 25.767, 26.217, 26.613],
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。",
+      "expectedObservation": "约 25.500s 前仍为战斗插入/合成画面；25.500–25.767s 是过渡/重叠；其后战斗插入消失，完整主持人近景以 26.217s 的 SHOT-011 代表时刻作保守锚点，主持人挥手说‘朋友们快去玩儿吧’，不增加产品边界或证据。",
+      "derivedFrom": ["MC-07", "REL-06", "CQ-09"]
+    },
+    {
+      "id": "ACT-08-AUDIO-REGION-ANCHORS",
+      "range": {"start": 0, "end": 26.733},
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "mode": "exact_times",
+      "times": [0, 5.433, 13.667, 20.967, 25.5, 25.767, 26.613],
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。",
+      "expectedObservation": "开场、早期样片、UI、结果样片/过渡和完整主持人结尾均有独立试听范围；非语音层为持续低声电子器乐背景，未听出可置信的 UI 或插入源独立音效变化。",
+      "derivedFrom": ["CAR-08", "RISK-08", "CQ-10"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "opening recommendation setup_to Ray2 naming", "derivedFrom": ["REL-01"]},
+    {"relation": "capability claim illustrated_by montage but not proven_by it", "derivedFrom": ["REL-02", "RISK-03"]},
+    {"relation": "empty Keyframe state precedes visible input/parameter state", "derivedFrom": ["REL-03"]},
+    {"relation": "edited UI chronology leaves upload/submit/generation dependencies unshown", "derivedFrom": ["REL-04", "RISK-01"]},
+    {"relation": "visible settings presented next to results while task-level provenance remains unknown", "derivedFrom": ["REL-05", "CQ-05"]},
+    {"relation": "closing try-it CTA pays off opening recommendation without resolving access boundaries", "derivedFrom": ["REL-06", "CQ-07"]},
+    {"relation": "presenter explains composited UI and examples", "derivedFrom": ["REL-07"]}
+  ],
+  "stoppingRules": [
+    "每条 CQ 均由知识单元回答或以有范围证据的 unknown 关闭。",
+    "ACT-04 完成 Vision OCR，并逐帧人工核对关键标签、提示词和数值；读不清的字符不补全。",
+    "ACT-03 明确区分视频实际剪辑顺序与完成生成所需但未显示的依赖。",
+    "ACT-05 以序列而非单帧描述连续性，并不把短样片扩展成普遍无扭曲结论。",
+    "ACT-06 对 0–26.733 秒完整时间线的字幕、UI、短卡和结尾机会窗做边界检查，所有负结论带范围。",
+    "SRT 与烧录字幕冲突作为独立单元保留，不静默修改逐字稿。",
+    "技术 shot 边界不被写成语义场景数或真实编辑次数。",
+    "开场推荐与结尾号召建立跨段关系。",
+    "对 0–26.733s 原音轨完成分段回放听检，并按开场、样片、UI、转场、结尾记录 absent/constant/change；曲目身份、来源与授权保持 unknown。",
+    "meta-gate 不剩未检查的信息载体、意义变化或关系。"
+  ],
+  "declaredUnknowns": [
+    "界面品牌的画面内独立可见身份",
+    "Ray2 的更细版本号、发布日期与当前可用性",
+    "访问 URL、平台、地区、账号/订阅要求、费用、额度、排队与生成耗时",
+    "输入图与全部样片的来源、版权、商用授权、肖像/角色授权和责任主体",
+    "上传、参数选择、提交、等待与导出是否在同一次会话实际完成",
+    "随后样片与所示起始图、提示词、5s、1080p、Ray2 设置的任务级因果绑定",
+    "样片是否后期编辑、完整原始时长、失败率与普遍无扭曲范围",
+    "训练数据事实、合法性与性能主张的外部真实性",
+    "背景音乐的曲目身份、作者、来源、授权；被音乐/人声掩蔽的低电平独立音效是否存在"
+  ]
+}

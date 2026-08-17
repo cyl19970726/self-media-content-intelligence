@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a2761520000000008032277",
+  "capturedAt": "2026-08-16T12:21:51.845Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "我在GitHub上有超过3万星（虽然并不会写代码",
+    "postCopy": "AI时代我们应该做有观点的产品\n如果所有人都认可你的观点，那说明你没有观点\n\t\n#vibecoding[话题]# #skill[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "skill"
+    ],
+    "topComments": [
+      {
+        "content": "粉丝群没有满，粉丝群不在小红书上。入口在我的签名里",
+        "likes": "3",
+        "ipLocation": "美国",
+        "author": "张咋啦",
+        "replies": [
+          {
+            "content": "主页扫码 此链接已失效",
+            "author": "亨利回家"
+          }
+        ]
+      },
+      {
+        "content": "这个应该是为什么SDE招人，再也不看GitHub了",
+        "likes": "156",
+        "ipLocation": "美国",
+        "author": "Ethan",
+        "replies": [
+          {
+            "content": "就像她说的 已经变成一种表达媒介 而不仅仅是技术社区 所以技术岗也不会去看这个了",
+            "author": "happ1poo"
+          }
+        ]
+      },
+      {
+        "content": "飞书上的满员了[哭惹R]",
+        "likes": "0",
+        "ipLocation": "江苏",
+        "author": "canvas_C",
+        "replies": []
+      },
+      {
+        "content": "这才是ai的应用 不是程序员专属 而是表达自己观点的媒介 跟其他媒介一样吸引同频的人",
+        "likes": "377",
+        "ipLocation": "浙江",
+        "author": "jjj",
+        "replies": [
+          {
+            "content": "github不是媒介",
+            "author": "momo"
+          }
+        ]
+      },
+      {
+        "content": "[捂脸R]满员了，还有3群吗？",
+        "likes": "0",
+        "ipLocation": "上海",
+        "author": "薄荷",
+        "replies": []
+      },
+      {
+        "content": "咋啦 我用了你的design skills 但是我发现claude做的时候还是会有 字体大小不合适 整体布局不好看的问题 有啥解决方法吗？",
+        "likes": "34",
+        "ipLocation": "瑞典",
+        "author": "瑞典野生米",
+        "replies": [
+          {
+            "content": "因为 Skills 本质上只是经过整理和封装的提示词，而自己编写 Styles 才能真正把控细节和输出风格。另外，很多 Skills 本身也是借助 AI 生成和迭代出来的",
+            "author": "magi"
+          }
+        ]
+      },
+      {
+        "content": "@问一问 总结一下这个视频",
+        "likes": "0",
+        "ipLocation": "江苏",
+        "author": "Free-0_0-",
+        "replies": [
+          {
+            "content": "这条视频的核心意思是：作者认为在 AI 时代， 代码可以成为一种表达观点和审美的媒介 ，即使不会写代码，也可以通过 AI 把观点做成产品，放在 GitHub 上。\n作者分享了自己作为非技术背景的人，在 GitHub 上做出多个高星项目，核心不是写代码，而是输出有观点的“skill”和小应用。她强调，真正重要的是做什么，以及做出后如何分发、吸引对的人关注，而不是会不会手动写代码。\n视频里举了几个代表性项目，背后都有明确观点：\nfront-end-slides：认为 PPT 应该被更美观、可交互的 HTML 页面取代\nfollow-builders：认为应关注真正做产品的人，而不是单纯的信息转述者\ntab-out：认为浏览器对标签页的管理方式有问题，应该更容易关闭不需要的标签\n飞书画板相关 skill：认为工作场景里的审美也很重要，AI 应该帮人把内容呈现做得更好看\n她反复提到一个判断标准：如果所有人都认同你的观点，那说明你没有观点；做有观点的产品，必然会有争议和不认同的人。她还把 GitHub 看作一种新的表达平台，类似博客，用来沉淀自己的认知、审美和判断。",
+            "author": "问一问"
+          }
+        ]
+      },
+      {
+        "content": "@问一问 详尽总结 工程和业务思维 还有评论区的精彩评论",
+        "likes": "0",
+        "ipLocation": "北京",
+        "author": "小🐑日记📓",
+        "replies": [
+          {
+            "content": "这条内容的核心工程和业务思维很明确： 作者把 GitHub 当成“有观点的产品发布平台” ，重点不是代码能力本身，而是通过 coding agent 把个人审美、判断和理念做成可运行的 skill，再靠观点吸引同频用户。\n工程思维：\n用 coding agent 降低实现门槛，把“不会写代码”转化为“会定义需求、会验收、会分发”\n项目不是玩具，而是可运行、可安装、可进生产环境的轻量应用\n重点在于把想法封装成 skill，例如前端幻灯片、信息摘要、浏览器插件、画板模板等\n作者强调，真正关键的是“决定做什么”和“做出后如何分发”，而不是手动写代码\n业务思维：\n核心主张是做 opinionated products，即有明确观点和立场的产品\n认为如果所有人都认同，反而说明没有观点；真正的区分度来自审美、理念和取舍\n代表性项目都在表达具体判断：\nfront-end-slides：PPT 应该被更美观、可交互的 HTML 页面取代\nfollow-builders：应关注实际做产品的人，而不是信息转述者\ntab-out：浏览器标签管理体验有问题，需要更直观的关闭方式\n飞书画板 skill：工作场景里的视觉审美同样重要\nGitHub 被当作类似 Substack 的表达媒介，用来沉淀认知、审美和判断\n评论区精彩评论：\n点赞最高的一类观点认为，这是 AI 时代普通人表达观点的新方式，不只属于程序员\n也有高赞评论提出质疑，认为 GitHub 正在“饭圈化”“刷赞化”，不再像以前那样被技术岗看重\n不少人在讨论这类项目的实用性，有人觉得视觉和表达类项目门槛较低，未必解决真实业务问题\n还有一类评论集中在使用体验，比如字体、布局、提示词封装、本地修改 skill 等细节问题\n很多人在问粉丝群入口，说明大家更关注后续交流、资源获取和案例沉淀，这部分讨论热度很高",
+            "author": "问一问"
+          }
+        ]
+      },
+      {
+        "content": "請問有推薦的筆電嗎？目前也想要學ai",
+        "likes": "1",
+        "ipLocation": "德国",
+        "author": "Solar",
+        "replies": [
+          {
+            "content": "不自己训练大模型的话 ，MACBOOK很棒了 集轻薄和性能还有长续航为一体。 windows 的话 gaming laptop",
+            "author": "今夜一起嗦粉吧"
+          }
+        ]
+      },
+      {
+        "content": "follow builders skill通过qlaw已经推送给我的微信啦[马上转运][马上转运][马上转运]感谢分享！",
+        "likes": "9",
+        "ipLocation": "四川",
+        "author": "霉霉霉霉运走开啊",
+        "replies": [
+          {
+            "content": "如何做到的啊",
+            "author": "Margaret"
+          }
+        ]
+      }
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a2761520000000008032277",
+    "mediaType": "video",
+    "publishedAt": "2026-06-09T00:41:54.000Z",
+    "likes": "2.7万",
+    "collections": "2.8万",
+    "comments": "194",
+    "shares": "2339",
+    "expectedDurationSec": 263
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 263
+    }
+  ]
+}

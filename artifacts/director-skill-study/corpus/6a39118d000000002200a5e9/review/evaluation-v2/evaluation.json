@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 17,
+      "denominator": 18,
+      "examples": [
+        {
+          "status": "pass",
+          "ids": ["CQ-01", "CQ-02", "CQ-03", "CQ-04", "CQ-05", "CQ-06", "CQ-08", "CQ-09", "CQ-10", "CQ-11", "CQ-12", "CQ-13", "CQ-14", "CQ-15", "CQ-16", "CQ-17", "CQ-18"],
+          "note": "The reconstruction answers the promise, proof limits, core frameworks, brand mappings, claim status, presentation context, and opening-to-closing outcome with evidence or bounded unknowns."
+        },
+        {
+          "status": "fail",
+          "ids": ["CQ-07"],
+          "note": "KU-07 recovers the six themes and first three mappings but broadens uncertainty to all later names; the audit supports 逆风翻盘—罗永浩 and 苟富贵勿相忘—于东来, with the material ambiguity concentrated around 刘强东/曹德旺."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 23,
+      "denominator": 25,
+      "examples": [
+        {
+          "status": "pass",
+          "ids": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21", "KU-22", "KU-23", "KU-24"],
+          "note": "These audited core units are present with correctly scoped cue, frame, targeted-frame, or OCR support."
+        },
+        {
+          "status": "fail",
+          "ids": ["KU-08", "KU-25"],
+          "note": "Audit KU-08 requires the recoverable six personal-topic mappings with only the 刘强东/曹德旺 boundary retained as uncertain; audit KU-25 requires the closing identity 人类最强编导 rather than leaving the corrupted SRT form unresolved."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 27,
+      "examples": [
+        {
+          "status": "pass",
+          "note": "All 27 positive knowledge-unit statements were checked. Claims about decision cost, SU7 purchases, founder/brand personality, and slogans remain attributed to the author or qualified as visual observations; no unsupported positive claim was promoted to fact."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 40,
+      "denominator": 40,
+      "examples": [
+        {
+          "status": "pass",
+          "note": "A stratified check of 40 references spanning the opening insert, three logics, personal topics, five product traits, brand directions, final examples, and signoff found all references inside the claimed evidence windows. The closing identity problem is a carrier-resolution error, not a timestamp error."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 12,
+      "denominator": 15,
+      "rationale": "Twelve audited conceptual dependencies are represented in knowledge-unit statements or explicit relations. REL-01 (promise depends on the three-logics foundation) and REL-02 (foundation to trust/love conversion) are not explicitly linked, and REL-05 is not correctly closed because KU-07 over-abstains on recoverable topic-to-person mappings."
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "pass",
+          "ids": ["UNK-01", "UNK-02", "UNK-04", "UNK-05", "UNK-06", "UNK-07", "UNK-08", "UNK-09", "UNK-10", "UNK-11", "UNK-12"],
+          "note": "The reconstruction preserves attribution, identity, performance, causality, universality, taxonomy, execution, effectiveness, official-slogan, transcription, and non-speech-audio boundaries."
+        },
+        {
+          "status": "fail",
+          "ids": ["UNK-03"],
+          "note": "It records that non-founder IP may use the method but does not explicitly preserve as unknown how that adaptation should work."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-08 non-speech audio: the probe marks the channel inspected, but neither the protocol nor targeted evidence performs a listening/annotation pass, and the reconstruction does not state that it listened for meaning-bearing music or SFX. Declaring the channel unknown does not establish that it was checked."
+    ]
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "Meaning-bearing non-speech audio remains uninspected: no actual listening decision, waveform/audio annotation, or equivalent evidence closes music/SFX across 0.000-141.804."
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The protocol and reconstruction cover the visual/textual timeline, opening insert, overlays, whiteboard, gestures, referents, semantic continuity, and bounded absences. The independent audit nevertheless finds one available carrier family that the protocol labels inspected without executing a listening check. Therefore the exact meta-gate question cannot be answered with 'none'."
+  },
+  "examples": [
+    {
+      "kind": "strong_closure",
+      "auditIds": ["CF-04", "CF-05", "CF-06", "CF-07"],
+      "candidateLocations": ["KU-11", "KU-12"],
+      "note": "The five-part visual taxonomy correctly overrides the corrupted SRT segmentation and preserves unresolved small text."
+    },
+    {
+      "kind": "strong_closure",
+      "auditIds": ["CF-08", "CF-09", "CF-10", "CF-11", "CF-12", "CF-13", "CF-14"],
+      "candidateLocations": ["KU-13", "KU-18", "KU-19", "KU-20"],
+      "note": "Visible names and phrases correct the consequential SRT errors without treating author-presented examples as externally verified official facts."
+    },
+    {
+      "kind": "miss",
+      "auditIds": ["CF-03", "REL-05", "CQ-07", "KU-08"],
+      "candidateLocations": ["KU-07"],
+      "note": "The reconstruction preserves too much uncertainty after the first three personal-topic mappings and loses recoverable later mappings."
+    },
+    {
+      "kind": "miss",
+      "auditIds": ["CF-15", "CLOSE-02", "KU-25"],
+      "candidateLocations": ["KU-23", "KU-27"],
+      "note": "The visible identity is correctly read as 人类最强编导, but the corrupted SRT self-identification remains unresolved rather than being reconciled with the stronger visible/burned carrier evidence."
+    },
+    {
+      "kind": "hard_gate_failure",
+      "auditIds": ["CAR-08", "UNK-12"],
+      "candidateLocations": ["probe.CAR-07", "KU-26", "metaGate"],
+      "note": "The non-speech-audio channel is acknowledged but not actually inspected; this leaves both unchecked-channels and independent meta-gate failed."
+    }
+  ]
+}

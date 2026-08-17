@@ -1,0 +1,27 @@
+{
+  "videoId": "6a37cd9300000000070278d1",
+  "status": "NOT_READY",
+  "hardGateDiscrepancies": [
+    {
+      "id": "missing-platform-retention-rationale",
+      "severity": "hard_gate",
+      "auditTarget": ["K09", "REL07", "Q07"],
+      "candidateLocation": "absent; nearest unit is KU-08",
+      "finding": "候选保留了搜索/闲逛差异，却遗漏作者的前置因果论证：平台要留住用户，因此平台与用户对好内容的目标一致。",
+      "metricImpact": [
+        "criticalQuestionRecall=15/16 (passes scalar threshold)",
+        "evidenceCoverage=21/22 (passes scalar threshold)",
+        "eval_meta_gate=FAIL"
+      ],
+      "repairClosure": "在 reconstruction 中新增有证据的 author_claim 单元并保留‘作者逻辑、非平台数据’边界；将其连接到搜索/闲逛决策，并更新独立 meta closure。"
+    }
+  ],
+  "nonBlockingDiscrepancies": [],
+  "strengths": [
+    "15/16 critical questions covered",
+    "21/22 audited core units evidenced",
+    "10/10 process dependencies preserved",
+    "13/13 unknown opportunities handled",
+    "source attribution and audiovisual non-repetition boundaries are strong"
+  ]
+}

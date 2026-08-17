@@ -1,0 +1,3827 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "仅重建该视频内部可见、可读及提供字幕承载的内容。作者主张、视觉观察、系统推断和未知严格分离；未使用帖子文案、评论、指标后台、外部网页或其他视频。开场截图与案例均不构成外部真实性验证。",
+  "viewerChange": {
+    "before": "观众可能把做IP等同于追求知名度或把人设设计等同于造假。",
+    "after": "观众获得作者的两分法：广告博主围绕ID、真实特征、可增不可颠覆的人设和无害缺点增强粘性/种草；企业主围绕信任、品牌或转化目标选择观点口播与日常。",
+    "intendedChanges": [
+      "认识IP的信任与情感公式",
+      "区分广告博主与企业主路线",
+      "掌握人设设计边界",
+      "按企业目标选择内容方向"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-EVIDENCE-META",
+      "path": "../evidence/evidence-pack.json",
+      "kind": "source evidence-pack metadata",
+      "producedBy": "build-evidence-pack.mjs",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "包内帧路径未随该holdout输入提供",
+        "scene-detection shots不等于语义场景"
+      ]
+    },
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-driven frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs using capture-protocol.json",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "帧分辨率360×640",
+        "静帧不能单独证明完整动作或连续性"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "OCR为提议而非事实",
+        "小红书水印、白板手写和细小UI存在误读",
+        "OCR把“第二种”误读成“第三种”，经源帧人工否决"
+      ]
+    },
+    {
+      "id": "SRC-CONTACT-01",
+      "path": "probe-inspection/contact-000-082.jpg",
+      "kind": "2-second visual contact sheet",
+      "producedBy": "ffmpeg fps=1/2 tile from evidence-pack source video",
+      "timeRange": {
+        "start": 0,
+        "end": 82
+      },
+      "limitations": [
+        "缩略图不适合读取小字",
+        "2秒采样可能遗漏短时元素"
+      ]
+    },
+    {
+      "id": "SRC-CONTACT-02",
+      "path": "probe-inspection/contact-082-163.jpg",
+      "kind": "2-second visual contact sheet",
+      "producedBy": "ffmpeg fps=1/2 tile from evidence-pack source video",
+      "timeRange": {
+        "start": 82,
+        "end": 162.725
+      },
+      "limitations": [
+        "缩略图不适合读取小字",
+        "2秒采样可能遗漏短时元素"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO-CLASS",
+      "path": "audio-inspection/audio-classification.json",
+      "kind": "overlapping-window acoustic classification",
+      "producedBy": "MIT AST AudioSet classifier on decoded 16kHz mono waveform, 10-second windows every 5 seconds",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "自动分类不是人类感知式听辨",
+        "标签不能建立曲目、曲风或编辑意图",
+        "Speech与Music可重叠"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO-LOG",
+      "path": "audio-inspection/ffmpeg-audio-analysis.log",
+      "kind": "full-timeline silence and audio-stat analysis",
+      "producedBy": "ffmpeg silencedetect=-42dB:d=0.25 and astats",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "阈值以下短暂/低电平事件可能未被单独标出",
+        "信号统计不能识别语义"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO-SPECTROGRAM",
+      "path": "audio-inspection/full-spectrogram.png",
+      "kind": "full-timeline spectrogram",
+      "producedBy": "ffmpeg showspectrumpic from decoded 16kHz mono waveform",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "limitations": [
+        "频谱连续性不能确定音乐身份或作者意图",
+        "执行模型不支持直接本地音频感知输入"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 2.686,
+        "text": "看ai偷展示教资啊，那么三天时间已经三万粉丝了",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 2.686,
+        "end": 6.19,
+        "text": "那么今天我要教给你的是，为什么现在大家都要下次做ip以及ip",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 6.2,
+        "end": 8.003,
+        "text": "就是从认识到信任，从喜欢到爱上",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 8.003,
+        "end": 9.325,
+        "text": "今天我们从两个方向来讲",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 9.325,
+        "end": 10.888,
+        "text": "第一个方向就是广告变现博主",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 10.888,
+        "end": 12.21,
+        "text": "第二个是就是企业主ip",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 12.21,
+        "end": 15.7,
+        "text": "为什么广告变现博主需要做ip呢？第一也是增强粉丝粘性，第二",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 15.71,
+        "end": 20.97,
+        "text": "点就是提高种草率，Ip这个事情从id就开始了，取id要讲究两点，第一点就是记忆点和顺口",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 20.98,
+        "end": 24.485,
+        "text": "如果你的id叫不吃香菜或者魑魅魍魉就不用做ip，第二点就是信息量",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 24.485,
+        "end": 28.1,
+        "text": "比如说我我叫人类最强编导的，可以从中看这两个点，第一点我是教内容的",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 28.11,
+        "end": 29.305,
+        "text": "第二个点我这个人很狂",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 29.305,
+        "end": 33.25,
+        "text": "那么ip呢，就是什么东西组成了你，第一点就是完全真实的方向，比如说",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 33.26,
+        "end": 34.796,
+        "text": "你的性格作风，爱好，特长",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 34.796,
+        "end": 35.948,
+        "text": "身份习惯还有口头禅",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 35.948,
+        "end": 39.79,
+        "text": "但我们说人设呢也有设计的部分，注意这里我说的是设计而不是造假",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 39.8,
+        "end": 42.284,
+        "text": "那么今天我要举的一个博主案例就是夏美和王阳洋",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 42.284,
+        "end": 43.639,
+        "text": "王阳洋真的是一个ip天才",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 43.639,
+        "end": 47.48,
+        "text": "他立了两个人设，第一个是阳痿，第二个是花臂少，完全有记忆点，完全刻别",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 47.49,
+        "end": 48.968,
+        "text": "并且她有很强的粉丝互动性",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 48.968,
+        "end": 51.308,
+        "text": "给了粉丝足够的话题度，同时作为情侣博主",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 51.308,
+        "end": 54.264,
+        "text": "她这个花臂瘦的人设更加立住了夏美的大女主独立人设",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 54.264,
+        "end": 56.36,
+        "text": "那我们设计人设的时候有一个原则就是",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 56.37,
+        "end": 60.238,
+        "text": "两年前无忧传媒创始和我说一句话，就是人设可以增加，但是不能颠覆",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 60.238,
+        "end": 61.735,
+        "text": "下面这个福利金的事件曝出",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 61.735,
+        "end": 65.23,
+        "text": "就完全颠覆了他所谓独立案主的人设，所以这是大家不能接受的",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 65.239,
+        "end": 67.638,
+        "text": "那么我们开头说了，Ip就是从喜欢到爱上",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 67.638,
+        "end": 72.06,
+        "text": "从认识到信任，从喜欢到爱上，在博创面怎么体现的呢？我要说一个反常识的点",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 72.07,
+        "end": 73.913,
+        "text": "就是喜欢一个人是喜欢上一个人优点",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 73.913,
+        "end": 75.526,
+        "text": "但是爱上一个人是爱上他的缺点",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 75.526,
+        "end": 79.33,
+        "text": "但是周一瑶这个缺点的设计要是一个无伤大雅，并且不会伤害到别人的缺点",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 79.34,
+        "end": 82.986,
+        "text": "我举个例子你就明白了，校园时期你看到一个又高又帅打篮球非常厉害的男生",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 82.986,
+        "end": 85.56,
+        "text": "你完全喜欢上了他，但是你在什么情况下会爱上他呢？",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 85.57,
+        "end": 87.374,
+        "text": "就是有一天他数学没考好的时候",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 87.374,
+        "end": 91.24,
+        "text": "一个人落寞的坐在桌子上偷偷抹眼泪的时刻，那个时候你才会爱上他",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 91.25,
+        "end": 92.897,
+        "text": "因为这一瞬间你催生了心疼",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 92.897,
+        "end": 96.74,
+        "text": "那么说完广告变现博主，我们来说企业主这个企业主是包括那些",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 96.75,
+        "end": 98.486,
+        "text": "以卖产品为变现逻辑的博主的",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 98.486,
+        "end": 100.889,
+        "text": "为什么现在所有的企业主都要下场做ip",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 100.889,
+        "end": 105.43,
+        "text": "因为创始人ip就是从认识到信任，这是一个很好的降低用户决策成本的方法",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 105.44,
+        "end": 107.892,
+        "text": "你可以催生一批为了你这个人来买你产品的用户",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 107.892,
+        "end": 110.694,
+        "text": "那么这个时候我们的创始人ip是和我们企业紧密联系",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 110.694,
+        "end": 112.912,
+        "text": "因为你的创始人ip可以反映你的企业文化",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 112.912,
+        "end": 115.25,
+        "text": "比如说雷军小米的slogan是为发烧而生",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 115.26,
+        "end": 118.34,
+        "text": "所以雷军造车这个事情就巩固了他一往无前的ip",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 118.34,
+        "end": 120.3,
+        "text": "宇浩每天在抖音上发几百条视频",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 120.3,
+        "end": 123.8,
+        "text": "说自己要当世界首富，这种表演型的人设也增强当企业的",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 123.81,
+        "end": 124.962,
+        "text": "狠性文化，狼性文化",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 124.962,
+        "end": 127.394,
+        "text": "那么老板去做ip的时候，通常有两种需求",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 127.394,
+        "end": 132.26,
+        "text": "第一种可能是增进品牌影响力，第二点就是只求转化，通常是由他们企业规模所决定的",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-016",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 132.27,
+        "end": 135.002,
+        "text": "之前有个在广东做电商母婴的老板找我咨询",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 135.002,
+        "end": 139.03,
+        "text": "他的企业量就差不多是在五千万左右，他跟我说我不要求我能火",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 139.04,
+        "end": 141.87,
+        "text": "我也不想有名，我只是希望我的销量能有所增加",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 141.87,
+        "end": 146.05,
+        "text": "之前有个在香港做地产的姐来找我咨询，她的企业已经是十几亿的规模",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 146.06,
+        "end": 147.927,
+        "text": "但是我不要求你给我带来变现的转化",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 147.927,
+        "end": 152.13,
+        "text": "我只想把我个人推出来，去增强我品牌的影响力，对于企业主呢做ip有两个方向",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 152.14,
+        "end": 154.552,
+        "text": "第一个就是口播利观点，利权威利信任",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 154.552,
+        "end": 155.687,
+        "text": "第二种就是拍日常",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 155.687,
+        "end": 157.247,
+        "text": "使你这个人更立体更亲和",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 157.247,
+        "end": 161.93,
+        "text": "增强你的粘性，关于ip呢就说到这里，我是人类最想编的，我们下期再见",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-017",
+          "SHOT-018",
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场展示社媒数据截图",
+      "importance": "supporting",
+      "statement": "0—2.4秒画面叠加社媒账号/笔记界面；可读数字包括832.7万、611.9万、976.0万浏览、2903.0万浏览、198.8万，画面还出现“创作状态”“笔记”。这些是视频展示的界面与数字，不是系统对账号表现的外部核验。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 2.4
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "开场多项数字叠图"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0003",
+          "supports": "账号/笔记界面切换"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00005",
+          "supports": "OCR提出832.7万"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00006",
+          "supports": "OCR提出611.9万"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00007",
+          "supports": "OCR提出976.0万浏览"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00010",
+          "supports": "OCR提出2903.0万浏览"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00012",
+          "supports": "OCR提出198.8万"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "高影响数字经帧与OCR交叉查看，但界面小字、指标名称和时间口径并非全部可读。",
+      "unknowns": [
+        "数字分别对应播放、点赞、粉丝或其他指标的完整标签不全可读",
+        "截图来源账号、统计口径与真实性未被视频内部独立建立"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "作者声称三天涨粉三万",
+      "importance": "supporting",
+      "statement": "作者声称“那么三天时间已经三万粉丝了”；烧录字幕显示“那么三天时间已经3万粉丝了”，SRT首句前半写成不自然的“看ai偷展示教资啊”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 2.686
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "保留SRT原文与三天三万粉丝主张"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0003",
+          "supports": "烧录字幕显示三天3万粉丝"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00046",
+          "supports": "OCR提出烧录字幕“三天时间已经3万粉丝了”"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "主张在SRT和烧录字幕中均存在；真实性不由这些载体证明。",
+      "argument": {
+        "claim": "三天时间已经达到三万粉丝",
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-31"
+        ],
+        "conditions": [],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "约3万粉丝的可见账号状态不证明三天增长区间",
+          "截图指标标签与时间口径未完整建立",
+          "视频未提供独立来源"
+        ]
+      },
+      "unknowns": [
+        "增长起止账号和统计口径",
+        "外部真实性"
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "IP的核心认知公式",
+      "importance": "core",
+      "statement": "作者把做IP的核心作用概括为“从认识到信任，从喜欢到爱上”，并以此解释为什么现在大家都要下场做IP。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 2.686,
+        "end": 8.003
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "提出为什么要下场做IP"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "给出认识—信任、喜欢—爱上公式"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0152",
+          "supports": "烧录字幕为“下场做IP”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01275",
+          "supports": "OCR确认“为什么现在大家都要下场做IP”"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "这是作者明确提出并在后文两次回扣的总纲。",
+      "argument": {
+        "claim": "个人IP能推进信任和情感关系",
+        "evidenceUnitIds": [
+          "KU-14",
+          "KU-17"
+        ],
+        "conditions": [
+          "分别在广告变现博主和企业主语境中展开"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "下场做IP"
+        ],
+        "limits": [
+          "视频没有对该普遍机制做外部验证"
+        ]
+      },
+      "unknowns": [
+        "该公式的适用边界和效果大小"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "两条并列受众路线",
+      "importance": "core",
+      "statement": "视频将后续讲解分成两个并列方向：广告变现博主与企业主IP；前者先讲，约92.9秒后转入后者。",
+      "provenance": "raw_fact",
+      "timeRange": {
+        "start": 8.003,
+        "end": 12.21
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "宣布两个方向"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "广告变现博主"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "企业主IP"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "显式转入企业主"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-05",
+      "title": "广告博主做IP的两项收益",
+      "importance": "core",
+      "statement": "作者声称，广告变现博主做IP，一是增强粉丝粘性，二是提高种草率。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 12.21,
+        "end": 16.733
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "第一项增强粉丝粘性"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "第二项提高种草率"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0066",
+          "supports": "烧录字幕显示第一点增强粉丝粘性"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "广告变现博主需要通过IP增强粘性与种草",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "广告变现博主"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "做IP"
+        ],
+        "limits": [
+          "视频未给出效果量化或对照证据"
+        ]
+      },
+      "unknowns": [
+        "粘性与种草率的定义和测量方法"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "ID命名的两项规则",
+      "importance": "core",
+      "statement": "作者说IP从ID开始，取ID需兼顾记忆点/顺口与信息量；他用“不吃香菜”“魑魅魍魉”作为不推荐的例子，但没有把这条判断证明为普遍规则。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 15.71,
+        "end": 24.485
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "IP从ID开始及第一项规则"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "例子与信息量规则"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0067",
+          "supports": "烧录字幕可读“或者魑魅魍魉”"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "有效ID应有记忆点、顺口且含信息量",
+        "evidenceUnitIds": [
+          "KU-07"
+        ],
+        "conditions": [
+          "希望ID承担IP第一印象"
+        ],
+        "counterexamples": [
+          "作者把“不吃香菜”“魑魅魍魉”列为不推荐例"
+        ],
+        "actions": [
+          "设计ID时检查记忆点/顺口与信息量"
+        ],
+        "limits": [
+          "没有数据证明这些例子一定不能做IP"
+        ]
+      },
+      "unknowns": [
+        "不同平台、行业与已有品牌是否适用同一规则"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "作者用自己的ID解释信息量",
+      "importance": "supporting",
+      "statement": "作者以“人类最强编导”自称为例，解释该ID同时传递“教内容”和“这个人很狂”两层信息。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 24.485,
+        "end": 29.305
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "SRT中的作者自称与教内容"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "第二层信息是很狂"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0154",
+          "supports": "烧录字幕“可以从中看出两个点”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0155",
+          "supports": "烧录字幕“第二个点我这个人很狂”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "该ID给真实受众的实际联想是否一致"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "人设的真实素材",
+      "importance": "core",
+      "statement": "作者把性格作风、爱好、特长、身份、习惯和口头禅列为“完全真实”的人设素材。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 29.305,
+        "end": 35.948
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "提出完全真实方向"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "性格作风、爱好、特长"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "身份、习惯、口头禅"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“完全真实”如何验证以及是否允许选择性呈现"
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "设计不等于造假的边界",
+      "importance": "core",
+      "statement": "作者承认人设有设计成分，但明确要求把“设计”与“造假”分开。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 35.948,
+        "end": 39.79
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "明确“设计而不是造假”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0020",
+          "supports": "烧录字幕显示“注意这里我说的是设计”"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "人设可以设计但不应造假",
+        "evidenceUnitIds": [
+          "KU-12",
+          "KU-13",
+          "KU-14"
+        ],
+        "conditions": [
+          "设计不得颠覆既有人设",
+          "缺点应无伤大雅且不伤害别人"
+        ],
+        "counterexamples": [
+          "作者转述的fjj事件"
+        ],
+        "actions": [
+          "从真实素材中增加设计元素"
+        ],
+        "limits": [
+          "视频未给出造假判定流程"
+        ]
+      },
+      "unknowns": [
+        "设计与造假的具体操作边界"
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "案例人物的载体冲突",
+      "importance": "supporting",
+      "statement": "SRT把案例人物写作“夏美和王阳洋”，烧录字幕只显示“xm和wyy”。视频内部未提供可验证的全名标签，因此两种原始载体形式都需保留；全名是否为正确展开未知。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 39.8,
+        "end": 43.639
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "SRT原文“夏美和王阳洋”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "SRT评价王阳洋"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0021",
+          "supports": "画面烧录字幕为xm和wyy"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00239",
+          "supports": "OCR提出“就是xm和wyy”"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "载体形式可确认，但简称对应的字面全名不由可见文字建立。",
+      "unknowns": [
+        "xm/wyy的准确全名与外部身份"
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "两个人设与情侣互动案例",
+      "importance": "core",
+      "statement": "作者称wyy立了“养胃”和“花呗兽”两个人设，具有记忆点和粉丝互动性，并在情侣博主关系中强化xm的“大女主独立人设”。SRT却写成带有明显不同含义的“阳痿”“花臂少”，是后果性载体冲突。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 43.639,
+        "end": 54.264
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "保留SRT冲突原文"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "粉丝互动性"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "情侣博主关系"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "强化独立人设"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0158",
+          "supports": "烧录字幕“第一个是养胃”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0023",
+          "supports": "烧录字幕“第二个是花呗兽”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01331",
+          "supports": "OCR提出“第一个是养胃”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00254",
+          "supports": "OCR提出“第二个是花呗兽”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0026",
+          "supports": "烧录字幕显示xm的大女主独立人设"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "烧录字幕的两个词经逐帧与放大查看；SRT原文必须保持但不作为支持该精确人设名的唯一形式。",
+      "argument": {
+        "claim": "鲜明、可互动且互相映衬的情侣人设能增强记忆和话题度",
+        "evidenceUnitIds": [
+          "KU-10"
+        ],
+        "conditions": [
+          "作者描述的情侣博主案例"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "增加可记忆且能形成互动的人设标签"
+        ],
+        "limits": [
+          "视频没有展示案例账号、互动数据或对照"
+        ]
+      },
+      "unknowns": [
+        "“养胃”“花呗兽”的完整语境与外部账号表现",
+        "作者所称效果的真实因果"
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "人设可以增加但不能颠覆",
+      "importance": "core",
+      "statement": "作者转述“两年前无忧传媒创始人”给出的原则：人设可以增加，但是不能颠覆。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 54.264,
+        "end": 60.264
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "引出原则"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "SRT完整原则"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0100",
+          "supports": "烧录字幕“人设可以增加”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0102",
+          "supports": "烧录字幕“但是不能颠覆”"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "人设可扩展但不可推翻既有核心认知",
+        "evidenceUnitIds": [
+          "KU-13"
+        ],
+        "conditions": [
+          "存在稳定的原有人设"
+        ],
+        "counterexamples": [
+          "作者转述的xm/fjj事件"
+        ],
+        "actions": [
+          "新增人设前检查是否与原有人设冲突"
+        ],
+        "limits": [
+          "引语来源与原始上下文未展示"
+        ]
+      },
+      "unknowns": [
+        "无忧传媒创始人的具体身份与原话出处"
+      ]
+    },
+    {
+      "id": "KU-13",
+      "title": "fjj事件作为颠覆反例",
+      "importance": "core",
+      "statement": "烧录字幕以“xm这个fjj的事件曝出”作简称，作者称它完全颠覆了xm所谓“独立大女主”的人设，因此大家不能接受。SRT把fjj误写/展开为“福利金”，但可见字幕没有建立这个展开，事件身份与事实也未被视频独立展示。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 60.238,
+        "end": 65.23
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "SRT原文把事件写作福利金"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "作者称其颠覆独立人设"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0103",
+          "supports": "人工复核烧录字幕显示xm与fjj事件简称"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0104",
+          "supports": "烧录字幕“就完全颠覆了”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0105",
+          "supports": "烧录字幕“她所谓独立大女主的人设”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0106",
+          "supports": "烧录字幕“这是大家不能接受的”"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "事件简称与作者评价可见，但简称展开和事件本身未知。",
+      "argument": {
+        "claim": "与独立大女主人设相冲突的事件会引发受众不接受",
+        "evidenceUnitIds": [
+          "KU-12"
+        ],
+        "conditions": [
+          "受众已形成独立大女主人设认知"
+        ],
+        "counterexamples": [
+          "xm/fjj事件（仅作者转述）"
+        ],
+        "actions": [
+          "避免新增或事件叙事颠覆核心人设"
+        ],
+        "limits": [
+          "事件未展示",
+          "“大家”范围未定义",
+          "fjj未由画面展开"
+        ]
+      },
+      "unknowns": [
+        "fjj的准确全称与对应实体",
+        "事件经过与公众反应"
+      ]
+    },
+    {
+      "id": "KU-14",
+      "title": "喜欢优点、爱上无伤大雅的缺点",
+      "importance": "core",
+      "statement": "作者提出“喜欢一个人是喜欢优点，爱上一个人是爱上缺点”，并限定所设计的缺点必须无伤大雅、不会伤害别人；SRT在限定句前多出“周一瑶”，烧录字幕只显示“这个缺点的设计”，该人名不由可见字幕支持。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 65.239,
+        "end": 79.33
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "回扣喜欢到爱上"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "回扣总公式与反常识点"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "喜欢优点"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "爱上缺点"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "SRT中的周一瑶及限制"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0118",
+          "supports": "烧录字幕为“这个缺点的设计”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0119",
+          "supports": "烧录字幕“无伤大雅”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0120",
+          "supports": "烧录字幕“不会伤害到别人的缺点”"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "无伤大雅且不伤人的缺点可把喜欢推进到爱上",
+        "evidenceUnitIds": [
+          "KU-15"
+        ],
+        "conditions": [
+          "缺点无伤大雅",
+          "不伤害别人"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "设计一个符合边界的缺点"
+        ],
+        "limits": [
+          "只提供类比，不提供心理学证据",
+          "SRT“周一瑶”与可见字幕冲突"
+        ]
+      },
+      "unknowns": [
+        "不同受众对“无伤大雅”的判定",
+        "该机制的普遍有效性",
+        "SRT“周一瑶”的来源"
+      ]
+    },
+    {
+      "id": "KU-15",
+      "title": "校园男生落泪的心疼类比",
+      "importance": "supporting",
+      "statement": "作者举例：一个又高又帅、篮球厉害的校园男生因数学没考好而独自落泪，原先的喜欢会因心疼转成爱。该例是作者构造的类比，不是实证案例。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 79.34,
+        "end": 92.897
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "校园男生优点设定"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "从喜欢到爱的提问"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "数学没考好"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "独自落泪"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "催生心疼"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "脆弱瞬间可通过心疼强化情感",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "示例中的优点吸引已先成立"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "虚构类比，不证明真实受众行为"
+        ]
+      },
+      "unknowns": [
+        "是否来自真实人物",
+        "是否对不同受众成立"
+      ]
+    },
+    {
+      "id": "KU-16",
+      "title": "企业主范围的作者定义",
+      "importance": "core",
+      "statement": "作者把“企业主”扩展为包括以卖产品为变现逻辑的博主。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 92.897,
+        "end": 98.486
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "转入企业主"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "以卖产品为变现逻辑的博主"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "服务型企业、非营利组织或纯品牌账号是否纳入"
+      ]
+    },
+    {
+      "id": "KU-17",
+      "title": "创始人IP降低用户决策成本",
+      "importance": "core",
+      "statement": "作者声称，创始人IP通过“从认识到信任”降低用户决策成本，并可催生为了这个人而购买其产品的用户。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 98.486,
+        "end": 107.892
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "提出所有企业主下场做IP"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "认识到信任与降低决策成本"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "因人购买"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "创始人IP能降低购买决策成本并形成因人购买",
+        "evidenceUnitIds": [
+          "KU-18",
+          "KU-19",
+          "KU-20"
+        ],
+        "conditions": [
+          "创始人IP与企业紧密联系"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "企业主下场做IP"
+        ],
+        "limits": [
+          "视频未展示转化漏斗、对照组或成功率"
+        ]
+      },
+      "unknowns": [
+        "降低多少决策成本",
+        "产品质量、价格与渠道等其他变量"
+      ]
+    },
+    {
+      "id": "KU-18",
+      "title": "创始人IP与企业文化及雷军案例",
+      "importance": "core",
+      "statement": "作者声称创始人IP反映企业文化；他用小米“为发烧而生”及雷军造车，说明后者巩固了“一往无前”的IP。视频没有展示小米或造车画面，只有讲述者口播。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 107.892,
+        "end": 118.34
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "创始人IP与企业紧密联系"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "反映企业文化"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "雷军与小米slogan"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "造车巩固一往无前IP"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-015",
+          "supports": "该段仍是固定讲述场景而非案例插片"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "创始人行动可巩固与企业文化一致的IP",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "创始人IP与企业紧密联系"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "案例因果仅由作者陈述",
+          "未出现被点名主体或产品画面"
+        ]
+      },
+      "unknowns": [
+        "该口号与行动的外部准确性",
+        "用户是否实际形成作者所述认知"
+      ]
+    },
+    {
+      "id": "KU-19",
+      "title": "于瀚与狠性/狼性文化案例",
+      "importance": "supporting",
+      "statement": "人工复核烧录字幕可见“于瀚每天在抖音上发几百条视频”，并称其表演型人设彰显企业“狠性文化、狼性文化”。SRT把姓名写作“宇浩”、把“彰显”写作“增强当”，Vision OCR又误提议为“于灏”，三种形式构成载体/识别冲突；外部身份、准确拼写、数量和效果均未被视频独立证明。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 118.34,
+        "end": 124.962
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "保留SRT“宇浩”与数百条主张"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "世界首富与表演型人设"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "狠性/狼性文化"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0164",
+          "supports": "人工复核烧录字幕姓名为于瀚；OCR-01377的于灏提议被拒绝"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0126",
+          "supports": "烧录字幕“彰显…狠性文化狼性文化”"
+        }
+      ],
+      "confidence": "medium",
+      "argument": {
+        "claim": "高频、夸张的表演型人设可彰显企业狠性/狼性文化",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "作者所称于瀚案例"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "可见字幕只建立字面“于瀚”，外部身份/准确拼写未核验",
+          "每天几百条及效果未验证"
+        ]
+      },
+      "unknowns": [
+        "于瀚的外部身份与准确拼写",
+        "“几百条”的统计口径与真实性",
+        "企业文化效果"
+      ]
+    },
+    {
+      "id": "KU-20",
+      "title": "企业主的两种需求与规模规则",
+      "importance": "core",
+      "statement": "作者说老板做IP通常有两种需求：增强品牌影响力或只求转化，并称通常由企业规模决定。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 124.962,
+        "end": 132.26
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "提出两种需求"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "品牌影响力、转化和规模关系"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0129",
+          "supports": "烧录字幕“通常有两个需求”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0130",
+          "supports": "品牌影响力"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0131",
+          "supports": "只求转化"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0132",
+          "supports": "由企业规模决定"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "企业规模通常决定品牌影响力或转化目标",
+        "evidenceUnitIds": [
+          "KU-21",
+          "KU-22"
+        ],
+        "conditions": [
+          "作者的咨询语境"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "先判断目标再设计IP"
+        ],
+        "limits": [
+          "仅有两个作者转述案例",
+          "规模口径未定义",
+          "没有反例"
+        ]
+      },
+      "unknowns": [
+        "规模指标究竟是营收、估值、GMV或其他",
+        "两目标是否可以同时存在"
+      ]
+    },
+    {
+      "id": "KU-21",
+      "title": "广东母婴电商案例：只求销量",
+      "importance": "supporting",
+      "statement": "作者转述一位广东母婴电商老板：企业规模约五千万，不求火或有名，只希望销量增加。烧录字幕写“5,000万左右”，但未说明规模口径。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 132.27,
+        "end": 141.87
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "广东母婴电商咨询"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "五千万与不求火"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "只求销量"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0135",
+          "supports": "烧录字幕5,000万左右"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00487",
+          "supports": "OCR提出5,000万左右"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "规模口径",
+        "案例人物/企业身份",
+        "咨询后是否产生销量结果"
+      ]
+    },
+    {
+      "id": "KU-22",
+      "title": "香港地产案例：只求品牌影响力",
+      "importance": "supporting",
+      "statement": "作者转述一位香港地产从业者：企业规模十几亿，不要求变现转化，只想推个人以增强品牌影响力。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 141.87,
+        "end": 152.13
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "香港地产与十几亿规模"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "不要求转化"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "推个人、增强品牌影响力并引出两个方向"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0141",
+          "supports": "烧录字幕十几亿规模"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0142",
+          "supports": "不要求变现转化"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0144",
+          "supports": "增强品牌影响力"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "规模口径",
+        "案例人物/企业身份",
+        "品牌影响力是否实际提升"
+      ]
+    },
+    {
+      "id": "KU-23",
+      "title": "观点口播方向",
+      "importance": "core",
+      "statement": "企业主做IP的第一个内容方向是口播，以“立观点、立权威、立信任”为目标。SRT写作“利观点，利权威利信任”，烧录字幕清楚显示“立”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 152.14,
+        "end": 154.552
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "保留SRT原文"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0165",
+          "supports": "烧录字幕“第一个就是口播”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0147",
+          "supports": "烧录字幕“立观点立权威立信任”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00521",
+          "supports": "OCR确认“立观点立权威立信任”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "具体选题、频率与执行方法"
+      ]
+    },
+    {
+      "id": "KU-24",
+      "title": "日常内容方向",
+      "importance": "core",
+      "statement": "第二个内容方向是拍日常，作者称它让人更立体、更亲和并增强粘性。SRT正确写“第二种”；Vision OCR曾把烧录字幕提议为“第三种”，人工放大帧TARGET-0062/TARGET-0166确认画面实际是“第二种”，因此该OCR行不被采纳为事实。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 154.552,
+        "end": 159
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "SRT原文“第二种就是拍日常”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "立体与亲和"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "增强粘性"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0062",
+          "supports": "人工复核烧录字幕为“第二种就是拍日常”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0167",
+          "supports": "烧录字幕更立体更亲和"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "OCR-00531/OCR-01397为误读提议；经源帧放大人工核对拒绝。",
+      "unknowns": [
+        "日常内容与观点口播能否组合",
+        "粘性效果大小"
+      ]
+    },
+    {
+      "id": "KU-25",
+      "title": "蒙面讲述者以视觉造型实践记忆点人设",
+      "importance": "supporting",
+      "statement": "全片持续出现一位穿红色连帽衫、佩戴类似蜘蛛侠面罩的讲述者，直接面向镜头、计数并指向白板；该强记忆造型与作者关于ID/人设记忆点的建议形成自我示范。画面只建立相似性，未建立人物真实身份、角色授权或来源。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0079",
+          "supports": "开场蒙面讲述者与固定场景"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0085",
+          "supports": "中段讲述者手势"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0091",
+          "supports": "后段同一造型与场景"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0095",
+          "supports": "结尾同一造型"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-01",
+          "supports": "0—82秒全时轴2秒抽样"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-02",
+          "supports": "82—163秒全时轴2秒抽样"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "讲述者真实身份",
+        "面罩造型授权与来源",
+        "是否由同一人全程出镜"
+      ]
+    },
+    {
+      "id": "KU-26",
+      "title": "平台与账号可见身份",
+      "importance": "supporting",
+      "statement": "画面左上持续出现“小红书”标识，右上持续出现“人类最强编导”及圆形头像；结尾烧录字幕自报“我是人类最强编导”。SRT却写作“我是人类最想编的”，构成明确载体冲突。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 162.4
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0150",
+          "supports": "开场可见平台与账号水印"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01254",
+          "supports": "OCR确认账号水印人类最强编导"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0169",
+          "supports": "结尾自报人类最强编导"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01424",
+          "supports": "OCR确认结尾自报"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "保留SRT冲突自报形式"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "账号归属与认证状态",
+        "SRT错转产生原因"
+      ]
+    },
+    {
+      "id": "KU-27",
+      "title": "白板是结构载体但小字多不可读",
+      "importance": "context",
+      "statement": "固定白板含两侧分组、箭头、被圈/划线的词以及可见“IP”“VLOG”等零散字样；讲述者反复指向它。由于人物遮挡、手写和360像素定向帧限制，多数小字不能可靠读取，不能用口播内容反向补全白板。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 8,
+        "end": 157.247
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0065",
+          "supports": "白板两侧分组与讲述者"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "指向白板的手势与分组"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0077",
+          "supports": "后段白板与口播分支"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0078",
+          "supports": "VLOG字样附近"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "白板全部逐字内容",
+        "所有箭头和层级的准确语义"
+      ]
+    },
+    {
+      "id": "KU-28",
+      "title": "固定环境与技术分段的边界",
+      "importance": "context",
+      "statement": "0—162.725秒抽样持续显示同一白板、柜体与类似洗衣设备的室内环境；evidence pack的20个shot是技术场景检测结果，不足以证明20个语义场景或20次剪辑。可见空间连续，但隐藏剪辑仍未知。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "开场技术分段"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-009",
+          "supports": "中段代表帧"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-015",
+          "supports": "企业主段代表帧"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-020",
+          "supports": "尾帧代表"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-01",
+          "supports": "前半全时轴抽样"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-02",
+          "supports": "后半全时轴抽样"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "多个时间点共享背景提供可见连续性，但抽样与scene detection都不能排除不可见剪辑。",
+      "unknowns": [
+        "准确剪辑次数",
+        "是否存在同场景隐藏跳切"
+      ]
+    },
+    {
+      "id": "KU-29",
+      "title": "持续背景音乐与音频检查边界",
+      "importance": "context",
+      "statement": "0—162.752秒机器声学审阅中，33/33个重叠窗口同时检出Music与Speech，Music在29/33窗口为最高标签；-42dB、持续0.25秒的silencedetect未检出静音段，整段频谱也连续。因此证据支持全片口播下有持续背景音乐床；未可靠建立离散音效或某一音乐变化承担特定论证转折。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 162.725
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-EVIDENCE-META",
+          "supports": "evidence pack标记AAC音轨存在"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO-CLASS",
+          "supports": "33个重叠窗口的AudioSet分类结果"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO-LOG",
+          "supports": "全时长静音检测与音频统计"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO-SPECTROGRAM",
+          "supports": "全时长频谱连续性"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "结论来自完整解码后的自动声学分类、静音检测和频谱检查；执行模型不能直接把本地音频作为人类感知式输入，自动标签也不能确定曲目、曲风或作者意图。",
+      "unknowns": [
+        "准确曲目与曲风",
+        "低于分类可靠度的离散音效是否存在",
+        "作者是否有意用音乐强化特定情绪或转折"
+      ]
+    },
+    {
+      "id": "KU-30",
+      "title": "结尾回扣与有界缺席",
+      "importance": "core",
+      "statement": "结尾先以“更立体、更亲和、增强粘性”收束日常内容，再自报“人类最强编导”并说“下期再见”；它既回扣广告博主段的粘性，也用持续水印和蒙面造型回扣作者自己的ID/人设示范。在0—162.725秒字幕、2秒视觉抽样、开场与结尾加密帧中未观察到价格、咨询/下载入口、平台或账号门槛、地区限制或支持责任；这只是所审范围内的缺席，不能推出其他发布页面不存在这些信息。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 155.687,
+        "end": 162.725
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "更立体更亲和"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "增强粘性、冲突自报与告别"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0168",
+          "supports": "关于IP就说到这里"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0169",
+          "supports": "作者自报"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0170",
+          "supports": "下期再见"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0173",
+          "supports": "最后画面仍仅有持续水印与人物"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-01",
+          "supports": "前半全时轴抽样用于缺席审查"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-02",
+          "supports": "后半全时轴抽样用于缺席审查"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "语义回扣由跨段文本与持续视觉身份共同支持；缺席结论严格限定在所审视频内部。",
+      "unknowns": [
+        "发布页文案、评论区或账号主页是否有入口/价格/条件",
+        "持续背景音乐是否被作者有意用于强化结尾"
+      ]
+    },
+    {
+      "id": "KU-31",
+      "title": "开场账号页的约3万粉丝结果状态",
+      "importance": "supporting",
+      "statement": "1.167—2.567秒的可见小红书账号页标为“人类最强编导”，粉丝数呈约3万的结果状态。该帧只证明视频展示了这个账号标签与近3万粉丝状态，不证明账号归属、截图真实性、三天增长区间或增长由IP造成。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 1.167,
+        "end": 2.567
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0003",
+          "supports": "开场账号页与约3万粉丝结果状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "同一账号页持续可见"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00034",
+          "supports": "账号页可见创作状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00049",
+          "supports": "OCR提出账号标签“人类最强编导”"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "账号标签和近3万结果状态可见，但小字、所有权和时间因果不由单张账号页证明。",
+      "unknowns": [
+        "账号所有权与截图真实性",
+        "准确粉丝数与统计时刻",
+        "三天区间的起点与因果"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "branches_into",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "总公式"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "两个方向"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "advertising_branch_developed_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "广告变现博主分支"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "开始解释收益"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "implementation_begins_with",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "从收益转到IP从ID开始"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-07",
+      "relation": "illustrated_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "信息量规则"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "作者ID例"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-08",
+      "relation": "precedes",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "ID起点"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "转到组成你的因素"
+        }
+      ]
+    },
+    {
+      "from": "KU-08",
+      "to": "KU-09",
+      "relation": "claim_limited_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "真实素材之后增加设计边界"
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-11",
+      "relation": "illustrated_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "可设计"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "两个人设案例"
+        }
+      ]
+    },
+    {
+      "from": "KU-12",
+      "to": "KU-13",
+      "relation": "counterexample_supports",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "不可颠覆原则"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "事件反例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "颠覆后果"
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-12",
+      "relation": "constrained_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "设计边界"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "不能颠覆"
+        }
+      ]
+    },
+    {
+      "from": "KU-12",
+      "to": "KU-14",
+      "relation": "constraint_extended_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "不能颠覆"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "缺点不得伤人"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-14",
+      "relation": "promise_explained_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "喜欢到爱上"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "回扣"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "爱上缺点"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-15",
+      "relation": "illustrated_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "条件"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "引入例子"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "心疼机制"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-16",
+      "relation": "enterprise_branch_developed_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "企业主分支"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "转入企业主"
+        }
+      ]
+    },
+    {
+      "from": "KU-16",
+      "to": "KU-17",
+      "relation": "scope_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "卖产品为变现逻辑"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "信任与决策成本"
+        }
+      ]
+    },
+    {
+      "from": "KU-17",
+      "to": "KU-18",
+      "relation": "mechanism_extended_to",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "创始人与企业紧密联系"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "企业文化"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-19",
+      "relation": "parallel_example_with",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "雷军案例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "于瀚/宇浩载体冲突案例"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-20",
+      "relation": "decision_context_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "企业文化"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "两种需求"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-21",
+      "relation": "illustrated_by_conversion_case",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "只求转化"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "广东案例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "只求销量"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-22",
+      "relation": "illustrated_by_brand_case",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "品牌影响力"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "香港案例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "增强品牌影响力"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-23",
+      "relation": "goal_informs_content_direction",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "引出两个方向"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-24",
+      "relation": "goal_informs_content_direction",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "引出两个方向"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "日常"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-25",
+      "relation": "visually_enacted_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "作者说自己很狂"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0079",
+          "supports": "蒙面造型"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0095",
+          "supports": "造型持续到结尾"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-26",
+      "relation": "visible_identity_confirms",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "作者自称"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01424",
+          "supports": "结尾烧录自报人类最强编导"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-30",
+      "relation": "opening_echoed_and_narrowed_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "开场公式"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "结尾粘性与告别"
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-30",
+      "relation": "closing_payoff_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "日常内容作用"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "增强粘性并告别"
+        }
+      ]
+    },
+    {
+      "from": "KU-31",
+      "to": "KU-02",
+      "relation": "shown_as_result_state_but_does_not_prove_three_day_interval",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0003",
+          "supports": "约3万粉丝账号结果状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "三天增长属于作者主张"
+        }
+      ]
+    },
+    {
+      "from": "KU-30",
+      "to": "KU-31",
+      "relation": "closing_does_not_re_show_or_validate_opening_result",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "结尾只收束主题、自报与告别"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0168",
+          "supports": "关于IP就说到这里"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0170",
+          "supports": "下期再见"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0173",
+          "supports": "尾帧未重现账号结果页"
+        }
+      ]
+    },
+    {
+      "from": "KU-25",
+      "to": "KU-28",
+      "relation": "persists_within_visible_setting",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-01",
+          "supports": "前半持续造型/环境"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-CONTACT-02",
+          "supports": "后半持续造型/环境"
+        }
+      ]
+    },
+    {
+      "from": "KU-27",
+      "to": "KU-04",
+      "relation": "spatially_supports_but_does_not_fully_transcribe",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0065",
+          "supports": "两个方向附近白板"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "口播明确两个方向"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-06",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-07",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-08",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-09",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-31"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-04"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-05",
+          "KU-06",
+          "KU-07"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-08",
+          "KU-09"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-10",
+          "KU-11",
+          "KU-12",
+          "KU-13"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-14",
+          "KU-15"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-16",
+          "KU-17"
+        ]
+      },
+      {
+        "id": "MC-08",
+        "captured": true,
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ]
+      },
+      {
+        "id": "MC-09",
+        "captured": true,
+        "unitIds": [
+          "KU-20",
+          "KU-21",
+          "KU-22"
+        ]
+      },
+      {
+        "id": "MC-10",
+        "captured": true,
+        "unitIds": [
+          "KU-23",
+          "KU-24"
+        ]
+      },
+      {
+        "id": "MC-11",
+        "captured": true,
+        "unitIds": [
+          "KU-26",
+          "KU-30"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-004"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-007"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-008",
+          "CUE-012"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-015",
+          "CUE-018",
+          "CUE-023",
+          "CUE-025"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-023",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "REL-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-026",
+          "CUE-029"
+        ]
+      },
+      {
+        "id": "REL-07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-036"
+        ]
+      },
+      {
+        "id": "REL-08",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-039",
+          "CUE-041",
+          "CUE-042"
+        ]
+      },
+      {
+        "id": "REL-09",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-042",
+          "CUE-048",
+          "CUE-049"
+        ]
+      },
+      {
+        "id": "REL-10",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-049",
+          "CUE-055",
+          "CUE-056",
+          "CUE-057"
+        ]
+      },
+      {
+        "id": "REL-11",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-010",
+          "CUE-011",
+          "TARGET-0079",
+          "TARGET-0095"
+        ]
+      },
+      {
+        "id": "REL-12",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-058",
+          "CUE-059"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "Q-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-03",
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-002",
+          "CUE-003",
+          "TARGET-0152",
+          "OCR-01275",
+          "CUE-004",
+          "CUE-005",
+          "CUE-006",
+          "CUE-036"
+        ]
+      },
+      {
+        "id": "Q-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-05",
+          "KU-06",
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "CUE-007",
+          "CUE-008",
+          "TARGET-0066",
+          "CUE-008",
+          "CUE-009",
+          "TARGET-0067",
+          "CUE-010",
+          "CUE-011",
+          "TARGET-0154",
+          "TARGET-0155"
+        ]
+      },
+      {
+        "id": "Q-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-08",
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "CUE-012",
+          "CUE-013",
+          "CUE-014",
+          "CUE-015",
+          "TARGET-0020"
+        ]
+      },
+      {
+        "id": "Q-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-10",
+          "KU-11",
+          "KU-12",
+          "KU-13"
+        ],
+        "evidenceRefs": [
+          "CUE-016",
+          "CUE-017",
+          "TARGET-0021",
+          "OCR-00239",
+          "CUE-018",
+          "CUE-019",
+          "CUE-020",
+          "CUE-021",
+          "TARGET-0158",
+          "TARGET-0023",
+          "OCR-01331",
+          "OCR-00254"
+        ]
+      },
+      {
+        "id": "Q-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-14",
+          "KU-15"
+        ],
+        "evidenceRefs": [
+          "CUE-026",
+          "CUE-027",
+          "CUE-028",
+          "CUE-029",
+          "CUE-030",
+          "TARGET-0118",
+          "TARGET-0119",
+          "TARGET-0120",
+          "CUE-031",
+          "CUE-032",
+          "CUE-033",
+          "CUE-034"
+        ]
+      },
+      {
+        "id": "Q-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "evidenceRefs": [
+          "CUE-036",
+          "CUE-037",
+          "CUE-038",
+          "CUE-039",
+          "CUE-040",
+          "CUE-041",
+          "CUE-042",
+          "CUE-043",
+          "CUE-044",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "Q-07",
+        "status": "unknown",
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ],
+        "evidenceRefs": [
+          "CUE-041",
+          "CUE-042",
+          "CUE-043",
+          "CUE-044",
+          "SHOT-015",
+          "CUE-045",
+          "CUE-046",
+          "CUE-047",
+          "TARGET-0164",
+          "TARGET-0126"
+        ]
+      },
+      {
+        "id": "Q-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-20",
+          "KU-21",
+          "KU-22",
+          "KU-23",
+          "KU-24"
+        ],
+        "evidenceRefs": [
+          "CUE-048",
+          "CUE-049",
+          "TARGET-0129",
+          "TARGET-0130",
+          "TARGET-0131",
+          "TARGET-0132",
+          "CUE-050",
+          "CUE-051",
+          "CUE-052",
+          "TARGET-0135",
+          "OCR-00487",
+          "CUE-053"
+        ]
+      },
+      {
+        "id": "Q-09",
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-31"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0003",
+          "OCR-00005",
+          "OCR-00006",
+          "OCR-00007",
+          "OCR-00010",
+          "OCR-00012",
+          "CUE-001",
+          "TARGET-0003",
+          "OCR-00046",
+          "TARGET-0003",
+          "TARGET-0004"
+        ]
+      },
+      {
+        "id": "Q-10",
+        "status": "unknown",
+        "unitIds": [
+          "KU-25",
+          "KU-26",
+          "KU-27",
+          "KU-28"
+        ],
+        "evidenceRefs": [
+          "TARGET-0079",
+          "TARGET-0085",
+          "TARGET-0091",
+          "TARGET-0095",
+          "SRC-CONTACT-01",
+          "SRC-CONTACT-02",
+          "TARGET-0150",
+          "OCR-01254",
+          "TARGET-0169",
+          "OCR-01424",
+          "CUE-059",
+          "TARGET-0065"
+        ]
+      },
+      {
+        "id": "Q-11",
+        "status": "unknown",
+        "unitIds": [
+          "KU-30"
+        ],
+        "evidenceRefs": [
+          "CUE-058",
+          "CUE-059",
+          "TARGET-0168",
+          "TARGET-0169",
+          "TARGET-0170",
+          "TARGET-0173",
+          "SRC-CONTACT-01",
+          "SRC-CONTACT-02"
+        ]
+      },
+      {
+        "id": "Q-12",
+        "status": "answered",
+        "unitIds": [
+          "KU-07",
+          "KU-26",
+          "KU-30"
+        ],
+        "evidenceRefs": [
+          "CUE-010",
+          "CUE-011",
+          "TARGET-0154",
+          "TARGET-0155",
+          "TARGET-0150",
+          "OCR-01254",
+          "TARGET-0169",
+          "OCR-01424",
+          "CUE-059",
+          "CUE-058",
+          "CUE-059",
+          "TARGET-0168"
+        ]
+      },
+      {
+        "id": "Q-13",
+        "status": "answered",
+        "unitIds": [
+          "KU-29"
+        ],
+        "evidenceRefs": [
+          "SRC-EVIDENCE-META",
+          "SRC-AUDIO-CLASS",
+          "SRC-AUDIO-LOG",
+          "SRC-AUDIO-SPECTROGRAM"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-02；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-03；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-03；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-04；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-04；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-04；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-05；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-06"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-05、KU-06；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-06；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-07；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-07；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-08；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-08；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-08；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-09；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-10；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-10；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-11；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-11；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-11；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-11；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-12；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-12；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-13；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-13；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-14；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-14；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-14；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-14；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-14；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-15；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-15；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-15；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-15；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-15；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-16；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-16；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-17；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-17；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-17；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-18；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-18；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-18；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-18；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-19"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-19；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-19"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-19；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-19"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-19；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-20；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-20；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-21；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-21；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-21；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-22；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-22；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-22、KU-23、KU-24；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-23"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-23；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-24"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-24；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-24",
+          "KU-30"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-24、KU-30；原文仍完整保留在transcript。"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-24",
+          "KU-26",
+          "KU-30"
+        ],
+        "rationale": "该cue的主张、结构、案例、限定或结尾功能映射至KU-24、KU-26、KU-30；原文仍完整保留在transcript。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 17,
+      "total": 17
+    },
+    "unknowns": [
+      "作者/讲述者真实身份与面罩造型授权",
+      "案例人物、事件、增长、数量和咨询轶事的外部真实性",
+      "xm/wyy/fjj简称的准确展开",
+      "白板大多数小字与全部箭头语义",
+      "企业规模口径及规模到目标的普遍因果",
+      "持续背景音乐的准确曲目/曲风、低可靠度离散音效及作者赋予的具体情绪/转折意图",
+      "准确剪辑次数与隐藏剪辑",
+      "视频外发布页是否包含价格、入口、平台/账号/地区要求或支持责任"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "字幕、烧录字幕/水印、开场社媒截图、人物/手势/造型、白板、固定环境、技术分段与编辑顺序、非语言音频、全时轴有界缺席均已检查并进入重建。非语言音频已完成0—162.752秒解码、33个重叠AudioSet窗口、静音检测和全时长频谱检查：持续背景音乐床得到支持，未可靠建立离散音效或特定语义转折；执行模型不支持直接感知式音频输入，故曲目/曲风/作者意图仍明确为未知。开场约3万粉丝账号结果状态与三天增长主张已拆分，结尾未重现或验证该结果的关系已显式建模。白板不可读小字、fjj/xm/wyy简称展开、于瀚外部身份与其他外部真实性均未被猜测补全。11个意义变化、12个探针关系、13个关键问题和59个cue均逐项有落点。"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "video": "/tmp/example.mp4",
+  "protocol": "capture-protocol.json",
+  "frames": [
+    {"id": "TARGET-0001", "actionId": "CAP-001", "time": 0.5, "frame": "frames/1.jpg"},
+    {"id": "TARGET-0002", "actionId": "CAP-001", "time": 2.5, "frame": "frames/2.jpg"},
+    {"id": "TARGET-0003", "actionId": "CAP-001", "time": 4.5, "frame": "frames/3.jpg"},
+    {"id": "TARGET-0004", "actionId": "CAP-002", "time": 7.5, "frame": "frames/4.jpg"}
+  ]
+}

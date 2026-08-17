@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe.json",
+  "protocolName": "Act-One universal-scope, two-input UI, motion-continuity and authorization-boundary capture",
+  "rationale": "本视频以‘任意演员/任何角色’和近似‘一键’的低门槛叙述开场，用五个短角色动效、实际为 Act-Two 的两素材工作区、约 14.1-16.1 秒的 Act-Two 水管工式视频结果播放器和一个约六秒动漫动作片段拼接成能力印象；口播/字幕却称 Act-One，右侧 Gen-4/Try it now 只是宣传卡。协议因此必须保存 Act-One/Act-Two 冲突、Gen-4 载体角色、有限样例计数、两输入 UI、已完成结果状态与缺失的选择/上传/进度/等待 lineage、最终动作连续性、两个不同结果片段之间的未知关系、SRT 冲突、完整音频音乐床，以及人物身份/来源/授权边界。",
+  "knowledgeUnitFields": [
+    {"name": "claimScope", "required": true, "reason": "必须区分‘任意/任何’全称主张与有限可见样例。", "derivedFrom": ["CQ-01", "RISK-01", "REL-01"]},
+    {"name": "visibleExampleCountAndGrouping", "required": true, "reason": "0-8.6 秒是五个短上方角色组，16.333 秒后另有一个长结果组，不能混计。", "derivedFrom": ["CAR-ROLE-MONTAGE", "CAR-LAYOUT-COUNT", "MC-02", "MC-07"]},
+    {"name": "visibleProductIdentity", "required": true, "reason": "工作区和结果播放器的活动模式可确认 Act-Two；口播/后期 Act-One 与之冲突，Gen-4/Try it now 是宣传卡。版本/账号状态不可猜测。", "derivedFrom": ["CQ-03", "REL-03", "REL-12", "RISK-10"]},
+    {"name": "drivingPerformanceInput", "required": true, "reason": "Performance 卡片暴露 voice/gestures/facial expressions、up to 30s、Record/Select asset。", "derivedFrom": ["SWEEP-07", "MC-05", "CQ-02"]},
+    {"name": "characterAssetInput", "required": true, "reason": "Character 卡片暴露 image/video 输入与第二个 Select asset。", "derivedFrom": ["SWEEP-08", "MC-05", "CQ-02"]},
+    {"name": "operationExecutionStatus", "required": true, "reason": "必须区分只被高亮的输入控件、未展示的选择/上传/进度/等待，以及约 14.1 秒后可见的 Act-Two 完成结果播放器。", "derivedFrom": ["CQ-05", "RISK-02", "RISK-04", "RISK-11", "REL-06"]},
+    {"name": "observableMotionSequence", "required": true, "reason": "同步主张需要嘴、眼、头、手的多帧变化，不可用单帧证明。", "derivedFrom": ["CQ-04", "RISK-05", "CAR-FINAL-MOTION"]},
+    {"name": "synchronizationReference", "required": true, "reason": "要区分‘人物会动’与‘相对某个输入同步’，并审计讲述者是否为 driver。", "derivedFrom": ["CQ-04", "CQ-10", "REL-02"]},
+    {"name": "editedChronologyVsDependency", "required": true, "reason": "Act-Two 水管工式视频结果播放器后切粉发动漫人物，完成结果都可见，但二者不可平滑成同一生成链。", "derivedFrom": ["CQ-06", "RISK-04", "REL-07"]},
+    {"name": "promptAndEditEvidence", "required": true, "reason": "‘一句话 P 图改图’需要提示词界面、before/after 和风格变化证据；当前初探未见。", "derivedFrom": ["CQ-08", "RISK-07", "REL-08"]},
+    {"name": "timingEvidence", "required": true, "reason": "‘几分钟’必须保持作者主张，除非有起止或进度证据。", "derivedFrom": ["CQ-07", "RISK-06", "MC-06"]},
+    {"name": "visibleLikenessAndSymbols", "required": true, "reason": "角色熟悉感来自外观和 M 标志，但视觉相似不等于身份。", "derivedFrom": ["CAR-SYMBOLS", "REL-11", "RISK-08"]},
+    {"name": "identitySourceAuthorizationBoundary", "required": true, "reason": "每组人物/角色需把可见外观与准确身份、来源、上传者和授权分开。", "derivedFrom": ["CQ-09", "RISK-08", "REL-11"]},
+    {"name": "carrierConflict", "required": true, "reason": "原 SRT 的‘祛痘/土里的人/批图’不能被机器复听和画面静默替换。", "derivedFrom": ["CQ-11", "RISK-09", "REL-10"]},
+    {"name": "decisionRelevantAbsences", "required": true, "reason": "完整时间线需寻找访问、价格、账号/地区、进度、保存/导出、来源、授权、免责声明等。", "derivedFrom": ["CQ-12", "RISK-11", "CAR-NEGATIVE-SCOPE"]},
+    {"name": "openingClosingRelation", "required": true, "reason": "结尾一个连续动漫动作结果是对开场全称承诺的有限回扣。", "derivedFrom": ["CQ-13", "REL-09", "MC-08"]},
+    {"name": "boundedAudioInspection", "required": true, "reason": "完整音频需要独立于字幕/ASR 检查背景音乐与音效；P图/批图同音仍需保持正字法未知。", "derivedFrom": ["CAR-NONSPEECH-AUDIO", "CQ-14", "RISK-13"]}
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01-EXAMPLE-LEDGER",
+      "range": {"start": 0, "end": 8.6},
+      "carrier": "多角色动效蒙太奇、角色造型、标志和上下分屏布局",
+      "mode": "exact_times",
+      "times": [0.4, 1.2, 1.7, 2.5, 3.3, 4.3, 5.3, 6.3, 6.9, 7.6, 8.4],
+      "reason": "逐角色建立保守计数、外观/符号和上下分屏参照，避免把熟悉相似性升级成身份或授权。",
+      "expectedObservation": "五个依次出现的上方角色类型、同一位下方讲述者、嘴/手姿态差异、M 标志；不期待出现来源或授权标签。",
+      "derivedFrom": ["CAR-ROLE-MONTAGE", "CAR-SYMBOLS", "CQ-01", "CQ-09", "RISK-01", "RISK-08"]
+    },
+    {
+      "id": "ACT-02-SPLIT-MOTION-CORRESPONDENCE",
+      "range": {"start": 0, "end": 8.6},
+      "carrier": "上方角色与下方讲述者的嘴部、头部、手势运动",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.2,
+      "reason": "检查角色确实随时间变化，并测试上下两路是否有可辨识的逐时对应；单帧不能证明同步。",
+      "expectedObservation": "可见多个角色的嘴型/局部手势变化；若无法建立固定时间对齐或 driver 身份，则明确只证明并置与运动。",
+      "derivedFrom": ["CQ-04", "CQ-10", "REL-02", "RISK-03", "RISK-05"]
+    },
+    {
+      "id": "ACT-03-PRODUCT-UI-OCR",
+      "range": {"start": 8.6, "end": 10.8},
+      "carrier": "实际 Act-Two 工作区、作者 Act-One 口播/后期标题与 Gen-4/Try it now 宣传卡",
+      "mode": "ocr_review",
+      "times": [8.7, 9.0, 9.4, 9.8, 10.2, 10.6],
+      "reason": "核对作者命名、活动模式、Performance/Character 区和 Gen-4 宣传载体角色，避免把宣传卡当当前模式或把 Act-Two 降为未知。",
+      "expectedObservation": "口播/烧录字称 Runway，后期叠字 act one；工作区底部活动模式可见 Act-Two；右侧卡片为 Gen-4: Now for Image and Video 并带 Try it now；另有 Image/Video、Chat Mode、Performance、Character。",
+      "derivedFrom": ["SWEEP-06", "CQ-03", "REL-03", "RISK-10"]
+    },
+    {
+      "id": "ACT-04-TWO-INPUT-UI-STATES",
+      "range": {"start": 10.8, "end": 13.88},
+      "carrier": "Performance 与 Character 卡片的 UI 文本、缩略图、控件和红框状态",
+      "mode": "ui_state_review",
+      "times": [10.82, 11.15, 11.55, 11.95, 12.3, 12.5, 12.85, 13.2, 13.55, 13.84],
+      "reason": "读取两个素材入口、up to 30s、Record/Select asset、image/video，并区分高亮与实际执行。",
+      "expectedObservation": "Performance 卡片与 Character 卡片依次被放大/红框强调；没有文件选择器、进度或成功提示时，应记录为未观察到执行。",
+      "derivedFrom": ["SWEEP-07", "SWEEP-08", "MC-05", "CQ-02", "CQ-05", "RISK-02", "RISK-10"]
+    },
+    {
+      "id": "ACT-05-RESULT-PLAYER-TO-FINAL",
+      "range": {"start": 13.88, "end": 16.8},
+      "carrier": "Act-Two 水管工式视频结果播放器、烧录字幕、播放器 UI 与最终动漫人物切换",
+      "mode": "before_during_after",
+      "times": [13.9, 14.4, 15.0, 15.6, 16.1, 16.3, 16.4, 16.6, 16.8],
+      "reason": "记录 Act-Two 完成结果状态、播放器边界和切往另一动漫片段的编辑顺序；检查此前进度/等待与‘几分钟’计时是否出现。",
+      "expectedObservation": "约 14.1-16.1 秒可见 Act-Two 结果页、播放器时间线/控制和 M 标志水管工式视频结果；16.4 秒切为粉发红衣动漫女性。完成结果可见，但生成进度、等待和计时未见，两片段 lineage 未建立。",
+      "derivedFrom": ["SWEEP-09", "MC-06", "CQ-06", "CQ-07", "REL-07", "RISK-04", "RISK-06"]
+    },
+    {
+      "id": "ACT-06-FINAL-MOTION-SEQUENCE",
+      "range": {"start": 16.333, "end": 22.467},
+      "carrier": "结尾动漫人物的嘴、眼、头和双手连续动作",
+      "mode": "motion_sequence",
+      "densitySeconds": 0.2,
+      "reason": "用足够密度证明角色在一个持续构图中有多部位动作，同时不把运动升级成对输入同步或无剪辑实时生成。",
+      "expectedObservation": "同一粉发红衣人物在固定背景中有嘴型、眨眼、头部和双手姿态连续变化；没有可见 driving input 或对齐基准。",
+      "derivedFrom": ["CAR-FINAL-MOTION", "CQ-04", "RISK-05", "MC-07"]
+    },
+    {
+      "id": "ACT-07-CAPTION-CONFLICT-OCR",
+      "range": {"start": 0, "end": 16.333},
+      "carrier": "烧录中文字幕、act one 标题和原 SRT 冲突窗口",
+      "mode": "ocr_review",
+      "times": [0.8, 2.0, 3.4, 4.6, 5.7, 7.4, 8.9, 9.7, 10.4, 11.5, 12.8, 13.4, 14.5, 15.6, 16.2],
+      "reason": "保留短时烧录文本，并核对‘驱动/祛痘’‘图里/土里’及功能名等冲突。",
+      "expectedObservation": "多数烧录字与语音一致；原 SRT 的若干词与画面语义冲突。所有 OCR 仅作为提议并需人工核帧。",
+      "derivedFrom": ["CAR-BURNED-TEXT", "CQ-11", "REL-10", "RISK-09"]
+    },
+    {
+      "id": "ACT-08-FULL-SCOPE-ABSENCE",
+      "range": {"start": 0, "end": 22.467},
+      "carrier": "完整视觉时间线中的 UI、叠字、状态、来源标签、CTA 和免责声明机会窗口",
+      "mode": "interval_density",
+      "densitySeconds": 0.25,
+      "reason": "对可能出现的执行/进度/计时/提示词/before-after/访问/下载/价格/账号/地区/来源/授权/免责声明做有界全时轴检查。",
+      "expectedObservation": "预计只见样例、两个素材卡和最终动作片段；若全时轴未见上述元素，只能写‘在 0-22.467 秒视觉范围内未观察到’。",
+      "derivedFrom": ["CAR-NEGATIVE-SCOPE", "CQ-05", "CQ-07", "CQ-08", "CQ-09", "CQ-12", "RISK-11"]
+    },
+    {
+      "id": "ACT-09-CLOSING-PROMPT-CLAIM",
+      "range": {"start": 16.333, "end": 22.467},
+      "carrier": "结尾口播能力列表与画面中可能的文字提示、before/after、风格切换和 CTA",
+      "mode": "ocr_review",
+      "times": [16.4, 17.0, 17.6, 18.2, 18.8, 19.4, 20.0, 20.6, 21.2, 21.8, 22.35],
+      "reason": "检验‘一句话 P 图改图、换表情/动作/风格’是否有可读提示词或比较证据，并保存结尾对开场的回扣。",
+      "expectedObservation": "预计只有动漫人物动作而无 prompt/UI/before-after/风格切换/CTA；可见动作可说明表情和手势变化，但不证明文字编辑工作流。",
+      "derivedFrom": ["CQ-08", "CQ-13", "REL-08", "REL-09", "RISK-07", "MC-08"]
+    },
+    {
+      "id": "ACT-10-ACT-TWO-RESULT-PLAYER",
+      "range": {"start": 14.1, "end": 16.1},
+      "carrier": "Act-Two 完成结果播放器、结果画面运动与播放器控制",
+      "mode": "ui_state_review",
+      "densitySeconds": 0.1,
+      "reason": "确认第二处 Act-Two 标签、播放器时间线/播放状态、Use frame/Restyle/结果控制以及水管工式结果是否为视频结果而非静态图片查看器。",
+      "expectedObservation": "Act-Two 标签与播放器 UI 在整个窗口保持可见；结果画面位于视频播放器中。即使角色运动幅度很小，也不能将播放器误写为静态图查看器。",
+      "derivedFrom": ["SWEEP-09", "MC-06", "CQ-03", "CQ-05", "CQ-06", "RISK-04", "RISK-10"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "illustrates_but_does_not_establish_universal_scope", "derivedFrom": ["REL-01", "CQ-01"]},
+    {"relation": "juxtaposed_with_possible_but_unproven_driving_relation", "derivedFrom": ["REL-02", "CQ-10"]},
+    {"relation": "visible_act_two_conflicts_with_spoken_act_one", "derivedFrom": ["REL-03", "CQ-03"]},
+    {"relation": "both_required_by_visible_ui", "derivedFrom": ["REL-04", "MC-05"]},
+    {"relation": "limits_literal_reading", "derivedFrom": ["REL-05", "CQ-02"]},
+    {"relation": "claimed_produces_but_execution_bridge_missing", "derivedFrom": ["REL-06", "CQ-05"]},
+    {"relation": "edited_after_but_not_established_as_same_generation_chain", "derivedFrom": ["REL-07", "CQ-06"]},
+    {"relation": "supports_visible_expression_and_action_motion_but_not_prompt_or_style_change", "derivedFrom": ["REL-08", "CQ-08"]},
+    {"relation": "narrows_from_universal_promise_to_one_visible_continuous_example", "derivedFrom": ["REL-09", "CQ-13"]},
+    {"relation": "carrier_conflict_requires_preservation", "derivedFrom": ["REL-10", "CQ-11"]},
+    {"relation": "resembles_without_establishing", "derivedFrom": ["REL-11", "CQ-09"]},
+    {"relation": "promotional_card_inside_workspace_not_active_mode", "derivedFrom": ["REL-12", "CQ-03"]}
+  ],
+  "stoppingRules": [
+    "五个短角色样例与一个最终长结果样例已按不同分组计数，且‘任何/任意’被标为作者范围主张而非普遍事实。",
+    "上下分屏动作序列已检查；如果不能建立讲述者到角色的一一驱动映射，该 referent 必须保持 unknown。",
+    "作者口播/后期字 Runway Act-One 与实际 Act-Two 工作区/结果播放器已经分别建模；Gen-4/Try it now 明确是宣传卡，不能当活动模式。Performance/Character、up to 30s、Record/Select asset、image/video 已经 OCR 并人工核帧。",
+    "上传/选择/生成/进度/完成/保存/导出分别记录：Act-Two 完成结果播放器为 observed；选择/上传点击、生成进度、等待、保存/导出和 lineage 仍为 not observed/unknown。",
+    "Act-Two 水管工式视频结果播放器与最终粉发动漫人物的主体和状态差异已保存，未被写成同一生成链。",
+    "结尾动作序列有 before/during/after 多帧，能够证明可见运动但不声称实时、无剪辑或相对输入同步。",
+    "‘几分钟’和‘一句话 P 图改图/换表情/动作/风格’均已按作者主张与可见证据分别建模。",
+    "原 SRT 每条逐字保留；‘祛痘/土里的人/批图’与机器复听/画面支持的候选解释被作为冲突记录，而非静默替换。",
+    "每个熟悉角色外观只用 visual resemblance/visible symbol 描述；准确身份、来源、上传者和授权均有显式 unknown。",
+    "0-22.467 秒全视觉时间线已检查访问、价格、账号/地区、生成状态、提示词、来源、授权、免责声明和 CTA 的可能出现位置；负结论只限定于该范围。",
+    "canonical audio.non_speech 载体已引用 SRC-AUDIO-LISTEN-EVIDENCE；完整 0-22.466938 秒声学检查已登记：持续背景音乐可确认；独立音效未稳定建立；P图/批图因同音且无烧录字保持正字法 unknown。",
+    "开场全称承诺、两素材 UI 条件与结尾单一连续结果之间的关系已进入知识单元和关系图。"
+  ],
+  "declaredUnknowns": [
+    "所有人物/角色的准确身份、素材来源、上传者与版权/肖像/角色授权",
+    "下半屏讲述者是否为角色动效的真实 driving performance 输入",
+    "上方五个短样例和结尾长样例是否都由当前可见的 Act-Two 生成",
+    "Act-Two 水管工式视频结果与粉发动漫人物之间的生成关系",
+    "真实点击数和上传、选择、生成、等待、保存、导出依赖",
+    "实际生成耗时、同步延迟、成功率、输出画质、失败条件和可支持角色边界",
+    "‘一句话’究竟指文字提示词、说话内容还是别的控制方式",
+    "作者口播/字幕为何称 Act-One，而工作区与结果播放器均显示 Act-Two",
+    "Runway 的版本、套餐、价格、账号、地区、访问路径和支持责任",
+    "背景音乐曲名、来源、授权，以及是否存在可独立确认的音效",
+    "SHOT-006 内是否存在不可见的隐藏剪切"
+  ]
+}

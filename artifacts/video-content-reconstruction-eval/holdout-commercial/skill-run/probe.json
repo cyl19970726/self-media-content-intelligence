@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-commercial/evidence-v2/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能在熬夜、咖啡、运动强度、疲劳或身材管理等日常健康问题上感到焦虑，又认为这些问题不值得专门就医，并且不确定网上信息该信谁。",
+    "after": "视频试图让观众把蚂蚁阿福视为一种会追问个人情况、给出参考建议并帮助记录健康小目标的‘健康搭子’，同时接受视频作者关于其专业、克制和隐私能力的商业性评价；但视频本身并未外部验证医疗质量、隐私保障或结果有效性。",
+    "intendedChanges": [
+      "从被健康新闻和搜索结果吓到，转向寻求一个更低压力的日常咨询入口",
+      "知道视频展示的阿福对话会索取背景信息、继续追问并输出分层建议",
+      "知道视频展示的健康小目标功能可生成任务并提供打卡界面",
+      "形成对产品‘看见你、认真回应你、提供参考、不制造恐慌、保护隐私’的正面印象",
+      "意识到视频底部持续声明‘产品体验分享，身体不适请及时就医’，因此不能把演示等同于医疗诊断或经验证的保障"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 7.49},
+      "cognitiveQuestion": "开头用什么材料制造健康风险紧迫感，材料本身是否被视频验证？",
+      "observedSignals": ["急诊、病床和新闻式竖屏素材", "顶部卡片称19岁大二学生突发脑梗并将熬夜、油腻外卖并置", "作者小窗跟看素材", "底部持续产品体验与就医提示"],
+      "checkedAlternatives": ["口播/平台字幕", "新闻式画面与顶部文字卡", "作者反应小窗", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["新闻素材来源、病例真实性及熬夜/油腻与脑梗之间的因果关系均未由视频建立", "插入新闻素材是否含独立原声无法从字幕与信号分析可靠确定"],
+      "evidenceHints": ["CUE-001", "CUE-002", "SHOT-001..SHOT-010", "probe-observation/opening-01.jpg"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 7.49, "end": 14.55},
+      "cognitiveQuestion": "作者如何把外部风险转成观众的自我代入和信息信任痛点？",
+      "observedSignals": ["‘熬夜’‘饮食油腻’贴纸", "作者正面口播并自我代入", "持续底部免责声明"],
+      "checkedAlternatives": ["口播/字幕", "贴纸与构图", "主持人表情/手势", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["作者自身健康状况不由视频建立"],
+      "evidenceHints": ["CUE-003", "CUE-004", "SHOT-010", "probe-observation/opening-02.jpg"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 14.55, "end": 37.038},
+      "cognitiveQuestion": "视频提出了哪些具体日常健康问题，又如何说明现有搜索方式不满足需求？",
+      "observedSignals": ["夜间刷手机、咖啡、举重和疲劳的插画/情境画面", "口播列举咖啡、运动强度、疲劳与注意力问题", "作者说搜索答案吓人、互相不一致且问题似乎不值得专门跑一趟"],
+      "checkedAlternatives": ["口播/字幕", "插画与运动画面", "剪辑顺序/焦虑反应", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["这些症状是否适合仅通过应用咨询，视频没有给出医学分流规则"],
+      "evidenceHints": ["CUE-005..CUE-010", "SHOT-010..SHOT-015", "probe-observation/problem-01.jpg"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 37.038, "end": 43.3},
+      "cognitiveQuestion": "产品如何被命名、归属和引入，开始咨询前展示了哪些个人信息入口？",
+      "observedSignals": ["蚂蚁阿福品牌卡与‘健康的事就找阿福’", "口播称其为蚂蚁集团推出的AI应用", "UI展示咨询人关系、姓名/昵称、性别、出生年份及补充健康史"],
+      "checkedAlternatives": ["口播/字幕", "品牌卡文字", "App UI字段与按钮", "UI状态变化", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["画面是否为真实实时操作、具体版本与数据是否真实提交未建立", "收集字段的存储、权限与处理方式未展示"],
+      "evidenceHints": ["CUE-011", "CUE-012", "SHOT-016..SHOT-018", "probe-observation/ui-01.jpg"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 43.3, "end": 60.7},
+      "cognitiveQuestion": "疲劳/咖啡示例里，应用实际显示了哪些追问、回答和建议，哪些只是作者概括？",
+      "observedSignals": ["对话输入‘我最近总感觉累，是怎么回事？’", "长回答列出可能原因、行动步��和就医提示", "后续追问疲劳时长、是否突然、睡眠与运动相关问题", "咖啡示例显示一天大概喝多少杯与‘不加量’方向"],
+      "checkedAlternatives": ["口播/字幕", "完整屏幕对话UI", "滚动后的分段文字", "输入气泡与回答先后", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["对话是否实时生成、是否经过剪辑或预置未建立", "长回答的全部文字需高密度OCR复核", "建议的医学正确性未由视频验证"],
+      "evidenceHints": ["CUE-013..CUE-017", "SHOT-019..SHOT-038", "probe-observation/ui-01.jpg", "probe-observation/ui-02.jpg"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 60.7, "end": 72.833},
+      "cognitiveQuestion": "身材管理示例展示了什么输入、确认步骤、输出结构和可见参数？",
+      "observedSignals": ["健康小目标表单显示性别、年龄、身高、体重、活动量等字段", "可见示例值包括32岁、168cm、55kg和中度活动（8000–12000步）", "结果页显示目标分析、策略和任务卡片", "口播概括增加力量训练和饮食搭配"],
+      "checkedAlternatives": ["口播/字幕", "表单UI与数值变化", "结果页层级与任务分组", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["部分过渡帧显示过不同身高/体重值，最终提交值和编辑过程需定向捕获", "推荐是否基于真实个人信息、如何计算及是否安全有效未建立"],
+      "evidenceHints": ["CUE-018..CUE-021", "SHOT-039", "probe-observation/ui-02.jpg", "probe-observation/ui-03.jpg"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 72.833, "end": 89.5},
+      "cognitiveQuestion": "目标记录功能具体展示了哪些目标、选择、任务和反馈机制？",
+      "observedSignals": ["‘我想睡得更好’问卷与选项", "任务示例含‘每天走8000步’‘记录3顿饭’‘划船机30分钟’", "另一组睡前任务含‘5分钟睡前放松冥想’‘3分钟专注呼吸’‘渐进式肌肉放松’", "任务页显示打卡入口与‘今日还有任务未完成’", "金色叠字‘你在慢慢变好’"],
+      "checkedAlternatives": ["口播/字幕", "目标问卷UI", "任务卡数量与分组", "打卡状态", "金色情绪叠字", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["视频没有展示长期坚持、提醒频率或真实结果", "目标生成与打卡是否在同一真实会话内未建立"],
+      "evidenceHints": ["CUE-022..CUE-024", "SHOT-040..SHOT-042", "probe-observation/goals-01.jpg", "probe-observation/goals-02.jpg"]
+    },
+    {
+      "id": "SWEEP-08",
+      "range": {"start": 89.5, "end": 96.6},
+      "cognitiveQuestion": "视频如何把演示提升为专业、克制和可靠的商业判断，有什么边界提示？",
+      "observedSignals": ["快速滚动的对话/建议UI", "口播称‘很高的专业标准’‘只是提供参考，绝不制造恐慌’‘靠谱’", "画面强调‘靠谱’", "底部仍显示身体不适及时就医"],
+      "checkedAlternatives": ["口播/字幕", "对话UI", "大字叠加", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["专业标准由谁制定、如何审核未建立", "‘绝不制造恐慌’的普遍范围与可靠性未被有限示例证明"],
+      "evidenceHints": ["CUE-025", "CUE-026", "SHOT-043..SHOT-057", "probe-observation/closing-01.jpg"]
+    },
+    {
+      "id": "SWEEP-09",
+      "range": {"start": 96.6, "end": 105.628},
+      "cognitiveQuestion": "结尾承诺了什么情绪价值和隐私能力，如何收束并号召互动？",
+      "observedSignals": ["主持人正面口播", "金色叠字依次出现‘能看见你’‘能认真回应你’‘能确保隐私安全’", "口播使用‘完全确保你隐私’的绝对表述", "结尾询问观众最想问的健康问题"],
+      "checkedAlternatives": ["口播/字幕", "金色叠字累积", "主持人手势与直视", "底部免责声明", "非旁白音频侧信号"],
+      "remainingUnknowns": ["隐私政策、技术措施、数据流、第三方审计或例外均未展示，绝对隐私承诺不能由本视频验证"],
+      "evidenceHints": ["CUE-027", "CUE-028", "SHOT-058", "probe-observation/closing-02.jpg", "probe-observation/closing-03.jpg"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "主持人口播与平台字幕", "modalityKeys": ["speech", "subtitles"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"], "available": true, "inspected": true, "roles": ["叙事主线", "产品功能概括", "商业评价与绝对性主张", "互动号召"], "intervals": [{"start": 0, "end": 105.628}], "omissionImpact": "会丢失问题框架、产品归属、功能说法和商业主张。"},
+    {"id": "CAR-02", "name": "App界面、字段、输入气泡与滚动回答", "modalityKeys": ["software_interface_state", "parameter_value_change", "on_screen_text"], "discoveredIn": ["SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["展示咨询资料入口", "展示追问和回答结构", "展示身材计划输入输出", "展示目标与打卡任务"], "intervals": [{"start": 37.038, "end": 96.6}], "omissionImpact": "只听口播会漏掉收集的个人信息、具体值、长回答内容、任务数与UI仅为展示而非结果证明的边界。"},
+    {"id": "CAR-03", "name": "品牌卡、贴纸、大字叠层与持续免责声明", "modalityKeys": ["overlay_text", "brand_symbol", "promotional_qualifier", "disclaimer"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-04", "SWEEP-07", "SWEEP-08", "SWEEP-09"], "available": true, "inspected": true, "roles": ["命名品牌", "突出焦虑与价值词", "强化‘靠谱/变好/隐私’", "声明产品体验分享并提示就医"], "intervals": [{"start": 0, "end": 105.628}], "omissionImpact": "会遗漏商业性质、医疗边界和比口播更强的绝对性视觉表述。"},
+    {"id": "CAR-04", "name": "新闻式素材、插画、主持人和情境蒙太奇", "modalityKeys": ["inserted_source_visual", "illustration", "presenter_gesture", "juxtaposition"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-09"], "available": true, "inspected": true, "roles": ["制造健康风险紧迫感", "帮助观众自我代入", "把问题情境具象化", "通过主持人表情和手势建立亲近感"], "intervals": [{"start": 0, "end": 37.038}, {"start": 96.6, "end": 105.628}], "omissionImpact": "会把营销性的情绪铺垫误写成中性产品说明，并可能误把插入素材当成已验证证据。"},
+    {"id": "CAR-05", "name": "UI顺序、滚动、选择与前后状态", "modalityKeys": ["ui_state_transition", "editing_order", "before_after_state", "gesture_or_action"], "discoveredIn": ["SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["把资料输入、提问、追问、计划生成和打卡排列成体验流程", "暗示但不证明真实操作链"], "intervals": [{"start": 37.038, "end": 96.6}], "omissionImpact": "单帧会把滚动展示误当成完整实时流程，也会漏掉数值变化和结果页先后关系。"},
+    {"id": "CAR-06", "name": "任务卡、列表层级、计数与分组", "modalityKeys": ["list", "layout_grouping", "count", "spatial_composition"], "discoveredIn": ["SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["承载原因类别、建议层级、目标与任务示例", "显示多组示例而非单一线性流程"], "intervals": [{"start": 43.3, "end": 96.6}], "omissionImpact": "会漏掉具体任务和示例数量，并可能把不同示例组误拼成一个统一处方。"},
+    {"id": "CAR-07", "name": "非旁白音频侧信号", "modalityKeys": ["non_speech_audio", "stereo_side_signal", "audio_spectral_structure"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"], "available": true, "inspected": true, "roles": ["双声道侧信号在约7秒后大部分时段持续存在，均方电平约-38.2 dB，低于中央信号约-20.4 dB；其连续频谱结构与伴奏/混音床相容", "没有足够证据把它细分为具体音乐、音效或插入素材原声"], "intervals": [{"start": 0, "end": 105.628}], "omissionImpact": "若直接忽略，会错误宣称视频只有旁白；若过度解释，则会给未听辨的音乐或音效虚构具体情绪作用。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 7.49}, "description": "以脑梗新闻式素材把日常熬夜和油腻饮食框成迫近健康风险。", "trigger": "急诊/病床画面、新闻式顶部卡片与病例口播。", "evidenceHints": ["CUE-001", "CUE-002", "SHOT-001..SHOT-010"]},
+    {"id": "MC-02", "range": {"start": 7.49, "end": 14.55}, "description": "从他人病例转为作者和观众的自我代入，并提出网上健康信息的信任问题。", "trigger": "‘这不就是我吗’与‘不知道该相信谁’。", "evidenceHints": ["CUE-003", "CUE-004", "SHOT-010"]},
+    {"id": "MC-03", "range": {"start": 14.55, "end": 37.038}, "description": "将痛点具体化为夜间搜索焦虑、咖啡、运动强度、疲劳和注意力问题，并设置‘不值得跑一趟’的服务缺口。", "trigger": "连续问题清单、插画与主持人口播。", "evidenceHints": ["CUE-005..CUE-010", "SHOT-011..SHOT-015"]},
+    {"id": "MC-04", "range": {"start": 37.038, "end": 43.3}, "description": "产品揭晓：把阿福命名为蚂蚁集团推出的AI应用和‘健康搭子’，画面进入资料填写UI。", "trigger": "品牌卡、产品归属口播和个人资料弹窗。", "evidenceHints": ["CUE-011", "CUE-012", "SHOT-016..SHOT-018"]},
+    {"id": "MC-05", "range": {"start": 43.3, "end": 60.7}, "description": "‘不急着下结论’被视觉化为疲劳咨询中的信息追问、分层原因和行动建议，再延伸到咖啡杯数。", "trigger": "输入气泡、长回答、追问气泡和滚动UI。", "evidenceHints": ["CUE-013..CUE-017", "SHOT-019..SHOT-038"]},
+    {"id": "MC-06", "range": {"start": 60.7, "end": 72.833}, "description": "从一般问答切换到身材管理计划，展示个人参数、活动频率、目标分析、策略和任务。", "trigger": "健康小目标表单及生成的计划页。", "evidenceHints": ["CUE-018..CUE-021", "SHOT-039"]},
+    {"id": "MC-07", "range": {"start": 72.833, "end": 89.5}, "description": "从一次性建议切换为目标记录和打卡，重点变为小目标、任务卡和温和反馈。", "trigger": "睡眠目标问卷、三张任务卡、打卡页与‘你在慢慢变好’。", "evidenceHints": ["CUE-022..CUE-024", "SHOT-040..SHOT-043"]},
+    {"id": "MC-08", "range": {"start": 89.5, "end": 96.6}, "description": "从功能演示提升为对专业标准、参考定位、不制造恐慌和可靠性的评价。", "trigger": "‘高专业标准’‘只是提供参考’‘绝不制造恐慌’与‘靠谱’大字。", "evidenceHints": ["CUE-025", "CUE-026", "SHOT-043..SHOT-057"]},
+    {"id": "MC-09", "range": {"start": 96.6, "end": 105.628}, "description": "以‘看见/回应/隐私’的情绪价值和绝对隐私主张收束，并用问题邀请互动。", "trigger": "金色叠字逐项累积、绝对隐私口播与结尾提问。", "evidenceHints": ["CUE-027", "CUE-028", "SHOT-058"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "MC-01", "to": "MC-03", "relation": "setup_to", "evidenceHints": ["CUE-001..CUE-010"]},
+    {"id": "REL-02", "from": "MC-03", "to": "MC-04", "relation": "problem_positioned_for_product_reveal", "evidenceHints": ["CUE-010..CUE-012"]},
+    {"id": "REL-03", "from": "MC-04", "to": "MC-05", "relation": "product_identity_to_demonstrated_conversation", "evidenceHints": ["SHOT-016..SHOT-038"]},
+    {"id": "REL-04", "from": "user_symptom_or_goal_input", "to": "followup_context_collection", "relation": "input_to", "evidenceHints": ["CUE-014..CUE-019", "SHOT-019..SHOT-039"]},
+    {"id": "REL-05", "from": "followup_context_collection", "to": "displayed_advice_or_plan", "relation": "precedes_but_causality_unproven", "evidenceHints": ["SHOT-019..SHOT-041"]},
+    {"id": "REL-06", "from": "MC-05", "to": "MC-08", "relation": "examples_used_to_support_commercial_evaluation", "evidenceHints": ["CUE-013..CUE-026"]},
+    {"id": "REL-07", "from": "MC-07", "to": "MC-09", "relation": "gentle_tracking_example_payoff_for_emotional_positioning", "evidenceHints": ["CUE-022..CUE-028"]},
+    {"id": "REL-08", "from": "continuous_disclaimer", "to": "medical_and_commercial_claims", "relation": "claim_limited_by", "evidenceHints": ["bottom overlay across probe frames"]},
+    {"id": "REL-09", "from": "visible_ui_examples", "to": "universal_professional_privacy_claims", "relation": "illustrates_but_does_not_establish", "evidenceHints": ["SHOT-019..SHOT-058", "CUE-025..CUE-028"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把开头新闻式病例和熬夜/油腻的并置写成已验证因果事实。", "why": "视频没有提供来源、诊断材料或因果验证。", "where": [{"start": 0, "end": 7.49}], "requiredFollowup": "逐帧记录顶部卡片、病例素材、作者口播与不确定性，保持author_claim/unknown。"},
+    {"id": "RISK-02", "risk": "只按口播概括功能，漏掉UI收集的敏感字段、具体数值、长回答、任务卡和状态变化。", "why": "37–96秒的主要信息由小字UI与滚动承载。", "where": [{"start": 37.038, "end": 96.6}], "requiredFollowup": "对关键UI段执行定向帧捕获、OCR和人工复核，并保留前/中/后状态。"},
+    {"id": "RISK-03", "risk": "把剪辑后的UI演示当成真实实时操作、模型质量或结果有效性的证明。", "why": "视频没有展示连续无剪辑交互、生成耗时、版本、数据来源或独立结果。", "where": [{"start": 37.038, "end": 96.6}], "requiredFollowup": "在重建中区分visible_ui_example、author_claim与unknown，记录剪辑断点。"},
+    {"id": "RISK-04", "risk": "漏掉持续免责声明，从而把产品体验分享误写成医疗建议。", "why": "底部小字贯穿视频且与健康主张直接相关。", "where": [{"start": 0, "end": 105.628}], "requiredFollowup": "OCR并人工确认免责声明原文和持续范围。"},
+    {"id": "RISK-05", "risk": "把有限示例升级为‘高专业标准’‘绝不制造恐慌’‘完全确保隐私’的普遍事实。", "why": "视频未给标准、审计、隐私政策、技术控制、失败案例或外部验证。", "where": [{"start": 89.5, "end": 105.628}], "requiredFollowup": "逐项拆出商业主张、可见支持、范围限制和未建立内容。"},
+    {"id": "RISK-06", "risk": "把不同健康目标、不同数值和不同任务组拼成一个人的单一连续处方。", "why": "快速滚动与剪辑展示了疲劳、咖啡、身材和睡眠等多个并列示例。", "where": [{"start": 43.3, "end": 96.6}], "requiredFollowup": "按示例组和UI状态分开计数并检查全局关系。"},
+    {"id": "RISK-07", "risk": "忽略非旁白音频，或凭频谱给它虚构具体音乐/音效含义。", "why": "双声道侧信号连续存在，但现有信号分析不能可靠分离和命名其来源。", "where": [{"start": 0, "end": 105.628}], "requiredFollowup": "登记为已检查但角色部分未知，只陈述可测信号与其限制。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "视频如何从19岁学生脑梗素材转到观众的日常健康焦虑，是否建立了熬夜/油腻导致脑梗的因果？", "criticality": "critical", "evidenceHints": ["CUE-001..CUE-010", "SHOT-001..SHOT-015"]},
+    {"id": "CQ-02", "question": "产品叫什么、口播称由谁推出、视频将其定位为什么？", "criticality": "critical", "evidenceHints": ["CUE-011", "CUE-012", "SHOT-016..SHOT-018"]},
+    {"id": "CQ-03", "question": "疲劳与咖啡示例中，UI和口播分别显示了哪些追问、输入、回答与建议？", "criticality": "critical", "evidenceHints": ["CUE-013..CUE-017", "SHOT-019..SHOT-038"]},
+    {"id": "CQ-04", "question": "身材管理示例有哪些可见个人参数、活动量、结果结构与具体任务，它们是否构成已验证的有效方案？", "criticality": "critical", "evidenceHints": ["CUE-018..CUE-021", "SHOT-039"]},
+    {"id": "CQ-05", "question": "目标记录/打卡功能展示了哪些具体目标和任务组，视频是否展示了长期完成或健康结果？", "criticality": "critical", "evidenceHints": ["CUE-022..CUE-024", "SHOT-040..SHOT-042"]},
+    {"id": "CQ-06", "question": "视频对专业标准、参考定位、不制造恐慌、可靠性和隐私作了哪些商业主张，哪些可见证据支持或不能支持其范围？", "criticality": "critical", "evidenceHints": ["CUE-025..CUE-028", "SHOT-043..SHOT-058"]},
+    {"id": "CQ-07", "question": "持续底部免责声明的准确文字和作用是什么？", "criticality": "critical", "evidenceHints": ["bottom overlay across probe frames"]},
+    {"id": "CQ-08", "question": "37–96秒的UI是否为真实连续实时操作，具体产品版本、生成耗时与数据处理方式是什么？", "criticality": "supporting", "evidenceHints": ["SHOT-016..SHOT-057"]},
+    {"id": "CQ-09", "question": "非旁白音频是否存在、可观察到什么、其精确音乐/音效角色能否被现有证据确定？", "criticality": "supporting", "evidenceHints": ["AAC stereo stream metadata", "probe-observation/non-speech-side-spectrum.png"]}
+  ],
+  "unresolved": [
+    "新闻式病例素材的来源与医学因果未建立",
+    "UI演示是真实操作、录屏、预置还是混合剪辑未建立",
+    "产品版本、模型、数据来源、响应耗时、失败情况和医学审核机制未展示",
+    "个人信息的收集、存储、权限、共享、删除、加密和审计机制未展示",
+    "专业标准、绝不制造恐慌与完全确保隐私均为未被外部验证的作者主张",
+    "非旁白音频精确类型与情绪功能仅凭可用信号分析不能可靠确定"
+  ]
+}

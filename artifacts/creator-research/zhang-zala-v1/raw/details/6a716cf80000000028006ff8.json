@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a716cf80000000028006ff8",
+  "capturedAt": "2026-08-16T11:08:18.943Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "从Claude Tag聊聊agent交互界面的变化",
+    "postCopy": "未来应该是agent来我熟悉的界面来找我",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a716cf80000000028006ff8",
+    "mediaType": "video",
+    "publishedAt": "2026-08-04T04:39:20.000Z",
+    "likes": "1341",
+    "collections": "865",
+    "comments": "32",
+    "shares": "264",
+    "expectedDurationSec": 186
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 186
+    }
+  ]
+}

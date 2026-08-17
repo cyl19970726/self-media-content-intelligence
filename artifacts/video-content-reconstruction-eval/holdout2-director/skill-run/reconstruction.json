@@ -1,0 +1,3610 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建原视频0–213.809秒、同stem SRT、evidence-pack及按capture protocol派生的定向帧/OCR；所有因果、普遍性、人物、奖项、账号、平台与指标归属均保持在视频内部证据边界内。",
+  "viewerChange": {
+    "before": "观众面对“爆款”但没有该讲者的条件、机制与两步决策树。",
+    "after": "观众能复述作者的四个必要条件、三种机制、找选题→选形式分支及热点捷径，并能区分作者断言、可见结构、未验证例子和缺失条件。",
+    "decisionUse": "用于忠实理解和审计视频提出的方法；不把它当作已验证的增长保证。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED-MANIFEST",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "dynamic targeted-frame manifest",
+      "producedBy": "capture_targeted_evidence.py using capture-protocol.json",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "limitations": [
+        "144 sampled stills at 360x640",
+        "stills do not preserve motion or full audio"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposal ledger",
+      "producedBy": "ocr-frames.swift over targeted-evidence.json",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "limitations": [
+        "OCR is proposal-only and confidence varies",
+        "handwritten board text remains error-prone"
+      ]
+    },
+    {
+      "id": "SRC-HIRES-BOARD",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/targeted-evidence/hires-board",
+      "kind": "exact-time high-resolution board crop set",
+      "producedBy": "ffmpeg crop from original video after low-resolution OCR uncertainty",
+      "timeRange": {
+        "start": 1.4,
+        "end": 212
+      },
+      "limitations": [
+        "26 sampled stills",
+        "presenter occludes parts of the board",
+        "some handwriting remains ambiguous"
+      ]
+    },
+    {
+      "id": "SRC-VISUAL-OBS",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/skill-run/targeted-evidence/visual-observations.json",
+      "kind": "human-checked visual observation ledger",
+      "producedBy": "manual inspection of representative, dense, targeted and high-resolution frames",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "limitations": [
+        "observations are bounded to sampled frames and source duration",
+        "uncertain handwriting is not promoted to fact"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO-SCAN",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a69d19c00000000090357d0.mp4",
+      "kind": "full-video audio stream and silence scan",
+      "producedBy": "ffprobe plus ffmpeg silencedetect at -45dB for 0.35 seconds",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "limitations": [
+        "cannot separate speech from continuous music, ambience or effects",
+        "no auditory semantic transcription beyond supplied speech subtitles"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 1.211,
+        "text": "开头展示饺子这条视频",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 1.211,
+        "end": 5.21,
+        "text": "只要你是个人类，你看懂之后如果拍不出来爆款，你过来扇我脸来，我们说",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 5.22,
+        "end": 7.64,
+        "text": "取其上者得其中，我们今天来用最简单最不绕弯子",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 7.64,
+        "end": 9.73,
+        "text": "最直白的方法告诉你百万爆款是怎样练成的",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 9.73,
+        "end": 13.47,
+        "text": "第一步我都不讲底层逻辑，我讲是什么，百万爆款是什么？第一点是必要条件",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 13.48,
+        "end": 15.944,
+        "text": "首先第一点就是用户要能看懂你这条视频",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 15.944,
+        "end": 19.64,
+        "text": "也就是说理解成本要低，第二点呢就是说链接的群体要足够大",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 19.65,
+        "end": 21.766,
+        "text": "就是和这条视频有关的人要足够多",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 21.766,
+        "end": 26,
+        "text": "第三点就是满足用户点开平台的需求，不管是什么样的社交媒体平台",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 26.01,
+        "end": 28.606,
+        "text": "用户点开就两种需求，一个是调动情绪",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 28.606,
+        "end": 33.34,
+        "text": "第二点是获得信息，第四点呢就是你这条视频如果要想成为爆款，还有",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 33.35,
+        "end": 34.882,
+        "text": "互动不是点赞也不是收藏",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 34.882,
+        "end": 37.528,
+        "text": "就是用户刷到之后想评论就是要么是共情说",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 37.528,
+        "end": 41.43,
+        "text": "唉，我也这样，要么是反驳就是跟你吵架，那么第二种就是想转",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 41.44,
+        "end": 43.163,
+        "text": "发或者是在评论区艾特他的朋友",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 43.163,
+        "end": 44.271,
+        "text": "就是去分享去裂变主",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 44.271,
+        "end": 45.625,
+        "text": "说完了之后我们来讲类型",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 45.625,
+        "end": 48.95,
+        "text": "不管你是什么博主，你是什么行业，一共就三种类型，第一种",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 48.96,
+        "end": 54.165,
+        "text": "的万古同悲醒，极致的共情就是你这条视频的核心表达是尽可能大的情感记忆",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 54.165,
+        "end": 57.38,
+        "text": "那你要问我来i人说我的同理心特别弱怎么办？",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 57.39,
+        "end": 58.935,
+        "text": "你上过语文课吧，读过古诗词吧",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 58.935,
+        "end": 62.58,
+        "text": "我告诉你人类的情感记忆它到今天都是适用的，只不过可能有一点点的改变",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 62.59,
+        "end": 66.697,
+        "text": "那么我们这个共同情感记忆从大到小一定是家国苍生大于社会冷暖",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 66.697,
+        "end": 72.08,
+        "text": "大于生死离别，大于人生失意约等于壮志豪情，大于父母子女约等于男女情爱的，那么",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 72.09,
+        "end": 73.751,
+        "text": "第二种就是惊世骇俗",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 73.751,
+        "end": 79.29,
+        "text": "就是极度的猎奇或者震撼，那么这个呢就是要求的是我们的硬素材了",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005",
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 79.3,
+        "end": 80.633,
+        "text": "那么什么叫极致逆袭呢？",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 80.633,
+        "end": 83.058,
+        "text": "就是你有一个点和百分之九十九的人都不一样",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 83.058,
+        "end": 86.94,
+        "text": "那么什么叫极致震撼呢？就是你做的这个事儿百分之九十九的人都做不到",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 86.95,
+        "end": 88.873,
+        "text": "那么第三种视频呢，就是打破节奏",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 88.873,
+        "end": 91.694,
+        "text": "我现在就要告诉你为什么有的视频它爆的莫名其妙",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 91.694,
+        "end": 95.67,
+        "text": "一个人拍了一张小猫的照片，一放一放一个可爱bgm花一百多万点赞",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 95.68,
+        "end": 98.005,
+        "text": "难道这个世界已经被小动物统治了？",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 98.005,
+        "end": 102.22,
+        "text": "不是的，这是打破的节奏，那就是愉快中慢，愉繁中简，愉闹中静",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 102.23,
+        "end": 104.363,
+        "text": "你想想你刷短视频是什么样的一个氛围",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 104.363,
+        "end": 106.496,
+        "text": "你习惯了用快节奏的吵吵闹闹的bgm",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 106.496,
+        "end": 109.76,
+        "text": "突然一个视频它和别的视频都不一样，你是不是停下来了？",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 109.77,
+        "end": 111.324,
+        "text": "我们讲个最近的爆款话题啊",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 111.324,
+        "end": 112.748,
+        "text": "就是王宏得到了菲尔兹奖",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 112.748,
+        "end": 117.54,
+        "text": "他这个选题这么爆，就是因为他把前两个点都做到了，万古同悲和惊世骇俗都做到了",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 117.55,
+        "end": 119.87,
+        "text": "就是他这个话题里面有家国，有性别",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 119.87,
+        "end": 125.38,
+        "text": "有冲突，有互动，有惊世骇俗，而且这个事本身就是百分之九十九点九九九的人做不到",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 125.39,
+        "end": 127.926,
+        "text": "那么现在你知道了什么东西是爆款了",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 127.926,
+        "end": 131.73,
+        "text": "我们现在讲怎么做一个爆款，就两步，第一个是找选题",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 131.74,
+        "end": 133.742,
+        "text": "首先我建议你去看自己有什么",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 133.742,
+        "end": 135.898,
+        "text": "就是你有做过或者是你能做什么",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 135.898,
+        "end": 140.83,
+        "text": "百分之九十九点九九九的人都是没做过或者说做不到的事儿，第二点就是",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 140.84,
+        "end": 143.461,
+        "text": "你有什么特别特别大的优点和缺点",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 143.461,
+        "end": 148.18,
+        "text": "第三点就是你极度擅长什么事，我在这一点里面强调一个点叫",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 148.19,
+        "end": 149.314,
+        "text": "极致，但是没办法",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 149.314,
+        "end": 151.703,
+        "text": "我们很多人最极致的东西是极致的普通",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 151.703,
+        "end": 155.64,
+        "text": "这时候你怎么办？就是去看世界，就这三个和你有关的点啊就是",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 155.65,
+        "end": 161.72,
+        "text": "寻找愤怒，寻找忧愁，寻找矛盾，我们来到第二步也最后一步了，就是选形式就分两种",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 161.73,
+        "end": 164.433,
+        "text": "如果你这是个共情型视频，我就推荐你三种",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 164.433,
+        "end": 169.27,
+        "text": "一种是图片加bgm，一种是短的氛围感视频加bgm，一种是文案加bgm",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 169.28,
+        "end": 171.097,
+        "text": "这个文案可以是长文本的文案",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 171.097,
+        "end": 175.57,
+        "text": "也可以是口播，你会发现我这三个里面都提到了bgm，Bgm特别重要",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 175.58,
+        "end": 179.203,
+        "text": "Ok,我们现在讲第二种是讲特长或者讲特点的视频",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 179.203,
+        "end": 184.56,
+        "text": "就是一个要求，就是你要把这个事儿说清楚，完整叙事的中长视频，但是我们",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-060",
+        "start": 184.57,
+        "end": 185.954,
+        "text": "挑突出这两种打法",
+        "representativeFrame": "frames/cues/cue-060.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-061",
+        "start": 185.954,
+        "end": 190.28,
+        "text": "其实还有一个隐藏的莫名其妙的打法和在这画了一个问号",
+        "representativeFrame": "frames/cues/cue-061.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-062",
+        "start": 190.28,
+        "end": 192.53,
+        "text": "就是立刻马上结合热点去表达",
+        "representativeFrame": "frames/cues/cue-062.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-063",
+        "start": 192.54,
+        "end": 195.068,
+        "text": "这个表达甚至是无视深度，无视能力",
+        "representativeFrame": "frames/cues/cue-063.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-064",
+        "start": 195.068,
+        "end": 196.806,
+        "text": "无视文笔的这个底层逻辑",
+        "representativeFrame": "frames/cues/cue-064.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-065",
+        "start": 196.806,
+        "end": 201.39,
+        "text": "就是猪站在风口上面都能飞起来，就比如说你在前两天里面你只要",
+        "representativeFrame": "frames/cues/cue-065.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-066",
+        "start": 201.4,
+        "end": 203.389,
+        "text": "发了一个视频提到王红这两个字",
+        "representativeFrame": "frames/cues/cue-066.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-067",
+        "start": 203.389,
+        "end": 208.79,
+        "text": "就相当于你给人们提供了一个平台，让他们去讨论一样，如果这期视频你再看不懂的话",
+        "representativeFrame": "frames/cues/cue-067.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-068",
+        "start": 208.8,
+        "end": 213.786,
+        "text": "没有这种可能，你不可能看不懂，Ok下课，我是人类最善变的，我们下期再见",
+        "representativeFrame": "frames/cues/cue-068.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场指标拼贴",
+      "importance": "supporting",
+      "statement": "视频开头短暂叠加多个帖子式界面；可读数字包括10万+、3.7万、3080、832.7万、976.0万浏览、2903.0万浏览、101.8万和1358.0万浏览。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 1.15
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-01记录拼贴及可读数字。"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00017",
+          "supports": "OCR识别到开场标题。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "画面没有确认这些数字是否属于同一账号、平台、日期或发布者。"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "强保证与直白方法承诺",
+      "importance": "core",
+      "statement": "作者声称观众看懂后如果仍拍不出爆款可以来扇他脸，并承诺用最简单、最不绕弯、最直白的方法解释“百万爆款”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 1.211,
+        "end": 9.73
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "强保证措辞。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "方法承诺。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "百万爆款主题。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "这套讲法足以让人理解并拍出爆款。",
+        "evidenceUnitIds": [
+          "KU-01"
+        ],
+        "conditions": [
+          "观众能理解整套方法。"
+        ],
+        "counterexamples": [
+          "视频未展示应用失败的案例。"
+        ],
+        "actions": [
+          "按后续条件、机制与两步法制作。"
+        ],
+        "limits": [
+          "这是作者的修辞性保证，不是视频内验证过的结果。"
+        ]
+      },
+      "unknowns": [
+        "“百万”对应播放、点赞或其他指标未定义。"
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "拼贴只形成视觉框架",
+      "importance": "supporting",
+      "statement": "开场指标拼贴先于强保证出现，因此在剪辑上把高数据印象框定为后续承诺的视觉支撑；视频没有建立拼贴指标与所教方法之间的归属或因果链。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 9.73
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-01限定指标归属。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "拼贴后立即进入保证。"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "指标的真实来源、统计口径和生成方法未知。"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "必要条件一：低理解成本",
+      "importance": "core",
+      "statement": "作者把“用户能看懂”或理解成本低列为第一个必要条件。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 9.73,
+        "end": 19.64
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "引入必要条件。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "用户要能看懂。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "理解成本要低。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-05确认白板第一项。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "爆款必须让用户易于理解。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "内容面向能够接触到它的用户。"
+        ],
+        "counterexamples": [
+          "视频未讨论需要专业门槛的内容。"
+        ],
+        "actions": [
+          "降低理解成本。"
+        ],
+        "limits": [
+          "必要性的适用范围和阈值未验证。"
+        ]
+      },
+      "unknowns": [
+        "未给出衡量理解成本的测试方法。"
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "必要条件二：关联群体足够大",
+      "importance": "core",
+      "statement": "作者把与视频有关、能被链接到的群体足够大列为第二个必要条件。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 15.944,
+        "end": 21.766
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "提出链接群体要大。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "解释为有关的人足够多。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "潜在关联群体必须足够大。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "内容需要扩大传播。"
+        ],
+        "counterexamples": [
+          "视频未讨论小众高转化内容。"
+        ],
+        "actions": [
+          "选择与更多人有关的话题。"
+        ],
+        "limits": [
+          "群体规模阈值未知。"
+        ]
+      },
+      "unknowns": [
+        "“足够大”没有数量或平台基准。"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "必要条件三：情绪或信息需求",
+      "importance": "core",
+      "statement": "作者声称用户打开任何社交媒体平台只有两种需求：调动情绪或获得信息，并要求视频至少满足这一平台打开需求。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 21.766,
+        "end": 33.34
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "提出平台需求。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "调动情绪。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "获得信息。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "内容应满足调动情绪或获得信息之一。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "用户打开的是社交媒体平台。"
+        ],
+        "counterexamples": [
+          "视频未考虑社交维系、交易、工具性操作等可能目标。"
+        ],
+        "actions": [
+          "明确内容提供的情绪或信息价值。"
+        ],
+        "limits": [
+          "“任何平台只有两种需求”是作者概括。"
+        ]
+      },
+      "unknowns": [
+        "二分法是否穷尽所有用户需求未论证。"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "必要条件四：评论或分享式互动",
+      "importance": "core",
+      "statement": "作者在本视频中把互动限定为：想评论（共情“我也这样”或反驳争论），或想转发、在评论区艾特朋友，进而分享和裂变；他明确说这里的互动不是点赞或收藏。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 28.606,
+        "end": 44.271
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "引入第四点。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "排除点赞收藏。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "评论与共情。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "反驳。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "转发或艾特。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "分享裂变。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-05记录白板分支。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "成为爆款还需要引发评论或分享式互动。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "平台提供评论、转发或艾特能力。"
+        ],
+        "counterexamples": [
+          "点赞或收藏高但评论转发低的内容被定义排除在此互动之外。"
+        ],
+        "actions": [
+          "设计可共情、可反驳或值得转发给朋友的触点。"
+        ],
+        "limits": [
+          "作者未提供互动率阈值或因果数据。"
+        ]
+      },
+      "unknowns": [
+        "这种互动定义是否适用于所有平台未知。"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "四项必要性的逻辑边界",
+      "importance": "supporting",
+      "statement": "视频把四项连续编号并称为必要条件，但没有明确证明四项必须同时成立、各项能否替代，或不同平台是否存在例外。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 9.73,
+        "end": 44.271
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "作者使用“必要条件”标签。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-05确认四项布局。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "四项的逻辑连接方式、阈值和例外均未知。"
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "三种机制总分支",
+      "importance": "core",
+      "statement": "作者称不论博主或行业，爆款类型一共三种；白板把它们分为万古同悲/极致共情、惊世骇俗和打破节奏。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 44.271,
+        "end": 88.873
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "从条件转入类型。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "声称一共三种。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-06确认白板三分支。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "所有行业的爆款可归入三种机制。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "讨论对象是作者所称的爆款短视频。"
+        ],
+        "counterexamples": [
+          "视频未检验无法归类的反例。"
+        ],
+        "actions": [
+          "先判断内容依赖共情、震撼或节奏反差。"
+        ],
+        "limits": [
+          "分类的外部完备性未知。"
+        ]
+      },
+      "unknowns": [
+        "三分法是否穷尽所有爆款机制未验证。"
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "机制一：尽可能大的共同情感记忆",
+      "importance": "core",
+      "statement": "作者把“万古同悲/极致共情”定义为让核心表达触及尽可能大的共同情感记忆；同理心弱时可借助古诗词中的人类情感记忆。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 48.96,
+        "end": 62.58
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "定义极致共情。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "提出同理心弱的反问。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "建议借助古诗词。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "声称情感记忆延续至今。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "极致共情依靠广泛共同的情感记忆。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "受众能识别该情感记忆。"
+        ],
+        "counterexamples": [
+          "低共情题材或文化经验不同的受众可能不响应。"
+        ],
+        "actions": [
+          "从古诗词和人类情感记忆寻找表达。"
+        ],
+        "limits": [
+          "跨群体适用性未验证。"
+        ]
+      },
+      "unknowns": [
+        "如何识别“共同”与“尽可能大”未给出方法。"
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "作者给出的情感优先序",
+      "importance": "core",
+      "statement": "作者给出的从大到小顺序是：家国苍生 > 社会冷暖 > 生死离别 > 人生失意 ≈ 壮志豪情 > 父母子女 ≈ 男女情爱。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 62.59,
+        "end": 72.08
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "优先序前半。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "优先序后半。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "共同情感记忆存在作者所列的稳定大小顺序。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "题材和受众可沿同一维度比较。"
+        ],
+        "counterexamples": [
+          "视频未提供跨群体或平台反例。"
+        ],
+        "actions": [
+          "优先考虑序列靠前的共同情感。"
+        ],
+        "limits": [
+          "排序仅由作者陈述，未用数据验证。"
+        ]
+      },
+      "unknowns": [
+        "“大”是受众规模、情绪强度还是传播潜力未定义。"
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "情感排序的验证缺口",
+      "importance": "supporting",
+      "statement": "视频没有给出排序样本、测量指标、平台差异或受众分层，因此不能把该序列升级为普遍规律。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 58.935,
+        "end": 72.08
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "作者仅口头断言长期适用。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "直接使用“一定”。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "排序依据、适用平台、受众与时间范围未知。"
+      ]
+    },
+    {
+      "id": "KU-13",
+      "title": "机制二：硬素材制造猎奇或震撼",
+      "importance": "core",
+      "statement": "作者把“惊世骇俗”定义为极度猎奇或震撼并要求硬素材；所谓极致逆袭是有一点与99%的人不同，极致震撼是做了99%的人做不到的事。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 72.09,
+        "end": 86.94
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "机制名称。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "硬素材条件。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "99%不同。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "99%做不到。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "罕见差异或多数人做不到的硬素材可形成惊世骇俗。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "素材真实且观众能感知其稀缺性。"
+        ],
+        "counterexamples": [
+          "常见素材仍可能因表达方式传播。"
+        ],
+        "actions": [
+          "寻找极端逆袭、稀缺差异或极难成就。"
+        ],
+        "limits": [
+          "稀缺比例与真实性核验流程未知。"
+        ]
+      },
+      "unknowns": [
+        "99%是修辞阈值，视频未提供测量方式。"
+      ]
+    },
+    {
+      "id": "KU-14",
+      "title": "机制三：以反常节奏触发停留",
+      "importance": "core",
+      "statement": "作者把“打破节奏”解释为相对短视频常态做相反选择：快中慢、繁中简、闹中静；他声称差异会让用户停下来。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 86.95,
+        "end": 109.76
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "机制名称。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "三组反差。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "平台氛围前提。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "快和吵闹的常态。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "作者声称触发停留。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-06记录板书短标签。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "与平台常态相反的节奏会让用户停留。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "用户已习惯快、繁、闹的内容流。"
+        ],
+        "counterexamples": [
+          "当平台常态本就慢、简、静时反差方向可能不同。"
+        ],
+        "actions": [
+          "识别当前内容流常态并在速度、复杂度或声场上反向设计。"
+        ],
+        "limits": [
+          "因果关系未用留存数据验证。"
+        ]
+      },
+      "unknowns": [
+        "没有展示留存曲线或对照实验。"
+      ]
+    },
+    {
+      "id": "KU-15",
+      "title": "小猫加可爱BGM案例",
+      "importance": "supporting",
+      "statement": "作者举例称有人拍一张小猫照片、配可爱BGM，获得一百多万点赞，并把结果归因于打破节奏而非“小动物统治世界”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 88.873,
+        "end": 102.22
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "引入莫名其妙爆款。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "小猫、BGM与点赞数字。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "反问。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "给出节奏归因。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "案例来源、账号、时间、平台、原帖和指标截图均未展示。"
+      ]
+    },
+    {
+      "id": "KU-16",
+      "title": "小猫案例不能充当验证",
+      "importance": "supporting",
+      "statement": "全片视觉范围未出现实际小猫素材或可归属的案例页面，因此视频内部只能确认作者讲了这个例子，不能确认案例数据或节奏反差的因果。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 88.873,
+        "end": 109.76
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-12记录全片未出现小猫案例与可归属分析页。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "原案例是否存在以及结果为何发生未知。"
+      ]
+    },
+    {
+      "id": "KU-17",
+      "title": "热点人名的内部冲突",
+      "importance": "context",
+      "statement": "约112秒白板与烧录字幕显示“王虹”，而提供的SRT在CUE-039写“王宏”、CUE-066写“王红”；视频内部支持可见字形“王虹”，但没有身份卡或外部来源确认具体人物。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 100,
+        "end": 203.389
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-07记录白板/烧录字幕与SRT冲突。"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00585",
+          "supports": "烧录字幕OCR读为王虹。"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01030",
+          "supports": "后段烧录字幕OCR读为王虹。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "具体人物身份和事件事实没有在视频内部独立确认。"
+      ]
+    },
+    {
+      "id": "KU-18",
+      "title": "菲尔兹奖话题被映射到前两种机制",
+      "importance": "core",
+      "statement": "作者声称该热点话题之所以爆，是同时做到了万古同悲与惊世骇俗；他列出的传播维度是家国、性别、冲突、互动、猎奇/震撼，以及一个99.999%的人做不到的成就。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 109.77,
+        "end": 125.38
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "引入最近热点。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "SRT中的奖项陈述。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "合并前两个机制。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "家国与性别。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "冲突、互动、震撼与稀缺成就。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-07确认白板把王虹连到①+②。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "该热点同时具备极致共情与惊世骇俗，因此传播。",
+        "evidenceUnitIds": [
+          "KU-10",
+          "KU-13"
+        ],
+        "conditions": [
+          "作者列出的家国、性别、冲突、互动和稀缺成就确实存在并被受众感知。"
+        ],
+        "counterexamples": [
+          "视频未展示没有这些维度却传播的对照案例。"
+        ],
+        "actions": [
+          "分析热点是否同时覆盖广泛情感和稀缺震撼。"
+        ],
+        "limits": [
+          "这是作者对单个热点的事后归因，且人物事实未确认。"
+        ]
+      },
+      "unknowns": [
+        "人物、获奖事件和传播数据未外部验证。"
+      ]
+    },
+    {
+      "id": "KU-19",
+      "title": "热点案例的证据边界",
+      "importance": "supporting",
+      "statement": "视频没有展示奖项来源、原帖、账号、发布日期、传播数据或选择这个案例的验证过程。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 109.77,
+        "end": 125.38
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-12记录全片缺失奖项来源和可归属分析页。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "例子是否准确、是否代表一般规律未知。"
+      ]
+    },
+    {
+      "id": "KU-20",
+      "title": "从定义转入两步制作法",
+      "importance": "core",
+      "statement": "作者把制作方法压缩为两步：第一步找选题，第二步选形式。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 125.39,
+        "end": 161.72
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "收束“什么是爆款”。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "引入两步并命名第一步。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "命名第二步。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-08与VO-09确认右侧两层结构。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "制作爆款可按找选题、选形式两步推进。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "创作者能够识别自己的素材或外部情绪点。"
+        ],
+        "counterexamples": [
+          "隐藏热点打法随后被作为例外提出。"
+        ],
+        "actions": [
+          "先定题，再按表达目标定形式。"
+        ],
+        "limits": [
+          "没有展示从输入到发布结果的复现过程。"
+        ]
+      },
+      "unknowns": [
+        "视频讲解决策树，但没有现场执行一次完整制作。"
+      ]
+    },
+    {
+      "id": "KU-21",
+      "title": "找选题：先看自身的极致",
+      "importance": "core",
+      "statement": "作者建议先检查自身：做过或能做什么是99.999%的人没做过或做不到的，有什么特别大的优点或缺点，极度擅长什么；共同标准是“极致”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 131.74,
+        "end": 149.314
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "先看自己。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "经历或能力。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "稀缺门槛。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "巨大优缺点。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "极度擅长。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "强调极致。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "自身极端稀缺的经历、特征或能力可作为选题输入。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "创作者确有可陈述且可验证的极端特征。"
+        ],
+        "counterexamples": [
+          "多数人没有稀缺素材。"
+        ],
+        "actions": [
+          "盘点经历、能力、巨大优缺点和强项。"
+        ],
+        "limits": [
+          "99.999%门槛是作者修辞，未测量。"
+        ]
+      },
+      "unknowns": [
+        "稀缺性如何调查或验证未说明。"
+      ]
+    },
+    {
+      "id": "KU-22",
+      "title": "找选题的普通人回退分支",
+      "importance": "core",
+      "statement": "当创作者最极致的特征只是“极致的普通”，作者让其转而看世界，寻找与自己有关的愤怒、忧愁和矛盾。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 149.314,
+        "end": 161.72
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "极致的普通。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "转向看世界。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "愤怒、忧愁、矛盾。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-08确认看自己/看世界分支。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "缺少稀缺自身素材时，应从外部愤怒、忧愁、矛盾找题。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "创作者能与所选外部议题建立真实关联。"
+        ],
+        "counterexamples": [
+          "无关蹭题可能削弱可信度。"
+        ],
+        "actions": [
+          "扫描与自己有关的愤怒、忧愁、矛盾。"
+        ],
+        "limits": [
+          "筛选、核验和伦理边界未说明。"
+        ]
+      },
+      "unknowns": [
+        "如何证明外部情绪点“与自己有关”以及如何选出一个未说明。"
+      ]
+    },
+    {
+      "id": "KU-23",
+      "title": "共情目标对应三种BGM形式",
+      "importance": "core",
+      "statement": "若目标是共情，作者推荐图片+BGM、短氛围感视频+BGM、文案+BGM；文案可以是长文本或口播，并强调三种形式都依赖BGM。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 161.73,
+        "end": 175.57
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "共情型条件。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "三种形式。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "长文本。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "口播与BGM重要性。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-09确认白板三种形式。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "共情表达可选图片、氛围短视频或文案，并用BGM承载情绪。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "内容目标确为共情且使用环境允许音乐。"
+        ],
+        "counterexamples": [
+          "无声观看或版权限制场景未讨论。"
+        ],
+        "actions": [
+          "从三种载体中选择，并配置BGM。"
+        ],
+        "limits": [
+          "视频没有给出音乐选择参数或效果验证。"
+        ]
+      },
+      "unknowns": [
+        "BGM风格、音量、节拍、版权和无障碍替代方案未说明。"
+      ]
+    },
+    {
+      "id": "KU-24",
+      "title": "特长/特点对应完整叙事中长视频",
+      "importance": "core",
+      "statement": "若目标是讲特长或特点，作者给出的唯一要求是把事情说清楚，使用完整叙事的中长视频。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 175.58,
+        "end": 184.56
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "特长/特点条件。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "说清楚与完整叙事中长视频。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-09确认白板分支。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "特长或特点题材适合完整叙事的中长视频。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "题材需要通过过程或上下文说明清楚。"
+        ],
+        "counterexamples": [
+          "短视频也可能说明清楚，但视频未比较。"
+        ],
+        "actions": [
+          "组织完整叙事并把事情说清楚。"
+        ],
+        "limits": [
+          "时长与叙事模板未知。"
+        ]
+      },
+      "unknowns": [
+        "中长的时长范围、叙事结构和验证标准未定义。"
+      ]
+    },
+    {
+      "id": "KU-25",
+      "title": "形式分支不是穷尽清单",
+      "importance": "supporting",
+      "statement": "作者说这里只“挑突出这两种打法”，因此共情与特长/特点是本片重点分支，不应被升级为所有形式的完整分类。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 184.57,
+        "end": 185.954
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "明确只突出两种打法。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "其他常规打法未列出。"
+      ]
+    },
+    {
+      "id": "KU-26",
+      "title": "问号下的隐藏热点捷径",
+      "importance": "core",
+      "statement": "在常规两步之后，作者揭示一个问号标出的隐藏打法：立刻、马上结合热点去表达。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 185.954,
+        "end": 192.53
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "隐藏打法和问号。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "立刻结合热点。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-10确认横线与问号边界。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "立即结合热点表达可作为常规两步法之外的捷径。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "热点仍处传播窗口内。"
+        ],
+        "counterexamples": [
+          "过时、无关或事实错误的跟进可能无效。"
+        ],
+        "actions": [
+          "快速发布与热点有关的表达。"
+        ],
+        "limits": [
+          "选择与核验流程未知。"
+        ]
+      },
+      "unknowns": [
+        "热点识别、时效窗口和适用平台未说明。"
+      ]
+    },
+    {
+      "id": "KU-27",
+      "title": "热点捷径主动降低质量要求",
+      "importance": "core",
+      "statement": "作者说这种表达甚至可以无视深度、能力和文笔，并用“猪站在风口上面都能飞起来”说明传播势能压过这些质量维度。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 192.54,
+        "end": 201.39
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-063",
+          "supports": "无视深度能力。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "无视文笔。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "风口比喻。"
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "强热点势能可以暂时压过深度、能力和文笔。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "进入热点窗口且内容能承接讨论。"
+        ],
+        "counterexamples": [
+          "错误信息、无关蹭题或平台降权可能失败。"
+        ],
+        "actions": [
+          "优先速度与议题相关性。"
+        ],
+        "limits": [
+          "质量与伦理代价未处理。"
+        ]
+      },
+      "unknowns": [
+        "没有讨论事实风险、声誉代价、同质化或热点退潮后的效果。"
+      ]
+    },
+    {
+      "id": "KU-28",
+      "title": "热点表达被解释为讨论场",
+      "importance": "supporting",
+      "statement": "作者举例说前两天只要视频提到“王虹”（可见字幕；SRT有异文），就等于给人们提供一个讨论平台。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 201.4,
+        "end": 208.79
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-066",
+          "supports": "SRT记录提到人名。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "讨论平台解释。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-07确认可见字形王虹。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "讨论是否产生、规模多大、是否转化为爆款未展示。"
+      ]
+    },
+    {
+      "id": "KU-29",
+      "title": "白板独立保存知识边界",
+      "importance": "supporting",
+      "statement": "白板空间把内容分成必要条件、三种机制、找选题、选形式，并用横线与问号把热点捷径置于常规分支之外。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 1.4,
+        "end": 203.5
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-04至VO-10记录各分区和边界。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "部分手写被讲者遮挡，精确措辞以口播为主。"
+      ]
+    },
+    {
+      "id": "KU-30",
+      "title": "面具讲者的指代边界",
+      "importance": "context",
+      "statement": "画面持续出现戴蜘蛛侠式红色面具、佩戴领夹麦并用笔指向白板的讲者；该人物在结尾靠近镜头后转身离场，视觉上承担匿名化课堂主持者角色。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 1.15,
+        "end": 213.809
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-03记录全片人物与布景连续性。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "面具后人物身份、IP授权和专业资质未知。"
+      ]
+    },
+    {
+      "id": "KU-31",
+      "title": "结尾身份字幕冲突",
+      "importance": "context",
+      "statement": "约212秒烧录字幕显示“我是人类最强编导”，而提供SRT的CUE-068写“我是人类最善变的”；可见文字只能支持其作为结尾自称或标签，不能独立证明身份或能力。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 208.8,
+        "end": 213.786
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-11记录冲突。"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01067",
+          "supports": "烧录字幕OCR为我是人类最强编导。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "保留SRT原文。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "真实账号名、身份与资质未知。"
+      ]
+    },
+    {
+      "id": "KU-32",
+      "title": "全片未展示的复现条件",
+      "importance": "supporting",
+      "statement": "在0–213.809秒完整范围的稠密与定向视觉检查中，未观察到可归属案例来源、结果后台、平台/账号门槛、选题验证、BGM参数或版权、发布界面、完整复现过程，也未出现可读的关注/购买/下载CTA卡；结尾只有口头下课与下期再见。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-VISUAL-OBS",
+          "supports": "VO-12记录范围受限的缺失项。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "音频之外的不可见元数据与外部材料不在视频范围内。"
+      ]
+    },
+    {
+      "id": "KU-33",
+      "title": "非语音音频作用未知",
+      "importance": "supporting",
+      "statement": "媒体文件有AAC立体声音轨，-45dB、0.35秒阈值的全片静音扫描未报告空段，但当前检查不能把持续口播与可能的底乐、环境声或音效可靠分离，因此不能确认本片是否在示范其BGM主张。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 213.809
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO-SCAN",
+          "supports": "全片技术扫描结果。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "非语音音频是否存在、类型、音量与叙事作用未知。"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "framed_as_support_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "关系证据：CUE-001"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "关系证据：CUE-002"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-08",
+      "relation": "member_of",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "关系证据：CUE-006"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "关系证据：CUE-007"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-06",
+      "relation": "decomposes_into",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "关系证据：CUE-009"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "关系证据：CUE-010"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "关系证据：CUE-011"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-07",
+      "relation": "realizes",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "关系证据：CUE-012"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "关系证据：CUE-013"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "关系证据：CUE-014"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "关系证据：CUE-015"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "关系证据：CUE-016"
+        }
+      ]
+    },
+    {
+      "from": "KU-11",
+      "to": "KU-10",
+      "relation": "operationalizes",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "关系证据：CUE-019"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "关系证据：CUE-023"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "关系证据：CUE-024"
+        }
+      ]
+    },
+    {
+      "from": "KU-13",
+      "to": "KU-13",
+      "relation": "condition_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "关系证据：CUE-026"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "关系证据：CUE-028"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "关系证据：CUE-029"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-14",
+      "relation": "author_claims_causes",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "关系证据：CUE-034"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "关系证据：CUE-035"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "关系证据：CUE-036"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "关系证据：CUE-037"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-09",
+      "relation": "author_claims_combines",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "关系证据：CUE-039"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "关系证据：CUE-040"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "关系证据：CUE-041"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "关系证据：CUE-042"
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-20",
+      "relation": "input_to",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "关系证据：CUE-045"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "关系证据：CUE-046"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "关系证据：CUE-047"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "关系证据：CUE-048"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "关系证据：CUE-049"
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-22",
+      "relation": "fallback_to",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "关系证据：CUE-050"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "关系证据：CUE-051"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "关系证据：CUE-052"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "关系证据：CUE-053"
+        }
+      ]
+    },
+    {
+      "from": "KU-23",
+      "to": "KU-20",
+      "relation": "chosen_when",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "关系证据：CUE-054"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "关系证据：CUE-055"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "关系证据：CUE-056"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "关系证据：CUE-057"
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-20",
+      "relation": "chosen_when",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "关系证据：CUE-058"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "关系证据：CUE-059"
+        }
+      ]
+    },
+    {
+      "from": "KU-26",
+      "to": "KU-28",
+      "relation": "author_claims_produces",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "关系证据：CUE-062"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "关系证据：CUE-065"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-066",
+          "supports": "关系证据：CUE-066"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "关系证据：CUE-067"
+        }
+      ]
+    },
+    {
+      "from": "KU-26",
+      "to": "KU-20",
+      "relation": "presented_after_as_shortcut_or_exception",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "关系证据：CUE-044"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "关系证据：CUE-053"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "关系证据：CUE-061"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "关系证据：CUE-062"
+        }
+      ]
+    },
+    {
+      "from": "KU-30",
+      "to": "KU-30",
+      "relation": "stands_in_for",
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "关系证据：SHOT-001"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-016",
+          "supports": "关系证据：SHOT-016"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "关系证据：CUE-068"
+        }
+      ]
+    },
+    {
+      "from": "KU-29",
+      "to": "KU-20",
+      "relation": "maps_to",
+      "evidence": [
+        {
+          "refType": "frame",
+          "ref": "DENSE-0005",
+          "supports": "关系证据：DENSE-0005"
+        },
+        {
+          "refType": "frame",
+          "ref": "DENSE-0053",
+          "supports": "关系证据：DENSE-0053"
+        },
+        {
+          "refType": "frame",
+          "ref": "DENSE-0066",
+          "supports": "关系证据：DENSE-0066"
+        },
+        {
+          "refType": "frame",
+          "ref": "DENSE-0076",
+          "supports": "关系证据：DENSE-0076"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-SPEECH",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-SUBTITLE",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-OPENING-MONTAGE",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-WHITEBOARD",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-GESTURE",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-REFERENT-SETTING",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-EDITING",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-NONSPEECH-AUDIO",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-ABSENCE",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02",
+          "KU-03"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-06",
+          "KU-07",
+          "KU-08"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-09"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-10",
+          "KU-11",
+          "KU-12"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-13"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-16"
+        ]
+      },
+      {
+        "id": "MC-08",
+        "captured": true,
+        "unitIds": [
+          "KU-17",
+          "KU-18",
+          "KU-19"
+        ]
+      },
+      {
+        "id": "MC-09",
+        "captured": true,
+        "unitIds": [
+          "KU-20",
+          "KU-21",
+          "KU-22"
+        ]
+      },
+      {
+        "id": "MC-10",
+        "captured": true,
+        "unitIds": [
+          "KU-23",
+          "KU-24",
+          "KU-25"
+        ]
+      },
+      {
+        "id": "MC-11",
+        "captured": true,
+        "unitIds": [
+          "KU-26",
+          "KU-27",
+          "KU-28",
+          "KU-29"
+        ]
+      },
+      {
+        "id": "MC-12",
+        "captured": true,
+        "unitIds": [
+          "KU-28",
+          "KU-30",
+          "KU-31"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-002"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-007"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-009",
+          "CUE-010",
+          "CUE-011"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-012",
+          "CUE-013",
+          "CUE-014",
+          "CUE-015",
+          "CUE-016"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-019",
+          "CUE-023",
+          "CUE-024"
+        ]
+      },
+      {
+        "id": "REL-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-026",
+          "CUE-028",
+          "CUE-029"
+        ]
+      },
+      {
+        "id": "REL-07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-034",
+          "CUE-035",
+          "CUE-036",
+          "CUE-037"
+        ]
+      },
+      {
+        "id": "REL-08",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-039",
+          "CUE-040",
+          "CUE-041",
+          "CUE-042"
+        ]
+      },
+      {
+        "id": "REL-09",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-045",
+          "CUE-046",
+          "CUE-047",
+          "CUE-048",
+          "CUE-049"
+        ]
+      },
+      {
+        "id": "REL-10",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-050",
+          "CUE-051",
+          "CUE-052",
+          "CUE-053"
+        ]
+      },
+      {
+        "id": "REL-11",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-054",
+          "CUE-055",
+          "CUE-056",
+          "CUE-057"
+        ]
+      },
+      {
+        "id": "REL-12",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-058",
+          "CUE-059"
+        ]
+      },
+      {
+        "id": "REL-13",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-062",
+          "CUE-065",
+          "CUE-066",
+          "CUE-067"
+        ]
+      },
+      {
+        "id": "REL-14",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-044",
+          "CUE-053",
+          "CUE-061",
+          "CUE-062"
+        ]
+      },
+      {
+        "id": "REL-15",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SHOT-001",
+          "SHOT-016",
+          "CUE-068"
+        ]
+      },
+      {
+        "id": "REL-16",
+        "evidenced": true,
+        "evidenceRefs": [
+          "DENSE-0005",
+          "DENSE-0053",
+          "DENSE-0066",
+          "DENSE-0076"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01",
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "SRC-VISUAL-OBS",
+          "OCR-00017"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-06",
+          "KU-07",
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-016",
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-09",
+          "KU-10",
+          "KU-13",
+          "KU-14",
+          "KU-16"
+        ],
+        "evidenceRefs": [
+          "CUE-018",
+          "CUE-019",
+          "CUE-025",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-11",
+          "KU-12"
+        ],
+        "evidenceRefs": [
+          "CUE-022",
+          "CUE-023",
+          "CUE-024"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-17",
+          "KU-18",
+          "KU-19"
+        ],
+        "evidenceRefs": [
+          "CUE-039",
+          "CUE-040",
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-20",
+          "KU-21",
+          "KU-22"
+        ],
+        "evidenceRefs": [
+          "CUE-044",
+          "CUE-053",
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-23",
+          "KU-24",
+          "KU-25"
+        ],
+        "evidenceRefs": [
+          "CUE-054",
+          "CUE-059"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-26",
+          "KU-27",
+          "KU-28"
+        ],
+        "evidenceRefs": [
+          "CUE-061",
+          "CUE-067",
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "answered",
+        "unitIds": [
+          "KU-29"
+        ],
+        "evidenceRefs": [
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-10",
+        "status": "answered",
+        "unitIds": [
+          "KU-30",
+          "KU-31"
+        ],
+        "evidenceRefs": [
+          "SHOT-001",
+          "SHOT-016",
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-11",
+        "status": "answered",
+        "unitIds": [
+          "KU-32"
+        ],
+        "evidenceRefs": [
+          "SRC-VISUAL-OBS"
+        ]
+      },
+      {
+        "id": "CQ-12",
+        "status": "unknown",
+        "unitIds": [
+          "KU-33"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO-SCAN"
+        ]
+      },
+      {
+        "id": "CQ-13",
+        "status": "answered",
+        "unitIds": [
+          "KU-01",
+          "KU-17",
+          "KU-31"
+        ],
+        "evidenceRefs": [
+          "OCR-00017",
+          "OCR-00585",
+          "OCR-01030",
+          "OCR-01067"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "context",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "开场文字保留，并以可见字形冲突限定SRT。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "context",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-12"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-12"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-12"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-12"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-16"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-16"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-16"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "context",
+        "unitIds": [
+          "KU-18"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "语义归入对应案例/结尾单元，同时保留烧录字幕与SRT冲突。"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "context",
+        "unitIds": [
+          "KU-20"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22",
+          "KU-20"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22",
+          "KU-20"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-22",
+          "KU-20"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-23"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-23"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-23"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-23"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-24"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-24"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-060",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-25"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-061",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-26"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-062",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-26"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-063",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-27"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-064",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-27"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-065",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-27"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-066",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-28"
+        ],
+        "rationale": "语义归入对应案例/结尾单元，同时保留烧录字幕与SRT冲突。"
+      },
+      {
+        "cueId": "CUE-067",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-28"
+        ],
+        "rationale": "该句的主张、条件、例子或转场已归入列出的知识单元。"
+      },
+      {
+        "cueId": "CUE-068",
+        "disposition": "context",
+        "unitIds": [
+          "KU-30",
+          "KU-31"
+        ],
+        "rationale": "语义归入对应案例/结尾单元，同时保留烧录字幕与SRT冲突。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 18,
+      "total": 18
+    },
+    "unknowns": [
+      "百万指标口径与方法成功率未知。",
+      "开场指标的账号、平台、日期、归属和因果未知。",
+      "四项必要条件的联合逻辑、阈值与平台例外未知。",
+      "三种机制与情感排序的普遍性未知。",
+      "小猫与菲尔兹奖案例的外部事实和传播数据未知。",
+      "人物真实身份、面具授权和结尾自称的资质未知。",
+      "BGM选择、音量、版权和本片非语音音频作用未知。",
+      "选题核验、发布、复现和结果测量过程未展示。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "两轮探针覆盖口播、SRT/烧录字幕、开场拼贴、白板结构、指向动作、角色与布景、剪辑顺序、音频通道和全时间线缺失项；12个意义变化与16个关系均映射到知识单元。非语音音频无法从现有技术扫描可靠分离，已作为显式未知而非未检查通道。"
+  }
+}

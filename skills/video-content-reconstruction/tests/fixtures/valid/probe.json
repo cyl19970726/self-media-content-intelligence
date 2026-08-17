@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "evidence-pack.json",
+  "viewerChange": {"before": "不知道操作路径", "after": "能复述设置到结果的状态变化", "intendedChanges": ["知道操作顺序", "辨认结果状态"]},
+  "carrierSweep": [
+    {"id": "SWEEP-001", "range": {"start": 0, "end": 5}, "cognitiveQuestion": "操作如何开始？", "observedSignals": ["speech", "UI state"], "checkedAlternatives": ["speech", "written text", "interface state", "motion"], "remainingUnknowns": [], "evidenceHints": ["CUE-001", "SHOT-001"]},
+    {"id": "SWEEP-002", "range": {"start": 5, "end": 10}, "cognitiveQuestion": "结果如何出现？", "observedSignals": ["speech", "result UI"], "checkedAlternatives": ["speech", "interface state", "motion"], "remainingUnknowns": [], "evidenceHints": ["CUE-002", "SHOT-002"]}
+  ],
+  "informationCarriers": [
+    {"id": "CAR-SPEECH", "name": "speech", "modalityKeys": ["speech"], "discoveredIn": ["SWEEP-001", "SWEEP-002"], "available": true, "inspected": true, "roles": ["names actions"], "intervals": [{"start": 0, "end": 10}], "omissionImpact": "lose action order"},
+    {"id": "CAR-UI", "name": "interface state", "modalityKeys": ["interface_state", "motion"], "discoveredIn": ["SWEEP-001", "SWEEP-002"], "available": true, "inspected": true, "roles": ["proves state change"], "intervals": [{"start": 0, "end": 10}], "omissionImpact": "lose before and after states"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-001", "range": {"start": 0, "end": 5}, "description": "setting is opened", "trigger": "UI state change", "evidenceHints": ["CUE-001", "SHOT-001"]},
+    {"id": "MC-002", "range": {"start": 5, "end": 10}, "description": "result is revealed", "trigger": "result state", "evidenceHints": ["CUE-002", "SHOT-002"]}
+  ],
+  "relationshipHypotheses": [{"id": "REL-001", "from": "MC-001", "to": "MC-002", "relation": "precedes", "evidenceHints": ["CUE-001", "CUE-002"]}],
+  "omissionRisks": [{"id": "RISK-001", "risk": "summary omits UI transition", "why": "speech alone does not prove state", "where": [{"start": 0, "end": 10}], "requiredFollowup": "capture before, during, after"}],
+  "criticalQuestions": [
+    {"id": "Q-001", "question": "先做什么？", "criticality": "critical", "evidenceHints": ["CUE-001"]},
+    {"id": "Q-002", "question": "结果是什么？", "criticality": "critical", "evidenceHints": ["CUE-002"]}
+  ],
+  "unresolved": []
+}

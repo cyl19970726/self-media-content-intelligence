@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-argument/skill-run/probe.json",
+  "protocolName": "Sora 成本—能力双论证与行动转向定向取证协议",
+  "rationale": "该视频不是操作演示，而是由两条相互连接的论证链推进：算力/随机性被用来支持价格与受众判断；正反样片被用来限制对物理与社会理解的判断。协议因此必须同时保留主张、作者给出的依据、条件、反例、未知与行动建议，并对依赖运动的正反例采样序列，对短时数字/来源截图作 OCR 审阅。",
+  "knowledgeUnitFields": [
+    {"name": "claim", "required": true, "reason": "核心内容由作者主张推进，必须避免把预测写成事实。", "derivedFrom": ["MC-01", "MC-03", "MC-05", "MC-07", "MC-10", "RISK-01", "CQ-01"]},
+    {"name": "authorProvidedEvidenceOrRationale", "required": true, "reason": "需要保留作者用于支持成本与能力结论的数字、采访转述、报道与样片。", "derivedFrom": ["REL-H01", "REL-H02", "REL-H06", "REL-H07", "CQ-02", "CQ-06"]},
+    {"name": "conditionOrAudienceAssumption", "required": true, "reason": "开放、定价、开源与目标受众结论都带有资源或行为条件。", "derivedFrom": ["MC-06", "REL-H04", "REL-H09", "CQ-05"]},
+    {"name": "example", "required": true, "reason": "海盗船水波是有限正例，工具/手机类比承接行动转向。", "derivedFrom": ["MC-07", "REL-H06", "REL-H10"]},
+    {"name": "counterexample", "required": true, "reason": "吹蜡烛失败限制了‘理解物理’的泛化结论。", "derivedFrom": ["MC-08", "REL-H07", "REL-H11", "RISK-04"]},
+    {"name": "proposedAction", "required": true, "reason": "视频最终对普通创作者的交付是使用现有工具、重视故事与个人魅力。", "derivedFrom": ["MC-11", "REL-H10", "RISK-06", "CQ-08"]},
+    {"name": "provenanceClass", "required": true, "reason": "转述数据、画面观察、作者预测与未知必须分开。", "derivedFrom": ["RISK-01", "RISK-02", "RISK-05", "CQ-03", "CQ-04", "CQ-09"]},
+    {"name": "boundedTimeRange", "required": true, "reason": "短时文字、数字和反转需要精确定位。", "derivedFrom": ["CAR-03", "CAR-04", "MC-03", "MC-08"]},
+    {"name": "limitsAndUnknowns", "required": true, "reason": "视频没有价格、失败率、样本量、提示词或完整外部核验，且作者明确说具体生成时间未知。", "derivedFrom": ["RISK-02", "RISK-04", "RISK-07", "CQ-04", "CQ-09"]},
+    {"name": "beforeDuringAfterVisualState", "required": true, "reason": "海盗船碰撞/水波与吹蜡烛结果不能由中点单帧证明。", "derivedFrom": ["CAR-06", "RISK-03", "CQ-06"]},
+    {"name": "verbatimCueMapping", "required": true, "reason": "55 个 cue 必须逐条保留原文、代表帧与所有重叠镜头。", "derivedFrom": ["RISK-08", "CAR-01", "CAR-02"]}
+  ],
+  "captureActions": [
+    {"id": "CAP-01", "range": {"start": 0.0, "end": 34.35}, "carrier": "标题、采访画面、同步字幕与开篇样片", "mode": "interval_density", "densitySeconds": 2.0, "reason": "捕捉核心 framing、采访转述与‘即将开放但多数人用不上’的张力。", "expectedObservation": "持久标题、受访者画面、年底前上线与成本/个人用户疑问的视觉配合。", "derivedFrom": ["CAR-02", "CAR-03", "CAR-04", "MC-01", "CQ-01"]},
+    {"id": "CAP-02", "range": {"start": 39.0, "end": 67.82}, "carrier": "模型介绍文字、Sora 示例片与比较画面", "mode": "interval_density", "densitySeconds": 2.0, "reason": "保留作者先承认的能力与样片印象，防止只写批评。", "expectedObservation": "文生视频模型/一分钟等画内文字、连续示例和与 Runway/Pika 的比较蒙太奇。", "derivedFrom": ["CAR-03", "CAR-05", "MC-02", "REL-H11"]},
+    {"id": "CAP-03", "range": {"start": 68.0, "end": 79.7}, "carrier": "算力估算表与短时参数文字", "mode": "ocr_review", "times": [68.8, 70.5, 72.5, 74.5, 76.0, 78.5], "reason": "区分第三方推理中的 8 张 A100/一分钟/三小时以上及其画内呈现。", "expectedObservation": "估算截图及 A100、时长、生成耗时等可见字段；若细字不可读则保留未知。", "derivedFrom": ["CAR-03", "CAR-04", "MC-03", "RISK-01", "CQ-03"]},
+    {"id": "CAP-04", "range": {"start": 79.6, "end": 87.7}, "carrier": "CTO 采访画面与同步字幕", "mode": "exact_times", "times": [80.0, 82.0, 84.0, 86.2], "reason": "分离 20 秒 720p/几分钟的采访转述与作者的明确未知。", "expectedObservation": "采访受访者、20 秒/720p/几分钟字幕，以及‘具体时间不得而知’。", "derivedFrom": ["CAR-04", "MC-03", "MC-04", "CQ-03"]},
+    {"id": "CAP-05", "range": {"start": 87.8, "end": 105.6}, "carrier": "随机生成示例、提示/结果界面与抽卡类比", "mode": "interval_density", "densitySeconds": 1.5, "reason": "核对画面只支持‘随机/需多次’的作者论证，而不产生不存在的失败率。", "expectedObservation": "多个怪诞生成结果、短暂界面和约会类比；没有可验证成功率或价格表。", "derivedFrom": ["REL-H02", "RISK-02", "CQ-02", "CQ-04"]},
+    {"id": "CAP-06", "range": {"start": 99.4, "end": 122.5}, "carrier": "投资额访谈/文字、GDP 对比与估值图形", "mode": "ocr_review", "times": [100.0, 103.0, 105.5, 108.0, 111.0, 114.0, 118.0, 121.0], "reason": "保留 5–7 万亿美元、GDP 比较、2 万亿估值在论证链中的不同角色，避免合成量化因果。", "expectedObservation": "Sam Altman 片段、$5–$7 trillion 字样、GDP/增长图与 2 万亿画内说法。", "derivedFrom": ["CAR-04", "MC-05", "RISK-01", "CQ-10"]},
+    {"id": "CAP-07", "range": {"start": 122.3, "end": 142.3}, "carrier": "用电报道截图、开放/订阅预测与开源条件", "mode": "ocr_review", "times": [123.0, 125.0, 127.0, 129.0, 132.0, 134.5, 137.0, 140.0, 142.0], "reason": "区分报道数字、作者预测和开源降价条件。", "expectedObservation": "50 万千瓦相关报道截图、Sora 更高的作者推断、开放/昂贵预测以及社区参与降价的条件。", "derivedFrom": ["MC-05", "MC-06", "REL-H03", "REL-H04", "RISK-05", "CQ-05", "CQ-10"]},
+    {"id": "CAP-08", "range": {"start": 142.0, "end": 147.0}, "carrier": "CloseAI 讽刺蒙太奇与字幕", "mode": "exact_times", "times": [142.5, 144.0, 145.5, 146.5], "reason": "记录作者否定开源路径时使用的是讽刺和价值判断。", "expectedObservation": "CloseAI 引文/人物画面与‘开源不切实际’字幕。", "derivedFrom": ["CAR-07", "MC-06", "REL-H05", "CQ-05"]},
+    {"id": "CAP-09", "range": {"start": 152.7, "end": 163.0}, "carrier": "海盗船碰撞与水波运动", "mode": "motion_sequence", "times": [153.0, 154.5, 156.0, 157.5, 159.0, 160.5, 162.0], "reason": "正例依赖碰撞前、碰撞中和水面变化后状态。", "expectedObservation": "杯中两艘船的相对运动/接触以及水面波纹变化；只能描述可见表现，不推断模型内部理解。", "derivedFrom": ["CAR-05", "CAR-06", "MC-07", "REL-H06", "RISK-03", "CQ-06"]},
+    {"id": "CAP-10", "range": {"start": 162.8, "end": 173.1}, "carrier": "吹蜡烛失败的动作与结果", "mode": "before_during_after", "times": [163.2, 165.0, 166.5, 168.0, 169.5, 171.0, 172.5], "reason": "反例必须证明动作发生后火焰/蜡烛状态，没有序列就无法支持作者评价。", "expectedObservation": "吹气前、吹气动作和之后蜡烛/火焰是否仍在的状态。", "derivedFrom": ["CAR-05", "CAR-06", "MC-08", "REL-H07", "RISK-03", "CQ-06"]},
+    {"id": "CAP-11", "range": {"start": 173.0, "end": 188.0}, "carrier": "社会行为设问与品牌选择例子", "mode": "interval_density", "densitySeconds": 1.5, "reason": "确认这是需求/设问而不是模型测试结果。", "expectedObservation": "人物/品牌相关例子与口播字幕，没有 Sora 实际答案或测试界面。", "derivedFrom": ["MC-09", "REL-H08", "RISK-07", "CQ-07"]},
+    {"id": "CAP-12", "range": {"start": 188.0, "end": 202.0}, "carrier": "总结受众、资金蒙太奇与 AGI 主张", "mode": "interval_density", "densitySeconds": 1.5, "reason": "区分成本导出的目标受众判断与‘AGI 大脑’这一未被证明的扩大主张。", "expectedObservation": "普通用户/大型影视广告内容公司视觉对比及 Sora/AGI 画面。", "derivedFrom": ["MC-10", "REL-H09", "RISK-05", "CQ-01", "CQ-09"]},
+    {"id": "CAP-13", "range": {"start": 202.0, "end": 224.4}, "carrier": "替代工具名、手机类比、故事与个人魅力结论", "mode": "interval_density", "densitySeconds": 1.5, "reason": "捕捉由高门槛批评转向当下行动的完整结尾。", "expectedObservation": "Runway、Pika、SVD 等名字/蒙太奇、手机创作画面，以及故事/自我魅力的字幕。", "derivedFrom": ["CAR-03", "CAR-07", "MC-11", "REL-H10", "RISK-06", "CQ-08"]}
+  ],
+  "requiredRelations": [
+    {"relation": "compute_demand claim_supported_by cost_barrier", "derivedFrom": ["REL-H01", "CQ-02"]},
+    {"relation": "random_retry burden claim_supported_by cost_barrier", "derivedFrom": ["REL-H02", "CQ-02"]},
+    {"relation": "compute_gap framed_as_causing limited_opening_or_high_price", "derivedFrom": ["REL-H03", "RISK-05"]},
+    {"relation": "partial_open_source condition_for price_reduction", "derivedFrom": ["REL-H04", "CQ-05"]},
+    {"relation": "author_view_of_OpenAI claim_negates_feasibility_of open_source_path", "derivedFrom": ["REL-H05", "CQ-05"]},
+    {"relation": "pirate_ship_motion example_supports partial_physics_behavior", "derivedFrom": ["REL-H06", "CQ-06"]},
+    {"relation": "candle_failure counterexample_limits reliable_physics_understanding", "derivedFrom": ["REL-H07", "CQ-06"]},
+    {"relation": "brand_choice hypothetical example_of_requirement_not_proof", "derivedFrom": ["REL-H08", "CQ-07"]},
+    {"relation": "resource_threshold maps_to target_audience", "derivedFrom": ["REL-H09", "CQ-01"]},
+    {"relation": "available_tools_and_phone enable proposed_action_of_storytelling", "derivedFrom": ["REL-H10", "CQ-08"]},
+    {"relation": "positive_examples setup_to counterexample_and_limited_conclusion", "derivedFrom": ["REL-H11", "RISK-04"]}
+  ],
+  "stoppingRules": [
+    "全部 10 个 critical questions 均有可追溯答案或被明确标为视频未建立。",
+    "全部 11 个 meaningChanges 均已由 cue、shot、已有 frame ID 或 targeted frame 检查。",
+    "所有 available=true 的载体均被检查；available=false 的操作流程与外部证据通道不得被补写。",
+    "每个 requiredRelation 的两端都有证据，或关系被明确降级为作者 framing 而非事实因果。",
+    "海盗船与吹蜡烛两段均取得 before/during/after 或 motion sequence，不用单帧代替动作证明。",
+    "8 张 A100、20 秒 720p、5–7 万亿美元、50 万千瓦、2 万亿等数字均保留各自来源角色和未知，不拼成未展示的量化模型。",
+    "全部 55 个逐字稿 cue 逐字复制，并带 representativeFrame 与 every overlappingShots。",
+    "元问题‘原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？’的答案为没有；若发现遗漏则返回协议补采。"
+  ],
+  "declaredUnknowns": [
+    "platform_srt 是否与音轨逐字一致。",
+    "Sora 实际公开价格、订阅费、失败率、可用率与普通用户确切开放日期。",
+    "不同算力/耗时说法的完整假设及可比性。",
+    "报道与截图的外部真实性和完整上下文。",
+    "用电、芯片投资、估值与单次生成成本之间的量化因果关系。",
+    "样片的提示词、参数、筛选过程、样本量和代表性。",
+    "品牌选择问题中 Sora 的真实回答或表现。",
+    "‘未来 AGI 的大脑’的定义与证据。",
+    "Runway、Pika、SVD 等替代工具在视频制作时点的价格、能力与适用条件。"
+  ]
+}

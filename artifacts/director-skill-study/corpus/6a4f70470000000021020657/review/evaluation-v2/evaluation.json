@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {"auditIds": ["Q01", "Q02", "Q11"], "result": "answered", "candidateUnits": ["KU-01", "KU-02", "KU-09", "KU-10", "KU-12", "KU-13"], "note": "Audience, promised capability map, and concrete training actions are explicit."},
+        {"auditIds": ["Q14", "Q16"], "result": "answered", "candidateUnits": ["KU-14", "KU-17"], "note": "The unresolved hierarchy and visible identity/social-proof conflict are preserved."},
+        {"auditIds": ["Q15", "Q17"], "result": "correctly_unknown", "candidateUnits": ["KU-16", "KU-18", "KU-21"], "note": "No performance validation or general scope/exception boundary is invented."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {"auditIds": ["K01", "K02", "K03", "K04", "K05"], "candidateUnits": ["KU-01", "KU-02", "KU-03", "KU-04"], "result": "covered_with_resolvable_cue_and_ocr_evidence"},
+        {"auditIds": ["K06", "K07", "K08", "K09", "K10"], "candidateUnits": ["KU-05", "KU-06", "KU-07", "KU-08", "KU-09"], "result": "script order, limitation, rhythm/language, browse contrast, and generalist repertoire are preserved"},
+        {"auditIds": ["K11", "K12", "K13", "K14", "K15"], "candidateUnits": ["KU-10", "KU-11", "KU-12", "KU-13", "KU-14"], "result": "material library, speed benchmark, mental filmmaking, feed diversification, and hierarchy conflict are covered"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 16,
+      "examples": [
+        {"candidateUnit": "KU-14", "result": "supported", "note": "SRT/burned-caption conflicts and the unclear opening phrase are explicitly compared with reasoning."},
+        {"candidateUnit": "KU-17", "result": "supported", "note": "Opening montage values and the watermark/final-caption conflict are bounded as visual observations, not proof of qualifications."},
+        {"candidateUnits": ["KU-03", "KU-04"], "result": "supported_as_author_claim", "note": "The 2021-to-2026 decline example and high-sensitivity suitability are not promoted to verified facts."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 23,
+      "denominator": 23,
+      "examples": [
+        {"scope": "one independently checked evidence localization per knowledge unit", "result": "23/23 localized inside or appropriately spanning the declared unit range"},
+        {"candidateUnits": ["KU-07", "KU-09"], "result": "correct", "note": "The early critique of mechanical breakdown and later 'browse more' instruction are no longer joined by an out-of-range cue."},
+        {"candidateUnit": "KU-17", "result": "correct", "note": "Opening montage and closing identity-caption evidence are represented with full-timeline scope and targeted frames at the actual endpoints."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "All audited dependencies are represented: operational trend tests remain unknown (D01); skipping detailed scripts is limited by unstated collaboration/complexity conditions (D02); fast retrieval preserves library/review and unknown indexing (D03); feed diversification preserves unknown interactions/time/account/platform behavior (D04); training effectiveness preserves the missing baseline/exercise/rubric/post-measure chain (D05)."
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 11,
+      "examples": [
+        {"auditIds": ["U01", "U02", "U03"], "candidateUnits": ["KU-14", "KU-17"], "result": "identity, metric attribution, and curriculum hierarchy remain bounded unknowns"},
+        {"auditIds": ["U04", "U05", "U06", "U07"], "candidateUnits": ["KU-23", "KU-03", "KU-04", "KU-18", "KU-19"], "result": "trend tests, empirical basis, scripting exceptions, and productive-browsing threshold are withheld"},
+        {"auditIds": ["U08", "U09", "U10", "U11"], "candidateUnits": ["KU-11", "KU-20", "KU-21"], "result": "benchmark validity, feed operations/effect, training effect, and non-speech-audio meaning are correctly unknown"}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Fresh comparison against the independent audit found no unguarded closure. Speech/SRT, burned captions/OCR, whiteboard, opening metric montage, presenter/gesture/set, editing order, and non-speech audio are inspected or explicitly registered unknown. The opening promise-to-closing training relation, unresolved four-versus-three hierarchy, critique-versus-later breadth-training contrast, mental-picture prerequisite, library-to-retrieval dependency, and feed-diversification dependency are all represented."
+  },
+  "examples": [
+    {"type": "strength", "detail": "The repair reconstructs the opening metric montage while refusing to infer account ownership, capture time, or qualification."},
+    {"type": "strength", "detail": "The formerly over-broad breakdown unit is split so the early critique and later training instruction have accurate time evidence."},
+    {"type": "residual_non_gate_issue", "detail": "The candidate coverage matrix uses 14 probe-derived CQ identifiers rather than the audit's 17 Q identifiers; independent semantic mapping closes all 17 audit questions."}
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能把 vlog 理解成按时间记录日常，缺少从受众需求、平台偏好、内容主线、IP塑造与包装钩子来设计视频的判断框架。",
+    "after": "观众被引导用一组相互依赖的判断来设计 vlog：先选择要满足的用户需求，再兼顾作者所称的平台偏好，区分内容素材与叙事方式，持续塑造可识别的 IP，并用标题或 slogan 放大进入故事的理由；同时需要知道这些是作者主张和示例，不是被视频独立验证的普遍规律。",
+    "intendedChanges": [
+      "从流水账式记录转向需求驱动的 vlog 产品设计",
+      "能区分用户需求、平台偏好、vlog组织方式、硬素材、IP与包装钩子的不同作用",
+      "能把例子理解为作者用来说明规则的参照，而非视频已经证明的因果事实",
+      "区分身份回声与结果承诺兑现：结尾重复作者自称，但没有演示、复盘、限定、保证或明确兑现开头‘流水账变爆款’的承诺"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 9.632},
+      "cognitiveQuestion": "作者如何建立身份、结果承诺与本期目标？",
+      "observedSignals": ["字幕声称两条视频起号两万并自称‘人类最强编导’", "开头插入一个名为‘人类最强编导’的账号页", "蜘蛛侠面罩、皮衣、白板与直视镜头的表演形成持续人物设定", "烧录字幕与提供字幕在目标受众措辞上疑似冲突"],
+      "checkedAlternatives": ["provided subtitles", "cue frames", "dense frames", "inserted profile UI", "burned captions", "presenter gesture", "environment/set", "audio-stream metadata"],
+      "remainingUnknowns": ["‘两条视频起号两万’所依据的指标口径与后台证据未呈现", "开头账号页中的小字、数据与视频缩略图尚未逐行核对", "CUE-003 的若干 ASR 词与烧录字幕/可听语音的准确形式尚待冲突取证", "背景音乐或音效的叙事作用无法由静帧和字幕确定"],
+      "evidenceHints": ["CUE-001", "CUE-002", "CUE-003", "CUE-004", "DENSE-0001", "DENSE-0002", "SHOT-001"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 9.632, "end": 25.408},
+      "cognitiveQuestion": "作者把 vlog 用户需求分成哪些动机，例子如何挂接？",
+      "observedSignals": ["口播列出好奇、陪伴、造梦三类需求", "白板承担列表与例词的结构载体", "作者用国外生活/环球旅行/小众工作、上学/实习/打工人/宝妈、高知/小资/自由作例"],
+      "checkedAlternatives": ["provided subtitles", "cue frames", "dense frames", "whiteboard layout", "burned captions", "gestural pointing"],
+      "remainingUnknowns": ["白板小字是否包含口播之外的限定或附加例子", "这些三分法的来源、覆盖范围与互斥性未建立"],
+      "evidenceHints": ["CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009", "DENSE-0005", "DENSE-0008", "DENSE-0010"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 25.408, "end": 48.568},
+      "cognitiveQuestion": "作者所称平台喜欢的三个点是什么，例子分别说明什么？",
+      "observedSignals": ["口播列出真实、反差、交互", "真实部分点名两个参考博主", "反差用英国留学的纸醉金迷预期与像流浪汉一样的生活对照", "交互部分点名两个博主，后者伴随账号页插图"],
+      "checkedAlternatives": ["provided subtitles", "cue frames", "dense frames", "inserted profile UI", "whiteboard", "burned captions", "editing juxtaposition"],
+      "remainingUnknowns": ["被点名账号的精确写法存在 ASR/小字冲突", "作者没有展示平台规则或数据证明这三项是平台偏好", "SRT 写作 2020 年，但烧录字幕未显示年份且可听年份未独立判定", "互动在示例中如何具体执行未展示"],
+      "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016", "DENSE-0011", "DENSE-0017", "DENSE-0020"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 48.568, "end": 62.97},
+      "cognitiveQuestion": "‘两种 vlog’与日常型内部组织方式的层级关系是什么？",
+      "observedSignals": ["口播先说 vlog 分两种，第一种是日常型并主要拍软素材", "随后在日常型下又列叙事型与固定型：前者每期有主线，后者每期拍相同内容", "两个插入账号页用于示例", "ASR 在‘第一种/第二种’层级上可能造成歧义"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard hierarchy", "inserted profiles", "editing order"],
+      "remainingUnknowns": ["软素材的完整定义与判准未明确", "叙事型和固定型是否可重叠未说明", "固定型例名由审计支持为‘梁馨和小马’，SRT 原形为‘良心和小马’，两种载体必须并列保留"],
+      "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021", "DENSE-0021", "DENSE-0024", "DENSE-0025"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 62.97, "end": 77.43},
+      "cognitiveQuestion": "挑战型 vlog 与硬素材如何关联，作者给了哪些例子？",
+      "observedSignals": ["口播将第二种称为挑战类型 vlog，并仍要求主线与叙事", "作者把硬素材形容为题材本身足够强，举‘一元横穿中国、徒步回家、少年创业、零元生存’", "插入账号页承担挑战型例证"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "inserted account UI", "whiteboard", "gesture", "editing juxtaposition"],
+      "remainingUnknowns": ["‘猪窝来拍都能火’是夸张修辞还是经验判断", "硬素材能否单独导致流量没有被演示或统计验证", "账号名与例子间的确切映射待核对"],
+      "evidenceHints": ["CUE-022", "CUE-023", "CUE-024", "CUE-025", "DENSE-0027", "DENSE-0028", "DENSE-0030"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 77.43, "end": 85.5},
+      "cognitiveQuestion": "为什么内容类型之后转向 IP，二者是什么关系？",
+      "observedSignals": ["作者声称无论什么类型，本质还是做 IP", "作者把 vlog 定义为最立体展示 IP 的形式，并以提问转入打造方法"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard", "gesture", "semantic transition"],
+      "remainingUnknowns": ["‘最立体’的比较对象和衡量标准未给出", "内容类型与 IP 的因果或依赖方向只由作者断言"],
+      "evidenceHints": ["CUE-026", "CUE-027", "CUE-028", "DENSE-0032", "DENSE-0033", "DENSE-0034"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 85.5, "end": 99.664},
+      "cognitiveQuestion": "作者提出哪些可识别的 IP 塑造手段？",
+      "observedSignals": ["列出刻板行为、作风、个人风格", "刻板行为用固定说法/行为举例", "作风要求极端化，高精力自律与低精力‘老鼠人’被设为两端", "个人风格用一个疑似‘西太美式’的词举例"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard", "gesture"],
+      "remainingUnknowns": ["人名、固定口头语与风格词存在 ASR 歧义", "‘做到极致’的边界、风险与适用条件未说明"],
+      "evidenceHints": ["CUE-029", "CUE-030", "CUE-031", "CUE-032", "DENSE-0036", "DENSE-0038", "DENSE-0040"]
+    },
+    {
+      "id": "SWEEP-08",
+      "range": {"start": 99.664, "end": 111.98},
+      "cognitiveQuestion": "作者如何判断 IP 是否‘立体’？",
+      "observedSignals": ["提出一个指标：看完 vlog，用户能了解创作者", "具体维度包括喜欢的音乐、书、电影、技能和穿衣风格等", "作者把这些偏好/能力/审美信息作为立体化的可观察结果"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard list", "gesture"],
+      "remainingUnknowns": ["视频没有提供量表、调查或验证用户确实了解创作者", "‘等等’暗示列表不封闭，但其他维度未展开"],
+      "evidenceHints": ["CUE-033", "CUE-034", "CUE-035", "DENSE-0041", "DENSE-0043", "DENSE-0045"]
+    },
+    {
+      "id": "SWEEP-09",
+      "range": {"start": 111.98, "end": 123.133},
+      "cognitiveQuestion": "标题如何被作者描述为高价值包装，并用什么结果故事支撑？",
+      "observedSignals": ["作者称 slogan 和标题决定视频的一生", "给出两个标题例子，其中字幕词形疑似错误", "声称普通故事加上莫名其妙的标题后‘直接就爆了’", "白板上有标题/slogan结构字样"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard", "gesture", "claim-result chronology"],
+      "remainingUnknowns": ["两个标题的准确文字待 OCR/画面核对", "爆款没有数值阈值，指标、对照样本、平台与因果链均未展示", "标题之外是否还有同时变化的因素未知", "全片没有展示从流水账到爆款的端到端拍摄、剪辑、测试工作流或 before/after 转化证据"],
+      "evidenceHints": ["CUE-036", "CUE-037", "CUE-038", "CUE-039", "DENSE-0046", "DENSE-0047", "DENSE-0049", "DENSE-0050"]
+    },
+    {
+      "id": "SWEEP-10",
+      "range": {"start": 123.133, "end": 135.001},
+      "cognitiveQuestion": "slogan 示例如何收束，结尾是否兑现开头的爆款转化承诺？",
+      "observedSignals": ["作者给出两个博主的 slogan 例子并逐句复述", "最终用‘今天先讲到这里’界定本期范围", "再次自称‘人类最强编导’并预告下期再见，只形成身份回声", "结尾没有演示结果、复盘步骤、限定条件、成功保证或显式兑现开头的爆款转化承诺"],
+      "checkedAlternatives": ["provided subtitles", "burned captions", "cue frames", "dense frames", "whiteboard", "gesture", "opening-to-closing relation", "audio-stream metadata"],
+      "remainingUnknowns": ["博主名与 slogan 的准确写法存在 ASR/烧录字幕冲突", "未给出下一期主题或具体行动 CTA", "正文策略框架能否实际把流水账变成爆款没有 before/after 或端到端执行证据", "背景音乐/音效是否在收尾发生变化无法由现有工具确定"],
+      "evidenceHints": ["CUE-040", "CUE-041", "CUE-042", "CUE-043", "DENSE-0051", "DENSE-0052", "DENSE-0053", "DENSE-0054", "DENSE-0055"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "provided subtitle transcript", "modalityKeys": ["subtitles", "speech_proxy"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["verbatim cue ledger", "claims", "examples", "transitions"], "intervals": [{"start": 0.01, "end": 134.977}], "omissionImpact": "会丢失作者的主要论证骨架、例子和开场承诺—结尾未显式关闭关系；但 ASR 冲突不能静默修正。"},
+    {"id": "CAR-02", "name": "burned Chinese captions", "modalityKeys": ["on_screen_text", "burned_captions", "ocr"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["speech wording cross-check", "term/name disambiguation"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "会把明显 ASR 误词当成作者原话，并丢失载体冲突。"},
+    {"id": "CAR-03", "name": "whiteboard writing and hierarchy", "modalityKeys": ["whiteboard", "diagram", "list", "layout"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["topic map", "parallel grouping", "pointer target", "continuity anchor"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "会丢失列表的层级关系与部分视觉限定；小字若不可读必须保留未知。"},
+    {"id": "CAR-04", "name": "inserted mobile profile and example screens", "modalityKeys": ["inserted_clip", "ui_identity", "profile", "example"], "discoveredIn": ["SWEEP-01", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["presenter self-reference", "named-account referent", "example illustration"], "intervals": [{"start": 0, "end": 1.6}, {"start": 46, "end": 48.6}, {"start": 58, "end": 62.9}, {"start": 66, "end": 70.5}], "omissionImpact": "会把口播中的泛称或错听名覆盖更具体的可见账号身份，也会丢失自我背书。"},
+    {"id": "CAR-05", "name": "presenter likeness, costume and gesture", "modalityKeys": ["recognizable_styling", "mask", "gesture", "person"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["recurring presenter referent", "attention direction", "counting/list emphasis", "persona continuity"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "会丢失蜘蛛侠式面罩这一可见人物设定及其与账号自称的并置；不能因此断言授权或真实身份。"},
+    {"id": "CAR-06", "name": "environment and set", "modalityKeys": ["environment", "whiteboard_set", "domestic_space", "continuity"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["informal teaching context", "continuous visual setting", "whiteboard access"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "会错把技术分镜边界理解为多场景或多次拍摄；画面只支持同一可见布景持续出现，不排除隐藏剪辑。"},
+    {"id": "CAR-07", "name": "editing order and juxtaposition", "modalityKeys": ["editing_order", "juxtaposition", "overlay_insert", "transition"], "discoveredIn": ["SWEEP-01", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["bind examples to spoken names", "section transitions", "opening identity echo", "opening-promise/closing-nonclosure comparison"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "会丢失示例屏幕与口播概念的映射，也会把结尾身份回声误写成开场爆款承诺已经兑现。"},
+    {"id": "CAR-08", "name": "non-speech audio", "modalityKeys": ["non_speech_audio", "audio", "music", "sound_effects", "unknown_role"], "discoveredIn": ["SWEEP-01", "SWEEP-10"], "available": true, "inspected": true, "roles": ["audio stream technically present; semantic role unresolved"], "intervals": [{"start": 0, "end": 135.001}], "omissionImpact": "静帧与字幕不能判断音乐、音效或插入源音频是否参与强调；该语义角色必须保留未知。"},
+    {"id": "CAR-09", "name": "layout, counts and parallel grouping", "modalityKeys": ["layout", "count", "parallel_list", "spatial_composition"], "discoveredIn": ["SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"], "available": true, "inspected": true, "roles": ["three-part lists", "two-level vlog branch", "examples under claims"], "intervals": [{"start": 9.632, "end": 132.167}], "omissionImpact": "会把并列清单误写成线性操作流程，或混淆‘两种 vlog’与日常型内部的两个组织方式。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 9.632}, "description": "从结果与身份钩子转为本期‘把流水账拍成爆款 vlog’的承诺，并接续上期‘视频是产品’。", "trigger": "账号页插入、自称与‘所以’因果连接", "evidenceHints": ["CUE-001", "CUE-002", "CUE-003", "CUE-004", "DENSE-0001"]},
+    {"id": "MC-02", "range": {"start": 9.632, "end": 25.408}, "description": "从产品逻辑进入受众需求三分法，再转向平台需求。", "trigger": "‘第一步’与‘说完用户我们来说平台’", "evidenceHints": ["CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009"]},
+    {"id": "MC-03", "range": {"start": 25.408, "end": 48.568}, "description": "建立平台偏好三分法，并用真实、反差、交互的不同例子改变每项含义。", "trigger": "‘三个点’、编号和插入示例账号页", "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016", "DENSE-0020"]},
+    {"id": "MC-04", "range": {"start": 48.568, "end": 62.97}, "description": "从平台偏好转为 vlog 类型，并把日常型继续拆成叙事型与固定型组织方式。", "trigger": "‘vlog也分为两种’与层级编号", "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021"]},
+    {"id": "MC-05", "range": {"start": 62.97, "end": 77.43}, "description": "引入挑战型与硬素材，作者用夸张说法强化题材本身的重要性。", "trigger": "‘第二种挑战类型’与‘什么叫硬素材’", "evidenceHints": ["CUE-022", "CUE-023", "CUE-024", "CUE-025"]},
+    {"id": "MC-06", "range": {"start": 77.43, "end": 85.5}, "description": "从内容类型提升到作者所谓共同本质：做 IP。", "trigger": "‘不管拍什么类型’与‘本质还是要做ip’", "evidenceHints": ["CUE-026", "CUE-027", "CUE-028"]},
+    {"id": "MC-07", "range": {"start": 85.5, "end": 99.664}, "description": "把抽象 IP 转为三个可识别维度：刻板行为、极端作风、个人风格。", "trigger": "连续编号与示例", "evidenceHints": ["CUE-029", "CUE-030", "CUE-031", "CUE-032"]},
+    {"id": "MC-08", "range": {"start": 99.664, "end": 111.98}, "description": "增加第四个判断：观众看完后能否具体了解创作者的偏好、技能与风格。", "trigger": "‘第四点’和‘只有一个指标’", "evidenceHints": ["CUE-033", "CUE-034", "CUE-035"]},
+    {"id": "MC-09", "range": {"start": 111.98, "end": 123.133}, "description": "作者把标题/slogan标为最值钱部分，并提出标题使普通故事爆火的因果性主张。", "trigger": "‘最值钱的部分’、标题例子和结果宣告", "evidenceHints": ["CUE-036", "CUE-037", "CUE-038", "CUE-039"]},
+    {"id": "MC-10", "range": {"start": 123.133, "end": 131.733}, "description": "从标题例子转入两个 slogan 示例。", "trigger": "‘第二种就是slogan’与两句示例", "evidenceHints": ["CUE-040", "CUE-041", "CUE-042"]},
+    {"id": "MC-11", "range": {"start": 131.733, "end": 135.001}, "description": "从教学内容转为身份署名和告别；身份重复但开头的爆款转化承诺没有被演示、复盘、限定、保证或显式兑现。", "trigger": "‘今天先讲到这里’、自称与‘下期再见’", "evidenceHints": ["CUE-043", "DENSE-0054", "DENSE-0055"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "用户需求选择", "to": "vlog产品设计", "relation": "input_to", "evidenceHints": ["CUE-004", "CUE-005", "CUE-006", "CUE-009"]},
+    {"id": "REL-02", "from": "平台三点偏好", "to": "作者推荐的vlog设计", "relation": "constrains", "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-015"]},
+    {"id": "REL-03", "from": "英国留学的纸醉金迷预期", "to": "像流浪汉一样的日常", "relation": "contrasts_with", "evidenceHints": ["CUE-013", "CUE-014"]},
+    {"id": "REL-04", "from": "日常型vlog", "to": "叙事型与固定型组织", "relation": "decomposes_into", "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021"]},
+    {"id": "REL-05", "from": "挑战型vlog", "to": "硬素材例子", "relation": "illustrated_by", "evidenceHints": ["CUE-022", "CUE-023", "CUE-024", "CUE-025", "DENSE-0028"]},
+    {"id": "REL-06", "from": "各种vlog类型", "to": "IP塑造", "relation": "framed_as_serving", "evidenceHints": ["CUE-026", "CUE-027", "CUE-028"]},
+    {"id": "REL-07", "from": "刻板行为、作风、个人风格", "to": "可识别IP", "relation": "builds", "evidenceHints": ["CUE-029", "CUE-030", "CUE-031", "CUE-032"]},
+    {"id": "REL-08", "from": "观众了解创作者的偏好技能风格", "to": "IP立体度", "relation": "used_as_indicator_of", "evidenceHints": ["CUE-033", "CUE-034", "CUE-035"]},
+    {"id": "REL-09", "from": "莫名其妙的标题", "to": "普通故事爆火", "relation": "author_claims_causes", "evidenceHints": ["CUE-037", "CUE-038", "CUE-039"]},
+    {"id": "REL-10", "from": "开头的人类最强编导身份", "to": "结尾的人类最强编导署名", "relation": "echoed_by", "evidenceHints": ["CUE-002", "CUE-043", "DENSE-0001", "DENSE-0055"]},
+    {"id": "REL-11", "from": "插入账号页", "to": "口播点名的博主或作者本人", "relation": "shown_as_source_of", "evidenceHints": ["DENSE-0001", "DENSE-0020", "DENSE-0025", "DENSE-0028"]},
+    {"id": "REL-12", "from": "蜘蛛侠式面罩人物", "to": "人类最强编导账号身份", "relation": "presented_as", "evidenceHints": ["CUE-002", "CUE-043", "DENSE-0001", "DENSE-0055"]},
+    {"id": "REL-13", "from": "开头把流水账变爆款的承诺", "to": "结尾署名与告别", "relation": "does_not_explicitly_close", "evidenceHints": ["CUE-003", "CUE-004", "CUE-043", "DENSE-0002", "DENSE-0054", "DENSE-0055"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把作者主张改写为平台事实或因果事实", "why": "视频没有给出平台规则、统计对照或后台数据，许多结论只由作者说出。", "where": [{"start": 25.408, "end": 48.568}, {"start": 70.57, "end": 77.43}, {"start": 111.98, "end": 123.133}], "requiredFollowup": "为平台偏好、硬素材能火、标题导致爆火分别建立 author_claim 单元并列出未证明范围。"},
+    {"id": "RISK-02", "risk": "静默修正 ASR 或让错误字幕覆盖烧录字幕/可见UI", "why": "CUE-003、博主名、标题名、口头语和风格词存在明显错写或不确定。", "where": [{"start": 2.749, "end": 6.86}, {"start": 31.6, "end": 48.568}, {"start": 55.687, "end": 70.56}, {"start": 85.5, "end": 99.664}, {"start": 114.891, "end": 132.167}], "requiredFollowup": "定向 OCR 烧录字幕与插入页，只接受经画面核对的行；保留 SRT 原文和冲突。"},
+    {"id": "RISK-03", "risk": "混淆两层分类，把日常型内部组织方式与挑战型并列在同一层", "why": "口播连续使用‘第一种/第二种’，SRT 对 53-63 秒层级不清。", "where": [{"start": 48.568, "end": 66.927}], "requiredFollowup": "密集捕捉白板指向、烧录字幕与口播时间顺序，分别记录顶层类型和日常型子分支。"},
+    {"id": "RISK-04", "risk": "丢失插入账号页所提供的具体身份或把视觉相似升级为真实身份", "why": "账号页只短暂出现且小字密集；蜘蛛侠面罩只是一种可见造型。", "where": [{"start": 0, "end": 1.6}, {"start": 46, "end": 48.6}, {"start": 58, "end": 62.9}, {"start": 66, "end": 70.5}], "requiredFollowup": "为每个插入页做UI/OCR取证，记录可读账号名和映射；身份、授权与所有权未建立的部分保留 unknown。"},
+    {"id": "RISK-05", "risk": "忽略白板视觉层级或从不可读小字臆测完整方法", "why": "白板贯穿全片但被人物遮挡、反光且字迹细小。", "where": [{"start": 0, "end": 135.001}], "requiredFollowup": "在人物让开、反光较少的时刻采集高分辨率帧并 OCR/人工核对；未能确认的小字明确未知。"},
+    {"id": "RISK-06", "risk": "把技术 shot 切分当成 14 个语义场景或无剪辑连续操作", "why": "画面一直显示相同布景与人物，但运动/插入层可触发检测；静帧不能排除隐藏剪辑。", "where": [{"start": 0, "end": 135.001}], "requiredFollowup": "在技术边界前后抽帧比较，记录可见布景连续与隐藏剪辑未知，不声称场景数。"},
+    {"id": "RISK-07", "risk": "把例子数量当成规则范围的证明", "why": "每项通常只有一到两个口播例子，无法支持‘平台最喜欢’、‘都能火’或‘决定一生’的普遍范围。", "where": [{"start": 25.408, "end": 48.568}, {"start": 62.97, "end": 77.43}, {"start": 111.98, "end": 132.167}], "requiredFollowup": "保守计数示例，区分 illustration 与 support，并在 argument limits 中写明范围不成立。"},
+    {"id": "RISK-08", "risk": "把结尾重复身份误写成开头爆款承诺已经闭环或兑现", "why": "结尾只结束课程、重复自称并告别，没有结果演示、步骤复盘、条件限定、成功保证或显式兑现。", "where": [{"start": 0, "end": 9.632}, {"start": 131.733, "end": 135.001}], "requiredFollowup": "分别记录身份 echo 与承诺 does_not_explicitly_close 关系，并以核心未知边界进入重建和文章。"},
+    {"id": "RISK-09", "risk": "遗漏爆款数值阈值、端到端工作流或 before/after 证明，或把未出现的访问路径、价格、平台限制、行动 CTA 说成普遍不存在", "why": "这些要素决定承诺是否可执行、可检验，但只能在完整视频范围内得出‘未观察到’。", "where": [{"start": 0, "end": 135.001}], "requiredFollowup": "对完整时间轴的字幕、烧录字幕、UI、白板、账号插页与画面检查爆款数值定义、拍摄/剪辑/测试步骤和转化前后对照，并记录有界缺席。"},
+    {"id": "RISK-10", "risk": "遗漏非语音音频载体", "why": "媒体有 AAC 音轨，但当前证据不能判定背景音乐、音效或插入源音频的语义角色。", "where": [{"start": 0, "end": 135.001}], "requiredFollowup": "记录音轨存在与工具限制，将音乐/音效角色保留 unknown，不用字幕代替该通道。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "作者希望观众如何从用户需求出发设计 vlog，三类需求及示例是什么？", "criticality": "critical", "evidenceHints": ["CUE-004", "CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009"]},
+    {"id": "CQ-02", "question": "作者所称平台偏好的三个点是什么，各自用什么例子界定？", "criticality": "critical", "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016"]},
+    {"id": "CQ-03", "question": "vlog 顶层两类与日常型内部两种组织方式的准确层级是什么？", "criticality": "critical", "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021", "CUE-022"]},
+    {"id": "CQ-04", "question": "作者如何定义硬素材，举了哪些例子，视频实际证明了什么或没有证明什么？", "criticality": "critical", "evidenceHints": ["CUE-023", "CUE-024", "CUE-025"]},
+    {"id": "CQ-05", "question": "内容类型为什么转向 IP，作者提出哪些塑造 IP 的维度与判据？", "criticality": "critical", "evidenceHints": ["CUE-026", "CUE-027", "CUE-028", "CUE-029", "CUE-030", "CUE-031", "CUE-032", "CUE-033", "CUE-034", "CUE-035"]},
+    {"id": "CQ-06", "question": "标题和 slogan 被作者赋予什么作用，示例和爆火结果主张分别是什么？", "criticality": "critical", "evidenceHints": ["CUE-036", "CUE-037", "CUE-038", "CUE-039", "CUE-040", "CUE-041", "CUE-042"]},
+    {"id": "CQ-07", "question": "哪些人名、账号名、标题、slogan、固定说法或风格词在 SRT、烧录字幕与可见 UI 之间冲突，支持哪一种读法？", "criticality": "critical", "evidenceHints": ["CUE-003", "CUE-012", "CUE-016", "CUE-020", "CUE-021", "CUE-023", "CUE-029", "CUE-032", "CUE-037", "CUE-040", "DENSE-0001", "DENSE-0020", "DENSE-0028"]},
+    {"id": "CQ-08", "question": "插入账号页分别指向谁，与口播概念是什么关系，哪些身份/所有权仍未知？", "criticality": "supporting", "evidenceHints": ["DENSE-0001", "DENSE-0020", "DENSE-0025", "DENSE-0028"]},
+    {"id": "CQ-09", "question": "结尾是否演示、复盘、限定、保证或明确兑现开头‘流水账变爆款’的承诺？身份重复与结果兑现是什么关系？", "criticality": "critical", "evidenceHints": ["CUE-002", "CUE-003", "CUE-004", "CUE-043", "DENSE-0001", "DENSE-0054", "DENSE-0055"]},
+    {"id": "CQ-10", "question": "视频是否给出平台来源、成效数据、爆款数值阈值、价格、访问路径、账号/地区要求、适用条件或具体行动 CTA？", "criticality": "critical", "evidenceHints": ["full timeline 0-135.001", "all cues", "all dense frames"]},
+    {"id": "CQ-11", "question": "非语音音频在全片承担什么作用？", "criticality": "supporting", "evidenceHints": ["media.hasAudio=true", "audioCodec=aac", "full timeline 0-135.001"]},
+    {"id": "CQ-12", "question": "视频是否展示把流水账变成爆款的端到端拍摄、剪辑、测试工作流及 before/after 转化证据？", "criticality": "critical", "evidenceHints": ["full timeline 0-135.001", "all cues", "all dense frames", "all targeted frames"]}
+  ],
+  "unresolved": [
+    "多个专名和术语的 SRT 词形尚待烧录字幕/UI OCR 冲突取证",
+    "白板小字是否含口播之外的条件或例子尚未确认",
+    "非语音音频的音乐/音效/插入源音频及叙事角色无法由现有静态证据确定",
+    "作者所称平台偏好、爆款结果和因果机制未被视频独立验证，爆款没有数值阈值",
+    "SRT 记录 2020 年，但烧录字幕未显示年份且可听年份没有独立判定",
+    "全片没有端到端拍摄、剪辑、测试工作流，也没有流水账转化为爆款的 before/after 证明",
+    "结尾重复身份但没有演示、复盘、限定、保证或显式兑现开头的爆款承诺",
+    "蜘蛛侠式面罩、账号页与真人法律身份/授权/所有权之间的关系未建立",
+    "相同布景的技术分镜边界原因及隐藏剪辑仍未知"
+  ]
+}

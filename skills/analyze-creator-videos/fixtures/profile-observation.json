@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAt": "2026-08-16T00:00:00.000Z",
+  "strategy": "visible_dom",
+  "profileUrl": "https://www.xiaohongshu.com/user/profile/fixture-creator",
+  "taskSpaceId": 99,
+  "ownership": "agent_control",
+  "artifactRef": "fixtures/profile-snapshot.txt",
+  "fields": {
+    "id": "fixture-creator",
+    "name": "测试博主",
+    "xiaohongshuId": "fixture_xhs",
+    "bio": "用于采集状态机回归测试",
+    "followers": "1.2万",
+    "likesAndCollections": "3.4万"
+  },
+  "needsUser": false,
+  "error": null
+}

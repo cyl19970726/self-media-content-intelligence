@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 11,
+      "denominator": 14,
+      "threshold": 0.85,
+      "pass": false,
+      "examples": [
+        {
+          "result": "hit",
+          "question": "三项工具是并列推荐还是跨工具流程？",
+          "basis": "候选明确写成 BAGEL、Kontext、ThinkSound 的并列推荐，并否定跨段文件交接。"
+        },
+        {
+          "result": "miss",
+          "question": "Kontext 合成例实际使用哪些输入？",
+          "basis": "候选写成 girl.jpg 与 dog.jpg 的双图输入；独立审计和 TARGET-0059 显示第三个 sofa.jpg/沙发场景输入。"
+        },
+        {
+          "result": "miss",
+          "question": "第二项工具的规范身份是什么？",
+          "basis": "候选主标题和摘要使用 Flux Kontext/Flux Kontext AI，没有按审计要求统一为 FLUX.1 Kontext。"
+        },
+        {
+          "result": "miss",
+          "question": "ThinkSound 无语音演示窗具体承载了什么声音证据？",
+          "basis": "候选只证明音轨非静音；独立审计进一步确认约 35.69–39.7 秒存在与小提琴声相符的持续音调/谐波段。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 23,
+      "denominator": 29,
+      "threshold": 0.9,
+      "pass": false,
+      "examples": [
+        {
+          "result": "covered",
+          "unit": "BAGEL 的盒装手办画面不能证明可旋转网格、3D 文件或一键生成过程",
+          "basis": "KU-12、KU-13 与报告均保留了这一边界。"
+        },
+        {
+          "result": "covered",
+          "unit": "ThinkSound 未展示上传、生成状态、结果文件或下载链",
+          "basis": "KU-24、KU-28 正确区分页面自述、编辑并置与端到端因果。"
+        },
+        {
+          "result": "missing",
+          "unit": "Kontext 单图界面的 prompt strength 3.5、Public 隐私选择与 16 credits",
+          "basis": "这些审计确认的决策相关 UI 状态未进入 reconstruction 或 report。"
+        },
+        {
+          "result": "incorrect",
+          "unit": "女孩、斑点狗和沙发场景构成的三图合成",
+          "basis": "候选把第三个 sofa.jpg 输入压扁成双图预览中的背景，并多次称作双图输入/双图合成。"
+        },
+        {
+          "result": "missing",
+          "unit": "ThinkSound 演示窗的可听声音语义",
+          "basis": "SRC-AUDIO 只有 volumedetect，未复现审计的人耳/频谱层声音判断。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 52,
+      "thresholdMaximum": 0.05,
+      "pass": true,
+      "examples": [
+        {
+          "result": "error",
+          "claim": "节点界面只有 girl.jpg 与 dog.jpg 两个 Load Image 输入，因此是双图合成",
+          "basis": "TARGET-0059 的节点图还显示第三个 Load Image，预览与独立审计将其解析为 sofa.jpg。"
+        },
+        {
+          "result": "disciplined",
+          "claim": "三个工具的许可证、素材授权、生成因果与普遍性能保持未知",
+          "basis": "候选把作者主张、视觉观察、系统推断和 unknown 分开记录。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 75,
+      "denominator": 75,
+      "threshold": 0.9,
+      "pass": true,
+      "examples": [
+        {
+          "result": "accurate",
+          "basis": "逐一检查 74 个唯一 cue/shot/targeted-frame/OCR 引用及 1 个有界 SRC-AUDIO 引用；均存在并落在所述知识单元时间窗内。"
+        },
+        {
+          "result": "interpretation_error_not_timestamp_error",
+          "basis": "TARGET-0059 的时间定位正确，但候选对该帧的三输入节点关系解读错误；该问题计入 evidence coverage 与 unsupported inference。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 6,
+      "threshold": 0.85,
+      "pass": false,
+      "rationale": "六项独立依赖为：三工具并列；墨镜与雪山是同一提示词的并列要求；单图例与合成例彼此并列；BAGEL 静态画面不能证明 3D 文件；ThinkSound 编辑前后不能证明生成因果；Kontext 合成必须保留 girl.jpg、dog.jpg、sofa.jpg 三源到结果的关系。候选前五项闭合，最后一项错误，5/6=0.833。"
+    },
+    "unknownDiscipline": {
+      "numerator": 18,
+      "denominator": 18,
+      "threshold": 0.9,
+      "pass": true,
+      "examples": [
+        {
+          "result": "correct_unknown",
+          "opportunity": "BAGEL 的 3D 输出形式与真实运行步骤",
+          "basis": "候选没有从二维手办效果图外推出网格或导出文件。"
+        },
+        {
+          "result": "correct_unknown",
+          "opportunity": "ThinkSound 生成来源、后期混音、分离音轨与同步精度",
+          "basis": "候选明确限制为成片中的声音信号与作者评价。"
+        },
+        {
+          "result": "correct_unknown",
+          "opportunity": "许可证、仓库、价格、平台、账号、地区、硬件、支持实体、素材与人物授权",
+          "basis": "候选通过全时间线负面审计保持未知，没有静默补全。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "ThinkSound 非语音演示窗的声音语义：候选仅运行 volumedetect 证明非静音，没有对 35.69–39.7 秒的持续音调/谐波内容做人耳或频谱语义核验。"
+    ]
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 3,
+    "evidenceUsefulness": 4,
+    "executionValue": 3,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "非语音音频被降格为响度存在性；这不足以验收 ThinkSound 段真正承载的听觉意义。"
+    ],
+    "unguardedMeaningChanges": [
+      "约 35.69 秒后从旁白标签切入可听的小提琴样持续音调/谐波段，候选只写‘非静音’，没有恢复这一声音语义变化。"
+    ],
+    "unguardedRelationships": [
+      "ComfyUI 节点图中的 girl.jpg、dog.jpg、sofa.jpg 三个来源到单一结果的合成关系被错误压缩为双图关系。",
+      "可见 UI 对旁白‘两张图的人物融合’的纠偏关系未建立；候选反而复述了旁白口径。"
+    ],
+    "rationale": "候选自己的 metaGate 使用了自证式 coverageMatrix：CAR-04 与 CAR-07 被标记 inspected 后即宣告无遗漏，但真实场景核对仍发现三源节点关系误读和声音语义未检查。按照 GATE 的独立证据与真实契约场景要求，meta-gate 必须失败。"
+  },
+  "examples": [
+    {
+      "type": "material_strength",
+      "detail": "候选正确把三个工具建模为并列清单，并持续区分编辑邻接与真实执行因果。"
+    },
+    {
+      "type": "material_strength",
+      "detail": "候选对 BAGEL 3D、角色一致性、开源、许可、素材权利和 ThinkSound 生成来源保持了良好未知纪律。"
+    },
+    {
+      "type": "material_failure",
+      "detail": "Kontext 合成例的第三个 sofa.jpg 输入在 TARGET-0059 中可见，却被 reconstruction、report、probe 和 protocol 一致压扁为双图；这说明检查闭包本身继承了同一误读。"
+    },
+    {
+      "type": "audit_candidate_disagreement",
+      "detail": "独立审计称 BAGEL 墨镜提示词只能读到截断片段，但候选的定向帧 TARGET-0023 清楚显示完整 Put on sunglasses；本项采用新证据，不判候选错误。"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-16T12:42:07.335Z",
+  "file": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69fe6f3a000000001a036be4/source.mp4",
+  "status": "verified_complete",
+  "transport": {
+    "bytes": 14967147,
+    "sha256": "eae5ad47c2237817f362bbd9f9abdaab22c34c46e14ebbeb0d6c39adfb9aa848"
+  },
+  "container": {
+    "durationSec": 173.522721,
+    "streams": [
+      {
+        "index": 0,
+        "codecType": "video",
+        "codecName": "hevc",
+        "width": 1918,
+        "height": 1080,
+        "durationSec": 173.466667
+      },
+      {
+        "index": 1,
+        "codecType": "audio",
+        "codecName": "aac",
+        "width": null,
+        "height": null,
+        "durationSec": 173.522721
+      }
+    ],
+    "decodePass": true,
+    "decodeError": null
+  },
+  "timeline": {
+    "probeTimes": [
+      0.1,
+      43.381,
+      86.761,
+      130.142,
+      168.523,
+      171.523,
+      173.273
+    ],
+    "frameHashes": [
+      {
+        "time": 0.1,
+        "hash": "0b2ccda8f58e59851f9097ebc7c21dc4",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 43.381,
+        "hash": "0ed844c9be810c0f6690eeca4cc397ad",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 86.761,
+        "hash": "34893e42b99b999de49898534638dfb2",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 130.142,
+        "hash": "17708bc623bcaa8c69e0b384d6331eb3",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 168.523,
+        "hash": "e114cb8d696d393d4b35dedd202bdf71",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 171.523,
+        "hash": "960874b4f6c53a94b72396da3784bfef",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 173.273,
+        "hash": "9a1479260ac080eb5b65a3ae788e45b9",
+        "decoded": true,
+        "error": null
+      }
+    ],
+    "allProbeFramesDecoded": true
+  },
+  "contentContinuity": {
+    "freezeEvents": [
+      {
+        "start": 75.533333,
+        "end": 78.1,
+        "duration": 2.566667
+      },
+      {
+        "start": 124.6,
+        "end": 127.166667,
+        "duration": 2.566667
+      },
+      {
+        "start": 131.066667,
+        "end": 133.8,
+        "duration": 2.733333
+      },
+      {
+        "start": 139.4,
+        "end": 141.6,
+        "duration": 2.2
+      },
+      {
+        "start": 141.8,
+        "end": 143.933333,
+        "duration": 2.133333
+      },
+      {
+        "start": 171.133333,
+        "end": 173.522721,
+        "duration": 2.3893879999999967
+      }
+    ],
+    "blackEvents": [],
+    "tailMotionStatus": "active",
+    "extendedThresholdSec": 43.381
+  },
+  "subtitleStatus": "absent",
+  "expectedDurationSec": 173,
+  "gates": [
+    {
+      "id": "video_stream",
+      "pass": true,
+      "detail": "hevc 1918x1080"
+    },
+    {
+      "id": "full_decode",
+      "pass": true,
+      "detail": "full video stream decoded"
+    },
+    {
+      "id": "timeline_probes",
+      "pass": true,
+      "detail": "7/7"
+    },
+    {
+      "id": "no_extended_frozen_tail",
+      "pass": true,
+      "detail": "active"
+    },
+    {
+      "id": "no_extended_black_tail",
+      "pass": true,
+      "detail": "none detected"
+    },
+    {
+      "id": "expected_duration",
+      "pass": true,
+      "detail": "expected 173s; container 173.523s; tolerance 8.650s"
+    }
+  ],
+  "unknowns": []
+}

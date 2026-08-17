@@ -1,0 +1,388 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T22:14:17.744Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": false,
+      "detail": "Time ranges or frame localization are invalid",
+      "examples": [
+        "KU-22:frame_outside_range:OCR-00443"
+      ]
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "pass",
+          "auditIds": [
+            "CQ-01",
+            "CQ-02",
+            "CQ-03",
+            "CQ-04",
+            "CQ-05"
+          ],
+          "candidateUnits": [
+            "KU-01",
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ],
+          "note": "承诺、广告行业判断、生意三要素、平台角色和产品成立条件均被回答，并保留作者主张边界。"
+        },
+        {
+          "status": "pass",
+          "auditIds": [
+            "CQ-06",
+            "CQ-07",
+            "CQ-08",
+            "CQ-09"
+          ],
+          "candidateUnits": [
+            "KU-07",
+            "KU-08",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13"
+          ],
+          "note": "向外找的顺序、风口周边逻辑、游戏画像链及AI/电商例子均被保留；画像与需求明确为作者概括或推测。"
+        },
+        {
+          "status": "pass",
+          "auditIds": [
+            "CQ-10",
+            "CQ-11",
+            "CQ-12",
+            "CQ-13"
+          ],
+          "candidateUnits": [
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "KU-19",
+            "KU-20",
+            "KU-21"
+          ],
+          "note": "向内找、消费型兴趣、三个产品化例子和产品到内容形式的映射均被回答。"
+        },
+        {
+          "status": "pass",
+          "auditIds": [
+            "CQ-14",
+            "CQ-15"
+          ],
+          "candidateUnits": [
+            "KU-02",
+            "KU-03",
+            "KU-22",
+            "KU-25",
+            "KU-27",
+            "KU-28",
+            "KU-29"
+          ],
+          "note": "执行结果缺席、开头数据归因未知、品牌自报、持续推广和结尾语义均被正确处理。"
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "pass",
+          "auditRange": "KU-01..KU-06",
+          "candidateUnits": [
+            "KU-02",
+            "KU-01",
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ],
+          "note": "开场视觉、承诺、行业主张、生意公式、平台角色和产品条件均有可解析证据。"
+        },
+        {
+          "status": "pass",
+          "auditRange": "KU-07..KU-14",
+          "candidateUnits": [
+            "KU-07",
+            "KU-08",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13"
+          ],
+          "note": "向外找及全部外部案例链有字幕、烧录字幕或定向帧证据。"
+        },
+        {
+          "status": "pass",
+          "auditRange": "KU-15..KU-22",
+          "candidateUnits": [
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "KU-19",
+            "KU-20",
+            "KU-21"
+          ],
+          "note": "向内找、兴趣产品化和内容形式映射均有时间定位证据。"
+        },
+        {
+          "status": "pass",
+          "auditRange": "KU-23..KU-24",
+          "candidateUnits": [
+            "KU-03",
+            "KU-27"
+          ],
+          "note": "持续小红书/线下课覆盖层、品牌自报与告别均被独立视觉证据支持。"
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "status": "pass",
+          "candidateUnits": [
+            "KU-04",
+            "KU-08",
+            "KU-09",
+            "KU-11",
+            "KU-12"
+          ],
+          "note": "行业、风口和客户画像陈述均标为author_claim，没有升级为外部事实。"
+        },
+        {
+          "status": "pass",
+          "candidateUnits": [
+            "KU-02",
+            "KU-03",
+            "KU-23",
+            "KU-24",
+            "KU-27"
+          ],
+          "note": "视觉结论保持在可见相似性、结构和有限连续性范围内，并保留身份、授权及隐藏剪辑不确定性。"
+        },
+        {
+          "status": "pass",
+          "candidateUnits": [
+            "KU-25",
+            "KU-28",
+            "KU-29"
+          ],
+          "note": "负面结论均限定时间范围、检查载体和视频内部范围。"
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=0.992",
+      "examples": [
+        {
+          "status": "error",
+          "candidateUnit": "KU-22",
+          "evidenceRef": "OCR-00443",
+          "note": "OCR-00443位于0.050秒，不在KU-22声明的6.720-105.214秒时间窗内；canonical validator报告frame_outside_range。"
+        },
+        {
+          "status": "pass",
+          "scope": "remaining candidate knowledge-unit evidence references",
+          "note": "其余130条cue、shot、frame、targeted_frame、ocr和source引用均解析且落在声明区间或用于明示的全片/区间审计。"
+        },
+        {
+          "status": "pass",
+          "candidateUnits": [
+            "KU-02",
+            "KU-27"
+          ],
+          "note": "开场0-1.2秒数据拼贴与102.216-105.215秒结尾品牌自报定位正确。"
+        },
+        {
+          "status": "pass",
+          "candidateUnits": [
+            "KU-28",
+            "KU-29"
+          ],
+          "note": "24.665-64.860秒向外找机会窗口及0-105.215秒全片反例机会窗口边界明确。"
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "pass",
+          "auditIds": [
+            "UNK-01",
+            "UNK-02",
+            "UNK-03",
+            "UNK-04",
+            "UNK-05"
+          ],
+          "candidateUnits": [
+            "KU-02",
+            "KU-03",
+            "KU-04",
+            "KU-11",
+            "KU-12"
+          ],
+          "note": "真实身份、开头指标归属/归因、行业数据边界和客户画像依据均未被虚构。"
+        },
+        {
+          "status": "pass",
+          "auditIds": [
+            "UNK-06",
+            "UNK-07",
+            "UNK-08",
+            "UNK-09",
+            "UNK-10"
+          ],
+          "candidateUnits": [
+            "KU-25",
+            "KU-28",
+            "KU-29"
+          ],
+          "note": "商业验证、获客触达、定价交付、真实结果与平台合规边界被保留为视频未建立事项。"
+        },
+        {
+          "status": "pass",
+          "auditIds": [
+            "UNK-11",
+            "UNK-12",
+            "UNK-13",
+            "UNK-14"
+          ],
+          "candidateUnits": [
+            "KU-19",
+            "KU-20",
+            "KU-21",
+            "KU-25",
+            "KU-29"
+          ],
+          "note": "混合产品边界、拍摄转化参数、线下课条件和失败/反例边界均正确克制。"
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": true,
+      "detail": "Independent meta-audit passed",
+      "examples": []
+    }
+  ],
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 5
+  },
+  "failedGateIds": [
+    "internal_timestamp_bounds"
+  ]
+}

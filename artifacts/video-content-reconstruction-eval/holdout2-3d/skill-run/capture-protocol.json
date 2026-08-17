@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/probe.json",
+  "protocolName": "左侧笔画—右侧头部变化、界面身份与收尾人物归因动态捕捉协议",
+  "rationale": "探针发现核心认知变化并不只在旁白，而在左右并置的笔画/头部变化、单头 UI 与双栏画面之间的编辑切换，以及结尾写实人物对用途主张的扩张。协议因此优先捕捉动作前中后、UI 小字/状态、结果组数与全时段边界缺失，并保持产品身份、执行桥梁、人物来源和外部评论区内容为可证未知。",
+  "knowledgeUnitFields": [
+    {"name": "narrated_promise_and_scope", "required": true, "reason": "必须把实时、低门槛、新手、游戏角色/场景/电商模特与评论区获取分别作为作者主张保存。", "derivedFrom": ["MC-003", "MC-006", "MC-007", "MC-008", "CQ-007"]},
+    {"name": "visible_left_input_state", "required": true, "reason": "视频把“左面画几笔”作为核心输入，但具体笔画、工具和状态需要逐帧保留。", "derivedFrom": ["MC-005", "REL-002", "CQ-001", "RISK-002"]},
+    {"name": "visible_action_sequence", "required": true, "reason": "需区分模型旋转、笔刷/图标变化与未显示的提交或运行。", "derivedFrom": ["CAR-004", "CQ-001", "CQ-002", "RISK-002"]},
+    {"name": "visible_right_output_state", "required": true, "reason": "右侧较写实头部和单头预览是“转为3D”的主要可见结果。", "derivedFrom": ["MC-002", "MC-005", "REL-002", "CQ-002"]},
+    {"name": "observed_edit_chronology", "required": true, "reason": "单头 UI、左右对照和结果蒙太奇交替出现，不能改写成顺滑教程。", "derivedFrom": ["REL-004", "RISK-002", "CQ-001"]},
+    {"name": "unshown_dependency_or_bridge", "required": true, "reason": "提交、运行、选择、保存、导出、下载等若未见必须显式未知。", "derivedFrom": ["RISK-002", "CQ-001", "CQ-002"]},
+    {"name": "visible_identity_ledger", "required": true, "reason": "旁白只称 AI/工具，需分别登记外层账号、小红书、嵌入水印和不可辨 UI 身份。", "derivedFrom": ["REL-007", "RISK-001", "RISK-005", "CQ-003", "CQ-008"]},
+    {"name": "example_group_and_scope", "required": true, "reason": "需要保守区分头部/人脸演示与结尾人物镜头，防止把用途范围当作已证明范围。", "derivedFrom": ["CAR-005", "REL-003", "REL-005", "CQ-004", "CQ-007"]},
+    {"name": "referent_status", "required": true, "reason": "结尾人物是否为工具输出、示例主体或别的插入素材影响对能力证据的理解。", "derivedFrom": ["REL-008", "RISK-004", "CQ-005"]},
+    {"name": "decision_boundary_absence_scope", "required": true, "reason": "CTA 只说评论区见，需要以全片检查范围记录未见的身份、入口与条件。", "derivedFrom": ["CAR-009", "RISK-006", "CQ-006"]},
+    {"name": "non_speech_audio_status", "required": true, "reason": "媒体含音轨，现有证据不能可靠解析其音乐/音效语义，必须保留这一已检查未知。", "derivedFrom": ["CAR-008", "RISK-007", "CQ-009"]}
+  ],
+  "captureActions": [
+    {"id": "ACT-001", "range": {"start": 0, "end": 0.45}, "carrier": "开场卡片、左右头部、指向符号、账号与平台标识", "mode": "ocr_review", "times": [0, 0.05, 0.1, 0.25, 0.45], "reason": "开场在极短时间内定义“AI实时画3D”并建立左右关系，初始密度不足以确认全部文字。", "expectedObservation": "逐行读取开场标题并确认左右头部及手形符号的空间关系；登记“红发魔女Amber”和小红书标识，寻找但不补全工具名/入口。", "derivedFrom": ["SWEEP-001", "MC-001", "REL-001", "RISK-005", "CQ-008"]},
+    {"id": "ACT-002", "range": {"start": 0.1, "end": 3.3}, "carrier": "左右头部变化、嵌入 UI 与顶部/底部文字", "mode": "motion_sequence", "densitySeconds": 0.2, "reason": "开场结果变化可能快于 0.75 秒探针采样，需要确认左右状态变化与初始/结果关系。", "expectedObservation": "记录左侧风格化头部、工具痕迹和右侧较写实头部的连续变化；标记单头 UI 的出现时点，不把邻接自动升级为因果。", "derivedFrom": ["SWEEP-002", "MC-002", "REL-001", "REL-002", "CQ-002"]},
+    {"id": "ACT-003", "range": {"start": 3.2, "end": 6.3}, "carrier": "单头 UI、左右脸部蒙太奇和字幕", "mode": "before_during_after", "times": [3.2, 3.5, 3.8, 4.2, 4.6, 5.0, 5.4, 5.8, 6.2, 6.3], "reason": "门槛主张覆盖两种显示形态，需要捕捉编辑前中后和可见结果，而非只取中点。", "expectedObservation": "确认从单头预览到左右人脸画面的切换、脸部/光影变化，以及有无可见用户操作或状态文字。", "derivedFrom": ["SWEEP-003", "MC-003", "REL-003", "REL-004", "RISK-002"]},
+    {"id": "ACT-004", "range": {"start": 6.2, "end": 8.5}, "carrier": "单头模型运动、UI 控件、动作字幕", "mode": "ui_state_review", "times": [6.2, 6.5, 6.8, 7.1, 7.4, 7.7, 8.0, 8.3, 8.5], "reason": "“动动手”的话语与模型转动重叠，需判断可见动作和界面状态。", "expectedObservation": "读取可辨的侧栏/底栏/状态文本，记录模型朝向变化；寻找拖拽、运行或提交证据，不可见则保持未知。", "derivedFrom": ["SWEEP-004", "MC-004", "CAR-003", "CAR-004", "CQ-001", "CQ-003"]},
+    {"id": "ACT-005", "range": {"start": 8.4, "end": 12.1}, "carrier": "左侧笔画/工具与右侧头部结果", "mode": "motion_sequence", "densitySeconds": 0.15, "reason": "这是视频声称“左面画几笔草图”的核心动作窗口；首次按 before/during/after 模式只得到三个锚点，不足以证明快速笔画，因此改为 0.15 秒序列捕捉动作前、过程中和结果状态。", "expectedObservation": "逐帧登记左侧线条、工具/笔刷图标、黄色圆形图标群、右侧脸部变化和中途切回单头 UI 的时点；确认是否真正显示提交、运行、保存或导出。", "derivedFrom": ["SWEEP-005", "MC-005", "REL-002", "REL-004", "RISK-002", "CQ-001", "CQ-002"]},
+    {"id": "ACT-006", "range": {"start": 12.0, "end": 14.4}, "carrier": "左右结果、单头 UI、能力/用途字幕", "mode": "motion_sequence", "densitySeconds": 0.2, "reason": "作者在此把局部人头演示扩展成实时 3D、角色和场景能力，需要核对画面实际证明范围。", "expectedObservation": "记录左右人头的最终状态、回到单头 UI 的时点和字幕；检查是否出现完整角色或场景，而非仅人头/人脸。", "derivedFrom": ["SWEEP-006", "MC-006", "REL-003", "CQ-004", "CQ-007", "RISK-003"]},
+    {"id": "ACT-007", "range": {"start": 14.2, "end": 17.55}, "carrier": "写实人物结尾蒙太奇、CTA 字幕、水印和黑场", "mode": "motion_sequence", "densitySeconds": 0.15, "reason": "结尾快速切换多个人物并把画面与电商模特/工具 CTA 并置，需保守计数与审计指代。", "expectedObservation": "按剪辑段计数可分辨人物，记录其可见外观和切换；寻找来源/生成标签、工具名、URL、二维码或下载控件；确认黑场时点。", "derivedFrom": ["SWEEP-007", "SWEEP-008", "MC-007", "MC-008", "REL-005", "REL-006", "REL-008", "RISK-004", "CQ-005", "CQ-006"]},
+    {"id": "ACT-008", "range": {"start": 0, "end": 17.601}, "carrier": "全时段固定标题、烧录字幕、UI 角落、小字、水印、二维码/链接/按钮候选位置", "mode": "ocr_review", "densitySeconds": 0.5, "reason": "产品身份、界面状态、限定语和 CTA 边界可能只在短帧或角落出现；负面结论必须基于全时段合理位置检查。", "expectedObservation": "逐帧核对标题、字幕、账号、平台、水印、侧栏/底栏和嵌入画面角落；在本视频全时段范围内寻找产品/服务名、文件、版本、账号/工作区、状态、入口、价格、平台要求、地区、支持/许可、URL、二维码或下载按钮。若未见，仅陈述在该检查范围内未观察到。", "derivedFrom": ["CAR-002", "CAR-003", "CAR-006", "CAR-009", "RISK-001", "RISK-005", "RISK-006", "CQ-003", "CQ-006", "CQ-008"]},
+    {"id": "ACT-009", "range": {"start": 0, "end": 17.601}, "carrier": "非语音音频流与字幕之外的音频活动", "mode": "exact_times", "times": [0, 3, 6, 9, 12, 15, 17.5], "reason": "媒体有 AAC 音轨且全片持续有音频活动，但现有方法不能可靠分离音乐/音效语义。", "expectedObservation": "确认音轨在全片存在并把非语音成分的具体类型、来源、节奏/情绪/转场作用保留为未知；不得从静帧或字幕臆测。", "derivedFrom": ["CAR-008", "RISK-007", "CQ-009"]},
+    {"id": "ACT-010", "range": {"start": 14.307, "end": 17.601}, "carrier": "收尾 CTA 的决策边界与合理入口位置", "mode": "ui_state_review", "times": [14.307, 14.6, 15.0, 15.4, 15.8, 16.2, 16.667, 17.0, 17.3, 17.55], "reason": "“评论区见”使工具获取条件成为决策相关问题，需专门审计收尾而非把全片稀疏采样当作缺失证据。", "expectedObservation": "检查固定标题、CTA 字幕、人物镜头、画面四角和黑场前后是否出现产品名、访问控件、价格、平台/账号/地区、支持或许可限定；登记未见内容的精确范围。", "derivedFrom": ["MC-008", "CAR-009", "RISK-006", "CQ-006"]}
+  ],
+  "requiredRelations": [
+    {"relation": "开场命题 setup_to 左右头部和 UI 演示", "derivedFrom": ["REL-001", "MC-001", "MC-002"]},
+    {"relation": "左侧笔画/工具变化 edited_as_input_to_output 右侧头部变化", "derivedFrom": ["REL-002", "MC-005", "CQ-001"]},
+    {"relation": "可见人头示例 illustrates_but_does_not_establish_scope_of 实时/低门槛/多用途主张", "derivedFrom": ["REL-003", "RISK-003", "CQ-007"]},
+    {"relation": "单头 UI 与双栏状态构成 observed_edit_chronology，依赖顺序未知", "derivedFrom": ["REL-004", "RISK-002", "CQ-002"]},
+    {"relation": "写实人物蒙太奇 juxtaposed_as_possible_result_or_use_case 用途主张", "derivedFrom": ["REL-005", "REL-008", "CQ-005"]},
+    {"relation": "工具已打包 claim_leads_to_action 评论区见", "derivedFrom": ["REL-006", "MC-008", "CQ-006"]},
+    {"relation": "可见账号/水印 shown_as_editorial_attribution_not_tool_identity", "derivedFrom": ["REL-007", "CQ-003", "CQ-008"]}
+  ],
+  "stoppingRules": [
+    "只有在 CQ-001 至 CQ-009 均被证据回答或被明确标为视频未建立时才停止。",
+    "只有在 MC-001 至 MC-008 都有目标帧或原始 cue/shot 证据并进入知识单元时才停止。",
+    "只有在 ACT-004、ACT-005 捕捉到动作前/中/后，或把缺失的提交/运行/保存/导出桥梁显式列为未知时才停止。",
+    "只有在 OCR 与 UI 复核实际执行并人工对照帧后才可关闭产品身份、状态、限定语和 CTA 文本通道。",
+    "只有在全片 0–17.601 秒与收尾 14.307–17.601 秒的合理位置都检查后，才可陈述某决策边界“在检查范围内未观察到”。",
+    "只有在结尾人物逐段保守计数、身份/来源/许可/生成归因分别处理后才停止。",
+    "只有在外层账号/平台、嵌入水印和工具身份不再被合并时才停止。",
+    "只有在非语音音轨被记录为已检查且无法可靠解析的未知，而不是被忽略时才停止。",
+    "只有在所有可用载体均检查、全部关系两端有证据、歧义经加密采样或保留未知，且元问题找不到未检查载体/意义变化/关系时才停止。"
+  ],
+  "declaredUnknowns": [
+    "具体工具/服务名称、版本、文件、账号和工作区身份可能仍无法从小型嵌入 UI 中可靠辨认。",
+    "左右画面变化是否由同一次系统运行因果连接，以及实际延迟，不由剪辑并置本身建立。",
+    "提交、运行、选择、保存、导出、下载或跨界面传递是否发生。",
+    "结尾人物镜头的真实身份、原始来源、授权状态和是否由所示工具生成。",
+    "评论区实际内容、工具访问路线、价格、平台、地区、账号要求、支持责任与许可。",
+    "非语音音轨的具体音乐/音效类型及其语义作用。"
+  ]
+}

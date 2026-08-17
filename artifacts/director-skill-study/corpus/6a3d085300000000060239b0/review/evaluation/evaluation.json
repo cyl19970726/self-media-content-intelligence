@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 18,
+      "examples": [
+        {"status": "missed", "auditId": "CQ-03", "detail": "Candidate reconstructs deep-content and long-Vlog recommendations but drops the audited comparison that Vlog is framed as very competitive while entertainment is framed as least profitable."},
+        {"status": "missed", "auditId": "CQ-04", "detail": "Candidate covers rhythm and alleged down-weighting but omits the author's claimed recovery dependency on a new hit."},
+        {"status": "missed", "auditId": "CQ-18", "detail": "Candidate repeats the thirteen-question promise and supplies topic units, but does not preserve that only some numbers are explicit and that the video does not visibly close all thirteen as enumerated questions."},
+        {"status": "answered", "auditIds": ["CQ-01", "CQ-06", "CQ-12", "CQ-13", "CQ-16", "CQ-17"], "detail": "Opening promise, monetization timing, delayed diagnosis, MCN types/shares, incubation loop, and closing warning are reconstructed."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 16,
+      "denominator": 16,
+      "examples": [
+        {"status": "covered", "detail": "Every independent-audit core knowledge unit has a corresponding candidate unit with at least one resolvable internal evidence reference."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 21,
+      "examples": [
+        {"status": "supported_or_bounded", "detail": "All 21 non-unknown candidate knowledge units attach evidence and keep platform, budget, MCN, and causal propositions attributed to the author or explicitly unverified."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 107,
+      "denominator": 107,
+      "examples": [
+        {"status": "checked", "detail": "Every cue, targeted-frame, and OCR reference attached to all 22 knowledge units resolves and overlaps its unit time range (0.5-second localization tolerance)."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 4,
+      "denominator": 6,
+      "rationale": "DEP-01, DEP-02, DEP-04, and DEP-05 are recoverable. DEP-03 is not closed because the candidate does not connect post-hit copying/growth to the later fatigue-or-scale monetization threshold. DEP-06 is not closed because it lists MCN types/resources and a warning without reconstructing verification of capabilities/terms as the decision bridge."
+    },
+    "unknownDiscipline": {
+      "numerator": 5,
+      "denominator": 13,
+      "examples": [
+        {"status": "correct", "auditIds": ["UNK-01", "UNK-06", "UNK-07", "UNK-11", "UNK-13"], "detail": "Screenshot attribution/causality, unproven weight and budget claims, the un-demonstrated wait/diagnosis mechanism, and unsupported MCN accusations are bounded."},
+        {"status": "missed", "auditIds": ["UNK-02", "UNK-04", "UNK-05", "UNK-08", "UNK-09", "UNK-10", "UNK-12"], "detail": "The candidate does not preserve the complete-classification uncertainty; algorithm/platform/account-stage scope for duration advice; access/region/validity of the support plan; evidence and exceptions for lifecycle/100k thresholds; operational variables for copying; privacy/risk limits on interaction; or mixed-contract/exit/IP/liability boundaries."},
+        {"status": "missed", "auditId": "UNK-03", "detail": "The candidate omits rather than explicitly bounding the evidence base and scope for the Vlog-competition and entertainment-profit comparisons."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "Resource/capability -> track -> competition/commercial-space -> format/length decision order is reduced to adjacent chronology.",
+      "Hit-series copying/growth -> fatigue or scale threshold -> advertising is not guarded as a cross-segment dependency.",
+      "Comments/private messages -> topic selection -> multi-series framework -> Tag opportunity is not guarded as an operational feedback chain.",
+      "MCN type -> share/services/capabilities -> contract decision or incubation-risk judgment is not guarded as a decision relation.",
+      "Ad revenue -> paid data amplification -> continued orders is stated in prose but not guarded as the causal loop that motivates the closing warning."
+    ],
+    "rationale": "The protocol checks every available carrier but discovers mainly adjacent meaning-change chronology. Independent audit exposes several decision, feedback, diagnostic, and causal relations outside that relation protocol; candidate prose cannot validate its own meta-completeness."
+  },
+  "examples": [
+    {"type": "gate_outcome", "value": "NOT_READY", "reason": "critical-question recall, process dependency completeness, unknown discipline, and independent meta-gate fail; JUDGE was not substantively conducted."},
+    {"type": "judge_schema_placeholder", "detail": "The schema requires five numeric judge fields. Values of 1 are non-substantive placeholders because hard GATE did not fully pass and must not be interpreted as JUDGE scores."}
+  ]
+}

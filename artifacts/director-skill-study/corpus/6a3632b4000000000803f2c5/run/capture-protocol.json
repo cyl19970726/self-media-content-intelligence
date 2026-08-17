@@ -1,0 +1,37 @@
+{
+  "schemaVersion":"capture-protocol-1.0",
+  "probe":"probe.json",
+  "protocolName":"免费课程宣言、聊天证据与收费边界复核协议",
+  "rationale":"本片以宣言式口播为主，但三组短时界面、白板、强调字幕、身份口号和结尾回扣决定承诺范围；协议需要分开作者主张、可见截图、价值理由、受众和收费例外。",
+  "knowledgeUnitFields":[
+    {"name":"promise_scope","required":true,"reason":"保留30天、30条、免费、从零粉到十万粉及其未知条件。","derivedFrom":["MC-02","MC-04","CQ-01"]},
+    {"name":"author_claim_or_observation","required":true,"reason":"涨粉、收入、案例和截图可见性必须分层。","derivedFrom":["RISK-01","CQ-04"]},
+    {"name":"trigger_and_rationale","required":true,"reason":"课程决定由聊天冲突和权利下放立场串联。","derivedFrom":["REL-02","MC-03","REL-03"]},
+    {"name":"audience_and_fee_boundary","required":true,"reason":"免费对象与可收费棚主/企业主构成关键限制。","derivedFrom":["MC-05","MC-07","CQ-03"]},
+    {"name":"visible_ui_text_and_conflict","required":true,"reason":"账号与聊天截图、金额和SRT疑词需对帧。","derivedFrom":["CAR-03","RISK-02","CQ-05"]},
+    {"name":"referent_and_identity","required":true,"reason":"面罩人物和聊天参与者不可过度识别。","derivedFrom":["RISK-04","REL-07"]},
+    {"name":"access_or_execution_unknown","required":true,"reason":"入口、发布日期、资料领取和执行保障影响可行动性。","derivedFrom":["RISK-06","CQ-06"]},
+    {"name":"opening_closing_payoff","required":true,"reason":"桃李满天下重新定义作者索求的回报。","derivedFrom":["RISK-07","REL-06","CQ-07"]}
+  ],
+  "captureActions":[
+    {"id":"ACT-01","range":{"start":0,"end":5.8},"carrier":"inserted_ui,burned_caption,recognizable_styling","mode":"ocr_review","times":[0,0.4,0.8,1.2,1.8,2.5,3.5,4.5,5.5],"reason":"复核涨粉界面、数字、账号线索和开场反差。","expectedObservation":"可见账号/数据字段、五天四万粉相关文字、今天没有干货，并记录面罩造型而不确认身份。","derivedFrom":["MC-01","CAR-03","RISK-01","RISK-04","CQ-05"]},
+    {"id":"ACT-02","range":{"start":5.5,"end":18.5},"carrier":"chat_screenshot,burned_caption,whiteboard_curriculum_plan","mode":"ocr_review","times":[5.8,7,8.5,10,11.5,12.5,13.5,14.5,15.5,16.5,17.5,18.3],"reason":"锁定课程目标、周期、条数、免费、约30项白板规划与知识付费冲突截图。","expectedObservation":"从零粉到十万粉、30天/30条/免费；白板两列编号约1—30项、末三项红字，多数手写课题不可可靠逐读，且规划不等于发布；评论界面可读文字与上下文缺口。","derivedFrom":["MC-02","REL-02","RISK-02","CQ-01","CQ-02"]},
+    {"id":"ACT-03","range":{"start":18,"end":34.8},"carrier":"burned_caption,whiteboard,gesture","mode":"motion_sequence","times":[18.2,20,22,24,26,28,30,32,34],"reason":"保留掀桌、权利下放、生存/机会、小城出身与收入排名的论证推进。","expectedObservation":"宣言式手势和字幕关键词；区分价值主张、个人经历和未验证收入声称。","derivedFrom":["MC-03","RISK-01","CQ-02"]},
+    {"id":"ACT-04","range":{"start":34.4,"end":56.9},"carrier":"burned_caption,whiteboard,emphasis_text","mode":"ocr_review","times":[34.5,36.5,38.5,40.5,42.5,44.5,46.5,48.5,50.5,52.5,54.5,56.5],"reason":"复核免费承诺的所有层次和最终免费限定。","expectedObservation":"平台免费日更、不做收费进阶课、不向任何老师/作者付费、电子资料到最后免费、权利给予人民；记录平台/入口缺失。","derivedFrom":["MC-04","RISK-03","CQ-01"]},
+    {"id":"ACT-05","range":{"start":56.5,"end":65.2},"carrier":"burned_caption,whiteboard,list_grouping","mode":"ocr_review","times":[56.8,58,59.5,61,62.5,64,65],"reason":"确认四类受众和自称改写。","expectedObservation":"学生、白领、中年失业女性、创业者，以及人类最强编导/人民最强编导的字面差异。","derivedFrom":["MC-05","REL-04","CQ-03"]},
+    {"id":"ACT-06","range":{"start":64.8,"end":73.3},"carrier":"service_chat,hearing_disability_chat,transaction_state,burned_caption,editing_order","mode":"ocr_review","times":[65,66,67,68,69,70,71,72,73],"reason":"分别复核普通人服务、听障求职聊天、交易状态与作者工作推荐/未收费主张。","expectedObservation":"服务聊天可读拒收费用；匿名聊天逐字可见“老师/他们都不要我/因为我听力残障”；另屏交易为¥50/¥150/¥200且已被接收。三者身份、因果、工作结果、交易方向用途和完整费用历史均保持未知。","derivedFrom":["MC-06","RISK-02","RISK-05","CQ-04","CQ-05"]},
+    {"id":"ACT-07","range":{"start":73,"end":81.781},"carrier":"burned_caption,gesture,closing","mode":"ocr_review","times":[73.2,74.5,76,77,78,79,80,81,81.6],"reason":"锁定可收费客户、不可收费对象、唯一回馈和最终短卡/CTA。","expectedObservation":"棚主或其他疑词、企业主、人民、30天后桃李满天下，以及是否出现CTA。","derivedFrom":["MC-07","RISK-03","RISK-07","CQ-03","CQ-07"]},
+    {"id":"ACT-08","range":{"start":0,"end":81.781},"carrier":"course_access,platform,CTA,continuity,non_speech_audio","mode":"interval_density","densitySeconds":4,"reason":"完成课程入口/发布日期/领取/价格条款/支持、环境连续性和音频未知的全时间线边界检查。","expectedObservation":"可能出现的平台名、账号、入口、日期、领取方式、收费条款、支持责任或CTA；插图与同一洗衣房式场景的剪辑关系；无法可靠辨别的音乐/音效作用明确未知。","derivedFrom":["CAR-06","CAR-07","RISK-06","CQ-06"]}
+  ],
+  "requiredRelations":[
+    {"relation":"setup_to_announcement","derivedFrom":["REL-01"]},
+    {"relation":"author_framed_as_trigger_for","derivedFrom":["REL-02"]},
+    {"relation":"rationale_for","derivedFrom":["REL-03"]},
+    {"relation":"addresses","derivedFrom":["REL-04"]},
+    {"relation":"example_supports_boundary","derivedFrom":["REL-05"]},
+    {"relation":"closing_payoff_for","derivedFrom":["REL-06"]},
+    {"relation":"stands_in_for_unverified","derivedFrom":["REL-07"]}
+  ],
+  "stoppingRules":["全部30个cue逐一问责且不静默消失","7个意义变化均进入单位并有证据","7条候选关系两端有证据或保留不成立","开头账号界面、知识付费聊天和服务案例截图全部OCR并人工对帧","30天/30条/免费/从零到十万粉的承诺不超出视频范围","学生、白领、中年失业女性、创业者及可收费客户边界完整","截图只证明可见文字，不证明参与者身份、真实性或结果","课程平台、入口、发布日期、领取方式、保障与CTA经全片检查后答复或明确未知","面罩身份、技术分段与非语音音频不被过度解释","元门问题没有未检查载体、变化或关系"],
+  "declaredUnknowns":["账号归属、涨粉与收入声称真实性","聊天对象身份、原始上下文和截图真实性","课程平台、入口、发布日期、资料领取方式与执行保障","课程能否使观众达到十万粉","听障粉丝工作推荐结果及是否与截图同一案例","SRT中的棚主与一千块钱措辞","现实人物身份和面罩授权","非语音音频作用与隐藏剪辑"]
+}

@@ -1,0 +1,496 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "6808e742000000001e000b85",
+  "auditType": "ground_truth_from_local_primary_artifacts_only",
+  "auditScope": {
+    "readSources": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/6808e742000000001e000b85.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/6808e742000000001e000b85.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6808e742000000001e000b85/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6808e742000000001e000b85/evidence/frames/**"
+    ],
+    "excludedSources": [
+      "Skill instructions and outputs",
+      "candidate reconstruction",
+      "prior reports",
+      "external web sources"
+    ],
+    "interpretationRule": "The audit distinguishes what the video says, what an embedded provider/repository page says, what is actually visible in playback, and what remains unknown. Provider claims shown inside the video are not treated as independently verified facts."
+  },
+  "sourceIntegrity": {
+    "mp4Sha256": "3a83acd3c4ad9fb2e8fe8b8b90b811995624ef88e6d1905661262443c3a0d541",
+    "srtSha256": "db69d654294e6203833838c106351a7c5c3f6fbc6644ea711beff93e62e76be6",
+    "evidencePackSha256": "6f46c82ca6e63b4200581f7894e92c78d39c2a6e6a2773d4b10ef2649a33a7f3"
+  },
+  "sourceMedia": {
+    "durationSeconds": 87.9,
+    "container": "mov,mp4,m4a,3gp,3g2,mj2",
+    "videoCodec": "hevc",
+    "width": 1440,
+    "height": 2560,
+    "frameRate": 30,
+    "hasAudio": true,
+    "audioCodec": "aac",
+    "subtitleOrigin": "provided_subtitles",
+    "subtitleCueCount": 24
+  },
+  "productIdentity": {
+    "groundTruthName": "SkyReels V2",
+    "confidence": "high",
+    "basis": [
+      {
+        "timeRange": "00:01.867-00:06.967",
+        "observation": "A repository-like page visibly reads 'SkyReels' and 'SkyReels V2: 无限长胶片生成模型'."
+      },
+      {
+        "timeRange": "00:45.200-00:47.800",
+        "observation": "A product interface visibly carries the SkyReels name/logo and SkyReels-V2-related content."
+      },
+      {
+        "timeRange": "00:47.800-00:57.700",
+        "observation": "Technical-report figures and captions visibly use 'SkyReels-V2'."
+      },
+      {
+        "timeRange": "00:76.420-00:80.168",
+        "observation": "The burned-in subtitle correctly displays 'SkyReels'."
+      }
+    ],
+    "conflicts": [
+      {
+        "source": "provided SRT",
+        "locations": [
+          "CUE-003 / 00:06.080-00:07.200: 'Skyrise v二'",
+          "CUE-013 / 00:45.320-00:47.810: 'scarios v二'",
+          "CUE-021 / 00:76.420-00:80.168: 'scarios'"
+        ],
+        "finding": "These strings conflict with the repeated on-screen identity. They are best treated as subtitle/ASR errors, not separate products."
+      },
+      {
+        "source": "narration",
+        "locations": [
+          "CUE-001 / 00:00.000-00:03.120"
+        ],
+        "finding": "The attribution to 昆仑万维 is spoken, but the audited frames do not visibly establish the company identity or ownership relationship."
+      }
+    ]
+  },
+  "visibleTimeline": [
+    {
+      "timeRange": "00:00.000-00:01.867",
+      "carrier": "sample-like B-roll under talking-head layout",
+      "visibleContent": "Warm rural cooking scene with elderly people, house, field and dog; it cuts away after about 1.9 seconds.",
+      "provenance": "unlabeled; generation source and rights not shown",
+      "evidenceRefs": ["SHOT-001", "DENSE-0001", "DENSE-0002"]
+    },
+    {
+      "timeRange": "00:01.867-00:06.967",
+      "carrier": "repository/project-page screenshot or screen recording",
+      "visibleContent": "SkyReels V2 page. Readable text says the repository provides model weights and inference code and that the displayed demos are 30-second videos generated with the diffusion-forcing model.",
+      "provenance": "page identity is visible, but URL, account/owner verification and license terms are not",
+      "evidenceRefs": ["SHOT-002", "DENSE-0003", "DENSE-0004", "DENSE-0005"]
+    },
+    {
+      "timeRange": "00:06.967-approximately 00:10",
+      "carrier": "sample-like clip",
+      "visibleContent": "Swan moving on misty water.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-003", "DENSE-0006", "DENSE-0007"]
+    },
+    {
+      "timeRange": "approximately 00:10-00:14",
+      "carrier": "sample-like clip",
+      "visibleContent": "Jellyfish moving over an underwater coral scene; this is a different subject from the swan.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-003", "DENSE-0008", "DENSE-0009", "DENSE-0010"]
+    },
+    {
+      "timeRange": "approximately 00:14-00:20.900",
+      "carrier": "product/gallery interface",
+      "visibleContent": "SkyReels V2 promotional/gallery grid. Some cards visibly carry duration badges including 00:15 and 00:34; thumbnails and badges are not playback proof of duration or continuity.",
+      "provenance": "interface name is visible; access status, pricing, job metadata and owner account are not",
+      "evidenceRefs": ["SHOT-003", "DENSE-0011", "DENSE-0012", "DENSE-0013", "DENSE-0014"]
+    },
+    {
+      "timeRange": "00:20.900-00:25.167",
+      "carrier": "sample-like clip",
+      "visibleContent": "Three classically dressed women in a staged tableau with small pose changes.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-004", "DENSE-0015", "DENSE-0016", "DENSE-0017"]
+    },
+    {
+      "timeRange": "00:25.167-approximately 00:34.000",
+      "carrier": "sample-like clip",
+      "visibleContent": "A woman applies makeup in front of a mirror. This is the longest clearly visible same-scene sample window, about 8.8 seconds before the transition begins.",
+      "provenance": "introduced by narration as '我刚刚生成的这段', but the frame has no job ID, prompt, model/version, output metadata or account evidence proving that attribution",
+      "evidenceRefs": ["SHOT-005", "DENSE-0018", "DENSE-0019", "DENSE-0020", "DENSE-0021", "DENSE-0022", "DENSE-0023"]
+    },
+    {
+      "timeRange": "approximately 00:34.000-00:34.700",
+      "carrier": "editorial transition",
+      "visibleContent": "A visible dissolve/crossfade changes the makeup scene into an aerial grassland scene.",
+      "provenance": "edit is visible in the raw video",
+      "evidenceRefs": ["SHOT-005", "DENSE-0024"]
+    },
+    {
+      "timeRange": "approximately 00:34.700-00:38.600",
+      "carrier": "sample-like clip",
+      "visibleContent": "Aerial movement over green grassland.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-005", "DENSE-0025", "DENSE-0026"]
+    },
+    {
+      "timeRange": "approximately 00:38.600-00:41.067",
+      "carrier": "sample-like clip",
+      "visibleContent": "A hard content change introduces an underwater sea turtle. This is not a continuation of the aerial grassland shot.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-005", "DENSE-0027", "DENSE-0028"]
+    },
+    {
+      "timeRange": "00:41.067-00:43.367",
+      "carrier": "sample-like clip",
+      "visibleContent": "Warm rural cooking scene.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-006", "DENSE-0029"]
+    },
+    {
+      "timeRange": "00:43.367-00:45.200",
+      "carrier": "sample-like clip",
+      "visibleContent": "Autumn harvest village scene; a separate composition from the preceding rural cooking scene.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-007", "DENSE-0030", "DENSE-0031"]
+    },
+    {
+      "timeRange": "00:45.200-00:47.800",
+      "carrier": "product interface",
+      "visibleContent": "SkyReels interface/home or library view with creation categories and recent-content cards.",
+      "provenance": "the interface is visible, but no browser URL, authenticated account, pricing state or completed generation job is shown",
+      "evidenceRefs": ["SHOT-008", "DENSE-0032"]
+    },
+    {
+      "timeRange": "00:47.800-00:57.700",
+      "carrier": "technical-report figures/screenshots",
+      "visibleContent": "Method diagram, evaluation table and frame-sequence examples. One caption uses '几乎无限长度', not an observed infinite playback. A later figure labels sequential-prompt examples as ultra-long video generation.",
+      "provenance": "SkyReels-V2 appears in figure captions, but full paper title, authors, URL and publication metadata are not shown",
+      "evidenceRefs": ["SHOT-009", "DENSE-0033", "DENSE-0034", "DENSE-0036", "DENSE-0037", "DENSE-0038", "DENSE-0039"]
+    },
+    {
+      "timeRange": "00:57.700-00:61.167",
+      "carrier": "sample-like clip",
+      "visibleContent": "Man standing in a night city environment.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-010", "DENSE-0040", "DENSE-0041"]
+    },
+    {
+      "timeRange": "00:61.167-approximately 00:64.667",
+      "carrier": "sample-like clip",
+      "visibleContent": "Portrait of a woman changing facial expression.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-011", "DENSE-0042", "DENSE-0043", "DENSE-0044"]
+    },
+    {
+      "timeRange": "approximately 00:64.667-00:67.533",
+      "carrier": "sample-like clip",
+      "visibleContent": "Close-up of a crying man; separate clip from the preceding woman.",
+      "provenance": "unlabeled; could be generated or sourced footage; rights are not stated",
+      "evidenceRefs": ["SHOT-011", "DENSE-0045", "DENSE-0046"]
+    },
+    {
+      "timeRange": "approximately 00:67.533-00:69.333",
+      "carrier": "sample-like clip",
+      "visibleContent": "Group dance on a neon stage.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-011", "DENSE-0047"]
+    },
+    {
+      "timeRange": "approximately 00:69.333-00:71.900",
+      "carrier": "generation/edit interface",
+      "visibleContent": "A preview/script-style interface shows an actor instruction, image-or-text reference, English LipSync option and a visible 5-second duration setting.",
+      "provenance": "no visible generate click, wait state, output linkage or export",
+      "evidenceRefs": ["SHOT-011", "DENSE-0048"]
+    },
+    {
+      "timeRange": "00:71.900-approximately 00:74.267",
+      "carrier": "sample-like drama clip",
+      "visibleContent": "Worried woman with a blurred man behind her.",
+      "provenance": "unlabeled; no demonstrated link to the preceding interface",
+      "evidenceRefs": ["SHOT-012", "DENSE-0049", "DENSE-0050"]
+    },
+    {
+      "timeRange": "approximately 00:74.267-00:76.400",
+      "carrier": "sample-like drama clip",
+      "visibleContent": "Concerned man in an interior; editorial cut from the woman.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-012", "DENSE-0051"]
+    },
+    {
+      "timeRange": "approximately 00:76.400-00:80.167",
+      "carrier": "sample-like clip",
+      "visibleContent": "Bride and groom against a red studio background; another editorial cut and different scene.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-012", "DENSE-0052", "DENSE-0053", "DENSE-0054"]
+    },
+    {
+      "timeRange": "00:80.167-00:84.167",
+      "carrier": "sample-like transformation clip",
+      "visibleContent": "A child-like figure changes into a Venom-like black character.",
+      "provenance": "unlabeled; generation metadata and authorization for the recognizable character likeness are not shown",
+      "evidenceRefs": ["SHOT-013", "DENSE-0055", "DENSE-0056", "DENSE-0057"]
+    },
+    {
+      "timeRange": "00:84.167-00:87.900",
+      "carrier": "sample-like B-roll",
+      "visibleContent": "Snowy rural yard with a person stacking firewood.",
+      "provenance": "unlabeled; no generation metadata",
+      "evidenceRefs": ["SHOT-014", "DENSE-0058", "DENSE-0059", "DENSE-0060"]
+    }
+  ],
+  "claimAudit": [
+    {
+      "id": "CLM-01",
+      "claim": "昆仑万维开源了 SkyReels V2。",
+      "claimEvidence": ["CUE-001", "CUE-003"],
+      "visibleEvidence": ["00:01.867-00:06.967 repository-like page naming SkyReels V2 and saying model weights/inference code are provided"],
+      "verdict": "partially_supported_inside_video_not_independently_verified",
+      "finding": "The artifact supports the product name and an open-release claim. It does not visibly verify the company attribution, repository owner, URL or license.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-02",
+      "claim": "全球首个支持无限时长的高质量电影大模型。",
+      "claimEvidence": ["CUE-002", "CUE-005"],
+      "visibleEvidence": ["SkyReels V2 project-page title", "technical-report caption saying 几乎无限长度"],
+      "verdict": "provider_claim_only_and_absolute_wording_overstates_visible_source",
+      "finding": "The superlative '全球首个' has no comparative evidence. No infinite playback is shown. The report screenshot uses the qualified phrase '几乎无限长度', while the narration removes that qualification.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-03",
+      "claim": "可无限时长生成高清视频，而非 5 秒或 10 秒拼接。",
+      "claimEvidence": ["CUE-004", "CUE-005"],
+      "visibleEvidence": ["gallery duration badges including 00:15 and 00:34", "technical figures labeled with frames extending toward infinity"],
+      "verdict": "not_demonstrated_by_playback",
+      "finding": "Badges and figures repeat a capability claim but do not establish uninterrupted output. The edited video itself repeatedly switches among unrelated samples. No resolution metadata for a generated output is shown.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-04",
+      "claim": "直接免费开源。",
+      "claimEvidence": ["CUE-006", "CUE-022"],
+      "visibleEvidence": ["project page says model weights and inference code are provided"],
+      "verdict": "open_release_partially_supported_free_status_unverified",
+      "finding": "Open release and zero price are separate claims. No license, pricing, credit allowance, usage limit or commercial-use terms are shown. '免费' therefore remains unsupported in this artifact.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-05",
+      "claim": "有免部署的在线体验版。",
+      "claimEvidence": ["CUE-006"],
+      "visibleEvidence": ["00:14-00:20.900 gallery/product UI", "00:45.200-00:47.800 SkyReels UI", "00:69.333-00:71.900 generation/edit UI"],
+      "verdict": "interface_visible_but_access_conditions_unverified",
+      "finding": "A hosted-looking interface is visible, which supports the existence of an interface. The video does not show URL access, login, availability, payment status or a complete live generation.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-06",
+      "claim": "我刚刚生成的这段是有连续剧情的完整短片，不卡顿不扭曲。",
+      "claimEvidence": ["CUE-008", "CUE-009"],
+      "visibleEvidence": ["00:25.167-approximately 00:34.000 makeup scene"],
+      "verdict": "not_established",
+      "finding": "The longest clearly visible same-scene sample is about 8.8 seconds and shows one makeup situation rather than a complete plot. It then dissolves into unrelated aerial footage. The clip has no provenance or generation record, and the short excerpt cannot prove universal absence of stalls or distortion.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-07",
+      "claim": "一镜到底的 30 秒长镜头是独家功能，且可持续无限延长。",
+      "claimEvidence": ["CUE-010"],
+      "visibleEvidence": ["project-page text says the page demos are 30-second videos", "technical screenshot says almost infinite length"],
+      "verdict": "provider_claim_partially_visible_but_not_demonstrated",
+      "finding": "No 30-second uninterrupted sample is played in the audited video. '独家' has no competitor comparison. '无限' is not observed and exceeds the report screenshot's qualified '几乎无限'.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-08",
+      "claim": "航拍、水拍都能一气呵成。",
+      "claimEvidence": ["CUE-011"],
+      "visibleEvidence": ["approximately 00:34.700-00:38.600 aerial grassland", "approximately 00:38.600-00:41.067 underwater turtle"],
+      "verdict": "contradicted_as_a_single_continuous_demonstration",
+      "finding": "The video uses two distinct clips separated by a hard content change at about 38.6 seconds. It demonstrates two motifs, not one continuous aerial-to-underwater take or one traceable generation.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-09",
+      "claim": "乡村怀旧视频的氛围感极高。",
+      "claimEvidence": ["CUE-012"],
+      "visibleEvidence": ["00:41.067-00:45.200 two rural images/clips", "00:84.167-00:87.900 snowy rural clip"],
+      "verdict": "subjective_quality_judgment_with_unverified_provenance",
+      "finding": "Rural imagery is visible, but '氛围感极高' is subjective. The visible rural segments are separate compositions and do not show how they were generated.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-10",
+      "claim": "模型通过 620 万小时电影素材训练。",
+      "claimEvidence": ["CUE-014"],
+      "visibleEvidence": ["00:47.800-00:57.700 technical-report screenshots"],
+      "verdict": "narration_only_not_visibly_substantiated",
+      "finding": "The number appears in narration/burned-in subtitle. The legible report frames in this video do not visibly establish 620 万小时, a dataset inventory, provenance or licenses.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-11",
+      "claim": "相当于把世界顶级导演经验和镜头语言全部装进模型。",
+      "claimEvidence": ["CUE-015", "CUE-016"],
+      "visibleEvidence": ["technical-report montage and sample clips"],
+      "verdict": "rhetorical_inference_not_a_demonstrated_fact",
+      "finding": "No director list, licensed corpus, controlled test or causal evidence is shown.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-12",
+      "claim": "人物表情和镜头语言都非常出色。",
+      "claimEvidence": ["CUE-017", "CUE-018"],
+      "visibleEvidence": ["00:57.700-00:69.333 city, expression, crying and dance montage"],
+      "verdict": "subjective_and_only_selectively_illustrated",
+      "finding": "The montage contains relevant examples, but they are short, separately edited and lack provenance, settings and failed outputs. It cannot support a general quality conclusion.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-13",
+      "claim": "AI 写剧本后，用该 AI 就能制作一部完整短剧。",
+      "claimEvidence": ["CUE-019", "CUE-020"],
+      "visibleEvidence": ["00:69.333-00:71.900 interface with a 5-second setting", "00:71.900-00:80.167 three edited drama/wedding snippets"],
+      "verdict": "workflow_not_demonstrated",
+      "finding": "The video does not show script import, shot breakdown, character consistency controls, generation jobs, retries, stitching, sound, editing or export. The visible 5-second setting also does not establish one-click creation of a complete short drama.",
+      "confidence": "high"
+    },
+    {
+      "id": "CLM-14",
+      "claim": "彻底告别高门槛拍摄成本、改变行业规则。",
+      "claimEvidence": ["CUE-007", "CUE-021", "CUE-023", "CUE-024"],
+      "visibleEvidence": [],
+      "verdict": "speculative_marketing_conclusion",
+      "finding": "No cost comparison, labor/time accounting, reliability data, production case study or adoption evidence is presented.",
+      "confidence": "high"
+    }
+  ],
+  "operationChain": {
+    "claimedChain": [
+      "Use AI to write a short-drama script",
+      "Use SkyReels/SkyReels V2",
+      "Obtain a complete short drama"
+    ],
+    "actuallyVisible": [
+      "Repository/project-page claims and demo thumbnails",
+      "Product/gallery/home interfaces",
+      "A preview/script-style interface with prompt/reference fields, LipSync option and a 5-second setting",
+      "A montage of short sample-like clips"
+    ],
+    "notVisibleOrUnknown": [
+      "Exact URL and authenticated account",
+      "Whether the interface was live or prerecorded",
+      "Prompt/script entered for any shown sample",
+      "Model family/checkpoint used for each sample, including AR versus diffusion-forcing variant",
+      "Input image/video and rights to those inputs",
+      "Seed, inference parameters, resolution and target duration",
+      "Generate click, queue/wait, failures and retries",
+      "Generation job IDs or output metadata linking UI to samples",
+      "Whether clips were extended, stitched, interpolated or post-edited",
+      "Character and scene consistency workflow",
+      "Audio, voice, music, captions and lip-sync production steps",
+      "Export/download step and final file properties",
+      "Compute cost, credits, latency and usage limits"
+    ],
+    "reconstructableProcedure": false,
+    "reason": "The artifact is a narrated promotional montage, not an end-to-end screen recording of a reproducible generation workflow."
+  },
+  "sourceAuthorizationAndRights": {
+    "visibleAttribution": [
+      "SkyReels / SkyReels V2 branding on a repository-like page, product UI and technical-report figures"
+    ],
+    "missing": [
+      "Clickable or fully visible source URL",
+      "Repository owner/account verification",
+      "Open-source license name and license text",
+      "Hosted-service terms, price and commercial-use rights",
+      "Attribution or provenance for inserted sample clips",
+      "Generation logs linking samples to SkyReels V2",
+      "Training dataset inventory and authorization for the claimed movie corpus",
+      "Permissions for recognizable character or possible film/celebrity likenesses"
+    ],
+    "specificRisks": [
+      {
+        "timeRange": "00:80.167-00:84.167",
+        "risk": "A Venom-like recognizable character is used without visible rights information."
+      },
+      {
+        "timeRange": "00:47.800-00:57.700",
+        "risk": "Technical examples reference film-like/celebrity material, but the frame does not show source or license context."
+      },
+      {
+        "timeRange": "throughout sample montage",
+        "risk": "Absence of watermarks does not establish ownership or authorization."
+      }
+    ],
+    "authorizationConclusion": "unknown"
+  },
+  "carrierAndEvidenceAssessment": {
+    "carrier": "87.9-second vertical social video with circular talking-head presenter, embedded webpages/interfaces/report figures, sample-like B-roll and burned-in captions",
+    "evidenceLevels": [
+      {
+        "level": 1,
+        "type": "directly visible event in original video",
+        "examples": ["cuts", "crossfade", "duration setting", "visible product name", "visible sample window"]
+      },
+      {
+        "level": 2,
+        "type": "claim visibly printed on embedded provider/repository/report material",
+        "examples": ["weights and inference code", "30-second demo description", "almost-infinite wording"]
+      },
+      {
+        "level": 3,
+        "type": "presenter narration or subtitle claim",
+        "examples": ["free", "620 万 hours", "world first", "complete short drama"]
+      },
+      {
+        "level": 4,
+        "type": "marketing inference or subjective judgment",
+        "examples": ["no distortion", "senior film master", "change industry rules"]
+      }
+    ],
+    "limitations": [
+      "Evidence-pack shot detection merges several obvious internal content changes, especially SHOT-005 and SHOT-011; shot IDs therefore cannot be treated as proof of one take.",
+      "Dense frames are sampled every 1.5 seconds and can miss brief transitions; timing of sub-shot changes marked 'approximately' was checked against the original video frames.",
+      "No external verification was performed by design."
+    ]
+  },
+  "groundTruthSummary": {
+    "established": [
+      "The visual product identity is SkyReels V2.",
+      "The video contains a repository-like page that says model weights and inference code are provided.",
+      "The same page says its own displayed demos are 30-second videos.",
+      "A SkyReels-branded hosted-looking interface and a separate preview/script-style interface are visible.",
+      "The longest clearly visible uninterrupted same-scene sample window is about 8.8 seconds, not 30 seconds.",
+      "The apparent aerial-to-underwater proof is two separate clips with a hard change, not one continuous take.",
+      "The artifact is an edited promotional montage rather than a reproducible end-to-end demonstration."
+    ],
+    "notEstablished": [
+      "Actual infinite-duration generation",
+      "A played 30-second one-take output",
+      "Exclusivity or world-first status",
+      "No-stall/no-distortion performance over long duration",
+      "Free access or commercial-use rights",
+      "The company's ownership/attribution relationship",
+      "620 万 hours of authorized movie training data",
+      "Presenter authorship of the shown generated samples",
+      "One-click creation of a complete short drama",
+      "Source authorization for inserted samples and recognizable IP"
+    ],
+    "overallConclusion": "The video reliably identifies SkyReels V2 and visually repeats some provider-side open-release, 30-second and near-infinite claims. It does not itself demonstrate a 30-second one-take result, infinite continuation, a complete generation workflow, free-use terms, or sample provenance. Several narration claims are stronger than the visible source material, and the edited sample montage should not be treated as continuity proof."
+  },
+  "qualityControl": {
+    "jsonSyntaxValidated": true,
+    "timelineWithinMediaDuration": true,
+    "evidenceReferencesCheckedAgainstEvidencePack": true,
+    "subtitleClaimsCheckedAgainstProvidedSrt": true,
+    "externalFactClaimsAdded": false
+  }
+}

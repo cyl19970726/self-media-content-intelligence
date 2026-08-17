@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T21:03:48.041Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": false,
+      "detail": "Unsupported internal inferences found",
+      "examples": [
+        "KU-14:inference_without_reasoning_or_evidence"
+      ]
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=0.941",
+      "examples": [
+        {
+          "status": "covered",
+          "auditIds": [
+            "Q01-Q15",
+            "Q17"
+          ],
+          "candidateUnits": [
+            "KU-01-KU-14",
+            "KU-16"
+          ]
+        },
+        {
+          "status": "missed",
+          "auditId": "Q16",
+          "detail": "KU-15 records the masked presenter and an opening montage but omits the audited social-proof details and the 人类最强编导 versus final 人类这样编导 caption conflict."
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "covered",
+          "auditIds": [
+            "K01-K15"
+          ],
+          "detail": "Every audited core unit has a semantically corresponding candidate unit with resolvable evidence."
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "status": "supported",
+          "detail": "All 15 non-unknown candidate units have candidate evidence and broad prescriptions are scoped as author_claim."
+        },
+        {
+          "status": "contract_discrepancy",
+          "candidateUnit": "KU-14",
+          "detail": "Its SRT/OCR conflict is evidentially supported, but provenance=system_inference lacks the reasoning field required by deterministic validation."
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=0.985",
+      "examples": [
+        {
+          "status": "correct",
+          "detail": "65 evidence references localize within their unit ranges."
+        },
+        {
+          "status": "incorrect",
+          "candidateUnit": "KU-07",
+          "ref": "CUE-042",
+          "detail": "CUE-042 is at 120.520-126.190 but KU-07 declares only 75.790-85.391; the later support needs a second range or a wider bounded range."
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": false,
+      "detail": "ratio=0.400",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": false,
+      "detail": "ratio=0.727",
+      "examples": [
+        {
+          "status": "correct",
+          "auditIds": [
+            "U01",
+            "U03-U05",
+            "U08-U11"
+          ],
+          "detail": "Identity, hierarchy, decision tests, empirical basis, benchmark, feed operation, training-effect evidence, and non-speech audio are kept unknown or bounded."
+        },
+        {
+          "status": "missed_or_incomplete",
+          "auditIds": [
+            "U02",
+            "U06",
+            "U07"
+          ],
+          "detail": "Opening social-proof ownership/time linkage, detailed-script exceptions for collaboration/safety/budget/complexity, and the boundary between productive browsing and shallow consumption are not fully preserved."
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": true,
+      "detail": "Independent meta-audit passed",
+      "examples": []
+    }
+  ],
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "failedGateIds": [
+    "internal_unsupported_inference",
+    "eval_process_dependency_completeness",
+    "eval_unknown_discipline"
+  ]
+}

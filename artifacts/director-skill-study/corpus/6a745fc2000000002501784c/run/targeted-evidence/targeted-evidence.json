@@ -1,0 +1,544 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T20:47:37.109Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a745fc2000000002501784c.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a745fc2000000002501784c/run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-OPEN",
+      "time": 0.5,
+      "frame": "frames/ACT-OPEN-001.jpg",
+      "carrier": "document, presenter, overlay, watermark",
+      "reason": "读取标题/账号标签并界定面罩人物。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-OPEN",
+      "time": 2.5,
+      "frame": "frames/ACT-OPEN-002.jpg",
+      "carrier": "document, presenter, overlay, watermark",
+      "reason": "读取标题/账号标签并界定面罩人物。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-OPEN",
+      "time": 5.5,
+      "frame": "frames/ACT-OPEN-003.jpg",
+      "carrier": "document, presenter, overlay, watermark",
+      "reason": "读取标题/账号标签并界定面罩人物。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-OPEN",
+      "time": 8.5,
+      "frame": "frames/ACT-OPEN-004.jpg",
+      "carrier": "document, presenter, overlay, watermark",
+      "reason": "读取标题/账号标签并界定面罩人物。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-OPEN",
+      "time": 10.5,
+      "frame": "frames/ACT-OPEN-005.jpg",
+      "carrier": "document, presenter, overlay, watermark",
+      "reason": "读取标题/账号标签并界定面罩人物。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-Q1-8",
+      "time": 12,
+      "frame": "frames/ACT-Q1-8-001.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-Q1-8",
+      "time": 18.8,
+      "frame": "frames/ACT-Q1-8-002.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-Q1-8",
+      "time": 25,
+      "frame": "frames/ACT-Q1-8-003.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-Q1-8",
+      "time": 30,
+      "frame": "frames/ACT-Q1-8-004.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-Q1-8",
+      "time": 34,
+      "frame": "frames/ACT-Q1-8-005.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-Q1-8",
+      "time": 40,
+      "frame": "frames/ACT-Q1-8-006.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-Q1-8",
+      "time": 48.5,
+      "frame": "frames/ACT-Q1-8-007.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-Q1-8",
+      "time": 55,
+      "frame": "frames/ACT-Q1-8-008.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-Q1-8",
+      "time": 61,
+      "frame": "frames/ACT-Q1-8-009.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-Q1-8",
+      "time": 67,
+      "frame": "frames/ACT-Q1-8-010.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-Q1-8",
+      "time": 72,
+      "frame": "frames/ACT-Q1-8-011.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-Q1-8",
+      "time": 79,
+      "frame": "frames/ACT-Q1-8-012.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-Q1-8",
+      "time": 85,
+      "frame": "frames/ACT-Q1-8-013.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-Q1-8",
+      "time": 92,
+      "frame": "frames/ACT-Q1-8-014.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-Q1-8",
+      "time": 99,
+      "frame": "frames/ACT-Q1-8-015.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-Q1-8",
+      "time": 104.5,
+      "frame": "frames/ACT-Q1-8-016.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-Q1-8",
+      "time": 109,
+      "frame": "frames/ACT-Q1-8-017.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-Q1-8",
+      "time": 113.5,
+      "frame": "frames/ACT-Q1-8-018.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-Q1-8",
+      "time": 116,
+      "frame": "frames/ACT-Q1-8-019.jpg",
+      "carrier": "document text, burned captions, red ink, gesture",
+      "reason": "覆盖8道选择题与答案，针对冲突时段加密。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-TRANSITION",
+      "time": 115,
+      "frame": "frames/ACT-TRANSITION-001.jpg",
+      "carrier": "speech/caption, document layout, red ink state",
+      "reason": "确认选择题结束到填空题开始及卷面状态变化。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-TRANSITION",
+      "time": 118,
+      "frame": "frames/ACT-TRANSITION-002.jpg",
+      "carrier": "speech/caption, document layout, red ink state",
+      "reason": "确认选择题结束到填空题开始及卷面状态变化。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-TRANSITION",
+      "time": 121.5,
+      "frame": "frames/ACT-TRANSITION-003.jpg",
+      "carrier": "speech/caption, document layout, red ink state",
+      "reason": "确认选择题结束到填空题开始及卷面状态变化。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-Q9-20",
+      "time": 122,
+      "frame": "frames/ACT-Q9-20-001.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-Q9-20",
+      "time": 127,
+      "frame": "frames/ACT-Q9-20-002.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-Q9-20",
+      "time": 132,
+      "frame": "frames/ACT-Q9-20-003.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-Q9-20",
+      "time": 136,
+      "frame": "frames/ACT-Q9-20-004.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-Q9-20",
+      "time": 140,
+      "frame": "frames/ACT-Q9-20-005.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-Q9-20",
+      "time": 145,
+      "frame": "frames/ACT-Q9-20-006.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-Q9-20",
+      "time": 149,
+      "frame": "frames/ACT-Q9-20-007.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-Q9-20",
+      "time": 153,
+      "frame": "frames/ACT-Q9-20-008.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-Q9-20",
+      "time": 157,
+      "frame": "frames/ACT-Q9-20-009.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-Q9-20",
+      "time": 161,
+      "frame": "frames/ACT-Q9-20-010.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-Q9-20",
+      "time": 165,
+      "frame": "frames/ACT-Q9-20-011.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-Q9-20",
+      "time": 168,
+      "frame": "frames/ACT-Q9-20-012.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-Q9-20",
+      "time": 171.5,
+      "frame": "frames/ACT-Q9-20-013.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-Q9-20",
+      "time": 175.5,
+      "frame": "frames/ACT-Q9-20-014.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-Q9-20",
+      "time": 180,
+      "frame": "frames/ACT-Q9-20-015.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-Q9-20",
+      "time": 184,
+      "frame": "frames/ACT-Q9-20-016.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-Q9-20",
+      "time": 189,
+      "frame": "frames/ACT-Q9-20-017.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-Q9-20",
+      "time": 193.5,
+      "frame": "frames/ACT-Q9-20-018.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-Q9-20",
+      "time": 198,
+      "frame": "frames/ACT-Q9-20-019.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-Q9-20",
+      "time": 204,
+      "frame": "frames/ACT-Q9-20-020.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-Q9-20",
+      "time": 208.5,
+      "frame": "frames/ACT-Q9-20-021.jpg",
+      "carrier": "document text, burned captions, red ink",
+      "reason": "覆盖12道填空题及与前文重复概念。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-CONTINUITY",
+      "time": 0.5,
+      "frame": "frames/ACT-CONTINUITY-001.jpg",
+      "carrier": "technical shots, document state, presenter setting",
+      "reason": "比较3个技术shot边界与全片语义连续性，避免宣称编辑次数。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-CONTINUITY",
+      "time": 105.8,
+      "frame": "frames/ACT-CONTINUITY-002.jpg",
+      "carrier": "technical shots, document state, presenter setting",
+      "reason": "比较3个技术shot边界与全片语义连续性，避免宣称编辑次数。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-CONTINUITY",
+      "time": 214.2,
+      "frame": "frames/ACT-CONTINUITY-003.jpg",
+      "carrier": "technical shots, document state, presenter setting",
+      "reason": "比较3个技术shot边界与全片语义连续性，避免宣称编辑次数。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-CONTINUITY",
+      "time": 217.5,
+      "frame": "frames/ACT-CONTINUITY-004.jpg",
+      "carrier": "technical shots, document state, presenter setting",
+      "reason": "比较3个技术shot边界与全片语义连续性，避免宣称编辑次数。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-CLOSE",
+      "time": 211,
+      "frame": "frames/ACT-CLOSE-001.jpg",
+      "carrier": "caption, presenter, document, CTA/absence scope",
+      "reason": "捕获90分鼓励、署名告别和获取/边界元素的末尾机会窗。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-CLOSE",
+      "time": 214,
+      "frame": "frames/ACT-CLOSE-002.jpg",
+      "carrier": "caption, presenter, document, CTA/absence scope",
+      "reason": "捕获90分鼓励、署名告别和获取/边界元素的末尾机会窗。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-CLOSE",
+      "time": 216.7,
+      "frame": "frames/ACT-CLOSE-003.jpg",
+      "carrier": "caption, presenter, document, CTA/absence scope",
+      "reason": "捕获90分鼓励、署名告别和获取/边界元素的末尾机会窗。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-CLOSE",
+      "time": 217.9,
+      "frame": "frames/ACT-CLOSE-004.jpg",
+      "carrier": "caption, presenter, document, CTA/absence scope",
+      "reason": "捕获90分鼓励、署名告别和获取/边界元素的末尾机会窗。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-OPEN",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005"
+      ]
+    },
+    {
+      "id": "ACT-Q1-8",
+      "frameIds": [
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024"
+      ]
+    },
+    {
+      "id": "ACT-TRANSITION",
+      "frameIds": [
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027"
+      ]
+    },
+    {
+      "id": "ACT-Q9-20",
+      "frameIds": [
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048"
+      ]
+    },
+    {
+      "id": "ACT-CONTINUITY",
+      "frameIds": [
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052"
+      ]
+    },
+    {
+      "id": "ACT-CLOSE",
+      "frameIds": [
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a13ef8800000000080323e2",
+  "capturedAt": "2026-08-16T11:09:36.139Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "Coding在从一个职业变成一个技能",
+    "postCopy": "Engineering和coding的区别、驾驭coding agent的能力会变成通识技能\n\t\n#vibecoding[话题]# #claudecode[话题]# #codex[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "claudecode",
+      "codex"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a13ef8800000000080323e2",
+    "mediaType": "video",
+    "publishedAt": "2026-05-25T06:43:20.000Z",
+    "likes": "819",
+    "collections": "358",
+    "comments": "20",
+    "shares": "104",
+    "expectedDurationSec": 135
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 135
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/capture-protocol.json",
+  "scopeStatement": "只重建 22.467 秒视频、提供的 SRT、新 evidence pack，以及由同一原视频生成的定向帧/OCR、机器复听和 0-22.466938 秒完整声学检查。标题中的‘一键/任何角色’只作为待核对的范围问题；结构化事实仍以视频内部证据为准。没有联网核验产品功能、角色身份、人物身份、版权/肖像/角色授权、生成来源、价格、平台规则或真实性能。负证据均限定于声明的抽帧、UI 与音频检查范围。",
+  "viewerChange": {
+    "before": "把视频理解成已经完整证明‘一键控制任何角色’。",
+    "after": "知道作者口播/字幕称 Runway Act-One，但实际工作区与约 14.1-16.1 秒结果播放器均可确认为 Act-Two，右侧 Gen-4/Try it now 只是宣传卡。画面确实展示有限角色运动、两个素材入口、一个已完成 Act-Two 水管工式视频结果播放器和一个连续动漫动作片段；完整选择/上传点击、生成进度、等待、结果 lineage、全角色范围、几分钟耗时、文字改图、人物来源和授权仍未建立。完整音频含持续背景音乐，独立音效未稳定建立。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-MACHINE-ASR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/688ab6260000000022020d3e.json",
+      "kind": "machine audio transcription",
+      "producedBy": "OpenAI Whisper small, Chinese transcription, from the supplied local MP4",
+      "timeRange": {"start": 0, "end": 22.467},
+      "limitations": ["机器转写，不替换提供的 SRT", "繁简体与英文功能名可能误写", "不能可靠识别背景音乐或音效的语义角色"]
+    },
+    {
+      "id": "SRC-FULL-SCOPE-CONTACT",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/ACT-08-FULL-SCOPE-ABSENCE.jpg",
+      "kind": "full-timeline visual contact sheet",
+      "producedBy": "ffmpeg tile from ACT-08 frames sampled every 0.25 seconds",
+      "timeRange": {"start": 0, "end": 22.467},
+      "limitations": ["0.25 秒采样可能漏掉更短瞬间", "缩略图不适合确认小字", "小字另由 ACT-03/04/07/09 高分辨率帧与 OCR 复查"]
+    },
+    {
+      "id": "SRC-SPLIT-MOTION-CONTACT",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/ACT-02-SPLIT-MOTION-CORRESPONDENCE.jpg",
+      "kind": "split-screen motion contact sheet",
+      "producedBy": "ffmpeg tile from ACT-02 frames sampled every 0.2 seconds",
+      "timeRange": {"start": 0, "end": 8.6},
+      "limitations": ["能显示动作对应趋势，不能证明文件 lineage 或算法因果", "0.2 秒采样不能测量精确同步延迟"]
+    },
+    {
+      "id": "SRC-FINAL-MOTION-CONTACT",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/ACT-06-FINAL-MOTION-SEQUENCE.jpg",
+      "kind": "final motion contact sheet",
+      "producedBy": "ffmpeg tile from ACT-06 frames sampled every 0.2 seconds",
+      "timeRange": {"start": 16.333, "end": 22.467},
+      "limitations": ["能证明可见运动变化，不能证明实时生成、无隐藏剪辑或相对某输入同步", "不含不可见生成元数据"]
+    },
+    {
+      "id": "SRC-RESULT-PLAYER-CONTACT",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/ACT-10-ACT-TWO-RESULT-PLAYER.jpg",
+      "kind": "Act-Two result-player UI and motion contact sheet",
+      "producedBy": "ffmpeg tile from ACT-10 frames sampled every 0.1 seconds",
+      "timeRange": {"start": 14.1, "end": 16.1},
+      "limitations": ["证明 Act-Two 结果播放器状态与结果画面序列，不证明此前选择/上传/生成/等待过程", "播放器结果与后续粉发动漫片段的 lineage 未显示"]
+    },
+    {
+      "id": "SRC-AUDIO-LISTEN-EVIDENCE",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/audio-listen-evidence.json",
+      "kind": "bounded full-track acoustic inspection",
+      "producedBy": "complete 16 kHz mono extraction plus MIT Audio Spectrogram Transformer AudioSet event pass and fresh full-track ASR comparison",
+      "timeRange": {"start": 0, "end": 22.466938},
+      "limitations": ["AudioSet labels为概率提议，不能把低置信音乐瞬态升级为独立音效", "不能识别音乐曲名、来源或授权", "P图与批图同音，音频本身不能决定正字法"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 5.17, "text": "演员的天塌了，你现在就是任意演员，不管是动漫角色还是电影角色", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 5.18, "end": 8.66, "text": "你都能靠一张嘴驱动，口型和动作都能同步", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002", "SHOT-003", "SHOT-004"]},
+      {"id": "CUE-003", "start": 8.66, "end": 10.79, "text": "这就是runway的黑科技act one", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-004", "start": 10.8, "end": 16.26, "text": "你只需要上传一段视频，再贴一张你想祛痘的图，几分钟就能让土里的人活过来", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"]},
+      {"id": "CUE-005", "start": 16.27, "end": 22.476, "text": "你可以用一句话就可以批图改图，比如给图片换表情，改动作，变风格都超级简单", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-005", "SHOT-006"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场职业冲击钩子",
+      "importance": "context",
+      "statement": "作者以‘演员的天塌了’开场，把后续角色驱动能力框定为对演员职业的冲击。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 1.6},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "提供开场原话"}, {"refType": "ocr", "ref": "OCR-00221", "supports": "烧录字幕可见‘演员的天塌了’"}],
+      "confidence": "high",
+      "unknowns": ["该职业影响未在视频内以行业数据或案例验证"]
+    },
+    {
+      "id": "KU-02",
+      "title": "‘任意演员/任何角色’是全称作者主张",
+      "importance": "core",
+      "statement": "作者声称观众可以成为‘任意演员’，不管动漫角色还是电影角色；视频没有建立该全称范围对所有角色都成立。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 1.6, "end": 5.17},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "逐字包含任意演员及动漫/电影范围"}, {"refType": "ocr", "ref": "OCR-00222", "supports": "烧录字幕‘你现在就是任意演员’"}, {"refType": "ocr", "ref": "OCR-00223", "supports": "烧录字幕‘不管是动漫角色’"}, {"refType": "ocr", "ref": "OCR-00224", "supports": "烧录字幕‘还是电影角色’"}],
+      "confidence": "high",
+      "argument": {"claim": "任意动漫或电影角色都可被驱动", "evidenceUnitIds": ["KU-03", "KU-06", "KU-19"], "conditions": ["可见 UI 要求 driving performance 与 character 素材", "character 卡接受 image or video", "driving performance 可见 up to 30s"], "counterexamples": [], "actions": [], "limits": ["仅展示有限样例", "没有角色兼容性测试", "没有失败样例", "没有身份/授权信息"]},
+      "unknowns": ["实际支持的角色类型、素材要求和失败边界"]
+    },
+    {
+      "id": "KU-03",
+      "title": "可见样例是五个短角色组加一个长结果组",
+      "importance": "core",
+      "statement": "0-8.6 秒上半屏依次出现五种不同造型/媒介风格的活动角色；16.333-22.467 秒另出现一个粉发红衣动漫女性的长动作片段。有限的六组可见角色只可说明广度样例，不能建立‘任何角色’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "第一个真人风格角色"}, {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "第二个玩偶风格角色"}, {"refType": "targeted_frame", "ref": "TARGET-0005", "supports": "第三个二维动画角色"}, {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "第四个真人电影质感角色"}, {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "第五个三维卡通水管工式角色"}, {"refType": "targeted_frame", "ref": "TARGET-0081", "supports": "结尾独立的粉发动漫动作组"}],
+      "confidence": "high",
+      "unknowns": ["各组是否都由同一工具生成", "样例是否经过挑选或后期处理"]
+    },
+    {
+      "id": "KU-04",
+      "title": "熟悉角色感来自外观与符号，不是已核实身份",
+      "importance": "supporting",
+      "statement": "样例包括卷发校服式真人女性、粉色玩偶式女性、二维制服动画女性、苍白无发真人电影质感男性、戴 M 标志帽的三维卡通水管工式男性，以及粉发红衣动漫女性；这些只是可见造型与相似性描述。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "卷发校服式真人女性外观"}, {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "粉色玩偶式外观"}, {"refType": "targeted_frame", "ref": "TARGET-0005", "supports": "二维制服动画外观"}, {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "苍白无发电影质感外观"}, {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "M 标志帽与水管工式外观"}, {"refType": "targeted_frame", "ref": "TARGET-0112", "supports": "粉发红衣动漫女性外观"}],
+      "confidence": "high",
+      "unknowns": ["准确角色名称", "是否模仿特定真人演员"]
+    },
+    {
+      "id": "KU-05",
+      "title": "人物身份、素材来源与授权均未建立",
+      "importance": "core",
+      "statement": "在 0-22.467 秒视频及全时轴采样中，没有观察到角色/人物姓名、原作者、素材链接、上传者、版权/肖像/角色授权或许可说明；因此准确身份、来源和授权分别保持未知。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-FULL-SCOPE-CONTACT", "supports": "0.25 秒全时轴采样用于有界来源/授权缺失检查"}, {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "首个角色无来源标签"}, {"refType": "targeted_frame", "ref": "TARGET-0218", "supports": "结尾无来源/授权说明"}],
+      "confidence": "high",
+      "reasoning": "缺失结论只限定于已检查的视频时间范围和采样密度，不表示外部世界不存在授权。",
+      "unknowns": ["所有角色和人物的准确身份", "素材创建/上传来源", "版权、肖像权、角色权利和许可状态"]
+    },
+    {
+      "id": "KU-06",
+      "title": "五个短样例确实显示随时间变化的嘴型和部分手势",
+      "importance": "core",
+      "statement": "0-8.6 秒的密集序列显示上方角色在固定短片段内有嘴型、表情或手部姿态变化；前三组与下方讲述者还出现若干方向相近的宽泛手势。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 8.6},
+      "evidence": [{"refType": "source", "ref": "SRC-SPLIT-MOTION-CONTACT", "supports": "44 帧动作序列显示多个角色和讲述者的姿态变化"}, {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "首组人物双手与嘴部状态"}, {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "玩偶式人物手势"}, {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "水管工式人物嘴部状态"}],
+      "confidence": "high",
+      "unknowns": ["精确同步误差", "片段是否实时生成"]
+    },
+    {
+      "id": "KU-07",
+      "title": "下方讲述者是 plausible driver，但文件 lineage 未证明",
+      "importance": "supporting",
+      "statement": "上下分屏与部分宽泛动作对应使下方讲述者看起来像角色的表演参照，但视频没有把她标为 driving performance 文件，也没有展示输入文件或逐帧对齐；该映射不能确定。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 8.6},
+      "evidence": [{"refType": "source", "ref": "SRC-SPLIT-MOTION-CONTACT", "supports": "上下两路并置及部分手势对应"}, {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "玩偶式角色与讲述者均举起手指"}, {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "电影质感角色与讲述者并置但动作映射不清"}],
+      "confidence": "medium",
+      "reasoning": "视觉并置与局部对应支持‘可能’，但没有数据/文件层证据支持确定因果。",
+      "unknowns": ["下方讲述者是否为真实 driving performance", "上方角色音频是否来自该讲述者"]
+    },
+    {
+      "id": "KU-08",
+      "title": "口型和动作同步是作者主张",
+      "importance": "core",
+      "statement": "作者在 5.18-8.66 秒口播把能力压缩为‘靠一张嘴驱动’，并声称口型和动作都能同步；同一时段的角色运动可作示例，但没有同步基准、延迟或精度测量。后续 UI 对 driving performance 的真实定义另由 KU-11 在其可见时段记录。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 5.18, "end": 8.66},
+      "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "逐字提供驱动与同步说法"}, {"refType": "ocr", "ref": "OCR-00225", "supports": "烧录字幕‘你都能靠一张嘴驱动’"}, {"refType": "ocr", "ref": "OCR-00226", "supports": "烧录字幕‘口型和动作都能同步’"}],
+      "confidence": "high",
+      "unknowns": ["同步相对哪个输入", "同步覆盖的动作范围", "延迟和失败条件"]
+    },
+    {
+      "id": "KU-09",
+      "title": "作者把功能命名为 Runway Act-One",
+      "importance": "core",
+      "statement": "口播和烧录字幕称‘这就是 runway 的黑科技’，随后视频后期大字写 act one。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 8.6, "end": 10.8},
+      "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "提供 Runway/act one 口播"}, {"refType": "ocr", "ref": "OCR-00081", "supports": "烧录字幕‘这就是runway的黑科技’"}, {"refType": "ocr", "ref": "OCR-00101", "supports": "识别后期大字 act one"}, {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "可见 act one 后期字"}],
+      "confidence": "high",
+      "unknowns": ["作者为何把实际 Act-Two 工作区称为 Act-One"]
+    },
+    {
+      "id": "KU-10",
+      "title": "活动工作区与结果播放器可确认为 Act-Two",
+      "importance": "core",
+      "statement": "高分辨率工作区底部模式标签写 Act-Two，约 14.1-16.1 秒结果播放器左上再次显示 Act-Two；两处一致把实际活动模式确认为 Act-Two，并与口播/后期字 Act-One 冲突。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 8.6, "end": 16.1},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "工作区底部 Act-Two 与后期 act one 同帧"}, {"refType": "ocr", "ref": "OCR-00097", "supports": "工作区 Act-Two OCR 提议并人工核帧"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "14.1-16.1 秒结果页持续显示 Act-Two 播放器"}, {"refType": "targeted_frame", "ref": "TARGET-0231", "supports": "结果页左上第二处 Act-Two"}],
+      "confidence": "high",
+      "unknowns": ["作者 Act-One 命名错误的原因", "Act-Two 具体版本与账号状态"]
+    },
+    {
+      "id": "KU-27",
+      "title": "Gen-4 是工作区内宣传卡，不是活动模式",
+      "importance": "core",
+      "statement": "工作区右侧的 Gen-4: Now for Image and Video 与 Try it now 构成宣传卡；活动模式身份由底部 Act-Two 标签和后续 Act-Two 结果页给出，不能把 Gen-4 卡片当作当前工作流标题。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 8.6, "end": 10.8},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "右侧 Gen-4 宣传卡与左侧 Act-Two 工作区同屏"}, {"refType": "ocr", "ref": "OCR-00067", "supports": "Gen-4: Now for Image and Video 卡片文案"}, {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "Act-Two 活动模式与 Gen-4 卡片并存"}],
+      "confidence": "high",
+      "unknowns": ["Gen-4 宣传卡与本次 Act-Two 结果的产品关系未在视频解释"]
+    },
+    {
+      "id": "KU-11",
+      "title": "第一个可见输入是 driving performance",
+      "importance": "core",
+      "statement": "Performance 卡片写 Add driving performance，并说明使用 voice, gestures and facial expressions up to 30s；可见 Record 和 Select asset 两个入口。这一可见定义表明 driving performance 不只包含嘴部，因而反驳了对前段‘靠一张嘴’的字面理解。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9.4, "end": 12.36},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "完整 Performance 卡片"}, {"refType": "ocr", "ref": "OCR-00106", "supports": "Add driving performance"}, {"refType": "ocr", "ref": "OCR-00107", "supports": "Use voice, gestures and"}, {"refType": "ocr", "ref": "OCR-00108", "supports": "facial expressions up to 30s"}, {"refType": "ocr", "ref": "OCR-00110", "supports": "Record"}, {"refType": "ocr", "ref": "OCR-00111", "supports": "Select asset"}],
+      "confidence": "high",
+      "unknowns": ["视频/音频格式", "账号或套餐限制", "是否必须使用录制或已有素材"]
+    },
+    {
+      "id": "KU-12",
+      "title": "第二个可见输入是 character image or video",
+      "importance": "core",
+      "statement": "Character 卡片写 Choose your character、Drop image or video，并提供 Select asset；画面把它作为与 Performance 分开的第二个素材入口。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 12.36, "end": 13.88},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "Character 卡片与缩略图"}, {"refType": "ocr", "ref": "OCR-00167", "supports": "Choose your character"}, {"refType": "ocr", "ref": "OCR-00168", "supports": "Drop image or video"}, {"refType": "ocr", "ref": "OCR-00175", "supports": "Select asset"}],
+      "confidence": "high",
+      "unknowns": ["缩略图是示例还是实际已选素材", "角色素材格式/尺寸要求"]
+    },
+    {
+      "id": "KU-13",
+      "title": "视频内部没有出现字面‘一键’",
+      "importance": "core",
+      "statement": "提供的五条逐字 SRT 中没有‘一键’；最接近的低门槛说法是 CUE-004 的‘你只需要……’。",
+      "provenance": "raw_fact",
+      "timeRange": {"start": 0, "end": 22.476},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "第一条无一键"}, {"refType": "cue", "ref": "CUE-002", "supports": "第二条无一键"}, {"refType": "cue", "ref": "CUE-003", "supports": "第三条无一键"}, {"refType": "cue", "ref": "CUE-004", "supports": "第四条使用‘只需要’而非‘一键’"}, {"refType": "cue", "ref": "CUE-005", "supports": "第五条无一键"}],
+      "confidence": "high",
+      "unknowns": ["标题文案的来源不在视频内部证据包中"]
+    },
+    {
+      "id": "KU-14",
+      "title": "可见 UI 不支持‘一次点击完成’的字面读法",
+      "importance": "core",
+      "statement": "界面至少显示 Performance 和 Character 两个分开的素材槽及各自的选择控件，还可见 Generate 控件；视频未显示这些控件被完整执行，因此总点击数未知，不能从画面证明一次点击完成。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 8.6, "end": 13.88},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "全局 UI 同时可见两个输入区和 Generate 控件"}, {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "Performance Record/Select asset"}, {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "Character Select asset"}],
+      "confidence": "high",
+      "unknowns": ["实际操作总点击数", "是否有自动化快捷方式"]
+    },
+    {
+      "id": "KU-15",
+      "title": "两素材结构与完成结果可见，但中间执行桥缺失",
+      "importance": "core",
+      "statement": "作者叙述上传一段视频并提供一张想驱动的图；Act-Two UI 给出 driving performance 与 character 两个输入，随后也出现 Act-Two 完成结果播放器。但视频没有展示文件选择、上传完成、Generate 点击、生成进度、等待或把该结果追溯到前述素材的 lineage。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 10.8, "end": 16.4},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "作者叙述两素材流程"}, {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "第一个输入槽"}, {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "第二个输入槽"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "Act-Two 完成结果播放器"}, {"refType": "source", "ref": "SRC-FULL-SCOPE-CONTACT", "supports": "全时轴采样未见选择/上传/进度/等待桥"}],
+      "confidence": "high",
+      "reasoning": "口播与 UI 一致支持输入结构，结果页证明有完成结果状态；但中间状态缺失，不能重建为连续已执行教程或确认具体输入 lineage。",
+      "procedural": {
+        "input": "driving performance（Record 或 Select asset）与 character image/video（Select asset）",
+        "actions": ["在 Performance 区录制或选择素材——控件可见，未见执行", "在 Character 区选择 image/video——控件可见，未见执行", "界面底部可见 Generate——未见点击、生成进度或等待", "Act-Two 结果播放器出现——完成结果状态可见，但前述输入到结果 lineage 未见"],
+        "parameters": ["driving performance: voice, gestures and facial expressions", "driving performance: up to 30s", "character: image or video"],
+        "output": "Act-Two 结果播放器显示水管工式角色视频结果；随后另切粉发动漫动作片段，两者都没有可验证的输入 lineage",
+        "beforeFrames": ["TARGET-0056"],
+        "duringFrames": ["TARGET-0062", "TARGET-0067"],
+        "afterFrames": ["TARGET-0230"],
+        "unknowns": ["实际文件", "点击与上传", "生成参数", "生成进度", "等待耗时", "保存/导出", "结果播放器是否由前述可见输入产生"]
+      },
+      "unknowns": ["完整操作顺序和依赖", "实际输出 lineage"]
+    },
+    {
+      "id": "KU-16",
+      "title": "完成结果状态可见；选择、上传、进度和等待仍缺失",
+      "importance": "supporting",
+      "statement": "0-22.467 秒全时轴与 UI 密集复查确认约 14.1-16.1 秒存在 Act-Two 完成结果播放器；同时没有观察到文件选择器、素材选择/上传成功、生成进度、等待过程、保存或导出动作。更短于采样间隔的瞬间仍可能被漏掉。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-FULL-SCOPE-CONTACT", "supports": "91 帧全时轴缺失检查"}, {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "Performance 卡片未见状态变化"}, {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "Character 卡片未见状态变化"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "完成结果播放器为 observed"}, {"refType": "targeted_frame", "ref": "TARGET-0218", "supports": "结尾无交付控件"}],
+      "confidence": "high",
+      "unknowns": ["采样帧间是否存在极短状态", "离屏操作"]
+    },
+    {
+      "id": "KU-17",
+      "title": "‘几分钟’是未计时的作者主张",
+      "importance": "core",
+      "statement": "作者称‘几分钟就能让图里的人活过来’，约 14.1 秒后确实出现 Act-Two 完成结果播放器；但视频仍没有生成起止时间、计时器、进度或等待过程，所以‘几分钟’不是实测耗时。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 13.88, "end": 16.333},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "原 SRT 含几分钟说法"}, {"refType": "ocr", "ref": "OCR-00275", "supports": "烧录字幕明确‘几分钟就能让图里的人活过来’"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "完成结果播放器可见但无生成计时/进度"}, {"refType": "targeted_frame", "ref": "TARGET-0230", "supports": "14.1 秒结果页边界"}],
+      "confidence": "high",
+      "unknowns": ["真实耗时", "排队和账号条件", "成功率"]
+    },
+    {
+      "id": "KU-18",
+      "title": "Act-Two 水管工式结果与最终动漫片段不是可确认的同一生成链",
+      "importance": "core",
+      "statement": "约 14.1-16.1 秒显示 Act-Two 结果播放器中的戴 M 标志帽三维水管工式男性视频结果，16.4 秒后切为粉发红衣二维动漫女性动作片段；主体、风格和承载界面均不同，剪辑相邻不能证明二者属于同一生成链。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 13.9, "end": 16.6},
+      "evidence": [{"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "Act-Two 结果播放器与水管工式视频结果"}, {"refType": "targeted_frame", "ref": "TARGET-0250", "supports": "16.1 秒仍在 Act-Two 结果播放器"}, {"refType": "targeted_frame", "ref": "TARGET-0078", "supports": "16.4 秒切为不同粉发动漫女性"}],
+      "confidence": "high",
+      "unknowns": ["两个结果片段是否来自不同示例", "两者是否使用同一 driving performance", "最终动漫人物的真实输入图"]
+    },
+    {
+      "id": "KU-19",
+      "title": "结尾确实展示约六秒的连续多部位动作",
+      "importance": "core",
+      "statement": "16.333-22.467 秒固定构图中的粉发红衣动漫女性持续改变嘴型、眼睛开合、头部朝向和双手姿态；这是视频最强的动态结果证据，但不证明相对某个输入的精确同步、实时生成或完全无隐藏剪切。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 16.333, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-FINAL-MOTION-CONTACT", "supports": "32 帧序列显示多部位连续变化"}, {"refType": "targeted_frame", "ref": "TARGET-0081", "supports": "序列起始姿态"}, {"refType": "targeted_frame", "ref": "TARGET-0096", "supports": "中段双手与表情姿态"}, {"refType": "targeted_frame", "ref": "TARGET-0104", "supports": "后段眨眼和手势"}, {"refType": "targeted_frame", "ref": "TARGET-0112", "supports": "序列结尾姿态"}],
+      "confidence": "high",
+      "unknowns": ["驱动输入", "同步延迟", "隐藏剪切", "生成工具与参数"]
+    },
+    {
+      "id": "KU-20",
+      "title": "‘一句话改图’及换表情/动作/风格是作者扩展主张",
+      "importance": "core",
+      "statement": "结尾口播声称可以用‘一句话’P图/改图，例如给图片换表情、改动作、变风格，而且‘都超级简单’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 16.27, "end": 22.476},
+      "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "原 SRT 提供整段编辑能力主张"}, {"refType": "source", "ref": "SRC-MACHINE-ASR", "supports": "机器复听支持‘一句话…P图改图…换表情、改动作、变风格’的语义"}],
+      "confidence": "high",
+      "unknowns": ["‘一句话’指文字 prompt、说话内容还是其他输入", "哪些功能属于当前可见模式"]
+    },
+    {
+      "id": "KU-21",
+      "title": "结尾没有展示文字提示、同图对比或风格切换",
+      "importance": "core",
+      "statement": "对 16.333-22.467 秒按 0.2 秒动作帧和 11 个 OCR 复查时点检查，只看到同一动漫人物动作；没有观察到 prompt、编辑 UI、同一输入图的 before/after 或多风格结果。因此画面支持表情/手势变化，不支持文字改图流程或风格变化已被演示。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 16.333, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-FINAL-MOTION-CONTACT", "supports": "结尾序列始终为同一角色构图"}, {"refType": "targeted_frame", "ref": "TARGET-0219", "supports": "结尾 OCR 复查起点，无文字/UI"}, {"refType": "targeted_frame", "ref": "TARGET-0229", "supports": "结尾 OCR 复查终点，无文字/UI"}],
+      "confidence": "high",
+      "unknowns": ["视频外是否存在相应文字编辑流程", "采样时点之间是否有极短叠字"]
+    },
+    {
+      "id": "KU-22",
+      "title": "CUE-004 存在有意义的 SRT/烧录字幕冲突",
+      "importance": "core",
+      "statement": "原 SRT 逐字写‘你想祛痘的图’和‘土里的人’；烧录字幕分别清楚显示‘你想驱动的图’和‘图里的人’，机器复听也支持后者语义。重建保留原 SRT，同时将‘驱动的图/图里的人’记录为画面与复听支持的解释。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 12.36, "end": 16.26},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "保留原 SRT 的祛痘/土里的人"}, {"refType": "ocr", "ref": "OCR-00170", "supports": "烧录字幕‘再贴一张你想驱动的图’"}, {"refType": "ocr", "ref": "OCR-00275", "supports": "烧录字幕‘几分钟就能让图里的人活过来’"}, {"refType": "source", "ref": "SRC-MACHINE-ASR", "supports": "机器复听支持驱动/图里的人"}],
+      "confidence": "high",
+      "reasoning": "两处高置信烧录字幕与语境、机器复听一致，足以支持解释，但原 SRT 仍原样保留。",
+      "unknowns": []
+    },
+    {
+      "id": "KU-23",
+      "title": "完整音频听检仍不能解决 P/批正字法",
+      "importance": "supporting",
+      "statement": "原 SRT 写‘批图改图’，机器复听给出‘P图改图’；完整 0-22.466938 秒音频检查仍只能听到同音的 /pi/，而 16.333 秒后没有烧录字幕。P图与批图发音相同，音频不能决定正字法，因此字面形式保持冲突。",
+      "provenance": "unknown",
+      "timeRange": {"start": 16.27, "end": 18.48},
+      "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "原 SRT 的批图改图"}, {"refType": "source", "ref": "SRC-MACHINE-ASR", "supports": "机器复听的 P图改图候选"}, {"refType": "source", "ref": "SRC-AUDIO-LISTEN-EVIDENCE", "supports": "完整音轨检查确认同音无法决定正字法"}, {"refType": "targeted_frame", "ref": "TARGET-0219", "supports": "结尾画面无烧录字幕"}],
+      "confidence": "high",
+      "unknowns": ["作者意图的准确书写是 P图还是批图"]
+    },
+    {
+      "id": "KU-24",
+      "title": "访问、价格、账号、地区、责任、来源和免责声明均未在检查范围内出现",
+      "importance": "supporting",
+      "statement": "在 0-22.467 秒全时轴采样和 UI 密集复查中，没有观察到访问链接/CTA、价格、套餐、账号要求、地区限制、责任/支持方、角色素材来源、授权说明或免责声明；这些条件是未提供，不是已证明不存在。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-FULL-SCOPE-CONTACT", "supports": "全时轴有界缺失检查"}, {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "全局 UI 无清晰价格/账号/授权信息"}, {"refType": "targeted_frame", "ref": "TARGET-0218", "supports": "结尾无 CTA/免责声明"}],
+      "confidence": "high",
+      "unknowns": ["外部访问与商业条件", "账号/地区要求", "责任与支持方", "素材权利状态"]
+    },
+    {
+      "id": "KU-25",
+      "title": "全片有持续背景音乐；独立音效未建立",
+      "importance": "supporting",
+      "statement": "对 0-22.466938 秒完整音轨做三个连续粗窗口和九个连续 2.5 秒定位窗口检查，每个窗口都检测到 speech 与 music，支持贯穿全片的背景音乐床承担持续节奏/能量作用；低置信 ding/ping 等候选不稳定，不能确认独立音效。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "source", "ref": "SRC-AUDIO-LISTEN-EVIDENCE", "supports": "完整音轨无缝窗口的 speech/music 评分与音效候选边界"}, {"refType": "source", "ref": "SRC-MACHINE-ASR", "supports": "全段语音机器转写作为语音通道对照"}],
+      "confidence": "high",
+      "reasoning": "Music 在所有连续窗口均为高位标签；瞬态音效候选分数低且不稳定，可能来自音乐或语音混淆，因此只确认音乐床。",
+      "unknowns": ["背景音乐曲名、作者、来源与授权", "是否存在无法从音乐中稳定分离的独立音效"]
+    },
+    {
+      "id": "KU-26",
+      "title": "结尾把全称承诺收束为一个可见连续结果",
+      "importance": "supporting",
+      "statement": "编辑结构从开场‘任意演员’的五个短蒙太奇样例，经过 Act-Two 两素材工作区与一个 Act-Two 水管工式结果播放器，再收束到约六秒的粉发动漫人物动作片段；结尾增强了‘角色会动’的可见性，却没有扩展普遍性或补齐输入到结果 lineage。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 22.467},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开场全称承诺"}, {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场样例"}, {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "中段 Act-Two 工作区"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "Act-Two 完成结果播放器"}, {"refType": "source", "ref": "SRC-FINAL-MOTION-CONTACT", "supports": "结尾单一连续结果"}],
+      "confidence": "high",
+      "reasoning": "这是对可见编辑顺序和证据强弱变化的结构性解释，不是产品性能结论。",
+      "unknowns": []
+    }
+  ],
+  "relations": [
+    {"from": "KU-03", "to": "KU-02", "relation": "illustrates_but_does_not_establish_universal_scope", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "有限样例之一"}, {"refType": "targeted_frame", "ref": "TARGET-0081", "supports": "有限最终样例"}]},
+    {"from": "KU-07", "to": "KU-06", "relation": "juxtaposed_with_possible_but_unproven_driving_relation", "evidence": [{"refType": "source", "ref": "SRC-SPLIT-MOTION-CONTACT", "supports": "上下分屏动作关系"}]},
+    {"from": "KU-10", "to": "KU-09", "relation": "visible_act_two_conflicts_with_spoken_act_one", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "同帧 Act-Two UI 与 act one 后期字"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "第二处 Act-Two 结果页确认活动模式"}]},
+    {"from": "KU-11", "to": "KU-12", "relation": "both_required_by_visible_ui", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "全局 UI 同时显示两卡片"}]},
+    {"from": "KU-14", "to": "KU-13", "relation": "limits_literal_reading", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "第一素材槽"}, {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "第二素材槽"}]},
+    {"from": "KU-15", "to": "KU-18", "relation": "claimed_produces_but_execution_bridge_missing", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "声称流程"}, {"refType": "source", "ref": "SRC-RESULT-PLAYER-CONTACT", "supports": "完成结果可见但 lineage 缺失"}]},
+    {"from": "KU-18", "to": "KU-19", "relation": "edited_after_but_not_established_as_same_generation_chain", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0250", "supports": "Act-Two 水管工式结果"}, {"refType": "targeted_frame", "ref": "TARGET-0078", "supports": "后切不同动漫主体"}]},
+    {"from": "KU-19", "to": "KU-20", "relation": "supports_visible_expression_and_action_motion_but_not_prompt_or_style_change", "evidence": [{"refType": "source", "ref": "SRC-FINAL-MOTION-CONTACT", "supports": "动作变化"}, {"refType": "targeted_frame", "ref": "TARGET-0229", "supports": "无 prompt/风格比较"}]},
+    {"from": "KU-26", "to": "KU-02", "relation": "narrows_from_universal_promise_to_one_visible_continuous_example", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开场全称"}, {"refType": "source", "ref": "SRC-FINAL-MOTION-CONTACT", "supports": "结尾单一结果"}]},
+    {"from": "KU-22", "to": "KU-23", "relation": "carrier_conflict_requires_preservation", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "原 SRT 冲突"}, {"refType": "ocr", "ref": "OCR-00170", "supports": "烧录字幕候选"}, {"refType": "cue", "ref": "CUE-005", "supports": "正字法冲突"}]},
+    {"from": "KU-04", "to": "KU-05", "relation": "resembles_without_establishing", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "可见 M 标志与熟悉造型"}, {"refType": "source", "ref": "SRC-FULL-SCOPE-CONTACT", "supports": "无身份/授权标签的有界检查"}]},
+    {"from": "KU-27", "to": "KU-10", "relation": "promotional_card_inside_workspace_not_active_mode", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Gen-4/Try it now 卡与 Act-Two 工作区同屏"}, {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "活动模式 Act-Two 与宣传卡并存"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-SPEECH", "available": true, "inspected": true},
+      {"id": "CAR-SRT", "available": true, "inspected": true},
+      {"id": "CAR-BURNED-TEXT", "available": true, "inspected": true},
+      {"id": "CAR-UI", "available": true, "inspected": true},
+      {"id": "CAR-PRESENTER", "available": true, "inspected": true},
+      {"id": "CAR-ROLE-MONTAGE", "available": true, "inspected": true},
+      {"id": "CAR-FINAL-MOTION", "available": true, "inspected": true},
+      {"id": "CAR-LAYOUT-COUNT", "available": true, "inspected": true},
+      {"id": "CAR-SYMBOLS", "available": true, "inspected": true},
+      {"id": "CAR-NONSPEECH-AUDIO", "available": true, "inspected": true},
+      {"id": "CAR-NEGATIVE-SCOPE", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-02", "KU-03", "KU-04"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-06", "KU-08"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-09", "KU-10", "KU-27"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-11", "KU-12", "KU-14", "KU-15"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-15", "KU-16", "KU-17", "KU-18"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-19", "KU-20", "KU-21"]},
+      {"id": "MC-08", "captured": true, "unitIds": ["KU-24", "KU-26"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["TARGET-0001", "TARGET-0081", "CUE-001"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["SRC-SPLIT-MOTION-CONTACT"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["CUE-003", "TARGET-0060", "OCR-00097", "SRC-RESULT-PLAYER-CONTACT"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["TARGET-0056", "TARGET-0062", "TARGET-0067"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["CUE-004", "TARGET-0062", "TARGET-0067"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["CUE-004", "SRC-FULL-SCOPE-CONTACT", "SRC-RESULT-PLAYER-CONTACT"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["TARGET-0250", "TARGET-0078"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["CUE-005", "SRC-FINAL-MOTION-CONTACT", "TARGET-0229"]},
+      {"id": "REL-09", "evidenced": true, "evidenceRefs": ["CUE-001", "SRC-FINAL-MOTION-CONTACT"]},
+      {"id": "REL-10", "evidenced": true, "evidenceRefs": ["CUE-004", "OCR-00170", "OCR-00275", "CUE-005", "SRC-MACHINE-ASR"]},
+      {"id": "REL-11", "evidenced": true, "evidenceRefs": ["TARGET-0009", "SRC-FULL-SCOPE-CONTACT"]},
+      {"id": "REL-12", "evidenced": true, "evidenceRefs": ["TARGET-0056", "TARGET-0060", "OCR-00067"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-02", "KU-03"], "evidenceRefs": ["CUE-001", "TARGET-0001", "TARGET-0081"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-13", "KU-14", "KU-15"], "evidenceRefs": ["CUE-004", "TARGET-0062", "TARGET-0067"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-09", "KU-10", "KU-11", "KU-12", "KU-16", "KU-27"], "evidenceRefs": ["CUE-003", "TARGET-0056", "TARGET-0060", "OCR-00067", "OCR-00097", "SRC-RESULT-PLAYER-CONTACT"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-06", "KU-07", "KU-08", "KU-19"], "evidenceRefs": ["SRC-SPLIT-MOTION-CONTACT", "SRC-FINAL-MOTION-CONTACT", "CUE-002"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-14", "KU-15", "KU-16"], "evidenceRefs": ["TARGET-0062", "TARGET-0067", "SRC-FULL-SCOPE-CONTACT", "SRC-RESULT-PLAYER-CONTACT"]},
+      {"id": "CQ-06", "status": "answered", "unitIds": ["KU-18"], "evidenceRefs": ["SRC-RESULT-PLAYER-CONTACT", "TARGET-0250", "TARGET-0078"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-17"], "evidenceRefs": ["CUE-004", "OCR-00275", "SRC-RESULT-PLAYER-CONTACT"]},
+      {"id": "CQ-08", "status": "answered", "unitIds": ["KU-20", "KU-21"], "evidenceRefs": ["CUE-005", "SRC-FINAL-MOTION-CONTACT", "TARGET-0229"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-04", "KU-05"], "evidenceRefs": ["TARGET-0009", "SRC-FULL-SCOPE-CONTACT"]},
+      {"id": "CQ-10", "status": "unknown", "unitIds": ["KU-07"], "evidenceRefs": ["SRC-SPLIT-MOTION-CONTACT"]},
+      {"id": "CQ-11", "status": "answered", "unitIds": ["KU-22", "KU-23"], "evidenceRefs": ["CUE-004", "OCR-00170", "OCR-00275", "CUE-005", "SRC-MACHINE-ASR", "SRC-AUDIO-LISTEN-EVIDENCE"]},
+      {"id": "CQ-12", "status": "unknown", "unitIds": ["KU-05", "KU-24"], "evidenceRefs": ["SRC-FULL-SCOPE-CONTACT", "TARGET-0218"]},
+      {"id": "CQ-13", "status": "answered", "unitIds": ["KU-26"], "evidenceRefs": ["CUE-001", "SRC-FINAL-MOTION-CONTACT"]},
+      {"id": "CQ-14", "status": "answered", "unitIds": ["KU-25"], "evidenceRefs": ["SRC-AUDIO-LISTEN-EVIDENCE"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-26"], "rationale": "承载开场钩子、全称范围、角色跨度和开场到结尾关系。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-06", "KU-07", "KU-08"], "rationale": "承载驱动、口型与动作同步主张，并与动作序列对照。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-09", "KU-10", "KU-27"], "rationale": "承载 Runway Act-One 作者命名，并与活动 Act-Two、Gen-4 宣传卡形成身份/载体关系。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-22"], "rationale": "承载两素材流程、低门槛措辞、完成结果播放器、耗时主张和 SRT 冲突。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-19", "KU-20", "KU-21", "KU-23", "KU-26"], "rationale": "承载一句话改图能力列表，并与结尾连续动作及无 prompt/UI 的画面形成证据边界。"}
+    ],
+    "coreEvidence": {"covered": 19, "total": 19},
+    "unknowns": [
+      "作者口播/字幕为何错误地称 Act-One；活动工作区与结果播放器可确认为 Act-Two",
+      "全部角色和人物的准确身份、来源与授权",
+      "下方讲述者是否为 driving performance",
+      "上方短样例、Act-Two 水管工式结果与最终粉发动漫片段的生成 lineage",
+      "实际点击、上传、生成、等待、保存和导出步骤",
+      "真实耗时、同步精度、延迟、成功率和失败条件",
+      "Act-Two 水管工式视频结果与最终动漫人物的关系",
+      "‘一句话’所指输入机制",
+      "P图/批图的准确正字法",
+      "访问、价格、账号、地区、支持与免责声明",
+      "背景音乐曲名、来源、授权与是否存在可独立确认的音效",
+      "隐藏剪切"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "口播、原 SRT、烧录字幕、UI/OCR、讲述者与角色 referent、角色动作、Act-Two 结果播放器、结尾连续结果、布局/计数、可识别造型与符号、技术分段与语义连续性、全时轴负证据及 0-22.466938 秒完整声学通道均已检查。工作区/结果页 Act-Two 与口播 Act-One 的冲突、Gen-4/Try it now 宣传卡角色、完成结果状态与缺失选择/上传/进度/等待 lineage、两个不同结果片段的未知关系、持续背景音乐、有限样例对全称主张的限制及开场到结尾收束均已进入知识单元与关系图。"
+  }
+}

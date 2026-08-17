@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "probe.json",
+  "protocolName": "DeepSeek-to-document identity, residue, prompt and edited-transfer closure",
+  "rationale": "这条短视频的认知变化依赖四组不能互相替代的证据：故障文档中的字面 Markdown 残留、DeepSeek 输入框里的具体 HTML/字体/字号提示词、剪辑后的选择/菜单/前后状态，以及口头 Word 与画面实际文字处理应用身份的边界。协议因此围绕这些短暂高密度区域进行 OCR/UI 取证，并另外覆盖人物/环境 referent、开合场关系、技术分段与语义连续性，以及完整时间线内未出现的访问与执行条件。",
+  "knowledgeUnitFields": [
+    {"name": "carrier_form", "required": true, "reason": "需区分提供字幕、烧录字幕、UI、文档、动作、人物环境、跨状态文本对应和非语音音频。", "derivedFrom": ["CAR-01", "CAR-02", "CAR-03", "CAR-04", "CAR-05", "CAR-06", "CAR-07", "CAR-08", "CAR-09", "CAR-10", "CAR-11"]},
+    {"name": "visible_identity_and_narrated_label", "required": true, "reason": "口播的 word/dipsick/dipstick 不能覆盖画面中的具体产品身份。", "derivedFrom": ["RISK-01", "RISK-03", "CQ-04", "CQ-08", "REL-08", "REL-09"]},
+    {"name": "literal_failure_signature", "required": true, "reason": "所谓乱码实际依赖井号、星号和层级未转换等可见标记。", "derivedFrom": ["MC-02", "RISK-02", "CQ-03"]},
+    {"name": "prompt_text_and_parameters", "required": true, "reason": "方法的可执行核心是 HTML、字体与字号提示词，必须保留可确认字符和不确定字符。", "derivedFrom": ["MC-04", "RISK-05", "CQ-01", "CQ-02"]},
+    {"name": "observed_screen_chronology", "required": true, "reason": "画面顺序包含回复、空白文档、返回选择、菜单和结果，不能被重排为平滑教程。", "derivedFrom": ["MC-05", "MC-06", "MC-07", "MC-08", "RISK-04", "CQ-05"]},
+    {"name": "operation_dependency_and_bridge_status", "required": true, "reason": "复制、保存、打开、渲染、粘贴选项等桥接未必可见，必须逐项区分 observed/author-stated/unknown。", "derivedFrom": ["REL-10", "RISK-04", "CQ-06"]},
+    {"name": "before_during_after_states", "required": true, "reason": "需以失败、代码回复、空白/菜单、格式结果多状态支持过程边界。", "derivedFrom": ["REL-02", "REL-04", "REL-05", "REL-06", "CQ-05", "CQ-07"]},
+    {"name": "claim_scope_and_unproven_limits", "required": true, "reason": "单一剪辑示例不能自动证明普适性、实时因果或失败条件。", "derivedFrom": ["RISK-06", "RISK-08", "CQ-07", "CQ-10"]},
+    {"name": "carrier_conflict", "required": true, "reason": "必须同时保留 SRT 原文、烧录字幕/UI 支持的解释和未决身份。", "derivedFrom": ["REL-08", "RISK-03", "CQ-08"]},
+    {"name": "referent_and_environment_role", "required": true, "reason": "讲解者从抱猫开场转为圆形画中画并在同一布景结尾回场。", "derivedFrom": ["CAR-06", "CAR-07", "REL-07", "RISK-10", "CQ-11"]},
+    {"name": "opening_closing_relation", "required": true, "reason": "结尾把效率承诺强化为不用痛苦排版和立即使用的号召。", "derivedFrom": ["MC-01", "MC-09", "REL-01", "RISK-07", "CQ-09"]},
+    {"name": "bounded_absence_scope", "required": true, "reason": "访问、费用、账号、版本、文件扩展名、隐私提示/数据处理边界和失败条件只能在完整检查范围内表述为未观察到。", "derivedFrom": ["CAR-10", "RISK-08", "CQ-10"]},
+    {"name": "segmentation_continuity_status", "required": true, "reason": "技术 shots 不能升级为场景/剪辑计数，且屏幕演示可能含隐藏剪辑。", "derivedFrom": ["RISK-09", "CQ-12"]},
+    {"name": "non_speech_audio_status", "required": true, "reason": "必须对完整 AAC 音轨做真实机器听检，按阶段记录配乐/氛围的 constant/change 与 UI 动作声的 absent，并只把精确类型/来源保留 unknown。", "derivedFrom": ["CAR-09", "CQ-13"]},
+    {"name": "cross_state_text_identity", "required": true, "reason": "相同主题和四段结构不等于逐字同一，必须保存结构对应与未做逐字 diff 的边界。", "derivedFrom": ["CAR-11", "REL-11", "RISK-11", "CQ-14"]}
+  ],
+  "captureActions": [
+    {
+      "id": "CAP-01",
+      "range": {"start": 2.25, "end": 8.92},
+      "carrier": "文字处理 UI、文档正文、烧录字幕",
+      "mode": "ocr_review",
+      "times": [2.5, 3.25, 4.0, 4.75, 5.5, 6.25, 7.0, 7.75, 8.5],
+      "reason": "读取应用可见身份和失败文档的字面残留，避免将‘乱码’写成抽象坏排版或将界面泛化为 Word。",
+      "expectedObservation": "顶部产品/功能区线索、井号/星号/列表等 Markdown 风格残留、烧录字幕的故障命名；应用名不可读时明确 unknown。",
+      "derivedFrom": ["CAR-02", "CAR-04", "MC-02", "RISK-01", "RISK-02", "CQ-03", "CQ-04", "REL-02", "REL-09"]
+    },
+    {
+      "id": "CAP-02",
+      "range": {"start": 8.93, "end": 12.75},
+      "carrier": "DeepSeek 聊天 UI、回答正文、烧录字幕",
+      "mode": "ui_state_review",
+      "times": [9.0, 9.75, 10.5, 11.25, 12.0, 12.7],
+      "reason": "确认 AI 服务可见身份、回答主题/结构及 SRT 与烧录字幕的名称冲突。",
+      "expectedObservation": "DeepSeek 标识或界面特征、回答标题/分段、烧录字幕 deepseek 与 SRT dipstick 的冲突、账号/模型信息是否可读。",
+      "derivedFrom": ["CAR-02", "CAR-03", "MC-03", "RISK-03", "CQ-04", "CQ-08", "REL-08"]
+    },
+    {
+      "id": "CAP-03",
+      "range": {"start": 12.75, "end": 18.57},
+      "carrier": "DeepSeek 输入框、提示词选择高亮、烧录字幕",
+      "mode": "ocr_review",
+      "times": [12.8, 13.4, 14.0, 14.6, 15.2, 15.8, 16.4, 17.0, 17.6, 18.2, 18.5],
+      "reason": "恢复 HTML、字体与字号提示词的高影响文字和可见参数，并记录选择/编辑状态。",
+      "expectedObservation": "提示词完整或部分可读文本、HTML 输出要求、标题和正文字体/字号、蓝色选择范围、发送控件；低置信字符保持 unknown。",
+      "derivedFrom": ["CAR-03", "CAR-05", "MC-04", "RISK-05", "CQ-01", "CQ-02", "REL-03"]
+    },
+    {
+      "id": "CAP-04",
+      "range": {"start": 18.57, "end": 21.75},
+      "carrier": "DeepSeek 回复状态、HTML/CSS 代码块、发送/生成控件",
+      "mode": "ui_state_review",
+      "times": [18.6, 18.9, 19.3, 19.7, 20.1, 20.5, 20.9, 21.3, 21.7],
+      "reason": "区分作者说‘点击发送/等它写完’与画面实际显示的代码回复状态，避免推断连续实时生成。",
+      "expectedObservation": "发送后回复、HTML/CSS 代码结构、回复长度变化、可见完成/进度状态或其缺席、可能的剪辑断点。",
+      "derivedFrom": ["CAR-03", "CAR-05", "CAR-08", "MC-05", "RISK-06", "CQ-05", "CQ-07", "REL-04"]
+    },
+    {
+      "id": "CAP-05",
+      "range": {"start": 21.75, "end": 26.25},
+      "carrier": "文字处理文档、DeepSeek 选中文本、鼠标菜单、前后状态",
+      "mode": "before_during_after",
+      "times": [21.8, 22.2, 22.6, 23.0, 23.3, 23.6, 23.9, 24.2, 24.5, 24.8, 25.1, 25.4, 25.8, 26.2],
+      "reason": "建立观察到的剪辑顺序和操作依赖账本，检查‘建文本文档’、复制、切换、菜单、粘贴与内容出现各环节。",
+      "expectedObservation": "空白文字处理文档、聊天回复大段选择、应用切换、右键菜单、文档从空到有内容；未见的复制/保存/打开/粘贴选项保持 unknown。",
+      "derivedFrom": ["CAR-04", "CAR-05", "CAR-08", "MC-06", "MC-07", "RISK-04", "CQ-05", "CQ-06", "REL-05", "REL-06", "REL-10"]
+    },
+    {
+      "id": "CAP-06",
+      "range": {"start": 25.5, "end": 27.53},
+      "carrier": "最终文字处理文档、标题层级、段落、应用功能区",
+      "mode": "ocr_review",
+      "times": [25.5, 25.8, 26.1, 26.4, 26.7, 27.0, 27.3, 27.5],
+      "reason": "读取最终结果的可辨层级与应用身份，并与开场失败签名做字面对照。",
+      "expectedObservation": "结构化标题、正文段落、列表/层级以及可见应用标识；仅证明展示结果，不证明全流程因果或普适性。",
+      "derivedFrom": ["CAR-04", "MC-08", "RISK-01", "RISK-06", "CQ-04", "CQ-07", "REL-02", "REL-06"]
+    },
+    {
+      "id": "CAP-07",
+      "range": {"start": 0, "end": 29.067},
+      "carrier": "人物、圆形画中画、手势、居家布景、开合场",
+      "mode": "exact_times",
+      "times": [0.0, 1.0, 2.0, 3.0, 9.0, 15.0, 21.0, 27.0, 27.75, 28.5, 29.0],
+      "reason": "核对同一可见讲解者如何从开场转为画中画并在结尾回场，以及开合场语义关系。",
+      "expectedObservation": "人物外观连续、画中画覆盖屏幕演示、抱猫与同一居家布景、开场效率承诺与结尾使用号召；真实身份保持 unknown。",
+      "derivedFrom": ["CAR-06", "CAR-07", "MC-01", "MC-09", "RISK-07", "RISK-10", "CQ-09", "CQ-11", "REL-01", "REL-07"]
+    },
+    {
+      "id": "CAP-08",
+      "range": {"start": 0, "end": 29.067},
+      "carrier": "完整时间线中的 UI、字幕、可见控件、文件状态与限定语",
+      "mode": "ui_state_review",
+      "times": [0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 29.0],
+      "reason": "对访问入口、价格、平台、账号、版本、文件名/扩展名、完整文件桥接、隐私提示/数据处理边界、风险提示和失败条件执行有界负证据检查。",
+      "expectedObservation": "记录这些决策边界在完整检查范围是否可见；只能得出‘在 0–29.067 秒已检查视觉/字幕范围内未观察到’，不作普遍不存在断言。",
+      "derivedFrom": ["CAR-10", "RISK-08", "CQ-10"]
+    },
+    {
+      "id": "CAP-09",
+      "range": {"start": 0, "end": 29.067},
+      "carrier": "技术 shots、密集帧、语义设置与潜在隐藏剪辑",
+      "mode": "exact_times",
+      "times": [0.75, 1.5, 1.6, 3.7, 5.8, 5.9, 7.4, 8.9, 9.0, 18.2, 21.7, 22.0, 23.2, 24.7, 25.5, 27.5, 27.6, 28.3, 29.0],
+      "reason": "比较技术场景检测边界与人物/屏幕演示的语义连续性，不把 5 个 shots 当作语义场景或编辑计数。",
+      "expectedObservation": "开合场人物设置、连续屏幕演示框架、跨应用硬切和可能的内部跳切；技术 shots 仅作为观察段。",
+      "derivedFrom": ["CAR-08", "RISK-09", "CQ-12"]
+    }
+  ],
+  "audioInspectionActions": [
+    {
+      "id": "AUDIO-01",
+      "range": {"start": 0, "end": 29.067},
+      "carrier": "完整源 AAC 音轨的语音外成分",
+      "method": "解码完整双声道音轨；对原始单声道混音与 FL-FR 低音量侧声道分别运行 MIT AudioSet AST 3 秒窗机器听检；按六个认知阶段核对持续/变化与动作声音缺席；保存校验和和阶段账本至 audio-evidence/audio-inspection.json。",
+      "expectedObservation": "低音量配乐/氛围是否持续或变化；结尾是否有收尾重音；发送、运行 HTML、复制、切换、粘贴或菜单确认是否有独立声音证据。",
+      "derivedFrom": ["CAR-09", "CQ-13"]
+    },
+    {
+      "id": "TEXT-CORR-01",
+      "range": {"start": 2.25, "end": 27.53},
+      "carrier": "失败文档、DeepSeek 源回答、运行 HTML 预览、最终 WPS 文档的主题、编号和段落结构",
+      "method": "比较已有 targeted/dense 帧中标题主题与四段编号结构；不做不可见文字补全，不把结构相近升级为逐字同一。",
+      "expectedObservation": "同一《黑神话：悟空》主题和相近四段结构可见；逐字一致性因无完整 diff 保持 unknown。",
+      "derivedFrom": ["CAR-11", "REL-11", "RISK-11", "CQ-14"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "opening_promise_strengthened_by_closing_call", "derivedFrom": ["REL-01", "MC-01", "MC-09"]},
+    {"relation": "failure_state_compared_with_result_state", "derivedFrom": ["REL-02", "MC-02", "MC-08"]},
+    {"relation": "source_answer_input_to_prompt_revision", "derivedFrom": ["REL-03"]},
+    {"relation": "prompt_produces_visible_code_response", "derivedFrom": ["REL-04"]},
+    {"relation": "generated_response_source_for_selected_text", "derivedFrom": ["REL-05"]},
+    {"relation": "edited_transfer_precedes_formatted_result", "derivedFrom": ["REL-06"]},
+    {"relation": "same_presenter_and_setting_frame_demo", "derivedFrom": ["REL-07"]},
+    {"relation": "carrier_conflict_on_product_spelling", "derivedFrom": ["REL-08", "RISK-03"]},
+    {"relation": "generic_word_label_contrasts_with_visible_app_identity", "derivedFrom": ["REL-09", "RISK-01"]},
+    {"relation": "edited_chronology_requires_unshown_copy_paste_dependency", "derivedFrom": ["REL-10", "RISK-04"]},
+    {"relation": "same_topic_and_four_part_structure_without_verbatim_identity", "derivedFrom": ["REL-11", "RISK-11", "CQ-14"]}
+  ],
+  "stoppingRules": [
+    "CAP-01 到 CAP-09 均产生清单帧并完成逐帧检查；所有 OCR/UI 动作均运行 macOS Vision OCR。",
+    "能逐项回答 CQ-01 至 CQ-13，或以证据范围支持的 unknown 回答。",
+    "提示词高影响行、故障残留、应用身份、代码回复、空白/选择/菜单/结果状态均被 OCR 与人工画面核对。",
+    "提供字幕的 dipsick/dipstick、烧录字幕的 deepseek 与可见 UI 身份同时保留，不做静默修复。",
+    "观察到的屏幕剪辑顺序与推断依赖顺序分别记录，未显示的复制、保存、打开、渲染、粘贴方式保持 unknown。",
+    "开场失败和结尾结果均有字面标记，人物/环境 referent 与开合场关系进入最终知识单元与关系图。",
+    "对 0–29.067 秒完整范围检查访问、费用、平台、账号、版本、文件扩展名、责任支持、风险提示与失败条件；负证据只在该范围表述。",
+    "完整 0–29.067 秒源音轨已实际解码并由 AudioSet AST 对原始混音和低音量 stereo-side residual 做机器听检；六阶段均有 constant/change/absent 决策与可审计本地证据，精确类型/来源才保留 unknown。",
+    "发送、运行 HTML、复制、切换、粘贴和菜单窗口未检测到可独立证明动作的声音；该缺席仅限完整解码源范围。",
+    "跨失败文档、源回答、HTML 预览和最终文档确认同题材/相近四段结构，但逐字同一性保持 unknown。",
+    "技术 shots 只作为观察分段，隐藏剪辑保持未知，不输出语义场景数或编辑数。",
+    "元问题‘原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？’回答为无；否则回到对应捕获动作。"
+  ],
+  "declaredUnknowns": [
+    "出镜者真实身份、授权与账号归属",
+    "文字处理应用的完整产品版本和文件名/扩展名，除非 targeted OCR 可读",
+    "DeepSeek 模型版本、账号、访问路径、地区、价格和平台条件",
+    "提供字幕 dipsick/dipstick 是否只是 ASR 错误；逐字层不得改写",
+    "复制命令、保存/打开 HTML 或其他文件、浏览器渲染、粘贴选项等桥接是否实际执行",
+    "画面中选择的回复范围是否完整，以及最终文档是否直接来自该选区",
+    "生成完成状态、耗时、网络请求和屏幕演示内部隐藏剪辑",
+    "单一示例之外的普适性、成功率、失败条件和因果效力",
+    "低音量配乐/氛围的精确类型、来源与权属；持续床、结尾重音及无独立 UI 动作声已经建立",
+    "源回答、失败文档、HTML 预览与最终文档的逐字同一性"
+  ]
+}

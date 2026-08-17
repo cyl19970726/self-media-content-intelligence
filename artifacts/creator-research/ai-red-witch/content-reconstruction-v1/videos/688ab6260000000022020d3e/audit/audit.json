@@ -1,0 +1,428 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "688ab6260000000022020d3e",
+  "auditedAt": "2026-08-16",
+  "auditMode": "closed-source-independent",
+  "sourcePolicy": {
+    "sourcesRead": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/688ab6260000000022020d3e.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/688ab6260000000022020d3e.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/evidence/evidence-pack.json"
+    ],
+    "excludedSources": [
+      "skills",
+      "candidate reconstruction",
+      "prior reports"
+    ],
+    "note": "No external product documentation was used. Product judgments are limited to what the supplied video, SRT and evidence pack visibly or textually establish."
+  },
+  "sourceFingerprints": {
+    "videoSha256": "8ac7f67be390ee2b2c2a920ed0eaa6ea71650570152541ed8500db9b12c72995",
+    "srtSha256": "51c9bacd031723aa684bdd26782e060672f590142e3b1e0622481b9558e3df79",
+    "evidencePackSha256": "59102c8d07ee20b6c16d5bd81f874698275118b579781e6d071cd744a487814c"
+  },
+  "mediaFacts": {
+    "durationSeconds": 22.467,
+    "dimensions": "1080x1920",
+    "frameRate": "30/1",
+    "hasAudio": true,
+    "providedSubtitleCueCount": 5,
+    "denseProbeIntervalSeconds": 0.75
+  },
+  "overall": {
+    "verdict": "fail_requires_correction",
+    "confidence": "high",
+    "summary": "The video does show a Runway character-performance workflow and animated examples, but it materially misnames the visible Act-Two workflow as Act One, overstates universality and mouth-only causation, and ends with one-sentence image-editing claims that the visuals do not demonstrate. The supplied SRT also contains two context-changing transcription errors. No authorization evidence is shown for the recognizable identities or characters."
+  },
+  "criticalFindings": [
+    "F-001",
+    "F-004",
+    "F-006",
+    "F-008",
+    "F-009"
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "topic": "Act-One narration versus visible Act-Two UI",
+      "severity": "critical",
+      "verdict": "contradicted",
+      "confidence": "high",
+      "claim": "“这就是 Runway 的黑科技 Act One。”",
+      "claimInterval": {
+        "start": 8.66,
+        "end": 10.79
+      },
+      "evidence": [
+        {
+          "kind": "subtitle_and_hard_caption",
+          "ref": "CUE-003 / DENSE-0014 to DENSE-0015",
+          "observation": "Both the provided subtitle and large on-video caption identify the feature as “act one”."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0013 to DENSE-0015; source frames at 9.0s and 10.5s",
+          "observation": "The active mode chip at the lower-left of the Runway workspace visibly reads “Act-Two”."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "source frame at 15.0s",
+          "observation": "The result/player page again visibly labels the job “Act-Two”."
+        }
+      ],
+      "assessment": "This is a direct product-name mismatch, not an ambiguous inference. Within the supplied media, the demonstrated workflow is Act-Two.",
+      "requiredCorrection": "Replace every “Act One” reference with “Act-Two” unless the visuals are replaced by genuine Act-One footage."
+    },
+    {
+      "id": "F-002",
+      "topic": "Gen-4 headline",
+      "severity": "major",
+      "verdict": "visible_but_not_active_mode",
+      "confidence": "high",
+      "claim": "The screen contains a Gen-4 label.",
+      "evidence": [
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0013 and DENSE-0015; source frames at 9.0s and 10.5s",
+          "observation": "A right-side promotional panel reads “Gen-4: Now for Image and Video” and “Try it now”."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "same frames",
+          "observation": "The working controls on the left and the mode chip identify the active workflow as Act-Two."
+        }
+      ],
+      "assessment": "The Gen-4 text is visibly a promotional card embedded beside the editor. The video does not show selecting Gen-4 or running a Gen-4 workflow, so the headline must not be treated as the active tool/model."
+    },
+    {
+      "id": "F-003",
+      "topic": "Two-input workflow and Generate control",
+      "severity": "informational",
+      "verdict": "supported_with_limits",
+      "confidence": "high",
+      "claim": "The workflow takes a driving video/performance and a character image, then generates an animation.",
+      "evidence": [
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0016 to DENSE-0017; source frame at 11.5s",
+          "observation": "Performance panel: “Add driving performance”, “Use voice, gestures and facial expressions up to 30s”, with “Record” and “Select asset”."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0018 to DENSE-0019; source frames at 13.0s and 13.5s",
+          "observation": "Character panel: “Choose your character”, “Drop image or video”, with “Select asset”."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0013 to DENSE-0015; source frames at 9.0s and 10.5s",
+          "observation": "A “Generate” button is visible beneath the two panels."
+        },
+        {
+          "kind": "visible_output",
+          "ref": "DENSE-0020 to DENSE-0022; source frames at 14.1s to 16.1s",
+          "observation": "An Act-Two result/player displays an animated Mario-like character; the page shows two small asset thumbnails."
+        }
+      ],
+      "assessment": "The two input roles and Generate control are directly visible. However, the character input accepts image or video, and the performance can be recorded or selected; the clip does not show selecting either asset, pressing Generate, waiting, or the full input-to-output transaction."
+    },
+    {
+      "id": "F-004",
+      "topic": "“任意演员” / any-character scope",
+      "severity": "major",
+      "verdict": "overclaimed",
+      "confidence": "high",
+      "claim": "“你现在就是任意演员，不管是动漫角色还是电影角色。”",
+      "claimInterval": {
+        "start": 0.0,
+        "end": 5.17
+      },
+      "evidence": [
+        {
+          "kind": "example_montage",
+          "ref": "DENSE-0001 to DENSE-0005",
+          "observation": "The upper panel cycles through a wizard-schoolgirl-like live-action figure and a fashion-doll-like figure."
+        },
+        {
+          "kind": "example_montage",
+          "ref": "DENSE-0006 to DENSE-0010",
+          "observation": "It then shows a 2D anime woman and a pale film-villain-like figure."
+        },
+        {
+          "kind": "example_montage",
+          "ref": "DENSE-0011 to DENSE-0012 and DENSE-0023 to DENSE-0031",
+          "observation": "A Mario-like 3D mascot and a pink-haired 2D anime ninja-like character are also animated."
+        },
+        {
+          "kind": "negative_evidence",
+          "ref": "full 0.0s to 22.467s",
+          "observation": "No UI text guarantees “any” identity, and no failures, unsupported classes, multi-person case, occlusion case, or boundary conditions are shown."
+        }
+      ],
+      "assessment": "The montage supports a broad range of curated visual styles, including animation and cinema-like characters, but it cannot establish universality. “任意演员” is an absolute claim beyond the evidence.",
+      "requiredCorrection": "Use a bounded claim such as “可驱动多种真人、3D 与动漫角色素材，效果取决于输入素材与动作条件”."
+    },
+    {
+      "id": "F-005",
+      "topic": "Character-example grouping",
+      "severity": "informational",
+      "verdict": "supported",
+      "confidence": "medium_high",
+      "claim": "The montage demonstrates multiple character classes.",
+      "groups": [
+        {
+          "group": "live-action / cinematic likeness",
+          "examples": [
+            "wizard-schoolgirl-like figure",
+            "pale film-villain-like figure"
+          ],
+          "refs": [
+            "DENSE-0001 to DENSE-0003",
+            "DENSE-0008 to DENSE-0010"
+          ]
+        },
+        {
+          "group": "toy / stylized 3D mascot",
+          "examples": [
+            "fashion-doll-like figure",
+            "Mario-like mascot"
+          ],
+          "refs": [
+            "DENSE-0004 to DENSE-0005",
+            "DENSE-0011 to DENSE-0012; DENSE-0020 to DENSE-0022"
+          ]
+        },
+        {
+          "group": "2D animation",
+          "examples": [
+            "suited anime woman",
+            "pink-haired anime ninja-like character"
+          ],
+          "refs": [
+            "DENSE-0006 to DENSE-0007",
+            "DENSE-0023 to DENSE-0031"
+          ]
+        }
+      ],
+      "assessment": "The visual range is real at the showcase level. Exact franchise/identity naming is intentionally avoided where the video itself provides no labels."
+    },
+    {
+      "id": "F-006",
+      "topic": "Mouth-only driving and synchronization causality",
+      "severity": "major",
+      "verdict": "partially_supported_but_causality_not_established",
+      "confidence": "high",
+      "claim": "“你都能靠一张嘴驱动，口型和动作都能同步。”",
+      "claimInterval": {
+        "start": 5.18,
+        "end": 8.66
+      },
+      "evidence": [
+        {
+          "kind": "visible_pairing",
+          "ref": "DENSE-0001 to DENSE-0012",
+          "observation": "The split-screen repeatedly shows the presenter and an animated character changing mouth, expression and hand pose in the same edited interval; examples include raised hands/fingers and changing facial expressions."
+        },
+        {
+          "kind": "visible_continuity",
+          "ref": "DENSE-0023 to DENSE-0031 (16.5s to 22.347s)",
+          "observation": "The final anime character visibly performs a continuous sequence of mouth, head and two-hand changes across nearly six seconds."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0016 to DENSE-0017; source frame at 11.5s",
+          "observation": "The UI explicitly defines the driver as “voice, gestures and facial expressions”, not mouth alone."
+        },
+        {
+          "kind": "negative_evidence",
+          "ref": "full 0.0s to 22.467s",
+          "observation": "No source driving clip is loaded and played alongside the generated result, no frame-accurate comparison is shown, and no clean generated-character audio is isolated from the narrator."
+        }
+      ],
+      "assessment": "The video demonstrates animated motion and editorially suggests correspondence, but it does not prove that the displayed outputs were caused by the shown presenter performance or that lip/body motion is accurately synchronized. “靠一张嘴” is additionally inconsistent with the visible driver definition and the presenter’s hand gestures.",
+      "requiredCorrection": "Say that a performance clip can drive voice/facial/gesture motion, and describe synchronization as a demonstrated intent or example rather than a verified universal result."
+    },
+    {
+      "id": "F-007",
+      "topic": "Generation time",
+      "severity": "major",
+      "verdict": "not_established",
+      "confidence": "high",
+      "claim": "“几分钟就能让图里的人活过来。”",
+      "claimInterval": {
+        "start": 13.8,
+        "end": 16.26
+      },
+      "evidence": [
+        {
+          "kind": "editing_transition",
+          "ref": "source frames at 13.8s and 14.1s",
+          "observation": "The edit jumps from the Character selector to an already-completed player view."
+        },
+        {
+          "kind": "negative_evidence",
+          "ref": "full 0.0s to 22.467s",
+          "observation": "There is no Generate click, loading state, elapsed-time display, start/end clock, or uncut wait."
+        }
+      ],
+      "assessment": "A completed animated result is shown, but the claimed generation time cannot be measured from this clip. The “0:19” on the player is an output-playback duration indicator, not proof of generation latency."
+    },
+    {
+      "id": "F-008",
+      "topic": "One-sentence image editing, expression/action/style changes",
+      "severity": "critical",
+      "verdict": "unsupported_and_visually_misaligned",
+      "confidence": "high",
+      "claim": "“你可以用一句话就可以批图改图，比如给图片换表情，改动作，变风格都超级简单。”",
+      "claimInterval": {
+        "start": 16.27,
+        "end": 22.476
+      },
+      "evidence": [
+        {
+          "kind": "visible_output",
+          "ref": "SHOT-006 / DENSE-0023 to DENSE-0031",
+          "observation": "The entire interval shows only a full-frame animated pink-haired anime character performing continuous gestures."
+        },
+        {
+          "kind": "negative_evidence",
+          "ref": "16.27s to 22.476s",
+          "observation": "No sentence or prompt is typed, no before/after image pair appears, and no separate expression-change, action-change or style-change operation is shown."
+        },
+        {
+          "kind": "visible_ui",
+          "ref": "DENSE-0013 to DENSE-0019",
+          "observation": "Although a Prompt tab is visible in the earlier Act-Two UI, no prompt content or prompt-driven edit is displayed."
+        }
+      ],
+      "assessment": "This narration is not evidenced by the accompanying visuals and appears to describe a different image-editing capability. A visible Generate button does not make the demonstrated two-asset workflow a one-sentence or one-click image-editing operation.",
+      "requiredCorrection": "Remove this section, or replace the visuals with an actual prompt, before/after states, and separate expression/action/style edit demonstrations."
+    },
+    {
+      "id": "F-009",
+      "topic": "Provided SRT versus on-video captions",
+      "severity": "critical",
+      "verdict": "transcription_errors",
+      "confidence": "high",
+      "conflicts": [
+        {
+          "interval": "10.80s to approximately 13.8s",
+          "srt": "再贴一张你想祛痘的图",
+          "hardCaption": "再贴一张你想驱动的图",
+          "resolution": "The hard caption is contextually consistent with the Act-Two character-driving UI; “祛痘” is an SRT error."
+        },
+        {
+          "interval": "approximately 13.8s to 16.26s",
+          "srt": "几分钟就能让土里的人活过来",
+          "hardCaption": "几分钟就能让图里的人活过来",
+          "resolution": "The hard caption matches the displayed animated image result; “土里” is an SRT error."
+        },
+        {
+          "interval": "8.66s to 10.79s",
+          "srt": "act one",
+          "hardCaption": "act one",
+          "visibleUI": "Act-Two",
+          "resolution": "The transcript and hard caption agree with each other but conflict with the demonstrated product UI; this is a content-level mislabel, not merely an SRT transcription issue."
+        },
+        {
+          "interval": "16.27s to 22.476s",
+          "srt": "批图改图",
+          "hardCaption": null,
+          "resolution": "No hard caption is visible in this full-screen output segment, so the likely homophone “P图” cannot be resolved from the supplied visual evidence alone."
+        }
+      ],
+      "requiredCorrection": "Correct the SRT to “想驱动的图” and “图里的人”; separately correct the product name to Act-Two in narration and on-video caption. Review “批图/P图” against the original audio before reuse."
+    },
+    {
+      "id": "F-010",
+      "topic": "Identity, likeness and character authorization",
+      "severity": "major",
+      "verdict": "not_established",
+      "confidence": "high",
+      "claim": "The displayed identities/characters are authorized for use.",
+      "evidence": [
+        {
+          "kind": "visible_material",
+          "ref": "DENSE-0001 to DENSE-0012; DENSE-0020 to DENSE-0031",
+          "observation": "The montage uses multiple highly recognizable franchise-character or actor-likeness-like visuals."
+        },
+        {
+          "kind": "negative_evidence",
+          "ref": "full 0.0s to 22.467s",
+          "observation": "No consent record, asset ownership statement, license, source credit, rights disclosure, impersonation notice, or authorization checkpoint is shown."
+        }
+      ],
+      "assessment": "The supplied evidence cannot establish whether these assets are authorized. Absence of evidence is not proof of infringement, but the video should not imply that recognizable identities or protected characters are automatically permissible inputs.",
+      "requiredCorrection": "Add a rights/consent caveat and retain provenance or authorization records for any real-person likeness and protected character material used."
+    }
+  ],
+  "negativeEvidence": [
+    {
+      "id": "N-001",
+      "missing": "Actual selection/upload of the driving asset"
+    },
+    {
+      "id": "N-002",
+      "missing": "Actual selection/upload of the character asset"
+    },
+    {
+      "id": "N-003",
+      "missing": "Generate-button click and generation progress"
+    },
+    {
+      "id": "N-004",
+      "missing": "Elapsed-time proof for the “几分钟” claim"
+    },
+    {
+      "id": "N-005",
+      "missing": "Frame-accurate source/output comparison proving lip and gesture synchronization"
+    },
+    {
+      "id": "N-006",
+      "missing": "Typed one-sentence prompt and before/after image edits"
+    },
+    {
+      "id": "N-007",
+      "missing": "Separate demonstrations of expression, action and style modification"
+    },
+    {
+      "id": "N-008",
+      "missing": "Failure cases, scope limits, unsupported inputs or quality caveats"
+    },
+    {
+      "id": "N-009",
+      "missing": "Consent, likeness authorization, copyright/license or asset-provenance evidence"
+    }
+  ],
+  "requiredCorrections": [
+    {
+      "priority": 1,
+      "action": "Correct Act One to Act-Two in voiceover, hard caption and metadata, or replace the UI footage."
+    },
+    {
+      "priority": 2,
+      "action": "Correct the SRT phrases “想祛痘的图” to “想驱动的图” and “土里的人” to “图里的人”."
+    },
+    {
+      "priority": 3,
+      "action": "Remove or re-shoot the one-sentence image-editing section so its prompt and before/after evidence are visible."
+    },
+    {
+      "priority": 4,
+      "action": "Bound the “任意演员” and “靠一张嘴” language to the visible multi-style examples and the actual voice/gesture/facial-expression driver."
+    },
+    {
+      "priority": 5,
+      "action": "Treat the Gen-4 text as an incidental promo card, not the demonstrated active mode."
+    },
+    {
+      "priority": 6,
+      "action": "Add authorization/provenance safeguards for recognizable people and protected characters."
+    }
+  ],
+  "limitations": [
+    "No external Runway documentation was consulted, so this audit does not make claims about current product capabilities beyond the supplied screen recording.",
+    "The provided SRT was treated as a supplied transcript but was cross-checked against visible hard captions where available.",
+    "The final 16.27s to 22.476s segment has no visible hard captions, so the “批图/P图” wording remains unresolved without a fresh audio transcription.",
+    "Visible co-motion in an edited split screen can suggest, but cannot prove, generation provenance or frame-accurate synchronization."
+  ]
+}

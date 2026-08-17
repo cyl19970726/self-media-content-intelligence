@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T20:27:36.622Z",
+  "ready": true,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditItems": [
+            "Q-01",
+            "Q-02"
+          ],
+          "result": "answered",
+          "candidateEvidence": [
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ],
+          "note": "The seller-incentive claim and both branches of the profile test are retained as the author's claims, with the missing threshold and authorship proof preserved."
+        },
+        {
+          "auditItems": [
+            "Q-06",
+            "Q-07"
+          ],
+          "result": "answered",
+          "candidateEvidence": [
+            "KU-11",
+            "KU-12",
+            "KU-13",
+            "KU-14"
+          ],
+          "note": "The undefined 60-point scale, the numerical weight hypothetical, and the breakthrough-versus-accumulation claim are all distinguished from verified platform facts."
+        },
+        {
+          "auditItem": "Q-08",
+          "result": "answered",
+          "candidateEvidence": [
+            "KU-15",
+            "KU-16",
+            "KU-17"
+          ],
+          "note": "The close is correctly reconstructed as permission for gap-filling/brainstorming and rejection of one-click script substitution."
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditRange": "AK-01 through AK-04",
+          "result": "covered",
+          "candidateEvidence": [
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ]
+        },
+        {
+          "auditRange": "AK-05 through AK-13",
+          "result": "covered",
+          "candidateEvidence": [
+            "KU-07",
+            "KU-08",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13"
+          ]
+        },
+        {
+          "auditRange": "AK-14 through AK-17",
+          "result": "covered",
+          "candidateEvidence": [
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "method": "Distinct-proposition census",
+          "detail": "Counted 25 positive knowledge-unit propositions and 20 explicit relationship propositions. Four units whose payload is bounded absence or unresolved unknown were excluded from the positive-claim denominator; prose duplicates were not double-counted."
+        },
+        {
+          "claim": "Promoters' successful posts definitely were not AI-made and real bloggers do not use AI",
+          "result": "supported as attributed speech, not upgraded to fact",
+          "candidateEvidence": "KU-06 and article paragraphs explicitly call this an unsupported author assertion."
+        },
+        {
+          "claim": "Million followers, 50,000 normal likes, several 3,000-like posts, then reduced weight/base distribution",
+          "result": "supported as a hypothetical only",
+          "candidateEvidence": "KU-13 and the article explicitly deny platform-rule or analytics proof."
+        },
+        {
+          "claim": "The technical shot list does not equal semantic scene count",
+          "result": "supported inference",
+          "candidateEvidence": "KU-23/KU-24 and relation KU-23 to KU-24 are backed by paired boundary frames and the long SHOT-008 span."
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "candidateEvidence": "KU-02",
+          "range": "2.066-6.200",
+          "result": "correctly localizes the three-part opening prohibition"
+        },
+        {
+          "candidateEvidence": "KU-13",
+          "range": "103.868-124.018",
+          "result": "correctly localizes the numerical weight hypothetical"
+        },
+        {
+          "candidateEvidence": [
+            "KU-15",
+            "KU-16",
+            "KU-21"
+          ],
+          "ranges": [
+            "143.645-149.095",
+            "149.095-154.033",
+            "154.033-156.267"
+          ],
+          "result": "correctly separates permitted assistance, prohibited substitution, and the visible closing label"
+        },
+        {
+          "candidateEvidence": [
+            "KU-27",
+            "KU-28",
+            "KU-29"
+          ],
+          "range": "0.000-2.066",
+          "result": "correctly localizes the unresolved opening-fragment carrier conflict"
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditItems": [
+            "UNK-01",
+            "UNK-02",
+            "UNK-03"
+          ],
+          "result": "correctly unknown",
+          "candidateEvidence": "KU-25 bounds the absence of product/version, platform, price, access, account, region, and support details to 0-156.367 seconds."
+        },
+        {
+          "auditItems": [
+            "UNK-04",
+            "UNK-05",
+            "UNK-06"
+          ],
+          "result": "correctly unknown",
+          "candidateEvidence": [
+            "KU-01",
+            "KU-18",
+            "KU-22",
+            "KU-24",
+            "KU-29"
+          ]
+        },
+        {
+          "auditItems": [
+            "UNK-07",
+            "UNK-08"
+          ],
+          "result": "correctly unknown",
+          "candidateEvidence": [
+            "KU-13",
+            "KU-14"
+          ],
+          "note": "The candidate does not turn the weight or breakthrough narratives into established causal rules."
+        },
+        {
+          "opportunity": "non-speech audio",
+          "result": "correctly unknown",
+          "candidateEvidence": "KU-26 states that the inspected methods cannot reliably establish either presence/absence or an independent semantic role for music/effects."
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": true,
+      "detail": "Independent meta-audit passed",
+      "examples": []
+    }
+  ],
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 5
+  },
+  "failedGateIds": []
+}

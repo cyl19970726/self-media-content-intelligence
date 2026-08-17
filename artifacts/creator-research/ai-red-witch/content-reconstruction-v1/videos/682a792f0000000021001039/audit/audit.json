@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "682a792f0000000021001039",
+  "auditDate": "2026-08-16",
+  "scope": {
+    "readSources": [
+      "median-performance/media/682a792f0000000021001039.mp4",
+      "median-performance/media/682a792f0000000021001039.srt",
+      "content-reconstruction-v1/videos/682a792f0000000021001039/evidence/evidence-pack.json",
+      "content-reconstruction-v1/videos/682a792f0000000021001039/evidence/frames/**"
+    ],
+    "excluded": [
+      "skills",
+      "candidate outputs",
+      "prior reports"
+    ],
+    "method": "Independent visual and subtitle audit against the original video, the supplied SRT, and the new evidence pack. Claims are separated into directly visible facts, supported inferences, and unknowns."
+  },
+  "overallVerdict": {
+    "status": "partially_supported_with_material_conflicts",
+    "summary": "The recording directly identifies Medeo Beta and demonstrates a WeChat-article URL plus a written instruction leading, after a queue screen, to a Labubu-themed editable video project. The project visibly contains a preview, time-coded Audio script, captioned scenes, a multi-segment timeline, Video settings, and an Export button. It does not establish one-click/no-edit generation, generation speed, successful export, public-access conditions, or the marketing superlative that this is the world's first video agent. The strongest direct conflict is that the SRT says the result is ready '很快' while the interface says the job is 13/13 in queue and may take over 10 minutes."
+  },
+  "findings": {
+    "productIdentity": {
+      "status": "verified",
+      "groundTruth": "The creation interface is branded 'Medeo' with a visible 'Beta' badge. Generated-looking sample frames also carry a Medeo watermark.",
+      "evidence": [
+        {
+          "source": "original_video",
+          "time": 4.5,
+          "observation": "Top-left product mark reads 'Medeo Beta'."
+        },
+        {
+          "source": "evidence_frame",
+          "frame": "frames/dense/dense-0004.jpg",
+          "time": 4.5,
+          "observation": "Medeo creation page is visible."
+        },
+        {
+          "source": "evidence_frames",
+          "frames": [
+            "frames/shots/shot-001.jpg",
+            "frames/shots/shot-002.jpg",
+            "frames/shots/shot-006.jpg",
+            "frames/shots/shot-007.jpg",
+            "frames/shots/shot-008.jpg"
+          ],
+          "observation": "Sample/output frames show a Medeo watermark."
+        }
+      ],
+      "qualification": "The phrase '全球首个视频agent' appears only as narration/SRT marketing language. No comparative evidence in the video establishes either 'world's first' or the exact product-category claim."
+    },
+    "articleAndFileInput": {
+      "status": "partially_verified",
+      "groundTruth": "The UI exposes both 'Add a URL' and 'Upload files'. The actual demonstrated source is a displayed Labubu article followed by an attached, truncated WeChat URL ('https://mp.weixin.qq.co…'). No file upload or drag-and-drop is shown.",
+      "evidence": [
+        {
+          "source": "original_video",
+          "timeRange": [5.2, 7.5],
+          "observation": "The user opens an Add-a-URL dialog; the page separately shows Upload files."
+        },
+        {
+          "source": "evidence_frames",
+          "frames": [
+            "frames/dense/dense-0007.jpg",
+            "frames/dense/dense-0008.jpg"
+          ],
+          "timeRange": [9.0, 10.5],
+          "observation": "A Labubu article page is displayed."
+        },
+        {
+          "source": "original_video",
+          "time": 15.0,
+          "observation": "The creation prompt contains a URL attachment card beginning 'https://mp.weixin.qq.co…', labeled URL."
+        }
+      ],
+      "qualification": "The SRT formulation '把这篇…文章拖进去' is not the interaction shown. File support is visible as a button but remains untested in this recording."
+    },
+    "instruction": {
+      "status": "verified",
+      "groundTruth": "The user types '根据文章生成一个商业科普视频' while the WeChat URL card remains attached.",
+      "evidence": [
+        {
+          "source": "original_video",
+          "timeRange": [15.0, 16.7],
+          "observation": "The instruction is typed progressively and is complete by 16.5 seconds."
+        },
+        {
+          "source": "evidence_frame",
+          "frame": "frames/dense/dense-0012.jpg",
+          "time": 16.5,
+          "observation": "Completed instruction and URL attachment are visible together."
+        }
+      ],
+      "qualification": "The sequence shows at least source attachment plus text instruction. It therefore does not literally prove a one-click workflow, and no complete click/submission sequence is preserved."
+    },
+    "queue": {
+      "status": "verified_and_conflicts_with_speed_claim",
+      "groundTruth": "Immediately before the completed project appears, the UI displays 'Queuing…', 'Current position: 13 / 13', and 'This may take over 10 minutes. Thanks for your patience.'",
+      "evidence": [
+        {
+          "source": "original_video",
+          "timeRange": [16.9, 17.15],
+          "observation": "Queue overlay with position 13/13 and an over-10-minutes warning."
+        },
+        {
+          "source": "srt",
+          "cue": 5,
+          "timeRange": [14.03, 19.16],
+          "text": "告诉他根据文章生成一个商业科普视频，很快一个标准的专业视频就做好了"
+        }
+      ],
+      "qualification": "The recording hard-cuts from the queue to a finished project and does not show elapsed generation time. '很快' is contradicted by the visible warning and is not supported by continuous timing. The 1.5-second dense evidence sampling misses this brief queue screen; the fact is recoverable from the original video."
+    },
+    "resultProjectComponents": {
+      "status": "verified_with_attribution_limits",
+      "groundTruth": "A Labubu project appears with a vertical preview/player (shown as 0:00/0:38), time-coded Audio script segments, a Video settings tab, captions rendered in the preview, a multi-segment thumbnail/script timeline, and an Export button.",
+      "evidence": [
+        {
+          "source": "original_video",
+          "timeRange": [17.25, 25.97],
+          "observation": "The editor repeatedly shows the project components while the playhead moves through multiple scenes."
+        },
+        {
+          "source": "evidence_frames",
+          "frames": [
+            "frames/dense/dense-0013.jpg",
+            "frames/dense/dense-0014.jpg",
+            "frames/dense/dense-0015.jpg",
+            "frames/dense/dense-0016.jpg",
+            "frames/dense/dense-0017.jpg"
+          ],
+          "timeRange": [18.0, 24.0],
+          "observation": "Editor preview, script panel, captions and timeline are visible."
+        },
+        {
+          "source": "srt",
+          "cues": [7, 8],
+          "timeRange": [23.45, 30.511],
+          "observation": "The spoken/transcribed line about New York, Tokyo, Bangkok and London matches the editor's 00:23 Audio script segment and the later map/store output excerpt."
+        }
+      ],
+      "componentAssessment": {
+        "videoVisuals": "directly visible",
+        "copyOrScript": "directly visible as time-coded Audio script",
+        "captions": "directly visible in the preview/output",
+        "voiceover": "supported by transcript-to-script alignment in the later Labubu excerpt, but not independently attributable as AI-generated because the delivered video also contains creator narration",
+        "completePackagingAndProduction": "subjective marketing characterization; not independently verifiable"
+      }
+    },
+    "sampleContinuity": {
+      "status": "mostly_continuous_then_switches_sample",
+      "groundTruth": "The 0.00–3.23-second cold open is the beginning of the same Labubu project later shown in the editor: the editor at project time 0:00 reproduces the same BEFORE/AFTER sales image and the next growth-chart scene. The 25.97–30.53-second map/store excerpt also matches the same project's 00:23 script and timeline. At 30.53 seconds the video cuts to a white duck sample that is not the Labubu project.",
+      "evidence": [
+        {
+          "source": "evidence_frames",
+          "frames": [
+            "frames/shots/shot-001.jpg",
+            "frames/shots/shot-002.jpg"
+          ],
+          "timeRange": [0.0, 3.233],
+          "observation": "Cold-open sales and growth shots."
+        },
+        {
+          "source": "original_video",
+          "timeRange": [17.25, 19.5],
+          "observation": "Editor preview at project start repeats the same sales and growth shots."
+        },
+        {
+          "source": "evidence_frames",
+          "frames": [
+            "frames/shots/shot-006.jpg",
+            "frames/shots/shot-007.jpg"
+          ],
+          "timeRange": [25.967, 30.533],
+          "observation": "Labubu world-map/store segment aligns with the project's later script."
+        },
+        {
+          "source": "evidence_frame",
+          "frame": "frames/shots/shot-008.jpg",
+          "timeRange": [30.533, 33.767],
+          "observation": "Unrelated white-duck sample appears during the final access call-to-action."
+        }
+      ],
+      "qualification": "The final duck should not be treated as evidence about the Labubu project's continuity, export state, or access conditions."
+    },
+    "export": {
+      "status": "button_verified_success_unknown",
+      "groundTruth": "An Export button is visibly present in the project editor, but the recording never clicks it and never shows a completed download or exported-file properties.",
+      "evidence": [
+        {
+          "source": "original_video",
+          "timeRange": [17.25, 25.97],
+          "observation": "Export is visible at the top right of the editor."
+        },
+        {
+          "source": "evidence_frame",
+          "frame": "frames/shots/shot-005.jpg",
+          "time": 21.6,
+          "observation": "Editor and Export control are visible."
+        }
+      ],
+      "unknowns": [
+        "whether export succeeds",
+        "output format and resolution",
+        "watermark behavior",
+        "render time",
+        "credit, plan, payment or quota requirements"
+      ]
+    },
+    "publicAccess": {
+      "status": "unverified",
+      "groundTruth": "The SRT says the agent is now open to everyone, but the only access-state evidence is a 'Beta' badge and a visible '登录' control on the creation page. The recording does not show signup, eligibility, regional availability, pricing, credits, quotas or successful use by a new public account.",
+      "evidence": [
+        {
+          "source": "srt",
+          "cue": 9,
+          "timeRange": [30.511, 33.785],
+          "text": "目前这个agent已经向所有人开放，朋友们快去体验吧"
+        },
+        {
+          "source": "original_video",
+          "time": 4.5,
+          "observation": "Medeo page shows Beta and a login control."
+        },
+        {
+          "source": "evidence_frame",
+          "frame": "frames/shots/shot-008.jpg",
+          "time": 32.15,
+          "observation": "The access claim is overlaid on an unrelated duck sample, not an access or signup screen."
+        }
+      ],
+      "qualification": "Beta and Login do not by themselves disprove public availability; they only show that the claimed 'open to everyone' conditions are absent from this evidence."
+    }
+  },
+  "subtitleConflicts": [
+    {
+      "severity": "high",
+      "srtCue": 5,
+      "claim": "很快一个标准的专业视频就做好了",
+      "visualGroundTruth": "Queue screen says position 13/13 and warns that it may take over 10 minutes; elapsed generation time is edited out.",
+      "assessment": "direct conflict / speed unverified"
+    },
+    {
+      "severity": "medium",
+      "srtCues": [3, 4],
+      "claim": "扔一篇文章或者一个文件；把这篇…文章拖进去",
+      "visualGroundTruth": "The demonstrated path is Add a URL plus a WeChat URL attachment. Upload files is only an untested UI option; no drag action is shown.",
+      "assessment": "interaction overstated"
+    },
+    {
+      "severity": "medium",
+      "srtCues": [1, 2],
+      "claim": "一键生成；不需要剪视频，只需要说一句话",
+      "visualGroundTruth": "The recording shows source attachment and text instruction, then an edited-out queue, followed by an editable timeline. It does not preserve the full submission path or prove that no editing occurred.",
+      "assessment": "not established"
+    },
+    {
+      "severity": "medium",
+      "srtCue": 6,
+      "claim": "包括视频画面，文案，配音字幕，非常完整的包装和制作",
+      "visualGroundTruth": "Visuals, script and captions are visible; voiceover is only indirectly supported, and 'complete/professional packaging' is subjective.",
+      "assessment": "partly supported, partly unverified"
+    },
+    {
+      "severity": "high",
+      "srtCue": 9,
+      "claim": "已经向所有人开放",
+      "visualGroundTruth": "No access-flow evidence is shown; the product is labeled Beta and has a Login control. The claim appears over an unrelated duck sample.",
+      "assessment": "unverified"
+    }
+  ],
+  "evidenceIntegrityNotes": [
+    "The evidence pack preserves the supplied SRT verbatim and provides 1.5-second dense frames plus shot/cue representatives.",
+    "The queue state is shorter than the dense-frame interval and therefore absent from the saved dense frames; it is directly visible in the allowed original video at approximately 16.90–17.15 seconds.",
+    "The evidence-pack media duration is 33.767 seconds, while the SRT ends at 33.785 seconds and direct ffprobe reports approximately 33.7865 seconds. This is a sub-frame/rounding-scale discrepancy and does not affect the substantive audit."
+  ],
+  "finalGroundTruth": [
+    "Medeo Beta identity: verified.",
+    "Actual demonstrated input: Labubu article via WeChat URL; file upload only visible as an option.",
+    "Instruction: verified as '根据文章生成一个商业科普视频'.",
+    "Queue: verified at 13/13 with an over-10-minutes warning; '很快' is not supported.",
+    "Result project: editor with preview, Audio script, Video settings, captions, timeline and Export control is verified.",
+    "Continuity: cold open and later Labubu excerpt belong to the same project; final duck is a different sample.",
+    "Export completion and public-access conditions: unknown from this video."
+  ]
+}

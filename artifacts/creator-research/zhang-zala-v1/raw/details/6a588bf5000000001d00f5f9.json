@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a588bf5000000001d00f5f9",
+  "capturedAt": "2026-08-16T11:08:47.953Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "30分钟完整版：4个可以落地的AI原生工作方式",
+    "postCopy": "在飞书绝活大会上的完整分享",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a588bf5000000001d00f5f9",
+    "mediaType": "video",
+    "publishedAt": "2026-07-16T07:44:53.000Z",
+    "likes": "7079",
+    "collections": "8009",
+    "comments": "148",
+    "shares": "1995",
+    "expectedDurationSec": 1812
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 1812
+    }
+  ]
+}

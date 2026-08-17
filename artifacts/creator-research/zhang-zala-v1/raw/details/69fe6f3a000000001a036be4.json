@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69fe6f3a000000001a036be4",
+  "capturedAt": "2026-08-16T12:20:35.175Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "如何用AI做出超级好看的HTML Slides",
+    "postCopy": "把我的审美变成了30多个模板，可以直接复用\n\t\n#vibecoding[话题]# #独立开发[话题]# #claudecode[话题]# #ppt模板[话题]# #ppt设计[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "独立开发",
+      "claudecode",
+      "ppt模板",
+      "ppt设计"
+    ],
+    "topComments": [
+      {
+        "content": "欢迎大家加入粉丝群，入口在我的签名里",
+        "likes": "0",
+        "ipLocation": "美国",
+        "author": "张咋啦",
+        "replies": [
+          {
+            "content": "没有签名了",
+            "author": "MOMO"
+          }
+        ]
+      },
+      {
+        "content": "谢谢zala！因为你的frotend-slides 这个Skill 我花了10分钟就出了2份明天商业路演的PPT 你这个开源值9999！！！",
+        "likes": "851",
+        "ipLocation": "中国台湾",
+        "author": "小郑在努力变好",
+        "replies": [
+          {
+            "content": "当然还包括后续打磨的一点小时间 但是前期摩擦已经小了太多了",
+            "author": "小郑在努力变好"
+          }
+        ]
+      },
+      {
+        "content": "回答常见问题\n\n1. 做完怎么编辑？\nAnyGen  里html文字都可以直接点击编辑。如果需要修改样式，可以直接在html上选中要修改的元素 有针对性的告诉AI怎么改\n\n2. 做完怎么分享给别人？\n视频里讲了，Anygen里做完自动生成🔗，发给别人他们可以直接打开，像网页一样。演讲的时候把网页全屏即可\n\n3. 做完是否可以导出？\nAnyGen里支持导出成PPT和PDF\n\n4. 如何插入图片？\n直接把图片发给AI，大白话告诉它插入到哪里",
+        "likes": "51",
+        "ipLocation": "美国",
+        "author": "张咋啦",
+        "replies": [
+          {
+            "content": "导出的链接不能打开，貌似有地区限制🚫",
+            "author": "大方小欣"
+          }
+        ]
+      },
+      {
+        "content": "感觉 html 的 ppt 就是色彩比较好看，但是排版都非常千篇一律",
+        "likes": "93",
+        "ipLocation": "北京",
+        "author": "布肥熊组",
+        "replies": [
+          {
+            "content": "一眼看出来是AI做的",
+            "author": "momo"
+          }
+        ]
+      },
+      {
+        "content": "请问生成 HTML 格式后，如果需要修改怎么办呀[害羞R]",
+        "likes": "28",
+        "ipLocation": "江苏",
+        "author": "每天不早起的草莓熊",
+        "replies": [
+          {
+            "content": "AnyGen里html文字都可以直接点击编辑。如果需要修改样式，可以直接在html上选中要修改的元素 有针对性的告诉AI怎么改",
+            "author": "张咋啦"
+          }
+        ]
+      },
+      {
+        "content": "需要科学上网吗",
+        "likes": "14",
+        "ipLocation": "广东",
+        "author": "爱吃菜包",
+        "replies": [
+          {
+            "content": "sure",
+            "author": "苍苍"
+          }
+        ]
+      },
+      {
+        "content": "欢迎大家进群交流HTML slides的制作技巧/提问或者提反馈\n\n1【全文复制→开启🍠】 6月8日前进入，\"Frontend Slides交流\"一起来聊 MU2672 :/#e🍋🐯🦁😊😂🥕🍙🍑🐶🥬🐦🤣",
+        "likes": "8",
+        "ipLocation": "美国",
+        "author": "张咋啦",
+        "replies": [
+          {
+            "content": "满啦，可不可以再拉一个群",
+            "author": "小红薯6699AE97"
+          }
+        ]
+      },
+      {
+        "content": "请问codex能用吗[哭惹R]试着装了一下 好像无法安装skill",
+        "likes": "0",
+        "ipLocation": "上海",
+        "author": "暴躁梅子",
+        "replies": [
+          {
+            "content": "codex 可以装 skill，没装上估计是哪里有问题，再问问 codex [笑哭R]",
+            "author": "30 岁转行 AI 的王工"
+          }
+        ]
+      },
+      {
+        "content": "刚刚做了中文版的 感觉中文字体有点奇怪 可能因为模版default是英文字体",
+        "likes": "11",
+        "ipLocation": "北京",
+        "author": "网球是绿的还是黄的",
+        "replies": [
+          {
+            "content": "所以用中文的话不太好用吗",
+            "author": "伊森王"
+          }
+        ]
+      },
+      {
+        "content": "明天我就加入学习！！！！！",
+        "likes": "4",
+        "ipLocation": "浙江",
+        "author": "宇宙白菜",
+        "replies": [
+          {
+            "content": "我也是明天！",
+            "author": "好说话放心刀脾气好"
+          }
+        ]
+      }
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69fe6f3a000000001a036be4",
+    "mediaType": "video",
+    "publishedAt": "2026-05-08T23:18:18.000Z",
+    "likes": "4.3万",
+    "collections": "6.2万",
+    "comments": "304",
+    "shares": "6245",
+    "expectedDurationSec": 173
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 173
+    }
+  ]
+}

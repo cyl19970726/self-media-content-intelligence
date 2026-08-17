@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {"status": "answered", "auditIds": ["CQ-01", "CQ-06", "CQ-13", "CQ-17"], "candidateUnits": ["KU-01", "KU-08", "KU-15", "KU-18"], "note": "十三问承诺、变现时点、MCN分类和结尾警告均被明确回答。"},
+        {"status": "correctly_unknown", "auditIds": ["CQ-02", "CQ-12", "CQ-18"], "candidateUnits": ["KU-02", "KU-13", "KU-23"], "note": "损坏专名、3-7天后动作和十三问编号闭合均正确保留未知。"}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 16,
+      "denominator": 16,
+      "examples": [
+        {"auditUnits": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05"], "candidateUnits": ["KU-01", "KU-22", "KU-02", "KU-03", "KU-04", "KU-05"], "note": "开场、赛道决策、卷度/商业空间、更新与权重均有 cue/frame/OCR 证据。"},
+        {"auditUnits": ["KU-12", "KU-13", "KU-14", "KU-15", "KU-16"], "candidateUnits": ["KU-13", "KU-15", "KU-14", "KU-16", "KU-17", "KU-18"], "note": "数据诊断与MCN全段均有有效时间定位，并保留主张限制。"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 21,
+      "examples": [
+        {"candidateUnits": ["KU-03", "KU-05", "KU-07", "KU-08", "KU-14"], "note": "卷度、权重、预算、生命周期和99%均标注为作者主张并附缺失边界。"},
+        {"candidateUnits": ["KU-17", "KU-21", "KU-24"], "note": "孵化模式只作为作者叙述；全片缺失和签约核验桥梁使用有界检查范围。"}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 16,
+      "denominator": 16,
+      "examples": [
+        {"checked": ["CUE-001@0.00-3.57", "CUE-016@43.76-46.75", "CUE-048@127.78-131.49", "CUE-081@219.32-224.52", "CUE-110@311.61-315.05"], "note": "抽查引用均落在相应知识单元与 audit 窗口内。"},
+        {"checked": ["CUE-060@160.14-163.31", "CUE-091@248.40-252.33", "CUE-098@273.13-277.70", "CUE-104@294.29-298.56"], "note": "行动链与MCN因果链的引用也正确局部化。"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 6,
+      "denominator": 6,
+      "rationale": "资源→赛道→形式（KU-02/KU-03）、节律→质量→权重（KU-04/KU-05）、爆款复制→变现（KU-09→KU-08）、反馈→双系列/Tag（KU-10→KU-11）、等待→后台诊断（KU-13）及MCN类型→能力核验→警告（KU-15/KU-16/KU-24/KU-18）均被显式保留，并区分讲述顺序与真实执行证明。"
+    },
+    "unknownDiscipline": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        {"auditIds": ["UNK-01", "UNK-02", "UNK-03", "UNK-04", "UNK-05"], "candidateUnits": ["KU-22", "KU-02", "KU-03"], "note": "截图归属、赛道专名、竞争/盈利样本、时长依据与扶持入口均未补造。"},
+        {"auditIds": ["UNK-06", "UNK-07", "UNK-08", "UNK-09", "UNK-10", "UNK-11", "UNK-12", "UNK-13"], "candidateUnits": ["KU-05", "KU-07", "KU-08", "KU-09", "KU-10", "KU-13", "KU-15", "KU-17", "KU-24"], "note": "平台机制、预算、阈值、复制变量、互动边界、处置条件和合同/责任风险均正确保留未知。"}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复查 speech、SRT、烧录字幕/黄色强调、白板编号/手势、开场数据拼贴、非语音音频及 scoped absence，未发现协议与重建共同漏检的可用载体；十三问部分编号、商业空间品类、爆款生命周期回访、数据诊断、MCN分类到防骗警告及编辑顺序与依赖顺序的差别均有守卫。"
+  },
+  "examples": [
+    {"kind": "opening_closing", "audit": "开场承诺十三问，结尾把第十三问转成防骗警告且未展示结果链。", "candidate": "KU-01/KU-18/KU-23 明确保留承诺、价值转向和未闭合编号/证明。", "result": "pass"},
+    {"kind": "carrier_conflict", "audit": "赛道专名、机构名和3-7天后动作受SRT噪声影响。", "candidate": "KU-02/KU-03/KU-13/KU-20 使用OCR但保留未闭合项。", "result": "pass"},
+    {"kind": "edited_chronology", "audit": "十三问顺序不等于实际运营顺序。", "candidate": "跨段 relations 与 KU-23/KU-24 将概念依赖和未展示执行分开。", "result": "pass"}
+  ]
+}

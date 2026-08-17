@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T00:00:00.000Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/68663c61000000000b01dca6.mp4",
+  "protocol": "../../capture-protocol.json",
+  "frames": [
+    {"id": "CORR-001", "actionId": "ACT-12", "time": 41.4, "frame": "full-41.4.jpg", "carrier": "粘贴前表格", "reason": "复核表格已有内容"},
+    {"id": "CORR-002", "actionId": "ACT-12", "time": 42.2, "frame": "full-42.2.jpg", "carrier": "批量粘贴", "reason": "复核212条计数、粘贴成功和处理中字段"},
+    {"id": "CORR-003", "actionId": "ACT-12", "time": 42.8, "frame": "full-42.8.jpg", "carrier": "粘贴后状态", "reason": "复核成功提示和处理标记"},
+    {"id": "CORR-004", "actionId": "ACT-12", "time": 43.4, "frame": "full-43.4.jpg", "carrier": "处理进行中", "reason": "复核处理中字段"},
+    {"id": "CORR-005", "actionId": "ACT-12", "time": 44.0, "frame": "full-44.0.jpg", "carrier": "处理进行中", "reason": "复核粘贴后字段状态"},
+    {"id": "CORR-006", "actionId": "ACT-12", "time": 44.6, "frame": "full-44.6.jpg", "carrier": "结构化字段", "reason": "复核评价等级和商品信息字段"},
+    {"id": "CORR-007", "actionId": "ACT-12", "time": 45.0, "frame": "full-45.0.jpg", "carrier": "结构化字段", "reason": "复核字段持续出现"}
+  ]
+}

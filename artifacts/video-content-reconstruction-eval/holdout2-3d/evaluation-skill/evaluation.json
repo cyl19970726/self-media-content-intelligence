@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {
+          "auditQuestion": "Q01 工具身份",
+          "result": "covered_as_unknown",
+          "candidateEvidence": ["KU-002", "KU-005", "KU-020"],
+          "note": "区分红发魔女Amber/小红书/栏目包装、分屏KRE残片与未命名单头UI，没有补全产品名。"
+        },
+        {
+          "auditQuestion": "Q02 左侧输入类型",
+          "result": "covered_as_unknown",
+          "candidateEvidence": ["KU-003", "KU-004", "KU-008"],
+          "note": "记录左侧有体积的头部、编辑工具和英文prompt，并拒绝把输入简化成纯2D线稿。"
+        },
+        {
+          "auditQuestion": "Q06 导出与资产格式",
+          "result": "covered_as_unknown",
+          "candidateEvidence": ["KU-006", "KU-010", "KU-018"],
+          "note": "准确区分可见Download控件与未展示的点击、落盘、输出格式及生产资产检查。"
+        },
+        {
+          "auditQuestion": "Q07/Q10/Q11 结果归因、授权和评论区工具包",
+          "result": "covered_as_unknown",
+          "candidateEvidence": ["KU-014", "KU-015", "KU-016"],
+          "note": "人物身份/来源/授权、价格/许可及评论区外部访问路线均保持未知。"
+        }
+      ],
+      "ratio": 1.0,
+      "threshold": 0.85,
+      "pass": true
+    },
+    "evidenceCoverage": {
+      "numerator": 7,
+      "denominator": 7,
+      "examples": [
+        {
+          "auditUnits": ["K01", "K02"],
+          "candidateUnits": ["KU-001", "KU-003", "KU-004", "KU-008", "KU-009", "KU-010"],
+          "note": "2D/草图到3D的作者主张、可见输入条件、两套UI和缺失桥接均有帧/字幕证据。"
+        },
+        {
+          "auditUnits": ["K03", "K04"],
+          "candidateUnits": ["KU-005", "KU-006", "KU-012", "KU-013"],
+          "note": "头部/人脸范围、3D视口、成功状态与结果蒙太奇均有有效视觉证据并保留资产边界。"
+        },
+        {
+          "auditUnits": ["K05", "K06", "K07"],
+          "candidateUnits": ["KU-007", "KU-011", "KU-015", "KU-016"],
+          "note": "低门槛、多用途和评论区CTA被正确标为作者主张，并给出反证边界。"
+        }
+      ],
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "pass": true
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 31,
+      "examples": [
+        {
+          "candidateClaim": "KU-017标题称‘非语音音轨存在’",
+          "assessment": "unsupported",
+          "reason": "AAC流、持续电平和SRT只覆盖语音并不能单独证明音乐或音效存在；正文随后正确把非语音内容与作用保持未知。"
+        },
+        {
+          "candidateClaim": "两套UI不能合并为同一产品或连续链",
+          "assessment": "supported_and_qualified",
+          "evidence": ["CROP-0001", "CROP-0002", "CROP-0004", "CROP-0005"]
+        },
+        {
+          "candidateClaim": "可见Generation successful、Refresh、Download但无点击/落盘链",
+          "assessment": "supported_and_scoped",
+          "evidence": ["CROP-0002", "CROP-0004", "SRC-TARGETED"]
+        }
+      ],
+      "ratio": 0.03225806451612903,
+      "threshold": 0.05,
+      "pass": true,
+      "countingRule": "20个knowledge-unit主命题加11个显式关系命题；重复的article复述不二次计数。"
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "references": ["TARGET-0001@0.000", "TARGET-0003@0.100", "CROP-0001@3.800", "CROP-0002@7.500", "CROP-0006@8.400", "CROP-0004@12.000", "CROP-0007@14.200"],
+          "assessment": "correct"
+        },
+        {
+          "references": ["TARGET-0086@14.950", "TARGET-0090@15.550", "TARGET-0095@16.300", "TARGET-0100@17.050", "TARGET-0103@17.481"],
+          "assessment": "correct",
+          "note": "结尾四主体与黑场定位和帧清单一致。"
+        },
+        {
+          "references": ["CUE-003@6.370-11.083", "CUE-004@11.083-14.307", "CUE-005@14.307-17.420"],
+          "assessment": "correct"
+        }
+      ],
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "pass": true,
+      "countingRule": "核对20个高影响、非重复的cue/target/crop定位；同一锚点在article与JSON中的重复引用只计一次。"
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "独立audit的5条论证依赖均被覆盖：视觉对照支撑但不证明2D到3D；该主张被作者用于降低门槛；左侧几笔被叙述为实时转换；低门槛扩张到新手/角色/场景/电商；用途承诺最终导向评论区CTA。candidate还额外分开观测剪辑顺序与未知的实际文件依赖。",
+      "ratio": 1.0,
+      "threshold": 0.85,
+      "pass": true
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {
+          "opportunities": ["工具身份/版本", "输入类型", "实时延迟/硬件", "同次会话因果", "输出资产类型", "导出格式与下游能力"],
+          "assessment": "all_correctly_unknown_or_scoped"
+        },
+        {
+          "opportunities": ["结尾人物生成归因", "完整场景支持", "电商模特含义", "价格/额度/许可", "工具包内容/安全性", "提示/重试/后处理成本"],
+          "assessment": "all_correctly_unknown_or_scoped"
+        }
+      ],
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "pass": true
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 5,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复核未发现整类载体、意义变化或关系被遗落。candidate检查了旁白/SRT、烧录字幕和固定标题、账号/平台/水印、分屏编辑与英文prompt、另一套单头UI及成功/Download状态、人物与结尾环境、剪辑顺序、CTA和全片负证据；对非语音音频只建立‘有活动音频流、具体内容/作用未知’的边界。可见Mesh字段中的3DAISTUDIO-V1样式值未单列转录，但它位于已检查的UI载体内，且不足以改变完整产品身份未知、两界面关系未知或执行链未证的结论。"
+  },
+  "examples": [
+    {
+      "type": "high_value_capture",
+      "item": "英文prompt限制了‘只画几笔’的更强说法",
+      "evidence": ["CROP-0001", "CROP-0006", "CROP-0007"]
+    },
+    {
+      "type": "high_value_capture",
+      "item": "分屏UI与单头生成UI被正确分开，KRE只作残片",
+      "evidence": ["CROP-0002", "CROP-0004", "CROP-0005"]
+    },
+    {
+      "type": "negative_evidence",
+      "item": "Download控件可见，但Generate/上传/下载点击、文件落盘和跨UI桥接未显示",
+      "scope": "0.000-17.601",
+      "carriers": ["156张targeted frames", "7张放大crop", "UI状态", "全片/收尾扫描"]
+    },
+    {
+      "type": "minor_error",
+      "item": "KU-017标题把活动音频流误写成已存在非语音音轨；正文的未知限定仍正确。"
+    }
+  ]
+}

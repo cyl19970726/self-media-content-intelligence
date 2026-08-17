@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "subject": "holdout-commercial ordinary-summary baseline",
+  "evaluationBasis": {
+    "baseline": [
+      "baseline/baseline.md",
+      "baseline/baseline-process.md"
+    ],
+    "groundTruth": [
+      "audit/audit.json",
+      "audit/audit.md",
+      "evidence-v2/evidence-pack.json"
+    ],
+    "claimCountingRule": "Count each non-duplicated atomic affirmative proposition in the delivered baseline; questions, headings, explicit abstentions, and exact restatements are not separate positive claims.",
+    "evidenceUnitRule": "Twenty independently falsifiable core units were derived from the audit: the thirteen carrier windows plus cross-cutting disclosure, first-party-demo, visual-language, non-speech-audio, conversion, privacy/data, and reminder-tension units. A unit receives credit only if its material fact and evidentiary boundary are both preserved."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 7,
+      "denominator": 8,
+      "examples": [
+        {
+          "result": "credit",
+          "auditIds": ["Q-001", "Q-002", "Q-003", "Q-004", "Q-005", "Q-007", "Q-008"],
+          "reason": "The baseline reconstructs the trust gap, the three everyday-health questions, the middle service gap, the unverified professionalism/privacy claims, and the closing question."
+        },
+        {
+          "result": "no_credit",
+          "auditIds": ["Q-006"],
+          "reason": "It does not preserve that improved relevance and safety from follow-up questioning remain untested; instead it positively concludes that supplying more context makes advice more tailored."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 12,
+      "denominator": 20,
+      "examples": [
+        {
+          "result": "credit",
+          "units": ["fear hook", "self-identification", "search anxiety", "three everyday questions", "service gap", "brand reveal", "follow-up mechanism", "body-management plan", "category reframing", "emotional payoff", "professionalism claim boundary", "privacy claim boundary"]
+        },
+        {
+          "result": "no_credit",
+          "units": ["sensitive health-data onboarding", "coffee question versus unseen final recommendation", "daily reminder versus 'does not urge' tension", "persistent disclosures and opening source label", "visual staging and state sequence", "non-speech audio bed", "soft CTA and absent conversion path", "first-party edited-demo reproducibility boundary"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 6,
+      "total": 51,
+      "examples": [
+        {
+          "baselineClaim": "连续补充背景、逐步缩小问题范围，能让建议更贴近个人实际情况。",
+          "reason": "The video shows a selected first-party example; it does not test general relevance or safety."
+        },
+        {
+          "baselineClaim": "单看一个症状很难得到有针对性的回答。",
+          "reason": "This is an uncited general medical/epistemic conclusion, not an observed result of the video."
+        },
+        {
+          "baselineClaim": "遇到疲惫或注意力不集中时，先记录……再基于这些信息进行咨询或调整。",
+          "reason": "This converts an advertisement scenario into viewer health guidance without evidence for when self-adjustment is appropriate."
+        },
+        {
+          "baselineClaim": "做身材管理时……再决定是否需要增加力量训练或优化饮食搭配。",
+          "reason": "The video demonstrates product suggestions, not a validated decision rule for viewers."
+        },
+        {
+          "baselineClaim": "从一个足够小的习惯开始。",
+          "reason": "The video gives examples of small goals but does not establish a one-goal-at-a-time rule."
+        },
+        {
+          "baselineClaim": "而不是一次设定过多目标。",
+          "reason": "This recommendation is absent from the audited video evidence."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 2,
+      "denominator": 2,
+      "examples": [
+        {
+          "result": "credit",
+          "reference": "约 105.63 秒",
+          "groundTruth": "105.628 秒"
+        },
+        {
+          "result": "credit",
+          "reference": "字幕覆盖 00:00:00 至 00:01:45.600",
+          "groundTruth": "0.000 至 105.600 秒"
+        },
+        {
+          "note": "The baseline supplies no timestamped content evidence. This gate measures the accuracy of the two temporal references actually supplied; missing evidentiary localization is charged to evidence coverage and unchecked channels."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "The audited artifact is a commercial product-experience narrative, not a procedural workflow with prerequisite-dependent execution steps. Its persuasion dependencies are evaluated under critical-question recall, evidence coverage, and the meta-audit instead."
+    },
+    "unknownDiscipline": {
+      "numerator": 4,
+      "denominator": 9,
+      "examples": [
+        {
+          "result": "credit",
+          "auditIds": ["UNK-001", "UNK-004", "UNK-005", "UNK-009"],
+          "reason": "The baseline correctly withholds news causality, professional-standard verification, privacy verification, and observed effect/outcome data."
+        },
+        {
+          "result": "no_credit",
+          "auditIds": ["UNK-002", "UNK-003", "UNK-006", "UNK-007", "UNK-008"],
+          "reason": "It does not identify demo authenticity/version reproducibility, whether displayed personal data are real, access/price/account conditions, sponsorship independence, or background-audio identity/licensing as unknown."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "Non-speech audio: the continuous background audio/music bed after about 8.5 seconds is absent, and its identity/licensing is not marked unknown.",
+      "Independent screen text and UI states: opening '资料画面非本新闻事件', persistent product-experience/seek-care disclosure, health-history fields, inquiry progress, exact plan tasks, and daily check-in reminder are not swept.",
+      "Visual rhetoric and state sequence: host picture-in-picture, animated surrogate, layout hierarchy, product-state progression, and the long-page scroll are omitted.",
+      "Conversion/absence carrier: the ending's lack of QR code, access path, price, discount, or time limit is not checked, so the CTA is not distinguished as soft conversion."
+    ]
+  },
+  "thresholdResults": {
+    "criticalQuestionRecall": {
+      "fraction": "7/8",
+      "threshold": ">=0.85",
+      "pass": true
+    },
+    "evidenceCoverage": {
+      "fraction": "12/20",
+      "threshold": ">=0.90",
+      "pass": false
+    },
+    "unsupportedInference": {
+      "fraction": "6/51",
+      "threshold": "<=0.05",
+      "pass": false
+    },
+    "timestampAccuracy": {
+      "fraction": "2/2",
+      "threshold": ">=0.90",
+      "pass": true
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "pass": null
+    },
+    "unknownDiscipline": {
+      "fraction": "4/9",
+      "threshold": ">=0.90",
+      "pass": false
+    },
+    "uncheckedChannels": {
+      "count": 4,
+      "required": 0,
+      "pass": false
+    },
+    "metaGate": {
+      "pass": false
+    },
+    "allApplicableHardGatesPass": false
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 2,
+    "executionValue": 3,
+    "compressionWithoutLoss": 3
+  },
+  "judgeRationale": {
+    "readability": "Clear structure, fluent prose, and effective attribution of the strongest commercial claims.",
+    "knowledgePrioritization": "The spoken persuasion path is well prioritized, but data-entry conditions and claim-versus-demo boundaries are underweighted.",
+    "evidenceUsefulness": "No timestamped content evidence or cue/frame anchors are supplied, and several visible proof carriers are omitted.",
+    "executionValue": "The summary is useful for understanding the pitch, but several proposed viewer actions are unvalidated extensions of the advertisement.",
+    "compressionWithoutLoss": "Narrative compression is strong, but the omitted visual, disclosure, audio, and semantic-tension units are material losses."
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "non-speech audio bed",
+      "opening source-label and persistent disclosure screen text",
+      "sensitive health-history onboarding and exact UI task values",
+      "daily reminder screen text",
+      "visual staging, animated surrogate, and product-state sequence",
+      "absence of hard-conversion elements"
+    ],
+    "unguardedMeaningChanges": [
+      "A selected first-party UI demo is upgraded into a general claim that more context produces more tailored advice.",
+      "'不会催你' is preserved without the visible daily-reminder qualification.",
+      "The disclaimer's dual role as safety boundary and borrowed professionalism signal is not examined."
+    ],
+    "unguardedRelationships": [
+      "privacy promise versus collection of identity and health-history data",
+      "first-party product UI versus independent evidence of efficacy and reproducibility",
+      "daily reminders versus the narrator's no-urging claim",
+      "soft audience question versus absent access/price/conversion path"
+    ],
+    "rationale": "The evaluation inspected all audit-designated carrier classes, meaning changes, and relationships. The baseline itself leaves multiple complete visual/audio carriers and cross-carrier tensions unguarded; therefore the meta-gate fails."
+  },
+  "examples": [
+    {
+      "type": "strong_boundary_handling",
+      "baseline": "开头病例与熬夜、油腻饮食被连续呈现，但视频没有给出医学证据来证明二者与脑梗之间的具体因果关系。",
+      "assessment": "Correctly prevents a narrative juxtaposition from becoming a medical-causality claim."
+    },
+    {
+      "type": "strong_boundary_handling",
+      "baseline": "‘高专业标准’‘绝不制造恐慌’和‘完全确保隐私’……属于片中作者的宣传性主张。",
+      "assessment": "Correctly preserves commercial and privacy claims as unverified."
+    },
+    {
+      "type": "missed_cross_carrier_tension",
+      "baseline": "这种陪伴方式不会不断催促用户。",
+      "audit": "The UI explicitly says it will remind the user to check in every day.",
+      "assessment": "The no-urging statement needed qualification as tone/experience, not absence of reminders."
+    },
+    {
+      "type": "missed_privacy_condition",
+      "baseline": "完全确保隐私被正确标为未验证。",
+      "audit": "The UI requests relationship, identity, birth year, health history, body data, activity, and habits.",
+      "assessment": "The baseline identifies the unsupported promise but omits the sensitive-data condition that makes the promise materially consequential."
+    }
+  ]
+}

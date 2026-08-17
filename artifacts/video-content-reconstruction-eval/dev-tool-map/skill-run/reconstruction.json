@@ -1,0 +1,564 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/skill-run/capture-protocol.json",
+  "scopeStatement": "Reconstruction of only the supplied 16.556-second video, its same-stem platform SRT, the supplied evidence pack, and targeted frames captured directly from that video. Product claims are not externally verified; absent UI, parameters, provenance, identity, and causality are preserved as unknown.",
+  "viewerChange": {
+    "before": "The six repeated ‘这个’ claims have no named referent when read as transcript alone, and their visual examples are unknown.",
+    "after": "The viewer can map six visible tool names to six author-claimed uses and the adjacent edited examples, while knowing that no actual tool operation or causal generation is demonstrated.",
+    "intendedChanges": [
+      "Resolve each deictic claim to a visible tool card.",
+      "Preserve the setup, change, and result shown for each pairing.",
+      "Separate author claims and visual observations from inference and unknowns."
+    ]
+  },
+  "transcript": {
+    "origin": "platform_srt",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 1.68, "text": "这个可以帮你换人物", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001"]},
+      {"id": "CUE-002", "start": 2, "end": 3.83, "text": "这个可以帮你做特效", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-003", "start": 5.09, "end": 7.94, "text": "这个可以让你和任何人同框拍短视频", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]},
+      {"id": "CUE-004", "start": 8.91, "end": 11.02, "text": "这个可以给你一键穿搭", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"]},
+      {"id": "CUE-005", "start": 11.38, "end": 13.09, "text": "这个可以给你设计ppt", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008"]},
+      {"id": "CUE-006", "start": 13.73, "end": 15.31, "text": "这个可以给你做动漫", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-009", "SHOT-010"]}
+    ]
+  },
+  "speechInspection": {
+    "method": "Local Whisper base-model machine transcription of the supplied video audio, used only to check the existence and approximate placement of speech spans.",
+    "derivedFile": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/skill-run/asr-check/69129479000000000700ac96.json",
+    "result": "Six approximate speech spans were detected in the same order as the six platform-SRT cues; the machine transcript contains lexical errors such as 把/帮 and 一件/一键 and is not treated as verbatim.",
+    "verbatimPolicy": "The platform SRT cues below remain unchanged and authoritative for the verbatim transcript layer."
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01-TOOL",
+      "title": "First visible tool card",
+      "importance": "core",
+      "statement": "The first card visibly reads ‘通义万相AI视频’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.05, "end": 0.6},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "Legible first tool name on the on-screen card."}],
+      "confidence": "high",
+      "visibleToolIdentity": "通义万相AI视频",
+      "unknowns": ["The smaller descriptive line is truncated and is not needed to establish the visible tool name."]
+    },
+    {
+      "id": "KU-01-CLAIM",
+      "title": "First stated capability",
+      "importance": "core",
+      "statement": "The author says, ‘这个可以帮你换人物’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 1.68},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "换人物",
+      "argument": {"claim": "这个可以帮你换人物", "authorProvidedEvidenceOrRationale": "An adjacent edited character-change example follows.", "conditions": "Not stated.", "example": "Presenter shown changing into a sailor-style, VR-headset-wearing character.", "counterexample": "None shown.", "limits": "No prompt, tool UI, parameter, or generation run is shown.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["Whether and how the named tool produced the adjacent example."]
+    },
+    {
+      "id": "KU-01-SETUP",
+      "title": "Character-change setup",
+      "importance": "core",
+      "statement": "Before the wipe, the presenter is seated in front of the same room background in a light top, with her original hair and no VR headset.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.05, "end": 0.75},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0004", "supports": "Visible pre-change presenter state."}],
+      "confidence": "high",
+      "exampleSetup": "Baseline seated presenter state.",
+      "unknowns": []
+    },
+    {
+      "id": "KU-01-RESULT",
+      "title": "Character-change result",
+      "importance": "core",
+      "statement": "A bright vertical wipe passes across the presenter, after which she is shown with orange twin-bun hair, a sailor-style costume, and a large VR headset.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.75, "end": 1.9},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0005", "supports": "The wipe is visible during the change."},
+        {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "Changed character state with costume and headset."},
+        {"refType": "targeted_frame", "ref": "TARGET-0008", "supports": "Changed state persists at the end of the segment."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Bright vertical wipe.",
+      "visibleResult": "Sailor-style, orange-haired, VR-headset-wearing character state.",
+      "procedural": {"inputOrPrecondition": "Visible baseline presenter state only; the actual source asset is not established.", "orderedAction": ["Edited wipe crosses frame", "Changed character state is revealed"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0004"], "duringFrames": ["TARGET-0005"], "afterFrames": ["TARGET-0006", "TARGET-0008"], "output": "Visible character-replacement example.", "unresolvedFailureConditions": "No generation workflow or failure condition is shown."},
+      "unknowns": ["The video does not show the actual tool operation that produced this result."]
+    },
+    {
+      "id": "KU-02-TOOL",
+      "title": "Second visible tool card",
+      "importance": "core",
+      "statement": "The second card visibly reads ‘PixVerse’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 2.15, "end": 2.55},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "Legible second tool name on the on-screen card."}],
+      "confidence": "high",
+      "visibleToolIdentity": "PixVerse",
+      "unknowns": []
+    },
+    {
+      "id": "KU-02-CLAIM",
+      "title": "Second stated capability",
+      "importance": "core",
+      "statement": "The author says, ‘这个可以帮你做特效’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 2, "end": 3.83},
+      "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "做特效",
+      "argument": {"claim": "这个可以帮你做特效", "authorProvidedEvidenceOrRationale": "An adjacent water-like effect sequence follows.", "conditions": "Not stated.", "example": "Splash/flood-like overlay around the presenter.", "counterexample": "None shown.", "limits": "No effect controls, prompt, or generation interface is shown.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["Which effect method or settings would reproduce the example."]
+    },
+    {
+      "id": "KU-02-SETUP",
+      "title": "Effect setup",
+      "importance": "core",
+      "statement": "At the start of the segment, the presenter is visible in the room without the later large water-like overlay covering her body.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 2.15, "end": 2.75},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0012", "supports": "Early effect-segment state before the large overlay develops."}],
+      "confidence": "high",
+      "exampleSetup": "Presenter in room before large splash/flood-like overlay.",
+      "unknowns": []
+    },
+    {
+      "id": "KU-02-RESULT",
+      "title": "Water-like effect progression",
+      "importance": "core",
+      "statement": "A water-like splash and then a large flood-like overlay develops around the presenter while she reacts, eventually covering much of the lower frame.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 2.75, "end": 5.167},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0014", "supports": "Initial effect progression and reaction."},
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "Growing water-like overlay."},
+        {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "Large overlay occupies much of the lower frame."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Escalating splash/flood-like overlay.",
+      "visibleResult": "Presenter surrounded and partly covered by water-like effects.",
+      "procedural": {"inputOrPrecondition": "Visible presenter shot before the large overlay.", "orderedAction": ["Small splash-like elements appear", "Overlay increases", "Flood-like result fills lower frame"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0012"], "duringFrames": ["TARGET-0014", "TARGET-0018"], "afterFrames": ["TARGET-0022"], "output": "Visible special-effect example.", "unresolvedFailureConditions": "No effect-generation process is shown."},
+      "unknowns": ["The effect's actual production method and source assets are not established."]
+    },
+    {
+      "id": "KU-03-TOOL",
+      "title": "Third visible tool card",
+      "importance": "core",
+      "statement": "The third card visibly reads ‘Vidu’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 5.2, "end": 5.6},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "Legible third tool name on the on-screen card."}],
+      "confidence": "high",
+      "visibleToolIdentity": "Vidu",
+      "unknowns": []
+    },
+    {
+      "id": "KU-03-CLAIM",
+      "title": "Third stated capability",
+      "importance": "core",
+      "statement": "The author says, ‘这个可以让你和任何人同框拍短视频’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 5.09, "end": 7.94},
+      "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "和任何人同框拍短视频",
+      "argument": {"claim": "这个可以让你和任何人同框拍短视频", "authorProvidedEvidenceOrRationale": "An adjacent edited example adds another person behind the presenter.", "conditions": "‘任何人’ is stated without limits or conditions.", "example": "Older man in a black turtleneck holding a laptop appears behind the presenter.", "counterexample": "None shown.", "limits": "The man's identity and the generation workflow are not established.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["Whether ‘任何人’ is literally supported and what permissions or inputs are required."]
+    },
+    {
+      "id": "KU-03-SETUP",
+      "title": "Co-frame setup",
+      "importance": "core",
+      "statement": "At the beginning of the Vidu segment, the presenter is alone in the foreground and the space behind her is not yet occupied by the later man.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 5.6, "end": 6.1},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "Background before the second person appears."}],
+      "confidence": "high",
+      "exampleSetup": "Presenter alone in frame.",
+      "unknowns": []
+    },
+    {
+      "id": "KU-03-RESULT",
+      "title": "Second-person compositing result",
+      "importance": "core",
+      "statement": "An older man in a black turtleneck holding an open laptop appears behind the seated presenter and remains in the shared frame as she gestures toward him.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 6.1, "end": 9.067},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "The second person begins to appear behind the presenter."},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Both people are visible in the same frame."},
+        {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "Presenter gestures toward the man holding a laptop."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Second person appears in previously unoccupied background.",
+      "visibleResult": "Presenter and older man share the frame.",
+      "identityDiscipline": "No visible name or transcript statement establishes the man's identity.",
+      "procedural": {"inputOrPrecondition": "Presenter alone; source image or video for the added person is not shown.", "orderedAction": ["Second person appears behind presenter", "Both remain visible", "Presenter gestures toward him"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0027"], "duringFrames": ["TARGET-0029"], "afterFrames": ["TARGET-0030", "TARGET-0032"], "output": "Visible co-frame example.", "unresolvedFailureConditions": "No compositing workflow, identity source, consent, or failure condition is shown."},
+      "unknowns": ["The older man's identity is not established.", "Whether the scene was produced by the named tool is not demonstrated."]
+    },
+    {
+      "id": "KU-04-TOOL",
+      "title": "Fourth visible tool card",
+      "importance": "core",
+      "statement": "The fourth card visibly reads ‘Runway’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9, "end": 9.3},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Legible Runway card after dense resampling of the rapid boundary."}],
+      "confidence": "high",
+      "visibleToolIdentity": "Runway",
+      "unknowns": []
+    },
+    {
+      "id": "KU-04-CLAIM",
+      "title": "Fourth stated capability",
+      "importance": "core",
+      "statement": "The supplied platform SRT records the author claim as ‘这个可以给你一键穿搭’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 8.91, "end": 11.02},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "一键穿搭",
+      "argument": {"claim": "这个可以给你一键穿搭", "authorProvidedEvidenceOrRationale": "Adjacent wipes reveal multiple styled looks.", "conditions": "No meaning of ‘一键’ or usage conditions are stated.", "example": "Presenter shown in several hats, glasses, tops, and jacket combinations.", "counterexample": "None shown.", "limits": "No interface action demonstrates a one-click operation.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["Whether the change requires one click, a prompt, source garments, or manual editing.", "Why the supplied SRT omits the ‘换’ that is visible in the burned-in subtitle."]
+    },
+    {
+      "id": "KU-04-BURNED-SUBTITLE",
+      "title": "Burned-in subtitle wording at CUE-004",
+      "importance": "supporting",
+      "statement": "The burned-in subtitle visible during the Runway segment reads ‘这个可以给你一键换穿搭’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9, "end": 11.02},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Visible burned-in wording includes the character ‘换’."}],
+      "confidence": "high",
+      "unknowns": ["The supplied SRT cue differs by omitting ‘换’; neither wording is silently substituted for the other."]
+    },
+    {
+      "id": "KU-04-SETUP",
+      "title": "Outfit-change setup",
+      "importance": "core",
+      "statement": "At the Runway card, the presenter is still in her baseline light top before the later styled outfit states appear.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9, "end": 9.15},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Baseline appearance at the Runway card."}],
+      "confidence": "high",
+      "exampleSetup": "Baseline presenter outfit.",
+      "unknowns": []
+    },
+    {
+      "id": "KU-04-RESULT",
+      "title": "Multiple outfit states",
+      "importance": "core",
+      "statement": "Successive edits show the presenter in a striped top with beret and heart-shaped glasses, then a straw hat look, and then a gray jacket look; a bright vertical wipe is visible during one change.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9.15, "end": 11.267},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "Striped top, beret, and heart-shaped glasses state."},
+        {"refType": "targeted_frame", "ref": "TARGET-0043", "supports": "Straw hat outfit state."},
+        {"refType": "targeted_frame", "ref": "TARGET-0044", "supports": "Bright vertical wipe during change."},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "Gray jacket outfit state."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Cuts and bright vertical wipe between styled looks.",
+      "visibleResult": "At least three distinct outfit/accessory states.",
+      "procedural": {"inputOrPrecondition": "Baseline presenter appearance; garment sources are not shown.", "orderedAction": ["Striped/beret/glasses state appears", "Straw-hat state appears", "Bright wipe occurs", "Gray-jacket state appears"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0037"], "duringFrames": ["TARGET-0041", "TARGET-0043", "TARGET-0044"], "afterFrames": ["TARGET-0045"], "output": "Visible outfit-variation montage.", "unresolvedFailureConditions": "No tool operation or failure condition is shown."},
+      "unknowns": ["The number of clicks and generation process are not established."]
+    },
+    {
+      "id": "KU-05-TOOL",
+      "title": "Fifth visible tool card",
+      "importance": "core",
+      "statement": "The fifth card visibly reads ‘Manus’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 11.267, "end": 11.767},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Legible Manus card at the start of the PPT segment."}],
+      "confidence": "high",
+      "visibleToolIdentity": "Manus",
+      "unknowns": []
+    },
+    {
+      "id": "KU-05-CLAIM",
+      "title": "Fifth stated capability",
+      "importance": "core",
+      "statement": "The author says, ‘这个可以给你设计ppt’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 11.38, "end": 13.09},
+      "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "设计ppt",
+      "argument": {"claim": "这个可以给你设计ppt", "authorProvidedEvidenceOrRationale": "Adjacent collages show coordinated slide thumbnails.", "conditions": "No topic, prompt, template, slide count, or editability requirement is stated.", "example": "Two coordinated slide-deck collages.", "counterexample": "None shown.", "limits": "No creation process or editable file is demonstrated.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["Whether the shown slides are editable or generated by Manus."]
+    },
+    {
+      "id": "KU-05-SETUP",
+      "title": "PPT-result setup",
+      "importance": "core",
+      "statement": "The Manus segment begins on the presenter and tool card before cutting to slide-deck imagery.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 11.267, "end": 11.7},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Presenter and Manus card before the slide montage."}],
+      "confidence": "high",
+      "exampleSetup": "Presenter/tool-card shot before result montage.",
+      "unknowns": ["No actual document input or prompt is shown."]
+    },
+    {
+      "id": "KU-05-RESULT",
+      "title": "PPT slide-collage result",
+      "importance": "core",
+      "statement": "The video shows two coordinated collages of presentation-slide thumbnails: one light beige/green set and one darker navy/beige set, with portraits, charts, quotes, and multiple layout variations.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 11.7, "end": 13.7},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "First coordinated light slide collage."},
+        {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Darker navy/beige slide collage."},
+        {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "Return to a light slide collage with varied layouts."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Cut from presenter/card to changing slide-collage panels.",
+      "visibleResult": "Coordinated presentation-slide thumbnail sets.",
+      "procedural": {"inputOrPrecondition": "No document, brief, or prompt input is shown.", "orderedAction": ["Cut to light slide collage", "Cut to darker collage", "Return to another light collage"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0046"], "duringFrames": ["TARGET-0052", "TARGET-0056"], "afterFrames": ["TARGET-0059"], "output": "Visible PPT-design example montage.", "unresolvedFailureConditions": "Editability, generation origin, and workflow are not shown."},
+      "unknowns": ["Most slide body copy is too small to transcribe reliably.", "The video does not show an editable PPT file."]
+    },
+    {
+      "id": "KU-06-TOOL",
+      "title": "Sixth visible tool card",
+      "importance": "core",
+      "statement": "The sixth card visibly reads ‘即梦’.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 13.72, "end": 14.1},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Legible final tool name on the on-screen card."}],
+      "confidence": "high",
+      "visibleToolIdentity": "即梦",
+      "unknowns": []
+    },
+    {
+      "id": "KU-06-CLAIM",
+      "title": "Sixth stated capability",
+      "importance": "core",
+      "statement": "The author says, ‘这个可以给你做动漫’.",
+      "provenance": "author_claim",
+      "timeRange": {"start": 13.73, "end": 15.31},
+      "evidence": [{"refType": "cue", "ref": "CUE-006", "supports": "Verbatim platform-SRT wording of the capability claim."}],
+      "confidence": "high",
+      "statedCapability": "做动漫",
+      "argument": {"claim": "这个可以给你做动漫", "authorProvidedEvidenceOrRationale": "An adjacent illustrated sequence contains changing pose and butterfly positions.", "conditions": "No duration, style, input, or animation method is stated.", "example": "Red-haired headset-wearing girl and deer in a forest illustration with subtle motion.", "counterexample": "None shown.", "limits": "The video does not show a storyboard, prompt, frame generation, or animation controls.", "proposedAction": "No explicit operational step is proposed."},
+      "unknowns": ["What the author means by ‘动漫’ beyond the short illustrated sequence."]
+    },
+    {
+      "id": "KU-06-SETUP",
+      "title": "Animation-result setup",
+      "importance": "core",
+      "statement": "The final segment begins on the presenter and 即梦 card before cutting to the illustrated forest scene.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 13.72, "end": 14.2},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Presenter and 即梦 card before the result cut."}],
+      "confidence": "high",
+      "exampleSetup": "Presenter/tool-card shot before illustrated result.",
+      "unknowns": ["No source drawing or prompt is shown."]
+    },
+    {
+      "id": "KU-06-RESULT",
+      "title": "Illustrated moving result",
+      "importance": "core",
+      "statement": "An AI-labeled illustration shows a red-haired girl wearing a large headset beside a deer in a forest; across the sequence, her head and hand pose and the butterflies' positions change.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 14.2, "end": 16.556},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "Initial illustrated state with girl, headset, deer, and AI生成 label."},
+        {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Changed head/hand pose and butterfly positions."},
+        {"refType": "targeted_frame", "ref": "TARGET-0073", "supports": "Later changed pose state."},
+        {"refType": "targeted_frame", "ref": "TARGET-0076", "supports": "Directly resampled final state at 16.516 s, closing the missing DENSE-0024 interval."}
+      ],
+      "confidence": "high",
+      "visibleTransition": "Cut to illustration followed by subtle pose and butterfly-position changes.",
+      "visibleResult": "Short moving illustrated forest sequence.",
+      "procedural": {"inputOrPrecondition": "No source art, prompt, or storyboard is shown.", "orderedAction": ["Cut to illustrated scene", "Girl's pose changes", "Butterfly positions change", "Final illustrated state persists"], "parameters": "Not shown.", "beforeFrames": ["TARGET-0061"], "duringFrames": ["TARGET-0064", "TARGET-0069", "TARGET-0073"], "afterFrames": ["TARGET-0076"], "output": "Visible animation-like illustrated example.", "unresolvedFailureConditions": "No animation workflow or output settings are shown."},
+      "unknowns": ["Whether the movement was generated in 即梦 and which animation method was used."]
+    },
+    {
+      "id": "KU-AI-LABEL",
+      "title": "Visible AI-generated label",
+      "importance": "supporting",
+      "statement": "A small ‘AI生成’ label is visible on multiple edited example shots, including the character, effect/co-frame/outfit, and illustrated sequences; it is not visibly present on the sampled PPT collage frames.",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.75, "end": 16.556},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "AI生成 label on character result."},
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "AI生成 label on effect sequence."},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "AI生成 label on co-frame sequence."},
+        {"refType": "targeted_frame", "ref": "TARGET-0043", "supports": "AI生成 label on outfit sequence."},
+        {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Sampled PPT collage without a visible AI生成 label."},
+        {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "AI生成 label on illustrated sequence."}
+      ],
+      "confidence": "high",
+      "aiLabelObservation": "The label frames portions of the montage as AI-generated, but does not identify a generating tool or prove causality.",
+      "unknowns": ["Who applied the label and what exact production provenance it represents."]
+    },
+    {
+      "id": "KU-UNKNOWN-WORKFLOW",
+      "title": "Generation workflow not established",
+      "importance": "core",
+      "statement": "The video does not establish any prompt, source-asset input, application interface, cursor action, parameter, loading state, generation run, export, or failure condition for the six pairings.",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 16.556},
+      "evidence": [
+        {"refType": "shot", "ref": "SHOT-001", "supports": "Inspected first segment scope contains presenter/card/result, not a tool workflow."},
+        {"refType": "shot", "ref": "SHOT-002", "supports": "Inspected effect segment scope contains edited example, not a tool workflow."},
+        {"refType": "shot", "ref": "SHOT-003", "supports": "Inspected co-frame and boundary scope contains edited example, not a tool workflow."},
+        {"refType": "shot", "ref": "SHOT-004", "supports": "Inspected outfit scope contains styled states, not a tool workflow."},
+        {"refType": "shot", "ref": "SHOT-005", "supports": "Inspected Manus card scope."},
+        {"refType": "shot", "ref": "SHOT-006", "supports": "Inspected early PPT-result scope."},
+        {"refType": "shot", "ref": "SHOT-007", "supports": "Inspected PPT montage scope."},
+        {"refType": "shot", "ref": "SHOT-008", "supports": "Inspected PPT boundary scope."},
+        {"refType": "shot", "ref": "SHOT-009", "supports": "Inspected 即梦 card scope."},
+        {"refType": "shot", "ref": "SHOT-010", "supports": "Inspected illustrated result scope."}
+      ],
+      "confidence": "high",
+      "unestablishedWorkflowAndLimits": "All operational dependencies and parameters remain absent.",
+      "unknowns": ["Every actual generation step, input, parameter, and failure condition."]
+    },
+    {
+      "id": "KU-UNKNOWN-CAUSALITY",
+      "title": "Named-tool causality not demonstrated",
+      "importance": "core",
+      "statement": "The video does not establish that each named tool generated the adjacent example; it establishes only that the card, claim, and result are presented next to one another through editing.",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 16.556},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "First tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "First adjacent result endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "Second tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "Second adjacent result endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "Third tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Third adjacent result endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Fourth tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "Fourth adjacent result endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Fifth tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Fifth adjacent result endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Sixth tool card endpoint."},
+        {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Sixth adjacent result endpoint."}
+      ],
+      "confidence": "high",
+      "claimResultAlignment": "Editing adjacency supports a presented pairing, not a demonstrated causal generation chain.",
+      "reasoning": "Every segment includes a card/claim and example, but the inspected full-shot scope contains no operational bridge between them.",
+      "unknowns": ["Actual output provenance for all six examples."]
+    },
+    {
+      "id": "KU-UNKNOWN-IDENTITY",
+      "title": "Composited person's identity not established",
+      "importance": "supporting",
+      "statement": "The supplied video does not establish the identity of the older man in the co-frame example.",
+      "provenance": "unknown",
+      "timeRange": {"start": 6.1, "end": 9.067},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "Narration says only ‘任何人’ and gives no name."},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Visible appearance without a name label."}
+      ],
+      "confidence": "high",
+      "identityDiscipline": "Do not convert resemblance into identity.",
+      "unknowns": ["The person's identity and source asset."]
+    },
+    {
+      "id": "KU-UNKNOWN-CONDITIONS",
+      "title": "Commercial and execution conditions not established",
+      "importance": "supporting",
+      "statement": "The video does not establish price, access requirements, model version, availability, success rate, output consistency, licensing, permissions, or usage conditions for any named tool.",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 16.556},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "First claim states capability without conditions."},
+        {"refType": "cue", "ref": "CUE-002", "supports": "Second claim states capability without conditions."},
+        {"refType": "cue", "ref": "CUE-003", "supports": "Third claim states capability without conditions."},
+        {"refType": "cue", "ref": "CUE-004", "supports": "Fourth claim states capability without conditions."},
+        {"refType": "cue", "ref": "CUE-005", "supports": "Fifth claim states capability without conditions."},
+        {"refType": "cue", "ref": "CUE-006", "supports": "Sixth claim states capability without conditions."},
+        {"refType": "shot", "ref": "SHOT-001", "supports": "Beginning of inspected visual scope."},
+        {"refType": "shot", "ref": "SHOT-010", "supports": "End of inspected visual scope."}
+      ],
+      "confidence": "high",
+      "unestablishedWorkflowAndLimits": "No decision-grade product conditions are supplied.",
+      "unknowns": ["All listed commercial and execution conditions."]
+    }
+  ],
+  "relations": [
+    {"from": "KU-01-TOOL", "to": "KU-01-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "Card and first claim are simultaneous."}, {"refType": "cue", "ref": "CUE-001", "supports": "First deictic claim interval."}]},
+    {"from": "KU-01-CLAIM", "to": "KU-01-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "Change-person claim."}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "Adjacent changed-character result."}]},
+    {"from": "KU-01-SETUP", "to": "KU-01-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0004", "supports": "Before state."}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "After state."}]},
+    {"from": "KU-01-TOOL", "to": "KU-01-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-02-TOOL", "to": "KU-02-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "Card and second claim are simultaneous."}, {"refType": "cue", "ref": "CUE-002", "supports": "Second deictic claim interval."}]},
+    {"from": "KU-02-CLAIM", "to": "KU-02-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "Effect claim."}, {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "Adjacent effect result."}]},
+    {"from": "KU-02-SETUP", "to": "KU-02-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0012", "supports": "Before state."}, {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "Later large-overlay state."}]},
+    {"from": "KU-02-TOOL", "to": "KU-02-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-03-TOOL", "to": "KU-03-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "Card and third claim are simultaneous."}, {"refType": "cue", "ref": "CUE-003", "supports": "Third deictic claim interval."}]},
+    {"from": "KU-03-CLAIM", "to": "KU-03-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "Co-frame claim."}, {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Adjacent two-person result."}]},
+    {"from": "KU-03-SETUP", "to": "KU-03-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "Presenter-alone state."}, {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Two-person state."}]},
+    {"from": "KU-03-TOOL", "to": "KU-03-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-04-TOOL", "to": "KU-04-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Runway card and outfit claim overlap after boundary resampling."}, {"refType": "cue", "ref": "CUE-004", "supports": "Fourth deictic claim interval."}]},
+    {"from": "KU-04-CLAIM", "to": "KU-04-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "One-click outfit claim."}, {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "Adjacent outfit result."}]},
+    {"from": "KU-04-SETUP", "to": "KU-04-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Baseline state."}, {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "Later styled state."}]},
+    {"from": "KU-04-TOOL", "to": "KU-04-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-05-TOOL", "to": "KU-05-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Manus card before and overlapping the PPT claim interval."}, {"refType": "cue", "ref": "CUE-005", "supports": "Fifth deictic claim interval."}]},
+    {"from": "KU-05-CLAIM", "to": "KU-05-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "Design-PPT claim."}, {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Adjacent slide-collage result."}]},
+    {"from": "KU-05-SETUP", "to": "KU-05-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Presenter/card setup."}, {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Slide-collage result."}]},
+    {"from": "KU-05-TOOL", "to": "KU-05-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-06-TOOL", "to": "KU-06-CLAIM", "relation": "identifies_referent_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "即梦 card and final deictic claim overlap."}, {"refType": "cue", "ref": "CUE-006", "supports": "Sixth deictic claim interval."}]},
+    {"from": "KU-06-CLAIM", "to": "KU-06-RESULT", "relation": "illustrated_by", "evidence": [{"refType": "cue", "ref": "CUE-006", "supports": "Animation claim."}, {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Adjacent illustrated moving result."}]},
+    {"from": "KU-06-SETUP", "to": "KU-06-RESULT", "relation": "precedes_visual_change_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Presenter/card setup."}, {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Illustrated result."}]},
+    {"from": "KU-06-TOOL", "to": "KU-06-RESULT", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Tool-card endpoint."}, {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Result endpoint; no intervening UI run is shown."}]},
+    {"from": "KU-AI-LABEL", "to": "KU-UNKNOWN-CAUSALITY", "relation": "does_not_establish_generating_tool_or_causality", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "Visible generic AI生成 label."}, {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "Separate named-tool card; no generation bridge is shown."}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-SPEECH", "available": true, "inspected": true, "coverage": "Local ASR checked the audio and found six corresponding spans; its lexical errors are documented and 6/6 platform-SRT cues remain the verbatim layer."},
+      {"id": "CAR-SUBTITLE", "available": true, "inspected": true, "coverage": "6/6 cues copied with timing, representative frame, and all overlapping shots."},
+      {"id": "CAR-TOOL-CARDS", "available": true, "inspected": true, "coverage": "6/6 name cards captured at exact or dense boundary times."},
+      {"id": "CAR-VISUAL-EXAMPLES", "available": true, "inspected": true, "coverage": "6/6 result segments reconstructed."},
+      {"id": "CAR-MOTION", "available": true, "inspected": true, "coverage": "5 motion-dependent changes plus the PPT cut sequence sampled with multi-frame evidence."},
+      {"id": "CAR-AI-LABEL", "available": true, "inspected": true, "coverage": "Presence on multiple example shots and absence on sampled PPT collages both recorded."},
+      {"id": "CAR-EDITING", "available": true, "inspected": true, "coverage": "6/6 card-claim-result adjacency units checked across boundaries."},
+      {"id": "CAR-UI-PARAMETERS", "available": false, "inspected": true, "coverage": "Whole 10-shot scope checked; absence recorded rather than invented."}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "detected": true, "captured": true, "evidence": ["TARGET-0001", "TARGET-0004", "TARGET-0005", "TARGET-0006"]},
+      {"id": "MC-02", "detected": true, "captured": true, "evidence": ["TARGET-0009", "TARGET-0012", "TARGET-0018", "TARGET-0022"]},
+      {"id": "MC-03", "detected": true, "captured": true, "evidence": ["TARGET-0024", "TARGET-0027", "TARGET-0029", "TARGET-0030"]},
+      {"id": "MC-04", "detected": true, "captured": true, "evidence": ["TARGET-0037", "TARGET-0041", "TARGET-0043", "TARGET-0044", "TARGET-0045"]},
+      {"id": "MC-05", "detected": true, "captured": true, "evidence": ["TARGET-0046", "TARGET-0052", "TARGET-0056", "TARGET-0059"]},
+      {"id": "MC-06", "detected": true, "captured": true, "evidence": ["TARGET-0061", "TARGET-0064", "TARGET-0069", "TARGET-0073", "TARGET-0076"]}
+    ],
+    "relationships": [
+      {"relation": "tool identifies_referent_of claim", "proposed": 6, "evidenced": 6},
+      {"relation": "claim illustrated_by result", "proposed": 6, "evidenced": 6},
+      {"relation": "setup precedes_visual_change_to result", "proposed": 6, "evidenced": 6},
+      {"relation": "tool presented_as_capable_of result without causal demonstration", "proposed": 6, "evidenced": 6},
+      {"relation": "AI生成 label does_not_establish tool identity or causality", "proposed": 1, "evidenced": 1}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "answerRef": ["KU-01-TOOL", "KU-01-CLAIM", "KU-02-TOOL", "KU-02-CLAIM", "KU-03-TOOL", "KU-03-CLAIM", "KU-04-TOOL", "KU-04-CLAIM", "KU-05-TOOL", "KU-05-CLAIM", "KU-06-TOOL", "KU-06-CLAIM"]},
+      {"id": "CQ-02", "status": "answered", "answerRef": ["KU-01-RESULT", "KU-02-RESULT", "KU-03-RESULT", "KU-04-RESULT", "KU-05-RESULT", "KU-06-RESULT"]},
+      {"id": "CQ-03", "status": "answered_as_no", "answerRef": ["KU-UNKNOWN-WORKFLOW"]},
+      {"id": "CQ-04", "status": "correctly_unknown", "answerRef": ["KU-UNKNOWN-CAUSALITY"]},
+      {"id": "CQ-05", "status": "answered", "answerRef": ["KU-01-RESULT", "KU-02-RESULT", "KU-03-RESULT", "KU-04-RESULT", "KU-06-RESULT"]},
+      {"id": "CQ-06", "status": "correctly_unknown", "answerRef": ["KU-UNKNOWN-IDENTITY"]},
+      {"id": "CQ-07", "status": "answered_with_limit", "answerRef": ["KU-AI-LABEL", "KU-UNKNOWN-CAUSALITY"]},
+      {"id": "CQ-08", "status": "correctly_unknown", "answerRef": ["KU-UNKNOWN-CONDITIONS"]}
+    ],
+    "coreEvidence": {"covered": 26, "total": 26},
+    "unknowns": [
+      {"item": "actual tool workflows, inputs, prompts, parameters, and failure conditions", "status": "explicit", "evidenceScope": "SHOT-001 through SHOT-010"},
+      {"item": "causal output provenance", "status": "explicit", "evidenceScope": "all six card/result endpoint pairs"},
+      {"item": "older composited man's identity", "status": "explicit", "evidenceScope": "CUE-003 and TARGET-0030"},
+      {"item": "price, version, access, consistency, licensing, and usage conditions", "status": "explicit", "evidenceScope": "all six cues and full visual scope"},
+      {"item": "small card sublines and most PPT body text", "status": "explicit", "evidenceScope": "high-resolution targeted card/PPT frames"}
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "The protocol checked all supplied transcript cues, every visible tool card, every shot and result sequence, motion-dependent state changes, the AI生成 label, editing adjacency, the CUE-004 SRT/burned-in subtitle discrepancy, and the absence of tool UI/parameters. All six card-to-claim-to-result mappings and their setup/result relations are evidenced. The missing DENSE-0024 asset was replaced by direct targeted capture at 16.516 s (TARGET-0076). Remaining uncertainty concerns information the supplied video does not establish, not an unchecked available carrier."
+  }
+}

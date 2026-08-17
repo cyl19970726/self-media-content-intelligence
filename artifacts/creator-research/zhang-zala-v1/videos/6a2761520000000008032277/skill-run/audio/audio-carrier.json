@@ -1,0 +1,1320 @@
+{
+  "schemaVersion": "audio-carrier-proposals-1.0",
+  "generatedAt": "2026-08-16T12:58:41.393921+00:00",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a2761520000000008032277/audio-16k.wav",
+  "sourceSha256": "2a57e0f39832ab5b477836d66167cbbe08bb86192609699bb76f4b131e687d85",
+  "durationSeconds": 263.918,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "labelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 10.0,
+    "hopSeconds": 10.0,
+    "coverage": "gap-free; overlapping when hop is smaller than window",
+    "scoreTransform": "sigmoid(logits)"
+  },
+  "limitations": [
+    "Labels and scores are machine proposals, not human listening or source attribution.",
+    "Mixed-track classification does not isolate speech, music, UI sounds, or inserted-clip audio.",
+    "Absence from top labels does not prove a sound is absent.",
+    "The model cannot establish track identity, ownership, licensing, or editorial intent."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "rms": 0.0561427,
+      "peak": 0.4368725,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.727612
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.09475
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.047625
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.040102
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.029032
+        },
+        {
+          "label": "Conversation",
+          "score": 0.025405
+        },
+        {
+          "label": "Eruption",
+          "score": 0.025113
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.021269
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.020531
+        },
+        {
+          "label": "Field recording",
+          "score": 0.019512
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "rms": 0.0783105,
+      "peak": 0.8951079,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.77409
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.109449
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.07756
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.070904
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.052075
+        },
+        {
+          "label": "Eruption",
+          "score": 0.045963
+        },
+        {
+          "label": "Wind",
+          "score": 0.039506
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.032922
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.029944
+        },
+        {
+          "label": "Conversation",
+          "score": 0.027178
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "rms": 0.0705413,
+      "peak": 0.6088443,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.822585
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.147216
+        },
+        {
+          "label": "Conversation",
+          "score": 0.074009
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.068456
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.051714
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.048614
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.028102
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.020241
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.014781
+        },
+        {
+          "label": "Wind",
+          "score": 0.012383
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "rms": 0.0772735,
+      "peak": 0.5224158,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.738517
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.117138
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.059781
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.04154
+        },
+        {
+          "label": "Conversation",
+          "score": 0.041063
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.038697
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.031266
+        },
+        {
+          "label": "Eruption",
+          "score": 0.026746
+        },
+        {
+          "label": "Wind",
+          "score": 0.023437
+        },
+        {
+          "label": "Field recording",
+          "score": 0.020873
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "rms": 0.0871577,
+      "peak": 0.6637166,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.773285
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.107829
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.076679
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.05376
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.052776
+        },
+        {
+          "label": "Aircraft",
+          "score": 0.043691
+        },
+        {
+          "label": "Eruption",
+          "score": 0.043407
+        },
+        {
+          "label": "Field recording",
+          "score": 0.038963
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.034514
+        },
+        {
+          "label": "Conversation",
+          "score": 0.03291
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "rms": 0.0894561,
+      "peak": 0.8568072,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.795107
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.095466
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.084254
+        },
+        {
+          "label": "Conversation",
+          "score": 0.060383
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.055436
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.049298
+        },
+        {
+          "label": "Rumble",
+          "score": 0.029774
+        },
+        {
+          "label": "Field recording",
+          "score": 0.017981
+        },
+        {
+          "label": "Car",
+          "score": 0.017542
+        },
+        {
+          "label": "Music",
+          "score": 0.016636
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "rms": 0.0848557,
+      "peak": 0.7018341,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.871801
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.09577
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.088946
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.085746
+        },
+        {
+          "label": "Conversation",
+          "score": 0.059798
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.059437
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.05207
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.028848
+        },
+        {
+          "label": "Car",
+          "score": 0.022123
+        },
+        {
+          "label": "Air conditioning",
+          "score": 0.018729
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 80.0,
+      "rms": 0.0801897,
+      "peak": 0.6253548,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.827975
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.09007
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.088618
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.075801
+        },
+        {
+          "label": "Conversation",
+          "score": 0.071367
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.029158
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.027879
+        },
+        {
+          "label": "Radio",
+          "score": 0.023964
+        },
+        {
+          "label": "Music",
+          "score": 0.022436
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.016849
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 90.0,
+      "rms": 0.0809408,
+      "peak": 0.6133305,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.765089
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.326176
+        },
+        {
+          "label": "Conversation",
+          "score": 0.132677
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.07799
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.051897
+        },
+        {
+          "label": "Radio",
+          "score": 0.019177
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.016802
+        },
+        {
+          "label": "Music",
+          "score": 0.008895
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.007893
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.007291
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 100.0,
+      "rms": 0.0822005,
+      "peak": 0.6302988,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.788174
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.094938
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.08578
+        },
+        {
+          "label": "Conversation",
+          "score": 0.084892
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.080634
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.02328
+        },
+        {
+          "label": "Radio",
+          "score": 0.01863
+        },
+        {
+          "label": "Music",
+          "score": 0.01754
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.012324
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.007515
+        }
+      ]
+    },
+    {
+      "start": 100.0,
+      "end": 110.0,
+      "rms": 0.0761518,
+      "peak": 0.6071047,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.767093
+        },
+        {
+          "label": "Rumble",
+          "score": 0.044111
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.035072
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.032227
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.028358
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.02582
+        },
+        {
+          "label": "Radio",
+          "score": 0.021324
+        },
+        {
+          "label": "Conversation",
+          "score": 0.020172
+        },
+        {
+          "label": "Field recording",
+          "score": 0.018029
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.016467
+        }
+      ]
+    },
+    {
+      "start": 110.0,
+      "end": 120.0,
+      "rms": 0.0909568,
+      "peak": 0.7416608,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.832318
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.309401
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.101877
+        },
+        {
+          "label": "Conversation",
+          "score": 0.097337
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.041207
+        },
+        {
+          "label": "Music",
+          "score": 0.023298
+        },
+        {
+          "label": "Radio",
+          "score": 0.021851
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.018894
+        },
+        {
+          "label": "Television",
+          "score": 0.007502
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.007141
+        }
+      ]
+    },
+    {
+      "start": 120.0,
+      "end": 130.0,
+      "rms": 0.0826347,
+      "peak": 0.7012848,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.849485
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.2344
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.088061
+        },
+        {
+          "label": "Conversation",
+          "score": 0.083336
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.032265
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.031981
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.027312
+        },
+        {
+          "label": "Radio",
+          "score": 0.017089
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.016979
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.014954
+        }
+      ]
+    },
+    {
+      "start": 130.0,
+      "end": 140.0,
+      "rms": 0.0894321,
+      "peak": 0.6180913,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.852878
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.264056
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.100396
+        },
+        {
+          "label": "Conversation",
+          "score": 0.088016
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.045697
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.020307
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.017815
+        },
+        {
+          "label": "Radio",
+          "score": 0.016377
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.013533
+        },
+        {
+          "label": "Outside, urban or manmade",
+          "score": 0.006472
+        }
+      ]
+    },
+    {
+      "start": 140.0,
+      "end": 150.0,
+      "rms": 0.0822245,
+      "peak": 0.6011231,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.825885
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.080116
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.074588
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.064319
+        },
+        {
+          "label": "Conversation",
+          "score": 0.050179
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.031151
+        },
+        {
+          "label": "Radio",
+          "score": 0.03107
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.020395
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.018386
+        },
+        {
+          "label": "Music",
+          "score": 0.011467
+        }
+      ]
+    },
+    {
+      "start": 150.0,
+      "end": 160.0,
+      "rms": 0.0746444,
+      "peak": 0.641499,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.791115
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.042327
+        },
+        {
+          "label": "Eruption",
+          "score": 0.032028
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.029968
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.02125
+        },
+        {
+          "label": "Rumble",
+          "score": 0.018208
+        },
+        {
+          "label": "Conversation",
+          "score": 0.015554
+        },
+        {
+          "label": "Radio",
+          "score": 0.015018
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.013242
+        },
+        {
+          "label": "Artillery fire",
+          "score": 0.013195
+        }
+      ]
+    },
+    {
+      "start": 160.0,
+      "end": 170.0,
+      "rms": 0.0841784,
+      "peak": 0.9797052,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.844943
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.248324
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.103827
+        },
+        {
+          "label": "Conversation",
+          "score": 0.060352
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.052852
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.049455
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.016743
+        },
+        {
+          "label": "Field recording",
+          "score": 0.013347
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.013036
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.012451
+        }
+      ]
+    },
+    {
+      "start": 170.0,
+      "end": 180.0,
+      "rms": 0.0809763,
+      "peak": 0.68923,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.80847
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.089631
+        },
+        {
+          "label": "Conversation",
+          "score": 0.07422
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.054542
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.03232
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.03123
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.026719
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.026617
+        },
+        {
+          "label": "Radio",
+          "score": 0.022951
+        },
+        {
+          "label": "Wind noise (microphone)",
+          "score": 0.014924
+        }
+      ]
+    },
+    {
+      "start": 180.0,
+      "end": 190.0,
+      "rms": 0.08242,
+      "peak": 0.7582018,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.824911
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.097088
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.049798
+        },
+        {
+          "label": "Conversation",
+          "score": 0.040272
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.038445
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.035415
+        },
+        {
+          "label": "Eruption",
+          "score": 0.034448
+        },
+        {
+          "label": "Field recording",
+          "score": 0.025835
+        },
+        {
+          "label": "Rumble",
+          "score": 0.021326
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.017127
+        }
+      ]
+    },
+    {
+      "start": 190.0,
+      "end": 200.0,
+      "rms": 0.0762496,
+      "peak": 0.6599017,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.832621
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.118314
+        },
+        {
+          "label": "Conversation",
+          "score": 0.071615
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.070804
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.055275
+        },
+        {
+          "label": "Radio",
+          "score": 0.036049
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.032642
+        },
+        {
+          "label": "Field recording",
+          "score": 0.02624
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.021277
+        },
+        {
+          "label": "Fixed-wing aircraft, airplane",
+          "score": 0.019805
+        }
+      ]
+    },
+    {
+      "start": 200.0,
+      "end": 210.0,
+      "rms": 0.0747056,
+      "peak": 0.5582141,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.84899
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.152406
+        },
+        {
+          "label": "Conversation",
+          "score": 0.080658
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.05472
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.048548
+        },
+        {
+          "label": "Radio",
+          "score": 0.035828
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.031114
+        },
+        {
+          "label": "Rumble",
+          "score": 0.023699
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.022765
+        },
+        {
+          "label": "Car",
+          "score": 0.022093
+        }
+      ]
+    },
+    {
+      "start": 210.0,
+      "end": 220.0,
+      "rms": 0.0741613,
+      "peak": 0.7104709,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.794038
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.07515
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.071664
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.059011
+        },
+        {
+          "label": "Conversation",
+          "score": 0.04367
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.040316
+        },
+        {
+          "label": "Rumble",
+          "score": 0.025547
+        },
+        {
+          "label": "Radio",
+          "score": 0.019777
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.01603
+        },
+        {
+          "label": "Field recording",
+          "score": 0.015798
+        }
+      ]
+    },
+    {
+      "start": 220.0,
+      "end": 230.0,
+      "rms": 0.0775836,
+      "peak": 0.5753044,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.808953
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.16455
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.104504
+        },
+        {
+          "label": "Conversation",
+          "score": 0.047263
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.032606
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.030968
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.015607
+        },
+        {
+          "label": "Radio",
+          "score": 0.014983
+        },
+        {
+          "label": "Rumble",
+          "score": 0.013992
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.012559
+        }
+      ]
+    },
+    {
+      "start": 230.0,
+      "end": 240.0,
+      "rms": 0.0785149,
+      "peak": 0.7726066,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.815738
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.163991
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.074388
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.067436
+        },
+        {
+          "label": "Conversation",
+          "score": 0.054862
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.045955
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.034438
+        },
+        {
+          "label": "Rumble",
+          "score": 0.029802
+        },
+        {
+          "label": "Field recording",
+          "score": 0.014875
+        },
+        {
+          "label": "Car",
+          "score": 0.014592
+        }
+      ]
+    },
+    {
+      "start": 240.0,
+      "end": 250.0,
+      "rms": 0.0743446,
+      "peak": 0.5519883,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.817793
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.069794
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.051346
+        },
+        {
+          "label": "Conversation",
+          "score": 0.049535
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.047371
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.039837
+        },
+        {
+          "label": "Radio",
+          "score": 0.026153
+        },
+        {
+          "label": "Field recording",
+          "score": 0.025374
+        },
+        {
+          "label": "Eruption",
+          "score": 0.018212
+        },
+        {
+          "label": "Rumble",
+          "score": 0.017146
+        }
+      ]
+    },
+    {
+      "start": 250.0,
+      "end": 260.0,
+      "rms": 0.0764732,
+      "peak": 0.7121189,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.776527
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.109802
+        },
+        {
+          "label": "Conversation",
+          "score": 0.080307
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.070644
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.066551
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.066213
+        },
+        {
+          "label": "Field recording",
+          "score": 0.026948
+        },
+        {
+          "label": "Rumble",
+          "score": 0.022326
+        },
+        {
+          "label": "Boat, Water vehicle",
+          "score": 0.021125
+        },
+        {
+          "label": "Aircraft",
+          "score": 0.017133
+        }
+      ]
+    },
+    {
+      "start": 260.0,
+      "end": 263.918,
+      "rms": 0.0742325,
+      "peak": 0.5807977,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.764516
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.070774
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.036499
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.019355
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.017745
+        },
+        {
+          "label": "Conversation",
+          "score": 0.016694
+        },
+        {
+          "label": "Car",
+          "score": 0.016205
+        },
+        {
+          "label": "Music",
+          "score": 0.012218
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.012056
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.01179
+        }
+      ]
+    }
+  ]
+}

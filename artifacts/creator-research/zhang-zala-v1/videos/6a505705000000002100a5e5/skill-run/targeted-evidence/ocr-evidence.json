@@ -1,0 +1,1748 @@
+{
+  "frames" : [
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0001",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-001.jpg",
+      "status" : "processed",
+      "time" : 0
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0002",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777777798611112,
+            0.7187499996875,
+            0.03888888888888889,
+            0.025000000000000022
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00001",
+          "text" : "个"
+        },
+        {
+          "boundingBox" : [
+            0.4555555565,
+            0.72187500015625,
+            0.09444444444444444,
+            0.02187500000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00002",
+          "text" : "Post"
+        },
+        {
+          "boundingBox" : [
+            0.1888888904444444,
+            0.6687499998125,
+            0.2222222222222222,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00003",
+          "text" : "Zara Zhang"
+        },
+        {
+          "boundingBox" : [
+            0.19444444675925918,
+            0.6437499996875,
+            0.22777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00004",
+          "text" : "@zarazhangru"
+        },
+        {
+          "boundingBox" : [
+            0.766666668111111,
+            0.6593750000937499,
+            0.1444444444444445,
+            0.02187500000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00005",
+          "text" : "X.com"
+        },
+        {
+          "boundingBox" : [
+            0.09999999944444447,
+            0.5937499996354167,
+            0.611111111111111,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00006",
+          "text" : "To learn anything, first unlearn school"
+        },
+        {
+          "boundingBox" : [
+            0.09444447082239202,
+            0.5468750003645834,
+            0.7111110687255859,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00007",
+          "text" : "her English. She'd struggled with it for years as a"
+        },
+        {
+          "boundingBox" : [
+            0.10000000937499978,
+            0.56875000015625,
+            0.75,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00008",
+          "text" : "A friend in China recently asked me how to improve"
+        },
+        {
+          "boundingBox" : [
+            0.0944444494444443,
+            0.5249999996354167,
+            0.7777777777777778,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00009",
+          "text" : "student, labeled herself \"bad at languages\" and now"
+        },
+        {
+          "boundingBox" : [
+            0.10000003184091039,
+            0.5031250000520833,
+            0.6388888465033637,
+            0.02187500000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00010",
+          "text" : "wanted to try again for her career. But she..."
+        },
+        {
+          "boundingBox" : [
+            0.06666667284722207,
+            0.4375000001562499,
+            0.49444444444444446,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00011",
+          "text" : "10:05 PM •12/26/25•3.3M Views"
+        },
+        {
+          "boundingBox" : [
+            0.07777777937499997,
+            0.3937500001171875,
+            0.12777777777777777,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00012",
+          "text" : "⑦ 262"
+        },
+        {
+          "boundingBox" : [
+            0.32477280691873,
+            0.3933294379699166,
+            0.07545076211293539,
+            0.02236808240413657
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00013",
+          "text" : "11K"
+        },
+        {
+          "boundingBox" : [
+            0.5388888894444445,
+            0.3968750003125,
+            0.07777777777777772,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00014",
+          "text" : "5.5K"
+        },
+        {
+          "boundingBox" : [
+            0.7388888897222222,
+            0.39687500015625,
+            0.050000000000000044,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00015",
+          "text" : "8K"
+        },
+        {
+          "boundingBox" : [
+            0.07214257713257884,
+            0.3435157123279685,
+            0.17238150702582467,
+            0.019218576699495338
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00016",
+          "text" : "Relevant <"
+        },
+        {
+          "boundingBox" : [
+            0.6888888859722223,
+            0.3406249998828126,
+            0.23333333333333328,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00017",
+          "text" : "View activity>"
+        },
+        {
+          "boundingBox" : [
+            0.2611111140972222,
+            0.22187500015625006,
+            0.47777777777777775,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00018",
+          "text" : "300多万浏览的文章"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-002.jpg",
+      "status" : "processed",
+      "time" : 3
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0003",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3055555544444445,
+            0.22187500031249996,
+            0.38888888888888895,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00019",
+          "text" : "想学好任何东西"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-003.jpg",
+      "status" : "processed",
+      "time" : 6
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0004",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777778472222205,
+            0.22187500018229167,
+            0.8333333333333333,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00020",
+          "text" : "一位国内的朋友问我怎么提高英语"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-004.jpg",
+      "status" : "processed",
+      "time" : 9
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0005",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222221672222228,
+            0.22187499981250003,
+            0.5499999999999999,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00021",
+          "text" : "学生时代他就英语不好"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-005.jpg",
+      "status" : "processed",
+      "time" : 12
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0006",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.06111111983333323,
+            0.22187500018749995,
+            0.8722222222222222,
+            0.03125
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00022",
+          "text" : "还给自己贴了一个没语言天赋的标签"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-006.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0007",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2833333377222221,
+            0.22187500015624995,
+            0.43888888888888883,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00023",
+          "text" : "可就是坚持不下去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-007.jpg",
+      "status" : "processed",
+      "time" : 18
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0008",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500013392858,
+            0.7666666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00024",
+          "text" : "他说他买了语法书发音课词汇表"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-008.jpg",
+      "status" : "processed",
+      "time" : 21
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0009",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.27777778148148147,
+            0.22187500013020833,
+            0.4444444444444444,
+            0.04062499999999991
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00025",
+          "text" : "我说为什么这么学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-009.jpg",
+      "status" : "processed",
+      "time" : 24
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0010",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38888888730158727,
+            0.22187499982142866,
+            0.22222222222222227,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00026",
+          "text" : "系统地学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-010.jpg",
+      "status" : "processed",
+      "time" : 27
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0011",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500015625006,
+            0.7666666666666667,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00027",
+          "text" : "他身上那股学生思维还没有褪去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-011.jpg",
+      "status" : "processed",
+      "time" : 30
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0012",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222221829365085,
+            0.22187499982142866,
+            0.55,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00028",
+          "text" : "教育体制给我们洗了脑"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-012.jpg",
+      "status" : "processed",
+      "time" : 33
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0013",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500015625006,
+            0.7666666666666667,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00029",
+          "text" : "让我们觉得学习就必须是系统的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-013.jpg",
+      "status" : "processed",
+      "time" : 36
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0014",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.383238896106427,
+            0.22169270049292378,
+            0.22796664767795133,
+            0.03786459863185876
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00030",
+          "text" : "我告诉他"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-014.jpg",
+      "status" : "processed",
+      "time" : 39
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0015",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555596666666,
+            0.22187500037499996,
+            0.4888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00031",
+          "text" : "成年人可不能这么学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-015.jpg",
+      "status" : "processed",
+      "time" : 40.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0016",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555596666666,
+            0.22187500037499996,
+            0.4888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00032",
+          "text" : "成年人可不能这么学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-001.jpg",
+      "status" : "processed",
+      "time" : 40.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0017",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.17222222690476185,
+            0.22187500013392858,
+            0.6555555555555556,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00033",
+          "text" : "你本来就感兴趣的英文内容"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-002.jpg",
+      "status" : "processed",
+      "time" : 43.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0018",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555827160487,
+            0.22187500013888894,
+            0.4888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00034",
+          "text" : "或者让AI去给你讲解"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-003.jpg",
+      "status" : "processed",
+      "time" : 46.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0019",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.24999999646825397,
+            0.22187499982142866,
+            0.49444444444444446,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00035",
+          "text" : "先定义学英语的目的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-004.jpg",
+      "status" : "processed",
+      "time" : 49.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0020",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.27777778148148147,
+            0.22187500018229167,
+            0.4444444444444444,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00036",
+          "text" : "然后再倒推怎么学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-005.jpg",
+      "status" : "processed",
+      "time" : 52.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0021",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1944444487698413,
+            0.22187500013392858,
+            0.6055555555555556,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00037",
+          "text" : "把那个东西当成你的教材"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-006.jpg",
+      "status" : "processed",
+      "time" : 55.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0022",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500013392858,
+            0.7666666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00038",
+          "text" : "我们需要把学生时代的学习方法"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-007.jpg",
+      "status" : "processed",
+      "time" : 58.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0023",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2611111150462962,
+            0.22187500015625006,
+            0.47222222222222227,
+            0.03125
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00039",
+          "text" : "来一个180度大转弯"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-008.jpg",
+      "status" : "processed",
+      "time" : 61.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0024",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222222619047613,
+            0.22187500015625006,
+            0.5555555555555556,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00040",
+          "text" : "你是从基础开始往上爬"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-009.jpg",
+      "status" : "processed",
+      "time" : 64.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0025",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.0611111048809524,
+            0.22187499984375003,
+            0.8722222222222222,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00041",
+          "text" : "学到的东西可能过好几年才能用得上"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-010.jpg",
+      "status" : "processed",
+      "time" : 67.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0026",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25000000499999986,
+            0.22187500015624995,
+            0.5,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00042",
+          "text" : "如果成年人还这么学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-011.jpg",
+      "status" : "processed",
+      "time" : 70.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0027",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28333333646825387,
+            0.22187500013392858,
+            0.4388888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00043",
+          "text" : "成年人应该反着来"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-012.jpg",
+      "status" : "processed",
+      "time" : 73.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0028",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1944444406597223,
+            0.22187499982421888,
+            0.6055555555555555,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00044",
+          "text" : "搞清楚为了解决这个问题"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-013.jpg",
+      "status" : "processed",
+      "time" : 76.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0029",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3055555583333333,
+            0.22187500008928573,
+            0.3888888888888889,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00045",
+          "text" : "然后再倒回去学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-014.jpg",
+      "status" : "processed",
+      "time" : 79.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0030",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.19999999750000008,
+            0.22187500034374996,
+            0.5944444444444444,
+            0.034375000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00046",
+          "text" : "AI极大地加速了这个过程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-015.jpg",
+      "status" : "processed",
+      "time" : 82.72
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0031",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.19999999798611118,
+            0.22187500042968744,
+            0.5944444444444446,
+            0.034375000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00047",
+          "text" : "AI极大地加速了这个过程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-016.jpg",
+      "status" : "processed",
+      "time" : 83.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0032",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.19999999798611118,
+            0.22187500042968744,
+            0.5944444444444446,
+            0.034375000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00048",
+          "text" : "AI极大地加速了这个过程"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-001.jpg",
+      "status" : "processed",
+      "time" : 83.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0033",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.20000000297619053,
+            0.22187500026785723,
+            0.6055555555555556,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00049",
+          "text" : "它就是一个24小时在线的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-002.jpg",
+      "status" : "processed",
+      "time" : 86.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0034",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25000000499999986,
+            0.22187500012499994,
+            0.5,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00050",
+          "text" : "我自己就有这种体会"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-003.jpg",
+      "status" : "processed",
+      "time" : 89.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0035",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.20000000259259249,
+            0.22187500031249996,
+            0.6000000000000001,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00051",
+          "text" : "几年前我想提高技术能力"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-004.jpg",
+      "status" : "processed",
+      "time" : 92.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0036",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18888889511111098,
+            0.22187500015624995,
+            0.6222222222222222,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00052",
+          "text" : "然后就去看CS的入门讲座"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-005.jpg",
+      "status" : "processed",
+      "time" : 95.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0037",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.17222222690476185,
+            0.22187500013392858,
+            0.6555555555555556,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00053",
+          "text" : "因为我没有办法把那些内容"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-006.jpg",
+      "status" : "processed",
+      "time" : 98.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0038",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666675925931,
+            0.22187500031249996,
+            0.7666666666666666,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00054",
+          "text" : "和我现实生活中的需求联系起来"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-007.jpg",
+      "status" : "processed",
+      "time" : 101.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0039",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2277777822685184,
+            0.22187500015625006,
+            0.5388888888888889,
+            0.03125
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00055",
+          "text" : "Codex这些AI编程工具"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-008.jpg",
+      "status" : "processed",
+      "time" : 104.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0040",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444444839506165,
+            0.22187500015625017,
+            0.7111111111111112,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00056",
+          "text" : "我用大白话描述我的产品想法"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-009.jpg",
+      "status" : "processed",
+      "time" : 107.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0041",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.24999999924603172,
+            0.22187500026785723,
+            0.4944444444444444,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00057",
+          "text" : "每次当想法变成现实"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-010.jpg",
+      "status" : "processed",
+      "time" : 110.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0042",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.36111111101851856,
+            0.22187500031249996,
+            0.2777777777777778,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00058",
+          "text" : "很有成就感"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-011.jpg",
+      "status" : "processed",
+      "time" : 113.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0043",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.30555555166666676,
+            0.22187499981250003,
+            0.3888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00059",
+          "text" : "总觉得自己不行"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-012.jpg",
+      "status" : "processed",
+      "time" : 116.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0044",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08888889476190466,
+            0.22187500015625006,
+            0.8222222222222222,
+            0.03437499999999993
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00060",
+          "text" : "代码在我眼里只是实现目标的手段"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-013.jpg",
+      "status" : "processed",
+      "time" : 119.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0045",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08888888305555559,
+            0.22187499982142866,
+            0.8166666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00061",
+          "text" : "我会让AI带着我梳理代码库的结构"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-014.jpg",
+      "status" : "processed",
+      "time" : 122.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0046",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.20000000375,
+            0.2218750001757812,
+            0.6000000000000001,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00062",
+          "text" : "告诉我每个文件是干嘛的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-015.jpg",
+      "status" : "processed",
+      "time" : 125.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0047",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.24999999646825397,
+            0.22187499982142866,
+            0.49444444444444446,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00063",
+          "text" : "并且加上详细的注释"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-016.jpg",
+      "status" : "processed",
+      "time" : 128.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0048",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2777777743981482,
+            0.22187500031249996,
+            0.4388888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00064",
+          "text" : "我学到的编程知识"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-017.jpg",
+      "status" : "processed",
+      "time" : 131.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0049",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3055555527777778,
+            0.22187499982142866,
+            0.38888888888888884,
+            0.03749999999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00065",
+          "text" : "虽然这并不系统"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-018.jpg",
+      "status" : "processed",
+      "time" : 134.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0050",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.17222221812500008,
+            0.22187499982421888,
+            0.6555555555555556,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00066",
+          "text" : "我只是想提升我的技术素养"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-019.jpg",
+      "status" : "processed",
+      "time" : 137.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0051",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1666666652314815,
+            0.22187500031249996,
+            0.6611111111111112,
+            0.03749999999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00067",
+          "text" : "把代码变成解决问题的工具"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-020.jpg",
+      "status" : "processed",
+      "time" : 140.44
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0052",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1666666652314815,
+            0.22187500031249996,
+            0.6611111111111112,
+            0.03749999999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00068",
+          "text" : "把代码变成解决问题的工具"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-021.jpg",
+      "status" : "processed",
+      "time" : 141.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0053",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1666666652314815,
+            0.22187500031249996,
+            0.6611111111111112,
+            0.03749999999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00069",
+          "text" : "把代码变成解决问题的工具"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-001.jpg",
+      "status" : "processed",
+      "time" : 141.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0054",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.19999999532407411,
+            0.22187500033854168,
+            0.5944444444444444,
+            0.04062499999999991
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00070",
+          "text" : "第一学生的正职就是学习"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-002.jpg",
+      "status" : "processed",
+      "time" : 144.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0055",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777773388889,
+            0.22187499981250003,
+            0.4388888888888888,
+            0.03125
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00071",
+          "text" : "上一天班累个半死"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-003.jpg",
+      "status" : "processed",
+      "time" : 147.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0056",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444444888888877,
+            0.2218750001757812,
+            0.7111111111111111,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00072",
+          "text" : "谁还有精力去听那些枯燥的课"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-004.jpg",
+      "status" : "processed",
+      "time" : 150.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0057",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222222513888884,
+            0.22187500031249996,
+            0.55,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00073",
+          "text" : "教育体系会确保你学习"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-005.jpg",
+      "status" : "processed",
+      "time" : 153.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0058",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.27777777462962977,
+            0.22187500033854168,
+            0.4444444444444445,
+            0.04062499999999991
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00074",
+          "text" : "考试作业出勤等等"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-006.jpg",
+      "status" : "processed",
+      "time" : 156.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0059",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3611111128472222,
+            0.22187500013671868,
+            0.2777777777777778,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00075",
+          "text" : "没有人逼你"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-007.jpg",
+      "status" : "processed",
+      "time" : 159.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0060",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.30555555281746033,
+            0.22187499984375003,
+            0.38333333333333336,
+            0.034375000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00076",
+          "text" : "就得靠内在动力"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-008.jpg",
+      "status" : "processed",
+      "time" : 162.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0061",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3611111123148148,
+            0.22187500031249996,
+            0.27777777777777773,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00077",
+          "text" : "你就会放弃"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-009.jpg",
+      "status" : "processed",
+      "time" : 165.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0062",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08888888203703718,
+            0.22187499984375003,
+            0.8222222222222223,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00078",
+          "text" : "第三学生的目标很明确考个好成绩"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-010.jpg",
+      "status" : "processed",
+      "time" : 168.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0063",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22777778118055558,
+            0.2218750001757812,
+            0.5444444444444444,
+            0.03437499999999993
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00079",
+          "text" : "否则动力很快就会枯竭"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-011.jpg",
+      "status" : "processed",
+      "time" : 171.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0064",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.30555555468253964,
+            0.22187500026785723,
+            0.3888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00080",
+          "text" : "对于成年人来说"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-012.jpg",
+      "status" : "processed",
+      "time" : 174.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0065",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500013392858,
+            0.7666666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00081",
+          "text" : "保持动力是学好任何东西的关键"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-013.jpg",
+      "status" : "processed",
+      "time" : 177.22
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0066",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500013392858,
+            0.7666666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00082",
+          "text" : "保持动力是学好任何东西的关键"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-014.jpg",
+      "status" : "processed",
+      "time" : 177.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0067",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500013392858,
+            0.7666666666666667,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00083",
+          "text" : "保持动力是学好任何东西的关键"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-001.jpg",
+      "status" : "processed",
+      "time" : 177.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0068",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.17222222672222215,
+            0.22187500034374996,
+            0.6499999999999999,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00084",
+          "text" : "因为学习不是一朝一夕的事"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-002.jpg",
+      "status" : "processed",
+      "time" : 179.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0069",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.17222222631944437,
+            0.22187500013671868,
+            0.6555555555555556,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00085",
+          "text" : "所以如果你想学点什么东西"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-003.jpg",
+      "status" : "processed",
+      "time" : 181.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0070",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666605555555,
+            0.22187500034374996,
+            0.7611111111111111,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00086",
+          "text" : "先从一个问题或者一个项目开始"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-004.jpg",
+      "status" : "processed",
+      "time" : 183.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0071",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2222222261507936,
+            0.22187500015625006,
+            0.55,
+            0.03437499999999993
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00087",
+          "text" : "搞清楚要完成什么任务"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-005.jpg",
+      "status" : "processed",
+      "time" : 185.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0072",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3055555583333333,
+            0.22187500015625006,
+            0.3888888888888889,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00088",
+          "text" : "然后倒推回去学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-006.jpg",
+      "status" : "processed",
+      "time" : 187.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0073",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222221829365085,
+            0.22187499982142866,
+            0.55,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00089",
+          "text" : "这样学习才会变得有趣"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-007.jpg",
+      "status" : "processed",
+      "time" : 189.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0074",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3331433923136296,
+            0.22133327015279847,
+            0.33371321360270184,
+            0.0385834619402885
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00090",
+          "text" : "忘掉先学后做"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-008.jpg",
+      "status" : "processed",
+      "time" : 191.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0075",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38875821570475283,
+            0.22162851408539397,
+            0.22248357137044278,
+            0.037992970645427615
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00091",
+          "text" : "先做后学"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-009.jpg",
+      "status" : "processed",
+      "time" : 193.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0076",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444443944444452,
+            0.22187499982142866,
+            0.7000000000000001,
+            0.03125
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00092",
+          "text" : "你不是因为变强了才能去产出"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-010.jpg",
+      "status" : "processed",
+      "time" : 195.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0077",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500015625006,
+            0.7666666666666667,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00093",
+          "text" : "你是通过不断产出才慢慢变强的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-011.jpg",
+      "status" : "processed",
+      "time" : 197.58
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0078",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667214285711,
+            0.22187500015625006,
+            0.7666666666666667,
+            0.03437499999999993
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00094",
+          "text" : "你是通过不断产出才慢慢变强的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-012.jpg",
+      "status" : "processed",
+      "time" : 199.18
+    }
+  ],
+  "generatedAt" : "2026-08-16T13:37:05Z",
+  "manifest" : "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a505705000000002100a5e5/skill-run/targeted-evidence/targeted-evidence.json",
+  "recognitionLanguages" : [
+    "zh-Hans",
+    "en-US"
+  ],
+  "schemaVersion" : "ocr-evidence-1.0"
+}

@@ -1,0 +1,462 @@
+{
+  "schemaVersion": "holdout2-director-ground-truth-audit-1.0",
+  "auditId": "6a69d19c00000000090357d0-holdout2-director",
+  "language": "zh-CN",
+  "epistemicPolicy": {
+    "observed_fact": "可由允许读取的原视频、SRT、evidence pack 或其帧直接核对；只陈述载体中出现了什么，不把作者说法当外部真相。",
+    "author_claim": "视频作者明确提出的判断、规律、分类、因果或保证；未做外部事实核验。",
+    "inference": "由多个允许证据推得，但视频没有逐字明说。",
+    "unknown": "允许证据不足，不能安全确定。"
+  },
+  "isolation": {
+    "role": "independent_holdout_ground_truth_auditor",
+    "readScope": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a69d19c00000000090357d0.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a69d19c00000000090357d0.srt",
+      "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-director/evidence/frames/**"
+    ],
+    "excludedScopeHonored": true,
+    "externalFactCheckingPerformed": false
+  },
+  "sourceMedia": {
+    "durationSeconds": 213.809342,
+    "displayDuration": "00:03:33.809",
+    "video": {
+      "codec": "hevc",
+      "width": 2160,
+      "height": 3840,
+      "frameRate": 30,
+      "orientation": "vertical_9_16",
+      "decodedFrameCount": 6412
+    },
+    "audio": {
+      "codec": "aac",
+      "sampleRateHz": 44100,
+      "channels": 2,
+      "fullTrackDecoded": true,
+      "silenceProbe": "未检出持续至少0.4秒且低于-35dB的静音段；这只说明该阈值下音轨连续，不证明一直有口播或无BGM。"
+    },
+    "subtitles": {
+      "origin": "provided_subtitles",
+      "cueCount": 68,
+      "firstCue": "00:00:00.000",
+      "lastCueEnd": "00:03:33.786"
+    }
+  },
+  "auditMethod": {
+    "fullDecode": "对视频流与音频流从0秒解码至213.80秒，无解码错误。",
+    "timelineSweep": "逐条核对68条SRT；逐一检查16个shot代表帧；逐一检查87个每2.5秒密集帧（含213.689秒尾帧）；对关键原视频时间点另取高分辨率帧核对白板和开头拼贴。",
+    "coverage": {
+      "denseIntervalSeconds": 2.5,
+      "denseFrameCount": 87,
+      "shotRepresentativeCount": 16,
+      "timeCoveredStart": 0,
+      "timeCoveredEnd": 213.689
+    },
+    "limitation": "未使用允许范围外的资料，因此人物身份、案例真实性、平台来源和外部因果均不作验证。"
+  },
+  "sourceCorrectionsAndConflicts": [
+    {
+      "id": "SC-01",
+      "epistemicType": "observed_fact",
+      "issue": "CUE-001/SRT写“开头展示饺子”，但原视频烧录字幕清晰写“开头展示教资”。",
+      "groundTruthHandling": "视觉文本按“教资”记录；具体指教师资格考试内容还是账号/系列名仍未知。",
+      "evidence": {
+        "time": "00:00:00.000-00:00:01.211",
+        "cues": ["CUE-001"],
+        "shots": ["SHOT-001"],
+        "frames": ["frames/dense/dense-0001.jpg", "frames/cues/cue-001.jpg"]
+      }
+    },
+    {
+      "id": "SC-02",
+      "epistemicType": "observed_fact",
+      "issue": "SRT在案例人名处先写“王宏”、后写“王红”；原视频烧录字幕两处均显示“王虹”。",
+      "groundTruthHandling": "本审计使用“王虹”，并把其获奖信息仅标为作者主张。",
+      "evidence": {
+        "time": "00:01:51.324-00:01:52.748; 00:03:21.400-00:03:23.389",
+        "cues": ["CUE-039", "CUE-066"],
+        "shots": ["SHOT-009", "SHOT-014"],
+        "frames": ["frames/dense/dense-0046.jpg", "frames/dense/dense-0082.jpg"]
+      }
+    },
+    {
+      "id": "SC-03",
+      "epistemicType": "observed_fact",
+      "issue": "SRT把节奏公式转写为“愉快中慢、愉繁中简、愉闹中静”；原视频烧录字幕与白板语义支持“于快中慢、于繁中简、于闹中静”。",
+      "groundTruthHandling": "按“于快中慢、于繁中简、于闹中静”记录。",
+      "evidence": {
+        "time": "00:01:38.005-00:01:42.220",
+        "cues": ["CUE-034"],
+        "shots": ["SHOT-008"],
+        "frames": ["frames/dense/dense-0040.jpg", "frames/dense/dense-0041.jpg"]
+      }
+    }
+  ],
+  "executiveGroundTruth": {
+    "observedTopic": "一名戴红色蜘蛛侠式全脸面罩的讲者，在白板前用约3分34秒讲解其所谓“百万爆款”短视频的必要条件、三类内容机制，以及“找选题—选形式—蹭热点”的实操框架。",
+    "authorThesis": "作者主张，爆款不是神秘偶然：先确保低理解成本、广泛关联、满足情绪或信息需求并促成评论/分享，再从万古同悲、惊世骇俗、打破节奏三类机制中选题，最后匹配表现形式；即时借热点还能在深度、能力和文笔不足时获得讨论流量。",
+    "structure": "成绩拼贴/强保证钩子 → 爆款必要条件 → 三种爆款类型 → 王虹案例 → 两步制作法 → 隐藏热点打法 → 挑战式收尾与自称。",
+    "audience": "面向想做社交媒体短视频、追求高播放/高点赞/广泛传播但不知如何选题和选形式的创作者；行业和平台被作者宣称为不限。",
+    "mainRisk": "片中把经验性判断、修辞性百分比与强保证包装成普遍规律，但没有数据来源、对照样本、平台定义、失败条件或可复现实验。"
+  },
+  "identityEnvironmentAndCarriers": {
+    "speaker": [
+      {
+        "epistemicType": "observed_fact",
+        "statement": "讲者全程佩戴红色蜘蛛侠式全脸面罩，穿深色扣领衬衫和灰色格纹短裤，胸前夹有毛绒防风罩麦克风，手持白板笔。",
+        "evidence": {"time": "00:00:00-00:03:33.786", "frames": ["frames/dense/dense-0002.jpg", "frames/dense/dense-0086.jpg"]}
+      },
+      {
+        "epistemicType": "observed_fact",
+        "statement": "收尾自称“我是人类最善变的”；这更像账号名/人设，不足以确认真实姓名。",
+        "evidence": {"time": "00:03:28.800-00:03:33.786", "cues": ["CUE-068"], "frames": ["frames/dense/dense-0087.jpg"]}
+      },
+      {
+        "epistemicType": "unknown",
+        "statement": "真实姓名、性别、年龄、职业资质、账号平台与案例所有权均未在允许证据中确认。"
+      }
+    ],
+    "setting": [
+      {
+        "epistemicType": "observed_fact",
+        "statement": "固定竖屏机位的室内白板口播；白板标题可读为“百万爆款是怎样炼成的，实操落地”，左侧写“底层逻辑”，右侧写实操步骤。画面下方有橙色椅背/圆板与横杆，右后方可见小台灯/摆件。",
+        "evidence": {"time": "00:00:00-00:03:33.786", "frames": ["frames/dense/dense-0001.jpg", "frames/dense/dense-0056.jpg", "frames/dense/dense-0076.jpg"]}
+      },
+      {
+        "epistemicType": "inference",
+        "statement": "除开头拼贴外，87个密集帧均保持同一背景和机位；16个scene-detection分段多与讲者靠近镜头、遮挡或大幅动作重合，故更可能是连续一镜口播而非16个真实剪辑镜头。",
+        "evidence": {"time": "00:00:01.211-00:03:33.786", "shots": ["SHOT-001", "SHOT-016"], "frames": ["frames/shots/shot-001.jpg", "frames/shots/shot-016.jpg"]}
+      }
+    ],
+    "carrierInventory": [
+      "口播声音/提供字幕",
+      "底部烧录中文字幕",
+      "白板手写大纲",
+      "白板笔指示与圈画",
+      "讲者近身动作和靠近镜头形成强调",
+      "开头约1.2秒的成绩/播放量拼贴",
+      "固定室内竖屏画面"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "TS-01",
+      "time": "00:00:00.000-00:00:01.211",
+      "durationSeconds": 1.211,
+      "content": "开头视觉证明拼贴：多组心形、收藏/星标、评论和播放/浏览数叠在讲者与白板前；可辨识数字包括10万+、3.7万、3080、6.2万、7885、832.7万、611.9万、976.0万浏览、2903.0万浏览、1358.0万浏览等，烧录字幕写“开头展示教资”。",
+      "audienceCognitiveChange": "先被高数据和既往成果感吸引，形成“讲者可能做出过爆款”的初始可信度线索，但数据归属与平台未知。",
+      "epistemicType": "observed_fact",
+      "evidence": {"cues": ["CUE-001"], "shots": ["SHOT-001"], "frames": ["frames/dense/dense-0001.jpg", "frames/cues/cue-001.jpg"]}
+    },
+    {
+      "id": "TS-02",
+      "time": "00:00:01.211-00:00:09.730",
+      "durationSeconds": 8.519,
+      "content": "用“只要你是个人类”“拍不出爆款来扇我脸”等夸张保证，承诺用最简单、不绕弯、直白的方法解释百万爆款。",
+      "audienceCognitiveChange": "从成绩证明进入强承诺：预期得到一套人人能懂、能用的答案。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-002", "CUE-003", "CUE-004"], "shots": ["SHOT-001"], "frames": ["frames/dense/dense-0002.jpg", "frames/dense/dense-0004.jpg"]}
+    },
+    {
+      "id": "TS-03",
+      "time": "00:00:09.730-00:00:21.766",
+      "durationSeconds": 12.036,
+      "content": "把“百万爆款是什么”拆为必要条件，先给出低理解成本与足够大的关联人群。",
+      "audienceCognitiveChange": "将爆款从模糊目标变成前两项检查：看得懂、关联广。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-005", "CUE-006", "CUE-007", "CUE-008"], "shots": ["SHOT-001"], "frames": ["frames/dense/dense-0006.jpg", "frames/dense/dense-0009.jpg"]}
+    },
+    {
+      "id": "TS-04",
+      "time": "00:00:21.766-00:00:44.271",
+      "durationSeconds": 22.505,
+      "content": "第三项是满足用户打开社交平台的两类需求：调动情绪或获得信息。第四项是互动；作者明确排除点赞、收藏，把关键互动定义为评论（共情或反驳）以及转发/评论区@朋友，从而分享裂变。",
+      "audienceCognitiveChange": "把互动目标从泛指标收紧为会引发公开表达和传播链的行为。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-009", "CUE-010", "CUE-011", "CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016"], "shots": ["SHOT-001"], "frames": ["frames/dense/dense-0010.jpg", "frames/dense/dense-0018.jpg"]}
+    },
+    {
+      "id": "TS-05",
+      "time": "00:00:44.271-00:01:12.080",
+      "durationSeconds": 27.809,
+      "content": "进入三类爆款中的第一类“万古同悲型”：核心是尽可能大的共同情感记忆。即使自认同理心弱，也可借语文课和古诗词理解。作者给出由大到小的情感层级：家国苍生＞社会冷暖＞生死离别＞人生失意≈壮志豪情＞父母子女≈男女情爱。",
+      "audienceCognitiveChange": "获得可直接套用的共情选题层级，并被引导优先考虑更大范围的共同情绪。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021", "CUE-022", "CUE-023", "CUE-024"], "shots": ["SHOT-001", "SHOT-002", "SHOT-003", "SHOT-004"], "frames": ["frames/dense/dense-0020.jpg", "frames/dense/dense-0026.jpg", "frames/dense/dense-0029.jpg"]}
+    },
+    {
+      "id": "TS-06",
+      "time": "00:01:12.090-00:01:26.940",
+      "durationSeconds": 14.85,
+      "content": "第二类“惊世骇俗”：极度猎奇或震撼，依赖硬素材；极致逆袭是自己有一点与99%的人不同，极致震撼是做成99%的人做不到的事。",
+      "audienceCognitiveChange": "理解这一类不能只靠包装，需要稀缺人设、经历或成就作为素材门槛。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-025", "CUE-026", "CUE-027", "CUE-028", "CUE-029"], "shots": ["SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008"], "frames": ["frames/dense/dense-0030.jpg", "frames/dense/dense-0034.jpg"]}
+    },
+    {
+      "id": "TS-07",
+      "time": "00:01:26.950-00:01:49.760",
+      "durationSeconds": 22.81,
+      "content": "第三类“打破节奏”：用猫照片配可爱BGM获百万点赞作例，解释为在快节奏、吵闹BGM的信息流里做“于快中慢、于繁中简、于闹中静”，靠差异让用户停下。",
+      "audienceCognitiveChange": "把某些看似莫名其妙的爆款解释为相对周边内容的节奏反差，而非素材本身绝对强。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-030", "CUE-031", "CUE-032", "CUE-033", "CUE-034", "CUE-035", "CUE-036", "CUE-037"], "shots": ["SHOT-008", "SHOT-009"], "frames": ["frames/dense/dense-0036.jpg", "frames/dense/dense-0038.jpg", "frames/dense/dense-0044.jpg"]}
+    },
+    {
+      "id": "TS-08",
+      "time": "00:01:49.770-00:02:05.380",
+      "durationSeconds": 15.61,
+      "content": "以“王虹得到菲尔兹奖”为近期爆款话题，作者称其同时满足万古同悲与惊世骇俗，含家国、性别、冲突、互动且成就是99.999%的人做不到的。",
+      "audienceCognitiveChange": "看到一个选题可叠加多种机制，并尝试用框架解释热点为何爆。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-038", "CUE-039", "CUE-040", "CUE-041", "CUE-042"], "shots": ["SHOT-009", "SHOT-010"], "frames": ["frames/dense/dense-0046.jpg", "frames/dense/dense-0049.jpg"]}
+    },
+    {
+      "id": "TS-09",
+      "time": "00:02:05.390-00:02:11.730",
+      "durationSeconds": 6.34,
+      "content": "阶段总结“现在你知道什么是爆款”，转入“怎么做”，提出两步法，第一步找选题。",
+      "audienceCognitiveChange": "从识别爆款机制切换为执行流程。",
+      "epistemicType": "observed_fact",
+      "evidence": {"cues": ["CUE-043", "CUE-044"], "shots": ["SHOT-010", "SHOT-011"], "frames": ["frames/dense/dense-0052.jpg", "frames/dense/dense-0053.jpg"]}
+    },
+    {
+      "id": "TS-10",
+      "time": "00:02:11.740-00:02:31.703",
+      "durationSeconds": 19.963,
+      "content": "找选题先看自己：做过/能做什么是99.999%的人没做过或做不到的；有什么特别大的优点和缺点；极度擅长什么。统一限定词是“极致”。",
+      "audienceCognitiveChange": "形成个人素材盘点清单：稀缺经历/能力、极端优缺点、极强专长。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-045", "CUE-046", "CUE-047", "CUE-048", "CUE-049", "CUE-050", "CUE-051"], "shots": ["SHOT-011", "SHOT-012"], "frames": ["frames/dense/dense-0054.jpg", "frames/dense/dense-0061.jpg"]}
+    },
+    {
+      "id": "TS-11",
+      "time": "00:02:31.703-00:02:41.720",
+      "durationSeconds": 10.017,
+      "content": "若自身最极致的只是普通，就“去看世界”，寻找愤怒、忧愁和矛盾；随后进入第二步选形式。",
+      "audienceCognitiveChange": "获得无个人稀缺素材时的替代入口：从外部公共情绪与冲突找题。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-052", "CUE-053"], "shots": ["SHOT-012"], "frames": ["frames/dense/dense-0062.jpg", "frames/dense/dense-0064.jpg"]}
+    },
+    {
+      "id": "TS-12",
+      "time": "00:02:41.730-00:02:55.570",
+      "durationSeconds": 13.84,
+      "content": "共情型视频的三种形式：图片+BGM、短氛围视频+BGM、文案+BGM；文案可为长文本或口播。作者三次强调BGM并明确说其特别重要。",
+      "audienceCognitiveChange": "知道共情内容的最低制作形态，并把音乐视为共同必要组件。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-054", "CUE-055", "CUE-056", "CUE-057"], "shots": ["SHOT-012"], "frames": ["frames/dense/dense-0066.jpg", "frames/dense/dense-0071.jpg"]}
+    },
+    {
+      "id": "TS-13",
+      "time": "00:02:55.580-00:03:05.954",
+      "durationSeconds": 10.374,
+      "content": "讲特长或特点的视频只有一个要求：把事情说清楚，采用完整叙事的中长视频。作者说先突出这两种打法。",
+      "audienceCognitiveChange": "把特长/特点类从轻氛围内容区分出来，转向清晰完整叙事。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-058", "CUE-059", "CUE-060"], "shots": ["SHOT-012", "SHOT-013"], "frames": ["frames/dense/dense-0072.jpg", "frames/dense/dense-0075.jpg"]}
+    },
+    {
+      "id": "TS-14",
+      "time": "00:03:05.954-00:03:28.790",
+      "durationSeconds": 22.836,
+      "content": "隐藏打法：立刻结合热点表达，甚至无视深度、能力、文笔；用“猪站在风口也能飞”解释。以提到“王虹”即可为人们提供讨论平台为例。",
+      "audienceCognitiveChange": "得到机会主义捷径：在热点窗口里，表达时效可压过内容质量；但视频没有给出风险控制。",
+      "epistemicType": "author_claim",
+      "evidence": {"cues": ["CUE-061", "CUE-062", "CUE-063", "CUE-064", "CUE-065", "CUE-066", "CUE-067"], "shots": ["SHOT-013", "SHOT-014", "SHOT-015"], "frames": ["frames/dense/dense-0077.jpg", "frames/dense/dense-0082.jpg"]}
+    },
+    {
+      "id": "TS-15",
+      "time": "00:03:28.800-00:03:33.786",
+      "durationSeconds": 4.986,
+      "content": "再次断言观众不可能看不懂，宣布下课，自称“人类最善变的”，预告下期再见。",
+      "audienceCognitiveChange": "以挑衅式确定性和账号人设完成记忆点。",
+      "epistemicType": "observed_fact",
+      "evidence": {"cues": ["CUE-068"], "shots": ["SHOT-015", "SHOT-016"], "frames": ["frames/dense/dense-0085.jpg", "frames/dense/dense-0087.jpg"]}
+    }
+  ],
+  "coreKnowledgeAtoms": [
+    {"id": "K-01", "epistemicType": "author_claim", "atom": "爆款必要条件之一是用户能看懂，亦即理解成本低。", "evidence": {"time": "00:00:13.480-00:00:17.792", "cues": ["CUE-006", "CUE-007"], "frames": ["frames/cues/cue-006.jpg"]}},
+    {"id": "K-02", "epistemicType": "author_claim", "atom": "爆款需连接足够大的群体，即与视频有关的人足够多。", "evidence": {"time": "00:00:15.944-00:00:21.766", "cues": ["CUE-007", "CUE-008"], "frames": ["frames/dense/dense-0009.jpg"]}},
+    {"id": "K-03", "epistemicType": "author_claim", "atom": "用户打开任何社交媒体平台只有两类需求：调动情绪或获得信息。", "evidence": {"time": "00:00:21.766-00:00:33.340", "cues": ["CUE-009", "CUE-010", "CUE-011"], "frames": ["frames/dense/dense-0012.jpg", "frames/dense/dense-0013.jpg"]}},
+    {"id": "K-04", "epistemicType": "author_claim", "atom": "作者所说的关键互动不是点赞或收藏，而是评论、转发、@朋友。", "evidence": {"time": "00:00:33.350-00:00:44.271", "cues": ["CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016"], "frames": ["frames/dense/dense-0015.jpg", "frames/dense/dense-0018.jpg"]}},
+    {"id": "K-05", "epistemicType": "author_claim", "atom": "评论可由共情“我也这样”或反驳/争吵触发；转发和@朋友承担分享裂变。", "evidence": {"time": "00:00:34.882-00:00:44.271", "cues": ["CUE-013", "CUE-014", "CUE-015", "CUE-016"]}},
+    {"id": "K-06", "epistemicType": "author_claim", "atom": "不论博主或行业，爆款一共三种：万古同悲、惊世骇俗、打破节奏。", "evidence": {"time": "00:00:45.625-00:01:28.873", "cues": ["CUE-018", "CUE-019", "CUE-025", "CUE-030"], "frames": ["frames/dense/dense-0020.jpg", "frames/dense/dense-0036.jpg"]}},
+    {"id": "K-07", "epistemicType": "author_claim", "atom": "万古同悲型的核心是尽可能大的共同情感记忆。", "evidence": {"time": "00:00:48.960-00:00:54.165", "cues": ["CUE-019"], "frames": ["frames/dense/dense-0022.jpg"]}},
+    {"id": "K-08", "epistemicType": "author_claim", "atom": "同理心弱者也可从语文课、古诗词中的人类共同情感记忆取材。", "evidence": {"time": "00:00:54.165-00:01:02.580", "cues": ["CUE-020", "CUE-021", "CUE-022"]}},
+    {"id": "K-09", "epistemicType": "author_claim", "atom": "共同情感层级：家国苍生＞社会冷暖＞生死离别＞人生失意≈壮志豪情＞父母子女≈男女情爱。", "evidence": {"time": "00:01:02.590-00:01:12.080", "cues": ["CUE-023", "CUE-024"], "frames": ["frames/dense/dense-0028.jpg", "frames/dense/dense-0029.jpg"]}},
+    {"id": "K-10", "epistemicType": "author_claim", "atom": "惊世骇俗型追求极度猎奇或震撼，并要求硬素材。", "evidence": {"time": "00:01:12.090-00:01:19.290", "cues": ["CUE-025", "CUE-026"], "frames": ["frames/shots/shot-005.jpg", "frames/shots/shot-006.jpg"]}},
+    {"id": "K-11", "epistemicType": "author_claim", "atom": "极致逆袭被定义为有一个点与99%的人不同。", "evidence": {"time": "00:01:19.300-00:01:23.058", "cues": ["CUE-027", "CUE-028"], "frames": ["frames/dense/dense-0033.jpg"]}},
+    {"id": "K-12", "epistemicType": "author_claim", "atom": "极致震撼被定义为做成99%的人做不到的事。", "evidence": {"time": "00:01:23.058-00:01:26.940", "cues": ["CUE-029"], "frames": ["frames/dense/dense-0035.jpg"]}},
+    {"id": "K-13", "epistemicType": "author_claim", "atom": "打破节奏是相对信息流环境制造反差，让用户停下来。", "evidence": {"time": "00:01:26.950-00:01:49.760", "cues": ["CUE-030", "CUE-034", "CUE-035", "CUE-036", "CUE-037"]}},
+    {"id": "K-14", "epistemicType": "author_claim", "atom": "节奏反差公式为“于快中慢、于繁中简、于闹中静”。", "evidence": {"time": "00:01:38.005-00:01:42.220", "cues": ["CUE-034"], "frames": ["frames/dense/dense-0040.jpg", "frames/dense/dense-0041.jpg"]}},
+    {"id": "K-15", "epistemicType": "author_claim", "atom": "猫照片配可爱BGM获一百多万点赞，是打破节奏而非“小动物统治世界”的例子。", "evidence": {"time": "00:01:31.694-00:01:42.220", "cues": ["CUE-032", "CUE-033", "CUE-034"], "frames": ["frames/dense/dense-0038.jpg", "frames/dense/dense-0039.jpg"]}},
+    {"id": "K-16", "epistemicType": "author_claim", "atom": "“王虹得到菲尔兹奖”话题被作者判定同时满足万古同悲和惊世骇俗。", "evidence": {"time": "00:01:51.324-00:01:57.540", "cues": ["CUE-039", "CUE-040"], "frames": ["frames/dense/dense-0046.jpg", "frames/dense/dense-0047.jpg"]}},
+    {"id": "K-17", "epistemicType": "author_claim", "atom": "该案例被拆为家国、性别、冲突、互动、惊世骇俗以及极稀缺成就。", "evidence": {"time": "00:01:57.550-00:02:05.380", "cues": ["CUE-041", "CUE-042"], "frames": ["frames/dense/dense-0048.jpg", "frames/dense/dense-0050.jpg"]}},
+    {"id": "K-18", "epistemicType": "author_claim", "atom": "制作爆款的显式流程只有两步：找选题、选形式。", "evidence": {"time": "00:02:07.926-00:02:11.730; 00:02:35.650-00:02:41.720", "cues": ["CUE-044", "CUE-053"]}},
+    {"id": "K-19", "epistemicType": "author_claim", "atom": "找选题的个人盘点一：寻找自己做过或能做、而99.999%的人没做过或做不到的事。", "evidence": {"time": "00:02:11.740-00:02:20.830", "cues": ["CUE-045", "CUE-046", "CUE-047"]}},
+    {"id": "K-20", "epistemicType": "author_claim", "atom": "找选题的个人盘点二：寻找特别大的优点和缺点。", "evidence": {"time": "00:02:20.840-00:02:23.461", "cues": ["CUE-048"], "frames": ["frames/dense/dense-0058.jpg"]}},
+    {"id": "K-21", "epistemicType": "author_claim", "atom": "找选题的个人盘点三：寻找极度擅长的事；三项共同强调“极致”。", "evidence": {"time": "00:02:23.461-00:02:29.314", "cues": ["CUE-049", "CUE-050"]}},
+    {"id": "K-22", "epistemicType": "author_claim", "atom": "如果个人没有稀缺性、只有“极致普通”，就转向外部世界。", "evidence": {"time": "00:02:29.314-00:02:35.640", "cues": ["CUE-051", "CUE-052"], "frames": ["frames/dense/dense-0061.jpg", "frames/dense/dense-0062.jpg"]}},
+    {"id": "K-23", "epistemicType": "author_claim", "atom": "从世界找选题的三个观察口：愤怒、忧愁、矛盾。", "evidence": {"time": "00:02:35.650-00:02:41.720", "cues": ["CUE-053"], "frames": ["frames/dense/dense-0064.jpg"]}},
+    {"id": "K-24", "epistemicType": "author_claim", "atom": "共情型内容可采用图片+BGM、短氛围视频+BGM、文案+BGM。", "evidence": {"time": "00:02:41.730-00:02:49.270", "cues": ["CUE-054", "CUE-055"], "frames": ["frames/dense/dense-0067.jpg", "frames/dense/dense-0068.jpg"]}},
+    {"id": "K-25", "epistemicType": "author_claim", "atom": "文案+BGM中的文案可为长文本，也可为口播。", "evidence": {"time": "00:02:49.280-00:02:55.570", "cues": ["CUE-056", "CUE-057"]}},
+    {"id": "K-26", "epistemicType": "author_claim", "atom": "作者强调共情型三种形式都包含BGM，因此BGM特别重要。", "evidence": {"time": "00:02:44.433-00:02:55.570", "cues": ["CUE-055", "CUE-057"], "frames": ["frames/dense/dense-0070.jpg", "frames/dense/dense-0071.jpg"]}},
+    {"id": "K-27", "epistemicType": "author_claim", "atom": "讲特长或特点时，要把事情说清楚，用完整叙事的中长视频。", "evidence": {"time": "00:02:55.580-00:03:04.560", "cues": ["CUE-058", "CUE-059"], "frames": ["frames/dense/dense-0074.jpg"]}},
+    {"id": "K-28", "epistemicType": "author_claim", "atom": "隐藏打法是立刻结合热点表达。", "evidence": {"time": "00:03:05.954-00:03:12.530", "cues": ["CUE-061", "CUE-062"], "frames": ["frames/dense/dense-0077.jpg"]}},
+    {"id": "K-29", "epistemicType": "author_claim", "atom": "热点打法被描述为可无视深度、能力和文笔，底层逻辑是“猪站在风口上也能飞”。", "evidence": {"time": "00:03:12.540-00:03:21.390", "cues": ["CUE-063", "CUE-064", "CUE-065"], "frames": ["frames/dense/dense-0078.jpg", "frames/dense/dense-0080.jpg"]}},
+    {"id": "K-30", "epistemicType": "author_claim", "atom": "作者认为仅在热点窗口的视频里提到“王虹”，就等于为受众提供讨论平台。", "evidence": {"time": "00:03:19.300-00:03:28.790", "cues": ["CUE-065", "CUE-066", "CUE-067"], "frames": ["frames/dense/dense-0082.jpg", "frames/dense/dense-0083.jpg"]}},
+    {"id": "K-31", "epistemicType": "observed_fact", "atom": "视频用极强保证而非概率性措辞收口：作者两次称观众不可能看不懂，并在开头承诺看懂却拍不出可来“扇我脸”。", "evidence": {"time": "00:00:01.211-00:00:05.210; 00:03:28.800-00:03:33.786", "cues": ["CUE-002", "CUE-068"]}}
+  ],
+  "keyQuestions": [
+    {"id": "Q-01", "question": "作者所说的“百万爆款”必须满足什么？", "answer": "低理解成本、足够大关联群体、满足调动情绪或获得信息的需求、触发评论或分享裂变。", "evidenceAtoms": ["K-01", "K-02", "K-03", "K-04", "K-05"]},
+    {"id": "Q-02", "question": "为什么点赞和收藏不算作者强调的互动？", "answer": "作者把能形成公开讨论与二次传播的评论、转发、@朋友视为关键；但没有证明点赞/收藏无价值。", "evidenceAtoms": ["K-04", "K-05"]},
+    {"id": "Q-03", "question": "三类爆款机制分别是什么？", "answer": "万古同悲扩大共同情感，惊世骇俗依赖稀缺硬素材，打破节奏靠相对信息流的反差。", "evidenceAtoms": ["K-06", "K-07", "K-10", "K-13"]},
+    {"id": "Q-04", "question": "同理心弱如何做共情题？", "answer": "作者建议从古诗词和语文课提炼跨时代共同情感，并按家国、社会、生死、人生、亲情、爱情的层级寻找更大情绪。", "evidenceAtoms": ["K-08", "K-09"]},
+    {"id": "Q-05", "question": "什么叫硬素材？", "answer": "片中用“与99%的人不同”或“做成99%的人做不到的事”来界定，但没有给出验证标准。", "evidenceAtoms": ["K-10", "K-11", "K-12"]},
+    {"id": "Q-06", "question": "打破节奏为什么让人停下？", "answer": "作者认为周边短视频普遍快、繁、闹，反向做慢、简、静会形成显著差异。", "evidenceAtoms": ["K-13", "K-14", "K-15"]},
+    {"id": "Q-07", "question": "一个选题能否同时占多类机制？", "answer": "能；作者用“王虹得到菲尔兹奖”示范万古同悲与惊世骇俗叠加。", "evidenceAtoms": ["K-16", "K-17"]},
+    {"id": "Q-08", "question": "普通人没有极端经历怎么办？", "answer": "先盘点极端优缺点和专长；若仍只有普通，就从公共世界中的愤怒、忧愁、矛盾找题。", "evidenceAtoms": ["K-19", "K-20", "K-21", "K-22", "K-23"]},
+    {"id": "Q-09", "question": "共情型选什么形式？", "answer": "图片、短氛围视频或文案，三者均配BGM；文案可长文本或口播。", "evidenceAtoms": ["K-24", "K-25", "K-26"]},
+    {"id": "Q-10", "question": "特长/特点型怎么拍？", "answer": "把事情说清楚，用完整叙事的中长视频。", "evidenceAtoms": ["K-27"]},
+    {"id": "Q-11", "question": "隐藏热点打法是什么？", "answer": "在时效窗口立刻围绕热点表达；作者声称甚至可暂时无视深度、能力、文笔。", "evidenceAtoms": ["K-28", "K-29", "K-30"]},
+    {"id": "Q-12", "question": "这套方法是否被片中验证为必然有效？", "answer": "没有。片中有开头成绩拼贴和强保证，但没有平台归属、样本、失败案例、对照或执行后结果。", "epistemicType": "observed_fact", "evidence": ["NE-01", "NE-02", "NE-05"]}
+  ],
+  "argumentGraph": {
+    "nodes": [
+      {"id": "N-00", "type": "thesis", "label": "百万爆款可以用一套简单、直白、跨行业的方法拆解和制作"},
+      {"id": "N-01", "type": "evidence", "label": "开头展示多组高播放/互动成绩拼贴"},
+      {"id": "N-02", "type": "necessary_condition_group", "label": "四项必要条件"},
+      {"id": "N-03", "type": "condition", "label": "低理解成本"},
+      {"id": "N-04", "type": "condition", "label": "广泛关联人群"},
+      {"id": "N-05", "type": "condition", "label": "调动情绪或提供信息"},
+      {"id": "N-06", "type": "condition", "label": "评论或分享裂变"},
+      {"id": "N-07", "type": "taxonomy", "label": "三种爆款类型"},
+      {"id": "N-08", "type": "mechanism", "label": "万古同悲/共同情感"},
+      {"id": "N-09", "type": "mechanism", "label": "惊世骇俗/稀缺硬素材"},
+      {"id": "N-10", "type": "mechanism", "label": "打破节奏/相对反差"},
+      {"id": "N-11", "type": "example", "label": "猫图+可爱BGM获百万点赞"},
+      {"id": "N-12", "type": "example", "label": "王虹获菲尔兹奖话题"},
+      {"id": "N-13", "type": "process", "label": "两步制作流程"},
+      {"id": "N-14", "type": "action", "label": "找选题：看自己"},
+      {"id": "N-15", "type": "action", "label": "找选题：看世界"},
+      {"id": "N-16", "type": "condition", "label": "个人稀缺素材不足/极致普通"},
+      {"id": "N-17", "type": "action", "label": "选形式"},
+      {"id": "N-18", "type": "format", "label": "共情型：图片/氛围短视频/文案 + BGM"},
+      {"id": "N-19", "type": "format", "label": "特长特点型：完整叙事中长视频"},
+      {"id": "N-20", "type": "shortcut", "label": "隐藏打法：即时蹭热点表达"},
+      {"id": "N-21", "type": "rationale", "label": "热点本身提供讨论场，时效可压过深度/能力/文笔"},
+      {"id": "N-22", "type": "counterexample", "label": "看似素材普通的猫图也能爆"},
+      {"id": "N-23", "type": "rhetorical_guarantee", "label": "看懂后拍不出可来扇脸；不可能看不懂"}
+    ],
+    "edges": [
+      {"from": "N-01", "to": "N-00", "relation": "credibility_hook_supports_but_does_not_prove"},
+      {"from": "N-23", "to": "N-00", "relation": "rhetorically_amplifies"},
+      {"from": "N-02", "to": "N-00", "relation": "defines_success_prerequisites_for"},
+      {"from": "N-03", "to": "N-02", "relation": "member_of"},
+      {"from": "N-04", "to": "N-02", "relation": "member_of"},
+      {"from": "N-05", "to": "N-02", "relation": "member_of"},
+      {"from": "N-06", "to": "N-02", "relation": "member_of"},
+      {"from": "N-07", "to": "N-00", "relation": "operationalizes_content_mechanisms_for"},
+      {"from": "N-08", "to": "N-07", "relation": "member_of"},
+      {"from": "N-09", "to": "N-07", "relation": "member_of"},
+      {"from": "N-10", "to": "N-07", "relation": "member_of"},
+      {"from": "N-22", "to": "N-10", "relation": "motivates_explanation_by"},
+      {"from": "N-11", "to": "N-10", "relation": "illustrates"},
+      {"from": "N-12", "to": "N-08", "relation": "claimed_to_exemplify"},
+      {"from": "N-12", "to": "N-09", "relation": "claimed_to_exemplify"},
+      {"from": "N-13", "to": "N-00", "relation": "turns_definition_into_action"},
+      {"from": "N-14", "to": "N-13", "relation": "step_1a"},
+      {"from": "N-16", "to": "N-15", "relation": "triggers_fallback_to"},
+      {"from": "N-15", "to": "N-13", "relation": "step_1b"},
+      {"from": "N-17", "to": "N-13", "relation": "step_2"},
+      {"from": "N-18", "to": "N-17", "relation": "format_branch_for_empathy"},
+      {"from": "N-19", "to": "N-17", "relation": "format_branch_for_traits_or_strengths"},
+      {"from": "N-20", "to": "N-13", "relation": "hidden_third_route_outside_declared_two_steps"},
+      {"from": "N-21", "to": "N-20", "relation": "claimed_rationale_for"},
+      {"from": "N-12", "to": "N-20", "relation": "reused_as_hotspot_example_for"}
+    ]
+  },
+  "conditionsQualifiersAndBoundaries": [
+    {"id": "CQ-01", "epistemicType": "author_claim", "statement": "作者用“不管什么博主、什么行业”和“不管什么社交媒体平台”作普遍化限定。", "evidence": {"cues": ["CUE-009", "CUE-018"]}},
+    {"id": "CQ-02", "epistemicType": "observed_fact", "statement": "视频称四项为必要条件，但没有明确说四项齐备就充分保证百万结果。", "evidence": {"cues": ["CUE-005", "CUE-006", "CUE-011"]}},
+    {"id": "CQ-03", "epistemicType": "author_claim", "statement": "惊世骇俗依赖“硬素材”；这是该类型的显式门槛。", "evidence": {"cues": ["CUE-026"]}},
+    {"id": "CQ-04", "epistemicType": "author_claim", "statement": "看自己找题时，“极致”是共同限定；普通则转向看世界。", "evidence": {"cues": ["CUE-049", "CUE-050", "CUE-051", "CUE-052"]}},
+    {"id": "CQ-05", "epistemicType": "author_claim", "statement": "共情型的三个推荐形式都依赖BGM；特长/特点型则依赖清晰完整叙事。", "evidence": {"cues": ["CUE-055", "CUE-057", "CUE-059"]}},
+    {"id": "CQ-06", "epistemicType": "inference", "statement": "隐藏热点打法依赖热点仍在窗口期；作者用“前两天”和“立刻马上”暗示时效条件，但未给时限。", "evidence": {"cues": ["CUE-062", "CUE-065"]}},
+    {"id": "CQ-07", "epistemicType": "observed_fact", "statement": "99%、99.999%均未给数据来源，更接近强调稀缺性的修辞阈值。", "evidence": {"cues": ["CUE-028", "CUE-029", "CUE-042", "CUE-047"]}}
+  ],
+  "counterexamplesAndRebuttals": [
+    {"id": "CR-01", "epistemicType": "author_claim", "setup": "普通猫照片配可爱BGM也能获一百多万点赞，看似违背强素材逻辑。", "rebuttal": "作者用“打破节奏”解释：在快、繁、闹的信息流中，慢、简、静本身形成停留理由。", "evidence": {"cues": ["CUE-032", "CUE-033", "CUE-034", "CUE-035", "CUE-036", "CUE-037"]}},
+    {"id": "CR-02", "epistemicType": "author_claim", "setup": "自认同理心弱，难以做共情。", "rebuttal": "借语文课和古诗词中的共同情感记忆取材。", "evidence": {"cues": ["CUE-020", "CUE-021", "CUE-022"]}},
+    {"id": "CR-03", "epistemicType": "author_claim", "setup": "多数人最极致的是普通，缺乏个人硬素材。", "rebuttal": "从外部世界寻找愤怒、忧愁、矛盾。", "evidence": {"cues": ["CUE-051", "CUE-052", "CUE-053"]}},
+    {"id": "CR-04", "epistemicType": "observed_fact", "setup": "作者没有展示任何真正失败的反例或不适用边界。", "rebuttal": "无。", "evidence": {"time": "full_timeline"}}
+  ],
+  "actionableProcess": [
+    {"order": 1, "action": "先做可懂性检查：一句话能否让目标观众理解视频讲什么。", "sourceType": "faithful_operationalization", "evidenceAtoms": ["K-01"]},
+    {"order": 2, "action": "检查关联面：与主题直接相关的人是否足够多。", "sourceType": "faithful_operationalization", "evidenceAtoms": ["K-02"]},
+    {"order": 3, "action": "明确主交付是调动情绪还是提供信息。", "sourceType": "direct", "evidenceAtoms": ["K-03"]},
+    {"order": 4, "action": "设计评论或分享触发点：共情、可争议命题、转发对象或@场景。", "sourceType": "faithful_operationalization", "evidenceAtoms": ["K-04", "K-05"]},
+    {"order": 5, "action": "选择主机制：共同情感、稀缺硬素材、或节奏反差；允许叠加。", "sourceType": "faithful_operationalization", "evidenceAtoms": ["K-06", "K-16"]},
+    {"order": 6, "action": "先看自己：列稀缺经历/能力、极端优缺点、极强专长。", "sourceType": "direct", "evidenceAtoms": ["K-19", "K-20", "K-21"]},
+    {"order": 7, "action": "若个人素材不够极致，再看世界：记录愤怒、忧愁、矛盾。", "sourceType": "direct", "evidenceAtoms": ["K-22", "K-23"]},
+    {"order": 8, "action": "共情题选择图片、氛围短视频或文案，并配BGM；文案可长文本或口播。", "sourceType": "direct", "evidenceAtoms": ["K-24", "K-25", "K-26"]},
+    {"order": 9, "action": "特长/特点题采用说清楚的完整叙事中长视频。", "sourceType": "direct", "evidenceAtoms": ["K-27"]},
+    {"order": 10, "action": "若走热点捷径，要立刻围绕热点表达。", "sourceType": "direct", "evidenceAtoms": ["K-28", "K-29", "K-30"], "auditCaution": "原片没有提供事实核验、版权、舆情、误导或平台政策风险控制，不能把“无视深度/能力/文笔”扩写为安全建议。"}
+  ],
+  "visualReferences": [
+    {"id": "VR-01", "epistemicType": "observed_fact", "reference": "开头成绩拼贴", "description": "黑底/透明叠层包含多平台样式的心形、星标、评论、播放图标和高数值，中央另嵌讲者面罩画面；承担资历证明与强钩子，而不是论证步骤。", "time": "00:00:00.000-00:00:01.211", "frames": ["frames/dense/dense-0001.jpg"]},
+    {"id": "VR-02", "epistemicType": "observed_fact", "reference": "白板总标题", "description": "顶部可读“百万爆款是怎样炼成的，实操落地”，左栏“底层逻辑”写必要条件/类型，右栏写找选题、选形式和热点问号分支。", "time": "full_timeline", "frames": ["frames/dense/dense-0001.jpg", "frames/dense/dense-0056.jpg", "frames/dense/dense-0076.jpg"]},
+    {"id": "VR-03", "epistemicType": "observed_fact", "reference": "讲者动作", "description": "讲者频繁用白板笔指点、弯腰贴近板书、前倾靠近镜头、张臂和抬手；这些动作承担段落切换与强调。", "time": "full_timeline", "frames": ["frames/shots/shot-003.jpg", "frames/shots/shot-008.jpg", "frames/shots/shot-015.jpg"]},
+    {"id": "VR-04", "epistemicType": "observed_fact", "reference": "烧录字幕", "description": "底部居中白字黑描边字幕贯穿口播，个别词与提供SRT不同，是人名和公式纠错的重要视觉证据。", "time": "full_timeline", "frames": ["frames/dense/dense-0040.jpg", "frames/dense/dense-0046.jpg", "frames/dense/dense-0082.jpg"]},
+    {"id": "VR-05", "epistemicType": "observed_fact", "reference": "缺少示例B-roll", "description": "猫案例、王虹案例和三种共情形式都只由口播/白板说明；除开头拼贴外没有实际猫图、获奖画面或成片示范。", "time": "00:01:31.694-00:03:28.790", "frames": ["frames/dense/dense-0038.jpg", "frames/dense/dense-0046.jpg", "frames/dense/dense-0068.jpg"]}
+  ],
+  "negativeEvidence": [
+    {"id": "NE-01", "epistemicType": "observed_fact", "absent": "没有说明“百万爆款”按播放量、点赞量还是其他指标定义；开头拼贴混合多类指标。", "auditImpact": "不能把“百万”唯一解释为百万播放或百万点赞。"},
+    {"id": "NE-02", "epistemicType": "observed_fact", "absent": "开头高数据没有平台名、账号名、日期、原视频链接或归属说明。", "auditImpact": "只能说画面展示了高数据，不能确认均由讲者创作。"},
+    {"id": "NE-03", "epistemicType": "observed_fact", "absent": "所有规律、情感排序、99%/99.999%阈值和平台需求二分均无数据来源、研究引用或样本。", "auditImpact": "全部保留为作者主张，不能升级为事实。"},
+    {"id": "NE-04", "epistemicType": "observed_fact", "absent": "没有按抖音、快手、小红书、B站等平台区分算法、受众或形式，尽管作者声称跨平台。", "auditImpact": "跨平台适用性未经证明。"},
+    {"id": "NE-05", "epistemicType": "observed_fact", "absent": "没有从选题到拍摄、剪辑、发布后的完整案例演示，也没有执行前后数据对照。", "auditImpact": "两步法的可复现效果未在片内验证。"},
+    {"id": "NE-06", "epistemicType": "observed_fact", "absent": "没有失败案例、边界条件、概率、样本量或“必要但不充分”的风险提示。", "auditImpact": "强保证与片内证据不对称。"},
+    {"id": "NE-07", "epistemicType": "observed_fact", "absent": "没有说明BGM如何选、版权从何获得、音量/节奏如何匹配，也没有现场播放对比例。", "auditImpact": "“BGM特别重要”无法直接转成可执行选曲方案。"},
+    {"id": "NE-08", "epistemicType": "observed_fact", "absent": "没有讨论标题、封面、前3秒、脚本结构、画面质量、发布时间、标签、账号权重、投放或复盘。", "auditImpact": "框架只覆盖选题/形式和热点，不是完整增长流程。"},
+    {"id": "NE-09", "epistemicType": "observed_fact", "absent": "热点打法未包含事实核验、版权、隐私、舆情、伤害、平台政策或误导风险。", "auditImpact": "不能把“无视深度/能力/文笔”当作无条件安全建议。"},
+    {"id": "NE-10", "epistemicType": "observed_fact", "absent": "未展示猫案例的原帖，也未展示王虹案例的原始帖子、数据或评论区。", "auditImpact": "案例只能按作者口述例证记录。"},
+    {"id": "NE-11", "epistemicType": "observed_fact", "absent": "没有解释为什么点赞、收藏不属于关键互动，也未比较其对分发或转化的作用。", "auditImpact": "“不是点赞也不是收藏”是作者的策略定义，不是平台事实。"},
+    {"id": "NE-12", "epistemicType": "observed_fact", "absent": "没有展示除开头拼贴外的屏录、图表、文章、来源卡或可点击引用。", "auditImpact": "视觉证据主要是白板和讲者表演，不是外部佐证。"}
+  ],
+  "unknowns": [
+    {"id": "U-01", "epistemicType": "unknown", "question": "开头拼贴来自哪个/哪些平台，是否属于同一账号或讲者本人？", "whyUnknown": "画面没有清晰平台与归属标识。"},
+    {"id": "U-02", "epistemicType": "unknown", "question": "“百万爆款”的百万究竟指播放、浏览、点赞还是综合传播？", "whyUnknown": "作者未定义，开头同时出现浏览、播放和互动数。"},
+    {"id": "U-03", "epistemicType": "unknown", "question": "CUE-001的“教资”具体指教师资格内容、视频系列还是其他对象？", "whyUnknown": "仅有一秒文字与成绩拼贴，未展开。"},
+    {"id": "U-04", "epistemicType": "unknown", "question": "讲者真实身份、资历和账号主页是什么？", "whyUnknown": "面罩遮脸，仅给出“人类最善变的”自称。"},
+    {"id": "U-05", "epistemicType": "unknown", "question": "“王虹获得菲尔兹奖”是否真实、发生日期与具体奖项语境是什么？", "whyUnknown": "本审计禁止外部核验；片中无来源。"},
+    {"id": "U-06", "epistemicType": "unknown", "question": "猫照片案例是某个可识别帖子还是概括性/假设性案例？", "whyUnknown": "未展示原帖或主体。"},
+    {"id": "U-07", "epistemicType": "unknown", "question": "99%、99.999%是经验比喻还是计算值？", "whyUnknown": "无口径、样本和计算。"},
+    {"id": "U-08", "epistemicType": "unknown", "question": "原音轨是否混有低音量BGM？", "whyUnknown": "媒体探测只确认连续AAC音轨；允许证据没有独立音轨或音乐标注。"},
+    {"id": "U-09", "epistemicType": "unknown", "question": "16个scene-detection cuts是否存在不可见的细微剪接？", "whyUnknown": "视觉抽样显示同一场景且切点多与运动重合，可推断连续一镜，但不能从代表帧排除所有隐形跳剪。"},
+    {"id": "U-10", "epistemicType": "unknown", "question": "这套框架对不同垂类、不同粉丝基数、不同平台是否同样有效？", "whyUnknown": "作者只作普遍化主张，没有分组验证。"}
+  ],
+  "easiestToMiss": [
+    {"id": "EM-01", "item": "互动定义被刻意收窄：作者明确排除点赞与收藏，强调评论、转发和@朋友。", "evidenceAtoms": ["K-04", "K-05"]},
+    {"id": "EM-02", "item": "万古同悲不是泛泛“情绪价值”，而是带有明确大小排序的共同情感记忆。", "evidenceAtoms": ["K-07", "K-09"]},
+    {"id": "EM-03", "item": "惊世骇俗有两种近邻概念：人与99%不同的“极致逆袭”，以及做成99%做不到之事的“极致震撼”。", "evidenceAtoms": ["K-11", "K-12"]},
+    {"id": "EM-04", "item": "打破节奏是相对环境而非绝对慢：必须参照当时信息流的快、繁、闹。", "evidenceAtoms": ["K-13", "K-14"]},
+    {"id": "EM-05", "item": "同一热点可以同时叠加万古同悲和惊世骇俗，并携带家国、性别、冲突、互动等触发器。", "evidenceAtoms": ["K-16", "K-17"]},
+    {"id": "EM-06", "item": "两步法中的“找选题”其实有条件分支：先看自己；普通时再看世界。", "evidenceAtoms": ["K-18", "K-19", "K-22", "K-23"]},
+    {"id": "EM-07", "item": "共情形式三选一的共同项是BGM；特长/特点型则强调完整叙事中长视频。", "evidenceAtoms": ["K-24", "K-26", "K-27"]},
+    {"id": "EM-08", "item": "“热点表达”被作者放在显式两步法之后，作为画问号的隐藏第三路，而非选题/形式的正常子项。", "evidenceAtoms": ["K-28", "K-29"]},
+    {"id": "EM-09", "item": "提供SRT有三处关键文字误差：教资/饺子、王虹/王宏或王红、于/愉；视觉字幕可纠正。", "evidence": ["SC-01", "SC-02", "SC-03"]},
+    {"id": "EM-10", "item": "evidence pack的16个shot不应被误写成16个真正剪辑场景；全片视觉上几乎始终是同一固定机位白板口播。", "evidence": ["VR-03", "U-09"]},
+    {"id": "EM-11", "item": "开头高数据只建立视觉可信度线索，不能证明数据归讲者或证明方法有效。", "evidence": ["VR-01", "NE-02", "NE-05"]},
+    {"id": "EM-12", "item": "作者只说必要条件，没有建立充分性；强保证来自修辞而非片内验证。", "evidence": ["CQ-02", "K-31", "NE-06"]}
+  ],
+  "auditVerdict": {
+    "contentCompletenessTarget": "重建若要忠实，必须同时包含四项必要条件、三类机制及其子定义、王虹双机制案例、两步流程的条件分支、两类形式、隐藏热点打法、开头证明拼贴和强保证修辞。",
+    "factualityBoundary": "除媒体属性、画面/字幕/口播出现事实外，爆款规律、案例因果、人物获奖、99%阈值和跨平台适用性均只可标为作者主张。",
+    "visualFidelityTarget": "固定竖屏、面罩讲者、白板密集手写、底部字幕、频繁指点/靠近镜头；开头短暂成绩拼贴是唯一显著插入视觉。",
+    "highestRiskOmissions": ["互动不含点赞收藏", "共同情感排序", "硬素材门槛", "于快中慢/于繁中简/于闹中静", "普通人转向愤怒忧愁矛盾", "BGM为共情三形式共同项", "隐藏热点捷径", "作者主张与外部事实的区分"]
+  }
+}

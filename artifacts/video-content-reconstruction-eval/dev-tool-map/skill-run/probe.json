@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "The viewer has not yet been shown which visible tool card is paired with each repeated ‘这个可以…’ claim, nor what brief visual example follows each claim.",
+    "after": "The viewer can associate six briefly displayed tool names with six author-claimed uses and with the corresponding edited result shots, while retaining that the video does not show prompts, controls, parameters, generation runs, or proof that the named tool caused each result.",
+    "intendedChanges": [
+      "Know the six visible tool-name-to-claimed-capability pairings.",
+      "Notice the visual example or result used to illustrate each pairing.",
+      "Compare the six pairings as a fast map of creative uses rather than as demonstrated workflows.",
+      "Distinguish what is shown in the montage from what remains unestablished."
+    ]
+  },
+  "informationCarriers": [
+    {
+      "id": "CAR-SPEECH",
+      "name": "spoken narration, independently checked by local machine transcription while preserving the supplied platform SRT as verbatim",
+      "available": true,
+      "inspected": true,
+      "roles": ["states one capability claim per segment", "provides the repeated ‘这个可以…’ syntax", "local ASR confirms six speech spans but contains lexical errors and is not used to rewrite the SRT"],
+      "intervals": [{"start": 0, "end": 15.31}],
+      "omissionImpact": "The claimed use for each tool would be lost or reduced to guessing from the image montage. Local ASR confirms the six spoken spans but is not accurate enough to replace the verbatim platform SRT; nuances not reliably encoded remain unknown."
+    },
+    {
+      "id": "CAR-SUBTITLE",
+      "name": "burned-in Chinese subtitles and supplied SRT cues",
+      "available": true,
+      "inspected": true,
+      "roles": ["renders the six spoken claims verbatim", "anchors each claim to a time interval"],
+      "intervals": [{"start": 0, "end": 15.31}],
+      "omissionImpact": "Cue wording and timing would be lost. The supplied SRT says ‘一键穿搭’ in CUE-004, while the burned-in subtitle visibly includes ‘换’; this discrepancy must not be silently normalized."
+    },
+    {
+      "id": "CAR-TOOL-CARDS",
+      "name": "brief on-screen tool-name cards",
+      "available": true,
+      "inspected": true,
+      "roles": ["supplies the otherwise missing referent for each ‘这个’", "maps a visible product name to the adjacent claim and example"],
+      "intervals": [
+        {"start": 0, "end": 0.75},
+        {"start": 2.1, "end": 2.8},
+        {"start": 5.167, "end": 5.8},
+        {"start": 8.8, "end": 9.3},
+        {"start": 11.267, "end": 12.0},
+        {"start": 13.7, "end": 14.3}
+      ],
+      "omissionImpact": "A transcript-only reconstruction would repeatedly say ‘this’ without identifying 通义万相AI视频, PixVerse, Vidu, Runway, Manus, and 即梦, or could assign a card to the wrong neighboring claim."
+    },
+    {
+      "id": "CAR-VISUAL-EXAMPLES",
+      "name": "edited visual example and result states",
+      "available": true,
+      "inspected": true,
+      "roles": ["illustrates each claimed capability", "shows visual before/after or setup/payoff", "adds information not present in the transcript"],
+      "intervals": [{"start": 0, "end": 16.556}],
+      "omissionImpact": "The reader would miss the character replacement, water-like effect, second-person compositing, outfit changes, slide montage, and animated illustration used as examples."
+    },
+    {
+      "id": "CAR-MOTION",
+      "name": "motion and state transitions",
+      "available": true,
+      "inspected": true,
+      "roles": ["shows transitions rather than isolated poses", "separates setup, change, and result in short segments"],
+      "intervals": [
+        {"start": 0.5, "end": 1.8},
+        {"start": 2.7, "end": 5.0},
+        {"start": 5.8, "end": 9.0},
+        {"start": 9.3, "end": 11.25},
+        {"start": 11.7, "end": 13.7},
+        {"start": 14.2, "end": 16.556}
+      ],
+      "omissionImpact": "Single midpoints can hide the wipe, appearance, splash, outfit change, slide reveal, or subtle animation and cannot establish the sequence."
+    },
+    {
+      "id": "CAR-AI-LABEL",
+      "name": "visible ‘AI生成’ corner label",
+      "available": true,
+      "inspected": true,
+      "roles": ["frames much of the footage as AI-generated or AI-labeled content"],
+      "intervals": [{"start": 0.5, "end": 11.7}, {"start": 14.2, "end": 16.556}],
+      "omissionImpact": "The montage could be described as ordinary camera footage without preserving its visible AI-generated labeling; however the label alone does not identify the generating tool."
+    },
+    {
+      "id": "CAR-EDITING",
+      "name": "editing order and juxtaposition",
+      "available": true,
+      "inspected": true,
+      "roles": ["pairs each brief tool card with narration and an adjacent example", "creates six rapid mini setup-to-payoff units"],
+      "intervals": [{"start": 0, "end": 16.556}],
+      "omissionImpact": "The tool-to-claim-to-example mapping could be scrambled, especially at the 8.9 s and 11.3 s boundaries."
+    },
+    {
+      "id": "CAR-UI-PARAMETERS",
+      "name": "software interface, cursor actions, prompts, and parameters",
+      "available": false,
+      "inspected": true,
+      "roles": ["would have established an operational workflow if present"],
+      "intervals": [],
+      "omissionImpact": "Because no generation UI, prompt, control, value, or execution state is shown, the reconstruction must not invent workflow steps or settings."
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {"start": 0, "end": 2.1},
+      "description": "A 通义万相AI视频 card makes the first ‘这个’ refer to that named tool; the seated presenter is then shown changing into a sailor-style character with a VR headset.",
+      "trigger": "brief tool card followed by character-change reveal",
+      "evidenceHints": ["DENSE-0001", "FRAME-CUE-001", "SHOT-001"]
+    },
+    {
+      "id": "MC-02",
+      "range": {"start": 2.1, "end": 5.167},
+      "description": "A PixVerse card introduces the ‘做特效’ claim; a water-like splash/flood effect appears around the presenter.",
+      "trigger": "tool-card cut followed by escalating effect and reaction",
+      "evidenceHints": ["DENSE-0004", "FRAME-CUE-002", "SHOT-002"]
+    },
+    {
+      "id": "MC-03",
+      "range": {"start": 5.167, "end": 9.067},
+      "description": "A Vidu card introduces the claim about appearing with anyone; an older man in a black turtleneck holding a laptop is composited behind the presenter, but his identity is not established by the supplied evidence.",
+      "trigger": "tool-card cut followed by second-person appearance and interaction-like staging",
+      "evidenceHints": ["DENSE-0008", "FRAME-CUE-003", "SHOT-003"]
+    },
+    {
+      "id": "MC-04",
+      "range": {"start": 8.8, "end": 11.267},
+      "description": "A brief Runway card is adjacent to CUE-004, whose supplied SRT reads ‘一键穿搭’; the burned-in subtitle visibly reads ‘一键换穿搭’. Successive wipes show the presenter in different hats, glasses, tops, and jacket styling.",
+      "trigger": "short-lived tool card and multiple outfit-state transitions",
+      "evidenceHints": ["SHOT-003", "DENSE-0013", "DENSE-0014", "DENSE-0015", "FRAME-CUE-004", "SHOT-004"]
+    },
+    {
+      "id": "MC-05",
+      "range": {"start": 11.267, "end": 13.7},
+      "description": "A Manus card introduces the ‘设计ppt’ claim; the video cuts to two collages of coordinated presentation-slide thumbnails.",
+      "trigger": "tool-card cut followed by slide-deck result reveal",
+      "evidenceHints": ["DENSE-0016", "FRAME-CUE-005", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008"]
+    },
+    {
+      "id": "MC-06",
+      "range": {"start": 13.7, "end": 16.556},
+      "description": "An 即梦 card introduces the ‘做动漫’ claim; an AI-labeled illustration of a red-haired headset-wearing girl and deer is shown with changing pose and butterfly positions.",
+      "trigger": "tool-card cut followed by illustrated moving result",
+      "evidenceHints": ["FRAME-SHOT-009", "FRAME-CUE-006", "DENSE-0020", "DENSE-0021", "DENSE-0022", "SHOT-010"]
+    }
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "visible tool card", "to": "adjacent spoken capability claim", "relation": "identifies_referent_of", "evidenceHints": ["MC-01", "MC-02", "MC-03", "MC-04", "MC-05", "MC-06"]},
+    {"id": "REL-02", "from": "spoken capability claim", "to": "following visual example", "relation": "illustrated_by", "evidenceHints": ["CUE-001", "CUE-002", "CUE-003", "CUE-004", "CUE-005", "CUE-006", "SHOT-001", "SHOT-002", "SHOT-003", "SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008", "SHOT-010"]},
+    {"id": "REL-03", "from": "setup frame", "to": "changed/result frame", "relation": "precedes_visual_change_to", "evidenceHints": ["CAR-MOTION", "MC-01", "MC-02", "MC-03", "MC-04", "MC-06"]},
+    {"id": "REL-04", "from": "visible AI生成 label", "to": "edited example footage", "relation": "labels_as_ai_generated", "evidenceHints": ["CAR-AI-LABEL", "FRAME-CUE-001", "FRAME-CUE-003", "FRAME-CUE-004", "FRAME-CUE-006"]},
+    {"id": "REL-05", "from": "named tool", "to": "visible result", "relation": "presented_as_capable_of_but_not_causally_demonstrated", "evidenceHints": ["CAR-EDITING", "CAR-UI-PARAMETERS", "MC-01", "MC-02", "MC-03", "MC-04", "MC-05", "MC-06"]}
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "Tool identities are omitted or assigned to the wrong neighboring claim.",
+      "why": "The narration repeatedly says only ‘这个’, while each name card is brief and several boundaries are rapid.",
+      "where": [{"start": 0, "end": 0.75}, {"start": 2.1, "end": 2.8}, {"start": 5.167, "end": 5.8}, {"start": 8.8, "end": 9.3}, {"start": 11.267, "end": 12.0}, {"start": 13.7, "end": 14.3}],
+      "requiredFollowup": "Capture exact frames at every name-card interval and check adjacency against cues and shot boundaries."
+    },
+    {
+      "id": "RISK-02",
+      "risk": "The edited examples are misreported as recorded tool operation or causal proof.",
+      "why": "The montage shows no tool UI, prompt, parameter, generation run, loading state, or export.",
+      "where": [{"start": 0, "end": 16.556}],
+      "requiredFollowup": "Preserve each pairing as an author claim plus visual example; explicitly record the missing workflow and causality."
+    },
+    {
+      "id": "RISK-03",
+      "risk": "A single frame misses the before/during/after structure of the visual change.",
+      "why": "Character replacement, splash escalation, compositing, outfit wipes, and illustration motion occur over time.",
+      "where": [{"start": 0.5, "end": 1.8}, {"start": 2.7, "end": 5.0}, {"start": 5.8, "end": 9.0}, {"start": 9.3, "end": 11.25}, {"start": 14.2, "end": 16.556}],
+      "requiredFollowup": "Use dense sequences or before/during/after captures, not midpoint-only evidence."
+    },
+    {
+      "id": "RISK-04",
+      "risk": "A recognizable-looking composited person is named as a real person without evidence.",
+      "why": "Visual resemblance is not identity, and no on-screen name or transcript identification is supplied.",
+      "where": [{"start": 6.0, "end": 9.067}],
+      "requiredFollowup": "Describe only visible appearance and mark identity unknown."
+    },
+    {
+      "id": "RISK-05",
+      "risk": "Small text inside the PPT montage or tool-card descriptions is invented.",
+      "why": "Most thumbnail copy and some card sublines are too small or truncated in representative frames.",
+      "where": [{"start": 0, "end": 0.75}, {"start": 2.1, "end": 2.8}, {"start": 5.167, "end": 5.8}, {"start": 8.8, "end": 9.3}, {"start": 11.267, "end": 13.7}, {"start": 13.7, "end": 14.3}],
+      "requiredFollowup": "Capture high-resolution exact frames; transcribe only legible text and retain the remainder as unresolved."
+    },
+    {
+      "id": "RISK-06",
+      "risk": "The evidence pack is treated as internally complete despite a missing referenced dense frame.",
+      "why": "DENSE-0024 is listed at 16.516 s but its referenced JPEG is absent.",
+      "where": [{"start": 16.5, "end": 16.556}],
+      "requiredFollowup": "Resample the ending directly from the supplied video and record the manifest inconsistency."
+    }
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "Which six visible tool names are paired, in order, with which six stated capabilities?", "criticality": "critical", "evidenceHints": ["CAR-TOOL-CARDS", "CUE-001", "CUE-002", "CUE-003", "CUE-004", "CUE-005", "CUE-006"]},
+    {"id": "CQ-02", "question": "What visual example or result is shown for each claimed capability?", "criticality": "critical", "evidenceHints": ["MC-01", "MC-02", "MC-03", "MC-04", "MC-05", "MC-06"]},
+    {"id": "CQ-03", "question": "Does the video show prompts, controls, parameters, or an end-to-end generation run for any tool?", "criticality": "critical", "evidenceHints": ["CAR-UI-PARAMETERS", "RISK-02"]},
+    {"id": "CQ-04", "question": "Does the video establish that each named tool produced the adjacent result, rather than merely presenting the pairing through editing?", "criticality": "critical", "evidenceHints": ["REL-05", "RISK-02"]},
+    {"id": "CQ-05", "question": "What changes over time in each result sequence that a representative midpoint would miss?", "criticality": "supporting", "evidenceHints": ["CAR-MOTION", "RISK-03"]},
+    {"id": "CQ-06", "question": "Is the identity of the older composited man established by the video?", "criticality": "supporting", "evidenceHints": ["MC-03", "RISK-04"]},
+    {"id": "CQ-07", "question": "What does the visible ‘AI生成’ label establish, and what does it not establish?", "criticality": "supporting", "evidenceHints": ["CAR-AI-LABEL", "REL-04"]},
+    {"id": "CQ-08", "question": "Are price, version, availability, success rate, output quality consistency, or usage conditions established?", "criticality": "supporting", "evidenceHints": ["CAR-UI-PARAMETERS", "RISK-02"]}
+  ],
+  "unresolved": [
+    "A local base-model ASR check detects six corresponding utterance spans but introduces lexical errors; exact wording remains the supplied verbatim platform SRT, and any audio nuance not reliably represented there remains unknown.",
+    "The small descriptive sublines on several tool cards and most slide-thumbnail copy are not fully legible in the initial frames.",
+    "The identity of the older composited man is not established.",
+    "The exact prompt, input asset, model/version, parameter values, generation path, and output provenance for every example are absent.",
+    "DENSE-0024 is referenced by the evidence pack but the JPEG is missing; the final interval requires direct resampling."
+  ]
+}

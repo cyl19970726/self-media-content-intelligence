@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/dashboard-data.schema.json",
+  "title": "Creator Dashboard data",
+  "type": "object",
+  "required": ["schemaVersion", "title", "generatedAt", "creator", "analysisContract", "overview", "positioning", "topicClusters", "formatClusters", "tiers", "posts", "deepDives", "publishing", "visualLanguage", "launchPlan", "boundaries"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "title": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "minLength": 1 },
+    "creator": { "type": "object", "required": ["id", "name", "platform"], "additionalProperties": true },
+    "analysisContract": { "type": "object", "required": ["why", "method", "decisions", "nonDecisions"], "additionalProperties": true },
+    "overview": {
+      "type": "object",
+      "required": ["postCount", "videoCount", "medianLikes", "meanLikes", "maxLikes", "distribution"],
+      "properties": {
+        "postCount": { "type": "integer", "minimum": 0 },
+        "videoCount": { "type": "integer", "minimum": 0 },
+        "medianLikes": { "type": ["number", "null"] },
+        "meanLikes": { "type": ["number", "null"] },
+        "maxLikes": { "type": ["number", "null"] },
+        "distribution": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": true
+    },
+    "positioning": { "type": "object", "required": ["name", "sentence"], "additionalProperties": true },
+    "topicClusters": { "$ref": "#/$defs/clusters" },
+    "formatClusters": { "$ref": "#/$defs/clusters" },
+    "tiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tier", "label", "sampleSize", "medianLikes", "patterns", "mechanisms", "failures"],
+        "additionalProperties": true
+      }
+    },
+    "posts": { "type": "array", "items": { "$ref": "#/$defs/dashboardPost" } },
+    "deepDives": { "type": "array", "items": { "$ref": "#/$defs/deepDive" } },
+    "publishing": { "type": "object", "required": ["conclusion", "weekdays", "dayparts"], "additionalProperties": true },
+    "visualLanguage": { "type": "array", "items": { "type": "string" } },
+    "launchPlan": { "type": "object", "required": ["positioning", "lanes", "firstTwelve", "experiments"], "additionalProperties": true },
+    "boundaries": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "$defs": {
+    "clusters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "count", "medianLikes", "meanLikes", "maxLikes"],
+        "properties": {
+          "name": { "type": "string" },
+          "count": { "type": "integer", "minimum": 0 },
+          "medianLikes": { "type": ["number", "null"] },
+          "meanLikes": { "type": ["number", "null"] },
+          "maxLikes": { "type": ["number", "null"] }
+        },
+        "additionalProperties": true
+      }
+    },
+    "dashboardPost": {
+      "type": "object",
+      "required": ["id", "title", "tier", "likes", "topicTags", "formatTags", "coreMessage", "mechanism", "evidenceStatus"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "tier": { "enum": ["high", "median", "average", "low", "other"] },
+        "likes": { "type": ["number", "null"] },
+        "cover": { "type": ["string", "null"] },
+        "topicTags": { "type": "array", "items": { "type": "string" } },
+        "formatTags": { "type": "array", "items": { "type": "string" } },
+        "coreMessage": { "type": "string" },
+        "mechanism": { "type": "string" },
+        "evidenceStatus": { "enum": ["portfolio", "selected", "ready", "failed", "unknown"] }
+      },
+      "additionalProperties": true
+    },
+    "deepDive": {
+      "type": "object",
+      "required": ["postId", "selectionReason", "representedMechanism", "gateStatus", "viewerChange", "knowledgeUnits", "sparseFrames", "denseFrames", "transcript", "unknowns"],
+      "properties": {
+        "postId": { "type": "string" },
+        "selectionReason": { "type": "string", "minLength": 1 },
+        "representedMechanism": { "type": "string", "minLength": 1 },
+        "gateStatus": { "enum": ["ready", "failed", "pending"] },
+        "viewerChange": { "type": "object" },
+        "knowledgeUnits": { "type": "array", "items": { "type": "object" } },
+        "sparseFrames": { "type": "array", "items": { "type": "object" } },
+        "denseFrames": { "type": "array", "items": { "type": "object" } },
+        "transcript": { "type": "array", "items": { "type": "object" } },
+        "unknowns": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,496 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建 17.601 秒视频、同 stem SRT、给定 evidence pack 及依探针生成的目标帧/OCR；不使用帖子正文、评论区、指标、外部网页或既有分析。作者关于 AI 能力和工具获取的说法不作外部核验。",
+  "viewerChange": {
+    "before": "观众可能将三维角色建模视为专业、复杂且与新手距离很远的工作。",
+    "after": "视频希望观众把可见的分屏头部编辑/生成画面理解为低门槛、近实时的 AI 三维创作方式，并联想到角色、场景和电商模特用途，最后去评论区找工具；重建同时保留可见提示词、两套不同界面、剪辑跳转、未显示桥接步骤及未知获取条件。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-derived frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs after ACT-005 resampling refinement",
+      "timeRange": {"start": 0, "end": 17.601},
+      "limitations": ["单帧只证明对应瞬间", "不同 action 有重叠帧", "不包含音频语义分类"]
+    },
+    {
+      "id": "SRC-OCR-MAIN",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals for 156 targeted frames",
+      "producedBy": "ocr-frames.swift",
+      "timeRange": {"start": 0, "end": 17.601},
+      "limitations": ["OCR 是候选读数而非事实", "嵌入 UI 小字在 360×640 目标帧中常不可读", "中文与英文大小写/字符可能误识别"]
+    },
+    {
+      "id": "SRC-CROP-MANIFEST",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/targeted-evidence/crop-review-manifest.json",
+      "kind": "upscaled UI and prompt crop manifest",
+      "producedBy": "ffmpeg crop/scale resampling after small-text ambiguity",
+      "timeRange": {"start": 3.8, "end": 14.2},
+      "limitations": ["放大不增加原始像素信息", "裁剪会丢失外层视频语境", "品牌区只显示可见残片"]
+    },
+    {
+      "id": "SRC-CROP-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/targeted-evidence/ocr-crops-evidence.json",
+      "kind": "macOS Vision OCR proposals for seven resampled crops",
+      "producedBy": "ocr-frames.swift plus manual frame comparison",
+      "timeRange": {"start": 3.8, "end": 14.2},
+      "limitations": ["低置信度提示词 OCR 有明显字符错误", "人工读数修订均在知识单元和 run-notes 中显式说明", "KRE 不得自动补全为完整产品名"]
+    },
+    {
+      "id": "SRC-AUDIO-INSPECTION",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/run-notes.md",
+      "kind": "audio-channel and reconstruction method log",
+      "producedBy": "ffmpeg stream/level inspection and manual limitation audit",
+      "timeRange": {"start": 0, "end": 17.601},
+      "limitations": ["只确认 AAC 音轨及全片音频活动", "未可靠分离旁白、音乐与音效", "不支持对非语音音频的正面语义归因"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0.02, "end": 3.575, "text": "二d设计摇身一变三d艺术品，这个ai强到让人头皮发麻", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 3.575, "end": 6.36, "text": "做三d模型不再是高门键的技术活", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002"]},
+      {"id": "CUE-003", "start": 6.37, "end": 11.083, "text": "而是你动动手，简单在左面画几笔草图，Ai就能实时将它转为三d艺术品", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-002"]},
+      {"id": "CUE-004", "start": 11.083, "end": 14.307, "text": "小白不上班。在家也能设计三d游戏角色场景", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-002"]},
+      {"id": "CUE-005", "start": 14.307, "end": 17.42, "text": "电商模特工具已经打包好了，评论区见", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-001",
+      "title": "开场把能力定义为 AI 实时生成三维艺术品",
+      "importance": "core",
+      "statement": "视频开场卡片写“AI实时画3D”，随后固定标题和旁白把内容表述为“宝藏AI实时生成3D艺术品”“小白在家设计3D模型”；这是视频作者的能力与受众承诺，不是外部验证事实。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 3.575},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "旁白称 2D 设计变为 3D 艺术品"},
+        {"refType": "ocr", "ref": "OCR-00001", "supports": "OCR 提案“Ai实时画3D”，置信度 0.5；人工核图确认画面采用大写样式“AI”"},
+        {"refType": "ocr", "ref": "OCR-00008", "supports": "固定标题 OCR 提案“宝藏Ai实时生成3D艺术品！”"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场卡片的标题、左右头部和指向符号"},
+        {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "固定标题和外层模板"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "AI 可实时把二维设计转为三维艺术品，并让小白在家设计三维模型。", "evidenceUnitIds": ["KU-003", "KU-005", "KU-012"], "conditions": ["视频中还可见英文提示词、分屏编辑工具与另一套生成界面"], "counterexamples": [], "actions": ["继续观看分屏演示", "结尾去评论区找工具"], "limits": ["未外部核验实时性、可用性或新手成功率"]},
+      "unknowns": ["具体 AI 产品身份", "实际生成延迟与成功率"]
+    },
+    {
+      "id": "KU-002",
+      "title": "外层账号、平台和栏目标签不是工具品牌",
+      "importance": "context",
+      "statement": "外层视频持续显示账号名“红发魔女Amber”、小红书标识、右上“打工人必备AI”和左下“AI FOR WORKERS”；嵌入素材也有“@红发魔女Amber”水印。这些可见元素支持编辑/账号归属与栏目语境，不能据此确认嵌入工具或素材的原始品牌。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 17.601},
+      "evidence": [
+        {"refType": "ocr", "ref": "OCR-00002", "supports": "账号名 OCR 为“红发魔女Amber”，置信度 1"},
+        {"refType": "ocr", "ref": "OCR-00003", "supports": "平台标识 OCR 为“小红书”，置信度 0.3，人工核图接受"},
+        {"refType": "ocr", "ref": "OCR-00012", "supports": "页脚 OCR 为“AI FOR WORKERS”，置信度 0.5"},
+        {"refType": "targeted_frame", "ref": "TARGET-0139", "supports": "黑场前后外层账号和固定标题仍保留"}
+      ],
+      "confidence": "high",
+      "unknowns": ["外层账号是否为原始嵌入素材制作者", "嵌入素材的原始来源"]
+    },
+    {
+      "id": "KU-003",
+      "title": "分屏界面把较粗糙头部与更写实头部并列",
+      "importance": "core",
+      "statement": "0.1–14.35 秒多次出现一套分屏创作界面：左侧通常是较粗糙、雕塑感或带笔划/变形的头部，右侧是更平滑、带肤色与细节的头部；两侧周围出现类似三维/沉浸式编辑的手柄、圆环、材质球和放射菜单。画面把两侧编辑成输入—结果关系，但单凭并置不能证明每一次右侧变化都由同一时刻左侧动作因果产生。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.1, "end": 14.35},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0008", "supports": "早段左右红胡子头部对照"},
+        {"refType": "targeted_frame", "ref": "TARGET-0025", "supports": "3.8 秒左右老年男性头部与工具环"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "8.4 秒左右老年女性头部与工具状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "10.35 秒分屏模型和黄色放射菜单"},
+        {"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "14.35 秒年轻男性左右头部结果"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "可见英文人物提示词、左侧头部状态和三维编辑工具/笔划",
+        "actions": ["分屏中手柄、圆环、材质球和放射菜单的位置/选择持续改变", "左侧头部的形态、眉毛、头发、胡须或表面痕迹发生变化", "右侧较写实头部在同屏或相邻剪辑中发生对应外观变化"],
+        "parameters": ["英文人物提示词内容", "顶部可见但无法完整判读的强度滑块", "可见颜色/材质选择器与工具菜单"],
+        "output": "右侧更写实的人头/人脸外观",
+        "beforeFrames": ["TARGET-0042"],
+        "duringFrames": ["TARGET-0045", "TARGET-0050", "TARGET-0055"],
+        "afterFrames": ["TARGET-0062", "TARGET-0082"],
+        "unknowns": ["右侧是否为同一次实时运算的直接输出", "工具选择的精确名称和参数", "真实延迟"]
+      },
+      "unknowns": ["完整分屏产品名", "每次两侧变化的因果同步性"]
+    },
+    {
+      "id": "KU-004",
+      "title": "分屏演示还使用英文文本提示词",
+      "importance": "core",
+      "statement": "分屏底部至少三次显示英文人物提示词：3.8 秒人工核图读作“Portrait of an old man”；8.4 秒读作“Portrait of an old lady with closed eyes.”；14.2 秒读作“Portrait of a strong young man with closed eyes and a red beard”。OCR 对后两行置信度仅 0.3 且字符有误，人工读数来自对应放大裁剪。提示词是可见输入条件，因此视频没有建立“只靠随手几笔、不需其他输入”这一更强结论。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 3.8, "end": 14.2},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0001", "supports": "3.8 秒提示词放大帧"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00007", "supports": "OCR 提案“Porsat of anoid man”，置信度 0.3；人工核图修订为“Portrait of an old man”"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0006", "supports": "8.4 秒老年女性提示词放大帧"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00045", "supports": "低置信度 OCR 提案保留；人工核图读作“Portrait of an old lady with closed eyes.”"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0007", "supports": "14.2 秒年轻红胡子男性提示词放大帧"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00048", "supports": "提示词首行的低置信度 OCR 提案"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00050", "supports": "提示词第二行的低置信度 OCR 提案“and anod beord”"}
+      ],
+      "confidence": "high",
+      "unknowns": ["提示词是否由视频演示者现场输入", "提示词与笔划各自对结果的贡献"]
+    },
+    {
+      "id": "KU-005",
+      "title": "视频还切入另一套单头三维生成界面",
+      "importance": "core",
+      "statement": "约 2.9–3.5、6.0–7.4 和 11.1–14.0 秒，画面切入另一套单头三维生成界面：左侧导航人工核图可读 Home、Img to 3D、Text to 3D、Image AI、Texture AI、3D Library；右侧有 Generation Attributes、Mesh、Upload、Credits、Est. Time 等区域。该界面的品牌/站点 Logo 被裁切或不可读，不能用旁白的泛称“AI/工具”或分屏右下的“KRE”残片替代。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 2.9, "end": 14.0},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "早段单头生成界面"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0002", "supports": "7.5 秒单头 UI 放大帧"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00016", "supports": "Home，置信度 0.5"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00017", "supports": "OCR 提案“Img to30”，置信度 0.3；人工核图读作“Img to 3D”"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00018", "supports": "OCR 提案“Text 1o 30”，置信度 0.3；人工核图读作“Text to 3D”"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0004", "supports": "12 秒单头 UI 放大帧"}
+      ],
+      "confidence": "high",
+      "unknowns": ["单头界面的品牌、版本和账户身份", "它与分屏界面是否属于同一产品或工作流"]
+    },
+    {
+      "id": "KU-006",
+      "title": "单头界面显示成功、刷新与下载，但未显示一次完整执行",
+      "importance": "core",
+      "statement": "7.5 秒与 12.0 秒放大帧中，单头界面底部人工核图可读“Generation successful!”、Refresh 和 Download；左上还有 Upgrade，右侧可见 Credits/Est. Time。OCR 将状态误提为“Genetation successfull”或“Generation soccessfull”，并把 Refresh/Download 识别成错误拼写，修订均由原裁剪帧人工确认。成功状态和下载控件是直接可见的，但视频未展示点击 Generate/Download、文件落盘或从分屏界面传入此界面的桥接动作。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 7.5, "end": 12.0},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0002", "supports": "7.5 秒成功状态、Refresh、Download、Upgrade 和侧栏"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00023", "supports": "OCR 提案“Genetation successfull”，置信度 0.5；人工核图修订"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0004", "supports": "12 秒重复成功状态与下载控件"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00041", "supports": "OCR 提案“Generation soccessfull”，置信度 0.3；人工核图修订"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00042", "supports": "Refresh 的低置信度误识提案“Reresh”"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00043", "supports": "Download 的低置信度误识提案“Dwwnioal”"}
+      ],
+      "confidence": "high",
+      "unknowns": ["成功状态由何操作触发", "Download 是否被点击", "下载的文件格式、路径与结果"]
+    },
+    {
+      "id": "KU-007",
+      "title": "作者宣称三维建模不再是高门槛技术活",
+      "importance": "core",
+      "statement": "3.575–6.36 秒旁白和字幕称“做三d模型不再是高门键的技术活”；这是作者对门槛的判断，视频以头部变化与界面蒙太奇作说明，但没有给出学习时间、硬件、费用、失败率或新手测试。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 3.575, "end": 6.36},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-002", "supports": "逐字旁白/字幕原文"},
+        {"refType": "ocr", "ref": "OCR-00185", "supports": "4.2 秒字幕 OCR“做3D模型不再是高门槛的”，置信度 1"},
+        {"refType": "targeted_frame", "ref": "TARGET-0026", "supports": "主张字幕与分屏脸部示例同屏"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "三维建模门槛已显著降低。", "evidenceUnitIds": ["KU-003", "KU-005", "KU-006"], "conditions": ["视频只展示短时头部/人脸界面片段"], "counterexamples": [], "actions": [], "limits": ["没有成本、学习时间、设备与失败样本"]},
+      "unknowns": ["实际学习门槛", "硬件和付费要求"]
+    },
+    {
+      "id": "KU-008",
+      "title": "作者把核心操作描述为左侧画几笔、AI 实时转为三维",
+      "importance": "core",
+      "statement": "6.37–11.083 秒作者说“动动手，简单在左面画几笔草图，Ai就能实时将它转为三d艺术品”。画面确有左侧头部、工具轨迹/菜单与右侧结果变化，但同时显示英文提示词，且没有测量延迟，因此“实时”和“简单几笔即可”仍是作者主张。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 6.37, "end": 11.083},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "逐字作者主张"},
+        {"refType": "ocr", "ref": "OCR-00291", "supports": "7.7 秒字幕“简单在左面画几笔草图”，置信度 0.5"},
+        {"refType": "ocr", "ref": "OCR-00363", "supports": "9.3 秒字幕“AI就能实时将它转为3D艺”，置信度 0.5，下一 OCR 行承接“术品”"},
+        {"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "左侧模型、工具菜单与右侧较写实头部同屏"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "在左侧画几笔，AI 就会实时转成三维艺术品。", "evidenceUnitIds": ["KU-003", "KU-004", "KU-006"], "conditions": ["英文文本提示词可见", "编辑工具和参数未完整解释"], "counterexamples": [], "actions": ["在左侧进行少量编辑"], "limits": ["没有端到端计时", "没有失败示例", "没有证明仅靠笔划"]},
+      "unknowns": ["提示词、笔划和其他设置的必要性", "准确延迟"]
+    },
+    {
+      "id": "KU-009",
+      "title": "观测剪辑顺序不是一条已证实的操作流水线",
+      "importance": "core",
+      "statement": "屏幕顺序反复在分屏头部编辑界面、单头生成成功界面和后续影视人物蒙太奇之间切换。因为两套 UI 的完整品牌和连接动作都未显示，最稳妥的重建是：视频并列展示了若干编辑/生成状态，而不是证明“在一个工具中从左侧几笔连续完成三维生成、下载并产出结尾人物”的单一工作流。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0.1, "end": 17.481},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "分屏状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "随后切入单头生成界面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "再次回到分屏编辑"},
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "分屏稳定结果"},
+        {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "切回单头成功界面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "再切为影视人物蒙太奇"}
+      ],
+      "confidence": "high",
+      "reasoning": "交替剪辑、界面视觉结构不同、品牌不完整且缺少文件/命令桥接，所以不能按作者叙述把画面自动重排成连续教程。",
+      "unknowns": ["两套 UI 的真实依赖顺序", "是否存在视频外执行的文件传递或后期生成"]
+    },
+    {
+      "id": "KU-010",
+      "title": "关键桥接步骤没有在视频中得到证明",
+      "importance": "core",
+      "statement": "在全片 0–17.601 秒目标帧与 0.15–0.5 秒密度检查范围内，没有观察到清晰的提交/Generate 点击、从分屏界面导出或复制、向单头界面上传、Download 点击、文件落盘或把所得三维资产交给结尾场景的连续操作。可见 Download 按钮不能替代下载动作本身。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 17.601},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-TARGETED", "supports": "协议对全片、核心动作窗和收尾共捕捉 156 帧"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "核心动作窗起点"},
+        {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "核心动作窗后单头成功状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0139", "supports": "全片 OCR/边界扫描终点"},
+        {"refType": "targeted_frame", "ref": "TARGET-0156", "supports": "收尾专门检查终点"}
+      ],
+      "confidence": "high",
+      "unknowns": ["这些步骤是否在录屏之外发生", "是否存在未呈现的自动化桥接"]
+    },
+    {
+      "id": "KU-011",
+      "title": "作者把用途扩大到新手、游戏角色、场景和电商模特",
+      "importance": "core",
+      "statement": "11.083–15.25 秒旁白/字幕称“小白不上班。在家也能设计三d游戏角色场景”，随后以“电商模特”标注写实人物画面。这是作者对受众和用途的扩展性主张。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 11.083, "end": 15.25},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-004", "supports": "新手、在家、游戏角色和场景主张"},
+        {"refType": "cue", "ref": "CUE-005", "supports": "电商模特主张"},
+        {"refType": "ocr", "ref": "OCR-00654", "supports": "14.4 秒 OCR“电商模特”，置信度 1"},
+        {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "电商模特字幕与分屏头部画面"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "新手在家可设计三维游戏角色、场景和电商模特。", "evidenceUnitIds": ["KU-012", "KU-013"], "conditions": ["可见演示集中于头部/人脸"], "counterexamples": [], "actions": ["在家使用作者所指工具进行设计"], "limits": ["没有完整身体角色制作流程", "没有场景设计 UI 过程", "没有电商商品/服装/投放成品"]},
+      "unknowns": ["新手能否独立完成", "场景和电商流程所需条件"]
+    },
+    {
+      "id": "KU-012",
+      "title": "可见示例集中于头部和人脸，而非完整角色或场景制作过程",
+      "importance": "core",
+      "statement": "对 0–17.601 秒全片的分屏、单头 UI 和结尾蒙太奇检查显示：可辨的生成/编辑对象均为孤立头部或人脸。结尾虽置于带格架的影视化环境中，但视频没有展示完整身体角色的建模步骤，也没有展示场景设计界面、场景资产编辑或电商商品成品流程。因此这些用途由画面示意/联想，不足以证明作者主张的全部范围。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 17.601},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-TARGETED", "supports": "全时段载体与结果组检查"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场两个头部"},
+        {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "单头三维结果"},
+        {"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "格架环境中的多个头部"},
+        {"refType": "targeted_frame", "ref": "TARGET-0091", "supports": "年轻女性头部近景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0100", "supports": "年长男性头部近景"}
+      ],
+      "confidence": "high",
+      "unknowns": ["视频外是否存在完整角色、场景或电商成品"]
+    },
+    {
+      "id": "KU-013",
+      "title": "结尾蒙太奇至少包含四个可分辨头部主体",
+      "importance": "core",
+      "statement": "14.95–17.35 秒的格架/近景蒙太奇中，按外貌与剪辑段保守区分，至少可见四个不同头部主体：格架中的红胡子男性、年长浅肤色女性、年轻深肤色女性、年长浅肤色灰胡子男性；其中后三者各有主要近景。它们承担“电商模特/角色结果”的视觉联想，但画面未给出姓名、来源或生成标签。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 14.95, "end": 17.35},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "格架中红胡子男性、年长女性及其他头部"},
+        {"refType": "targeted_frame", "ref": "TARGET-0090", "supports": "年长女性近景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0095", "supports": "年轻深肤色女性近景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0100", "supports": "年长灰胡子男性近景"}
+      ],
+      "confidence": "high",
+      "unknowns": ["背景中是否还有更多独立主体", "人物真实身份和素材来源"]
+    },
+    {
+      "id": "KU-014",
+      "title": "结尾人物的身份、授权与生成归因未建立",
+      "importance": "core",
+      "statement": "视频没有说明结尾人物是真人、虚构角色、现成插片还是所示工具生成；也没有姓名、来源、授权或许可标记。外貌相似和剪辑邻接只能支持“被用作结果/用途示意”，不能升级为真实身份或生成证明。",
+      "provenance": "unknown",
+      "timeRange": {"start": 14.5, "end": 17.481},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0085", "supports": "从分屏界面切向格架人物前的最后模型状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "无来源标签的格架人物镜头"},
+        {"refType": "targeted_frame", "ref": "TARGET-0095", "supports": "仅带创作者水印的年轻女性近景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0100", "supports": "仅带创作者水印的年长男性近景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0103", "supports": "嵌入区黑场前未出现归因标签"}
+      ],
+      "confidence": "high",
+      "unknowns": ["人物身份", "原始素材来源", "肖像/素材授权", "是否由任何可见界面生成"]
+    },
+    {
+      "id": "KU-015",
+      "title": "收尾声称工具已打包并引导观众去评论区",
+      "importance": "core",
+      "statement": "15.4–17.42 秒作者称“工具已经打包好了，评论区见”。这是一项关于外部评论区内容的主张和行动号召；评论区并未作为输入提供，不能在视频内部证据中确认工具包实际存在或包含什么。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 15.4, "end": 17.42},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-005", "supports": "逐字 CTA"},
+        {"refType": "ocr", "ref": "OCR-00742", "supports": "15.7 秒 OCR“工具已经打包好了，评论区”，置信度 1，下一行承接“见”"},
+        {"refType": "targeted_frame", "ref": "TARGET-0091", "supports": "人物近景与 CTA 同屏"},
+        {"refType": "targeted_frame", "ref": "TARGET-0102", "supports": "结尾仍保留 CTA"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "工具已打包，可在评论区获取。", "evidenceUnitIds": ["KU-016"], "conditions": ["评论区属于未提供的外部证据通道"], "counterexamples": [], "actions": ["查看评论区"], "limits": ["视频内无工具包清单或评论区内容"]},
+      "unknowns": ["工具包是否存在", "包内产品、文件、链接和许可"]
+    },
+    {
+      "id": "KU-016",
+      "title": "视频内没有给出所宣传工具的完整外部获取边界",
+      "importance": "core",
+      "statement": "在 0–17.601 秒全时段标题/字幕/UI 角落检查和 14.307–17.601 秒收尾专门检查范围内，未观察到所宣传工具的完整产品名、网址、二维码、外部下载入口、价格、明确平台要求、地区、支持责任或使用许可。单头 UI 内部确有 Upgrade、Credits 和 Download 控件，但它们没有建立作者 CTA 所指“打包工具”的外部访问路线，价格/账户值也不可读。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 17.601},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-008 全片 OCR/边界检查与 ACT-010 收尾专门检查"},
+        {"refType": "targeted_frame", "ref": "TARGET-0104", "supports": "全片边界扫描首帧"},
+        {"refType": "targeted_frame", "ref": "TARGET-0139", "supports": "全片边界扫描末帧"},
+        {"refType": "targeted_frame", "ref": "TARGET-0147", "supports": "收尾检查起点"},
+        {"refType": "targeted_frame", "ref": "TARGET-0156", "supports": "收尾检查终点"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0002", "supports": "内部 Upgrade/Credits/Download 控件，防止过度否定"}
+      ],
+      "confidence": "high",
+      "unknowns": ["评论区外部访问路线", "价格", "账号/平台/地区要求", "支持方和许可"]
+    },
+    {
+      "id": "KU-017",
+      "title": "非语音音轨存在，但具体作用不可可靠确认",
+      "importance": "supporting",
+      "statement": "媒体元数据显示 AAC 立体声音轨，电平检查显示全片有持续音频活动；提供的 SRT 只覆盖语音文本。现有方法没有可靠分离并识别背景音乐或音效，因此其节奏、情绪或转场作用保持未知，不把该通道当作无信息。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 17.601},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-AUDIO-INSPECTION", "supports": "音频流、采样率、电平与无可靠语义分类的检查记录"}
+      ],
+      "confidence": "high",
+      "unknowns": ["是否有背景音乐", "是否有动作音效", "非语音音频的语义角色"]
+    },
+    {
+      "id": "KU-018",
+      "title": "单头界面可见输入格式和账户边界线索，但小字不完整",
+      "importance": "supporting",
+      "statement": "单头 UI 右侧可见 Mesh 标签和一条绿色提示，人工核图只能可靠读到开头“Only use PNG or JP…”；左上有 Upgrade，右侧有 Credits/Est. Time。它们说明文件格式与账户/额度可能是使用条件，但视频没有给出完整提示文本、价格或具体账户状态。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 7.5, "end": 12.0},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0002", "supports": "绿色格式提示、Upgrade、Credits 和 Est. Time"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00015", "supports": "低置信度 OCR 提案“Ony une PhG o”，保留为不可可靠全文"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0004", "supports": "12 秒同一界面重复显示边界线索"}
+      ],
+      "confidence": "medium",
+      "unknowns": ["完整支持格式", "额度数值", "Upgrade 的价格和权限", "具体账户状态"]
+    },
+    {
+      "id": "KU-019",
+      "title": "结尾老年女性与早先提示词/头部形成视觉回环，但不是生成证明",
+      "importance": "supporting",
+      "statement": "8.4 秒分屏提示词指向闭眼老年女性，右侧呈现相应老年女性头部；15.55 秒后结尾出现相似的闭眼/转头老年女性写实近景。剪辑把它构造成前面演示的视觉回环或 payoff，但没有文件、界面状态或来源标签把二者确认为同一资产。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 8.4, "end": 15.85},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0006", "supports": "老年女性英文提示词"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "分屏老年女性头部"},
+        {"refType": "targeted_frame", "ref": "TARGET-0090", "supports": "结尾老年女性近景"}
+      ],
+      "confidence": "medium",
+      "reasoning": "人物外观与闭眼特征相似且剪辑顺序相邻于用途/结果叙事，支持“回环”解释；缺少资产级标识，因此不支持同一对象或生成因果。",
+      "unknowns": ["是否为同一资产", "是否由分屏界面生成"]
+    },
+    {
+      "id": "KU-020",
+      "title": "可见软件身份至少被分成两个未完全解析的界面",
+      "importance": "core",
+      "statement": "分屏界面右下只稳定显示“KRE”残片；OCR 置信度 0.5，画面裁边阻止补全。单头三维生成界面的导航和成功状态清楚，但 Logo/站点名被裁切。视频没有证据证明这两个界面属于同一产品，完整软件身份均应保持未知。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0.1, "end": 14.35},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0005", "supports": "分屏右下只露出 KRE"},
+        {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00044", "supports": "OCR 提案“KRE”，置信度 0.5；人工核图接受且不补全"},
+        {"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0002", "supports": "另一套单头生成界面但品牌区被裁切"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "旁白仅泛称 Ai，没有命名产品"}
+      ],
+      "confidence": "high",
+      "unknowns": ["KRE 的完整品牌文本", "单头 UI 品牌/站点", "两界面的产品和工作流关系"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-001", "to": "KU-003", "relation": "setup_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场左右转换命题"}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "命题后立即进入分屏示例"}]},
+    {"from": "KU-003", "to": "KU-008", "relation": "edited_as_input_to_output", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "左侧工具/头部与右侧结果同屏"}, {"refType": "cue", "ref": "CUE-003", "supports": "作者把同屏关系解释为左侧几笔到实时三维"}]},
+    {"from": "KU-012", "to": "KU-011", "relation": "illustrates_but_does_not_establish_scope_of", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "可见例证仍是单头"}, {"refType": "cue", "ref": "CUE-004", "supports": "主张扩展到角色和场景"}]},
+    {"from": "KU-003", "to": "KU-005", "relation": "edited_chronology_between_unproven_system_states", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "分屏界面"}, {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "相邻剪辑切入单头界面"}]},
+    {"from": "KU-013", "to": "KU-011", "relation": "juxtaposed_as_possible_result_or_use_case", "evidence": [{"refType": "ocr", "ref": "OCR-00654", "supports": "电商模特字幕"}, {"refType": "targeted_frame", "ref": "TARGET-0095", "supports": "人物近景示意"}]},
+    {"from": "KU-015", "to": "KU-016", "relation": "claim_leads_to_action_with_missing_access_boundary", "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "工具已打包与评论区见"}, {"refType": "source", "ref": "SRC-TARGETED", "supports": "全片和收尾未见外部访问路线"}]},
+    {"from": "KU-002", "to": "KU-020", "relation": "editorial_attribution_kept_separate_from_tool_identity", "evidence": [{"refType": "ocr", "ref": "OCR-00002", "supports": "可见账号归属"}, {"refType": "ocr", "ref": "ocr-crops-evidence.json#OCR-00044", "supports": "分屏只见 KRE 残片"}]},
+    {"from": "KU-013", "to": "KU-014", "relation": "referent_unknown", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "人物蒙太奇只带创作者水印"}, {"refType": "targeted_frame", "ref": "TARGET-0103", "supports": "黑场前无来源/生成标签"}]},
+    {"from": "KU-004", "to": "KU-008", "relation": "claim_limited_by_visible_input_condition", "evidence": [{"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0006", "supports": "英文提示词与分屏编辑共存"}, {"refType": "cue", "ref": "CUE-003", "supports": "旁白只强调左侧几笔"}]},
+    {"from": "KU-006", "to": "KU-010", "relation": "result_state_does_not_prove_execution_bridge", "evidence": [{"refType": "targeted_frame", "ref": "crop-review-manifest.json#CROP-0004", "supports": "成功状态和 Download 可见"}, {"refType": "source", "ref": "SRC-TARGETED", "supports": "无 Generate/Download 点击或文件落盘序列"}]},
+    {"from": "KU-019", "to": "KU-014", "relation": "visual_payoff_without_asset_identity", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "分屏老年女性头部"}, {"refType": "targeted_frame", "ref": "TARGET-0090", "supports": "结尾相似老年女性近景"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-001", "available": true, "inspected": true},
+      {"id": "CAR-002", "available": true, "inspected": true},
+      {"id": "CAR-003", "available": true, "inspected": true},
+      {"id": "CAR-004", "available": true, "inspected": true},
+      {"id": "CAR-005", "available": true, "inspected": true},
+      {"id": "CAR-006", "available": true, "inspected": true},
+      {"id": "CAR-007", "available": true, "inspected": true},
+      {"id": "CAR-008", "available": true, "inspected": true},
+      {"id": "CAR-009", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-001", "captured": true, "unitIds": ["KU-001", "KU-002"]},
+      {"id": "MC-002", "captured": true, "unitIds": ["KU-001", "KU-003"]},
+      {"id": "MC-003", "captured": true, "unitIds": ["KU-007"]},
+      {"id": "MC-004", "captured": true, "unitIds": ["KU-008", "KU-009"]},
+      {"id": "MC-005", "captured": true, "unitIds": ["KU-003", "KU-004", "KU-008", "KU-010"]},
+      {"id": "MC-006", "captured": true, "unitIds": ["KU-006", "KU-011", "KU-012"]},
+      {"id": "MC-007", "captured": true, "unitIds": ["KU-011", "KU-013", "KU-014"]},
+      {"id": "MC-008", "captured": true, "unitIds": ["KU-015", "KU-016"]}
+    ],
+    "relationships": [
+      {"id": "REL-001", "evidenced": true, "evidenceRefs": ["TARGET-0001", "TARGET-0006"]},
+      {"id": "REL-002", "evidenced": true, "evidenceRefs": ["TARGET-0042", "TARGET-0055", "CUE-003"]},
+      {"id": "REL-003", "evidenced": true, "evidenceRefs": ["TARGET-0067", "CUE-004", "CUE-005"]},
+      {"id": "REL-004", "evidenced": true, "evidenceRefs": ["TARGET-0018", "TARGET-0020", "TARGET-0067"]},
+      {"id": "REL-005", "evidenced": true, "evidenceRefs": ["OCR-00654", "TARGET-0086", "TARGET-0095"]},
+      {"id": "REL-006", "evidenced": true, "evidenceRefs": ["CUE-005", "OCR-00742", "SRC-TARGETED"]},
+      {"id": "REL-007", "evidenced": true, "evidenceRefs": ["OCR-00002", "ocr-crops-evidence.json#OCR-00044"]},
+      {"id": "REL-008", "evidenced": true, "evidenceRefs": ["TARGET-0086", "TARGET-0103"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-001", "status": "answered", "unitIds": ["KU-003", "KU-004", "KU-006", "KU-009", "KU-010"], "evidenceRefs": ["TARGET-0042", "TARGET-0055", "crop-review-manifest.json#CROP-0004", "SRC-TARGETED"]},
+      {"id": "CQ-002", "status": "answered", "unitIds": ["KU-003", "KU-006", "KU-008", "KU-009", "KU-010"], "evidenceRefs": ["CUE-003", "TARGET-0042", "TARGET-0067", "SRC-TARGETED"]},
+      {"id": "CQ-003", "status": "unknown", "unitIds": ["KU-005", "KU-006", "KU-018", "KU-020"], "evidenceRefs": ["crop-review-manifest.json#CROP-0002", "crop-review-manifest.json#CROP-0004", "ocr-crops-evidence.json#OCR-00044"]},
+      {"id": "CQ-004", "status": "answered", "unitIds": ["KU-011", "KU-012", "KU-013"], "evidenceRefs": ["TARGET-0067", "TARGET-0086", "TARGET-0095", "TARGET-0100"]},
+      {"id": "CQ-005", "status": "unknown", "unitIds": ["KU-013", "KU-014", "KU-019"], "evidenceRefs": ["TARGET-0086", "TARGET-0090", "TARGET-0095", "TARGET-0100"]},
+      {"id": "CQ-006", "status": "unknown", "unitIds": ["KU-006", "KU-015", "KU-016", "KU-018"], "evidenceRefs": ["CUE-005", "crop-review-manifest.json#CROP-0002", "TARGET-0139", "TARGET-0156"]},
+      {"id": "CQ-007", "status": "answered", "unitIds": ["KU-011", "KU-012", "KU-013", "KU-014"], "evidenceRefs": ["CUE-004", "CUE-005", "TARGET-0067", "TARGET-0086"]},
+      {"id": "CQ-008", "status": "unknown", "unitIds": ["KU-002", "KU-005", "KU-020"], "evidenceRefs": ["OCR-00002", "OCR-00003", "ocr-crops-evidence.json#OCR-00044", "crop-review-manifest.json#CROP-0002"]},
+      {"id": "CQ-009", "status": "unknown", "unitIds": ["KU-017"], "evidenceRefs": ["SRC-AUDIO-INSPECTION"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-001", "KU-003"], "rationale": "承担开场 2D→3D 能力承诺并由分屏头部对照承接。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-007"], "rationale": "承担三维建模门槛降低的作者判断。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-003", "KU-004", "KU-008", "KU-009", "KU-010", "KU-020"], "rationale": "承担左侧画几笔、实时转换主张；与提示词、两界面和未显示桥接共同重建。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-011", "KU-012"], "rationale": "承担新手、在家、游戏角色和场景的用途扩展，并由全片可见范围限制。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-011", "KU-013", "KU-014", "KU-015", "KU-016"], "rationale": "承担电商模特用途、人物蒙太奇和评论区 CTA，同时保留来源与访问边界未知。"}
+    ],
+    "coreEvidence": {"covered": 16, "total": 16},
+    "unknowns": [
+      "两套可见界面的完整产品/站点身份及彼此关系",
+      "文本提示词、笔划、工具与右侧结果的精确因果贡献",
+      "真实生成延迟、失败率和新手完成条件",
+      "Generate/上传/下载/保存/文件传递等桥接步骤",
+      "结尾人物身份、来源、授权和生成归因",
+      "评论区中的工具包、访问路线、价格、账号/平台/地区、支持和许可",
+      "非语音音频的具体内容与语义角色"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "全片被连续 carrier sweep 覆盖；旁白/SRT、固定标题和字幕、分屏工具与提示词、单头 UI 状态与下载控件、人物/头部/环境、剪辑次序、账号/平台/水印、结果计数、非语音音轨存在性和决策相关缺失均有专门检查。小字经裁剪和第二次 OCR；分屏产品仅见 KRE 残片、两界面连接、结尾人物来源、评论区访问条件和非语音音频具体角色均按证据边界保留未知。"
+  }
+}

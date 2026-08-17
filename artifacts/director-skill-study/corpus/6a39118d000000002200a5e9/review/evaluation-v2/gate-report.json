@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T22:17:04.508Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Validated 1 procedural units",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=0.944",
+      "examples": [
+        {
+          "status": "pass",
+          "ids": [
+            "CQ-01",
+            "CQ-02",
+            "CQ-03",
+            "CQ-04",
+            "CQ-05",
+            "CQ-06",
+            "CQ-08",
+            "CQ-09",
+            "CQ-10",
+            "CQ-11",
+            "CQ-12",
+            "CQ-13",
+            "CQ-14",
+            "CQ-15",
+            "CQ-16",
+            "CQ-17",
+            "CQ-18"
+          ],
+          "note": "The reconstruction answers the promise, proof limits, core frameworks, brand mappings, claim status, presentation context, and opening-to-closing outcome with evidence or bounded unknowns."
+        },
+        {
+          "status": "fail",
+          "ids": [
+            "CQ-07"
+          ],
+          "note": "KU-07 recovers the six themes and first three mappings but broadens uncertainty to all later names; the audit supports 逆风翻盘—罗永浩 and 苟富贵勿相忘—于东来, with the material ambiguity concentrated around 刘强东/曹德旺."
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=0.920",
+      "examples": [
+        {
+          "status": "pass",
+          "ids": [
+            "KU-01",
+            "KU-02",
+            "KU-03",
+            "KU-04",
+            "KU-05",
+            "KU-06",
+            "KU-07",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13",
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "KU-19",
+            "KU-20",
+            "KU-21",
+            "KU-22",
+            "KU-23",
+            "KU-24"
+          ],
+          "note": "These audited core units are present with correctly scoped cue, frame, targeted-frame, or OCR support."
+        },
+        {
+          "status": "fail",
+          "ids": [
+            "KU-08",
+            "KU-25"
+          ],
+          "note": "Audit KU-08 requires the recoverable six personal-topic mappings with only the 刘强东/曹德旺 boundary retained as uncertain; audit KU-25 requires the closing identity 人类最强编导 rather than leaving the corrupted SRT form unresolved."
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "status": "pass",
+          "note": "All 27 positive knowledge-unit statements were checked. Claims about decision cost, SU7 purchases, founder/brand personality, and slogans remain attributed to the author or qualified as visual observations; no unsupported positive claim was promoted to fact."
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "pass",
+          "note": "A stratified check of 40 references spanning the opening insert, three logics, personal topics, five product traits, brand directions, final examples, and signoff found all references inside the claimed evidence windows. The closing identity problem is a carrier-resolution error, not a timestamp error."
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": false,
+      "detail": "ratio=0.800",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": true,
+      "detail": "ratio=0.917",
+      "examples": [
+        {
+          "status": "pass",
+          "ids": [
+            "UNK-01",
+            "UNK-02",
+            "UNK-04",
+            "UNK-05",
+            "UNK-06",
+            "UNK-07",
+            "UNK-08",
+            "UNK-09",
+            "UNK-10",
+            "UNK-11",
+            "UNK-12"
+          ],
+          "note": "The reconstruction preserves attribution, identity, performance, causality, universality, taxonomy, execution, effectiveness, official-slogan, transcription, and non-speech-audio boundaries."
+        },
+        {
+          "status": "fail",
+          "ids": [
+            "UNK-03"
+          ],
+          "note": "It records that non-founder IP may use the method but does not explicitly preserve as unknown how that adaptation should work."
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": false,
+      "detail": "Independent evaluator found unchecked channels",
+      "examples": [
+        "CAR-08 non-speech audio: the probe marks the channel inspected, but neither the protocol nor targeted evidence performs a listening/annotation pass, and the reconstruction does not state that it listened for meaning-bearing music or SFX. Declaring the channel unknown does not establish that it was checked."
+      ]
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": false,
+      "detail": "Independent meta-audit found unguarded closures",
+      "examples": [
+        "Meaning-bearing non-speech audio remains uninspected: no actual listening decision, waveform/audio annotation, or equivalent evidence closes music/SFX across 0.000-141.804."
+      ]
+    }
+  ],
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "failedGateIds": [
+    "eval_process_dependency_completeness",
+    "eval_unchecked_channels",
+    "eval_meta_gate"
+  ]
+}

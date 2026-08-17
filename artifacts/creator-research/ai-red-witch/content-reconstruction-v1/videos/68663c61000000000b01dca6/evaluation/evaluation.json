@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 12,
+      "denominator": 13,
+      "examples": [
+        {
+          "result": "miss",
+          "auditId": "C05",
+          "detail": "The candidate says the demonstrated input is an uploaded/imported Excel file, but the audited footage shows a pre-populated 212-record table followed by an in-table bulk paste and a 粘贴成功 toast; no file picker or import flow is shown."
+        },
+        {
+          "result": "hit",
+          "auditIds": ["C02", "C09", "C11", "C12", "C13"],
+          "detail": "The candidate correctly keeps automatic marketplace collection, the five-negative-review group trigger, the customer result, the 96% figure, and free availability unverified or unknown."
+        }
+      ],
+      "threshold": 0.85,
+      "ratio": 0.9231,
+      "pass": true
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 18,
+      "examples": [
+        {
+          "result": "not_covered",
+          "detail": "The core input-state transition at 00:39–00:46 is misrepresented: the candidate omits the already-populated 212 records, selected review cells, bulk-paste action, and 粘贴成功 result."
+        },
+        {
+          "result": "not_covered",
+          "detail": "The dashboard is described, but the large 空值 categories visible at 01:04–01:07 are omitted, so the reconstruction does not preserve the audit's data-completeness limitation."
+        },
+        {
+          "result": "partially_covered",
+          "detail": "The candidate records that the group target is blank and that group-admin permission is required, but omits the configured personal target 1.负责人, an important counter-signal to the narrated group-delivery claim."
+        },
+        {
+          "result": "covered",
+          "detail": "The candidate accurately preserves the distinct scheduled dashboard push, the separate record-triggered automation, the absent visible five-count condition, the one-review card, and the lack of delivery proof."
+        }
+      ],
+      "threshold": 0.9,
+      "ratio": 0.8333,
+      "pass": false
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 26,
+      "examples": [
+        {
+          "candidateUnits": ["KU-07"],
+          "candidateRelations": ["entry_precedes_excel_import", "excel_comments_feed_ai_fields_and_views"],
+          "detail": "The candidate upgrades the narration's Excel-upload description into the demonstrated input method. The visible operation is bulk paste into an existing multidimensional table, and the origin of the pre-existing 212 records is unknown."
+        }
+      ],
+      "threshold": 0.05,
+      "ratio": 0.0385,
+      "pass": true
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "result": "correct",
+          "refs": ["CUE-007", "TARGET-0043", "TARGET-0078", "TARGET-0081", "TARGET-0084", "TARGET-0085", "TARGET-0104"],
+          "detail": "Checked high-impact cue and frame references fall within the stated collection, table, dashboard-push, automation, recipient, card, and result windows. The input error is semantic rather than a localization error."
+        }
+      ],
+      "threshold": 0.9,
+      "ratio": 1.0,
+      "pass": true
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 8,
+      "rationale": "Eight audited dependencies were checked: demonstrated input mode; paste/processing-to-output transition; output presence versus accuracy; table-to-dashboard boundary; scheduled-push versus record-trigger separation; absence of a visible five-count condition; destination/permission state; and result-card appearance versus delivery proof. The candidate fully covers five. It fails the actual bulk-paste input, fails the paste/processing-to-output relationship, and only partially captures destination state because 1.负责人 is omitted.",
+      "threshold": 0.85,
+      "ratio": 0.625,
+      "pass": false
+    },
+    "unknownDiscipline": {
+      "numerator": 9,
+      "denominator": 10,
+      "examples": [
+        {
+          "result": "correct_unknowns",
+          "detail": "The candidate correctly abstains on brand identity, workload and timing definitions, marketplace authorization, AI accuracy, workflow execution, group permission, delivery, account tier, and current pricing."
+        },
+        {
+          "result": "miss",
+          "detail": "The origin of the 212 records should remain unknown among marketplace sync, file import, manual paste, and template sample data; the candidate instead commits to an existing Excel input."
+        }
+      ],
+      "threshold": 0.9,
+      "ratio": 0.9,
+      "pass": true
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 4,
+    "executionValue": 3,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "The transient transactional UI state at 00:44–00:46: selected review cells, bulk paste, and the 粘贴成功 toast inside an already populated table."
+    ],
+    "unguardedMeaningChanges": [
+      "The tutorial changes from narration about uploading Excel to a visibly different demonstrated action: bulk pasting review text into an existing table.",
+      "The message configuration shows no group selected while a dynamic personal recipient, 1.负责人, is selected; this strengthens the contradiction with the narrated group-send scenario."
+    ],
+    "unguardedRelationships": [
+      "Bulk paste -> visible processing/spinner states -> populated AI fields is not preserved; the candidate substitutes Excel import and therefore loses the strongest shown causal fragment.",
+      "Record-triggered workflow -> selected personal recipient versus blank group target is only partially reconstructed."
+    ],
+    "rationale": "Although all broad modality classes were nominally inspected, the candidate's self-meta-gate is false because it missed a meaning-bearing UI transaction and a consequential destination relation in the very intervals the protocol claimed to close. A checked channel is not equivalent to a closed invariant when the decisive state is misread or omitted."
+  },
+  "examples": [
+    {
+      "severity": "critical",
+      "type": "narration_screen_inversion",
+      "candidate": "The demonstrated workflow starts from uploading/importing an Excel file containing reviews.",
+      "audit": "Narration says upload Excel; the screen shows a pre-populated table, bulk paste into rows, and 粘贴成功. No import flow is visible."
+    },
+    {
+      "severity": "high",
+      "type": "recipient_state_omission",
+      "candidate": "The group target is unselected and group-admin permission is required.",
+      "audit": "In addition, the personal-recipient field contains the dynamic value 1.负责人, making the visible configuration more consistent with person delivery than configured group delivery."
+    },
+    {
+      "severity": "medium",
+      "type": "data_quality_qualifier_omission",
+      "candidate": "A configured dashboard with several charts is visible.",
+      "audit": "The dashboard also contains large 空值 segments; chart existence does not establish data completeness or correctness."
+    },
+    {
+      "severity": "strength",
+      "type": "automation_separation",
+      "candidate": "The scheduled dashboard push and the record-triggered message workflow are two distinct visible configurations.",
+      "audit": "Confirmed. This is the most important claim-boundary success in the reconstruction."
+    },
+    {
+      "severity": "critical",
+      "type": "deterministic_internal_gate_failure",
+      "candidate": "KU-13, KU-24, and KU-27 are typed as system_inference without a validator-accepted reasoning field.",
+      "audit": "The canonical deterministic validator reports internal_unsupported_inference for all three units. This is separate from the independent unsupported-inference count above."
+    }
+  ]
+}

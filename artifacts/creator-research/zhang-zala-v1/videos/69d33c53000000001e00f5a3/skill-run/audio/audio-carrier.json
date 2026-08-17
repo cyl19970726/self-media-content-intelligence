@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "audio-carrier-proposals-1.0",
+  "generatedAt": "2026-08-16T13:22:07.671282+00:00",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69d33c53000000001e00f5a3/audio-16k.wav",
+  "sourceSha256": "66800fc60d37e680d26210ecc2fd10615934fb14c685d9feb0308f4689c48095",
+  "durationSeconds": 128.917188,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "labelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 10.0,
+    "hopSeconds": 10.0,
+    "coverage": "gap-free; overlapping when hop is smaller than window",
+    "scoreTransform": "sigmoid(logits)"
+  },
+  "limitations": [
+    "Labels and scores are machine proposals, not human listening or source attribution.",
+    "Mixed-track classification does not isolate speech, music, UI sounds, or inserted-clip audio.",
+    "Absence from top labels does not prove a sound is absent.",
+    "The model cannot establish track identity, ownership, licensing, or editorial intent."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "rms": 0.0485899,
+      "peak": 0.5091403,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.767906
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.622189
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.161715
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.035683
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017868
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015264
+        },
+        {
+          "label": "Clicking",
+          "score": 0.012203
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.007794
+        },
+        {
+          "label": "Gasp",
+          "score": 0.005005
+        },
+        {
+          "label": "Sigh",
+          "score": 0.004781
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "rms": 0.0384864,
+      "peak": 0.365215,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.776226
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.468524
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.202501
+        },
+        {
+          "label": "Conversation",
+          "score": 0.091388
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.091133
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.025741
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015276
+        },
+        {
+          "label": "Clicking",
+          "score": 0.009143
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.004771
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004563
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "rms": 0.0597929,
+      "peak": 0.4802393,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.843125
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.326502
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.302943
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.115376
+        },
+        {
+          "label": "Conversation",
+          "score": 0.08517
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.024248
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011096
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.007098
+        },
+        {
+          "label": "Television",
+          "score": 0.005614
+        },
+        {
+          "label": "Writing",
+          "score": 0.005521
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "rms": 0.0641577,
+      "peak": 0.481521,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.847138
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.279987
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.228569
+        },
+        {
+          "label": "Conversation",
+          "score": 0.073754
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.036686
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016299
+        },
+        {
+          "label": "Gasp",
+          "score": 0.015565
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.013445
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.01136
+        },
+        {
+          "label": "Snort",
+          "score": 0.007588
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "rms": 0.1090006,
+      "peak": 1.0000305,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.79665
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.366296
+        },
+        {
+          "label": "Conversation",
+          "score": 0.238621
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.157338
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.031226
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019366
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.014076
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012767
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.008299
+        },
+        {
+          "label": "Radio",
+          "score": 0.008081
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "rms": 0.0730622,
+      "peak": 0.561449,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.809951
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.224151
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.186054
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.16581
+        },
+        {
+          "label": "Conversation",
+          "score": 0.102006
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017014
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.016368
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.015666
+        },
+        {
+          "label": "Writing",
+          "score": 0.006075
+        },
+        {
+          "label": "Radio",
+          "score": 0.005037
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "rms": 0.0741969,
+      "peak": 0.6565752,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.764466
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.143139
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.142559
+        },
+        {
+          "label": "Conversation",
+          "score": 0.130185
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.121347
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.021139
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019515
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.014773
+        },
+        {
+          "label": "Radio",
+          "score": 0.012633
+        },
+        {
+          "label": "Television",
+          "score": 0.005303
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 80.0,
+      "rms": 0.0463183,
+      "peak": 0.5017548,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.765772
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.422567
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.20475
+        },
+        {
+          "label": "Conversation",
+          "score": 0.063867
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.050538
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.03529
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.00969
+        },
+        {
+          "label": "Clicking",
+          "score": 0.006258
+        },
+        {
+          "label": "Radio",
+          "score": 0.005835
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.005636
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 90.0,
+      "rms": 0.0643468,
+      "peak": 0.5326396,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.760179
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.262185
+        },
+        {
+          "label": "Conversation",
+          "score": 0.19008
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.157794
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.094012
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.024068
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017808
+        },
+        {
+          "label": "Writing",
+          "score": 0.012503
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.007775
+        },
+        {
+          "label": "Radio",
+          "score": 0.003224
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 100.0,
+      "rms": 0.0455305,
+      "peak": 0.3480941,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.74423
+        },
+        {
+          "label": "Conversation",
+          "score": 0.155457
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.115494
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.114335
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.10953
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.021645
+        },
+        {
+          "label": "Clicking",
+          "score": 0.015984
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.013462
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.008615
+        },
+        {
+          "label": "Writing",
+          "score": 0.005782
+        }
+      ]
+    },
+    {
+      "start": 100.0,
+      "end": 110.0,
+      "rms": 0.0501751,
+      "peak": 0.4858241,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.821809
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.207359
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.193902
+        },
+        {
+          "label": "Conversation",
+          "score": 0.114093
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.077436
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.020311
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.018414
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.018389
+        },
+        {
+          "label": "Writing",
+          "score": 0.005829
+        },
+        {
+          "label": "Clicking",
+          "score": 0.005658
+        }
+      ]
+    },
+    {
+      "start": 110.0,
+      "end": 120.0,
+      "rms": 0.0441423,
+      "peak": 0.4561602,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.842914
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.322987
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.211081
+        },
+        {
+          "label": "Conversation",
+          "score": 0.136406
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.047375
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.020838
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019136
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.012712
+        },
+        {
+          "label": "Writing",
+          "score": 0.004561
+        },
+        {
+          "label": "Television",
+          "score": 0.00313
+        }
+      ]
+    },
+    {
+      "start": 120.0,
+      "end": 128.917,
+      "rms": 0.0425369,
+      "peak": 0.3818781,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.576328
+        },
+        {
+          "label": "Computer keyboard",
+          "score": 0.568216
+        },
+        {
+          "label": "Typing",
+          "score": 0.408331
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.044129
+        },
+        {
+          "label": "Clicking",
+          "score": 0.033266
+        },
+        {
+          "label": "Silence",
+          "score": 0.02625
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.010037
+        },
+        {
+          "label": "Rattle",
+          "score": 0.008799
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007095
+        },
+        {
+          "label": "Shuffling cards",
+          "score": 0.007079
+        }
+      ]
+    }
+  ]
+}

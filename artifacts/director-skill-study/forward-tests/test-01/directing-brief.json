@@ -1,0 +1,131 @@
+{
+  "schemaVersion":"2.0",
+  "artifactStatus":"complete",
+  "draftSlots":[],
+  "mode":"single",
+  "format":"video",
+  "decision":{"status":"known","value":"让独立创作者在投入时间或订阅前，用一条 76 秒小红书教程建立 Codex + Flova 视频工作流的四项核验方法：依赖、价格/系统、自有素材与封面路径；本条不声称已完成真实项目或单文件实测，缺少当前官方证据的价格和兼容性保留为未知。"},
+  "accountContext":{
+    "identityPromise":{"status":"known","value":"帮助独立创作者真实使用 AI 完成视频，以可见操作和边界代替 AI 新闻复述。"},
+    "stage":{"status":"known","value":"早期账号，尚无稳定粉丝或表现基线。"},
+    "contentRole":{"status":"known","value":"搜索/收藏教程，守住信任。"}
+  },
+  "responsibility":{
+    "humanDecision":{"status":"known","value":"创作者决定最终口径、事实证据、资产使用与是否发布。"},
+    "aiContribution":{"status":"known","value":"AI 提供结构、脚本、镜头、证明边界和实验设计，不批准发布。"},
+    "factVerification":{"status":"known","value":"创作者在录制当天核对 Flova 当前官方价格与系统要求；无当前官方证据就显示未知。"},
+    "publishOwner":{"status":"known","value":"账号创作者本人，在独立语义审查后作发布决定。"}
+  },
+  "commercialBoundary":{
+    "freeScope":{"status":"known","value":"交付四项试用前核验动作与各自证据边界。"},
+    "paidScope":{"status":"not_applicable","reason":"任务未提出付费产品或服务。"},
+    "collaboration":{"status":"not_applicable","reason":"任务为创作者个人制作，未提出合伙或分成。"}
+  },
+  "offerArchitecture":{"status":"not_applicable","reason":"本条不承担商业转化。"},
+  "carrierEvidence":{
+    "nonSpeechAudio":{"status":"not_applicable","reason":"最低可行成片明确不使用音乐、效果音或环境声设计，只用旁白；操作点击声在剪辑中静音。"},
+    "referentLedger":[
+      {"id":"referent_flova_ui","referent":"原始 Flova 产品界面与标识录屏（从公开版执行资产图排除）","locator":{"kind":"external","externalLocator":"任务列出的现有真实屏幕录制；仅供内部事实核验，不进入当前公开版"},"source":{"status":"known","value":"创作者已有录屏"},"ownership":{"status":"known","value":"创作者只拥有录屏文件；产品 UI、标识与 trade dress 归 Flova 相应权利人。当前未建立可留档的公开展示授权，因此禁止用于本候选；发布负责人须在发布前完成条款/书面授权检查，无法确认或结果不允许时继续禁用并使用 asset_ui_schematic。"},"contentScope":"analyzed_case"},
+      {"id":"referent_flova_logo","referent":"原始录屏内的 Flova logo、品牌色与可识别产品视觉","parentReferentId":"referent_flova_ui","locator":{"kind":"external","externalLocator":"原始录屏中所有可识别品牌区域；当前公开版不调用"},"source":{"status":"known","value":"嵌在原始 Flova UI 录屏中"},"ownership":{"status":"known","value":"归 Flova 相应权利人；没有可留档授权即不得出现，不能仅靠裁切或模糊推定获得授权。当前替代为创作者自制、无 logo/品牌色/trade dress 的中性方框。"},"contentScope":"analyzed_case"},
+      {"id":"referent_final_clip","referent":"任务所述原最终 9:16 短片（从公开版执行资产图排除）","locator":{"kind":"external","externalLocator":"任务列出的原最终短片；仅供内部审计，不进入当前公开版"},"source":{"status":"known","value":"任务列出的可用素材"},"ownership":{"status":"known","value":"创作者持有文件，但嵌套画面、音乐、字体、肖像、logo 与生成素材权利尚未逐项闭合；当前一律禁止公开使用。发布负责人须在发布前完成逐项清单、来源凭证与授权检查；任一未授权项必须移除或替换并重新审计，闭合前使用 asset_safe_vertical。"},"contentScope":"analyzed_case"},
+      {"id":"referent_final_nested","referent":"原最终短片内所有嵌套画面、音乐、字体、肖像、产品 UI/logo 与生成素材","parentReferentId":"referent_final_clip","locator":{"kind":"external","externalLocator":"原最终短片全时间线及素材箱；当前公开版不调用"},"source":{"status":"known","value":"待发布负责人逐项盘点的原短片嵌套资产集合"},"ownership":{"status":"known","value":"每项权利归其创作者或权利人；在来源和授权凭证逐项可留档前全部按禁用处理。发现未授权项即删除/替换并重新审计，绝不以文件归创作者推定嵌套资产可发布。"},"contentScope":"analyzed_case"}
+    ],
+    "absenceClaims":[]
+  },
+  "assets":[
+    {"id":"asset_ui_schematic","kind":"image","owner":{"status":"known","value":"创作者；用自绘线框与手写文字制作，不含第三方 UI、logo、品牌色或 trade dress"},"rightsStatus":"owned"},
+    {"id":"asset_safe_vertical","kind":"footage","owner":{"status":"known","value":"创作者；仅用自绘几何形、自己的文字与自录旁白制作的 9:16 中性示意片"},"rightsStatus":"owned"},
+    {"id":"asset_md_file","kind":"other","owner":{"status":"known","value":"创作者"},"rightsStatus":"owned"},
+    {"id":"asset_verify_card","kind":"image","owner":{"status":"known","value":"创作者自绘核验卡；不含官方页面截图、产品 UI 或 logo"},"rightsStatus":"owned"},
+    {"id":"asset_import_schematic","kind":"footage","owner":{"status":"known","value":"创作者自制抽象动画；只画文件→项目→时间线，不复刻产品界面"},"rightsStatus":"owned"},
+    {"id":"asset_cover_schematic","kind":"footage","owner":{"status":"known","value":"创作者自制抽象动画；用自绘框和手写标题，不展示第三方工具 UI"},"rightsStatus":"owned"},
+    {"id":"asset_voice","kind":"audio","owner":{"status":"known","value":"创作者本人"},"rightsStatus":"owned"}
+  ],
+  "claims":[
+    {"id":"claim_demand","text":"任务输入称评论需求来自价格、Windows/Mac 兼容、自有素材和封面四类问题。","claimClass":"user_claim","risk":"low","verificationStatus":"not_verified","scope":"只作为本次选题线索。","cannotSupport":"不能代表全部用户、搜索量、优先级或转化价值。","sourceLocator":{"sourceId":"forward_input_01","locator":"test-01-codex-flova.md 的评论需求段","observedAt":"2026-08-16T00:00:00+08:00"},"beatRefs":["beat_map"],"shotRefs":["shot_map"],"panelRefs":[],"customUnitRefs":[],"assetRefs":[]},
+    {"id":"claim_dependency","text":"任务输入提供的选题和素材清单表明本次讨论的工作流涉及 Codex 与 Flova；本条新制作另设人工事实与权利核验，不把该核验误称为原工作流的已知环节。","claimClass":"user_claim","risk":"moderate","verificationStatus":"not_verified","scope":"公开版用自制无品牌示意图转述 Codex + Flova 依赖，并把人工核验显式标为本条方案责任；不展示原 UI/logo。","cannotSupport":"不能证明原工作流已有人工检查环节、自动完成、普适可用或任何工具单独造成结果；示意图本身不是操作证据。","sourceLocator":{"sourceId":"forward_input_01","locator":"test-01-codex-flova.md 的选题与素材段仅支持 Codex + Flova；人工核验来自本条责任方案","observedAt":"2026-08-16T00:00:00+08:00"},"beatRefs":["beat_open","beat_map"],"shotRefs":["shot_open","shot_map"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_ui_schematic","asset_safe_vertical","asset_md_file"]},
+    {"id":"claim_price_unknown","text":"Flova 当前价格、免费额度和计费条件在任务证据中未知。","claimClass":"unknown","risk":"moderate","verificationStatus":"not_verified","scope":"公开版只用自制核验卡说明应查日期、地区、币种与条件；不展示未经授权的官方页面截图。","cannotSupport":"不能支持免费、固定价格或长期有效。","beatRefs":["beat_verify"],"shotRefs":["shot_verify"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_verify_card"]},
+    {"id":"claim_compat_unknown","text":"Flova 当前 Windows/Mac 兼容范围与版本要求在任务证据中未知。","claimClass":"unknown","risk":"moderate","verificationStatus":"not_verified","scope":"公开版只用自制核验卡说明检查路径和实际设备字段，不展示产品 UI。","cannotSupport":"单机成功不能证明另一系统、旧设备或未来版本兼容。","beatRefs":["beat_verify"],"shotRefs":["shot_verify"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_verify_card"]},
+    {"id":"claim_import_scope","text":"连续内部测试若显示指定文件被选中、导入同一项目并进入时间线，也只能证明这一个文件的一次导入；当前公开版仅展示自制核验步骤示意。","claimClass":"system_inference","risk":"moderate","verificationStatus":"hypothesis","scope":"公开载体是无品牌抽象动画并显著标‘核验步骤示意，非能力证明’。","cannotSupport":"公开示意图不能证明真实导入成功，也不能证明所有格式、编码或自动剪辑。","beatRefs":["beat_import"],"shotRefs":["shot_import"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_import_schematic"]},
+    {"id":"claim_final_object","text":"任务输入称存在一段最终 9:16 短片，但原片在嵌套资产权利逐项闭合前禁止公开使用。","claimClass":"user_claim","risk":"moderate","verificationStatus":"not_verified","scope":"公开版只展示创作者自制中性 9:16 示意片，并明确它不是原结果片。","cannotSupport":"中性示意片不能证明原结果质量、无需人工、平台表现或因果归因。","sourceLocator":{"sourceId":"forward_input_01","locator":"test-01-codex-flova.md 的最终短片素材项","observedAt":"2026-08-16T00:00:00+08:00"},"beatRefs":["beat_open","beat_close"],"shotRefs":["shot_open","shot_close"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_safe_vertical"]},
+    {"id":"claim_cover_path","text":"用创作者自制中性 9:16 示意片选帧并人工加一句准确标题，可形成这条内容的候选封面。","claimClass":"system_inference","risk":"low","verificationStatus":"hypothesis","scope":"公开版只展示无第三方工具 UI 的自制抽象制作路径。","cannotSupport":"不能证明 Flova 自动生成封面或封面一定提高点击。","beatRefs":["beat_cover"],"shotRefs":["shot_cover"],"panelRefs":[],"customUnitRefs":[],"assetRefs":["asset_cover_schematic","asset_safe_vertical"]}
+  ],
+  "safety":{"privacyChecks":[],"platformChecks":[{"id":"check_ui_schematic","subjectRef":"asset_ui_schematic","status":"not_applicable","note":"发布负责人在导出前核对：仅自绘通用方框与手写文字，无第三方 UI、logo、品牌色或 trade dress；若发现残留即删除重做。"},{"id":"check_safe_vertical","subjectRef":"asset_safe_vertical","status":"not_applicable","note":"发布负责人在导出前逐帧检查：只含自绘几何形、自己的文字和自录旁白；发现任何第三方画面、音乐、字体、肖像、UI/logo 或生成素材即禁用并重做。"}],"disclosure":{"status":"known","value":"不展示评论头像、昵称、私信或后台转化数据；发布前确认是否存在商业关系，存在则按发布当日适用规则显著披露。"}},
+  "unknowns":[
+    {"status":"unknown","reason":"当前价格、额度和计费条件没有官方证据。","owner":"创作者/事实核验负责人","resolution":"录制当天记录当前官方页面 URL、日期、地区和条件；无法核验则成片显示未知。"},
+    {"status":"unknown","reason":"当前 Windows/Mac 兼容范围和版本要求没有官方证据。","owner":"创作者/事实核验负责人","resolution":"录制当天核对官方系统要求并标注实际演示设备；无法核验则不作兼容结论。"},
+    {"status":"unknown","reason":"小红书后台可用的有效观看、收藏和 12 秒留存字段未确认。","owner":"发布负责人","resolution":"发布前检查后台字段；缺失时使用实验中声明的代理指标并保留限制。"},
+    {"status":"unknown","reason":"创作者实际设备、系统版本与封面工具未提供。","owner":"创作者","resolution":"开拍前写入镜头角标，只演示真实设备和已有工具。"}
+    ,{"status":"unknown","reason":"原 Flova UI/logo 录屏没有可留档的公开展示授权依据。","owner":"账号创作者/发布负责人","resolution":"最迟导出前核对适用条款或书面授权并存档；在证据闭合并修订资产记录前，原录屏始终禁止进入公开版，强制使用 asset_ui_schematic。"}
+    ,{"status":"unknown","reason":"原最终短片的嵌套画面、音乐、字体、肖像、UI/logo 与生成素材尚未逐项审计。","owner":"账号创作者/发布负责人","resolution":"最迟导出前建立逐项清单、来源和授权凭证；任何未授权项移除/替换后重新审计。在全量闭合并修订资产记录前，原片始终禁用，强制使用 asset_safe_vertical。"}
+  ],
+  "singlePlan":{
+    "workingTitle":"Codex + Flova 做视频前先看：先核验这 4 件事",
+    "primaryJob":"search/save：让准备尝试该工作流的独立创作者收藏并执行四项核验",
+    "guardrailJob":{"status":"known","value":"trust：不得让人误以为只用 Codex、免费、全平台兼容、万能或自动完成。"},
+    "audience":{"person":"想用 AI 完成短视频、会使用自己素材且在意成本与设备限制的独立创作者","stage":"准备尝试 Codex + Flova，但尚未确认工作流边界","situation":"投入安装、订阅或整理素材之前搜索判断教程","currentBelief":"可能把成片误解成 Codex 单工具产出，或期待免费、兼容、自动剪辑的肯定答案"},
+    "demandEvidence":["claim_demand"],
+    "contentMechanism":{
+      "hypothesis":"如果目标创作者在前 12 秒看见 Flova 依赖和四项核验地图，并在正文看见可复做的核验方法和证据边界，那么他们更可能保存清单，因为内容降低试错前的不确定性而不替他们编造实测结果。",
+      "mechanism":"先纠正工具归因，再把价格、兼容、素材、封面四个模糊问题变成检查动作；公开画面只用创作者自制中性示意载体，操作与结果的真实性边界在屏幕上明示。",
+      "conditions":["前 4 秒同时显示自制中性 9:16 示意片、无品牌工作流线框和自有 .md 文件，并标注‘示意画面’与‘不是只用 Codex’。","价格与兼容只依赖录制当天当前官方信息；若无法形成可公开引用的当前证据，公开版只展示自制未知核验卡。","素材段只展示自制‘文件→项目→时间线’核验步骤动画，并显著说明它不是能力证明；真实操作仅用于内部核验。","原 Flova UI/logo 录屏与原最终短片在权利逐项闭合并修订本方案前不得进入成片；总长 60–90 秒。"],
+      "counterexample":"若目标观众真正需要完整安装教程而非试用前判断，四项清单可能显得过浅。",
+      "failureBoundary":"至少四条可比教程、开场版本各两条后，若收藏率无重复同向改善或 12 秒留存恶化，则不推广该开场规则。"
+    },
+    "candidates":[
+      {"id":"candidate_checklist","name":"试用前四项核验清单","audience":"投入时间或订阅前的独立创作者","tension":"看到工作流介绍却不清楚依赖、成本、设备和自有素材边界","promise":"76 秒获得四个核验动作和未知边界","proof":"自有 .md 文件、自制核验卡、无品牌导入步骤动画与中性 9:16 示意片；原素材仅内部核验且不作为公开证明","accountFit":"最符合真实使用与搜索/收藏定位","productionCost":"低到中：制作五组中性图卡与旁白，半天可做","followReason":"后续在权利和当前证据闭合后逐项展开真实流程、失败与人工修正","risk":"公开版不展示原操作结果，必须持续标明‘核验步骤示意，非能力证明’"},
+      {"id":"candidate_import","name":"自有素材导入核验步骤","audience":"已有拍摄素材、最担心导入的创作者","tension":"示例素材能用不代表自己的文件能用","promise":"看清一个文件从选择到时间线应核对的连续状态","proof":"创作者自制文件→项目→时间线抽象动画，并明确需要观众用自己的文件实测","accountFit":"操作路径强但只覆盖一类需求","productionCost":"低：一组无品牌动画和旁白","followReason":"可延伸格式失败、替换和修正系列","risk":"示意动画不能证明工具能力，不能写成实测结果"},
+      {"id":"candidate_roles","name":"工具依赖与本条核验责任图","audience":"混淆工具依赖和内容核验责任的新手","tension":"工作流介绍容易被理解为单工具自动完成，也容易把本条新增的人工核验误当成原流程事实","promise":"一张图分开任务明确的 Codex + Flova 依赖与本条新增的人工核验责任","proof":"自有 .md 文件、无品牌流程线框、本条人工核验卡与中性输出示意并置","accountFit":"信任和身份表达强，但搜索问题偏抽象","productionCost":"低：只制作自有中性图卡","followReason":"持续拆工具依赖、证据边界和内容核验责任","risk":"理解后缺少可收藏的具体决策"}
+    ],
+    "selection":{"selectedId":"candidate_checklist","comparison":"选四项核验，因为覆盖任务给出的全部需求线索且最匹配搜索/收藏；导入步骤过窄，分工图信任强但行动弱。选中方案在前 12 秒吸收分工图，中段交付导入核验步骤，同时明确公开中性动画不是实测证据。"},
+    "contracts":{"click":"做视频前用 76 秒建立价格、系统、自有素材和封面的四项核验方法，同时知道任务涉及 Flova。","delivery":"四项均给核验步骤、缺证据时的处理方式、可证明范围与不能下的结论；不承诺本条已完成真实项目或单文件实测。","follow":"后续仅在权利和证据闭合后发布真实 AI 视频实测、失败边界和人工修正。","action":"收藏这条，开工前按末屏四项逐一核验。","promiseClosure":"末屏把四项收束为‘核对当前证据/标自己的设备/用自己的文件实测/人工制作封面’，并明确本条只演示核验方法，不把中性示意片当真实项目、单文件结果、免费、兼容或自动的证明。"},
+    "evidencePlan":{"status":"applicable","claimRefs":["claim_dependency","claim_price_unknown","claim_compat_unknown","claim_import_scope","claim_final_object","claim_cover_path"]},
+    "beats":[
+      {"id":"beat_open","cognitiveJob":"create_tension","speech":{"status":"known","value":"这不是只看 Codex 的流程：任务明确涉及 Flova；这条内容再加一层人工事实和权利核验。"},"visual":"0–4 秒：创作者自制中性 9:16 示意片、无品牌工作流线框、自己的 .md 文件三分屏；把‘任务依赖：Codex + Flova’与‘本条责任：人工核验’分两行显示，不调用原 Flova UI/logo 录屏或原最终短片。","onScreenText":{"status":"known","value":"示意画面｜任务依赖：Codex + Flova｜本条责任：人工核验"},"audio":{"status":"known","value":"创作者旁白；无音乐、音效和环境声。"}},
+      {"id":"beat_map","cognitiveJob":"orient","speech":{"status":"known","value":"开做前建立四项核验：价格、你的系统、自己的素材能不能进、封面怎么落地。前两项教你核对当前证据，后两项演示核验方法；这条不冒充真实项目实测。"},"visual":"4–12 秒依赖箭头后出现四项清单；匿名说明四类问题仅为评论需求线索，并标‘方法演示，非项目实测’。","onScreenText":{"status":"known","value":"①价格 ②Windows/Mac ③自有素材 ④封面｜方法演示≠项目实测"},"audio":{"status":"known","value":"连续旁白；无非语音音轨。"}},
+      {"id":"beat_verify","cognitiveJob":"explain","speech":{"status":"known","value":"价格别听旧数字：核对当前信息的日期、地区、币种和条件。兼容也要看当前系统要求，再标自己的实际设备；查不到可留档证据就写未知。"},"visual":"12–32 秒：创作者自制核验卡逐项点亮日期、地区、币种、条件和实际设备；没有当前可公开证据的字段显示‘未知’，不展示官方页面截图或产品 UI。","onScreenText":{"status":"known","value":"当前证据 + 日期/地区/条件｜查不到就写未知"},"audio":{"status":"known","value":"连续旁白；无非语音音轨。"}},
+      {"id":"beat_import","cognitiveJob":"prove","speech":{"status":"known","value":"自己的素材要用自己的文件实测：检查文件属性、选中它、导入同一项目，再确认是否进入时间线。格式、大小或编码换了，都要重测。这里是核验步骤示意，不是能力证明。"},"visual":"32–50 秒：创作者自制无品牌抽象动画依次显示文件属性、文件→项目→时间线；全程角标‘核验步骤示意，非能力证明’。","onScreenText":{"status":"known","value":"核验步骤示意｜这个文件 × 这个项目 × 这个版本"},"audio":{"status":"known","value":"连续旁白；无非语音音轨。"}},
+      {"id":"beat_cover","cognitiveJob":"transfer","speech":{"status":"known","value":"封面不承诺自动生成。先用自制中性竖版画面做候选帧，加一句‘做视频前核验 4 件事’，再缩到手机列表尺寸检查。"},"visual":"50–64 秒：自制抽象动画演示中性候选帧、人工加标题、缩略图检查；不使用原最终短片或第三方工具 UI。","onScreenText":{"status":"known","value":"中性候选帧 → 一句标题 → 缩略图检查"},"audio":{"status":"known","value":"连续旁白；无非语音音轨。"}},
+      {"id":"beat_close","cognitiveJob":"convert","speech":{"status":"known","value":"价格和系统核对当前证据；素材用自己的单文件实测；封面手动落地。这条教的是核验方法，收藏后开工前逐个执行。"},"visual":"64–76 秒：创作者自制四项末屏，四项状态写‘查当前证据/标自己的设备/待本人实测/人工制作’，右侧回放自制中性 9:16 示意片并标‘方法示意，非项目结果’，结尾静止。","onScreenText":{"status":"known","value":"收藏这张核验表｜方法示意，不是实测结果"},"audio":{"status":"known","value":"创作者旁白，末尾留静音阅读。"}}
+    ],
+    "shots":[
+      {"id":"shot_open","beatId":"beat_open","targetDurationSeconds":4,"content":"自制中性 9:16 示意片、无品牌工作流线框与自有 .md 文件三分屏；首帧分两行写‘任务依赖：Codex + Flova’和‘本条责任：人工核验’，不得调用原 Flova UI/logo 录屏或原最终短片。","function":"用安全载体制造张力，披露任务明确的工具依赖和本条新增的核验责任。","evidenceResponsibility":"只转述任务输入支持的 Codex + Flova 依赖；人工核验是新制作的责任要求，不是原工作流事实；不证明真实界面、原结果质量、自动、免费或平台表现。","assetRefs":["asset_safe_vertical","asset_ui_schematic","asset_md_file"],"transition":{"status":"known","value":"硬切到依赖地图。"},"editDecision":"add"},
+      {"id":"shot_map","beatId":"beat_map","targetDurationSeconds":8,"content":"在无品牌线框中画出任务依赖 Codex + Flova，旁边单列‘本条人工核验’，再点亮四项清单；标‘方法演示，非项目实测’，不展示评论身份或原产品界面。","function":"前 12 秒完成 Flova 依赖披露并建立四项核验地图。","evidenceResponsibility":"表达任务支持的工具依赖、需求线索与本条方案责任；自制示意图不证明原工作流含人工检查、唯一流程、真实操作或普遍需求。","assetRefs":["asset_ui_schematic","asset_md_file","asset_safe_vertical"],"transition":{"status":"known","value":"数字 1 放大后切核验卡。"},"editDecision":"add"},
+      {"id":"shot_verify","beatId":"beat_verify","targetDurationSeconds":20,"content":"自制核验卡依次框选日期、地区、币种、条件、系统要求与实际设备；无当前可公开证据的字段直接标‘未知’，不展示官方页截图、产品 UI 或 logo。","function":"把价格/兼容转成可复做核验。","evidenceResponsibility":"只证明核验清单和缺证据时的处理规则；不证明任何当前价格、免费状态或系统兼容结论。","assetRefs":["asset_verify_card"],"transition":{"status":"known","value":"卡片上的‘自己的文件’箭头匹配切到导入步骤动画。"},"editDecision":"add"},
+      {"id":"shot_import","beatId":"beat_import","targetDurationSeconds":18,"content":"无品牌抽象动画连续显示文件属性、选择、文件→项目→时间线；全程保留‘核验步骤示意，非能力证明’角标。","function":"固定测试对象并交付一次导入的核验顺序。","evidenceResponsibility":"只证明应如何核验；不证明真实导入成功、全格式、稳定性或自动剪辑。","assetRefs":["asset_import_schematic"],"transition":{"status":"known","value":"抽象时间线定格后切到中性候选封面。"},"editDecision":"add"},
+      {"id":"shot_cover","beatId":"beat_cover","targetDurationSeconds":14,"content":"从自制中性 9:16 示意片生成一个自有候选帧，在自制抽象动画中加‘做视频前核验 4 件事’，缩至手机列表尺寸；不使用原最终短片或第三方 UI。","function":"交付人工封面路径。","evidenceResponsibility":"证明公开版候选封面的制作步骤；不证明 Flova 自动生成或点击效果。","assetRefs":["asset_cover_schematic","asset_safe_vertical"],"transition":{"status":"known","value":"缩略图回弹为四项末屏。"},"editDecision":"add"},
+      {"id":"shot_close","beatId":"beat_close","targetDurationSeconds":12,"content":"自制四项状态末屏：查当前证据、标自己的设备、待本人单文件实测、人工制作封面；中性 9:16 示意片小窗回放并标‘方法示意，非项目结果’。","function":"偿还‘交付核验方法’的承诺并绑定收藏 CTA。","evidenceResponsibility":"总结观众获得的核验动作、示意边界和未知处理；不声称本条已完成真实项目或单文件实测，不把示意片当真实结果，也不承诺收藏带来流量。","assetRefs":["asset_safe_vertical"],"transition":{"status":"known","value":"静止后结束，不加第二 CTA。"},"editDecision":"add"}
+    ],
+    "packaging":{
+      "title":"Codex + Flova 做视频前先看：先核验这 4 件事",
+      "cover":"创作者自制无品牌工作流线框作底，单一大标题‘做视频前核验 4 件事’，小标签‘价格｜系统｜素材｜封面’，角标‘示意图’；不得使用原 Flova UI/logo 录屏或原最终短片，不写免费、万能、自动或流量结果。",
+      "opening":{"kind":"first_frame","content":"自制中性 9:16 示意片与无品牌工作流线框同屏，首帧分开写‘任务依赖：Codex + Flova’与‘本条责任：人工核验’，4 秒内说清二者不是同一证据类别；不得显示原 Flova UI/logo 或原最终短片。"},
+      "searchIntent":{"route":"search","query":"Codex Flova 做视频 价格 兼容 自己的素材 封面"},
+      "cta":"收藏这张四项核验表，真正开工前逐个打勾。",
+      "commentCoding":{"status":"known","value":"匿名编码价格、系统、素材格式、封面路径、工具误归因、其他；记录是否被回答和新增条件，不保留身份，不把高声量少数当普遍需求。"}
+    },
+    "production":{
+      "people":["创作者本人：核验、录屏、旁白、剪辑与发布前复核"],
+      "locations":["安静桌面录音环境","实际电脑屏幕录制环境"],
+      "assetRefs":["asset_ui_schematic","asset_safe_vertical","asset_md_file","asset_verify_card","asset_import_schematic","asset_cover_schematic","asset_voice"],
+      "tools":["系统录屏工具","创作者已有且有权使用的剪辑工具","已有封面文字工具","浏览器"],
+      "deadline":{"status":"known","value":"半天：核验与镜头板 45 分钟，补录 60 分钟，旁白 30 分钟，剪辑字幕 90 分钟，事实/权利复核 30 分钟。"},
+      "owner":{"status":"known","value":"账号创作者本人。"},
+      "fallback":"无当前官方价格/兼容证据就使用自制未知卡并删去数字或肯定口播；真实内部导入核验失败就明确写‘本次未跑通’并改标题，公开版仍只用自制步骤示意且不得冒充成功证明。原 Flova UI/logo 录屏或原最终短片的权利若未逐项闭合，始终禁用并强制使用对应中性资产。"
+    },
+    "originality":{"sourceInspirations":[],"changedDimensions":[],"exceptionReason":{"status":"not_applicable","reason":"任务没有提供参考创作者或源作品。"},"notCopied":["不复制专有措辞、身份符号或案例所有权。","不使用他人评论头像、昵称、私信或截图。","不把单次结果升级为因果或平台分发结论。"]},
+    "experiment":{
+      "primaryVariable":"opening",
+      "lockedElements":["同类独立创作者受众","四项正文与顺序","同一组自制中性示意/核验资产与证明边界","A/B 开场均固定 12 秒且都在前 12 秒披露任务涉及 Codex + Flova，并把人工核验标为本条新增责任；A 先披露再给地图，B 先给中性结果示意再披露并给精简地图","标题句式与封面层级","收藏 CTA","70–82 秒时长","尽量固定发布时间段和频率"],
+      "mainMetric":{"id":"metric_save_rate","name":"有效观看到收藏率","availability":"unknown","definition":"收藏数 ÷ 后台有效观看数。","proxy":"若无有效观看字段，用收藏数 ÷ 播放数并记录口径。","limitation":"后台字段未确认，非随机发布受分发与人群影响。"},
+      "guardrailMetrics":[
+        {"id":"metric_hold12","name":"前 12 秒留存","availability":"unknown","definition":"看到 12 秒人数 ÷ 开始播放人数。","proxy":"用最接近留存点或平均观看时长并注明。","limitation":"代理不能精确定位披露段影响。"},
+        {"id":"metric_misattribution","name":"工具误归因评论占比","availability":"available","definition":"仍认为只用 Codex/自动完成的评论 ÷ 工具分工相关有效评论。","source":"按预注册 commentCoding 手工匿名编码。","limitation":"评论是自选择小样本。"}
+      ],
+      "window":{"status":"known","value":"记录发布后 24 小时和 7 天，以 7 天判断方向，24 小时仅监测异常。"},
+      "minimumEvidence":{"status":"known","value":"至少四条主题、时长、证明强度相近的教程，A/B 开场各两条；不因单条结果推广规则。"},
+      "confounds":["变体非随机，初始受众和分发不同","早期账号无稳定基线","主题需求强度不同","发布时间、趋势和封面细节变化","当前产品信息变化","评论自选择且样本小"],
+      "stopChangeRule":{"status":"known","value":"若 A（前 12 秒披露依赖+四项地图）在两轮可比配对中收藏率均高于 B，且 12 秒留存相对下降不超过 10%、误归因不升，则保留；若无重复同向改善则未决；若留存下降超过 10% 或误归因上升，停止 A，下一版唯一改为把依赖披露压到首帧 2 秒，其余锁定。"}
+    }
+  }
+}

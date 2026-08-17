@@ -1,0 +1,649 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67124e580000000021000df9/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67124e580000000021000df9/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67124e580000000021000df9/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建 60.967 秒本地视频、提供 SRT、新 evidence pack 与本次 skill-run 定向捕捉所能证明的内容；不使用旧报告，不外部核验涨粉、产品、工具、身份、版权或商业效果，不生成独立 evaluation.json 或 gate-report.json。",
+  "viewerChange": {
+    "before": "观众可能把标题理解为三次简单操作即可稳定做出可商用的治愈独居 Vlog。",
+    "after": "观众能看到三步其实是三个宏观阶段：Kimi 多轮策划与广告位修订、即梦中人物/场景批量出图、在未显示品牌的剪辑软件中组织静态图和声音；同时能区分已见界面状态、作者主张、结果样片与未展示的授权、连续操作、导出和发布条件。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-AUDIO-01",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67124e580000000021000df9/skill-run/inspection/audio-analysis.md",
+      "kind": "ffprobe_and_ffmpeg_audio_channel_inspection",
+      "producedBy": "ffprobe/FFmpeg stream, silence and volume inspection summarized by the skill runner",
+      "timeRange": {"start": 0, "end": 60.967},
+      "limitations": ["只能证明音轨和连续信号，不可听辨具体声源", "不能证明音乐/音效来源、作者或许可", "不能把视觉轨道标签升级为实际听到的声音"]
+    },
+    {
+      "id": "SRC-AUDIO-02",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67124e580000000021000df9/skill-run/inspection/audio-semantic-analysis.md",
+      "kind": "full_final_audio_semantic_sound_classification",
+      "producedBy": "macOS SoundAnalysis v1 over the exact 7.5-second final-audio.mp3, 0.5-second windows and 50% overlap",
+      "timeRange": {"start": 51.5, "end": 59},
+      "limitations": ["机器分类而非声源分离", "支持语音、音乐和鸟叫，但流水类未形成稳定高置信类别", "孤立frog/dog/train/telephone标签不稳定，不登记为真实额外声源", "不能证明曲目或音效来源、所有权与许可"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 4.64, "text": "两个月暴涨十万，这种女性独居的vlog账号真的太吸粉了，而且内容非常好", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002", "SHOT-003"]},
+      {"id": "CUE-002", "start": 4.64, "end": 6.56, "text": "植入广子合作的场景也会非常的多", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-003", "start": 6.57, "end": 11.77, "text": "今天三步就教你用ai做这样的内容，无需ps和ae有手就行，第一写分镜脚本", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"]},
+      {"id": "CUE-004", "start": 11.77, "end": 15.12, "text": "我们把这一段提示词喂给ai帮我们写维老本分镜脚本", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-005", "start": 15.13, "end": 19.17, "text": "并且为每一个分镜写生图提示词，尽量让它多设计一些场景", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-006", "start": 19.17, "end": 23.39, "text": "这样合作的时候也更好植入更多的产品，第二画分镜，我们先生成一个人物", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"]},
+      {"id": "CUE-007", "start": 23.4, "end": 28.08, "text": "把刚才ai生成的提示词复制过来，你们可以暂停一下，复制我的提示词风格的话", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-005"]},
+      {"id": "CUE-008", "start": 28.08, "end": 31, "text": "就直接找一张参考图来变好了，我们的女主角出来了", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-005", "SHOT-006", "SHOT-007"]},
+      {"id": "CUE-009", "start": 31.01, "end": 34.65, "text": "选一张看着顺眼的就它吧，现在就可以生成具体的场景了", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-007", "SHOT-008"]},
+      {"id": "CUE-010", "start": 34.65, "end": 37.2, "text": "注意这里要选上参考角色的特征和风格", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-008", "SHOT-009", "SHOT-010", "SHOT-011"]},
+      {"id": "CUE-011", "start": 37.21, "end": 40.37, "text": "这样就能保持画面一致性，很快啊，几张分镜就画完了", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-011", "SHOT-012", "SHOT-013", "SHOT-014", "SHOT-015"]},
+      {"id": "CUE-012", "start": 40.37, "end": 46.39, "text": "第三剪辑把这几张素材拖进来再加一些音效，比如窗外的鸟叫，刷牙流水声之类的", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-015", "SHOT-016"]},
+      {"id": "CUE-013", "start": 46.4, "end": 50.24, "text": "再加一些动效和转场进来，再加一段治愈的音乐，稍微剪辑一下", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-016"]},
+      {"id": "CUE-014", "start": 50.24, "end": 52.7, "text": "一段辅助vlog就做好啦，一起来看看成片", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-016", "SHOT-017", "SHOT-018"]},
+      {"id": "CUE-015", "start": 58.81, "end": 60.975, "text": "关注我，每天教你一个ai技能", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-023", "SHOT-024"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开头用增长截图和同类帖子建立机会感",
+      "importance": "context",
+      "statement": "作者声称女性独居 Vlog 账号可在两个月涨粉十万、吸粉且有很多广告合作场景；画面圈出 12.4 万粉丝，并拼贴四个同类帖子样例，其中账号名只能读到截断的 TheSoulofR...。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 6.56},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "两个月涨十万与吸粉主张"},
+        {"refType": "cue", "ref": "CUE-002", "supports": "广告合作场景多的主张"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "12.4万粉丝圈选"},
+        {"refType": "ocr", "ref": "OCR-00050", "supports": "样例账号仅呈现截断的 TheSoulofR..."}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "该内容方向兼具增长和商业植入潜力。", "evidenceUnitIds": [], "conditions": ["截图时间、账号归属与增长口径未给出"], "counterexamples": [], "actions": ["据此引出三步教程"], "limits": ["视频不证明增长因果或普遍成功率", "样例账号与讲述者账号并未被建立为同一主体"]},
+      "unknowns": ["数据日期和来源", "账号完整名称", "增长是否由该内容形式造成", "真实广告合作数量"]
+    },
+    {
+      "id": "KU-02",
+      "title": "‘三步’是三个阶段，不是三个单一动作",
+      "importance": "core",
+      "statement": "作者把流程命名为写分镜脚本、画分镜、剪辑三步，并称无需 PS/AE；实际可见流程包含多轮文本修订、人物与场景多次生成/选择、参考与参数、静态图编排、声音素材与可能的动效/转场，因此‘三步’是宏观阶段包装。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 6.57, "end": 52.7},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "第一步与低门槛承诺"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "第二步"},
+        {"refType": "cue", "ref": "CUE-012", "supports": "第三步"},
+        {"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "第一步已经出现多轮修订后的第11-14镜头"},
+        {"refType": "targeted_frame", "ref": "TARGET-0065", "supports": "第三步界面包含多轨编辑"}
+      ],
+      "confidence": "high",
+      "reasoning": "三个口述标签覆盖的可见内部动作显著多于三次，且存在跨阶段依赖。",
+      "procedural": {
+        "input": "独居治愈 Vlog 目标、商业植入要求与参考风格",
+        "actions": ["在 Kimi 生成并修订脚本/生图词", "在即梦生成人物与场景图", "在剪辑软件中组织静态图和声音并形成样片"],
+        "parameters": ["约30秒目标", "即梦 图片2.0 Pro", "精细度5", "3:4", "日本漫画风格"],
+        "output": "一个被剪辑工程承载、只展示约6.2秒摘录的独居 Vlog 结果",
+        "beforeFrames": ["TARGET-0006"],
+        "duringFrames": ["TARGET-0014", "TARGET-0024", "TARGET-0065"],
+        "afterFrames": ["TARGET-0082", "TARGET-0093"],
+        "unknowns": ["未展示的发送、参考导入、选择、导入、动效/转场设置与导出操作"]
+      },
+      "unknowns": ["真实制作耗时与失败次数", "无需 PS/AE 是否对所有素材成立"]
+    },
+    {
+      "id": "KU-03",
+      "title": "第一步的实际工具是 Kimi，初始输入要求30秒脚本和逐镜生图词",
+      "importance": "core",
+      "statement": "可见页面底部写有‘使用 Kimi’。初始提示要求制作针对女性独居生活的治愈系 Vlog、约30秒，输出分镜脚本和关键画面的 AI 图片提示词；开场需温馨室内，中段呈现阅读/烹饪/园艺等小确幸，结尾传达独居的宁静与满足。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 10.567, "end": 14.4},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0011", "supports": "被选中的完整初始提示和 Kimi 输入栏"},
+        {"refType": "targeted_frame", "ref": "TARGET-0015", "supports": "Kimi 回答的分镜头脚本字段"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "约30秒女性独居治愈 Vlog 的主题、三段叙事需求及逐段 AI 图片提示词需求",
+        "actions": ["把整段提示输入 Kimi", "获取分镜头脚本与 AI 图片提示词"],
+        "parameters": ["开场：温馨舒适室内", "中场：阅读、烹饪、园艺等小确幸", "结尾：宁静与满足", "目标观众：女性独居内容受众"],
+        "output": "按镜头列出的时长、画面、音效、旁白与相应图片提示",
+        "beforeFrames": ["TARGET-0011"],
+        "duringFrames": ["TARGET-0014"],
+        "afterFrames": ["TARGET-0015", "TARGET-0016"],
+        "unknowns": ["实际输入和发送点击未显示", "Kimi 模型版本、账户和生成参数未显示"]
+      },
+      "unknowns": ["提示词是否由作者原创", "Kimi 模型版本与对话创建时间"]
+    },
+    {
+      "id": "KU-04",
+      "title": "Kimi 初稿给出五镜头、合计约30秒的日常情绪弧",
+      "importance": "supporting",
+      "statement": "初稿可读到五个镜头：5秒阳光客厅开场；10秒窗边摇椅阅读/热茶；5秒厨房烹饪；5秒阳台浇花；5秒夜晚点香薰蜡烛并享受安静。回答同时给出轻钢琴、翻书/杯声、切菜烹饪、水与微风、夜虫等音效/配乐建议和对应生图提示词。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 14.4, "end": 16.2},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0015", "supports": "镜头1-4的时长、画面、音效与旁白"},
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "镜头5与逐段 AI 图片提示词"}
+      ],
+      "confidence": "high",
+      "unknowns": ["文字有局部遮挡/低分辨率，未逐字恢复所有旁白"]
+    },
+    {
+      "id": "KU-05",
+      "title": "第一步至少两次追问，把脚本改成空镜和产品广告位导向",
+      "importance": "core",
+      "statement": "可见对话并非一问一答：作者先指出‘全是人物’、要求再给5条室内治愈空镜；Kimi 补了沙发/艺术画、书架、窗台多肉、餐桌、阅读角等空镜。随后作者又否定这些空镜不适合产品广告，要求考虑空气净化器和扫地机器人；Kimi 继续生成客厅空气净化器、厨房扫地机器人、卧室空气净化器等第11号以后镜头。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 16.2, "end": 21.367},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "要求补5条室内空镜"},
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "五类空镜及生图提示"},
+        {"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "否定空镜并提出产品广告/净化器/扫地机器人"},
+        {"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "第11-14镜头出现净化器与扫地机器人"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Kimi 的五镜头初稿",
+        "actions": ["要求增加5个无人物室内空镜", "审阅后指出不适合产品广告", "指定空气净化器和扫地机器人等可植入物", "获取第11号以后的商业化空镜"],
+        "parameters": ["室内", "治愈", "无人物/空镜", "产品广告植入空间"],
+        "output": "更长、显式包含空气净化器与扫地机器人位置的分镜/提示词列表",
+        "beforeFrames": ["TARGET-0016"],
+        "duringFrames": ["TARGET-0018", "TARGET-0021"],
+        "afterFrames": ["TARGET-0023"],
+        "unknowns": ["是否还有更多未展示追问", "最终采用了哪些文本版本"]
+      },
+      "unknowns": ["第14镜头后的完整列表未读完", "是否另有人工改稿"]
+    },
+    {
+      "id": "KU-06",
+      "title": "场景数量与产品植入的因果来自策划修订，而非生成工具自动完成",
+      "importance": "core",
+      "statement": "视频里的产品状物不是随机结果：作者先在 Kimi 中明确把‘多场景’与更多产品广告位连接，再指定净化器和扫地机器人；后续即梦提示与成片摘录才出现对应物。这条因果链由文本修订→生图提示→结果画面构成。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 15.13, "end": 56.933},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-005", "supports": "尽量多设计场景"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "更多场景服务更多产品植入"},
+        {"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "明确提出净化器、扫地机器人广告位"},
+        {"refType": "targeted_frame", "ref": "TARGET-0087", "supports": "结果摘录出现绿色净化器状物"},
+        {"refType": "targeted_frame", "ref": "TARGET-0089", "supports": "结果摘录出现扫地机器人状物"}
+      ],
+      "confidence": "high",
+      "reasoning": "文本要求在前、产品提示与相应图像在后，支持制作依赖；但不证明真实商业合作。",
+      "unknowns": ["是否有真实广告主", "生成图中的物体是否对应任何真实商品"]
+    },
+    {
+      "id": "KU-07",
+      "title": "第二步在即梦图片生成界面完成，核心可见参数为图片2.0 Pro、精细度5、3:4",
+      "importance": "core",
+      "statement": "界面任务记录显示‘即梦-图片生成’，左侧可见图片生成/视频生成标签、导入参考图按钮、图片2.0 Pro 模型、精细度5和选中的3:4比例；每条历史任务显示四个候选槽。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 21.367, "end": 36},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "即梦图像生成界面、图片2.0 Pro和3:4参数"},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "具体场景生成时仍可见图片2.0 Pro、精细度5、3:4和四候选槽"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Kimi 生成/修订后的逐镜提示词和外部风格参考意图",
+        "actions": ["粘贴人物或场景提示", "可选导入参考图", "用图片2.0 Pro按3:4生成四候选", "查看/选择候选结果"],
+        "parameters": ["图片2.0 Pro", "精细度5", "3:4", "每次四候选", "提示中出现日本漫画风格"],
+        "output": "人物候选和多组室内/产品场景候选",
+        "beforeFrames": ["TARGET-0024"],
+        "duringFrames": ["TARGET-0027", "TARGET-0045"],
+        "afterFrames": ["TARGET-0048", "TARGET-0056"],
+        "unknowns": ["账户、价格、积分、地区和模型版本日期", "生成按钮点击和等待过程不是连续实录"]
+      },
+      "unknowns": ["平台访问入口与账户要求", "图片尺寸具体像素值", "精细度5的官方含义"]
+    },
+    {
+      "id": "KU-08",
+      "title": "人物候选被主观选中，但角色参考来源没有显示",
+      "importance": "core",
+      "statement": "即梦先展示一组四张夜间独处女性候选，随后单张结果页显示 2/4：一位棕色长发、浅色上衣、灰蓝裤子、蹲在猫旁的女性。作者只说‘选一张看着顺眼的，就它吧’，没有给角色设定表或身份来源。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 29.8, "end": 32.267},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0034", "supports": "候选/生成界面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "单张2/4女性与猫结果"},
+        {"refType": "cue", "ref": "CUE-009", "supports": "作者主观选择并进入场景生成"}
+      ],
+      "confidence": "high",
+      "unknowns": ["人物是否完全由文本生成", "是否借用了具体人物/角色参考", "形象权利与可商用许可"]
+    },
+    {
+      "id": "KU-09",
+      "title": "作者要求用参考图‘垫’风格，但未展示被选参考图或授权",
+      "importance": "core",
+      "statement": "作者明确建议风格‘直接找一张参考图来垫’，并说生成具体场景时要选参考角色特征和风格；界面只清楚显示‘导入参考图’入口，没有在受检帧中清楚呈现已导入参考图的来源、作者、许可或选择状态。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 23.4, "end": 37.2},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "复制提示词并寻找参考风格"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "找参考图垫风格"},
+        {"refType": "cue", "ref": "CUE-010", "supports": "选择参考角色特征和风格"},
+        {"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "界面可见导入参考图入口，但未见来源说明"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "复用参考角色特征和风格可以保持画面一致性。", "evidenceUnitIds": ["KU-07", "KU-08"], "conditions": ["必须有可用参考并在每次生成中正确复用"], "counterexamples": ["KU-11"], "actions": ["导入参考图", "选择参考角色特征与风格"], "limits": ["视频未展示参考图来源或授权", "未清楚展示每次生成均实际选中对应参考"]},
+      "unknowns": ["参考图本身", "原作者与许可证", "人物/风格引用是否允许商业发布", "是否实际在每次场景生成中启用参考"]
+    },
+    {
+      "id": "KU-10",
+      "title": "具体场景提示把广告物与日本漫画风格写进输入",
+      "importance": "core",
+      "statement": "即梦界面可读到厨房提示：摆放新鲜食材和一台高端扫地机器人，静静待命、准备在烹饪结束后清理残渣，并注明‘日本漫画风格’；历史记录还包含夜晚女性点香薰蜡烛、客厅沙发旁放空气净化器等提示，并以图片2.0 Pro、3:4生成候选。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 32.267, "end": 41.4},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "厨房扫地机器人输入和日本漫画风格"},
+        {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "客厅/厨房/净化器多组候选结果"},
+        {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "放大场景结果和任务历史"}
+      ],
+      "confidence": "high",
+      "unknowns": ["所有逐镜提示的完整文本", "哪些候选最终下载/导入", "是否有局部重绘或扩图"]
+    },
+    {
+      "id": "KU-11",
+      "title": "‘保持一致性’是作者主张，最终人物与画风并不一致",
+      "importance": "core",
+      "statement": "作者称参考角色特征和风格能保持画面一致性；但被选女主是棕色长发、浅色上衣并与猫同框，最终阅读镜头是黑色长发、白上衣/灰裙，夜间点烛镜头则是黑色短发、黄绿上衣/紫裤。空间图也在偏写实室内渲染与日系插画之间变化，因此结果摘录不能证明严格的角色或风格一致性。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 29.8, "end": 58.867},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-011", "supports": "作者一致性主张"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "选中女主外观"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "最终阅读女性外观"},
+        {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "最终点烛女性外观"}
+      ],
+      "confidence": "high",
+      "reasoning": "三个有女人物状态的发型、发长、服装和画风差异足以否定‘严格同一角色’的视觉证明，但不能确定作者把哪一张定义为同一角色。",
+      "unknowns": ["作者对‘一致性’的容忍标准", "是否在完整工程另有一致版本"]
+    },
+    {
+      "id": "KU-12",
+      "title": "第三步显示的是一个更长剪辑工程的局部，不是完整导入到导出的演示",
+      "importance": "core",
+      "statement": "未显示品牌名的深色剪辑界面可见竖屏预览、主图轨和多条蓝色音频轨；预览时间码在约00:50–01:00附近，总时长显示00:02:36:03，说明受检工程约2分36秒，明显长于初始约30秒目标。画面只展示工程中段局部，未展示新建工程、导入、完整轨道、保存或导出。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 41.4, "end": 51.667},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0065", "supports": "竖屏预览、主轨和蓝色音频轨"},
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "时间码约57秒/总时长2:36:03和多轨布局"},
+        {"refType": "targeted_frame", "ref": "TARGET-0077", "supports": "约53秒位置和多条蓝色音频块"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "多张即梦场景图及若干声音/音乐素材",
+        "actions": ["把场景图排列在主轨", "在下方分散放置音频素材", "口述加入动效和转场", "口述加入治愈音乐"],
+        "parameters": ["竖屏预览", "工程总时长显示00:02:36:03", "当前受检位置约00:50–01:00"],
+        "output": "一个更长工程中的独居场景序列和约6.2秒结果摘录",
+        "beforeFrames": ["TARGET-0065"],
+        "duringFrames": ["TARGET-0069", "TARGET-0073", "TARGET-0076"],
+        "afterFrames": ["TARGET-0082", "TARGET-0093"],
+        "unknowns": ["剪辑软件品牌", "导入、动效、转场、音乐和导出具体操作", "为何工程总长2:36而初始目标约30秒"]
+      },
+      "unknowns": ["工程是否仅为素材总编或真实交付版", "画布、帧率、码率、导出格式"]
+    },
+    {
+      "id": "KU-13",
+      "title": "鸟叫音效的放置有界面证据，流水声和治愈音乐只部分可证",
+      "importance": "core",
+      "statement": "时间线下方可见多条带波形的蓝色音频块，其中多块标签可人工读为‘清脆的鸟叫声’，另有一块以‘小猫…’开头；这支持鸟叫音效素材确实被放入工程。口述还提到刷牙流水声和治愈音乐，但受检画面未清楚读出对应素材名或确认其最终听觉内容。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 42.2, "end": 50.24},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0068", "supports": "多条蓝色音频块与波形"},
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "多块‘清脆的鸟叫声’标签可见"},
+        {"refType": "cue", "ref": "CUE-012", "supports": "作者口述鸟叫与流水声"},
+        {"refType": "cue", "ref": "CUE-013", "supports": "作者口述治愈音乐"}
+      ],
+      "confidence": "medium",
+      "unknowns": ["每个音频块完整文件名", "流水声对应素材是否存在", "治愈音乐对应轨道", "所有声音来源、作者和许可"]
+    },
+    {
+      "id": "KU-14",
+      "title": "视频只展示约6.2秒、六个结果镜头的摘录",
+      "importance": "core",
+      "statement": "52.633–58.867秒的全屏结果可保守分为六镜头：明亮客厅与白色净化器状物；窗边摇椅阅读的长发女性；床头柜上的绿色净化器状物；厨房台面的扫地机器人状物；傍晚空椅与城市窗景；夜间短发女性在地毯上托着蜡烛。它是2分36秒工程的短摘录，不足以代表完整成片。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 52.633, "end": 58.867},
+      "evidence": [
+        {"refType": "shot", "ref": "SHOT-018", "supports": "镜头1客厅与白色净化器状物"},
+        {"refType": "shot", "ref": "SHOT-019", "supports": "镜头2阅读女性"},
+        {"refType": "shot", "ref": "SHOT-020", "supports": "镜头3绿色净化器状物"},
+        {"refType": "shot", "ref": "SHOT-021", "supports": "镜头4扫地机器人状物"},
+        {"refType": "shot", "ref": "SHOT-022", "supports": "镜头5傍晚空椅"},
+        {"refType": "shot", "ref": "SHOT-023", "supports": "镜头6夜间点烛女性"}
+      ],
+      "confidence": "high",
+      "unknowns": ["完整工程其余镜头", "完整成片是否另有旁白、字幕或结尾", "这一摘录是否最终发布版本"]
+    },
+    {
+      "id": "KU-15",
+      "title": "情绪叙事用日间日常—产品空镜—傍晚空房—夜晚独处收束",
+      "importance": "core",
+      "statement": "六镜头把温暖日光、阅读、家电状物和整洁室内先并列，再将光线转到傍晚与深蓝夜色，最后以女性安静托烛收束；产品镜头被嵌入日常空间而不是单独硬广，情绪由明亮舒展变为安静内省。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 52.633, "end": 58.867},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "日间客厅与净化器状物"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "日间阅读人物"},
+        {"refType": "targeted_frame", "ref": "TARGET-0089", "supports": "厨房产品状物"},
+        {"refType": "targeted_frame", "ref": "TARGET-0091", "supports": "傍晚空椅"},
+        {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "夜间点烛收束"}
+      ],
+      "confidence": "high",
+      "reasoning": "镜头顺序、色温与有人/无人的交替共同构成情绪推进；这是对编辑关系的解释，不是作者口述的逐字事实。",
+      "unknowns": ["完整工程是否保持同一情绪弧", "声音层如何影响这一情绪"]
+    },
+    {
+      "id": "KU-16",
+      "title": "产品只能识别为生成画面中的家电状物",
+      "importance": "core",
+      "statement": "净化器和扫地机器人来自 AI 生成画面，物体上的文字/标志出现不稳定或畸变；视频没有说本片存在真实品牌合作。因此只能称空气净化器状物、扫地机器人状物，不能认定具体品牌、型号、真实性或授权。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 37.967, "end": 56.933},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0058", "supports": "即梦候选中的产品场景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0087", "supports": "绿色净化器状物的生成纹理和文字"},
+        {"refType": "targeted_frame", "ref": "TARGET-0089", "supports": "扫地机器人状物的生成文字"}
+      ],
+      "confidence": "high",
+      "unknowns": ["是否映射真实品牌", "是否获得商标/产品图使用许可", "是否有真实商业合作"]
+    },
+    {
+      "id": "KU-17",
+      "title": "结果摘录未证明动效与转场",
+      "importance": "core",
+      "statement": "作者口述加入动效和转场，但对52.65–58.85秒以每秒5帧抽样时，同一镜头内的静态图构图未见可辨位移/缩放，六镜头边界表现为直接切换；因此摘录只证明静态图剪接，不能证明具体动效或转场被应用。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 46.4, "end": 58.867},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-013", "supports": "作者口述加入动效和转场"},
+        {"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "镜头1静态状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "镜头切换后的状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0091", "supports": "傍晚镜头静态状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "夜间镜头直接切换"}
+      ],
+      "confidence": "medium",
+      "unknowns": ["完整2:36工程其他段落是否有动效/转场", "小于抽样辨识能力的细微动画"]
+    },
+    {
+      "id": "KU-18",
+      "title": "完整final-audio支持连续音乐与重复鸟叫，流水层未被可靠确认",
+      "importance": "supporting",
+      "statement": "对精确提取的51.5–59.0秒、7.5秒final-audio进行完整0.5秒重叠窗语义分类：前约1秒为语音叠音乐；其后每个窗口均有音乐，53.0–54.0、56.0–57.0、58.25–58.75秒附近出现高置信鸟叫，峰值约0.96。流水/龙头/水流类标签低且不稳定，不能确认独立流水层；孤立frog/dog/train/telephone标签也不稳定，不能登记为可靠其他声源。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 51.5, "end": 59},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-AUDIO-01", "supports": "音轨、无静音段和结果窗口音量测量"},
+        {"refType": "source", "ref": "SRC-AUDIO-02", "supports": "完整final-audio逐窗语义分类、时间映射和类别置信度"}
+      ],
+      "confidence": "high",
+      "reasoning": "连续音乐和多段鸟叫在相邻窗口稳定且高置信；流水类从未成为主导类别且缺乏稳定簇，其他类别前后不一致，因此仅确认音乐与鸟叫。",
+      "unknowns": ["流水是否被混音掩蔽", "曲目/音效名称", "来源与授权", "不稳定其他分类标签的真实成因"]
+    },
+    {
+      "id": "KU-19",
+      "title": "完整剪辑与发布条件在全片范围内缺失",
+      "importance": "core",
+      "statement": "在0–60.967秒的视觉、SRT、UI与结尾 CTA 范围内，未观察到：剪辑软件品牌、完整素材导入/放置、动效/转场参数、音乐选择过程、画布/帧率/码率、导出文件、发布平台与规格、标题/封面/文案、AI生成标识、广告披露或素材许可说明。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 60.967},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0111", "supports": "全片1秒密度审计起点"},
+        {"refType": "targeted_frame", "ref": "TARGET-0142", "supports": "图像生成区仍无授权/发布信息"},
+        {"refType": "targeted_frame", "ref": "TARGET-0157", "supports": "剪辑区只显示局部时间线"},
+        {"refType": "targeted_frame", "ref": "TARGET-0172", "supports": "全片审计终点仅关注CTA"}
+      ],
+      "confidence": "high",
+      "reasoning": "这是限定于所查全时间线和可见载体的负证据，不代表视频外不存在这些条件。",
+      "unknowns": ["全部列出的剪辑/发布/披露条件"]
+    },
+    {
+      "id": "KU-20",
+      "title": "人物、画风、样例帖、音乐和音效的来源/许可均未建立",
+      "importance": "core",
+      "statement": "视频展示外部同类帖子、建议随意找参考图垫风格，并使用生成角色、产品状物、鸟叫素材和所谓治愈音乐；但全片没有建立这些素材的原作者、许可条款、商业使用范围、肖像/角色权或商标责任。",
+      "provenance": "unknown",
+      "timeRange": {"start": 1.2, "end": 60.967},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0004", "supports": "外部样例帖子截图"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "找参考图垫风格"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "生成角色结果"},
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "鸟叫音频素材块"},
+        {"refType": "targeted_frame", "ref": "TARGET-0172", "supports": "结尾未补权利说明"}
+      ],
+      "confidence": "high",
+      "reasoning": "全片有界审计找到了来源依赖，但没有相应权利信息。",
+      "unknowns": ["所有素材的作者与许可证", "商业发布是否允许", "生成服务条款与责任主体"]
+    },
+    {
+      "id": "KU-21",
+      "title": "SRT ‘维老本’与可见内容存在转写冲突",
+      "importance": "supporting",
+      "statement": "CUE-004 原文是‘帮我们写维老本分镜脚本’，但烧录字幕与 Kimi 初始提示明确出现‘vlog/ Vlog’和‘分镜脚本’。支持性解读是作者说‘Vlog的分镜脚本’，但原始 SRT 不应被静默改写。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 10.8, "end": 15.12},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-004", "supports": "原始SRT‘维老本’"},
+        {"refType": "ocr", "ref": "OCR-00960", "supports": "烧录字幕识别为‘帮我们写vlog的分镜脚本’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0011", "supports": "Kimi 提示中明确为治愈系Vlog短片"}
+      ],
+      "confidence": "high",
+      "reasoning": "视觉文字与语境共同支持 Vlog 读法，但 verbatim 层保留 SRT 原文。",
+      "unknowns": ["原音的精确发音未由当前文本证据单独核验"]
+    },
+    {
+      "id": "KU-22",
+      "title": "结尾只完成成片支付与关注 CTA，没有补执行边界",
+      "importance": "context",
+      "statement": "作者在六镜头摘录后回到同一讲述者和房间，用‘关注我，每天教你一个AI技能’结束；这强化‘低门槛技能教学’账号承诺，但没有给模板、工具链接或实施条件。",
+      "provenance": "raw_fact",
+      "timeRange": {"start": 58.867, "end": 60.967},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-015", "supports": "关注CTA逐字文本"},
+        {"refType": "targeted_frame", "ref": "TARGET-0097", "supports": "同一讲述者/布景与烧录CTA"}
+      ],
+      "confidence": "high",
+      "unknowns": ["视频外配文是否含链接或补充材料"]
+    },
+    {
+      "id": "KU-23",
+      "title": "CUE-014存在‘辅助vlog/独居vlog’载体冲突",
+      "importance": "core",
+      "statement": "CUE-014的SRT原文是‘一段辅助vlog就做好啦，一起来看看成片’，但50.6–51.4秒烧录字幕清楚写‘一段独居vlog就做好啦！’。结合全片主题，‘独居vlog’是视觉/语境支持的解读，但SRT‘辅助vlog’必须原样保留，不能被静默替换。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 50.24, "end": 52.7},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-014", "supports": "SRT原文‘辅助vlog’"},
+        {"refType": "ocr", "ref": "OCR-00690", "supports": "50.6秒烧录字幕‘一段独居vlog就做好啦！’"},
+        {"refType": "ocr", "ref": "OCR-00694", "supports": "51.4秒烧录字幕重复‘一段独居vlog就做好啦！’"}
+      ],
+      "confidence": "high",
+      "reasoning": "两个文本载体在同一时间窗给出不同词语；全片主题支持‘独居’读法，但verbatim层不改写SRT。",
+      "unknowns": ["原音精确发音未由当前文本层单独核验"]
+    },
+    {
+      "id": "KU-24",
+      "title": "即梦显示16/16生成完成，但完成计数口径不能外推",
+      "importance": "core",
+      "statement": "约40.1秒，即梦界面右下出现‘(16/16) 生成完成’通知。这只证明所示任务/批次的界面完成计数达到16/16；视频未建立它等于16条提示词、16张已下载图片、16张最终采用图片或16个独立成片镜头。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 39.8, "end": 40.3},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "右下‘(16/16)生成完成’通知"}
+      ],
+      "confidence": "high",
+      "unknowns": ["16/16的对象和分母口径", "对应提示词数", "下载数", "最终采用数"]
+    },
+    {
+      "id": "KU-25",
+      "title": "生成按钮显示消耗标记1，但价格和总成本未知",
+      "importance": "supporting",
+      "statement": "即梦左下‘立即生成’按钮旁可见一个资源/消耗图标和数字1。画面没有显示单位、货币、兑换率、账户余额或账单，因此只能登记标记1，不能称为1元、1积分或据此计算总成本。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 34.8, "end": 35.9},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "立即生成按钮、图标和数字1"}
+      ],
+      "confidence": "high",
+      "unknowns": ["资源单位", "实际价格", "是否优惠状态", "整次制作总成本"]
+    },
+    {
+      "id": "KU-26",
+      "title": "Kimi显示已阅读55个网页，但没有逐项来源归属",
+      "importance": "supporting",
+      "statement": "Kimi回答后段显示‘已阅读55个网页’。这是可见的检索/阅读数量状态，但受检界面未展示55个网页的逐项清单，也未把空气净化器、扫地机器人等每条输出逐句映射到具体网页；它不能替代来源引用或事实核验。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 19.8, "end": 21.2},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "‘已阅读55个网页’状态"},
+        {"refType": "ocr", "ref": "OCR-00354", "supports": "OCR提案‘已阅读55个网页’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["55个网页的URL与标题", "每条回答的来源归属", "网页质量和检索时点"]
+    },
+    {
+      "id": "KU-27",
+      "title": "剪辑工程中选中音乐轨显示-1.8 dB",
+      "importance": "supporting",
+      "statement": "约49.9秒，时间线底部一条长音频/音乐轨被选中，浮动参数显示-1.8 dB。该数值只证明所示工程、所选轨道在该时刻的电平状态；它不等于所有音频轨的统一响度，也不证明最终导出文件保持同一混音。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 49.7, "end": 50.1},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0077", "supports": "选中长音频轨及-1.8 dB浮动参数"}
+      ],
+      "confidence": "high",
+      "unknowns": ["轨道完整名称", "-1.8 dB是增益还是其他电平控制", "最终导出混音与响度"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-01", "to": "KU-02", "relation": "commercial_opportunity_motivates_tutorial_promise", "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "从增长/广告机会转入三步教程"}]},
+    {"from": "KU-03", "to": "KU-04", "relation": "initial_prompt_produces_first_storyboard", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0015", "supports": "提示后出现分镜回答"}]},
+    {"from": "KU-04", "to": "KU-05", "relation": "first_draft_is_iteratively_revised", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "要求补空镜"}, {"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "再改为产品广告位"}]},
+    {"from": "KU-05", "to": "KU-10", "relation": "revised_per_shot_prompts_input_to_scene_generation", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "Kimi 输出产品镜头"}, {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "即梦输入对应扫地机器人提示"}]},
+    {"from": "KU-08", "to": "KU-09", "relation": "selected_character_is_claimed_as_reference_for_later_scenes", "evidence": [{"refType": "cue", "ref": "CUE-010", "supports": "作者要求参考角色特征与风格"}]},
+    {"from": "KU-09", "to": "KU-11", "relation": "consistency_claim_is_limited_by_visible_character_drift", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "选中角色"}, {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "最终夜间角色明显不同"}]},
+    {"from": "KU-10", "to": "KU-12", "relation": "generated_stills_input_to_editing_timeline", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "生成场景结果"}, {"refType": "targeted_frame", "ref": "TARGET-0065", "supports": "同类场景出现在主轨"}]},
+    {"from": "KU-05", "to": "KU-16", "relation": "commercial_prompting_produces_product_like_visual_objects", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "指定产品类型"}, {"refType": "targeted_frame", "ref": "TARGET-0089", "supports": "结果出现扫地机器人状物"}]},
+    {"from": "KU-12", "to": "KU-13", "relation": "editing_timeline_contains_labeled_audio_assets", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "多块清脆鸟叫声音频"}]},
+    {"from": "KU-12", "to": "KU-14", "relation": "longer_project_is_excerpted_as_six_shot_result", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0077", "supports": "2:36工程局部"}, {"refType": "shot", "ref": "SHOT-018", "supports": "结果摘录起点"}, {"refType": "shot", "ref": "SHOT-023", "supports": "结果摘录终点"}]},
+    {"from": "KU-14", "to": "KU-15", "relation": "shot_order_produces_day_to_night_healing_arc", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "日间起点"}, {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "夜间收束"}]},
+    {"from": "KU-13", "to": "KU-18", "relation": "visible_bird_audio_assets_correspond_to_semantically_detected_bird_calls", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "时间线鸟叫素材标签"}, {"refType": "source", "ref": "SRC-AUDIO-02", "supports": "实际final-audio多段高置信鸟叫"}]},
+    {"from": "KU-17", "to": "KU-14", "relation": "static_direct_cuts_define_the_visible_excerpt", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "静态镜头"}, {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "下一镜头直接切入"}]},
+    {"from": "KU-14", "to": "KU-22", "relation": "result_excerpt_pays_off_hook_then_leads_to_follow_cta", "evidence": [{"refType": "cue", "ref": "CUE-014", "supports": "邀请看成片"}, {"refType": "cue", "ref": "CUE-015", "supports": "关注CTA"}]},
+    {"from": "KU-20", "to": "KU-19", "relation": "unresolved_asset_rights_remain_part_of_missing_publication_conditions", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0172", "supports": "结尾未补权利或发布说明"}]},
+    {"from": "KU-25", "to": "KU-24", "relation": "generation_resource_marker_is_distinct_from_completion_count", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "生成按钮标记1"}, {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "之后显示16/16完成"}]},
+    {"from": "KU-26", "to": "KU-05", "relation": "retrieval_count_accompanies_but_does_not_source_each_revised_storyboard_item", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0021", "supports": "55网页状态与产品返工回答同屏"}]},
+    {"from": "KU-27", "to": "KU-18", "relation": "timeline_music_level_precedes_detected_continuous_music_but_export_equivalence_unknown", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0077", "supports": "音乐轨-1.8 dB"}, {"refType": "source", "ref": "SRC-AUDIO-02", "supports": "final-audio连续音乐"}]},
+    {"from": "KU-12", "to": "KU-23", "relation": "completion_claim_contains_transcript_burned_caption_conflict", "evidence": [{"refType": "cue", "ref": "CUE-014", "supports": "SRT辅助vlog"}, {"refType": "ocr", "ref": "OCR-00690", "supports": "烧录独居vlog"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "available": true, "inspected": true},
+      {"id": "CAR-02", "available": true, "inspected": true},
+      {"id": "CAR-03", "available": true, "inspected": true},
+      {"id": "CAR-04", "available": true, "inspected": true},
+      {"id": "CAR-05", "available": true, "inspected": true},
+      {"id": "CAR-06", "available": true, "inspected": true},
+      {"id": "CAR-07", "available": true, "inspected": true},
+      {"id": "CAR-08", "available": true, "inspected": true},
+      {"id": "CAR-09", "available": true, "inspected": true},
+      {"id": "CAR-10", "available": true, "inspected": true},
+      {"id": "CAR-11", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-02"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-03", "KU-04", "KU-05", "KU-26"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-07", "KU-09"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-08"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-10", "KU-11", "KU-24", "KU-25"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-12", "KU-13", "KU-17", "KU-23", "KU-27"]},
+      {"id": "MC-08", "captured": true, "unitIds": ["KU-14", "KU-15", "KU-16", "KU-18"]},
+      {"id": "MC-09", "captured": true, "unitIds": ["KU-19", "KU-20", "KU-22"]},
+      {"id": "MC-10", "captured": true, "unitIds": ["KU-25"]},
+      {"id": "MC-11", "captured": true, "unitIds": ["KU-24"]},
+      {"id": "MC-12", "captured": true, "unitIds": ["KU-27"]},
+      {"id": "MC-13", "captured": true, "unitIds": ["KU-23"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002", "CUE-003"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["TARGET-0023", "TARGET-0027"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["TARGET-0036", "CUE-010"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["TARGET-0023", "TARGET-0045"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["TARGET-0056", "TARGET-0065"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["TARGET-0071", "SHOT-018", "SHOT-023"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["TARGET-0004", "CUE-008", "TARGET-0093"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["TARGET-0021", "TARGET-0087", "TARGET-0089"]},
+      {"id": "REL-09", "evidenced": true, "evidenceRefs": ["CUE-014", "CUE-015"]},
+      {"id": "REL-10", "evidenced": true, "evidenceRefs": ["SHOT-001", "SHOT-024"]},
+      {"id": "REL-11", "evidenced": true, "evidenceRefs": ["TARGET-0021", "OCR-00354"]},
+      {"id": "REL-12", "evidenced": true, "evidenceRefs": ["TARGET-0046", "TARGET-0061"]},
+      {"id": "REL-13", "evidenced": true, "evidenceRefs": ["TARGET-0077", "SRC-AUDIO-02"]},
+      {"id": "REL-14", "evidenced": true, "evidenceRefs": ["CUE-014", "OCR-00690", "OCR-00694"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-02"], "evidenceRefs": ["CUE-003", "CUE-006", "CUE-012"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-03", "KU-04", "KU-05"], "evidenceRefs": ["TARGET-0011", "TARGET-0015", "TARGET-0023"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-07", "KU-08", "KU-09", "KU-10"], "evidenceRefs": ["TARGET-0027", "TARGET-0036", "TARGET-0045"]},
+      {"id": "CQ-04", "status": "unknown", "unitIds": ["KU-09", "KU-20"], "evidenceRefs": ["CUE-008", "TARGET-0172"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-12", "KU-13", "KU-17", "KU-19"], "evidenceRefs": ["TARGET-0065", "TARGET-0071", "TARGET-0172"]},
+      {"id": "CQ-06", "status": "answered", "unitIds": ["KU-14", "KU-15"], "evidenceRefs": ["SHOT-018", "SHOT-019", "SHOT-020", "SHOT-021", "SHOT-022", "SHOT-023"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-11"], "evidenceRefs": ["TARGET-0036", "TARGET-0084", "TARGET-0093"]},
+      {"id": "CQ-08", "status": "answered", "unitIds": ["KU-01", "KU-06", "KU-16"], "evidenceRefs": ["CUE-002", "TARGET-0021", "TARGET-0089"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-19"], "evidenceRefs": ["TARGET-0111", "TARGET-0172"]},
+      {"id": "CQ-10", "status": "unknown", "unitIds": ["KU-13", "KU-18", "KU-20"], "evidenceRefs": ["TARGET-0071", "SRC-AUDIO-01", "SRC-AUDIO-02"]},
+      {"id": "CQ-11", "status": "unknown", "unitIds": ["KU-01"], "evidenceRefs": ["TARGET-0004", "TARGET-0097"]},
+      {"id": "CQ-12", "status": "answered", "unitIds": ["KU-21"], "evidenceRefs": ["CUE-004", "OCR-00960"]},
+      {"id": "CQ-13", "status": "answered", "unitIds": ["KU-23"], "evidenceRefs": ["CUE-014", "OCR-00690", "OCR-00694"]},
+      {"id": "CQ-14", "status": "answered", "unitIds": ["KU-24", "KU-25"], "evidenceRefs": ["TARGET-0046", "TARGET-0061"]},
+      {"id": "CQ-15", "status": "answered", "unitIds": ["KU-26"], "evidenceRefs": ["TARGET-0021", "OCR-00354"]},
+      {"id": "CQ-16", "status": "answered", "unitIds": ["KU-27"], "evidenceRefs": ["TARGET-0077"]},
+      {"id": "CQ-17", "status": "answered", "unitIds": ["KU-18"], "evidenceRefs": ["SRC-AUDIO-02"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01"], "rationale": "增长与吸粉主张。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-01", "KU-06"], "rationale": "广告合作机会与产品植入动机。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-02"], "rationale": "三步与无需PS/AE承诺。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-03", "KU-21"], "rationale": "Kimi输入动作及SRT冲突。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-03", "KU-05", "KU-06"], "rationale": "逐镜生图词和增加场景要求。"},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-02", "KU-06", "KU-07"], "rationale": "产品植入逻辑和第二步入口。"},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-07", "KU-09"], "rationale": "复制提示和参考风格动作。"},
+      {"cueId": "CUE-008", "disposition": "knowledge", "unitIds": ["KU-08", "KU-09", "KU-20"], "rationale": "找参考图、女主结果和来源边界。"},
+      {"cueId": "CUE-009", "disposition": "knowledge", "unitIds": ["KU-08", "KU-10"], "rationale": "主观选角并转入场景生成。"},
+      {"cueId": "CUE-010", "disposition": "knowledge", "unitIds": ["KU-09", "KU-11"], "rationale": "角色特征和风格参考主张。"},
+      {"cueId": "CUE-011", "disposition": "knowledge", "unitIds": ["KU-10", "KU-11"], "rationale": "一致性主张和场景完成。"},
+      {"cueId": "CUE-012", "disposition": "knowledge", "unitIds": ["KU-02", "KU-12", "KU-13"], "rationale": "第三步、素材与具体音效。"},
+      {"cueId": "CUE-013", "disposition": "knowledge", "unitIds": ["KU-12", "KU-13", "KU-17"], "rationale": "动效、转场、音乐主张。"},
+      {"cueId": "CUE-014", "disposition": "knowledge", "unitIds": ["KU-12", "KU-14", "KU-23"], "rationale": "宣称成片完成并引出结果，同时与烧录‘独居vlog’形成SRT‘辅助vlog’冲突。"},
+      {"cueId": "CUE-015", "disposition": "context", "unitIds": ["KU-22"], "rationale": "账号关注CTA与结尾收束。"}
+    ],
+    "coreEvidence": {"covered": 19, "total": 19},
+    "unknowns": [
+      "参考图、角色、样例帖、音乐和音效的作者及授权",
+      "Kimi/即梦账户、价格、版本与服务条件",
+      "剪辑软件品牌及完整导入、动效、转场、音乐、导出操作",
+      "2分36秒工程与约30秒策划目标之间的关系",
+      "流水声是否存在但被混音掩蔽，及不稳定其他分类标签的真实来源",
+      "即梦16/16的计数口径与按钮1标记的单位/价格",
+      "Kimi 55个网页的逐项清单与句级来源归属",
+      "音乐轨-1.8 dB与最终导出混音的对应",
+      "完整成片、最终发布平台/规格/标题/封面/AI标识/广告披露",
+      "涨粉与商业效果的真实性和因果"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "候选协议已检查全部可用载体、意义变化与关系，coverageMatrix无未检查通道；evaluation-v2的独立metaAudit.pass=true，且未发现未守载体、意义变化或关系，因此按外部元审计结果更新为通过。该状态不改变视频内容、证据判断或保留的未知项。"
+  }
+}

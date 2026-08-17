@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "690ac8730000000004014f67",
+  "auditMode": "ground_truth_only",
+  "scope": {
+    "sourcesRead": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/690ac8730000000004014f67.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/690ac8730000000004014f67.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/690ac8730000000004014f67/evidence/evidence-pack.json"
+    ],
+    "excluded": [
+      "skills",
+      "candidate reconstructions",
+      "prior reports"
+    ]
+  },
+  "sourceFacts": {
+    "durationSeconds": 14.9,
+    "dimensions": {
+      "width": 1080,
+      "height": 1920
+    },
+    "frameRate": "30/1",
+    "subtitleCueCount": 5,
+    "detectedShotCount": 12
+  },
+  "transcriptGroundTruth": [
+    {
+      "cueId": "CUE-001",
+      "start": 0.0,
+      "end": 1.9,
+      "text": "这个可以帮你设计一张海报"
+    },
+    {
+      "cueId": "CUE-002",
+      "start": 3.06,
+      "end": 4.85,
+      "text": "这个可以帮你设计logo"
+    },
+    {
+      "cueId": "CUE-003",
+      "start": 5.26,
+      "end": 7.24,
+      "text": "这个可以帮你做一个ppt"
+    },
+    {
+      "cueId": "CUE-004",
+      "start": 7.63,
+      "end": 11.73,
+      "text": "这个可以帮你设计一个ui，这个可以帮你设计三d手办"
+    },
+    {
+      "cueId": "CUE-005",
+      "start": 12.19,
+      "end": 14.14,
+      "text": "这个可以帮你设计网页"
+    }
+  ],
+  "titleCards": [
+    {
+      "index": 1,
+      "toolNameVerbatim": "即梦",
+      "taglineVerbatim": "抖音旗下免费AI图片创作工具",
+      "cardTime": {
+        "start": 0.0,
+        "end": 0.5,
+        "precision": "scene-boundary"
+      },
+      "capabilitySpoken": "设计一张海报",
+      "exampleTime": {
+        "start": 0.5,
+        "end": 3.1
+      },
+      "exampleGroundTruth": "红色石榴饮品主题的成品海报展示",
+      "evidenceRefs": [
+        "SHOT-001",
+        "SHOT-002",
+        "SHOT-003",
+        "CUE-001",
+        "DENSE-0003"
+      ],
+      "attributionStatus": "conflicted",
+      "attributionNote": "即梦标题卡后接的海报在约1.50秒画面右下角清楚显示“豆包AI生成”；相邻剪辑只能建立编辑关联，不能证明该海报由即梦生成。"
+    },
+    {
+      "index": 2,
+      "toolNameVerbatim": "Lovart",
+      "taglineVerbatim": "首个专业AI设计Agent",
+      "taglineLengthNote": "该卡副文案极短，仅上述完整一行；不得补写额外能力说明。",
+      "cardTime": {
+        "startApprox": 3.1,
+        "endApprox": 3.6,
+        "precision": "frame-observed"
+      },
+      "capabilitySpoken": "设计logo",
+      "exampleTime": {
+        "startApprox": 3.6,
+        "end": 5.333
+      },
+      "exampleGroundTruth": "Bubblelicious品牌视觉板，含标志及包装、手提袋、杯子等应用 mockup",
+      "evidenceRefs": [
+        "SHOT-004",
+        "CUE-002",
+        "DENSE-0006",
+        "DENSE-0007"
+      ],
+      "attributionStatus": "editorially_associated_only"
+    },
+    {
+      "index": 3,
+      "toolNameVerbatim": "Manus",
+      "taglineVerbatim": "Monica团队推出的全球首款通用型 AI Agent",
+      "cardTime": {
+        "start": 5.333,
+        "end": 5.767,
+        "precision": "scene-boundary"
+      },
+      "capabilitySpoken": "做一个ppt",
+      "exampleTime": {
+        "start": 5.767,
+        "end": 7.7
+      },
+      "exampleGroundTruth": "一个PPT风格缩略图总览画面",
+      "evidenceRefs": [
+        "SHOT-005",
+        "SHOT-006",
+        "CUE-003",
+        "DENSE-0009",
+        "DENSE-0010"
+      ],
+      "attributionStatus": "editorially_associated_only"
+    },
+    {
+      "index": 4,
+      "toolNameVerbatim": "Claude",
+      "taglineVerbatim": "Anthropic公司推出的对话式AI智能助手",
+      "cardTime": {
+        "start": 7.7,
+        "end": 8.167,
+        "precision": "scene-boundary"
+      },
+      "capabilitySpoken": "设计一个ui",
+      "exampleTime": {
+        "start": 8.167,
+        "end": 9.7
+      },
+      "exampleGroundTruth": "粉红色冥想应用UI展示板",
+      "evidenceRefs": [
+        "SHOT-007",
+        "SHOT-008",
+        "CUE-004",
+        "DENSE-0012",
+        "DENSE-0013"
+      ],
+      "attributionStatus": "editorially_associated_only"
+    },
+    {
+      "index": 5,
+      "toolNameVerbatim": "Tripo AI",
+      "taglineVerbatim": "AI 3D模型生成平台，文本、图像一键转3D模型",
+      "cardTime": {
+        "start": 9.7,
+        "end": 10.2,
+        "precision": "scene-boundary"
+      },
+      "capabilitySpoken": "设计三d手办",
+      "exampleTime": {
+        "start": 10.2,
+        "end": 12.267
+      },
+      "exampleGroundTruth": "深色3D查看器中的一个红色动漫女性角色模型，连续转到不同观察角度",
+      "evidenceRefs": [
+        "SHOT-009",
+        "SHOT-010",
+        "CUE-004",
+        "DENSE-0015",
+        "DENSE-0016"
+      ],
+      "attributionStatus": "editorially_associated_only"
+    },
+    {
+      "index": 6,
+      "toolNameVerbatim": "Lovable",
+      "taglineVerbatim": "全栈AI编程工具，一句话构建网站应用",
+      "cardTime": {
+        "start": 12.267,
+        "end": 12.767,
+        "precision": "scene-boundary"
+      },
+      "capabilitySpoken": "设计网页",
+      "exampleTime": {
+        "start": 12.767,
+        "end": 14.9
+      },
+      "exampleGroundTruth": "NEUROBUS主题的单个深色网站页面快速向下滚动",
+      "evidenceRefs": [
+        "SHOT-011",
+        "SHOT-012",
+        "CUE-005",
+        "DENSE-0018",
+        "DENSE-0019",
+        "DENSE-0020",
+        "DENSE-0021"
+      ],
+      "attributionStatus": "editorially_associated_only"
+    }
+  ],
+  "visualCounts": {
+    "ppt": {
+      "displayedObjects": 1,
+      "objectType": "one slide-overview composition",
+      "visibleSlideLikePanels": 15,
+      "countingRule": "五行乘三列的可见矩形幻灯片样式面板；这是画面计数，不等于已验证的PPT文件页数。"
+    },
+    "ui": {
+      "displayedObjects": 1,
+      "objectType": "one UI presentation board",
+      "visiblePhoneMockups": 6,
+      "distinctScreenDesigns": 3,
+      "duplicatePattern": "上排三种屏幕在下排各重复一次",
+      "countingRule": "六个手机外框，但只有三种可辨识的独立界面设计。"
+    },
+    "threeD": {
+      "displayedModels": 1,
+      "distinctViews": "multiple continuous angles",
+      "countingRule": "连续帧是同一红色动漫角色模型旋转，不应计作多个模型或多个手办。"
+    },
+    "web": {
+      "displayedPages": 1,
+      "displayedSites": 1,
+      "distinctVisibleContentRegions": 5,
+      "contentRegions": [
+        "hero/AUTONOMY",
+        "ABOUT NEUROBUS",
+        "four-feature-card block",
+        "Latest News",
+        "Founding Team"
+      ],
+      "countingRule": "固定导航下的同一页面连续滚动；五个区域不是五个网页。"
+    }
+  },
+  "structureGroundTruth": {
+    "presentationType": "parallel_tool_capability_list",
+    "isWorkflow": false,
+    "ordering": [
+      "即梦—海报",
+      "Lovart—logo",
+      "Manus—PPT",
+      "Claude—UI",
+      "Tripo AI—3D手办",
+      "Lovable—网页"
+    ],
+    "reason": "六段均采用“工具标题卡/口播能力/成品示例”的重复模板，段与段之间没有依赖、传递或前后步骤关系。"
+  },
+  "inputOutputCausality": {
+    "inputsShown": false,
+    "promptsShown": false,
+    "toolOperationInterfacesShown": false,
+    "generationProcessShown": false,
+    "outputsShown": true,
+    "outputEvidenceType": "finished-looking visual examples only",
+    "causalAttributionVerified": false,
+    "causalConclusion": "视频只把工具名与成品示例相邻剪辑；除这种编辑关联外，没有输入、提示词、点击操作、生成记录或导出记录可证明各工具实际生成相邻示例。即梦段的豆包水印还构成明确的归因冲突。"
+  },
+  "auditFindings": [
+    {
+      "severity": "critical",
+      "code": "ATTRIBUTION_CONFLICT_JIMENG_DOUBAO",
+      "finding": "即梦标题后的海报右下角带“豆包AI生成”水印，因此不得把该海报无保留地表述为即梦生成结果。"
+    },
+    {
+      "severity": "high",
+      "code": "CAUSALITY_NOT_DEMONSTRATED",
+      "finding": "六组示例均未展示输入或工具内生成过程；工具与示例的因果关系未知。"
+    },
+    {
+      "severity": "high",
+      "code": "PARALLEL_NOT_PIPELINE",
+      "finding": "六组内容是并列推荐/能力枚举，不是六步工作流。"
+    },
+    {
+      "severity": "medium",
+      "code": "COUNTING_UNITS_MUST_BE_EXPLICIT",
+      "finding": "PPT画面为15个面板，UI为6个手机mockup但仅3种设计，3D为1个模型多角度，网页为1个连续页面而非多个页面。"
+    },
+    {
+      "severity": "medium",
+      "code": "LOVART_TAGLINE_MUST_REMAIN_SHORT",
+      "finding": "Lovart卡副文案只有“首个专业AI设计Agent”，不能扩写成视频未出现的产品能力或流程。"
+    }
+  ],
+  "verdict": {
+    "status": "ground_truth_established_with_attribution_limits",
+    "summary": "可确认六张工具卡、五条字幕和六类成品式视觉示例；不可确认示例由相邻工具真实生成，也不可将六段重构为端到端流程。"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion":"capture-protocol-1.0",
+  "probe":"probe.json",
+  "protocolName":"创作指南解读：来源边界、心理映射、五步框架与反馈闭环协议",
+  "rationale":"视频同时依靠书/纸张外观、持续白板结构、口播映射、静安寺假设例子和结尾指标建议传递知识。协议需分开来源观察与作者主张，密采关键术语，恢复五步依赖，验证现场案例/后台操作未展示，并保留全片缺席边界。",
+  "knowledgeUnitFields":[
+    {"name":"source_identity_and_claim","required":true,"reason":"区分书封可见身份与作者声称的官方来源。","derivedFrom":["MC-02","REL-01","RISK-02","Q-02"]},
+    {"name":"concept_mapping","required":true,"reason":"核心认知变化是三组词向三类心理结果及创作方法的映射。","derivedFrom":["MC-03","REL-02","Q-03"]},
+    {"name":"context_decision_rule","required":true,"reason":"搜索/闲逛和画面/口播分工决定表达选择。","derivedFrom":["REL-03","REL-05","Q-04","Q-06"]},
+    {"name":"five_step_node_and_dependency","required":true,"reason":"用户、需求、场景、选题、迭代必须保持顺序和依赖。","derivedFrom":["MC-05","MC-06","MC-07","MC-08","REL-04","REL-06","Q-05"]},
+    {"name":"feedback_signal_and_limit","required":true,"reason":"评论与数据只能作为迭代信号，不能被写成充分证明。","derivedFrom":["REL-07","REL-08","REL-09","Q-07"]},
+    {"name":"carrier_conflict","required":true,"reason":"关键术语和账号名存在SRT/OCR冲突。","derivedFrom":["RISK-03"]},
+    {"name":"absence_scope","required":true,"reason":"需界定未显示的数据后台、静安寺现场、课程入口和指标定义。","derivedFrom":["RISK-05","RISK-07"]},
+    {"name":"opening_closing_relation","required":true,"reason":"结尾课程结束/下期再见回扣第一期承诺。","derivedFrom":["REL-10","Q-08"]},
+    {"name":"platform_user_alignment_argument","required":true,"reason":"必须保留“平台需留住用户→平台与用户对好内容目标一致”的完整作者论证及未验证边界。","derivedFrom":["REL-11","Q-09","MC-04"]}
+  ],
+  "captureActions":[
+    {"id":"ACT-01","range":{"start":0,"end":8.848},"carrier":"开场账号叠层、烧录字幕、账号角标","mode":"ocr_review","times":[0.2,0.8,1.5,2.5,3.5,5,7,8.5],"reason":"读取五万粉成绩外观和第一期课程承诺，保留真实性边界。","expectedObservation":"可见账号页/数字、不到一周五万粉、30天十万粉免费课程第一期；未见后台验证。","derivedFrom":["MC-01","RISK-01","Q-01"]},
+    {"id":"ACT-02","range":{"start":8.848,"end":20.32},"carrier":"书封、纸张、烧录字幕、手持动作","mode":"ocr_review","times":[9.2,10.5,12.5,14.5,16.5,18.5,20],"reason":"核对书名与来源指称，分离视觉观察和作者主张。","expectedObservation":"书封“好内容的千姿百态”及作者声称小红书官方创作指南/大会获得；版本和发放证据不完整。","derivedFrom":["MC-02","REL-01","RISK-02","Q-02"]},
+    {"id":"ACT-03","range":{"start":20.32,"end":56.177},"carrier":"烧录字幕、白板分组、书/讲义","mode":"ocr_review","times":[21,24,27,30,33,36,40,43,46,49,52,55.5],"reason":"恢复三组词、三类心理结果和对应创作动作，并核对ASR。","expectedObservation":"热情/好奇、真诚/认同、利他/心动或得到的原始字形及精准受众、场景共鸣、需求满足等映射。","derivedFrom":["MC-03","REL-02","RISK-03","Q-03"]},
+    {"id":"ACT-04","range":{"start":56.177,"end":87.49},"carrier":"白板、烧录字幕、人物指示","mode":"ocr_review","times":[57,60,63,66,70,74,78,82,85,87],"reason":"核对三感六度可读范围、平台/用户目标一致的因果论证、搜索/闲逛差异和IP真实性边界。","expectedObservation":"仅可靠保存可见/口述项；作者以平台需留住用户解释平台与用户对好内容目标一致；搜索强调效率、闲逛降低目的性；IP可设计不能造假。","derivedFrom":["MC-04","REL-03","REL-11","RISK-04","Q-04","Q-09"]},
+    {"id":"ACT-05","range":{"start":87.49,"end":101},"carrier":"烧录字幕、白板品类与步骤标题","mode":"ocr_review","times":[88,91,94,97,99,100.7],"reason":"核对广告品类和五步标题冲突。","expectedObservation":"商业合作品类列表与用户/需求/场景/选题/迭代五节点。","derivedFrom":["MC-05","RISK-03","Q-05"]},
+    {"id":"ACT-06","range":{"start":100.954,"end":147.973},"carrier":"白板、烧录字幕、静安寺是否有插入画面","mode":"interval_density","densitySeconds":3,"reason":"恢复用户与需求步骤，并验证静安寺只是口播假设例子。","expectedObservation":"同一白板房间持续；用户画像/痛点/渴望→想看什么/我有什么→需求惊喜发现→事实与感受互补→三种需求方法。","derivedFrom":["MC-06","REL-04","REL-05","RISK-05","Q-05","Q-06"]},
+    {"id":"ACT-07","range":{"start":147.973,"end":164.49},"carrier":"烧录字幕、白板、技术切点连续性","mode":"ocr_review","times":[148.2,150,152,155,158,160.5,163,164.3],"reason":"核对第三/四步、三项选题原则与系列化主张。","expectedObservation":"场景共情/造梦；选题懂用户、可持续、陪伴成长；系列优先于单点爆款。","derivedFrom":["MC-07","REL-06","RISK-03","RISK-06","Q-05"]},
+    {"id":"ACT-08","range":{"start":164.49,"end":199.877},"carrier":"烧录字幕、白板、书/讲义、结尾CTA/指标文字","mode":"ocr_review","times":[165,168,171,174,177,180,183,186,189,191.5,193.5,196,199],"reason":"恢复评论与数据反馈闭环，核对CTR/账号名并检查下一期入口。","expectedObservation":"评论共鸣/偏差/新选题、CTR与赞转评、拒绝单点冷数据；结尾课程结束与下期再见，未见指标公式/阈值或明确访问入口。","derivedFrom":["MC-08","REL-07","REL-08","REL-09","REL-10","RISK-03","RISK-07","Q-07","Q-08"]},
+    {"id":"ACT-09","range":{"start":0,"end":199.877},"carrier":"人物/白板房间、后台/现场/链接/价格/版本/免责声明缺席范围、技术分镜","mode":"interval_density","densitySeconds":5,"reason":"完成全片设置、连续性与负证据审计。","expectedObservation":"主要为同一房间白板讲述，只有开场账号叠层与书/纸张展示；未观察到小红书后台操作、静安寺现场、价格/下载链接、书籍版本细节、CTR公式或免责声明；技术切点不自动视为章节。","derivedFrom":["CAR-EDIT","CAR-ABS","RISK-05","RISK-06","RISK-07"]}
+  ],
+  "requiredRelations":[
+    {"relation":"shown_as_source_of","derivedFrom":["REL-01"]},{"relation":"maps_to","derivedFrom":["REL-02"]},{"relation":"chosen_when","derivedFrom":["REL-03"]},{"relation":"precedes","derivedFrom":["REL-04"]},{"relation":"decision_rule_for","derivedFrom":["REL-05"]},{"relation":"depends_on","derivedFrom":["REL-06"]},{"relation":"diagnostic_for","derivedFrom":["REL-07"]},{"relation":"input_to","derivedFrom":["REL-08"]},{"relation":"evidence_for_but_not_sufficient","derivedFrom":["REL-09"]},{"relation":"does_not_verify","derivedFrom":["REL-10"]},{"relation":"author_rationale_for","derivedFrom":["REL-11"]}
+  ],
+  "stoppingRules":["全部60条字幕cue逐条处置并保留原文与帧/shot映射","8个意义变化均落到知识单元","10个关系两端均有证据或明确未知","书封、三组词、五步标题、CTR和结尾已OCR并人工检查","三感六度未读全时不补全","静安寺现场、数据后台与课程入口缺席仅在全片检查范围内表述","技术分镜不升级为语义章节或编辑次数","非语言音频登记工具能力边界","元门问题不存在未检查的可用载体、意义变化或关系"],
+  "declaredUnknowns":["粉丝成绩真实性和口径","书籍版本、官方发放与授权","三感六度完整条目","SRT关键词准确字形","商业品类精确边界","CTR定义/公式/阈值","账号名准确字形","课程下一期访问入口","非语言音频类型和作用","隐藏剪辑"]
+}

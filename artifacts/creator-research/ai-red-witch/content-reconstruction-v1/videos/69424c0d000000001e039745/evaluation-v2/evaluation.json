@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationOrder": "GATE_then_JUDGE",
+  "videoId": "69424c0d000000001e039745",
+  "scope": {
+    "included": [
+      "new evidence/evidence-pack.json and its indexed frames",
+      "current repaired skill-run and its inspection artifacts",
+      "independent audit/audit.json and audit/audit.md",
+      "prior evaluation/discrepancies.md only as repair-closure targets",
+      "canonical evaluation protocol/schema",
+      "evaluator-design GATE/JUDGE and empty-gate rules"
+    ],
+    "excluded": [
+      "prior evaluation verdict and scores",
+      "legacy reports, analyses, and video-library conclusions",
+      "other candidates and other evaluations",
+      "external web verification"
+    ],
+    "candidateModified": false
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 6,
+      "denominator": 6,
+      "examples": [
+        {
+          "status": "covered",
+          "item": "The candidate answers the central proposition and the fear-to-trust cognitive progression.",
+          "candidateRefs": ["KU-05", "KU-08", "KU-31"]
+        },
+        {
+          "status": "correct_unknown",
+          "item": "It does not claim that late nights or oily food caused the reported stroke, that the AI advice is clinically accurate or safe, or that complete privacy is proven.",
+          "candidateRefs": ["KU-04", "KU-26", "KU-28"]
+        },
+        {
+          "status": "covered_after_repair",
+          "item": "It directly answers whether the video is paid advertising as unknown and separates visible promotional framing from undisclosed compensation or control.",
+          "candidateRefs": ["KU-37", "CQ-17"]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 30,
+      "denominator": 30,
+      "examples": [
+        {
+          "status": "covered_after_repair",
+          "item": "The diagnostic UI wording and its tension with reference/seek-care disclaimers are preserved without upgrading diagnostic ability.",
+          "candidateRefs": ["KU-36", "REL-16", "OCR-00223", "OCR-00720", "OCR-00819"]
+        },
+        {
+          "status": "covered_after_repair",
+          "item": "The OCR-only opening recovery-state claim is retained as an unverified news-style screen claim.",
+          "candidateRefs": ["KU-35", "TARGET-0009", "OCR-00047", "SRC-CROP-OPENING"]
+        },
+        {
+          "status": "covered",
+          "item": "Carrier conflicts, progress states, edited chronology, sensitive-data fields, privacy limits, and bounded CTA/service absences retain evidence and scope.",
+          "candidateRefs": ["KU-14", "KU-15", "KU-20", "KU-21", "KU-28", "KU-30", "KU-32"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 30,
+      "examples": [
+        {
+          "status": "supported_or_qualified",
+          "item": "All 30 positive knowledge-unit statements are attached to transcript, frame, OCR, or scoped source evidence and keep material qualifications."
+        },
+        {
+          "status": "not_overclaimed",
+          "item": "Corporate provenance, live-demo continuity, clinical suitability, improvement, privacy protection, and commercial relationship are not promoted to facts.",
+          "candidateRefs": ["KU-09", "KU-18", "KU-22", "KU-26", "KU-28", "KU-32", "KU-37"]
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 34,
+      "denominator": 37,
+      "examples": [
+        {
+          "status": "localized",
+          "item": "34 of 37 knowledge units keep every checked frame/OCR reference within the unit time range."
+        },
+        {
+          "status": "localized_after_repair",
+          "item": "The recovery-state screen is localized to 4.633-5.7 seconds and the diagnostic wording to 40.0-56.667 seconds.",
+          "candidateRefs": ["KU-35", "KU-36"]
+        },
+        {
+          "status": "out_of_range_reference",
+          "item": "KU-25 and KU-36 cite opening OCR-00006 outside their later time ranges; KU-28 cites the 38.733-second TARGET-0036 outside its closing-only time range.",
+          "candidateRefs": ["KU-25", "KU-28", "KU-36", "OCR-00006", "TARGET-0036"]
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 13,
+      "denominator": 13,
+      "rationale": "All 13 audited relation groups are represented: news material to presenter identification, illustrations to target-user referent, visible product identity to narrated provenance, health fields to privacy relevance, fatigue answer to follow-up sequence, coffee narration to UI conditions, body inputs to plan output, goal states to unproven persistence, reminder language to non-urging narration, UI progress/edit order to non-continuous workflow, diagnostic framing to reference/seek-care limits, opening fear to closing trust promise, and promotional framing to unknown payment/control."
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 13,
+      "examples": [
+        {
+          "status": "correct_unknown",
+          "item": "The candidate preserves unknowns for case authenticity and causation, clinical validation, presenter/data identity, demo continuity, professional standards, privacy controls, commercial control, longitudinal outcome, access conditions, and media authorization."
+        },
+        {
+          "status": "residual_omission",
+          "item": "It does not separately state whether the opening narration accurately quotes a doctor or reporter; the broader source/authenticity boundary remains present.",
+          "candidateRefs": ["KU-01", "KU-02", "KU-04"]
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-12 non-speech audio semantics: only stream existence/technical metadata and still-frame actions were checked; background music, sound effects, and their narrative functions were not listened to or semantically inspected"
+    ]
+  },
+  "gateAssessment": {
+    "thresholds": {
+      "criticalQuestionRecall": ">=0.85",
+      "evidenceCoverage": ">=0.90",
+      "unsupportedInference": "<=0.05",
+      "timestampAccuracy": ">=0.90",
+      "processDependencyCompleteness": ">=0.85",
+      "unknownDiscipline": ">=0.90",
+      "uncheckedChannels": "0",
+      "metaGate": "pass"
+    },
+    "results": {
+      "criticalQuestionRecall": "pass",
+      "evidenceCoverage": "pass",
+      "unsupportedInference": "pass",
+      "timestampAccuracy": "pass",
+      "processDependencyCompleteness": "pass",
+      "unknownDiscipline": "pass",
+      "uncheckedChannels": "fail",
+      "metaGate": "fail"
+    },
+    "overall": "fail",
+    "judgeExecuted": false,
+    "candidateContractFindings": [
+      "coverageMatrix.relationships contains KU-* values in evidenceRefs; canonical deterministic validation treats them as unresolved evidence references",
+      "KU-25, KU-28, and KU-36 contain frame/OCR references outside their declared time ranges"
+    ]
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgeRationale": {
+    "status": "not_executed",
+    "schemaSentinel": "The five numeric 1 values exist only because the canonical schema requires JUDGE fields. They are not quality scores and cannot offset the failed hard gates."
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "CAR-12 non-speech audio content and narrative role"
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The repaired run registers non-speech audio, but ACT-12 is an exact-times still-frame capture whose reason and expected observation concede that only technical stream presence was checked. KU-33 then uses the evidence-pack metadata to declare music/effects/meaning unknown, while coverageMatrix and the candidate meta-gate mark CAR-12 inspected. Metadata can prove that an AAC stream exists; it cannot inspect what the non-speech carrier contains. This is a fake-position and self-proof empty GATE under evaluator-design, so an available carrier remains unchecked and the independent meta-gate fails."
+  },
+  "examples": [
+    {
+      "type": "repair_closure",
+      "id": "D-01",
+      "result": "closed",
+      "evidence": ["KU-36", "REL-16", "OCR-00223", "OCR-00720", "OCR-00819"]
+    },
+    {
+      "type": "repair_closure",
+      "id": "D-02",
+      "result": "closed",
+      "evidence": ["KU-37", "REL-17", "CQ-17"]
+    },
+    {
+      "type": "repair_closure",
+      "id": "D-03",
+      "result": "closed",
+      "evidence": ["KU-35", "TARGET-0009", "OCR-00047", "SRC-CROP-OPENING"]
+    },
+    {
+      "type": "new_blocker",
+      "id": "V2-01",
+      "result": "open",
+      "evidence": ["CAR-12", "ACT-12-NON-SPEECH-AUDIO-DECISION", "KU-33"]
+    },
+    {
+      "type": "candidate_contract_defect",
+      "id": "V2-02",
+      "result": "open",
+      "evidence": ["coverageMatrix.relationships"]
+    },
+    {
+      "type": "candidate_contract_defect",
+      "id": "V2-03",
+      "result": "open",
+      "evidence": ["KU-25", "KU-28", "KU-36", "OCR-00006", "TARGET-0036"]
+    },
+    {
+      "type": "verdict",
+      "item": "Hard GATE fails; JUDGE was not executed. This evaluation does not declare downstream readiness."
+    }
+  ]
+}

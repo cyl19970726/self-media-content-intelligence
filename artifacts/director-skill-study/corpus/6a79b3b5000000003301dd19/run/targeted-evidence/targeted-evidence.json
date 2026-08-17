@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T21:46:10.644Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a79b3b5000000003301dd19.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a79b3b5000000003301dd19/run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 1.403,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 4.758,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 7.838,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 10.768,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 13.745,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 15.951,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-01",
+      "time": 18.841,
+      "frame": "frames/ACT-01-007.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-01",
+      "time": 21.523,
+      "frame": "frames/ACT-01-008.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-01",
+      "time": 23.511,
+      "frame": "frames/ACT-01-009.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-01",
+      "time": 27.038,
+      "frame": "frames/ACT-01-010.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-01",
+      "time": 30.089,
+      "frame": "frames/ACT-01-011.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-01",
+      "time": 31.425,
+      "frame": "frames/ACT-01-012.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-01",
+      "time": 33.857,
+      "frame": "frames/ACT-01-013.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-01",
+      "time": 36.776,
+      "frame": "frames/ACT-01-014.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-01",
+      "time": 39.174,
+      "frame": "frames/ACT-01-015.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-01",
+      "time": 42.197,
+      "frame": "frames/ACT-01-016.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-01",
+      "time": 44.728,
+      "frame": "frames/ACT-01-017.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-01",
+      "time": 46.037,
+      "frame": "frames/ACT-01-018.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-01",
+      "time": 47.471,
+      "frame": "frames/ACT-01-019.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-01",
+      "time": 49.715,
+      "frame": "frames/ACT-01-020.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-01",
+      "time": 52.458,
+      "frame": "frames/ACT-01-021.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-01",
+      "time": 55.161,
+      "frame": "frames/ACT-01-022.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-01",
+      "time": 57.861,
+      "frame": "frames/ACT-01-023.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-01",
+      "time": 62.055,
+      "frame": "frames/ACT-01-024.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-01",
+      "time": 66.471,
+      "frame": "frames/ACT-01-025.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-01",
+      "time": 69.742,
+      "frame": "frames/ACT-01-026.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-01",
+      "time": 72.316,
+      "frame": "frames/ACT-01-027.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-01",
+      "time": 74.219,
+      "frame": "frames/ACT-01-028.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-01",
+      "time": 77.353,
+      "frame": "frames/ACT-01-029.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-01",
+      "time": 80.488,
+      "frame": "frames/ACT-01-030.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-01",
+      "time": 83.718,
+      "frame": "frames/ACT-01-031.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-01",
+      "time": 86.657,
+      "frame": "frames/ACT-01-032.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-01",
+      "time": 89.703,
+      "frame": "frames/ACT-01-033.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-01",
+      "time": 92.963,
+      "frame": "frames/ACT-01-034.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-01",
+      "time": 95.558,
+      "frame": "frames/ACT-01-035.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-01",
+      "time": 98.643,
+      "frame": "frames/ACT-01-036.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-01",
+      "time": 101.121,
+      "frame": "frames/ACT-01-037.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-01",
+      "time": 103.715,
+      "frame": "frames/ACT-01-038.jpg",
+      "carrier": "烧录中文字幕与持续顶部推广条",
+      "reason": "逐cue对照SRT和烧录字幕，并重复读取顶部账号/线下课限定，防止静默纠错。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-02",
+      "time": 0.05,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-02",
+      "time": 0.25,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-02",
+      "time": 0.5,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-02",
+      "time": 0.75,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-02",
+      "time": 1,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-02",
+      "time": 1.15,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "开场短视频数据截图拼贴",
+      "reason": "短时拼贴是开场可信度载体，需要保守计数并读取可见指标，同时保留来源边界。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-03",
+      "time": 3,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-03",
+      "time": 4.5,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-03",
+      "time": 15,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-03",
+      "time": 24,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-03",
+      "time": 31.5,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-03",
+      "time": 39,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-03",
+      "time": 43.5,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-03",
+      "time": 54,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-03",
+      "time": 64.5,
+      "frame": "frames/ACT-03-009.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-03",
+      "time": 66,
+      "frame": "frames/ACT-03-010.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-03",
+      "time": 72,
+      "frame": "frames/ACT-03-011.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-03",
+      "time": 76.5,
+      "frame": "frames/ACT-03-012.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-03",
+      "time": 90,
+      "frame": "frames/ACT-03-013.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-03",
+      "time": 102,
+      "frame": "frames/ACT-03-014.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-03",
+      "time": 105,
+      "frame": "frames/ACT-03-015.jpg",
+      "carrier": "手写白板的两条方法、例子分组和产品到内容结构",
+      "reason": "人物不断遮挡白板不同区域，需利用多个时刻拼合可读结构，不能从单一中点证明全片。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-04",
+      "time": 1.1,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-04",
+      "time": 1.3,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-04",
+      "time": 4.7,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-04",
+      "time": 4.9,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-04",
+      "time": 24.35,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-04",
+      "time": 24.58,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-04",
+      "time": 32.48,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-04",
+      "time": 32.72,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-04",
+      "time": 39.85,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-04",
+      "time": 40.08,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-04",
+      "time": 43.88,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-04",
+      "time": 44.12,
+      "frame": "frames/ACT-04-012.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-04",
+      "time": 54.22,
+      "frame": "frames/ACT-04-013.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-04",
+      "time": 54.45,
+      "frame": "frames/ACT-04-014.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-04",
+      "time": 66.48,
+      "frame": "frames/ACT-04-015.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-04",
+      "time": 66.72,
+      "frame": "frames/ACT-04-016.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-04",
+      "time": 76.85,
+      "frame": "frames/ACT-04-017.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-04",
+      "time": 77.08,
+      "frame": "frames/ACT-04-018.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-04",
+      "time": 102.65,
+      "frame": "frames/ACT-04-019.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-04",
+      "time": 102.88,
+      "frame": "frames/ACT-04-020.jpg",
+      "carrier": "技术切点前后的人物、白板、房间与遮挡状态",
+      "reason": "判断scene-detection边界是否对应语义变化、人物运动/遮挡或不确定隐藏剪辑。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-05",
+      "time": 102,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-05",
+      "time": 102.4,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-05",
+      "time": 102.8,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-05",
+      "time": 103.2,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-05",
+      "time": 103.6,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-05",
+      "time": 104,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-05",
+      "time": 104.4,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-05",
+      "time": 104.8,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-05",
+      "time": 105.08,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "结尾烧录字幕、账号覆盖层、人物动作和开场身份呼应",
+      "reason": "结尾可能是身份与系列化内容的语义回收，不能只用中点帧视作告别。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-06",
+      "time": 0,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-06",
+      "time": 5,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-06",
+      "time": 10,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-06",
+      "time": 15,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-06",
+      "time": 20,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-06",
+      "time": 25,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-06",
+      "time": 30,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-06",
+      "time": 35,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-06",
+      "time": 40,
+      "frame": "frames/ACT-06-009.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-06",
+      "time": 45,
+      "frame": "frames/ACT-06-010.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-06",
+      "time": 50,
+      "frame": "frames/ACT-06-011.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-06",
+      "time": 55,
+      "frame": "frames/ACT-06-012.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-06",
+      "time": 60,
+      "frame": "frames/ACT-06-013.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-06",
+      "time": 65,
+      "frame": "frames/ACT-06-014.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-06",
+      "time": 70,
+      "frame": "frames/ACT-06-015.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-06",
+      "time": 75,
+      "frame": "frames/ACT-06-016.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-06",
+      "time": 80,
+      "frame": "frames/ACT-06-017.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-06",
+      "time": 85,
+      "frame": "frames/ACT-06-018.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-06",
+      "time": 90,
+      "frame": "frames/ACT-06-019.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-06",
+      "time": 95,
+      "frame": "frames/ACT-06-020.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-06",
+      "time": 100,
+      "frame": "frames/ACT-06-021.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-06",
+      "time": 105,
+      "frame": "frames/ACT-06-022.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    },
+    {
+      "id": "TARGET-0111",
+      "actionId": "ACT-06",
+      "time": 105.08,
+      "frame": "frames/ACT-06-023.jpg",
+      "carrier": "决定相关缺席项的全时间线机会窗口",
+      "reason": "对价格、报名入口、平台/账号要求、产品验证、制作、发布、成交、交付和结果做有范围的缺席审计。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037",
+        "TARGET-0038"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098",
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110",
+        "TARGET-0111"
+      ]
+    }
+  ]
+}

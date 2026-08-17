@@ -1,0 +1,1042 @@
+{
+  "schemaVersion": "holdout-ground-truth-audit-1.0",
+  "auditId": "holdout3-director-independent",
+  "language": "zh-CN",
+  "sourceIsolation": {
+    "allowedSourcesUsed": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a3ba6950000000007027cc5.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a3ba6950000000007027cc5.srt",
+      "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/evidence/frames"
+    ],
+    "excludedSourcesRead": false,
+    "notes": "独立审计只使用指定原视频、同 stem SRT、evidence pack 与其帧。未把 SRT、烧录字幕或白板字样自动当成外部事实；它们分别作为字幕载体、画面文字和作者陈述审计。"
+  },
+  "mediaFacts": {
+    "epistemicType": "事实",
+    "durationSeconds": 156.367,
+    "orientation": "竖屏",
+    "width": 2160,
+    "height": 3840,
+    "frameRate": "30/1",
+    "videoCodec": "hevc",
+    "audioCodec": "aac",
+    "hasAudio": true,
+    "providedSubtitleCueCount": 56,
+    "automaticShotCount": 11,
+    "denseProbeCount": 64,
+    "citations": ["EV-001"]
+  },
+  "groundTruthSummary": {
+    "epistemicType": "推断",
+    "oneSentence": "这是一段以强烈反 AI 自动化立场开场、最终把边界收窄为“允许 AI 补知识与头脑风暴，但反对一键代写脚本并照拍”的观点型短视频。",
+    "coreThesis": "作者主张，自媒体爆款更接近选题、人性、共情和具体账号判断，而不是通用的一键 AI 工作流；AI应作为人类主导创作的辅助工具，而不应替代选题、判断和脚本作者责任。",
+    "importantQualification": "“不要用 AI 做自媒体”是开头的宽泛口号；结尾明确允许两类辅助用途，因此更准确的重建是反对端到端自动化，而不是反对任何 AI 介入。",
+    "citations": ["EV-003", "EV-021", "EV-022"]
+  },
+  "fullTimeline": [
+    {
+      "id": "TL-01",
+      "start": 0.0,
+      "end": 0.733,
+      "carrier": "编辑叠层/数据拼贴",
+      "epistemicType": "画面",
+      "visual": "人物与白板背景上覆盖多个短视频数据卡片和蜘蛛侠头像拼贴，中央可见“开头展示教资”字样；不是当前论证的数据表。",
+      "semantic": "用既往内容表现的视觉印象建立作者资历或权威。",
+      "citations": ["EV-002"]
+    },
+    {
+      "id": "TL-02",
+      "start": 0.733,
+      "end": 13.6,
+      "carrier": "蒙面人物对镜口播 + 预写白板 + 烧录字幕",
+      "epistemicType": "作者主张",
+      "semantic": "提出三连禁令：不要用 AI 做自媒体、起号或妄图做爆款；再用“忠言逆耳”和可能得罪 AI 从业者的框架筛选受众。",
+      "cognitiveMove": "先给绝对结论，再把反对意见预设成利益相关者的抵触。",
+      "citations": ["EV-003", "EV-004"]
+    },
+    {
+      "id": "TL-03",
+      "start": 13.6,
+      "end": 26.5,
+      "carrier": "人物在镜头与白板之间转向、持蓝色白板笔指示",
+      "epistemicType": "作者主张",
+      "semantic": "追问是谁让观众用 AI、为什么；作者把推荐者概括为销售 agent、skill 或小程序的人，并断言其目的在赚观众的钱。",
+      "cognitiveMove": "从工具效果转向推荐者动机与利益冲突。",
+      "citations": ["EV-005"]
+    },
+    {
+      "id": "TL-04",
+      "start": 26.5,
+      "end": 42.35,
+      "carrier": "同场景跳切口播；无外部主页或案例截图",
+      "epistemicType": "作者主张",
+      "semantic": "给出两分法：推荐者自己数据差则不必听；数据好也不证明 AI 有效，因为作者断言其爆款绝非 AI 所做，并进一步绝对化为“真正的博主没有任何一个人用 AI 做自媒体”。",
+      "cognitiveMove": "把“查数据”引向因果归属审计，但第二分支靠作者断言闭合。",
+      "citations": ["EV-006", "EV-007"]
+    },
+    {
+      "id": "TL-05",
+      "start": 42.35,
+      "end": 49.0,
+      "carrier": "人物对镜与指板，关键词“离爆款最近”黄色强调",
+      "epistemicType": "作者主张",
+      "semantic": "类比“赚钱要做离钱最近的事”，提出做爆款要做离爆款最近的事，并把这个近因定义为找到好选题。",
+      "cognitiveMove": "从否定 AI 转向替代性的创作杠杆：选题。",
+      "citations": ["EV-008"]
+    },
+    {
+      "id": "TL-06",
+      "start": 49.0,
+      "end": 64.1,
+      "carrier": "连续口播 + 同一白板背景",
+      "epistemicType": "作者主张",
+      "semantic": "否定“AI 一键生成爆款”的销售承诺；理由是自媒体虽有底层逻辑，每个账号和 IP 仍需具体分析，因此若使用 AI 也必须花时间调教到适合自己。",
+      "cognitiveMove": "把通用自动化问题改写为账号特定的适配问题。",
+      "citations": ["EV-009", "EV-010"]
+    },
+    {
+      "id": "TL-07",
+      "start": 64.1,
+      "end": 71.02,
+      "carrier": "人物指向白板中部红色选题字样；烧录字幕突出“好选题”",
+      "epistemicType": "作者主张",
+      "semantic": "重新回答“离爆款最近的事”：找一个能直击人内心深处的好选题，然后开始写。",
+      "cognitiveMove": "给出正向行动，而非只停留在反 AI。",
+      "citations": ["EV-011"]
+    },
+    {
+      "id": "TL-08",
+      "start": 71.02,
+      "end": 82.12,
+      "carrier": "蒙面口播，白板仅作背景",
+      "epistemicType": "作者主张",
+      "semantic": "流量“有规律但规律很不规律”；同一爆款重发未必再火，因为依赖天时地利人和。爆款可拆解，但有一定概率不可复制。",
+      "cognitiveMove": "在可学习规律与不可控情境之间建立不确定性。",
+      "citations": ["EV-012"]
+    },
+    {
+      "id": "TL-09",
+      "start": 82.12,
+      "end": 90.2,
+      "carrier": "人物指板/口播；“共情”“对人类的蔑视”被黄色强调",
+      "epistemicType": "作者主张",
+      "semantic": "把内容本质定义为人性、做内容本质定义为共情，并以价值判断称用机器共情人类是对人类的蔑视。",
+      "cognitiveMove": "从效果论升级为人本/伦理修辞。",
+      "citations": ["EV-013"]
+    },
+    {
+      "id": "TL-10",
+      "start": 90.2,
+      "end": 103.868,
+      "carrier": "口播 + 指向白板；“60分”“权重”形成新概念节点",
+      "epistemicType": "作者主张",
+      "semantic": "承认 AI 能做短视频，但把其上限称为“60 分”；作者认为素人用这种内容无助于起号，成熟博主更不能持续发，因为会涉及账号权重。",
+      "cognitiveMove": "首次明确“不是完全不能做”，随后用输出质量门槛否定实际发布价值。",
+      "citations": ["EV-014", "EV-015"]
+    },
+    {
+      "id": "TL-11",
+      "start": 103.868,
+      "end": 124.018,
+      "carrier": "边说边在白板写数字、圈“权重”、画向下箭头",
+      "epistemicType": "作者主张",
+      "semantic": "用假设案例说明平台权重：百万粉博主正常优质内容平均 5 万赞，若连续出现数条 3000 赞，平台会降低权重和基础播放，且作者称下降比低粉账号更快。",
+      "cognitiveMove": "用具象数字和现场图示把“低质输出有成本”可视化。",
+      "citations": ["EV-016", "EV-017"]
+    },
+    {
+      "id": "TL-12",
+      "start": 124.018,
+      "end": 143.533,
+      "carrier": "指向预写禁令并在白板画缓升线、突然上冲/爆点等示意曲线",
+      "epistemicType": "作者主张",
+      "semantic": "再次回答为何不要用 AI 起号：AI 只能做 60 分视频；起号不是厚积薄发、缓慢上升，而是一夜成名。持续发后突然爆，并非坚持本身的结果，而是之前内容差、后来创作者突然开窍。",
+      "cognitiveMove": "把起号从数量积累模型重写为质量跃迁模型。",
+      "citations": ["EV-018", "EV-019"]
+    },
+    {
+      "id": "TL-13",
+      "start": 143.533,
+      "end": 154.033,
+      "carrier": "回到近景口播，白板图示留在背景",
+      "epistemicType": "作者主张",
+      "semantic": "给出边界：可以让 AI 补齐写作中的知识缺陷，也可以聊天和头脑风暴；绝对不要让 AI 一键生成完整脚本再照着拍。",
+      "cognitiveMove": "将开头的全面禁令收窄成“辅助可用、代写禁用”。",
+      "citations": ["EV-020", "EV-021"]
+    },
+    {
+      "id": "TL-14",
+      "start": 154.033,
+      "end": 156.267,
+      "carrier": "人物贴近镜头收尾；烧录字幕显示自称",
+      "epistemicType": "画面",
+      "semantic": "结束语、身份口号与“下课”；SRT 和烧录字幕对自称存在文字冲突。",
+      "citations": ["EV-022", "EV-023"]
+    },
+    {
+      "id": "TL-15",
+      "start": 156.267,
+      "end": 156.367,
+      "carrier": "黑场",
+      "epistemicType": "画面",
+      "semantic": "极短黑场结束；dense 末帧在 156.247 已呈黑色，和自动切点有约 0.02 秒差异，可能来自抽帧/时间戳取样。",
+      "citations": ["EV-024"]
+    }
+  ],
+  "cognitiveArc": [
+    {
+      "order": 1,
+      "from": "把 AI 当成可直接带来起号/爆款的捷径",
+      "to": "先怀疑推荐者是否有卖工具的利益动机",
+      "epistemicType": "推断",
+      "citations": ["EV-003", "EV-005"]
+    },
+    {
+      "order": 2,
+      "from": "看推荐者数据好就相信工具有效",
+      "to": "区分表现相关性与 AI 的因果贡献；作者要求查主页，但没有给出独立验证样本",
+      "epistemicType": "推断",
+      "citations": ["EV-006", "EV-007"]
+    },
+    {
+      "order": 3,
+      "from": "把工具看作离爆款最近的变量",
+      "to": "把选题、具体账号适配和人类共情看作更近的变量",
+      "epistemicType": "推断",
+      "citations": ["EV-008", "EV-010", "EV-011", "EV-013"]
+    },
+    {
+      "order": 4,
+      "from": "认为爆款公式可稳定复制",
+      "to": "接受流量同时包含可拆解规律和情境随机性",
+      "epistemicType": "推断",
+      "citations": ["EV-012"]
+    },
+    {
+      "order": 5,
+      "from": "认为持续发布普通内容终会自然起号",
+      "to": "作者把突破归因于创作质量突然变化，并强调普通内容还可能损伤成熟账号",
+      "epistemicType": "推断",
+      "citations": ["EV-014", "EV-016", "EV-018"]
+    },
+    {
+      "order": 6,
+      "from": "字面理解为任何 AI 都不能用",
+      "to": "形成更窄边界：人类主导选题和脚本，AI 只补知识、聊天或头脑风暴",
+      "epistemicType": "推断",
+      "citations": ["EV-021", "EV-022"]
+    }
+  ],
+  "atomicCoreKnowledge": [
+    {
+      "id": "AK-01",
+      "statement": "推广 AI 自媒体方法的人可能同时在销售 agent、skill 或小程序，存在利益冲突。",
+      "epistemicType": "作者主张",
+      "scope": "作者概括的 AI 工具推广者；未证明适用于所有推荐者。",
+      "citations": ["EV-005"]
+    },
+    {
+      "id": "AK-02",
+      "statement": "评估推荐者时应先看其主页和自身数据。",
+      "epistemicType": "作者主张",
+      "scope": "尽调动作；视频没有定义“数据好”的阈值。",
+      "citations": ["EV-006"]
+    },
+    {
+      "id": "AK-03",
+      "statement": "推荐者数据差时，作者认为观众没有理由听从；推荐者数据好时，也不能据此推出爆款由 AI 生成。",
+      "epistemicType": "作者主张",
+      "scope": "前半是强烈建议，后半是合理的因果警惕；视频随后用未经展示的绝对断言代替验证。",
+      "citations": ["EV-006", "EV-007"]
+    },
+    {
+      "id": "AK-04",
+      "statement": "“真正博主没有任何一个用 AI 做自媒体”是作者的绝对断言。",
+      "epistemicType": "作者主张",
+      "scope": "视频内无样本、定义或外部证据，不能升级为事实。",
+      "citations": ["EV-007"]
+    },
+    {
+      "id": "AK-05",
+      "statement": "作者把好选题定义为离爆款更近的可控杠杆。",
+      "epistemicType": "作者主张",
+      "scope": "主要针对需要观众共情的自媒体内容。",
+      "citations": ["EV-008", "EV-011"]
+    },
+    {
+      "id": "AK-06",
+      "statement": "“一键生成爆款”的通用 AI 承诺不可信，因为每个账号、IP 和问题情境不同。",
+      "epistemicType": "作者主张",
+      "scope": "反对无上下文、无定制的保证式销售承诺。",
+      "citations": ["EV-009", "EV-010"]
+    },
+    {
+      "id": "AK-07",
+      "statement": "若使用 AI，作者又承认需要花时间调教到适合具体账号。",
+      "epistemicType": "作者主张",
+      "scope": "与开头“不要用 AI”的字面绝对性形成限定关系。",
+      "citations": ["EV-010"]
+    },
+    {
+      "id": "AK-08",
+      "statement": "好选题应能直击受众内心，之后由创作者开始写。",
+      "epistemicType": "作者主张",
+      "scope": "价值导向/情绪导向内容；“直击”没有操作化标准。",
+      "citations": ["EV-011"]
+    },
+    {
+      "id": "AK-09",
+      "statement": "流量既有可拆解规律，也受天时地利人和影响，同一爆款重发未必复现。",
+      "epistemicType": "作者主张",
+      "scope": "未指定平台、时间窗或控制变量。",
+      "citations": ["EV-012"]
+    },
+    {
+      "id": "AK-10",
+      "statement": "作者把内容本质归为人性，把做内容本质归为共情。",
+      "epistemicType": "作者主张",
+      "scope": "定义式、规范性表达，不是经视频验证的普遍定律。",
+      "citations": ["EV-013"]
+    },
+    {
+      "id": "AK-11",
+      "statement": "作者称 AI 可以产出短视频，但只能达到“60 分”。",
+      "epistemicType": "作者主张",
+      "scope": "“60 分”无评分标准、模型、任务或样例。",
+      "citations": ["EV-014"]
+    },
+    {
+      "id": "AK-12",
+      "statement": "对素人，60 分内容不足以起号；对成熟博主，连续普通内容可能伤害权重。",
+      "epistemicType": "作者主张",
+      "scope": "起号与权重均未定义平台口径。",
+      "citations": ["EV-014", "EV-015"]
+    },
+    {
+      "id": "AK-13",
+      "statement": "百万粉、常态 5 万赞、连续数条 3000 赞导致降权和降基础播放，是作者构造的假设案例。",
+      "epistemicType": "作者主张",
+      "scope": "不是视频展示的真实账号记录或平台文档。",
+      "citations": ["EV-016", "EV-017"]
+    },
+    {
+      "id": "AK-14",
+      "statement": "作者把起号描述为非渐进、近似一夜成名的质量跃迁。",
+      "epistemicType": "作者主张",
+      "scope": "未涵盖渐进增长、复利分发或不同账号类型。",
+      "citations": ["EV-018", "EV-019"]
+    },
+    {
+      "id": "AK-15",
+      "statement": "持续发布后突然爆，不应自动归因于坚持；作者把它归因于创作者突然开窍、内容变好。",
+      "epistemicType": "作者主张",
+      "scope": "作者反对单因果归因，但又用另一个单因果解释，未做实证拆分。",
+      "citations": ["EV-018"]
+    },
+    {
+      "id": "AK-16",
+      "statement": "允许的 AI 用途：补齐写作中的知识缺陷、聊天、头脑风暴。",
+      "epistemicType": "作者主张",
+      "scope": "AI 是辅助者，人类仍负判断和创作责任。",
+      "citations": ["EV-020"]
+    },
+    {
+      "id": "AK-17",
+      "statement": "禁止的 AI 用途：一键生成完整脚本后不经人类实质创作便照稿拍摄。",
+      "epistemicType": "作者主张",
+      "scope": "视频未讨论 AI 草稿经过深度改写、事实核验和编辑的中间情形。",
+      "citations": ["EV-021"]
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "Q-01",
+      "question": "是谁劝你用 AI 做自媒体，他从中获得什么？",
+      "videoAnswer": "作者推定其常在卖 agent、skill 或小程序，目的在赚钱。",
+      "status": "作者回答；无案例展示",
+      "citations": ["EV-005"]
+    },
+    {
+      "id": "Q-02",
+      "question": "如何验证推荐者的可信度？",
+      "videoAnswer": "查主页和数据；数据差则不听，数据好仍要追问爆款是否真由 AI 做。",
+      "status": "给出检查动作，但没有验证协议或阈值",
+      "citations": ["EV-006", "EV-007"]
+    },
+    {
+      "id": "Q-03",
+      "question": "离爆款最近的可控动作是什么？",
+      "videoAnswer": "找到能直击人心的好选题，然后开始写。",
+      "status": "明确回答",
+      "citations": ["EV-008", "EV-011"]
+    },
+    {
+      "id": "Q-04",
+      "question": "为什么通用 AI 不能一键保证爆款？",
+      "videoAnswer": "每个账号/IP要具体分析，还存在流量情境和随机性。",
+      "status": "概念论证；无对照实验",
+      "citations": ["EV-010", "EV-012"]
+    },
+    {
+      "id": "Q-05",
+      "question": "机器能否替代创作者对人的共情？",
+      "videoAnswer": "作者否定，并用“对人类的蔑视”表达价值立场。",
+      "status": "规范性回答，不是能力测试",
+      "citations": ["EV-013"]
+    },
+    {
+      "id": "Q-06",
+      "question": "为什么 60 分视频不值得发？",
+      "videoAnswer": "素人靠它难起号；成熟账号可能因连续低表现被降权。",
+      "status": "给出两类账号解释；评分与算法机制未证",
+      "citations": ["EV-014", "EV-016"]
+    },
+    {
+      "id": "Q-07",
+      "question": "起号来自持续积累还是内容跃迁？",
+      "videoAnswer": "作者选择后者，称突然爆源于开窍而非坚持。",
+      "status": "强主张；没有排除坚持带来的学习、样本量或分发积累",
+      "citations": ["EV-018", "EV-019"]
+    },
+    {
+      "id": "Q-08",
+      "question": "AI 在创作流程中的可接受边界是什么？",
+      "videoAnswer": "补知识、聊天、头脑风暴可以；一键代写全脚本后照拍不可以。",
+      "status": "结尾明确回答",
+      "citations": ["EV-020", "EV-021"]
+    }
+  ],
+  "argumentMap": [
+    {
+      "id": "ARG-01",
+      "claim": "AI 自媒体推广建议常受卖工具利益驱动，应先审查推荐者。",
+      "epistemicType": "作者主张",
+      "groundsShown": [
+        "口头列举 agent、skill、小程序等可售商品",
+        "建议查看推荐者主页和自身数据"
+      ],
+      "conditions": [
+        "推荐者确实同时销售相关产品",
+        "主页数据能够代表其方法能力",
+        "数据来源真实且可归因"
+      ],
+      "counterexamplesNotAddressed": [
+        "不售卖工具但推荐 AI 的创作者",
+        "售卖工具且公开展示 AI 参与过程和可复现实验的人",
+        "数据一般但方法仍可能有效，或数据好但来自其他优势"
+      ],
+      "action": "点开主页，查表现、商业关系和内容的真实生产过程，不把销量或播放量直接当因果证据。",
+      "evidenceStrengthInVideo": "弱到中：有审查逻辑，无真实对象、链接或核验结果",
+      "citations": ["EV-005", "EV-006", "EV-007"]
+    },
+    {
+      "id": "ARG-02",
+      "claim": "爆款的近因是好选题与人类共情，不是通用一键 AI。",
+      "epistemicType": "作者主张",
+      "groundsShown": [
+        "账号/IP具体问题具体分析",
+        "流量不可完全复现",
+        "内容围绕人性与共情"
+      ],
+      "conditions": [
+        "内容类型主要靠情绪、人格或价值共鸣",
+        "AI 使用方式是无上下文的一键生成",
+        "创作者能比工具更好理解具体受众"
+      ],
+      "counterexamplesNotAddressed": [
+        "搜索型、工具型、资讯型或高度模板化内容",
+        "AI 参与但由人类选题、改写、事实核验和表演的内容",
+        "AI 通过数据和用户研究辅助发现选题"
+      ],
+      "action": "先找直击受众的选题并由人类开写；若用 AI，要围绕具体账号调教并保持人类判断。",
+      "evidenceStrengthInVideo": "中等的概念一致性，缺乏实证比较",
+      "citations": ["EV-008", "EV-010", "EV-011", "EV-012", "EV-013"]
+    },
+    {
+      "id": "ARG-03",
+      "claim": "AI 产出的 60 分视频对新号无效，对成熟账号还可能有分发成本。",
+      "epistemicType": "作者主张",
+      "groundsShown": [
+        "素人起号需要突破而不是普通输出",
+        "百万粉/5万赞/3000赞的假设权重案例",
+        "现场白板数字和向下箭头"
+      ],
+      "conditions": [
+        "AI 输出确实稳定停在所谓 60 分",
+        "平台存在作者描述的账号基准与降权机制",
+        "连续低赞与低质量之间可直接对应"
+      ],
+      "counterexamplesNotAddressed": [
+        "不同平台的推荐机制差异",
+        "低点赞但高完播、转化或收藏的内容",
+        "普通内容承担测试、服务老粉或搜索沉淀的情况",
+        "AI 辅助后质量超过所谓 60 分"
+      ],
+      "action": "不要为频率批量发布自认为普通的内容；新号追求实质质量跃迁，成熟号监控低表现序列。",
+      "evidenceStrengthInVideo": "弱：数字是口头假设，白板是说明图，不是平台证据",
+      "citations": ["EV-014", "EV-015", "EV-016", "EV-017"]
+    },
+    {
+      "id": "ARG-04",
+      "claim": "起号更像内容质量突然跃迁，而不是坚持本身的复利。",
+      "epistemicType": "作者主张",
+      "groundsShown": [
+        "口头反驳“坚持后终于爆”的自我归因",
+        "白板绘制缓升线和突然上冲的示意"
+      ],
+      "conditions": [
+        "“起号”被定义为单条或短期爆发",
+        "此前内容质量确实较差，爆发内容有明显质变",
+        "没有其他分发、趋势或样本量原因"
+      ],
+      "counterexamplesNotAddressed": [
+        "长期练习本身造成质量提升",
+        "缓慢积累的搜索流量、社交关系和受众反馈",
+        "平台在多次发布中逐步识别受众",
+        "没有单条爆款也能稳步增长的账号"
+      ],
+      "action": "复盘爆发前后内容发生了什么质变，不把时间或发布次数单独当作因果解释。",
+      "evidenceStrengthInVideo": "弱到中：有可理解的因果提醒，无纵向账号数据",
+      "citations": ["EV-018", "EV-019"]
+    },
+    {
+      "id": "ARG-05",
+      "claim": "AI 应做认知辅助，不应做端到端脚本替代。",
+      "epistemicType": "作者主张",
+      "groundsShown": [
+        "允许补知识、聊天和头脑风暴",
+        "前文的账号特殊性、共情与不确定性论证"
+      ],
+      "conditions": [
+        "人类保留选题、判断、事实核验、写作和表演责任",
+        "AI 输出不被未经审查直接拍摄"
+      ],
+      "counterexamplesNotAddressed": [
+        "AI 初稿经人类深度改写的混合流程",
+        "脚本高度结构化、低情感要求的内容",
+        "有来源核验和质量闸门的自动化流程"
+      ],
+      "action": "把 AI 限定在查缺补漏和发散阶段；脚本必须经过人类实质创作与判断。",
+      "evidenceStrengthInVideo": "中：边界表达清楚，但仍是创作规范而非效果实验",
+      "citations": ["EV-020", "EV-021"]
+    }
+  ],
+  "openingEndingAudit": {
+    "opening": {
+      "epistemicType": "作者主张",
+      "statement": "不要用 AI 做自媒体，不要妄图用 AI 起号或做爆款。",
+      "citations": ["EV-003"]
+    },
+    "ending": {
+      "epistemicType": "作者主张",
+      "statement": "AI 可以补知识缺陷、聊天和头脑风暴，但不要一键生成脚本再照拍。",
+      "citations": ["EV-020", "EV-021"]
+    },
+    "relationship": {
+      "epistemicType": "推断",
+      "assessment": "结尾不是简单重复开头，而是对开头做范围修正。最忠实的闭环是：反对把 AI 当主创或爆款捷径，允许把 AI 当人类主导流程中的辅助。若把开头逐字理解为“零 AI”，则与结尾存在表面矛盾。",
+      "unresolvedTensions": [
+        "中段“真正博主没有任何一个用 AI”仍是未经限定的绝对句",
+        "“AI只能做60分”与“调教一个适合你的AI”之间缺少质量上限如何变化的解释",
+        "作者允许 AI 补知识，却没有讨论其事实错误风险和核验责任"
+      ],
+      "citations": ["EV-007", "EV-010", "EV-014", "EV-021"]
+    }
+  },
+  "captionBurnInWhiteboardAudit": {
+    "providedSrt": {
+      "epistemicType": "事实",
+      "assessment": "56 条 cue 基本覆盖连续口播，时间到 156.338 秒；存在 ASR/整理式错字、词间空格和语法粘连，不能当作逐字无误稿。",
+      "citations": ["EV-001", "EV-023"]
+    },
+    "burnedCaptions": {
+      "epistemicType": "画面",
+      "assessment": "画面底部持续出现粗白字幕，部分关键词黄色高亮，如 AI、赚你的钱、离爆款最近、好选题、底层逻辑、天时地利人和、共情、60分、权重。烧录字幕通常按更短语义块展示，与 SRT 分段不同。",
+      "citations": ["EV-004", "EV-008", "EV-011", "EV-013", "EV-015"]
+    },
+    "specificConflicts": [
+      {
+        "id": "TXT-01",
+        "epistemicType": "未知",
+        "issue": "SRT CUE-001 写“太多展示教资，今天我只说一件事情”；0秒编辑叠层可见“开头展示教资”，而 1.033 秒烧录字幕只显示“今天我只说一件事情”。第一小句究竟是语音、OCR 混入还是误识别，无法仅凭这些载体确定。",
+        "preferredReconstruction": "把 0-0.733 秒记为视觉资历展示，把 0.733 秒后记为口播“今天我只说一件事情”，不要把“太多展示教资”当可靠原话。",
+        "citations": ["EV-002", "EV-025"]
+      },
+      {
+        "id": "TXT-02",
+        "epistemicType": "事实",
+        "issue": "SRT 多处把 AI/IP 写成“a i”“i p”；烧录字幕使用常规“AI”“IP”。",
+        "preferredReconstruction": "规范为 AI、IP，不改变语义。",
+        "citations": ["EV-009", "EV-010"]
+      },
+      {
+        "id": "TXT-03",
+        "epistemicType": "未知",
+        "issue": "SRT CUE-008 为“他要卖他skill卖的小程序了”，语法粘连；相关烧录帧只清晰显示“卖他的小程序了”，前一 cue 又提到 agent。无法确认口头列举的精确停顿和连接词。",
+        "preferredReconstruction": "保留语义级列举：推广者在销售 agent、skill 或小程序；不声称逐字语法。",
+        "citations": ["EV-005", "EV-026"]
+      },
+      {
+        "id": "TXT-04",
+        "epistemicType": "未知",
+        "issue": "结尾 SRT 写“我是人类智商编导”，155 秒烧录字幕清楚显示“我是人类最强编导”。",
+        "preferredReconstruction": "视觉自称按“人类最强编导”记录；精确语音自称保持未知。",
+        "citations": ["EV-022", "EV-023"]
+      },
+      {
+        "id": "TXT-05",
+        "epistemicType": "推断",
+        "issue": "SRT 的“第一点/第二点/第三个事情/下一个点”编号不稳定，且部分转换塞在同一 cue 中。",
+        "preferredReconstruction": "按实际语义转折重建为动机审查、选题、流量不确定、共情、60分/权重、起号模型、AI边界七个主题，不把口头编号当严谨目录。",
+        "citations": ["EV-005", "EV-007", "EV-011", "EV-012", "EV-013", "EV-014", "EV-018", "EV-020"]
+      }
+    ],
+    "whiteboard": {
+      "epistemicType": "画面",
+      "observed": [
+        "左中预写三行与开头一致的禁令：不要用 AI 做自媒体、不要妄图用 AI 起号、不要妄图用 AI 做爆款。",
+        "中部红字包含可辨的“核心选题 1 Point”一类选题提示；其余手写字部分模糊，不应强行转写。",
+        "约 103-124 秒新增“权重”、100w/5w、3k 和向下箭头，伴随百万粉/点赞/降权案例。",
+        "约 128-143 秒新增缓升线、突然上冲/爆点示意，伴随起号不是缓慢上升而是突然开窍的论述。"
+      ],
+      "conflictAssessment": "白板核心口号与口播相符；后段数字/曲线是同步说明图。白板没有提供独立外部证据。开头三行的字面全面禁令与结尾允许 AI 辅助存在范围张力。",
+      "citations": ["EV-004", "EV-011", "EV-017", "EV-019"]
+    }
+  },
+  "shotVsSemanticContinuity": {
+    "epistemicType": "推断",
+    "automaticCuts": [0.733, 22.3, 25.833, 37.0, 40.033, 49.0, 64.1, 143.533, 154.033, 156.267],
+    "assessment": "自动 shot 主要捕捉编辑跳切、姿态/构图变化和黑场，不能替代语义分段。",
+    "examples": [
+      {
+        "shotRelation": "SHOT-001→SHOT-002 @0.733",
+        "semanticRelation": "有效载体转换：数据拼贴开场转入口播正文。"
+      },
+      {
+        "shotRelation": "SHOT-002→003→004→005→006 @22.3/25.833/37/40.033",
+        "semanticRelation": "多次视觉切分仍服务同一“推广者动机与两种数据情况”论证；40.033 秒切点还早于口头第二主题约 2.3 秒。"
+      },
+      {
+        "shotRelation": "SHOT-006→SHOT-007 @49.0",
+        "semanticRelation": "切在同一选题/AI适配论证内，只是从答案“好选题”转入对一键 AI 承诺的反驳。"
+      },
+      {
+        "shotRelation": "SHOT-007→SHOT-008 @64.1",
+        "semanticRelation": "较接近语义重置：从调教 AI 回到“离爆款最近”的答案；但仍属于同一选题大论点。"
+      },
+      {
+        "shotRelation": "SHOT-008 @64.1-143.533",
+        "semanticRelation": "一个超长自动 shot 内包含至少五个独立语义单元：好选题、流量不确定、共情、60分/权重、起号质量跃迁。"
+      },
+      {
+        "shotRelation": "SHOT-008→SHOT-009 @143.533",
+        "semanticRelation": "与 143.645 秒“允许 AI 辅助”的结论几乎对齐，是较可靠的语义边界。"
+      },
+      {
+        "shotRelation": "SHOT-009→SHOT-010→SHOT-011 @154.033/156.267",
+        "semanticRelation": "对应结束语、身份口号和黑场，但最后 SRT cue 跨越三 shot。"
+      }
+    ],
+    "citations": ["EV-001", "EV-024", "EV-027"]
+  },
+  "peopleAndEnvironment": {
+    "observedFacts": [
+      {
+        "epistemicType": "画面",
+        "statement": "画面中持续只有一名可见讲述者，戴全头红色蜘蛛侠式面罩，穿白色印花 T 恤和深色外搭，胸前夹有无线领夹麦，手持蓝色白板笔。",
+        "citations": ["EV-004", "EV-028"]
+      },
+      {
+        "epistemicType": "画面",
+        "statement": "讲述者在对镜口播、侧身指板和现场写画之间切换；面罩遮住面部表情与身份特征。",
+        "citations": ["EV-011", "EV-017", "EV-019"]
+      },
+      {
+        "epistemicType": "画面",
+        "statement": "环境像室内工作/教学空间：大型白板、办公椅、下方横杆及左下局部圆形器物可见；视频没有给出地点名称。",
+        "citations": ["EV-028"]
+      },
+      {
+        "epistemicType": "画面",
+        "statement": "除 0-0.733 秒编辑拼贴外，主体始终是同一人物和同一白板场景；没有受访者、屏幕操作、外景或实物 AI 演示。",
+        "citations": ["EV-002", "EV-027", "EV-028"]
+      }
+    ],
+    "inferences": [
+      {
+        "epistemicType": "推断",
+        "statement": "面罩、白板和“下课”收尾共同塑造匿名但权威/授课式的人设；这是风格判断，不是人物真实职业证明。",
+        "citations": ["EV-022", "EV-028"]
+      },
+      {
+        "epistemicType": "未知",
+        "statement": "人物真实姓名、性别、年龄、职业资历、所在地和拼贴数据归属均无法从允许来源可靠确认。",
+        "citations": ["EV-002", "EV-028"]
+      }
+    ]
+  },
+  "negativeEvidence": [
+    {
+      "id": "NEG-01",
+      "epistemicType": "负证据",
+      "statement": "没有展示任何被批评的推广者姓名、主页、商品页、链接或交易记录。",
+      "implication": "“他们都为赚你的钱”只能保留为作者概括。",
+      "citations": ["EV-005", "EV-027"]
+    },
+    {
+      "id": "NEG-02",
+      "epistemicType": "负证据",
+      "statement": "没有展示 AI 生成脚本、AI 生成成片、提示词、模型版本或一键工作流。",
+      "implication": "不能从视频验证 AI 质量上限或失败机制。",
+      "citations": ["EV-027"]
+    },
+    {
+      "id": "NEG-03",
+      "epistemicType": "负证据",
+      "statement": "没有 60 分与高分视频的并排样例，也没有评分维度、评委或阈值。",
+      "implication": "“AI只能做60分”不可操作化、不可复核。",
+      "citations": ["EV-014", "EV-027"]
+    },
+    {
+      "id": "NEG-04",
+      "epistemicType": "负证据",
+      "statement": "没有平台名称、官方算法文档、后台截图或真实账号的时间序列。",
+      "implication": "权重、基础播放和下降更快的机制不能视为平台事实。",
+      "citations": ["EV-016", "EV-017", "EV-027"]
+    },
+    {
+      "id": "NEG-05",
+      "epistemicType": "负证据",
+      "statement": "开头数据拼贴只提供数字印象，没有说明账号归属、日期、平台、指标口径或是否与 AI 有关。",
+      "implication": "它能作为视觉资历诉求，不能支持关于 AI 因果或普遍规律的论断。",
+      "citations": ["EV-002"]
+    },
+    {
+      "id": "NEG-06",
+      "epistemicType": "负证据",
+      "statement": "没有展示“真正博主”的样本框、调查方法或 AI 使用披露。",
+      "implication": "“没有任何一个人用 AI”是不可由视频证成的全称命题。",
+      "citations": ["EV-007", "EV-027"]
+    },
+    {
+      "id": "NEG-07",
+      "epistemicType": "负证据",
+      "statement": "没有讨论 AI 补知识时可能产生事实错误，也没有提出核验流程。",
+      "implication": "结尾允许的知识补缺仍有未交代的质量条件。",
+      "citations": ["EV-020", "EV-021"]
+    },
+    {
+      "id": "NEG-08",
+      "epistemicType": "负证据",
+      "statement": "没有反例、异议者发言或外部证据源；全片为单人观点输出。",
+      "implication": "论证完整性依赖作者修辞和内部一致性。",
+      "citations": ["EV-027", "EV-028"]
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "UNK-01",
+      "epistemicType": "未知",
+      "statement": "“AI”具体指何种模型、版本、功能或自动化程度。"
+    },
+    {
+      "id": "UNK-02",
+      "epistemicType": "未知",
+      "statement": "“自媒体”“爆款”“起号”“60分”“权重”“基础播放”的精确定义和测量口径。"
+    },
+    {
+      "id": "UNK-03",
+      "epistemicType": "未知",
+      "statement": "作者所指平台、内容品类、目标受众、时间范围和地域。"
+    },
+    {
+      "id": "UNK-04",
+      "epistemicType": "未知",
+      "statement": "开头拼贴中的账号/数字是否属于讲述者、是否经过核验、与本论题有何因果关系。",
+      "citations": ["EV-002"]
+    },
+    {
+      "id": "UNK-05",
+      "epistemicType": "未知",
+      "statement": "SRT 首句和结尾自称的精确语音文字；视觉载体彼此有冲突。",
+      "citations": ["EV-025", "EV-022", "EV-023"]
+    },
+    {
+      "id": "UNK-06",
+      "epistemicType": "未知",
+      "statement": "白板上大量较小手写笔记的完整文字、是否为本条视频专门书写、是否存在与口播不同的上下文。",
+      "citations": ["EV-028"]
+    },
+    {
+      "id": "UNK-07",
+      "epistemicType": "未知",
+      "statement": "成熟账号连续低表现是否必然导致降权，以及因果方向是否可能相反。",
+      "citations": ["EV-016"]
+    },
+    {
+      "id": "UNK-08",
+      "epistemicType": "未知",
+      "statement": "渐进增长与突然爆发在真实账号中的相对比例，及坚持通过练习间接提高质量的作用。",
+      "citations": ["EV-018"]
+    }
+  ],
+  "epistemicSeparation": {
+    "事实": "媒体参数、时间、SRT cue 数、自动 shot 信息等由允许来源直接给出。",
+    "画面": "人物、服装、面罩、白板、烧录字幕、拼贴、现场书写和黑场等可直接观察。",
+    "作者主张": "关于卖家动机、AI能力、平台权重、爆款规律、共情和起号机制的内容，只记为讲述者所说。",
+    "推断": "对认知转折、论证关系、开头结尾边界和镜头语义关系的审计解释。",
+    "负证据": "允许来源中没有出现、因此不能支持更强结论的材料。",
+    "未知": "载体冲突、定义缺失或无法从允许来源确认的信息。"
+  },
+  "evidenceIndex": [
+    {
+      "id": "EV-001",
+      "type": "evidence-pack metadata",
+      "locator": "evidence/evidence-pack.json",
+      "observation": "156.367秒，2160×3840，30fps，HEVC/AAC；56 cues、11 shots、64 dense frames。"
+    },
+    {
+      "id": "EV-002",
+      "type": "frame",
+      "time": 0.0,
+      "locator": "evidence/frames/dense/dense-0001.jpg",
+      "observation": "数据卡片/头像拼贴覆盖人物与白板，中央“开头展示教资”。"
+    },
+    {
+      "id": "EV-003",
+      "type": "subtitle",
+      "cueIds": ["CUE-002", "CUE-003", "CUE-004"],
+      "start": 2.066,
+      "end": 13.6,
+      "locator": "SRT cues 2-4",
+      "observation": "三连禁令、忠言逆耳与利益相关受众框架。"
+    },
+    {
+      "id": "EV-004",
+      "type": "frames",
+      "times": [2.5, 5.0, 7.5, 10.0, 12.5],
+      "locator": "evidence/frames/dense/dense-0002.jpg..dense-0006.jpg",
+      "observation": "蒙面人物、白板三行禁令、底部烧录字幕与黄色关键词。"
+    },
+    {
+      "id": "EV-005",
+      "type": "subtitle",
+      "cueIds": ["CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009", "CUE-010"],
+      "start": 13.61,
+      "end": 26.497,
+      "locator": "SRT cues 5-10",
+      "observation": "追问谁让你用AI及其动机，列举 agent/skill/小程序并称其想赚钱。"
+    },
+    {
+      "id": "EV-006",
+      "type": "subtitle",
+      "cueIds": ["CUE-011", "CUE-012", "CUE-013", "CUE-014"],
+      "start": 26.497,
+      "end": 36.95,
+      "locator": "SRT cues 11-14",
+      "observation": "查主页数据；数据差不听，数据好时作者断言爆款非AI制作。"
+    },
+    {
+      "id": "EV-007",
+      "type": "subtitle",
+      "cueIds": ["CUE-015"],
+      "start": 36.96,
+      "end": 42.35,
+      "locator": "SRT cue 15",
+      "observation": "“真正博主没有任何一个用AI”并转向“离钱/爆款最近”。"
+    },
+    {
+      "id": "EV-008",
+      "type": "subtitle+frame",
+      "cueIds": ["CUE-016", "CUE-017", "CUE-018", "CUE-019"],
+      "start": 42.36,
+      "end": 50.79,
+      "locator": "SRT cues 16-19; evidence/frames/dense/dense-0019.jpg,dense-0020.jpg",
+      "observation": "离爆款最近的事情被定义为好选题，烧录字幕黄色强调关键词。"
+    },
+    {
+      "id": "EV-009",
+      "type": "subtitle",
+      "cueIds": ["CUE-020", "CUE-021", "CUE-022"],
+      "start": 50.8,
+      "end": 58.114,
+      "locator": "SRT cues 20-22",
+      "observation": "否定AI一键生成爆款的承诺，承认自媒体有底层逻辑。"
+    },
+    {
+      "id": "EV-010",
+      "type": "subtitle",
+      "cueIds": ["CUE-023", "CUE-024"],
+      "start": 58.114,
+      "end": 64.08,
+      "locator": "SRT cues 23-24",
+      "observation": "每个账号/IP具体分析，需要调教适合自己的AI。"
+    },
+    {
+      "id": "EV-011",
+      "type": "subtitle+frame",
+      "cueIds": ["CUE-025", "CUE-026"],
+      "start": 64.09,
+      "end": 71.02,
+      "locator": "SRT cues 25-26; evidence/frames/cues/cue-026.jpg",
+      "observation": "指板并称先找直击人心的好选题，然后开始写。"
+    },
+    {
+      "id": "EV-012",
+      "type": "subtitle",
+      "cueIds": ["CUE-027", "CUE-028", "CUE-029", "CUE-030"],
+      "start": 71.03,
+      "end": 82.12,
+      "locator": "SRT cues 27-30",
+      "observation": "流量有规律但不稳定；同一爆款重发未必火；可拆解但不一定可复制。"
+    },
+    {
+      "id": "EV-013",
+      "type": "subtitle+frames",
+      "cueIds": ["CUE-031", "CUE-032"],
+      "start": 82.13,
+      "end": 90.2,
+      "locator": "SRT cues 31-32; evidence/frames/dense/dense-0035.jpg..dense-0037.jpg",
+      "observation": "内容=人性、做内容=共情，机器共情被称为蔑视人类。"
+    },
+    {
+      "id": "EV-014",
+      "type": "subtitle",
+      "cueIds": ["CUE-033", "CUE-034", "CUE-035", "CUE-036", "CUE-037"],
+      "start": 90.21,
+      "end": 102.475,
+      "locator": "SRT cues 33-37",
+      "observation": "60分视频不如不发；AI能做但对素人和博主都不够。"
+    },
+    {
+      "id": "EV-015",
+      "type": "subtitle+frame",
+      "cueIds": ["CUE-038", "CUE-039"],
+      "start": 102.475,
+      "end": 106.98,
+      "locator": "SRT cues 38-39; evidence/frames/dense/dense-0042.jpg,dense-0043.jpg",
+      "observation": "引入“权重”，提百万大V点赞只有一千的现象。"
+    },
+    {
+      "id": "EV-016",
+      "type": "subtitle",
+      "cueIds": ["CUE-040", "CUE-041", "CUE-042", "CUE-043", "CUE-044", "CUE-045"],
+      "start": 106.99,
+      "end": 124.018,
+      "locator": "SRT cues 40-45",
+      "observation": "百万粉/5万赞/数条3000赞的降权、降基础播放假设案例。"
+    },
+    {
+      "id": "EV-017",
+      "type": "frames",
+      "times": [102.5, 110.0, 112.5, 115.0, 117.5, 120.0],
+      "locator": "evidence/frames/dense/dense-0042.jpg,dense-0045.jpg..dense-0049.jpg",
+      "observation": "现场写圈“权重”、100w/5w、3k及向下箭头。"
+    },
+    {
+      "id": "EV-018",
+      "type": "subtitle",
+      "cueIds": ["CUE-046", "CUE-047", "CUE-048", "CUE-049", "CUE-050", "CUE-051", "CUE-052"],
+      "start": 124.018,
+      "end": 143.645,
+      "locator": "SRT cues 46-52",
+      "observation": "起号非厚积薄发/缓升；突然爆被归因于开窍而非坚持。"
+    },
+    {
+      "id": "EV-019",
+      "type": "frames",
+      "times": [127.5, 130.0, 132.5, 135.0, 137.5, 140.0, 142.5],
+      "locator": "evidence/frames/dense/dense-0052.jpg..dense-0058.jpg",
+      "observation": "指禁令并绘制缓升线、爆点/上冲示意。"
+    },
+    {
+      "id": "EV-020",
+      "type": "subtitle",
+      "cueIds": ["CUE-053", "CUE-054"],
+      "start": 143.645,
+      "end": 149.095,
+      "locator": "SRT cues 53-54",
+      "observation": "允许AI补知识缺陷、聊天与头脑风暴。"
+    },
+    {
+      "id": "EV-021",
+      "type": "subtitle+frames",
+      "cueIds": ["CUE-055", "CUE-056"],
+      "start": 149.095,
+      "end": 156.338,
+      "locator": "SRT cues 55-56; evidence/frames/dense/dense-0061.jpg,dense-0062.jpg",
+      "observation": "禁止AI一键生成脚本再照拍，随后收尾。"
+    },
+    {
+      "id": "EV-022",
+      "type": "frame",
+      "time": 155.0,
+      "locator": "evidence/frames/dense/dense-0063.jpg",
+      "observation": "烧录字幕显示“我是人类最强编导”。"
+    },
+    {
+      "id": "EV-023",
+      "type": "subtitle",
+      "cueIds": ["CUE-056"],
+      "start": 151.911,
+      "end": 156.338,
+      "locator": "SRT cue 56",
+      "observation": "SRT写“我是人类智商编导，下课”，与烧录身份字样冲突。"
+    },
+    {
+      "id": "EV-024",
+      "type": "shot+frame",
+      "time": 156.247,
+      "locator": "evidence/frames/dense/dense-0064.jpg; SHOT-011 156.267-156.367",
+      "observation": "dense末帧黑色；自动shot记录极短黑场。"
+    },
+    {
+      "id": "EV-025",
+      "type": "subtitle+frames",
+      "cueIds": ["CUE-001"],
+      "start": 0.0,
+      "end": 2.066,
+      "locator": "SRT cue 1; evidence/frames/dense/dense-0001.jpg; evidence/frames/cues/cue-001.jpg",
+      "observation": "SRT首句、开场叠层“开头展示教资”和烧录“今天我只说一件事情”不完全一致。"
+    },
+    {
+      "id": "EV-026",
+      "type": "frame",
+      "time": 21.36,
+      "locator": "evidence/frames/cues/cue-008.jpg",
+      "observation": "烧录字幕可见“卖他的小程序了”。"
+    },
+    {
+      "id": "EV-027",
+      "type": "full-timeline negative observation",
+      "locator": "original video + all 64 dense frames + all 11 shot representatives",
+      "observation": "全片未出现外部主页、AI操作、脚本对照、平台后台、来源文档或第二位发言者。"
+    },
+    {
+      "id": "EV-028",
+      "type": "frames",
+      "times": [1.033, 39.655, 68.574, 103.171, 142.084, 154.125],
+      "locator": "evidence/frames/cues/cue-001.jpg,cue-015.jpg,cue-026.jpg,cue-038.jpg,cue-052.jpg,cue-056.jpg",
+      "observation": "同一蒙面讲述者、无线领夹麦、蓝色白板笔、同一白板与室内环境贯穿。"
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "checked": {
+      "jsonValid": true,
+      "evidenceIdCount": 28,
+      "citationOccurrences": 166,
+      "cueIdOccurrencesValidated": 57,
+      "availableFrameFileCount": 131,
+      "markdownDistinctEvidenceIds": 28,
+      "timeRangeValid": true
+    },
+    "requirements": [
+      "所有内容 citations 均必须存在于 evidenceIndex",
+      "所有 cueIds 必须存在于 evidence-pack transcript.cues",
+      "所有 frame locator 必须指向允许 evidence/frames 内的现存文件",
+      "引用时间不得超出 0-156.367 秒"
+    ]
+  }
+}

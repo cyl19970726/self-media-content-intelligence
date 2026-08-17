@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationMode": "blind-holdout-gate-first",
+  "candidate": "holdout-fix/skill-run",
+  "hardGatePass": false,
+  "gatePolicy": "All hard gates must pass; JUDGE is not run after any gate failure.",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 6,
+      "denominator": 7,
+      "ratio": 0.8571428571,
+      "threshold": ">=0.85",
+      "pass": true,
+      "examples": [
+        {
+          "status": "answered",
+          "auditId": "Q-04",
+          "detail": "Candidate correctly identifies the copied object as selected text from the rendered HTML preview, not raw source code."
+        },
+        {
+          "status": "answered",
+          "auditId": "Q-03",
+          "detail": "Candidate recovers HTML output plus the heading/body font, size, spacing, alignment, and indent parameters."
+        },
+        {
+          "status": "missed",
+          "auditId": "Q-05",
+          "detail": "Candidate repeatedly identifies the target as Word and says filename/extension are absent; raw UI shows WPS Writer and the tab '文字文稿(1).docx'."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 9,
+      "denominator": 11,
+      "ratio": 0.8181818182,
+      "threshold": ">=0.90",
+      "pass": false,
+      "unitDefinition": "Eleven deduplicated core ground-truth units: failure signature; source answer; exact prompt; HTML/CSS response; target application/document identity; rendered preview; rendered-text selection; paste/result handoff; final formatted result; single-example limitation; non-speech-audio boundary.",
+      "examples": [
+        {
+          "status": "covered",
+          "unit": "rendered preview and selected rich text",
+          "candidateEvidence": ["TARGET-0043", "TARGET-0044", "TARGET-0046", "TARGET-0047"]
+        },
+        {
+          "status": "covered",
+          "unit": "exact prompt parameters",
+          "candidateEvidence": ["TARGET-0025", "TARGET-0027", "OCR-00347", "OCR-00348", "OCR-00349"]
+        },
+        {
+          "status": "not validly covered",
+          "unit": "failure signature",
+          "detail": "Candidate reports dense small text and weak hierarchy but omits the directly visible ### and ** Markdown traces that ground the stated failure."
+        },
+        {
+          "status": "not validly covered",
+          "unit": "target application/document identity",
+          "detail": "Candidate misreads WPS Writer as Word and denies the visible .docx tab identity."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 4,
+      "total": 55,
+      "ratio": 0.0727272727,
+      "threshold": "<=0.05",
+      "pass": false,
+      "countingMethod": "Distinct positive factual assertions were normalized across reconstruction.json and article.md; repeated wording of the same assertion was deduplicated.",
+      "examples": [
+        {
+          "claim": "The shown target application is Word.",
+          "finding": "unsupported/incorrect",
+          "grounding": "The UI is WPS Writer."
+        },
+        {
+          "claim": "The filename is not shown.",
+          "finding": "incorrect",
+          "grounding": "The visible tab is '文字文稿(1).docx'."
+        },
+        {
+          "claim": "The extension is not shown.",
+          "finding": "incorrect",
+          "grounding": "The .docx extension is visible in the tab."
+        },
+        {
+          "claim": "The video does not show a failure comparison.",
+          "finding": "incorrect as written",
+          "grounding": "The opening WPS document with Markdown traces is the explicit failure side of the before/after structure."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 19,
+      "denominator": 20,
+      "ratio": 0.95,
+      "threshold": ">=0.90",
+      "pass": true,
+      "checkingMethod": "Twenty high-impact references were spot-checked against evidence-v2 dense frames and candidate targeted frames.",
+      "examples": [
+        {
+          "status": "accurate",
+          "reference": "14.8-18.0 / TARGET-0025, TARGET-0027",
+          "detail": "The full prompt and its parameters are localized correctly."
+        },
+        {
+          "status": "accurate",
+          "reference": "22.4-24.0 / TARGET-0043 through TARGET-0047",
+          "detail": "The code-to-rendered-preview and selection sequence is correctly localized."
+        },
+        {
+          "status": "inaccurate boundary",
+          "reference": "article.md 22.4-24.4",
+          "detail": "At 24.4 the preview is already entering the transition; the stable selected preview is established through approximately 24.0."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 6,
+      "denominator": 7,
+      "ratio": 0.8571428571,
+      "threshold": ">=0.85",
+      "pass": true,
+      "rationale": "The candidate covers the failure baseline, selected answer, prompt, HTML response, rendered preview/selection, paste state, and final result. It misses one audited ordering dependency in its normalized procedure: the blank WPS target document is shown before returning to run/select the HTML preview, while the candidate's six-step procedure places the blank-document switch only after preview selection. The handoff remains understandable and the 6/7 threshold is met."
+    },
+    "unknownDiscipline": {
+      "numerator": 7,
+      "denominator": 9,
+      "ratio": 0.7777777778,
+      "threshold": ">=0.90",
+      "pass": false,
+      "examples": [
+        {
+          "status": "correct unknown",
+          "auditId": "UNK-03",
+          "detail": "Candidate correctly abstains on the unseen copy/paste commands and exact paste choice."
+        },
+        {
+          "status": "correct unknown",
+          "auditId": "UNK-07",
+          "detail": "Candidate correctly says independent music/effects cannot be confirmed and does not infer absence."
+        },
+        {
+          "status": "failed unknown opportunity",
+          "auditId": "UNK-02",
+          "detail": "Candidate treats the displayed application as Word instead of recognizing that only WPS Writer is shown and Microsoft Word compatibility remains unverified."
+        },
+        {
+          "status": "failed unknown opportunity",
+          "auditId": "UNK-06",
+          "detail": "Candidate omits the visible font-availability caveat: whether 仿宋GB-2312 is installed remains unknown."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "Environment/set-dressing carrier: the warm lamp, plants, blinds, monitor glow, desk lighting, props, and their role in creator-scene identity/lifestyle framing are available in the raw video but absent from the candidate's carrier inventory and reconstruction."
+    ]
+  },
+  "judgeStatus": "not_run_due_to_hard_gate_failure",
+  "judgeSchemaNote": "The canonical schema requires five numeric judge fields even when gates fail. Values below are non-substantive schema sentinels and must not be interpreted as JUDGE scores.",
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "UI/OCR application identity and document-tab text: WPS Writer and '文字文稿(1).docx'",
+      "Failure-document symbol details: visible ### and ** Markdown traces",
+      "Environment/set dressing: warm lamp, plants, blinds, monitor glow, desk lighting, and props as creator-workspace/lifestyle framing"
+    ],
+    "unguardedMeaningChanges": [
+      "Word in the narration is a generic target label, while the actual demonstrated application is WPS Writer; Microsoft Word itself is not directly tested.",
+      "The narration's '乱码问题' means Markdown traces and hierarchy/style corruption, not character-encoding garble."
+    ],
+    "unguardedRelationships": [
+      "The exact example parameters map to CSS properties (font-family, 16pt, line-height, margin-bottom, text-align, text-indent); the candidate notes generic CSS fields but does not close the full parameter-to-CSS mapping.",
+      "The opening Markdown-marked WPS failure state and the ending formatted WPS result form an explicit counterexample-to-result relationship; article.md later incorrectly says no failure comparison is shown."
+    ],
+    "rationale": "The candidate's self meta-gate cannot prove completeness. Independent comparison exposes available UI text and two meaning changes that were either missed or inverted, plus a relationship contradiction. Therefore the meta-gate fails."
+  },
+  "examples": [
+    {
+      "type": "high_value_success",
+      "detail": "The candidate correctly discovers the decisive visual-only step: run HTML, select rendered preview text, then move that rich text into the document."
+    },
+    {
+      "type": "hard_failure",
+      "detail": "The candidate turns a directly visible WPS/.docx fact into a Word assertion and an absence claim, causing evidence-coverage, unsupported-inference, unknown-discipline, unchecked-channel, and meta-gate failures."
+    },
+    {
+      "type": "hard_failure",
+      "detail": "The candidate omits the visible Markdown markers in the failure state and then says no failure comparison is shown, despite the video's explicit before/after construction."
+    }
+  ]
+}

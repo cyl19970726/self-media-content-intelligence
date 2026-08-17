@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "690ac8730000000004014f67",
+  "evaluationMode": "fresh_re_evaluation_after_candidate_repair",
+  "sourceScope": {
+    "used": [
+      "audit/audit.json",
+      "audit/audit.md",
+      "skill-run current repaired artifacts",
+      "skill-run current derived visual and audio evidence",
+      "evaluation/discrepancies.md only as a closure checklist"
+    ],
+    "excluded": [
+      "evaluation/evaluation.json",
+      "evaluation/evaluation.md",
+      "all prior verdicts and scores",
+      "old reports and analysis-library conclusions",
+      "candidate modification"
+    ]
+  },
+  "gateDisposition": {
+    "pass": true,
+    "judgeRun": true,
+    "rationale": "All seven count/carrier gates meet their canonical thresholds and the independent meta-audit finds no unguarded carrier, meaning change, or relationship. One stale reviewed-frame count remains a non-blocking provenance discrepancy and is counted in unsupported inference."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "status": "answered",
+          "question": "Which six visible tool identities, taglines, spoken uses, and adjacent examples appear?",
+          "candidate": "KU-02 through KU-26 preserve all six mappings and their literal card/voice/result distinctions."
+        },
+        {
+          "status": "answered",
+          "question": "Does the Jimeng card establish authorship of the poster?",
+          "candidate": "KU-05 and KU-06 retain the Doubao watermark conflict and keep actual source unknown."
+        },
+        {
+          "status": "answered",
+          "question": "Is the video a workflow or a parallel catalogue?",
+          "candidate": "KU-01 and KU-28 identify six parallel mappings and no visible cross-tool handoff."
+        },
+        {
+          "status": "answered",
+          "question": "What is the non-speech audio doing?",
+          "candidate": "KU-30 cites the full 29-window audio evidence and ten bounded stages; identity and rights remain unknown."
+        },
+        {
+          "status": "answered_or_correctly_unknown",
+          "question": "Are presenter identity, product-claim validity, technical shot semantics, and opening-to-closing function guarded?",
+          "candidate": "KU-27, KU-29, KU-31, and KU-32 explicitly close those omission probes."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 26,
+      "denominator": 26,
+      "examples": [
+        {
+          "group": "global structure",
+          "covered": "1/1",
+          "candidate": "KU-01"
+        },
+        {
+          "group": "Jimeng/poster",
+          "covered": "5/5",
+          "candidate": "KU-02 through KU-06"
+        },
+        {
+          "group": "Lovart/logo, Manus/PPT, Claude/UI, Tripo AI/3D, Lovable/web",
+          "covered": "20/20",
+          "candidate": "KU-07 through KU-26"
+        },
+        {
+          "detail": "Audit-critical counts are preserved: 15 PPT-like panels, 6 phone mockups representing 3 distinct screens, 1 rotating digital 3D model, and 1 continuously presented NEUROBUS page with multiple regions/states."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 38,
+      "examples": [
+        {
+          "status": "supported",
+          "claim": "The six examples are editorially associated but are not proven generated outputs.",
+          "candidate": "KU-06, KU-10, KU-14, KU-18, KU-22, KU-26",
+          "basis": "The audit confirms that no inputs, prompts, operations, generation records, or exports are shown."
+        },
+        {
+          "status": "supported",
+          "claim": "Background music spans the clip and is more exposed in speech gaps and the final tail.",
+          "candidate": "KU-30",
+          "basis": "All 29 overlapping windows contain a music classification; stage summaries keep discrete low-confidence labels uncertain."
+        },
+        {
+          "status": "error",
+          "claim": "SRC-OCR-REVIEW was produced by manual review of 103 targeted source frames.",
+          "candidate": "reconstruction.json derivedSources[SRC-OCR-REVIEW].producedBy",
+          "basis": "The refreshed targeted manifest has 108 frames and the refreshed OCR artifact has 108 processed frames. The exact value 103 is stale provenance metadata."
+        },
+        {
+          "countingRule": "The denominator is one independently checked substantive assertion for each of 32 knowledge units plus one provenance assertion for each of 6 registered derived sources. The article is a rendering of those units and is not double-counted."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 94,
+      "denominator": 94,
+      "examples": [
+        {
+          "method": "Exhaustive ID and interval check of all non-source evidence references attached to knowledge units: 71 targeted-frame refs, 13 OCR refs, 8 cue refs, and 2 shot refs."
+        },
+        {
+          "result": "All 94 IDs resolve in the supplied manifests and overlap the knowledge unit's declared time range."
+        },
+        {
+          "examples": [
+            "TARGET-0011 at 3.10s closes the Lovart short-card gap",
+            "TARGET-0006 and OCR-00040 localize the Doubao watermark conflict",
+            "CUE-004 spans both UI and 3D spoken uses",
+            "TARGET-0053 localizes the final web state"
+          ]
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "The independent audit establishes that the video is a parallel tool-capability list, not a workflow. The candidate correctly records the absence of cross-tool handoffs and does not invent dependencies. Editorial tool-to-example mappings are evaluated under relationship coverage rather than as process steps."
+    },
+    "unknownDiscipline": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {
+          "group": "actual generation source for six examples",
+          "correct": "6/6",
+          "candidate": "KU-06, KU-10, KU-14, KU-18, KU-22, KU-26"
+        },
+        {
+          "group": "input/process/file or deployment state for six examples",
+          "correct": "6/6",
+          "candidate": "KU-06, KU-10, KU-14, KU-18, KU-22, KU-26"
+        },
+        {
+          "group": "cross-cutting decision boundaries",
+          "correct": "5/5",
+          "items": [
+            "external truth and conditions of card claims",
+            "presenter identity/authorization",
+            "physical-print status of the 3D model",
+            "access/platform/account/region/support/deployment conditions",
+            "music identity, rights, source, and unstable event labels"
+          ],
+          "candidate": "KU-22, KU-27 through KU-30"
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "judgeRationale": {
+    "readability": "The lead table and section hierarchy are clear, but the report is long for a 14.9-second source.",
+    "knowledgePrioritization": "The parallel-list structure, causality limits, Jimeng/Doubao conflict, and conservative counts appear before secondary detail.",
+    "evidenceUsefulness": "Claims are tied to resolvable cue, targeted-frame, OCR, shot, and bounded audio evidence.",
+    "executionValue": "The output is strong for research and editorial decisions because it separates visible result, author claim, and unverified causality; it is not an operational tutorial because the source is not one.",
+    "compressionWithoutLoss": "The reconstruction preserves the source well but duplicates several caveats and mappings across the table, detailed sections, unknowns section, and evidence appendix."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The independent sweep covers subtitles/speech proxy, burned captions, all six sub-half-second tool cards, visible result text and UI state, person/gesture/referent cues, montage order, grouping/count, bounded absence evidence, technical-shot versus semantic continuity, opening-to-closing function, the Jimeng/Doubao identity conflict, and the full non-speech audio carrier. Audio is now inspected from the complete derived audio sample through 29 overlapping windows and ten bounded stages rather than inferred from still frames or stream metadata. All 14 capture actions appear in the refreshed manifest, all 108 frames inherit the current action carrier/reason exactly, and all 13 probe relationships are represented in the reconstruction coverage matrix. The stale 103-frame provenance string is a local metadata mismatch, not an unguarded carrier, meaning change, or relationship."
+  },
+  "closureAudit": [
+    {
+      "id": "D-01",
+      "closed": true,
+      "evidence": "audio-listen-evidence.json covers 0.0-15.0 with 29 overlapping windows; audio-stage-observations.json covers 0.0-14.9 in ten stages."
+    },
+    {
+      "id": "D-02",
+      "closed": true,
+      "evidence": "CAR-08 and KU-30 now cite SRC-AUDIO-LISTEN and SRC-AUDIO-STAGES; metadata and the ACT-AUDIO-LISTEN still frames are explicitly excluded as audio-content proof."
+    },
+    {
+      "id": "D-03",
+      "closed": true,
+      "evidence": "The final protocol and refreshed targeted manifest contain the same 14 action IDs; carrier/reason comparison across all 108 frames reports zero mismatches."
+    },
+    {
+      "id": "D-04",
+      "closed": true,
+      "evidence": "No stale five-segment wording remains in the current JSON/Markdown artifacts; protocol and reconstruction consistently state six parallel segments."
+    }
+  ],
+  "residualDiscrepancies": [
+    {
+      "id": "V2-D-01",
+      "severity": "low",
+      "blocking": false,
+      "location": "skill-run/reconstruction.json derivedSources[SRC-OCR-REVIEW].producedBy",
+      "finding": "The value says 103 targeted frames were manually reviewed, while the refreshed targeted and OCR manifests contain 108 frames.",
+      "effect": "This is stale provenance metadata. The high-impact card/result readings and all gate-critical evidence remain directly represented and independently checkable."
+    }
+  ],
+  "examples": [
+    {
+      "type": "identity_conflict",
+      "audit": "The Jimeng card is followed by a poster carrying a Doubao AI-generated watermark.",
+      "candidate": "KU-05 and KU-06 preserve both identity signals and refuse causal attribution."
+    },
+    {
+      "type": "counting",
+      "audit": "The PPT view contains 15 slide-like panels; the UI board contains 6 phones but only 3 distinct designs; the 3D sequence is one model; the web sequence is one page/site.",
+      "candidate": "KU-13, KU-17, KU-21, and KU-25 match these units."
+    },
+    {
+      "type": "structure",
+      "audit": "The six entries are parallel and do not form a workflow.",
+      "candidate": "KU-01, KU-28, and the parallel_member_of relations preserve the non-pipeline structure."
+    },
+    {
+      "type": "audio_closure",
+      "candidate": "KU-30 uses full-duration audio evidence, bounds the electronic transition wording, and leaves title/source/rights unknown."
+    },
+    {
+      "type": "residual_metadata",
+      "candidate": "SRC-OCR-REVIEW still says 103 reviewed frames although both refreshed manifests contain 108."
+    }
+  ]
+}

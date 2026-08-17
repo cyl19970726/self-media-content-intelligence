@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/crawl-round.schema.json",
+  "title": "One creator profile crawl round",
+  "type": "object",
+  "required": ["schemaVersion", "round", "capturedAt", "strategy", "scroll", "page", "items"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "round": { "type": "integer", "minimum": 1 },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "strategy": { "enum": ["structured_state", "visible_dom", "network_response", "fallback_evidence"] },
+    "artifactRef": { "type": ["string", "null"] },
+    "scroll": {
+      "type": "object",
+      "required": ["y", "pageHeight"],
+      "properties": {
+        "y": { "type": "number", "minimum": 0 },
+        "pageHeight": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "page": {
+      "type": "object",
+      "required": ["url", "explicitEnd", "needsUser", "error"],
+      "properties": {
+        "url": { "type": "string" },
+        "explicitEnd": { "type": "boolean" },
+        "needsUser": { "type": "boolean" },
+        "error": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": ["string", "null"] },
+          "sourceUrl": { "type": ["string", "null"] },
+          "mediaType": { "enum": ["video", "image", "article", "unknown", null] },
+          "likes": { "type": ["number", "string", "null"] },
+          "publishedLabel": { "type": ["string", "null"] },
+          "cover": { "type": ["string", "null"] }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

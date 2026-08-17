@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "corpusId": "6a39118d000000002200a5e9",
+  "evaluationRole": "fresh_independent_gate_evaluator",
+  "allowedReadScope": [
+    "evidence/",
+    "review/audit/",
+    "run/"
+  ],
+  "forbiddenInputsRead": [],
+  "summary": {
+    "criticalQuestionRecall": {"numerator": 17, "denominator": 18},
+    "coreKnowledgeCoverage": {"numerator": 23, "denominator": 25},
+    "carrierConflictHandling": {"numerator": 13, "denominator": 15},
+    "meaningChangeCoverage": {"numerator": 13, "denominator": 14},
+    "relationDependencyCoverage": {"numerator": 12, "denominator": 15},
+    "unknownDiscipline": {"numerator": 11, "denominator": 12},
+    "openingCoverage": {"numerator": 4, "denominator": 5},
+    "closingCoverage": {"numerator": 3, "denominator": 4},
+    "absenceClaimDiscipline": {"numerator": 7, "denominator": 7},
+    "challengeFamilyCoverage": {"numerator": 9, "denominator": 10},
+    "availableCarrierClosure": {"numerator": 7, "denominator": 8}
+  },
+  "discrepancies": [
+    {
+      "id": "D-01",
+      "severity": "hard_gate",
+      "category": "unchecked_channel",
+      "auditIds": ["CAR-08", "UNK-12"],
+      "candidateLocations": ["run/probe.json: informationCarriers CAR-07", "run/capture-protocol.json", "run/reconstruction.json: KU-26 and metaGate"],
+      "finding": "The run acknowledges non-speech audio and calls it inspected, but no capture action listens for or annotates music/SFX. The reconstruction only states that the evidence did not separate non-speech audio from speech.",
+      "requiredClosure": "Execute and document a full-timeline listening decision for meaning-bearing non-speech audio, record found events or a bounded none-found result, and update the meta-gate from executed evidence.",
+      "affectedCanonicalGates": ["eval_unchecked_channels", "eval_meta_gate"]
+    },
+    {
+      "id": "D-02",
+      "severity": "hard_gate",
+      "category": "dependency_completeness",
+      "auditIds": ["REL-01", "REL-02"],
+      "candidateLocations": ["run/reconstruction.json: relations"],
+      "finding": "The relation graph jumps from the three bottom-level logics to the decision-cost claim. It does not explicitly connect the promised method to its three-logics foundation or connect the human-nature foundation to the trust/love relationship conversion.",
+      "requiredClosure": "Add evidence-backed relations for KU-02→KU-03 and KU-03→KU-04 in audit semantics, using the candidate's corresponding units, without turning author claims into verified causality.",
+      "affectedCanonicalGates": ["eval_process_dependency_completeness"]
+    },
+    {
+      "id": "D-03",
+      "severity": "material",
+      "category": "over_abstention_referent_mapping",
+      "auditIds": ["CQ-07", "KU-08", "CF-03", "REL-05"],
+      "candidateLocations": ["run/reconstruction.json: KU-07"],
+      "finding": "The six themes are retained, but the uncertainty statement expands to 曹德旺、刘强东、罗永浩、于东来 as a group. The audited carriers support 逆风翻盘—罗永浩 and 苟富贵勿相忘—于东来; the unresolved boundary is narrower and centers on 刘强东/曹德旺.",
+      "requiredClosure": "Restore the recoverable mappings and confine uncertainty to the actually conflicting punctuation/referent boundary.",
+      "affectedCanonicalGates": ["eval_critical_question_recall", "eval_evidence_coverage", "eval_process_dependency_completeness"]
+    },
+    {
+      "id": "D-04",
+      "severity": "material",
+      "category": "identity_conflict",
+      "auditIds": ["KU-25", "CF-15", "CLOSE-02", "CH-01"],
+      "candidateLocations": ["run/reconstruction.json: KU-23 and KU-27"],
+      "finding": "KU-23 correctly reads the persistent account label 人类最强编导, but KU-27 preserves the SRT corruption 人类最上边的 as the self-identification and leaves the spoken form unresolved. The audit's burned/visible carrier evidence resolves the intended creator identity as 人类最强编导.",
+      "requiredClosure": "Reconcile the closing SRT against the stronger burned/visible identity evidence and preserve only the speaker's real-world identity/credentials as unknown.",
+      "affectedCanonicalGates": ["eval_evidence_coverage"]
+    },
+    {
+      "id": "D-05",
+      "severity": "material",
+      "category": "missing_meaning_change",
+      "auditIds": ["MC-10"],
+      "candidateLocations": ["run/reconstruction.json: KU-11, KU-13, coverageMatrix.meaningChanges"],
+      "finding": "The 99.810-106.617 reframing from product traits to consumer psychology/brand appeal is only implicit in a relation and not preserved as a knowledge statement; the adjacent knowledge-unit time ranges leave this semantic bridge uncovered.",
+      "requiredClosure": "Add the consumer-psychology reframing as an explicit evidenced statement or unit and account for its exact window in the coverage matrix.",
+      "affectedCanonicalGates": []
+    },
+    {
+      "id": "D-06",
+      "severity": "material",
+      "category": "opening_omission",
+      "auditIds": ["OPEN-03"],
+      "candidateLocations": ["run/reconstruction.json: KU-01 and cueAccountability CUE-001"],
+      "finding": "CUE-001 is assigned to knowledge units, but the opening premise that people across industries are making IP does not appear in a knowledge-unit statement. Cue accountability alone does not preserve the proposition.",
+      "requiredClosure": "Add the cross-industry IP trend premise as an attributed opening claim with the cue evidence.",
+      "affectedCanonicalGates": []
+    },
+    {
+      "id": "D-07",
+      "severity": "material",
+      "category": "missing_unknown",
+      "auditIds": ["UNK-03"],
+      "candidateLocations": ["run/reconstruction.json: KU-01, coverageMatrix.unknowns"],
+      "finding": "The video's assertion that non-founder IP can use the framework is preserved, but the run does not explicitly retain as unknown how non-founder IP should adapt it.",
+      "requiredClosure": "Add the adaptation method as an unknown decision boundary; do not invent steps.",
+      "affectedCanonicalGates": []
+    }
+  ],
+  "resolvedStrengths": [
+    {
+      "auditIds": ["CF-04", "CF-05", "CF-06", "CF-07"],
+      "finding": "The run correctly privileges the five-part overlay and burned captions over corrupted SRT segmentation for 新/强/稳/故事/平."
+    },
+    {
+      "auditIds": ["CF-08", "CF-09", "CF-10", "CF-11", "CF-12", "CF-13", "CF-14"],
+      "finding": "Brand directions, names, SpaceX wording, automobile-glass wording, and the 交个朋友 transition are materially improved and uncertainty is scoped."
+    },
+    {
+      "auditIds": ["ABS-01", "ABS-02", "ABS-03", "ABS-04", "ABS-05", "ABS-06", "ABS-07"],
+      "finding": "Negative claims are bounded to the inspected timeline/carriers and do not erase the opening analytics insert or persistent promotional framing."
+    }
+  ]
+}

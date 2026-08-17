@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 8,
+      "denominator": 8,
+      "examples": [
+        {"status": "answered", "ids": ["CQ-01", "CQ-04", "CQ-07", "CQ-08"], "note": "分屏比较、账号标记边界、结尾无解释以及技术shot边界均被覆盖。"},
+        {"status": "correctly_unknown", "ids": ["CQ-02", "CQ-03", "CQ-05", "CQ-06"], "note": "确切关系、上方人物/素材来源、小数字和音频语义均正确保留未知。"}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 4,
+      "denominator": 4,
+      "examples": [
+        {"status": "covered", "ids": ["KU-01", "KU-02"], "note": "上下人物、桌边姿态及有限的视觉对应由全片动作序列和开中结帧支持。"},
+        {"status": "covered", "ids": ["KU-03", "KU-04"], "note": "后段账号/平台叠层及不证明素材权属的边界、音频语义未知均被单列。"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 5,
+      "examples": [
+        {"status": "supported", "id": "KU-RELATION", "note": "仅称视觉模仿式或镜像式对应，并显式否认确切意图、身份关系和同步拍摄证明。"},
+        {"status": "supported", "id": "KU-OVERLAY", "note": "没有接受0.5置信度OCR的具体数字；候选‘832.7万’已从事实陈述撤回。"},
+        {"status": "supported", "id": "KU-MOTION", "note": "负面观察限定在0至7.533秒动作序列，没有把无独立结尾卡扩张为视频外事实。"}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 7,
+      "denominator": 7,
+      "examples": [
+        {"status": "correct", "ids": ["KU-UPPER", "KU-LOWER", "KU-RELATION", "KU-MOTION", "KU-TRANSCRIPT", "KU-IDENTITY"], "note": "全片单元均正确限定在0至7.533秒。"},
+        {"status": "correct", "id": "KU-OVERLAY", "note": "后段叠层变化正确限定在约4.5至7.533秒。"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "短片呈现分屏视觉对应，没有声明输入—动作—参数—输出式流程或因果依赖。"
+    },
+    "unknownDiscipline": {
+      "numerator": 8,
+      "denominator": 8,
+      "examples": [
+        {"status": "correct", "ids": ["U-01", "U-02", "U-03", "U-04"], "note": "上下人物身份、上方素材来源/权属、确切关系和下方人物身份均未知。"},
+        {"status": "correct", "ids": ["U-05", "U-06"], "note": "小数字没有采用低置信OCR，音轨存在但语音/歌词/音乐/音效语义未被臆造。"},
+        {"status": "correct", "ids": ["U-07", "U-08"], "note": "编辑/首发者以及后段叠层变更的作者机制均保持未知。"}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 3,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复核未发现遗漏载体。全7.533秒移动画面、人物/物件/姿态、上下分屏关系、后段叠层出现与位置变化、平台/账号标记、技术分段边界和AAC音轨存在性均被检查；无字幕只用于禁止补写逐字稿，没有被误写成无音频。"
+  },
+  "examples": [
+    {"finding": "low_confidence_ocr", "result": "pass", "detail": "‘832.7万’未进入知识单元事实或文章结论。"},
+    {"finding": "late_overlay_change", "result": "pass", "detail": "约4.5至5.25秒后的上方角落账号/平台叠层变化及比较持续关系被覆盖。"},
+    {"finding": "no_subtitles", "result": "pass", "detail": "transcript保持空数组，同时明确AAC音轨存在、音频语义未知。"}
+  ]
+}

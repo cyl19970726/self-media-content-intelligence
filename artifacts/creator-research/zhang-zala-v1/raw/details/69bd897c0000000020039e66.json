@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69bd897c0000000020039e66",
+  "capturedAt": "2026-08-16T11:10:54.865Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "我办的Vibe coding活动 氛围好好啊 🥹",
+    "postCopy": "我在湾区办的vibe coding jam活动上，@硅谷小白 的分享\n\t\n#vibecoding[话题]# #独立开发[话题]# #湾区[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "独立开发",
+      "湾区"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69bd897c0000000020039e66",
+    "mediaType": "video",
+    "publishedAt": "2026-03-20T17:53:00.000Z",
+    "likes": "857",
+    "collections": "231",
+    "comments": "57",
+    "shares": "300",
+    "expectedDurationSec": 94
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 94
+    }
+  ]
+}

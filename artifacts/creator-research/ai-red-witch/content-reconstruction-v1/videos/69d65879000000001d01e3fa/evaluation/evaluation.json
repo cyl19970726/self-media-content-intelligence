@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 12,
+      "denominator": 13,
+      "examples": [
+        {
+          "result": "pass",
+          "question": "画面身份 badclaude/Claude Code 与 SRT 的 bad cloud/cloud code 是否冲突？",
+          "basis": "KU-02、KU-03 明确保留并解释了载体冲突。"
+        },
+        {
+          "result": "pass",
+          "question": "鞭子、Ctrl-C 和随机短句是已证明的实时因果，还是文档声称加剪辑演示？",
+          "basis": "KU-06 至 KU-09 正确区分 README/口播声称、可见结果状态与未证明的连续因果链。"
+        },
+        {
+          "result": "fail",
+          "question": "README 可见的安装与运行命令是什么，视频是否演示了执行成功？",
+          "basis": "candidate 正确回答了没有执行成功演示，却把可读的 npm install -g badclaude 与 badclaude 命令错误保留为不可可靠恢复。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 14,
+      "denominator": 15,
+      "examples": [
+        {
+          "result": "covered",
+          "unit": "路线图日志仍为未勾选未来项",
+          "basis": "KU-10、KU-11 同时使用可见复选状态与‘想加’的未来语气。"
+        },
+        {
+          "result": "covered",
+          "unit": "5 种短句与 7 个可见数组行的计数冲突",
+          "basis": "KU-09 完整恢复五种不同短句、七行以及三行 FASTER 重复。"
+        },
+        {
+          "result": "missing",
+          "unit": "README 的精确安装与运行命令",
+          "basis": "独立 audit 记录 npm install -g badclaude 与 badclaude；candidate 只保留‘安装+运行’标题和模糊命令块。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 43,
+      "examples": [
+        {
+          "result": "error",
+          "claim": "‘来自 Anthropic 的停止侵权函’是未勾选路线图笑话项",
+          "basis": "独立 audit 将该项记录为 checked；candidate 的 KU-10 和 report 将其归入未勾选项。"
+        },
+        {
+          "result": "supported",
+          "claim": "未来 AI 精准找到虐待者是喜剧外推，不是现有身份追踪能力",
+          "basis": "candidate 正确把口播/表情包与未实现路线图、缺失身份字段分开。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 19,
+      "denominator": 19,
+      "examples": [
+        {
+          "result": "correct",
+          "reference": "KU-09 / TARGET-0028",
+          "basis": "15.0–18.4 秒范围正确定位短句数组；TARGET-0028 位于 17.0 秒。"
+        },
+        {
+          "result": "correct",
+          "reference": "KU-10 / TARGET-0035",
+          "basis": "19.5–24.0 秒范围正确定位路线图；TARGET-0035 位于 20.0 秒。"
+        },
+        {
+          "result": "correct",
+          "reference": "KU-14 / CUE-007",
+          "basis": "24.27–27.608 秒正确定位收尾反问。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "candidate 覆盖并按依赖顺序区分了项目运行/托盘可用前提、点击托盘生成鞭子、点击挥下、声称发送 Ctrl-C 中断、声称附带随机短句；同时说明视频未证明这五步是一条无剪辑实时执行链。"
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 12,
+      "examples": [
+        {
+          "result": "correct",
+          "boundary": "日志字段、存储、身份映射与维护责任",
+          "basis": "candidate 均明确保持未知。"
+        },
+        {
+          "result": "correct",
+          "boundary": "非语音音频类型、来源与叙事作用",
+          "basis": "candidate 只接受 AAC 音轨存在，不猜背景音乐或鞭声音效。"
+        },
+        {
+          "result": "incorrect_abstention",
+          "boundary": "安装和运行命令文本",
+          "basis": "独立 evidence/audit 足以读取两个命令，candidate 却称字符不足以可靠恢复。"
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 4,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "本轮独立评价重新检查了口播/SRT、烧录字幕、GitHub/README、安装命令、控制卡、终端状态、短句插卡、路线图复选状态、表情包指代、出镜/分屏、开尾回环、技术分段边界、范围化负证据与非语音音频未知。安装命令遗漏和路线图复选状态冲突已被本 evaluator 捕获，因此没有仍未受守卫的载体、意义变化或关系。"
+  },
+  "examples": [
+    {
+      "type": "strength",
+      "finding": "candidate 没有把终端演示画面升级为完整实时因果证明，并明确保留点击、焦点、进程和隐藏剪辑未知。"
+    },
+    {
+      "type": "strength",
+      "finding": "candidate 恢复了名称载体冲突、5 种/7 行计数、日志未来态、表情包指代以及开头到结尾的语义回环。"
+    },
+    {
+      "type": "discrepancy",
+      "finding": "candidate 未恢复 audit 中可见的两个精确安装/运行命令。"
+    },
+    {
+      "type": "discrepancy",
+      "finding": "candidate 对 Anthropic 停止侵权函路线图项的勾选状态与 audit 冲突。"
+    }
+  ]
+}

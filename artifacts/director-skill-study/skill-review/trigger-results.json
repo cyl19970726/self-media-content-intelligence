@@ -1,0 +1,242 @@
+[
+  {
+    "id": "T01",
+    "should_load_deep_content_director": true,
+    "mode": "account_content_strategy",
+    "reason": "请求直接涉及小红书账号起号定位与内容矩阵，属于账号和内容策略。"
+  },
+  {
+    "id": "T02",
+    "should_load_deep_content_director": true,
+    "mode": "script_story_tutorial",
+    "reason": "请求产出短视频口播脚本并配套镜头设计，明确属于脚本策划。"
+  },
+  {
+    "id": "T03",
+    "should_load_deep_content_director": true,
+    "mode": "title_cover_search_cta",
+    "reason": "请求优化图文笔记首图、标题与轮播顺序，属于封面标题和图文结构决策。"
+  },
+  {
+    "id": "T04",
+    "should_load_deep_content_director": true,
+    "mode": "directing_brief",
+    "reason": "请求为种草内容设计证据链与商业披露，属于证据约束下的内容编导。"
+  },
+  {
+    "id": "T05",
+    "should_load_deep_content_director": true,
+    "mode": "topic_selection",
+    "reason": "请求从候选选题中筛选并组织系列，核心任务是选题决策。"
+  },
+  {
+    "id": "T06",
+    "should_load_deep_content_director": true,
+    "mode": "script_story_tutorial",
+    "reason": "请求把实测素材转化为小红书搜索收藏型原创内容，属于内容策划与教程化表达。"
+  },
+  {
+    "id": "T07",
+    "should_load_deep_content_director": true,
+    "mode": "performance_diagnosis",
+    "reason": "请求依据前段留存问题给出编导改法，属于内容表现诊断。"
+  },
+  {
+    "id": "T08",
+    "should_load_deep_content_director": true,
+    "mode": "directing_brief",
+    "reason": "拉片已完成且下一步是将机制重构为原创 brief，正符合原创内容决策触发条件。"
+  },
+  {
+    "id": "T09",
+    "should_load_deep_content_director": true,
+    "mode": "account_content_strategy",
+    "reason": "请求在博主研究之后形成不复制人设的内容策略，属于原创策略设计。"
+  },
+  {
+    "id": "T10",
+    "should_load_deep_content_director": true,
+    "mode": "series_design",
+    "reason": "请求设计七天系列的分集任务与追更机制，明确属于系列规划。"
+  },
+  {
+    "id": "T11",
+    "should_load_deep_content_director": true,
+    "mode": "script_story_tutorial",
+    "reason": "请求联动画面、字幕和口播改造脚本，属于脚本与视听表达设计。"
+  },
+  {
+    "id": "T12",
+    "should_load_deep_content_director": true,
+    "mode": "shot_carousel_plan",
+    "reason": "请求拍摄提纲、证明镜头和剪辑取舍，明确属于拍摄与镜头计划。"
+  },
+  {
+    "id": "T13",
+    "should_load_deep_content_director": true,
+    "mode": "performance_diagnosis",
+    "reason": "请求针对收藏高但不涨粉的笔记做复盘，属于内容表现诊断。"
+  },
+  {
+    "id": "T14",
+    "should_load_deep_content_director": true,
+    "mode": "publishing_experiment",
+    "reason": "请求设计仅改变封面承诺的单变量发布实验，明确属于发布实验。"
+  },
+  {
+    "id": "T15",
+    "should_load_deep_content_director": true,
+    "mode": "script_story_tutorial",
+    "reason": "请求制作热点对比内容并强调事实约束，属于证据意识下的原创内容策划。"
+  },
+  {
+    "id": "T16",
+    "should_load_deep_content_director": true,
+    "mode": "script_story_tutorial",
+    "reason": "请求为创始人故事设计叙事节点与行动闭环，属于故事脚本结构。"
+  },
+  {
+    "id": "T17",
+    "should_load_deep_content_director": true,
+    "mode": "account_content_strategy",
+    "reason": "请求平衡企业 IP 的用户价值与商业承接，属于内容策略设计。"
+  },
+  {
+    "id": "T18",
+    "should_load_deep_content_director": true,
+    "mode": "series_design",
+    "reason": "请求将长视频原创重构为多个互补短内容，属于系列化内容设计而非纯切片。"
+  },
+  {
+    "id": "T19",
+    "should_load_deep_content_director": true,
+    "mode": "directing_brief",
+    "reason": "请求评审编导 brief 的可拍、可证与可测性，直接属于 directing brief 工作。"
+  },
+  {
+    "id": "T20",
+    "should_load_deep_content_director": true,
+    "mode": "performance_diagnosis",
+    "reason": "请求对成片做保留压缩删除判断并确定下一版改动，属于内容复盘诊断。"
+  },
+  {
+    "id": "N01",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求只是逐字转写，属于明确排除的纯转录任务。"
+  },
+  {
+    "id": "N02",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求仅下载媒体文件，属于明确排除的媒体下载操作。"
+  },
+  {
+    "id": "N03",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求通过 API 直接发布，属于明确排除的 API 级发布操作。"
+  },
+  {
+    "id": "N04",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求设置发布时间提醒，属于明确排除的日程安排。"
+  },
+  {
+    "id": "N05",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求查询版本号与官方链接，属于明确排除的纯事实检索。"
+  },
+  {
+    "id": "N06",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求只做图片 OCR，没有任何原创内容决策。"
+  },
+  {
+    "id": "N07",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求仅执行媒体格式转换，不涉及内容策划或编导。"
+  },
+  {
+    "id": "N08",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求仅给视频嵌入字幕，属于媒体处理而非内容决策。"
+  },
+  {
+    "id": "N09",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求只是导入素材到剪辑软件，不涉及内容编导。"
+  },
+  {
+    "id": "N10",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求查询账号登录状态，属于平台操作检查而非内容策略。"
+  },
+  {
+    "id": "N11",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求执行点赞收藏互动，不涉及原创内容决策。"
+  },
+  {
+    "id": "N12",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求直接发布既有文章，属于发布操作而非内容策划。"
+  },
+  {
+    "id": "N13",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求将会议纪要整理成文档，不属于短视频或小红书内容编导。"
+  },
+  {
+    "id": "N14",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求查询天气，属于纯事实检索。"
+  },
+  {
+    "id": "N15",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求修复前端页面样式，与内容策划和编导无关。"
+  },
+  {
+    "id": "N16",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求仅逐页读取总结 PDF，没有要求转化为原创内容决策。"
+  },
+  {
+    "id": "N17",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求明确限制为还原作者原意且不要创作建议，属于纯内容重构分析。"
+  },
+  {
+    "id": "N18",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求仅检查媒体技术属性，不涉及内容创作决策。"
+  },
+  {
+    "id": "N19",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求对 CSV 数值求和，属于数据处理而非内容编导。"
+  },
+  {
+    "id": "N20",
+    "should_load_deep_content_director": false,
+    "mode": null,
+    "reason": "请求只建立 Notion 排期数据库并明确不需要内容策略。"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "videoId": "6a3a5c6800000000080243f0",
+  "status": "NOT_READY",
+  "items": [
+    {"id": "D-001", "severity": "hard_gate", "auditRefs": ["Q01", "K01", "U01"], "candidateRefs": ["KU-02"], "issue": "The accepted OCR overstates what the brief opening metric card visibly establishes.", "closure": "Reclassify the 5万/5条/date OCR strings as disputed proposals and retain only the independently visible account/100万 boundary."},
+    {"id": "D-002", "severity": "hard_gate", "auditRefs": ["K02"], "candidateRefs": ["KU-03"], "issue": "The ‘他媒体’ reframing and its full user-first setup disappear from the knowledge model.", "closure": "Add an evidenced unit for 7.52–15.44s."},
+    {"id": "D-003", "severity": "meta_gate", "auditRefs": ["REL14", "Q14"], "candidateRefs": ["KU-16", "REL-KU01-KU16"], "issue": "The opening-to-closing relation is described as a payoff rather than a closing that omits metric verification.", "closure": "Replace the payoff relation with an explicit unverified opening-to-closing relation."},
+    {"id": "D-004", "severity": "deterministic", "auditRefs": [], "candidateRefs": ["KU-12", "KU-16"], "issue": "Both system_inference units lack the schema-required explicit reasoning closure.", "closure": "Add reasoning grounded in their cited evidence or change provenance."}
+  ]
+}

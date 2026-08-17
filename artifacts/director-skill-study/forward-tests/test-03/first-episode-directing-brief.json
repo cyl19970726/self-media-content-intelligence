@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "2.0",
+  "artifactStatus": "complete",
+  "draftSlots": [],
+  "mode": "single",
+  "format": "video",
+  "decision": {"status": "known", "value": "让一人团队可直接拍出第1集：以一次脱敏拉片交付证明AI真实完成了哪些工作，并检验结果先行首屏能否获得合格注意；不外推涨粉或爆款。"},
+  "accountContext": {
+    "identityPromise": {"status": "known", "value": "为被工具碎片和自动爆款话术困住的独立创作者，每次展示AI怎样完成一个真实内容任务，并给出可核对交付、人工责任和证据边界。"},
+    "stage": {"status": "known", "value": "冷启动；无公开可验证的涨粉、收入排名或大客户案例。"},
+    "contentRole": {"status": "known", "value": "7天最小系列的入口与证明基线；主角色为合格触达。"}
+  },
+  "responsibility": {
+    "humanDecision": {"status": "known", "value": "创作者选素材、核对所有时间码与判断、完成脱敏并决定是否发布。"},
+    "aiContribution": {"status": "known", "value": "AI协助字幕对齐、时间码整理、载体标注与剪辑建议初稿；不认证因果、版权、原创或效果。"},
+    "factVerification": {"status": "known", "value": "创作者在导出前逐项核对展示文件、标签、时间码与口播边界。"},
+    "publishOwner": {"status": "known", "value": "账号主在独立语义评审后独自批准发布。"}
+  },
+  "commercialBoundary": {
+    "freeScope": {"status": "known", "value": "免费展示四项验收清单和一次脱敏工作流。"},
+    "paidScope": {"status": "not_applicable", "reason": "冷启动首集没有付费产品或付费承诺。"},
+    "collaboration": {"status": "not_applicable", "reason": "个人非赞助制作，无合作方与分成。"}
+  },
+  "offerArchitecture": {"status": "not_applicable", "reason": "首集没有产品、服务、获客资料或销售动作。"},
+  "carrierEvidence": {
+    "nonSpeechAudio": {"status": "not_applicable", "reason": "成片仅用自录旁白；静音系统声，不加音乐、音效或环境声。"},
+    "referentLedger": [{
+      "id": "referent_redacted_artifact",
+      "referent": "创作者自制的脱敏拉片结构，仅显示标题栏、时间码与工作卡，不显示第三方原帖图像和可识别文字",
+      "locator": {"kind": "time_range", "timeRange": {"startSeconds": 0, "endSeconds": 48}},
+      "source": {"status": "known", "value": "用户提供的本地拉片artifact；新录制时排除原帖内容。"},
+      "ownership": {"status": "known", "value": "创作者拥有自制分析布局和新录屏；嵌套第三方内容全部遮蔽。"},
+      "contentScope": "analyzed_case"
+    }],
+    "absenceClaims": []
+  },
+  "assets": [
+    {"id": "asset_redacted_board", "kind": "image", "owner": {"status": "known", "value": "创作者"}, "rightsStatus": "owned"},
+    {"id": "asset_demo_recording", "kind": "screen_recording", "owner": {"status": "known", "value": "创作者"}, "rightsStatus": "owned"},
+    {"id": "asset_phone_insert", "kind": "footage", "owner": {"status": "known", "value": "创作者"}, "rightsStatus": "owned"},
+    {"id": "asset_narration", "kind": "audio", "owner": {"status": "known", "value": "创作者"}, "rightsStatus": "owned"}
+  ],
+  "claims": [
+    {
+      "id": "claim_asset_exists",
+      "text": "用户声明拥有一份包含字幕、截图、时间码和剪辑建议的完整小红书帖子拉片artifact。",
+      "claimClass": "user_claim", "risk": "low", "verificationStatus": "not_verified",
+      "scope": "支持把该artifact作为演示输入，前提是发布前由创作者核验并脱敏。",
+      "cannotSupport": "不能证明原帖被完整理解、建议导致效果或工作流带来涨粉收入。",
+      "beatRefs": ["beat_proof"], "shotRefs": ["shot_proof"], "panelRefs": [], "customUnitRefs": [], "assetRefs": ["asset_redacted_board", "asset_demo_recording"]
+    },
+    {
+      "id": "claim_capability",
+      "text": "用户声明能真实演示Codex、Flova、视频拉片和内容分析。",
+      "claimClass": "user_claim", "risk": "low", "verificationStatus": "not_verified",
+      "scope": "支持规划一次由创作者实际执行和复核的工具操作。",
+      "cannotSupport": "不能证明专业领先、工具优胜、客户结果或收益。",
+      "beatRefs": ["beat_handoff"], "shotRefs": ["shot_handoff"], "panelRefs": [], "customUnitRefs": [], "assetRefs": ["asset_demo_recording"]
+    },
+    {
+      "id": "claim_workflow_hypothesis",
+      "text": "把拉片拆成字幕对齐、画面证据、时间码决定和未知边界，可能比接受泛化爆款诊断更利于独立创作者验收与交接。",
+      "claimClass": "system_inference", "risk": "low", "verificationStatus": "hypothesis",
+      "scope": "仅是针对目标受众和四卡清单的可检验可用性假设。",
+      "cannotSupport": "不能证明内容质量、分发提升、涨粉或对其他工作流的因果优势。",
+      "beatRefs": ["beat_define", "beat_boundary"], "shotRefs": ["shot_define", "shot_boundary"], "panelRefs": [], "customUnitRefs": [], "assetRefs": ["asset_redacted_board"]
+    },
+    {
+      "id": "claim_demand_hypothesis",
+      "text": "尝试AI内容工具的独立创作者可能需要区分可核对工作与自动爆款话术。",
+      "claimClass": "system_inference", "risk": "low", "verificationStatus": "hypothesis",
+      "scope": "冷启动受众与需求假设，用合格评论和系列后续动作验证。",
+      "cannotSupport": "不能证明市场规模、搜索量、付费意愿或平台需求。",
+      "beatRefs": ["beat_open"], "shotRefs": ["shot_open"], "panelRefs": [], "customUnitRefs": [], "assetRefs": ["asset_redacted_board"]
+    }
+  ],
+  "safety": {
+    "privacyChecks": [],
+    "platformChecks": [],
+    "disclosure": {"status": "known", "value": "正文注明非赞助工作流演示；若未来存在赞助则另行清晰披露。"}
+  },
+  "unknowns": [
+    {"status": "unknown", "reason": "目标受众尚未经搜索、评论、访谈或账号数据验证。", "owner": "账号主", "resolution": "7天按创作者阶段和卡点编码评论，第7与第30天重审受众。"},
+    {"status": "unknown", "reason": "小红书后台可用的留存和主页动作字段尚未确认。", "owner": "账号主", "resolution": "首集发布后检查字段；不可得时采用已声明代理并记录限制。"},
+    {"status": "unknown", "reason": "新账号没有基线，首轮只能建方向性基线。", "owner": "账号主", "resolution": "完成7集并记录自然曝光、执行偏差与混杂后再总结。"}
+  ],
+  "singlePlan": {
+    "workingTitle": "别让 AI 替你猜爆款：先检查这 4 样东西",
+    "primaryJob": "acquisition",
+    "guardrailJob": {"status": "known", "value": "信任不下降：所有证明保留范围，结尾明确拒绝爆款、分发和涨粉保证。"},
+    "audience": {
+      "person": "尝试或准备尝试AI内容工具的独立创作者",
+      "stage": "知道工具，但没有稳定生产工作流",
+      "situation": "准备让AI分析或重做一条帖子，却面对碎片工具和自动爆款建议",
+      "currentBelief": "更强工具或提示词可能直接产出爆款，验收与交接是次要问题"
+    },
+    "demandEvidence": ["claim_demand_hypothesis"],
+    "contentMechanism": {
+      "hypothesis": "若工具感知型独立创作者首屏看到一份被拆成四类对象的真实脱敏交付物，就更可能继续观看并说出自己的卡点，因为可见验收标准替代了抽象AI承诺。",
+      "mechanism": "结果先行证明，然后给四项验收清单和明确证据边界。",
+      "conditions": ["首帧手机可读且来自真实本地工作流。", "不出现第三方原帖、隐私或结果背书。", "四项被表述为验收对象而非爆款公式。"],
+      "counterexample": "只要一键生成的用户即便理解清单，也可能因不想做验收而离开。",
+      "failureBoundary": "若评论只索要提示词却不能复述四项，或结果先行首屏在可比集数中无重复方向性改善，则不支持该机制。"
+    },
+    "candidates": [
+      {
+        "id": "candidate_proof_first", "name": "一次真实拉片的四项验收",
+        "audience": "准备让AI做帖子分析的独立创作者",
+        "tension": "AI会写流畅诊断，却可能无法核对或交接",
+        "promise": "看清一份可用AI拉片必须交出的四类对象",
+        "proof": "脱敏屏录展示字幕对齐、画面证据、时间码和剪辑决定",
+        "accountFit": "先证明账号做事方式并开启7天交付链",
+        "productionCost": "中低：一张四卡板、一次屏录、旁白与60秒内剪辑",
+        "followReason": "后6集继续把同一交付变成选题、脚本、镜头、剪辑、包装与复盘",
+        "risk": "UI过密时可能被误解为普通工具推广"
+      },
+      {
+        "id": "candidate_failure_first", "name": "AI拉片悄悄失败的三种方式",
+        "audience": "已被泛化AI分析失望的创作者",
+        "tension": "成文流畅会掩盖事实、推断和因果混淆",
+        "promise": "学会在采纳前识别三种失败",
+        "proof": "自制脱敏错误卡与修正版对照",
+        "accountFit": "建立谨慎、边界清晰的编辑态度",
+        "productionCost": "中：需三组清楚反例",
+        "followReason": "后续每集修复一个失败点",
+        "risk": "负面钩子可能吸引争执却没有证明完成工作的能力"
+      },
+      {
+        "id": "candidate_tool_compare", "name": "同一拉片任务：Codex 对 Flova",
+        "audience": "正在选择内容分析工具的创作者",
+        "tension": "工具列表无法回答真实任务适配",
+        "promise": "用同一四项验收表比较两个工具",
+        "proof": "同一脱敏输入、相同条件下的两次屏录",
+        "accountFit": "为互补的工具选择系列建立搜索收藏价值",
+        "productionCost": "高：两次受控运行、归一化和更长剪辑",
+        "followReason": "逐集累积任务—工具适配卡",
+        "risk": "仅一次任务就可能被误读为普遍排名"
+      }
+    ],
+    "selection": {
+      "selectedId": "candidate_proof_first",
+      "comparison": "首选真实四项验收：直接使用最强现有资产、先证明能做事、适合一人制作且能顺接后6集。失败型负面更强但正向证明弱；工具对比成本翻倍且会过早形成排名误解。"
+    },
+    "contracts": {
+      "click": "进入即看到AI拉片在可用前必须具备的四类对象。",
+      "delivery": "看完能说出字幕对齐、画面证据、时间码决定和未知边界，并知道逐项检查。",
+      "follow": "后6天把同一artifact推进为原创角度、脚本、手机镜头、粗剪、包装测试和有边界复盘。",
+      "action": "评论只留一个当前卡点：分析、选题、脚本、拍摄、剪辑或包装。",
+      "promiseClosure": "结尾回到首屏四卡逐项勾选，并说明只证明工作完成度，不证明爆款或涨粉。"
+    },
+    "evidencePlan": {"status": "applicable", "claimRefs": ["claim_asset_exists", "claim_capability", "claim_workflow_hypothesis", "claim_demand_hypothesis"]},
+    "packaging": {
+      "title": "别让 AI 替你猜爆款：先检查这 4 样东西",
+      "cover": "大字“AI 拉片验收 4 件套”，配脱敏四卡；小标签“不保证爆款”。",
+      "opening": {"kind": "first_frame", "content": "先展示完整脱敏四卡并说：这不是爆款结论，是一份能逐项核对的AI拉片交付物。"},
+      "searchIntent": {"route": "hybrid", "query": "AI 视频拉片怎么做"},
+      "cta": "评论你的卡点：分析 / 选题 / 脚本 / 拍摄 / 剪辑 / 包装；只选一个。",
+      "commentCoding": {"status": "known", "value": "24小时内把实质评论编码为六阶段、只要一键结果、质疑证据、其他；按独立评论者计数，保留少数异议且不公开用户名。"}
+    },
+    "production": {
+      "people": ["创作者一人兼操作、旁白、剪辑、核验与发布"],
+      "locations": ["安静室内桌面", "本地桌面录屏"],
+      "assetRefs": ["asset_redacted_board", "asset_demo_recording", "asset_phone_insert", "asset_narration"],
+      "tools": ["Codex演示", "静音系统声的本地录屏", "手机", "可加字幕的基础剪辑器"],
+      "deadline": {"status": "known", "value": "7天系列第1天发布；录制不超90分钟，剪辑不超150分钟。"},
+      "owner": {"status": "known", "value": "账号主"},
+      "fallback": "若原artifact无法安全脱敏，用创作者自有虚拟帖子重建四卡，并明确标注流程示意。"
+    },
+    "originality": {
+      "sourceInspirations": [],
+      "changedDimensions": [],
+      "exceptionReason": {"status": "not_applicable", "reason": "没有转用参考创作者概念或身份。"},
+      "notCopied": ["不使用最强称号或面罩", "不使用毒舌、专有措辞、收入背书或客户归属", "不展示第三方原帖图像和可识别文字"]
+    },
+    "experiment": {
+      "primaryVariable": "opening",
+      "lockedElements": ["45–60秒竖屏", "同一四卡视觉", "同一证据边界", "同一单一卡点CTA", "同一时段±30分钟", "无投流和互动操纵"],
+      "mainMetric": {
+        "id": "metric_qualified_hold", "name": "合格早期停留", "availability": "unknown",
+        "definition": "播放启动后到达首个完整解释的比例，并结合实质评论是否正确说出验收对象。",
+        "proxy": "若无3秒或留存点，用平均观看时长加能提到字幕、画面证据、时间码、剪辑决定或未知边界的实质评论占比。",
+        "limitation": "后台字段未确认；评论自选择，不能代表全体观众理解。"
+      },
+      "guardrailMetrics": [{
+        "id": "metric_boundary_confusion", "name": "边界误解率", "availability": "available",
+        "definition": "把本集理解为保证爆款或涨粉的实质评论数 / 窗口内全部实质评论数。",
+        "source": "24小时与7天人工评论编码表"
+      }],
+      "window": {"status": "known", "value": "记录24小时入口信号与7天后窗；7集发布完再比较结果先行和问题先行。"},
+      "minimumEvidence": {"status": "known", "value": "7集合规发布，至少3个结果先行和3个问题先行，且全系列至少5条实质评论；不足只记观察。"},
+      "confounds": ["冷启动分发", "每集题目与证明对象不同", "非随机发布顺序", "日间需求和外部趋势", "标题封面不能完全相同", "评论小样本且自选择"],
+      "stopChangeRule": {"status": "known", "value": "结果先行仅在3组可比配对中至少2组同向改善且边界误解不升时保留；否则下一轮只改opening。若3集制作超时或权利隐私不清，停用当前载体或真实案例。"}
+    },
+    "beats": [
+      {"id": "beat_open", "cognitiveJob": "orient", "speech": {"status": "known", "value": "这不是爆款结论，是一份能逐项核对的 AI 拉片交付物。"}, "visual": "脱敏四卡占满手机画面。", "onScreenText": {"status": "known", "value": "AI拉片验收4件套｜不保证爆款"}, "audio": {"status": "known", "value": "干声旁白，无音乐与系统声。"}},
+      {"id": "beat_tension", "cognitiveJob": "create_tension", "speech": {"status": "known", "value": "AI很容易交出一段很顺的分析，但你不知道它看见了什么、哪句只是猜的，也没法交给剪辑。"}, "visual": "泛化段落缩成“看见什么/猜了什么/怎么执行”三问。", "onScreenText": {"status": "known", "value": "流畅 ≠ 可核对 ≠ 可执行"}, "audio": {"status": "known", "value": "旁白，每问后短停顿。"}},
+      {"id": "beat_define", "cognitiveJob": "explain", "speech": {"status": "known", "value": "我先验收四样：字幕对齐、画面证据、时间码定位、保留压缩删除的剪辑决定。"}, "visual": "四卡逐一进入。", "onScreenText": {"status": "known", "value": "字幕｜证据｜时间码｜决定"}, "audio": {"status": "known", "value": "旁白按一卡一短句推进。"}},
+      {"id": "beat_proof", "cognitiveJob": "prove", "speech": {"status": "known", "value": "这份交付里，四类对象都能点回对应位置；原帖画面和识别信息全部遮掉，只展示我的分析结构。"}, "visual": "脱敏artifact中依次点选时间码、证据标签和剪辑决定。", "onScreenText": {"status": "known", "value": "可回指对象｜不展示第三方原帖"}, "audio": {"status": "known", "value": "旁白，系统声静音。"}},
+      {"id": "beat_handoff", "cognitiveJob": "explain", "speech": {"status": "known", "value": "AI负责整理和初稿，我负责选素材、核对、区分事实与推断，再决定能不能发布。"}, "visual": "AI与人两列责任卡。", "onScreenText": {"status": "known", "value": "AI：整理/初稿｜人：核对/判断/发布"}, "audio": {"status": "known", "value": "旁白。"}},
+      {"id": "beat_boundary", "cognitiveJob": "contrast", "speech": {"status": "known", "value": "它能证明工作做到哪一步，不能证明内容为什么火，更不能保证涨粉。"}, "visual": "能证明与不能证明两列。", "onScreenText": {"status": "known", "value": "证明完成度，不证明结果因果"}, "audio": {"status": "known", "value": "旁白，限制句前停半秒。"}},
+      {"id": "beat_close", "cognitiveJob": "convert", "speech": {"status": "known", "value": "后六天我把同一交付继续变成选题、脚本、拍摄、剪辑、包装和复盘。评论只留你卡住的一步。"}, "visual": "四卡勾选，7天条高亮第2天。", "onScreenText": {"status": "known", "value": "下一集：拉片到3个原创角度"}, "audio": {"status": "known", "value": "旁白后干净结束。"}}
+    ],
+    "shots": [
+      {"id": "shot_open", "beatId": "beat_open", "targetDurationSeconds": 3, "content": "完整脱敏四卡，第1卡高亮。", "function": "先展示完成对象。", "evidenceResponsibility": "仅显示自制结构，不证明效果。", "assetRefs": ["asset_redacted_board"], "transition": {"status": "known", "value": "口播结束硬切三问。"}, "editDecision": "add"},
+      {"id": "shot_tension", "beatId": "beat_tension", "targetDurationSeconds": 6, "content": "自制泛化段落变成三问。", "function": "建立流畅与可验收的差距。", "evidenceResponsibility": "仅为示意，标注模拟，不指认某工具失败。", "assetRefs": ["asset_redacted_board"], "transition": {"status": "known", "value": "卡片擦入第1项。"}, "editDecision": "add"},
+      {"id": "shot_define", "beatId": "beat_define", "targetDurationSeconds": 10, "content": "四项验收卡逐一进入。", "function": "低负荷定义清单。", "evidenceResponsibility": "承载待验证工作流假设，不冒充行业标准。", "assetRefs": ["asset_redacted_board"], "transition": {"status": "known", "value": "第4卡匹配切到屏录。"}, "editDecision": "add"},
+      {"id": "shot_proof", "beatId": "beat_proof", "targetDurationSeconds": 12, "content": "屏录点选时间码、证据标签和剪辑决定；裁掉原帖图像与名称。", "function": "展示对象可定位。", "evidenceResponsibility": "只支持artifact组件存在且可导航；不证明完整、正确或有效。", "assetRefs": ["asset_demo_recording", "asset_redacted_board"], "transition": {"status": "known", "value": "缩放到责任两列表。"}, "editDecision": "add"},
+      {"id": "shot_handoff", "beatId": "beat_handoff", "targetDurationSeconds": 8, "content": "人机责任卡，插入手点核验的半秒镜头。", "function": "解释交接并保留人类责任。", "evidenceResponsibility": "显示计划责任分配，不证明核验正确。", "assetRefs": ["asset_redacted_board", "asset_phone_insert"], "transition": {"status": "known", "value": "“证明”一词处硬切。"}, "editDecision": "add"},
+      {"id": "shot_boundary", "beatId": "beat_boundary", "targetDurationSeconds": 7, "content": "能/不能证明两列，无数据图、粉丝数、客户logo或收入截图。", "function": "CTA前约束解读。", "evidenceResponsibility": "阻止过程证据升级为结果主张。", "assetRefs": ["asset_redacted_board"], "transition": {"status": "known", "value": "四卡归位。"}, "editDecision": "add"},
+      {"id": "shot_close", "beatId": "beat_close", "targetDurationSeconds": 9, "content": "四卡打勾，7天条高亮第2天，底部保留卡点CTA。", "function": "闭合承诺并交接未来价值。", "evidenceResponsibility": "只陈述计划续集，不预测结果。", "assetRefs": ["asset_redacted_board"], "transition": {"status": "known", "value": "末帧停1秒后切黑。"}, "editDecision": "add"}
+    ]
+  }
+}

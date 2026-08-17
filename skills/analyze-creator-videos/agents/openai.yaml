@@ -1,0 +1,4 @@
+interface:
+  display_name: "博主视频研究台"
+  short_description: "全量分析博主视频并生成证据化运营 Dashboard"
+  default_prompt: "Use $analyze-creator-videos to analyze this creator’s full video portfolio and build an evidence-backed operating dashboard."

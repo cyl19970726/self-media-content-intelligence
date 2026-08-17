@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69f68d3e000000001f006814",
+  "capturedAt": "2026-08-16T11:09:49.754Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "我的12分钟分享：如何从0到1做一个小产品",
+    "postCopy": "How to build something small\n如何找产品idea\n如何跟模型聊天\n\t\n#vibecoding[话题]# #独立开发[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "独立开发"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69f68d3e000000001f006814",
+    "mediaType": "video",
+    "publishedAt": "2026-05-02T23:48:14.000Z",
+    "likes": "3078",
+    "collections": "2701",
+    "comments": "52",
+    "shares": "559",
+    "expectedDurationSec": 753
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 753
+    }
+  ]
+}

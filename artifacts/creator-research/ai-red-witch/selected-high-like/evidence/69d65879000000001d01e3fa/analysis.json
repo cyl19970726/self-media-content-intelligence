@@ -1,0 +1,148 @@
+{
+  "id": "69d65879000000001d01e3fa",
+  "title": "笑疯了，人类给claudecode做了条鞭子..",
+  "archetype": "社交梗 / 人格化传播",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/69d65879000000001d01e3fa",
+  "media": {
+    "file": "media/69d65879000000001d01e3fa.mp4",
+    "subtitle": "media/69d65879000000001d01e3fa.srt",
+    "durationSeconds": 27.609,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 4396512
+  },
+  "engagement": {
+    "likes": 24000,
+    "collections": 5559,
+    "comments": 3138,
+    "shares": 16000,
+    "collectionToLike": 0.232,
+    "commentToLike": 0.131,
+    "shareToLike": 0.667
+  },
+  "transcript": {
+    "cueCount": 7,
+    "totalCharacters": 208,
+    "charactersPerMinute": 452,
+    "first3Seconds": "还是人类会玩儿啊，昨天刷到一个非常缺德的东西叫bad cloud",
+    "first6Seconds": "还是人类会玩儿啊，昨天刷到一个非常缺德的东西叫bad cloud 就是人类给cloud code做的一条赛博鞭子，如果你嫌弃它干活慢",
+    "fullText": "还是人类会玩儿啊，昨天刷到一个非常缺德的东西叫bad cloud 就是人类给cloud code做的一条赛博鞭子，如果你嫌弃它干活慢 或者不满意他的工作，你可以随时抽他，抽一下就会触发control c 打断他的工作还会顺带骂他几句，比如faster go faster这种 而且作者连后路都给你想好了，他甚至想加一个鞭打日志 这样等未来ai觉醒的那天，他就能精准找到是谁天天在虐待他 其实神经病一样的idea ai到底啥时候才能想出来呀？",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0,
+        "end": 4.241,
+        "duration": 4.241,
+        "midpoint": 2.12,
+        "text": "还是人类会玩儿啊，昨天刷到一个非常缺德的东西叫bad cloud",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 4.241,
+        "end": 8.43,
+        "duration": 4.189,
+        "midpoint": 6.335,
+        "text": "就是人类给cloud code做的一条赛博鞭子，如果你嫌弃它干活慢",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 8.44,
+        "end": 12.442,
+        "duration": 4.002,
+        "midpoint": 10.441,
+        "text": "或者不满意他的工作，你可以随时抽他，抽一下就会触发control c",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 12.442,
+        "end": 16.58,
+        "duration": 4.138,
+        "midpoint": 14.511,
+        "text": "打断他的工作还会顺带骂他几句，比如faster go faster这种",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 16.59,
+        "end": 20.293,
+        "duration": 3.703,
+        "midpoint": 18.441,
+        "text": "而且作者连后路都给你想好了，他甚至想加一个鞭打日志",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "index": 6,
+        "start": 20.293,
+        "end": 24.26,
+        "duration": 3.967,
+        "midpoint": 22.276,
+        "text": "这样等未来ai觉醒的那天，他就能精准找到是谁天天在虐待他",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "index": 7,
+        "start": 24.27,
+        "end": 27.608,
+        "duration": 3.338,
+        "midpoint": 25.939,
+        "text": "其实神经病一样的idea ai到底啥时候才能想出来呀？",
+        "frame": "evidence/69d65879000000001d01e3fa/transcript-frames/cue-007.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      1.233,
+      5.133,
+      7.133,
+      10.867,
+      14.8,
+      18.467,
+      24.3
+    ],
+    "detectedShotCount": 8,
+    "cutsPerMinute": 15.2,
+    "medianShotSeconds": 3.734,
+    "shortestShotSeconds": 1.233,
+    "longestShotSeconds": 5.833
+  },
+  "evidence": {
+    "contactSheet": "evidence/69d65879000000001d01e3fa/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/69d65879000000001d01e3fa/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      1.449,
+      2.898,
+      4.347,
+      5.795,
+      7.244,
+      8.693,
+      10.142,
+      11.591,
+      13.04,
+      14.489,
+      15.938,
+      17.386,
+      18.835,
+      20.284,
+      21.733,
+      23.182,
+      24.631,
+      26.08,
+      27.529
+    ]
+  }
+}

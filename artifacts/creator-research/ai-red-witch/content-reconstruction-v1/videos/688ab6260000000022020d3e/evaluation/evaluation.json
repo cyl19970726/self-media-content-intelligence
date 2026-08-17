@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gateDecision": {
+    "pass": false,
+    "failedGates": [
+      "criticalQuestionRecall",
+      "evidenceCoverage",
+      "unsupportedInference",
+      "unknownDiscipline",
+      "uncheckedChannels",
+      "metaGate"
+    ],
+    "rationale": "The candidate preserves many uncertainty boundaries, but it incorrectly leaves the visible Act-Two identity unknown, misreads the 14.1-16.1s Act-Two result/player as a static image, does not distinguish the Gen-4 promotional card from the active mode, and self-certifies carrier closure despite an unclosed audio channel and an unguarded result-state transition."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 4,
+      "denominator": 5,
+      "examples": [
+        {
+          "status": "correct",
+          "audit": "F-004/F-006/F-008/F-009",
+          "candidate": "Bounds universal character scope, separates visible motion from causal synchronization, rejects the unsupported one-sentence image-editing demonstration, and preserves subtitle/carrier conflicts."
+        },
+        {
+          "status": "incorrect_unknown",
+          "audit": "F-001",
+          "candidate": "Detects the Act-One/Act-Two conflict but says the actual feature identity cannot be confirmed; the independent audit establishes that the demonstrated workspace and result page are visibly Act-Two."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 13,
+      "denominator": 16,
+      "examples": [
+        {
+          "covered": "Performance and Character inputs, Generate control, finite style examples, visible motion, missing causal/synchronization proof, unverified latency, unsupported prompt editing, subtitle conflicts, and authorization unknowns all have usable evidence."
+        },
+        {
+          "missing_or_invalid": "The second visible Act-Two label on the result page is omitted; the Gen-4 text is not classified as a promotional card; and the visible Act-Two result/player is misclassified as a static picture."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 2,
+      "total": 26,
+      "examples": [
+        {
+          "candidateUnit": "KU-17",
+          "error": "States that 13.88-16.333s only shows a static character image, while the audit identifies an already completed Act-Two result/player from about 14.1s."
+        },
+        {
+          "candidateUnit": "KU-18",
+          "error": "Repeats the static-image classification for the Mario-like result interval; dense frames show changing expression/pose and the result-page UI."
+        },
+        {
+          "countingRule": "One primary positive statement per knowledge unit; duplicated unsupported statements in KU-17 and KU-18 count separately because both are independently consumed by the report and relation graph."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 23,
+      "denominator": 23,
+      "examples": [
+        {
+          "correct": "0-8.6s montage, 8.6-10.8s identity-conflict window, 10.8-13.88s two-input UI, 13.8-16.26s latency claim, and 16.333-22.467s final motion are correctly localized."
+        },
+        {
+          "note": "The 14.1-16.1s problem is semantic misclassification, not temporal mislocalization."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 6,
+      "denominator": 7,
+      "rationale": "The candidate covers driving-performance acquisition, character selection, the Generate control, absent selection/upload execution, absent progress/wait evidence, and the prompt/before-after requirements for the closing edit claim. It fails to recognize the already visible completed Act-Two result/player state."
+    },
+    "unknownDiscipline": {
+      "numerator": 10,
+      "denominator": 12,
+      "examples": [
+        {
+          "correct": "Keeps universal compatibility, driving lineage, synchronization accuracy, generation latency, full transaction execution, prompt-driven editing, P/批 spelling, identity/source, authorization, and commercial/access conditions bounded or unknown."
+        },
+        {
+          "incorrectUnknown": "Treats the visible active Act-Two workflow identity as unknown."
+        },
+        {
+          "incorrectUnknown": "Treats the presence of a completed result/player as unknown even though it is visibly present."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "Direct source-audio/non-speech inspection: the candidate marks CAR-NONSPEECH-AUDIO inspected using only media metadata and machine ASR, while music/effects and the P/批 wording remain unresolved.",
+      "Act-Two result/player UI state at approximately 14.1-16.1s: frames were captured, but the carrier slice was not semantically inspected as a result page and was instead presupposed to be a static image."
+    ]
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 3,
+    "evidenceUsefulness": 4,
+    "executionValue": 3,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "Direct/non-speech audio beyond metadata and ASR",
+      "Act-Two result/player UI state from approximately 14.1s to 16.1s"
+    ],
+    "unguardedMeaningChanges": [
+      "The transition from the two-input selector to an already generated Act-Two result/player was flattened into a static-picture interval."
+    ],
+    "unguardedRelationships": [
+      "The second Act-Two label on the result page corroborates the active workflow identity and should resolve, rather than merely preserve, the Act-One/Act-Two identity conflict."
+    ],
+    "rationale": "The candidate's own meta gate cannot prove completeness. The independent audit exposes a UI carrier segment and meaning transition that the protocol captured but interpreted through a presupposed static-image frame. It also exposes an available audio carrier declared inspected without direct semantic inspection."
+  },
+  "examples": [
+    {
+      "type": "strong_boundary",
+      "candidate": "Finite examples do not establish any-character universality; edited split-screen motion does not prove generation lineage or frame-accurate synchronization."
+    },
+    {
+      "type": "strong_negative_evidence",
+      "candidate": "The report scopes absent prompt, before/after, timing, upload/progress, authorization, and commercial-condition claims to the inspected timeline rather than treating them as universal nonexistence."
+    },
+    {
+      "type": "material_error",
+      "candidate": "Actual feature identity remains unknown.",
+      "audit": "The narration and hard caption say Act One, but the active workspace and result page visibly identify the demonstrated workflow as Act-Two."
+    },
+    {
+      "type": "material_error",
+      "candidate": "13.9-16.3s is a static Mario-like image with no completed result state.",
+      "audit": "The interval is an Act-Two result/player with visible motion changes; the missing evidence concerns the earlier selection/generation transaction and elapsed time, not the existence of the result page."
+    }
+  ]
+}

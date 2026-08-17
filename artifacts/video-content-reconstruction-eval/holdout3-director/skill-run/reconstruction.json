@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/capture-protocol.json",
+  "scopeStatement": "This reconstructs only what the supplied 156.367-second video, supplied SRT, generated frame evidence, Vision OCR, and locally derived inspection notes establish. It does not externally verify the presenter's claims about creators, AI, platforms, traffic, account weight, or account launching.",
+  "viewerChange": {
+    "before": "The intended viewer may treat AI as a shortcut that can author self-media content, launch an account, or generate a viral post with one click.",
+    "after": "The intended viewer is pushed to distrust one-click promises and seller incentives, prioritize a human-selected topic and empathy, treat traffic as incompletely reproducible, consider the author's claimed quality/weight risks, and use AI only as support for knowledge gaps or brainstorming rather than as a replacement author.",
+    "intendedChanges": ["skepticism toward AI-growth sellers", "topic and empathy priority", "uncertainty about repeatable virality", "assistance-versus-substitution boundary"]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-targeted frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs from capture-protocol.json",
+      "timeRange": {"start": 0, "end": 156.367},
+      "limitations": ["Each frame proves only its instant.", "The manifest does not itself interpret visual content."]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift over the targeted manifest",
+      "timeRange": {"start": 0, "end": 156.2},
+      "limitations": ["OCR is a proposal, not ground truth.", "Handwritten whiteboard text is often low-confidence or wrong."]
+    },
+    {
+      "id": "SRC-OCR-REVIEW",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/notes/ocr-review.json",
+      "kind": "human frame check of OCR proposals",
+      "producedBy": "manual comparison of each accepted OCR row with its full-resolution targeted frame",
+      "timeRange": {"start": 0, "end": 155.15},
+      "limitations": ["Only listed rows were accepted.", "Exact small whiteboard text remains mostly unknown."]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/notes/audio-inspection.json",
+      "kind": "audio stream and non-speech-channel inspection note",
+      "producedBy": "ffprobe, ffmpeg silencedetect/volumedetect, and Whisper machine transcription",
+      "timeRange": {"start": 0, "end": 156.367},
+      "limitations": ["Methods did not reliably separate speech from music or sound effects.", "Machine transcription contains recognition errors."]
+    },
+    {
+      "id": "SRC-AUDIO-TRANSCRIPT",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/notes/audio-transcript/6a3ba6950000000007027cc5.json",
+      "kind": "machine transcription of audible speech",
+      "producedBy": "Whisper small Chinese transcription",
+      "timeRange": {"start": 0, "end": 156.2},
+      "limitations": ["Not verbatim ground truth.", "Especially unreliable for the opening fragment and some homophones."]
+    },
+    {
+      "id": "SRC-ABSENCE",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout3-director/skill-run/notes/absence-review.json",
+      "kind": "bounded full-timeline absence review",
+      "producedBy": "manual inspection of all supplied cues, cue/shot/dense frames, targeted frames, OCR, whiteboard, environment, and audio metadata",
+      "timeRange": {"start": 0, "end": 156.367},
+      "limitations": ["Applies only to the inspected video-internal scope.", "Unreadable microtext and handwritten text remain unknown."]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id":"CUE-001","start":0,"end":2.066,"text":"太多展示教资，今天我只说一件事情","representativeFrame":"frames/cues/cue-001.jpg","overlappingShots":["SHOT-001","SHOT-002"]},
+      {"id":"CUE-002","start":2.066,"end":6.2,"text":"就是不要用ai做自媒体，不要妄图用ai起号，不要妄图用ai做爆款","representativeFrame":"frames/cues/cue-002.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-003","start":6.21,"end":9.117,"text":"忠言逆耳，这期视频只适合那些有辩证开放逻辑的人听","representativeFrame":"frames/cues/cue-003.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-004","start":9.117,"end":13.6,"text":"因为我会惹到那些已经开始努力用ai做自媒体的人，和那些准备用ai赚钱的同行","representativeFrame":"frames/cues/cue-004.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-005","start":13.61,"end":15.842,"text":"首先第一点就是谁让你用ai做自媒体的","representativeFrame":"frames/cues/cue-005.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-006","start":15.842,"end":17.578,"text":"他们为什么让你用ai做自媒体","representativeFrame":"frames/cues/cue-006.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-007","start":17.578,"end":20.43,"text":"很显然你点开他主页就会发现他要卖他的agent","representativeFrame":"frames/cues/cue-007.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-008","start":20.43,"end":22.29,"text":"他要卖他skill卖的小程序了","representativeFrame":"frames/cues/cue-008.jpg","overlappingShots":["SHOT-002"]},
+      {"id":"CUE-009","start":22.3,"end":24.237,"text":"所以你会发现想让你用ai做自媒体的人","representativeFrame":"frames/cues/cue-009.jpg","overlappingShots":["SHOT-003"]},
+      {"id":"CUE-010","start":24.237,"end":26.497,"text":"他的目的是为了赚你的钱，这时候有两种可能呢","representativeFrame":"frames/cues/cue-010.jpg","overlappingShots":["SHOT-003","SHOT-004"]},
+      {"id":"CUE-011","start":26.497,"end":28.972,"text":"就是你可以点一下的主页去看看这个人的数据怎么样","representativeFrame":"frames/cues/cue-011.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-012","start":28.972,"end":31.45,"text":"如果他自己的数据都不好，你没有任何理由去听他的","representativeFrame":"frames/cues/cue-012.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-013","start":31.46,"end":33.29,"text":"第二点就是如果它有好数据的视频","representativeFrame":"frames/cues/cue-013.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-014","start":33.29,"end":36.95,"text":"那我可以负责任的告诉你，它的那些爆款的内容绝对不是a i做的","representativeFrame":"frames/cues/cue-014.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-015","start":36.96,"end":42.35,"text":"那些真正的博主，没有任何一个人是用ai去做自媒体的，第二点就是你知道赚钱要去做离钱最近的事情","representativeFrame":"frames/cues/cue-015.jpg","overlappingShots":["SHOT-004","SHOT-005","SHOT-006"]},
+      {"id":"CUE-016","start":42.36,"end":43.581,"text":"所以为了我们要做爆款","representativeFrame":"frames/cues/cue-016.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-017","start":43.581,"end":45.169,"text":"我们要去做离爆款最近的事情","representativeFrame":"frames/cues/cue-017.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-018","start":45.169,"end":47.001,"text":"那么做爆款最近的事情是什么呢？","representativeFrame":"frames/cues/cue-018.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-019","start":47.001,"end":50.79,"text":"就是要找到一个好的选题，如果你打算用ai做自媒体的话，首先你要","representativeFrame":"frames/cues/cue-019.jpg","overlappingShots":["SHOT-006","SHOT-007"]},
+      {"id":"CUE-020","start":50.8,"end":53.366,"text":"开始买到一个ai，如果这个ai那个人告诉你啊","representativeFrame":"frames/cues/cue-020.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-021","start":53.366,"end":56.4,"text":"我这个ai就是你一键能生出爆款的话，那它绝对是扯淡了","representativeFrame":"frames/cues/cue-021.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-022","start":56.41,"end":58.114,"text":"因为虽然自媒体是有底层逻辑的","representativeFrame":"frames/cues/cue-022.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-023","start":58.114,"end":61.035,"text":"但是每一个账号每一个i p都是具体问题具体分析的","representativeFrame":"frames/cues/cue-023.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-024","start":61.035,"end":64.08,"text":"所以很显然你需要花时间去调教一个适合你的a i出来","representativeFrame":"frames/cues/cue-024.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-025","start":64.09,"end":66.128,"text":"那么什么是离爆款最近的事情呢？","representativeFrame":"frames/cues/cue-025.jpg","overlappingShots":["SHOT-007","SHOT-008"]},
+      {"id":"CUE-026","start":66.128,"end":71.02,"text":"就是你要找到一个能直击人内心深处的好选题，然后开始写，那么第三个事情就是","representativeFrame":"frames/cues/cue-026.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-027","start":71.03,"end":72.546,"text":"流量这个东西它虽然有规律","representativeFrame":"frames/cues/cue-027.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-028","start":72.546,"end":76.59,"text":"但是这个规律很不规律，同样一个爆款，可能你再发一遍它就不一定会火","representativeFrame":"frames/cues/cue-028.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-029","start":76.6,"end":78.633,"text":"因为它是个天时地利人和的事情","representativeFrame":"frames/cues/cue-029.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-030","start":78.633,"end":82.12,"text":"爆款是可以拆解的，但是爆款有一定几率是不可复制的","representativeFrame":"frames/cues/cue-030.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-031","start":82.13,"end":84.87,"text":"那么下一个点呢，就是内容的本质是人性","representativeFrame":"frames/cues/cue-031.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-032","start":84.87,"end":90.2,"text":"做内容的本质是共情，如果你试图用机器去共情人类的话，你这是对人类的蔑视","representativeFrame":"frames/cues/cue-032.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-033","start":90.21,"end":92.353,"text":"那么下一点就是六十分的视频你不如不发","representativeFrame":"frames/cues/cue-033.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-034","start":92.353,"end":94.258,"text":"我没有一棒子打死ai不能做短视频","representativeFrame":"frames/cues/cue-034.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-035","start":94.258,"end":98.07,"text":"它可以做短视频，它可以做六十分的视频，那两种情况呢，因为你是素人","representativeFrame":"frames/cues/cue-035.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-036","start":98.08,"end":101.296,"text":"你素人你要起号，你做六十分的视频有什么用呢？如果你是博主的话","representativeFrame":"frames/cues/cue-036.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-037","start":101.296,"end":102.475,"text":"你更不能做六十分的视频","representativeFrame":"frames/cues/cue-037.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-038","start":102.475,"end":103.868,"text":"因为我们讲的一个东西叫权重","representativeFrame":"frames/cues/cue-038.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-039","start":103.868,"end":106.98,"text":"你经常会发现一些百万大v，他们点赞只有一千，这是为什么呢？","representativeFrame":"frames/cues/cue-039.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-040","start":106.99,"end":109.798,"text":"给你举个例子，比如说你是个一百万粉丝的博主","representativeFrame":"frames/cues/cue-040.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-041","start":109.798,"end":113.275,"text":"然后平台就会觉得你的正常的优质的平均内容是五万点赞量","representativeFrame":"frames/cues/cue-041.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-042","start":113.275,"end":115.95,"text":"如果你连续做了几条三千点赞量的视频的时候","representativeFrame":"frames/cues/cue-042.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-043","start":115.96,"end":118.538,"text":"平台就会说，哎你这个人做内容一点都不认真","representativeFrame":"frames/cues/cue-043.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-044","start":118.538,"end":122.02,"text":"它就会下降你的权重，并且把你的基础播放给降低，并且会比","representativeFrame":"frames/cues/cue-044.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-045","start":122.03,"end":124.018,"text":"普通人低粉丝量的人下降的更快","representativeFrame":"frames/cues/cue-045.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-046","start":124.018,"end":126.006,"text":"为什么不要妄图用ai起号呢？","representativeFrame":"frames/cues/cue-046.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-047","start":126.006,"end":127.852,"text":"因为ai只能做六十分的视频","representativeFrame":"frames/cues/cue-047.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-048","start":127.852,"end":131.83,"text":"首先起号它不是一个厚积薄发的过程，它是一个一夜成名的过程","representativeFrame":"frames/cues/cue-048.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-049","start":131.84,"end":133.657,"text":"它不是一个需要缓慢上升的曲线","representativeFrame":"frames/cues/cue-049.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-050","start":133.657,"end":138.59,"text":"这个时候你就会说了，诶我就是一直坚持坚持发，然后突然诶有一条爆了，我就做成了","representativeFrame":"frames/cues/cue-050.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-051","start":138.6,"end":140.522,"text":"你以为这是你坚持的结果吗？不是啊","representativeFrame":"frames/cues/cue-051.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-052","start":140.522,"end":143.645,"text":"是你之前做的东西都是屎，然后你突然开窍了，这才是起号","representativeFrame":"frames/cues/cue-052.jpg","overlappingShots":["SHOT-008","SHOT-009"]},
+      {"id":"CUE-053","start":143.645,"end":147.61,"text":"你可以让ai在你写作的过程中去补齐你一些知识上的缺陷，也可以让ai","representativeFrame":"frames/cues/cue-053.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-054","start":147.62,"end":149.095,"text":"和你进行聊天去头脑风暴","representativeFrame":"frames/cues/cue-054.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-055","start":149.095,"end":151.911,"text":"但是绝对不要去做那种用ai一键生成你的脚本","representativeFrame":"frames/cues/cue-055.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-056","start":151.911,"end":156.338,"text":"然后你拿着脚本去拍，这种事情今天就说到这里，我是人类智商编导，下课","representativeFrame":"frames/cues/cue-056.jpg","overlappingShots":["SHOT-009","SHOT-010","SHOT-011"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01", "title": "Opening proof-like collage", "importance": "supporting",
+      "statement": "During the first 0.733 seconds, an inserted collage covers much of the presenter and shows multiple large engagement/view-style numbers, including 611.9万, 832.7万, and 976.0万浏览, framing the masked presenter with visual credibility before the thesis.",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 0.733},
+      "evidence": [
+        {"refType":"targeted_frame","ref":"TARGET-0002","supports":"Opening collage with many count labels."},
+        {"refType":"ocr","ref":"OCR-00021","supports":"Checked visible count 611.9万."},
+        {"refType":"ocr","ref":"OCR-00034","supports":"Checked visible count 976.0万浏览."},
+        {"refType":"ocr","ref":"OCR-00045","supports":"Checked visible count 832.7万."}
+      ],
+      "confidence": "high", "reasoning": "The numbers and collage are directly visible; their platform, ownership, authenticity, and attribution are not established.",
+      "argumentNodeRole": "visual credibility frame", "unknowns": ["platform", "account ownership", "dates", "authenticity", "attribution"]
+    },
+    {
+      "id": "KU-02", "title": "Contrarian opening thesis", "importance": "core",
+      "statement": "The author opens by telling viewers not to use AI to make self-media content, launch an account, or attempt viral posts.",
+      "provenance": "author_claim", "timeRange": {"start": 2.066, "end": 6.2},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-002","supports":"Verbatim three-part prohibition."},
+        {"refType":"ocr","ref":"OCR-00070","supports":"Checked burned caption: 就是不要用AI做自媒体."}
+      ],
+      "confidence": "high", "argumentNodeRole": "hook/thesis", "unknowns": ["The hook's broad wording is narrowed at the close."]
+    },
+    {
+      "id": "KU-03", "title": "Audience and controversy qualifier", "importance": "context",
+      "statement": "The author says the video is only for people with dialectical and open logic and predicts it will offend people already using AI for self-media and peers preparing to make money from AI.",
+      "provenance": "author_claim", "timeRange": {"start": 6.21, "end": 13.6},
+      "evidence": [{"refType":"cue","ref":"CUE-003","supports":"Audience qualifier."},{"refType":"cue","ref":"CUE-004","supports":"Predicted conflict with two groups."}],
+      "confidence": "high", "argumentNodeRole": "audience qualifier", "unknowns": []
+    },
+    {
+      "id": "KU-04", "title": "Promoter-incentive critique", "importance": "core",
+      "statement": "The author claims that people encouraging AI-based self-media are motivated to sell agents, skills, and mini-programs and thereby earn the viewer's money.",
+      "provenance": "author_claim", "timeRange": {"start": 13.61, "end": 26.497},
+      "evidence": [
+        {"refType":"cue","ref":"CUE-007","supports":"Agent sale claim."},{"refType":"cue","ref":"CUE-008","supports":"Skill/mini-program sale claim."},{"refType":"cue","ref":"CUE-010","supports":"Money-motive conclusion."},
+        {"refType":"ocr","ref":"OCR-00137","supports":"Checked mini-program burned caption."}
+      ],
+      "confidence": "high", "argumentNodeRole": "motive claim",
+      "argument": {"claim":"AI promoters recommend AI to sell products to the viewer.","evidenceUnitIds":[],"conditions":["applies to the promoters the author generalizes about"],"counterexamples":[],"actions":["inspect the promoter's profile"],"limits":["No named promoter or motive evidence is shown."]},
+      "unknowns": ["specific promoter", "specific product", "truth and scope of the motive attribution"]
+    },
+    {
+      "id": "KU-05", "title": "Profile test: poor data", "importance": "core",
+      "statement": "The author's first profile test is: if the promoter's own data are poor, the viewer has no reason to listen.",
+      "provenance": "author_claim", "timeRange": {"start": 26.497, "end": 31.45},
+      "evidence": [{"refType":"cue","ref":"CUE-011","supports":"Instruction to inspect profile data."},{"refType":"cue","ref":"CUE-012","supports":"Poor-data rejection rule."}],
+      "confidence": "high", "argumentNodeRole": "decision rule branch A", "unknowns": ["No threshold for poor data is defined."]
+    },
+    {
+      "id": "KU-06", "title": "Profile test: good data and authorship assertion", "importance": "core",
+      "statement": "For the good-data branch, the author asserts that the promoter's viral posts definitely were not made by AI and broadens this to say no real blogger uses AI to do self-media.",
+      "provenance": "author_claim", "timeRange": {"start": 31.46, "end": 40.033},
+      "evidence": [{"refType":"cue","ref":"CUE-013","supports":"Good-data branch."},{"refType":"cue","ref":"CUE-014","supports":"Definite non-AI authorship assertion."},{"refType":"cue","ref":"CUE-015","supports":"Universal real-blogger assertion."},{"refType":"ocr","ref":"OCR-00181","supports":"Checked good-data branch caption."}],
+      "confidence": "high", "argumentNodeRole": "decision rule branch B and universal claim",
+      "argument": {"claim":"Good-performing examples on promoters' profiles were not AI-made, and real bloggers do not use AI for self-media.","evidenceUnitIds":[],"conditions":["promoter profile has good-performing videos"],"counterexamples":[],"actions":[],"limits":["No authorship audit or creator sample is shown.","Universal scope is not established."]},
+      "unknowns": ["actual authorship", "scope across bloggers"]
+    },
+    {
+      "id": "KU-07", "title": "What is closest to a viral post", "importance": "core",
+      "statement": "The author's positive alternative is to do the thing closest to virality: find a good topic that reaches deeply into human concerns, then begin writing.",
+      "provenance": "author_claim", "timeRange": {"start": 40.033, "end": 71.02},
+      "evidence": [{"refType":"cue","ref":"CUE-017","supports":"Closest-to-viral framing."},{"refType":"cue","ref":"CUE-019","supports":"Good topic answer."},{"refType":"cue","ref":"CUE-026","supports":"Human-reaching topic and writing action."},{"refType":"ocr","ref":"OCR-00241","supports":"Checked closest-to-viral caption."}],
+      "confidence": "high", "argumentNodeRole": "recommended action", "unknowns": ["No method for evaluating a good topic is supplied."]
+    },
+    {
+      "id": "KU-08", "title": "One-click promise versus account-specific adaptation", "importance": "core",
+      "statement": "The author calls a promise of one-click viral output nonsense because, although self-media has underlying logic, every account and IP requires case-specific analysis; he says adapting a suitable AI would itself take time.",
+      "provenance": "author_claim", "timeRange": {"start": 50.8, "end": 64.08},
+      "evidence": [{"refType":"cue","ref":"CUE-020","supports":"Buying an AI setup."},{"refType":"cue","ref":"CUE-021","supports":"One-click viral promise rejected."},{"refType":"cue","ref":"CUE-022","supports":"Underlying-logic concession."},{"refType":"cue","ref":"CUE-023","supports":"Account/IP specificity."},{"refType":"cue","ref":"CUE-024","supports":"Training/adaptation time."}],
+      "confidence": "high", "argumentNodeRole": "contrast and rationale",
+      "argument": {"claim":"A one-click viral generator is not credible.","evidenceUnitIds":[],"conditions":["each account/IP differs"],"counterexamples":[],"actions":["spend time adapting an AI if choosing to use one"],"limits":["No named system or adaptation procedure is demonstrated."]},
+      "unknowns": ["tool", "price", "training process", "result"]
+    },
+    {
+      "id": "KU-09", "title": "Traffic is patterned but not reliably repeatable", "importance": "core",
+      "statement": "The author says traffic has patterns whose outcomes remain irregular: reposting the same viral item may not work because timing, place, and people matter; viral posts can be analyzed but sometimes cannot be reproduced.",
+      "provenance": "author_claim", "timeRange": {"start": 71.03, "end": 82.12},
+      "evidence": [{"refType":"cue","ref":"CUE-027","supports":"Pattern concession."},{"refType":"cue","ref":"CUE-028","supports":"Same post may not repeat success."},{"refType":"cue","ref":"CUE-029","supports":"Timing/place/people rationale."},{"refType":"cue","ref":"CUE-030","supports":"Analyzable yet sometimes non-reproducible qualifier."},{"refType":"ocr","ref":"OCR-00365","supports":"Checked partial qualifier caption."}],
+      "confidence": "high", "argumentNodeRole": "condition/limit", "unknowns": ["No repost comparison data are shown."]
+    },
+    {
+      "id": "KU-10", "title": "Human nature and empathy rationale", "importance": "core",
+      "statement": "The author claims that content is fundamentally about human nature and making content is fundamentally about empathy; trying to use a machine to empathize with humans is, in his words, contempt for humans.",
+      "provenance": "author_claim", "timeRange": {"start": 82.13, "end": 90.2},
+      "evidence": [{"refType":"cue","ref":"CUE-031","supports":"Human-nature claim."},{"refType":"cue","ref":"CUE-032","supports":"Empathy and contempt claims."},{"refType":"ocr","ref":"OCR-00383","supports":"Checked machine-empathy caption."},{"refType":"ocr","ref":"OCR-00393","supports":"Checked contempt caption."}],
+      "confidence": "high", "argumentNodeRole": "value rationale", "unknowns": ["The video does not test whether AI-assisted content can evoke empathy."]
+    },
+    {
+      "id": "KU-11", "title": "AI short-video qualification and 60-point claim", "importance": "core",
+      "statement": "The author explicitly says he is not declaring that AI cannot make short videos; he says it can make short videos, but characterizes them as only 60-point videos and says such a video is not worth posting.",
+      "provenance": "author_claim", "timeRange": {"start": 90.21, "end": 98.07},
+      "evidence": [{"refType":"cue","ref":"CUE-033","supports":"60-point video not worth posting."},{"refType":"cue","ref":"CUE-034","supports":"Not a total impossibility claim."},{"refType":"cue","ref":"CUE-035","supports":"AI can make short/60-point videos."},{"refType":"ocr","ref":"OCR-00420","supports":"Checked not-total-ban qualifier caption."}],
+      "confidence": "high", "argumentNodeRole": "qualification plus quality claim", "unknowns": ["The 60-point scale is undefined.", "No example is shown."]
+    },
+    {
+      "id": "KU-12", "title": "Different risk for novices and established bloggers", "importance": "core",
+      "statement": "For a novice trying to launch an account, the author says a 60-point video is useless; for an established blogger, he says it is even less acceptable because of account weight.",
+      "provenance": "author_claim", "timeRange": {"start": 98.08, "end": 103.868},
+      "evidence": [{"refType":"cue","ref":"CUE-036","supports":"Novice/account-launch branch."},{"refType":"cue","ref":"CUE-037","supports":"Established-blogger branch."},{"refType":"cue","ref":"CUE-038","supports":"Weight rationale."},{"refType":"ocr","ref":"OCR-00435","supports":"Checked novice 60-point question."},{"refType":"ocr","ref":"OCR-00454","supports":"Checked weight caption."}],
+      "confidence": "high", "argumentNodeRole": "audience split", "unknowns": ["No operational weight metric is defined."]
+    },
+    {
+      "id": "KU-13", "title": "Million-follower weight hypothetical", "importance": "core",
+      "statement": "The author gives a hypothetical: a million-follower blogger whose normal good content averages 50,000 likes may, after several consecutive 3,000-like videos, be judged by the platform as careless and have weight and base distribution reduced, allegedly faster than a low-follower user.",
+      "provenance": "author_claim", "timeRange": {"start": 103.868, "end": 124.018},
+      "evidence": [{"refType":"cue","ref":"CUE-039","supports":"Million-follower/one-thousand-like setup."},{"refType":"cue","ref":"CUE-040","supports":"One-million-follower hypothetical."},{"refType":"cue","ref":"CUE-041","supports":"50,000-like baseline."},{"refType":"cue","ref":"CUE-042","supports":"Several 3,000-like posts."},{"refType":"cue","ref":"CUE-043","supports":"Platform judgment personification."},{"refType":"cue","ref":"CUE-044","supports":"Weight and base-distribution reduction claim."},{"refType":"cue","ref":"CUE-045","supports":"Faster than low-follower comparison."},{"refType":"ocr","ref":"OCR-00464","supports":"Checked 1,000 caption."},{"refType":"ocr","ref":"OCR-00487","supports":"Checked 50,000 caption."},{"refType":"ocr","ref":"OCR-00497","supports":"Checked 3,000 caption with documented OCR correction."},{"refType":"ocr","ref":"OCR-00516","supports":"Checked base-distribution reduction caption."}],
+      "confidence": "high", "argumentNodeRole": "hypothetical support/example",
+      "argument": {"claim":"Low-performing posts can reduce an established creator's weight and base distribution.","evidenceUnitIds":[],"conditions":["hypothetical one-million-follower creator","several consecutive 3,000-like videos against a 50,000-like baseline"],"counterexamples":[],"actions":["avoid 60-point output"],"limits":["No platform is named.","No analytics or platform rule is shown.","The example is not empirical proof."]},
+      "unknowns": ["platform", "actual ranking rule", "number of posts", "causal validity"]
+    },
+    {
+      "id": "KU-14", "title": "Account launch as breakthrough, not accumulation", "importance": "core",
+      "statement": "The author claims that launching an account is not gradual accumulation but overnight fame; he rejects a slow-rising curve and says a later hit is not the reward for persistence but evidence that the creator finally understood how to make better content.",
+      "provenance": "author_claim", "timeRange": {"start": 124.018, "end": 143.645},
+      "evidence": [{"refType":"cue","ref":"CUE-046","supports":"Returns to AI account-launch warning."},{"refType":"cue","ref":"CUE-047","supports":"60-point premise."},{"refType":"cue","ref":"CUE-048","supports":"Accumulation versus overnight-fame claim."},{"refType":"cue","ref":"CUE-049","supports":"Rejects slow-rising curve."},{"refType":"cue","ref":"CUE-050","supports":"Imagined persistence counterargument."},{"refType":"cue","ref":"CUE-051","supports":"Rejects persistence explanation."},{"refType":"cue","ref":"CUE-052","supports":"Breakthrough/开窍 alternative."},{"refType":"ocr","ref":"OCR-00558","supports":"Checked accumulation phrase."},{"refType":"ocr","ref":"OCR-00566","supports":"Checked slow-rising-curve caption with documented correction."},{"refType":"ocr","ref":"OCR-00597","supports":"Checked 开窍 caption."}],
+      "confidence": "high", "argumentNodeRole": "counterargument and reversal", "unknowns": ["No account trajectory or causal study is shown."]
+    },
+    {
+      "id": "KU-15", "title": "Permitted AI support", "importance": "core",
+      "statement": "At the close, the author permits using AI during writing to fill knowledge gaps and to chat for brainstorming.",
+      "provenance": "author_claim", "timeRange": {"start": 143.645, "end": 149.095},
+      "evidence": [{"refType":"cue","ref":"CUE-053","supports":"Knowledge-gap support."},{"refType":"cue","ref":"CUE-054","supports":"Chat/brainstorming support."},{"refType":"ocr","ref":"OCR-00611","supports":"Checked writing-process caption."},{"refType":"ocr","ref":"OCR-00622","supports":"Checked brainstorming caption."}],
+      "confidence": "high", "argumentNodeRole": "permitted action", "unknowns": ["How much AI assistance remains acceptable is not specified."]
+    },
+    {
+      "id": "KU-16", "title": "Prohibited AI substitution", "importance": "core",
+      "statement": "The closing prohibition is to have AI generate a script with one click and then directly film from that script.",
+      "provenance": "author_claim", "timeRange": {"start": 149.095, "end": 154.033},
+      "evidence": [{"refType":"cue","ref":"CUE-055","supports":"One-click script generation prohibition."},{"refType":"cue","ref":"CUE-056","supports":"Directly filming from the script."},{"refType":"ocr","ref":"OCR-00632","supports":"Checked one-click script caption."},{"refType":"ocr","ref":"OCR-00644","supports":"Checked script-to-filming caption."}],
+      "confidence": "high", "argumentNodeRole": "prohibited action", "unknowns": []
+    },
+    {
+      "id": "KU-17", "title": "Opening-to-closing semantic relation", "importance": "core",
+      "statement": "The closing narrows the opening's broad 'do not use AI for self-media' hook into an assistance-versus-substitution boundary: brainstorming and gap-filling are allowed, while delegated one-click authorship is rejected.",
+      "provenance": "system_inference", "timeRange": {"start": 2.066, "end": 154.033},
+      "evidence": [{"refType":"cue","ref":"CUE-002","supports":"Broad opening prohibition."},{"refType":"cue","ref":"CUE-053","supports":"Permitted support."},{"refType":"cue","ref":"CUE-054","supports":"Permitted brainstorming."},{"refType":"cue","ref":"CUE-055","supports":"Prohibited one-click authorship."},{"refType":"cue","ref":"CUE-056","supports":"Prohibited direct filming from generated script."}],
+      "confidence": "high", "reasoning": "The ending does not simply repeat the hook; it defines permitted and prohibited uses, so the global relation is narrowing/qualification rather than contradiction or repetition.",
+      "openingClosingFunction": "hook narrowed by final operational boundary", "unknowns": []
+    },
+    {
+      "id": "KU-18", "title": "Whiteboard and gestures as argument aids", "importance": "supporting",
+      "statement": "Across the lesson, the presenter repeatedly points to a prewritten whiteboard outline and later adds or indicates simple decline and curve drawings while explaining weight and account-launch trajectories; the board visually groups the argument but most small handwriting is not reliably readable.",
+      "provenance": "visual_observation", "timeRange": {"start": 13.61, "end": 143.645},
+      "evidence": [{"refType":"targeted_frame","ref":"TARGET-0011","supports":"Presenter points to the persistent outline."},{"refType":"targeted_frame","ref":"TARGET-0058","supports":"Presenter/board during numerical weight example."},{"refType":"targeted_frame","ref":"TARGET-0066","supports":"Slow-rising curve illustration."},{"refType":"targeted_frame","ref":"TARGET-0070","supports":"Later diagram state during breakthrough explanation."}],
+      "confidence": "high", "visualArgumentAid": "outline, pointing, decline marks, gradual versus sudden curve", "unknowns": ["Most exact handwritten wording."]
+    },
+    {
+      "id": "KU-19", "title": "Masked recurring presenter referent", "importance": "context",
+      "statement": "A single recurring visible presenter wears a red-and-black superhero-like full-face mask, dark jacket, printed shirt, and microphone, alternately addressing the camera and whiteboard; this visible person is the speaking presenter, but literal identity and mask authorization are not established.",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 156.367},
+      "evidence": [{"refType":"shot","ref":"SHOT-002","supports":"Recurring masked presenter in whiteboard room."},{"refType":"shot","ref":"SHOT-008","supports":"Same presentational referent through long middle interval."},{"refType":"targeted_frame","ref":"TARGET-0078","supports":"Same masked speaker at close."}],
+      "confidence": "high", "referentAndIdentityBoundary": "visible speaker stands in for the author/presenter; personal identity unknown", "unknowns": ["personal identity", "authorization/provenance of mask styling"]
+    },
+    {
+      "id": "KU-20", "title": "SRT closing self-label", "importance": "supporting",
+      "statement": "The supplied SRT records the closing self-label as 我是人类智商编导, followed by 下课.",
+      "provenance": "raw_fact", "timeRange": {"start": 151.911, "end": 156.338},
+      "evidence": [{"refType":"cue","ref":"CUE-056","supports":"Verbatim supplied SRT form."}],
+      "confidence": "high", "carrierConflictResolution": "raw SRT form preserved", "unknowns": ["Whether this exactly matches the audible word is not established by direct human audition here."]
+    },
+    {
+      "id": "KU-21", "title": "Burned-caption closing self-label", "importance": "supporting",
+      "statement": "The visible burned caption at 155.15 seconds reads 我是人类最强编导, followed by a separate 下课 caption.",
+      "provenance": "visual_observation", "timeRange": {"start": 154.033, "end": 156.267},
+      "evidence": [{"refType":"targeted_frame","ref":"TARGET-0078","supports":"Full-resolution frame visibly reads 我是人类最强编导."},{"refType":"ocr","ref":"OCR-00656","supports":"Vision OCR proposal exactly matches the checked frame."},{"refType":"shot","ref":"SHOT-010","supports":"Closing self-label interval."}],
+      "confidence": "high", "carrierConflictResolution": "burned-caption form preserved", "unknowns": []
+    },
+    {
+      "id": "KU-22", "title": "Closing label remains carrier-conflicted", "importance": "supporting",
+      "statement": "A single carrier-unified closing label cannot be established: the burned caption says 人类最强编导, while the supplied SRT and machine audio transcript say 人类智商编导. Only the masked presenter's self-brand/persona function and the classroom sign-off are secure across the close.",
+      "provenance": "unknown", "timeRange": {"start": 154.033, "end": 156.338},
+      "evidence": [{"refType":"cue","ref":"CUE-056","supports":"SRT 智商 form."},{"refType":"ocr","ref":"OCR-00656","supports":"Checked burned-caption 最强 form."},{"refType":"source","ref":"SRC-AUDIO-TRANSCRIPT","supports":"Machine audition also proposes 智商; limited by recognition uncertainty."}],
+      "confidence": "high", "reasoning": "The raw forms conflict and are not silently normalized.", "carrierConflictResolution": "unresolved 最强 versus 智商", "unknowns": ["Exact carrier-unified wording."]
+    },
+    {
+      "id": "KU-23", "title": "Source technical segmentation", "importance": "supporting",
+      "statement": "The evidence pack divides the video into 11 technical shot-detection segments, including a sub-second opening insert and a final 0.1-second tail.",
+      "provenance": "raw_fact", "timeRange": {"start": 0, "end": 156.367},
+      "evidence": [{"refType":"shot","ref":"SHOT-001","supports":"First technical segment 0-0.733."},{"refType":"shot","ref":"SHOT-002","supports":"Long first whiteboard segment."},{"refType":"shot","ref":"SHOT-003","supports":"Technical segment."},{"refType":"shot","ref":"SHOT-004","supports":"Technical segment."},{"refType":"shot","ref":"SHOT-005","supports":"Technical segment."},{"refType":"shot","ref":"SHOT-006","supports":"Technical segment."},{"refType":"shot","ref":"SHOT-007","supports":"Technical segment."},{"refType":"shot","ref":"SHOT-008","supports":"Long middle technical segment."},{"refType":"shot","ref":"SHOT-009","supports":"Closing-content segment."},{"refType":"shot","ref":"SHOT-010","supports":"Closing-label segment."},{"refType":"shot","ref":"SHOT-011","supports":"0.1-second tail."}],
+      "confidence": "high", "technicalSegmentationVersusSemanticContinuity": "technical segmentation count only", "unknowns": []
+    },
+    {
+      "id": "KU-24", "title": "Semantic continuity across technical boundaries", "importance": "supporting",
+      "statement": "Paired frames around the detected boundaries show the same masked presenter, clothing, whiteboard, room, and camera axis through most of the video; after the opening insert, the content is one continuous whiteboard argument rather than 11 evidenced semantic scenes. Hidden cuts remain possible.",
+      "provenance": "visual_observation", "timeRange": {"start": 0.65, "end": 154.15},
+      "evidence": [{"refType":"targeted_frame","ref":"TARGET-0080","supports":"Before opening insert boundary."},{"refType":"targeted_frame","ref":"TARGET-0081","supports":"After opening insert boundary."},{"refType":"targeted_frame","ref":"TARGET-0082","supports":"Before 22.3-second boundary."},{"refType":"targeted_frame","ref":"TARGET-0083","supports":"After 22.3-second boundary with same setup."},{"refType":"targeted_frame","ref":"TARGET-0092","supports":"Before 64.1-second boundary."},{"refType":"targeted_frame","ref":"TARGET-0093","supports":"After 64.1-second boundary with same setup."},{"refType":"targeted_frame","ref":"TARGET-0096","supports":"Before closing boundary."},{"refType":"targeted_frame","ref":"TARGET-0097","supports":"After closing boundary with same room/presenter."}],
+      "confidence": "high", "technicalSegmentationVersusSemanticContinuity": "technical boundaries not equivalent to semantic scenes or confirmed edit count", "unknowns": ["hidden edits"]
+    },
+    {
+      "id": "KU-25", "title": "Decision-relevant boundaries not established", "importance": "core",
+      "statement": "Within the inspected 0-156.367-second video-internal scope, no specific AI product/version, platform, price, access route, account requirement, region, support/responsibility entity, demonstrated product workflow, or empirical proof for the universal/causal claims was observed.",
+      "provenance": "unknown", "timeRange": {"start": 0, "end": 156.367},
+      "evidence": [{"refType":"source","ref":"SRC-ABSENCE","supports":"Bounded full-timeline review, carriers checked, sought items, and limitations."},{"refType":"targeted_frame","ref":"TARGET-0099","supports":"Opening opportunity window."},{"refType":"targeted_frame","ref":"TARGET-0110","supports":"Closing opportunity window."}],
+      "confidence": "high", "scopedAbsenceAndUnknown": "not observed in the inspected full timeline and listed carriers only", "unknowns": ["all listed decision boundaries and empirical truth"]
+    },
+    {
+      "id": "KU-26", "title": "Non-speech audio role remains unknown", "importance": "supporting",
+      "statement": "The video has a continuous AAC audio stream carrying speech, but the available inspection did not reliably separate or identify an independent semantic role for music or sound effects; their presence or absence must not be asserted.",
+      "provenance": "unknown", "timeRange": {"start": 0, "end": 156.367},
+      "evidence": [{"refType":"source","ref":"SRC-AUDIO","supports":"Audio stream metadata, continuous-material observation, and separation limitation."}],
+      "confidence": "high", "scopedAbsenceAndUnknown": "channel inspected, semantic role unknown", "unknowns": ["music presence", "sound-effect presence", "independent semantic function"]
+    },
+    {
+      "id": "KU-27", "title": "Raw opening SRT fragment", "importance": "supporting",
+      "statement": "The supplied SRT begins with the raw phrase 太多展示教资，今天我只说一件事情.",
+      "provenance": "raw_fact", "timeRange": {"start": 0, "end": 2.066},
+      "evidence": [{"refType":"cue","ref":"CUE-001","supports":"Verbatim supplied SRT opening cue."}],
+      "confidence": "high", "carrierConflictResolution": "raw SRT preserved without correction", "unknowns": []
+    },
+    {
+      "id": "KU-28", "title": "Visible opening insert label", "importance": "supporting",
+      "statement": "The opening collage visibly contains the text 开头展示教资, which labels the insert and is not sufficient to establish the exact spoken phrase under it.",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 0.733},
+      "evidence": [{"refType":"targeted_frame","ref":"TARGET-0003","supports":"Full-resolution insert visibly reads 开头展示教资."}],
+      "confidence": "high", "carrierConflictResolution": "insert text kept separate from speech/SRT", "unknowns": []
+    },
+    {
+      "id": "KU-29", "title": "Opening initial phrase unresolved", "importance": "supporting",
+      "statement": "The exact audible first phrase before 今天我只说一件事情 remains unknown: the SRT's 太多展示教资, the insert's 开头展示教资, and the machine transcription's different low-confidence proposal cannot be collapsed into one reading.",
+      "provenance": "unknown", "timeRange": {"start": 0, "end": 2.066},
+      "evidence": [{"refType":"cue","ref":"CUE-001","supports":"Raw SRT form."},{"refType":"targeted_frame","ref":"TARGET-0003","supports":"Different insert label."},{"refType":"ocr","ref":"OCR-00063","supports":"Only the later phrase 今天我只说一件事情 is visually secure."},{"refType":"source","ref":"SRC-AUDIO-TRANSCRIPT","supports":"Machine transcription proposes another uncertain form."}],
+      "confidence": "high", "reasoning": "Multiple carriers disagree and none establishes the initial audible phrase with sufficient reliability.", "carrierConflictResolution": "unresolved with raw forms preserved", "unknowns": ["exact audible first phrase"]
+    }
+  ],
+  "relations": [
+    {"from":"KU-01","to":"KU-02","relation":"framed_as_visual_credibility_for","evidence":[{"refType":"targeted_frame","ref":"TARGET-0003","supports":"Metrics collage immediately precedes the thesis."},{"refType":"cue","ref":"CUE-002","supports":"Thesis follows the insert."}]},
+    {"from":"KU-02","to":"KU-17","relation":"narrowed_by_closing_relation","evidence":[{"refType":"cue","ref":"CUE-002","supports":"Broad hook."},{"refType":"cue","ref":"CUE-053","supports":"Permitted assistance."},{"refType":"cue","ref":"CUE-055","supports":"Prohibited substitution."}]},
+    {"from":"KU-17","to":"KU-15","relation":"resolves_into_permitted_use","evidence":[{"refType":"cue","ref":"CUE-053","supports":"Gap-filling."},{"refType":"cue","ref":"CUE-054","supports":"Brainstorming."}]},
+    {"from":"KU-17","to":"KU-16","relation":"resolves_into_prohibited_use","evidence":[{"refType":"cue","ref":"CUE-055","supports":"One-click script."},{"refType":"cue","ref":"CUE-056","supports":"Direct filming."}]},
+    {"from":"KU-04","to":"KU-05","relation":"motive_critique_leads_to_profile_test","evidence":[{"refType":"cue","ref":"CUE-010","supports":"Motive conclusion introduces two possibilities."},{"refType":"cue","ref":"CUE-011","supports":"Profile inspection begins."}]},
+    {"from":"KU-05","to":"KU-06","relation":"alternative_branch_to","evidence":[{"refType":"cue","ref":"CUE-012","supports":"Poor-data branch."},{"refType":"cue","ref":"CUE-013","supports":"Good-data branch."}]},
+    {"from":"KU-07","to":"KU-08","relation":"contrasted_with_generator_purchase_and_training_overhead","evidence":[{"refType":"cue","ref":"CUE-019","supports":"Good topic versus buying AI transition."},{"refType":"cue","ref":"CUE-024","supports":"Adaptation cost."},{"refType":"cue","ref":"CUE-026","supports":"Returns to topic and writing."}]},
+    {"from":"KU-09","to":"KU-10","relation":"used_to_reinforce_human_judgment_and_empathy","evidence":[{"refType":"cue","ref":"CUE-030","supports":"Non-reproducibility limit."},{"refType":"cue","ref":"CUE-031","supports":"Transition to human nature."},{"refType":"cue","ref":"CUE-032","supports":"Empathy rationale."}]},
+    {"from":"KU-11","to":"KU-12","relation":"applied_differently_to_two_audiences","evidence":[{"refType":"cue","ref":"CUE-035","supports":"60-point premise."},{"refType":"cue","ref":"CUE-036","supports":"Novice case."},{"refType":"cue","ref":"CUE-037","supports":"Established-blogger case."}]},
+    {"from":"KU-12","to":"KU-13","relation":"supported_in_video_by_hypothetical_weight_example","evidence":[{"refType":"cue","ref":"CUE-038","supports":"Weight transition."},{"refType":"cue","ref":"CUE-040","supports":"Hypothetical begins."},{"refType":"cue","ref":"CUE-044","supports":"Claimed consequence."}]},
+    {"from":"KU-12","to":"KU-14","relation":"novice_warning_extended_by_breakthrough_model","evidence":[{"refType":"cue","ref":"CUE-046","supports":"Returns to account launching."},{"refType":"cue","ref":"CUE-048","supports":"Breakthrough model."},{"refType":"cue","ref":"CUE-052","supports":"开窍 payoff."}]},
+    {"from":"KU-18","to":"KU-13","relation":"visually_maps_to_weight_example","evidence":[{"refType":"targeted_frame","ref":"TARGET-0058","supports":"Presenter uses board during numerical explanation."},{"refType":"targeted_frame","ref":"TARGET-0060","supports":"Later board state during base-distribution claim."}]},
+    {"from":"KU-18","to":"KU-14","relation":"visually_maps_to_curve_contrast","evidence":[{"refType":"targeted_frame","ref":"TARGET-0066","supports":"Gradual curve state."},{"refType":"targeted_frame","ref":"TARGET-0070","supports":"Later breakthrough-diagram state."}]},
+    {"from":"KU-19","to":"KU-21","relation":"visible_speaker_presented_with_burned_self_label","evidence":[{"refType":"targeted_frame","ref":"TARGET-0078","supports":"Masked presenter and burned label share frame."}]},
+    {"from":"KU-20","to":"KU-21","relation":"carrier_conflicts_with","evidence":[{"refType":"cue","ref":"CUE-056","supports":"SRT 智商 form."},{"refType":"ocr","ref":"OCR-00656","supports":"Burned 最强 form."}]},
+    {"from":"KU-20","to":"KU-22","relation":"one_raw_form_of_unresolved_label","evidence":[{"refType":"cue","ref":"CUE-056","supports":"Raw SRT form."}]},
+    {"from":"KU-21","to":"KU-22","relation":"other_raw_form_of_unresolved_label","evidence":[{"refType":"ocr","ref":"OCR-00656","supports":"Raw burned-caption form."}]},
+    {"from":"KU-23","to":"KU-24","relation":"technical_segments_not_equivalent_to_semantic_scene_count","evidence":[{"refType":"shot","ref":"SHOT-008","supports":"One technical segment spans many semantic turns."},{"refType":"targeted_frame","ref":"TARGET-0082","supports":"Boundary-before state."},{"refType":"targeted_frame","ref":"TARGET-0083","supports":"Boundary-after same setup."}]},
+    {"from":"KU-27","to":"KU-29","relation":"raw_srt_form_of_unresolved_opening","evidence":[{"refType":"cue","ref":"CUE-001","supports":"Raw SRT phrase."}]},
+    {"from":"KU-28","to":"KU-29","relation":"visible_insert_form_kept_separate_from_speech","evidence":[{"refType":"targeted_frame","ref":"TARGET-0003","supports":"Visible insert wording."}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id":"CAR-01","available":true,"inspected":true},{"id":"CAR-02","available":true,"inspected":true},{"id":"CAR-03","available":true,"inspected":true},{"id":"CAR-04","available":true,"inspected":true},{"id":"CAR-05","available":true,"inspected":true},{"id":"CAR-06","available":true,"inspected":true},{"id":"CAR-07","available":true,"inspected":true},{"id":"CAR-08","available":true,"inspected":true},{"id":"CAR-09","available":true,"inspected":true},{"id":"CAR-10","available":true,"inspected":true}
+    ],
+    "meaningChanges": [
+      {"id":"MC-01","captured":true,"unitIds":["KU-01","KU-02"]},{"id":"MC-02","captured":true,"unitIds":["KU-03"]},{"id":"MC-03","captured":true,"unitIds":["KU-04"]},{"id":"MC-04","captured":true,"unitIds":["KU-05","KU-06"]},{"id":"MC-05","captured":true,"unitIds":["KU-07"]},{"id":"MC-06","captured":true,"unitIds":["KU-08"]},{"id":"MC-07","captured":true,"unitIds":["KU-09"]},{"id":"MC-08","captured":true,"unitIds":["KU-10"]},{"id":"MC-09","captured":true,"unitIds":["KU-11","KU-12"]},{"id":"MC-10","captured":true,"unitIds":["KU-13"]},{"id":"MC-11","captured":true,"unitIds":["KU-14","KU-18"]},{"id":"MC-12","captured":true,"unitIds":["KU-15","KU-16","KU-17","KU-20","KU-21","KU-22"]}
+    ],
+    "relationships": [
+      {"id":"RH-01","evidenced":true,"evidenceRefs":["CUE-002","CUE-053","CUE-054","CUE-055","CUE-056"]},
+      {"id":"RH-02","evidenced":true,"evidenceRefs":["CUE-010","CUE-011","CUE-012","CUE-013"]},
+      {"id":"RH-03","evidenced":true,"evidenceRefs":["CUE-019","CUE-024","CUE-026"]},
+      {"id":"RH-04","evidenced":true,"evidenceRefs":["CUE-030","CUE-031","CUE-032"]},
+      {"id":"RH-05","evidenced":true,"evidenceRefs":["CUE-035","CUE-038","CUE-040","CUE-044"]},
+      {"id":"RH-06","evidenced":true,"evidenceRefs":["CUE-036","CUE-046","CUE-048","CUE-052"]},
+      {"id":"RH-07","evidenced":true,"evidenceRefs":["TARGET-0003","CUE-002"]},
+      {"id":"RH-08","evidenced":true,"evidenceRefs":["TARGET-0078","CUE-056","OCR-00656"]},
+      {"id":"RH-09","evidenced":true,"evidenceRefs":["TARGET-0011","TARGET-0058","TARGET-0066","TARGET-0070"]},
+      {"id":"RH-10","evidenced":true,"evidenceRefs":["SHOT-008","TARGET-0082","TARGET-0083","TARGET-0092","TARGET-0093"]}
+    ],
+    "criticalQuestions": [
+      {"id":"CQ-01","status":"answered","unitIds":["KU-02","KU-15","KU-16","KU-17"],"evidenceRefs":["CUE-002","CUE-053","CUE-054","CUE-055","CUE-056"]},
+      {"id":"CQ-02","status":"answered","unitIds":["KU-04","KU-05","KU-06"],"evidenceRefs":["CUE-007","CUE-008","CUE-010","CUE-011","CUE-012","CUE-013","CUE-014"]},
+      {"id":"CQ-03","status":"answered","unitIds":["KU-07"],"evidenceRefs":["CUE-017","CUE-019","CUE-026"]},
+      {"id":"CQ-04","status":"answered","unitIds":["KU-08"],"evidenceRefs":["CUE-020","CUE-021","CUE-023","CUE-024"]},
+      {"id":"CQ-05","status":"answered","unitIds":["KU-09"],"evidenceRefs":["CUE-027","CUE-028","CUE-029","CUE-030"]},
+      {"id":"CQ-06","status":"answered","unitIds":["KU-10"],"evidenceRefs":["CUE-031","CUE-032"]},
+      {"id":"CQ-07","status":"answered","unitIds":["KU-11"],"evidenceRefs":["CUE-033","CUE-034","CUE-035"]},
+      {"id":"CQ-08","status":"answered","unitIds":["KU-13"],"evidenceRefs":["CUE-039","CUE-040","CUE-041","CUE-042","CUE-044","CUE-045"]},
+      {"id":"CQ-09","status":"answered","unitIds":["KU-14","KU-18"],"evidenceRefs":["CUE-048","CUE-049","CUE-050","CUE-051","CUE-052","TARGET-0066"]},
+      {"id":"CQ-10","status":"answered","unitIds":["KU-15","KU-16"],"evidenceRefs":["CUE-053","CUE-054","CUE-055","CUE-056"]},
+      {"id":"CQ-11","status":"answered","unitIds":["KU-01","KU-18","KU-19"],"evidenceRefs":["TARGET-0003","TARGET-0011","TARGET-0066","TARGET-0078"]},
+      {"id":"CQ-12","status":"unknown","unitIds":["KU-25"],"evidenceRefs":["SRC-ABSENCE"]},
+      {"id":"CQ-13","status":"unknown","unitIds":["KU-19","KU-20","KU-21","KU-22"],"evidenceRefs":["SHOT-002","CUE-056","TARGET-0078","OCR-00656"]},
+      {"id":"CQ-14","status":"unknown","unitIds":["KU-25"],"evidenceRefs":["SRC-ABSENCE"]},
+      {"id":"CQ-15","status":"answered","unitIds":["KU-23","KU-24"],"evidenceRefs":["SHOT-001","SHOT-008","TARGET-0082","TARGET-0083"]},
+      {"id":"CQ-16","status":"unknown","unitIds":["KU-26"],"evidenceRefs":["SRC-AUDIO"]},
+      {"id":"CQ-17","status":"unknown","unitIds":["KU-20","KU-21","KU-22","KU-27","KU-28","KU-29"],"evidenceRefs":["CUE-001","TARGET-0003","CUE-056","OCR-00656"]}
+    ],
+    "cueAccountability": [
+      {"cueId":"CUE-001","disposition":"uncertain","unitIds":["KU-27","KU-28","KU-29"],"rationale":"Raw opening SRT is preserved, but the exact initial audible phrase remains unresolved across carriers."},
+      {"cueId":"CUE-002","disposition":"knowledge","unitIds":["KU-02","KU-17"],"rationale":"Core three-part hook and opening side of the global relation."},
+      {"cueId":"CUE-003","disposition":"context","unitIds":["KU-03"],"rationale":"Audience qualifier."},
+      {"cueId":"CUE-004","disposition":"context","unitIds":["KU-03"],"rationale":"Predicted controversy and addressed groups."},
+      {"cueId":"CUE-005","disposition":"knowledge","unitIds":["KU-04"],"rationale":"Introduces promoter-source question."},
+      {"cueId":"CUE-006","disposition":"knowledge","unitIds":["KU-04"],"rationale":"Introduces incentive question."},
+      {"cueId":"CUE-007","disposition":"knowledge","unitIds":["KU-04"],"rationale":"Agent sale claim."},
+      {"cueId":"CUE-008","disposition":"knowledge","unitIds":["KU-04"],"rationale":"Skill/mini-program sale claim."},
+      {"cueId":"CUE-009","disposition":"knowledge","unitIds":["KU-04"],"rationale":"Links sellers to recommendation."},
+      {"cueId":"CUE-010","disposition":"knowledge","unitIds":["KU-04","KU-05","KU-06"],"rationale":"Money motive and two-branch transition."},
+      {"cueId":"CUE-011","disposition":"knowledge","unitIds":["KU-05"],"rationale":"Profile-data inspection action."},
+      {"cueId":"CUE-012","disposition":"knowledge","unitIds":["KU-05"],"rationale":"Poor-data branch."},
+      {"cueId":"CUE-013","disposition":"knowledge","unitIds":["KU-06"],"rationale":"Good-data branch."},
+      {"cueId":"CUE-014","disposition":"knowledge","unitIds":["KU-06"],"rationale":"Non-AI authorship assertion."},
+      {"cueId":"CUE-015","disposition":"knowledge","unitIds":["KU-06","KU-07"],"rationale":"Universal blogger claim and closest-to-outcome analogy."},
+      {"cueId":"CUE-016","disposition":"knowledge","unitIds":["KU-07"],"rationale":"Introduces viral-post objective."},
+      {"cueId":"CUE-017","disposition":"knowledge","unitIds":["KU-07"],"rationale":"Closest-to-viral principle."},
+      {"cueId":"CUE-018","disposition":"knowledge","unitIds":["KU-07"],"rationale":"Question answered by topic selection."},
+      {"cueId":"CUE-019","disposition":"knowledge","unitIds":["KU-07","KU-08"],"rationale":"Good-topic answer and transition to AI purchase detour."},
+      {"cueId":"CUE-020","disposition":"knowledge","unitIds":["KU-08"],"rationale":"AI purchase setup."},
+      {"cueId":"CUE-021","disposition":"knowledge","unitIds":["KU-08"],"rationale":"One-click viral promise rejected."},
+      {"cueId":"CUE-022","disposition":"knowledge","unitIds":["KU-08"],"rationale":"Underlying-logic concession."},
+      {"cueId":"CUE-023","disposition":"knowledge","unitIds":["KU-08"],"rationale":"Account/IP specificity condition."},
+      {"cueId":"CUE-024","disposition":"knowledge","unitIds":["KU-08"],"rationale":"Adaptation-time overhead."},
+      {"cueId":"CUE-025","disposition":"knowledge","unitIds":["KU-07"],"rationale":"Repeats closest-to-viral question."},
+      {"cueId":"CUE-026","disposition":"knowledge","unitIds":["KU-07"],"rationale":"Human-reaching topic and writing action."},
+      {"cueId":"CUE-027","disposition":"knowledge","unitIds":["KU-09"],"rationale":"Traffic-pattern concession."},
+      {"cueId":"CUE-028","disposition":"knowledge","unitIds":["KU-09"],"rationale":"Irregularity and repost counterexample."},
+      {"cueId":"CUE-029","disposition":"knowledge","unitIds":["KU-09"],"rationale":"Timing/place/people rationale."},
+      {"cueId":"CUE-030","disposition":"knowledge","unitIds":["KU-09"],"rationale":"Analyzable but sometimes non-reproducible qualifier."},
+      {"cueId":"CUE-031","disposition":"knowledge","unitIds":["KU-10"],"rationale":"Human-nature claim."},
+      {"cueId":"CUE-032","disposition":"knowledge","unitIds":["KU-10"],"rationale":"Empathy rationale and moral judgment."},
+      {"cueId":"CUE-033","disposition":"knowledge","unitIds":["KU-11"],"rationale":"60-point video threshold claim."},
+      {"cueId":"CUE-034","disposition":"knowledge","unitIds":["KU-11"],"rationale":"Not-total-ban qualifier."},
+      {"cueId":"CUE-035","disposition":"knowledge","unitIds":["KU-11","KU-12"],"rationale":"AI can make short video/60-point premise and audience split setup."},
+      {"cueId":"CUE-036","disposition":"knowledge","unitIds":["KU-12"],"rationale":"Novice/account-launch branch."},
+      {"cueId":"CUE-037","disposition":"knowledge","unitIds":["KU-12"],"rationale":"Established-blogger branch."},
+      {"cueId":"CUE-038","disposition":"knowledge","unitIds":["KU-12","KU-13"],"rationale":"Introduces weight example."},
+      {"cueId":"CUE-039","disposition":"knowledge","unitIds":["KU-13"],"rationale":"Million-creator/one-thousand-like setup."},
+      {"cueId":"CUE-040","disposition":"knowledge","unitIds":["KU-13"],"rationale":"One-million-follower hypothetical."},
+      {"cueId":"CUE-041","disposition":"knowledge","unitIds":["KU-13"],"rationale":"50,000-like baseline."},
+      {"cueId":"CUE-042","disposition":"knowledge","unitIds":["KU-13"],"rationale":"Several 3,000-like posts condition."},
+      {"cueId":"CUE-043","disposition":"knowledge","unitIds":["KU-13"],"rationale":"Personified platform judgment."},
+      {"cueId":"CUE-044","disposition":"knowledge","unitIds":["KU-13"],"rationale":"Weight and base-distribution consequence."},
+      {"cueId":"CUE-045","disposition":"knowledge","unitIds":["KU-13"],"rationale":"Low-follower comparison."},
+      {"cueId":"CUE-046","disposition":"knowledge","unitIds":["KU-14"],"rationale":"Returns to AI account-launch question."},
+      {"cueId":"CUE-047","disposition":"knowledge","unitIds":["KU-11","KU-14"],"rationale":"Repeats 60-point premise."},
+      {"cueId":"CUE-048","disposition":"knowledge","unitIds":["KU-14"],"rationale":"Accumulation versus overnight-fame claim."},
+      {"cueId":"CUE-049","disposition":"knowledge","unitIds":["KU-14","KU-18"],"rationale":"Rejects slow curve and maps to whiteboard drawing."},
+      {"cueId":"CUE-050","disposition":"knowledge","unitIds":["KU-14"],"rationale":"Imagined persistence counterargument."},
+      {"cueId":"CUE-051","disposition":"knowledge","unitIds":["KU-14"],"rationale":"Rejects persistence explanation."},
+      {"cueId":"CUE-052","disposition":"knowledge","unitIds":["KU-14"],"rationale":"Breakthrough/开窍 reversal."},
+      {"cueId":"CUE-053","disposition":"knowledge","unitIds":["KU-15","KU-17"],"rationale":"Permitted knowledge-gap support."},
+      {"cueId":"CUE-054","disposition":"knowledge","unitIds":["KU-15","KU-17"],"rationale":"Permitted brainstorming."},
+      {"cueId":"CUE-055","disposition":"knowledge","unitIds":["KU-16","KU-17"],"rationale":"Prohibited one-click script generation."},
+      {"cueId":"CUE-056","disposition":"knowledge","unitIds":["KU-16","KU-20","KU-21","KU-22"],"rationale":"Script-to-filming prohibition, closing SRT label, burned-caption conflict, and sign-off."}
+    ],
+    "coreEvidence": {"covered": 16, "total": 16},
+    "unknowns": [
+      "Exact first audible phrase before 今天我只说一件事情.",
+      "Carrier-unified closing self-label: 最强 versus 智商.",
+      "Literal identity of the masked presenter and provenance of opening metrics.",
+      "Specific products/platforms/prices/access/account/region/support boundaries.",
+      "Empirical truth of universal and causal claims.",
+      "Independent semantic role of non-speech audio.",
+      "Most exact whiteboard handwriting and hidden-edit status."
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "All ten available carrier groups were inspected or, for non-speech audio, explicitly inspected and preserved as semantically unknown. All 12 probe meaning changes, 10 probe relationship hypotheses, 17 critical questions, 56 cues, the opening collage, closing reframe, two consequential carrier conflicts, referents, scoped absences, and technical-segmentation/semantic-continuity distinction are represented. No relation is a self-edge."
+  }
+}

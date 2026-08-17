@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "bounded-audio-inspection-1.0",
+  "sourceVideo": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6832e96a000000002100405d.mp4",
+  "sourceAudio": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/audio-evidence/source-audio.wav",
+  "scope": {"start": 0, "end": 83.220313},
+  "methods": [
+    {
+      "id": "AUD-METHOD-01",
+      "method": "完整源混音抽取",
+      "details": "从原 MP4 无视频抽取 16 kHz、单声道 PCM s16le WAV；ffprobe 得到时长 83.220313 秒。"
+    },
+    {
+      "id": "AUD-METHOD-02",
+      "method": "完整源音频 ASR 听检",
+      "details": "OpenAI Whisper small、中文、word timestamps，对 0–83.220313 秒完整混音执行；识别 40 个旁白段，覆盖 0–83.02 秒。small 在 48.66–53.48 秒漏段，另用 Whisper medium 对源音频 45–57 秒复检，恢复‘也可以和运动裤混搭……无论哪种搭配’旁白。ASR 仅作源音频检查证据，不替代 provided SRT 的逐字合同。"
+    },
+    {
+      "id": "AUD-METHOD-03",
+      "method": "非语音声音分段分类",
+      "details": "MIT AST AudioSet 分类器对完整混音按连续 5 秒窗口检查，并以 2 秒窗口复核短促事件；分类标签和分数是机器候选，不是版权、曲目或来源鉴定。"
+    },
+    {
+      "id": "AUD-METHOD-04",
+      "method": "分段电平检查",
+      "details": "按 5 秒窗口计算混音 RMS/peak；RMS 约 -14.37 至 -11.59 dBFS，45–55 秒相对较低，不据此推断音乐曲目或剪辑来源。"
+    }
+  ],
+  "fiveSecondClassifierWindows": [
+    {"range": {"start": 0, "end": 5}, "topLabels": [{"label": "Speech", "score": 0.518}, {"label": "Music", "score": 0.453}]},
+    {"range": {"start": 5, "end": 10}, "topLabels": [{"label": "Speech", "score": 0.470}, {"label": "Music", "score": 0.312}]},
+    {"range": {"start": 10, "end": 15}, "topLabels": [{"label": "Speech", "score": 0.588}, {"label": "Music", "score": 0.342}]},
+    {"range": {"start": 15, "end": 20}, "topLabels": [{"label": "Speech", "score": 0.524}, {"label": "Music", "score": 0.352}]},
+    {"range": {"start": 20, "end": 25}, "topLabels": [{"label": "Speech", "score": 0.496}, {"label": "Music", "score": 0.469}]},
+    {"range": {"start": 25, "end": 30}, "topLabels": [{"label": "Speech", "score": 0.561}, {"label": "Music", "score": 0.364}]},
+    {"range": {"start": 30, "end": 35}, "topLabels": [{"label": "Speech", "score": 0.509}, {"label": "Music", "score": 0.409}]},
+    {"range": {"start": 35, "end": 40}, "topLabels": [{"label": "Speech", "score": 0.483}, {"label": "Music", "score": 0.396}]},
+    {"range": {"start": 40, "end": 45}, "topLabels": [{"label": "Speech", "score": 0.514}, {"label": "Music", "score": 0.388}]},
+    {"range": {"start": 45, "end": 50}, "topLabels": [{"label": "Speech", "score": 0.564}, {"label": "Music", "score": 0.376}]},
+    {"range": {"start": 50, "end": 55}, "topLabels": [{"label": "Speech", "score": 0.484}, {"label": "Music", "score": 0.451}]},
+    {"range": {"start": 55, "end": 60}, "topLabels": [{"label": "Speech", "score": 0.626}, {"label": "Music", "score": 0.321}]},
+    {"range": {"start": 60, "end": 65}, "topLabels": [{"label": "Speech", "score": 0.609}, {"label": "Music", "score": 0.312}]},
+    {"range": {"start": 65, "end": 70}, "topLabels": [{"label": "Speech", "score": 0.542}, {"label": "Music", "score": 0.399}]},
+    {"range": {"start": 70, "end": 75}, "topLabels": [{"label": "Speech", "score": 0.485}, {"label": "Music", "score": 0.359}]},
+    {"range": {"start": 75, "end": 80}, "topLabels": [{"label": "Speech", "score": 0.486}, {"label": "Music", "score": 0.433}]},
+    {"range": {"start": 80, "end": 83.220313}, "topLabels": [{"label": "Ding", "score": 0.400}, {"label": "Speech", "score": 0.281}, {"label": "Music", "score": 0.198}, {"label": "Clang", "score": 0.042}, {"label": "Ping", "score": 0.024}]}
+  ],
+  "observations": [
+    {
+      "id": "AUD-OBS-01",
+      "range": {"start": 0, "end": 83.02},
+      "observation": "完整源混音中可识别一条连续中文旁白；Whisper 完整听检与 45–57 秒 medium 复检共同覆盖 provided SRT 的全部语义段。未识别出与主旁白并列的第二段可理解对话。",
+      "confidence": "medium",
+      "limitations": ["ASR 可能漏掉被旁白/音乐掩蔽的低电平插入原声", "不据此判断说话人真实身份或录音来源"]
+    },
+    {
+      "id": "AUD-OBS-02",
+      "range": {"start": 0, "end": 83.220313},
+      "observation": "AST 在每个连续 5 秒窗口都把 Music 列为主要候选之一，支持整段存在持续背景音乐床；Music 分数和混音 RMS 随时间波动，但没有跨相邻窗口稳定出现另一种音乐类型，不能据此证明曲目始终相同，也不能定位版权或曲目切换。",
+      "confidence": "medium",
+      "limitations": ["分类器分析的是旁白与音乐混合轨", "Music 分数不是实际音量或曲目身份", "无分轨、曲名或权利元数据"]
+    },
+    {
+      "id": "AUD-OBS-03",
+      "range": {"start": 80, "end": 83.220313},
+      "observation": "结尾窗口的 Ding/Ping 类候选显著高于大多数早期窗口，支持最后购买问题附近加入短促提示/收束音效的可能；其精确声音、来源和叙事意图仍不作确定判断。",
+      "confidence": "medium",
+      "limitations": ["AudioSet 标签为机器候选", "短窗口填充可能影响分数"]
+    },
+    {
+      "id": "AUD-OBS-04",
+      "range": {"start": 0, "end": 80},
+      "observation": "除持续旁白与音乐候选外，2 秒复核中的其他低分声音标签不在相邻窗口稳定重复，不能可靠认定为独立插入原声或具体音效。",
+      "confidence": "low",
+      "limitations": ["低分标签可能由语音、音乐瞬态或压缩伪影触发", "不构成具体事件的正证据"]
+    }
+  ],
+  "boundedConclusion": {
+    "narration": "0–83.02 秒有连续中文旁白；没有识别出额外可理解对话，但被掩蔽的低电平插入原声不能排除。",
+    "music": "0–83.220313 秒各 5 秒窗口均有 Music 主要候选，背景音乐床持续存在；显著性随时间变化，是否为同一曲目、是否存在无缝换曲均未知。",
+    "soundEffects": "80–83.220313 秒出现较明确的 Ding/Ping 类收束音效候选；此前零散低分候选不足以确认具体音效事件。",
+    "insertedSourceAudio": "未识别出稳定的第二说话人或独立可理解插入对话；不对低电平、被旁白覆盖或纯环境原声作不存在断言。",
+    "rights": "音轨来源、曲目、音乐/音效许可、旁白声音权利和插入素材原声许可均未由视频建立。"
+  }
+}

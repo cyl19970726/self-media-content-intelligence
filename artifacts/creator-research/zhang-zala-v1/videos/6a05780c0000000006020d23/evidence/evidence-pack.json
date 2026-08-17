@@ -1,0 +1,1816 @@
+{
+  "schemaVersion": "video-evidence-pack-1.0",
+  "generatedAt": "2026-08-16T12:53:49.226Z",
+  "source": {
+    "video": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a05780c0000000006020d23/source.mp4",
+    "videoName": "source.mp4",
+    "subtitles": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a05780c0000000006020d23/machine.zh.srt",
+    "subtitleOrigin": "provided_subtitles"
+  },
+  "media": {
+    "duration": 118.933,
+    "sizeBytes": 8923949,
+    "format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "hevc",
+    "width": 1918,
+    "height": 1080,
+    "frameRate": "30/1",
+    "hasAudio": true,
+    "audioCodec": "aac"
+  },
+  "sceneDetection": {
+    "threshold": 0.24,
+    "cuts": [
+      1.5,
+      2.467,
+      3.467,
+      4.467,
+      5.467,
+      7.467,
+      8.5,
+      9.467,
+      10.467,
+      10.833,
+      26.9,
+      33.4,
+      54.633,
+      72.333,
+      75.467,
+      86.7,
+      86.967,
+      87.9,
+      88.767,
+      90.367,
+      92.067,
+      92.9,
+      96.467,
+      99.6,
+      101.1,
+      102.667,
+      103.967,
+      116.667
+    ]
+  },
+  "shots": [
+    {
+      "id": "SHOT-001",
+      "start": 0,
+      "end": 1.5,
+      "representativeTime": 0.75,
+      "representativeFrame": "frames/shots/shot-001.jpg"
+    },
+    {
+      "id": "SHOT-002",
+      "start": 1.5,
+      "end": 2.467,
+      "representativeTime": 1.984,
+      "representativeFrame": "frames/shots/shot-002.jpg"
+    },
+    {
+      "id": "SHOT-003",
+      "start": 2.467,
+      "end": 3.467,
+      "representativeTime": 2.967,
+      "representativeFrame": "frames/shots/shot-003.jpg"
+    },
+    {
+      "id": "SHOT-004",
+      "start": 3.467,
+      "end": 4.467,
+      "representativeTime": 3.967,
+      "representativeFrame": "frames/shots/shot-004.jpg"
+    },
+    {
+      "id": "SHOT-005",
+      "start": 4.467,
+      "end": 5.467,
+      "representativeTime": 4.967,
+      "representativeFrame": "frames/shots/shot-005.jpg"
+    },
+    {
+      "id": "SHOT-006",
+      "start": 5.467,
+      "end": 7.467,
+      "representativeTime": 6.467,
+      "representativeFrame": "frames/shots/shot-006.jpg"
+    },
+    {
+      "id": "SHOT-007",
+      "start": 7.467,
+      "end": 8.5,
+      "representativeTime": 7.983,
+      "representativeFrame": "frames/shots/shot-007.jpg"
+    },
+    {
+      "id": "SHOT-008",
+      "start": 8.5,
+      "end": 9.467,
+      "representativeTime": 8.983,
+      "representativeFrame": "frames/shots/shot-008.jpg"
+    },
+    {
+      "id": "SHOT-009",
+      "start": 9.467,
+      "end": 10.467,
+      "representativeTime": 9.967,
+      "representativeFrame": "frames/shots/shot-009.jpg"
+    },
+    {
+      "id": "SHOT-010",
+      "start": 10.467,
+      "end": 10.833,
+      "representativeTime": 10.65,
+      "representativeFrame": "frames/shots/shot-010.jpg"
+    },
+    {
+      "id": "SHOT-011",
+      "start": 10.833,
+      "end": 26.9,
+      "representativeTime": 18.866,
+      "representativeFrame": "frames/shots/shot-011.jpg"
+    },
+    {
+      "id": "SHOT-012",
+      "start": 26.9,
+      "end": 33.4,
+      "representativeTime": 30.15,
+      "representativeFrame": "frames/shots/shot-012.jpg"
+    },
+    {
+      "id": "SHOT-013",
+      "start": 33.4,
+      "end": 54.633,
+      "representativeTime": 44.017,
+      "representativeFrame": "frames/shots/shot-013.jpg"
+    },
+    {
+      "id": "SHOT-014",
+      "start": 54.633,
+      "end": 72.333,
+      "representativeTime": 63.483,
+      "representativeFrame": "frames/shots/shot-014.jpg"
+    },
+    {
+      "id": "SHOT-015",
+      "start": 72.333,
+      "end": 75.467,
+      "representativeTime": 73.9,
+      "representativeFrame": "frames/shots/shot-015.jpg"
+    },
+    {
+      "id": "SHOT-016",
+      "start": 75.467,
+      "end": 86.7,
+      "representativeTime": 81.084,
+      "representativeFrame": "frames/shots/shot-016.jpg"
+    },
+    {
+      "id": "SHOT-017",
+      "start": 86.7,
+      "end": 86.967,
+      "representativeTime": 86.834,
+      "representativeFrame": "frames/shots/shot-017.jpg"
+    },
+    {
+      "id": "SHOT-018",
+      "start": 86.967,
+      "end": 87.9,
+      "representativeTime": 87.434,
+      "representativeFrame": "frames/shots/shot-018.jpg"
+    },
+    {
+      "id": "SHOT-019",
+      "start": 87.9,
+      "end": 88.767,
+      "representativeTime": 88.334,
+      "representativeFrame": "frames/shots/shot-019.jpg"
+    },
+    {
+      "id": "SHOT-020",
+      "start": 88.767,
+      "end": 90.367,
+      "representativeTime": 89.567,
+      "representativeFrame": "frames/shots/shot-020.jpg"
+    },
+    {
+      "id": "SHOT-021",
+      "start": 90.367,
+      "end": 92.067,
+      "representativeTime": 91.217,
+      "representativeFrame": "frames/shots/shot-021.jpg"
+    },
+    {
+      "id": "SHOT-022",
+      "start": 92.067,
+      "end": 92.9,
+      "representativeTime": 92.483,
+      "representativeFrame": "frames/shots/shot-022.jpg"
+    },
+    {
+      "id": "SHOT-023",
+      "start": 92.9,
+      "end": 96.467,
+      "representativeTime": 94.684,
+      "representativeFrame": "frames/shots/shot-023.jpg"
+    },
+    {
+      "id": "SHOT-024",
+      "start": 96.467,
+      "end": 99.6,
+      "representativeTime": 98.034,
+      "representativeFrame": "frames/shots/shot-024.jpg"
+    },
+    {
+      "id": "SHOT-025",
+      "start": 99.6,
+      "end": 101.1,
+      "representativeTime": 100.35,
+      "representativeFrame": "frames/shots/shot-025.jpg"
+    },
+    {
+      "id": "SHOT-026",
+      "start": 101.1,
+      "end": 102.667,
+      "representativeTime": 101.883,
+      "representativeFrame": "frames/shots/shot-026.jpg"
+    },
+    {
+      "id": "SHOT-027",
+      "start": 102.667,
+      "end": 103.967,
+      "representativeTime": 103.317,
+      "representativeFrame": "frames/shots/shot-027.jpg"
+    },
+    {
+      "id": "SHOT-028",
+      "start": 103.967,
+      "end": 116.667,
+      "representativeTime": 110.317,
+      "representativeFrame": "frames/shots/shot-028.jpg"
+    },
+    {
+      "id": "SHOT-029",
+      "start": 116.667,
+      "end": 118.933,
+      "representativeTime": 117.8,
+      "representativeFrame": "frames/shots/shot-029.jpg"
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cueCount": 31,
+    "fullText": "之前给大家展示了一些非常好看的 HTML Slides 的模板 然后我今天手把手演示一下怎么充灵到一 做出这么好看的 HTML Slides 不需要任何变成基础 首先进入 any 镇然后点 build Slides 然后选择第二个 front end 然后下面有很多模板 比如说我选择这个模板 然后我就直接输入我希望 Slides 里方的内容 这种大白话就可以了 然后发给它 然后这是三分多钟之后他做好的 Slides 我们来看一下 他就能够复课我们这个原来的模板 所有文字都可以点击直接点击 然后如果你想修改一些样式排版 你可以点这个评论 然后就针对性的天涯评论 比如说改字体 然后这一页改成蓝色 然后点 apply 那么这些评论就会批量的发给 AI 他可以一次性帮你都改好 那么你做完了怎么分享给别人 直接在这点分享 然后把这个链子 电接发给别人他们就像往一样可以直接打开你不需要下载你直接发电接对方就可以打开了 但如果你希望下载倒出的话你可以点这个下载然后可以下载成PBT或者PDF然后你需要演讲的时候直接全屏这样投屏展示就可以了 如果你需要插入图片的话直接拖到这个框然后说把这个图片插入到最后一夜就可以了然后如果你想改任何东西直接跟AI说他就可以帮你改关于这些好看的模板是怎么做出来的呢 就是我日常会去收集非常多好看的图片可能是海报可能是书的封面或者这平面设计 然后我会把这图片作为参考给到Claw Design然后让他基于这些图片的风格配色等等去产出模板 这些图片一般来自于小红书 Pinterest还有Twitter所以我觉得大家日常养成收集好看的东西的习惯 并且就是他山知识可以公寓PBT的模板不一定是个PBT HTML模板可以是Anything可以是你日常看到的任何好看的东西或者配色",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 3.52,
+        "text": "之前给大家展示了一些非常好看的 HTML Slides 的模板",
+        "representativeTime": 1.76,
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002",
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.52,
+        "end": 6.76,
+        "text": "然后我今天手把手演示一下怎么充灵到一",
+        "representativeTime": 5.14,
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 6.76,
+        "end": 10.76,
+        "text": "做出这么好看的 HTML Slides 不需要任何变成基础",
+        "representativeTime": 8.76,
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007",
+          "SHOT-008",
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 10.76,
+        "end": 14.32,
+        "text": "首先进入 any 镇然后点 build Slides",
+        "representativeTime": 12.54,
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 14.32,
+        "end": 16.88,
+        "text": "然后选择第二个 front end",
+        "representativeTime": 15.6,
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 16.88,
+        "end": 19,
+        "text": "然后下面有很多模板",
+        "representativeTime": 17.94,
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 19,
+        "end": 20.64,
+        "text": "比如说我选择这个模板",
+        "representativeTime": 19.82,
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 20.64,
+        "end": 24.28,
+        "text": "然后我就直接输入我希望 Slides 里方的内容",
+        "representativeTime": 22.46,
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 24.28,
+        "end": 25.84,
+        "text": "这种大白话就可以了",
+        "representativeTime": 25.06,
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 25.84,
+        "end": 26.84,
+        "text": "然后发给它",
+        "representativeTime": 26.34,
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 26.84,
+        "end": 30.68,
+        "text": "然后这是三分多钟之后他做好的 Slides 我们来看一下",
+        "representativeTime": 28.76,
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 30.68,
+        "end": 33.44,
+        "text": "他就能够复课我们这个原来的模板",
+        "representativeTime": 32.06,
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 33.44,
+        "end": 36.04,
+        "text": "所有文字都可以点击直接点击",
+        "representativeTime": 34.74,
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 36.04,
+        "end": 38.16,
+        "text": "然后如果你想修改一些样式排版",
+        "representativeTime": 37.1,
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 38.16,
+        "end": 40.52,
+        "text": "你可以点这个评论",
+        "representativeTime": 39.34,
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 40.52,
+        "end": 42.44,
+        "text": "然后就针对性的天涯评论",
+        "representativeTime": 41.48,
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 42.44,
+        "end": 44.24,
+        "text": "比如说改字体",
+        "representativeTime": 43.34,
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 45.72,
+        "end": 49.92,
+        "text": "然后这一页改成蓝色",
+        "representativeTime": 47.82,
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 49.92,
+        "end": 50.96,
+        "text": "然后点 apply",
+        "representativeTime": 50.44,
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 50.96,
+        "end": 53.28,
+        "text": "那么这些评论就会批量的发给 AI",
+        "representativeTime": 52.12,
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 53.28,
+        "end": 54.72,
+        "text": "他可以一次性帮你都改好",
+        "representativeTime": 54,
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 54.72,
+        "end": 56.56,
+        "text": "那么你做完了怎么分享给别人",
+        "representativeTime": 55.64,
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 56.56,
+        "end": 58.32,
+        "text": "直接在这点分享",
+        "representativeTime": 57.44,
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 58.32,
+        "end": 59.52,
+        "text": "然后把这个链子",
+        "representativeTime": 58.92,
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 59.52,
+        "end": 65.64,
+        "text": "电接发给别人他们就像往一样可以直接打开你不需要下载你直接发电接对方就可以打开了",
+        "representativeTime": 62.58,
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 65.64,
+        "end": 75.4,
+        "text": "但如果你希望下载倒出的话你可以点这个下载然后可以下载成PBT或者PDF然后你需要演讲的时候直接全屏这样投屏展示就可以了",
+        "representativeTime": 70.52,
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 75.4,
+        "end": 89.32,
+        "text": "如果你需要插入图片的话直接拖到这个框然后说把这个图片插入到最后一夜就可以了然后如果你想改任何东西直接跟AI说他就可以帮你改关于这些好看的模板是怎么做出来的呢",
+        "representativeTime": 82.36,
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016",
+          "SHOT-017",
+          "SHOT-018",
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 89.32,
+        "end": 96.44,
+        "text": "就是我日常会去收集非常多好看的图片可能是海报可能是书的封面或者这平面设计",
+        "representativeTime": 92.88,
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-020",
+          "SHOT-021",
+          "SHOT-022",
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 96.44,
+        "end": 103.96,
+        "text": "然后我会把这图片作为参考给到Claw Design然后让他基于这些图片的风格配色等等去产出模板",
+        "representativeTime": 100.2,
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-023",
+          "SHOT-024",
+          "SHOT-025",
+          "SHOT-026",
+          "SHOT-027"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 103.96,
+        "end": 110.76,
+        "text": "这些图片一般来自于小红书 Pinterest还有Twitter所以我觉得大家日常养成收集好看的东西的习惯",
+        "representativeTime": 107.36,
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-027",
+          "SHOT-028"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 110.76,
+        "end": 118.92,
+        "text": "并且就是他山知识可以公寓PBT的模板不一定是个PBT HTML模板可以是Anything可以是你日常看到的任何好看的东西或者配色",
+        "representativeTime": 114.84,
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-028",
+          "SHOT-029"
+        ]
+      }
+    ]
+  },
+  "denseProbe": {
+    "intervalSeconds": 1.5,
+    "frames": [
+      {
+        "id": "DENSE-0001",
+        "time": 0,
+        "frame": "frames/dense/dense-0001.jpg"
+      },
+      {
+        "id": "DENSE-0002",
+        "time": 1.5,
+        "frame": "frames/dense/dense-0002.jpg"
+      },
+      {
+        "id": "DENSE-0003",
+        "time": 3,
+        "frame": "frames/dense/dense-0003.jpg"
+      },
+      {
+        "id": "DENSE-0004",
+        "time": 4.5,
+        "frame": "frames/dense/dense-0004.jpg"
+      },
+      {
+        "id": "DENSE-0005",
+        "time": 6,
+        "frame": "frames/dense/dense-0005.jpg"
+      },
+      {
+        "id": "DENSE-0006",
+        "time": 7.5,
+        "frame": "frames/dense/dense-0006.jpg"
+      },
+      {
+        "id": "DENSE-0007",
+        "time": 9,
+        "frame": "frames/dense/dense-0007.jpg"
+      },
+      {
+        "id": "DENSE-0008",
+        "time": 10.5,
+        "frame": "frames/dense/dense-0008.jpg"
+      },
+      {
+        "id": "DENSE-0009",
+        "time": 12,
+        "frame": "frames/dense/dense-0009.jpg"
+      },
+      {
+        "id": "DENSE-0010",
+        "time": 13.5,
+        "frame": "frames/dense/dense-0010.jpg"
+      },
+      {
+        "id": "DENSE-0011",
+        "time": 15,
+        "frame": "frames/dense/dense-0011.jpg"
+      },
+      {
+        "id": "DENSE-0012",
+        "time": 16.5,
+        "frame": "frames/dense/dense-0012.jpg"
+      },
+      {
+        "id": "DENSE-0013",
+        "time": 18,
+        "frame": "frames/dense/dense-0013.jpg"
+      },
+      {
+        "id": "DENSE-0014",
+        "time": 19.5,
+        "frame": "frames/dense/dense-0014.jpg"
+      },
+      {
+        "id": "DENSE-0015",
+        "time": 21,
+        "frame": "frames/dense/dense-0015.jpg"
+      },
+      {
+        "id": "DENSE-0016",
+        "time": 22.5,
+        "frame": "frames/dense/dense-0016.jpg"
+      },
+      {
+        "id": "DENSE-0017",
+        "time": 24,
+        "frame": "frames/dense/dense-0017.jpg"
+      },
+      {
+        "id": "DENSE-0018",
+        "time": 25.5,
+        "frame": "frames/dense/dense-0018.jpg"
+      },
+      {
+        "id": "DENSE-0019",
+        "time": 27,
+        "frame": "frames/dense/dense-0019.jpg"
+      },
+      {
+        "id": "DENSE-0020",
+        "time": 28.5,
+        "frame": "frames/dense/dense-0020.jpg"
+      },
+      {
+        "id": "DENSE-0021",
+        "time": 30,
+        "frame": "frames/dense/dense-0021.jpg"
+      },
+      {
+        "id": "DENSE-0022",
+        "time": 31.5,
+        "frame": "frames/dense/dense-0022.jpg"
+      },
+      {
+        "id": "DENSE-0023",
+        "time": 33,
+        "frame": "frames/dense/dense-0023.jpg"
+      },
+      {
+        "id": "DENSE-0024",
+        "time": 34.5,
+        "frame": "frames/dense/dense-0024.jpg"
+      },
+      {
+        "id": "DENSE-0025",
+        "time": 36,
+        "frame": "frames/dense/dense-0025.jpg"
+      },
+      {
+        "id": "DENSE-0026",
+        "time": 37.5,
+        "frame": "frames/dense/dense-0026.jpg"
+      },
+      {
+        "id": "DENSE-0027",
+        "time": 39,
+        "frame": "frames/dense/dense-0027.jpg"
+      },
+      {
+        "id": "DENSE-0028",
+        "time": 40.5,
+        "frame": "frames/dense/dense-0028.jpg"
+      },
+      {
+        "id": "DENSE-0029",
+        "time": 42,
+        "frame": "frames/dense/dense-0029.jpg"
+      },
+      {
+        "id": "DENSE-0030",
+        "time": 43.5,
+        "frame": "frames/dense/dense-0030.jpg"
+      },
+      {
+        "id": "DENSE-0031",
+        "time": 45,
+        "frame": "frames/dense/dense-0031.jpg"
+      },
+      {
+        "id": "DENSE-0032",
+        "time": 46.5,
+        "frame": "frames/dense/dense-0032.jpg"
+      },
+      {
+        "id": "DENSE-0033",
+        "time": 48,
+        "frame": "frames/dense/dense-0033.jpg"
+      },
+      {
+        "id": "DENSE-0034",
+        "time": 49.5,
+        "frame": "frames/dense/dense-0034.jpg"
+      },
+      {
+        "id": "DENSE-0035",
+        "time": 51,
+        "frame": "frames/dense/dense-0035.jpg"
+      },
+      {
+        "id": "DENSE-0036",
+        "time": 52.5,
+        "frame": "frames/dense/dense-0036.jpg"
+      },
+      {
+        "id": "DENSE-0037",
+        "time": 54,
+        "frame": "frames/dense/dense-0037.jpg"
+      },
+      {
+        "id": "DENSE-0038",
+        "time": 55.5,
+        "frame": "frames/dense/dense-0038.jpg"
+      },
+      {
+        "id": "DENSE-0039",
+        "time": 57,
+        "frame": "frames/dense/dense-0039.jpg"
+      },
+      {
+        "id": "DENSE-0040",
+        "time": 58.5,
+        "frame": "frames/dense/dense-0040.jpg"
+      },
+      {
+        "id": "DENSE-0041",
+        "time": 60,
+        "frame": "frames/dense/dense-0041.jpg"
+      },
+      {
+        "id": "DENSE-0042",
+        "time": 61.5,
+        "frame": "frames/dense/dense-0042.jpg"
+      },
+      {
+        "id": "DENSE-0043",
+        "time": 63,
+        "frame": "frames/dense/dense-0043.jpg"
+      },
+      {
+        "id": "DENSE-0044",
+        "time": 64.5,
+        "frame": "frames/dense/dense-0044.jpg"
+      },
+      {
+        "id": "DENSE-0045",
+        "time": 66,
+        "frame": "frames/dense/dense-0045.jpg"
+      },
+      {
+        "id": "DENSE-0046",
+        "time": 67.5,
+        "frame": "frames/dense/dense-0046.jpg"
+      },
+      {
+        "id": "DENSE-0047",
+        "time": 69,
+        "frame": "frames/dense/dense-0047.jpg"
+      },
+      {
+        "id": "DENSE-0048",
+        "time": 70.5,
+        "frame": "frames/dense/dense-0048.jpg"
+      },
+      {
+        "id": "DENSE-0049",
+        "time": 72,
+        "frame": "frames/dense/dense-0049.jpg"
+      },
+      {
+        "id": "DENSE-0050",
+        "time": 73.5,
+        "frame": "frames/dense/dense-0050.jpg"
+      },
+      {
+        "id": "DENSE-0051",
+        "time": 75,
+        "frame": "frames/dense/dense-0051.jpg"
+      },
+      {
+        "id": "DENSE-0052",
+        "time": 76.5,
+        "frame": "frames/dense/dense-0052.jpg"
+      },
+      {
+        "id": "DENSE-0053",
+        "time": 78,
+        "frame": "frames/dense/dense-0053.jpg"
+      },
+      {
+        "id": "DENSE-0054",
+        "time": 79.5,
+        "frame": "frames/dense/dense-0054.jpg"
+      },
+      {
+        "id": "DENSE-0055",
+        "time": 81,
+        "frame": "frames/dense/dense-0055.jpg"
+      },
+      {
+        "id": "DENSE-0056",
+        "time": 82.5,
+        "frame": "frames/dense/dense-0056.jpg"
+      },
+      {
+        "id": "DENSE-0057",
+        "time": 84,
+        "frame": "frames/dense/dense-0057.jpg"
+      },
+      {
+        "id": "DENSE-0058",
+        "time": 85.5,
+        "frame": "frames/dense/dense-0058.jpg"
+      },
+      {
+        "id": "DENSE-0059",
+        "time": 87,
+        "frame": "frames/dense/dense-0059.jpg"
+      },
+      {
+        "id": "DENSE-0060",
+        "time": 88.5,
+        "frame": "frames/dense/dense-0060.jpg"
+      },
+      {
+        "id": "DENSE-0061",
+        "time": 90,
+        "frame": "frames/dense/dense-0061.jpg"
+      },
+      {
+        "id": "DENSE-0062",
+        "time": 91.5,
+        "frame": "frames/dense/dense-0062.jpg"
+      },
+      {
+        "id": "DENSE-0063",
+        "time": 93,
+        "frame": "frames/dense/dense-0063.jpg"
+      },
+      {
+        "id": "DENSE-0064",
+        "time": 94.5,
+        "frame": "frames/dense/dense-0064.jpg"
+      },
+      {
+        "id": "DENSE-0065",
+        "time": 96,
+        "frame": "frames/dense/dense-0065.jpg"
+      },
+      {
+        "id": "DENSE-0066",
+        "time": 97.5,
+        "frame": "frames/dense/dense-0066.jpg"
+      },
+      {
+        "id": "DENSE-0067",
+        "time": 99,
+        "frame": "frames/dense/dense-0067.jpg"
+      },
+      {
+        "id": "DENSE-0068",
+        "time": 100.5,
+        "frame": "frames/dense/dense-0068.jpg"
+      },
+      {
+        "id": "DENSE-0069",
+        "time": 102,
+        "frame": "frames/dense/dense-0069.jpg"
+      },
+      {
+        "id": "DENSE-0070",
+        "time": 103.5,
+        "frame": "frames/dense/dense-0070.jpg"
+      },
+      {
+        "id": "DENSE-0071",
+        "time": 105,
+        "frame": "frames/dense/dense-0071.jpg"
+      },
+      {
+        "id": "DENSE-0072",
+        "time": 106.5,
+        "frame": "frames/dense/dense-0072.jpg"
+      },
+      {
+        "id": "DENSE-0073",
+        "time": 108,
+        "frame": "frames/dense/dense-0073.jpg"
+      },
+      {
+        "id": "DENSE-0074",
+        "time": 109.5,
+        "frame": "frames/dense/dense-0074.jpg"
+      },
+      {
+        "id": "DENSE-0075",
+        "time": 111,
+        "frame": "frames/dense/dense-0075.jpg"
+      },
+      {
+        "id": "DENSE-0076",
+        "time": 112.5,
+        "frame": "frames/dense/dense-0076.jpg"
+      },
+      {
+        "id": "DENSE-0077",
+        "time": 114,
+        "frame": "frames/dense/dense-0077.jpg"
+      },
+      {
+        "id": "DENSE-0078",
+        "time": 115.5,
+        "frame": "frames/dense/dense-0078.jpg"
+      },
+      {
+        "id": "DENSE-0079",
+        "time": 117,
+        "frame": "frames/dense/dense-0079.jpg"
+      },
+      {
+        "id": "DENSE-0080",
+        "time": 118.5,
+        "frame": "frames/dense/dense-0080.jpg"
+      },
+      {
+        "id": "DENSE-0081",
+        "time": 118.813,
+        "frame": "frames/dense/dense-0081.jpg"
+      }
+    ]
+  },
+  "frameIndex": [
+    {
+      "id": "FRAME-SHOT-001",
+      "time": 0.75,
+      "frame": "frames/shots/shot-001.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-002",
+      "time": 1.984,
+      "frame": "frames/shots/shot-002.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-003",
+      "time": 2.967,
+      "frame": "frames/shots/shot-003.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-004",
+      "time": 3.967,
+      "frame": "frames/shots/shot-004.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-005",
+      "time": 4.967,
+      "frame": "frames/shots/shot-005.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-006",
+      "time": 6.467,
+      "frame": "frames/shots/shot-006.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-007",
+      "time": 7.983,
+      "frame": "frames/shots/shot-007.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-008",
+      "time": 8.983,
+      "frame": "frames/shots/shot-008.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-009",
+      "time": 9.967,
+      "frame": "frames/shots/shot-009.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-010",
+      "time": 10.65,
+      "frame": "frames/shots/shot-010.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-011",
+      "time": 18.866,
+      "frame": "frames/shots/shot-011.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-012",
+      "time": 30.15,
+      "frame": "frames/shots/shot-012.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-013",
+      "time": 44.017,
+      "frame": "frames/shots/shot-013.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-014",
+      "time": 63.483,
+      "frame": "frames/shots/shot-014.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-015",
+      "time": 73.9,
+      "frame": "frames/shots/shot-015.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-016",
+      "time": 81.084,
+      "frame": "frames/shots/shot-016.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-017",
+      "time": 86.834,
+      "frame": "frames/shots/shot-017.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-018",
+      "time": 87.434,
+      "frame": "frames/shots/shot-018.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-019",
+      "time": 88.334,
+      "frame": "frames/shots/shot-019.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-020",
+      "time": 89.567,
+      "frame": "frames/shots/shot-020.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-021",
+      "time": 91.217,
+      "frame": "frames/shots/shot-021.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-022",
+      "time": 92.483,
+      "frame": "frames/shots/shot-022.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-023",
+      "time": 94.684,
+      "frame": "frames/shots/shot-023.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-024",
+      "time": 98.034,
+      "frame": "frames/shots/shot-024.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-025",
+      "time": 100.35,
+      "frame": "frames/shots/shot-025.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-026",
+      "time": 101.883,
+      "frame": "frames/shots/shot-026.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-027",
+      "time": 103.317,
+      "frame": "frames/shots/shot-027.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-028",
+      "time": 110.317,
+      "frame": "frames/shots/shot-028.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-029",
+      "time": 117.8,
+      "frame": "frames/shots/shot-029.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-CUE-001",
+      "time": 1.76,
+      "frame": "frames/cues/cue-001.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-002",
+      "time": 5.14,
+      "frame": "frames/cues/cue-002.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-003",
+      "time": 8.76,
+      "frame": "frames/cues/cue-003.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-004",
+      "time": 12.54,
+      "frame": "frames/cues/cue-004.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-005",
+      "time": 15.6,
+      "frame": "frames/cues/cue-005.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-006",
+      "time": 17.94,
+      "frame": "frames/cues/cue-006.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-007",
+      "time": 19.82,
+      "frame": "frames/cues/cue-007.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-008",
+      "time": 22.46,
+      "frame": "frames/cues/cue-008.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-009",
+      "time": 25.06,
+      "frame": "frames/cues/cue-009.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-010",
+      "time": 26.34,
+      "frame": "frames/cues/cue-010.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-011",
+      "time": 28.76,
+      "frame": "frames/cues/cue-011.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-012",
+      "time": 32.06,
+      "frame": "frames/cues/cue-012.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-013",
+      "time": 34.74,
+      "frame": "frames/cues/cue-013.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-014",
+      "time": 37.1,
+      "frame": "frames/cues/cue-014.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-015",
+      "time": 39.34,
+      "frame": "frames/cues/cue-015.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-016",
+      "time": 41.48,
+      "frame": "frames/cues/cue-016.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-017",
+      "time": 43.34,
+      "frame": "frames/cues/cue-017.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-018",
+      "time": 47.82,
+      "frame": "frames/cues/cue-018.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-019",
+      "time": 50.44,
+      "frame": "frames/cues/cue-019.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-020",
+      "time": 52.12,
+      "frame": "frames/cues/cue-020.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-021",
+      "time": 54,
+      "frame": "frames/cues/cue-021.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-022",
+      "time": 55.64,
+      "frame": "frames/cues/cue-022.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-023",
+      "time": 57.44,
+      "frame": "frames/cues/cue-023.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-024",
+      "time": 58.92,
+      "frame": "frames/cues/cue-024.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-025",
+      "time": 62.58,
+      "frame": "frames/cues/cue-025.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-026",
+      "time": 70.52,
+      "frame": "frames/cues/cue-026.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-027",
+      "time": 82.36,
+      "frame": "frames/cues/cue-027.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-028",
+      "time": 92.88,
+      "frame": "frames/cues/cue-028.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-029",
+      "time": 100.2,
+      "frame": "frames/cues/cue-029.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-030",
+      "time": 107.36,
+      "frame": "frames/cues/cue-030.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-031",
+      "time": 114.84,
+      "frame": "frames/cues/cue-031.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "DENSE-0001",
+      "time": 0,
+      "frame": "frames/dense/dense-0001.jpg"
+    },
+    {
+      "id": "DENSE-0002",
+      "time": 1.5,
+      "frame": "frames/dense/dense-0002.jpg"
+    },
+    {
+      "id": "DENSE-0003",
+      "time": 3,
+      "frame": "frames/dense/dense-0003.jpg"
+    },
+    {
+      "id": "DENSE-0004",
+      "time": 4.5,
+      "frame": "frames/dense/dense-0004.jpg"
+    },
+    {
+      "id": "DENSE-0005",
+      "time": 6,
+      "frame": "frames/dense/dense-0005.jpg"
+    },
+    {
+      "id": "DENSE-0006",
+      "time": 7.5,
+      "frame": "frames/dense/dense-0006.jpg"
+    },
+    {
+      "id": "DENSE-0007",
+      "time": 9,
+      "frame": "frames/dense/dense-0007.jpg"
+    },
+    {
+      "id": "DENSE-0008",
+      "time": 10.5,
+      "frame": "frames/dense/dense-0008.jpg"
+    },
+    {
+      "id": "DENSE-0009",
+      "time": 12,
+      "frame": "frames/dense/dense-0009.jpg"
+    },
+    {
+      "id": "DENSE-0010",
+      "time": 13.5,
+      "frame": "frames/dense/dense-0010.jpg"
+    },
+    {
+      "id": "DENSE-0011",
+      "time": 15,
+      "frame": "frames/dense/dense-0011.jpg"
+    },
+    {
+      "id": "DENSE-0012",
+      "time": 16.5,
+      "frame": "frames/dense/dense-0012.jpg"
+    },
+    {
+      "id": "DENSE-0013",
+      "time": 18,
+      "frame": "frames/dense/dense-0013.jpg"
+    },
+    {
+      "id": "DENSE-0014",
+      "time": 19.5,
+      "frame": "frames/dense/dense-0014.jpg"
+    },
+    {
+      "id": "DENSE-0015",
+      "time": 21,
+      "frame": "frames/dense/dense-0015.jpg"
+    },
+    {
+      "id": "DENSE-0016",
+      "time": 22.5,
+      "frame": "frames/dense/dense-0016.jpg"
+    },
+    {
+      "id": "DENSE-0017",
+      "time": 24,
+      "frame": "frames/dense/dense-0017.jpg"
+    },
+    {
+      "id": "DENSE-0018",
+      "time": 25.5,
+      "frame": "frames/dense/dense-0018.jpg"
+    },
+    {
+      "id": "DENSE-0019",
+      "time": 27,
+      "frame": "frames/dense/dense-0019.jpg"
+    },
+    {
+      "id": "DENSE-0020",
+      "time": 28.5,
+      "frame": "frames/dense/dense-0020.jpg"
+    },
+    {
+      "id": "DENSE-0021",
+      "time": 30,
+      "frame": "frames/dense/dense-0021.jpg"
+    },
+    {
+      "id": "DENSE-0022",
+      "time": 31.5,
+      "frame": "frames/dense/dense-0022.jpg"
+    },
+    {
+      "id": "DENSE-0023",
+      "time": 33,
+      "frame": "frames/dense/dense-0023.jpg"
+    },
+    {
+      "id": "DENSE-0024",
+      "time": 34.5,
+      "frame": "frames/dense/dense-0024.jpg"
+    },
+    {
+      "id": "DENSE-0025",
+      "time": 36,
+      "frame": "frames/dense/dense-0025.jpg"
+    },
+    {
+      "id": "DENSE-0026",
+      "time": 37.5,
+      "frame": "frames/dense/dense-0026.jpg"
+    },
+    {
+      "id": "DENSE-0027",
+      "time": 39,
+      "frame": "frames/dense/dense-0027.jpg"
+    },
+    {
+      "id": "DENSE-0028",
+      "time": 40.5,
+      "frame": "frames/dense/dense-0028.jpg"
+    },
+    {
+      "id": "DENSE-0029",
+      "time": 42,
+      "frame": "frames/dense/dense-0029.jpg"
+    },
+    {
+      "id": "DENSE-0030",
+      "time": 43.5,
+      "frame": "frames/dense/dense-0030.jpg"
+    },
+    {
+      "id": "DENSE-0031",
+      "time": 45,
+      "frame": "frames/dense/dense-0031.jpg"
+    },
+    {
+      "id": "DENSE-0032",
+      "time": 46.5,
+      "frame": "frames/dense/dense-0032.jpg"
+    },
+    {
+      "id": "DENSE-0033",
+      "time": 48,
+      "frame": "frames/dense/dense-0033.jpg"
+    },
+    {
+      "id": "DENSE-0034",
+      "time": 49.5,
+      "frame": "frames/dense/dense-0034.jpg"
+    },
+    {
+      "id": "DENSE-0035",
+      "time": 51,
+      "frame": "frames/dense/dense-0035.jpg"
+    },
+    {
+      "id": "DENSE-0036",
+      "time": 52.5,
+      "frame": "frames/dense/dense-0036.jpg"
+    },
+    {
+      "id": "DENSE-0037",
+      "time": 54,
+      "frame": "frames/dense/dense-0037.jpg"
+    },
+    {
+      "id": "DENSE-0038",
+      "time": 55.5,
+      "frame": "frames/dense/dense-0038.jpg"
+    },
+    {
+      "id": "DENSE-0039",
+      "time": 57,
+      "frame": "frames/dense/dense-0039.jpg"
+    },
+    {
+      "id": "DENSE-0040",
+      "time": 58.5,
+      "frame": "frames/dense/dense-0040.jpg"
+    },
+    {
+      "id": "DENSE-0041",
+      "time": 60,
+      "frame": "frames/dense/dense-0041.jpg"
+    },
+    {
+      "id": "DENSE-0042",
+      "time": 61.5,
+      "frame": "frames/dense/dense-0042.jpg"
+    },
+    {
+      "id": "DENSE-0043",
+      "time": 63,
+      "frame": "frames/dense/dense-0043.jpg"
+    },
+    {
+      "id": "DENSE-0044",
+      "time": 64.5,
+      "frame": "frames/dense/dense-0044.jpg"
+    },
+    {
+      "id": "DENSE-0045",
+      "time": 66,
+      "frame": "frames/dense/dense-0045.jpg"
+    },
+    {
+      "id": "DENSE-0046",
+      "time": 67.5,
+      "frame": "frames/dense/dense-0046.jpg"
+    },
+    {
+      "id": "DENSE-0047",
+      "time": 69,
+      "frame": "frames/dense/dense-0047.jpg"
+    },
+    {
+      "id": "DENSE-0048",
+      "time": 70.5,
+      "frame": "frames/dense/dense-0048.jpg"
+    },
+    {
+      "id": "DENSE-0049",
+      "time": 72,
+      "frame": "frames/dense/dense-0049.jpg"
+    },
+    {
+      "id": "DENSE-0050",
+      "time": 73.5,
+      "frame": "frames/dense/dense-0050.jpg"
+    },
+    {
+      "id": "DENSE-0051",
+      "time": 75,
+      "frame": "frames/dense/dense-0051.jpg"
+    },
+    {
+      "id": "DENSE-0052",
+      "time": 76.5,
+      "frame": "frames/dense/dense-0052.jpg"
+    },
+    {
+      "id": "DENSE-0053",
+      "time": 78,
+      "frame": "frames/dense/dense-0053.jpg"
+    },
+    {
+      "id": "DENSE-0054",
+      "time": 79.5,
+      "frame": "frames/dense/dense-0054.jpg"
+    },
+    {
+      "id": "DENSE-0055",
+      "time": 81,
+      "frame": "frames/dense/dense-0055.jpg"
+    },
+    {
+      "id": "DENSE-0056",
+      "time": 82.5,
+      "frame": "frames/dense/dense-0056.jpg"
+    },
+    {
+      "id": "DENSE-0057",
+      "time": 84,
+      "frame": "frames/dense/dense-0057.jpg"
+    },
+    {
+      "id": "DENSE-0058",
+      "time": 85.5,
+      "frame": "frames/dense/dense-0058.jpg"
+    },
+    {
+      "id": "DENSE-0059",
+      "time": 87,
+      "frame": "frames/dense/dense-0059.jpg"
+    },
+    {
+      "id": "DENSE-0060",
+      "time": 88.5,
+      "frame": "frames/dense/dense-0060.jpg"
+    },
+    {
+      "id": "DENSE-0061",
+      "time": 90,
+      "frame": "frames/dense/dense-0061.jpg"
+    },
+    {
+      "id": "DENSE-0062",
+      "time": 91.5,
+      "frame": "frames/dense/dense-0062.jpg"
+    },
+    {
+      "id": "DENSE-0063",
+      "time": 93,
+      "frame": "frames/dense/dense-0063.jpg"
+    },
+    {
+      "id": "DENSE-0064",
+      "time": 94.5,
+      "frame": "frames/dense/dense-0064.jpg"
+    },
+    {
+      "id": "DENSE-0065",
+      "time": 96,
+      "frame": "frames/dense/dense-0065.jpg"
+    },
+    {
+      "id": "DENSE-0066",
+      "time": 97.5,
+      "frame": "frames/dense/dense-0066.jpg"
+    },
+    {
+      "id": "DENSE-0067",
+      "time": 99,
+      "frame": "frames/dense/dense-0067.jpg"
+    },
+    {
+      "id": "DENSE-0068",
+      "time": 100.5,
+      "frame": "frames/dense/dense-0068.jpg"
+    },
+    {
+      "id": "DENSE-0069",
+      "time": 102,
+      "frame": "frames/dense/dense-0069.jpg"
+    },
+    {
+      "id": "DENSE-0070",
+      "time": 103.5,
+      "frame": "frames/dense/dense-0070.jpg"
+    },
+    {
+      "id": "DENSE-0071",
+      "time": 105,
+      "frame": "frames/dense/dense-0071.jpg"
+    },
+    {
+      "id": "DENSE-0072",
+      "time": 106.5,
+      "frame": "frames/dense/dense-0072.jpg"
+    },
+    {
+      "id": "DENSE-0073",
+      "time": 108,
+      "frame": "frames/dense/dense-0073.jpg"
+    },
+    {
+      "id": "DENSE-0074",
+      "time": 109.5,
+      "frame": "frames/dense/dense-0074.jpg"
+    },
+    {
+      "id": "DENSE-0075",
+      "time": 111,
+      "frame": "frames/dense/dense-0075.jpg"
+    },
+    {
+      "id": "DENSE-0076",
+      "time": 112.5,
+      "frame": "frames/dense/dense-0076.jpg"
+    },
+    {
+      "id": "DENSE-0077",
+      "time": 114,
+      "frame": "frames/dense/dense-0077.jpg"
+    },
+    {
+      "id": "DENSE-0078",
+      "time": 115.5,
+      "frame": "frames/dense/dense-0078.jpg"
+    },
+    {
+      "id": "DENSE-0079",
+      "time": 117,
+      "frame": "frames/dense/dense-0079.jpg"
+    },
+    {
+      "id": "DENSE-0080",
+      "time": 118.5,
+      "frame": "frames/dense/dense-0080.jpg"
+    },
+    {
+      "id": "DENSE-0081",
+      "time": 118.813,
+      "frame": "frames/dense/dense-0081.jpg"
+    }
+  ],
+  "contracts": {
+    "cueFrameShotMapping": true,
+    "verbatimTranscriptPreserved": true
+  }
+}

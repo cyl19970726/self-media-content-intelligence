@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "judgeStatus": "not_run_due_to_gate_failure",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 17,
+      "examples": [
+        {"status": "covered", "auditIds": ["Q01-Q10", "Q12-Q13", "Q15-Q17"], "candidateUnits": ["KU-03-KU-13", "KU-15-KU-19"]},
+        {"status": "missed", "auditId": "Q11", "detail": "KU-11 preserves two series framings but does not recover the audit's three visibly attributed account cards and their account identities."},
+        {"status": "missed", "auditId": "Q14", "detail": "KU-01/KU-14 recover some profile/post metrics but omit the visible 06-15 date and the 5.7万 heart count required by the audited answer."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 13,
+      "denominator": 14,
+      "examples": [
+        {"status": "covered", "auditIds": ["K01-K09", "K11-K14"], "detail": "The candidate supplies resolvable cue, targeted-frame, or OCR evidence for these audited core units."},
+        {"status": "missed", "auditId": "K10", "detail": "The visible-example unit is incomplete: not all three audited Xiaohongshu account cards and their attribution are reconstructed."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 18,
+      "examples": [
+        {"status": "supported", "detail": "All 18 non-unknown candidate knowledge units have candidate evidence; broad strategic statements remain scoped as author_claim."},
+        {"status": "contract_discrepancy", "candidateUnit": "KU-17", "detail": "Its carrier-conflict observation is evidentially supported, but provenance=system_inference lacks the reasoning field required by the deterministic validator."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 74,
+      "denominator": 74,
+      "examples": [
+        {"status": "correct", "detail": "All 74 non-source knowledge-unit evidence references localize within their declared unit ranges using cue, shot, targeted-frame, and OCR times."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 3,
+      "denominator": 4,
+      "rationale": "D01-D03 are represented, including D03 as a missing causal-proof dependency. D04 is incomplete: KU-16 names Xiaohongshu title/keyword packaging but does not preserve continued searchable demand as a required and unestablished condition."
+    },
+    "unknownDiscipline": {
+      "numerator": 7,
+      "denominator": 11,
+      "examples": [
+        {"status": "correct", "auditIds": ["U01-U04", "U07", "U09", "U11"], "detail": "Identity/date/attribution/statistical-basis/example-causality/judgment-cost/non-speech-audio boundaries are retained as unknown or bounded absence."},
+        {"status": "missed_or_incomplete", "auditIds": ["U05", "U06", "U08", "U10"], "detail": "The candidate does not fully preserve category definitions, cross-platform/account/niche/time scope, counterexamples, or proof that search caused the claimed long tail."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The independent audit plus this evaluation explicitly guard every audited carrier class, the opening-to-closing payoff, causal limitation, series/single-post contrast, referents, carrier conflicts, and technical-shot continuity. Non-speech audio remains an explicit registered unknown, not a silently omitted carrier."
+  },
+  "examples": [
+    {"kind": "gate_failure", "gate": "processDependencyCompleteness", "ratio": "3/4", "threshold": ">=0.85"},
+    {"kind": "gate_failure", "gate": "unknownDiscipline", "ratio": "7/11", "threshold": ">=0.90"},
+    {"kind": "judge_not_run", "detail": "JUDGE is prohibited after hard-gate failure; schema-required numeric placeholders are 1 and are not substantive scores."}
+  ]
+}

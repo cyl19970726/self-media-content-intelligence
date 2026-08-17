@@ -1,0 +1,281 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-16T12:42:18.895Z",
+  "file": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a2761520000000008032277/source.mp4",
+  "status": "verified_complete",
+  "transport": {
+    "bytes": 23547498,
+    "sha256": "1655f4d05e67a1d2deec0854a3e54b3be5c0134889efb6d1912955bb1dc7373e"
+  },
+  "container": {
+    "durationSec": 263.894785,
+    "streams": [
+      {
+        "index": 0,
+        "codecType": "video",
+        "codecName": "hevc",
+        "width": 1918,
+        "height": 1080,
+        "durationSec": 263.833333
+      },
+      {
+        "index": 1,
+        "codecType": "audio",
+        "codecName": "aac",
+        "width": null,
+        "height": null,
+        "durationSec": 263.894785
+      }
+    ],
+    "decodePass": true,
+    "decodeError": null
+  },
+  "timeline": {
+    "probeTimes": [
+      0.1,
+      65.974,
+      131.947,
+      197.921,
+      258.895,
+      261.895,
+      263.645
+    ],
+    "frameHashes": [
+      {
+        "time": 0.1,
+        "hash": "2e546b6e600a52560d2cd209d0870496",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 65.974,
+        "hash": "c6373a3eb563b00e17ce9fc420f8a039",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 131.947,
+        "hash": "3f6b7eec7166f16d322d2dabe0912db2",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 197.921,
+        "hash": "70338b81062f744ed83669a72571c7e3",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 258.895,
+        "hash": "8581877279c6785c1e1513f50acbd162",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 261.895,
+        "hash": "b47de1787cf6ebf448c47fde20ed7c94",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 263.645,
+        "hash": "3c843fa7b54cc8d14162ba581402875b",
+        "decoded": true,
+        "error": null
+      }
+    ],
+    "allProbeFramesDecoded": true
+  },
+  "contentContinuity": {
+    "freezeEvents": [
+      {
+        "start": 3.933333,
+        "end": 6.333333,
+        "duration": 2.4
+      },
+      {
+        "start": 6.333333,
+        "end": 8.4,
+        "duration": 2.066667
+      },
+      {
+        "start": 17.9,
+        "end": 20,
+        "duration": 2.1
+      },
+      {
+        "start": 21.633333,
+        "end": 24.6,
+        "duration": 2.966667
+      },
+      {
+        "start": 34.333333,
+        "end": 36.366667,
+        "duration": 2.033333
+      },
+      {
+        "start": 38.333333,
+        "end": 40.533333,
+        "duration": 2.2
+      },
+      {
+        "start": 44.1,
+        "end": 46.266667,
+        "duration": 2.166667
+      },
+      {
+        "start": 47.1,
+        "end": 49.133333,
+        "duration": 2.033333
+      },
+      {
+        "start": 60.233333,
+        "end": 62.8,
+        "duration": 2.566667
+      },
+      {
+        "start": 65,
+        "end": 67.033333,
+        "duration": 2.033333
+      },
+      {
+        "start": 81,
+        "end": 83.466667,
+        "duration": 2.466667
+      },
+      {
+        "start": 87.633333,
+        "end": 89.633333,
+        "duration": 2
+      },
+      {
+        "start": 105.566667,
+        "end": 107.633333,
+        "duration": 2.066667
+      },
+      {
+        "start": 121.166667,
+        "end": 123.733333,
+        "duration": 2.566667
+      },
+      {
+        "start": 126.6,
+        "end": 129.1,
+        "duration": 2.5
+      },
+      {
+        "start": 130.2,
+        "end": 132.2,
+        "duration": 2
+      },
+      {
+        "start": 134.1,
+        "end": 136.133333,
+        "duration": 2.033333
+      },
+      {
+        "start": 139.666667,
+        "end": 142.133333,
+        "duration": 2.466667
+      },
+      {
+        "start": 142.133333,
+        "end": 144.4,
+        "duration": 2.266667
+      },
+      {
+        "start": 147.433333,
+        "end": 149.566667,
+        "duration": 2.133333
+      },
+      {
+        "start": 208.3,
+        "end": 210.366667,
+        "duration": 2.066667
+      },
+      {
+        "start": 215.733333,
+        "end": 217.833333,
+        "duration": 2.1
+      },
+      {
+        "start": 219.5,
+        "end": 222.366667,
+        "duration": 2.866667
+      },
+      {
+        "start": 233.5,
+        "end": 236.433333,
+        "duration": 2.933333
+      },
+      {
+        "start": 237.833333,
+        "end": 239.966667,
+        "duration": 2.133333
+      },
+      {
+        "start": 242.566667,
+        "end": 244.766667,
+        "duration": 2.2
+      },
+      {
+        "start": 248.966667,
+        "end": 250.966667,
+        "duration": 2
+      },
+      {
+        "start": 250.966667,
+        "end": 253.733333,
+        "duration": 2.766667
+      },
+      {
+        "start": 255.533333,
+        "end": 260,
+        "duration": 4.466667
+      },
+      {
+        "start": 260.466667,
+        "end": 263.166667,
+        "duration": 2.7
+      }
+    ],
+    "blackEvents": [],
+    "tailMotionStatus": "active",
+    "extendedThresholdSec": 65.974
+  },
+  "subtitleStatus": "absent",
+  "expectedDurationSec": 263,
+  "gates": [
+    {
+      "id": "video_stream",
+      "pass": true,
+      "detail": "hevc 1918x1080"
+    },
+    {
+      "id": "full_decode",
+      "pass": true,
+      "detail": "full video stream decoded"
+    },
+    {
+      "id": "timeline_probes",
+      "pass": true,
+      "detail": "7/7"
+    },
+    {
+      "id": "no_extended_frozen_tail",
+      "pass": true,
+      "detail": "active"
+    },
+    {
+      "id": "no_extended_black_tail",
+      "pass": true,
+      "detail": "none detected"
+    },
+    {
+      "id": "expected_duration",
+      "pass": true,
+      "detail": "expected 263s; container 263.895s; tolerance 13.150s"
+    }
+  ],
+  "unknowns": []
+}

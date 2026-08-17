@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "why": "完整还原张咋啦的账号定位、内容组合、表现分层与视频语言，判断哪些机制适合迁移到 AI × 多平台自媒体工作流账号。",
+  "method": "采集当前可见完整主页库存；对全量内容做公开数据与开放标签分析；分别比较高表现、中位数附近、平均值附近和低表现内容；对代表视频执行证据级内容还原。",
+  "decisions": [
+    "选择新账号的受众切口和内容定位",
+    "决定首批选题、脚本结构与画面形式",
+    "识别张咋啦的稳定内容机制、爆发机制和失效机制",
+    "设计可验证的起号实验"
+  ],
+  "nonDecisions": [
+    "不能从公开点赞推断播放、留存、转粉或成交",
+    "不能把当前累计点赞当作发布初期表现",
+    "不能把站内AI的概括当作账号或帖子事实",
+    "不能把视频中的作者主张自动当作产品能力事实"
+  ],
+  "platforms": ["xiaohongshu"],
+  "snapshotAt": "2026-08-16T16:50:00+08:00",
+  "samplePolicy": {
+    "portfolio": "all_visible",
+    "comparisonPerTier": 7,
+    "deepPerTier": 3,
+    "tiers": ["high", "median", "average", "low"],
+    "averageRule": "最近样本距离算术均值超过25%时标记mean_gap，改用上下边界样本。"
+  },
+  "targetAccountConstraints": {
+    "positioningDirection": "AI × 多平台自媒体工作流",
+    "mustDistinguish": ["身份红利", "题材红利", "内容结构", "证明方式", "发布时间混杂"]
+  }
+}

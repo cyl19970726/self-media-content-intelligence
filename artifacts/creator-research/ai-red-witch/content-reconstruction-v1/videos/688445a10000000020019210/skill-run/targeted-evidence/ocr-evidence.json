@@ -1,0 +1,3910 @@
+{
+  "frames" : [
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0001",
+      "lines" : [
+        {
+          "boundingBox" : [
+            -0.00035608213862753737,
+            0.8676851933034938,
+            0.9951566060384116,
+            0.10837961435318
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00001",
+          "text" : "3个创意工具"
+        },
+        {
+          "boundingBox" : [
+            0.3944444423333334,
+            0.44062499981250003,
+            0.21111111111111114,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00002",
+          "text" : "朋友们"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-001.jpg",
+      "status" : "processed",
+      "time" : 0.1
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0002",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08293813361186018,
+            0.8768973679889052,
+            0.8174570719401042,
+            0.08683026432991026
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00003",
+          "text" : "3个创意工具"
+        },
+        {
+          "boundingBox" : [
+            0.16111110550925936,
+            0.44062499984375003,
+            0.6722222222222224,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00004",
+          "text" : "给你们找到3个宝藏AI"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-002.jpg",
+      "status" : "processed",
+      "time" : 0.8
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0003",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08292384991406847,
+            0.8768523426524237,
+            0.8174856397840712,
+            0.08692031502723696
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00005",
+          "text" : "3个创意工具"
+        },
+        {
+          "boundingBox" : [
+            0.16111111788888874,
+            0.44062500018749995,
+            0.6777777777777777,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00006",
+          "text" : "给你们找到3个宝藏AI"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-003.jpg",
+      "status" : "processed",
+      "time" : 1.6
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0004",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.0829268169008427,
+            0.8768616886606526,
+            0.8174797058105469,
+            0.08690162301063542
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00007",
+          "text" : "3个创意工具"
+        },
+        {
+          "boundingBox" : [
+            0.02222223048337572,
+            0.8093750000520834,
+            0.17777776718139648,
+            0.021874999999999867
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00008",
+          "text" : "Tuznsm.."
+        },
+        {
+          "boundingBox" : [
+            0.18888889281249988,
+            0.44062500015624995,
+            0.6277777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00009",
+          "text" : "非常适合用来搞创意"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-004.jpg",
+      "status" : "processed",
+      "time" : 2.4
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0005",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02222222354166665,
+            0.8125000002734375,
+            0.27222222222222225,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00010",
+          "text" : "Turn soundon"
+        },
+        {
+          "boundingBox" : [
+            0.18888889281249988,
+            0.44062500015624995,
+            0.6277777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00011",
+          "text" : "非常适合用来搞创意"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-005.jpg",
+      "status" : "processed",
+      "time" : 3.3
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0006",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.388730895298037,
+            0.7902747286510531,
+            0.21698265075683593,
+            0.03195054084062565
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00012",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.22222221268518555,
+            0.7499999998958333,
+            0.5722222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00013",
+          "text" : "The Open-Source Unified Multimodal Model"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-001.jpg",
+      "status" : "processed",
+      "time" : 3.8
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0007",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3888888916666667,
+            0.7875000001171875,
+            0.22222222222222215,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00014",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.22222221268518555,
+            0.7499999998958333,
+            0.5722222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00015",
+          "text" : "The Open-Source Unified Multimodal Model"
+        },
+        {
+          "boundingBox" : [
+            0.08888888944444442,
+            0.6343750001171875,
+            0.04444444444444445,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00016",
+          "text" : "HI"
+        },
+        {
+          "boundingBox" : [
+            0.3555555558333333,
+            0.6218749996354167,
+            0.02777777777777779,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00017",
+          "text" : "I"
+        },
+        {
+          "boundingBox" : [
+            0.09444444722222213,
+            0.6000000001171875,
+            0.22222222222222227,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00018",
+          "text" : "+ mx ②ww"
+        },
+        {
+          "boundingBox" : [
+            0.20555555904761905,
+            0.3656250006473215,
+            0.6,
+            0.09062499999999996
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00019",
+          "text" : "1. Bagel"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-002.jpg",
+      "status" : "processed",
+      "time" : 4.2
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0008",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3888888916666667,
+            0.7875000001171875,
+            0.22222222222222215,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00020",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.22222221268518555,
+            0.7499999998958333,
+            0.5722222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00021",
+          "text" : "The Open-Source Unified Multimodal Model"
+        },
+        {
+          "boundingBox" : [
+            0.08888888842592593,
+            0.6312499996875001,
+            0.09444444444444444,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00022",
+          "text" : "Hi, Bal"
+        },
+        {
+          "boundingBox" : [
+            0.3944444441666667,
+            0.6218750011617247,
+            0.02777777777777779,
+            0.02499999850988388
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00023",
+          "text" : "I"
+        },
+        {
+          "boundingBox" : [
+            0.09444446045749212,
+            0.596875000078125,
+            0.21666664547390407,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00024",
+          "text" : "十 Think Voe"
+        },
+        {
+          "boundingBox" : [
+            0.20555555984126986,
+            0.36562500026785716,
+            0.6,
+            0.08750000000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00025",
+          "text" : "1.Bagel"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-003.jpg",
+      "status" : "processed",
+      "time" : 4.5
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0009",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38883576768245826,
+            0.790508059977057,
+            0.2167729059855143,
+            0.031483879685401894
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00026",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.22222221268518555,
+            0.7499999998958333,
+            0.5722222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00027",
+          "text" : "The Open-Source Unified Multimodal Model"
+        },
+        {
+          "boundingBox" : [
+            0.0833333350694444,
+            0.63125000015625,
+            0.1388888888888889,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00028",
+          "text" : "Hi. Bage！！！"
+        },
+        {
+          "boundingBox" : [
+            0.1444444457407407,
+            0.5937500001562499,
+            0.07777777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00029",
+          "text" : "◎ mnk"
+        },
+        {
+          "boundingBox" : [
+            0.18333333729166665,
+            0.3843750001757813,
+            0.6333333333333333,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00030",
+          "text" : "这是一个国产开源的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-004.jpg",
+      "status" : "processed",
+      "time" : 4.9
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0010",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.33315801898166697,
+            0.7902257443355494,
+            0.22257285647922087,
+            0.032048511505126887
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00031",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.15555554601851887,
+            0.7499999998958333,
+            0.5722222222222223,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00032",
+          "text" : "The Open-Source Unified Multimodal Model"
+        },
+        {
+          "boundingBox" : [
+            0.18333333729166665,
+            0.3843750001757813,
+            0.6333333333333333,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00033",
+          "text" : "这是一个国产开源的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-005.jpg",
+      "status" : "processed",
+      "time" : 5.4
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0011",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42215606316229215,
+            0.6529497537174134,
+            0.15568787256876626,
+            0.019100492447614692
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00034",
+          "text" : "Styie Transfor"
+        },
+        {
+          "boundingBox" : [
+            0.8333333355555554,
+            0.65312500015625,
+            0.1333333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00035",
+          "text" : "Outpainting"
+        },
+        {
+          "boundingBox" : [
+            0.2888888846666668,
+            0.38749999981250005,
+            0.4222222222222222,
+            0.043749999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00036",
+          "text" : "多模态大模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-006.jpg",
+      "status" : "processed",
+      "time" : 6
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0012",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.35555555527777777,
+            0.6562500000223215,
+            0.1555555555555556,
+            0.012499999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00037",
+          "text" : "Stye Transter"
+        },
+        {
+          "boundingBox" : [
+            0.5775221521375161,
+            0.6556221642614474,
+            0.11717792087131074,
+            0.016880670189857505
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00038",
+          "text" : "3D Rotate"
+        },
+        {
+          "boundingBox" : [
+            0.7666666650694446,
+            0.6531249998828125,
+            0.12777777777777777,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00039",
+          "text" : "Cutpainting"
+        },
+        {
+          "boundingBox" : [
+            0.2888888846666668,
+            0.38749999981250005,
+            0.4222222222222222,
+            0.043749999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00040",
+          "text" : "多模态大模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-02-007.jpg",
+      "status" : "processed",
+      "time" : 6.6
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0013",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.40555555409722227,
+            0.55937499984375,
+            0.23333333333333334,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00041",
+          "text" : "Think"
+        },
+        {
+          "boundingBox" : [
+            0.11666667310185169,
+            0.3843750001302084,
+            0.7722222222222221,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00042",
+          "text" : "也可以说是开源版gpt40"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-001.jpg",
+      "status" : "processed",
+      "time" : 6.95
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0014",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25523587313774876,
+            0.5588666755878834,
+            0.23397269778781465,
+            0.04789164662361145
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00043",
+          "text" : "Think"
+        },
+        {
+          "boundingBox" : [
+            0.11666667310185169,
+            0.3843750001302084,
+            0.7722222222222221,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00044",
+          "text" : "也可以说是开源版gpt40"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-002.jpg",
+      "status" : "processed",
+      "time" : 7.3
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0015",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4165575414994613,
+            0.7778928072556907,
+            0.1668849203321669,
+            0.025464385747909546
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00045",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.24999999879629636,
+            0.64687499984375,
+            0.07222222222222219,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00046",
+          "text" : "② w∞"
+        },
+        {
+          "boundingBox" : [
+            0.11666667092592581,
+            0.38437500015625004,
+            0.7666666666666666,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00047",
+          "text" : "也可以说是开源版gpt40"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-003.jpg",
+      "status" : "processed",
+      "time" : 7.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0016",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.08888889014909537,
+            0.7062499998958334,
+            0.08333332803514268,
+            0.012499999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00048",
+          "text" : "Ask ayl"
+        },
+        {
+          "boundingBox" : [
+            0.25000000129629624,
+            0.64687500015625,
+            0.07777777777777778,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00049",
+          "text" : "② w∞"
+        },
+        {
+          "boundingBox" : [
+            0.11666667310185169,
+            0.3843750001302084,
+            0.7722222222222221,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00050",
+          "text" : "也可以说是开源版gpt40"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-004.jpg",
+      "status" : "processed",
+      "time" : 8.2
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0017",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667310185169,
+            0.3843750001302084,
+            0.7722222222222221,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00051",
+          "text" : "也可以说是开源版gpt4o"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-005.jpg",
+      "status" : "processed",
+      "time" : 8.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0018",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1444444418055556,
+            0.6999999998828125,
+            0.21111111111111108,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00052",
+          "text" : "Give a thumbs-up！"
+        },
+        {
+          "boundingBox" : [
+            0.8833333342592593,
+            0.7031250000520833,
+            0.05555555555555547,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00053",
+          "text" : "Edi"
+        },
+        {
+          "boundingBox" : [
+            0.1277777819135801,
+            0.38437500015625004,
+            0.7444444444444445,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00054",
+          "text" : "你用一句话就能P图改图"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-006.jpg",
+      "status" : "processed",
+      "time" : 9.1
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0019",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444444687499997,
+            0.7000000001171875,
+            0.19444444444444442,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00055",
+          "text" : "Give a thumbs-up"
+        },
+        {
+          "boundingBox" : [
+            0.1277777819135801,
+            0.38437500015625004,
+            0.7444444444444445,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00056",
+          "text" : "你用一句话就能P图改图"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-007.jpg",
+      "status" : "processed",
+      "time" : 9.6
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0020",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999743055561,
+            0.5187499998828125,
+            0.20555555555555557,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00057",
+          "text" : "Give a thumbs-up！"
+        },
+        {
+          "boundingBox" : [
+            0.8722222229166666,
+            0.5218750001171875,
+            0.05555555555555547,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00058",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.1277777819135801,
+            0.38437500015625004,
+            0.7444444444444445,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00059",
+          "text" : "你用一句话就能P图改图"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-008.jpg",
+      "status" : "processed",
+      "time" : 10.1
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0021",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14444444417735045,
+            0.5218750000240384,
+            0.15,
+            0.012500000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00060",
+          "text" : "Add a bere！"
+        },
+        {
+          "boundingBox" : [
+            0.8722222229166666,
+            0.5218750001171875,
+            0.05555555555555547,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00061",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.1277777819135801,
+            0.38437500015625004,
+            0.7444444444444445,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00062",
+          "text" : "你用一句话就能P图改图"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-009.jpg",
+      "status" : "processed",
+      "time" : 10.6
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0022",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1500000004861111,
+            0.5187499998046875,
+            0.09444444444444447,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00063",
+          "text" : "Put on！"
+        },
+        {
+          "boundingBox" : [
+            0.8777777787037037,
+            0.52187500015625,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00064",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.22222222305555558,
+            0.38437499953125,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00065",
+          "text" : "比如给图片换表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-010.jpg",
+      "status" : "processed",
+      "time" : 11.1
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0023",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1388888852777779,
+            0.5187499999479167,
+            0.2166666666666667,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00066",
+          "text" : "Put on sunglasses|"
+        },
+        {
+          "boundingBox" : [
+            0.8833333339583334,
+            0.5218750001171875,
+            0.050000000000000044,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00067",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.22222222305555558,
+            0.38437499953125,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00068",
+          "text" : "比如给图片换表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-011.jpg",
+      "status" : "processed",
+      "time" : 11.7
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0024",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.13888888618055562,
+            0.5187499998828125,
+            0.21666666666666667,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00069",
+          "text" : "Put on a mink coatl"
+        },
+        {
+          "boundingBox" : [
+            0.7833333331481482,
+            0.5187500003125,
+            0.033333333333333326,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00070",
+          "text" : "◎"
+        },
+        {
+          "boundingBox" : [
+            0.8833333324074074,
+            0.5218749998437501,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00071",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.22222222305555558,
+            0.38437499953125,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00072",
+          "text" : "比如给图片换表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-012.jpg",
+      "status" : "processed",
+      "time" : 12.2
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0025",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.016666663333333453,
+            0.5343749998958334,
+            0.2,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00073",
+          "text" : "Laugh heartily"
+        },
+        {
+          "boundingBox" : [
+            0.38333333189814817,
+            0.384375000390625,
+            0.2277777777777778,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00074",
+          "text" : "改动作"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-001.jpg",
+      "status" : "processed",
+      "time" : 12.5
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0026",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.005555552986111165,
+            0.534374999921875,
+            0.20555555555555557,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00075",
+          "text" : "Laugh heartily"
+        },
+        {
+          "boundingBox" : [
+            0.38888888740740746,
+            0.38750000036458343,
+            0.2222222222222222,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00076",
+          "text" : "改动作"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-002.jpg",
+      "status" : "processed",
+      "time" : 12.9
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0027",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.005555552847222285,
+            0.534374999921875,
+            0.21666666666666667,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00077",
+          "text" : "Laugh heartily！"
+        },
+        {
+          "boundingBox" : [
+            0.39444444625,
+            0.38750000015624997,
+            0.21666666666666662,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00078",
+          "text" : "变风格"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-003.jpg",
+      "status" : "processed",
+      "time" : 13.3
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0028",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.15555555814814806,
+            0.8218750001041666,
+            0.15555555555555553,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00079",
+          "text" : "Ghibli-style"
+        },
+        {
+          "boundingBox" : [
+            9.722221941091095e-10,
+            0.7562499998046875,
+            0.14444444444444446,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00080",
+          "text" : "Sketch-style"
+        },
+        {
+          "boundingBox" : [
+            0.6777777801130055,
+            0.7374999998958333,
+            0.17777776718139648,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00081",
+          "text" : "3D model figurine"
+        },
+        {
+          "boundingBox" : [
+            0.1888888903472222,
+            0.6531250001171875,
+            0.11666666666666667,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00082",
+          "text" : "Picmsse-siyfte"
+        },
+        {
+          "boundingBox" : [
+            0.32206009610969316,
+            0.38707924969050234,
+            0.3558798048231337,
+            0.04459149837493903
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00083",
+          "text" : "都超级简单"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-004.jpg",
+      "status" : "processed",
+      "time" : 13.7
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0029",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11631821720206395,
+            0.820912987174109,
+            0.15625245836046006,
+            0.020674026012420632
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00084",
+          "text" : "Ghibli-style"
+        },
+        {
+          "boundingBox" : [
+            0.022222220092592653,
+            0.7593750002604167,
+            0.1388888888888889,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00085",
+          "text" : "Sketch-slye"
+        },
+        {
+          "boundingBox" : [
+            0.6943029944568011,
+            0.7370659288565047,
+            0.17806067996554897,
+            0.019618142396211624
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00086",
+          "text" : "3D model fgurine"
+        },
+        {
+          "boundingBox" : [
+            4.037984164324055e-09,
+            0.5875000001041666,
+            0.08333332803514269,
+            0.012500000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00087",
+          "text" : "Pumyste"
+        },
+        {
+          "boundingBox" : [
+            0.322124712656858,
+            0.3841398869694046,
+            0.3557505713568793,
+            0.047345228493213654
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00088",
+          "text" : "都超级简单"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-005.jpg",
+      "status" : "processed",
+      "time" : 14.1
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0030",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07189771529301983,
+            0.8209824384597363,
+            0.15620457331339518,
+            0.02053512334823604
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00089",
+          "text" : "Ghibli-style"
+        },
+        {
+          "boundingBox" : [
+            0.044444442638888935,
+            0.7562499998828125,
+            0.14444444444444446,
+            0.015625
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00090",
+          "text" : "Sketch-style"
+        },
+        {
+          "boundingBox" : [
+            0.7111111108333334,
+            0.7406250000201613,
+            0.17222222222222217,
+            0.012499999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00091",
+          "text" : "30 model fgunina"
+        },
+        {
+          "boundingBox" : [
+            0.10555554944444458,
+            0.3875000004375,
+            0.788888888888889,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00092",
+          "text" : "它甚至能一键生成3D模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-006.jpg",
+      "status" : "processed",
+      "time" : 14.6
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0031",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555555046296305,
+            0.38750000036458343,
+            0.788888888888889,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00093",
+          "text" : "它甚至能一键生成3D模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-007.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0032",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1055555489814816,
+            0.38749999984374994,
+            0.7888888888888889,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00094",
+          "text" : "它甚至能一键生成3D模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-008.jpg",
+      "status" : "processed",
+      "time" : 15.5
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0033",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555555046296305,
+            0.38750000036458343,
+            0.788888888888889,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00095",
+          "text" : "它甚至能一键生成3D模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-009.jpg",
+      "status" : "processed",
+      "time" : 16
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0034",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555555046296305,
+            0.38750000036458343,
+            0.788888888888889,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00096",
+          "text" : "它甚至能一键生成3D模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-04-010.jpg",
+      "status" : "processed",
+      "time" : 16.4
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0035",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2444444402314815,
+            0.7937500003125,
+            0.5388888888888889,
+            0.03750000000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00097",
+          "text" : "上下文Al图像生成与编辑"
+        },
+        {
+          "boundingBox" : [
+            0.39416098231813207,
+            0.6272589148306198,
+            0.23390026092529298,
+            0.02673217058181765
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00098",
+          "text" : "我们的创意之旅"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-001.jpg",
+      "status" : "processed",
+      "time" : 16.55
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0036",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2444444410763889,
+            0.8531249998242187,
+            0.5388888888888888,
+            0.034375000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00099",
+          "text" : "上下文Al图像生成与编辑"
+        },
+        {
+          "boundingBox" : [
+            0.23333332425925954,
+            0.82812499984375,
+            0.5444444444444444,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00100",
+          "text" : "使用Flx KOnReAt A创B該人約根食效果。从文小事食，有有各食力。"
+        },
+        {
+          "boundingBox" : [
+            0.39444444611111107,
+            0.6875000001339285,
+            0.2333333333333334,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00101",
+          "text" : "我们的创意之旅"
+        },
+        {
+          "boundingBox" : [
+            0.11548115497510957,
+            0.3743886345533879,
+            0.7692398918999566,
+            0.08599309325218196
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00102",
+          "text" : "2. kontext"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-002.jpg",
+      "status" : "processed",
+      "time" : 16.9
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0037",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3941037091562151,
+            0.7364512281016945,
+            0.23401480780707468,
+            0.02709754407405851
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00103",
+          "text" : "我们的创崽之旅"
+        },
+        {
+          "boundingBox" : [
+            0.11666666469135802,
+            0.36875000048611106,
+            0.7666666666666667,
+            0.08750000000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00104",
+          "text" : "2. kontext"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-003.jpg",
+      "status" : "processed",
+      "time" : 17.3
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0038",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3943670147409243,
+            0.8028942806984849,
+            0.23348818884955513,
+            0.025461436808109195
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00105",
+          "text" : "我们的创意之旅"
+        },
+        {
+          "boundingBox" : [
+            0.11464474467771192,
+            0.3712805017617804,
+            0.7711341857910156,
+            0.09234475791454311
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00106",
+          "text" : "2. kontext"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-004.jpg",
+      "status" : "processed",
+      "time" : 17.7
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0039",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3833333307777778,
+            0.562499999875,
+            0.2555555555555556,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00107",
+          "text" : "Hux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.16111110477777782,
+            0.3875000004375,
+            0.6777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00108",
+          "text" : "这也是一个动嘴P图的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-005.jpg",
+      "status" : "processed",
+      "time" : 18.1
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0040",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38333333740740727,
+            0.6812499996354167,
+            0.25555555555555554,
+            0.02187500000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00109",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.16111110477777782,
+            0.3875000004375,
+            0.6777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00110",
+          "text" : "这也是一个动嘴P图的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-006.jpg",
+      "status" : "processed",
+      "time" : 18.6
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0041",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3833333302777779,
+            0.8000000002734375,
+            0.2555555555555556,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00111",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.16111110477777782,
+            0.3875000004375,
+            0.6777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00112",
+          "text" : "这也是一个动嘴P图的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-007.jpg",
+      "status" : "processed",
+      "time" : 19.1
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0042",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38333332907407425,
+            0.86562499984375,
+            0.25555555555555554,
+            0.02187500000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00113",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.3550787381469198,
+            0.3834462296131239,
+            0.2842869652642144,
+            0.048732541501522064
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00114",
+          "text" : "开源模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-05-008.jpg",
+      "status" : "processed",
+      "time" : 19.45
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0043",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3833333301388889,
+            0.7749999998828125,
+            0.2555555555555556,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00115",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.16111110477777782,
+            0.3875000004375,
+            0.6777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00116",
+          "text" : "这也是一个动嘴P图的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-001.jpg",
+      "status" : "processed",
+      "time" : 19
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0044",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.38333333740740727,
+            0.8593749996354167,
+            0.25555555555555554,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00117",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.694444445,
+            0.5031250002604166,
+            0.1333333333333333,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00118",
+          "text" : "Bpreien Oong"
+        },
+        {
+          "boundingBox" : [
+            0.3553243940585876,
+            0.38392902872099666,
+            0.28379565344916446,
+            0.04776694178581231
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00119",
+          "text" : "开源模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-002.jpg",
+      "status" : "processed",
+      "time" : 19.4
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0045",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.35532754078497547,
+            0.3839351545114146,
+            0.28378935919867626,
+            0.047754688560962655
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00120",
+          "text" : "开源模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-003.jpg",
+      "status" : "processed",
+      "time" : 19.9
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0046",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.15555555902777768,
+            0.3875000001718749,
+            0.6944444444444444,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00121",
+          "text" : "比如给这个人物加墨镜"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-004.jpg",
+      "status" : "processed",
+      "time" : 20.4
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0047",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666666639756946,
+            0.890625000024414,
+            0.18333333333333332,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00122",
+          "text" : "Flux Kontet Model"
+        },
+        {
+          "boundingBox" : [
+            0.2833333302777779,
+            0.86249999984375,
+            0.1833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00123",
+          "text" : "Flux Kontext Pro"
+        },
+        {
+          "boundingBox" : [
+            0.21666667079724344,
+            0.62812500015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00124",
+          "text" : "設示◎"
+        },
+        {
+          "boundingBox" : [
+            0.6666666646296296,
+            0.62812499984375,
+            0.12222222222222223,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00125",
+          "text" : "Translate ©"
+        },
+        {
+          "boundingBox" : [
+            0.22777777035943206,
+            0.60312499984375,
+            0.5722221798366972,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00126",
+          "text" : "'utsunciases on thn char-ztorand chinon toa wow.c.ppee"
+        },
+        {
+          "boundingBox" : [
+            0.23333333346296298,
+            0.58750000003125,
+            0.2055555555555556,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00127",
+          "text" : "mcuntain backaround"
+        },
+        {
+          "boundingBox" : [
+            0.23333333212962964,
+            0.4781249996875,
+            0.1166666666666667,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00128",
+          "text" : "24熱 超示"
+        },
+        {
+          "boundingBox" : [
+            0.14999999300000014,
+            0.38749999981250005,
+            0.7000000000000001,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00129",
+          "text" : "比如给这个人物加墨镜"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-005.jpg",
+      "status" : "processed",
+      "time" : 21
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0048",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2166666670277778,
+            0.890625000078125,
+            0.18333333333333332,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00130",
+          "text" : "Flux Kontet Model"
+        },
+        {
+          "boundingBox" : [
+            0.2833333302777779,
+            0.86249999984375,
+            0.1833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00131",
+          "text" : "Flux Kontext Pro"
+        },
+        {
+          "boundingBox" : [
+            0.21666667079724344,
+            0.62812500015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00132",
+          "text" : "設示◎"
+        },
+        {
+          "boundingBox" : [
+            0.6666666687037036,
+            0.62812500015625,
+            0.12222222222222223,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00133",
+          "text" : "Translate ◎"
+        },
+        {
+          "boundingBox" : [
+            0.22777777035943206,
+            0.60312499984375,
+            0.5722221798366972,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00134",
+          "text" : "'ut suncisws on thn chatacterand chinan toa wow.c.opnc"
+        },
+        {
+          "boundingBox" : [
+            0.23333333212962964,
+            0.4781249996875,
+            0.1166666666666667,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00135",
+          "text" : "24熱 超示"
+        },
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.3843750001562499,
+            0.5666666666666667,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00136",
+          "text" : "再换个雪山的背景"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-006.jpg",
+      "status" : "processed",
+      "time" : 21.6
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0049",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666666639756946,
+            0.890625000024414,
+            0.18333333333333332,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00137",
+          "text" : "Flux Konteet Model"
+        },
+        {
+          "boundingBox" : [
+            0.2833333302777779,
+            0.86249999984375,
+            0.1833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00138",
+          "text" : "Flux Kontext Pro"
+        },
+        {
+          "boundingBox" : [
+            0.21666667079724344,
+            0.62812500015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00139",
+          "text" : "設示◎"
+        },
+        {
+          "boundingBox" : [
+            0.6666666646296296,
+            0.62812499984375,
+            0.12222222222222223,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00140",
+          "text" : "Translate ◎"
+        },
+        {
+          "boundingBox" : [
+            0.22777777035943206,
+            0.60312499984375,
+            0.5722221798366972,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00141",
+          "text" : "ut sunciass on thn characterand chinon toa wow.c.opnc"
+        },
+        {
+          "boundingBox" : [
+            0.23333333685185176,
+            0.58437500015625,
+            0.21111111111111108,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00142",
+          "text" : "mountLin background"
+        },
+        {
+          "boundingBox" : [
+            0.23333333212962964,
+            0.4781249996875,
+            0.1166666666666667,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00143",
+          "text" : "24熱 超示"
+        },
+        {
+          "boundingBox" : [
+            0.21666667233333325,
+            0.3843750001562499,
+            0.5666666666666667,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00144",
+          "text" : "再换个雪山的背景"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-007.jpg",
+      "status" : "processed",
+      "time" : 22.2
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0050",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21666666639756946,
+            0.890625000024414,
+            0.18333333333333332,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00145",
+          "text" : "Flux Konteet Model"
+        },
+        {
+          "boundingBox" : [
+            0.2833333302777779,
+            0.86249999984375,
+            0.1833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00146",
+          "text" : "Flux Kontext Pro"
+        },
+        {
+          "boundingBox" : [
+            0.21666667079724344,
+            0.62812500015625,
+            0.08888888359069824,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00147",
+          "text" : "設示◎"
+        },
+        {
+          "boundingBox" : [
+            0.6666666687037036,
+            0.62812500015625,
+            0.12222222222222223,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00148",
+          "text" : "Translate ◎"
+        },
+        {
+          "boundingBox" : [
+            0.22777776944444478,
+            0.5968749996875,
+            0.5777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00149",
+          "text" : "Pqe sunglassws on thin chorocter and chrge to e sow capped"
+        },
+        {
+          "boundingBox" : [
+            0.23333333685185176,
+            0.58437500015625,
+            0.21111111111111108,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00150",
+          "text" : "mcuntain backgcound"
+        },
+        {
+          "boundingBox" : [
+            0.23333333212962964,
+            0.4781249996875,
+            0.1166666666666667,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00151",
+          "text" : "24熱 超示"
+        },
+        {
+          "boundingBox" : [
+            0.21666667138888884,
+            0.38437500018229165,
+            0.5666666666666667,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00152",
+          "text" : "再换个雪山的背景"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-008.jpg",
+      "status" : "processed",
+      "time" : 22.8
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0051",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4388888898888889,
+            0.69062500015625,
+            0.10000000000000003,
+            0.02187500000000009
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00153",
+          "text" : "Letsgg"
+        },
+        {
+          "boundingBox" : [
+            0.18888889272222217,
+            0.38437500046875006,
+            0.6277777777777777,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00154",
+          "text" : "可以看到角色一致性"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-009.jpg",
+      "status" : "processed",
+      "time" : 23.4
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0052",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4277777788333333,
+            0.69062500015625,
+            0.10555555555555557,
+            0.02187500000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00155",
+          "text" : "Letsgg"
+        },
+        {
+          "boundingBox" : [
+            0.18888888449074084,
+            0.38437499963541666,
+            0.6277777777777778,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00156",
+          "text" : "可以看到角色一致性"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-010.jpg",
+      "status" : "processed",
+      "time" : 24
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0053",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25555555938888885,
+            0.3875000004375,
+            0.49444444444444435,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00157",
+          "text" : "保持得非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-011.jpg",
+      "status" : "processed",
+      "time" : 24.6
+    },
+    {
+      "actionId" : "ACT-06",
+      "frameId" : "TARGET-0054",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555587499999,
+            0.38750000036458343,
+            0.4944444444444446,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00158",
+          "text" : "保持得非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-06-012.jpg",
+      "status" : "processed",
+      "time" : 25.2
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0055",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777778380952374,
+            0.3843750001562499,
+            0.8444444444444444,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00159",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-001.jpg",
+      "status" : "processed",
+      "time" : 25.4
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0056",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777777074074087,
+            0.3843749998177083,
+            0.8444444444444446,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00160",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-002.jpg",
+      "status" : "processed",
+      "time" : 25.8
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0057",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777777074074087,
+            0.3843749998177083,
+            0.8444444444444446,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00161",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-003.jpg",
+      "status" : "processed",
+      "time" : 26.2
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0058",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777777074074087,
+            0.3843749998177083,
+            0.8444444444444446,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00162",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-004.jpg",
+      "status" : "processed",
+      "time" : 26.6
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0059",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777777074074087,
+            0.3843749998177083,
+            0.8444444444444446,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00163",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-005.jpg",
+      "status" : "processed",
+      "time" : 27
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0060",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18333333722222214,
+            0.38437500046875006,
+            0.6333333333333334,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00164",
+          "text" : "迁移到同一个场景去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-006.jpg",
+      "status" : "processed",
+      "time" : 27.4
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0061",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18333332944444453,
+            0.38437499953125,
+            0.6333333333333333,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00165",
+          "text" : "迁移到同一个场景去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-007.jpg",
+      "status" : "processed",
+      "time" : 27.8
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0062",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18333332944444453,
+            0.38437499953125,
+            0.6333333333333333,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00166",
+          "text" : "迁移到同一个场景去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-008.jpg",
+      "status" : "processed",
+      "time" : 28.2
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0063",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.18333332944444453,
+            0.38437499953125,
+            0.6333333333333333,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00167",
+          "text" : "迁移到同一个场景去"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-07-009.jpg",
+      "status" : "processed",
+      "time" : 28.6
+    },
+    {
+      "actionId" : "ACT-07",
+      "frameId" : "TARGET-0064",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-07-010.jpg",
+      "status" : "processed",
+      "time" : 28.8
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0065",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2333333371031745,
+            0.78125000015625,
+            0.5277777777777778,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00168",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00169",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.26666667444444414,
+            0.73125000015625,
+            0.44791666666666663,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00170",
+          "text" : "下一代多模老A平S，天維是师校特时線分問參日效。請民知花是片需生。"
+        },
+        {
+          "boundingBox" : [
+            0.3722222236111111,
+            0.684375000125,
+            0.13888888888888884,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00171",
+          "text" : "£990⑥"
+        },
+        {
+          "boundingBox" : [
+            0.07222222246527779,
+            0.29374999966796866,
+            0.07222222222222222,
+            0.05312500000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00172",
+          "text" : "3"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-001.jpg",
+      "status" : "processed",
+      "time" : 28.85
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0066",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333332893518527,
+            0.7812499998177083,
+            0.5277777777777777,
+            0.028125000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00173",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00174",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.3722222246296296,
+            0.6843750001041666,
+            0.14444444444444438,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00175",
+          "text" : "£¢9④⑥"
+        },
+        {
+          "boundingBox" : [
+            0.060517030322846055,
+            0.372944410933286,
+            0.8678548177083333,
+            0.08536117970943446
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00176",
+          "text" : "3.thinksound"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-002.jpg",
+      "status" : "processed",
+      "time" : 29.1
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0067",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333332893518527,
+            0.7812499998177083,
+            0.5277777777777777,
+            0.028125000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00177",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00178",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.3722222246296296,
+            0.6843750001041666,
+            0.14444444444444438,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00179",
+          "text" : "£¢9④⑥"
+        },
+        {
+          "boundingBox" : [
+            0.06584845307249639,
+            0.375161772508788,
+            0.8627475314670139,
+            0.08405145406723025
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00180",
+          "text" : "3.thinksound"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-003.jpg",
+      "status" : "processed",
+      "time" : 29.4
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0068",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333332893518527,
+            0.7812499998177083,
+            0.5277777777777777,
+            0.028125000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00181",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00182",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.3722222246296296,
+            0.6843750001041666,
+            0.14444444444444438,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00183",
+          "text" : "£990⑥"
+        },
+        {
+          "boundingBox" : [
+            0.41111113004082495,
+            0.6500000001562499,
+            0.16666664547390403,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00184",
+          "text" : "Thinksound Deme"
+        },
+        {
+          "boundingBox" : [
+            0.06584989418033398,
+            0.37516725911638316,
+            0.8627446492513021,
+            0.08404047787189484
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00185",
+          "text" : "3.thinksound"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-004.jpg",
+      "status" : "processed",
+      "time" : 29.7
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0069",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333332893518527,
+            0.7812499998177083,
+            0.5277777777777777,
+            0.028125000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00186",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00187",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.3722222246296296,
+            0.6843750001041666,
+            0.14444444444444438,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00188",
+          "text" : "£990⑥"
+        },
+        {
+          "boundingBox" : [
+            0.41111113004082495,
+            0.6500000001562499,
+            0.16666664547390403,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00189",
+          "text" : "Thinksound Deme"
+        },
+        {
+          "boundingBox" : [
+            0.06587710568715113,
+            0.3752696420155279,
+            0.8626902262369791,
+            0.08383571505546561
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00190",
+          "text" : "3.thinksound"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-005.jpg",
+      "status" : "processed",
+      "time" : 30
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0070",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333332893518527,
+            0.81249999984375,
+            0.5277777777777777,
+            0.03125
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00191",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.7843749998214286,
+            0.4833333333333334,
+            0.03125
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00192",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.04444444817460314,
+            0.3843750003348214,
+            0.9111111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00193",
+          "text" : "这是一个给视频配音效的神器"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-006.jpg",
+      "status" : "processed",
+      "time" : 30.3
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0071",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.8406249998214286,
+            0.4833333333333334,
+            0.03125
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00194",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.3716719859587388,
+            0.7670522657194107,
+            0.22887825436062287,
+            0.028395467996597312
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00195",
+          "text" : "f四：00 -."
+        },
+        {
+          "boundingBox" : [
+            0.41111111937226463,
+            0.7375000000520833,
+            0.17777776718139648,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00196",
+          "text" : "ThinkSound Demo"
+        },
+        {
+          "boundingBox" : [
+            0.044444449777777666,
+            0.38437500046875006,
+            0.9111111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00197",
+          "text" : "这是一个给视频配音效的神器"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-007.jpg",
+      "status" : "processed",
+      "time" : 30.7
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0072",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.37222222402777777,
+            0.85312500015625,
+            0.14444444444444443,
+            0.018749999999999933
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00198",
+          "text" : "+＄1$⑥"
+        },
+        {
+          "boundingBox" : [
+            0.044444448796296145,
+            0.384375000390625,
+            0.911111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00199",
+          "text" : "这是一个给视频配音效的神器"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-008.jpg",
+      "status" : "processed",
+      "time" : 31.1
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0073",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.044444448796296145,
+            0.384375000390625,
+            0.911111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00200",
+          "text" : "这是一个给视频配音效的神器"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-009.jpg",
+      "status" : "processed",
+      "time" : 31.5
+    },
+    {
+      "actionId" : "ACT-08",
+      "frameId" : "TARGET-0074",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.044444448796296145,
+            0.384375000390625,
+            0.911111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00201",
+          "text" : "这是一个给视频配音效的神器"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-08-010.jpg",
+      "status" : "processed",
+      "time" : 31.8
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0075",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999294444452,
+            0.384374999875,
+            0.7055555555555555,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00202",
+          "text" : "比如这是我生成的视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-001.jpg",
+      "status" : "processed",
+      "time" : 31.9
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0076",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999294444452,
+            0.384374999875,
+            0.7055555555555555,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00203",
+          "text" : "比如这是我生成的视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-002.jpg",
+      "status" : "processed",
+      "time" : 32.5
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0077",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1499999941203705,
+            0.38437499989583335,
+            0.7055555555555556,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00204",
+          "text" : "比如这是我生成的视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-003.jpg",
+      "status" : "processed",
+      "time" : 33.1
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0078",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3611111118981481,
+            0.38437499963541666,
+            0.2833333333333334,
+            0.04375000000000007
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00205",
+          "text" : "没有音效"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-004.jpg",
+      "status" : "processed",
+      "time" : 33.7
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0079",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667218253966,
+            0.3875000001339286,
+            0.7722222222222223,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00206",
+          "text" : "用它配完音效后就是这样"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-005.jpg",
+      "status" : "processed",
+      "time" : 34.1
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0080",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666666916666668,
+            0.3875000004375,
+            0.7722222222222223,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00207",
+          "text" : "用它配完音效后就是这样"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-006.jpg",
+      "status" : "processed",
+      "time" : 34.6
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0081",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667149305544,
+            0.38750000017578123,
+            0.7722222222222221,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00208",
+          "text" : "用它配完音效后就是这样"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-007.jpg",
+      "status" : "processed",
+      "time" : 35.1
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0082",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.11666667218253966,
+            0.3875000001339286,
+            0.7722222222222223,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00209",
+          "text" : "用它配完音效后就是这样"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-09-008.jpg",
+      "status" : "processed",
+      "time" : 35.6
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0083",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-09-009.jpg",
+      "status" : "processed",
+      "time" : 36.2
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0084",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-09-010.jpg",
+      "status" : "processed",
+      "time" : 37
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0085",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-09-011.jpg",
+      "status" : "processed",
+      "time" : 38
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0086",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-09-012.jpg",
+      "status" : "processed",
+      "time" : 39
+    },
+    {
+      "actionId" : "ACT-09",
+      "frameId" : "TARGET-0087",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-09-013.jpg",
+      "status" : "processed",
+      "time" : 39.7
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0088",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1555555594135802,
+            0.38750000015624997,
+            0.6944444444444445,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00210",
+          "text" : "可以听到效果非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-001.jpg",
+      "status" : "processed",
+      "time" : 39.8
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0089",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1555555594135802,
+            0.38750000015624997,
+            0.6944444444444445,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00211",
+          "text" : "可以听到效果非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-002.jpg",
+      "status" : "processed",
+      "time" : 40.2
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0090",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1555555594135802,
+            0.38750000015624997,
+            0.6944444444444445,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00212",
+          "text" : "可以听到效果非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-003.jpg",
+      "status" : "processed",
+      "time" : 40.6
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0091",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1555555594135802,
+            0.38750000015624997,
+            0.6944444444444445,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00213",
+          "text" : "可以听到效果非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-004.jpg",
+      "status" : "processed",
+      "time" : 41
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0092",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888858730158,
+            0.38749999984375005,
+            0.4222222222222222,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00214",
+          "text" : "里面的环境音"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-005.jpg",
+      "status" : "processed",
+      "time" : 41.4
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0093",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888858730158,
+            0.38749999984375005,
+            0.4222222222222222,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00215",
+          "text" : "里面的环境音"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-006.jpg",
+      "status" : "processed",
+      "time" : 41.8
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0094",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222222533950614,
+            0.38437500015625004,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00216",
+          "text" : "和物体的运动变化"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-007.jpg",
+      "status" : "processed",
+      "time" : 42.2
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0095",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222222533950614,
+            0.38437500015625004,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00217",
+          "text" : "和物体的运动变化"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-008.jpg",
+      "status" : "processed",
+      "time" : 42.6
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0096",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.22222222533950614,
+            0.38437500015625004,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00218",
+          "text" : "和物体的运动变化"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-009.jpg",
+      "status" : "processed",
+      "time" : 43
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0097",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999523809526,
+            0.3843750003348214,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00219",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-010.jpg",
+      "status" : "processed",
+      "time" : 43.4
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0098",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999523809526,
+            0.3843750003348214,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00220",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-011.jpg",
+      "status" : "processed",
+      "time" : 43.8
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0099",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999523809526,
+            0.3843750003348214,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00221",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-012.jpg",
+      "status" : "processed",
+      "time" : 44.2
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0100",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999523809526,
+            0.3843750003348214,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00222",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-013.jpg",
+      "status" : "processed",
+      "time" : 44.6
+    },
+    {
+      "actionId" : "ACT-10",
+      "frameId" : "TARGET-0101",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1500000007936508,
+            0.38437499966517863,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00223",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-10-014.jpg",
+      "status" : "processed",
+      "time" : 44.8
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0102",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42222222195833325,
+            0.3875000001015625,
+            0.13888888888888895,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00224",
+          "text" : "对了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-001.jpg",
+      "status" : "processed",
+      "time" : 44.85
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0103",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42777777749999996,
+            0.3875000001015625,
+            0.13333333333333336,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00225",
+          "text" : "对了"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-002.jpg",
+      "status" : "processed",
+      "time" : 45.2
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0104",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3722222228174603,
+            0.38437499966517863,
+            0.26111111111111107,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00226",
+          "text" : "这3个ai"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-003.jpg",
+      "status" : "processed",
+      "time" : 45.6
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0105",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3222222196825397,
+            0.38749999984375005,
+            0.3555555555555556,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00227",
+          "text" : "都是开源的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-004.jpg",
+      "status" : "processed",
+      "time" : 46
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0106",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3222222196825397,
+            0.38749999984375005,
+            0.3555555555555556,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00228",
+          "text" : "都是开源的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-005.jpg",
+      "status" : "processed",
+      "time" : 46.4
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0107",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555597685185,
+            0.3875000001822917,
+            0.5055555555555555,
+            0.04062500000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00229",
+          "text" : "朋友们赶紧冲～"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-006.jpg",
+      "status" : "processed",
+      "time" : 46.8
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0108",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555597685185,
+            0.3875000001822917,
+            0.5055555555555555,
+            0.04062500000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00230",
+          "text" : "朋友们赶紧冲～"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-007.jpg",
+      "status" : "processed",
+      "time" : 47.2
+    },
+    {
+      "actionId" : "ACT-11",
+      "frameId" : "TARGET-0109",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555586805555,
+            0.38750000017578123,
+            0.49999999999999994,
+            0.04062500000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00231",
+          "text" : "朋友们赶紧冲～"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-11-008.jpg",
+      "status" : "processed",
+      "time" : 47.447
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0110",
+      "lines" : [
+        {
+          "boundingBox" : [
+            -0.00035608213862753737,
+            0.8676851933034938,
+            0.9951566060384116,
+            0.10837961435318
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00232",
+          "text" : "3个创意工具"
+        },
+        {
+          "boundingBox" : [
+            0.3944444423333334,
+            0.44062499981250003,
+            0.21111111111111114,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00233",
+          "text" : "朋友们"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-001.jpg",
+      "status" : "processed",
+      "time" : 0.1
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0111",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.388730895298037,
+            0.7902747286510531,
+            0.21698265075683593,
+            0.03195054084062565
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00234",
+          "text" : "BAGEL"
+        },
+        {
+          "boundingBox" : [
+            0.22222221268518555,
+            0.7499999998958333,
+            0.5722222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00235",
+          "text" : "The Open-Source Unified Multimodal Model"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-002.jpg",
+      "status" : "processed",
+      "time" : 3.8
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0112",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.42710326367339485,
+            0.5582089601238793,
+            0.2346823586357964,
+            0.04608207941055298
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00236",
+          "text" : "Think"
+        },
+        {
+          "boundingBox" : [
+            0.11666667310185169,
+            0.3843750001302084,
+            0.7722222222222221,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00237",
+          "text" : "也可以说是开源版gpt40"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-003.jpg",
+      "status" : "processed",
+      "time" : 6.9
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0113",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1333333305555556,
+            0.5187499998828125,
+            0.22222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00238",
+          "text" : "Put on a mink coatl"
+        },
+        {
+          "boundingBox" : [
+            0.8833333324074074,
+            0.5218749998437501,
+            0.05555555555555558,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00239",
+          "text" : "Edit"
+        },
+        {
+          "boundingBox" : [
+            0.22222222305555558,
+            0.38437499953125,
+            0.5611111111111111,
+            0.046875
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00240",
+          "text" : "比如给图片换表情"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-004.jpg",
+      "status" : "processed",
+      "time" : 12.4
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0114",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2444444402314815,
+            0.7937500003125,
+            0.5388888888888889,
+            0.03750000000000009
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00241",
+          "text" : "上下文Al图像生成与编辑"
+        },
+        {
+          "boundingBox" : [
+            0.39416098231813207,
+            0.6272589148306198,
+            0.23390026092529298,
+            0.02673217058181765
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00242",
+          "text" : "我们的创意之旅"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-005.jpg",
+      "status" : "processed",
+      "time" : 16.55
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0115",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3833333307777778,
+            0.86874999984375,
+            0.2555555555555556,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00243",
+          "text" : "Flux Kontext 应用"
+        },
+        {
+          "boundingBox" : [
+            0.355100121644732,
+            0.38348863384709986,
+            0.2842441982693142,
+            0.04864773303270342
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00244",
+          "text" : "开源模型"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-006.jpg",
+      "status" : "processed",
+      "time" : 19.5
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0116",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.07777778380952374,
+            0.3843750001562499,
+            0.8444444444444444,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00245",
+          "text" : "还可以让两张图的人物融合"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-007.jpg",
+      "status" : "processed",
+      "time" : 25.37
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0117",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2333333371031745,
+            0.78125000015625,
+            0.5277777777777778,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00246",
+          "text" : "ThinkSound： 革命性的"
+        },
+        {
+          "boundingBox" : [
+            0.2555555521031746,
+            0.75312499984375,
+            0.4833333333333334,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00247",
+          "text" : "视频转音频AI生成平台"
+        },
+        {
+          "boundingBox" : [
+            0.26666667444444414,
+            0.73125000015625,
+            0.44791666666666663,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00248",
+          "text" : "下一代多模老A平S，天維是师校特时線分問參日效。請民知花是片需生。"
+        },
+        {
+          "boundingBox" : [
+            0.3722222236111111,
+            0.684375000125,
+            0.13888888888888884,
+            0.018750000000000044
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00249",
+          "text" : "£990⑥"
+        },
+        {
+          "boundingBox" : [
+            0.07222222246527779,
+            0.29374999966796866,
+            0.07222222222222222,
+            0.05312500000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00250",
+          "text" : "3"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-008.jpg",
+      "status" : "processed",
+      "time" : 28.85
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0118",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999294444452,
+            0.384374999875,
+            0.7055555555555555,
+            0.043749999999999956
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00251",
+          "text" : "比如这是我生成的视频"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-009.jpg",
+      "status" : "processed",
+      "time" : 31.87
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0119",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-12-010.jpg",
+      "status" : "processed",
+      "time" : 35.63
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0120",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1555555594135802,
+            0.38750000015624997,
+            0.6944444444444445,
+            0.04062500000000002
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00252",
+          "text" : "可以听到效果非常不错"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-011.jpg",
+      "status" : "processed",
+      "time" : 39.8
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0121",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.14999999523809526,
+            0.3843750003348214,
+            0.7,
+            0.046875
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00253",
+          "text" : "基本都和画面是匹配的"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-012.jpg",
+      "status" : "processed",
+      "time" : 44.83
+    },
+    {
+      "actionId" : "ACT-12",
+      "frameId" : "TARGET-0122",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2555555586805555,
+            0.38750000017578123,
+            0.49999999999999994,
+            0.04062500000000002
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00254",
+          "text" : "朋友们赶紧冲～"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-12-013.jpg",
+      "status" : "processed",
+      "time" : 47.447
+    }
+  ],
+  "generatedAt" : "2026-08-16T03:36:24Z",
+  "manifest" : "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688445a10000000020019210/skill-run/targeted-evidence/targeted-evidence.json",
+  "recognitionLanguages" : [
+    "zh-Hans",
+    "en-US"
+  ],
+  "schemaVersion" : "ocr-evidence-1.0"
+}

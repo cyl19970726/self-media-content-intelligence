@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T22:03:35.877Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Validated 1 procedural units",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": false,
+      "detail": "ratio=0.833",
+      "examples": [
+        {
+          "id": "CQ-02",
+          "result": "failed",
+          "detail": "The 0.000 s analytics/social-proof insert is omitted, so its visible function and unresolved provenance/causality are not answered."
+        },
+        {
+          "id": "CQ-07",
+          "result": "failed",
+          "detail": "The candidate confidently maps the sixth personal topic to 于东来、刘强东 and does not preserve the audited 刘强东/曹德旺 punctuation/referent conflict."
+        },
+        {
+          "id": "CQ-13",
+          "result": "failed",
+          "detail": "The visible direction 行业先锋 is reduced to 先锋, despite the audit identifying this exact carrier correction as consequential."
+        },
+        {
+          "ids": [
+            "CQ-01",
+            "CQ-03",
+            "CQ-04",
+            "CQ-05",
+            "CQ-06",
+            "CQ-08",
+            "CQ-09",
+            "CQ-10",
+            "CQ-11",
+            "CQ-12",
+            "CQ-14",
+            "CQ-15",
+            "CQ-16",
+            "CQ-17",
+            "CQ-18"
+          ],
+          "result": "passed",
+          "detail": "Answered with evidence or appropriately scoped qualification."
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": false,
+      "detail": "ratio=0.880",
+      "examples": [
+        {
+          "id": "audit-KU-01",
+          "result": "failed",
+          "detail": "Opening social-proof insert absent from the knowledge model; DENSE-0001 is not represented."
+        },
+        {
+          "id": "audit-KU-08",
+          "result": "failed",
+          "detail": "Six personal topic directions are present, but the required 刘强东/曹德旺 uncertainty is replaced by a confident, different mapping."
+        },
+        {
+          "id": "audit-KU-22",
+          "result": "failed",
+          "detail": "The six direction-brand mappings lose the consequential visible qualifier 行业 in 行业先锋."
+        },
+        {
+          "result": "passed",
+          "detail": "The remaining 22 audited core units have valid, correctly scoped candidate evidence."
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": false,
+      "detail": "error_ratio=0.077",
+      "examples": [
+        {
+          "candidateUnit": "KU-25",
+          "detail": "The bounded negative claim says no conversion/playback performance data were observed, but DENSE-0001 visibly contains high-count analytics."
+        },
+        {
+          "candidateUnit": "KU-07",
+          "detail": "The candidate converts a carrier conflict into the unsupported positive mapping 苟富贵勿相忘—于东来、刘强东 and then explains the invented two-person assignment in the article."
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "result": "passed",
+          "detail": "All 27 candidate knowledge-unit time ranges and the checked frame/cue localizations fall within the relevant source windows. Content-support errors are counted under evidence coverage and unsupported inference, not double-counted here."
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": true,
+      "detail": "ratio=0.867",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": false,
+      "detail": "ratio=0.750",
+      "examples": [
+        {
+          "id": "UNK-01",
+          "result": "failed",
+          "detail": "Opening-stat provenance and causality are not preserved as unknown; the insert is omitted and contradicted by a negative claim."
+        },
+        {
+          "id": "UNK-03",
+          "result": "failed",
+          "detail": "The video says non-founder IP can use the method, but the candidate does not preserve how adaptation works as an unresolved boundary."
+        },
+        {
+          "id": "UNK-11",
+          "result": "failed",
+          "detail": "The 刘强东/曹德旺 punctuation/referent conflict is not retained as unknown."
+        },
+        {
+          "ids": [
+            "UNK-02",
+            "UNK-04",
+            "UNK-05",
+            "UNK-06",
+            "UNK-07",
+            "UNK-08",
+            "UNK-09",
+            "UNK-10",
+            "UNK-12"
+          ],
+          "result": "passed",
+          "detail": "Correctly qualified or abstained."
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": false,
+      "detail": "Independent evaluator found unchecked channels",
+      "examples": [
+        "CAR-04 opening analytics insert"
+      ]
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": false,
+      "detail": "Independent meta-audit found unguarded closures",
+      "examples": [
+        "CAR-04 opening analytics insert",
+        "MC-01 brief analytics/proof insert establishes authority before the lesson",
+        "REL-15 opening analytics/authority and promise to closing framework-without-demonstration relation"
+      ]
+    }
+  ],
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "failedGateIds": [
+    "eval_critical_question_recall",
+    "eval_evidence_coverage",
+    "eval_unsupported_inference",
+    "eval_unknown_discipline",
+    "eval_unchecked_channels",
+    "eval_meta_gate"
+  ]
+}

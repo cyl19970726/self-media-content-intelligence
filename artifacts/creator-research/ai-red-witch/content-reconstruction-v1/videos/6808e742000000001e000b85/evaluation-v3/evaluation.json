@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationMode": "fresh-context evaluation of the current repaired run; prior evaluations and verdicts excluded",
+  "inputs": [
+    "current audit/audit.json and audit/audit.md",
+    "current evidence/evidence-pack.json and evidence frames",
+    "current skill-run probe, capture protocol, reconstruction, report and derived evidence",
+    "canonical evaluation protocol and schema",
+    "evaluator-design GATE-before-JUDGE rules"
+  ],
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "status": "answered",
+          "item": "Visible SkyReels V2 identity and consequential SRT/burned-text conflicts",
+          "candidateEvidence": ["KU-01", "KU-20", "resampled-evidence.json#RESAMPLED-0001", "resampled-ocr-evidence.json#OCR-00005", "CUE-003"]
+        },
+        {
+          "status": "answered",
+          "item": "Project-page release artifacts and 30-second demo statement are preserved at provider-claim scope",
+          "candidateEvidence": ["KU-22", "KU-23", "resampled-ocr-evidence.json#OCR-00006", "resampled-ocr-evidence.json#OCR-00056"]
+        },
+        {
+          "status": "answered",
+          "item": "Non-speech audio role",
+          "candidateEvidence": ["CAR-07", "KU-21", "SRC-AUDIO-NON-SPEECH"]
+        },
+        {
+          "status": "correctly_unknown",
+          "item": "License, access, price, account, region, commercial use, sample provenance and support conditions",
+          "candidateEvidence": ["KU-10", "KU-18", "ACT-12"]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "covered": true,
+          "item": "Page says model weights and inference code are provided",
+          "candidateEvidence": ["KU-22", "resampled-evidence.json#RESAMPLED-0001", "resampled-ocr-evidence.json#OCR-00006"]
+        },
+        {
+          "covered": true,
+          "item": "Page describes its demos as 30-second diffusion-forcing outputs without proving played 30-second one-take footage",
+          "candidateEvidence": ["KU-23", "resampled-evidence.json#RESAMPLED-0003", "resampled-ocr-evidence.json#OCR-00056"]
+        },
+        {
+          "covered": true,
+          "item": "Longest clearly checkable same-scene window and later grassland/turtle content change",
+          "candidateEvidence": ["KU-03", "KU-04", "KU-06", "TARGET-0011", "TARGET-0029", "TARGET-0042"]
+        },
+        {
+          "covered": true,
+          "item": "Full-track non-speech audio carrier",
+          "candidateEvidence": ["KU-21", "SRC-AUDIO-NON-SPEECH"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 35,
+      "examples": [
+        {
+          "supported": true,
+          "claim": "The page title is ‘SkyReels V2：无限长胶片生成模型’",
+          "evidence": ["KU-01", "resampled-evidence.json#RESAMPLED-0001", "resampled-ocr-evidence.json#OCR-00005"]
+        },
+        {
+          "supported": true,
+          "claim": "The repository-like page states that model weights and inference code are provided",
+          "evidence": ["KU-22", "resampled-evidence.json#RESAMPLED-0001", "resampled-ocr-evidence.json#OCR-00006"]
+        },
+        {
+          "supported": true,
+          "claim": "Speech and music co-occur across the full track",
+          "evidence": ["KU-21", "SRC-AUDIO-NON-SPEECH", "17/17 overlapping windows"]
+        },
+        {
+          "supported": true,
+          "claim": "Low, unstable event-label proposals do not establish specific sound effects",
+          "evidence": ["KU-21", "SRC-AUDIO-NON-SPEECH limitations"]
+        },
+        {
+          "supported": true,
+          "claim": "Free access, licensing, commercial use, sample provenance and end-to-end execution remain unknown",
+          "evidence": ["KU-10", "KU-16", "KU-18"]
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 55,
+      "denominator": 55,
+      "examples": [
+        {
+          "correct": true,
+          "reference": "resampled-evidence.json#RESAMPLED-0001",
+          "localizedAtSeconds": 2.2,
+          "candidateUnit": "KU-01/KU-22",
+          "candidateRange": "1.867-6.967"
+        },
+        {
+          "correct": true,
+          "reference": "resampled-evidence.json#RESAMPLED-0003",
+          "localizedAtSeconds": 6.4,
+          "candidateUnit": "KU-23",
+          "candidateRange": "1.867-6.967"
+        },
+        {
+          "correct": true,
+          "reference": "TARGET-0011",
+          "localizedAtSeconds": 25.2,
+          "candidateUnit": "KU-03/KU-04",
+          "auditWindow": "25.167-about 34.0"
+        },
+        {
+          "correct": true,
+          "reference": "TARGET-0029",
+          "localizedAtSeconds": 34.2,
+          "candidateUnit": "KU-03",
+          "auditWindow": "about 34.0-34.7 transition"
+        },
+        {
+          "correct": true,
+          "reference": "TARGET-0042",
+          "localizedAtSeconds": 38.92,
+          "candidateUnit": "KU-03/KU-06",
+          "auditWindow": "about 38.6-41.067"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 12,
+      "denominator": 13,
+      "rationale": "The video's script-to-complete-short-drama promise makes workflow dependencies material. The candidate preserves the missing input, model/version, parameters, execution states, output linkage, extension/editing, consistency, sound, export, provenance and cost boundaries. It does not state the audit's live-versus-prerecorded interface uncertainty verbatim, but its bounded conclusion that no end-to-end execution is demonstrated preserves the decision consequence.",
+      "examples": [
+        {
+          "covered": true,
+          "item": "No script/prompt-to-output execution chain",
+          "candidateEvidence": ["KU-15", "KU-16"]
+        },
+        {
+          "covered": true,
+          "item": "No job/output provenance, model/version, parameters, editing, audio workflow or export proof",
+          "candidateEvidence": ["KU-03", "KU-05", "KU-16", "KU-18", "KU-21"]
+        },
+        {
+          "covered": false,
+          "item": "Whether the visible interface was live or prerecorded is not stated verbatim"
+        }
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "correct": true,
+          "item": "Company ownership/attribution remains narration-only",
+          "candidateEvidence": ["KU-01"]
+        },
+        {
+          "correct": true,
+          "item": "A page release statement does not establish license, zero price, commercial use or current availability",
+          "candidateEvidence": ["KU-08", "KU-10", "KU-22"]
+        },
+        {
+          "correct": true,
+          "item": "30-second page text does not establish uncut playback or infinite continuation",
+          "candidateEvidence": ["KU-02", "KU-03", "KU-23"]
+        },
+        {
+          "correct": true,
+          "item": "Audio inspection does not establish track identity, creator, license, exact onset, embedded-source audio or low-score event labels",
+          "candidateEvidence": ["KU-21", "SRC-AUDIO-NON-SPEECH"]
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 5,
+    "compressionWithoutLoss": 4
+  },
+  "judgeStatus": {
+    "run": true,
+    "reason": "All independent hard gates passed before JUDGE scoring."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The current run guards narration/SRT, burned-text conflicts, project and technical pages, original-resolution OCR, product/UI states, sample motion and edit boundaries, recurring presenter/referent relations, full-track non-speech audio, scoped negative evidence, opening-to-closing escalation, and technical segmentation versus semantic continuity. The page's 30-second statement, later playback window and narration's absolute duration claim remain separate units/relations. No additional carrier, meaning change or relationship was found outside the audit and current protocol."
+  },
+  "repairVerification": {
+    "audioSemanticEvidence": {
+      "pass": true,
+      "evidence": "The 87.957188-second derived mono 16 kHz PCM decodes to the same SHA-256 as a fresh 16 kHz mono PCM decode of the current source MP4: 7edb1d682e6d696029b5f40a7a30a4dcdc5e175e1b9d4c6310fea26e9944ab16. Seventeen overlapping windows cover 0.0-87.957 without gaps; every window ranks Speech and Music first and second, with Music scores 0.365867-0.936693."
+    },
+    "resampledOcrDerivedSource": {
+      "pass": true,
+      "evidence": "SRC-RESAMPLED-OCR registers targeted-evidence/resampled-ocr-evidence.json; ACT-14's RESAMPLED-0001 through RESAMPLED-0003 all have processed OCR records, and reconstruction references use derived-artifact namespaced IDs."
+    },
+    "ku23Timestamp": {
+      "pass": true,
+      "evidence": "KU-23 is bounded to 1.867-6.967 seconds and cites only the 6.4-second resampled frame/OCR. Later social-video comparison frames are carried by KU-03/KU-04 and the KU-23-to-KU-03 relation, not by KU-23 itself."
+    }
+  },
+  "gateDecision": {
+    "pass": true,
+    "failed": [],
+    "rationale": "Every schema-defined independent hard gate passes. JUDGE ran only after that result."
+  },
+  "deterministicValidation": {
+    "pass": true,
+    "passed": 22,
+    "total": 22,
+    "failedGateIds": []
+  },
+  "examples": [
+    {
+      "type": "audio_closure",
+      "item": "The non-speech carrier is backed by a source-matching full-track audio derivative and gap-free semantic windows rather than codec metadata alone."
+    },
+    {
+      "type": "ocr_closure",
+      "item": "Original-resolution frame and OCR artifacts are separately registered and referenced with namespaced IDs."
+    },
+    {
+      "type": "timestamp_closure",
+      "item": "KU-23 no longer contains later comparison frames outside its page-time range."
+    },
+    {
+      "type": "judge_guardrail",
+      "item": "JUDGE scores were assigned only after all hard gates passed and do not replace the count-based gate results."
+    }
+  ]
+}

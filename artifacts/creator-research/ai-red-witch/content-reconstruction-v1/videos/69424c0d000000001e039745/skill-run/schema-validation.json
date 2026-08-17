@@ -1,0 +1,17 @@
+{
+  "schemaValidation": "pass",
+  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
+  "validated": [
+    "probe.json",
+    "capture-protocol.json",
+    "reconstruction.json",
+    "targeted-evidence/ocr-evidence.json"
+  ],
+  "deterministicArtifacts": [
+    "audio/non-speech-analysis.json",
+    "audio/non-speech-self-check.json",
+    "deterministic-self-check.json"
+  ],
+  "failures": [],
+  "note": "Post-evaluation-v2 schema validation passed after audio.non_speech, relationship-evidence and timestamp-bound repairs. Canonical deterministic internal gates, including full_timeline_carrier_sweep, internal_timestamp_bounds, coverage_matrix and internal_meta_gate, pass in deterministic-self-check.json. The two remaining failures in that file are inherited from the unchanged evaluation-v2 unchecked-channel/meta-audit fields; no audit/evaluation was modified and no downstream-readiness judgment was produced."
+}

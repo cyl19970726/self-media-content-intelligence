@@ -1,0 +1,701 @@
+{
+  "scopeStatement": "仅重建 0–2518.1 秒线上 Demo Day 回放及机器转写。四位分享者、多个屏幕共享和大量英文专名导致 ASR 误差高；报告不静默改写。工具当前版本、开源仓库、许可证、组织权限、数据安全、规模效果、外部服务费用和每个 demo 的端到端连续性均需外部验证。",
+  "transcriptOrigin": "local machine transcription from the complete decoded source audio; not official subtitles",
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "5 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 2518.1
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 134 targeted frames; 17 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 2518.1
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 2518.1
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "分享一：HyperFrames 让 Agent 用 HTML/视频汇报",
+      "importance": "core",
+      "statement": "第一位讲者把问题定义为组织内 Agent 太多、上下文和汇报量过大，介绍 HyperFrames 作为把 HTML 变成视频的开源框架，并展示 launch 总结、内部周报视频、dashboard 等结果；还主张 LLM 写 HTML 的视觉表达优于写 React/Remotion，并口述 Apache-2.0。片内可见样例，不足以证明普遍视觉优势、沟通效率提升或当前许可证。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 357.84
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-001",
+          "endCue": "CUE-061"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0013",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0025",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "问题、工具、多个结果和比较主张形成完整段落；效果量化缺失。",
+      "unknowns": [
+        "仓库当前版本/许可证",
+        "生成时长和失败率",
+        "团队吸收效果",
+        "Remotion 对照条件"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "分享二：Roy 用项目管理、代码仓库和 Agent 跑开发闭环",
+      "importance": "core",
+      "statement": "Roy 展示一种传统敏捷流程的 Agent 化版本：项目管理中的需求进入执行，代码和 PR 形成后由 Codex 等做自动 review，人工确认合并，状态再回写；对话和执行经验还能以 Markdown/Skill 形式沉淀。演示中仍有人工审批，不能概括为无人开发或生产级无限规模。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 357.84,
+        "end": 916.84
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-062",
+          "endCue": "CUE-282"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0026",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0040",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0054",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "界面状态和口播支持需求—代码—review—人工合并—状态变更的局部链。",
+      "unknowns": [
+        "具体工具链",
+        "测试/安全门",
+        "回滚",
+        "生产采用规模",
+        "agent 权限"
+      ],
+      "procedural": {
+        "input": "项目需求/issue 和代码仓库",
+        "actions": [
+          "创建或选择需求",
+          "让 agent 实现",
+          "生成代码/PR",
+          "自动 code review",
+          "人工检查并合并",
+          "项目状态回写",
+          "沉淀经验为 Markdown/Skill"
+        ],
+        "parameters": [
+          "需求描述",
+          "仓库权限",
+          "评审规则",
+          "人工审批"
+        ],
+        "output": "合并的代码变更和同步的项目状态",
+        "unknowns": [
+          "测试覆盖",
+          "失败重试",
+          "生产权限",
+          "回滚",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0026"
+        ],
+        "duringFrames": [
+          "TARGET-0040"
+        ],
+        "afterFrames": [
+          "TARGET-0054"
+        ]
+      }
+    },
+    {
+      "id": "KU-03",
+      "title": "分享三：Eric 用 Agent 研究并迭代报告",
+      "importance": "core",
+      "statement": "Eric 段展示把研究问题交给 Agent，在多轮对话中调整要求、结构和格式，产出 Markdown/网页式报告并讨论 reader/展示方式。可恢复的是‘问题—研究—报告—反馈—再生成’的工作模式；具体来源覆盖、事实准确性、主题细节和工具身份因字幕/小字限制不能全部确认。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 916.84,
+        "end": 1768.25
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-283",
+          "endCue": "CUE-666"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0073",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0090",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "屏幕反复在聊天、文档和展示结果间切换，口播强调要求与格式迭代。",
+      "unknowns": [
+        "研究主题和来源",
+        "事实核验",
+        "报告生成工具",
+        "外部展示权限",
+        "数据保密"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "分享四：Oliver 用 MCP、Markdown 与 hook 构建低摩擦知识系统",
+      "importance": "core",
+      "statement": "Oliver 展示自制 MCP 连接本地 Markdown 文件夹，把 Claude 对话中的工作、决策、情绪和个人背景沉淀为知识，并加入每五轮检查/更新文档的提醒或 hook，降低忘记维护的摩擦。片内没有审计记忆准确性、冲突合并、删除权、加密、敏感数据和长期漂移。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 1768.25,
+        "end": 2402.25
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-667",
+          "endCue": "CUE-1113"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0091",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0107",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0123",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播和本地文件/终端画面支持 MCP—Markdown—周期提醒的结构。",
+      "unknowns": [
+        "写入 schema",
+        "冲突与删除",
+        "权限/加密",
+        "敏感信息",
+        "长期质量"
+      ],
+      "procedural": {
+        "input": "长期 Claude 对话和本地 Markdown 知识目录",
+        "actions": [
+          "通过 MCP 读取/写入目录",
+          "从对话提取需要沉淀的信息",
+          "写入结构化 Markdown",
+          "按固定轮次提醒检查更新",
+          "人工修正或继续迭代"
+        ],
+        "parameters": [
+          "目录",
+          "信息类别",
+          "提醒轮次",
+          "更新规则"
+        ],
+        "output": "可供后续对话读取的本地个人知识库",
+        "unknowns": [
+          "准确性",
+          "冲突合并",
+          "删除与隐私",
+          "安全边界",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0091"
+        ],
+        "duringFrames": [
+          "TARGET-0107"
+        ],
+        "afterFrames": [
+          "TARGET-0123"
+        ]
+      }
+    },
+    {
+      "id": "KU-05",
+      "title": "问答补充 onboarding、hook/MCP 分工与边界",
+      "importance": "supporting",
+      "statement": "问答补充：知识库可从已有长对话或 onboarding 问题初始化；Claude Code 场景提到 hook，Claude 场景提到 MCP；观众还索要 report 链接。片内没有给出完整仓库、安装命令、schema、权限或可复现配置。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 2402.25,
+        "end": 2518.1
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-1114",
+          "endCue": "CUE-1196"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0124",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0129",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0134",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "问答直接提出实施问题，但回答碎片化。",
+      "unknowns": [
+        "四个 onboarding 维度",
+        "hook/MCP 完整配置",
+        "report 链接",
+        "安装步骤"
+      ],
+      "argument": {
+        "claim": "与 Agent 共事的关键不是聊天次数，而是把 Agent 输出接入可审计的沟通、交付和记忆载体。",
+        "evidenceUnitIndexes": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "conditions": [
+          "每个流程有明确人工闸门",
+          "组织权限合法",
+          "输出可追溯和修正",
+          "敏感数据受控"
+        ],
+        "counterexamples": [
+          "纯自动化会放大错误",
+          "不同讲者的工具链不能直接拼接",
+          "长回放不等于团队采用"
+        ],
+        "actions": [
+          "选一个高摩擦环节",
+          "定义输入输出",
+          "接入 Agent",
+          "保留人工审查",
+          "把结果沉淀为 HTML/PR/报告/Markdown"
+        ],
+        "limits": [
+          "活动 demo 合集",
+          "无统一量化评估"
+        ],
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05"
+        ]
+      }
+    },
+    {
+      "id": "KU-06",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "1196 条机器 cue 含大量多人重叠、英文产品名和代码术语误识别，例如黑镇/HeyGen、Hyper frames、Remotion、Linear、GitHub、Codex、Claude Code、MCP、Markdown、hook 等。报告保留原文，规范化仅在烧录字幕、UI、仓库页面和上下文共同支持时使用。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 2518.1
+      },
+      "confidence": "high",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ],
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "四位讲者完整姓名与职位",
+        "若干内部产品/Agent 名称",
+        "部分仓库、命令和代码小字"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整 42 分钟混合轨按 30 秒无缝窗口执行机器语义检查；多人讲话和系统/会议声音是主要信息载体，机器候选不能独立确认配乐、提示音、点击或 demo 成功事件。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 2518.1
+      },
+      "confidence": "medium",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ],
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ]
+    }
+  ],
+  "cueMap": [
+    {
+      "startCue": "CUE-001",
+      "endCue": "CUE-061",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-01"
+      ],
+      "rationale": "归入语义段：分享一：HyperFrames 让 Agent 用 HTML/视频汇报"
+    },
+    {
+      "startCue": "CUE-062",
+      "endCue": "CUE-282",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-02"
+      ],
+      "rationale": "归入语义段：分享二：Roy 用项目管理、代码仓库和 Agent 跑开发闭环"
+    },
+    {
+      "startCue": "CUE-283",
+      "endCue": "CUE-666",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-03"
+      ],
+      "rationale": "归入语义段：分享三：Eric 用 Agent 研究并迭代报告"
+    },
+    {
+      "startCue": "CUE-667",
+      "endCue": "CUE-1113",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-04"
+      ],
+      "rationale": "归入语义段：分享四：Oliver 用 MCP、Markdown 与 hook 构建低摩擦知识系统"
+    },
+    {
+      "startCue": "CUE-1114",
+      "endCue": "CUE-1196",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-05"
+      ],
+      "rationale": "归入语义段：问答补充 onboarding、hook/MCP 分工与边界"
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "从沟通产物转入软件交付产物",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "软件交付闭环切换为研究交付闭环",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-282",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-283",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "研究报告沉淀进一步扩展为长期个人上下文",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-666",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-667",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "个人知识系统通过问答补足初始化和触发机制",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-1113",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-1114",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "meaningChanges": {
+      "MC-01": [
+        "KU-01"
+      ],
+      "MC-02": [
+        "KU-02"
+      ],
+      "MC-03": [
+        "KU-03"
+      ],
+      "MC-04": [
+        "KU-04"
+      ],
+      "MC-05": [
+        "KU-05"
+      ]
+    },
+    "relationships": {
+      "REL-01": [
+        "CUE-061",
+        "CUE-062"
+      ],
+      "REL-02": [
+        "CUE-282",
+        "CUE-283"
+      ],
+      "REL-03": [
+        "CUE-666",
+        "CUE-667"
+      ],
+      "REL-04": [
+        "CUE-1113",
+        "CUE-1114"
+      ]
+    },
+    "criticalQuestions": {
+      "CQ-01": {
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0013"
+        ]
+      },
+      "CQ-02": {
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-062",
+          "TARGET-0040"
+        ]
+      },
+      "CQ-03": {
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-283",
+          "TARGET-0073"
+        ]
+      },
+      "CQ-04": {
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-667",
+          "TARGET-0107"
+        ]
+      },
+      "CQ-05": {
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-1114",
+          "TARGET-0129"
+        ]
+      },
+      "CQ-06": {
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      "CQ-07": {
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0134"
+        ]
+      },
+      "CQ-08": {
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    }
+  },
+  "unknowns": [
+    "活动完整议程、讲者姓名拼写与所属组织",
+    "各仓库/工具的当前地址、版本、许可证和价格",
+    "所有 demo 是否实时、连续、同一任务",
+    "组织数据权限、隐私、安全和错误恢复",
+    "工作流对效率、质量和团队采用的量化结果",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

@@ -1,0 +1,1492 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T03:41:59.232Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/68663c61000000000b01dca6.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/68663c61000000000b01dca6/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 0,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 0.8,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 1.5,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 2.3,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 3,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 3.6,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "烧录大字、仪表盘数字与开场结果画面",
+      "reason": "锁定开场三天/十分钟承诺及仪表盘可见数字，不把画面来源升级为案例事实。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-02",
+      "time": 4,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-02",
+      "time": 5.5,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-02",
+      "time": 7,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-02",
+      "time": 8.5,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-02",
+      "time": 10,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-02",
+      "time": 11.5,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-02",
+      "time": 13,
+      "frame": "frames/ACT-02-007.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-02",
+      "time": 14.5,
+      "frame": "frames/ACT-02-008.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-02",
+      "time": 15.4,
+      "frame": "frames/ACT-02-009.jpg",
+      "carrier": "旧流程拼贴、表格/平台窗口与痛点大字",
+      "reason": "确认复制评论、Excel录入、清洗三天的画面对应关系和未识别平台。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-03",
+      "time": 19.3,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-03",
+      "time": 20.5,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-03",
+      "time": 21.5,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-03",
+      "time": 22.5,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-03",
+      "time": 24,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-03",
+      "time": 25.5,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-03",
+      "time": 27,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-03",
+      "time": 28.5,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-03",
+      "time": 30,
+      "frame": "frames/ACT-03-009.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-03",
+      "time": 31.5,
+      "frame": "frames/ACT-03-010.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-03",
+      "time": 33,
+      "frame": "frames/ACT-03-011.jpg",
+      "carrier": "钉钉多维表模板库和评论表格",
+      "reason": "核查可见产品/模板身份、100多个模板的画面语境、评论列状态，并寻找实际抓取动作。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-04",
+      "time": 33.5,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-04",
+      "time": 34.5,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-04",
+      "time": 35.5,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-04",
+      "time": 36.3,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-04",
+      "time": 37,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-04",
+      "time": 37.7,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-04",
+      "time": 38.5,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-04",
+      "time": 39.3,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-04",
+      "time": 40,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-04",
+      "time": 40.7,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-04",
+      "time": 41.2,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "钉钉入口、左侧多维表导航和模板启动页面",
+      "reason": "保存进入路径、箭头指示和模板卡片前后状态，核查账号/版本/工作区线索。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-05",
+      "time": 41.3,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-05",
+      "time": 42,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-05",
+      "time": 42.8,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-05",
+      "time": 43.5,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-05",
+      "time": 44.2,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-05",
+      "time": 45,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-05",
+      "time": 45.8,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-05",
+      "time": 46.5,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-05",
+      "time": 47.2,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-05",
+      "time": 48,
+      "frame": "frames/ACT-05-010.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-05",
+      "time": 48.8,
+      "frame": "frames/ACT-05-011.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-05",
+      "time": 49.6,
+      "frame": "frames/ACT-05-012.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-05",
+      "time": 50.4,
+      "frame": "frames/ACT-05-013.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-05",
+      "time": 51.2,
+      "frame": "frames/ACT-05-014.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-05",
+      "time": 52,
+      "frame": "frames/ACT-05-015.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-05",
+      "time": 52.5,
+      "frame": "frames/ACT-05-016.jpg",
+      "carrier": "已有212条记录的多维表、批量粘贴与AI字段前中后状态",
+      "reason": "区分旁白Excel与实际UI，捕获既有212条记录、评论单元格批量粘贴成功、处理标记及结构化字段出现的局部因果，不外推完整自动化或准确率。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-06",
+      "time": 52.6,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-06",
+      "time": 53.5,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-06",
+      "time": 54.5,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-06",
+      "time": 55.5,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-06",
+      "time": 56.5,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-06",
+      "time": 57.5,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-06",
+      "time": 58.5,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-06",
+      "time": 59.5,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-06",
+      "time": 60.5,
+      "frame": "frames/ACT-06-009.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-06",
+      "time": 61.5,
+      "frame": "frames/ACT-06-010.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-06",
+      "time": 62.5,
+      "frame": "frames/ACT-06-011.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-06",
+      "time": 63.5,
+      "frame": "frames/ACT-06-012.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-06",
+      "time": 64,
+      "frame": "frames/ACT-06-013.jpg",
+      "carrier": "评价分类视图、差评归因、商品列与客服回复建议",
+      "reason": "读取正面/负面/中性、物流/产品问题及客服解决建议的可见粒度。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-07",
+      "time": 64.1,
+      "frame": "frames/ACT-07-001.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-07",
+      "time": 64.7,
+      "frame": "frames/ACT-07-002.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-07",
+      "time": 65.3,
+      "frame": "frames/ACT-07-003.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-07",
+      "time": 65.9,
+      "frame": "frames/ACT-07-004.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-07",
+      "time": 66.5,
+      "frame": "frames/ACT-07-005.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-07",
+      "time": 67,
+      "frame": "frames/ACT-07-006.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-07",
+      "time": 67.5,
+      "frame": "frames/ACT-07-007.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-07",
+      "time": 67.8,
+      "frame": "frames/ACT-07-008.jpg",
+      "carrier": "表格到可视化仪表盘的切换",
+      "reason": "确定可见前后状态并核查一键按钮、生成过程、图表布局和空值分布是否真正展示。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-08",
+      "time": 67.9,
+      "frame": "frames/ACT-08-001.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-08",
+      "time": 68.4,
+      "frame": "frames/ACT-08-002.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-08",
+      "time": 68.9,
+      "frame": "frames/ACT-08-003.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-08",
+      "time": 69.4,
+      "frame": "frames/ACT-08-004.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-08",
+      "time": 69.9,
+      "frame": "frames/ACT-08-005.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-08",
+      "time": 70.4,
+      "frame": "frames/ACT-08-006.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-08",
+      "time": 70.9,
+      "frame": "frames/ACT-08-007.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-08",
+      "time": 71.4,
+      "frame": "frames/ACT-08-008.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-08",
+      "time": 71.9,
+      "frame": "frames/ACT-08-009.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-08",
+      "time": 72.4,
+      "frame": "frames/ACT-08-010.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-08",
+      "time": 72.9,
+      "frame": "frames/ACT-08-011.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-08",
+      "time": 73.4,
+      "frame": "frames/ACT-08-012.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-08",
+      "time": 73.9,
+      "frame": "frames/ACT-08-013.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-08",
+      "time": 74.5,
+      "frame": "frames/ACT-08-014.jpg",
+      "carrier": "自动化规则配置、差评五条条件和群消息结果",
+      "reason": "重建条件—动作—结果三段并核查统计窗口、发送到人动态值、目标群、权限与发送状态。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-09",
+      "time": 74.7,
+      "frame": "frames/ACT-09-001.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-09",
+      "time": 75.4,
+      "frame": "frames/ACT-09-002.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-09",
+      "time": 76.1,
+      "frame": "frames/ACT-09-003.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-09",
+      "time": 76.8,
+      "frame": "frames/ACT-09-004.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-09",
+      "time": 77.5,
+      "frame": "frames/ACT-09-005.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-09",
+      "time": 78.2,
+      "frame": "frames/ACT-09-006.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-09",
+      "time": 78.9,
+      "frame": "frames/ACT-09-007.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-09",
+      "time": 79.6,
+      "frame": "frames/ACT-09-008.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-09",
+      "time": 80.3,
+      "frame": "frames/ACT-09-009.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-09",
+      "time": 81,
+      "frame": "frames/ACT-09-010.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-09",
+      "time": 81.7,
+      "frame": "frames/ACT-09-011.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-09",
+      "time": 82.4,
+      "frame": "frames/ACT-09-012.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-09",
+      "time": 83.1,
+      "frame": "frames/ACT-09-013.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-09",
+      "time": 83.8,
+      "frame": "frames/ACT-09-014.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-09",
+      "time": 84.5,
+      "frame": "frames/ACT-09-015.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-09",
+      "time": 85.1,
+      "frame": "frames/ACT-09-016.jpg",
+      "carrier": "全流程总结、案例仪表盘与三天/十分钟/96%数字",
+      "reason": "把作者案例主张与可见结果签名分开，并核查27235等数字及其标签。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-10",
+      "time": 85.2,
+      "frame": "frames/ACT-10-001.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-10",
+      "time": 86,
+      "frame": "frames/ACT-10-002.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-10",
+      "time": 86.8,
+      "frame": "frames/ACT-10-003.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-10",
+      "time": 87.6,
+      "frame": "frames/ACT-10-004.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-10",
+      "time": 88.4,
+      "frame": "frames/ACT-10-005.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-10",
+      "time": 89.2,
+      "frame": "frames/ACT-10-006.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0111",
+      "actionId": "ACT-10",
+      "time": 90,
+      "frame": "frames/ACT-10-007.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0112",
+      "actionId": "ACT-10",
+      "time": 90.8,
+      "frame": "frames/ACT-10-008.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0113",
+      "actionId": "ACT-10",
+      "time": 91.6,
+      "frame": "frames/ACT-10-009.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0114",
+      "actionId": "ACT-10",
+      "time": 92.4,
+      "frame": "frames/ACT-10-010.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0115",
+      "actionId": "ACT-10",
+      "time": 93,
+      "frame": "frames/ACT-10-011.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0116",
+      "actionId": "ACT-10",
+      "time": 93.4,
+      "frame": "frames/ACT-10-012.jpg",
+      "carrier": "人工到智能隐喻、免费主张与末尾CTA/缺席边界",
+      "reason": "保留结尾语义扩张，并在完整关闭区间检查价格/套餐/账号/地区/隐私/下载按钮等决策信息。"
+    },
+    {
+      "id": "TARGET-0117",
+      "actionId": "ACT-11",
+      "time": 0,
+      "frame": "frames/ACT-11-001.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0118",
+      "actionId": "ACT-11",
+      "time": 7.5,
+      "frame": "frames/ACT-11-002.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0119",
+      "actionId": "ACT-11",
+      "time": 15,
+      "frame": "frames/ACT-11-003.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0120",
+      "actionId": "ACT-11",
+      "time": 22.5,
+      "frame": "frames/ACT-11-004.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0121",
+      "actionId": "ACT-11",
+      "time": 30,
+      "frame": "frames/ACT-11-005.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0122",
+      "actionId": "ACT-11",
+      "time": 37.5,
+      "frame": "frames/ACT-11-006.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0123",
+      "actionId": "ACT-11",
+      "time": 45,
+      "frame": "frames/ACT-11-007.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0124",
+      "actionId": "ACT-11",
+      "time": 52.5,
+      "frame": "frames/ACT-11-008.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0125",
+      "actionId": "ACT-11",
+      "time": 60,
+      "frame": "frames/ACT-11-009.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0126",
+      "actionId": "ACT-11",
+      "time": 67.5,
+      "frame": "frames/ACT-11-010.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0127",
+      "actionId": "ACT-11",
+      "time": 75,
+      "frame": "frames/ACT-11-011.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0128",
+      "actionId": "ACT-11",
+      "time": 82.5,
+      "frame": "frames/ACT-11-012.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0129",
+      "actionId": "ACT-11",
+      "time": 90,
+      "frame": "frames/ACT-11-013.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0130",
+      "actionId": "ACT-11",
+      "time": 93.4,
+      "frame": "frames/ACT-11-014.jpg",
+      "carrier": "全时间线中的商业/服务条件、未展示操作与非旁白音频",
+      "reason": "为有界缺席结论建立全片抽样复核，并用混合轨/非人声轨粗细窗口分类覆盖完整音频语义。"
+    },
+    {
+      "id": "TARGET-0131",
+      "actionId": "ACT-12",
+      "time": 41.4,
+      "frame": "frames/ACT-12-001.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0132",
+      "actionId": "ACT-12",
+      "time": 41.8,
+      "frame": "frames/ACT-12-002.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0133",
+      "actionId": "ACT-12",
+      "time": 42.2,
+      "frame": "frames/ACT-12-003.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0134",
+      "actionId": "ACT-12",
+      "time": 42.4,
+      "frame": "frames/ACT-12-004.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0135",
+      "actionId": "ACT-12",
+      "time": 42.6,
+      "frame": "frames/ACT-12-005.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0136",
+      "actionId": "ACT-12",
+      "time": 42.8,
+      "frame": "frames/ACT-12-006.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0137",
+      "actionId": "ACT-12",
+      "time": 43,
+      "frame": "frames/ACT-12-007.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0138",
+      "actionId": "ACT-12",
+      "time": 43.2,
+      "frame": "frames/ACT-12-008.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0139",
+      "actionId": "ACT-12",
+      "time": 43.4,
+      "frame": "frames/ACT-12-009.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0140",
+      "actionId": "ACT-12",
+      "time": 43.6,
+      "frame": "frames/ACT-12-010.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0141",
+      "actionId": "ACT-12",
+      "time": 43.8,
+      "frame": "frames/ACT-12-011.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0142",
+      "actionId": "ACT-12",
+      "time": 44,
+      "frame": "frames/ACT-12-012.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0143",
+      "actionId": "ACT-12",
+      "time": 44.2,
+      "frame": "frames/ACT-12-013.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0144",
+      "actionId": "ACT-12",
+      "time": 44.4,
+      "frame": "frames/ACT-12-014.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0145",
+      "actionId": "ACT-12",
+      "time": 44.6,
+      "frame": "frames/ACT-12-015.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0146",
+      "actionId": "ACT-12",
+      "time": 44.8,
+      "frame": "frames/ACT-12-016.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0147",
+      "actionId": "ACT-12",
+      "time": 45,
+      "frame": "frames/ACT-12-017.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0148",
+      "actionId": "ACT-12",
+      "time": 45.2,
+      "frame": "frames/ACT-12-018.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0149",
+      "actionId": "ACT-12",
+      "time": 45.4,
+      "frame": "frames/ACT-12-019.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0150",
+      "actionId": "ACT-12",
+      "time": 45.6,
+      "frame": "frames/ACT-12-020.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0151",
+      "actionId": "ACT-12",
+      "time": 45.8,
+      "frame": "frames/ACT-12-021.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0152",
+      "actionId": "ACT-12",
+      "time": 46,
+      "frame": "frames/ACT-12-022.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0153",
+      "actionId": "ACT-12",
+      "time": 46.2,
+      "frame": "frames/ACT-12-023.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0154",
+      "actionId": "ACT-12",
+      "time": 46.4,
+      "frame": "frames/ACT-12-024.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0155",
+      "actionId": "ACT-12",
+      "time": 46.6,
+      "frame": "frames/ACT-12-025.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0156",
+      "actionId": "ACT-12",
+      "time": 46.8,
+      "frame": "frames/ACT-12-026.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0157",
+      "actionId": "ACT-12",
+      "time": 47,
+      "frame": "frames/ACT-12-027.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    },
+    {
+      "id": "TARGET-0158",
+      "actionId": "ACT-12",
+      "time": 47.2,
+      "frame": "frames/ACT-12-028.jpg",
+      "carrier": "批量粘贴—粘贴成功—处理中—结构化字段出现的局部状态序列",
+      "reason": "补足局部因果证据：表中已有212条记录，选中评论单元格批量粘贴后出现成功提示与处理状态，随后部分结构化字段出现。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066"
+      ]
+    },
+    {
+      "id": "ACT-07",
+      "frameIds": [
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074"
+      ]
+    },
+    {
+      "id": "ACT-08",
+      "frameIds": [
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088"
+      ]
+    },
+    {
+      "id": "ACT-09",
+      "frameIds": [
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098",
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104"
+      ]
+    },
+    {
+      "id": "ACT-10",
+      "frameIds": [
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110",
+        "TARGET-0111",
+        "TARGET-0112",
+        "TARGET-0113",
+        "TARGET-0114",
+        "TARGET-0115",
+        "TARGET-0116"
+      ]
+    },
+    {
+      "id": "ACT-11",
+      "frameIds": [
+        "TARGET-0117",
+        "TARGET-0118",
+        "TARGET-0119",
+        "TARGET-0120",
+        "TARGET-0121",
+        "TARGET-0122",
+        "TARGET-0123",
+        "TARGET-0124",
+        "TARGET-0125",
+        "TARGET-0126",
+        "TARGET-0127",
+        "TARGET-0128",
+        "TARGET-0129",
+        "TARGET-0130"
+      ]
+    },
+    {
+      "id": "ACT-12",
+      "frameIds": [
+        "TARGET-0131",
+        "TARGET-0132",
+        "TARGET-0133",
+        "TARGET-0134",
+        "TARGET-0135",
+        "TARGET-0136",
+        "TARGET-0137",
+        "TARGET-0138",
+        "TARGET-0139",
+        "TARGET-0140",
+        "TARGET-0141",
+        "TARGET-0142",
+        "TARGET-0143",
+        "TARGET-0144",
+        "TARGET-0145",
+        "TARGET-0146",
+        "TARGET-0147",
+        "TARGET-0148",
+        "TARGET-0149",
+        "TARGET-0150",
+        "TARGET-0151",
+        "TARGET-0152",
+        "TARGET-0153",
+        "TARGET-0154",
+        "TARGET-0155",
+        "TARGET-0156",
+        "TARGET-0157",
+        "TARGET-0158"
+      ]
+    }
+  ]
+}

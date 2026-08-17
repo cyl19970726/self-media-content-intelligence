@@ -1,0 +1,503 @@
+{
+  "id": "6a2e823100000000210217e8",
+  "title": "全国比我收入高的编导不超过三个",
+  "archetype": "权威声明 / 平台趋势",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/6a2e823100000000210217e8",
+  "media": {
+    "file": "media/6a2e823100000000210217e8.mp4",
+    "subtitle": "media/6a2e823100000000210217e8.srt",
+    "durationSeconds": 129.707,
+    "width": 2160,
+    "height": 3840,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 80069241
+  },
+  "engagement": {
+    "likes": 32000,
+    "collections": 25000,
+    "comments": 346,
+    "shares": 2660,
+    "collectionToLike": 0.781,
+    "commentToLike": 0.011,
+    "shareToLike": 0.083
+  },
+  "transcript": {
+    "cueCount": 42,
+    "totalCharacters": 885,
+    "charactersPerMinute": 409.4,
+    "first3Seconds": "那么开头展示完教资，你应该知道我是干什么的了 可以负责的告诉你，现在国内市场月收入超过我的编导不超过三个",
+    "first6Seconds": "那么开头展示完教资，你应该知道我是干什么的了 可以负责的告诉你，现在国内市场月收入超过我的编导不超过三个 那么作为这个账号的第一条视频，我将给你带来的是",
+    "fullText": "那么开头展示完教资，你应该知道我是干什么的了 可以负责的告诉你，现在国内市场月收入超过我的编导不超过三个 那么作为这个账号的第一条视频，我将给你带来的是 不管你是零到十万的素人博主，还是当博企业v老板，还是三百六十万t的博主 看完这条视频你一定能学到东西 就是平台喜欢看什么，那么为了让你更清楚的了解平台喜欢什么呢？我将给你引入的是 九九月的新规就是本来百分之八十的流量会在二十四四小时内跑完 现在需要用七天的时间 那么这意味着什么呢？ 又是平台从去年前年开始部署的深度有价值内容 那么这个长尾效应究竟意味着什么呢？ 意味着我们的内容逻辑根本发生了改变，我们从了抓眼球变成了抓价值 不管你是用户还是创作 你会发现一个叫精选视频的东西已经入侵平台很久了 而且去年抖音创作大会用了很长一段篇幅去讲 什么叫做抖音精选 它有大量的扶持政策，大量的推流机制，以及它最主推的就是中长视频 价值感，获得感 信息密度以及什么叫做干货攻略和深度内容，从数据反馈上来看，最简单最直白的就是 我们之前觉得最重要的是点赞评论的转发，那么现在最平台最看重的东西叫做收藏 你可以想象一下什么样内容你会收藏 你可能会看到一个搞笑视频你会点赞 看到一个美女视频你也会点赞哈 一个有氛围感视频，你哭了渲染了一下你也会点赞，但你不会收藏 什么样的你会收藏 就是你觉得你可以从这条视频里面学到东西 这条视频里你是愿意再看一遍的，是的没错，第一个部分 就是那种有获得感的获得项口播 你在这个视频里面讲述的知识 讲述的观点，讲述的道理，而且让用户从中可以真正的得到提升 那么这是一个方面 那另一个方面呢就是短篇类型 那么说到短篇，我们就不得提到最近新出的一个政策活动就是 导演扶持计划这个扶持的有哪几种呢？ 第一个就是ai短片，你经常会刷到那种大流量的几百万点赞的 Ai生成的短片在三到四分钟 第二个呢就是人间观察 人间观察最重要的点就是真实和交互，记录你在人世间发现的那些 让人感到美好的小事 那么第三件事情是什么呢？就是微纪录片 你会发现平台现在逐渐在b站化，你会收到那种三分钟四分钟五分钟甚至十分钟的 制作非常精良，信息密度极高的视频，那么今天就先讲到这里，我是人类最强编导，我们下期再见",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0,
+        "end": 2.372,
+        "duration": 2.372,
+        "midpoint": 1.186,
+        "text": "那么开头展示完教资，你应该知道我是干什么的了",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 2.372,
+        "end": 5.5,
+        "duration": 3.128,
+        "midpoint": 3.936,
+        "text": "可以负责的告诉你，现在国内市场月收入超过我的编导不超过三个",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 5.51,
+        "end": 8.028,
+        "duration": 2.518,
+        "midpoint": 6.769,
+        "text": "那么作为这个账号的第一条视频，我将给你带来的是",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 8.028,
+        "end": 11.86,
+        "duration": 3.832,
+        "midpoint": 9.944,
+        "text": "不管你是零到十万的素人博主，还是当博企业v老板，还是三百六十万t的博主",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 11.87,
+        "end": 13.924,
+        "duration": 2.054,
+        "midpoint": 12.897,
+        "text": "看完这条视频你一定能学到东西",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "index": 6,
+        "start": 13.924,
+        "end": 19.5,
+        "duration": 5.576,
+        "midpoint": 16.712,
+        "text": "就是平台喜欢看什么，那么为了让你更清楚的了解平台喜欢什么呢？我将给你引入的是",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "index": 7,
+        "start": 19.51,
+        "end": 24.097,
+        "duration": 4.587,
+        "midpoint": 21.803,
+        "text": "九九月的新规就是本来百分之八十的流量会在二十四四小时内跑完",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-007.jpg"
+      },
+      {
+        "id": "CUE-008",
+        "index": 8,
+        "start": 24.097,
+        "end": 25.68,
+        "duration": 1.583,
+        "midpoint": 24.889,
+        "text": "现在需要用七天的时间",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-008.jpg"
+      },
+      {
+        "id": "CUE-009",
+        "index": 9,
+        "start": 25.69,
+        "end": 27.319,
+        "duration": 1.629,
+        "midpoint": 26.505,
+        "text": "那么这意味着什么呢？",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-009.jpg"
+      },
+      {
+        "id": "CUE-010",
+        "index": 10,
+        "start": 27.319,
+        "end": 30.74,
+        "duration": 3.421,
+        "midpoint": 29.029,
+        "text": "又是平台从去年前年开始部署的深度有价值内容",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-010.jpg"
+      },
+      {
+        "id": "CUE-011",
+        "index": 11,
+        "start": 30.74,
+        "end": 33.51,
+        "duration": 2.77,
+        "midpoint": 32.125,
+        "text": "那么这个长尾效应究竟意味着什么呢？",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-011.jpg"
+      },
+      {
+        "id": "CUE-012",
+        "index": 12,
+        "start": 33.52,
+        "end": 38.76,
+        "duration": 5.24,
+        "midpoint": 36.14,
+        "text": "意味着我们的内容逻辑根本发生了改变，我们从了抓眼球变成了抓价值",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-012.jpg"
+      },
+      {
+        "id": "CUE-013",
+        "index": 13,
+        "start": 38.77,
+        "end": 40.207,
+        "duration": 1.437,
+        "midpoint": 39.489,
+        "text": "不管你是用户还是创作",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-013.jpg"
+      },
+      {
+        "id": "CUE-014",
+        "index": 14,
+        "start": 40.207,
+        "end": 43.513,
+        "duration": 3.306,
+        "midpoint": 41.86,
+        "text": "你会发现一个叫精选视频的东西已经入侵平台很久了",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-014.jpg"
+      },
+      {
+        "id": "CUE-015",
+        "index": 15,
+        "start": 43.513,
+        "end": 46.39,
+        "duration": 2.877,
+        "midpoint": 44.951,
+        "text": "而且去年抖音创作大会用了很长一段篇幅去讲",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-015.jpg"
+      },
+      {
+        "id": "CUE-016",
+        "index": 16,
+        "start": 46.4,
+        "end": 47.774,
+        "duration": 1.374,
+        "midpoint": 47.087,
+        "text": "什么叫做抖音精选",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-016.jpg"
+      },
+      {
+        "id": "CUE-017",
+        "index": 17,
+        "start": 47.774,
+        "end": 53.1,
+        "duration": 5.326,
+        "midpoint": 50.437,
+        "text": "它有大量的扶持政策，大量的推流机制，以及它最主推的就是中长视频",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-017.jpg"
+      },
+      {
+        "id": "CUE-018",
+        "index": 18,
+        "start": 53.11,
+        "end": 54.382,
+        "duration": 1.272,
+        "midpoint": 53.746,
+        "text": "价值感，获得感",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-018.jpg"
+      },
+      {
+        "id": "CUE-019",
+        "index": 19,
+        "start": 54.382,
+        "end": 61.29,
+        "duration": 6.908,
+        "midpoint": 57.836,
+        "text": "信息密度以及什么叫做干货攻略和深度内容，从数据反馈上来看，最简单最直白的就是",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-019.jpg"
+      },
+      {
+        "id": "CUE-020",
+        "index": 20,
+        "start": 61.3,
+        "end": 66.53,
+        "duration": 5.23,
+        "midpoint": 63.915,
+        "text": "我们之前觉得最重要的是点赞评论的转发，那么现在最平台最看重的东西叫做收藏",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-020.jpg"
+      },
+      {
+        "id": "CUE-021",
+        "index": 21,
+        "start": 66.54,
+        "end": 68.494,
+        "duration": 1.954,
+        "midpoint": 67.517,
+        "text": "你可以想象一下什么样内容你会收藏",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-021.jpg"
+      },
+      {
+        "id": "CUE-022",
+        "index": 22,
+        "start": 68.494,
+        "end": 70.448,
+        "duration": 1.954,
+        "midpoint": 69.471,
+        "text": "你可能会看到一个搞笑视频你会点赞",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-022.jpg"
+      },
+      {
+        "id": "CUE-023",
+        "index": 23,
+        "start": 70.448,
+        "end": 72.157,
+        "duration": 1.709,
+        "midpoint": 71.302,
+        "text": "看到一个美女视频你也会点赞哈",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-023.jpg"
+      },
+      {
+        "id": "CUE-024",
+        "index": 24,
+        "start": 72.157,
+        "end": 75.7,
+        "duration": 3.543,
+        "midpoint": 73.928,
+        "text": "一个有氛围感视频，你哭了渲染了一下你也会点赞，但你不会收藏",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-024.jpg"
+      },
+      {
+        "id": "CUE-025",
+        "index": 25,
+        "start": 75.71,
+        "end": 76.994,
+        "duration": 1.284,
+        "midpoint": 76.352,
+        "text": "什么样的你会收藏",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-025.jpg"
+      },
+      {
+        "id": "CUE-026",
+        "index": 26,
+        "start": 76.994,
+        "end": 80.044,
+        "duration": 3.05,
+        "midpoint": 78.519,
+        "text": "就是你觉得你可以从这条视频里面学到东西",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-026.jpg"
+      },
+      {
+        "id": "CUE-027",
+        "index": 27,
+        "start": 80.044,
+        "end": 84.06,
+        "duration": 4.016,
+        "midpoint": 82.052,
+        "text": "这条视频里你是愿意再看一遍的，是的没错，第一个部分",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-027.jpg"
+      },
+      {
+        "id": "CUE-028",
+        "index": 28,
+        "start": 84.07,
+        "end": 86.376,
+        "duration": 2.306,
+        "midpoint": 85.223,
+        "text": "就是那种有获得感的获得项口播",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-028.jpg"
+      },
+      {
+        "id": "CUE-029",
+        "index": 29,
+        "start": 86.376,
+        "end": 88.517,
+        "duration": 2.141,
+        "midpoint": 87.447,
+        "text": "你在这个视频里面讲述的知识",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-029.jpg"
+      },
+      {
+        "id": "CUE-030",
+        "index": 30,
+        "start": 88.517,
+        "end": 93.13,
+        "duration": 4.613,
+        "midpoint": 90.823,
+        "text": "讲述的观点，讲述的道理，而且让用户从中可以真正的得到提升",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-030.jpg"
+      },
+      {
+        "id": "CUE-031",
+        "index": 31,
+        "start": 93.14,
+        "end": 94.4,
+        "duration": 1.26,
+        "midpoint": 93.77,
+        "text": "那么这是一个方面",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-031.jpg"
+      },
+      {
+        "id": "CUE-032",
+        "index": 32,
+        "start": 94.4,
+        "end": 96.447,
+        "duration": 2.047,
+        "midpoint": 95.424,
+        "text": "那另一个方面呢就是短篇类型",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-032.jpg"
+      },
+      {
+        "id": "CUE-033",
+        "index": 33,
+        "start": 96.447,
+        "end": 100.7,
+        "duration": 4.253,
+        "midpoint": 98.573,
+        "text": "那么说到短篇，我们就不得提到最近新出的一个政策活动就是",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-033.jpg"
+      },
+      {
+        "id": "CUE-034",
+        "index": 34,
+        "start": 100.71,
+        "end": 103.286,
+        "duration": 2.576,
+        "midpoint": 101.998,
+        "text": "导演扶持计划这个扶持的有哪几种呢？",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-034.jpg"
+      },
+      {
+        "id": "CUE-035",
+        "index": 35,
+        "start": 103.286,
+        "end": 107.53,
+        "duration": 4.244,
+        "midpoint": 105.408,
+        "text": "第一个就是ai短片，你经常会刷到那种大流量的几百万点赞的",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-035.jpg"
+      },
+      {
+        "id": "CUE-036",
+        "index": 36,
+        "start": 107.54,
+        "end": 109.425,
+        "duration": 1.885,
+        "midpoint": 108.483,
+        "text": "Ai生成的短片在三到四分钟",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-036.jpg"
+      },
+      {
+        "id": "CUE-037",
+        "index": 37,
+        "start": 109.425,
+        "end": 110.875,
+        "duration": 1.45,
+        "midpoint": 110.15,
+        "text": "第二个呢就是人间观察",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-037.jpg"
+      },
+      {
+        "id": "CUE-038",
+        "index": 38,
+        "start": 110.875,
+        "end": 115.08,
+        "duration": 4.205,
+        "midpoint": 112.977,
+        "text": "人间观察最重要的点就是真实和交互，记录你在人世间发现的那些",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-038.jpg"
+      },
+      {
+        "id": "CUE-039",
+        "index": 39,
+        "start": 115.09,
+        "end": 116.335,
+        "duration": 1.245,
+        "midpoint": 115.713,
+        "text": "让人感到美好的小事",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-039.jpg"
+      },
+      {
+        "id": "CUE-040",
+        "index": 40,
+        "start": 116.335,
+        "end": 118.826,
+        "duration": 2.491,
+        "midpoint": 117.581,
+        "text": "那么第三件事情是什么呢？就是微纪录片",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-040.jpg"
+      },
+      {
+        "id": "CUE-041",
+        "index": 41,
+        "start": 118.826,
+        "end": 123.81,
+        "duration": 4.984,
+        "midpoint": 121.318,
+        "text": "你会发现平台现在逐渐在b站化，你会收到那种三分钟四分钟五分钟甚至十分钟的",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-041.jpg"
+      },
+      {
+        "id": "CUE-042",
+        "index": 42,
+        "start": 123.82,
+        "end": 129.705,
+        "duration": 5.885,
+        "midpoint": 126.763,
+        "text": "制作非常精良，信息密度极高的视频，那么今天就先讲到这里，我是人类最强编导，我们下期再见",
+        "frame": "evidence/6a2e823100000000210217e8/transcript-frames/cue-042.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      1.067,
+      15.8,
+      31.067,
+      38.867,
+      58.367,
+      66.533,
+      82.533,
+      109.667,
+      119.233,
+      123.767,
+      126.033,
+      129.533
+    ],
+    "detectedShotCount": 13,
+    "cutsPerMinute": 5.6,
+    "medianShotSeconds": 8.166,
+    "shortestShotSeconds": 0.174,
+    "longestShotSeconds": 27.134
+  },
+  "evidence": {
+    "contactSheet": "evidence/6a2e823100000000210217e8/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/6a2e823100000000210217e8/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      6.822,
+      13.645,
+      20.467,
+      27.29,
+      34.112,
+      40.935,
+      47.757,
+      54.58,
+      61.402,
+      68.225,
+      75.047,
+      81.869,
+      88.692,
+      95.514,
+      102.337,
+      109.159,
+      115.982,
+      122.804,
+      129.627
+    ]
+  }
+}

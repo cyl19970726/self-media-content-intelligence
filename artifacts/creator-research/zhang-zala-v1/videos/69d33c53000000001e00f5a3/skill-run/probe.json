@@ -1,0 +1,476 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "非 CS 背景观众可能把自己定义为‘文科生/非技术’，认为技术浪潮中天然落后。",
+    "after": "观众被引导用 technical curiosity 和动手实践重新定义自己：新技术让所有人重新学习，自然语言降低实现门槛；非技术背景可把用户洞察、沟通和分发与 AI 工具结合。",
+    "intendedChanges": [
+      "从学历/专业标签转向技术好奇心",
+      "从关注资讯转向亲手试用",
+      "从技术劣势叙事转向用户洞察和分发优势"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {
+        "start": 0,
+        "end": 24.12
+      },
+      "cognitiveQuestion": "视频试图替换掉哪个身份标签？",
+      "observedSignals": [
+        "主持人概括嘉宾为个人积极行动样本",
+        "讨论文科/非理科背景",
+        "non-technical 被认为定义不好",
+        "引出 technical curiosity"
+      ],
+      "checkedAlternatives": [
+        "是否完全否认专业背景影响",
+        "新词是否有统一定义"
+      ],
+      "remainingUnknowns": [
+        "新词出处",
+        "主持人完整问题",
+        "专业背景影响边界"
+      ],
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {
+        "start": 24.12,
+        "end": 54.52
+      },
+      "cognitiveQuestion": "技术好奇心在片内包含哪些行为？",
+      "observedSignals": [
+        "对新技术有好奇和了解意愿",
+        "是否学 CS 与此不必然相关",
+        "一些工程师不关心 AI 进展",
+        "嘉宾每天看 Twitter 的模型/API 并尝试"
+      ],
+      "checkedAlternatives": [
+        "关注资讯是否等于能力",
+        "工程师群体是否被过度概括"
+      ],
+      "remainingUnknowns": [
+        "试用频率",
+        "能力深度",
+        "工程师对照样本"
+      ],
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-015"
+      ]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {
+        "start": 54.52,
+        "end": 94.45
+      },
+      "cognitiveQuestion": "‘同一起跑线’主张和缺失段应如何处理？",
+      "observedSignals": [
+        "作者称技术浪潮来时一切归零",
+        "即使本科 AI 也要重新学",
+        "文科生也要重新学",
+        "81.45–94.45 没有机器 cue"
+      ],
+      "checkedAlternatives": [
+        "知识是否真的全部归零",
+        "缺失段是否包含关键限定"
+      ],
+      "remainingUnknowns": [
+        "缺失段原话",
+        "已有基础的真实优势",
+        "不同岗位门槛"
+      ],
+      "evidenceHints": [
+        "CUE-016",
+        "CUE-021"
+      ]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {
+        "start": 94.45,
+        "end": 128.867
+      },
+      "cognitiveQuestion": "末段给非技术背景者哪些具体优势和行动方向？",
+      "observedSignals": [
+        "不会编程也可用自然语言让 AI 做工具",
+        "称甚至可能在 idea/产品层超过部分程序员",
+        "强调人性/用户洞察、交流、分发和营销",
+        "把它解释为文科生机会"
+      ],
+      "checkedAlternatives": [
+        "自然语言是否能替代复杂工程",
+        "文科生是否天然更懂人性"
+      ],
+      "remainingUnknowns": [
+        "复杂工程边界",
+        "工具维护",
+        "用户洞察的实际能力",
+        "产品结果数据"
+      ],
+      "evidenceHints": [
+        "CUE-022",
+        "CUE-024"
+      ]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-01",
+      "name": "完整机器转写口播",
+      "modalityKeys": [
+        "audio.speech",
+        "transcript.machine"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供叙事主线、步骤、论点与行动建议"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 128.867
+        }
+      ],
+      "omissionImpact": "会丢失作者真正提出的方法、条件和结论。"
+    },
+    {
+      "id": "CAR-02",
+      "name": "烧录字幕与画面文字",
+      "modalityKeys": [
+        "visual.caption",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "校正专有名词",
+        "锚定章节、数字、按钮和引语"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 128.867
+        }
+      ],
+      "omissionImpact": "会把机器转写误识别静默升级为原话，并漏掉只在画面出现的信息。"
+    },
+    {
+      "id": "CAR-03",
+      "name": "双人播客机位、单人近景和烧录字幕",
+      "modalityKeys": [
+        "visual.person",
+        "visual.interview",
+        "visual.caption"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "区分主持人与嘉宾",
+        "承载观点问答和身份可信度"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 24.12
+        },
+        {
+          "start": 24.12,
+          "end": 54.52
+        },
+        {
+          "start": 54.52,
+          "end": 94.45
+        },
+        {
+          "start": 94.45,
+          "end": 128.867
+        }
+      ],
+      "omissionImpact": "会漏掉内容是播客摘录而非独白，也会忽略剪辑/字幕断层。"
+    },
+    {
+      "id": "CAR-04",
+      "name": "非语音音频机器语义检查",
+      "modalityKeys": [
+        "audio.non_speech"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "检查配乐或音效是否承担独立叙事/操作证明"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 128.867
+        }
+      ],
+      "omissionImpact": "会凭音频存在臆测配乐、点击或生成成功音。"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {
+        "start": 0,
+        "end": 24.12
+      },
+      "description": "从‘我不是技术人’转向寻找更有行动性的身份。",
+      "trigger": "对 non-technical 的否定和新词提出",
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "MC-02",
+      "range": {
+        "start": 24.12,
+        "end": 54.52
+      },
+      "description": "从专业学历转向好奇、跟进和使用行为。",
+      "trigger": "工程师反例与非技术者亲手试用的对比",
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-015"
+      ]
+    },
+    {
+      "id": "MC-03",
+      "range": {
+        "start": 54.52,
+        "end": 94.45
+      },
+      "description": "从专业差距焦虑转向所有人都需持续再学习。",
+      "trigger": "重新起跑线与转写空窗",
+      "evidenceHints": [
+        "CUE-016",
+        "CUE-021"
+      ]
+    },
+    {
+      "id": "MC-04",
+      "range": {
+        "start": 94.45,
+        "end": 128.867
+      },
+      "description": "从心理重新定位走向行动：做工具，并用用户洞察和分发形成差异。",
+      "trigger": "自然语言实现与人性/分发优势",
+      "evidenceHints": [
+        "CUE-022",
+        "CUE-024"
+      ]
+    }
+  ],
+  "relationshipHypotheses": [
+    {
+      "id": "REL-01",
+      "from": "MC-01",
+      "to": "MC-02",
+      "relation": "新身份通过可观察行为被具体化",
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "from": "MC-02",
+      "to": "MC-03",
+      "relation": "技术好奇心被置于快速变化的共同学习环境中",
+      "evidenceHints": [
+        "CUE-015",
+        "CUE-016"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "from": "MC-03",
+      "to": "MC-04",
+      "relation": "共同再学习的机会被落到产品和内容能力组合",
+      "evidenceHints": [
+        "CUE-021",
+        "CUE-022"
+      ]
+    }
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "把口语讨论写成学术定义或完整身份模型。",
+      "why": "语音误识别严重，且没有定义来源。",
+      "where": [
+        {
+          "start": 0,
+          "end": 24.12
+        }
+      ],
+      "requiredFollowup": "捕捉主持/嘉宾切换和关键词烧录字幕，保持定义来源未知。"
+    },
+    {
+      "id": "RISK-02",
+      "risk": "用身边例子概括工程师/文科生群体。",
+      "why": "没有样本和能力测量。",
+      "where": [
+        {
+          "start": 24.12,
+          "end": 54.52
+        }
+      ],
+      "requiredFollowup": "恢复行为定义，并把群体对比限定为个人观察。"
+    },
+    {
+      "id": "RISK-03",
+      "risk": "把‘归零’写成事实，或凭上下文补齐缺失段。",
+      "why": "已有基础仍影响学习速度，且音频内容未准确转写。",
+      "where": [
+        {
+          "start": 54.52,
+          "end": 94.45
+        }
+      ],
+      "requiredFollowup": "明确空窗并只使用现有 cue/画面，不生成伪逐字稿。"
+    },
+    {
+      "id": "RISK-04",
+      "risk": "把技术门槛降低写成工程门槛消失，或把文科背景本质化。",
+      "why": "复杂系统仍需工程、安全和维护，用户洞察也需训练。",
+      "where": [
+        {
+          "start": 94.45,
+          "end": 128.867
+        }
+      ],
+      "requiredFollowup": "恢复机会链并列出工程/群体边界。"
+    },
+    {
+      "id": "RISK-05",
+      "risk": "把机器转写、烧录字幕或 UI 中的专有名词冲突静默改写。",
+      "why": "专有名词误识别会改变工具身份、案例身份或方法含义。",
+      "where": [
+        {
+          "start": 0,
+          "end": 128.867
+        }
+      ],
+      "requiredFollowup": "保留原始 cue，并用 OCR/画面建立规范化建议和 unresolved。"
+    },
+    {
+      "id": "RISK-06",
+      "risk": "把非语音音频机器候选升级为具体声音事实或因果证明。",
+      "why": "混合音轨分类只能提供候选，不能确认声源、版权或 UI 动作。",
+      "where": [
+        {
+          "start": 0,
+          "end": 128.867
+        }
+      ],
+      "requiredFollowup": "注册完整音频账本，并把精确声源与权利保持未知。"
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "CQ-01",
+      "question": "视频试图替换掉哪个身份标签？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "RISK-01"
+      ]
+    },
+    {
+      "id": "CQ-02",
+      "question": "技术好奇心在片内包含哪些行为？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "RISK-02"
+      ]
+    },
+    {
+      "id": "CQ-03",
+      "question": "‘同一起跑线’主张和缺失段应如何处理？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "RISK-03"
+      ]
+    },
+    {
+      "id": "CQ-04",
+      "question": "末段给非技术背景者哪些具体优势和行动方向？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "RISK-04"
+      ]
+    },
+    {
+      "id": "CQ-05",
+      "question": "哪些专有名词、界面身份或数字存在转写/画面冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "CAR-02",
+        "RISK-05"
+      ]
+    },
+    {
+      "id": "CQ-06",
+      "question": "平台可用性、费用、账号地区、隐私、素材和结果权利有哪些仍未知？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "SWEEP-04"
+      ]
+    },
+    {
+      "id": "CQ-07",
+      "question": "非语音音频是否承载独立知识或操作证明？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "CAR-04"
+      ]
+    }
+  ],
+  "unresolved": [
+    "81.45–94.45 秒缺失口述的准确内容",
+    "technical curiosity 的原始定义与出处",
+    "非 CS 背景者和工程师的群体差异数据",
+    "自然语言工具在复杂工程任务中的上限",
+    "播客完整上下文与剪辑边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ]
+}

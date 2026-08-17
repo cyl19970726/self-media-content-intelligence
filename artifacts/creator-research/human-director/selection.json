@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "creator-human-director-selection-1.0",
+  "creator": {
+    "id": "6962d77e000000003702ae22",
+    "name": "人类最强编导（9.4-9.6深圳线下课",
+    "profile": "https://www.xiaohongshu.com/user/profile/6962d77e000000003702ae22",
+    "followers": "9.7万",
+    "likesAndCollections": "30.9万"
+  },
+  "coverage": {
+    "capturedNotes": 19,
+    "capturedVideos": 19,
+    "subtitleAvailable": 18,
+    "selectedVisualBreakdowns": 8,
+    "capturedAt": "2026-08-15T23:00:00+08:00"
+  },
+  "selectionLogic": "全量覆盖19条公开笔记；优先对账号头部证明型、权威趋势型、垂直教程型、价值观转粉型四种关键样本做真实画面和逐字稿对齐。",
+  "videos": [
+    {
+      "id": "6a2fcd940000000007021a9f",
+      "title": "人类最强编导 一条视频起号1.4w",
+      "archetype": "成绩证明 / 起号总纲",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a2fcd940000000007021a9f",
+      "likes": 76000,
+      "collections": 65000,
+      "comments": 414,
+      "shares": 6573
+    },
+    {
+      "id": "6a2e823100000000210217e8",
+      "title": "全国比我收入高的编导不超过三个",
+      "archetype": "权威声明 / 平台趋势",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a2e823100000000210217e8",
+      "likes": 32000,
+      "collections": 25000,
+      "comments": 346,
+      "shares": 2660
+    },
+    {
+      "id": "6a3139ab00000000220171b1",
+      "title": "全中国比我收入高的编导不超过三个",
+      "archetype": "系列迭代 / Vlog垂直教程",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a3139ab00000000220171b1",
+      "likes": 19000,
+      "collections": 14000,
+      "comments": 337,
+      "shares": 2591
+    },
+    {
+      "id": "6a3632b4000000000803f2c5",
+      "title": "我不要卖课割韭菜 我要桃李满天下",
+      "archetype": "价值观 / 信任转粉",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a3632b4000000000803f2c5",
+      "likes": 11000,
+      "collections": 6386,
+      "comments": 231,
+      "shares": 579
+    },
+    {
+      "id": "6a69d19c00000000090357d0",
+      "title": "人类都能看懂的爆款制作流程（看不懂来骂",
+      "archetype": "高收藏爆款框架",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a69d19c00000000090357d0",
+      "likes": 9825,
+      "collections": 9487,
+      "comments": 115,
+      "shares": 986
+    },
+    {
+      "id": "6a3ba6950000000007027cc5",
+      "title": "同行别割了 自媒体没有捷径",
+      "archetype": "反AI / 反同行立场",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a3ba6950000000007027cc5",
+      "likes": 4133,
+      "collections": 2051,
+      "comments": 113,
+      "shares": 248
+    },
+    {
+      "id": "6a4f70470000000021020657",
+      "title": "我直白说了拆解爆款就是假努力😂",
+      "archetype": "反拆解 / 编导能力模型",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a4f70470000000021020657",
+      "likes": 3625,
+      "collections": 2263,
+      "comments": 53,
+      "shares": 240
+    },
+    {
+      "id": "6a3d085300000000060239b0",
+      "title": "5条视频五万粉 暴力起号最全攻略",
+      "archetype": "长教程 / 低表现对照",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6a3d085300000000060239b0",
+      "likes": 3379,
+      "collections": 2352,
+      "comments": 82,
+      "shares": 379
+    }
+  ]
+}

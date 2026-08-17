@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 16,
+      "examples": [
+        "Q01-Q06 and Q08-Q16 are answered or correctly bounded as unknown.",
+        "Q07 is incomplete: KU-08 preserves search versus idle use, but no unit preserves the author's platform-retention rationale for why platform and user definitions of good content align."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 21,
+      "denominator": 22,
+      "examples": [
+        "21 audit core knowledge units map to candidate units with valid evidence.",
+        "Audit K09 (users like it -> good content; platform and user goals align because the platform must retain users) has no candidate knowledge unit."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 21,
+      "examples": [
+        "The 21 positive candidate units are supported and provenance-scoped.",
+        "KU-19 correctly treats the closing relation as an inference and does not claim that the course proved growth."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 21,
+      "denominator": 21,
+      "examples": [
+        "All 21 covered audit core-unit mappings were checked against the candidate time ranges and referenced cues/frames.",
+        "KU-18 correctly bounds full-timeline absence to 0-199.877s."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 10,
+      "denominator": 10,
+      "rationale": "All ten audited dependencies are retained in unit statements or relations, including source-to-interpretation, user-before-assets, audiovisual complementarity, and the comment/data feedback loop."
+    },
+    "unknownDiscipline": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        "Growth timeline, course access/results, book provenance, attribution, three-feelings/six-dimensions details, and efficacy remain unknown.",
+        "Ad-category wording, framework conditions, the static-Jing'an-Temple example, comment/CTR definitions and non-speech audio role are correctly bounded."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 3,
+    "knowledgePrioritization": 3,
+    "evidenceUsefulness": 3,
+    "executionValue": 3,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "AUDIT REL07 / K09: the author argues that the platform must retain users, therefore the platform's and users' definitions of good content align; the candidate does not reconstruct this causal rationale."
+    ],
+    "rationale": "Carrier inspection and the broad 57.595-87.48s meaning transition are registered, but the platform-retention causal relationship disappears between probe and reconstruction. This is an independently found unguarded relationship, so the meta-gate fails. Judge values are schema-required neutral placeholders and are not substantive JUDGE scores."
+  },
+  "examples": [
+    {
+      "type": "hard_gate_discrepancy",
+      "auditItem": "K09 / REL07",
+      "candidateItem": "absent; nearest is KU-08",
+      "detail": "KU-08 starts at the search/idle distinction and omits the preceding platform-retention rationale."
+    },
+    {
+      "type": "strength",
+      "auditItem": "attribution conflict",
+      "candidateItem": "KU-03, KU-04, KU-05B",
+      "detail": "The visible book, claimed official source, and author's prior Vlog framework are kept separate."
+    }
+  ]
+}

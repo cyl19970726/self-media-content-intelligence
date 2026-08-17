@@ -1,0 +1,45 @@
+{
+  "videoId": "6a5a069a00000000090344af",
+  "candidateModified": false,
+  "discrepancies": [
+    {
+      "id": "D01",
+      "severity": "hard_gate",
+      "auditRefs": ["CF06", "MC09", "KU09", "CQ09"],
+      "candidateRefs": ["KU-10", "KU-15", "ACT-05"],
+      "finding": "候选漏看 169.730-175.050 秒烧录字幕，错误声称第八条编号不可见；实际字幕为‘第八 起号是一夜之间 / 不是日积月累’。",
+      "requiredClosure": "在 169.730-175.050 秒加密取帧并执行 OCR/人工核对，恢复编号、‘起号’概念及其与后续换方向建议的关系。"
+    },
+    {
+      "id": "D02",
+      "severity": "material",
+      "auditRefs": ["REL08"],
+      "candidateRefs": ["KU-10", "KU-11"],
+      "finding": "候选保留了低数据换方向，却漏掉作者用‘起号是一夜之间’支持该建议的修辞前提。",
+      "requiredClosure": "建立前提到结论的显式关系，并继续标为作者主张而非验证事实。"
+    },
+    {
+      "id": "D03",
+      "severity": "pass_observation",
+      "auditRefs": ["CF05", "MC07", "REL06"],
+      "candidateRefs": ["KU-07", "KU-08"],
+      "finding": "‘轻松/高薪’的反讽转折被正确恢复；无需修复。"
+    },
+    {
+      "id": "D04",
+      "severity": "machine_gate",
+      "auditRefs": [],
+      "candidateRefs": ["KU-11"],
+      "finding": "确定性验证判定 system_inference 缺少验证器要求的 reasoning 或有效 evidence 结构。",
+      "requiredClosure": "按 reconstruction schema 补充 reasoning 与有效证据，再重跑验证。"
+    },
+    {
+      "id": "D05",
+      "severity": "machine_gate",
+      "auditRefs": [],
+      "candidateRefs": ["KU-10", "OCR-00119"],
+      "finding": "确定性验证报告 OCR-00119 位于 KU-10 的声明时段之外。",
+      "requiredClosure": "修正单元时段或移除/替换越界引用，再重跑验证。"
+    }
+  ]
+}

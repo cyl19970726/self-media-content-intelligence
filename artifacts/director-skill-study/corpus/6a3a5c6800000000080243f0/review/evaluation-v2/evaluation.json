@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        "Q01: KU-01/KU-02 correctly separate the four opening claims from the limited visible metric card.",
+        "Q11: KU-11 preserves the edit-action order and explicitly says no editing UI or execution was shown.",
+        "Q14: KU-10, KU-15 and KU-16 correctly abstain on causal attribution and the 19:00 delivery claim."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        "All 14 audit core units map to candidate units with resolvable cue, targeted-frame, or OCR evidence.",
+        "Audit K07 is supporting rather than core in the candidate (KU-06) but remains captured and evidenced.",
+        "Audit K14 is split across KU-13 and KU-14 with the backend/effect limits preserved."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 17,
+      "examples": [
+        "All 17 positive knowledge-unit statements have evidence and use author_claim, visual_observation, or reasoned system_inference provenance.",
+        "KU-16's opening-to-closing inference cites both ends and only concludes that the close does not verify the opening metrics."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        "One mapped candidate unit/evidence cluster was checked for every audit core unit; all 14 are localized to the matching audited interval.",
+        "The full-scope absence unit KU-15 is correctly bounded to 0-142.036s."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 7,
+      "denominator": 8,
+      "rationale": "D01-D07 are explicit in units or relations. D08 (publishable cut -> select publication time) is recoverable from adjacent units but is not encoded as an explicit relation; 7/8=0.875 passes the 0.85 threshold."
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 11,
+      "examples": [
+        "Growth truth, metric scope and causal attribution remain unknown.",
+        "Editing software, parameters, UI execution and actual 19:00 publication remain unknown.",
+        "Non-speech audio role and the masked person's natural identity remain unknown."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The candidate checks speech/SRT, burned captions and overlays, whiteboard, gestures, persona/environment, edit continuity, non-speech audio capability, and bounded absence. All nine audit meaning changes and fourteen relationships are represented by units, relations, or explicit limits; the only structural weakness is that D08 is implicit rather than uninspected."
+  },
+  "examples": [
+    {
+      "type": "strength",
+      "auditItem": "carrier conflict",
+      "candidateItem": "KU-03, KU-12",
+      "detail": "Meaning-changing SRT conflicts such as 猎奇 and 智能剪口播 are preserved rather than silently normalized."
+    },
+    {
+      "type": "minor_discrepancy",
+      "auditItem": "D08",
+      "candidateItem": "KU-11, KU-13",
+      "detail": "The transition from a publishable cut to choosing a publication time is present in sequence but lacks a direct relation edge."
+    }
+  ]
+}

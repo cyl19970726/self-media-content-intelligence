@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "status": "tested_candidate_generator_only",
+  "entryUrl": "https://www.xiaohongshu.com/ai_chat_tab?searchKeyWord=ai",
+  "taskSpace": "小红书站内AI研究",
+  "server": "default",
+  "taskSpaceId": 11,
+  "conversationId": "1f53d961-6c33-4dcb-a478-8bf6852bfffc",
+  "firstQuery": "小红书上有哪些体量较大、持续发布 AI 内容的博主？请按职场提效、AI 工具实操、行业资讯、商业案例分组。每位博主请给出账号名、你判断其体量较大的公开依据、3 条代表帖子标题与可点击帖子引用；不确定的字段明确写未知，不要只给概括。",
+  "followups": [
+    "补充至少10个遗漏候选，并区分持续经营AI垂类与单条AI爆款账号。",
+    "对张咋啦、晓辉博士、赛博鸭AIGC、数字生命卡兹克分别给出代表帖子和账号引用。",
+    "给出与第一轮结论相反或表现较弱的帖子，避免只看高赞样本。"
+  ],
+  "decision": "先作为浏览器 Skill 工作流；达到20次稳定测试、引用可追溯和接口形态稳定后，再评估 MCP。",
+  "firstTestResult": {
+    "answers": 2,
+    "notesSynthesized": 181,
+    "broadAnswerCreators": 8,
+    "targetCreatorsMentionedBroad": 2,
+    "targetCreatorsAddressedFocused": 4,
+    "usableStablePostCitations": 0,
+    "verdict": "高召回候选发现器，但不是可靠的帖子链接、账号身份或指标数据源。"
+  },
+  "hardBoundaries": [
+    "站内 AI 回答只用于发现候选",
+    "账号身份、指标、日期和完整库存必须独立打开核验",
+    "不保存登录信息、隐藏 token 或签名链接",
+    "不以站内 AI 答案声称平台排名或完整覆盖"
+  ]
+}

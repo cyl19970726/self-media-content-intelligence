@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "audio-carrier-proposals-1.0",
+  "generatedAt": "2026-08-16T13:21:05.543738+00:00",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a6815b2000000001002477b/audio-16k.wav",
+  "sourceSha256": "2da64bd5aafa68b7edf3fb5b734dc5e5fd217f4b3d7e4ce8e71390de0c101417",
+  "durationSeconds": 71.378125,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "labelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 10.0,
+    "hopSeconds": 10.0,
+    "coverage": "gap-free; overlapping when hop is smaller than window",
+    "scoreTransform": "sigmoid(logits)"
+  },
+  "limitations": [
+    "Labels and scores are machine proposals, not human listening or source attribution.",
+    "Mixed-track classification does not isolate speech, music, UI sounds, or inserted-clip audio.",
+    "Absence from top labels does not prove a sound is absent.",
+    "The model cannot establish track identity, ownership, licensing, or editorial intent."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "rms": 0.081351,
+      "peak": 0.4664449,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.780068
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.147855
+        },
+        {
+          "label": "Conversation",
+          "score": 0.14774
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.136778
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.067695
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.012332
+        },
+        {
+          "label": "Radio",
+          "score": 0.011771
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011421
+        },
+        {
+          "label": "Television",
+          "score": 0.00623
+        },
+        {
+          "label": "Gasp",
+          "score": 0.00523
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "rms": 0.0854494,
+      "peak": 0.6310617,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.905961
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.294111
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.22486
+        },
+        {
+          "label": "Conversation",
+          "score": 0.141731
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.07794
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.060275
+        },
+        {
+          "label": "Radio",
+          "score": 0.015804
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011218
+        },
+        {
+          "label": "Television",
+          "score": 0.006454
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.005228
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "rms": 0.1025238,
+      "peak": 0.6599628,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.89489
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.3095
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.146556
+        },
+        {
+          "label": "Conversation",
+          "score": 0.121347
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.09877
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.072015
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012032
+        },
+        {
+          "label": "Radio",
+          "score": 0.009964
+        },
+        {
+          "label": "Television",
+          "score": 0.004714
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.004568
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "rms": 0.1040392,
+      "peak": 0.6548662,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.873645
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.231421
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.201333
+        },
+        {
+          "label": "Conversation",
+          "score": 0.125976
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.060813
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.024414
+        },
+        {
+          "label": "Radio",
+          "score": 0.01682
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.011487
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009376
+        },
+        {
+          "label": "Squish",
+          "score": 0.009335
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "rms": 0.0868642,
+      "peak": 0.6607562,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.924922
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.445327
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.369827
+        },
+        {
+          "label": "Conversation",
+          "score": 0.219298
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.049997
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.019942
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.018318
+        },
+        {
+          "label": "Writing",
+          "score": 0.015134
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013184
+        },
+        {
+          "label": "Squish",
+          "score": 0.009278
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "rms": 0.0899367,
+      "peak": 0.6638997,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.895615
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.274748
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.142357
+        },
+        {
+          "label": "Conversation",
+          "score": 0.110632
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.067666
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.034418
+        },
+        {
+          "label": "Squish",
+          "score": 0.008803
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.008773
+        },
+        {
+          "label": "Radio",
+          "score": 0.007818
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.005552
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "rms": 0.0972812,
+      "peak": 0.6514786,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.890003
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.245191
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.178632
+        },
+        {
+          "label": "Conversation",
+          "score": 0.147723
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.028032
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.02329
+        },
+        {
+          "label": "Radio",
+          "score": 0.017336
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012657
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.01074
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008589
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 71.378,
+      "rms": 0.0934783,
+      "peak": 0.6777245,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.89797
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.055062
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.03943
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.0372
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.0304
+        },
+        {
+          "label": "Quack",
+          "score": 0.027988
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.025061
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.02253
+        },
+        {
+          "label": "Gasp",
+          "score": 0.021528
+        },
+        {
+          "label": "Animal",
+          "score": 0.020503
+        }
+      ]
+    }
+  ]
+}

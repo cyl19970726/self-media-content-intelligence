@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a637e9e0000000010024e81",
+  "capturedAt": "2026-08-16T11:08:37.556Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "这个时代的builder 最重要的素质是什么？",
+    "postCopy": "Agency, taste, distribution",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a637e9e0000000010024e81",
+    "mediaType": "video",
+    "publishedAt": "2026-07-24T15:02:54.000Z",
+    "likes": "634",
+    "collections": "305",
+    "comments": "22",
+    "shares": "71",
+    "expectedDurationSec": 151
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 151
+    }
+  ]
+}

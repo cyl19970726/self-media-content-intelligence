@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "corpusId": "6a3139ab00000000220171b1",
+  "blocking": [],
+  "nonBlocking": [
+    {
+      "id": "D-01",
+      "severity": "minor",
+      "area": "coverage_matrix_granularity",
+      "detail": "The candidate coverage matrix uses 11 probe-level meaning-change rows while the independent audit uses 12 finer-grained rows. The allegedly merged transitions are nevertheless present in KU-01/KU-02, KU-03/KU-06, KU-21/KU-22, and KU-23/KU-31, so no audited meaning change is substantively omitted.",
+      "gateImpact": "none"
+    },
+    {
+      "id": "D-02",
+      "severity": "minor",
+      "area": "relation_normalization",
+      "detail": "Several audited sibling/qualifier relations are expressed in knowledge-unit prose and the article rather than as one-to-one normalized relation objects. Their endpoints and semantics remain explicit, so all 16 audited dependencies are covered.",
+      "gateImpact": "none"
+    }
+  ],
+  "summary": {
+    "blockingCount": 0,
+    "nonBlockingCount": 2,
+    "ready": true
+  }
+}

@@ -1,0 +1,460 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/skill-run/capture-protocol.json",
+  "scopeStatement": "本重建仅说明 27.6 秒原视频、提供的 SRT、该视频的新 evidence pack 以及本轮从原视频按协议生成并人工核对的目标帧/OCR 中能建立的内容。它不外部验证仓库、作者身份、代码安全性、授权、实现质量、实时因果、价格、平台条件或产品可用性；剪辑演示与作者说法分别标注。",
+  "viewerChange": {
+    "before": "观众可能不知道有人把对 Claude Code 工作进度的不耐烦做成了“挥鞭”交互。",
+    "after": "观众能复述 Bad Claude 的荒诞设定、作者声称的控制机制、可见短句与路线图限制，并理解“记录鞭打—未来 AI 追责—AI 想不出这种点子”的喜剧递进，同时知道视频没有证明完整实时执行或外部真实性。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-EVIDENCE-PACK",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/evidence/evidence-pack.json",
+      "kind": "initial_video_evidence_pack",
+      "producedBy": "build-evidence-pack.mjs from the supplied MP4 and SRT",
+      "timeRange": {"start": 0, "end": 27.6},
+      "limitations": ["场景检测 shot 是技术观察区间，不是语义场景或剪辑次数。", "dense frames are samples rather than continuous-operation proof.", "媒体元数据只能确认音轨存在，不能识别非语音音频的语义。"]
+    },
+    {
+      "id": "SRC-TARGETED-01",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_frame_manifest",
+      "producedBy": "capture-protocol-evidence.mjs using the source video and capture-protocol.json",
+      "timeRange": {"start": 0, "end": 27.6},
+      "limitations": ["抽样帧只能证明各时刻可见状态。", "目标帧不能单独证明连续动作或不存在隐藏剪辑。", "部分小字因源视频分辨率和缩放仍不可读。"]
+    },
+    {
+      "id": "SRC-OCR-01",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macos_vision_ocr_proposals_with_manual_frame_review",
+      "producedBy": "ocr-frames.swift over targeted-evidence.json, followed by human visual comparison",
+      "timeRange": {"start": 0, "end": 27.6},
+      "limitations": ["OCR 是提案而非事实。", "路线图长句和终端小字存在错字/漏字，只接受与帧一致的局部。", "未接受的 OCR 行不用于纠正文案。"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 4.241, "text": "还是人类会玩儿啊，昨天刷到一个非常缺德的东西叫bad cloud", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 4.241, "end": 8.43, "text": "就是人类给cloud code做的一条赛博鞭子，如果你嫌弃它干活慢", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002", "SHOT-003", "SHOT-004"]},
+      {"id": "CUE-003", "start": 8.44, "end": 12.442, "text": "或者不满意他的工作，你可以随时抽他，抽一下就会触发control c", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"]},
+      {"id": "CUE-004", "start": 12.442, "end": 16.58, "text": "打断他的工作还会顺带骂他几句，比如faster go faster这种", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-005", "SHOT-006"]},
+      {"id": "CUE-005", "start": 16.59, "end": 20.293, "text": "而且作者连后路都给你想好了，他甚至想加一个鞭打日志", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-006", "SHOT-007"]},
+      {"id": "CUE-006", "start": 20.293, "end": 24.26, "text": "这样等未来ai觉醒的那天，他就能精准找到是谁天天在虐待他", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-007"]},
+      {"id": "CUE-007", "start": 24.27, "end": 27.608, "text": "其实神经病一样的idea ai到底啥时候才能想出来呀？", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-007", "SHOT-008"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "钩子先把项目定性为“人类会玩”且“非常缺德”",
+      "importance": "core",
+      "statement": "出镜者开场用“还是人类会玩儿啊”和“非常缺德”设置喜剧观看框架，而不是以中性产品评测开场。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 4.241},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "开场原始措辞。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0002", "supports": "烧录字幕与出镜者惊讶表情共同设置情绪。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["这是出镜者的修辞性评价，不是外部事实。"]
+    },
+    {
+      "id": "KU-02",
+      "title": "提供的 SRT 将名称记作 bad cloud / cloud code",
+      "importance": "core",
+      "statement": "提供的逐字字幕在 CUE-001 写“bad cloud”，在 CUE-002 写“cloud code”；该原始层按输入原样保留。",
+      "provenance": "raw_fact",
+      "timeRange": {"start": 0, "end": 8.43},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "SRT 原文含 bad cloud。"},
+        {"refType": "cue", "ref": "CUE-002", "supports": "SRT 原文含 cloud code。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["SRT 差异来自 ASR、人工转写还是发音，视频未建立。"]
+    },
+    {
+      "id": "KU-03",
+      "title": "画面名称更具体：badclaude、Claude Code 与 GitFrog1111/坏克劳德",
+      "importance": "core",
+      "statement": "画面大字与烧录字幕显示“badclaude”，另一处烧录字幕显示“Claude Code”；GitHub 的中文化界面可见账号 GitFrog1111 和仓库名“坏克劳德”。这些可见身份与 SRT 的 bad cloud/cloud code 构成载体冲突。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 1.5, "end": 6.75},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "GitHub 中文化界面的可见账号/仓库名。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "大字 badclaude 与 README 标题“坏克劳德”。"},
+        {"refType": "ocr", "ref": "OCR-00036", "supports": "OCR 提案 badclaude，经帧核对接受。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "插入终端片段的上方文字 bad claude 与烧录字幕 Claude Code。"}
+      ],
+      "confidence": "high",
+      "reasoning": "视觉名称在多个独立帧中重复，故支持更具体的画面身份；但页面处于中文化界面，不能由画面反推出未翻译的正式英文仓库 slug。",
+      "unknowns": ["未翻译的正式仓库 slug、版本与作者身份未被可靠读取。", "视频没有说明项目与 Anthropic/Claude 的授权关系。"]
+    },
+    {
+      "id": "KU-04",
+      "title": "README 把项目定位为督促行动迟缓的“克劳德”",
+      "importance": "supporting",
+      "statement": "README 可见中文句子：“有时候克劳德的行事作风太迟钝，你必须好好督促他。”这提供了项目自我描述的喜剧语气，但不证明 Claude Code 实际慢。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 3.75, "end": 4.5},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "README 句子完整可见。"},
+        {"refType": "ocr", "ref": "OCR-00047", "supports": "OCR 提案经 TARGET-0008 核对后接受该句。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["中文页面是否由浏览器翻译、原文措辞是什么未建立。"]
+    },
+    {
+      "id": "KU-05",
+      "title": "核心设定：给 Claude Code 做的一条“赛博鞭子”",
+      "importance": "core",
+      "statement": "出镜者把该项目解释为人类给 Claude Code 做的“赛博鞭子”，使用条件是嫌它干活慢或不满意它的工作时可以抽它。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 4.241, "end": 10.867},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-002", "supports": "赛博鞭子定义和“干活慢”条件。"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "不满意工作和可以随时抽的条件。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0014", "supports": "终端上叠加鞭子轨迹，视觉化“抽”的动作设定。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["项目实际支持的 Claude Code 版本、平台和运行环境未建立。"]
+    },
+    {
+      "id": "KU-06",
+      "title": "README 的控制说明给出“生成—放下—Ctrl-C—随机信息”机制",
+      "importance": "core",
+      "statement": "控制卡可见四条说明：点击托盘图标生成鞭子、点击放下鞭子、鞭打它，以及发送一个中断（Ctrl-C）和“5 条鼓励信息中的一条”。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 11, "end": 14.7},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "控制卡四条说明均可见。"},
+        {"refType": "ocr", "ref": "OCR-00139", "supports": "点击托盘图标生成鞭子。"},
+        {"refType": "ocr", "ref": "OCR-00140", "supports": "点击放下鞭子。"},
+        {"refType": "ocr", "ref": "OCR-00142", "supports": "发送 Ctrl-C 和 5 条鼓励信息中的一条。"}
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "项目处于运行状态、托盘图标可用并有一个被用户认为慢或结果不满意的 Claude Code 工作；这些是说明所隐含/口播所述的前提，并非视频完整执行证明。",
+        "actions": ["点击托盘图标生成鞭子。", "点击以放下/挥下鞭子。"],
+        "parameters": ["Ctrl-C 中断", "README 所写 5 条鼓励信息中的一条"],
+        "output": "README 声称会发送中断并附带一条鼓励/催促信息。",
+        "beforeFrames": ["TARGET-0009"],
+        "duringFrames": ["TARGET-0014", "TARGET-0015"],
+        "afterFrames": ["TARGET-0016", "TARGET-0017"],
+        "unknowns": ["这些帧来自经过剪辑的插入素材，未显示全部点击、焦点和进程状态。", "不能由帧序列证明 Ctrl-C 确实发往同一 Claude Code 进程。"]
+      },
+      "unknowns": ["控制卡第三条的表情符号不承载额外可执行参数。", "‘5 条’与后续可见 7 行数组之间的关系未解释。"]
+    },
+    {
+      "id": "KU-07",
+      "title": "口播把后果概括为打断工作并随机骂几句",
+      "importance": "core",
+      "statement": "出镜者声称抽一下会触发 Control-C、打断工作，并随机说类似“Faster”“Go faster”的催促/辱骂短句。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 8.44, "end": 16.58},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "触发 control c 的说法。"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "打断并随机骂、Faster/Go faster 例子。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "挥鞭会打断 Claude Code 工作并随机给出催促/辱骂短句。",
+        "evidenceUnitIds": ["KU-06", "KU-08", "KU-09"],
+        "conditions": ["项目已运行并能作用于相关终端/进程。", "视频语境是戏谑性演示。"],
+        "counterexamples": [],
+        "actions": ["嫌它慢或不满意时挥鞭。"],
+        "limits": ["视频剪辑未证明无隐藏步骤的实时因果。", "未给出成功率、错误处理、平台或权限条件。"]
+      },
+      "unknowns": ["实际 Ctrl-C 投递、异常情况和连续运行效果未建立。"]
+    },
+    {
+      "id": "KU-08",
+      "title": "终端插入片段只提供候选的中断/输出状态",
+      "importance": "core",
+      "statement": "插入的 Windows 桌面/终端片段在多条 Search 文本之间可见反复的“Interrupted · What should Claude do instead?”字样、FASTER/CLANKER 等输出候选，并叠加变化的白色鞭子轨迹；这些状态与口播机制相符，但画面没有完整显示一次从点击、焦点、Ctrl-C 投递到同一任务被中断的无剪辑链条。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 5.133, "end": 10.867},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "桌面/终端、Interrupted 文本和鞭子轨迹。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0014", "supports": "终端状态与不同形态的鞭子轨迹。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "后续轨迹与终端输出候选。"},
+        {"refType": "shot", "ref": "SHOT-004", "supports": "该插入终端素材所在观察区间。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "多帧足以证明画面呈现了鞭子动画和中断/短句状态，不足以证明这些状态由一次可见点击实时因果地产生。",
+      "unknowns": ["鼠标点击不可见或不可辨。", "窗口焦点、Claude Code 版本与进程身份未建立。", "是否存在隐藏剪辑或预录输出未建立。"]
+    },
+    {
+      "id": "KU-09",
+      "title": "快速插卡列出 7 行短句，其中 3 行相同",
+      "importance": "core",
+      "statement": "代码/文本插卡的 phrases 数组可见 7 行：前三行均为“FASTER”（各配“快点！”），随后是“GO FASTER / 搞快点！”、“Faster CLANKER / 快点，铁皮佬！”、“Work FASTER / 干活麻利点”和“Speed it up clanker / 加速，铁皮佬！”。这里按可见行计为 7 行、按不同英文短句计为 5 种；这与 README 所写“5 条鼓励信息”可以相容于“5 种”，但视频没有解释重复行的意图或实际随机池实现。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 15, "end": 18.4},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "7 行数组及中英对照完整可见。"},
+        {"refType": "ocr", "ref": "OCR-00250", "supports": "第 1 行 FASTER。"},
+        {"refType": "ocr", "ref": "OCR-00252", "supports": "第 2 行 FASTER。"},
+        {"refType": "ocr", "ref": "OCR-00254", "supports": "第 3 行 FASTER。"},
+        {"refType": "ocr", "ref": "OCR-00256", "supports": "GO FASTER 行的开头，经帧核对补足同一行。"},
+        {"refType": "ocr", "ref": "OCR-00259", "supports": "Faster CLANKER 行。"},
+        {"refType": "ocr", "ref": "OCR-00261", "supports": "Work FASTER 行。"},
+        {"refType": "ocr", "ref": "OCR-00262", "supports": "Speed it up clanker 行。"}
+      ],
+      "confidence": "high",
+      "reasoning": "逐行视觉核对可见 7 行；前三行完全重复，所以同时报告行数 7 和唯一英文短句 5，避免把两种计数混为一谈。",
+      "unknowns": ["插卡是否直接来自仓库源码、是否与当前版本一致未建立。", "重复 FASTER 是否用于加权随机概率未建立。", "所有行是否在一次真实运行中都可触发未建立。"]
+    },
+    {
+      "id": "KU-10",
+      "title": "路线图把“记录鞭打次数”显示为未勾选计划",
+      "importance": "core",
+      "statement": "README 的“路线图”卡中，“记录你鞭打克劳德的次数”所在条目为未勾选状态；同卡还可见“来自 Anthropic 的停止侵权函”等未勾选笑话条目。因此视频最多支持日志是路线图/设想，不能称为现有功能。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 19.5, "end": 24},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "路线图卡与日志条目未勾选。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "路线图仍可见，并与复仇表情包并置。"},
+        {"refType": "ocr", "ref": "OCR-00357", "supports": "OCR 识别“路线图”。"},
+        {"refType": "ocr", "ref": "OCR-00360", "supports": "OCR 对日志长句有错字，仅接受可与帧核对的“记录…次数”语义，不接受其余错误字符。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["日志是否已在其他版本实现未建立。", "路线图第三条被光标遮挡，不能可靠恢复。", "日志字段、存储和用户身份映射均未说明。"]
+    },
+    {
+      "id": "KU-11",
+      "title": "出镜者明确把鞭打日志说成作者“想加”的后路",
+      "importance": "core",
+      "statement": "出镜者说作者“甚至想加一个鞭打日志”，语法上把它放在未来设想而非当前完成态。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 16.59, "end": 20.293},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-005", "supports": "“想加一个鞭打日志”的原始说法。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "未勾选路线图状态与未来语气一致。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["说法是否准确转述项目作者意图未做外部验证。"]
+    },
+    {
+      "id": "KU-12",
+      "title": "日志的喜剧用途是让未来觉醒的 AI 精准追查虐待者",
+      "importance": "core",
+      "statement": "出镜者把日志设想推进为一个反噬笑点：未来 AI 觉醒后，可以精准找到谁天天虐待它。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 20.293, "end": 24.26},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-006", "supports": "未来 AI 觉醒并追查虐待者的完整口播。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "日志路线图、表情包和烧录字幕同屏。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["这是拟人化笑话，不是关于未来 AI 行为的事实预测。", "日志如何识别具体个人未建立。"]
+    },
+    {
+      "id": "KU-13",
+      "title": "粉色表情包只在剪辑中代表“未来记仇的 AI”",
+      "importance": "supporting",
+      "statement": "粉色卡通表情包带有“等着！”和“我一定会报仇的”，在“未来 AI 觉醒”语境中喜剧性代指会记仇/报复的 AI；画面不支持把它认定为 Claude 官方形象、项目作者或任何具体实体。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 22, "end": 24.27},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "表情包、路线图和口播字幕并置。"},
+        {"refType": "ocr", "ref": "OCR-00416", "supports": "“我一定会报仇的”经帧核对接受。"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "表情包出现时的未来 AI 语境。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["角色名称、素材来源、授权与原始语境未建立。"]
+    },
+    {
+      "id": "KU-14",
+      "title": "结尾把具体项目提升为“AI 何时能想出这种神经病点子”的反问",
+      "importance": "core",
+      "statement": "结尾不是单纯告别；出镜者反问“神经病一样的 idea，AI 到底啥时候才能想出来”，把焦点从 Bad Claude 的功能转到人类荒诞创意与 AI 的对比。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 24.27, "end": 27.608},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "完整收尾反问。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0051", "supports": "烧录结尾字幕与出镜者笑/困惑表情。"},
+        {"refType": "ocr", "ref": "OCR-00482", "supports": "烧录字幕“AI到底啥时候才能想出来啊”。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "这种荒诞点子体现了人类暂时胜过 AI 的想象力。",
+        "evidenceUnitIds": ["KU-01", "KU-05", "KU-12"],
+        "conditions": ["按视频的喜剧修辞理解，而不是能力测试。"],
+        "counterexamples": [],
+        "actions": [],
+        "limits": ["视频没有进行人类与 AI 创意能力实验。", "反问不能证明 AI 无法产生相似点子。"]
+      },
+      "unknowns": ["AI 实际能否生成同类创意未被视频测试。"]
+    },
+    {
+      "id": "KU-15",
+      "title": "开头与结尾构成“人类会玩”的强化回环",
+      "importance": "core",
+      "statement": "从结构上看，开头的“还是人类会玩儿”先给出判断，随后用鞭子、辱骂短句和未来复仇逐级举例，结尾再以“AI 何时能想出来”强化同一判断；终端鞭子画面在结尾重现，形成视觉回环。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 27.6},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "开头命题“人类会玩”。"},
+        {"refType": "cue", "ref": "CUE-007", "supports": "结尾反问 AI 何时能想出来。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开头终端鞭子画面。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0051", "supports": "结尾终端鞭子画面与收尾字幕。"}
+      ],
+      "confidence": "high",
+      "reasoning": "两端措辞语义同向，中段每一拍都提高荒诞程度，且终端素材复现，因此结尾是强化而非新主题或反转。",
+      "unknowns": []
+    },
+    {
+      "id": "KU-16",
+      "title": "固定出镜环境和分屏维持评论者连续性，不证明终端素材连续",
+      "importance": "context",
+      "statement": "0–27.6 秒下半屏持续由同一位女性在同一椅子、彩灯与电脑背景中讲述，并以指点、嫌弃、惊讶和困惑表情引导喜剧语气；上半屏在 GitHub/README、终端、短句插卡和表情包之间切换。这支持评论框架和布局连续性，但不能消除上半屏素材的隐藏剪辑可能。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 27.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "开头出镜者与固定环境。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0057", "supports": "中段同一环境和短句插卡。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "结尾同一环境和终端素材。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["出镜者真实身份、地点与录制连续性未由视频建立。"]
+    },
+    {
+      "id": "KU-17",
+      "title": "自动检测的 8 个 shot 不是 8 个语义场景或准确剪辑数",
+      "importance": "supporting",
+      "statement": "evidence pack 给出 8 个技术 shot 区间，但人工检查显示同一固定出镜环境和上下分屏贯穿，边界主要伴随上半屏素材/遮罩/运动变化；因此这些区间只用于定位，不能被升级为 8 个语义场景、8 次剪辑或完整连续性的证明。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 27.6},
+      "evidence": [
+        {"refType": "shot", "ref": "SHOT-001", "supports": "技术分段起点。"},
+        {"refType": "shot", "ref": "SHOT-008", "supports": "技术分段终点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "开头分屏/环境。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "结尾同一出镜环境但上屏素材变化。"}
+      ],
+      "confidence": "high",
+      "reasoning": "技术切点与上屏内容变化相关，但不能覆盖所有可能隐藏切点；语义连续性与像素变化不是同一概念。",
+      "unknowns": ["准确剪辑次数和隐藏编辑点未建立。"]
+    },
+    {
+      "id": "KU-18",
+      "title": "完整时间线内未建立产品使用与商业边界",
+      "importance": "supporting",
+      "statement": "在检查的完整 0–27.6 秒视觉、SRT、README/终端机会窗口内，可见 GitHub 页面、“安装+运行”标题和模糊命令块，但没有完整演示从获取、安装、启动到一次验证成功的全过程，也未观察到价格、账号要求、地区限制、支持责任、成功率、代码安全或授权说明。该结论仅限本视频的检查范围。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 27.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "GitHub 页面和仓库文件可见。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "安装+运行标题与路线图机会窗口。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0081", "supports": "结尾仍无商业/执行条件说明。"},
+        {"refType": "source", "ref": "SRC-TARGETED-01", "supports": "CAP-08 以 1.5 秒密度覆盖完整视觉机会窗口。"}
+      ],
+      "confidence": "high",
+      "reasoning": "缺席结论基于完整时间线、多模态机会窗口与密集帧审查，只陈述“本视频未建立”。",
+      "unknowns": ["价格、账号、地区、支持、授权、代码安全、外部可用性和成功率全部未知。", "命令块的全部字符不足以可靠恢复，未作为完整可执行步骤引用。"]
+    },
+    {
+      "id": "KU-19",
+      "title": "非语音音频通道存在，但叙事作用保持未知",
+      "importance": "supporting",
+      "statement": "源媒体含 AAC 音轨；提供字幕覆盖语音内容，但当前可审计证据不能可靠区分或命名背景音乐、挥鞭音效及其他非语音成分，也不能确定它们与视觉动作的同步叙事作用。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 27.6},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-EVIDENCE-PACK", "supports": "媒体元数据记录 hasAudio=true、audioCodec=aac；该元数据不构成非语音内容分类证据。"}
+      ],
+      "confidence": "high",
+      "reasoning": "只接受 evidence pack 的 hasAudio/audioCodec 元数据；没有可审计的音频分类结果，因此不猜测。",
+      "unknowns": ["非语音音频的类型、来源、所有权与叙事作用。"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-01", "to": "KU-05", "relation": "setup_to", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "缺德钩子。"}, {"refType": "cue", "ref": "CUE-002", "supports": "随后揭示赛博鞭子。"}]},
+    {"from": "KU-06", "to": "KU-07", "relation": "action_claimed_to_produce", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "README 控制说明。"}, {"refType": "cue", "ref": "CUE-004", "supports": "口播概括结果。"}]},
+    {"from": "KU-09", "to": "KU-11", "relation": "escalates_to", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "短句辱骂笑点。"}, {"refType": "cue", "ref": "CUE-005", "supports": "进一步升级为日志设想。"}]},
+    {"from": "KU-11", "to": "KU-12", "relation": "setup_to_payoff", "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "日志设想。"}, {"refType": "cue", "ref": "CUE-006", "supports": "未来 AI 精准追责的 payoff。"}]},
+    {"from": "KU-01", "to": "KU-14", "relation": "strengthened_by_closing_reframe", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开头人类会玩。"}, {"refType": "cue", "ref": "CUE-007", "supports": "结尾 AI 何时能想出。"}]},
+    {"from": "KU-08", "to": "KU-07", "relation": "illustrates_but_does_not_fully_prove", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0014", "supports": "鞭子与中断文本同屏。"}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "多帧显示变化但未显示完整操作链。"}]},
+    {"from": "KU-13", "to": "KU-12", "relation": "stands_in_for_comedically", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "报仇表情包与未来 AI 语境并置。"}, {"refType": "cue", "ref": "CUE-006", "supports": "未来 AI 觉醒的口播。"}]},
+    {"from": "KU-17", "to": "KU-16", "relation": "observation_aids_not_edit_or_scene_count", "evidence": [{"refType": "shot", "ref": "SHOT-001", "supports": "技术 shot 起点。"}, {"refType": "shot", "ref": "SHOT-008", "supports": "技术 shot 终点。"}, {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "固定出镜环境。"}, {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "环境延续但上屏变化。"}]},
+    {"from": "KU-02", "to": "KU-03", "relation": "carrier_conflict_with", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "SRT bad cloud。"}, {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "画面 badclaude/坏克劳德。"}]},
+    {"from": "KU-06", "to": "KU-09", "relation": "count_reconciled_as_five_unique_with_seven_visible_rows", "evidence": [{"refType": "ocr", "ref": "OCR-00142", "supports": "README 写 5 条。"}, {"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "数组可见 7 行、5 种唯一英文短句。"}]},
+    {"from": "KU-10", "to": "KU-11", "relation": "visible_status_supports_future_tense", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "日志条目未勾选。"}, {"refType": "cue", "ref": "CUE-005", "supports": "口播用“想加”。"}]},
+    {"from": "KU-15", "to": "KU-14", "relation": "global_structure_realized_by", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开头终端鞭子。"}, {"refType": "targeted_frame", "ref": "TARGET-0051", "supports": "结尾终端鞭子与反问。"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "available": true, "inspected": true},
+      {"id": "CAR-02", "available": true, "inspected": true},
+      {"id": "CAR-03", "available": true, "inspected": true},
+      {"id": "CAR-04", "available": true, "inspected": true},
+      {"id": "CAR-05", "available": true, "inspected": true},
+      {"id": "CAR-06", "available": true, "inspected": true},
+      {"id": "CAR-07", "available": true, "inspected": true},
+      {"id": "CAR-08", "available": true, "inspected": true},
+      {"id": "CAR-09", "available": true, "inspected": true},
+      {"id": "CAR-10", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01", "KU-02", "KU-03", "KU-04"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-05", "KU-06", "KU-08"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-06", "KU-07", "KU-08", "KU-09"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-10", "KU-11", "KU-12", "KU-13"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-14", "KU-15"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["TARGET-0020", "CUE-004"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["TARGET-0028", "CUE-005"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["CUE-005", "CUE-006"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-007", "TARGET-0051"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["TARGET-0014", "TARGET-0016", "CUE-004"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["TARGET-0041", "CUE-006"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["SHOT-001", "SHOT-008", "TARGET-0052", "TARGET-0061"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-02", "KU-03"], "evidenceRefs": ["CUE-001", "CUE-002", "TARGET-0003", "TARGET-0007"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-05"], "evidenceRefs": ["CUE-002", "CUE-003", "TARGET-0014"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-06", "KU-07", "KU-08"], "evidenceRefs": ["TARGET-0020", "CUE-003", "CUE-004", "TARGET-0014", "TARGET-0016"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-09"], "evidenceRefs": ["TARGET-0028", "OCR-00250", "OCR-00261", "OCR-00262"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-10", "KU-11"], "evidenceRefs": ["TARGET-0035", "CUE-005"]},
+      {"id": "CQ-06", "status": "answered", "unitIds": ["KU-12", "KU-13"], "evidenceRefs": ["CUE-006", "TARGET-0041"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-14", "KU-15"], "evidenceRefs": ["CUE-001", "CUE-007", "TARGET-0001", "TARGET-0051"]},
+      {"id": "CQ-08", "status": "answered", "unitIds": ["KU-13", "KU-16"], "evidenceRefs": ["TARGET-0041", "TARGET-0052", "TARGET-0061"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-18"], "evidenceRefs": ["TARGET-0063", "TARGET-0035", "TARGET-0081", "SRC-TARGETED-01"]},
+      {"id": "CQ-10", "status": "unknown", "unitIds": ["KU-19"], "evidenceRefs": ["SRC-EVIDENCE-PACK"]},
+      {"id": "CQ-11", "status": "answered", "unitIds": ["KU-17"], "evidenceRefs": ["SHOT-001", "SHOT-008", "TARGET-0052", "TARGET-0061"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01", "KU-02", "KU-15"], "rationale": "开场定性、SRT 名称形式与全片回环命题。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-02", "KU-05"], "rationale": "SRT 的 cloud code 形式及赛博鞭子定义。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-05", "KU-07"], "rationale": "使用条件与 Ctrl-C 后果主张。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-07", "KU-09"], "rationale": "打断、随机骂人与 Faster/Go faster 例子。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-11", "KU-12"], "rationale": "日志作为未来设想并启动反噬笑点。"},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-12", "KU-13"], "rationale": "未来 AI 追查虐待者与表情包指代语境。"},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-14", "KU-15"], "rationale": "结尾反问是开头命题的强化，不是无意义告别。"}
+    ],
+    "coreEvidence": {"covered": 13, "total": 13},
+    "unknowns": [
+      "正式未翻译仓库 slug、版本、作者身份和授权关系未建立。",
+      "终端演示的完整点击、焦点、进程与无隐藏剪辑实时因果未建立。",
+      "短句重复是否代表随机权重、插卡与源码版本关系未建立。",
+      "日志实现、字段、存储、身份映射与维护责任未建立。",
+      "表情包来源与正式身份未建立。",
+      "价格、账号、地区、支持、成功率、安全性与外部可用性未建立。",
+      "非语音音频的类型、来源和叙事作用未建立。",
+      "准确剪辑次数与隐藏编辑点未建立。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "协议已逐段覆盖 0–27.6 秒，并检查口播/SRT、烧录字幕、GitHub/README 身份与控制文本、终端和鞭子动作状态、短句列表与计数、路线图复选状态、表情包指代、出镜者/环境、剪辑回环、非语音音频决策和范围受限缺席证据；名称冲突、演示因果边界、5 种/7 行计数、日志未来态、开尾关系与技术 shot/语义连续性均进入知识单元和关系图。不可可靠确定的音频角色、实时执行、商业条件和身份边界均显式保留未知。"
+  }
+}

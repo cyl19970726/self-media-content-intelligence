@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69ded448000000001a02f276",
+  "capturedAt": "2026-08-16T11:10:20.170Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "做了个插件，让关浏览器tabs变得上瘾",
+    "postCopy": "Tab out可以把你Chrome的new tab变成一个自定义页面，上面可以清晰地展示出你有哪些开着的tabs、方便地关掉\n\t\n#效率神器[话题]# #AI工具[话题]# #vibecoding[话题]# #个人开发者[话题]#",
+    "hashtags": [
+      "效率神器",
+      "AI工具",
+      "vibecoding",
+      "个人开发者"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69ded448000000001a02f276",
+    "mediaType": "video",
+    "publishedAt": "2026-04-14T23:56:56.000Z",
+    "likes": "3720",
+    "collections": "2711",
+    "comments": "207",
+    "shares": "801",
+    "expectedDurationSec": 204
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 204
+    }
+  ]
+}

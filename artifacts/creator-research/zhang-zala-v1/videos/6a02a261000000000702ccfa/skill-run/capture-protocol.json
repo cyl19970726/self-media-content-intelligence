@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/skill-run/probe.json",
+  "protocolName": "实时语音采访写作—飞书资料调用—构建方法捕捉协议",
+  "rationale": "本片不是单一工具教程，而是用三个相邻演示说明‘语音采访帮助启动写作’、‘长会议资料可被问答’和‘CLI/API/Skill 可组合’。必须同时检查浏览器插件、文档/妙记界面、来源链接、构建自述与延迟/连续性边界，不能把剪辑后的多个状态当成实时端到端证明。",
+  "knowledgeUnitFields": [
+    {
+      "name": "新 API 与空白文档痛点共同建立工具承诺",
+      "required": true,
+      "reason": "开场究竟承诺什么结果，为什么观众需要它？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "逐问采访把口述内容组织成文档",
+      "required": true,
+      "reason": "采访模式真实展示了哪些输入、操作和输出？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "同一语音入口被扩展为组织资料问答",
+      "required": true,
+      "reason": "长会议和群总结演示能证明什么，不能证明什么？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "CLI、API 与 Skill 被提出为可组合基础设施",
+      "required": true,
+      "reason": "作者如何从三个演示推导出通用构建方法？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "name": "获得工具的入口与当前可用性仍需核验",
+      "required": true,
+      "reason": "视频给出了哪些入口线索，哪些安装和可用性信息没有闭环？",
+      "derivedFrom": [
+        "MC-05",
+        "CQ-05"
+      ]
+    },
+    {
+      "name": "收尾用低门槛构建自述和社区 CTA 降低行动阻力",
+      "required": true,
+      "reason": "作者如何把观看转成观众下一步行动？",
+      "derivedFrom": [
+        "MC-06",
+        "CQ-06"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 28
+      },
+      "carrier": "语音助手、空白文档、烧录字幕和主讲人口播",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "捕捉助手身份、空白文档和第一轮采访前状态；分开承诺与实测。",
+      "expectedObservation": "工具身份与痛点明确，但低延迟只作为作者主张。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 28,
+        "end": 97
+      },
+      "carrier": "采访对话、用户语音、文档正文和 UI 状态",
+      "mode": "interval_density",
+      "densitySeconds": 2.5,
+      "reason": "密集检查提问前、回答中和文档出现后的状态，标明未展示桥接。",
+      "expectedObservation": "可恢复问题→口述→文档结果的局部链，但不能证明每一步连续或所有文字都由当次回答生成。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 97,
+        "end": 183
+      },
+      "carrier": "群总结、妙记/会议、回答卡和来源链接",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "检查问题、回答、来源和会议界面，明确单例与普遍能力边界。",
+      "expectedObservation": "界面可支持资料问答单例，但准确性、权限和引用忠实性未知。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 183,
+        "end": 228
+      },
+      "carrier": "文档/CLI 页面、功能示例和烧录字幕",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "区分已演示能力、概念示例和未来扩展；记录依赖。",
+      "expectedObservation": "方法论清晰，但多项扩展没有逐项验证。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "range": {
+        "start": 228,
+        "end": 247
+      },
+      "carrier": "搜索、GitHub/CLI 页面与可见关键词",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "OCR 可见入口文字，并把当前可用性、价格、许可和安装保持未知。",
+      "expectedObservation": "存在入口线索，不存在完整获取—安装—运行链。",
+      "derivedFrom": [
+        "SWEEP-05",
+        "MC-05",
+        "CQ-05"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "range": {
+        "start": 247,
+        "end": 272.667
+      },
+      "carrier": "收尾主讲人、构建自述、烧录字幕与社区 CTA",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "捕捉构建自述与 CTA，并明确时间和难度是作者单例。",
+      "expectedObservation": "行动阻力被显著降低，但可复现性未知。",
+      "derivedFrom": [
+        "SWEEP-06",
+        "MC-06",
+        "CQ-06"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "开场承诺通过逐问采访演示获得第一个可见结果",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "个人写作能力被扩展为组织知识检索与问答",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "资料问答单例被概括为可复用的工具组合模式",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    },
+    {
+      "relation": "抽象组合方法落到可搜索的入口线索",
+      "derivedFrom": [
+        "REL-04"
+      ]
+    },
+    {
+      "relation": "入口线索进一步被包装为低门槛亲手构建的行动邀请",
+      "derivedFrom": [
+        "REL-05"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–272.667 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "OpenAI Realtime API 与飞书 CLI 的准确版本、账户、费用和地区条件",
+    "插件当前下载地址、源代码、许可证和数据权限",
+    "演示中的真实延迟、任务连续性和镜头外编辑",
+    "会议来源链接、回答准确性和权限隔离是否经独立验证",
+    "半小时至一小时构建时长的起止口径和可复现性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a02a261000000000702ccfa/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

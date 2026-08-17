@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "bounded-audio-inspection-1.0",
+  "registeredCarrier": {
+    "id": "CAR-NONSPEECH-AUDIO",
+    "canonicalModalityKey": "audio.non_speech"
+  },
+  "sourceVideo": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/688ab6260000000022020d3e.mp4",
+  "derivedAudio": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/skill-run/probe-assets/full-audio-review.wav",
+  "inspectedScope": {
+    "start": 0,
+    "end": 22.466938,
+    "complete": true,
+    "windowing": "three contiguous 7.5/7.5/7.466938 second windows plus nine contiguous 2.5 second localization windows"
+  },
+  "methods": [
+    {
+      "name": "audio event listening pass",
+      "implementation": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "input": "16 kHz mono PCM extracted from the complete supplied MP4",
+      "purpose": "inspect actual acoustic signal for speech, music and distinct sound-event candidates; this is separate from subtitle/ASR text"
+    },
+    {
+      "name": "fresh speech-form comparison",
+      "implementation": "OpenAI Whisper small on complete supplied MP4, compared with supplied SRT and burned captions",
+      "purpose": "test disputed heard wording while preserving homophones and orthography unknowns"
+    }
+  ],
+  "coarseWindows": [
+    {"start": 0, "end": 7.5, "speechScore": 0.810646, "musicScore": 0.666623, "highestNonSpeechNonMusicCandidate": {"label": "Throat clearing", "score": 0.222105}},
+    {"start": 7.5, "end": 15, "speechScore": 0.778594, "musicScore": 0.668447, "highestNonSpeechNonMusicCandidate": {"label": "Ping", "score": 0.044274}},
+    {"start": 15, "end": 22.466938, "speechScore": 0.779601, "musicScore": 0.70524, "highestNonSpeechNonMusicCandidate": {"label": "Ding", "score": 0.152884}}
+  ],
+  "localizationWindows": [
+    {"start": 0, "end": 2.5, "speechScore": 0.794995, "musicScore": 0.588633},
+    {"start": 2.5, "end": 5, "speechScore": 0.821711, "musicScore": 0.718207},
+    {"start": 5, "end": 7.5, "speechScore": 0.765914, "musicScore": 0.723961},
+    {"start": 7.5, "end": 10, "speechScore": 0.87246, "musicScore": 0.697836},
+    {"start": 10, "end": 12.5, "speechScore": 0.644759, "musicScore": 0.466845, "highestTransientCandidate": {"label": "Ding", "score": 0.094669}},
+    {"start": 12.5, "end": 15, "speechScore": 0.809341, "musicScore": 0.677983},
+    {"start": 15, "end": 17.5, "speechScore": 0.478831, "musicScore": 0.398121, "highestTransientCandidate": {"label": "Ding", "score": 0.060006}},
+    {"start": 17.5, "end": 20, "speechScore": 0.679136, "musicScore": 0.663881},
+    {"start": 20, "end": 22.466938, "speechScore": 0.720101, "musicScore": 0.65663}
+  ],
+  "findings": {
+    "speech": "Speech is detected in every contiguous inspection window, consistent with continuous narration across the clip.",
+    "music": "Music is detected in all three coarse windows and all nine localization windows. The bounded acoustic evidence supports a continuous background music bed across 0-22.466938 seconds.",
+    "soundEffects": "No distinct sound effect is established with stable localization. Low and inconsistent ding/ping/throat-clearing candidates may be music transients or speech-model confusions; they are not promoted to positive SFX facts.",
+    "disputedPOrPi": "The heard syllable represented by P图 and 批图 is homophonic in this context; the complete audio pass and fresh ASR cannot establish Chinese orthography. With no burned caption after 16.333 seconds, P图 versus 批图 remains unresolved.",
+    "narrativeRole": "The music bed supports continuous pacing/energy beneath the narration; no separately identifiable sound-effect cue is evidenced strongly enough to assign a narrative role."
+  },
+  "limitations": [
+    "AudioSet labels are probabilistic proposals and can confuse music transients with sound effects or speech artifacts.",
+    "This pass establishes acoustic presence, not music title, composer, ownership or license.",
+    "P图 and 批图 cannot be distinguished by sound alone because the pronunciation is the same; orthography requires a visual/text source that is absent in the closing interval.",
+    "The failed Gemini CLI attempt produced no evidence and is not used in reconstruction."
+  ]
+}

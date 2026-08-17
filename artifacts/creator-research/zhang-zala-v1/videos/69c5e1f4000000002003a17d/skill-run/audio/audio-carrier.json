@@ -1,0 +1,984 @@
+{
+  "schemaVersion": "audio-carrier-proposals-1.0",
+  "generatedAt": "2026-08-16T13:22:20.452991+00:00",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69c5e1f4000000002003a17d/audio-16k.wav",
+  "sourceSha256": "c26960ed9c59de890b1cfae2d4eb74542d9838f64c8c5bb33194760ad8f718a4",
+  "durationSeconds": 195.047625,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "labelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 10.0,
+    "hopSeconds": 10.0,
+    "coverage": "gap-free; overlapping when hop is smaller than window",
+    "scoreTransform": "sigmoid(logits)"
+  },
+  "limitations": [
+    "Labels and scores are machine proposals, not human listening or source attribution.",
+    "Mixed-track classification does not isolate speech, music, UI sounds, or inserted-clip audio.",
+    "Absence from top labels does not prove a sound is absent.",
+    "The model cannot establish track identity, ownership, licensing, or editorial intent."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "rms": 0.0697218,
+      "peak": 0.5647145,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.861564
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.483865
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.219994
+        },
+        {
+          "label": "Conversation",
+          "score": 0.106459
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.033891
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012005
+        },
+        {
+          "label": "Telephone",
+          "score": 0.011121
+        },
+        {
+          "label": "Television",
+          "score": 0.010843
+        },
+        {
+          "label": "Insect",
+          "score": 0.007747
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007164
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "rms": 0.0608588,
+      "peak": 0.5399029,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.966335
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.801547
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.493291
+        },
+        {
+          "label": "Conversation",
+          "score": 0.183697
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.089299
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007311
+        },
+        {
+          "label": "Music",
+          "score": 0.007243
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.006863
+        },
+        {
+          "label": "Television",
+          "score": 0.005829
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.004353
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "rms": 0.0657482,
+      "peak": 0.515183,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.962821
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.441579
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.415841
+        },
+        {
+          "label": "Conversation",
+          "score": 0.302013
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.29597
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.011237
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.010672
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.006332
+        },
+        {
+          "label": "Television",
+          "score": 0.006303
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.005778
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "rms": 0.0685639,
+      "peak": 0.5316629,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.968817
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.709819
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.541548
+        },
+        {
+          "label": "Conversation",
+          "score": 0.24476
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.195963
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.010064
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.008282
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.00549
+        },
+        {
+          "label": "Television",
+          "score": 0.005147
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004734
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "rms": 0.0910154,
+      "peak": 0.716422,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.969044
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.800795
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.673213
+        },
+        {
+          "label": "Conversation",
+          "score": 0.201159
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.172114
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.00777
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007639
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.006273
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.005462
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.004055
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "rms": 0.0780027,
+      "peak": 0.6166875,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.959382
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.693504
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.415045
+        },
+        {
+          "label": "Conversation",
+          "score": 0.20586
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.123627
+        },
+        {
+          "label": "Music",
+          "score": 0.011704
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.011405
+        },
+        {
+          "label": "Television",
+          "score": 0.007279
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.006417
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.004396
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "rms": 0.0713872,
+      "peak": 0.640492,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.956186
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.527397
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.500735
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.222875
+        },
+        {
+          "label": "Conversation",
+          "score": 0.116439
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.010512
+        },
+        {
+          "label": "Television",
+          "score": 0.005861
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.005846
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004546
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.003853
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 80.0,
+      "rms": 0.0743179,
+      "peak": 0.6927702,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.962158
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.611472
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.546085
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.299225
+        },
+        {
+          "label": "Conversation",
+          "score": 0.098907
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.009442
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.008879
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004016
+        },
+        {
+          "label": "Music",
+          "score": 0.003926
+        },
+        {
+          "label": "Television",
+          "score": 0.003307
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 90.0,
+      "rms": 0.0649996,
+      "peak": 0.471511,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.96765
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.433937
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.373262
+        },
+        {
+          "label": "Conversation",
+          "score": 0.237763
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.19507
+        },
+        {
+          "label": "Television",
+          "score": 0.011971
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.011529
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010892
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.009844
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.005614
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 100.0,
+      "rms": 0.0704995,
+      "peak": 0.6300852,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.947785
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.611852
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.457586
+        },
+        {
+          "label": "Conversation",
+          "score": 0.211719
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.182874
+        },
+        {
+          "label": "Music",
+          "score": 0.020733
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.01299
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007943
+        },
+        {
+          "label": "Television",
+          "score": 0.006698
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.006484
+        }
+      ]
+    },
+    {
+      "start": 100.0,
+      "end": 110.0,
+      "rms": 0.0758463,
+      "peak": 0.7910092,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.966149
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.613042
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.510734
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.335504
+        },
+        {
+          "label": "Conversation",
+          "score": 0.168876
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.011667
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.010302
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.005392
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.002625
+        },
+        {
+          "label": "Television",
+          "score": 0.002494
+        }
+      ]
+    },
+    {
+      "start": 110.0,
+      "end": 120.0,
+      "rms": 0.0863793,
+      "peak": 0.7586291,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.951359
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.652508
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.383373
+        },
+        {
+          "label": "Conversation",
+          "score": 0.279498
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.085315
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.007992
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007969
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.007169
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.005951
+        },
+        {
+          "label": "Television",
+          "score": 0.004975
+        }
+      ]
+    },
+    {
+      "start": 120.0,
+      "end": 130.0,
+      "rms": 0.0622103,
+      "peak": 0.6216315,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.96796
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.675634
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.396347
+        },
+        {
+          "label": "Conversation",
+          "score": 0.297373
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.145397
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.011593
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.007952
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.006426
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.006341
+        },
+        {
+          "label": "Television",
+          "score": 0.00602
+        }
+      ]
+    },
+    {
+      "start": 130.0,
+      "end": 140.0,
+      "rms": 0.0714046,
+      "peak": 0.6696066,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.960234
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.617029
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.373324
+        },
+        {
+          "label": "Conversation",
+          "score": 0.156524
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.133574
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.009859
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007442
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.004314
+        },
+        {
+          "label": "Television",
+          "score": 0.002412
+        },
+        {
+          "label": "Squish",
+          "score": 0.002243
+        }
+      ]
+    },
+    {
+      "start": 140.0,
+      "end": 150.0,
+      "rms": 0.0669042,
+      "peak": 0.5050508,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.940675
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.661504
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.340763
+        },
+        {
+          "label": "Conversation",
+          "score": 0.230723
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.10015
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010302
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.008472
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.008205
+        },
+        {
+          "label": "Television",
+          "score": 0.005842
+        },
+        {
+          "label": "Music",
+          "score": 0.003209
+        }
+      ]
+    },
+    {
+      "start": 150.0,
+      "end": 160.0,
+      "rms": 0.0701221,
+      "peak": 0.8864101,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.970945
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.563133
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.406704
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.214338
+        },
+        {
+          "label": "Conversation",
+          "score": 0.203223
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.013675
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.009086
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007321
+        },
+        {
+          "label": "Television",
+          "score": 0.006129
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.005817
+        }
+      ]
+    },
+    {
+      "start": 160.0,
+      "end": 170.0,
+      "rms": 0.0741703,
+      "peak": 0.5178075,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.952014
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.692563
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.432092
+        },
+        {
+          "label": "Conversation",
+          "score": 0.166575
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.132519
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.009344
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.00498
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.004284
+        },
+        {
+          "label": "Television",
+          "score": 0.003454
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.003013
+        }
+      ]
+    },
+    {
+      "start": 170.0,
+      "end": 180.0,
+      "rms": 0.0728399,
+      "peak": 0.5290384,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.963117
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.491864
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.365931
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.329461
+        },
+        {
+          "label": "Conversation",
+          "score": 0.153867
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.014686
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.014087
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.007335
+        },
+        {
+          "label": "Television",
+          "score": 0.007234
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004556
+        }
+      ]
+    },
+    {
+      "start": 180.0,
+      "end": 190.0,
+      "rms": 0.071319,
+      "peak": 0.4590899,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.949875
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.388744
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.291791
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.208241
+        },
+        {
+          "label": "Conversation",
+          "score": 0.204025
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.107594
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.029648
+        },
+        {
+          "label": "Laughter",
+          "score": 0.026933
+        },
+        {
+          "label": "Clapping",
+          "score": 0.007582
+        },
+        {
+          "label": "Snicker",
+          "score": 0.007397
+        }
+      ]
+    },
+    {
+      "start": 190.0,
+      "end": 195.048,
+      "rms": 0.0631791,
+      "peak": 0.4149602,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.935514
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.127327
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.079904
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.052487
+        },
+        {
+          "label": "Conversation",
+          "score": 0.042435
+        },
+        {
+          "label": "Television",
+          "score": 0.022567
+        },
+        {
+          "label": "Music",
+          "score": 0.021769
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.012705
+        },
+        {
+          "label": "Animal",
+          "score": 0.011482
+        },
+        {
+          "label": "Chuckle, chortle",
+          "score": 0.007877
+        }
+      ]
+    }
+  ]
+}

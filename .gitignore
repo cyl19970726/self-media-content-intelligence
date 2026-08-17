@@ -1,0 +1,42 @@
+node_modules/
+dist/
+dist-server/
+.runtime/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Rebuildable package/runtime caches
+**/.parcel-cache/
+**/.venv/
+**/__pycache__/
+**/model-cache/
+**/audio-model-cache/
+**/hf-cache/
+**/.cache/
+
+# Original media stays local; transcripts, OCR, frames and reports are tracked.
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.mkv
+*.avi
+*.wav
+*.m4a
+*.mp3
+*.aac
+*.flac
+
+# Large generated/model artifacts
+*.bin
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.npy
+
+# Raw acquisition record containing expiring signed platform URLs.
+artifacts/real-breakdown/6a6b25970000000025006eaf/source.json

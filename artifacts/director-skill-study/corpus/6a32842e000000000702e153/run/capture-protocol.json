@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "probe.json",
+  "protocolName": "masked-presenter IP argument, caption-conflict and whiteboard protocol",
+  "rationale": "该视频的主要认知变化由连续口播论证承担，但开场社媒截图、逐句烧录字幕、持续账号水印、类似蜘蛛侠的面罩造型、白板空间结构、固定环境及非语言音频提供独立且可能冲突的信息。协议因此围绕两条并列受众路线、案例—原则—反例关系、规模—目标—内容方向映射、开场与结尾回扣、载体冲突和证据边界设计；不把20个scene-detection shots当作语义场景。帧协议之外另执行0—162.752秒全时长声学检查，以重叠AudioSet分类、静音检测和频谱图闭合非语言音频载体，同时保留执行模型不支持直接感知式监听的工具边界。",
+  "knowledgeUnitFields": [
+    {"name": "audience_branch", "required": true, "reason": "作者明确分广告变现博主和企业主两条并列路线。", "derivedFrom": ["MC-02", "REL-02", "REL-07", "Q-01"]},
+    {"name": "author_claim", "required": true, "reason": "增长、粘性、种草、信任、决策成本与企业文化连接均是作者主张，不能升级为事实。", "derivedFrom": ["RISK-05", "Q-02", "Q-05", "Q-06", "Q-07"]},
+    {"name": "rule_or_constraint", "required": true, "reason": "ID规则、设计不等于造假、人设不能颠覆、缺点不得伤人是行动边界。", "derivedFrom": ["MC-03", "MC-04", "MC-05", "MC-06", "RISK-07"]},
+    {"name": "example_or_counterexample", "required": true, "reason": "情侣博主、事件反例、校园类比、企业家和咨询案例承担不同说明角色。", "derivedFrom": ["MC-05", "MC-06", "MC-08", "MC-09", "RISK-08"]},
+    {"name": "evidence_scope", "required": true, "reason": "视频多以口述案例说明而非独立证明，开场截图也只证明被展示。", "derivedFrom": ["RISK-02", "RISK-05", "Q-07", "Q-09"]},
+    {"name": "visible_identity_and_referent", "required": true, "reason": "账号水印、平台水印、面罩造型、白板与固定环境共同构成人设与连续性，但真实身份/授权未知。", "derivedFrom": ["CAR-04", "CAR-05", "CAR-06", "RISK-03", "Q-10"]},
+    {"name": "carrier_conflict", "required": true, "reason": "SRT在开头、人名、人设名、事件名和结尾自报处存在疑似错转，不能静默修复。", "derivedFrom": ["RISK-01", "Q-04", "Q-07", "Q-12"]},
+    {"name": "goal_to_content_mapping", "required": true, "reason": "企业主段落用规模/需求映射品牌影响力或转化，再映射观点口播或日常。", "derivedFrom": ["MC-09", "MC-10", "REL-09", "REL-10", "Q-08"]},
+    {"name": "opening_closing_function", "required": true, "reason": "结尾同时收束粘性、品牌自报和下期承诺，需回扣开场公式与ID示范。", "derivedFrom": ["MC-01", "MC-11", "REL-11", "REL-12", "RISK-10"]},
+    {"name": "unknown_or_absence_scope", "required": true, "reason": "价格、访问路径、平台/账号/地区条件、支持责任、外部真实性，以及非语言音频的准确曲目/曲风、离散音效和作者意图均未被建立。", "derivedFrom": ["CAR-08", "CAR-09", "RISK-09", "RISK-11", "Q-11", "Q-13"]}
+  ],
+  "captureActions": [
+    {
+      "id": "CAP-01",
+      "range": {"start": 0, "end": 2.567},
+      "carrier": "opening social-account screenshots and metric overlay",
+      "mode": "ocr_review",
+      "times": [0.2, 0.8, 1.4, 2.0, 2.4],
+      "reason": "开场短时叠图是作者增长主张唯一可视化依据，小字和切换会在单帧中丢失。",
+      "expectedObservation": "逐帧读出可见平台/账号标识、播放与互动数字、‘三天涨粉三万’相关文字；无法稳定读出的字段保留未知，并明确截图不等于独立验证。",
+      "derivedFrom": ["CAR-03", "MC-01", "RISK-02", "Q-09"]
+    },
+    {
+      "id": "CAP-02",
+      "range": {"start": 0, "end": 161.93},
+      "carrier": "burned captions and persistent platform/account overlays",
+      "mode": "ocr_review",
+      "times": [1.343, 4.438, 7.101, 8.664, 10.107, 11.549, 13.955, 18.34, 22.733, 26.293, 28.707, 31.277, 34.028, 35.372, 37.869, 41.042, 42.962, 45.559, 48.229, 50.138, 52.786, 55.312, 58.304, 60.986, 63.483, 66.439, 69.849, 72.992, 74.719, 77.428, 81.163, 84.273, 86.472, 89.307, 92.073, 94.819, 97.618, 99.688, 103.16, 106.666, 109.293, 111.803, 114.081, 116.8, 119.32, 122.05, 124.386, 126.178, 129.827, 133.636, 137.016, 140.455, 143.96, 146.993, 150.029, 153.346, 155.12, 156.467, 159.589],
+      "reason": "所有59个cue都需承担cue accountability，烧录字幕可能纠正或冲突于SRT，右上账号水印与左上平台水印持续存在。",
+      "expectedObservation": "为每个cue获得可核对烧录字幕；重点解析开头、‘花臂/王阳洋’案例、事件名、缺点限定、企业家姓名、企业文化用词和结尾自报账号名，同时读出持续水印。",
+      "derivedFrom": ["CAR-02", "RISK-01", "Q-04", "Q-07", "Q-12"]
+    },
+    {
+      "id": "CAP-03",
+      "range": {"start": 8, "end": 157.247},
+      "carrier": "whiteboard writing, arrows and spatial grouping",
+      "mode": "ocr_review",
+      "times": [8.7, 15.0, 22.5, 34.8, 41.0, 56.8, 69.8, 97.2, 111.8, 123.5, 129.8, 146.9, 153.0, 156.4],
+      "reason": "讲述者多次指向白板；需判断其是并列分支、关键词提示还是口播之外的新信息。",
+      "expectedObservation": "读出可辨手写词、箭头和分组；若人物遮挡或低分辨率使小字不可读，则只记录可见空间结构和未知，不从口播补全白板。",
+      "derivedFrom": ["CAR-05", "RISK-04", "Q-01", "Q-03", "Q-08"]
+    },
+    {
+      "id": "CAP-04",
+      "range": {"start": 0, "end": 162.725},
+      "carrier": "presenter likeness, costume, gestures, environment and continuity",
+      "mode": "exact_times",
+      "times": [0.2, 5.484, 10.434, 18.867, 27.433, 42.867, 59.8, 72.233, 86.117, 94.133, 97.05, 112.084, 127.934, 144.2, 158.367, 160.25, 162.196],
+      "reason": "需验证类似蜘蛛侠面罩、红色服装、白板与洗衣设备是否持续，并将技术边界与语义连续性分开。",
+      "expectedObservation": "记录造型相似性、手势/指板行为、固定场景和可见连续性；不推断真实身份、授权或隐藏剪辑。",
+      "derivedFrom": ["CAR-04", "CAR-06", "CAR-07", "RISK-03", "RISK-06", "Q-10"]
+    },
+    {
+      "id": "CAP-05",
+      "range": {"start": 54.264, "end": 79.33},
+      "carrier": "principle, counterexample and harmless-flaw qualification",
+      "mode": "interval_density",
+      "densitySeconds": 1,
+      "reason": "人设不能颠覆与缺点不得伤人的两层边界集中出现，且SRT在事件名与‘周一瑶’处疑似错转。",
+      "expectedObservation": "连续捕获原则、反例、开场回扣和缺点限定的烧录字幕/手势，建立主张—限制—反例关系并保留冲突。",
+      "derivedFrom": ["MC-05", "MC-06", "REL-05", "RISK-01", "RISK-07", "Q-04", "Q-05"]
+    },
+    {
+      "id": "CAP-06",
+      "range": {"start": 118.34, "end": 157.247},
+      "carrier": "enterprise examples, size/goal contrast and final two directions",
+      "mode": "interval_density",
+      "densitySeconds": 1.5,
+      "reason": "企业家姓名/数量和两个咨询案例的规模口径需核对；目标到内容方向的关系跨多个cue。",
+      "expectedObservation": "核对企业家姓名、可见数量措辞、五千万/十几亿规模、只求销量/品牌影响力，以及观点口播/日常两分支；明确示例只说明不验证。",
+      "derivedFrom": ["MC-08", "MC-09", "MC-10", "REL-09", "REL-10", "RISK-08", "Q-07", "Q-08"]
+    },
+    {
+      "id": "CAP-07",
+      "range": {"start": 0, "end": 162.725},
+      "carrier": "opening-to-closing semantic relation and decision-relevant absence scope",
+      "mode": "exact_times",
+      "times": [0.2, 1.4, 4.438, 7.101, 26.293, 28.707, 43.8, 44.4, 45.0, 46.2, 60.8, 61.3, 66.439, 69.849, 119.3, 152.8, 155.12, 156.467, 159.589, 160.3, 160.8, 161.3, 161.9, 162.4],
+      "reason": "首轮取证显示案例简称、人设名、事件简称和最终自报在单一代表帧中不完整，因此自适应补采；同时结尾回扣粘性和作者ID/人设示范，并需在最可能出现CTA、价格、入口与账号条件的位置复核其有界缺席。",
+      "expectedObservation": "建立开场公式—作者自称—持续水印/造型—结尾自报与告别的关系；补齐xm/wyy、两个人设、fjj事件、于瀚姓名和最终自报的逐帧形式；在开场、转段、收束和尾帧记录所审范围未观察到的CTA/价格/访问/平台要求等，避免普遍性否定。",
+      "derivedFrom": ["MC-01", "MC-11", "REL-11", "REL-12", "RISK-09", "RISK-10", "Q-11", "Q-12"]
+    }
+  ],
+  "supplementalChecks": [
+    {
+      "id": "AUDIO-CHECK-01",
+      "range": {"start": 0, "end": 162.725},
+      "carrier": "non-speech audio",
+      "method": "AAC全时长解码；33个每5秒起点、10秒长度的MIT AST/AudioSet分类窗口；ffmpeg -42dB/0.25秒silencedetect；全时长频谱图人工检查",
+      "outputs": ["audio-inspection/audio-classification.json", "audio-inspection/ffmpeg-audio-analysis.log", "audio-inspection/full-spectrogram.png"],
+      "observed": "33/33窗口同时检出Music与Speech；Music在29/33窗口为最高标签，且未检出满足阈值的静音段，支持持续背景音乐床与口播重叠。未可靠建立离散音效或特定语义转折。",
+      "toolBoundary": "执行模型不能把本地音频作为直接感知输入；分类标签与频谱检查是完整机器声学审阅，不等同于人类听辨，也不能确定曲目、曲风或编辑意图。",
+      "derivedFrom": ["CAR-08", "RISK-11", "Q-13"]
+    }
+  ],
+  "requiredRelations": [
+    {"relation": "opening_formula_branches_into_two_audiences", "derivedFrom": ["REL-01", "REL-02", "REL-07"]},
+    {"relation": "id_rule_precedes_persona_design", "derivedFrom": ["REL-03"]},
+    {"relation": "persona_design_claim_supported_and_limited_by_cases", "derivedFrom": ["REL-04", "REL-05"]},
+    {"relation": "like_to_love_promise_explained_by_harmless_flaw_claim", "derivedFrom": ["REL-06"]},
+    {"relation": "founder_trust_mechanism_extends_to_enterprise_culture", "derivedFrom": ["REL-08"]},
+    {"relation": "enterprise_scale_or_need_informs_goal_and_content_direction", "derivedFrom": ["REL-09", "REL-10"]},
+    {"relation": "presenter_visible_persona_enacts_own_id_advice", "derivedFrom": ["REL-11", "CAR-04"]},
+    {"relation": "closing_echoes_and_narrows_opening", "derivedFrom": ["REL-12", "RISK-10"]},
+    {"relation": "carrier_conflict_preserves_srt_and_burned_caption_forms", "derivedFrom": ["RISK-01", "Q-04", "Q-07", "Q-12"]},
+    {"relation": "technical_segments_remain_distinct_from_semantic_continuity", "derivedFrom": ["RISK-06", "CAR-07"]}
+  ],
+  "stoppingRules": [
+    "CAP-01至CAP-07均已执行，所有OCR/UI类帧均完成Vision OCR并对高影响行人工核对。",
+    "Q-01至Q-12均有回答或带有证据范围的unknown。",
+    "MC-01至MC-11均至少映射一个最终知识单元。",
+    "REL-01至REL-12两端均有证据，且无自环。",
+    "59个字幕cue逐一进入cueAccountability，开头和最终cue另行复核。",
+    "SRT与烧录字幕/水印/白板的后果性冲突形成独立知识单元，不在文章中静默修正。",
+    "面罩相似性、账号水印、讲述者、白板和固定环境的referent关系已记录，真实身份与授权保持未知。",
+    "增长截图、案例因果、咨询规模规则仅按视频内证据强度表述，作者主张不升级为事实。",
+    "技术shot边界未被写成语义场景或剪辑数量；隐藏剪辑保留未知。",
+    "访问路径、价格、平台/账号/地区要求与支持责任仅按全时轴抽样及开闭区间的有界审查表述为未观察到。",
+    "非语言音频已通过AUDIO-CHECK-01完成全时长机器声学审阅：持续背景音乐床得到支持，准确曲目/曲风、离散音效与作者意图保留未知，并明确无直接感知式监听能力的工具边界。",
+    "meta-gate逐字回答且不存在未检查载体、意义变化或关系。"
+  ],
+  "declaredUnknowns": [
+    "作者和出镜者的真实身份，以及类似蜘蛛侠面罩造型的授权/来源。",
+    "开场增长截图、人物案例、事件、企业文化联系、视频数量和咨询案例的外部真实性。",
+    "持续背景音乐的准确曲目/曲风、是否存在低于分类可靠度的离散音效、以及作者赋予的具体情绪/转折意图；执行模型不支持直接感知式音频输入。",
+    "被遮挡或低分辨率白板小字。",
+    "五千万与十几亿的规模口径及其与IP目标之间的普遍因果。",
+    "未直接观察到的隐藏剪辑和准确拍摄连续性。",
+    "视频未建立的价格、访问路径、平台/账号/地区要求与支持责任。"
+  ]
+}

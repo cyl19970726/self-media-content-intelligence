@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a1018060000000007027155",
+  "capturedAt": "2026-08-16T11:09:38.411Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "把Claude Code接入飞书，太爽了！教程+演示",
+    "postCopy": "用这个开源项目，可以把Claude Code无缝接入飞书，让你像跟同事聊天一样跟Claude Code交互，手机上也可以！\n\t\n#个人开发者[话题]# #vibecoding[话题]# #claudecode[话题]# #飞书[话题]# #代码[话题]#",
+    "hashtags": [
+      "个人开发者",
+      "vibecoding",
+      "claudecode",
+      "飞书",
+      "代码"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a1018060000000007027155",
+    "mediaType": "video",
+    "publishedAt": "2026-05-22T08:47:02.000Z",
+    "likes": "1.5万",
+    "collections": "2.1万",
+    "comments": "422",
+    "shares": "3577",
+    "expectedDurationSec": 195
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 195
+    }
+  ]
+}

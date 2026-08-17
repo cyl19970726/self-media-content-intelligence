@@ -1,0 +1,805 @@
+{
+  "schemaVersion": "independent-ground-truth-audit-1.0",
+  "videoId": "684d1e96000000002100730b",
+  "auditScope": {
+    "mode": "independent_ground_truth",
+    "allowedInputs": [
+      "artifacts/creator-research/ai-red-witch/low-vs-high/media/684d1e96000000002100730b.mp4",
+      "artifacts/creator-research/ai-red-witch/low-vs-high/media/684d1e96000000002100730b.srt",
+      "artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/684d1e96000000002100730b/evidence/evidence-pack.json",
+      "artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/684d1e96000000002100730b/evidence/frames/**"
+    ],
+    "excludedInputs": [
+      "canonical Skill",
+      "skill-run",
+      "old reports/analysis/library conclusions",
+      "other auditor/evaluation outputs"
+    ],
+    "citationResolver": {
+      "PACK#/...": "RFC 6901 JSON Pointer into evidence/evidence-pack.json",
+      "SHOT-nnn": "evidence-pack.json#/shots, matched by id",
+      "CUE-nnn": "evidence-pack.json#/transcript/cues, matched by id",
+      "DENSE-nnnn": "evidence-pack.json#/denseProbe/frames, matched by id"
+    }
+  },
+  "sourceFacts": [
+    {
+      "id": "F-001",
+      "type": "fact",
+      "statement": "视频时长为85秒，1440×2560竖屏，30fps，HEVC视频并含AAC音频。",
+      "evidenceRefs": [
+        "PACK#/media"
+      ]
+    },
+    {
+      "id": "F-002",
+      "type": "fact",
+      "statement": "提供的SRT共有20条字幕，覆盖00:00.000至00:84.940；00:02.780至00:06.240没有SRT字幕条。",
+      "evidenceRefs": [
+        "PACK#/transcript/cueCount",
+        "CUE-001",
+        "CUE-002",
+        "CUE-020"
+      ]
+    },
+    {
+      "id": "F-003",
+      "type": "fact",
+      "statement": "证据包按阈值0.24检出21个镜头，并每1.5秒提供一帧密集探针，末帧时间为84.88秒。",
+      "evidenceRefs": [
+        "PACK#/sceneDetection",
+        "PACK#/shots",
+        "PACK#/denseProbe/intervalSeconds",
+        "DENSE-0058"
+      ]
+    }
+  ],
+  "oneSentenceReconstruction": {
+    "type": "inference",
+    "statement": "这是一条以两个荒诞提问作钩子、以HTML/PPT转换和猫呕吐为检索案例、再用去除照片背景人物扩展能力边界，最终号召使用夸克的推广型教程/演示混合短视频。",
+    "evidenceRefs": [
+      "CUE-001",
+      "CUE-002",
+      "CUE-009",
+      "CUE-015",
+      "CUE-018",
+      "CUE-020"
+    ]
+  },
+  "fullTimeline": [
+    {
+      "segmentId": "SEG-01",
+      "start": 0.0,
+      "end": 4.5,
+      "carrier": "夸克深度搜索界面录屏置于绿到棕渐变背景，左上叠加圆形讲述者头像；底部有大号烧录字幕。",
+      "visualObservations": [
+        "输入框逐字出现“我想知道网友怎么吐槽ios26”，随后切到一页分条回答；可见对“液态玻璃”、功能创新、用户反馈等方向的概述。"
+      ],
+      "authorClaims": [
+        "讲述者想知道网友如何吐槽iOS 26。"
+      ],
+      "viewerCognitiveChange": "观众先得到一个带戏谑色彩、与当下科技话题相关的测试问题，随后看到产品能够产出长答案的第一份表面证据。",
+      "meaningChange": "从提问钩子转为结果展示，但尚未说明产品名称或评估标准。",
+      "evidenceRefs": [
+        "CUE-001",
+        "SHOT-001",
+        "SHOT-002",
+        "DENSE-0001",
+        "DENSE-0003"
+      ]
+    },
+    {
+      "segmentId": "SEG-02",
+      "start": 4.5,
+      "end": 15.233,
+      "carrier": "同一手机界面录屏继续，间有快速缩放/放射模糊转场；约11.1秒后出现回答页，随后转为讲述者室内正面口播。",
+      "visualObservations": [
+        "第二个输入问题为“高考满分只有750，但是怎么考上985”一类的故意荒诞问题；回答页呈现分条建议。",
+        "讲述者全身上半幅出镜，手持小型麦克风，背景为窗户和深色窗帘；画面出现大字“深度搜索”。"
+      ],
+      "authorClaims": [
+        "第二题是“经典的弱智问题”。",
+        "系统仍然“老实巴交”作答。",
+        "该能力是夸克最新的深度搜索功能。"
+      ],
+      "viewerCognitiveChange": "观众从第二个反常识测试确认系统会认真响应，再在口播揭示中把前两次演示归因于“夸克深度搜索”。",
+      "meaningChange": "从纯钩子/笑点转为明确的品牌与功能介绍。",
+      "evidenceRefs": [
+        "CUE-002",
+        "CUE-003",
+        "SHOT-003",
+        "SHOT-004",
+        "SHOT-005",
+        "DENSE-0005",
+        "DENSE-0009",
+        "DENSE-0010"
+      ]
+    },
+    {
+      "segmentId": "SEG-03",
+      "start": 15.233,
+      "end": 24.56,
+      "carrier": "深色矩形信息卡、搜索界面截图和讲述者圆形头像交替叠放；蓝/绿色标签与底部字幕承担概念解释。",
+      "visualObservations": [
+        "画面标签包括“分析过程更严谨”“信息数据更权威”“交付结果更专业”，并出现“行业研究”“学术课题”“健康管理”“先思考”等字样。",
+        "这些画面是经过排版的界面片段/结果片段，不是完整连续的浏览或对照实验。"
+      ],
+      "authorClaims": [
+        "夸克深度搜索与大部分AI搜索工具不同。",
+        "它不会机械抓关键词瞎搜，也不会用不可靠信息应付用户，而会像人类专家一样先思考再搜索。"
+      ],
+      "viewerCognitiveChange": "观众被提供一套产品差异化解释：搜索流程被框定为先规划、再检索，并与权威、专业结果绑定。",
+      "meaningChange": "从“它是什么”转向“为什么据称更好”，论证由演示转为品牌化能力主张。",
+      "evidenceRefs": [
+        "CUE-004",
+        "CUE-005",
+        "SHOT-006",
+        "SHOT-007",
+        "SHOT-008",
+        "SHOT-009",
+        "SHOT-010",
+        "DENSE-0012",
+        "DENSE-0016"
+      ]
+    },
+    {
+      "segmentId": "SEG-04",
+      "start": 24.56,
+      "end": 32.67,
+      "carrier": "先是讲述者正面口播，随后切回夸克首页/功能页录屏；红色手绘圆圈强调入口。",
+      "visualObservations": [
+        "界面中“深度搜索”入口被红圈标出，之后进入带“夸克·深度搜索”标题的提问页。"
+      ],
+      "authorClaims": [
+        "本视频将教观众“正确使用”夸克深度搜索。",
+        "使用步骤是进入夸克、选择深度搜索，然后开始提问。"
+      ],
+      "viewerCognitiveChange": "观众从概念层进入唯一明确的操作步骤，知道入口位置和基本交互方式。",
+      "meaningChange": "从卖点介绍切换到教程承诺与导航演示。",
+      "evidenceRefs": [
+        "CUE-006",
+        "CUE-007",
+        "SHOT-011",
+        "SHOT-012",
+        "DENSE-0018",
+        "DENSE-0021",
+        "DENSE-0022"
+      ]
+    },
+    {
+      "segmentId": "SEG-05",
+      "start": 32.68,
+      "end": 48.467,
+      "carrier": "连续的手机竖屏录屏加圆形讲述者头像；输入法、提交按钮、分析状态、答案草稿和来源区域依次出现。",
+      "visualObservations": [
+        "输入的问题围绕把HTML格式生成的PPT转换为可编辑PPT。",
+        "提交后界面出现分析中状态，之后列出若干搜索方向；结果附近可见“基于33篇搜索来源进行思考”一类的界面计数和来源小图标。",
+        "虽然同属一个镜头检测段，录屏内部内容多次变化；证据帧没有提供可核查的33个完整来源清单。"
+      ],
+      "authorClaims": [
+        "系统会像agent一样先规划几个搜索方向。",
+        "系统会去各种权威渠道搜索信息。"
+      ],
+      "viewerCognitiveChange": "观众看到一个较实际问题从输入、分析到生成答案的界面路径，并通过来源计数获得“做了研究”的印象。",
+      "meaningChange": "教程从入口说明进入核心案例，产品差异化主张被界面过程具体化。",
+      "evidenceRefs": [
+        "CUE-008",
+        "CUE-009",
+        "CUE-010",
+        "CUE-011",
+        "SHOT-012",
+        "DENSE-0023",
+        "DENSE-0027",
+        "DENSE-0030",
+        "DENSE-0032",
+        "DENSE-0033"
+      ]
+    },
+    {
+      "segmentId": "SEG-06",
+      "start": 48.467,
+      "end": 54.433,
+      "carrier": "答案页面以连续截取/滚动式构图展示，讲述者头像仍叠加在左上。",
+      "visualObservations": [
+        "答案列出直接用PowerPoint打开保存、Convertise/GroupDocs/Zamzar等在线工具、iSpring Free/Aspose.Slides/LiveWeb等插件或开发方式，以及经PDF中转等路径。"
+      ],
+      "authorClaims": [
+        "最终结果既推荐简单工具，也给开发者写了复杂代码。",
+        "该结果“非常靠谱”。"
+      ],
+      "viewerCognitiveChange": "观众获得多条可行动路径，并被讲述者直接告知结果质量可靠。",
+      "meaningChange": "从过程展示转为答案交付与质量背书。",
+      "evidenceRefs": [
+        "CUE-011",
+        "CUE-012",
+        "SHOT-013",
+        "SHOT-014",
+        "DENSE-0034",
+        "DENSE-0035",
+        "DENSE-0036",
+        "DENSE-0037"
+      ]
+    },
+    {
+      "segmentId": "SEG-07",
+      "start": 54.433,
+      "end": 62.8,
+      "carrier": "讲述者正面口播为主，画面以超大“权威性”强调词和常规底部字幕强化论点。",
+      "visualObservations": [
+        "没有在这段出现第三方评测或可读的完整来源核验。"
+      ],
+      "authorClaims": [
+        "信息权威性是讲述者个人非常在意的能力。",
+        "垃圾信息会破坏所有搜索结果。",
+        "夸克对此把控“非常严格”。"
+      ],
+      "viewerCognitiveChange": "观众的注意力被从便利性转向可信度，准备接受一个高风险场景的验证案例。",
+      "meaningChange": "从普通生产力案例提升到信息质量/可信性主张。",
+      "evidenceRefs": [
+        "CUE-013",
+        "CUE-014",
+        "SHOT-015",
+        "DENSE-0038",
+        "DENSE-0040",
+        "DENSE-0042"
+      ]
+    },
+    {
+      "segmentId": "SEG-08",
+      "start": 62.8,
+      "end": 72.933,
+      "carrier": "再次进入深度搜索录屏，输入猫突然呕吐的问题；随后展示阅读来源状态、答案片段与总结。",
+      "visualObservations": [
+        "阅读状态区域可见若干来源条目及“+29”标记。",
+        "结果总结称猫呕吐原因多样，应结合症状和猫咪状态判断，无法明确或症状加重时及时就医，并提到科学喂养、环境管理和定期体检/疫苗。",
+        "画面没有逐项展示二十多篇来源的题名、作者、期刊或学术性质。"
+      ],
+      "authorClaims": [
+        "系统“一口气读了二十多篇宠物的专业论文”。",
+        "系统很快给出让讲述者松一口气的结果。"
+      ],
+      "viewerCognitiveChange": "观众看到来源数量感和带安全兜底的总结，由此被引导把产品与专业、可安心的信息联系起来。",
+      "meaningChange": "产品能力从生产力辅助延伸到潜在高风险的宠物健康建议。",
+      "evidenceRefs": [
+        "CUE-015",
+        "CUE-016",
+        "SHOT-016",
+        "DENSE-0043",
+        "DENSE-0045",
+        "DENSE-0046",
+        "DENSE-0047"
+      ]
+    },
+    {
+      "segmentId": "SEG-09",
+      "start": 72.933,
+      "end": 78.133,
+      "carrier": "从夸克AI创作/图片编辑入口切到一张景点照片，再切到文字指令输入框和处理后照片。",
+      "visualObservations": [
+        "原图中主体女子后方偏左可见一名男子；输入指令要求删除背景中的人群；结果图中该男子不再出现，主体与龙形装饰仍在。",
+        "原图、指令和结果通过剪辑连续呈现，但没有显示完整处理过程、耗时或原始文件元数据。"
+      ],
+      "authorClaims": [
+        "有图片编辑需求也可以交给它。",
+        "只需一句简单指令，图片就P好了。"
+      ],
+      "viewerCognitiveChange": "观众得到一个肉眼可比较的前后结果，能力认知从搜索/问答扩大到生成式图像编辑。",
+      "meaningChange": "主题从“深度搜索正确使用”明显扩展为夸克更广泛的AI工具能力展示。",
+      "evidenceRefs": [
+        "CUE-017",
+        "CUE-018",
+        "SHOT-017",
+        "SHOT-018",
+        "SHOT-019",
+        "SHOT-020",
+        "DENSE-0050",
+        "DENSE-0051",
+        "DENSE-0052",
+        "DENSE-0053"
+      ]
+    },
+    {
+      "segmentId": "SEG-10",
+      "start": 78.133,
+      "end": 85.0,
+      "carrier": "先短暂保留处理后照片，随后回到讲述者正面口播；顶部出现大字“智商”“搜商”，结尾以指向手势收束。",
+      "visualObservations": [
+        "最后约6秒没有新的检索或对比证据，主要是讲述者评价与行动号召。"
+      ],
+      "authorClaims": [
+        "夸克是“真正意义上的AI搜索天花板”。",
+        "它不仅有智商，而且有“搜商”。",
+        "它免费，观众应当尽快去用。"
+      ],
+      "viewerCognitiveChange": "观众被要求把前述案例综合为最高级产品判断，并从理解/评估转入立即试用。",
+      "meaningChange": "从案例演示转为明确的超级评价与转化型CTA。",
+      "evidenceRefs": [
+        "CUE-019",
+        "CUE-020",
+        "SHOT-021",
+        "DENSE-0054",
+        "DENSE-0055",
+        "DENSE-0057",
+        "DENSE-0058"
+      ]
+    }
+  ],
+  "entityRelations": [
+    {
+      "id": "REL-01",
+      "type": "visual_observation",
+      "from": "讲述者",
+      "relation": "演示并背书",
+      "to": "夸克深度搜索/AI创作",
+      "evidenceRefs": [
+        "SHOT-005",
+        "SHOT-012",
+        "SHOT-016",
+        "SHOT-021"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "type": "visual_observation",
+      "from": "用户问题",
+      "relation": "触发界面中的分析与回答",
+      "to": "夸克结果页",
+      "evidenceRefs": [
+        "DENSE-0027",
+        "DENSE-0032",
+        "DENSE-0044",
+        "DENSE-0047"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "type": "inference",
+      "from": "两个荒诞问题",
+      "relation": "承担轻松钩子并制造反差",
+      "to": "后续严肃能力证明",
+      "evidenceRefs": [
+        "CUE-001",
+        "CUE-002",
+        "CUE-008",
+        "CUE-015"
+      ]
+    },
+    {
+      "id": "REL-04",
+      "type": "inference",
+      "from": "界面截图与来源计数",
+      "relation": "为讲述者的权威性主张提供表面支持，但不构成独立验证",
+      "to": "可靠/权威/优于其他工具的结论",
+      "evidenceRefs": [
+        "DENSE-0032",
+        "DENSE-0033",
+        "DENSE-0045",
+        "DENSE-0046",
+        "CUE-014"
+      ]
+    },
+    {
+      "id": "REL-05",
+      "type": "inference",
+      "from": "图片去人前后对比",
+      "relation": "把能力叙事从搜索扩展至图像编辑",
+      "to": "结尾的综合产品赞誉",
+      "evidenceRefs": [
+        "DENSE-0050",
+        "DENSE-0053",
+        "CUE-019"
+      ]
+    }
+  ],
+  "subtitleBurnInOcrAudit": {
+    "generalObservation": {
+      "type": "visual_observation",
+      "statement": "视频大部分口播均配有居中偏下的白色烧录中文字幕；另有“深度搜索”“正确使用方法”“权威性”“智商/搜商”等大号强调字。SRT与烧录字幕整体语义一致，但至少存在三处明确转写冲突。",
+      "evidenceRefs": [
+        "DENSE-0010",
+        "DENSE-0020",
+        "DENSE-0039",
+        "DENSE-0055"
+      ]
+    },
+    "conflicts": [
+      {
+        "id": "TXT-01",
+        "type": "visual_observation",
+        "timeRange": [
+          0.0,
+          2.78
+        ],
+        "srt": "我想知道网友怎么吐槽is二十六",
+        "burnIn": "我想知道网友怎么吐槽ios26",
+        "bestReading": "iOS 26",
+        "impact": "专有名词转写错误；不改变句法，但会影响检索、实体识别和主题归一化。",
+        "evidenceRefs": [
+          "CUE-001",
+          "DENSE-0001",
+          "DENSE-0002"
+        ]
+      },
+      {
+        "id": "TXT-02",
+        "type": "visual_observation",
+        "timeRange": [
+          70.53,
+          73.15
+        ],
+        "srt": "如果你有图片编辑的需求，你也可以认给他",
+        "burnIn": "如果你有图片编辑的需求，你也可以扔给它",
+        "bestReading": "扔给它",
+        "impact": "SRT同时误写动词和指代；烧录字幕与画面中作为工具的产品指代更连贯。",
+        "evidenceRefs": [
+          "CUE-017",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "TXT-03",
+        "type": "visual_observation",
+        "timeRange": [
+          80.85,
+          84.94
+        ],
+        "srt": "它不仅有智商，更有搜赏，而且还免费，朋友们快去用吧",
+        "burnIn": "它不仅有智商更有搜商 / 智商 搜商 / 而且还免费",
+        "bestReading": "搜商",
+        "impact": "SRT把作者创造/使用的核心营销词“搜商”误写成“搜赏”，会损失结尾双关和品牌记忆点。",
+        "evidenceRefs": [
+          "CUE-020",
+          "DENSE-0055",
+          "DENSE-0056"
+        ]
+      }
+    ],
+    "ocrCaution": {
+      "type": "unknown",
+      "statement": "若干手机界面小字和来源图标在证据帧中字号很小；除清晰可读标题、计数和条目外，不应将其自动扩写成完整来源名称或具体论文身份。",
+      "evidenceRefs": [
+        "DENSE-0032",
+        "DENSE-0033",
+        "DENSE-0045",
+        "DENSE-0046"
+      ]
+    }
+  },
+  "authorClaimsAndProofBoundaries": [
+    {
+      "id": "CLM-01",
+      "type": "author_claim",
+      "claim": "夸克深度搜索不同于大部分AI搜索工具，不会机械抓关键词或使用不可靠信息。",
+      "visualSupport": "有经过排版的“先思考”、分析方向、来源计数和答案画面。",
+      "proofBoundary": "视频未展示对照工具、统一问题、结果评分、错误率或来源质量抽检，因此不能由画面推出“优于大部分工具”或“不会”出现不可靠信息。",
+      "evidenceRefs": [
+        "CUE-004",
+        "CUE-005",
+        "SHOT-006",
+        "SHOT-010"
+      ]
+    },
+    {
+      "id": "CLM-02",
+      "type": "author_claim",
+      "claim": "系统像agent一样规划方向，并搜索各种权威渠道。",
+      "visualSupport": "HTML/PPT案例中可见分析方向、来源计数和来源图标。",
+      "proofBoundary": "来源数量与小图标只能证明界面如此展示；没有足够可读的完整来源、访问记录或独立复现，无法确认全部渠道权威或确实被读取。",
+      "evidenceRefs": [
+        "CUE-010",
+        "CUE-011",
+        "DENSE-0031",
+        "DENSE-0032",
+        "DENSE-0033"
+      ]
+    },
+    {
+      "id": "CLM-03",
+      "type": "author_claim",
+      "claim": "HTML/PPT转换答案“非常靠谱”，兼顾简单工具和开发者复杂代码。",
+      "visualSupport": "答案确实可见多类方案和多个工具/插件名称。",
+      "proofBoundary": "视频没有实际执行任一方案、打开输出文件、验证可编辑性/版式保真度，也未展示所谓复杂代码的完整可运行内容；可靠性仍是讲述者评价。",
+      "evidenceRefs": [
+        "CUE-012",
+        "DENSE-0034",
+        "DENSE-0035",
+        "DENSE-0036",
+        "DENSE-0037"
+      ]
+    },
+    {
+      "id": "CLM-04",
+      "type": "author_claim",
+      "claim": "夸克对信息权威性把控非常严格。",
+      "visualSupport": "画面使用“权威性”强调词，并展示来源数量。",
+      "proofBoundary": "强调词与数量不等于质量控制机制；视频未说明筛选标准、来源层级、纠错流程或引用准确率。",
+      "evidenceRefs": [
+        "CUE-013",
+        "CUE-014",
+        "DENSE-0039",
+        "DENSE-0045"
+      ]
+    },
+    {
+      "id": "CLM-05",
+      "type": "author_claim",
+      "claim": "猫呕吐案例读取了二十多篇宠物专业论文，并很快给出令人安心的结果。",
+      "visualSupport": "界面阅读状态附近可见“+29”，答案总结包含症状判断和严重时就医的兜底建议。",
+      "proofBoundary": "“+29”不等同于二十多篇专业论文；题名、期刊、作者、研究设计和引用对应关系均未展示。视频也没有给出具体猫的病史，无法评价答案是否适用于真实个案。",
+      "evidenceRefs": [
+        "CUE-015",
+        "CUE-016",
+        "DENSE-0045",
+        "DENSE-0046",
+        "DENSE-0047"
+      ]
+    },
+    {
+      "id": "CLM-06",
+      "type": "author_claim",
+      "claim": "一句话即可删除照片背景人群。",
+      "visualSupport": "前图可见主体后方一名男子，指令要求删除背景人群，后图中该人消失。",
+      "proofBoundary": "画面支持这一示例的表面前后差异，但中间有剪辑，未显示连续处理、耗时、是否手工修补或对其他图片的泛化效果；且原图清晰可见的背景人物主要是一人而非“人群”。",
+      "evidenceRefs": [
+        "CUE-018",
+        "DENSE-0050",
+        "DENSE-0051",
+        "DENSE-0052",
+        "DENSE-0053"
+      ]
+    },
+    {
+      "id": "CLM-07",
+      "type": "author_claim",
+      "claim": "夸克是真正意义上的AI搜索天花板，并且免费。",
+      "visualSupport": "只有讲述者口播、强调字和CTA。",
+      "proofBoundary": "无竞品基准、时间范围、版本/地区/配额/会员条件或价格页面；“天花板”是不可由本片验证的最高级评价，“免费”的适用范围和持续性未知。",
+      "evidenceRefs": [
+        "CUE-019",
+        "CUE-020",
+        "DENSE-0054",
+        "DENSE-0057"
+      ]
+    }
+  ],
+  "criticalIssues": [
+    {
+      "id": "ISSUE-01",
+      "severity": "high",
+      "type": "inference",
+      "issue": "教程承诺与实际教学密度不匹配",
+      "detail": "讲述者承诺教“正确使用”，但明确操作仅是进入夸克、选择深度搜索、输入问题；没有讲提示词结构、约束条件、追问、引用核验或失败修正。其余篇幅主要是能力展示和评价。",
+      "evidenceRefs": [
+        "CUE-006",
+        "CUE-007",
+        "CUE-008",
+        "CUE-012",
+        "CUE-019"
+      ]
+    },
+    {
+      "id": "ISSUE-02",
+      "severity": "high",
+      "type": "inference",
+      "issue": "将界面自报的来源数量当成权威性证据",
+      "detail": "HTML/PPT与猫呕吐案例都用计数、列表和小图标营造研究感，但没有足够可核验的来源身份与引用对应，不能支持“权威渠道”“专业论文”“严格把控”的强结论。",
+      "evidenceRefs": [
+        "DENSE-0032",
+        "DENSE-0033",
+        "DENSE-0045",
+        "DENSE-0046",
+        "CUE-014",
+        "CUE-016"
+      ]
+    },
+    {
+      "id": "ISSUE-03",
+      "severity": "high",
+      "type": "inference",
+      "issue": "高风险健康案例缺少适用边界",
+      "detail": "猫呕吐是可能需要及时兽医评估的症状。画面中的总结虽包含症状加重时就医的兜底，但视频把“让我松一口气”当成效果，没有展示病史、诊断或来源核验，不应被理解为个体医疗结论。",
+      "evidenceRefs": [
+        "CUE-015",
+        "CUE-016",
+        "DENSE-0047"
+      ]
+    },
+    {
+      "id": "ISSUE-04",
+      "severity": "medium",
+      "type": "inference",
+      "issue": "主题边界从深度搜索漂移到图片编辑",
+      "detail": "图片编辑示例增加产品吸引力，却不再证明“深度搜索”的检索、来源或答案能力，使结尾的综合赞誉覆盖了不同能力模块。",
+      "evidenceRefs": [
+        "CUE-017",
+        "CUE-018",
+        "CUE-019",
+        "SHOT-017",
+        "SHOT-020"
+      ]
+    },
+    {
+      "id": "ISSUE-05",
+      "severity": "medium",
+      "type": "visual_observation",
+      "issue": "SRT存在关键实体与营销词误写",
+      "detail": "“iOS 26”“扔给它”“搜商”分别被写成“is二十六”“认给他”“搜赏”，会影响检索、指代和结尾修辞恢复。",
+      "evidenceRefs": [
+        "CUE-001",
+        "CUE-017",
+        "CUE-020",
+        "DENSE-0001",
+        "SHOT-017",
+        "DENSE-0055"
+      ]
+    },
+    {
+      "id": "ISSUE-06",
+      "severity": "medium",
+      "type": "inference",
+      "issue": "推广属性强但商业关系未说明",
+      "detail": "视频持续使用品牌特写、绝对化赞誉、免费卖点和“快去用”CTA，呈现明显推广语气；但在提供的字幕与证据帧中未见广告/赞助关系披露。只能判断表达形态，不能判断是否付费合作。",
+      "evidenceRefs": [
+        "CUE-003",
+        "CUE-019",
+        "CUE-020",
+        "DENSE-0021",
+        "DENSE-0057"
+      ]
+    }
+  ],
+  "keyQuestions": [
+    {
+      "question": "观众真正学会了什么？",
+      "answerType": "inference",
+      "answer": "学会了找到深度搜索入口并直接提问；没有学到可复用的提问模板、来源核验或错误修正方法。",
+      "evidenceRefs": [
+        "CUE-006",
+        "CUE-007",
+        "CUE-009"
+      ]
+    },
+    {
+      "question": "画面最强的可证事实是什么？",
+      "answerType": "visual_observation",
+      "answer": "界面确实展示了提问、分析/来源计数、结构化答案，以及一组人物删除前后画面；但这些证据主要证明界面呈现和单例差异。",
+      "evidenceRefs": [
+        "DENSE-0027",
+        "DENSE-0032",
+        "DENSE-0034",
+        "DENSE-0050",
+        "DENSE-0053"
+      ]
+    },
+    {
+      "question": "最关键的未证结论是什么？",
+      "answerType": "inference",
+      "answer": "权威性、相对竞品优势、结果可靠性、二十多篇来源均为专业论文、免费范围以及“AI搜索天花板”都没有被独立验证。",
+      "evidenceRefs": [
+        "CUE-004",
+        "CUE-012",
+        "CUE-014",
+        "CUE-016",
+        "CUE-019",
+        "CUE-020"
+      ]
+    },
+    {
+      "question": "叙事如何推动转化？",
+      "answerType": "inference",
+      "answer": "先用荒诞问题降低门槛，再用办公案例建立实用性，用宠物健康建立可信感，用图片编辑制造即时视觉惊喜，最后用最高级评价和免费CTA收口。",
+      "evidenceRefs": [
+        "CUE-002",
+        "CUE-009",
+        "CUE-015",
+        "CUE-018",
+        "CUE-020"
+      ]
+    }
+  ],
+  "unknownsAndAbsences": [
+    {
+      "id": "UNK-01",
+      "type": "unknown",
+      "statement": "讲述者与夸克是否存在广告、赞助、投放、佣金或其他商业关系未知；字幕和证据帧未见明确披露。",
+      "evidenceRefs": [
+        "CUE-020",
+        "DENSE-0058"
+      ]
+    },
+    {
+      "id": "UNK-02",
+      "type": "unknown",
+      "statement": "录制日期、夸克版本、设备、账号、地区、模型版本、网络条件和功能灰度范围未知。",
+      "evidenceRefs": [
+        "PACK#/generatedAt",
+        "DENSE-0021"
+      ]
+    },
+    {
+      "id": "UNK-03",
+      "type": "unknown",
+      "statement": "“免费”是否包含次数、速度、模型、图片编辑、会员、地区或活动期限制未知。",
+      "evidenceRefs": [
+        "CUE-020"
+      ]
+    },
+    {
+      "id": "UNK-04",
+      "type": "unknown",
+      "statement": "HTML/PPT答案中的方案是否被实际运行、输出是否可编辑、动画/字体/布局保真度如何未知。",
+      "evidenceRefs": [
+        "DENSE-0034",
+        "DENSE-0035",
+        "DENSE-0036",
+        "DENSE-0037"
+      ]
+    },
+    {
+      "id": "UNK-05",
+      "type": "unknown",
+      "statement": "“33篇搜索来源”和猫案例的“+29”分别对应哪些网页、论文或数据库、是否去重、是否真的被全文读取、与答案句子如何对应均未知。",
+      "evidenceRefs": [
+        "DENSE-0032",
+        "DENSE-0033",
+        "DENSE-0045",
+        "DENSE-0046"
+      ]
+    },
+    {
+      "id": "UNK-06",
+      "type": "unknown",
+      "statement": "猫的年龄、频率、伴随症状、饮食、用药、异物风险和兽医诊断均缺席，因此“松一口气”不具备个案医学可迁移性。",
+      "evidenceRefs": [
+        "CUE-015",
+        "CUE-016",
+        "DENSE-0047"
+      ]
+    },
+    {
+      "id": "UNK-07",
+      "type": "unknown",
+      "statement": "图片编辑是否在同一次连续会话中完成、耗时多久、是否还有未展示的输入或人工处理、原图版权与人物授权情况未知。",
+      "evidenceRefs": [
+        "DENSE-0050",
+        "DENSE-0051",
+        "DENSE-0052",
+        "DENSE-0053"
+      ]
+    },
+    {
+      "id": "UNK-08",
+      "type": "unknown",
+      "statement": "没有展示失败案例、幻觉、搜索遗漏、隐私/数据使用、版权、引用错误、延迟和性能波动。",
+      "evidenceRefs": [
+        "CUE-012",
+        "CUE-014",
+        "CUE-019"
+      ]
+    },
+    {
+      "id": "UNK-09",
+      "type": "unknown",
+      "statement": "讲述者身份、专业资质以及是否亲自完成所有录屏测试未在允许材料中建立。",
+      "evidenceRefs": [
+        "SHOT-005",
+        "SHOT-021"
+      ]
+    }
+  ],
+  "auditVerdict": {
+    "type": "inference",
+    "summary": "作为叙事和推广演示，视频清楚完成了钩子、品牌揭示、入口演示、案例递进、视觉惊喜和CTA；作为ground-truth证明，它强证了界面存在与若干可见输出，中等程度证明答案具有结构和工具覆盖，弱证或未证权威性、准确性、竞品优势、专业论文身份、普适编辑效果及免费范围。",
+    "confidence": "high",
+    "evidenceRefs": [
+      "CUE-003",
+      "CUE-007",
+      "CUE-014",
+      "CUE-018",
+      "CUE-020",
+      "DENSE-0034",
+      "DENSE-0045",
+      "DENSE-0053"
+    ]
+  }
+}

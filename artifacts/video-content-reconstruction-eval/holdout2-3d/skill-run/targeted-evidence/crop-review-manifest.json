@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/663ac5da000000001e03437a.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/skill-run/capture-protocol.json",
+  "actions": [
+    {"id": "CROP-UI-IDENTITY", "frameIds": ["CROP-0001", "CROP-0002", "CROP-0003", "CROP-0004", "CROP-0005", "CROP-0006", "CROP-0007"]}
+  ],
+  "frames": [
+    {"id": "CROP-0001", "actionId": "CROP-UI-IDENTITY", "time": 3.8, "frame": "crops/ui-3.8s.png", "carrier": "分屏创作界面的品牌、提示词与工具标签", "reason": "原始目标帧中的嵌入画面小字不足以可靠判读，按协议放大复核。"},
+    {"id": "CROP-0002", "actionId": "CROP-UI-IDENTITY", "time": 7.5, "frame": "crops/ui-7.5s.png", "carrier": "单头三维生成界面的导航、模型、状态与下载控件", "reason": "原始目标帧中的嵌入 UI 小字不足以可靠判读，按协议放大复核。"},
+    {"id": "CROP-0003", "actionId": "CROP-UI-IDENTITY", "time": 10.35, "frame": "crops/ui-10.35s.png", "carrier": "分屏创作界面的模型状态与工具图标", "reason": "确认分屏两侧关系及是否有品牌或状态文字。"},
+    {"id": "CROP-0004", "actionId": "CROP-UI-IDENTITY", "time": 12.0, "frame": "crops/ui-12.0s.png", "carrier": "单头三维生成界面的成功状态与下载控件", "reason": "确认结果状态和可见控制项，避免把结果写成未证明的连续流程。"},
+    {"id": "CROP-0005", "actionId": "CROP-UI-IDENTITY", "time": 3.8, "frame": "crops/brand-3.8s.png", "carrier": "分屏界面右下角品牌残片", "reason": "确认原画面只显示到“KRE”而非补全产品名。"},
+    {"id": "CROP-0006", "actionId": "CROP-UI-IDENTITY", "time": 8.4, "frame": "crops/prompt-8.4s.png", "carrier": "分屏界面中老年女性头部对应的英文提示词", "reason": "旁白只说左侧笔画，但界面还显示提示词，属于输入条件与边界。"},
+    {"id": "CROP-0007", "actionId": "CROP-UI-IDENTITY", "time": 14.2, "frame": "crops/prompt-14.2s.png", "carrier": "分屏界面中年轻红胡子男性头部对应的英文提示词", "reason": "旁白只说左侧笔画，但界面还显示提示词，属于输入条件与边界。"}
+  ]
+}

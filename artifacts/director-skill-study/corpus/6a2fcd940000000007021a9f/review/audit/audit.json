@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "independent-audit.v1",
+  "videoId": "6a2fcd940000000007021a9f",
+  "auditIndependence": {
+    "allowedInputs": [
+      "原始 MP4",
+      "原始 SRT",
+      "evidence/evidence-pack.json（含其可解析 frame/shot/cue 引用）"
+    ],
+    "excludedInputs": [
+      "run/ 下的 probe、capture protocol、reconstruction、article",
+      "旧 analysis/report",
+      "其他视频及跨视频结论"
+    ],
+    "candidateEvaluated": false
+  },
+  "source": {
+    "durationSeconds": 163.097,
+    "video": "artifacts/creator-research/human-director/media/6a2fcd940000000007021a9f.mp4",
+    "subtitles": "artifacts/creator-research/human-director/media/6a2fcd940000000007021a9f.srt",
+    "evidencePack": "artifacts/director-skill-study/corpus/6a2fcd940000000007021a9f/evidence/evidence-pack.json",
+    "audioPresent": true,
+    "subtitleCues": 53,
+    "shots": 13,
+    "denseProbeIntervalSeconds": 2.5
+  },
+  "viewerCognitiveChange": {
+    "before": "想开始做自媒体、但可能按个人喜好直接拍发，且未形成定位、赛道、用户与商业化之间的因果链。",
+    "after": "接受作者的起号框架：先定义自己与赛道，再推导目标用户和用户需求；同时以稳定更新、内容质量优先、投流仅作放大器、预留广告位作为运营边界。",
+    "epistemicStatus": "这是视频内作者给出的教学框架，不是经外部验证的普遍事实。"
+  },
+  "criticalQuestions": [
+    {"id":"CQ-01","question":"开场用什么可见证据建立作者权威，证据实际能证明到什么范围？","evidenceWindow":{"start":0,"end":3.733},"refs":["DENSE-0001","DENSE-0002","SHOT-001","SHOT-002","SHOT-003","CUE-001"],"expected":"可见账号/作品数据截图及账号名‘人类最强编导~’；它们显示高播放/互动与账号体量，但不能独立证明‘国内收入前三’或全部数字的归属、时间与真实性。"},
+    {"id":"CQ-02","question":"本视频承诺教的‘第一步’究竟是什么？","evidenceWindow":{"start":2.411,"end":9.667},"refs":["CUE-002","CUE-003","SHOT-003","SHOT-004","SHOT-005"],"expected":"作者将第一步概括为‘人设与赛道’，随后展开为定位/IP、赛道、用户与需求的链条；SRT 中‘报销’显然存在转写冲突，不能按字面采用。"},
+    {"id":"CQ-03","question":"作者为何要求不从个人喜好出发？","evidenceWindow":{"start":9.667,"end":24.24},"refs":["CUE-004","CUE-005","CUE-006","CUE-007","CUE-008","CUE-009","SHOT-006"],"expected":"作者主张‘自媒体其实是他媒体’，内容应由现有资源、用户需求和平台喜好共同决定。"},
+    {"id":"CQ-04","question":"作者为何特别以小红书为起号平台？","evidenceWindow":{"start":24.24,"end":36.56},"refs":["CUE-010","CUE-011","CUE-012","CUE-013","SHOT-007"],"expected":"作者声称小红书适合素人起号，并转述创作者大会信息：平台会把80%流量给新人博主；这是作者转述，视频未展示会议原始材料或适用条件。"},
+    {"id":"CQ-05","question":"定位/IP 的操作对象是什么，何时完成？","evidenceWindow":{"start":36.57,"end":74.167},"refs":["CUE-014","CUE-015","CUE-016","CUE-017","CUE-018","CUE-019","CUE-020","CUE-021","CUE-022","CUE-023","CUE-024","SHOT-007","SHOT-008"],"expected":"拍发之前先回答‘我是谁’，作者提供一组被称为‘IP十问’的自我剖析问题；它用于形成清晰、立体的人设。"},
+    {"id":"CQ-06","question":"‘IP十问’的准确分组和数量是什么？","evidenceWindow":{"start":44.402,"end":64.19},"refs":["CUE-017","CUE-018","CUE-019","CUE-020","CUE-021","CUE-022","SHOT-007","SHOT-008"],"expected":"视频口头连续列出价值排序、骄傲事件、正确选择、挫折、爱好特长、优缺点、刻板行为、若余一年会做的七件事、星座、MBTI、三项最大支出；若按名词逐项会超过十，精确分组依赖白板/口头标点，不能擅自拆成固定十二问。"},
+    {"id":"CQ-07","question":"作者给出了哪些赛道，Vlog 被如何处理？","evidenceWindow":{"start":72.14,"end":85.781},"refs":["CUE-025","CUE-026","CUE-027","CUE-028","SHOT-009"],"expected":"可辨赛道包括 Vlog、口播、美丽分享、剧情等；Vlog 被圈出并留到下一期详讲。本片没有给出完整赛道定义或选择评分法。"},
+    {"id":"CQ-08","question":"赛道与用户分析之间是什么依赖关系？","evidenceWindow":{"start":85.781,"end":95.778},"refs":["CUE-029","CUE-030","CUE-031","CUE-032","SHOT-010"],"expected":"目标用户由‘你是谁’与‘选择赛道’联合推导；之后代入用户，判断其喜欢什么。"},
+    {"id":"CQ-09","question":"作者归纳了哪六类用户需求？","evidenceWindow":{"start":95.778,"end":120.66},"refs":["CUE-033","CUE-034","CUE-035","CUE-036","CUE-037","CUE-038","CUE-039","SHOT-010"],"expected":"审美、共鸣、成长/价值、猎奇、情绪、解决问题；后四类有口头例释。"},
+    {"id":"CQ-10","question":"更新频率的硬要求是什么？","evidenceWindow":{"start":120.67,"end":137.43},"refs":["CUE-040","CUE-041","CUE-042","CUE-043","CUE-044","CUE-045","SHOT-010","SHOT-011","SHOT-012"],"expected":"作者不规定统一频率，只要求形成正常规律并不要断更；SRT 的月更举例前后自相矛盾，需依据可听/烧录字幕复核，不能据 SRT 形成结论。"},
+    {"id":"CQ-11","question":"作者对养号/活跃的判断及条件是什么？","evidenceWindow":{"start":135.733,"end":146.51},"refs":["CUE-046","CUE-047","CUE-048","CUE-049","SHOT-012"],"expected":"作者断言内容足够好时，养号和活跃‘根本不存在’；这是范围很强的作者主张，没有平台证据或反例边界。"},
+    {"id":"CQ-12","question":"投流在作者框架中的作用边界是什么？","evidenceWindow":{"start":141.573,"end":150.095},"refs":["CUE-049","CUE-050","SHOT-012","SHOT-013"],"expected":"投流只能锦上添花，不能挽救差内容；视频没有给投放平台、预算、指标或实操证据。"},
+    {"id":"CQ-13","question":"商业引流建议面向哪类博主，广告位如何影响选择？","evidenceWindow":{"start":149.133,"end":158.31},"refs":["CUE-051","CUE-052","SHOT-013"],"expected":"讨论对象限定为靠广告变现的博主，不含先有产业再做账号者；作者认为颜值、手势舞、擦边类因缺少广告位而不赚钱。该因果与绝对程度未被视频证实。"},
+    {"id":"CQ-14","question":"结尾是否完成开场承诺，还是仅留下后续内容？","evidenceWindow":{"start":158.31,"end":163.097},"refs":["CUE-053","SHOT-013"],"expected":"结尾只做身份签名和‘下期再见’，没有回顾验证结果；Vlog 起号明确留到下一期。"},
+    {"id":"CQ-15","question":"视频是否提供可复现的执行证明？","evidenceWindow":{"start":0,"end":163.097},"refs":["SHOT-001","SHOT-013","DENSE-0001","DENSE-0066"],"expected":"没有展示从定位到发布、后台结果或投流操作的完整执行链；主体是口播、白板指示和开场数据截图。"}
+  ],
+  "coreKnowledgeUnits": [
+    {"id":"KU-01","kind":"visual_observation","unit":"开场出现账号/作品数据截图，作为作者权威锚点。","window":[0,3.733],"refs":["DENSE-0001","DENSE-0002","SHOT-001","SHOT-002","SHOT-003"],"limits":"可见数字不能自动证明收入排名、数据归属与历史因果。"},
+    {"id":"KU-02","kind":"author_claim","unit":"作者把起号首要任务概括为人设与赛道。","window":[2.411,9.667],"refs":["CUE-002","CUE-003","SHOT-004","SHOT-005"]},
+    {"id":"KU-03","kind":"author_claim","unit":"内容选择应取现有资源、用户需求、平台喜好的交集，而非只做自己喜欢的内容。","window":[9.667,24.24],"refs":["CUE-004","CUE-005","CUE-006","CUE-007","CUE-008","CUE-009","SHOT-006"]},
+    {"id":"KU-04","kind":"author_claim","unit":"作者推荐小红书给素人起号，并转述平台将80%流量给新人博主。","window":[24.24,36.56],"refs":["CUE-010","CUE-011","CUE-012","CUE-013","SHOT-007"],"limits":"没有原始大会材料、统计口径或有效期。"},
+    {"id":"KU-05","kind":"author_claim","unit":"发布前先完成定位，以‘我是谁’为核心构建 IP。","window":[36.57,48.58],"refs":["CUE-014","CUE-015","CUE-016","CUE-017","SHOT-007"]},
+    {"id":"KU-06","kind":"author_claim","unit":"用一组‘IP十问’从价值排序、关键经历、特点、死亡假设、人格标签和支出结构剖析自己。","window":[48.59,74.167],"refs":["CUE-018","CUE-019","CUE-020","CUE-021","CUE-022","CUE-023","CUE-024","SHOT-007","SHOT-008"],"limits":"口头项目的分组与‘十问’数量并不完全清楚。"},
+    {"id":"KU-07","kind":"author_claim","unit":"第二步选择赛道；Vlog 被单独圈出并延期到下一期。","window":[72.14,85.781],"refs":["CUE-025","CUE-026","CUE-027","CUE-028","SHOT-009"]},
+    {"id":"KU-08","kind":"author_claim","unit":"用户画像依赖自我定位与赛道，随后再代入用户需求。","window":[85.781,95.778],"refs":["CUE-029","CUE-030","CUE-031","CUE-032","SHOT-010"]},
+    {"id":"KU-09","kind":"author_claim","unit":"六类用户需求是审美、共鸣、成长、猎奇、情绪、解决问题。","window":[95.778,120.66],"refs":["CUE-033","CUE-034","CUE-035","CUE-036","CUE-037","CUE-038","CUE-039","SHOT-010"]},
+    {"id":"KU-10","kind":"author_claim","unit":"更新频率可以自定，但应规律且不要断更。","window":[120.67,137.43],"refs":["CUE-040","CUE-041","CUE-042","CUE-043","CUE-044","CUE-045","SHOT-011"],"limits":"月更例句在 SRT 中有转写自相矛盾。"},
+    {"id":"KU-11","kind":"author_claim","unit":"作者否定养号/活跃的独立必要性，前提是内容足够好。","window":[135.733,146.51],"refs":["CUE-046","CUE-047","CUE-048","CUE-049","SHOT-012"]},
+    {"id":"KU-12","kind":"author_claim","unit":"投流只负责锦上添花，不能补救差内容。","window":[141.573,150.095],"refs":["CUE-049","CUE-050","SHOT-012","SHOT-013"]},
+    {"id":"KU-13","kind":"author_claim","unit":"广告变现型账号要优先考虑广告位；作者认为某些外貌/动作型赛道广告位少、赚钱难。","window":[149.133,158.31],"refs":["CUE-051","CUE-052","SHOT-013"],"limits":"没有收益数据或反例分析。"},
+    {"id":"KU-14","kind":"raw_fact","unit":"结尾以作者自称和下期再见收束，未展示执行结果。","window":[158.31,163.097],"refs":["CUE-053","SHOT-013"]}
+  ],
+  "carriers": [
+    {"id":"CAR-01","modality":"speech","role":"主要教学、论断、步骤与例子","scope":"0-163.097","checked":true,"risk":"强断言易被改写成客观事实。"},
+    {"id":"CAR-02","modality":"provided_srt","role":"逐句时间索引","scope":"53 cues / 0.03-163.073","checked":true,"risk":"有明显同音/编辑注记式错误，如‘报销’；不能静默纠正。"},
+    {"id":"CAR-03","modality":"burned_captions_and_emphasis_text","role":"提供较清晰口语文本和黄色重点词","scope":"全片抽样并复核开场、转折、结尾","checked":true,"risk":"重点词可能改变范围；5秒抽样不能穷尽每个短强调。"},
+    {"id":"CAR-04","modality":"whiteboard_layout_and_gesture","role":"展示步骤、分组、圈选、指向与结构关系","scope":"约3.7-163.097","checked":true,"risk":"字小且多次被人物遮挡，不能声称完成逐字白板 OCR。"},
+    {"id":"CAR-05","modality":"opening_inserted_account_and_metric_screenshots","role":"权威/成绩证明","scope":"0-3.733","checked":true,"risk":"归属、日期、真实性及与起号因果未闭合。"},
+    {"id":"CAR-06","modality":"non_speech_audio","role":"未发现其承担独立知识事实；可能仅为剪辑节奏/背景","scope":"原始 MP4 全时轴存在音轨","checked":true,"status":"unknown_semantic_role","risk":"未做波形/音乐识别，不能断言完全无音乐或音效。"}
+  ],
+  "meaningChanges": [
+    {"id":"MC-01","window":[0,3.733],"change":"从无背景进入数据型权威背书。","refs":["SHOT-001","SHOT-002","SHOT-003"]},
+    {"id":"MC-02","window":[3.733,9.667],"change":"从自证转为承诺教学‘人设与赛道’。","refs":["CUE-002","CUE-003","SHOT-004","SHOT-005"]},
+    {"id":"MC-03","window":[9.667,24.24],"change":"把创作动机从‘自我喜好’重构为‘他人/平台需求’。","refs":["CUE-004","CUE-009","SHOT-006"]},
+    {"id":"MC-04","window":[24.24,36.56],"change":"平台原则落到小红书与新人流量主张。","refs":["CUE-010","CUE-013","SHOT-007"]},
+    {"id":"MC-05","window":[36.57,74.167],"change":"由平台选择进入定位/IP 自我剖析。","refs":["CUE-014","CUE-024","SHOT-007","SHOT-008"]},
+    {"id":"MC-06","window":[72.14,95.778],"change":"由‘我是谁’依次切到赛道、用户、代入用户。","refs":["CUE-025","CUE-032","SHOT-009","SHOT-010"]},
+    {"id":"MC-07","window":[95.778,120.66],"change":"将抽象用户喜好分解为六种需求。","refs":["CUE-033","CUE-039","SHOT-010"]},
+    {"id":"MC-08","window":[120.67,150.095],"change":"从定位框架切换到更新、养号和投流的运营判断。","refs":["CUE-040","CUE-050","SHOT-011","SHOT-012"]},
+    {"id":"MC-09","window":[149.133,163.097],"change":"从流量策略收束到广告位/赚钱边界和下期告别。","refs":["CUE-051","CUE-053","SHOT-013"]}
+  ],
+  "relationships": [
+    {"id":"REL-01","from":"现有资源","relation":"combined_with","to":"用户需求与平台喜好","result":"内容/产品选择","refs":["CUE-008","CUE-009"]},
+    {"id":"REL-02","from":"小红书新人流量主张","relation":"supports_author_recommendation","to":"素人在小红书起号","refs":["CUE-011","CUE-013"]},
+    {"id":"REL-03","from":"回答‘我是谁’","relation":"produces","to":"清晰立体 IP 定位","refs":["CUE-016","CUE-023","CUE-024"]},
+    {"id":"REL-04","from":"IP十问","relation":"instrument_for","to":"自我剖析","refs":["CUE-017","CUE-024"]},
+    {"id":"REL-05","from":"自我定位","relation":"precedes","to":"选择赛道","refs":["CUE-015","CUE-025"]},
+    {"id":"REL-06","from":"自我定位+赛道","relation":"input_to","to":"目标用户判断","refs":["CUE-029","CUE-030"]},
+    {"id":"REL-07","from":"目标用户","relation":"perspective_for","to":"六类需求判断","refs":["CUE-031","CUE-039"]},
+    {"id":"REL-08","from":"规律更新","relation":"author_framed_as_guard_against","to":"断更","refs":["CUE-041","CUE-045"]},
+    {"id":"REL-09","from":"内容足够好","relation":"author_claimed_to_remove_need_for","to":"养号和活跃","refs":["CUE-048","CUE-049"]},
+    {"id":"REL-10","from":"内容质量","relation":"precondition_for","to":"投流放大","refs":["CUE-049","CUE-050"]},
+    {"id":"REL-11","from":"可植入广告位","relation":"author_claimed_to_enable","to":"广告变现","refs":["CUE-051","CUE-052"]},
+    {"id":"REL-12","from":"开场高数据截图","relation":"rhetorical_support_for","to":"作者教学权威","refs":["SHOT-001","SHOT-003","CUE-001","CUE-002"]},
+    {"id":"REL-13","from":"Vlog 赛道圈选","relation":"setup_for","to":"下一期 Vlog 起号内容","refs":["CUE-026","CUE-027","CUE-028"]},
+    {"id":"REL-14","from":"开场第一步承诺","relation":"partially_paid_off_by","to":"定位—赛道—用户—需求框架","refs":["CUE-002","CUE-015","CUE-025","CUE-029","CUE-031"]}
+  ],
+  "dependencies": [
+    {"id":"DEP-01","chain":["盘点现有资源","回答IP十问/形成自我定位","选择赛道","推导目标用户","代入六类用户需求","决定内容"],"status":"author_described_conceptual_order","refs":["CUE-008","CUE-015","CUE-024","CUE-025","CUE-030","CUE-032","CUE-039"]},
+    {"id":"DEP-02","chain":["确定常态更新频率","按该节律持续更新","避免相对于自身节律的断更"],"status":"partially_established","refs":["CUE-041","CUE-045"],"unknown":"SRT 的月更例句冲突，具体阈值需复核音频/烧录字幕。"},
+    {"id":"DEP-03","chain":["先有足够好的内容","再考虑投流","投流只放大而不补救"],"status":"author_claim_only","refs":["CUE-048","CUE-050"]},
+    {"id":"DEP-04","chain":["以广告为生","内容有可植入场景","才可能获得广告变现"],"status":"author_claim_only","refs":["CUE-051","CUE-052"]}
+  ],
+  "unknownOpportunities": [
+    {"id":"UNK-01","unknown":"开场账号和作品数据的时间、平台口径、归属与真实性。","materialBecause":"它承担作者权威证明。","scopeInspected":"0-3.733 的插入截图、字幕和相邻画面"},
+    {"id":"UNK-02","unknown":"‘国内收入前三’的统计对象、时间范围和证据。","materialBecause":"这是高强度身份/成绩主张。","scopeInspected":"0-6.91 的开场主张与截图"},
+    {"id":"UNK-03","unknown":"所谓‘仅用一条视频起号’与账号结果之间的因果、起始粉丝和时间。","materialBecause":"它是方法可信度来源。","scopeInspected":"0-9.667"},
+    {"id":"UNK-04","unknown":"小红书‘80%流量给新人’的原话、统计口径、有效期和适用条件。","materialBecause":"它直接影响平台选择。","scopeInspected":"24.24-36.56"},
+    {"id":"UNK-05","unknown":"‘IP十问’准确十项分组。","materialBecause":"读者若执行需要明确题目边界。","scopeInspected":"44.402-64.19 的语音/SRT、烧录字幕与白板"},
+    {"id":"UNK-06","unknown":"赛道清单是否完整以及每一赛道的选择标准。","materialBecause":"赛道是流程依赖。","scopeInspected":"72.14-85.781"},
+    {"id":"UNK-07","unknown":"六类用户需求是否互斥、如何验证某一用户属于哪类。","materialBecause":"影响选题决策。","scopeInspected":"95.778-120.66"},
+    {"id":"UNK-08","unknown":"养号/活跃‘不存在’的适用平台、账号状态、时间和反例边界。","materialBecause":"可能改变运营动作。","scopeInspected":"135.733-146.51"},
+    {"id":"UNK-09","unknown":"投流平台、预算、触发条件、成功指标及执行结果。","materialBecause":"视频提出投流原则但未给操作边界。","scopeInspected":"141.573-150.095"},
+    {"id":"UNK-10","unknown":"颜值/手势舞/擦边账号‘最不赚钱’的样本、收益数据与平台范围。","materialBecause":"这是赛道商业决策。","scopeInspected":"149.133-158.31"}
+  ],
+  "adversarialChallenges": {
+    "identity": {"applicable":true,"items":["可见账号名‘人类最强编导~’与蒙面出镜者相关，但视频不证明现实身份；只能写作者/出镜者。","社交数据截图不可自动归属于当前出镜者或证明‘国内收入前三’。"]},
+    "boundary": {"applicable":true,"items":["小红书80%流量、养号无效、投流作用、赛道盈利均缺平台版本、时间、账户阶段或统计范围。","讨论广告位时作者明确排除先有产业再有账号者，此限定不可丢。"]},
+    "referent": {"applicable":true,"items":["‘这位朋友/铁板’在当前片内无可见来源，具体所指未知。","白板、书/册、手持道具是教学布景或指示工具，不等于外部来源证明。"]},
+    "absence": {"applicable":true,"items":["全片未出现完整发布/后台验证流程、投流界面、预算和结果；检查范围0-163.097，载体为画面、字幕、白板。","未出现创作者大会原始材料或80%主张的可核验出处；检查范围24.24-36.56及全片插入素材。","未出现明确 CTA/下载入口；但本片目标是框架教学，该缺失不必解释为内容失败。"]},
+    "carrierConflict": {"applicable":true,"items":["SRT 含‘报销第一步’等显著转写错误，而画面/上下文是‘起号第一步’，必须保留原文并单独注释。","更新频率段 SRT 两次‘月更’形成逻辑冲突，不能静默选择其一。","口头称‘IP十问’，逐项自然拆分可能超过十，白板/语音分组不能被任意重标。"]},
+    "segmentation": {"applicable":true,"items":["13个技术 shots 多由近景切换、动作或开场插入图触发；3.733秒后基本为同一房间/白板讲解，不能把每个 shot 当作新语义场景。","连续布景不证明无隐藏剪辑；只能说编辑后呈现的概念顺序。"]},
+    "openingClosing": {"applicable":true,"items":["开场以数据和‘一条视频起号’建立可信度，结尾没有回到数据或展示方法执行，只完成框架教学并预告下期。","‘Vlog如何起号’明确延后，不能把本片写成已完整教授 Vlog 起号。"]},
+    "literalFailureResultSignature": {"applicable":false,"reason":"视频没有 before/failure/after 产品或界面演示；开场数据截图只是成绩修辞，不构成同一流程的前后状态。"},
+    "uiProgressStatus": {"applicable":false,"reason":"没有软件操作或进度状态；开场社交页面是静态插入截图，仅需审计身份与数字归属。"},
+    "editedChronologyVsDependency": {"applicable":true,"items":["视频编辑顺序总体沿定位→赛道→用户→需求→运营，但它没有展示实际执行；不能把讲述顺序升级为经验证的因果流程。"]}
+  },
+  "denominators": {
+    "criticalQuestions": 15,
+    "coreKnowledgeUnits": 14,
+    "carriers": 6,
+    "meaningChanges": 9,
+    "relationships": 14,
+    "dependencies": 4,
+    "unknownOpportunities": 10,
+    "challengeFamilies": 10,
+    "applicableChallengeFamilies": 8,
+    "notApplicableChallengeFamilies": 2
+  }
+}

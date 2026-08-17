@@ -1,0 +1,109 @@
+{
+  "capturedAt": "2026-08-15T23:18:00+08:00",
+  "scope": {
+    "publicNotes": 331,
+    "publicVideos": 318,
+    "maturityFloorDays": 30,
+    "selectionRule": "mature public videos with low visible like counts, sampled across tool news, task tutorials, creative demos, vlog and opinion"
+  },
+  "samples": [
+    {
+      "id": "6726eb1c000000003c0175f3",
+      "title": "Ai好强🥹动动嘴秒变皮克斯动画女主角",
+      "publishedAt": "2024-11-03T03:16:44.000Z",
+      "durationMs": 55682,
+      "likes": 19,
+      "collects": 20,
+      "shares": 1,
+      "comments": 4,
+      "description": "用的runway新模型act one，拍段视频就能驱动动画角色啦",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/110/259/01e726ea0370a8620103700392f0075c38_259.mp4?sign=ccfd432a36b2dbf66b3ff5b4853f67c2&t=6a851f0a",
+      "subtitleOrigin": "xiaohongshu official zh-CN subtitle",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e726ea0370a86201037003979dc212e4_11.srt?sign=6245143ee2a10039755bd0b8226a9fa2&t=6A85213A"
+    },
+    {
+      "id": "66ac4e770000000027010f24",
+      "title": "GPT4不香了🥹国产千问2，强大好用！",
+      "publishedAt": "2024-08-02T03:11:51.000Z",
+      "durationMs": 86636,
+      "likes": 19,
+      "collects": 16,
+      "shares": 3,
+      "comments": 1,
+      "description": "这几乎是古希腊掌管开源大模型的神。",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/110/259/01e6ac4db09c7e4f010371039111138ed0_259.mp4?sign=54e99f323e3da30c634cce27e26a1193&t=6a851f2d",
+      "subtitleOrigin": "machine transcript fallback; official subtitle unavailable",
+      "subtitleUrl": null
+    },
+    {
+      "id": "6784e718000000000b0227d9",
+      "title": "天塌了！教你用Ai做海报，只要10秒",
+      "publishedAt": "2025-01-13T10:12:40.000Z",
+      "durationMs": 48667,
+      "likes": 27,
+      "collects": 40,
+      "shares": 8,
+      "comments": 9,
+      "description": "Recraft + Coze 海报教程",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/79/110/259/01e784e7177cc6ff01037003945f27578b_259.mp4?sign=b617b73f0f681ad8fca303f7c2515ad4&t=6a851f34",
+      "subtitleOrigin": "machine transcript fallback; official subtitle unavailable",
+      "subtitleUrl": null
+    },
+    {
+      "id": "67124e580000000021000df9",
+      "title": "治愈独居Vlog，用AI三步就能做！",
+      "publishedAt": "2024-10-18T12:02:32.000Z",
+      "durationMs": 60967,
+      "likes": 27,
+      "collects": 28,
+      "shares": 3,
+      "comments": 4,
+      "description": "AI 三步制作治愈独居 Vlog 的保姆级教程",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/110/259/01e7124dd5a4c74101037103929f82d232_259.mp4?sign=244190958ee7a12b0a67105bb76906e1&t=6a851f6f",
+      "subtitleOrigin": "xiaohongshu official zh-CN subtitle",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e7124dd5a4c7410103700397a4f54e09_11.srt?sign=473fc962d97a266d62fb4fe3df6b95bb&t=6A852153"
+    },
+    {
+      "id": "66011c23000000000d00ed40",
+      "title": "给OpenAI的Sora泼点冷水",
+      "publishedAt": "2024-03-25T06:39:31.000Z",
+      "durationMs": 225418,
+      "likes": 29,
+      "collects": 27,
+      "shares": 11,
+      "comments": 3,
+      "description": "讨论 Sora 上线、成本和普通创作者是否需要使用。",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/110/259/01e6011b101170de010370038e745e025d_259.mp4?sign=8dbc767643a294675592588aed638e61&t=6a851f77",
+      "subtitleOrigin": "xiaohongshu official zh-CN subtitle",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e6011b101170de0103700397ab4c3fa5_11.srt?sign=f23aaac4202c4925d353e266b6e708b1&t=6A852159"
+    },
+    {
+      "id": "66ee9136000000001201188a",
+      "title": "喂饭教程！小白1分钟做电影特效！",
+      "publishedAt": "2024-09-21T09:26:14.000Z",
+      "durationMs": 18137,
+      "likes": 30,
+      "collects": 33,
+      "shares": 3,
+      "comments": 10,
+      "description": "小白电影特效教程",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/110/259/01e6ee90c09d346e010371039213e7c1f3_259.mp4?sign=c9e87b02e158063ff66ba716c26a17c3&t=6a851f7d",
+      "subtitleOrigin": "xiaohongshu official zh-CN subtitle",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e6ee90c09d346e0103700397971e2d51_11.srt?sign=0cc1abe1fee2b570df7c548bece9a278&t=6A852165"
+    },
+    {
+      "id": "684d1e96000000002100730b",
+      "title": "为什么你的AI搜索总在瞎编？",
+      "publishedAt": "2025-06-14T07:02:46.000Z",
+      "durationMs": 85010,
+      "likes": 39,
+      "collects": 42,
+      "shares": 9,
+      "comments": 3,
+      "description": "夸克深度搜索相关 AI 搜索教程",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/108/01e84d1e940624c50103700197e08c6d31_108.mp4?sign=d0f959de09ff3aac68795a92f4ee4aed&t=6a851f9a",
+      "subtitleOrigin": "xiaohongshu official zh-CN subtitle",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e84d1e940624c50103700397ac408c1d_11.srt?sign=d5998fdefc201d660b39a5efec138686&t=6A852179"
+    }
+  ]
+}

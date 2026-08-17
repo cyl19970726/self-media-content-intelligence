@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "round": 1,
+  "capturedAt": "2026-08-16T00:01:00.000Z",
+  "strategy": "visible_dom",
+  "artifactRef": "fixtures/grid-snapshot.txt",
+  "scroll": { "y": 0, "pageHeight": 1800 },
+  "page": {
+    "url": "https://www.xiaohongshu.com/user/profile/fixture-creator",
+    "explicitEnd": true,
+    "needsUser": false,
+    "error": null
+  },
+  "items": [
+    {
+      "id": "fixture-note-1",
+      "title": "一句话完成办公任务",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/fixture-note-1",
+      "mediaType": "video",
+      "likes": "1.2万",
+      "publishedLabel": "08-16",
+      "cover": null
+    }
+  ]
+}

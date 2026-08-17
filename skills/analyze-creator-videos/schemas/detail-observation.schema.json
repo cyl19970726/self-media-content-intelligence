@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/detail-observation.schema.json",
+  "title": "One post detail observation",
+  "type": "object",
+  "required": ["schemaVersion", "id", "capturedAt", "strategy", "fields", "subtitleStatus"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "id": { "type": "string", "minLength": 1 },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "strategy": { "enum": ["structured_state", "visible_dom", "network_response", "fallback_evidence", "local_import"] },
+    "artifactRef": { "type": ["string", "null"] },
+    "fields": { "type": "object" },
+    "subtitleStatus": { "enum": ["unchecked", "available", "absent", "failed"] },
+    "mediaCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "availability"],
+        "properties": {
+          "kind": { "enum": ["video", "subtitle", "cover"] },
+          "availability": { "enum": ["available", "absent", "failed", "unknown"] },
+          "privateRef": { "type": ["string", "null"] },
+          "expectedDurationSec": { "type": ["number", "null"], "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "error": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

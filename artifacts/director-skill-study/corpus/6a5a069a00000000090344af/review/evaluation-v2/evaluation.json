@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        "The visible title is restored as 给自媒体人的10大建议 and the unnumbered final item closes the ten-item contract.",
+        "KU-10 and KU-19 separate the eighth item's 一夜起号 premise from its 换方向 conclusion.",
+        "KU-07/KU-08 preserve the sixth item's 轻松高薪 surface sentence as a reversal setup rather than a positive income promise."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        "All 12 audited core evidence windows are represented, from the title through the ordinary-person and employer closing warnings.",
+        "The 169.730–185.660 second eighth-item window uses burned-caption OCR, targeted frames and verbatim cues.",
+        "The notebook/persona carrier and its authority limits are separately represented."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 30,
+      "examples": [
+        "Audited 17 non-unknown knowledge-unit claims and 13 explicit relations; causal, threshold and mechanism claims remain author_claim.",
+        "KU-11 is explicitly marked system_inference, supplies reasoning and distinguishes execution intensity from direction selection.",
+        "No platform rule, success rate, revenue proof, salary norm or real identity is invented."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 73,
+      "denominator": 73,
+      "examples": [
+        "All 73 knowledge-unit evidence references were checked against their bounded unit intervals; none falls outside its cue/frame/OCR time.",
+        "The eighth premise is correctly bounded to 169.730–175.050 seconds and its conclusion to 175.510–185.660 seconds.",
+        "The sixth-item reversal is kept within 116.480–148.990 seconds."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "The video presents numbered strategic advice and no reproducible input/action/parameter/result operation. Number order is rhetorical order, not an execution dependency."
+    },
+    "unknownDiscipline": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        "Platform, stage, industry, region and time boundaries; weak-data thresholds/windows; traffic and account-mechanism probabilities remain unknown.",
+        "The 商企 referent, revenue metric, ad-price scope, overnight-growth definition and 6000-yuan role/team boundary are not completed from outside knowledge.",
+        "Notebook authorship/content, speaker identity/authorization, non-speech audio role and absent CTA are correctly bounded or unknown."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent comparison found all available carriers guarded: speech/SRT, burned captions and numbering, notebook/page/gesture performance, visible persona/watermark/environment, rhetorical sequence and reversal, technical segmentation limits, and non-speech audio as unknown. All 11 audited meaning changes and 11 relationship families are represented in the unit or relation model, including the sixth-item reversal, the title-to-final-item closure, and the explicit author-premise-supports-conclusion edge from 一夜起号 to 换方向."
+  },
+  "examples": [
+    {
+      "type": "eighth_item_recovery",
+      "result": "pass",
+      "detail": "Burned captions restore 第八 起号是一夜之间，不是日积月累 instead of accepting the SRT 喜好 reading."
+    },
+    {
+      "type": "premise_conclusion_relation",
+      "result": "pass",
+      "detail": "KU-10 is the author's premise and KU-19 is the author's change-direction conclusion; REL-12 links them without treating either as verified platform law."
+    },
+    {
+      "type": "irony_reversal",
+      "result": "pass",
+      "detail": "The surface 轻松高薪 statement is not extracted alone; the immediate all-in effort and do-not-expect-easy-money reversal controls the meaning."
+    }
+  ]
+}

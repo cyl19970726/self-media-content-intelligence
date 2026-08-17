@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a1f5d2800000000200397aa",
+  "capturedAt": "2026-08-16T11:09:19.096Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "发现了AI设计的新大陆：SVG！（可编辑）",
+    "postCopy": "最近发现，coding agent （尤其是Claude Code）设计 SVG 的能力是极强的，甚至跟 HTML 有一拼！\n\t\n上面所有图片，都是Claude Code画的飞书文档里面的画板，都是可编辑的矢量图（SVG），而且是「真」可编辑，所有元素都可以拖动那种！\n\t\n很多人抱怨 HTML 不方便修改协作，而飞书画板里面的 SVG 全部都可以编辑、可以协作、甚至可以在具体元素上评论（看倒数第二张动图）\n\t\n这解锁了很多新的“信息可视化”的场景，比如：\n- 一张图理解代码库/技术架构/GitHub项目\n- 一张图总结会议\n- 一张图理解论文\n- 一张图做数据分析可视化\n- 社交媒体配图、长图，都可以这样做\n\t\n甚至可以用画板取代PPT，在飞书文档里做成图文混排的形式，把PPT和讲稿 all in one在一个文档里呈现\n\t\n如果想要做出图片里这些视觉效果，可以安装我的飞书画板skill，在我的GitHub里，叫做beautiful feishu whiteboard（末图），把这个项目发给agent（如Claude Code/Codex），它就会帮你安装。我的GitHub在我的签名里。\n\t\n使用方法非常简单，跟它说“给我做一个飞书画板，内容是xxx”即可。\n\t\n（即使没有安装这个skill，只要你装了飞书CLI，agent就都可以给你画画板。这个skill是用来给agent一些审美规范。谷歌搜索Lark CLI，把github发给agent让它安装即可）\n\t\n#skill[话题]# #设计[话题]# #平面设计[话题]# #claudecode[话题]# #海报设计[话题]#",
+    "hashtags": [
+      "skill",
+      "设计",
+      "平面设计",
+      "claudecode",
+      "海报设计"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a1f5d2800000000200397aa",
+    "mediaType": "image",
+    "publishedAt": "2026-06-02T22:46:00.000Z",
+    "likes": "941",
+    "collections": "676",
+    "comments": "47",
+    "shares": "219",
+    "expectedDurationSec": null
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": []
+}

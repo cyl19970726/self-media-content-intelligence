@@ -1,0 +1,2974 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "仅重建本地MP4、提供SRT、evidence pack与本次targeted/OCR所含视频内部信息；作者平台、数据和效果主张未做外部验证。",
+  "viewerChange": {
+    "before": "观众尚未知道作者如何用一张仿考试卷复盘其自媒体方法论。",
+    "after": "观众能按20道题复述作者关于更新、平台、用户需求、Vlog、爆款、AI、投流、热点与赛道的主张，并知道这些是作者观点而非被视频外部验证的事实。",
+    "intendedChanges": [
+      "用考试讲评形式记住一组自媒体判断",
+      "区分作者认可和否定的做法",
+      "把选择题与填空题中的重复概念联系起来"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-targeted frames",
+      "producedBy": "capture-protocol-evidence.mjs",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "limitations": [
+        "离散帧不能证明无隐藏剪辑",
+        "小号试卷文字仍可能不可读"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift plus visual frame review",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "limitations": [
+        "OCR多为0.5置信度",
+        "小字与手写识别不可靠",
+        "已接受的行仅用于账号标签等可目视复核文字"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 3.119,
+        "text": "开头展示教程，那么大家都知道五年自媒体三年模拟",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.119,
+        "end": 4.339,
+        "text": "今天给大家带来的呢",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 4.339,
+        "end": 7.322,
+        "text": "是这道二零二六年普通高等自媒体全国统一考试呢",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 7.322,
+        "end": 9.63,
+        "text": "出题人呢是人类最强编导啊，也就是我",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 9.64,
+        "end": 10.782,
+        "text": "那么我们来看第一题",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 10.782,
+        "end": 15.35,
+        "text": "关于自媒体账号的更新与养号，下列哪一项最符合人类最强编导，也就是我的观点",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 15.36,
+        "end": 18.193,
+        "text": "那么这一题我们使用观察法可以一眼得出，唉",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 18.193,
+        "end": 20.176,
+        "text": "我们选b更新频率没有统一标准",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 20.176,
+        "end": 23.72,
+        "text": "但不能长期断更，我三番五次强调很多的养号，所谓活跃",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 23.73,
+        "end": 26.023,
+        "text": "全部都是啊，骗傻子的，这是一道送分题",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 26.023,
+        "end": 30.1,
+        "text": "我们来看下一题，推流周期主要集中在二十四小时内，延长到大约七天后",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 30.11,
+        "end": 32.726,
+        "text": "我认为创作者的内容逻辑应该发生什么样的变化",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 32.726,
+        "end": 36.34,
+        "text": "平台会更喜欢深度有价值的内容，也是一道送分题，我们直接选b",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 36.35,
+        "end": 39.358,
+        "text": "那么第三题，某创作者只依据自己的喜好决定内容",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 39.358,
+        "end": 43.46,
+        "text": "既不考虑用户需求，也不考虑平台偏好，对这一做法评价最准确的是",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 43.47,
+        "end": 46.264,
+        "text": "这题呢考察的是一个自媒体创作者的一个本质逻辑",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 46.264,
+        "end": 48.296,
+        "text": "就是自媒体其实是他媒体的基本立场",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 48.296,
+        "end": 51.09,
+        "text": "那么我们这一题呢肯定是不正确，所以我们去选c",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 51.1,
+        "end": 52.268,
+        "text": "应该结合现有资源",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 52.268,
+        "end": 54.896,
+        "text": "用户需求与平台偏好去创作内容，第四题",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 54.896,
+        "end": 60.3,
+        "text": "下列哪一项不属于人类最强编导总结的六类用户需求，那么很明显就是选d养号活跃",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 60.31,
+        "end": 62.05,
+        "text": "再次重申一遍就是骗傻子的",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 62.05,
+        "end": 65.53,
+        "text": "那么进一步的去考察用户的六类基本需求是哪六大呢？",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 65.53,
+        "end": 69.3,
+        "text": "是这个审美共鸣，成长，猎奇情绪和解决问题，那么第五题",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 69.31,
+        "end": 74.85,
+        "text": "我认为平台当前偏好的vlog应该具备哪三个特征，直接选a真实反差和交互",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 74.86,
+        "end": 78.748,
+        "text": "第六题，下列哪一项不是人类最强编导所说的百万爆款的必要条件",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 78.748,
+        "end": 82.1,
+        "text": "这题也是一元秒了吧，直接选d，那么abc都是对的用",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 82.11,
+        "end": 87.98,
+        "text": "户要能看懂理解，成本要低，能够链接足够大的群体和满足调动用户情绪和获得信息的需求",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 87.99,
+        "end": 91.147,
+        "text": "那么第七题下列哪一组完整列出的三种爆款类型",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 91.147,
+        "end": 96.26,
+        "text": "又是对爆款的一种考察，那么很明显就是a万古同杯，惊世骇俗和打破节奏型",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 96.27,
+        "end": 97.483,
+        "text": "那么我们来看第八题",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 97.483,
+        "end": 100.45,
+        "text": "Ai在自媒体创作中较为合适的使用方式是什么？",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 100.45,
+        "end": 103.821,
+        "text": "也是对ai不要做自媒体的这么一个大的话题的一个考察",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 103.821,
+        "end": 106.25,
+        "text": "直接生成全部脚本，直接拍摄直接滚出去",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 106.26,
+        "end": 108.275,
+        "text": "D代替创作者完成对人类的贡献",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 108.275,
+        "end": 110.002,
+        "text": "直接给我滚c补齐知识缺陷",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 110.002,
+        "end": 114.61,
+        "text": "参与通道风暴，正确我们选c，D保证每条内容达到爆款数据直接给我滚",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 114.62,
+        "end": 116.795,
+        "text": "Ok,那么我们这个选择题也是很快的过完了",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 116.795,
+        "end": 119.95,
+        "text": "那么我们来到填空题这里，对我们来的基本功就考察的更加严肃了",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 119.96,
+        "end": 125.47,
+        "text": "那么来看第九题，根据我所说的推流机制中一条内容的主要推流机制，由二十四小时延长到约",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 125.48,
+        "end": 129.99,
+        "text": "啊，送分题就是七天第十题导演扶持计划中的内容类型包括ai短片",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 129.99,
+        "end": 133.9,
+        "text": "什么何为纪录片，人间观察又是一个对平台政策的一个考量",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 133.91,
+        "end": 135.77,
+        "text": "第十一题提醒出六类用户需求",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 135.77,
+        "end": 138.202,
+        "text": "那么刚才选择题我们也说了是审美共鸣",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 138.202,
+        "end": 141.78,
+        "text": "成长，猎奇情绪和解决问题，那么我们就不写了第十二题",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 141.79,
+        "end": 147.06,
+        "text": "投流只负责锦上添花，不负责雪中送炭，是对投流作用的一个考察，那么第十三题",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 147.07,
+        "end": 148.591,
+        "text": "打造vlog中的ip",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 148.591,
+        "end": 152.85,
+        "text": "我提出的四个观察维度，刻板行为作风，个人风格和ip立体度",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 152.86,
+        "end": 155.274,
+        "text": "第十四题考察vlog的两种基本类型",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 155.274,
+        "end": 159.25,
+        "text": "分别是日常型vlog也是软素材和挑战型vlog就是硬素材",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 159.26,
+        "end": 160.589,
+        "text": "日常型的就是你有啥拍啥",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 160.589,
+        "end": 162.885,
+        "text": "挑战型的就是你为了拍这个vlog去干啥",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 162.885,
+        "end": 164.335,
+        "text": "那么下一题爆款的三种类型",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 164.335,
+        "end": 167.84,
+        "text": "也是刚刚我们选择题里面提到的灌骨铜杯，惊世骇俗和节奏打破型",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 167.85,
+        "end": 169.552,
+        "text": "第十六题寻找爆款选题时",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 169.552,
+        "end": 171.563,
+        "text": "要求从自身出发检查三类要素",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 171.563,
+        "end": 172.801,
+        "text": "自己做过或者能做",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 172.801,
+        "end": 177.6,
+        "text": "而大多数人做不到的，自己特别大的优点和缺点和自己极度擅长的事儿",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 177.61,
+        "end": 181.106,
+        "text": "第十七题热点追踪时要判断两个问题，一个是有没有",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-060",
+        "start": 181.106,
+        "end": 182.322,
+        "text": "一个是能不能热点",
+        "representativeFrame": "frames/cues/cue-060.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-061",
+        "start": 182.322,
+        "end": 187.34,
+        "text": "最好也要根据事实情况来判断能否及时跟进，不然翻车的代价会比这个流量",
+        "representativeFrame": "frames/cues/cue-061.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-062",
+        "start": 187.35,
+        "end": 192.99,
+        "text": "反噬更大啊，第十八题是文本表达应该达到三个要求，一是能等，二是练字，三是网感",
+        "representativeFrame": "frames/cues/cue-062.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-063",
+        "start": 193,
+        "end": 196.697,
+        "text": "第十九题自媒体赛道分为两大类，口播和非口播",
+        "representativeFrame": "frames/cues/cue-063.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-064",
+        "start": 196.697,
+        "end": 202.86,
+        "text": "前者呢包括情感成长厚黑干货，后者包括vlog短片，Aigc微综艺和颜值",
+        "representativeFrame": "frames/cues/cue-064.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-065",
+        "start": 202.87,
+        "end": 206.836,
+        "text": "那么最后一题，一个爆款系列通常具有三到六个月的生命周期",
+        "representativeFrame": "frames/cues/cue-065.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-066",
+        "start": 206.836,
+        "end": 210.51,
+        "text": "当系列逐渐疲软时，应进行及时的优化调整或者考虑变现",
+        "representativeFrame": "frames/cues/cue-066.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-067",
+        "start": 210.52,
+        "end": 212.227,
+        "text": "那么这一套卷子也是比较基础啊",
+        "representativeFrame": "frames/cues/cue-067.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-068",
+        "start": 212.227,
+        "end": 215.275,
+        "text": "考到九十分以上的同学可以准备好去拿自媒体的大结果了",
+        "representativeFrame": "frames/cues/cue-068.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-069",
+        "start": 215.275,
+        "end": 218.081,
+        "text": "那我们今天就到这，我是雷自强编导，我们下期再见",
+        "representativeFrame": "frames/cues/cue-069.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-OPEN-INSERT",
+      "title": "开头插入画面",
+      "importance": "supporting",
+      "statement": "0至1.133秒先出现一段模糊插入画面，烧录字幕为“开头展示教程”；视频内部未给出该片段来源、作者或权属。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 1.133
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "0至1.133秒先出现一段模糊插入画面，烧录字幕为“开头展示教程”；视频内部未给出该片段来源、作者或权属。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "0至1.133秒先出现一段模糊插入画面，烧录字幕为“开头展示教程”；视频内部未给出该片段来源、作者或权属。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-001",
+          "supports": "0至1.133秒先出现一段模糊插入画面，烧录字幕为“开头展示教程”；视频内部未给出该片段来源、作者或权属。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "插入画面的原始来源、作者、授权和权属"
+      ]
+    },
+    {
+      "id": "KU-SETUP",
+      "title": "仿考试讲评设定",
+      "importance": "core",
+      "statement": "约1.133秒后转入“2026年普通高等自媒体全国统一考试”的仿试卷讲评；讲解者自称出题人。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 1.133,
+        "end": 10.782
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-002",
+          "supports": "约1.133秒后转入“2026年普通高等自媒体全国统一考试”的仿试卷讲评；讲解者自称出题人。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "约1.133秒后转入“2026年普通高等自媒体全国统一考试”的仿试卷讲评；讲解者自称出题人。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "约1.133秒后转入“2026年普通高等自媒体全国统一考试”的仿试卷讲评；讲解者自称出题人。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-003",
+          "supports": "约1.133秒后转入“2026年普通高等自媒体全国统一考试”的仿试卷讲评；讲解者自称出题人。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-VISUAL",
+      "title": "固定视觉构图",
+      "importance": "supporting",
+      "statement": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "frame",
+          "ref": "FRAME-SHOT-001",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-SHOT-002",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-SHOT-003",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0049",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0050",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0051",
+          "supports": "主画面持续显示一张试卷，右下角为戴红色蜘蛛侠式面罩、穿灰色上衣的出镜者画中画；卷面红色圈画与手写答案逐步增多。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "出镜者真实身份、面罩角色授权、批注是否连续无隐藏剪辑均未建立"
+      ]
+    },
+    {
+      "id": "KU-LABEL",
+      "title": "可见账号与平台标签",
+      "importance": "context",
+      "statement": "画面可读到“人类最强编导”账号标签和小红书水印。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "ocr",
+          "ref": "OCR-00190",
+          "supports": "画面可读到“人类最强编导”账号标签和小红书水印。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "画面可读到“人类最强编导”账号标签和小红书水印。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-001",
+          "supports": "画面可读到“人类最强编导”账号标签和小红书水印。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "水印不证明素材权属或账号运营主体身份"
+      ]
+    },
+    {
+      "id": "KU-Q01",
+      "title": "第1题：更新与养号",
+      "importance": "core",
+      "statement": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 10.782,
+        "end": 26.023
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0007",
+          "supports": "作者选择B：更新频率没有统一标准，但不能长期断更；并把大量所谓“养号/活跃”说法斥为骗局。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "没有给出长期断更的量化阈值或平台依据"
+      ]
+    },
+    {
+      "id": "KU-Q02",
+      "title": "第2题：推流变化后的内容逻辑",
+      "importance": "core",
+      "statement": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 26.023,
+        "end": 36.35
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0009",
+          "supports": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0010",
+          "supports": "作者称主要推流周期从24小时延长到约7天，并选择B，主张平台更喜欢深度、有价值的内容。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "平台名称、政策时间、数据来源和外部真实性未建立"
+      ]
+    },
+    {
+      "id": "KU-Q03",
+      "title": "第3题：创作立场",
+      "importance": "core",
+      "statement": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 36.35,
+        "end": 54.896
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0011",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0012",
+          "supports": "作者否定只按个人喜好、忽略用户与平台的做法，选择C，并主张结合现有资源、用户需求和平台偏好创作。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "SRT中的“他媒体”是否准确未建立"
+      ]
+    },
+    {
+      "id": "KU-Q04",
+      "title": "第4题：六类用户需求",
+      "importance": "core",
+      "statement": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 54.896,
+        "end": 69.31
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0013",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0015",
+          "supports": "作者把“养号活跃”排除在其六类用户需求之外，并列出审美、共鸣、成长、猎奇、情绪和解决问题。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "分类来源、定义和适用边界未说明"
+      ]
+    },
+    {
+      "id": "KU-Q05",
+      "title": "第5题：Vlog特征",
+      "importance": "core",
+      "statement": "作者选择A，称平台当前偏好的Vlog具有真实、反差和交互三个特征。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 69.31,
+        "end": 74.86
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "作者选择A，称平台当前偏好的Vlog具有真实、反差和交互三个特征。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "作者选择A，称平台当前偏好的Vlog具有真实、反差和交互三个特征。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "平台、样本与“当前”的具体时间未说明"
+      ]
+    },
+    {
+      "id": "KU-Q06",
+      "title": "第6题：百万爆款必要条件",
+      "importance": "core",
+      "statement": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 74.86,
+        "end": 87.99
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0017",
+          "supports": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0018",
+          "supports": "作者选择D为非必要项，并称A/B/C对应三项必要条件：用户能看懂、理解成本低且能连接足够大群体；能调动情绪；能满足获得信息的需求。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "D选项具体文字没有在SRT中保留",
+        "“必要条件”的普适性未被所示例证证明"
+      ]
+    },
+    {
+      "id": "KU-Q07",
+      "title": "第7题：三种爆款类型",
+      "importance": "core",
+      "statement": "作者选择A并列出三种类型；SRT把首项记为“万古同杯”，可见烧录字幕更像“万古同悲”，其准确术语保留冲突；后两项为惊世骇俗和打破节奏型。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 87.99,
+        "end": 97.483
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "作者选择A并列出三种类型；SRT把首项记为“万古同杯”，可见烧录字幕更像“万古同悲”，其准确术语保留冲突；后两项为惊世骇俗和打破节奏型。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "作者选择A并列出三种类型；SRT把首项记为“万古同杯”，可见烧录字幕更像“万古同悲”，其准确术语保留冲突；后两项为惊世骇俗和打破节奏型。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-030",
+          "supports": "作者选择A并列出三种类型；SRT把首项记为“万古同杯”，可见烧录字幕更像“万古同悲”，其准确术语保留冲突；后两项为惊世骇俗和打破节奏型。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0019",
+          "supports": "作者选择A并列出三种类型；SRT把首项记为“万古同杯”，可见烧录字幕更像“万古同悲”，其准确术语保留冲突；后两项为惊世骇俗和打破节奏型。"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "SRT原词与可见烧录字幕字形不一致，不能静默归一。",
+      "unknowns": [
+        "首类型准确文字未完全可靠确认"
+      ]
+    },
+    {
+      "id": "KU-Q08",
+      "title": "第8题：AI使用边界",
+      "importance": "core",
+      "statement": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 97.483,
+        "end": 114.62
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0020",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0023",
+          "supports": "作者排斥AI直接生成全部脚本并包办拍摄、替代创作者“对人类的贡献”以及保证每条内容爆款；认可用AI补齐知识缺陷并参与一种SRT记为“通道风暴”的活动。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“通道风暴”疑似ASR错误，准确原词可能是头脑风暴但画面不足以可靠纠正",
+        "未给出工具、提示词或操作流程"
+      ]
+    },
+    {
+      "id": "KU-TRANSITION",
+      "title": "由选择题转到填空题",
+      "importance": "supporting",
+      "statement": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 114.62,
+        "end": 122
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0025",
+          "supports": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0026",
+          "supports": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0027",
+          "supports": "作者称选择题结束，转入更严肃的填空题基本功考察；卷面视区随之移向下半部分。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-Q09",
+      "title": "第9题：推流周期填空",
+      "importance": "core",
+      "statement": "作者再次填写主要推流周期由24小时延长到约7天。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 119.96,
+        "end": 129.99
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "作者再次填写主要推流周期由24小时延长到约7天。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "作者再次填写主要推流周期由24小时延长到约7天。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0028",
+          "supports": "作者再次填写主要推流周期由24小时延长到约7天。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0029",
+          "supports": "作者再次填写主要推流周期由24小时延长到约7天。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "与第2题相同，平台、政策时间和来源未建立"
+      ]
+    },
+    {
+      "id": "KU-Q10",
+      "title": "第10题：导演扶持计划内容类型",
+      "importance": "core",
+      "statement": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 125.48,
+        "end": 133.91
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-042",
+          "supports": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0029",
+          "supports": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0030",
+          "supports": "印刷题面只可靠显示“AI短片、[空缺]和微纪录片”；SRT在空缺附近出现“什么何为纪录片，人间观察”的噪声，不能据此补全中间类型。"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "核对印刷题面与SRT后，仅首项、空缺结构及末项可安全闭合；中间类型保持未知。",
+      "unknowns": [
+        "导演扶持计划的中间内容类型",
+        "所属平台、资格、入口与政策原文"
+      ]
+    },
+    {
+      "id": "KU-Q11",
+      "title": "第11题：六类需求重述",
+      "importance": "core",
+      "statement": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 133.91,
+        "end": 141.79
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0032",
+          "supports": "作者再次列出审美、共鸣、成长、猎奇、情绪和解决问题六类需求，并说前面已讲过而不再书写。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "分类仍仅为作者主张"
+      ]
+    },
+    {
+      "id": "KU-Q12",
+      "title": "第12题：投流边界",
+      "importance": "core",
+      "statement": "作者用“投流只负责锦上添花，不负责雪中送炭”概括投流作用。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 141.79,
+        "end": 147.07
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "作者用“投流只负责锦上添花，不负责雪中送炭”概括投流作用。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0033",
+          "supports": "作者用“投流只负责锦上添花，不负责雪中送炭”概括投流作用。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未说明平台、预算、投放目标或证据"
+      ]
+    },
+    {
+      "id": "KU-Q13",
+      "title": "第13题：Vlog IP四个观察维度",
+      "importance": "core",
+      "statement": "作者列出打造Vlog中IP的四个观察维度：SRT记为“刻板、行为作风、个人风格和IP立体度”。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 147.07,
+        "end": 152.86
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "作者列出打造Vlog中IP的四个观察维度：SRT记为“刻板、行为作风、个人风格和IP立体度”。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "作者列出打造Vlog中IP的四个观察维度：SRT记为“刻板、行为作风、个人风格和IP立体度”。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0034",
+          "supports": "作者列出打造Vlog中IP的四个观察维度：SRT记为“刻板、行为作风、个人风格和IP立体度”。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0035",
+          "supports": "作者列出打造Vlog中IP的四个观察维度：SRT记为“刻板、行为作风、个人风格和IP立体度”。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "首项及四项断句可能受SRT影响，卷面小字不足以可靠校正",
+        "四维度定义未展开"
+      ]
+    },
+    {
+      "id": "KU-Q14",
+      "title": "第14题：Vlog两种类型",
+      "importance": "core",
+      "statement": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 152.86,
+        "end": 162.885
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0035",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0037",
+          "supports": "作者把Vlog分为日常型与挑战型；日常型是“有啥拍啥”的软素材，挑战型是为了拍Vlog特意去做某事的硬素材。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "二分法的适用范围与混合类型未讨论"
+      ]
+    },
+    {
+      "id": "KU-Q15",
+      "title": "第15题：爆款三类型重述",
+      "importance": "core",
+      "statement": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 162.885,
+        "end": 169.552
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-054",
+          "supports": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0038",
+          "supports": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0039",
+          "supports": "作者再次列举三种爆款类型；SRT此处把首项记为“灌骨铜杯”，烧录字幕更像“万古同悲”，后两项为惊世骇俗和节奏打破型。"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "同一术语在两段SRT中不同且与烧录字幕字形冲突。",
+      "unknowns": [
+        "首类型准确文字未确定",
+        "“打破节奏型/节奏打破型”是否同一规范名称未说明"
+      ]
+    },
+    {
+      "id": "KU-Q16",
+      "title": "第16题：从自身找爆款选题",
+      "importance": "core",
+      "statement": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 169.552,
+        "end": 177.61
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0040",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0041",
+          "supports": "作者要求检查三类自身要素：自己做过或能做而多数人做不到的事；自己特别大的优点和缺点；自己极度擅长的事。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未提供评价或验证选题的方法"
+      ]
+    },
+    {
+      "id": "KU-Q17",
+      "title": "第17题：追热点判断",
+      "importance": "core",
+      "statement": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 177.61,
+        "end": 187.35
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0042",
+          "supports": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0043",
+          "supports": "作者称追热点要判断“有没有”和“能不能”，并应据事实判断能否及时跟进，否则翻车的代价可能比流量反噬更大。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“有没有/能不能”的完整宾语与具体核验流程未建立"
+      ]
+    },
+    {
+      "id": "KU-Q18",
+      "title": "第18题：文本表达三要求",
+      "importance": "core",
+      "statement": "作者称文本表达要达到三个要求；SRT记录为“一是能等，二是练字，三是网感”，但这些词的准确性未获清晰画面支持。",
+      "provenance": "raw_fact",
+      "timeRange": {
+        "start": 187.35,
+        "end": 193
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "作者称文本表达要达到三个要求；SRT记录为“一是能等，二是练字，三是网感”，但这些词的准确性未获清晰画面支持。"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-062",
+          "supports": "作者称文本表达要达到三个要求；SRT记录为“一是能等，二是练字，三是网感”，但这些词的准确性未获清晰画面支持。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0044",
+          "supports": "作者称文本表达要达到三个要求；SRT记录为“一是能等，二是练字，三是网感”，但这些词的准确性未获清晰画面支持。"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "三项术语的准确文字和含义未可靠建立"
+      ]
+    },
+    {
+      "id": "KU-Q19",
+      "title": "第19题：自媒体赛道分类",
+      "importance": "core",
+      "statement": "作者把自媒体赛道分为口播和非口播两大类；口播包括情感、成长、厚黑、干货，非口播包括Vlog、短片、AIGC、微综艺和颜值。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 193,
+        "end": 202.87
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-063",
+          "supports": "作者把自媒体赛道分为口播和非口播两大类；口播包括情感、成长、厚黑、干货，非口播包括Vlog、短片、AIGC、微综艺和颜值。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "作者把自媒体赛道分为口播和非口播两大类；口播包括情感、成长、厚黑、干货，非口播包括Vlog、短片、AIGC、微综艺和颜值。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0045",
+          "supports": "作者把自媒体赛道分为口播和非口播两大类；口播包括情感、成长、厚黑、干货，非口播包括Vlog、短片、AIGC、微综艺和颜值。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0046",
+          "supports": "作者把自媒体赛道分为口播和非口播两大类；口播包括情感、成长、厚黑、干货，非口播包括Vlog、短片、AIGC、微综艺和颜值。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "分类是否互斥、是否穷尽及适用平台未说明"
+      ]
+    },
+    {
+      "id": "KU-Q20",
+      "title": "第20题：爆款系列生命周期",
+      "importance": "core",
+      "statement": "作者称一个爆款系列通常有3到6个月生命周期；系列疲软时应及时优化调整，或考虑变现。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 202.87,
+        "end": 210.52
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "作者称一个爆款系列通常有3到6个月生命周期；系列疲软时应及时优化调整，或考虑变现。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-066",
+          "supports": "作者称一个爆款系列通常有3到6个月生命周期；系列疲软时应及时优化调整，或考虑变现。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0047",
+          "supports": "作者称一个爆款系列通常有3到6个月生命周期；系列疲软时应及时优化调整，或考虑变现。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0048",
+          "supports": "作者称一个爆款系列通常有3到6个月生命周期；系列疲软时应及时优化调整，或考虑变现。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "生命周期数据来源、样本与变现条件未说明"
+      ]
+    },
+    {
+      "id": "KU-CLOSE",
+      "title": "考试设定的结尾回扣与口头署名",
+      "importance": "core",
+      "statement": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 210.52,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-069",
+          "supports": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0053",
+          "supports": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "作者称试卷较基础，90分以上的观众可以准备拿到“自媒体的大结果”，随后口头说“我是雷自强编导”并告别。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“大结果”的标准、保证程度与依据未说明",
+        "口头自报名不证明法定身份"
+      ]
+    },
+    {
+      "id": "KU-CLOSE-IDENTITY-BOUNDARY",
+      "title": "结尾口头名与可见账号标签不可互换",
+      "importance": "supporting",
+      "statement": "结尾口头自报名是“雷自强编导”，同时画面账号/文档标签仍为“人类最强编导”；视频未证明二者在法律、账号运营或文档归属上的同一性。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 215.275,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-069",
+          "supports": "结尾口头自报名是“雷自强编导”，同时画面账号/文档标签仍为“人类最强编导”；视频未证明二者在法律、账号运营或文档归属上的同一性。"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00190",
+          "supports": "结尾口头自报名是“雷自强编导”，同时画面账号/文档标签仍为“人类最强编导”；视频未证明二者在法律、账号运营或文档归属上的同一性。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "结尾口头自报名是“雷自强编导”，同时画面账号/文档标签仍为“人类最强编导”；视频未证明二者在法律、账号运营或文档归属上的同一性。"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "口头自报名与可见账号标签是两个独立载体；仅凭同时出现不能推导法律身份、账号主体或文档归属同一。",
+      "unknowns": [
+        "“雷自强编导”与“人类最强编导”的主体对应关系"
+      ]
+    },
+    {
+      "id": "KU-ABSENCE",
+      "title": "完整时间线内未建立的决策边界",
+      "importance": "supporting",
+      "statement": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-002",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-003",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0049",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0051",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0056",
+          "supports": "在已检查的0至218.082秒字幕、试卷、批注、人物画中画、水印和结尾范围内，未观察到试卷获取CTA、明确平台政策出处、价格、账号条件、地区或外部数据来源。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "这是范围限定的未观察结果，不证明这些信息在视频外不存在"
+      ]
+    },
+    {
+      "id": "KU-AUDIO",
+      "title": "非语音音频边界",
+      "importance": "context",
+      "statement": "媒体文件包含AAC音轨，但现有文本与帧证据不足以可靠确定背景音乐、音效或其来源与叙事作用。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 218.082
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "媒体文件包含AAC音轨，但现有文本与帧证据不足以可靠确定背景音乐、音效或其来源与叙事作用。"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-003",
+          "supports": "媒体文件包含AAC音轨，但现有文本与帧证据不足以可靠确定背景音乐、音效或其来源与叙事作用。"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [
+        "非语音音频语义、来源与权属"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-OPEN-INSERT",
+      "to": "KU-SETUP",
+      "relation": "insert_transitions_to_exam_setup",
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "模糊插入画面后转入试卷讲评"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-002",
+          "supports": "模糊插入画面后转入试卷讲评"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "模糊插入画面后转入试卷讲评"
+        }
+      ]
+    },
+    {
+      "from": "KU-SETUP",
+      "to": "KU-Q01",
+      "relation": "setup_to",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "开场考试设定进入第一题"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "开场考试设定进入第一题"
+        }
+      ]
+    },
+    {
+      "from": "KU-Q02",
+      "to": "KU-Q09",
+      "relation": "revisited_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "24小时到7天在选择与填空重复"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "24小时到7天在选择与填空重复"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "24小时到7天在选择与填空重复"
+        }
+      ]
+    },
+    {
+      "from": "KU-Q04",
+      "to": "KU-Q11",
+      "relation": "revisited_by",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "六类需求重复"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "六类需求重复"
+        }
+      ]
+    },
+    {
+      "from": "KU-Q07",
+      "to": "KU-Q15",
+      "relation": "revisited_by_with_carrier_conflict",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "爆款三类型重复且首项转写冲突"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "爆款三类型重复且首项转写冲突"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-030",
+          "supports": "爆款三类型重复且首项转写冲突"
+        },
+        {
+          "refType": "frame",
+          "ref": "FRAME-CUE-054",
+          "supports": "爆款三类型重复且首项转写冲突"
+        }
+      ]
+    },
+    {
+      "from": "KU-VISUAL",
+      "to": "KU-Q20",
+      "relation": "visible_marks_accumulate_through",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0049",
+          "supports": "红色批注从开头至结尾积累"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0051",
+          "supports": "红色批注从开头至结尾积累"
+        }
+      ]
+    },
+    {
+      "from": "KU-CLOSE",
+      "to": "KU-CLOSE-IDENTITY-BOUNDARY",
+      "relation": "spoken_self_label_coexists_with_distinct_visible_account_label",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-069",
+          "supports": "口头“雷自强编导”与可见“人类最强编导”并存，不互相替代"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00190",
+          "supports": "口头“雷自强编导”与可见“人类最强编导”并存，不互相替代"
+        }
+      ]
+    },
+    {
+      "from": "KU-CLOSE",
+      "to": "KU-SETUP",
+      "relation": "payoff_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "90分评价回扣考试设定"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "90分评价回扣考试设定"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "90分评价回扣考试设定"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "90分评价回扣考试设定"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-OPEN-INSERT",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-SPEECH",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-DOC",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-INK",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-PERSON",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-CAPTION",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-EDIT",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-AUDIO",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-00",
+        "captured": true,
+        "unitIds": [
+          "KU-OPEN-INSERT"
+        ]
+      },
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-SETUP"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-Q01",
+          "KU-Q02",
+          "KU-Q03",
+          "KU-Q04",
+          "KU-Q05",
+          "KU-Q06",
+          "KU-Q07",
+          "KU-Q08"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-TRANSITION"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-Q09",
+          "KU-Q10",
+          "KU-Q11",
+          "KU-Q12",
+          "KU-Q13",
+          "KU-Q14",
+          "KU-Q15",
+          "KU-Q16",
+          "KU-Q17",
+          "KU-Q18",
+          "KU-Q19",
+          "KU-Q20"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-CLOSE",
+          "KU-CLOSE-IDENTITY-BOUNDARY"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-00",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SHOT-001",
+          "SHOT-002",
+          "CUE-001"
+        ]
+      },
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-006"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-023",
+          "CUE-040"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0007",
+          "TARGET-0024"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-069",
+          "OCR-00190"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-068"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-SETUP",
+          "KU-VISUAL",
+          "KU-LABEL"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-004",
+          "FRAME-CUE-001"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-Q01",
+          "KU-Q02",
+          "KU-Q03",
+          "KU-Q04",
+          "KU-Q05",
+          "KU-Q06",
+          "KU-Q07",
+          "KU-Q08",
+          "KU-Q09",
+          "KU-Q10",
+          "KU-Q11",
+          "KU-Q12",
+          "KU-Q13",
+          "KU-Q14",
+          "KU-Q15",
+          "KU-Q16",
+          "KU-Q17",
+          "KU-Q18",
+          "KU-Q19",
+          "KU-Q20"
+        ],
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-066"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-Q02",
+          "KU-Q04",
+          "KU-Q07",
+          "KU-Q09",
+          "KU-Q11",
+          "KU-Q15"
+        ],
+        "evidenceRefs": [
+          "CUE-023",
+          "CUE-040",
+          "CUE-054"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "evidenceRefs": [
+          "CUE-032",
+          "CUE-037"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "unknown",
+        "unitIds": [
+          "KU-Q07",
+          "KU-Q08",
+          "KU-Q15",
+          "KU-Q18"
+        ],
+        "evidenceRefs": [
+          "CUE-030",
+          "FRAME-CUE-030",
+          "CUE-054",
+          "FRAME-CUE-054"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-Q02",
+          "KU-Q05",
+          "KU-Q06",
+          "KU-Q20"
+        ],
+        "evidenceRefs": [
+          "CUE-011",
+          "CUE-065"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "unknown",
+        "unitIds": [
+          "KU-VISUAL"
+        ],
+        "evidenceRefs": [
+          "TARGET-0049",
+          "TARGET-0050",
+          "TARGET-0051"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-SETUP",
+          "KU-CLOSE"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-068"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "unknown",
+        "unitIds": [
+          "KU-ABSENCE"
+        ],
+        "evidenceRefs": [
+          "SHOT-001",
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-OPEN-INSERT",
+          "KU-SETUP"
+        ],
+        "rationale": "该cue横跨开头插入画面及转入考试设定，两端均显式链接；原文完整保留。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-SETUP"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-SETUP"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-SETUP"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-SETUP"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q01"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q01"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q01"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q01"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q01"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q02"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q02"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q02"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q03"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q04"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q04"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q04"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q04"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q05"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q06"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q06"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q06"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q07"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q07"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q08"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-TRANSITION"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-TRANSITION"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q09"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q09"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q10"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q11"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q11"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q11"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q12"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q13"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q13"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q14"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q14"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q14"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q14"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q15"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q15"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q16"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q16"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q16"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q16"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q17"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-060",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q17"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-061",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q17"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-062",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q18"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-063",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q19"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-064",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q19"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-065",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q20"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-066",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-Q20"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-067",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-CLOSE"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-068",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-CLOSE"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      },
+      {
+        "cueId": "CUE-069",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-CLOSE"
+        ],
+        "rationale": "该cue属于对应题目、转场或结尾知识单元，原文完整保留。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 22,
+      "total": 22
+    },
+    "unknowns": [
+      "插入画面的原始来源、作者、授权和权属",
+      "出镜者真实身份、面罩角色授权、批注是否连续无隐藏剪辑均未建立",
+      "水印不证明素材权属或账号运营主体身份",
+      "没有给出长期断更的量化阈值或平台依据",
+      "平台名称、政策时间、数据来源和外部真实性未建立",
+      "SRT中的“他媒体”是否准确未建立",
+      "分类来源、定义和适用边界未说明",
+      "平台、样本与“当前”的具体时间未说明",
+      "D选项具体文字没有在SRT中保留",
+      "“必要条件”的普适性未被所示例证证明",
+      "首类型准确文字未完全可靠确认",
+      "“通道风暴”疑似ASR错误，准确原词可能是头脑风暴但画面不足以可靠纠正",
+      "未给出工具、提示词或操作流程",
+      "与第2题相同，平台、政策时间和来源未建立",
+      "导演扶持计划的中间内容类型",
+      "所属平台、资格、入口与政策原文",
+      "分类仍仅为作者主张",
+      "未说明平台、预算、投放目标或证据",
+      "首项及四项断句可能受SRT影响，卷面小字不足以可靠校正",
+      "四维度定义未展开",
+      "二分法的适用范围与混合类型未讨论",
+      "首类型准确文字未确定",
+      "“打破节奏型/节奏打破型”是否同一规范名称未说明",
+      "未提供评价或验证选题的方法",
+      "“有没有/能不能”的完整宾语与具体核验流程未建立",
+      "三项术语的准确文字和含义未可靠建立",
+      "分类是否互斥、是否穷尽及适用平台未说明",
+      "生命周期数据来源、样本与变现条件未说明",
+      "“大结果”的标准、保证程度与依据未说明",
+      "口头自报名不证明法定身份",
+      "“雷自强编导”与“人类最强编导”的主体对应关系",
+      "这是范围限定的未观察结果，不证明这些信息在视频外不存在",
+      "非语音音频语义、来源与权属"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "协议与修复后的重建覆盖0至1.133秒模糊插入画面及来源/权属未知、随后试卷转场、完整时间线的语音/SRT与烧录字幕冲突、试卷、红色批注、人物/面罩、布局/技术分段、水印、非语音音频边界，并把结尾口头“雷自强编导”与可见“人类最强编导”分层；第10题中间类型明确未知。"
+  }
+}

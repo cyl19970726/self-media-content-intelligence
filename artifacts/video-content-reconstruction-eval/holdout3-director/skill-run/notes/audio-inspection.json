@@ -1,0 +1,21 @@
+{
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a3ba6950000000007027cc5.mp4",
+  "stream": {
+    "present": true,
+    "codec": "aac",
+    "sampleRate": 44100,
+    "channels": 2,
+    "duration": 156.367
+  },
+  "inspectionMethods": [
+    "ffprobe stream metadata",
+    "ffmpeg silencedetect at -45 dB for gaps of at least 0.25 seconds",
+    "Whisper small Chinese machine transcription for audible-speech comparison"
+  ],
+  "observations": [
+    "The stream carries continuous audible material; silencedetect reported no gap meeting the configured threshold.",
+    "Machine transcription follows the supplied subtitle's argument throughout the timeline but has its own recognition errors.",
+    "These methods do not reliably separate speech from background music or sound effects."
+  ],
+  "nonSpeechAudioDecision": "Available and inspected, but its independent semantic role remains unknown. Do not claim that music or sound effects are present or absent."
+}

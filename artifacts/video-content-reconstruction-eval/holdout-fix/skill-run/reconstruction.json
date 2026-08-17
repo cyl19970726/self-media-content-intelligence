@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/evidence-v2/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/capture-protocol.json",
+  "scopeStatement": "只重建原视频、平台 SRT、指定 evidence pack 与本次协议派生的定向帧/OCR/音频诊断所建立的内容。视频内关于工具能力和结果的表述保持为作者主张或视觉示例，不做互联网核验；未显示的点击、保存、文件扩展名、粘贴选项、产品版本、通用成功率与因果不补全。",
+  "viewerChange": {
+    "before": "观众可能只把 AI 回答复制到 Word 后的乱版理解为需要手工修复。",
+    "after": "观众会得到一条视频所展示的路径：要求 AI 以带字体/字号规则的 HTML 输出，运行 HTML 得到渲染预览，选择预览文字并粘贴到空白 Word 文档；同时知道画面只展示一个结果，且多个关键动作被剪辑跳过。",
+    "intendedChanges": ["知道作者提出的格式化中转思路", "记住提示词里的具体排版参数", "区分可见演示、作者主张和未建立的通用性"]
+  },
+  "derivedSources": [
+    {
+      "id": "SOURCE-PROBE-CONTACT",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/probe-observation/contact-1fps.jpg",
+      "kind": "full_timeline_contact_sheet",
+      "producedBy": "ffmpeg fps=1, scale=288, tile=5x6 from the supplied source video",
+      "timeRange": {"start": 0, "end": 29.096},
+      "limitations": ["降采样缩略图不能读取小字号 UI", "只用于全时轴载体扫查，不证明动作连续性"]
+    },
+    {
+      "id": "SOURCE-AUDIO-SPECTRUM",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/probe-observation/audio-spectrogram.png",
+      "kind": "stereo_full_mix_spectrogram",
+      "producedBy": "ffmpeg showspectrumpic from the supplied AAC stereo stream",
+      "timeRange": {"start": 0, "end": 29.096},
+      "limitations": ["频谱不能单独辨认声音来源", "旁白几乎覆盖全片，可能掩盖低层音乐或音效"]
+    },
+    {
+      "id": "SOURCE-AUDIO-SIDE",
+      "path": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/probe-observation/audio-side.wav",
+      "kind": "left_minus_right_audio_diagnostic",
+      "producedBy": "ffmpeg pan=mono c0=c0-c1 from the supplied AAC stereo stream; paired with audio-side-spectrogram.png and astats",
+      "timeRange": {"start": 0, "end": 29.096},
+      "limitations": ["只强调左右声道差异，居中的非旁白声音会被抵消", "侧声道 RMS 约 -40.12 dB、全混合中声道 RMS 约 -11.94 dB；该比值不等于无音乐/无音效", "无法把压缩伪影与真实背景声完全分离"]
+    }
+  ],
+  "transcript": {
+    "origin": "platform_srt",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 3.282, "text": "我发现一个效率神器，你把dipsick的答案复制到word", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 3.282, "end": 8.92, "text": "是不是这样格式全乱，排版崩溃，诶，教你一个神技就能立马解决这样的乱码问题", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]},
+      {"id": "CUE-003", "start": 8.93, "end": 13.17, "text": "比如这个回答是你想要的，你现在只需要给到dipstick这段提示词", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"]},
+      {"id": "CUE-004", "start": 13.17, "end": 18.56, "text": "让它用html格式重新输出，然后你想要什么字体，多大的字体都直接告诉他", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-005", "start": 18.57, "end": 22.25, "text": "写完以后直接点击发送，等他写完以后建一个文本文档", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-006", "start": 22.25, "end": 25.65, "text": "把这里面的文字复制进word，排版格式啥的就全对了", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-007", "start": 25.66, "end": 29.071, "text": "再也不用自己在那儿痛苦排版了，赶紧把这个神器用起来吧", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-001",
+      "title": "开场把乱版问题框成效率痛点",
+      "importance": "context",
+      "statement": "作者以‘效率神器/神技’开场，并把把 AI 回答复制到 Word 作为待解决的场景。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 1.567},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "逐字口播提出效率神器与复制到 Word。"},
+        {"refType": "ocr", "ref": "OCR-00001", "supports": "经源帧接受的开场烧录字幕‘我发现一个效率神技’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "真人抱猫出镜并出现开场大字。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["人物身份和专业资历未由视频建立。"]
+    },
+    {
+      "id": "KU-002",
+      "title": "Word 失败态的可见特征",
+      "importance": "core",
+      "statement": "Word 中的一页长回答以很小、很密的正文显示，标题/分节与正文层级不够醒目，页面留下较大空白；作者以字幕称其‘格式全乱’和‘排版崩溃’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 1.7, "end": 5.7},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "3.7 秒的 Word 页面显示密集小字和弱层级。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0008", "supports": "5.7 秒同一失败态与‘排版崩溃’字幕。"},
+        {"refType": "ocr", "ref": "OCR-00057", "supports": "经源帧接受的大字字幕‘格式全乱’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["造成该状态的具体粘贴方式、Word 版本和输入源操作未显示。", "文档正文 OCR 不可靠，不采用其中内容事实。"]
+    },
+    {
+      "id": "KU-003",
+      "title": "作者宣称一个方法可立即解决",
+      "importance": "core",
+      "statement": "作者宣称一个‘神技’能立即解决这种乱码/排版问题。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 5.867, "end": 8.933},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-002", "supports": "口播逐字给出‘立马解决’主张。"},
+        {"refType": "ocr", "ref": "OCR-00139", "supports": "经源帧接受的烧录字幕重复该主张。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0014", "supports": "真人手势强化主张。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "这个方法能立即解决把 AI 回答复制到 Word 后的乱码/排版问题。",
+        "evidenceUnitIds": ["KU-013"],
+        "conditions": ["视频内实际只展示一个回答、一个 HTML 运行预览和一个 Word 结果组。"],
+        "counterexamples": [],
+        "actions": ["按视频提示词要求 HTML、字体和字号，再把运行预览中的文字复制到 Word。"],
+        "limits": ["没有跨 Word 版本、操作系统、输入类型或粘贴方式的重复验证。", "关键点击与粘贴选项被剪辑跳过。"]
+      },
+      "unknowns": ["‘立即解决’的普适性与成功率未建立。"]
+    },
+    {
+      "id": "KU-004",
+      "title": "作为输入的结构化回答",
+      "importance": "supporting",
+      "statement": "聊天界面中先显示一段关于‘黑神话悟空热点事件’的结构化中文回答，包含编号与分节，视频把它作为希望保留内容的输入。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 8.933, "end": 13.17},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "可见聊天回答与编号结构。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "回答末段和引出的提示词位置可见。"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "作者称‘这个回答是你想要的’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["回答本身的事实正确性不在本重建范围内。"]
+    },
+    {
+      "id": "KU-005",
+      "title": "画面中的完整提示词与参数",
+      "importance": "core",
+      "statement": "输入框可读原文为：‘将内容用html格式输出格式和排版排版要求如下：’；一级标题用三号仿宋GB-2312、行距33磅值；二级标题用黑体（三号）、行距30磅值、段后空0.5行；正文用三号仿宋GB-2312、两端对齐、首行缩进两个字符。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 14.8, "end": 18.0},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0025", "supports": "高分辨率源帧显示完整多行提示词。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "后续帧仍显示完整参数，便于核对。"},
+        {"refType": "ocr", "ref": "OCR-00347", "supports": "人工核对后接受一级标题行主体；末尾标点不作为参数。"},
+        {"refType": "ocr", "ref": "OCR-00348", "supports": "人工核对后接受二级标题整行。"},
+        {"refType": "ocr", "ref": "OCR-00349", "supports": "只接受其中‘对齐方式为两端对齐，首行缩进两个字符’，拒绝 OCR 的字体误字。"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "口播概括 HTML、字体与字号要求。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["提示词中的‘磅值’措辞与‘排版排版’重复按画面保留，不替作者润色。", "画面文字不证明聊天工具或 Word 对中文字号的实际映射一定一致。"]
+    },
+    {
+      "id": "KU-006",
+      "title": "HTML 响应与可运行控件",
+      "importance": "core",
+      "statement": "聊天界面显示‘以下是符合您要求的HTML格式内容：’以及深色 HTML/CSS 代码块；代码块可见‘复制’与‘运行 HTML’控件，CSS 片段包含字体、字号、行距、两端对齐和首行缩进等属性。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 19.2, "end": 20.4},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0031", "supports": "完整聊天响应、代码块、复制和运行 HTML 控件同屏可见。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "放大的 CSS 片段可见 font-family、font-size、line-height 等字段。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "后续代码片段可见标题样式字段。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["HTML/CSS 全文未逐字符确认。", "生成是否一次完整完成未由连续界面状态建立。"]
+    },
+    {
+      "id": "KU-007",
+      "title": "发送动作没有被连续展示",
+      "importance": "core",
+      "statement": "虽然作者口播和字幕说‘写完以后直接点击发送’，但在可核对的 19.2 秒帧中 HTML 响应已经存在；视频没有连续显示从输入框到点击发送再到生成完成的动作。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 18.57, "end": 20.4},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-005", "supports": "口播要求点击发送。"},
+        {"refType": "ocr", "ref": "OCR-00383", "supports": "19.2 秒烧录字幕为‘写完以后直接点击发送’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0031", "supports": "同一时刻 HTML 响应已经显示。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "18.6 秒为模糊转场而非可见点击。"}
+      ],
+      "confidence": "high",
+      "reasoning": "把口播时序与定向帧的 UI 状态对照，能确认剪辑错位；无法据此断言幕后从未点击，只能断言视频未连续展示。",
+      "unknowns": ["实际点击时间、生成等待时间和发送控件状态未知。"]
+    },
+    {
+      "id": "KU-008",
+      "title": "新建的是空白 Word 文档",
+      "importance": "core",
+      "statement": "作者说‘建一个文本文档’，画面随即显示带 Word 功能区的空白文档；没有显示独立的记事本/纯文本编辑器、文件名或保存扩展名。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 21.0, "end": 22.0},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-005", "supports": "逐字口播使用‘文本文档’。"},
+        {"refType": "ocr", "ref": "OCR-00400", "supports": "经源帧接受的烧录字幕‘建一个文本文档’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "画面为带功能区的空白 Word 文档。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "22 秒仍是空白 Word 文档。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["‘文本文档’是泛指文档还是另有未显示步骤，视频未建立。", "文件名、格式、保存动作均未知。"]
+    },
+    {
+      "id": "KU-009",
+      "title": "HTML 运行预览是被复制的直接来源",
+      "importance": "core",
+      "statement": "代码块之后出现标题为‘黑神话悟空热点事件介绍’的 HTML 运行预览窗口；预览文字从部分到大范围被蓝色选中，画面把这一步作为复制到 Word 的直接来源。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 22.4, "end": 24.4},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0043", "supports": "22.4 秒仍显示代码块与‘运行 HTML’控件。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0044", "supports": "22.8 秒出现 HTML 运行预览与标题、分节。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "23.6 秒预览内容大范围蓝色选中。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0047", "supports": "24 秒继续显示被选中的预览内容。"},
+        {"refType": "ocr", "ref": "OCR-00454", "supports": "经源帧接受的烧录字幕要求把文字复制进 Word。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["点击‘运行 HTML’和实际复制命令未连续显示。", "是否使用全选快捷键或鼠标拖选未知。"]
+    },
+    {
+      "id": "KU-010",
+      "title": "Word 粘贴阶段只显示状态而非完整命令",
+      "importance": "core",
+      "statement": "转场后 Word 空白页上出现粘贴选项浮层，随后文档内容出现；画面没有可靠显示采用了哪个粘贴选项，也没有连续显示粘贴命令。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 24.8, "end": 25.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0049", "supports": "24.8 秒为快速模糊转场。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0050", "supports": "25.2 秒 Word 空白页上出现粘贴选项浮层。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0051", "supports": "25.6 秒文档内容已出现。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["具体粘贴选项、快捷键或菜单命令未建立。"]
+    },
+    {
+      "id": "KU-011",
+      "title": "视频可证的操作链及缺口",
+      "importance": "core",
+      "statement": "视频呈现的可证链条是：把结构化回答作为输入，提交带 HTML/字体/字号规则的提示词，看到 HTML/CSS 响应，运行出渲染预览，选中预览文字，切到空白 Word 文档，出现粘贴状态，最后看到格式化结果；发送点击、运行点击、复制命令、粘贴命令和粘贴选项没有连续显示。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 8.933, "end": 27.533},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "输入回答。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "完整提示词。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0031", "supports": "HTML/CSS 响应与运行控件。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0044", "supports": "运行预览。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "预览选择状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0050", "supports": "Word 粘贴状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "最终 Word 结果。"}
+      ],
+      "confidence": "high",
+      "reasoning": "按 UI 可见状态排序并结合口播关系，保留中间跳切为未知，不把并列画面升级为完整因果。",
+      "procedural": {
+        "input": "聊天界面中一段已有编号与分节的中文回答。",
+        "actions": ["在输入框要求 HTML 输出并列出标题/正文样式", "等待/看到 HTML/CSS 响应", "运行 HTML 得到渲染预览（运行点击未显示）", "选择预览文字（复制命令未显示）", "切到空白 Word 文档并粘贴（命令与选项未显示）"],
+        "parameters": ["一级标题：三号仿宋GB-2312，行距33磅值", "二级标题：黑体（三号），行距30磅值，段后0.5行", "正文：三号仿宋GB-2312，两端对齐，首行缩进两个字符"],
+        "output": "一个带居中标题、编号分节和较疏朗正文的 Word 文档结果示例。",
+        "beforeFrames": ["TARGET-0016", "TARGET-0027"],
+        "duringFrames": ["TARGET-0031", "TARGET-0044", "TARGET-0046", "TARGET-0050"],
+        "afterFrames": ["TARGET-0062", "TARGET-0063"],
+        "unknowns": ["发送按钮点击", "生成等待和完成状态", "运行 HTML 点击", "复制命令", "粘贴命令与粘贴选项", "文件名、保存和扩展名"]
+      },
+      "unknowns": ["剪辑序列不足以证明每个状态由前一步唯一导致。"]
+    },
+    {
+      "id": "KU-012",
+      "title": "最终 Word 结果的可见版式",
+      "importance": "core",
+      "statement": "最终 Word 只展示一个文档结果组：居中标题‘黑神话悟空热点事件介绍’，下有‘1. 核心亮点’、‘2. 热点事件节点’等编号分节，正文相较失败态更大、更疏朗，层级和段落间隔更清楚。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 25.6, "end": 27.533},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "可见‘2. 热点事件节点’等分节。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "完整页面显示居中标题与编号层级。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "另一滚动位置显示同一文档的分节与较疏朗正文。"},
+        {"refType": "ocr", "ref": "OCR-00563", "supports": "经源帧接受的结果分节‘2. 热点事件节点’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["正文小字号 OCR 误识别较多，不采用其内容事实。", "结果是否保存、打印或在其他 Word 版本保持一致未显示。"]
+    },
+    {
+      "id": "KU-013",
+      "title": "结果只支持单次示例，不支持通用成功率",
+      "importance": "core",
+      "statement": "视频用一个可见 Word 文档结果组来说明方法；它能作为作者方法的视觉示例，但不能建立‘所有回答、所有 Word 版本或所有粘贴设置都排版正确’的普遍命题。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 25.2, "end": 27.533},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0050", "supports": "同一 Word 文档的粘贴状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "同一结果文档稳定展示。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "继续滚动/展示同一文档，而非新的独立结果组。"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "作者用‘全对了’给出更宽泛主张。"}
+      ],
+      "confidence": "high",
+      "reasoning": "保守按连续同一 Word 文档计为一个结果组；没有第二个独立输入、失败对照或版本测试。",
+      "unknowns": ["真实成功率、失败条件、版本兼容性与重复性未建立。"]
+    },
+    {
+      "id": "KU-014",
+      "title": "作者把单次结果重构为行动号召",
+      "importance": "context",
+      "statement": "作者在结果画面后说不必再痛苦排版，并回到真人画面号召观众赶紧使用这个‘神器’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 25.66, "end": 29.096},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "逐字口播给出省去痛苦排版与立即采用号召。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "结尾回到真人与猫并做挥手/指示动作。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0073", "supports": "最终‘用起来吧’字幕与出镜画面。"}
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "采用这个方法可以避免自己痛苦排版。",
+        "evidenceUnitIds": ["KU-012", "KU-013"],
+        "conditions": ["视频没有在结尾补充适用版本、粘贴方式或失败处理。"],
+        "counterexamples": [],
+        "actions": ["赶紧把这个方法用起来。"],
+        "limits": ["号召强度超过单个结果组能建立的通用范围。"]
+      },
+      "unknowns": ["结尾未提供任何新增条件、限制或故障排除。"]
+    },
+    {
+      "id": "KU-015",
+      "title": "聊天工具名称与软件版本的证据边界",
+      "importance": "supporting",
+      "statement": "烧录字幕在画面中出现‘deepseek’，但平台 SRT 两处分别写作‘dipsick’和‘dipstick’；界面外观不足以确认精确产品版本，Word 与操作系统版本也未显示。",
+      "provenance": "raw_fact",
+      "timeRange": {"start": 0, "end": 25.66},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "SRT 原文含‘dipsick’，逐字保留。"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "SRT 原文含‘dipstick’，逐字保留。"},
+        {"refType": "ocr", "ref": "OCR-00193", "supports": "经源帧接受的烧录字幕含‘deepseek’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "画面只支持聊天 UI 外观和烧录字幕，不显示版本信息。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["精确产品版本、客户端版本和 Word 版本未知。"]
+    },
+    {
+      "id": "KU-016",
+      "title": "非旁白音频未发现可确认的独立意义事件",
+      "importance": "supporting",
+      "statement": "源媒体含 44.1 kHz 立体声 AAC 音轨。全混合频谱、左右声道差分和事件时点对齐检查没有分离出可可靠归因为音乐、提示音或转场音的独立事件；由于旁白几乎覆盖全片且声道差分会抵消居中声音，不能据此断言非旁白音频不存在。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 29.096},
+      "evidence": [
+        {"refType": "source", "ref": "SOURCE-AUDIO-SPECTRUM", "supports": "展示全片混合频谱与时间轴。"},
+        {"refType": "source", "ref": "SOURCE-AUDIO-SIDE", "supports": "左右声道差分诊断和 RMS 限制。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "20.4 秒代码状态作为音频事件对齐点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0082", "supports": "25.4 秒结果转场作为音频事件对齐点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "27.5 秒结尾切镜作为音频事件对齐点。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "先确认音频流，再检查全混合和 L-R 侧声道；侧声道 RMS 约 -40.12 dB、全混合中声道约 -11.94 dB，没有与发送/转场/结果揭示对齐的可分离突发信号。该方法不能识别被旁白遮蔽或居中的低层声音。",
+      "unknowns": ["是否存在被旁白掩盖的低层背景音乐或居中音效仍未知。"]
+    },
+    {
+      "id": "KU-017",
+      "title": "首尾真人与画中画形成持续作者框架",
+      "importance": "context",
+      "statement": "同一可见女性出镜者与猫出现在开头和结尾，操作演示期间该出镜者以左上圆形画中画持续出现；这把 UI 演示包在轻松、直接推荐的作者在场框架中。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 29.096},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场真人与猫。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "演示期左上圆形画中画。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0073", "supports": "结尾回到真人与猫。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["人物真实身份、授权和软件关联未建立。"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-002", "to": "KU-005", "relation": "problem_addressed_by", "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "先定义乱版问题。"}, {"refType": "cue", "ref": "CUE-004", "supports": "后给出 HTML/字体/字号方法。"}]},
+    {"from": "KU-004", "to": "KU-005", "relation": "input_to_instruction", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "回答末尾与提示词输入相邻。"}, {"refType": "targeted_frame", "ref": "TARGET-0025", "supports": "提示词承接已有回答。"}]},
+    {"from": "KU-005", "to": "KU-006", "relation": "instruction_produces_claimed_html_output", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0027", "supports": "完整提示词。"}, {"refType": "targeted_frame", "ref": "TARGET-0031", "supports": "后续 HTML/CSS 响应；发送点击缺失由 KU-007 限定。"}]},
+    {"from": "KU-006", "to": "KU-009", "relation": "generated_output_handed_off_by", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0043", "supports": "代码块含运行 HTML 控件。"}, {"refType": "targeted_frame", "ref": "TARGET-0044", "supports": "随后出现运行预览。"}]},
+    {"from": "KU-009", "to": "KU-012", "relation": "edited_as_producing", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "预览文字被选中。"}, {"refType": "targeted_frame", "ref": "TARGET-0050", "supports": "Word 粘贴状态。"}, {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "最终 Word 结果；中间命令缺失。"}]},
+    {"from": "KU-012", "to": "KU-003", "relation": "single_example_supports_but_limits_claim", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "一个可见结果示例。"}, {"refType": "cue", "ref": "CUE-002", "supports": "作者主张立马解决。"}, {"refType": "cue", "ref": "CUE-006", "supports": "作者主张格式全对。"}]},
+    {"from": "KU-012", "to": "KU-014", "relation": "result_used_as_payoff_for_action_call", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "结果画面继续展示。"}, {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "随后回到真人号召。"}, {"refType": "cue", "ref": "CUE-007", "supports": "口播从结果转向‘用起来吧’。"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CARRIER-SPEECH", "available": true, "inspected": true},
+      {"id": "CARRIER-SRT", "available": true, "inspected": true},
+      {"id": "CARRIER-BURNED-CAPTIONS", "available": true, "inspected": true},
+      {"id": "CARRIER-UI-OCR", "available": true, "inspected": true},
+      {"id": "CARRIER-ACTION", "available": true, "inspected": true},
+      {"id": "CARRIER-BEFORE-AFTER", "available": true, "inspected": true},
+      {"id": "CARRIER-EDITING-PIP", "available": true, "inspected": true},
+      {"id": "CARRIER-NONSPEECH-AUDIO", "available": true, "inspected": true},
+      {"id": "CARRIER-SYMBOLS", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-001", "captured": true, "unitIds": ["KU-001"]},
+      {"id": "MC-002", "captured": true, "unitIds": ["KU-002"]},
+      {"id": "MC-003", "captured": true, "unitIds": ["KU-003"]},
+      {"id": "MC-004", "captured": true, "unitIds": ["KU-004"]},
+      {"id": "MC-005", "captured": true, "unitIds": ["KU-005"]},
+      {"id": "MC-006", "captured": true, "unitIds": ["KU-006", "KU-007"]},
+      {"id": "MC-007", "captured": true, "unitIds": ["KU-008", "KU-009", "KU-010", "KU-011"]},
+      {"id": "MC-008", "captured": true, "unitIds": ["KU-012", "KU-013"]},
+      {"id": "MC-009", "captured": true, "unitIds": ["KU-014"]}
+    ],
+    "relationships": [
+      {"id": "REL-001", "evidenced": true, "evidenceRefs": ["CUE-002", "CUE-004", "TARGET-0008", "TARGET-0027"]},
+      {"id": "REL-002", "evidenced": true, "evidenceRefs": ["TARGET-0020", "TARGET-0025"]},
+      {"id": "REL-003", "evidenced": true, "evidenceRefs": ["TARGET-0027", "TARGET-0031", "TARGET-0030"]},
+      {"id": "REL-004", "evidenced": true, "evidenceRefs": ["TARGET-0043", "TARGET-0044", "TARGET-0046"]},
+      {"id": "REL-005", "evidenced": true, "evidenceRefs": ["TARGET-0046", "TARGET-0050", "TARGET-0062"]},
+      {"id": "REL-006", "evidenced": true, "evidenceRefs": ["TARGET-0062", "CUE-002", "CUE-006"]},
+      {"id": "REL-007", "evidenced": true, "evidenceRefs": ["TARGET-0064", "TARGET-0071", "CUE-007"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-001", "status": "answered", "unitIds": ["KU-011"], "evidenceRefs": ["TARGET-0016", "TARGET-0027", "TARGET-0031", "TARGET-0044", "TARGET-0046", "TARGET-0050", "TARGET-0062"]},
+      {"id": "CQ-002", "status": "answered", "unitIds": ["KU-005"], "evidenceRefs": ["TARGET-0025", "TARGET-0027", "OCR-00347", "OCR-00348", "OCR-00349"]},
+      {"id": "CQ-003", "status": "answered", "unitIds": ["KU-002", "KU-012"], "evidenceRefs": ["TARGET-0006", "TARGET-0008", "TARGET-0062", "TARGET-0063"]},
+      {"id": "CQ-004", "status": "unknown", "unitIds": ["KU-007", "KU-008", "KU-009", "KU-010", "KU-011"], "evidenceRefs": ["TARGET-0030", "TARGET-0031", "TARGET-0035", "TARGET-0043", "TARGET-0046", "TARGET-0050"]},
+      {"id": "CQ-005", "status": "answered", "unitIds": ["KU-013"], "evidenceRefs": ["TARGET-0050", "TARGET-0062", "TARGET-0064", "CUE-006"]},
+      {"id": "CQ-006", "status": "unknown", "unitIds": ["KU-015"], "evidenceRefs": ["CUE-001", "CUE-003", "OCR-00193", "TARGET-0018"]},
+      {"id": "CQ-007", "status": "unknown", "unitIds": ["KU-016"], "evidenceRefs": ["SOURCE-AUDIO-SPECTRUM", "SOURCE-AUDIO-SIDE", "TARGET-0080", "TARGET-0082", "TARGET-0084"]},
+      {"id": "CQ-008", "status": "answered", "unitIds": ["KU-014"], "evidenceRefs": ["CUE-007", "TARGET-0071", "TARGET-0073"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-001", "KU-015"], "rationale": "建立开场问题并保留 SRT 的原始品牌近似拼写。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-002", "KU-003"], "rationale": "同时定义失败态和作者的立即解决主张。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-004", "KU-015"], "rationale": "指定输入回答并再次保留 SRT 拼写差异。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-005"], "rationale": "概括 HTML、字体与字号参数。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-006", "KU-007", "KU-008"], "rationale": "包含发送、等待和建文档步骤，同时由 UI 帧限定其未连续展示。"},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-009", "KU-010", "KU-012", "KU-013"], "rationale": "包含复制到 Word 和成功主张，需与预览选择、粘贴状态和单结果范围对齐。"},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-012", "KU-014"], "rationale": "覆盖结果后的省力主张与最终行动号召。"}
+    ],
+    "coreEvidence": {"covered": 11, "total": 11},
+    "unknowns": [
+      "发送按钮点击、生成等待/完成状态、运行 HTML 点击、复制命令、粘贴命令与粘贴选项未连续显示。",
+      "没有显示独立纯文本编辑器、文件名、保存动作或扩展名；画面显示空白 Word 文档。",
+      "产品精确版本、Word 版本和操作系统版本未知。",
+      "只有一个 Word 结果组，不能建立通用成功率或跨版本因果。",
+      "非旁白音频未分离出明确意义事件，但被旁白掩盖的低层声音仍未知。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "全时轴九段载体扫查覆盖 0.000-29.096 秒；口播、SRT、烧录字幕、UI/OCR、动作、前后状态、剪辑/画中画、非旁白音频和可见符号均已实际检查。九个意义变化和七条全局关系都有结构化闭合，无法闭合的发送/运行/复制/粘贴命令、版本与声音来源被证据化为 unknown，而不是被遗漏。"
+  }
+}

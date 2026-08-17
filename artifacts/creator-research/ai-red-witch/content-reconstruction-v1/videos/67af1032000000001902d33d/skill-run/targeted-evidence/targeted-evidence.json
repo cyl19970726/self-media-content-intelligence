@@ -1,0 +1,1337 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T03:20:24.177Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/67af1032000000001902d33d.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67af1032000000001902d33d/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01-CAPTION-CONFLICT",
+      "time": 0.4,
+      "frame": "frames/ACT-01-CAPTION-CONFLICT-001.jpg",
+      "carrier": "supplied SRT versus burned captions and presenter context",
+      "reason": "核对 dipsick/re二 与 DeepSeek/Ray2 的原始冲突，同时保留推荐语境。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01-CAPTION-CONFLICT",
+      "time": 2.4,
+      "frame": "frames/ACT-01-CAPTION-CONFLICT-002.jpg",
+      "carrier": "supplied SRT versus burned captions and presenter context",
+      "reason": "核对 dipsick/re二 与 DeepSeek/Ray2 的原始冲突，同时保留推荐语境。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01-CAPTION-CONFLICT",
+      "time": 4.8,
+      "frame": "frames/ACT-01-CAPTION-CONFLICT-003.jpg",
+      "carrier": "supplied SRT versus burned captions and presenter context",
+      "reason": "核对 dipsick/re二 与 DeepSeek/Ray2 的原始冲突，同时保留推荐语境。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01-CAPTION-CONFLICT",
+      "time": 6.2,
+      "frame": "frames/ACT-01-CAPTION-CONFLICT-004.jpg",
+      "carrier": "supplied SRT versus burned captions and presenter context",
+      "reason": "核对 dipsick/re二 与 DeepSeek/Ray2 的原始冲突，同时保留推荐语境。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 5.433,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-001.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 5.733,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-002.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 6.033,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-003.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 6.333,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-004.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 6.633,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-005.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 6.933,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-006.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 7.233,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-007.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 7.533,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-008.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 7.833,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-009.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 8.133,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-010.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 8.433,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-011.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 8.733,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-012.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 9.033,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-013.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 9.333,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-014.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 9.633,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-015.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 9.933,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-016.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 10.233,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-017.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 10.533,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-018.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 10.833,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-019.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 11.133,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-020.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 11.433,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-021.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 11.733,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-022.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 12.033,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-023.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 12.333,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-024.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-02-EARLY-EXAMPLES",
+      "time": 12.367,
+      "frame": "frames/ACT-02-EARLY-EXAMPLES-025.jpg",
+      "carrier": "gallery UI and inserted moving examples",
+      "reason": "恢复训练/能力口播下并置的早期样片类型、动作与剪辑边界。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 13.8,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-001.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 14.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-002.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 15.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-003.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 16.2,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-004.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 16.9,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-005.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 17.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-006.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 18.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-007.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 19.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-008.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-03-WORKFLOW-STATES",
+      "time": 20.5,
+      "frame": "frames/ACT-03-WORKFLOW-STATES-009.jpg",
+      "carrier": "edited software UI chronology, input still, controls and submission opportunity",
+      "reason": "用状态序列区分真正看见的空输入、输入图、选项、提示词、提交控件和后续 Describe 空状态。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-04-UI-OCR",
+      "time": 14.5,
+      "frame": "frames/ACT-04-UI-OCR-001.jpg",
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-04-UI-OCR",
+      "time": 16.2,
+      "frame": "frames/ACT-04-UI-OCR-002.jpg",
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-04-UI-OCR",
+      "time": 16.9,
+      "frame": "frames/ACT-04-UI-OCR-003.jpg",
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-04-UI-OCR",
+      "time": 17.5,
+      "frame": "frames/ACT-04-UI-OCR-004.jpg",
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-04-UI-OCR",
+      "time": 18.5,
+      "frame": "frames/ACT-04-UI-OCR-005.jpg",
+      "carrier": "small UI labels, selected values, prompt, start/end frame state",
+      "reason": "短暂小字决定模式、输入、提示词和参数，必须 OCR 提案加人工看图核对。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 20.967,
+      "frame": "frames/ACT-05-RESULT-MOTION-001.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.117,
+      "frame": "frames/ACT-05-RESULT-MOTION-002.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.267,
+      "frame": "frames/ACT-05-RESULT-MOTION-003.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.417,
+      "frame": "frames/ACT-05-RESULT-MOTION-004.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.567,
+      "frame": "frames/ACT-05-RESULT-MOTION-005.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.717,
+      "frame": "frames/ACT-05-RESULT-MOTION-006.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 21.867,
+      "frame": "frames/ACT-05-RESULT-MOTION-007.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.017,
+      "frame": "frames/ACT-05-RESULT-MOTION-008.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.167,
+      "frame": "frames/ACT-05-RESULT-MOTION-009.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.317,
+      "frame": "frames/ACT-05-RESULT-MOTION-010.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.467,
+      "frame": "frames/ACT-05-RESULT-MOTION-011.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.617,
+      "frame": "frames/ACT-05-RESULT-MOTION-012.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.767,
+      "frame": "frames/ACT-05-RESULT-MOTION-013.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 22.917,
+      "frame": "frames/ACT-05-RESULT-MOTION-014.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.067,
+      "frame": "frames/ACT-05-RESULT-MOTION-015.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.217,
+      "frame": "frames/ACT-05-RESULT-MOTION-016.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.367,
+      "frame": "frames/ACT-05-RESULT-MOTION-017.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.517,
+      "frame": "frames/ACT-05-RESULT-MOTION-018.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.667,
+      "frame": "frames/ACT-05-RESULT-MOTION-019.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.817,
+      "frame": "frames/ACT-05-RESULT-MOTION-020.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 23.967,
+      "frame": "frames/ACT-05-RESULT-MOTION-021.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.117,
+      "frame": "frames/ACT-05-RESULT-MOTION-022.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.267,
+      "frame": "frames/ACT-05-RESULT-MOTION-023.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.417,
+      "frame": "frames/ACT-05-RESULT-MOTION-024.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.567,
+      "frame": "frames/ACT-05-RESULT-MOTION-025.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.717,
+      "frame": "frames/ACT-05-RESULT-MOTION-026.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 24.867,
+      "frame": "frames/ACT-05-RESULT-MOTION-027.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 25.017,
+      "frame": "frames/ACT-05-RESULT-MOTION-028.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 25.167,
+      "frame": "frames/ACT-05-RESULT-MOTION-029.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 25.317,
+      "frame": "frames/ACT-05-RESULT-MOTION-030.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 25.467,
+      "frame": "frames/ACT-05-RESULT-MOTION-031.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-05-RESULT-MOTION",
+      "time": 25.5,
+      "frame": "frames/ACT-05-RESULT-MOTION-032.jpg",
+      "carrier": "four edited result clips and motion continuity",
+      "reason": "检查每一短段的主体延续、动作幅度、切换位置和可能形变，防止单帧证明连续性。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 0,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-001.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 0.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-002.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 1,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-003.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 1.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-004.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 2,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-005.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 2.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-006.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 3,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-007.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 3.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-008.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 4,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-009.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 4.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-010.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-011.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 5.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-012.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 6,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-013.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 6.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-014.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 7,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-015.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 7.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-016.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 8,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-017.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 8.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-018.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 9,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-019.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 9.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-020.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 10,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-021.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 10.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-022.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 11,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-023.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 11.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-024.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 12,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-025.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 12.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-026.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 13,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-027.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 13.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-028.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 14,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-029.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 14.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-030.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 15,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-031.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 15.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-032.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 16,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-033.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 16.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-034.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 17,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-035.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0111",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 17.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-036.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0112",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 18,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-037.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0113",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 18.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-038.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0114",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 19,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-039.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0115",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 19.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-040.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0116",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 20,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-041.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0117",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 20.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-042.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0118",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 21,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-043.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0119",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 21.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-044.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0120",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 22,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-045.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0121",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 22.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-046.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0122",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 23,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-047.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0123",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 23.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-048.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0124",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 24,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-049.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0125",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 24.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-050.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0126",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 25,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-051.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0127",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 25.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-052.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0128",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 26,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-053.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0129",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 26.5,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-054.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0130",
+      "actionId": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "time": 26.613,
+      "frame": "frames/ACT-06-FULL-SCOPE-BOUNDARY-055.jpg",
+      "carrier": "all visual opportunity windows for access, version, price, account, region, license, progress and task binding",
+      "reason": "逐段检查 CTA 所需的决策边界和因果桥是否在任何短卡/UI/结尾出现。"
+    },
+    {
+      "id": "TARGET-0131",
+      "actionId": "ACT-07-CLOSING",
+      "time": 25.5,
+      "frame": "frames/ACT-07-CLOSING-001.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0132",
+      "actionId": "ACT-07-CLOSING",
+      "time": 25.6,
+      "frame": "frames/ACT-07-CLOSING-002.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0133",
+      "actionId": "ACT-07-CLOSING",
+      "time": 25.7,
+      "frame": "frames/ACT-07-CLOSING-003.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0134",
+      "actionId": "ACT-07-CLOSING",
+      "time": 25.767,
+      "frame": "frames/ACT-07-CLOSING-004.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0135",
+      "actionId": "ACT-07-CLOSING",
+      "time": 26.217,
+      "frame": "frames/ACT-07-CLOSING-005.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0136",
+      "actionId": "ACT-07-CLOSING",
+      "time": 26.613,
+      "frame": "frames/ACT-07-CLOSING-006.jpg",
+      "carrier": "final caption, speech, gesture and opening-closing semantic relation",
+      "reason": "确认战斗样片结束、转场/重叠、完整主持人近景与结尾语义的精确关系。"
+    },
+    {
+      "id": "TARGET-0137",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 0,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-001.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0138",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 5.433,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-002.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0139",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 13.667,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-003.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0140",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 20.967,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-004.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0141",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 25.5,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-005.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0142",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 25.767,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-006.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    },
+    {
+      "id": "TARGET-0143",
+      "actionId": "ACT-08-AUDIO-REGION-ANCHORS",
+      "time": 26.613,
+      "frame": "frames/ACT-08-AUDIO-REGION-ANCHORS-007.jpg",
+      "carrier": "timeline anchors for separately executed bounded non-speech-audio listening",
+      "reason": "给有界试听段建立可解析的时间锚；实际音频文件、哈希与 absent/constant/change 结论登记在 audio-listening/segment-manifest.json 和 listening-notes.md。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01-CAPTION-CONFLICT",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004"
+      ]
+    },
+    {
+      "id": "ACT-02-EARLY-EXAMPLES",
+      "frameIds": [
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029"
+      ]
+    },
+    {
+      "id": "ACT-03-WORKFLOW-STATES",
+      "frameIds": [
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037",
+        "TARGET-0038"
+      ]
+    },
+    {
+      "id": "ACT-04-UI-OCR",
+      "frameIds": [
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043"
+      ]
+    },
+    {
+      "id": "ACT-05-RESULT-MOTION",
+      "frameIds": [
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075"
+      ]
+    },
+    {
+      "id": "ACT-06-FULL-SCOPE-BOUNDARY",
+      "frameIds": [
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098",
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110",
+        "TARGET-0111",
+        "TARGET-0112",
+        "TARGET-0113",
+        "TARGET-0114",
+        "TARGET-0115",
+        "TARGET-0116",
+        "TARGET-0117",
+        "TARGET-0118",
+        "TARGET-0119",
+        "TARGET-0120",
+        "TARGET-0121",
+        "TARGET-0122",
+        "TARGET-0123",
+        "TARGET-0124",
+        "TARGET-0125",
+        "TARGET-0126",
+        "TARGET-0127",
+        "TARGET-0128",
+        "TARGET-0129",
+        "TARGET-0130"
+      ]
+    },
+    {
+      "id": "ACT-07-CLOSING",
+      "frameIds": [
+        "TARGET-0131",
+        "TARGET-0132",
+        "TARGET-0133",
+        "TARGET-0134",
+        "TARGET-0135",
+        "TARGET-0136"
+      ]
+    },
+    {
+      "id": "ACT-08-AUDIO-REGION-ANCHORS",
+      "frameIds": [
+        "TARGET-0137",
+        "TARGET-0138",
+        "TARGET-0139",
+        "TARGET-0140",
+        "TARGET-0141",
+        "TARGET-0142",
+        "TARGET-0143"
+      ]
+    }
+  ]
+}

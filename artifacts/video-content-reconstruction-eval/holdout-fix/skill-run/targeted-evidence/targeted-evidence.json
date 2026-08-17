@@ -1,0 +1,845 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T18:58:13.270Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/6801c0750000000007037156.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-fix/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-001",
+      "time": 0.2,
+      "frame": "frames/ACT-001-001.jpg",
+      "carrier": "burned_in_captions + presenter_gesture + symbols",
+      "reason": "保存开场钩子、人物/猫和强调动作，不把形象升级为身份。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-001",
+      "time": 0.8,
+      "frame": "frames/ACT-001-002.jpg",
+      "carrier": "burned_in_captions + presenter_gesture + symbols",
+      "reason": "保存开场钩子、人物/猫和强调动作，不把形象升级为身份。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-001",
+      "time": 1.4,
+      "frame": "frames/ACT-001-003.jpg",
+      "carrier": "burned_in_captions + presenter_gesture + symbols",
+      "reason": "保存开场钩子、人物/猫和强调动作，不把形象升级为身份。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-002",
+      "time": 1.7,
+      "frame": "frames/ACT-002-001.jpg",
+      "carrier": "word_ui + before_after_visual_state + burned_in_captions",
+      "reason": "捕获 Word 从正常/结构化回答到作者称为格式混乱、排版崩溃的变化。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-002",
+      "time": 2.6,
+      "frame": "frames/ACT-002-002.jpg",
+      "carrier": "word_ui + before_after_visual_state + burned_in_captions",
+      "reason": "捕获 Word 从正常/结构化回答到作者称为格式混乱、排版崩溃的变化。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-002",
+      "time": 3.7,
+      "frame": "frames/ACT-002-003.jpg",
+      "carrier": "word_ui + before_after_visual_state + burned_in_captions",
+      "reason": "捕获 Word 从正常/结构化回答到作者称为格式混乱、排版崩溃的变化。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-002",
+      "time": 4.8,
+      "frame": "frames/ACT-002-004.jpg",
+      "carrier": "word_ui + before_after_visual_state + burned_in_captions",
+      "reason": "捕获 Word 从正常/结构化回答到作者称为格式混乱、排版崩溃的变化。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-002",
+      "time": 5.7,
+      "frame": "frames/ACT-002-005.jpg",
+      "carrier": "word_ui + before_after_visual_state + burned_in_captions",
+      "reason": "捕获 Word 从正常/结构化回答到作者称为格式混乱、排版崩溃的变化。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-003",
+      "time": 2,
+      "frame": "frames/ACT-003-001.jpg",
+      "carrier": "word_ui + on_screen_text",
+      "reason": "核对 Word 失败态中的标题、分级和正文是否可读，避免由缩略图臆测。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-003",
+      "time": 3.2,
+      "frame": "frames/ACT-003-002.jpg",
+      "carrier": "word_ui + on_screen_text",
+      "reason": "核对 Word 失败态中的标题、分级和正文是否可读，避免由缩略图臆测。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-003",
+      "time": 4.4,
+      "frame": "frames/ACT-003-003.jpg",
+      "carrier": "word_ui + on_screen_text",
+      "reason": "核对 Word 失败态中的标题、分级和正文是否可读，避免由缩略图臆测。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-003",
+      "time": 5.4,
+      "frame": "frames/ACT-003-004.jpg",
+      "carrier": "word_ui + on_screen_text",
+      "reason": "核对 Word 失败态中的标题、分级和正文是否可读，避免由缩略图臆测。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-004",
+      "time": 6,
+      "frame": "frames/ACT-004-001.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + author_claim",
+      "reason": "保留从失败到‘立即解决’主张的反转与表情/手势。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-004",
+      "time": 7.4,
+      "frame": "frames/ACT-004-002.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + author_claim",
+      "reason": "保留从失败到‘立即解决’主张的反转与表情/手势。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-004",
+      "time": 8.7,
+      "frame": "frames/ACT-004-003.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + author_claim",
+      "reason": "保留从失败到‘立即解决’主张的反转与表情/手势。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-005",
+      "time": 9,
+      "frame": "frames/ACT-005-001.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-005",
+      "time": 9.8,
+      "frame": "frames/ACT-005-002.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-005",
+      "time": 10.8,
+      "frame": "frames/ACT-005-003.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-005",
+      "time": 11.8,
+      "frame": "frames/ACT-005-004.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-005",
+      "time": 12.8,
+      "frame": "frames/ACT-005-005.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-005",
+      "time": 13.1,
+      "frame": "frames/ACT-005-006.jpg",
+      "carrier": "chat_ui + answer_layout + picture_in_picture",
+      "reason": "确认作为输入的回答布局、聊天 UI 与画中画，不依赖品牌猜测。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-006",
+      "time": 13.3,
+      "frame": "frames/ACT-006-001.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-006",
+      "time": 14,
+      "frame": "frames/ACT-006-002.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-006",
+      "time": 14.8,
+      "frame": "frames/ACT-006-003.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-006",
+      "time": 15.6,
+      "frame": "frames/ACT-006-004.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-006",
+      "time": 16.4,
+      "frame": "frames/ACT-006-005.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-006",
+      "time": 17.2,
+      "frame": "frames/ACT-006-006.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-006",
+      "time": 18,
+      "frame": "frames/ACT-006-007.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-006",
+      "time": 18.5,
+      "frame": "frames/ACT-006-008.jpg",
+      "carrier": "chat_input_ui + prompt_text + parameter_values",
+      "reason": "提示词是全片最短时、最高影响的小字载体，必须读出 HTML、字体、字号及可见限定。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-007",
+      "time": 18.6,
+      "frame": "frames/ACT-007-001.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-007",
+      "time": 19.2,
+      "frame": "frames/ACT-007-002.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-007",
+      "time": 19.8,
+      "frame": "frames/ACT-007-003.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-007",
+      "time": 20.4,
+      "frame": "frames/ACT-007-004.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-007",
+      "time": 21,
+      "frame": "frames/ACT-007-005.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-007",
+      "time": 21.6,
+      "frame": "frames/ACT-007-006.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-007",
+      "time": 22.2,
+      "frame": "frames/ACT-007-007.jpg",
+      "carrier": "chat_ui_state + cursor_or_click + generated_code_block",
+      "reason": "闭合输入—发送—生成之间的可见状态，并标记跳切。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-008",
+      "time": 19,
+      "frame": "frames/ACT-008-001.jpg",
+      "carrier": "generated_code_block + ui_labels",
+      "reason": "核对代码块是否真为 HTML、是否有可见复制控件或状态标签。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-008",
+      "time": 20,
+      "frame": "frames/ACT-008-002.jpg",
+      "carrier": "generated_code_block + ui_labels",
+      "reason": "核对代码块是否真为 HTML、是否有可见复制控件或状态标签。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-008",
+      "time": 21,
+      "frame": "frames/ACT-008-003.jpg",
+      "carrier": "generated_code_block + ui_labels",
+      "reason": "核对代码块是否真为 HTML、是否有可见复制控件或状态标签。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-008",
+      "time": 21.8,
+      "frame": "frames/ACT-008-004.jpg",
+      "carrier": "generated_code_block + ui_labels",
+      "reason": "核对代码块是否真为 HTML、是否有可见复制控件或状态标签。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-008",
+      "time": 22.2,
+      "frame": "frames/ACT-008-005.jpg",
+      "carrier": "generated_code_block + ui_labels",
+      "reason": "核对代码块是否真为 HTML、是否有可见复制控件或状态标签。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-009",
+      "time": 22,
+      "frame": "frames/ACT-009-001.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-009",
+      "time": 22.4,
+      "frame": "frames/ACT-009-002.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-009",
+      "time": 22.8,
+      "frame": "frames/ACT-009-003.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-009",
+      "time": 23.2,
+      "frame": "frames/ACT-009-004.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-009",
+      "time": 23.6,
+      "frame": "frames/ACT-009-005.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-009",
+      "time": 24,
+      "frame": "frames/ACT-009-006.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-009",
+      "time": 24.4,
+      "frame": "frames/ACT-009-007.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-009",
+      "time": 24.8,
+      "frame": "frames/ACT-009-008.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-009",
+      "time": 25.2,
+      "frame": "frames/ACT-009-009.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-009",
+      "time": 25.6,
+      "frame": "frames/ACT-009-010.jpg",
+      "carrier": "text_editor_ui + selection_state + word_ui + file_handoff_sequence",
+      "reason": "逐步检查空白文本文档、代码选择/复制与 Word 粘贴之间到底显示了什么。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-010",
+      "time": 22.2,
+      "frame": "frames/ACT-010-001.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-010",
+      "time": 22.8,
+      "frame": "frames/ACT-010-002.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-010",
+      "time": 23.4,
+      "frame": "frames/ACT-010-003.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-010",
+      "time": 24,
+      "frame": "frames/ACT-010-004.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-010",
+      "time": 24.6,
+      "frame": "frames/ACT-010-005.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-010",
+      "time": 25.2,
+      "frame": "frames/ACT-010-006.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-010",
+      "time": 25.6,
+      "frame": "frames/ACT-010-007.jpg",
+      "carrier": "text_editor_ui + word_ui + ui_labels",
+      "reason": "人工核对窗口类型、选择状态和可见控件，避免把画面跳切当操作。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-011",
+      "time": 25.2,
+      "frame": "frames/ACT-011-001.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-011",
+      "time": 25.6,
+      "frame": "frames/ACT-011-002.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-011",
+      "time": 26,
+      "frame": "frames/ACT-011-003.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-011",
+      "time": 26.4,
+      "frame": "frames/ACT-011-004.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-011",
+      "time": 26.8,
+      "frame": "frames/ACT-011-005.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-011",
+      "time": 27.2,
+      "frame": "frames/ACT-011-006.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-011",
+      "time": 27.5,
+      "frame": "frames/ACT-011-007.jpg",
+      "carrier": "word_result_ui + before_after_visual_state + editing_transition",
+      "reason": "捕获模糊转场前后和最终稳定 Word 结果，保守计数结果组。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-012",
+      "time": 26,
+      "frame": "frames/ACT-012-001.jpg",
+      "carrier": "word_result_ui + on_screen_text",
+      "reason": "读出结果文档标题/分级结构和底部成功字幕，核对视觉改善。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-012",
+      "time": 26.5,
+      "frame": "frames/ACT-012-002.jpg",
+      "carrier": "word_result_ui + on_screen_text",
+      "reason": "读出结果文档标题/分级结构和底部成功字幕，核对视觉改善。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-012",
+      "time": 27,
+      "frame": "frames/ACT-012-003.jpg",
+      "carrier": "word_result_ui + on_screen_text",
+      "reason": "读出结果文档标题/分级结构和底部成功字幕，核对视觉改善。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-012",
+      "time": 27.4,
+      "frame": "frames/ACT-012-004.jpg",
+      "carrier": "word_result_ui + on_screen_text",
+      "reason": "读出结果文档标题/分级结构和底部成功字幕，核对视觉改善。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-013",
+      "time": 27.6,
+      "frame": "frames/ACT-013-001.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + closing_reframe",
+      "reason": "保存从结果到行动号召的最终意义变化与未提供限制。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-013",
+      "time": 28.2,
+      "frame": "frames/ACT-013-002.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + closing_reframe",
+      "reason": "保存从结果到行动号召的最终意义变化与未提供限制。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-013",
+      "time": 28.8,
+      "frame": "frames/ACT-013-003.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + closing_reframe",
+      "reason": "保存从结果到行动号召的最终意义变化与未提供限制。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-013",
+      "time": 28.976,
+      "frame": "frames/ACT-013-004.jpg",
+      "carrier": "presenter_gesture + burned_in_captions + closing_reframe",
+      "reason": "保存从结果到行动号召的最终意义变化与未提供限制。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-014",
+      "time": 0.2,
+      "frame": "frames/ACT-014-001.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-014",
+      "time": 1.6,
+      "frame": "frames/ACT-014-002.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-014",
+      "time": 5.8,
+      "frame": "frames/ACT-014-003.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-014",
+      "time": 8.9,
+      "frame": "frames/ACT-014-004.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-014",
+      "time": 13.2,
+      "frame": "frames/ACT-014-005.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-014",
+      "time": 18.6,
+      "frame": "frames/ACT-014-006.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-014",
+      "time": 20.4,
+      "frame": "frames/ACT-014-007.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-014",
+      "time": 22.2,
+      "frame": "frames/ACT-014-008.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-014",
+      "time": 25.4,
+      "frame": "frames/ACT-014-009.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-014",
+      "time": 25.8,
+      "frame": "frames/ACT-014-010.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-014",
+      "time": 27.5,
+      "frame": "frames/ACT-014-011.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-014",
+      "time": 28.976,
+      "frame": "frames/ACT-014-012.jpg",
+      "carrier": "non_speech_audio + visual_event_alignment",
+      "reason": "视频有立体声音轨，需把声道差分/频谱与切镜、发送、结果转场和结尾对齐，检查是否有独立音乐或提示音。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-001",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003"
+      ]
+    },
+    {
+      "id": "ACT-002",
+      "frameIds": [
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008"
+      ]
+    },
+    {
+      "id": "ACT-003",
+      "frameIds": [
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012"
+      ]
+    },
+    {
+      "id": "ACT-004",
+      "frameIds": [
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015"
+      ]
+    },
+    {
+      "id": "ACT-005",
+      "frameIds": [
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021"
+      ]
+    },
+    {
+      "id": "ACT-006",
+      "frameIds": [
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029"
+      ]
+    },
+    {
+      "id": "ACT-007",
+      "frameIds": [
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036"
+      ]
+    },
+    {
+      "id": "ACT-008",
+      "frameIds": [
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041"
+      ]
+    },
+    {
+      "id": "ACT-009",
+      "frameIds": [
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051"
+      ]
+    },
+    {
+      "id": "ACT-010",
+      "frameIds": [
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058"
+      ]
+    },
+    {
+      "id": "ACT-011",
+      "frameIds": [
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065"
+      ]
+    },
+    {
+      "id": "ACT-012",
+      "frameIds": [
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069"
+      ]
+    },
+    {
+      "id": "ACT-013",
+      "frameIds": [
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073"
+      ]
+    },
+    {
+      "id": "ACT-014",
+      "frameIds": [
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085"
+      ]
+    }
+  ]
+}

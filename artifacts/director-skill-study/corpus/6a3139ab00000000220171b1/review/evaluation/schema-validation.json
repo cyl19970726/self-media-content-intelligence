@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "reconstruction-schema-validation-report-1.0",
+  "pass": true,
+  "validated": [
+    "run/probe.json",
+    "run/capture-protocol.json",
+    "run/reconstruction.json",
+    "review/evaluation/evaluation.json",
+    "run/targeted-evidence/ocr-evidence.json"
+  ],
+  "failures": [],
+  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
+  "note": "Schema validity is necessary but does not imply hard-gate readiness."
+}

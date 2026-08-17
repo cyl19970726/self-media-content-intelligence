@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69e04b91000000001a02e03f",
+  "capturedAt": "2026-08-16T11:10:12.825Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "Frontend slides的小白友好版已上线",
+    "postCopy": "我的Frontend Slides skill已经作为功能上线到了AnyGen，小白友好、可编辑、无需部署、可分享，大家都可以做HTML slides啦\n\t\n#vibecoding大赏[话题]# #vibecoding[话题]# #独立开发[话题]# #html[话题]# #ppt[话题]# #ppt设计[话题]# #前端开发[话题]# #skill[话题]#",
+    "hashtags": [
+      "vibecoding大赏",
+      "vibecoding",
+      "独立开发",
+      "html",
+      "ppt",
+      "ppt设计",
+      "前端开发",
+      "skill"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69e04b91000000001a02e03f",
+    "mediaType": "video",
+    "publishedAt": "2026-04-16T02:38:09.000Z",
+    "likes": "3991",
+    "collections": "6535",
+    "comments": "65",
+    "shares": "995",
+    "expectedDurationSec": 104
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 104
+    }
+  ]
+}

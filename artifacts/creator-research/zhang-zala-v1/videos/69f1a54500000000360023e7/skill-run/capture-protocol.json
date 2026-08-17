@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/probe.json",
+  "protocolName": "42 分钟 Demo Day 回放—四位分享者—问答捕捉协议",
+  "rationale": "本片是 42 分钟线上活动全程回放，不是单一短视频。核心由四段不同讲者的 Agent 工作流展示组成：HyperFrames/HTML-to-video，Roy 的项目管理与 agent 开发流程，Eric 的研究/报告工作流，以及 Oliver 的 Markdown/MCP 知识系统，最后进入问答。需要按讲者和主题恢复，不可把不同人的工具链拼成一个连续流程；机器字幕在多人、英文专名和屏幕共享条件下误差很高，UI/OCR 只支持有限规范化。",
+  "knowledgeUnitFields": [
+    {
+      "name": "分享一：HyperFrames 让 Agent 用 HTML/视频汇报",
+      "required": true,
+      "reason": "第一位讲者要解决什么沟通问题，HyperFrames 可见能力是什么？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "分享二：Roy 用项目管理、代码仓库和 Agent 跑开发闭环",
+      "required": true,
+      "reason": "Roy 的开发流程包含哪些状态、人工审批和自动化？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "分享三：Eric 用 Agent 研究并迭代报告",
+      "required": true,
+      "reason": "Eric 的研究/报告流程如何从问题到可交付文档？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "分享四：Oliver 用 MCP、Markdown 与 hook 构建低摩擦知识系统",
+      "required": true,
+      "reason": "Oliver 的知识管理系统解决什么摩擦，如何更新？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "name": "问答补充 onboarding、hook/MCP 分工与边界",
+      "required": true,
+      "reason": "最后问答补充了哪些实施细节？",
+      "derivedFrom": [
+        "MC-05",
+        "CQ-05"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 357.84
+      },
+      "carrier": "讲者、HyperFrames 页面、视频结果、dashboard 与周报 demo",
+      "mode": "interval_density",
+      "densitySeconds": 15,
+      "reason": "捕捉产品身份、结果类型、示例与许可证画面，分开主张和事实。",
+      "expectedObservation": "需求和样例丰富，普遍效果与当前性未知。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 357.84,
+        "end": 916.84
+      },
+      "carrier": "Linear/GitHub/代码/PR 界面、讲者和问答",
+      "mode": "interval_density",
+      "densitySeconds": 20,
+      "reason": "恢复需求、执行、review、人工确认、merge 和状态回写，标明人工闸门。",
+      "expectedObservation": "局部闭环清晰，生产规模和自治程度未知。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 916.84,
+        "end": 1768.25
+      },
+      "carrier": "聊天、研究文档、Markdown/reader、浏览器与讲者",
+      "mode": "interval_density",
+      "densitySeconds": 25,
+      "reason": "以视觉状态和高置信口播恢复最小链，低置信专名保持未知。",
+      "expectedObservation": "报告迭代模式可恢复，研究内容和准确性需保守。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 1768.25,
+        "end": 2402.25
+      },
+      "carrier": "Claude/终端/Markdown、MCP 页面、讲者和流程图",
+      "mode": "interval_density",
+      "densitySeconds": 20,
+      "reason": "恢复输入、更新频率、hook/MCP 分工与未知边界。",
+      "expectedObservation": "低摩擦理念明确，记忆质量和安全未知。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "range": {
+        "start": 2402.25,
+        "end": 2518.1
+      },
+      "carrier": "多人问答、终端/文档和会议画廊",
+      "mode": "interval_density",
+      "densitySeconds": 12,
+      "reason": "只恢复明确回答，其他保留未知。",
+      "expectedObservation": "理解加深，仍不可直接复现。",
+      "derivedFrom": [
+        "SWEEP-05",
+        "MC-05",
+        "CQ-05"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "从沟通产物转入软件交付产物",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "软件交付闭环切换为研究交付闭环",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "研究报告沉淀进一步扩展为长期个人上下文",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    },
+    {
+      "relation": "个人知识系统通过问答补足初始化和触发机制",
+      "derivedFrom": [
+        "REL-04"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–2518.1 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "活动完整议程、讲者姓名拼写与所属组织",
+    "各仓库/工具的当前地址、版本、许可证和价格",
+    "所有 demo 是否实时、连续、同一任务",
+    "组织数据权限、隐私、安全和错误恢复",
+    "工作流对效率、质量和团队采用的量化结果",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69f1a54500000000360023e7/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

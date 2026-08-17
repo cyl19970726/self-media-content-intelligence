@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688ab6260000000022020d3e/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能不知道视频所指的角色驱动工具，也可能把‘一键控制任何角色’理解为无需素材条件、可覆盖全部角色、且已完整演示的自动化能力。",
+    "after": "观众被引导相信作者口播所称的 Runway Act-One 能力可以把真人表演素材与角色图像/视频素材组合；但视频实际展示的工作区和结果播放器都可确认是 Act-Two，右侧 Gen-4: Now for Image and Video 是带 Try it now 的宣传卡。观众还应区分有限角色样例、两个素材入口、可见的 Act-Two 结果播放器和最终连续动漫片段，与没有展示的选择/上传点击、等待、结果 lineage、耗时证明、文字指令界面、全角色覆盖、授权和来源。",
+    "intendedChanges": [
+      "认识作者口播/字幕 Act-One 与实际 Act-Two 工作区及结果播放器的冲突，并把 Gen-4 识别为宣传卡而非当前模式",
+      "把真人表演驱动角色的效果理解为口型、表情和动作动画，而不把剪辑蒙太奇误当作完整生成流程",
+      "感受到跨真人风格、玩偶风格、动画风格和电影风格角色示例带来的能力广度",
+      "保留‘任意/任何’‘一键’‘几分钟’‘一句话改图’等强范围说法与画面证据边界之间的差距"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 1.6},
+      "cognitiveQuestion": "开场如何制造‘演员受到冲击’的强钩子，首个角色画面能证明什么？",
+      "observedSignals": [
+        "语音/字幕称‘演员的天塌了’",
+        "上半屏出现一位卷发、校服式服装的真人风格年轻女性并有表情和手部变化",
+        "下半屏持续出现同一位女讲述者的室内自拍视频",
+        "烧录字幕与语音同义"
+      ],
+      "checkedAlternatives": ["provided subtitle", "machine re-transcription", "dense frames", "cue/shot frames", "split-screen layout"],
+      "remainingUnknowns": ["上方人物的准确身份与素材来源", "上方动作是否由下方讲述者此刻的表演逐帧驱动", "演员职业受影响的外部真实性"],
+      "evidenceHints": ["CUE-001", "SHOT-001", "DENSE-0001", "DENSE-0002", "DENSE-0003"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 1.6, "end": 3.2},
+      "cognitiveQuestion": "‘你现在就是任意演员’如何被第二个视觉示例强化？",
+      "observedSignals": [
+        "语音/烧录字幕称‘你现在就是任意演员’",
+        "上方切为粉色服装的玩偶/娃娃风格女性形象并有嘴部和手势变化",
+        "下方讲述者仍在说话并做手势"
+      ],
+      "checkedAlternatives": ["speech", "burned captions", "dense frames", "character change", "presenter gesture"],
+      "remainingUnknowns": ["玩偶形象的准确品牌/角色身份", "上下两路动作是否一一同步", "是否存在隐藏剪切"],
+      "evidenceHints": ["CUE-001", "SHOT-001", "DENSE-0004", "DENSE-0005"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 3.2, "end": 5.17},
+      "cognitiveQuestion": "动漫范围的说法由什么样例承载？",
+      "observedSignals": [
+        "语音/字幕称‘不管是动漫角色还是电影角色’",
+        "上方出现一位二维动画风格女性角色，嘴部和手部姿态随时间变化",
+        "技术 shot 边界与角色切换重合，但不能单独证明编辑次数"
+      ],
+      "checkedAlternatives": ["speech", "burned captions", "dense frames", "shot boundary", "motion across frames"],
+      "remainingUnknowns": ["角色准确身份与来源", "动作是否由特定输入表演生成", "授权/许可情况"],
+      "evidenceHints": ["CUE-001", "SHOT-002", "DENSE-0006", "DENSE-0007"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 5.17, "end": 6.833},
+      "cognitiveQuestion": "‘电影角色’与‘靠一张嘴驱动’如何被可见人物和动作承载？",
+      "observedSignals": [
+        "上方出现苍白、无发、真人电影质感的男性反派式形象，嘴部在相邻帧间变化",
+        "下方讲述者继续说话和做手势",
+        "语音/字幕称角色可被‘一张嘴驱动’"
+      ],
+      "checkedAlternatives": ["speech", "burned captions", "dense motion frames", "split-screen referents"],
+      "remainingUnknowns": ["人物准确身份", "上方嘴部与下方语音/动作的同步精度", "输入音频是否就是当前讲述者音轨"],
+      "evidenceHints": ["CUE-002", "SHOT-002", "DENSE-0008", "DENSE-0009"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 6.833, "end": 8.6},
+      "cognitiveQuestion": "口型和动作同步的范围是否被连续片段证明？",
+      "observedSignals": [
+        "上方切换到戴有 M 标志帽、留胡须的三维卡通水管工式角色",
+        "角色嘴型在相邻帧间变化，身体/头部动作较有限",
+        "语音/烧录字幕称‘口型和动作都能同步’"
+      ],
+      "checkedAlternatives": ["speech", "burned captions", "dense frames", "visible logo/symbol", "motion continuity"],
+      "remainingUnknowns": ["动作同步的基准输入", "同步是否覆盖全身动作还是只涵盖表情/上肢", "角色名称、素材来源和授权"],
+      "evidenceHints": ["CUE-002", "SHOT-003", "SHOT-004", "DENSE-0010", "DENSE-0011", "DENSE-0012"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 8.6, "end": 10.8},
+      "cognitiveQuestion": "视频明确指向哪个产品和功能，界面身份是否比口播更具体？",
+      "observedSignals": [
+        "画面出现作者称作 Runway 的深色工作区，并可见 Image/Video、Chat Mode、Performance、Character 等区域",
+        "口播和烧录字幕命名 Runway，后期居中大字写 act one；但工作区底部当前模式标签清楚写 Act-Two",
+        "右侧 Gen-4: Now for Image and Video 带 Try it now，是工作区内的宣传卡，不是当前模式标题",
+        "界面可见 Add driving performance 与 Choose your character 两类输入卡片"
+      ],
+      "checkedAlternatives": ["speech", "burned title", "UI identity", "OCR candidates", "shot/cue frames"],
+      "remainingUnknowns": ["Act-Two 的具体产品版本、账号、套餐、地区和工作区状态", "页面是否为真实执行会话还是演示/截屏", "口播/后期 act one 为何与工作区 Act-Two 不一致"],
+      "evidenceHints": ["CUE-003", "SHOT-004", "DENSE-0013", "DENSE-0014", "DENSE-0015"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 10.8, "end": 12.36},
+      "cognitiveQuestion": "第一个可见输入到底是什么，是否真的上传/选择成功？",
+      "observedSignals": [
+        "Performance 卡片写 Add driving performance，说明可使用 voice, gestures and facial expressions，且可见 up to 30s",
+        "可见 Record 与 Select asset 控件，后者被红色虚线框强调",
+        "口播/字幕称‘你只需要上传一段视频’",
+        "没有看到按钮被点击、文件选择器、上传进度或成功状态"
+      ],
+      "checkedAlternatives": ["UI state", "OCR", "cursor/action", "speech", "burned captions"],
+      "remainingUnknowns": ["实际上传的视频内容", "录制与选择素材的差别", "是否有账号/时长/格式限制", "所需点击数"],
+      "evidenceHints": ["CUE-004", "SHOT-004", "SHOT-005", "DENSE-0016", "DENSE-0017"]
+    },
+    {
+      "id": "SWEEP-08",
+      "range": {"start": 12.36, "end": 13.88},
+      "cognitiveQuestion": "第二个可见输入是什么，‘贴一张图’是否被执行？",
+      "observedSignals": [
+        "Character 卡片写 Choose your character 与 Drop image or video，并有 Select asset 控件",
+        "卡片缩略图是一枚带叶梗的红色拟人角色，嘴部姿态随时间变化",
+        "口播原 SRT 写‘再贴一张你想祛痘的图’，机器复听更支持‘再贴一张你想驱动的图’",
+        "没有看到文件选择器、拖放或选择完成的状态变化"
+      ],
+      "checkedAlternatives": ["provided subtitle", "machine re-transcription", "burned captions", "UI OCR", "frame sequence"],
+      "remainingUnknowns": ["缩略图是示例、已选素材还是界面演示", "真实角色输入文件及其来源", "‘贴’对应的具体操作"],
+      "evidenceHints": ["CUE-004", "SHOT-005", "DENSE-0018", "DENSE-0019"]
+    },
+    {
+      "id": "SWEEP-09",
+      "range": {"start": 13.88, "end": 16.333},
+      "cognitiveQuestion": "‘几分钟让图里的人活过来’对应的 Act-Two 结果状态、播放器边界与缺失流程是什么？",
+      "observedSignals": [
+        "约 14.1 秒后画面切到 Act-Two 结果/播放器，中央显示戴 M 标志帽的三维卡通水管工式人物视频结果",
+        "结果页左上再次可见 Act-Two，播放器有时间线/播放区、Use frame、Restyle 及右侧结果控制；这不是独立静态图片查看器",
+        "口播/烧录字幕称‘几分钟就能让图里的人活过来’",
+        "完成结果状态可见，但此前选择/上传点击、生成进度、等待过程与真实起止耗时没有展示"
+      ],
+      "checkedAlternatives": ["speech", "burned captions", "Act-Two result/player state", "UI continuity", "timing evidence"],
+      "remainingUnknowns": ["实际生成耗时", "该播放器结果使用了哪一 driving performance 和 character 输入", "下一个粉发动漫片段是否与该 Act-Two 结果属于同一生成链", "中间是否有未展示的操作和剪切"],
+      "evidenceHints": ["CUE-004", "SHOT-005", "DENSE-0020", "DENSE-0021", "DENSE-0022"]
+    },
+    {
+      "id": "SWEEP-10",
+      "range": {"start": 16.333, "end": 22.467},
+      "cognitiveQuestion": "最终片段证明了哪些连续动作，结尾口播又把能力扩展到什么范围？",
+      "observedSignals": [
+        "画面为粉发、红衣、二维动漫风格女性的单一连续构图，嘴型、眼睛、头部和双手姿态在约六秒内持续变化",
+        "口播称可用‘一句话’P图/改图，并举换表情、改动作、变风格为例",
+        "最终片段未显示文字提示词、编辑界面、同一输入图的 before/after、风格切换或生成进度",
+        "视频结尾没有可见下载、访问路径、价格、免责声明或素材来源/授权说明"
+      ],
+      "checkedAlternatives": ["speech", "provided subtitle", "machine re-transcription", "full output motion sequence", "closing absence scope", "burned-caption presence"],
+      "remainingUnknowns": ["最终动漫人物的准确身份和来源", "最终声音是否为生成角色输出的一部分", "粉发动漫片段是否与前面的 Act-Two 水管工式结果属于同一生成链", "动作连续性中是否存在隐藏剪切", "‘一句话’所指输入和操作机制"],
+      "evidenceHints": ["CUE-005", "SHOT-006", "DENSE-0023", "DENSE-0024", "DENSE-0025", "DENSE-0026", "DENSE-0027", "DENSE-0028", "DENSE-0029", "DENSE-0030", "DENSE-0031"]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-SPEECH",
+      "name": "中文口播",
+      "modalityKeys": ["speech", "author_claim"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["提出强范围承诺", "命名产品", "概括输入流程", "声明耗时和编辑能力"],
+      "intervals": [{"start": 0, "end": 22.467}],
+      "omissionImpact": "会丢失‘任意’‘同步’‘几分钟’‘一句话’等核心作者主张。"
+    },
+    {
+      "id": "CAR-SRT",
+      "name": "提供的 SRT 字幕",
+      "modalityKeys": ["subtitle", "verbatim_transcript"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-04", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["提供逐条时间范围", "保留原始转写", "暴露‘祛痘/土里的人/批图’等冲突"],
+      "intervals": [{"start": 0, "end": 22.476}],
+      "omissionImpact": "会失去可追溯原文与 cue 到 frame/shot 的映射。"
+    },
+    {
+      "id": "CAR-BURNED-TEXT",
+      "name": "烧录中文字幕与 act one 标题",
+      "modalityKeys": ["on_screen_text", "burned_caption", "ocr"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["逐段重复/分割口播", "强调产品功能名", "帮助解决 SRT 冲突"],
+      "intervals": [{"start": 0, "end": 16.333}],
+      "omissionImpact": "会漏掉短时标题和与 SRT 不一致的可见词。"
+    },
+    {
+      "id": "CAR-UI",
+      "name": "作者称 Act-One、但实际可见 Act-Two 工作区与结果播放器",
+      "modalityKeys": ["software_interface", "ui_state", "parameter", "control"],
+      "discoveredIn": ["SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["显示实际当前模式 Act-Two，并与口播/后期 Act-One 冲突", "把 Gen-4: Now for Image and Video/Try it now 作为右侧宣传卡而非活动模式", "显示表演和角色两个输入槽", "显示 up to 30s 条件", "显示 Record/Select asset 控件", "在约 14.1-16.1 秒显示 Act-Two 完成结果播放器与结果控制"],
+      "intervals": [{"start": 8.6, "end": 16.333}],
+      "omissionImpact": "会把两素材 Act-Two 工作流误写成 Act-One 或‘一句话/一键’，误认 Gen-4 为当前模式，并漏掉 30 秒限制与已完成结果状态。"
+    },
+    {
+      "id": "CAR-PRESENTER",
+      "name": "下半屏女讲述者及其室内自拍视频",
+      "modalityKeys": ["person", "gesture", "environment", "picture_in_picture"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["持续讲述", "用手势指向/强调上方角色与 UI", "提供画面连续性", "可能但未证实是 driving performance 来源"],
+      "intervals": [{"start": 0, "end": 16.333}],
+      "omissionImpact": "会错误假定角色示例没有并列的人类表演参照，或反过来误认讲述者一定是驱动输入。"
+    },
+    {
+      "id": "CAR-ROLE-MONTAGE",
+      "name": "多角色动效蒙太奇",
+      "modalityKeys": ["example", "motion", "editing_juxtaposition", "recognizable_likeness"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"],
+      "available": true,
+      "inspected": true,
+      "roles": ["用五种不同造型/媒介风格角色扩张能力印象", "展示嘴部与部分手势变化", "承载电影/动漫跨度主张"],
+      "intervals": [{"start": 0, "end": 8.6}],
+      "omissionImpact": "会把宣传范围与实际展示样例数量混为一谈，或漏掉人物来源/授权边界。"
+    },
+    {
+      "id": "CAR-FINAL-MOTION",
+      "name": "结尾动漫人物连续动作片段",
+      "modalityKeys": ["visual_result", "motion_sequence", "facial_expression", "gesture"],
+      "discoveredIn": ["SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["显示单一动漫风格人物连续说话、眨眼和手势变化", "作为最强的可见动态结果证据"],
+      "intervals": [{"start": 16.333, "end": 22.467}],
+      "omissionImpact": "会失去连续动作证据，也可能错误地把静态帧当作完整同步证明。"
+    },
+    {
+      "id": "CAR-LAYOUT-COUNT",
+      "name": "上下分屏、样例计数与顺序",
+      "modalityKeys": ["layout", "grouping", "count", "editing_order"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["将讲述者与角色/UI 并置", "从五个短样例过渡到界面再到一个长结果", "制造输入到输出的剪辑暗示"],
+      "intervals": [{"start": 0, "end": 22.467}],
+      "omissionImpact": "会把并置和相邻剪辑升级为已证明的因果流程。"
+    },
+    {
+      "id": "CAR-SYMBOLS",
+      "name": "角色造型、M 标志与可识别相似性",
+      "modalityKeys": ["symbol", "logo", "styling", "likeness"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-09", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["利用熟悉角色类型提升理解和冲击力", "让观众感知跨影视/动画角色的范围"],
+      "intervals": [{"start": 0, "end": 8.6}, {"start": 13.88, "end": 22.467}],
+      "omissionImpact": "会把视觉相似性错误写成已核实的角色身份、人物来源或授权关系。"
+    },
+    {
+      "id": "CAR-NONSPEECH-AUDIO",
+      "name": "非语音音频",
+      "modalityKeys": ["audio.non_speech", "audio_stream", "music", "sound_effect"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["SRC-AUDIO-LISTEN-EVIDENCE（probe-assets/audio-listen-evidence.json）登记了 0-22.466938 秒完整有界声学检查：完整音轨有连续语音与持续背景音乐床，用于维持节奏和能量", "没有稳定定位到可独立确认的音效事件；低置信 ding/ping 候选不升级为事实"],
+      "intervals": [{"start": 0, "end": 22.467}],
+      "omissionImpact": "会漏掉贯穿全片的背景音乐节奏层，或把低置信瞬态误写成独立音效。"
+    },
+    {
+      "id": "CAR-NEGATIVE-SCOPE",
+      "name": "全时轴缺失项审计",
+      "modalityKeys": ["negative_evidence", "absence_scope"],
+      "discoveredIn": ["SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09", "SWEEP-10"],
+      "available": true,
+      "inspected": true,
+      "roles": ["检查执行按钮、文件选择、进度、耗时计时、提示词、before/after、下载/CTA、价格、账号、来源、授权和免责声明"],
+      "intervals": [{"start": 0, "end": 22.467}],
+      "omissionImpact": "会把未展示条件写成不存在，或让观众误以为完整流程和使用条件已经交代。"
+    }
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 1.6}, "description": "以‘演员的天塌了’把工具能力框定为职业冲击。", "trigger": "开场强结论与真人风格角色动作。", "evidenceHints": ["CUE-001", "DENSE-0001", "DENSE-0002"]},
+    {"id": "MC-02", "range": {"start": 1.6, "end": 5.17}, "description": "从真人风格扩展到玩偶与二维动画风格，强化‘任意’的广度印象。", "trigger": "角色造型连续切换。", "evidenceHints": ["CUE-001", "DENSE-0004", "DENSE-0006"]},
+    {"id": "MC-03", "range": {"start": 5.17, "end": 8.6}, "description": "用电影质感人物和三维卡通人物的嘴部/动作变化承载‘口型和动作同步’主张。", "trigger": "角色切换与同步口播。", "evidenceHints": ["CUE-002", "DENSE-0008", "DENSE-0010", "DENSE-0012"]},
+    {"id": "MC-04", "range": {"start": 8.6, "end": 10.8}, "description": "从效果蒙太奇切换到 Act-Two 工作区；作者口播/后期字称 Act-One，与实际活动模式冲突。右侧 Gen-4/Try it now 是宣传卡而非模式身份。", "trigger": "口播/后期 act one、工作区 Act-Two 与右侧 Gen-4 宣传卡同屏出现。", "evidenceHints": ["CUE-003", "DENSE-0013", "DENSE-0015"]},
+    {"id": "MC-05", "range": {"start": 10.8, "end": 13.88}, "description": "可见工作流被拆成 driving performance 与 character 两个素材入口，而非单一‘一键’动作。", "trigger": "两个 Select asset 控件依次被红框强调。", "evidenceHints": ["CUE-004", "DENSE-0016", "DENSE-0018", "DENSE-0019"]},
+    {"id": "MC-06", "range": {"start": 13.88, "end": 16.333}, "description": "工作区切到 Act-Two 结果播放器，显示水管工式角色的视频结果；完成结果状态出现，但此前选择/上传、生成进度、等待和耗时仍被剪掉。", "trigger": "Act-Two 结果页、播放器时间线和结果控制出现。", "evidenceHints": ["CUE-004", "DENSE-0020", "DENSE-0022"]},
+    {"id": "MC-07", "range": {"start": 16.333, "end": 22.467}, "description": "结尾改用一个长一些的动漫人物动作片段作为结果高潮，同时口播扩展到‘一句话’换表情、改动作、变风格。", "trigger": "全屏动漫人物连续动作与新的能力列表。", "evidenceHints": ["CUE-005", "SHOT-006", "DENSE-0023", "DENSE-0031"]},
+    {"id": "MC-08", "range": {"start": 22.347, "end": 22.467}, "description": "视频在持续动作画面中直接结束，没有访问、下载、价格、来源、授权或限制收束。", "trigger": "最后一帧仍为动漫人物，无 CTA/免责声明。", "evidenceHints": ["CUE-005", "DENSE-0031"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "role-montage", "to": "claim-any-character", "relation": "illustrates_but_does_not_establish_universal_scope", "evidenceHints": ["CUE-001", "CUE-002", "DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010"]},
+    {"id": "REL-02", "from": "presenter-pip", "to": "role-montage", "relation": "juxtaposed_with_possible_but_unproven_driving_relation", "evidenceHints": ["DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010"]},
+    {"id": "REL-03", "from": "visible-active-mode-act-two", "to": "spoken-and-overlaid-label-runway-act-one", "relation": "visible_act_two_conflicts_with_spoken_act_one", "evidenceHints": ["CUE-003", "DENSE-0013", "DENSE-0015", "DENSE-0020"]},
+    {"id": "REL-04", "from": "driving-performance-input", "to": "character-input", "relation": "both_required_by_visible_ui", "evidenceHints": ["DENSE-0014", "DENSE-0016", "DENSE-0018"]},
+    {"id": "REL-05", "from": "two-visible-inputs", "to": "one-click-claim", "relation": "limits_literal_reading", "evidenceHints": ["CUE-004", "DENSE-0016", "DENSE-0018"]},
+    {"id": "REL-06", "from": "visible-input-controls", "to": "final-motion-result", "relation": "claimed_produces_but_execution_bridge_missing", "evidenceHints": ["CUE-004", "DENSE-0016", "DENSE-0018", "DENSE-0023"]},
+    {"id": "REL-07", "from": "act-two-plumber-like-video-result", "to": "final-anime-motion", "relation": "edited_after_but_not_established_as_same_generation_chain", "evidenceHints": ["DENSE-0020", "DENSE-0022", "DENSE-0023"]},
+    {"id": "REL-08", "from": "final-motion-result", "to": "claim-expression-action-style", "relation": "supports_visible_expression_and_action_motion_but_not_prompt_or_style_change", "evidenceHints": ["CUE-005", "DENSE-0023", "DENSE-0025", "DENSE-0028", "DENSE-0031"]},
+    {"id": "REL-09", "from": "opening-any-character-promise", "to": "closing-single-result", "relation": "narrows_from_universal_promise_to_one_visible_continuous_example", "evidenceHints": ["CUE-001", "CUE-005", "DENSE-0002", "DENSE-0031"]},
+    {"id": "REL-10", "from": "provided-srt", "to": "machine-retranscription-and-burned-text", "relation": "carrier_conflict_requires_preservation", "evidenceHints": ["CUE-004", "CUE-005", "DENSE-0018", "DENSE-0020"]},
+    {"id": "REL-11", "from": "visible-likenesses-and-symbols", "to": "character-identity-authorization-source", "relation": "resembles_without_establishing", "evidenceHints": ["DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010", "DENSE-0023"]},
+    {"id": "REL-12", "from": "gen4-try-it-now-card", "to": "active-act-two-workspace", "relation": "promotional_card_inside_workspace_not_active_mode", "evidenceHints": ["DENSE-0013", "DENSE-0015"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把五个短样例和一个最终角色写成‘任何角色都已被证明可驱动’。", "why": "作者使用任意/不管是等全称措辞，但样例有限且没有失败、兼容性或角色边界测试。", "where": [{"start": 0, "end": 8.6}, {"start": 16.333, "end": 22.467}], "requiredFollowup": "保守计数样例，区分 illustrates 与 establishes，并列出未验证角色范围。"},
+    {"id": "RISK-02", "risk": "把标题‘一键’或口播‘只需要’理解为一次点击完成。", "why": "UI 可见两个素材入口，且没有执行全过程。", "where": [{"start": 10.8, "end": 13.88}], "requiredFollowup": "捕获两个输入卡、控件和缺失的执行桥，明确点击数未知。"},
+    {"id": "RISK-03", "risk": "把上下分屏讲述者直接认定为所有角色的 driving performance。", "why": "并置制造映射暗示，但没有源素材标签或逐帧同步验证。", "where": [{"start": 0, "end": 8.6}], "requiredFollowup": "进行动作对应序列检查；无证据则保留 referent unknown。"},
+    {"id": "RISK-04", "risk": "把 Act-Two 水管工式视频结果播放器误写成静态图片查看器，或与随后粉发动漫人物合并为同一生成链。", "why": "14.1-16.1 秒有 Act-Two、播放器时间线和结果控制；随后人物主体不同，剪辑相邻不等于同一 lineage。", "where": [{"start": 13.88, "end": 16.5}], "requiredFollowup": "捕获结果页 UI、播放器边界与切换前后主体，分别记录完成结果状态和 lineage unknown。"},
+    {"id": "RISK-05", "risk": "把最终约六秒动作片段写成完整实时同步或无剪辑生成证明。", "why": "可以看到动作随时间变化，但没有显示驱动输入、同步比较、帧率/延迟或生成过程。", "where": [{"start": 16.333, "end": 22.467}], "requiredFollowup": "用 motion sequence 记录嘴、眼、头、手连续变化，同时保留同步基准和隐藏剪切未知。"},
+    {"id": "RISK-06", "risk": "把‘几分钟’写成实测耗时。", "why": "视频没有计时器、起止时间或生成进度。", "where": [{"start": 13.88, "end": 16.333}], "requiredFollowup": "全窗口检查时间/进度证据，若无则标为 author claim。"},
+    {"id": "RISK-07", "risk": "把‘一句话 P 图改图、换表情/动作/风格’写成已经演示的文字提示流程。", "why": "结尾没有 prompt、编辑 UI、before/after 或多个风格结果。", "where": [{"start": 16.333, "end": 22.467}], "requiredFollowup": "检查全部结尾帧和 UI 期望位置；只承认可见的表情/动作变化。"},
+    {"id": "RISK-08", "risk": "把可识别相似角色直接命名为受版权保护角色或真人演员，并默认有授权。", "why": "视频未给来源、身份标签、许可或生成方式。", "where": [{"start": 0, "end": 8.6}, {"start": 13.88, "end": 22.467}], "requiredFollowup": "仅描述外观相似性和可见符号；身份、来源、授权分别记 unknown。"},
+    {"id": "RISK-09", "risk": "静默修正 SRT 的‘祛痘/土里的人/批图’。", "why": "机器复听和语境更支持‘驱动/图里的人/P图’，但原字幕必须逐字保留。", "where": [{"start": 12.36, "end": 22.467}], "requiredFollowup": "建立冲突单元，分别保存原 SRT、复听候选、画面支持和剩余不确定性。"},
+    {"id": "RISK-10", "risk": "漏掉 up to 30s、两个 Record/Select asset 入口、工作区与结果页的两处 Act-Two，以及 Gen-4/Try it now 的宣传卡角色。", "why": "小字和结果页边界短暂出现，决定活动模式、输入和完成结果状态；不能把宣传卡或口播覆盖真实 UI 标签。", "where": [{"start": 8.6, "end": 16.333}], "requiredFollowup": "高分辨率 UI/OCR 与结果播放器序列核对，分别记录作者 Act-One、活动 Act-Two、Gen-4 宣传卡和完成结果状态。"},
+    {"id": "RISK-11", "risk": "把没有看到的生成、保存、导出、访问、账号、价格、地区、来源、授权和免责声明写成不存在。", "why": "负证据必须覆盖全时轴和可能出现窗口。", "where": [{"start": 0, "end": 22.467}], "requiredFollowup": "对完整时间线做 bounded absence capture，只写 not observed in inspected scope。"},
+    {"id": "RISK-12", "risk": "把技术 shot 数量当成语义场景或隐藏剪辑的证明。", "why": "scene detection 可能由角色切换、运动或遮挡触发，SHOT-006 内也不能排除隐藏剪切。", "where": [{"start": 0, "end": 22.467}], "requiredFollowup": "把 shot 仅作为定位单元，另行记录语义连续性与隐藏剪切未知。"},
+    {"id": "RISK-13", "risk": "漏掉贯穿全片的背景音乐，或把低置信瞬态标签误写成独立音效。", "why": "字幕/ASR 只覆盖语音，必须对完整声学信号做连续窗口检查。", "where": [{"start": 0, "end": 22.467}], "requiredFollowup": "对 0-22.467 秒做无缝音频事件检查；音乐存在可确认，独立音效没有稳定证据时保持未建立。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "视频中‘任意/任何角色’的实际可见覆盖是多少，有限样例能否建立全称范围？", "criticality": "critical", "evidenceHints": ["CUE-001", "CUE-002", "DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010", "DENSE-0023"]},
+    {"id": "CQ-02", "question": "视频是否真的展示了‘一键’完成；可见输入、控件和必要步骤是什么？", "criticality": "critical", "evidenceHints": ["CUE-004", "DENSE-0016", "DENSE-0018"]},
+    {"id": "CQ-03", "question": "作者称 Runway Act-One，但工作区与结果播放器可确认是 Act-Two；Gen-4/Try it now 宣传卡、输入限制和结果状态各是什么角色？", "criticality": "critical", "evidenceHints": ["CUE-003", "DENSE-0013", "DENSE-0014", "DENSE-0015", "DENSE-0016", "DENSE-0020", "DENSE-0022"]},
+    {"id": "CQ-04", "question": "角色片段是否显示连续的嘴型、表情和动作变化；同步基准输入是否可见？", "criticality": "critical", "evidenceHints": ["CUE-002", "SHOT-006", "DENSE-0023", "DENSE-0031"]},
+    {"id": "CQ-05", "question": "上传/录制、选角色、生成、进度、完成、保存或导出哪些步骤被实际执行，哪些只是被口述或高亮？", "criticality": "critical", "evidenceHints": ["DENSE-0016", "DENSE-0018", "DENSE-0020", "DENSE-0023"]},
+    {"id": "CQ-06", "question": "Act-Two 水管工式视频结果播放器与最终粉发动漫人物是什么关系，能否确认属于同一生成链？", "criticality": "critical", "evidenceHints": ["DENSE-0020", "DENSE-0022", "DENSE-0023"]},
+    {"id": "CQ-07", "question": "‘几分钟’是否有可见计时/进度证据？", "criticality": "critical", "evidenceHints": ["CUE-004", "DENSE-0020", "DENSE-0022"]},
+    {"id": "CQ-08", "question": "‘一句话 P 图改图、换表情/动作/风格’是否展示了文字输入和可比较结果？", "criticality": "critical", "evidenceHints": ["CUE-005", "DENSE-0023", "DENSE-0031"]},
+    {"id": "CQ-09", "question": "各人物/角色的准确身份、来源、授权或许可在视频内是否建立？", "criticality": "critical", "evidenceHints": ["DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010", "DENSE-0023"]},
+    {"id": "CQ-10", "question": "下半屏讲述者是否就是上方角色动效的 driving performance 来源？", "criticality": "supporting", "evidenceHints": ["DENSE-0002", "DENSE-0004", "DENSE-0006", "DENSE-0008", "DENSE-0010"]},
+    {"id": "CQ-11", "question": "原 SRT、可见字幕和机器复听在哪些关键词上冲突，支持哪一解释？", "criticality": "critical", "evidenceHints": ["CUE-004", "CUE-005", "DENSE-0018", "DENSE-0020"]},
+    {"id": "CQ-12", "question": "视频是否交代访问路径、价格、账号/地区条件、责任支持、素材来源、授权或免责声明？", "criticality": "supporting", "evidenceHints": ["DENSE-0001", "DENSE-0013", "DENSE-0031"]},
+    {"id": "CQ-13", "question": "结尾一个连续动漫动作片段如何回扣并收窄开头‘任意演员’的承诺？", "criticality": "supporting", "evidenceHints": ["CUE-001", "CUE-005", "DENSE-0001", "DENSE-0031"]},
+    {"id": "CQ-14", "question": "完整音频中是否有持续背景音乐或可独立确认的音效，它们承担什么作用？", "criticality": "supporting", "evidenceHints": ["media.hasAudio=true", "audio-listen-evidence.json 0-22.466938s"]}
+  ],
+  "unresolved": [
+    "准确角色名称和人物身份不能仅由相似外观确认",
+    "所有角色素材的创作者、上传者、版权/肖像/角色授权和生成来源未建立",
+    "下半屏讲述者是否为驱动输入未建立",
+    "作者口播/字幕 Act-One 与实际 Act-Two 工作区/结果播放器冲突的原因未知；活动模式本身可确认为 Act-Two",
+    "五个短角色片段与最终长片段是否均由作者所称功能生成未建立",
+    "Act-Two 水管工式视频结果与随后粉发动漫片段是否属于同一生成链未知",
+    "没有完整执行证据，因此真实点击数、上传、生成、等待、保存和导出步骤未知",
+    "‘几分钟’的真实耗时、成功率、画质、同步延迟和失败条件未知",
+    "‘一句话’具体指口播内容、文字提示词还是其他输入未知",
+    "背景音乐可确认贯穿全片；独立音效、音乐曲名、来源与授权仍未知",
+    "是否存在隐藏剪切未知；技术 shot 段不能证明无剪辑连续性"
+  ]
+}

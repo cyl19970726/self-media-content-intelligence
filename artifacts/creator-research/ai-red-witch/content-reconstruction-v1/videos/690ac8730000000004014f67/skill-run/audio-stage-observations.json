@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "bounded-audio-stage-observations-1.0",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/690ac8730000000004014f67/skill-run/audio-listen-evidence.json",
+  "audioInput": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/690ac8730000000004014f67/skill-run/audio-review-full.mp3",
+  "scope": {"start": 0, "end": 14.9},
+  "method": "对完整音频样本执行 29 个 1.0 秒声音分类窗（0.5 秒重叠），再按 SRT cue 和无口播间隙汇总阶段；只接受跨相邻窗口稳定出现的 speech/music，离散低置信事件标签不升级为事实。",
+  "stages": [
+    {
+      "id": "AUDIO-STAGE-01",
+      "range": {"start": 0, "end": 1.9},
+      "speechRelation": "覆盖 CUE-001",
+      "acceptedObservation": "以人声为主，背景有音乐；0–1、0.5–1.5、1–2 秒窗的 speech 分别约 95%、91%、81%，music 同时出现。",
+      "role": "音乐在首句下方持续，承担连续背景/节奏底层；未发现需要独立解码的高置信转场音效。",
+      "unknowns": ["音乐曲名、来源、版权和精确风格"]
+    },
+    {
+      "id": "AUDIO-STAGE-02",
+      "range": {"start": 1.9, "end": 3.06},
+      "speechRelation": "CUE-001 结束至 CUE-002 开始的无字幕间隙",
+      "acceptedObservation": "音乐成为主导：1.5–2.5 秒 music 约 72%，2–3 秒约 79%；该间隙没有 SRT 语音 cue。",
+      "role": "用连续音乐填充海报结果画面和下一个工具段之间的空档。",
+      "unknowns": ["是否存在被音乐掩盖的极短拟音；分类器的铜管/键盘标签不足以确认乐器"]
+    },
+    {
+      "id": "AUDIO-STAGE-03",
+      "range": {"start": 3.06, "end": 4.85},
+      "speechRelation": "覆盖 CUE-002",
+      "acceptedObservation": "人声重新占主导，3–4、3.5–4.5、4–5 秒窗 speech 约 96%、98%、89%，同时有约 35–42% music。",
+      "role": "背景音乐延续在 Lovart—Logo 口播下方。",
+      "unknowns": ["低置信 tap/door/knock 是否为真实音效，证据不足不采纳"]
+    },
+    {
+      "id": "AUDIO-STAGE-04",
+      "range": {"start": 4.85, "end": 5.26},
+      "speechRelation": "CUE-002 与 CUE-003 之间的无字幕间隙",
+      "acceptedObservation": "4.5–5.5 秒窗 music 约 78%，形成音乐主导的短过渡。",
+      "role": "连接 Logo 结果与 Manus 卡。",
+      "unknowns": ["cough/didgeridoo 等单窗标签与画面语义不一致，视为分类歧义而非事实"]
+    },
+    {
+      "id": "AUDIO-STAGE-05",
+      "range": {"start": 5.26, "end": 7.24},
+      "speechRelation": "覆盖 CUE-003",
+      "acceptedObservation": "人声和背景音乐重叠；5.5–6.5、6–7、6.5–7.5 秒窗 speech 约 91%、86%、78%，music 在多个窗中同时出现。",
+      "role": "音乐继续为 Manus—PPT 段提供节奏底层。",
+      "unknowns": ["没有可靠证据把 percussion 等标签解释为独立剪辑音效"]
+    },
+    {
+      "id": "AUDIO-STAGE-06",
+      "range": {"start": 7.24, "end": 7.63},
+      "speechRelation": "CUE-003 与 CUE-004 之间的无字幕间隙",
+      "acceptedObservation": "7–8 秒窗的 speech 降到约 28%，音乐仍可检出但置信较低；这是很短的混合过渡窗口。",
+      "role": "连接 PPT 结果与 Claude 卡。",
+      "unknowns": ["door/knock/sigh 等标签只在混合窗出现，不足以确认真实离散音效"]
+    },
+    {
+      "id": "AUDIO-STAGE-07",
+      "range": {"start": 7.63, "end": 11.73},
+      "speechRelation": "覆盖 CUE-004 的 UI 与 3D 两项口播",
+      "acceptedObservation": "大部分窗口人声占主导并持续叠加音乐；9–10 秒 music 约 71%，11–12 秒 music 约 87%，表明背景音乐在段尾增强或更暴露。",
+      "role": "同一音乐底层跨越 Claude—UI 和 Tripo AI—3D 两个并列段，强化快速目录的连续节奏。",
+      "unknowns": ["11–12 秒的 disc_scratching/synthesizer 高分可能指电子转场纹理，但不能从分类提议确定其准确音色或来源"]
+    },
+    {
+      "id": "AUDIO-STAGE-08",
+      "range": {"start": 11.73, "end": 12.19},
+      "speechRelation": "CUE-004 与 CUE-005 之间的无字幕间隙",
+      "acceptedObservation": "11.5–12.5 秒窗 music 约 57%，disc_scratching 提议约 47%；可确认音乐性/电子纹理过渡，但不把具体 scratch 身份写成事实。",
+      "role": "连接 3D 结果与 Lovable 卡。",
+      "unknowns": ["电子纹理的具体合成方式、素材来源与是否是独立音效"]
+    },
+    {
+      "id": "AUDIO-STAGE-09",
+      "range": {"start": 12.19, "end": 14.14},
+      "speechRelation": "覆盖 CUE-005",
+      "acceptedObservation": "人声重新占主导；12.5–13.5、13–14 秒窗 speech 约 92%、95%，同时有约 43–49% music。",
+      "role": "背景音乐延续在 Lovable—网页口播下方。",
+      "unknowns": ["单窗 sneeze/cough 标签与连续口播重叠，视为分类歧义"]
+    },
+    {
+      "id": "AUDIO-STAGE-10",
+      "range": {"start": 14.14, "end": 14.9},
+      "speechRelation": "最终 SRT cue 结束后的尾部",
+      "acceptedObservation": "口播结束后保留音乐尾声；14–15 秒窗 music 与 synthesizer 均约 90%，keyboard_musical 约 86%。",
+      "role": "音乐尾声覆盖最终网页画面，完成节奏收束；没有新的可辨语义口播。",
+      "unknowns": ["具体合成器/键盘音色、曲名、来源和版权"]
+    }
+  ],
+  "globalObservation": "完整 0–14.9 秒音频样本的 29 个窗口均已处理。可接受的非语音结论是：背景音乐跨全片存在，在口播空档和结尾尾声更明显；音乐连接六个并列卡片—结果段并提供连续节奏。离散事件分类提议不稳定，除 11.73–12.19 秒可谨慎描述为音乐性/电子纹理过渡外，不命名具体音效。",
+  "unresolved": ["音乐曲名、作者、版权与来源", "具体乐器与风格", "若干低置信事件标签是否对应真实拟音", "声音后期混音与音量自动化"]
+}

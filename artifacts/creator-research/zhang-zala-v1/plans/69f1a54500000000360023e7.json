@@ -1,0 +1,70 @@
+{
+  "protocolName": "42 分钟 Demo Day 回放—四位分享者—问答捕捉协议",
+  "rationale": "本片是 42 分钟线上活动全程回放，不是单一短视频。核心由四段不同讲者的 Agent 工作流展示组成：HyperFrames/HTML-to-video，Roy 的项目管理与 agent 开发流程，Eric 的研究/报告工作流，以及 Oliver 的 Markdown/MCP 知识系统，最后进入问答。需要按讲者和主题恢复，不可把不同人的工具链拼成一个连续流程；机器字幕在多人、英文专名和屏幕共享条件下误差很高，UI/OCR 只支持有限规范化。",
+  "viewerBefore": "观众可能只抽象知道‘和 Agent 共事’，但不知道不同角色如何把 Agent 接入沟通、开发、研究和知识管理。",
+  "viewerAfter": "观众看到四种可组合但彼此独立的实践：让 Agent 用 HTML/视频汇报；把需求、代码、评审和状态联成开发闭环；把研究对话沉淀成报告；把长期对话写入本地 Markdown 知识系统并用 MCP/hook 降低记录摩擦。",
+  "intendedChanges": ["从单个聊天机器人转向工作流中的多个 Agent", "从一次对话转向把产物沉淀为 HTML、视频、PR、报告或 Markdown", "从看 demo 转向理解每种工作流的依赖与未验证边界"],
+  "scopeStatement": "仅重建 0–2518.1 秒线上 Demo Day 回放及机器转写。四位分享者、多个屏幕共享和大量英文专名导致 ASR 误差高；报告不静默改写。工具当前版本、开源仓库、许可证、组织权限、数据安全、规模效果、外部服务费用和每个 demo 的端到端连续性均需外部验证。",
+  "defaultDensity": 30,
+  "audioSource": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69f1a54500000000360023e7/audio-16k.wav",
+  "audioLedger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/audio/audio-carrier.json",
+  "globalUnknowns": ["活动完整议程、讲者姓名拼写与所属组织", "各仓库/工具的当前地址、版本、许可证和价格", "所有 demo 是否实时、连续、同一任务", "组织数据权限、隐私、安全和错误恢复", "工作流对效率、质量和团队采用的量化结果"],
+  "termConflictStatement": "1196 条机器 cue 含大量多人重叠、英文产品名和代码术语误识别，例如黑镇/HeyGen、Hyper frames、Remotion、Linear、GitHub、Codex、Claude Code、MCP、Markdown、hook 等。报告保留原文，规范化仅在烧录字幕、UI、仓库页面和上下文共同支持时使用。",
+  "termUnknowns": ["四位讲者完整姓名与职位", "若干内部产品/Agent 名称", "部分仓库、命令和代码小字"],
+  "audioStatement": "完整 42 分钟混合轨按 30 秒无缝窗口执行机器语义检查；多人讲话和系统/会议声音是主要信息载体，机器候选不能独立确认配乐、提示音、点击或 demo 成功事件。",
+  "rightsHints": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"],
+  "visualCarriers": [
+    {"name": "视频会议、多讲者画廊和屏幕共享", "modalityKeys": ["visual.meeting", "visual.person", "visual.screen_share"], "segmentIndexes": [0,1,2,3,4], "roles": ["区分讲者和主题边界", "承载实时/录屏 demo 与问答"], "omissionImpact": "会把四个独立分享误合成一个作者工作流。"},
+    {"name": "HTML/视频结果、代码仓库、项目管理、聊天与 Markdown UI", "modalityKeys": ["visual.ui", "visual.code_repository", "visual.document", "ocr"], "segmentIndexes": [0,1,2,3,4], "roles": ["提供每段工具身份和局部状态", "核对专有名词和输入输出"], "omissionImpact": "会丢失可执行对象，也可能把口播主张升级为实际运行。"}
+  ],
+  "segments": [
+    {
+      "start": 0, "end": 357.84, "title": "分享一：HyperFrames 让 Agent 用 HTML/视频汇报", "question": "第一位讲者要解决什么沟通问题，HyperFrames 可见能力是什么？",
+      "signals": ["组织内多 Agent 造成信息量过大", "介绍开源 HyperFrames 和 HTML-to-video", "展示 launch 总结、团队周报视频和 dashboard", "比较 HTML 与 Remotion/React", "提到 Apache-2.0"],
+      "alternatives": ["是否已证明 HTML 普遍优于 React", "开源和许可证是否当前仍有效"],
+      "meaning": "从 Agent 只输出长文档转向让其以 HTML/短视频压缩汇报。", "trigger": "信息过载问题、HTML-to-video、团队视频示例", "linkFromPrevious": "无",
+      "risk": "把作者的视觉质量比较、launch 成功和开源状态当作独立验证。", "riskWhy": "没有控制实验、仓库当前核验或团队吸收数据。", "followup": "捕捉产品身份、结果类型、示例与许可证画面，分开主张和事实。", "expectedObservation": "需求和样例丰富，普遍效果与当前性未知。", "carrier": "讲者、HyperFrames 页面、视频结果、dashboard 与周报 demo", "density": 15, "cueHints": ["CUE-001", "CUE-062"],
+      "statement": "第一位讲者把问题定义为组织内 Agent 太多、上下文和汇报量过大，介绍 HyperFrames 作为把 HTML 变成视频的开源框架，并展示 launch 总结、内部周报视频、dashboard 等结果；还主张 LLM 写 HTML 的视觉表达优于写 React/Remotion，并口述 Apache-2.0。片内可见样例，不足以证明普遍视觉优势、沟通效率提升或当前许可证。",
+      "provenance": "author_claim", "reasoning": "问题、工具、多个结果和比较主张形成完整段落；效果量化缺失。", "unknowns": ["仓库当前版本/许可证", "生成时长和失败率", "团队吸收效果", "Remotion 对照条件"], "core": true
+    },
+    {
+      "start": 357.84, "end": 916.84, "title": "分享二：Roy 用项目管理、代码仓库和 Agent 跑开发闭环", "question": "Roy 的开发流程包含哪些状态、人工审批和自动化？",
+      "signals": ["介绍 Linear/项目管理与 GitHub 类工具", "需求进入 agent 执行和 PR/Review", "Codex 自动 code review", "合并后状态回写", "技能/对话沉淀为 Markdown"],
+      "alternatives": ["是否完全无人开发", "演示项目是否代表生产规模"],
+      "meaning": "从单次 coding 对话转向需求—实现—评审—合并—状态同步的团队流程。", "trigger": "项目卡、代码、review、merge 和状态变化", "linkFromPrevious": "从沟通产物转入软件交付产物", 
+      "risk": "把 demo 环境与口述自动化写成生产级、完全自治开发。", "riskWhy": "人工合并仍存在，规模、错误、安全和回滚未完整展示。", "followup": "恢复需求、执行、review、人工确认、merge 和状态回写，标明人工闸门。", "expectedObservation": "局部闭环清晰，生产规模和自治程度未知。", "carrier": "Linear/GitHub/代码/PR 界面、讲者和问答", "density": 20, "cueHints": ["CUE-062", "CUE-282"],
+      "statement": "Roy 展示一种传统敏捷流程的 Agent 化版本：项目管理中的需求进入执行，代码和 PR 形成后由 Codex 等做自动 review，人工确认合并，状态再回写；对话和执行经验还能以 Markdown/Skill 形式沉淀。演示中仍有人工审批，不能概括为无人开发或生产级无限规模。",
+      "provenance": "system_inference", "reasoning": "界面状态和口播支持需求—代码—review—人工合并—状态变更的局部链。", "unknowns": ["具体工具链", "测试/安全门", "回滚", "生产采用规模", "agent 权限"], "core": true,
+      "procedural": {"input": "项目需求/issue 和代码仓库", "actions": ["创建或选择需求", "让 agent 实现", "生成代码/PR", "自动 code review", "人工检查并合并", "项目状态回写", "沉淀经验为 Markdown/Skill"], "parameters": ["需求描述", "仓库权限", "评审规则", "人工审批"], "output": "合并的代码变更和同步的项目状态", "unknowns": ["测试覆盖", "失败重试", "生产权限", "回滚"]}
+    },
+    {
+      "start": 916.84, "end": 1768.25, "title": "分享三：Eric 用 Agent 研究并迭代报告", "question": "Eric 的研究/报告流程如何从问题到可交付文档？",
+      "signals": ["新讲者介绍研究/投资相关背景", "在聊天中提出研究要求", "多轮调整报告结构和格式", "出现 Markdown reader/页面和外部展示讨论", "讨论把结果变得更可读"],
+      "alternatives": ["是否所有来源都可追溯", "最终报告是否经过事实核验"],
+      "meaning": "从聊天答案转向可迭代、可展示的研究报告。", "trigger": "研究问题、多轮反馈、格式调整和 reader", "linkFromPrevious": "软件交付闭环切换为研究交付闭环",
+      "risk": "机器字幕质量低，容易虚构具体研究主题、工具名和流程细节。", "riskWhy": "多人/英文/屏幕共享造成大量 ASR 不确定，且资料来源和事实检查未完整可读。", "followup": "以视觉状态和高置信口播恢复最小链，低置信专名保持未知。", "expectedObservation": "报告迭代模式可恢复，研究内容和准确性需保守。", "carrier": "聊天、研究文档、Markdown/reader、浏览器与讲者", "density": 25, "cueHints": ["CUE-283", "CUE-666"],
+      "statement": "Eric 段展示把研究问题交给 Agent，在多轮对话中调整要求、结构和格式，产出 Markdown/网页式报告并讨论 reader/展示方式。可恢复的是‘问题—研究—报告—反馈—再生成’的工作模式；具体来源覆盖、事实准确性、主题细节和工具身份因字幕/小字限制不能全部确认。",
+      "provenance": "system_inference", "reasoning": "屏幕反复在聊天、文档和展示结果间切换，口播强调要求与格式迭代。", "unknowns": ["研究主题和来源", "事实核验", "报告生成工具", "外部展示权限", "数据保密"], "core": true
+    },
+    {
+      "start": 1768.25, "end": 2402.25, "title": "分享四：Oliver 用 MCP、Markdown 与 hook 构建低摩擦知识系统", "question": "Oliver 的知识管理系统解决什么摩擦，如何更新？",
+      "signals": ["介绍 Data Agent/Text-to-SQL 背景", "自制 MCP 连接本地 Markdown folder", "Claude 对话包含工作和个人信息", "希望低摩擦沉淀", "每五轮提醒检查/更新文档", "讨论 hook 与 MCP"],
+      "alternatives": ["是否自动准确形成长期记忆", "敏感数据是否安全"],
+      "meaning": "从一次聊天转向由本地 Markdown 承载的长期、可迭代个人知识库。", "trigger": "MCP、本地文件夹、自动提醒和自我迭代", "linkFromPrevious": "研究报告沉淀进一步扩展为长期个人上下文",
+      "risk": "把口述系统写成完整自动记忆、隐私安全或永不遗忘。", "riskWhy": "写入准确性、冲突、删除、访问权限和敏感信息处理未审计。", "followup": "恢复输入、更新频率、hook/MCP 分工与未知边界。", "expectedObservation": "低摩擦理念明确，记忆质量和安全未知。", "carrier": "Claude/终端/Markdown、MCP 页面、讲者和流程图", "density": 20, "cueHints": ["CUE-667", "CUE-1113"],
+      "statement": "Oliver 展示自制 MCP 连接本地 Markdown 文件夹，把 Claude 对话中的工作、决策、情绪和个人背景沉淀为知识，并加入每五轮检查/更新文档的提醒或 hook，降低忘记维护的摩擦。片内没有审计记忆准确性、冲突合并、删除权、加密、敏感数据和长期漂移。",
+      "provenance": "author_claim", "reasoning": "口播和本地文件/终端画面支持 MCP—Markdown—周期提醒的结构。", "unknowns": ["写入 schema", "冲突与删除", "权限/加密", "敏感信息", "长期质量"], "core": true,
+      "procedural": {"input": "长期 Claude 对话和本地 Markdown 知识目录", "actions": ["通过 MCP 读取/写入目录", "从对话提取需要沉淀的信息", "写入结构化 Markdown", "按固定轮次提醒检查更新", "人工修正或继续迭代"], "parameters": ["目录", "信息类别", "提醒轮次", "更新规则"], "output": "可供后续对话读取的本地个人知识库", "unknowns": ["准确性", "冲突合并", "删除与隐私", "安全边界"]}
+    },
+    {
+      "start": 2402.25, "end": 2518.1, "title": "问答补充 onboarding、hook/MCP 分工与边界", "question": "最后问答补充了哪些实施细节？",
+      "signals": ["追问 Markdown 如何从聊天生成", "提到 onboarding 会问四个方面", "讨论 Claude Code 的 hook 与 Claude 的 MCP", "请求 report 链接"],
+      "alternatives": ["问答是否足以形成完整安装说明", "四个方面具体内容是否清晰"],
+      "meaning": "从 demo 结果回到初始化、数据获取和技术实现问题。", "trigger": "观众追问与讲者补充", "linkFromPrevious": "个人知识系统通过问答补足初始化和触发机制",
+      "risk": "把碎片化问答写成可复制安装文档。", "riskWhy": "缺仓库、命令、schema、权限和完整配置。", "followup": "只恢复明确回答，其他保留未知。", "expectedObservation": "理解加深，仍不可直接复现。", "carrier": "多人问答、终端/文档和会议画廊", "density": 12, "cueHints": ["CUE-1114", "CUE-1196"],
+      "statement": "问答补充：知识库可从已有长对话或 onboarding 问题初始化；Claude Code 场景提到 hook，Claude 场景提到 MCP；观众还索要 report 链接。片内没有给出完整仓库、安装命令、schema、权限或可复现配置。",
+      "provenance": "author_claim", "reasoning": "问答直接提出实施问题，但回答碎片化。", "unknowns": ["四个 onboarding 维度", "hook/MCP 完整配置", "report 链接", "安装步骤"], "core": false,
+      "argument": {"claim": "与 Agent 共事的关键不是聊天次数，而是把 Agent 输出接入可审计的沟通、交付和记忆载体。", "evidenceUnitIndexes": [0,1,2,3,4], "conditions": ["每个流程有明确人工闸门", "组织权限合法", "输出可追溯和修正", "敏感数据受控"], "counterexamples": ["纯自动化会放大错误", "不同讲者的工具链不能直接拼接", "长回放不等于团队采用"], "actions": ["选一个高摩擦环节", "定义输入输出", "接入 Agent", "保留人工审查", "把结果沉淀为 HTML/PR/报告/Markdown"], "limits": ["活动 demo 合集", "无统一量化评估"]}
+    }
+  ]
+}

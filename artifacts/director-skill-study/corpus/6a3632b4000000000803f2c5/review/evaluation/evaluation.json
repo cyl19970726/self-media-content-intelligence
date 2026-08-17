@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "candidate": "run/reconstruction.json",
+  "audit": "review/audit/audit.json",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        {
+          "auditIds": ["CQ-03", "CQ-07", "CQ-08", "CQ-12"],
+          "result": "answered",
+          "reason": "The 30-day promise, future-facing free pledge, visible paid-service scope, and customer-class charging boundary remain distinct."
+        },
+        {
+          "auditIds": ["CQ-10", "CQ-11"],
+          "result": "answered_with_visual_channel_gap",
+          "reason": "The candidate preserves chat/transaction anonymity and refuses job, transaction, and fee causality, although it misses one visual chat reading; the channel gap is counted separately."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 9,
+      "denominator": 9,
+      "examples": [
+        {
+          "auditScope": "KF-01..KF-09",
+          "result": "covered",
+          "reason": "All audited core facts are represented with bounded cue, targeted-frame, or OCR evidence."
+        },
+        {
+          "auditId": "KF-08",
+          "result": "covered_without_causal_upgrade",
+          "reason": "The candidate attributes the job and no-fee story to the author and explicitly states that the transaction screen cannot prove direction, purpose, job success, or identity mapping."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 34,
+      "examples": [
+        {
+          "candidateUnits": ["KU-01", "KU-03", "KU-12", "KU-13", "KU-14", "KU-15"],
+          "result": "supported_or_scoped",
+          "reason": "Profile metrics, the course outcome promise, chat text, job story, transaction amounts, no-fee wording, and charging boundary are kept as visible text or author claims with explicit limitations."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 90,
+      "denominator": 90,
+      "examples": [
+        {
+          "scope": "all KU evidence references",
+          "result": "correctly_localized",
+          "reason": "Every checked cue, shot, targeted-frame, and OCR reference overlaps its knowledge unit's declared time range."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "DEP-01..DEP-05 remain missing or unknown: dated growth proof, course delivery/outcomes, attributable company conversation, resolved job/transaction/fee chain, and published free-versus-paid scope and price rules."
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 12,
+      "examples": [
+        {
+          "auditId": "UNK-05",
+          "result": "missed",
+          "reason": "The candidate does not preserve that the visible whiteboard is a roughly 30-item curriculum plan whose detailed text and final scope are unreadable; it instead says no course table was observed."
+        },
+        {
+          "auditIds": ["UNK-09", "UNK-10", "UNK-12"],
+          "result": "correct_unknown",
+          "reason": "Paid-service prices/scope, customer-class definitions, and transaction direction/purpose/relation remain explicitly unresolved."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-05 whiteboard curriculum/list: no executed semantic reading of the visible approximately 30-item plan",
+      "CAR-08 hearing-disability chat screenshot: no reconstruction of the visible message that employers reject the sender because of hearing disability"
+    ]
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgeStatus": "withheld_due_to_failed_hard_gate",
+  "judgeScoresAreSchemaPlaceholders": true,
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "The whiteboard curriculum/list is sampled but never semantically reconstructed as a plan rather than proof of delivery.",
+      "The hearing-disability chat is sampled but its visible rejection message is not executed as a separate visual observation."
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "The relation between the visible curriculum plan and the future 30-day course promise is absent; planning must not be conflated with publication or learner outcomes.",
+      "The relation among the hearing-disability chat, the author's job-recommendation claim, and the separate transactions remains incomplete because the first visual state is omitted."
+    ],
+    "rationale": "The candidate carefully keeps course/material gratuity separate from consulting, monthly service, enterprise-IP incubation, and Q&A-community scope, and it does not use screenshots to prove growth, employment, payment direction, or fee causality. Nevertheless, two available visual carriers lack executed semantic readings, so unchecked-channel and meta-gates fail. JUDGE was not run; numeric judge fields are minimum-value placeholders required by evaluation.schema.json."
+  },
+  "examples": [
+    {
+      "type": "strength",
+      "candidateUnits": ["KU-01", "KU-09", "KU-15"],
+      "detail": "The candidate explicitly limits the free pledge to courses/materials and preserves visible commercial services plus the author's customer-class charging boundary."
+    },
+    {
+      "type": "strength",
+      "candidateUnits": ["KU-12", "KU-13", "KU-14"],
+      "detail": "Chat and transaction screenshots are not upgraded into proof of a completed job, transaction purpose/direction, identity mapping, or complete fee absence."
+    },
+    {
+      "type": "failure",
+      "candidateUnit": "KU-17",
+      "detail": "The full-timeline negative statement says no course table was observed despite the visible whiteboard planning artifact."
+    }
+  ]
+}

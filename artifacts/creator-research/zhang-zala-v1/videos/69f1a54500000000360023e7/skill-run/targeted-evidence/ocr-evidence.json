@@ -1,0 +1,1528 @@
+{
+  "frames" : [
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0001",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-001.jpg",
+      "status" : "processed",
+      "time" : 0
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0002",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-002.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0003",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-003.jpg",
+      "status" : "processed",
+      "time" : 30
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0004",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-004.jpg",
+      "status" : "processed",
+      "time" : 45
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0005",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21643759112908295,
+            0.5055278661875022,
+            0.3671248118082682,
+            0.038944268226623446
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00001",
+          "text" : "HyperFrames"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-005.jpg",
+      "status" : "processed",
+      "time" : 60
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0006",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.21608234211174657,
+            0.5043486894110645,
+            0.3678353203667535,
+            0.041302621364593506
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00002",
+          "text" : "HyperFrames"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-006.jpg",
+      "status" : "processed",
+      "time" : 75
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0007",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-007.jpg",
+      "status" : "processed",
+      "time" : 90
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0008",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2995185641691125,
+            0.5145360956858174,
+            0.32874064975314676,
+            0.049052806198596866
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00003",
+          "text" : "Congrats，"
+        },
+        {
+          "boundingBox" : [
+            0.3611111095370371,
+            0.4781250003645833,
+            0.2,
+            0.04375000000000007
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00004",
+          "text" : "team."
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-008.jpg",
+      "status" : "processed",
+      "time" : 105
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0009",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-009.jpg",
+      "status" : "processed",
+      "time" : 120
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0010",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-010.jpg",
+      "status" : "processed",
+      "time" : 135
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0011",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-011.jpg",
+      "status" : "processed",
+      "time" : 150
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0012",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-012.jpg",
+      "status" : "processed",
+      "time" : 165
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0013",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-013.jpg",
+      "status" : "processed",
+      "time" : 180
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0014",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-014.jpg",
+      "status" : "processed",
+      "time" : 195
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0015",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.29345888686020494,
+            0.5177031776106882,
+            0.3360502666897244,
+            0.04467069655656808
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00005",
+          "text" : "Congrats，"
+        },
+        {
+          "boundingBox" : [
+            0.36111110927777784,
+            0.47812500034375005,
+            0.19444444444444448,
+            0.03437499999999993
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00006",
+          "text" : "team."
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-015.jpg",
+      "status" : "processed",
+      "time" : 210
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0016",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-016.jpg",
+      "status" : "processed",
+      "time" : 225
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0017",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-017.jpg",
+      "status" : "processed",
+      "time" : 240
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0018",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-018.jpg",
+      "status" : "processed",
+      "time" : 255
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0019",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-019.jpg",
+      "status" : "processed",
+      "time" : 270
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0020",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-020.jpg",
+      "status" : "processed",
+      "time" : 285
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0021",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.09999998898695206,
+            0.42812500222656236,
+            0.08888891008165148,
+            0.1781250000000001
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00007",
+          "text" : "1！：！！！！！9"
+        },
+        {
+          "boundingBox" : [
+            0.6666666610906982,
+            0.42500000046874997,
+            0.044444455040825726,
+            0.05624999999999991
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00008",
+          "text" : "000"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-021.jpg",
+      "status" : "processed",
+      "time" : 300
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0022",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.10555555196640865,
+            0.5250000007291666,
+            0.016666673289404965,
+            0.043749999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00009",
+          "text" : "⑤。。"
+        },
+        {
+          "boundingBox" : [
+            0.42222223196485686,
+            0.52812500015625,
+            0.08888887829250758,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00010",
+          "text" : "remo0on"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-022.jpg",
+      "status" : "processed",
+      "time" : 315
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0023",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2500000105759679,
+            0.5624999998437501,
+            0.10555554495917424,
+            0.015625
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00011",
+          "text" : "Fperirone"
+        },
+        {
+          "boundingBox" : [
+            0.416666676687079,
+            0.52812500015625,
+            0.09444443384806311,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00012",
+          "text" : "femoUon"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-023.jpg",
+      "status" : "processed",
+      "time" : 330
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0024",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.1055555552777778,
+            0.575000000046875,
+            0.05555555555555555,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00013",
+          "text" : "4 to"
+        },
+        {
+          "boundingBox" : [
+            0.6722222179708015,
+            0.5343750003794643,
+            0.03888889683617491,
+            0.05312499999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00014",
+          "text" : "000"
+        },
+        {
+          "boundingBox" : [
+            0.10555555182751976,
+            0.4562500026619911,
+            0.01666667328940498,
+            0.04687499701976772
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00015",
+          "text" : "4•。"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-01-024.jpg",
+      "status" : "processed",
+      "time" : 345
+    },
+    {
+      "actionId" : "ACT-01",
+      "frameId" : "TARGET-0025",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-01-025.jpg",
+      "status" : "processed",
+      "time" : 357.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0026",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-001.jpg",
+      "status" : "processed",
+      "time" : 357.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0027",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-002.jpg",
+      "status" : "processed",
+      "time" : 377.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0028",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-003.jpg",
+      "status" : "processed",
+      "time" : 397.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0029",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-004.jpg",
+      "status" : "processed",
+      "time" : 417.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0030",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-005.jpg",
+      "status" : "processed",
+      "time" : 437.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0031",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-006.jpg",
+      "status" : "processed",
+      "time" : 457.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0032",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-007.jpg",
+      "status" : "processed",
+      "time" : 477.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0033",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-008.jpg",
+      "status" : "processed",
+      "time" : 497.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0034",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-009.jpg",
+      "status" : "processed",
+      "time" : 517.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0035",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-010.jpg",
+      "status" : "processed",
+      "time" : 537.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0036",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-011.jpg",
+      "status" : "processed",
+      "time" : 557.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0037",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-012.jpg",
+      "status" : "processed",
+      "time" : 577.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0038",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-013.jpg",
+      "status" : "processed",
+      "time" : 597.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0039",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-014.jpg",
+      "status" : "processed",
+      "time" : 617.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0040",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-015.jpg",
+      "status" : "processed",
+      "time" : 637.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0041",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-016.jpg",
+      "status" : "processed",
+      "time" : 657.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0042",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-017.jpg",
+      "status" : "processed",
+      "time" : 677.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0043",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-018.jpg",
+      "status" : "processed",
+      "time" : 697.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0044",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-019.jpg",
+      "status" : "processed",
+      "time" : 717.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0045",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-020.jpg",
+      "status" : "processed",
+      "time" : 737.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0046",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-021.jpg",
+      "status" : "processed",
+      "time" : 757.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0047",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-022.jpg",
+      "status" : "processed",
+      "time" : 777.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0048",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-023.jpg",
+      "status" : "processed",
+      "time" : 797.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0049",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-024.jpg",
+      "status" : "processed",
+      "time" : 817.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0050",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-025.jpg",
+      "status" : "processed",
+      "time" : 837.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0051",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-026.jpg",
+      "status" : "processed",
+      "time" : 857.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0052",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-027.jpg",
+      "status" : "processed",
+      "time" : 877.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0053",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-028.jpg",
+      "status" : "processed",
+      "time" : 897.84
+    },
+    {
+      "actionId" : "ACT-02",
+      "frameId" : "TARGET-0054",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-02-029.jpg",
+      "status" : "processed",
+      "time" : 916.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0055",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-001.jpg",
+      "status" : "processed",
+      "time" : 916.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0056",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-002.jpg",
+      "status" : "processed",
+      "time" : 941.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0057",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-003.jpg",
+      "status" : "processed",
+      "time" : 966.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0058",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-004.jpg",
+      "status" : "processed",
+      "time" : 991.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0059",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-005.jpg",
+      "status" : "processed",
+      "time" : 1016.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0060",
+      "lines" : [
+        {
+          "boundingBox" : [
+            -2.9824286497238797e-09,
+            0.5406249986661338,
+            0.03333333863152398,
+            0.015625002980232283
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00016",
+          "text" : "◎"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-006.jpg",
+      "status" : "processed",
+      "time" : 1041.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0061",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-007.jpg",
+      "status" : "processed",
+      "time" : 1066.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0062",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-008.jpg",
+      "status" : "processed",
+      "time" : 1091.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0063",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-009.jpg",
+      "status" : "processed",
+      "time" : 1116.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0064",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25000003869276083,
+            0.4625000001562499,
+            0.34999995761447483,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00017",
+          "text" : "• 第一製分 中国大结 別防資 （2025全業-2026011"
+        }
+      ],
+      "sourceFrame" : "frames/ACT-03-010.jpg",
+      "status" : "processed",
+      "time" : 1141.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0065",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-011.jpg",
+      "status" : "processed",
+      "time" : 1166.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0066",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-012.jpg",
+      "status" : "processed",
+      "time" : 1191.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0067",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-013.jpg",
+      "status" : "processed",
+      "time" : 1216.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0068",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-014.jpg",
+      "status" : "processed",
+      "time" : 1241.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0069",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-015.jpg",
+      "status" : "processed",
+      "time" : 1266.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0070",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-016.jpg",
+      "status" : "processed",
+      "time" : 1291.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0071",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-017.jpg",
+      "status" : "processed",
+      "time" : 1316.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0072",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-018.jpg",
+      "status" : "processed",
+      "time" : 1341.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0073",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-019.jpg",
+      "status" : "processed",
+      "time" : 1366.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0074",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-020.jpg",
+      "status" : "processed",
+      "time" : 1391.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0075",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-021.jpg",
+      "status" : "processed",
+      "time" : 1416.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0076",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-022.jpg",
+      "status" : "processed",
+      "time" : 1441.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0077",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-023.jpg",
+      "status" : "processed",
+      "time" : 1466.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0078",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-024.jpg",
+      "status" : "processed",
+      "time" : 1491.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0079",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-025.jpg",
+      "status" : "processed",
+      "time" : 1516.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0080",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-026.jpg",
+      "status" : "processed",
+      "time" : 1541.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0081",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-027.jpg",
+      "status" : "processed",
+      "time" : 1566.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0082",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-028.jpg",
+      "status" : "processed",
+      "time" : 1591.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0083",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-029.jpg",
+      "status" : "processed",
+      "time" : 1616.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0084",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-030.jpg",
+      "status" : "processed",
+      "time" : 1641.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0085",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-031.jpg",
+      "status" : "processed",
+      "time" : 1666.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0086",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-032.jpg",
+      "status" : "processed",
+      "time" : 1691.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0087",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-033.jpg",
+      "status" : "processed",
+      "time" : 1716.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0088",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-034.jpg",
+      "status" : "processed",
+      "time" : 1741.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0089",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-035.jpg",
+      "status" : "processed",
+      "time" : 1766.84
+    },
+    {
+      "actionId" : "ACT-03",
+      "frameId" : "TARGET-0090",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-03-036.jpg",
+      "status" : "processed",
+      "time" : 1768.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0091",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-001.jpg",
+      "status" : "processed",
+      "time" : 1768.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0092",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-002.jpg",
+      "status" : "processed",
+      "time" : 1788.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0093",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-003.jpg",
+      "status" : "processed",
+      "time" : 1808.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0094",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-004.jpg",
+      "status" : "processed",
+      "time" : 1828.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0095",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-005.jpg",
+      "status" : "processed",
+      "time" : 1848.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0096",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-006.jpg",
+      "status" : "processed",
+      "time" : 1868.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0097",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-007.jpg",
+      "status" : "processed",
+      "time" : 1888.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0098",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-008.jpg",
+      "status" : "processed",
+      "time" : 1908.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0099",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-009.jpg",
+      "status" : "processed",
+      "time" : 1928.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0100",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-010.jpg",
+      "status" : "processed",
+      "time" : 1948.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0101",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-011.jpg",
+      "status" : "processed",
+      "time" : 1968.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0102",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-012.jpg",
+      "status" : "processed",
+      "time" : 1988.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0103",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-013.jpg",
+      "status" : "processed",
+      "time" : 2008.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0104",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-014.jpg",
+      "status" : "processed",
+      "time" : 2028.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0105",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-015.jpg",
+      "status" : "processed",
+      "time" : 2048.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0106",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-016.jpg",
+      "status" : "processed",
+      "time" : 2068.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0107",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-017.jpg",
+      "status" : "processed",
+      "time" : 2088.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0108",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-018.jpg",
+      "status" : "processed",
+      "time" : 2108.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0109",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-019.jpg",
+      "status" : "processed",
+      "time" : 2128.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0110",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-020.jpg",
+      "status" : "processed",
+      "time" : 2148.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0111",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-021.jpg",
+      "status" : "processed",
+      "time" : 2168.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0112",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-022.jpg",
+      "status" : "processed",
+      "time" : 2188.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0113",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-023.jpg",
+      "status" : "processed",
+      "time" : 2208.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0114",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-024.jpg",
+      "status" : "processed",
+      "time" : 2228.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0115",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-025.jpg",
+      "status" : "processed",
+      "time" : 2248.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0116",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-026.jpg",
+      "status" : "processed",
+      "time" : 2268.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0117",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-027.jpg",
+      "status" : "processed",
+      "time" : 2288.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0118",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-028.jpg",
+      "status" : "processed",
+      "time" : 2308.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0119",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-029.jpg",
+      "status" : "processed",
+      "time" : 2328.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0120",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-030.jpg",
+      "status" : "processed",
+      "time" : 2348.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0121",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-031.jpg",
+      "status" : "processed",
+      "time" : 2368.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0122",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-032.jpg",
+      "status" : "processed",
+      "time" : 2388.25
+    },
+    {
+      "actionId" : "ACT-04",
+      "frameId" : "TARGET-0123",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-04-033.jpg",
+      "status" : "processed",
+      "time" : 2402.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0124",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-001.jpg",
+      "status" : "processed",
+      "time" : 2402.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0125",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-002.jpg",
+      "status" : "processed",
+      "time" : 2414.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0126",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-003.jpg",
+      "status" : "processed",
+      "time" : 2426.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0127",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-004.jpg",
+      "status" : "processed",
+      "time" : 2438.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0128",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-005.jpg",
+      "status" : "processed",
+      "time" : 2450.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0129",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-006.jpg",
+      "status" : "processed",
+      "time" : 2462.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0130",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-007.jpg",
+      "status" : "processed",
+      "time" : 2474.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0131",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-008.jpg",
+      "status" : "processed",
+      "time" : 2486.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0132",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-009.jpg",
+      "status" : "processed",
+      "time" : 2498.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0133",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-010.jpg",
+      "status" : "processed",
+      "time" : 2510.25
+    },
+    {
+      "actionId" : "ACT-05",
+      "frameId" : "TARGET-0134",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/ACT-05-011.jpg",
+      "status" : "processed",
+      "time" : 2517.98
+    }
+  ],
+  "generatedAt" : "2026-08-16T13:42:24Z",
+  "manifest" : "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f1a54500000000360023e7/skill-run/targeted-evidence/targeted-evidence.json",
+  "recognitionLanguages" : [
+    "zh-Hans",
+    "en-US"
+  ],
+  "schemaVersion" : "ocr-evidence-1.0"
+}

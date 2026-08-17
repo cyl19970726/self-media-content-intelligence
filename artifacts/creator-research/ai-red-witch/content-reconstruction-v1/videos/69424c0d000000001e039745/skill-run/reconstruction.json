@@ -1,0 +1,902 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/capture-protocol.json",
+  "scopeStatement": "本重建只报告 0–105.6 秒原视频、提供的 SRT、evidence pack、专属捕捉帧/OCR，以及从完整 105.629 秒源音轨生成的本地 audio.non_speech 窗口分类证据中可见、可听或可定位的内容。新闻病例及恢复状态、医学因果、诊断式 UI 所暗示的能力、AI 建议有效性、专业标准、隐私保证、付费/赞助/联盟利益/品牌控制关系和服务条件均未做外部核验；个人资料字段与界面示例值只按演示画面记录，不推定属于主讲人。音频模型标签只作为有界候选，不证明具体声源、版权或编辑意图；负证据仅限明确写出的检查时间范围和载体。",
+  "viewerChange": {
+    "before": "把熬夜、咖啡、运动强度、疲劳和注意力问题视为零散、令人焦虑、又似乎不值得专程就医的困扰，也不知道线上答案该信谁。",
+    "after": "按视频意图，把可见名为阿福的 AI 应用理解为会继续追问、提供参考性建议并辅助记录健康小目标的‘健康搭子’，同时识别诊断式 UI 与仅供参考/及时就医限定的张力，以及作者的专业、隐私、效果和商业关系表述与画面实际证据之间的边界。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGET-MANIFEST",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "video-specific targeted frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs from capture-protocol.json",
+      "timeRange": {"start": 0, "end": 105.6},
+      "limitations": ["344 个离散帧不能证明未采样瞬间或连续实时操作", "同一画面因多个 action 可能重复采样"]
+    },
+    {
+      "id": "SRC-OCR-MAIN",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals checked against targeted frames",
+      "producedBy": "ocr-frames.swift with manual visual review",
+      "timeRange": {"start": 0, "end": 105.6},
+      "limitations": ["OCR 对小字、繁简体、滚动重影和烧录字幕会误识别", "本文只接受与原帧视觉一致的关键行，不静默修正未确认文字"]
+    },
+    {
+      "id": "SRC-CROP-OPENING",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/targeted-evidence/crops/opening-source-0.2.jpg",
+      "kind": "magnified crop of opening inserted-footage qualifier",
+      "producedBy": "ffmpeg crop and scale from the supplied video at 0.2s; human visual review",
+      "timeRange": {"start": 0.2, "end": 0.2},
+      "limitations": ["裁切只覆盖画面右侧来源限定区域", "Vision OCR 未成功识别竖排文字，但人工放大可读为‘资料画面非本新闻事件’"]
+    },
+    {
+      "id": "SRC-CROP-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/targeted-evidence/crop-ocr-evidence.json",
+      "kind": "OCR proposals for magnified opening crops",
+      "producedBy": "ocr-frames.swift from crop-manifest.json",
+      "timeRange": {"start": 0.2, "end": 5.7},
+      "limitations": ["OCR 没有识别出竖排来源限定，不能作为该文字的机器证据", "该失败被保留，不用上下文补全"]
+    },
+    {
+      "id": "SRC-EVIDENCE-PACK",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/evidence/evidence-pack.json",
+      "kind": "media metadata, transcript, technical shots and frame mappings",
+      "producedBy": "build-evidence-pack.mjs",
+      "timeRange": {"start": 0, "end": 105.6},
+      "limitations": ["技术 shot 边界不是语义场景或剪辑次数证明", "媒体元数据只能确认音轨存在，不能识别非言语声音的语义角色"]
+    },
+    {
+      "id": "SRC-AUDIO-NON-SPEECH",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/audio/non-speech-analysis.json",
+      "kind": "audio.non_speech full-timeline semantic evidence",
+      "producedBy": "ffmpeg full-stream PCM extraction plus local MIT AST AudioSet multi-label classification over 22 gap-free timeline windows and 9 narrative-transition windows",
+      "timeRange": {"start": 0, "end": 105.629},
+      "limitations": ["分类分数是混合音轨的模型提议，不是人工确认的逐声源标注", "不能证明音乐/音效的标题、来源、版权、前后台位置或编辑意图", "5 秒窗口不能排除窗口内的瞬时静音或未达阈值的短音效"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 4.72, "text": "近日湖北襄阳十九岁大二学生突发脑梗，入院时左侧肢体基本上全瘫了，口齿不清", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002", "SHOT-003", "SHOT-004", "SHOT-005"]},
+      {"id": "CUE-002", "start": 4.72, "end": 7.49, "text": "发现患者经常熬夜。通宵点外卖吃油腻的东西", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008", "SHOT-009", "SHOT-010"]},
+      {"id": "CUE-003", "start": 7.49, "end": 10.019, "text": "熬夜吃的油腻，这不就是我吗？", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-010"]},
+      {"id": "CUE-004", "start": 10.019, "end": 14.54, "text": "每天都在假装关心自己的健康，但问题是在网上根本不知道该相信谁", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-010"]},
+      {"id": "CUE-005", "start": 14.55, "end": 19.192, "text": "你是不是跟我一样，凌晨一点还在刷着手机，想认真查一个健康问题", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-010", "SHOT-011"]},
+      {"id": "CUE-006", "start": 19.192, "end": 21.61, "text": "结果搜出来的答案一个比一个吓人", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-011"]},
+      {"id": "CUE-007", "start": 21.62, "end": 26.622, "text": "一个个还不一样，越看越焦虑，而我只是想知道白天靠咖啡顶着算不算透支", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-011", "SHOT-012", "SHOT-013"]},
+      {"id": "CUE-008", "start": 26.622, "end": 28.64, "text": "这种强度的运动算不算太狠", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-013", "SHOT-014"]},
+      {"id": "CUE-009", "start": 28.65, "end": 31.958, "text": "最近啊总是觉得累，注意力不够集中，是不是该调整一下", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-014"]},
+      {"id": "CUE-010", "start": 31.958, "end": 37.038, "text": "但这些问题貌似又不值得专门跑一趟，就在最近我体会到了一种完全不同的方式", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-014", "SHOT-015", "SHOT-016"]},
+      {"id": "CUE-011", "start": 37.038, "end": 38.61, "text": "哒哒我的健康搭子", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-016"]},
+      {"id": "CUE-012", "start": 38.62, "end": 42.927, "text": "是蚂蚁集团推出的ai应用阿福，我跟他聊聊最近的身体的感受", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-016", "SHOT-017", "SHOT-018"]},
+      {"id": "CUE-013", "start": 42.927, "end": 44.57, "text": "他并没有急着给我下结论", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-018", "SHOT-019", "SHOT-020", "SHOT-021", "SHOT-022", "SHOT-023"]},
+      {"id": "CUE-014", "start": 44.58, "end": 48.679, "text": "而是先顺着我的情况继续往下问，比如我跟他说最近的身体总是很累", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-023", "SHOT-024", "SHOT-025", "SHOT-026"]},
+      {"id": "CUE-015", "start": 48.679, "end": 50.66, "text": "他会先问我身体的其他感受", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-026", "SHOT-027"]},
+      {"id": "CUE-016", "start": 50.67, "end": 55.187, "text": "比如说睡眠时长，还有哪里觉得不舒服等等，也就说我白天全靠咖啡撑着", "representativeFrame": "frames/cues/cue-016.jpg", "overlappingShots": ["SHOT-027", "SHOT-028", "SHOT-029", "SHOT-030", "SHOT-031", "SHOT-032"]},
+      {"id": "CUE-017", "start": 55.187, "end": 58.78, "text": "他会追问一天大概喝多少杯，再告诉我不加量就行", "representativeFrame": "frames/cues/cue-017.jpg", "overlappingShots": ["SHOT-032", "SHOT-033", "SHOT-034", "SHOT-035", "SHOT-036", "SHOT-037", "SHOT-038"]},
+      {"id": "CUE-018", "start": 58.79, "end": 63.303, "text": "女生嘛，都想做好身材管理，我跟她说完自己的体重啊，身高啊等信息", "representativeFrame": "frames/cues/cue-018.jpg", "overlappingShots": ["SHOT-038", "SHOT-039"]},
+      {"id": "CUE-019", "start": 63.303, "end": 68.56, "text": "她还会确认我平时的运动频率啊，饮食习惯啊什么的，再告诉我需要增加力量训练", "representativeFrame": "frames/cues/cue-019.jpg", "overlappingShots": ["SHOT-039"]},
+      {"id": "CUE-020", "start": 68.57, "end": 73.73, "text": "饮食怎么搭配等等，这种体验跟平时去网站解锁信息完全不一样，大家都知道", "representativeFrame": "frames/cues/cue-020.jpg", "overlappingShots": ["SHOT-039", "SHOT-040"]},
+      {"id": "CUE-021", "start": 73.74, "end": 77.534, "text": "健康相关的咨询没有标准答案，把问题一步步的梳理清楚", "representativeFrame": "frames/cues/cue-021.jpg", "overlappingShots": ["SHOT-040"]},
+      {"id": "CUE-022", "start": 77.534, "end": 82.26, "text": "还有一些以前想要坚持但又总是断掉的小目标，我们也可以用它来记录", "representativeFrame": "frames/cues/cue-022.jpg", "overlappingShots": ["SHOT-040", "SHOT-041"]},
+      {"id": "CUE-023", "start": 82.27, "end": 86.91, "text": "比如坚持十二点前睡觉，睡觉前五分钟放松冥想，你看他不会催你", "representativeFrame": "frames/cues/cue-023.jpg", "overlappingShots": ["SHOT-041", "SHOT-042"]},
+      {"id": "CUE-024", "start": 86.91, "end": 89.5, "text": "只是想让你意识到。你已经在慢慢的变好", "representativeFrame": "frames/cues/cue-024.jpg", "overlappingShots": ["SHOT-042", "SHOT-043"]},
+      {"id": "CUE-025", "start": 89.5, "end": 93.66, "text": "阿福之所以这么客气，是因为他一直在用很高的专业标准在做健康管理", "representativeFrame": "frames/cues/cue-025.jpg", "overlappingShots": ["SHOT-043", "SHOT-044", "SHOT-045", "SHOT-046", "SHOT-047", "SHOT-048", "SHOT-049", "SHOT-050", "SHOT-051", "SHOT-052", "SHOT-053", "SHOT-054", "SHOT-055", "SHOT-056"]},
+      {"id": "CUE-026", "start": 93.66, "end": 96.5, "text": "只是提供参考，绝不制造恐慌，一整个靠谱", "representativeFrame": "frames/cues/cue-026.jpg", "overlappingShots": ["SHOT-056", "SHOT-057"]},
+      {"id": "CUE-027", "start": 96.51, "end": 101.19, "text": "我们这一代的打工人真正缺的就是这样一个能够看见你，也能够真正回应你", "representativeFrame": "frames/cues/cue-027.jpg", "overlappingShots": ["SHOT-057", "SHOT-058"]},
+      {"id": "CUE-028", "start": 101.19, "end": 105.6, "text": "并且能够完全确保你隐私的健康，搭子，你最想问的一个健康的问题是什么？", "representativeFrame": "frames/cues/cue-028.jpg", "overlappingShots": ["SHOT-058"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场用一则 19 岁学生脑梗个案制造紧迫感",
+      "importance": "core",
+      "statement": "作者旁白称，湖北襄阳一名 19 岁大二学生突发脑梗，入院时左侧肢体基本全瘫、口齿不清，并称患者经常熬夜、通宵点外卖、吃油腻食物；画面标题同步突出这些内容。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 7.49},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "病例与入院状态的旁白原文"},
+        {"refType": "cue", "ref": "CUE-002", "supports": "熬夜、通宵外卖和油腻饮食的旁白原文"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场急诊画面与病例标题"},
+        {"refType": "ocr", "ref": "OCR-00001", "supports": "可见标题‘经常熬夜、通宵 频繁点外卖’"},
+        {"refType": "ocr", "ref": "OCR-00002", "supports": "可见标题‘19岁大二学生突发脑梗’"},
+        {"refType": "ocr", "ref": "OCR-00003", "supports": "可见标题‘半边身体不能动，口齿不清’"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "该个案被用来说明年轻人的熬夜和油腻饮食值得警惕。", "evidenceUnitIds": ["KU-02", "KU-03"], "conditions": ["视频只给出一个被引用个案及插入素材"], "counterexamples": [], "actions": ["把自身熬夜/饮食习惯与个案相联系"], "limits": ["未外部核验报道", "未建立熬夜或油腻饮食导致脑梗的因果"]},
+      "unknowns": ["病例报道的完整来源与真实性", "病例临床诊断和危险因素全貌"]
+    },
+    {
+      "id": "KU-02",
+      "title": "插入素材明确标注不是本新闻事件的现场画面",
+      "importance": "core",
+      "statement": "开场急诊素材右侧竖排可见‘资料画面非本新闻事件’，因此这些画面只能作为新闻式示意/资料画面，不能当作该病例现场影像。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0.2, "end": 0.2},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-CROP-OPENING", "supports": "放大裁切后人工可读的竖排限定‘资料画面非本新闻事件’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "该限定在原始全帧中的位置和上下文"}
+      ],
+      "confidence": "high",
+      "unknowns": ["资料画面的原始拍摄来源和授权"]
+    },
+    {
+      "id": "KU-03",
+      "title": "全片持续出现产品体验与就医免责声明",
+      "importance": "core",
+      "statement": "从开场到末帧，画面底部持续显示‘*本内容为产品体验分享，身体不适请及时就医’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "ocr", "ref": "OCR-00006", "supports": "开场底部免责声明原文"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场可见免责声明"},
+        {"refType": "ocr", "ref": "OCR-03306", "supports": "结尾底部同一免责声明原文"},
+        {"refType": "targeted_frame", "ref": "TARGET-0220", "supports": "结尾可见免责声明"},
+        {"refType": "source", "ref": "SRC-TARGET-MANIFEST", "supports": "ACT-09 对 0–105.6 秒以 1.5 秒密度检查底部限定的全时间线范围"}
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-04",
+      "title": "视频没有证明熬夜或油腻饮食导致该脑梗",
+      "importance": "core",
+      "statement": "内部证据只显示作者把病例、熬夜/外卖习惯和资料画面并置；它没有给出医学检查、危险因素排除或因果论证，不能据此认定熬夜或油腻饮食导致该学生脑梗。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 7.49},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "病例陈述范围"},
+        {"refType": "cue", "ref": "CUE-002", "supports": "生活习惯陈述范围"},
+        {"refType": "source", "ref": "SRC-CROP-OPENING", "supports": "资料画面并非本新闻事件的边界"},
+        {"refType": "ocr", "ref": "OCR-00006", "supports": "身体不适及时就医限定"}
+      ],
+      "confidence": "high",
+      "reasoning": "个案并置不等于病因证明，且视频本身明确提示资料画面并非本事件。",
+      "unknowns": ["真实病因", "其他危险因素", "报道和诊断的完整材料"]
+    },
+    {
+      "id": "KU-05",
+      "title": "作者把线上搜索描述为不一致且制造焦虑",
+      "importance": "core",
+      "statement": "作者说自己凌晨仍刷手机查健康问题，却不知道该相信谁；搜出的答案一个比一个吓人、彼此不一致，使人越看越焦虑，而这些问题又似乎不值得专门跑一趟。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 7.49, "end": 37.038},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "从病例转为自我映射"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "不知道网上该信谁"},
+        {"refType": "cue", "ref": "CUE-005", "supports": "凌晨查健康问题情境"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "搜索答案吓人"},
+        {"refType": "cue", "ref": "CUE-010", "supports": "问题似乎不值得专程跑一趟"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "普通线上检索难以提供可信、个体化且不焦虑的健康信息。", "evidenceUnitIds": ["KU-06", "KU-07"], "conditions": ["以作者和目标用户的主观体验为前提"], "counterexamples": [], "actions": ["寻找一种不同的咨询方式"], "limits": ["没有系统比较搜索网站或医疗服务质量"]},
+      "unknowns": ["作者实际使用过哪些网站", "所见冲突答案的原文和来源"]
+    },
+    {
+      "id": "KU-06",
+      "title": "视频列出三个日常健康问题",
+      "importance": "core",
+      "statement": "作者具体想知道：白天靠咖啡顶着是否算透支、当前运动强度是否太狠，以及总觉得累和注意力不集中是否需要调整。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 21.62, "end": 31.958},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "咖啡问题"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "运动强度问题"},
+        {"refType": "cue", "ref": "CUE-009", "supports": "疲劳和注意力问题"},
+        {"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "咖啡杯示意"},
+        {"refType": "targeted_frame", "ref": "TARGET-0026", "supports": "举重示意"},
+        {"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "疲惫示意"}
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-07",
+      "title": "红发卡通角色承担目标用户情境，但身份映射未建立",
+      "importance": "supporting",
+      "statement": "同一红发女性卡通角色被连续放进床上刷手机、咖啡杯堆、举重和疲惫场景，视觉上承担‘熬夜打工人/提问者’的情境示意；主讲人有时在下方小窗同现，因此视频并未证明卡通角色就是主讲人本人。病例画面中的黑发卡通头像还被用来遮挡人物面部，其功能与红发角色不同。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 2.3, "end": 31.958},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0018", "supports": "红发角色床上刷手机"},
+        {"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "红发角色与咖啡杯堆、主讲人小窗同现"},
+        {"refType": "targeted_frame", "ref": "TARGET-0026", "supports": "红发角色举重"},
+        {"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "红发角色疲惫"},
+        {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "病例画面中的黑发卡通遮挡"}
+      ],
+      "confidence": "high",
+      "unknowns": ["红发角色是否由主讲人生成或授权", "红发角色是否意在代表主讲人本人还是泛化目标用户"]
+    },
+    {
+      "id": "KU-08",
+      "title": "可见产品名是‘蚂蚁阿福／阿福’",
+      "importance": "core",
+      "statement": "产品揭示卡可见‘蚂蚁阿福’及口号‘健康是福／健康的事就找阿福’；随后界面顶部显示‘阿福’和‘智能体’，把前面的泛称‘健康搭子’落到具体可见产品。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 37.033, "end": 43.3},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "产品揭示卡"},
+        {"refType": "ocr", "ref": "OCR-00117", "supports": "品牌名 OCR‘蚂蚁阿福’"},
+        {"refType": "ocr", "ref": "OCR-00118", "supports": "口号上行‘是福’"},
+        {"refType": "ocr", "ref": "OCR-00119", "supports": "口号下行‘就找阿福’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "聊天界面顶部阿福/智能体"},
+        {"refType": "ocr", "ref": "OCR-00265", "supports": "界面标签‘智能体’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["可见界面的版本号", "演示账户/工作区状态"]
+    },
+    {
+      "id": "KU-09",
+      "title": "作者称阿福由蚂蚁集团推出",
+      "importance": "core",
+      "statement": "旁白称阿福是‘蚂蚁集团推出的 AI 应用’。这是作者的产品归属陈述；视频内部未展示公司主体页面、商店页或外部证明。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 38.62, "end": 42.927},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-012", "supports": "产品归属和 AI 应用的旁白原文"},
+        {"refType": "targeted_frame", "ref": "TARGET-0039", "supports": "与该口播并置的阿福个人信息界面"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "阿福是蚂蚁集团推出的 AI 应用。", "evidenceUnitIds": ["KU-08"], "conditions": [], "counterexamples": [], "actions": [], "limits": ["只按作者陈述记录，未外部核验公司归属"]},
+      "unknowns": ["法人主体", "具体产品版本和发行渠道"]
+    },
+    {
+      "id": "KU-10",
+      "title": "咨询前界面要求个人关系、身份与健康史字段",
+      "importance": "core",
+      "statement": "‘请完善咨询人信息’弹窗可见成员关系、姓名/昵称、性别、出生年份等字段；后续‘补充健康史’界面可见过敏史、家族史、疾病史、孕产史、烟酒史等有/无选择。画面显示示例昵称和年份，但这些示例值不能归属于主讲人。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 38.733, "end": 41.167},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "咨询人信息表单全景"},
+        {"refType": "ocr", "ref": "OCR-00135", "supports": "‘请完善咨询人信息’"},
+        {"refType": "ocr", "ref": "OCR-00136", "supports": "成员关系字段"},
+        {"refType": "ocr", "ref": "OCR-00142", "supports": "姓名/昵称字段"},
+        {"refType": "ocr", "ref": "OCR-00144", "supports": "性别字段"},
+        {"refType": "ocr", "ref": "OCR-00146", "supports": "出生年份字段"},
+        {"refType": "targeted_frame", "ref": "TARGET-0040", "supports": "健康史字段全景"},
+        {"refType": "ocr", "ref": "OCR-00228", "supports": "家族史字段"},
+        {"refType": "ocr", "ref": "OCR-00231", "supports": "疾病史字段"},
+        {"refType": "ocr", "ref": "OCR-00234", "supports": "孕产史字段"}
+      ],
+      "confidence": "high",
+      "procedural": {"input": "咨询对象关系和个人/健康史资料", "actions": ["在成员关系中选择咨询对象", "填写或显示姓名/昵称、性别、出生年份", "在健康史字段中选择有/无", "界面提供‘跳过’和‘确定’"], "parameters": ["成员关系", "姓名/昵称", "性别", "出生年份", "过敏史", "家族史", "疾病史", "孕产史", "烟酒史"], "output": "进入可继续健康咨询的界面状态", "beforeFrames": ["TARGET-0033"], "duringFrames": ["TARGET-0036", "TARGET-0040"], "afterFrames": ["TARGET-0042"], "unknowns": ["是否真实点击确定", "示例值是否实际提交", "数据是否保存"]},
+      "unknowns": ["示例字段值的真实归属", "数据存储、用途、共享、删除和保护机制"]
+    },
+    {
+      "id": "KU-11",
+      "title": "个人与健康资料的数据处理方式未被说明",
+      "importance": "core",
+      "statement": "视频展示了昵称、性别、出生年份、健康史、身高、体重、运动、饮食和睡眠等个人/健康资料入口，但没有在 0–105.6 秒画面或旁白中说明这些数据由谁控制、如何存储/加密/共享/删除、保留多久或发生问题时由谁负责。",
+      "provenance": "unknown",
+      "timeRange": {"start": 38.733, "end": 105.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "个人字段入口"},
+        {"refType": "targeted_frame", "ref": "TARGET-0040", "supports": "健康史字段入口"},
+        {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "身高体重等目标字段"},
+        {"refType": "targeted_frame", "ref": "TARGET-0128", "supports": "睡眠习惯字段"},
+        {"refType": "source", "ref": "SRC-TARGET-MANIFEST", "supports": "ACT-09 检查 0–105.6 秒中可能出现隐私机制和责任主体的位置"}
+      ],
+      "confidence": "high",
+      "reasoning": "资料入口可见，但数据治理信息在全片稠密检查与结尾专门检查中未观察到。",
+      "unknowns": ["控制者/处理者", "加密与访问控制", "共享与保留", "删除机制", "责任与救济"]
+    },
+    {
+      "id": "KU-12",
+      "title": "疲劳示例从‘最近总感觉累’开始",
+      "importance": "core",
+      "statement": "聊天界面可见用户问题‘我最近总感觉累，是怎么回事？’，AI 回答先表示理解，再按生理、心理和生活方式等方向列出可能原因；回答还把咨询对象称为‘32 岁的女性’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 41.167, "end": 48.8},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "问题与首屏回答"},
+        {"refType": "ocr", "ref": "OCR-00270", "supports": "用户问题原文"},
+        {"refType": "ocr", "ref": "OCR-00273", "supports": "AI 回答开头"},
+        {"refType": "ocr", "ref": "OCR-00274", "supports": "回答中的‘32岁的女性’"},
+        {"refType": "ocr", "ref": "OCR-00278", "supports": "‘可能的原因分析’标题"}
+      ],
+      "confidence": "high",
+      "unknowns": ["32 岁女性是否为真实用户资料", "列举原因是否适用于主讲人"]
+    },
+    {
+      "id": "KU-13",
+      "title": "疲劳问询用时长、伴随症状和活动情境继续追问",
+      "importance": "core",
+      "statement": "界面先追问疲劳持续多久、突然出现还是逐渐加重；在选中‘突然出现’后，问询进度到 20%，再问是否有头晕、夜间盗汗、肌肉/关节疼痛等伴随症状；回答‘都没有’后，进度到 30%，继续问疲劳是否在日常活动后加重或表现为精力不足、难以集中注意力。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 49.167, "end": 53.167},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "首次追问时长和变化趋势"},
+        {"refType": "ocr", "ref": "OCR-00734", "supports": "疲劳持续多久的追问"},
+        {"refType": "targeted_frame", "ref": "TARGET-0066", "supports": "20% 进度与伴随症状追问"},
+        {"refType": "ocr", "ref": "OCR-00815", "supports": "问询进度 20%"},
+        {"refType": "ocr", "ref": "OCR-00816", "supports": "伴随症状追问开头"},
+        {"refType": "targeted_frame", "ref": "TARGET-0068", "supports": "30% 进度与活动/注意力追问"},
+        {"refType": "ocr", "ref": "OCR-00860", "supports": "问询进度 30%"},
+        {"refType": "ocr", "ref": "OCR-00861", "supports": "活动/情境追问"}
+      ],
+      "confidence": "high",
+      "procedural": {"input": "‘最近总感觉累’及对前一问题的可见选择", "actions": ["列出可能原因", "追问持续时长和出现方式", "在‘突然出现’后追问伴随症状", "在‘都没有’后追问活动情境与注意力表现"], "parameters": ["问询进度 10%", "问询进度 20%", "问询进度 30%"], "output": "逐步缩小问题并继续收集症状/情境信息", "beforeFrames": ["TARGET-0042"], "duringFrames": ["TARGET-0063", "TARGET-0066"], "afterFrames": ["TARGET-0068"], "unknowns": ["未见每次选择的点击动作", "问询进度算法未知", "没有显示完整最终诊断"]},
+      "unknowns": ["页面是否连续实时滚动", "未采样的中间问答"]
+    },
+    {
+      "id": "KU-14",
+      "title": "问询进度是可见 UI 状态，不是医学完成度",
+      "importance": "supporting",
+      "statement": "疲劳/咖啡和减脂示例中可见 10%、20%、30%、40% 的‘问询进度’。不同编辑段落会从较高进度切回新的 10%，说明这些百分比属于多个问询片段的界面状态，不能解释成同一次诊疗的连续医学完成度。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 41.167, "end": 96.6},
+      "evidence": [
+        {"refType": "ocr", "ref": "OCR-00272", "supports": "疲劳首屏 10%"},
+        {"refType": "ocr", "ref": "OCR-00815", "supports": "疲劳追问 20%"},
+        {"refType": "ocr", "ref": "OCR-00860", "supports": "疲劳追问 30%"},
+        {"refType": "ocr", "ref": "OCR-00937", "supports": "咖啡新问题重新为 10%"},
+        {"refType": "ocr", "ref": "OCR-03079", "supports": "减脂问询 30%"},
+        {"refType": "ocr", "ref": "OCR-03156", "supports": "减脂问询 40%"}
+      ],
+      "confidence": "high",
+      "unknowns": ["进度百分比计算规则", "100% 的定义与结果状态"]
+    },
+    {
+      "id": "KU-15",
+      "title": "咖啡结论在 UI 中有明确条件，口播作了压缩",
+      "importance": "core",
+      "statement": "口播概括为‘追问一天大概喝多少杯，再告诉我不加量就行’；但界面先问每天咖啡杯数和饮用时段，并在结果中写明：每天 3 杯、当前没有明显不适/睡眠干扰等、且没有潜在健康问题时，咖啡因摄入‘暂时不会直接导致身体透支’，同时提醒咖啡提神是‘借来’的精力，长期依赖可能掩盖疲劳、需要更多休息恢复。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 53.533, "end": 58.78},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-017", "supports": "口播的‘不加量就行’概括"},
+        {"refType": "targeted_frame", "ref": "TARGET-0076", "supports": "咖啡杯数和饮用时段追问"},
+        {"refType": "ocr", "ref": "OCR-01081", "supports": "每天大概多少杯咖啡的追问"},
+        {"refType": "ocr", "ref": "OCR-01082", "supports": "浓度/形式与饮用时段条件"},
+        {"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "咖啡核心问题解答"},
+        {"refType": "ocr", "ref": "OCR-01187", "supports": "每天 3 杯的可见条件"},
+        {"refType": "ocr", "ref": "OCR-01188", "supports": "无明显不适/睡眠干扰等条件"},
+        {"refType": "ocr", "ref": "OCR-01190", "supports": "‘暂时不会直接导致身体透支’"},
+        {"refType": "ocr", "ref": "OCR-01192", "supports": "提神效果是‘借来’的精力"},
+        {"refType": "ocr", "ref": "OCR-01195", "supports": "长期依赖可能忽视真实需求"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "在界面给定条件下，3 杯咖啡暂时不会直接导致身体透支，但长期依赖有风险。", "evidenceUnitIds": ["KU-25"], "conditions": ["每天 3 杯", "当前无明显不适", "无睡眠干扰或其他不良反应", "没有潜在健康问题", "还存在高强度运动语境"], "counterexamples": [], "actions": ["不要继续加量", "观察恢复和不适", "给身体休息恢复"], "limits": ["这是视频中的 AI 生成回答，非外部医学验证", "口播省略了多数条件"]},
+      "unknowns": ["所谓 3 杯的容量和咖啡因剂量", "用户健康史是否完整", "结论是否由医生审核"]
+    },
+    {
+      "id": "KU-16",
+      "title": "身材目标表单收集性别、年龄、身高、体重和活动量",
+      "importance": "core",
+      "statement": "‘健康小目标／我想减肥成功’页面可见性别、年龄、身高、体重、每天活动量和补充信息。编辑序列中身高数值多次变化，结果页使用 168cm、55kg；这显示的是演示参数变化，不能认定为主讲人的真实身高体重。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 60.7, "end": 66.79},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0093", "supports": "性别、32 岁、身高/体重字段"},
+        {"refType": "ocr", "ref": "OCR-01332", "supports": "女性选项"},
+        {"refType": "ocr", "ref": "OCR-01336", "supports": "32 岁示例值"},
+        {"refType": "ocr", "ref": "OCR-01338", "supports": "一帧中的 171cm"},
+        {"refType": "targeted_frame", "ref": "TARGET-0099", "supports": "活动量选项"},
+        {"refType": "ocr", "ref": "OCR-01452", "supports": "久坐少动少于 3000 步"},
+        {"refType": "ocr", "ref": "OCR-01453", "supports": "轻度活动 3000–8000 步"},
+        {"refType": "ocr", "ref": "OCR-01454", "supports": "中度活动 8000–12000 步"},
+        {"refType": "ocr", "ref": "OCR-01455", "supports": "高强度活动 12000 步以上"},
+        {"refType": "targeted_frame", "ref": "TARGET-0103", "supports": "结果页中的 168cm、55kg"},
+        {"refType": "ocr", "ref": "OCR-01533", "supports": "OCR 对 168cm、55kg 的提取"}
+      ],
+      "confidence": "high",
+      "procedural": {"input": "减肥目标及性别、年龄、身高、体重、活动量等演示字段", "actions": ["设置性别和年龄", "调节身高/体重", "选择每天活动量", "点击或切换到生成计划页"], "parameters": ["女性", "32 岁", "演示中变化的身高", "结果页 168cm/55kg", "活动量分档"], "output": "‘迈向理想体重的轻盈旅程’计划页", "beforeFrames": ["TARGET-0093"], "duringFrames": ["TARGET-0099"], "afterFrames": ["TARGET-0103"], "unknowns": ["实际点击过程未完整展示", "参数是否真实", "生成所需的后端步骤未知"]},
+      "unknowns": ["示例数据的真实归属", "体重/身高跳变的编辑原因"]
+    },
+    {
+      "id": "KU-17",
+      "title": "身材计划展示活动、饮食与划船机任务",
+      "importance": "core",
+      "statement": "结果页标题为‘迈向理想体重的轻盈旅程’，画面策略文字强调活动多样化、饮食结构均衡和温和持续；任务卡可见‘每天走 8000 步’‘记录 3 顿饭’‘划船机 30 分钟（协同训练上肢与核心）’。旁白另概括为增加力量训练、提供饮食搭配建议。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 66.79, "end": 73.73},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0103", "supports": "结果页标题与身体/目标分析"},
+        {"refType": "ocr", "ref": "OCR-01529", "supports": "计划标题"},
+        {"refType": "ocr", "ref": "OCR-01664", "supports": "日常活动更加多样化"},
+        {"refType": "ocr", "ref": "OCR-01665", "supports": "饮食结构更加均衡"},
+        {"refType": "targeted_frame", "ref": "TARGET-0111", "supports": "三张任务卡"},
+        {"refType": "ocr", "ref": "OCR-01722", "supports": "每天走 8000 步"},
+        {"refType": "ocr", "ref": "OCR-01725", "supports": "记录 3 顿饭"},
+        {"refType": "ocr", "ref": "OCR-01728", "supports": "划船机 30 分钟"},
+        {"refType": "cue", "ref": "CUE-019", "supports": "旁白增加力量训练"},
+        {"refType": "cue", "ref": "CUE-020", "supports": "旁白饮食搭配"}
+      ],
+      "confidence": "high",
+      "unknowns": ["这些任务对示例用户是否合适", "是否有禁忌筛查", "计划是否实际执行"]
+    },
+    {
+      "id": "KU-18",
+      "title": "身材计划的个性化和效果没有被证明",
+      "importance": "core",
+      "statement": "视频展示了输入字段、生成页和建议卡，但没有展示训练/饮食计划的临床或专业审核、禁忌处理、长期执行、体重变化或成功率；‘量身定制’和‘更健康’只能按界面/作者措辞记录。",
+      "provenance": "unknown",
+      "timeRange": {"start": 60.7, "end": 73.74},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0103", "supports": "‘量身定制打卡计划’可见页面"},
+        {"refType": "ocr", "ref": "OCR-01531", "supports": "‘让我为你量身定制打卡计划’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0115", "supports": "建议卡和一键添加/重新制定界面状态"},
+        {"refType": "ocr", "ref": "OCR-01810", "supports": "页面底部 AI 生成仅供参考"}
+      ],
+      "confidence": "high",
+      "unknowns": ["审核者与依据", "风险筛查", "执行效果", "成功率", "服务支持"]
+    },
+    {
+      "id": "KU-19",
+      "title": "睡眠目标表单询问时长、睡前习惯和改善方向",
+      "importance": "core",
+      "statement": "‘我想睡得更香’页面询问最近睡眠整体状态、通常每天睡多久、睡前 1 小时如何度过、现阶段最想改善什么；睡前习惯选项包括电子娱乐、社交/通讯、工作/学习、焦虑/内耗和放松。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 77.6, "end": 83.74},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0128", "supports": "睡眠目标表单与睡前习惯选项"},
+        {"refType": "ocr", "ref": "OCR-01876", "supports": "‘我想睡得更香’"},
+        {"refType": "ocr", "ref": "OCR-01877", "supports": "电子娱乐选项"},
+        {"refType": "ocr", "ref": "OCR-01879", "supports": "工作/学习选项"},
+        {"refType": "ocr", "ref": "OCR-01880", "supports": "焦虑/内耗选项"},
+        {"refType": "ocr", "ref": "OCR-01883", "supports": "现阶段最想改善的问题"}
+      ],
+      "confidence": "high",
+      "unknowns": ["表单实际选择和提交过程未完整展示"]
+    },
+    {
+      "id": "KU-20",
+      "title": "睡眠建议卡与任务状态明确包含提醒/催打卡文字",
+      "importance": "core",
+      "statement": "睡眠建议卡可见‘5 分钟睡前放松冥想’‘3 分钟专注呼吸’‘渐进式肌肉放松’；页面还写‘快添加任务吧，我将每天提醒你打卡’，之后的任务页显示‘任务添加成功’和‘今日还有任务未完成，快去打卡！’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 83.74, "end": 86.9},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0139", "supports": "三张睡眠建议卡"},
+        {"refType": "ocr", "ref": "OCR-02085", "supports": "5 分钟睡前放松冥想"},
+        {"refType": "ocr", "ref": "OCR-02088", "supports": "3 分钟专注呼吸"},
+        {"refType": "ocr", "ref": "OCR-02091", "supports": "渐进式肌肉放松"},
+        {"refType": "ocr", "ref": "OCR-02094", "supports": "‘我将每天提醒你打卡’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0143", "supports": "任务页提醒/成功状态"},
+        {"refType": "ocr", "ref": "OCR-02160", "supports": "‘今日还有任务未完成，快去打卡！’"},
+        {"refType": "ocr", "ref": "OCR-02167", "supports": "‘任务添加成功’"}
+      ],
+      "confidence": "high",
+      "procedural": {"input": "睡眠问题和睡前习惯表单", "actions": ["填写或展示睡眠目标字段", "生成三张放松任务卡", "界面显示添加任务提示", "切换到任务页并显示添加成功/待打卡"], "parameters": ["5 分钟睡前放松冥想", "3 分钟专注呼吸", "渐进式肌肉放松"], "output": "可见的任务添加成功和待打卡状态", "beforeFrames": ["TARGET-0128"], "duringFrames": ["TARGET-0139"], "afterFrames": ["TARGET-0143"], "unknowns": ["未见实际点击‘一键添加’的连续动作", "提醒是否真实触发", "状态是否持久保存"]},
+      "unknowns": ["真实通知频率与关闭设置", "任务是否持久化", "是否产生长期习惯效果"]
+    },
+    {
+      "id": "KU-21",
+      "title": "‘不会催你’与界面的每日提醒/快去打卡存在实质冲突",
+      "importance": "core",
+      "statement": "旁白/SRT 在 82.27–86.91 秒说‘你看他不会催你’，但同一阶段 UI 明确写‘我将每天提醒你打卡’和‘今日还有任务未完成，快去打卡！’。视频没有解释‘提醒’与‘催促’的区分，因此不能在重建中把两者合并为无提醒的温和陪伴。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 82.27, "end": 86.91},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-023", "supports": "旁白原文‘你看他不会催你’"},
+        {"refType": "ocr", "ref": "OCR-02094", "supports": "UI‘我将每天提醒你打卡’"},
+        {"refType": "ocr", "ref": "OCR-02160", "supports": "UI‘今日还有任务未完成，快去打卡！’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0143", "supports": "冲突文字在任务页的可见上下文"}
+      ],
+      "confidence": "high",
+      "reasoning": "两种载体在同一语义段落对提醒强度给出不同表述，且 UI 不是单纯按钮标签而是每日提醒和未完成提示。",
+      "unknowns": ["作者是否把温和提醒视为‘不催促’", "提醒能否关闭", "真实通知行为"]
+    },
+    {
+      "id": "KU-22",
+      "title": "画面只证明任务状态被展示，不证明长期记录效果",
+      "importance": "supporting",
+      "statement": "画面能够证明 UI 显示‘任务添加成功’和待打卡列表，但剪辑没有证明任务已在真实账户中持久保存、通知已发送、用户持续打卡或健康/睡眠因此改善。",
+      "provenance": "unknown",
+      "timeRange": {"start": 83.74, "end": 89.5},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0143", "supports": "任务添加成功与待打卡列表的可见状态"},
+        {"refType": "ocr", "ref": "OCR-02167", "supports": "‘任务添加成功’"},
+        {"refType": "cue", "ref": "CUE-024", "supports": "作者称‘你已经在慢慢的变好’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["真实保存", "通知送达", "持续打卡", "健康效果"]
+    },
+    {
+      "id": "KU-23",
+      "title": "作者把产品核心概括为梳理问题与温和陪伴",
+      "importance": "core",
+      "statement": "作者称健康咨询没有标准答案，价值在于把问题一步步梳理清楚；对于容易中断的小目标，产品不会催促，只是让用户意识到自己在慢慢变好。‘不会催促’受 KU-21 的 UI 冲突限制。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 73.74, "end": 89.5},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-021", "supports": "没有标准答案、梳理问题"},
+        {"refType": "cue", "ref": "CUE-022", "supports": "记录容易中断的小目标"},
+        {"refType": "cue", "ref": "CUE-023", "supports": "不会催促的旁白主张"},
+        {"refType": "cue", "ref": "CUE-024", "supports": "慢慢变好的情绪收束"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "分步梳理和温和小目标比单次网站检索更像一个健康搭子。", "evidenceUnitIds": ["KU-13", "KU-17", "KU-19", "KU-20", "KU-21"], "conditions": ["以视频中的编辑演示和作者体验为依据"], "counterexamples": ["UI 同时有每天提醒和‘快去打卡’文字"], "actions": ["记录小目标", "选择睡前放松任务"], "limits": ["未证明长期坚持或健康改善"]},
+      "unknowns": ["实际陪伴频率与通知策略"]
+    },
+    {
+      "id": "KU-24",
+      "title": "‘很高的专业标准’和‘靠谱’是作者评价",
+      "importance": "core",
+      "statement": "作者把阿福的客气归因于‘一直在用很高的专业标准在做健康管理’，并评价‘一整个靠谱’。视频可见的是追问、长文本和参考/就医提示；它没有展示标准文件、审核流程、资质或独立评估。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 89.5, "end": 96.5},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-025", "supports": "很高专业标准的旁白原文"},
+        {"refType": "cue", "ref": "CUE-026", "supports": "靠谱评价"},
+        {"refType": "targeted_frame", "ref": "TARGET-0184", "supports": "评价期间可见的减脂问询 UI"},
+        {"refType": "ocr", "ref": "OCR-03128", "supports": "烧录字幕‘一整个靠谱’"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "阿福因高专业标准而显得客气、靠谱。", "evidenceUnitIds": ["KU-13", "KU-25"], "conditions": ["基于作者体验与可见 UI"], "counterexamples": [], "actions": [], "limits": ["未展示标准制定者、审核流程、医生资质或外部验证"]},
+      "unknowns": ["专业标准内容", "制定者与审核者", "医学责任主体", "独立验证"]
+    },
+    {
+      "id": "KU-25",
+      "title": "界面和口播共同限定内容只供参考并提示就医",
+      "importance": "core",
+      "statement": "作者说阿福‘只是提供参考，绝不制造恐慌’；多个 AI 回答底部可见‘内容由 AI 生成仅供参考，持续不适请及时就医’或‘如有不适请及时就医’，全片另有‘产品体验分享、身体不适请及时就医’。这些限定说明视频不把 AI 输出定位为确诊或替代就医。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 49.667, "end": 96.5},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-026", "supports": "作者‘只是提供参考，绝不制造恐慌’"},
+        {"refType": "ocr", "ref": "OCR-00740", "supports": "界面‘内容由AI生成仅供参考’"},
+        {"refType": "ocr", "ref": "OCR-00819", "supports": "界面‘持续不适请及时就医’"},
+        {"refType": "ocr", "ref": "OCR-01773", "supports": "目标页‘内容由AI生成仅供参考，如有不适请及时就医’"},
+        {"refType": "ocr", "ref": "OCR-03076", "supports": "减脂问询中的同类限定"}
+      ],
+      "confidence": "high",
+      "unknowns": ["‘绝不制造恐慌’作为绝对保证如何验证", "何种症状应立即就医的完整边界"]
+    },
+    {
+      "id": "KU-26",
+      "title": "医学建议、专业性和不制造恐慌均未被外部验证",
+      "importance": "core",
+      "statement": "视频内部没有医生审核证明、模型/知识来源、临床验证、适应症/禁忌、错误率或责任机制，因此不能把疲劳、咖啡、运动、饮食、减脂和睡眠建议，或‘高专业标准/绝不制造恐慌’升级为客观事实。",
+      "provenance": "unknown",
+      "timeRange": {"start": 41.167, "end": 96.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "疲劳建议页面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0115", "supports": "身材建议与 AI 参考限定"},
+        {"refType": "targeted_frame", "ref": "TARGET-0139", "supports": "睡眠任务建议"},
+        {"refType": "targeted_frame", "ref": "TARGET-0185", "supports": "减脂问询与 AI 参考限定"}
+      ],
+      "confidence": "high",
+      "unknowns": ["临床证据", "审核流程", "知识来源", "禁忌和错误率", "责任主体"]
+    },
+    {
+      "id": "KU-27",
+      "title": "结尾把阿福定义为能看见并认真回应打工人的健康搭子",
+      "importance": "core",
+      "statement": "作者说这一代打工人真正缺少的是‘能够看见你，也能够真正回应你’的健康搭子；画面依次叠加大字‘能看见你／能认真回应你’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 96.51, "end": 101.19},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-027", "supports": "结尾打工人需求与回应主张"},
+        {"refType": "targeted_frame", "ref": "TARGET-0205", "supports": "结尾两句大字"},
+        {"refType": "ocr", "ref": "OCR-03244", "supports": "‘能看见你’"},
+        {"refType": "ocr", "ref": "OCR-03245", "supports": "‘能认真回应你’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["‘看见’和‘真正回应’的产品衡量标准"]
+    },
+    {
+      "id": "KU-28",
+      "title": "‘完全确保隐私’是绝对隐私主张，画面未展示机制",
+      "importance": "core",
+      "statement": "旁白/SRT 称健康搭子‘能够完全确保你隐私’，烧录字幕为‘并且完全确保你隐私的健康搭子’，大字写‘能确保隐私安全’。这是作者和画面的绝对隐私承诺；视频未展示加密、权限、隐私政策、审计、数据主体权利或责任主体。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 101.19, "end": 103.76},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-028", "supports": "‘完全确保你隐私’旁白/SRT 原文"},
+        {"refType": "targeted_frame", "ref": "TARGET-0213", "supports": "三句结尾大字与烧录字幕"},
+        {"refType": "ocr", "ref": "OCR-03283", "supports": "大字‘能确保隐私安全’"},
+        {"refType": "ocr", "ref": "OCR-03284", "supports": "烧录字幕‘并且完全确保你隐私的健康搭子’"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "阿福能够完全确保用户隐私。", "evidenceUnitIds": ["KU-10", "KU-11"], "conditions": [], "counterexamples": [], "actions": [], "limits": ["未展示任何隐私机制或外部验证", "绝对表述不能由表单和口播本身证明"]},
+      "unknowns": ["加密与访问控制", "数据共享与保留", "政策文本", "独立审计", "责任主体和救济"]
+    },
+    {
+      "id": "KU-29",
+      "title": "结尾 CTA 是开放式健康问题",
+      "importance": "core",
+      "statement": "视频最后由主讲人直接提问‘你最想问的一个健康的问题是什么？’，这是面向观众的互动/评论式 CTA。",
+      "provenance": "raw_fact",
+      "timeRange": {"start": 103.76, "end": 105.6},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-028", "supports": "结尾问题的逐字字幕"},
+        {"refType": "targeted_frame", "ref": "TARGET-0220", "supports": "主讲人指向观众并显示问题"},
+        {"refType": "ocr", "ref": "OCR-03305", "supports": "烧录字幕问题原文"}
+      ],
+      "confidence": "high",
+      "unknowns": ["作者期望观众在何处回答没有明说"]
+    },
+    {
+      "id": "KU-30",
+      "title": "全片未观察到下载入口、二维码、价格或服务条件",
+      "importance": "core",
+      "statement": "在 0–105.6 秒稠密时间线、37.033–43.3 秒产品揭示/个人资料区和 96.51–105.6 秒逐 0.25 秒结尾检查中，未观察到下载/注册按钮、二维码、链接、价格、平台、地区、账户要求、支持主体或隐私机制。该结论只限这些画面与文字载体，不宣称产品在视频之外没有这些信息。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-TARGET-MANIFEST", "supports": "ACT-09 对 0–105.6 秒的负证据检查范围"},
+        {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "品牌卡没有访问控件"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "个人资料界面没有价格/平台说明"},
+        {"refType": "targeted_frame", "ref": "TARGET-0188", "supports": "结尾开始状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0224", "supports": "结尾末帧状态"}
+      ],
+      "confidence": "high",
+      "unknowns": ["实际访问渠道", "价格", "平台", "地区", "账户要求", "支持与隐私政策在视频外的位置"]
+    },
+    {
+      "id": "KU-31",
+      "title": "结尾用被看见/回应/隐私承诺偿付开场的恐慌与信任困境",
+      "importance": "core",
+      "statement": "结构上，视频从脑梗个案和‘网上不知道该信谁/越看越焦虑’开始，经过追问、建议与目标记录演示，在结尾用‘只供参考、不制造恐慌、能看见、能回应、能确保隐私’重写最初的信任焦虑，并把观众导向开放式提问。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "恐慌个案开场"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "不知道该信谁"},
+        {"refType": "cue", "ref": "CUE-006", "supports": "搜索答案吓人"},
+        {"refType": "cue", "ref": "CUE-026", "supports": "参考与不制造恐慌"},
+        {"refType": "cue", "ref": "CUE-027", "supports": "看见与回应"},
+        {"refType": "cue", "ref": "CUE-028", "supports": "隐私承诺与最终提问"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "开场画面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0213", "supports": "结尾三句大字"}
+      ],
+      "confidence": "high",
+      "reasoning": "开场提出恐惧和信任缺口，结尾按相反情绪方向提出克制、回应和隐私承诺，形成明确的开闭环。",
+      "unknowns": ["这些结尾承诺是否真实达成"]
+    },
+    {
+      "id": "KU-32",
+      "title": "技术 shot 和快速页面切换不能证明连续实时操作",
+      "importance": "supporting",
+      "statement": "evidence pack 检测出 58 个技术 shot，尤其 43–59 秒和 89–96.6 秒边界密集；逐帧比较显示大量边界对应 UI 滚动、页面位置变化、字幕/大字遮挡或快速剪辑。视频未连续展示所有输入、点击、发送、生成、添加和保存桥接，因此不能把编辑顺序写成完整实时流程，也不能把 58 个 shot 当作 58 个语义场景或剪辑次数。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-EVIDENCE-PACK", "supports": "58 个技术 shot 与边界时间"},
+        {"refType": "shot", "ref": "SHOT-019", "supports": "43.3 秒后开始的密集短技术段"},
+        {"refType": "shot", "ref": "SHOT-038", "supports": "58.767–60.7 秒技术段"},
+        {"refType": "shot", "ref": "SHOT-043", "supports": "89.433 秒后快速技术段开始"},
+        {"refType": "shot", "ref": "SHOT-057", "supports": "95.9–96.6 秒快速段收束"},
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "疲劳页面滚动/切换中的一个状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0185", "supports": "减脂多个进度叠在同一编辑画面中的状态"}
+      ],
+      "confidence": "high",
+      "reasoning": "相邻帧呈现同一应用/页面的不同滚动位置和叠层，技术检测不携带剪辑语义。",
+      "unknowns": ["隐藏剪辑数量", "哪些操作在录屏外完成", "是否使用真实账户实时生成"]
+    },
+    {
+      "id": "KU-33",
+      "title": "全时轴音频检查发现音乐型底层与数个转折音效候选",
+      "importance": "context",
+      "statement": "对原视频完整音轨解码后，以 22 个无缝连续 5 秒窗口覆盖 0–105.629 秒，并在九个叙事边界追加 4 秒窗口。AudioSet 模型在多数连续窗口同时检出 Music 与 Speech；10–15 秒窗口的 Music 分数较低。模型还在约 38.62–45 秒、85–91.5 秒和 95–105 秒提出 Ding/Ping/Plop/Beep 等瞬态非语音标签。所有 5 秒窗口 RMS 为 -17.64 至 -23.70 dBFS，没有整窗静音。可支持的有界结论是：混合音轨中存在广泛音乐型成分和若干转折音效候选，它们可能提供跨段连续性或强调；但模型不能确认每个字面音效标签，也没有证据表明任一非语音事件独立承担医学、隐私、商业或 CTA 主张。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 105.629},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-AUDIO-NON-SPEECH", "supports": "完整 PCM 音轨、SHA-256、22 个无缝时间线窗口、9 个转折窗口、模型分数和限制"}
+      ],
+      "confidence": "high",
+      "reasoning": "Music 与 Speech 在多数无缝窗口同时得到较高多标签分数，且若干视觉/叙事边界附近出现瞬态声学标签，因此音乐型成分与强调音候选是可复核的模型观察；因未做声源分离或人工逐声确认，具体声源和叙事意图仍不能确定。",
+      "unknowns": ["音乐标题、风格细分、作者、来源和授权", "每个 Ding/Ping/Plop/Beep 等候选标签的字面准确性", "音乐是前景还是背景及其混音关系", "非言语声音的精确编辑意图", "五秒窗口内的瞬时静音或低置信短音效"]
+    },
+    {
+      "id": "KU-34",
+      "title": "主讲人的固定室内环境提供连续性和直接见证",
+      "importance": "context",
+      "statement": "主讲人反复出现在同一桌椅、台灯、百叶窗/帘幕背景中，并在新闻/卡通段落以小窗、在产品介绍和结尾以全屏出现；这个环境和重复出镜把病例—自我困境—产品演示—最终提问串成第一人称体验见证，但不能证明她的身份或专业资质。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "新闻段落中的主讲人小窗"},
+        {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "固定室内背景"},
+        {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "产品卡下方的主讲人"},
+        {"refType": "targeted_frame", "ref": "TARGET-0205", "supports": "结尾固定室内背景与直接对镜"}
+      ],
+      "confidence": "high",
+      "unknowns": ["主讲人真实身份和资质", "环境是居所、工作室还是布景"]
+    },
+    {
+      "id": "KU-35",
+      "title": "开场资料画面声称脑血栓已取出并正在恢复",
+      "importance": "supporting",
+      "statement": "约 5 秒的新闻式竖屏资料画面写有‘大学生脑血栓已取出／能活动，正在恢复中’。这是画面内的病例结局主张；同段另有‘资料画面非本新闻事件’限定，且允许证据中没有病历、影像、治疗记录或独立来源可验证其临床真实性。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 4.633, "end": 5.7},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "人工复核可见‘大学生脑血栓已取出／能活动，正在恢复中’"},
+        {"refType": "ocr", "ref": "OCR-00047", "supports": "OCR 识别‘大学生脑血栓已取出’"},
+        {"refType": "ocr", "ref": "OCR-00048", "supports": "OCR 捕捉恢复状态第二行但存在字形误识别，最终以帧人工复核为准"},
+        {"refType": "source", "ref": "SRC-CROP-OPENING", "supports": "开场专属裁切确认资料画面限定"}
+      ],
+      "confidence": "high",
+      "unknowns": ["病例结局主张的临床真实性", "具体治疗过程和取出物性质", "‘能活动’及‘正在恢复中’的医学定义与程度"]
+    },
+    {
+      "id": "KU-36",
+      "title": "界面使用诊断式措辞但诊断能力未获证明",
+      "importance": "core",
+      "statement": "约 40–41 秒的咨询人资料页写‘补充健康史 获得更精准诊断’，约 49.667 秒起的聊天页标题写‘AI诊室•问诊中’。这些是可见的诊断式界面措辞，会提高对临床能力的预期；但相邻回答持续标注‘内容由AI生成仅供参考’和‘持续不适请及时就医’，全片底部也提醒身体不适及时就医。视频没有提供诊断准确性、医生参与、监管资质或临床验证，因此不能把 UI 命名升级为已证实诊断能力。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 40.0, "end": 56.667},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0040", "supports": "个人资料页显示诊断式引导"},
+        {"refType": "ocr", "ref": "OCR-00223", "supports": "‘补充健康史 获得更精准诊断’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "聊天页显示 AI 诊室框架"},
+        {"refType": "ocr", "ref": "OCR-00720", "supports": "‘AI诊室•问诊中’"},
+        {"refType": "ocr", "ref": "OCR-00740", "supports": "相邻回答标注内容由 AI 生成且仅供参考"},
+        {"refType": "ocr", "ref": "OCR-00819", "supports": "‘内容由AI生成仅供参考，持续不适请及时就医’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["诊断能力和准确性", "是否有医生或医疗机构参与", "监管资质与临床验证", "诊断式措辞与免责声明之间的产品责任边界"]
+    },
+    {
+      "id": "KU-37",
+      "title": "是否付费、赞助或受品牌控制未知",
+      "importance": "core",
+      "statement": "是否为付费广告：未知。视频集中展示‘蚂蚁阿福’品牌、应用界面和作者正面体验，并持续标注‘本内容为产品体验分享’，但这些内部画面既不能证明也不能排除报酬、赞助、联盟/引流利益、品牌批准或预审、编辑/创意控制。允许证据中未见对此类商业关系的明确披露。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 105.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "‘蚂蚁阿福’品牌卡与正向产品定位"},
+        {"refType": "cue", "ref": "CUE-012", "supports": "旁白称其为蚂蚁集团推出的 AI 应用并开始体验"},
+        {"refType": "ocr", "ref": "OCR-00006", "supports": "全片底部‘本内容为产品体验分享’限定，不等于非广告声明"},
+        {"refType": "source", "ref": "SRC-TARGET-MANIFEST", "supports": "0–105.6 秒有界全时间线商业披露检查范围"}
+      ],
+      "confidence": "high",
+      "unknowns": ["是否收取报酬或为付费广告", "是否存在赞助或赠与", "是否存在联盟/引流收益", "品牌是否审核或批准内容", "品牌是否拥有编辑或创意控制"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-01", "to": "KU-05", "relation": "risk_reframed_as_personal_relevance", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开场病例风险端"}, {"refType": "cue", "ref": "CUE-003", "supports": "‘这不就是我吗’把病例转向自我端"}]},
+    {"from": "KU-05", "to": "KU-06", "relation": "trust_problem_decomposed_into_examples", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "不知道该相信谁的信任问题端"}, {"refType": "cue", "ref": "CUE-007", "supports": "从搜索焦虑转到咖啡例子"}, {"refType": "cue", "ref": "CUE-009", "supports": "补充疲劳/注意力例子"}]},
+    {"from": "KU-06", "to": "KU-08", "relation": "problem_set_precedes_product_reveal", "evidence": [{"refType": "cue", "ref": "CUE-009", "supports": "问题集末端"}, {"refType": "cue", "ref": "CUE-010", "supports": "问题之后提出不同方式"}, {"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "阿福品牌揭示端"}]},
+    {"from": "KU-08", "to": "KU-10", "relation": "generic_health_companion_maps_to_visible_afu_interface", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "品牌卡"}, {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "阿福咨询人表单"}]},
+    {"from": "KU-12", "to": "KU-13", "relation": "initial_query_leads_to_followup_question_sequence", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "初始疲劳问题"}, {"refType": "targeted_frame", "ref": "TARGET-0068", "supports": "多轮追问状态"}]},
+    {"from": "KU-13", "to": "KU-16", "relation": "parallel_example_with_different_personal_inputs", "evidence": [{"refType": "cue", "ref": "CUE-017", "supports": "疲劳/咖啡例子末端"}, {"refType": "cue", "ref": "CUE-018", "supports": "切换到身材管理输入端"}]},
+    {"from": "KU-17", "to": "KU-19", "relation": "advice_example_expands_to_goal_tracking", "evidence": [{"refType": "cue", "ref": "CUE-020", "supports": "运动/饮食建议端"}, {"refType": "cue", "ref": "CUE-022", "supports": "从咨询转向记录小目标"}, {"refType": "targeted_frame", "ref": "TARGET-0128", "supports": "睡眠目标表单端"}]},
+    {"from": "KU-23", "to": "KU-24", "relation": "supportive_tone_framed_as_professional_restraint", "evidence": [{"refType": "cue", "ref": "CUE-024", "supports": "慢慢变好的温和收束"}, {"refType": "cue", "ref": "CUE-025", "supports": "作者把客气归因于专业标准"}]},
+    {"from": "KU-01", "to": "KU-25", "relation": "fearful_opening_limited_by_reference_and_seek_care_disclaimers", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开场病例风险端"}, {"refType": "ocr", "ref": "OCR-00006", "supports": "开场就医限定"}, {"refType": "cue", "ref": "CUE-026", "supports": "后段只供参考/不制造恐慌端"}]},
+    {"from": "KU-05", "to": "KU-27", "relation": "opening_trust_problem_paid_off_by_seen_responded_privacy_promise", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "开场不知道信谁"}, {"refType": "cue", "ref": "CUE-027", "supports": "结尾被看见和回应"}]},
+    {"from": "KU-07", "to": "KU-06", "relation": "animated_avatar_stands_in_for_target_user_or_presenter_unknown", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "卡通角色与主讲人小窗同现的角色端"}, {"refType": "cue", "ref": "CUE-007", "supports": "卡通画面所演绎的咖啡问题端"}]},
+    {"from": "KU-34", "to": "KU-29", "relation": "recurring_presenter_environment_provides_continuity_and_direct_address", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "早期室内出镜"}, {"refType": "targeted_frame", "ref": "TARGET-0220", "supports": "同一环境结尾直接提问"}]},
+    {"from": "KU-14", "to": "KU-32", "relation": "edited_ui_chronology_does_not_establish_continuous_live_operation", "evidence": [{"refType": "ocr", "ref": "OCR-00937", "supports": "咖啡新问题回到 10% 的状态端"}, {"refType": "shot", "ref": "SHOT-019", "supports": "密集技术边界开始"}, {"refType": "shot", "ref": "SHOT-038", "supports": "密集界面片段收束端"}]},
+    {"from": "KU-03", "to": "KU-25", "relation": "visible_disclaimers_limit_medical_and_product_scope", "evidence": [{"refType": "ocr", "ref": "OCR-00006", "supports": "全片底部限定"}, {"refType": "ocr", "ref": "OCR-00819", "supports": "界面内 AI 参考/就医限定"}]},
+    {"from": "KU-29", "to": "KU-30", "relation": "spoken_comment_prompt_contrasts_with_absent_access_or_download_cta", "evidence": [{"refType": "ocr", "ref": "OCR-03305", "supports": "唯一明确结尾提问"}, {"refType": "targeted_frame", "ref": "TARGET-0224", "supports": "末帧未见访问/下载控件"}]},
+    {"from": "KU-20", "to": "KU-21", "relation": "ui_reminder_language_conflicts_with_narrated_non_urging_claim", "evidence": [{"refType": "ocr", "ref": "OCR-02160", "supports": "UI 快去打卡"}, {"refType": "cue", "ref": "CUE-023", "supports": "旁白不会催你"}]},
+    {"from": "KU-10", "to": "KU-28", "relation": "personal_health_data_inputs_make_privacy_promise_decision_relevant", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "个人资料字段"}, {"refType": "ocr", "ref": "OCR-03284", "supports": "完全确保隐私的结尾承诺"}]},
+    {"from": "KU-15", "to": "KU-25", "relation": "conditional_ai_advice_limited_by_reference_and_seek_care_boundary", "evidence": [{"refType": "ocr", "ref": "OCR-01187", "supports": "咖啡建议条件"}, {"refType": "ocr", "ref": "OCR-00819", "supports": "AI 参考/就医限定"}]},
+    {"from": "KU-36", "to": "KU-25", "relation": "diagnostic_ui_framing_tension_with_reference_and_seek_care_limit", "evidence": [{"refType": "ocr", "ref": "OCR-00223", "supports": "‘获得更精准诊断’诊断式引导"}, {"refType": "ocr", "ref": "OCR-00720", "supports": "‘AI诊室•问诊中’"}, {"refType": "ocr", "ref": "OCR-00740", "supports": "AI 生成仅供参考"}, {"refType": "ocr", "ref": "OCR-00819", "supports": "持续不适及时就医"}]},
+    {"from": "KU-08", "to": "KU-37", "relation": "branded_product_experience_does_not_establish_paid_or_control_relationship", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0033", "supports": "品牌集中呈现"}, {"refType": "ocr", "ref": "OCR-00006", "supports": "‘产品体验分享’不是非广告证明"}, {"refType": "source", "ref": "SRC-TARGET-MANIFEST", "supports": "全时间线未见商业关系明确披露"}]},
+    {"from": "KU-35", "to": "KU-04", "relation": "news_style_recovery_claim_remains_limited_by_source_and_clinical_unknown", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0009", "supports": "恢复状态屏幕主张"}, {"refType": "source", "ref": "SRC-CROP-OPENING", "supports": "资料画面非本新闻事件限定"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "available": true, "inspected": true},
+      {"id": "CAR-02", "available": true, "inspected": true},
+      {"id": "CAR-03", "available": true, "inspected": true},
+      {"id": "CAR-04", "available": true, "inspected": true},
+      {"id": "CAR-05", "available": true, "inspected": true},
+      {"id": "CAR-06", "available": true, "inspected": true},
+      {"id": "CAR-07", "available": true, "inspected": true},
+      {"id": "CAR-08", "available": true, "inspected": true},
+      {"id": "CAR-09", "available": true, "inspected": true},
+      {"id": "CAR-10", "available": true, "inspected": true},
+      {"id": "CAR-11", "available": true, "inspected": true},
+      {"id": "CAR-12", "available": true, "inspected": true},
+      {"id": "CAR-13", "available": true, "inspected": true},
+      {"id": "CAR-14", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-35"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-05", "KU-34"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-06", "KU-07"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-08", "KU-09", "KU-37"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-10", "KU-12", "KU-14", "KU-36"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-13", "KU-14", "KU-15"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-16", "KU-17", "KU-18"]},
+      {"id": "MC-08", "captured": true, "unitIds": ["KU-19", "KU-20", "KU-21", "KU-22", "KU-23"]},
+      {"id": "MC-09", "captured": true, "unitIds": ["KU-24", "KU-25", "KU-26", "KU-36"]},
+      {"id": "MC-10", "captured": true, "unitIds": ["KU-27", "KU-28", "KU-29", "KU-30", "KU-31"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-003"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["CUE-004", "CUE-007", "CUE-009"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["CUE-009", "CUE-010", "TARGET-0033"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["TARGET-0033", "TARGET-0036"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["TARGET-0042", "TARGET-0068"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["CUE-017", "CUE-018", "TARGET-0093"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["CUE-020", "CUE-022", "TARGET-0128"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["CUE-024", "CUE-025"]},
+      {"id": "REL-09", "evidenced": true, "evidenceRefs": ["CUE-001", "OCR-00006", "CUE-026"]},
+      {"id": "REL-10", "evidenced": true, "evidenceRefs": ["CUE-004", "CUE-027", "CUE-028"]},
+      {"id": "REL-11", "evidenced": true, "evidenceRefs": ["TARGET-0023", "CUE-007"]},
+      {"id": "REL-12", "evidenced": true, "evidenceRefs": ["TARGET-0016", "TARGET-0220"]},
+      {"id": "REL-13", "evidenced": true, "evidenceRefs": ["OCR-00937", "SHOT-019", "SHOT-038"]},
+      {"id": "REL-14", "evidenced": true, "evidenceRefs": ["OCR-00006", "OCR-00819"]},
+      {"id": "REL-15", "evidenced": true, "evidenceRefs": ["OCR-03305", "TARGET-0224"]},
+      {"id": "REL-16", "evidenced": true, "evidenceRefs": ["OCR-00223", "OCR-00720", "OCR-00740", "OCR-00819"]},
+      {"id": "REL-17", "evidenced": true, "evidenceRefs": ["TARGET-0033", "OCR-00006", "SRC-TARGET-MANIFEST"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-01", "KU-02", "KU-03", "KU-04"], "evidenceRefs": ["CUE-001", "CUE-002", "SRC-CROP-OPENING", "OCR-00006"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-05", "KU-06"], "evidenceRefs": ["CUE-004", "CUE-007", "CUE-008", "CUE-009"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-08", "KU-09"], "evidenceRefs": ["TARGET-0033", "OCR-00117", "CUE-012"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-12", "KU-13", "KU-14", "KU-15"], "evidenceRefs": ["OCR-00270", "OCR-00815", "OCR-00860", "OCR-01081", "OCR-01187"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-16", "KU-17", "KU-18"], "evidenceRefs": ["TARGET-0093", "TARGET-0103", "TARGET-0111"]},
+      {"id": "CQ-06", "status": "answered", "unitIds": ["KU-19", "KU-20", "KU-21", "KU-22"], "evidenceRefs": ["TARGET-0128", "OCR-02085", "OCR-02160", "OCR-02167"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-03", "KU-25"], "evidenceRefs": ["OCR-00006", "OCR-00819", "CUE-026"]},
+      {"id": "CQ-08", "status": "answered", "unitIds": ["KU-24", "KU-25", "KU-26"], "evidenceRefs": ["CUE-025", "CUE-026", "OCR-03128"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-11", "KU-28"], "evidenceRefs": ["CUE-028", "OCR-03283", "OCR-03284", "TARGET-0036"]},
+      {"id": "CQ-10", "status": "answered", "unitIds": ["KU-29", "KU-30"], "evidenceRefs": ["OCR-03305", "SRC-TARGET-MANIFEST", "TARGET-0224"]},
+      {"id": "CQ-11", "status": "unknown", "unitIds": ["KU-07", "KU-34"], "evidenceRefs": ["TARGET-0007", "TARGET-0023", "TARGET-0028"]},
+      {"id": "CQ-12", "status": "unknown", "unitIds": ["KU-14", "KU-32"], "evidenceRefs": ["SHOT-019", "SHOT-038", "SHOT-057", "TARGET-0185"]},
+      {"id": "CQ-13", "status": "answered", "unitIds": ["KU-31"], "evidenceRefs": ["CUE-001", "CUE-004", "CUE-026", "CUE-028"]},
+      {"id": "CQ-14", "status": "answered", "unitIds": ["KU-33"], "evidenceRefs": ["SRC-AUDIO-NON-SPEECH"]},
+      {"id": "CQ-15", "status": "answered", "unitIds": ["KU-15", "KU-21", "KU-36"], "evidenceRefs": ["CUE-017", "OCR-01187", "CUE-023", "OCR-02160", "OCR-00223", "OCR-00819"]},
+      {"id": "CQ-16", "status": "answered", "unitIds": ["KU-36", "KU-25", "KU-26"], "evidenceRefs": ["TARGET-0040", "OCR-00223", "TARGET-0063", "OCR-00720", "OCR-00740", "OCR-00819"]},
+      {"id": "CQ-17", "status": "unknown", "unitIds": ["KU-37"], "evidenceRefs": ["TARGET-0033", "OCR-00006", "SRC-TARGET-MANIFEST"]},
+      {"id": "CQ-18", "status": "unknown", "unitIds": ["KU-35", "KU-04"], "evidenceRefs": ["TARGET-0009", "OCR-00047", "OCR-00048", "SRC-CROP-OPENING"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01", "KU-04", "KU-31"], "rationale": "病例钩子、因果边界和全局开闭环均需要该 cue。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-01", "KU-04"], "rationale": "生活习惯陈述属于病例主张，也定义未证实因果。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-05"], "rationale": "把他人病例转为作者自我相关。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-05", "KU-31"], "rationale": "建立线上信任困境并被结尾回应。"},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-05", "KU-07"], "rationale": "提供凌晨刷手机查健康问题的目标用户情境。"},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-05", "KU-31"], "rationale": "说明搜索结果制造恐惧，是结尾不制造恐慌的对照。"},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-06"], "rationale": "咖啡问题和搜索不一致/焦虑。"},
+      {"cueId": "CUE-008", "disposition": "knowledge", "unitIds": ["KU-06"], "rationale": "运动强度问题。"},
+      {"cueId": "CUE-009", "disposition": "knowledge", "unitIds": ["KU-06"], "rationale": "疲劳和注意力问题。"},
+      {"cueId": "CUE-010", "disposition": "knowledge", "unitIds": ["KU-05", "KU-08"], "rationale": "从不值得跑一趟转入产品方案。"},
+      {"cueId": "CUE-011", "disposition": "knowledge", "unitIds": ["KU-08"], "rationale": "把产品定位为健康搭子。"},
+      {"cueId": "CUE-012", "disposition": "knowledge", "unitIds": ["KU-09", "KU-10"], "rationale": "产品归属主张和开始咨询。"},
+      {"cueId": "CUE-013", "disposition": "knowledge", "unitIds": ["KU-12", "KU-13"], "rationale": "提出不急下结论的差异点。"},
+      {"cueId": "CUE-014", "disposition": "knowledge", "unitIds": ["KU-12", "KU-13"], "rationale": "疲劳问题和继续追问。"},
+      {"cueId": "CUE-015", "disposition": "knowledge", "unitIds": ["KU-13"], "rationale": "追问其他身体感受。"},
+      {"cueId": "CUE-016", "disposition": "knowledge", "unitIds": ["KU-13", "KU-15"], "rationale": "睡眠/不适追问并切入咖啡。"},
+      {"cueId": "CUE-017", "disposition": "knowledge", "unitIds": ["KU-15"], "rationale": "杯数追问与被 UI 条件限制的‘不加量就行’概括。"},
+      {"cueId": "CUE-018", "disposition": "knowledge", "unitIds": ["KU-16"], "rationale": "身高体重等身材管理输入。"},
+      {"cueId": "CUE-019", "disposition": "knowledge", "unitIds": ["KU-16", "KU-17"], "rationale": "运动/饮食习惯确认和力量训练建议。"},
+      {"cueId": "CUE-020", "disposition": "knowledge", "unitIds": ["KU-17", "KU-18"], "rationale": "饮食搭配及与网站检索不同的体验评价。"},
+      {"cueId": "CUE-021", "disposition": "knowledge", "unitIds": ["KU-23"], "rationale": "没有标准答案、分步梳理的主旨。"},
+      {"cueId": "CUE-022", "disposition": "knowledge", "unitIds": ["KU-19", "KU-23"], "rationale": "从咨询扩展为小目标记录。"},
+      {"cueId": "CUE-023", "disposition": "knowledge", "unitIds": ["KU-20", "KU-21", "KU-23"], "rationale": "睡前目标和‘不会催你’，与 UI 提醒形成冲突。"},
+      {"cueId": "CUE-024", "disposition": "knowledge", "unitIds": ["KU-22", "KU-23"], "rationale": "慢慢变好的情绪/效果主张。"},
+      {"cueId": "CUE-025", "disposition": "knowledge", "unitIds": ["KU-24"], "rationale": "专业标准主张。"},
+      {"cueId": "CUE-026", "disposition": "knowledge", "unitIds": ["KU-24", "KU-25", "KU-31"], "rationale": "只供参考、不制造恐慌和靠谱评价。"},
+      {"cueId": "CUE-027", "disposition": "knowledge", "unitIds": ["KU-27", "KU-31"], "rationale": "打工人需要被看见和回应的结尾重构。"},
+      {"cueId": "CUE-028", "disposition": "knowledge", "unitIds": ["KU-28", "KU-29", "KU-30", "KU-31"], "rationale": "隐私绝对主张、最终互动问题与 CTA 负证据。"}
+    ],
+    "coreEvidence": {"covered": 30, "total": 30},
+    "unknowns": [
+      "新闻病例来源、真实性和病因",
+      "红发卡通角色与主讲人的身份映射",
+      "表单/界面示例值是否真实以及数据治理方式",
+      "问询进度算法与完整连续操作",
+      "医学建议的适用性、禁忌、审核和效果",
+      "‘高专业标准’‘绝不制造恐慌’‘完全确保隐私’的外部证据",
+      "诊断式 UI 所暗示的诊断能力、准确性、临床主体与监管资质",
+      "是否为付费广告，以及赞助、联盟/引流利益、品牌审核和编辑/创意控制关系",
+      "新闻式画面所称脑血栓取出和恢复状态的临床真实性",
+      "任务真实保存、提醒送达、持续打卡和健康改善",
+      "访问、价格、平台、地区、账户和支持条件",
+      "音乐/音效的具体身份、来源、授权、混音位置与精确编辑意图",
+      "隐藏剪辑与未展示操作"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "语音、逐字字幕、烧录字幕、新闻式插入素材及‘资料画面非本新闻事件’限定、‘脑血栓已取出/能活动/正在恢复中’屏幕主张、主讲人/环境、红发与黑发卡通角色、品牌/个人资料/聊天/目标 UI、诊断式措辞、参数和进度、免责声明、编辑顺序、开场—结尾关系、CTA/服务条件/商业关系负证据与非言语音轨均由对应 action 检查。非言语音轨另有完整 PCM、SHA-256、22 个无缝时间线窗口和 9 个转折窗口的本地 AudioSet 模型结果，观察到广泛 Music+Speech 共现及若干瞬态音效候选，同时保留声源、字面标签和编辑意图未知。OCR 未识别的开场竖排来源字通过专属放大裁切人工读取并保留 OCR 失败；‘不会催你’与每日提醒/快去打卡、‘不加量就行’与 UI 条件，以及‘获得更精准诊断/AI诊室’与仅供参考/及时就医限定均作为冲突或张力进入知识单元。付费、赞助、联盟利益、品牌审核及编辑控制均显式保留为未知。"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "reconstruction-comparison-1.0",
+  "skill": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/evaluation-skill/evaluation.json",
+  "baseline": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout2-3d/evaluation-baseline/evaluation.json",
+  "comparison": [
+    {
+      "name": "criticalQuestionRecall",
+      "direction": "higher",
+      "skill": 1,
+      "baseline": 0.6666666666666666,
+      "skillAdvantage": 0.33333333333333337
+    },
+    {
+      "name": "evidenceCoverage",
+      "direction": "higher",
+      "skill": 1,
+      "baseline": 0.8571428571428571,
+      "skillAdvantage": 0.1428571428571429
+    },
+    {
+      "name": "unsupportedInference",
+      "direction": "lower",
+      "skill": 0.03225806451612903,
+      "baseline": 0.07894736842105263,
+      "skillAdvantage": 0.046689303904923596
+    },
+    {
+      "name": "timestampAccuracy",
+      "direction": "higher",
+      "skill": 1,
+      "baseline": 0.8,
+      "skillAdvantage": 0.19999999999999996
+    },
+    {
+      "name": "unknownDiscipline",
+      "direction": "higher",
+      "skill": 1,
+      "baseline": 0.6666666666666666,
+      "skillAdvantage": 0.33333333333333337
+    }
+  ]
+}

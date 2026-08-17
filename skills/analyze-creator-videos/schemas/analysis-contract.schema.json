@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/analysis-contract.schema.json",
+  "title": "Creator analysis contract",
+  "type": "object",
+  "required": ["schemaVersion", "why", "method", "decisions", "nonDecisions", "platforms", "snapshotAt", "samplePolicy"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "why": { "type": "string", "minLength": 1 },
+    "method": { "type": "string", "minLength": 1 },
+    "decisions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "nonDecisions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "platforms": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "snapshotAt": { "type": "string", "minLength": 1 },
+    "samplePolicy": {
+      "type": "object",
+      "required": ["portfolio", "comparisonPerTier", "deepPerTier", "tiers"],
+      "properties": {
+        "portfolio": { "enum": ["all_visible", "bounded"] },
+        "comparisonPerTier": { "type": "integer", "minimum": 1 },
+        "deepPerTier": { "type": "integer", "minimum": 1 },
+        "tiers": { "type": "array", "items": { "enum": ["high", "median", "average", "low"] }, "minItems": 4, "uniqueItems": true }
+      },
+      "additionalProperties": true
+    },
+    "targetAccountConstraints": { "type": ["object", "null"], "additionalProperties": true }
+  },
+  "additionalProperties": true
+}

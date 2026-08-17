@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "6832e96a000000002100405d",
+  "auditMode": "blind_source_only",
+  "auditedAt": "2026-08-16T11:25:00+08:00",
+  "scope": {
+    "read": [
+      "median-performance/media/6832e96a000000002100405d.mp4",
+      "median-performance/media/6832e96a000000002100405d.srt",
+      "content-reconstruction-v1/videos/6832e96a000000002100405d/evidence/evidence-pack.json",
+      "content-reconstruction-v1/videos/6832e96a000000002100405d/evidence/frames/**"
+    ],
+    "excluded": [
+      "Skill instructions",
+      "candidate output",
+      "prior reports",
+      "external web sources"
+    ],
+    "methodLimit": "Findings distinguish visible/audible content from author assertions. No external corroboration was performed."
+  },
+  "sourceIntegrity": {
+    "videoSha256": "e254df8265789c778eccaa424d77995f02f93fb7e72f63836c434d766f295c09",
+    "subtitleSha256": "58f251394d3fd998d78b83b31ae1e042f2c2154dcd1d6c9f260d837485a41cda",
+    "evidencePackSha256": "f8dcc598efd90c7aa28f4d07f862e90f0b271a46201202faa369fd21a700de56",
+    "video": {
+      "durationSeconds": 83.198662,
+      "width": 1440,
+      "height": 2560,
+      "frameRate": 30,
+      "hasAudio": true
+    },
+    "evidencePack": {
+      "declaredDurationSeconds": 83.167,
+      "shotCount": 29,
+      "cueCount": 21,
+      "denseFrameCount": 57,
+      "denseIntervalSeconds": 1.5,
+      "mappingContractsDeclared": true
+    },
+    "durationDifferenceSeconds": 0.031662,
+    "integrityVerdict": "pass_with_minor_container_duration_delta"
+  },
+  "overallVerdict": {
+    "groundTruth": "mixed",
+    "summary": "The video visibly contains digital-host/live-commerce examples, human-plus-digital composited live layouts, product-detail shots and a two-person in-store fashion/demo sequence. It does not independently prove lip-to-speech synchronization, deployment scale, GMV, vendor attribution, commercial availability, brand case-study performance, or that the walking participant is the digital human.",
+    "publicationRisk": "high_if_assertions_are_republished_as_verified_facts",
+    "reuseClearance": "not_established"
+  },
+  "visualGroundTruth": [
+    {
+      "id": "VG-01",
+      "topic": "digital-human live commerce exists in the edit",
+      "timeRange": "00:00.000-00:02.433; 00:10.800-00:18.000; 01:04.233-01:20.267",
+      "status": "confirmed_visible",
+      "evidence": ["SHOT-001", "SHOT-004", "SHOT-023", "SHOT-027", "SHOT-028"],
+      "finding": "The edit shows vertical live-commerce interfaces and several human-like presenters labeled or contextually presented as JD digital humans.",
+      "limit": "Frames alone do not establish how the presenters were generated, whether they were live, or who supplied the underlying technology."
+    },
+    {
+      "id": "VG-02",
+      "topic": "lip-to-speech synchronization",
+      "timeRange": "00:26.780-00:31.958; 01:08.710-01:15.540",
+      "status": "not_verifiable_from_supplied_edit",
+      "evidence": ["CUE-007", "SHOT-016", "CUE-018", "CUE-019", "DENSE-0020", "DENSE-0049"],
+      "finding": "Mouth shapes visibly change across the showcased presenter clips.",
+      "limit": "The source is a creator-narrated edit rather than an isolated avatar audio/video test. The relevant avatar utterance, exact phonemes, latency and original unedited clip are unavailable, so 'completely synchronized' or 'natural synchronization' cannot be verified."
+    },
+    {
+      "id": "VG-03",
+      "topic": "human plus digital co-broadcast",
+      "timeRange": "00:31.958-00:44.600",
+      "status": "partially_confirmed",
+      "evidence": ["CUE-008", "CUE-009", "SHOT-016", "SHOT-017", "DENSE-0023", "DENSE-0028"],
+      "finding": "A live-commerce layout shows two presenter-like figures together, and the slide labels the mode as dual-person/interactive co-broadcast.",
+      "limit": "The video does not independently identify which figure is digital versus real, prove simultaneous live generation, or exclude prerecorded/composited playback."
+    },
+    {
+      "id": "VG-04",
+      "topic": "product explanation and commerce UI",
+      "timeRange": "00:39.233-00:58.267; 01:15.540-01:23.167",
+      "status": "confirmed_visible",
+      "evidence": ["SHOT-017", "SHOT-018", "SHOT-019", "SHOT-027", "SHOT-028", "SHOT-029"],
+      "finding": "The edit shows an ANTA-branded jacket, close-up garment details, shoe-store background, prices/promotional banners, comments and a product card; other presenter clips also use live-commerce UI.",
+      "limit": "Visibility of a sales interface does not prove sales conversion, autonomous product knowledge, real-time operation or who authored the sales copy."
+    },
+    {
+      "id": "VG-05",
+      "topic": "digital human runway/fashion demonstration",
+      "timeRange": "00:31.958-00:44.600",
+      "status": "claim_exceeds_visible_evidence",
+      "evidence": ["CUE-008", "CUE-009", "SHOT-016", "SHOT-017", "DENSE-0023", "DENSE-0027", "DENSE-0029"],
+      "finding": "The footage shows a two-person in-store fashion/demo layout and bodily movement by the taller participant, followed by garment close-ups.",
+      "limit": "The participants are not explicitly identified. The visible walking/model movement cannot be confidently assigned to the digital human; the claim that the digital human itself walks a runway is therefore unverified."
+    },
+    {
+      "id": "VG-06",
+      "topic": "conference attendance/context",
+      "timeRange": "00:02.433-00:10.800",
+      "status": "contextually_supported_not_independently_authenticated",
+      "evidence": ["SHOT-002", "SHOT-003", "CUE-001", "CUE-002"],
+      "finding": "The creator appears at an event/exhibition area with JD/JD Cloud-related signage and demonstrations.",
+      "limit": "The supplied files do not provide event credentials, date or independent proof of the exact conference identity."
+    }
+  ],
+  "authorClaims": [
+    {
+      "id": "CL-01",
+      "claim": "More than 10,000 brands use these digital humans.",
+      "timeRange": "00:13.527-00:17.970",
+      "status": "author_assertion_only",
+      "support": "The number appears only in the creator narration/burned caption over venue display footage; no readable report, methodology, time window or denominator is provided.",
+      "requiredCorroboration": "Dated primary JD source defining active brand, product scope and counting method."
+    },
+    {
+      "id": "CL-02",
+      "claim": "Annual merchandise sales exceed RMB 14 billion.",
+      "timeRange": "00:13.527-00:17.970",
+      "status": "author_assertion_only",
+      "support": "No independently readable sales report or period definition appears in the supplied evidence.",
+      "requiredCorroboration": "Dated audited/official primary source specifying gross versus net GMV, period, attribution rules, cancellations and returns."
+    },
+    {
+      "id": "CL-03",
+      "claim": "ANTA created a digital-human live room in an offline flagship store and the digital human handles product, discount and styling information.",
+      "timeRange": "00:40.920-00:51.520",
+      "status": "partially_visible_not_verified",
+      "support": "An ANTA-branded in-store live-commerce scene and garment/product UI are visible.",
+      "missing": "Store identity/location, official ANTA authorization, participant identity, system provider, live status and degree of automation are not established."
+    },
+    {
+      "id": "CL-04",
+      "claim": "Balabala built nearly ten live rooms using digital humans.",
+      "timeRange": "00:51.530-00:58.270",
+      "status": "author_assertion_only",
+      "support": "The edit shows Balabala-related desktop/live content but no countable set of approximately ten rooms or primary deployment record.",
+      "requiredCorroboration": "Official deployment list with dates, store/account identifiers and operational definition of a live room."
+    },
+    {
+      "id": "CL-05",
+      "claim": "Digital-human live commerce accounts for as much as 15% of total GMV.",
+      "timeRange": "00:58.280-01:02.320",
+      "status": "author_assertion_only",
+      "support": "The percentage is present in narration/burned captions but no source table, period, brand denominator, channel scope or attribution method is shown.",
+      "requiredCorroboration": "Primary brand/JD data defining numerator, denominator, reporting period, returns/cancellations and causal attribution."
+    },
+    {
+      "id": "CL-06",
+      "claim": "All showcased technology is based on JD Digital Human.",
+      "timeRange": "01:02.320-01:04.780",
+      "status": "contextually_plausible_not_verified",
+      "support": "JD Digital Human branding is visible at the exhibition and on later demo clips.",
+      "missing": "No technical provenance links each brand case or every displayed component to JD."
+    },
+    {
+      "id": "CL-07",
+      "claim": "For 618, JD launched an industry-first batch of highly commercially usable digital humans.",
+      "timeRange": "01:04.790-01:08.710",
+      "status": "author_assertion_only",
+      "support": "The on-video caption states '高商业可用数字人' and presents avatar archetypes.",
+      "missing": "No launch date, comparison set, definition of 'industry first', production SLA, licensing terms, availability terms or adoption evidence is supplied."
+    },
+    {
+      "id": "CL-08",
+      "claim": "The customized voices are emotional, lack an AI feel, generate scenario-specific sales scripts readily and can quickly make products popular.",
+      "timeRange": "01:08.710-01:23.173",
+      "status": "subjective_or_unverified_performance_claim",
+      "support": "Presenter clips and changing mouth/gesture frames are visible.",
+      "missing": "No isolated audio, comparative evaluation, prompt/output trace, conversion experiment or causal sales evidence is provided."
+    }
+  ],
+  "conflictsAndAmbiguities": [
+    {
+      "id": "CF-01",
+      "severity": "material_transcription_error",
+      "timeRange": "01:04.790-01:08.710",
+      "srt": "行业首批高盛宴可用的数字人",
+      "burnedCaption": "行业首批高商业可用数字人",
+      "resolution": "Use '高商业可用数字人' as the intended wording. Treat the SRT phrase '高盛宴可用' as an ASR/transcription error, not as source truth."
+    },
+    {
+      "id": "CF-02",
+      "severity": "identity_ambiguity",
+      "timeRange": "00:31.958-00:44.600",
+      "finding": "The two figures in co-broadcast/runway examples are not explicitly labeled as real versus digital in a way that can be independently verified.",
+      "impact": "Do not claim which person is the digital human or that the digital human performs the walking action without a primary source."
+    },
+    {
+      "id": "CF-03",
+      "severity": "identity_and_likeness_unknown",
+      "timeRange": "01:04.233-01:20.267",
+      "finding": "Avatar images and presenter clips are shown without names, capture/model origin, likeness authorization, voice authorization or synthetic-media disclosure terms.",
+      "impact": "The footage cannot establish commercial reuse rights or whether the depicted identities are licensed, fictional, staff, models or generated composites."
+    },
+    {
+      "id": "CF-04",
+      "severity": "commercial_availability_ambiguity",
+      "timeRange": "01:04.790-01:08.710",
+      "finding": "'高商业可用' is a marketing-quality assertion, not proof of general availability or a license grant.",
+      "impact": "Do not interpret it as 'commercially free to use' or as clearance for third-party reuse."
+    }
+  ],
+  "replacementAndReuse": {
+    "verdict": "conditions_unknown_clearance_required",
+    "reconstructableEditorialFunction": [
+      "Generic conference/expo arrival footage for the opening context",
+      "Generic digital presenter close-ups to illustrate human-like hosting",
+      "Generic split-screen real-person plus avatar composition to illustrate co-broadcast",
+      "Generic apparel live-commerce UI, product close-up and fitting/walk sequence",
+      "Generic multi-avatar lineup and live-chat interface for the ending"
+    ],
+    "notSafelyReplaceableWithoutPrimarySupport": [
+      "JD Cloud conference attendance and exact event identity",
+      "JD Digital Human product attribution",
+      "ANTA and Balabala deployments or performance",
+      "10,000+ brands, RMB 14 billion annual sales, nearly ten rooms and 15% GMV",
+      "industry-first and high-commercial-usability claims",
+      "claims that a specific visible person is digital or that the digital person performs the runway movement"
+    ],
+    "sourceUnknowns": [
+      "Original source URLs/files for embedded live-commerce captures and demo clips",
+      "Who recorded the brand/platform footage",
+      "Whether clips are official press assets, creator captures, screen recordings or third-party reposts",
+      "Image, likeness and voice model releases",
+      "Trademark and platform-UI permissions",
+      "Music and sound-effect licenses",
+      "Permission to reuse event exhibits and attendee imagery"
+    ],
+    "minimumConditions": [
+      "Obtain traceable source files or URLs and rights-holder identity for every replacement clip",
+      "Document territory, media, duration, commercial use, modification, paid-promotion and sublicensing rights",
+      "Obtain likeness/voice/model releases for recognizable people or synthetic replicas",
+      "Clear brand marks and platform UI, or remove/blur them when the editorial claim does not require them",
+      "Attach dated primary substantiation for every numeric, brand-case, vendor-attribution and superlative claim",
+      "Label simulations, prerecorded demos and digital humans accurately; do not imply live operation when unproven",
+      "Verify product prices/promotions are current before reuse, or obscure them"
+    ],
+    "safeDefault": "Until these conditions are satisfied, reuse only the high-level editorial structure and generic visual functions; do not reuse embedded third-party footage, likenesses, brand cases, figures or commercial-availability language as cleared facts."
+  },
+  "evidenceQuality": {
+    "strengths": [
+      "Complete 83-second source video and provided subtitles are present",
+      "Evidence pack covers 29 detected shots, all 21 subtitle cues and 57 dense probes",
+      "Dense 1.5-second sampling is sufficient to locate major visual categories and most scene transitions"
+    ],
+    "limits": [
+      "The evidence pack contains frames and transcript mapping, not original provenance documents",
+      "Still frames cannot prove exact audiovisual lip synchronization or live latency",
+      "The creator edit may crop, subtitle, composite and reorder underlying materials",
+      "No external or primary-source verification was permitted in this blind audit"
+    ]
+  },
+  "recommendedDisposition": {
+    "status": "revise_and_substantiate_before_fact_claim_or_commercial_reuse",
+    "requiredActions": [
+      "Correct CUE-017 from '高盛宴可用' to '高商业可用'.",
+      "Downgrade lip-sync, co-broadcast and runway statements to 'the demo shows/claims' unless original unedited demonstrations are obtained.",
+      "Cite primary dated sources for all scale, sales, GMV, deployment and industry-first claims.",
+      "Clarify which co-broadcast participant is digital and provide the basis for that identification.",
+      "Complete footage, trademark, platform-UI, likeness, voice and music clearance before commercial reuse."
+    ]
+  }
+}

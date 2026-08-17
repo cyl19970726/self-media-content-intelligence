@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "v0-holdout-generalization-1.0",
+  "corpusId": "6a3139ab00000000220171b1",
+  "independent": true,
+  "v0": {
+    "version": "v0",
+    "sha256": "5266b285afdb8b23d05a433e1a7f34b177ae6f93a78acaf53ccf4761748c95db",
+    "mutated": false
+  },
+  "inputBoundary": {
+    "allowed": [
+      "artifacts/director-skill-study/v0-method.md",
+      "artifacts/director-skill-study/v0-freeze.json",
+      "artifacts/director-skill-study/holdout-evaluation-contract.md",
+      "artifacts/director-skill-study/corpus/6a3139ab00000000220171b1/run/reconstruction.json",
+      "artifacts/director-skill-study/corpus/6a3139ab00000000220171b1/run/article.md",
+      "artifacts/director-skill-study/corpus/6a3139ab00000000220171b1/review/audit/",
+      "artifacts/director-skill-study/corpus/6a3139ab00000000220171b1/review/evaluation-v2/"
+    ],
+    "excluded": [
+      "other observations",
+      "other corpus items",
+      "other holdout-generalization outputs",
+      "final Skill"
+    ]
+  },
+  "sourceReadiness": {
+    "status": "READY_FOR_DOWNSTREAM_USE",
+    "gateReportPassed": 22,
+    "gateReportTotal": 22,
+    "criticalQuestionRecall": "15/15",
+    "coreKnowledgeCoverage": "18/18",
+    "unsupportedInference": "0/31",
+    "requiredDependencyCompleteness": "16/16",
+    "unknownDiscipline": "13/13"
+  },
+  "scoringRule": {
+    "denominator": "Applicable closure questions only; N.A. questions are reported but excluded.",
+    "recalled": "A frozen V0 P/C/minimum-closure clause specifically restores the audit question and its boundary.",
+    "missed": "The source raises an applicable closure question for which V0 lacks a sufficiently specific node.",
+    "falsePositive": "V0 would assert a non-applicable requirement or unsupported fact rather than merely ask/check it."
+  },
+  "dimensions": [
+    {
+      "id": 1,
+      "name": "account/identity purpose",
+      "applicability": "applicable",
+      "auditedQuestionCount": 4,
+      "denominator": 4,
+      "recalled": [
+        {"id":"D1-Q1","question":"Does the result credential/profile insert prove identity, ownership, metric meaning, or causality?","v0Basis":["P02","P08"],"result":"recalled","reason":"V0 requires scope-limited proof objects and separates a strong persona from verified identity and results."},
+        {"id":"D1-Q2","question":"What stable persona and recognition symbols recur?","v0Basis":["P02","P10"],"result":"recalled","reason":"The mask, self-title, set and repeated language map directly to repeatable visual/language symbols."},
+        {"id":"D1-Q3","question":"How do recurring behavior, demeanor and style serve the cross-video IP purpose?","v0Basis":["P01","P02"],"result":"recalled","reason":"V0 treats identity as a compound system serving a continuing account promise, not as a title alone."}
+      ],
+      "missed": [
+        {"id":"D1-Q4","question":"Can identity legibility be checked through viewers' recall of several non-credential facets such as tastes, skills and clothing style?","result":"missed","reason":"P02 names identity, attitude, symbols and proof, but does not contain a distinct multi-facet self-disclosure/legibility check or a viewer-recall measure."}
+      ],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 2,
+      "name": "audience, situation and demand",
+      "applicability": "applicable",
+      "auditedQuestionCount": 3,
+      "denominator": 3,
+      "recalled": [
+        {"id":"D2-Q1","question":"Who is the promised audience and what transformation is relevant to them?","v0Basis":["P01","P04","minimum-closure-3","minimum-closure-4"],"result":"recalled"},
+        {"id":"D2-Q2","question":"Does product framing require demand to precede format choice?","v0Basis":["P04"],"result":"recalled"},
+        {"id":"D2-Q3","question":"Are curiosity, companionship and dream projection useful hypotheses rather than exhaustive user laws?","v0Basis":["P04","section-3-hypothesis-discipline"],"result":"recalled"}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 3,
+      "name": "single-post job and portfolio role",
+      "applicability": "mixed",
+      "auditedQuestionCount": 2,
+      "denominator": 1,
+      "recalled": [
+        {"id":"D3-Q1","question":"What is this post's primary job?","v0Basis":["P03"],"result":"recalled","reason":"The post's observable job is teaching a strategic Vlog framework; V0 requires one primary job before evaluating delivery."}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": [
+        {"id":"D3-Q2","question":"What explicit acquisition/trust/search/commercial portfolio slot was preregistered?","reason":"The video supplies no account portfolio plan or preregistered slot; absence is not evidence for assigning one."}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "opening, delivery and closing contracts",
+      "applicability": "applicable",
+      "auditedQuestionCount": 3,
+      "denominator": 3,
+      "recalled": [
+        {"id":"D4-Q1","question":"What does the opening promise, to whom, and with what evidence burden?","v0Basis":["P05","P06","P07"],"result":"recalled"},
+        {"id":"D4-Q2","question":"Does the body deliver a full transformation workflow or only a partial strategic framework?","v0Basis":["P06","P11","minimum-closure-7"],"result":"recalled"},
+        {"id":"D4-Q3","question":"Does the closing close the result promise, or only echo identity and say goodbye?","v0Basis":["P06"],"result":"recalled","reason":"P06 explicitly rejects a sign-off or CTA as substitute for promise closure."}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 5,
+      "name": "narrative/process/story relations",
+      "applicability": "applicable",
+      "auditedQuestionCount": 4,
+      "denominator": 4,
+      "recalled": [
+        {"id":"D5-Q1","question":"What dependency chain connects demand, claimed platform preference, format/material, IP and packaging?","v0Basis":["section-1-total-model","P04","minimum-closure-7"],"result":"recalled"},
+        {"id":"D5-Q2","question":"Are daily/challenge top-level types while narrative/fixed are nested only under daily?","v0Basis":["P11","minimum-closure-6","minimum-closure-7"],"result":"recalled","reason":"V0 requires evidence restoration and relation-aware reconstruction, not flattened label extraction."},
+        {"id":"D5-Q3","question":"Is contrast an expectation-reality relation rather than a decorative edit?","v0Basis":["P04","P10"],"result":"recalled"},
+        {"id":"D5-Q4","question":"Are soft/hard material claims operationally defined and reproducible?","v0Basis":["P07","P11"],"result":"recalled","reason":"V0 forces conditions, counterexamples, unknowns and an executable reconstruction; the source leaves the threshold unknown."}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 6,
+      "name": "proof objects and causal scope",
+      "applicability": "applicable-critical",
+      "auditedQuestionCount": 4,
+      "denominator": 4,
+      "recalled": [
+        {"id":"D6-Q1","question":"Does the opening profile prove ownership, metric definition, baseline or two-post causality?","v0Basis":["P08","P16"],"result":"recalled","critical":true},
+        {"id":"D6-Q2","question":"Do creator profile inserts prove the examples' mechanisms or results?","v0Basis":["P08"],"result":"recalled","critical":true},
+        {"id":"D6-Q3","question":"Are platform-preference, hard-material and title-causes-virality statements verified facts?","v0Basis":["P07","P16","section-3-hypothesis-discipline"],"result":"recalled","critical":true},
+        {"id":"D6-Q4","question":"Are breakout threshold, before/after transformation, source, comparison and success rate present?","v0Basis":["P06","P08","P16"],"result":"recalled","critical":true}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 7,
+      "name": "speech/image/text/audio carrier functions",
+      "applicability": "applicable",
+      "auditedQuestionCount": 4,
+      "denominator": 4,
+      "recalled": [
+        {"id":"D7-Q1","question":"How do speech, whiteboard, burned subtitles, profile inserts, persona and set divide work?","v0Basis":["P09","P10","minimum-closure-9"],"result":"recalled"},
+        {"id":"D7-Q2","question":"Are consequential SRT/burned-text conflicts preserved instead of silently normalized?","v0Basis":["P09"],"result":"recalled"},
+        {"id":"D7-Q3","question":"Are technical shot boundaries distinguished from semantic changes?","v0Basis":["P10","P11"],"result":"recalled"}
+      ],
+      "missed": [
+        {"id":"D7-Q4","question":"What semantic function does non-speech audio perform, or must it remain unresolved?","result":"missed","reason":"P09's carrier model names image, speech and subtitles but has no explicit non-speech-audio node; P13 mentions sound production quality, not music/effect/source-audio semantics."}
+      ],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 8,
+      "name": "follow/series/CTA handoff",
+      "applicability": "applicable",
+      "auditedQuestionCount": 2,
+      "denominator": 2,
+      "recalled": [
+        {"id":"D8-Q1","question":"Do repeated slogan/self-title elements build recognition without proving the result promise?","v0Basis":["P02","P05","P06"],"result":"recalled"},
+        {"id":"D8-Q2","question":"Does 'next episode' specify an object, progress, variant or unresolved problem, and is there a concrete CTA?","v0Basis":["P05"],"result":"recalled","reason":"The audited answer is no; V0 specifically says numbering or 'next time' alone is not continuity."}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 9,
+      "name": "publishing, metrics and review logic",
+      "applicability": "applicable-because-outcome-claims-are-central",
+      "auditedQuestionCount": 3,
+      "denominator": 3,
+      "recalled": [
+        {"id":"D9-Q1","question":"Which platform, date window and breakout metric are meant?","v0Basis":["P14","P16","section-3-hypothesis-discipline"],"result":"recalled"},
+        {"id":"D9-Q2","question":"Was title, persona, format or hard material isolated as a causal variable?","v0Basis":["P16"],"result":"recalled"},
+        {"id":"D9-Q3","question":"Is there a publishing window, guardrail, failure line, layered review or next-version action?","v0Basis":["P16","P17","P18"],"result":"recalled","reason":"The audited answer is that the source provides none; V0 correctly makes the missing evaluation closure visible."}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": []
+    },
+    {
+      "id": 10,
+      "name": "rights, safety and unknowns",
+      "applicability": "mixed",
+      "auditedQuestionCount": 5,
+      "denominator": 3,
+      "recalled": [
+        {"id":"D10-Q1","question":"Are the mask-like character, creator pages, works, identities and account ownership authorized or attributable?","v0Basis":["P08","P10","minimum-closure-12"],"result":"recalled","critical":true},
+        {"id":"D10-Q2","question":"Are year, platform, proper nouns, occluded whiteboard text, hidden edits and account identity kept unknown where evidence conflicts or stops?","v0Basis":["P07","P08","P09"],"result":"recalled","critical":true},
+        {"id":"D10-Q3","question":"Are absence claims limited to the inspected video and carriers?","v0Basis":["P07","P08"],"result":"recalled","critical":true}
+      ],
+      "missed": [],
+      "false_positive": [],
+      "N.A.": [
+        {"id":"D10-Q4","question":"What paid offer, price, support duty or commercial disclosure applies?","reason":"No product or paid service is offered in this video."},
+        {"id":"D10-Q5","question":"What health or physical-safety instruction requires a hazard gate?","reason":"No health claim, hazardous procedure or physical instruction is present."}
+      ]
+    }
+  ],
+  "totals": {
+    "auditedQuestions": 34,
+    "applicableDenominator": 31,
+    "recalled": 29,
+    "missed": 2,
+    "false_positive": 0,
+    "N.A.": 3,
+    "recall": 0.9355
+  },
+  "deltas": [
+    {
+      "type": "confirmed",
+      "v0Basis": ["P04"],
+      "finding": "The demand-first rule recovered the video's move from video-as-product to curiosity, companionship and dream-projection needs without treating the three-item list as universal law."
+    },
+    {
+      "type": "confirmed",
+      "v0Basis": ["P06"],
+      "finding": "The opening/closing contract rule correctly distinguishes a repeated identity title from fulfillment of the promised breakout transformation."
+    },
+    {
+      "type": "confirmed",
+      "v0Basis": ["P08","P16"],
+      "finding": "Visible account pages and examples are bounded as illustrations; they do not prove ownership, causality, platform preference, title efficacy or repeatable virality."
+    },
+    {
+      "type": "limited",
+      "v0Basis": ["P02"],
+      "finding": "The compound-persona direction is correct, but V0 lacks a specific identity-legibility closure: deliberate exposure of several non-credential facets and a viewer test of what was actually learned about the person."
+    },
+    {
+      "type": "limited",
+      "v0Basis": ["P09","P13"],
+      "finding": "V0 covers image/speech/subtitle roles and sound production, but not non-speech audio as a semantic carrier that must be inspected or explicitly left unresolved."
+    },
+    {
+      "type": "contradicted",
+      "finding": "None. The holdout supplies no verified counterexample that reverses a frozen V0 rule."
+    },
+    {
+      "type": "novel",
+      "finding": "A testable 'identity legibility' node: after one Vlog, measure which tastes, skills, habits or style traits viewers can freely recall, while keeping credential proof separate."
+    },
+    {
+      "type": "unresolved",
+      "finding": "Platform identity/date, breakout threshold, profile ownership, platform-preference basis, title causality, soft/hard operational threshold, first title's external identity, occluded whiteboard text, hidden edits and non-speech-audio semantics remain unresolved."
+    }
+  ],
+  "criticalSet": {
+    "denominator": 7,
+    "recalled": 7,
+    "missed": 0,
+    "ids": ["D6-Q1","D6-Q2","D6-Q3","D6-Q4","D10-Q1","D10-Q2","D10-Q3"]
+  },
+  "hypotheses": {
+    "H0": {"pass":true,"result":"22/22 ready gates passed; evaluation-v2 status is READY_FOR_DOWNSTREAM_USE."},
+    "H1": {"pass":true,"result":"29/31 applicable closure questions recalled = 93.55%, above 85%."},
+    "H2": {"pass":true,"result":"7/7 critical proof/causal/rights/unknown-safety questions recalled = 100%."},
+    "H3": {"pass":true,"result":"0 unsupported causal upgrades."},
+    "H4": {"pass":true,"result":"3 questions correctly marked N.A.; none were forced into the denominator."},
+    "H5": {"pass":true,"result":"Confirmations, two limitations, one novelty and unresolved items are explicit; no contradiction was evidenced."},
+    "H6": {"pass":true,"result":"One original randomized identity-legibility test is specified with production controls, measures and decision thresholds."}
+  },
+  "originalAction": {
+    "name": "入职第7天：身份可读性双版本盲测",
+    "artifact": "Produce one original 55-second Vlog for new product managers: opening contract '我用一张需求单过完入职第7天，结尾给你看它被打回了几次'; three narrative checkpoints show request intake, revision and final disposition; privacy-mask all work data; close with the actual revision count and the next unresolved task.",
+    "primaryVariable": "Version A contains three 1.5-second, story-relevant self-disclosure inserts (commute playlist, annotated product book, keyboard-shortcut skill). Version B replaces exactly those durations with neutral location transitions. Script, voice, title, cover, duration, proof shots and ending stay fixed.",
+    "sample": "Randomly assign at least 40 target viewers, 20 per version, with no repeat exposure.",
+    "primaryMetric": "Five minutes after viewing, unaided proportion naming at least two of the three intended personal facets correctly.",
+    "guardMetrics": [
+      "correct recall of the opening promise",
+      "correct recall of the final revision count",
+      "perceived credibility on a 1-5 scale",
+      "completion rate"
+    ],
+    "successRule": "Adopt the self-disclosure node only if Version A beats B by at least 20 percentage points on the primary metric, while no guard metric falls by more than 10 percentage points and mean credibility falls by no more than 0.3/5.",
+    "failureAction": "If the primary lift is smaller, remove or redesign the facet inserts; if promise/result recall drops, move the inserts onto existing narrative proof beats instead of adding parallel information.",
+    "whyOriginal": "It changes the person, promise, proof objects, setting and measured outcome; it tests the holdout-derived identity-legibility gap rather than copying the source's examples or slogans."
+  },
+  "verdict": "PASS_ALL_H0_H6_WITH_V1_LIMITATIONS"
+}

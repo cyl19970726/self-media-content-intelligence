@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能知道短视频或 AI 等所谓风口，却把自媒体赚钱理解成依赖流量、广告或直接进入风口本身，尚未形成从需求与自身兴趣寻找可售产品的框架。",
+    "after": "观众被引导把自媒体视为已提供渠道与广告的销售环境，将注意力转向‘卖什么、谁会买’，并能用向外找风口受益者需求、向内把兴趣产品化两条路径提出产品，再按产品形态选择内容形式。",
+    "intendedChanges": [
+      "相信 2026 年单靠短视频广告变现被作者描述为走弱，应寻找自己的生意",
+      "掌握‘产品+渠道+广告’与‘有东西卖+有人买’两个判断框架",
+      "会从风口内部获益者的画像与衍生需求反推周边产品",
+      "会把生产型和消费型兴趣都转化为可售服务或资料",
+      "能依据服务型或资料型产品选择第一视角 vlog、口播干货或图文"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 4.8},
+      "cognitiveQuestion": "开场用什么证据与身份建立‘认知与财富不匹配’的问题？",
+      "observedSignals": ["0 秒附近出现多张短视频数据截图拼贴，能辨认多组播放/互动量数字", "戴红色蜘蛛侠风格面罩的讲述者正面出镜", "烧录字幕提出财富与认知不匹配的问题", "顶部及底部出现‘人类最强编导（9.4-9.6深圳线下课’样式的持续身份/课程推广条"],
+      "checkedAlternatives": ["CUE-001至CUE-002逐字字幕", "SHOT-001至SHOT-002代表帧", "DENSE-0001至DENSE-0004", "画面布局、人物、白板、烧录字幕与覆盖层", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["拼贴截图来源、账号归属、统计口径与真伪", "面罩人物的法律身份及与顶部账号名的关系", "非语音音频的具体类型和叙事作用"],
+      "evidenceHints": ["CUE-001", "CUE-002", "SHOT-001", "SHOT-002", "FRAME-SHOT-001", "FRAME-SHOT-002", "DENSE-0001"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 4.8, "end": 24.665},
+      "cognitiveQuestion": "作者怎样从行业判断推导到‘找产品’这一核心问题？",
+      "observedSignals": ["讲述者在同一室内白板前口播并用笔指示", "作者称短视频广告行业江河日下、品牌投放减少、中介返点提高", "作者定义生意为产品加渠道加广告，并称平台已解决后两项", "作者把产品成立条件压缩为有东西卖且有人买", "烧录字幕与SRT在‘生意/声’、‘自媒体接广告/自媒的广告’等处可能冲突"],
+      "checkedAlternatives": ["CUE-003至CUE-009逐字字幕", "SHOT-003代表帧及对应dense帧", "白板、手势、持续推广条、烧录字幕", "技术分段与场景连续性", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["行业趋势数据来源及适用范围", "白板全部小字是否与口播完全一致", "SRT与实际语音冲突处的准确读法", "推广课程的价格、报名路径、条件与责任主体"],
+      "evidenceHints": ["CUE-003", "CUE-004", "CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009", "SHOT-003", "DENSE-0005", "DENSE-0017"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 24.665, "end": 44},
+      "cognitiveQuestion": "‘向外找’的决策规则是什么，作者如何用房地产与AI建立必要性？",
+      "observedSignals": ["作者提出先找买家再找产品、赚风口周边的钱", "作者把风口描述为普通人看得到但未必有钱、资源或技术进入", "房地产与AI被并列为例，形成由无法赚内部的钱转向服务已获利者的推导", "同一房间、白板、面罩人物持续出现；技术shot边界主要伴随姿态与遮挡变化"],
+      "checkedAlternatives": ["CUE-010至CUE-016逐字字幕", "SHOT-004至SHOT-006及dense帧", "白板分区、指示动作、烧录字幕", "技术切点前后场景连续性", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["‘风口’定义是否为修辞性概括而非普遍事实", "举例未提供成功率、成本、竞争或反例", "是否存在隐藏剪辑或未展示推理步骤"],
+      "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-013", "CUE-014", "CUE-015", "CUE-016", "SHOT-004", "SHOT-005", "SHOT-006", "DENSE-0018", "DENSE-0030"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 44, "end": 66.6},
+      "cognitiveQuestion": "向外找如何从风口获利者画像转成具体产品？",
+      "observedSignals": ["作者以游戏/陪玩为例，描述目标群体为年轻男性、熬夜、独居、点外卖", "作者由此提出孤独与健康需求，并给出线下社交、营养餐食", "作者另列给AI开发者做发布会、给电商主播做形象和化妆服务", "白板左侧呈现风口、用户、需求、产品的手写关系，但小字部分被人物遮挡"],
+      "checkedAlternatives": ["CUE-017至CUE-024逐字字幕", "SHOT-007至SHOT-008及dense帧", "白板结构、手势、烧录字幕", "技术切点前后连续性", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["客户画像是否有调查依据", "需求到产品的因果关系及付费意愿未被证明", "‘游戏是虚拟产品最好的生意’与陪玩赚大钱的范围和数据来源", "白板被遮挡文本"],
+      "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "CUE-021", "CUE-022", "CUE-023", "CUE-024", "SHOT-007", "SHOT-008", "DENSE-0031", "DENSE-0045"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 66.6, "end": 93.865},
+      "cognitiveQuestion": "‘向内找’如何把消费型兴趣改造成产品，并映射到买家？",
+      "observedSignals": ["作者先承认常见的生产型兴趣变现说法，再提出消费型兴趣也能产品化", "刷短视频被映射为面向年长、忙碌且想做自媒体者的一周热点简报", "打游戏被映射为陪玩、代练中介、训练课", "看电影被映射为面向约会者的聊天素材包", "讲述者继续指向白板右侧‘向内找’分支"],
+      "checkedAlternatives": ["CUE-025至CUE-034逐字字幕", "SHOT-009至SHOT-010及dense帧", "白板右侧分支、手势、烧录字幕", "技术切点前后连续性", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["兴趣产品的制作、定价、交付、获客与验证方法", "‘都能卖钱/一样能卖钱’的普遍范围没有被例子证明", "‘最好的腹地’等SRT疑似识别错误需对照烧录字幕"],
+      "evidenceHints": ["CUE-025", "CUE-026", "CUE-027", "CUE-028", "CUE-029", "CUE-030", "CUE-031", "CUE-032", "CUE-033", "CUE-034", "SHOT-009", "SHOT-010", "DENSE-0046", "DENSE-0063"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 93.865, "end": 105.215},
+      "cognitiveQuestion": "找到产品后如何选内容形式，结尾是否兑现或改变开场承诺？",
+      "observedSignals": ["作者称产品决定内容", "服务型产品对应第一视角vlog，资料型产品对应口播干货或图文", "结尾自称‘人类最强编导’并说下期再见，呼应持续推广条中的账号身份", "没有展示实际拍摄、发布、销售、成交或复盘结果"],
+      "checkedAlternatives": ["CUE-035至CUE-038逐字字幕", "SHOT-010至SHOT-011与最后dense帧", "白板末段、手势、烧录字幕、顶部推广条", "开场与结尾身份及承诺对照", "全时间线中CTA/价格/报名路径的可见性", "音频流存在性与连续能量"],
+      "remainingUnknowns": ["内容形式建议的条件、平台差异与效果依据", "作者身份、课程主办/报名方式与课程条件", "未听辨工具下的非语音音频类型和结尾功能"],
+      "evidenceHints": ["CUE-035", "CUE-036", "CUE-037", "CUE-038", "SHOT-010", "SHOT-011", "FRAME-SHOT-011", "DENSE-0064", "DENSE-0072"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "提供的SRT逐字字幕", "modalityKeys": ["subtitles", "speech_proxy"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["承载作者口播主张、框架、例子与结尾"], "intervals": [{"start": 0, "end": 105.214}], "omissionImpact": "会丢失论证顺序、例子、限制与原始ASR冲突。"},
+    {"id": "CAR-02", "name": "烧录中文字幕", "modalityKeys": ["on_screen_text", "burned_captions", "ocr"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["逐句复述口播并帮助纠正SRT疑似误识别"], "intervals": [{"start": 1.2, "end": 105.215}], "omissionImpact": "会静默掩盖‘生意/声’、‘副业/腹地’、作者名等有意义冲突。"},
+    {"id": "CAR-03", "name": "讲述者、面罩、手势与指向动作", "modalityKeys": ["person", "recognizable_styling", "gesture", "physical_action"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["建立辨识度与表演语气", "把口播段落空间映射到白板分支"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "会丢失面罩造型、讲述者与白板的指示关系；也可能误把形似蜘蛛侠升级为授权身份。"},
+    {"id": "CAR-04", "name": "手写白板", "modalityKeys": ["whiteboard", "diagram", "spatial_grouping", "handwritten_text"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["将生意、向外找、向内找及产品到内容形式组织为空间关系图", "承载部分口播未完整逐字重复的小字"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "会丢失两条方法的并列结构、例子分组和产品到内容形式的视觉关系。"},
+    {"id": "CAR-05", "name": "开场数据截图拼贴", "modalityKeys": ["inserted_clip", "metrics", "layout", "count"], "discoveredIn": ["SWEEP-01"], "available": true, "inspected": true, "roles": ["用多组高播放/互动量界面作为可信度与结果暗示"], "intervals": [{"start": 0, "end": 1.2}], "omissionImpact": "会把开场误写成纯口播，遗漏作者用数据拼贴建立权威的视觉动作。"},
+    {"id": "CAR-06", "name": "持续账号/课程推广覆盖层", "modalityKeys": ["overlay", "identity", "promotion", "qualifier"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["标示可见账号名与9.4-9.6深圳线下课推广信息", "与结尾自报身份形成呼应"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "会丢失持续商业推广边界，并可能把账号显示名当作已验证身份。"},
+    {"id": "CAR-07", "name": "同一室内、白板与橙色家具的布景", "modalityKeys": ["environment", "set", "continuity"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["维持课堂/讲解语境与空间连续性"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "可能把11个技术shot误写成11个不同场景或完整无剪辑实录。"},
+    {"id": "CAR-08", "name": "剪辑顺序、技术切点与姿态变化", "modalityKeys": ["editing_order", "scene_detection", "juxtaposition"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["按问题—框架—向外—向内—拍法—结尾排序", "技术切点辅助定位姿态/遮挡变化"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "会丢失论证次序，或把自动检测边界误当成语义场景/剪辑次数。"},
+    {"id": "CAR-09", "name": "非语音音频", "modalityKeys": ["non_speech_audio", "music", "sound_effect"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["音频流连续存在，但现有可用检查只能确认AAC立体声流且未检测到超过0.4秒的明显静音；音乐/音效类型与叙事作用未知"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "若存在背景音乐或强调音效，其情绪与节奏功能无法由字幕替代。"},
+    {"id": "CAR-10", "name": "决策相关缺席项", "modalityKeys": ["negative_evidence", "full_timeline_absence_audit"], "discoveredIn": ["SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06"], "available": true, "inspected": true, "roles": ["界定视频未展示的外部验证、定价、成交证明、具体课程报名路径、平台/账号要求与执行过程"], "intervals": [{"start": 0, "end": 105.215}], "omissionImpact": "会把建议与举例错误升级成经过演示、验证或可直接复现的业务方案。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 4.8}, "description": "由高数据拼贴和问题句建立‘看见风口却赚不到钱’的张力。", "trigger": "截图拼贴切回面罩讲述者并提出财富/认知问题。", "evidenceHints": ["SHOT-001", "SHOT-002", "CUE-001", "CUE-002"]},
+    {"id": "MC-02", "range": {"start": 8.957, "end": 24.665}, "description": "从广告变现走弱的作者判断，转向必须找到自己的生意与产品。", "trigger": "‘江河日下’之后给出生意公式与两项产品条件。", "evidenceHints": ["CUE-004", "CUE-005", "CUE-006", "CUE-007", "CUE-008", "CUE-009"]},
+    {"id": "MC-03", "range": {"start": 24.665, "end": 43.97}, "description": "提出第一条路径：先找风口中的买家，再围绕其需求找产品。", "trigger": "‘第一个方法就是向外找’及房地产、AI的内部/周边对比。", "evidenceHints": ["CUE-010", "CUE-013", "CUE-014", "CUE-015", "CUE-016"]},
+    {"id": "MC-04", "range": {"start": 43.98, "end": 64.86}, "description": "把向外找落实为‘获利群体画像→衍生需求→产品/服务’。", "trigger": "从陪玩群体画像推到孤独/健康，再列出线下社交、营养餐食及跨风口服务例子。", "evidenceHints": ["CUE-017", "CUE-019", "CUE-020", "CUE-021", "CUE-022", "CUE-023", "CUE-024"]},
+    {"id": "MC-05", "range": {"start": 64.87, "end": 79.48}, "description": "切换到第二条路径，并反转只有生产型兴趣能赚钱的常见前提。", "trigger": "‘第二个方法就是向内找’和‘消费型兴趣一样能做成产品’。", "evidenceHints": ["CUE-025", "CUE-026", "CUE-027", "CUE-028", "CUE-029"]},
+    {"id": "MC-06", "range": {"start": 79.49, "end": 93.865}, "description": "用刷短视频、打游戏、看电影三组兴趣—买家—产品映射把反转具体化。", "trigger": "依次给出热点简报、陪玩/代练中介/训练课、约会聊天素材包。", "evidenceHints": ["CUE-030", "CUE-031", "CUE-032", "CUE-033", "CUE-034"]},
+    {"id": "MC-07", "range": {"start": 93.865, "end": 102.216}, "description": "从‘找什么产品’切换到‘产品决定怎么拍’。", "trigger": "服务型与资料型产品分别映射不同内容形式。", "evidenceHints": ["CUE-035", "CUE-036", "CUE-037"]},
+    {"id": "MC-08", "range": {"start": 102.216, "end": 105.215}, "description": "结尾从方法教学回到账号身份与系列化告别，部分兑现开场承诺但不提供执行证明。", "trigger": "自报‘人类最强编导’并说下期再见。", "evidenceHints": ["CUE-038", "SHOT-011", "FRAME-SHOT-011"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "MC-01", "to": "MC-02", "relation": "setup_to", "evidenceHints": ["CUE-001", "CUE-002", "CUE-004", "CUE-008"]},
+    {"id": "REL-02", "from": "MC-02", "to": "MC-03", "relation": "motivates", "evidenceHints": ["CUE-008", "CUE-009", "CUE-010"]},
+    {"id": "REL-03", "from": "MC-03", "to": "MC-04", "relation": "general_rule_instantiated_by", "evidenceHints": ["CUE-016", "CUE-020", "CUE-023", "CUE-024"]},
+    {"id": "REL-04", "from": "MC-03", "to": "MC-05", "relation": "parallel_method_to", "evidenceHints": ["CUE-010", "CUE-025"]},
+    {"id": "REL-05", "from": "MC-05", "to": "MC-06", "relation": "claim_illustrated_by", "evidenceHints": ["CUE-029", "CUE-031", "CUE-033", "CUE-034"]},
+    {"id": "REL-06", "from": "MC-04", "to": "MC-07", "relation": "product_choice_precedes_content_choice", "evidenceHints": ["CUE-023", "CUE-024", "CUE-035", "CUE-036", "CUE-037"]},
+    {"id": "REL-07", "from": "MC-06", "to": "MC-07", "relation": "product_choice_precedes_content_choice", "evidenceHints": ["CUE-031", "CUE-033", "CUE-035", "CUE-036", "CUE-037"]},
+    {"id": "REL-08", "from": "MC-08", "to": "MC-01", "relation": "identity_payoff_for", "evidenceHints": ["FRAME-SHOT-001", "CUE-038", "FRAME-SHOT-011"]},
+    {"id": "REL-09", "from": "CAR-03", "to": "CAR-04", "relation": "gesture_maps_speech_to_whiteboard", "evidenceHints": ["SHOT-003", "SHOT-007", "SHOT-009", "SHOT-010"]},
+    {"id": "REL-10", "from": "CAR-06", "to": "MC-08", "relation": "visible_identity_echoed_by_spoken_signoff", "evidenceHints": ["FRAME-SHOT-003", "FRAME-SHOT-011", "CUE-038"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把作者关于行业走弱、风口、客户需求和产品可卖性的主张写成已验证事实。", "why": "视频主要给出口播判断和例子，没有外部数据、成交记录或对照验证。", "where": [{"start": 8.957, "end": 93.865}], "requiredFollowup": "在重建中逐项标为author_claim，并说明例子只作说明而非证明普遍性。"},
+    {"id": "RISK-02", "risk": "静默修正SRT与烧录字幕/可见字样的冲突。", "why": "已见‘自己的声/自己的生意’、‘腹地/副业’、‘人类最常骗的/人类最强编导’等疑似冲突。", "where": [{"start": 6.72, "end": 8.957}, {"start": 68.073, "end": 71.41}, {"start": 102.216, "end": 105.214}], "requiredFollowup": "对全部cue中线烧录字幕做OCR与人工复核，保留SRT原文、可见读法和未决处。"},
+    {"id": "RISK-03", "risk": "漏掉开场截图拼贴中的数量、平台样式与不可验证边界。", "why": "该载体仅约1.2秒，代表帧中有多组播放/点赞/评论数字，但来源被拼贴和遮挡。", "where": [{"start": 0, "end": 1.2}], "requiredFollowup": "密采开场并OCR可读数字；保守计数，身份与归属未知。"},
+    {"id": "RISK-04", "risk": "把白板当背景而遗漏两条方法、示例分组及产品到内容的结构。", "why": "白板贯穿全片但常被人物遮挡，小字不一定由SRT覆盖。", "where": [{"start": 0, "end": 105.215}], "requiredFollowup": "在人物让出不同区域的时刻采集白板，OCR与视觉复核，无法读清处保持未知。"},
+    {"id": "RISK-05", "risk": "将红色蜘蛛侠风格面罩、头像或账号显示名升级为真实身份、授权IP或同一实体。", "why": "画面只建立可见造型和账号文案，没有身份/授权证明。", "where": [{"start": 0, "end": 105.215}], "requiredFollowup": "分别记录可见造型、账号覆盖层和结尾自称，使用referent relation并保留法律身份/授权未知。"},
+    {"id": "RISK-06", "risk": "把11个scene-detection shot写成11个场景或剪辑次数。", "why": "全片大体为同一房间与白板，多个边界可由人物移动、遮挡或光照造成，隐藏剪辑也无法排除。", "where": [{"start": 0, "end": 105.215}], "requiredFollowup": "采集切点前后帧，记录语义连续性与隐藏剪辑未知。"},
+    {"id": "RISK-07", "risk": "遗漏持续课程推广限定信息，或臆造价格、报名入口与主办方。", "why": "顶部可见‘9.4-9.6深圳线下课’样式文案，但全时间线未见明确价格或可执行报名控件。", "where": [{"start": 0, "end": 105.215}], "requiredFollowup": "全时间线OCR推广条；对价格、报名路径、主办/支持实体做有范围的缺席审计。"},
+    {"id": "RISK-08", "risk": "忽略非语音音频或擅自描述背景音乐。", "why": "媒体有AAC音频，能量检查未见长静音，但现有证据不能可靠区分音乐、环境声或音效。", "where": [{"start": 0, "end": 105.215}], "requiredFollowup": "在重建中注册该通道并把类型/叙事作用保持unknown。"},
+    {"id": "RISK-09", "risk": "把产品建议改写成完整可执行教程。", "why": "视频没有展示选题验证、制作、定价、发布、成交、交付或复盘动作。", "where": [{"start": 24.665, "end": 102.216}], "requiredFollowup": "保持为策略关系图；明确缺失的执行桥接与结果证据。"},
+    {"id": "RISK-10", "risk": "结尾只记为告别，遗漏其对账号身份和开场承诺的回收。", "why": "最后自报名称与持续覆盖层相呼应，并宣布下期再见。", "where": [{"start": 102.216, "end": 105.215}], "requiredFollowup": "单独捕获结尾字幕与覆盖层，并建立开场—结尾关系。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "作者对2026年短视频广告变现环境提出了什么判断，视频是否提供验证数据？", "criticality": "critical", "evidenceHints": ["CUE-004", "CUE-005", "CAR-10"]},
+    {"id": "CQ-02", "question": "作者如何定义生意和找到产品的两个必要条件？", "criticality": "critical", "evidenceHints": ["CUE-006", "CUE-007", "CUE-008", "CUE-009"]},
+    {"id": "CQ-03", "question": "向外找的完整推理链和视频给出的具体例子是什么？", "criticality": "critical", "evidenceHints": ["CUE-010", "CUE-013", "CUE-014", "CUE-015", "CUE-016", "CUE-020", "CUE-021", "CUE-022", "CUE-023", "CUE-024"]},
+    {"id": "CQ-04", "question": "向内找如何把三种消费型兴趣分别映射到买家与产品？", "criticality": "critical", "evidenceHints": ["CUE-025", "CUE-029", "CUE-030", "CUE-031", "CUE-032", "CUE-033", "CUE-034"]},
+    {"id": "CQ-05", "question": "作者给出的产品形态到内容形式映射是什么？", "criticality": "critical", "evidenceHints": ["CUE-035", "CUE-036", "CUE-037"]},
+    {"id": "CQ-06", "question": "开场数据拼贴实际显示了哪些可读指标，能否证明这些结果属于作者或由该方法产生？", "criticality": "supporting", "evidenceHints": ["SHOT-001", "FRAME-SHOT-001"]},
+    {"id": "CQ-07", "question": "SRT、烧录字幕、白板与可见覆盖层有哪些后果性冲突，最终读法与未知分别是什么？", "criticality": "critical", "evidenceHints": ["CAR-01", "CAR-02", "CAR-04", "CAR-06", "RISK-02"]},
+    {"id": "CQ-08", "question": "面罩讲述者、账号显示名、头像和蜘蛛侠式造型之间能建立到什么程度的referent关系？", "criticality": "supporting", "evidenceHints": ["FRAME-SHOT-002", "FRAME-SHOT-011", "CAR-03", "CAR-06"]},
+    {"id": "CQ-09", "question": "视频是否展示了产品验证、定价、制作、发布、成交或课程报名的实际步骤与结果？", "criticality": "critical", "evidenceHints": ["CAR-10", "RISK-07", "RISK-09"]},
+    {"id": "CQ-10", "question": "结尾如何呼应或收束开场的赚钱承诺与账号身份？", "criticality": "supporting", "evidenceHints": ["CUE-001", "CUE-002", "CUE-038", "CAR-06"]},
+    {"id": "CQ-11", "question": "非语音音频是否包含音乐或音效，其叙事作用是什么？", "criticality": "supporting", "evidenceHints": ["CAR-09", "RISK-08"]},
+    {"id": "CQ-12", "question": "技术分段代表语义场景变化、人物运动/遮挡，还是隐藏剪辑？", "criticality": "supporting", "evidenceHints": ["CAR-07", "CAR-08", "RISK-06"]}
+  ],
+  "unresolved": [
+    "作者关于行业、风口和客户需求的外部真实性与适用范围未验证",
+    "开场拼贴的截图来源、账号归属、统计口径与方法因果未知",
+    "面罩人物的真实身份、账号归属与蜘蛛侠式造型授权未知",
+    "非语音音频的具体类型与作用在现有工具下未知",
+    "白板被遮挡或过小文字需定向OCR/复核",
+    "课程价格、报名路径、主办/支持实体、适用条件未见明确展示",
+    "视频未展示从想法到实际销售的执行桥接、参数与结果",
+    "技术切点是否含隐藏剪辑无法仅凭采样帧证明"
+  ]
+}

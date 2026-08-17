@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        "CQ-03：KU-03 与 KU-19 分开记录 30 天/30 条免费课程承诺、约 30 项规划白板和未见发布/交付状态。",
+        "CQ-11：KU-20 只记录匿名聊天中‘因为我听力残障’的可见自述；KU-21 只记录三笔遮名交易和已接收状态。",
+        "CQ-13：KU-16 将‘桃李满天下’识别为语义回扣而非课程执行证明。"
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 9,
+      "denominator": 9,
+      "examples": [
+        "KF-02 由 KU-03、KU-19 覆盖公告性质、课程承诺及执行缺口。",
+        "KF-07/KF-08 由 KU-09、KU-12 至 KU-15、KU-20、KU-21 覆盖免费边界、聊天和交易窄事实。",
+        "KF-09 由 KU-15、KU-16 覆盖收费对象边界与闭场回扣。"
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 20,
+      "examples": [
+        "20 个非 unknown 知识单元均有可解析证据；规划白板未被升格为已发布课程，匿名聊天未被升格为经验证残障/雇主因果，交易记录未被升格为工作报酬或零收费证明。",
+        "KU-09 把免费承诺限定在课程/资料，并保留账号简介中服务项目与后续可收费人群的边界。"
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        "TARGET-0014 位于 11.500 秒，落在 KU-19 的 8.500–11.500 秒白板规划窗口。",
+        "TARGET-0054 位于 69.000 秒，落在 KU-20 的 68.000–70.000 秒听障聊天窗口。",
+        "TARGET-0056 位于 71.000 秒，落在 KU-21 的 70.000–72.200 秒交易截图窗口。"
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "审计的五项决策依赖均被覆盖：涨粉基线/归属、课程入口/发布/学习结果、合作公司归因、听障粉丝工作与交易/收费链、免费课程资料与付费服务的分类/价格边界；candidate 均保留缺失状态。"
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        "UNK-05：KU-19 仅认定两列约 30 项规划，多数课题不可可靠逐读，且规划不证明发布或结果。",
+        "UNK-11：KU-12、KU-20 保留两段聊天的身份、日期、完整上下文和相互映射未知。",
+        "UNK-12：KU-21 保留三笔交易的双方、方向、用途、日期关系和对工作/收费主张的关系未知。"
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复核未发现协议和重建共同漏掉的载体、意义变化或关系。账号/指标、烧录字幕冲突、两列约 30 项白板规划、评论、拒绝收费聊天、听障自述聊天、三笔交易、人物/环境、编辑并置和非语音音频边界均被登记。规划到课程承诺、聊天到作者案例、交易到工作/未收费主张的关系均明确是并置或有限支持，不是执行和因果证明。"
+  },
+  "examples": [
+    {
+      "type": "planning_vs_execution",
+      "result": "pass",
+      "detail": "白板只支持约 30 项课程规划；多数课题不可可靠逐读，且不证明发布、授课或学习结果。"
+    },
+    {
+      "type": "disability_chat_state",
+      "result": "pass",
+      "detail": "仅记录匿名发言‘他们都不要我/因为我听力残障’，不验证身份、残障事实、雇主或拒绝因果。"
+    },
+    {
+      "type": "transaction_boundary",
+      "result": "pass",
+      "detail": "只记录 ¥50/¥150/¥200 和已接收状态；方向、用途、双方、工作关系和完整收费历史均未知。"
+    }
+  ]
+}

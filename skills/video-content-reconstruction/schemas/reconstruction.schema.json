@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-content-reconstruction/reconstruction.schema.json",
+  "title": "Evidence-backed video reconstruction",
+  "type": "object",
+  "required": ["schemaVersion", "evidencePack", "probe", "protocol", "scopeStatement", "viewerChange", "derivedSources", "transcript", "knowledgeUnits", "relations", "coverageMatrix", "metaGate"],
+  "properties": {
+    "schemaVersion": { "const": "video-reconstruction-1.0" },
+    "evidencePack": { "type": "string" },
+    "probe": { "type": "string" },
+    "protocol": { "type": "string" },
+    "scopeStatement": { "type": "string", "minLength": 1 },
+    "viewerChange": { "type": "object" },
+    "derivedSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "kind", "producedBy", "timeRange", "limitations"],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "kind": { "type": "string" },
+          "producedBy": { "type": "string" },
+          "timeRange": { "$ref": "#/$defs/range" },
+          "limitations": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "transcript": {
+      "type": "object",
+      "required": ["origin", "cues"],
+      "properties": {
+        "origin": { "type": "string" },
+        "cues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "start", "end", "text", "representativeFrame", "overlappingShots"],
+            "properties": {
+              "id": { "type": "string" },
+              "start": { "type": "number" },
+              "end": { "type": "number" },
+              "text": { "type": "string" },
+              "representativeFrame": { "type": "string" },
+              "overlappingShots": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "knowledgeUnits": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/unit" } },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "relation", "evidence"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "relation": { "type": "string" },
+          "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+        }
+      }
+    },
+    "coverageMatrix": { "$ref": "#/$defs/coverage" },
+    "metaGate": {
+      "type": "object",
+      "required": ["question", "pass", "uncheckedChannels", "overlookedMeaningChanges", "overlookedRelationships", "rationale"],
+      "properties": {
+        "question": { "type": "string" },
+        "pass": { "type": "boolean" },
+        "uncheckedChannels": { "type": "array", "items": { "type": "string" } },
+        "overlookedMeaningChanges": { "type": "array", "items": { "type": "string" } },
+        "overlookedRelationships": { "type": "array", "items": { "type": "string" } },
+        "rationale": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "number", "minimum": 0 },
+        "end": { "type": "number", "minimum": 0 }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["refType", "ref", "supports"],
+      "properties": {
+        "refType": { "enum": ["cue", "shot", "frame", "targeted_frame", "ocr", "source"] },
+        "ref": { "type": "string" },
+        "supports": { "type": "string" }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "required": ["id", "title", "importance", "statement", "provenance", "timeRange", "evidence", "confidence", "unknowns"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "importance": { "enum": ["core", "supporting", "context"] },
+        "statement": { "type": "string" },
+        "provenance": { "enum": ["raw_fact", "visual_observation", "author_claim", "system_inference", "unknown"] },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+        "confidence": { "enum": ["high", "medium", "low"] },
+        "reasoning": { "type": "string" },
+        "procedural": { "$ref": "#/$defs/procedural" },
+        "argument": { "$ref": "#/$defs/argument" },
+        "unknowns": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["channels", "meaningChanges", "relationships", "criticalQuestions", "cueAccountability", "coreEvidence", "unknowns", "uncheckedChannels"],
+      "properties": {
+        "channels": { "type": "array", "items": { "type": "object", "required": ["id", "available", "inspected"], "properties": { "id": { "type": "string" }, "available": { "type": "boolean" }, "inspected": { "type": "boolean" } } } },
+        "meaningChanges": { "type": "array", "items": { "type": "object", "required": ["id", "captured", "unitIds"], "properties": { "id": { "type": "string" }, "captured": { "type": "boolean" }, "unitIds": { "type": "array", "items": { "type": "string" } } } } },
+        "relationships": { "type": "array", "items": { "type": "object", "required": ["id", "evidenced", "evidenceRefs"], "properties": { "id": { "type": "string" }, "evidenced": { "type": "boolean" }, "evidenceRefs": { "type": "array", "items": { "type": "string" } } } } },
+        "criticalQuestions": { "type": "array", "items": { "type": "object", "required": ["id", "status", "unitIds", "evidenceRefs"], "properties": { "id": { "type": "string" }, "status": { "enum": ["answered", "unknown"] }, "unitIds": { "type": "array", "items": { "type": "string" } }, "evidenceRefs": { "type": "array", "items": { "type": "string" } } } } },
+        "cueAccountability": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["cueId", "disposition", "unitIds", "rationale"],
+            "properties": {
+              "cueId": { "type": "string" },
+              "disposition": { "enum": ["knowledge", "context", "nonsemantic", "uncertain"] },
+              "unitIds": { "type": "array", "items": { "type": "string" } },
+              "rationale": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "coreEvidence": { "type": "object", "required": ["covered", "total"], "properties": { "covered": { "type": "integer", "minimum": 0 }, "total": { "type": "integer", "minimum": 0 } } },
+        "unknowns": { "type": "array" },
+        "uncheckedChannels": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "procedural": {
+      "type": "object",
+      "required": ["input", "actions", "parameters", "output", "beforeFrames", "duringFrames", "afterFrames", "unknowns"],
+      "properties": {
+        "input": { "type": "string" },
+        "actions": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "parameters": { "type": "array", "items": { "type": "string" } },
+        "output": { "type": "string" },
+        "beforeFrames": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "duringFrames": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "afterFrames": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "unknowns": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "argument": {
+      "type": "object",
+      "required": ["claim", "evidenceUnitIds", "conditions", "counterexamples", "actions", "limits"],
+      "properties": {
+        "claim": { "type": "string" },
+        "evidenceUnitIds": { "type": "array", "items": { "type": "string" } },
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "counterexamples": { "type": "array", "items": { "type": "string" } },
+        "actions": { "type": "array", "items": { "type": "string" } },
+        "limits": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

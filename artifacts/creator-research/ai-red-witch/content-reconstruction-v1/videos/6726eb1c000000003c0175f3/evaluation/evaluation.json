@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "6726eb1c000000003c0175f3",
+  "evaluationOrder": [
+    "GATE",
+    "JUDGE"
+  ],
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "correct",
+          "question": "视频是教程还是完成的剧情成片？",
+          "candidate": "明确判定为完成的三维动画对话而非教程。",
+          "auditBasis": "groundTruthVerdict.isTutorial=false；F01"
+        },
+        {
+          "status": "correct_unknown",
+          "question": "口型运动能否证明音素级同步或一键实时驱动？",
+          "candidate": "仅承认可见口部运动，并把音素级同步、自动驱动、一键与实时性列为未知。",
+          "auditBasis": "F03、F07"
+        },
+        {
+          "status": "correct",
+          "question": "外部 SRT 是否可作为可靠逐字稿？",
+          "candidate": "识别开场缺句、stocks/houseplants 错义、35.6–43.42 秒空洞与 shall-we 结尾误识别。",
+          "auditBasis": "F05、F06"
+        },
+        {
+          "status": "correct",
+          "question": "技术 shot 是否等同语义场景或确定剪辑？",
+          "candidate": "用 28.267/28.8 秒前后同一角色和布景证明技术分段不等于语义切分。",
+          "auditBasis": "audit.md 剪辑与连续性"
+        }
+      ],
+      "threshold": 0.85,
+      "rate": 1.0,
+      "pass": true
+    },
+    "evidenceCoverage": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "covered",
+          "unit": "完成成片的三段时间结构",
+          "candidateEvidence": [
+            "TARGET-0001",
+            "TARGET-0012",
+            "TARGET-0016",
+            "TARGET-0107"
+          ]
+        },
+        {
+          "status": "covered",
+          "unit": "人物口型与表情变化及其证据边界",
+          "candidateEvidence": [
+            "TARGET-0142",
+            "TARGET-0147",
+            "TARGET-0153",
+            "TARGET-0162",
+            "TARGET-0269",
+            "TARGET-0280"
+          ]
+        },
+        {
+          "status": "covered",
+          "unit": "SRT 与烧录字幕的四类实质冲突",
+          "candidateEvidence": [
+            "CUE-001",
+            "CUE-002",
+            "CUE-003",
+            "CUE-012",
+            "OCR-00389",
+            "TARGET-0131",
+            "OCR-00484"
+          ]
+        },
+        {
+          "status": "covered",
+          "unit": "片内无制作 UI、输入、参数、进度、结果选择、剪辑或导出流程",
+          "candidateEvidence": [
+            "DS-01",
+            "TARGET-0001",
+            "TARGET-0041",
+            "TARGET-0081",
+            "TARGET-0113"
+          ]
+        }
+      ],
+      "threshold": 0.9,
+      "rate": 1.0,
+      "pass": true,
+      "countingRule": "以独立审计的 8 项 findings、3 段时间结构合并项和 3 类关键关系探针归并为 12 个不重叠核心单元；不采用候选自报的 covered/total 作为证明。"
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 22,
+      "examples": [
+        {
+          "status": "supported",
+          "claim": "企业黑话包装的暗杀委托",
+          "basis": "烧录字幕中的 funeral、gang warfare、Last Supper、clean up、wire transfer receipt 等连续语义。"
+        },
+        {
+          "status": "properly_bounded",
+          "claim": "皮克斯感",
+          "basis": "候选只将其写成视觉相似性，不宣称品牌归属或授权。"
+        },
+        {
+          "status": "properly_bounded",
+          "claim": "说话期间存在口部运动",
+          "basis": "相邻定向帧支持运动；候选没有升级为音素级同步或生成因果。"
+        }
+      ],
+      "threshold": 0.05,
+      "rate": 0.0,
+      "pass": true,
+      "countingRule": "以 reconstruction.json 的 22 个 knowledgeUnits 的 statement 为正向主张计数单位。"
+    },
+    "timestampAccuracy": {
+      "numerator": 84,
+      "denominator": 84,
+      "examples": [
+        {
+          "status": "correct",
+          "reference": "TARGET-0019",
+          "time": 9.0,
+          "localization": "stocks are dying faster"
+        },
+        {
+          "status": "correct",
+          "reference": "TARGET-0131",
+          "time": 36.5,
+          "localization": "SRT 空洞中的 Tokyo last month 句"
+        },
+        {
+          "status": "correct_boundary_pair",
+          "reference": "TARGET-0327 / TARGET-0328",
+          "time": "52.55 / 52.85",
+          "localization": "共同夹定 52.7 秒人物画面转黑边界；前一帧早于 KU-19 标称起点 0.15 秒，但其用途正是证明转场前状态。"
+        }
+      ],
+      "threshold": 0.9,
+      "rate": 1.0,
+      "pass": true,
+      "countingRule": "检查全部 71 个 targeted_frame、9 个 OCR 和 4 个 cue 引用的注册存在性及其与主张时间窗的局部对应；DS 级范围来源不计入精确时间引用分母。"
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "独立审计确认该视频是剧情成片，不展示制作流程，因此不存在可从片内审计的实际步骤依赖链。候选正确改为列出复现所缺的工具、输入、参数、驱动、剪辑、字幕和导出条件，没有虚构顺序。"
+    },
+    "unknownDiscipline": {
+      "numerator": 10,
+      "denominator": 10,
+      "examples": [
+        {
+          "status": "correct_unknown",
+          "opportunity": "具体工具、模型、输入、参数和制作顺序"
+        },
+        {
+          "status": "correct_unknown",
+          "opportunity": "口型是否自动驱动、是否一键实时以及音素级准确度"
+        },
+        {
+          "status": "correct_unknown",
+          "opportunity": "Pixar/Disney 身份、角色/肖像/训练数据/商业授权"
+        },
+        {
+          "status": "correct_unknown",
+          "opportunity": "原音频逐字内容与字幕的精确一致性；机器转写仅用于对白时序，不作为逐字真值"
+        },
+        {
+          "status": "correct_unknown",
+          "opportunity": "片外教程、链接、访问、价格、账号条件和 CTA"
+        }
+      ],
+      "threshold": 0.9,
+      "rate": 1.0,
+      "pass": true
+    },
+    "uncheckedChannels": [],
+    "gateVerdict": "PASS"
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 5,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复核覆盖了成片视觉、人物运动、烧录双语字幕、外部 SRT、机器英语转写的有限用途、音轨存在性、水印与场景文字、全时间线负证据、技术切分和语义连续性。身份倒置、结果层与输入层混淆、开场缺句、结尾问句、SRT 中段空洞、风格相似与品牌授权、开场到结尾的下一单关系均有独立审计依据和候选响应。非语音音频的类型与来源被显式弃权，不伪装成已识别。"
+  },
+  "examples": [
+    {
+      "kind": "strong_boundary",
+      "candidate": "完成成片存在，不等于生成方法被证明。",
+      "assessment": "准确阻断了从结果画面反推一键生成因果的常见错误。"
+    },
+    {
+      "kind": "carrier_conflict",
+      "candidate": "逐条保留外部 SRT，同时用经人工复核的烧录字幕记录冲突。",
+      "assessment": "没有让低质量 SRT 覆盖可见字幕，也没有把 OCR 原始提议当成真值。"
+    },
+    {
+      "kind": "minor_boundary_issue",
+      "candidate": "KU-19 的时间范围从 52.7 秒开始，但引用 52.55 秒的 TARGET-0327。",
+      "assessment": "该帧用于与 52.85 秒帧共同夹定转黑边界，语义定位正确；建议未来把知识单元时间窗写成 52.55–55.667 或明确标注 boundary-precondition。"
+    },
+    {
+      "kind": "compression_tradeoff",
+      "candidate": "22 个知识单元与长篇报告多次重复相同的因果边界和未知项。",
+      "assessment": "没有造成信息丢失，但可进一步合并重复段落，因此 compressionWithoutLoss 评为 4。"
+    }
+  ]
+}

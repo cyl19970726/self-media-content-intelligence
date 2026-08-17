@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-16T04:10:58.604Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Validated 5 procedural units",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        "CQ-04 preserves the existing 212-record table, bulk paste, paste-success state, processing state, and later structured fields.",
+        "CQ-07 preserves 1.负责人 as the personal target, the blank group selector, permissions, and lack of execution proof.",
+        "CQ-14 answers the evaluator-added non-speech-audio question with bounded classifications and explicit attribution unknowns."
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        "KU-07 and KU-13 are supported by the dense correction sequence rather than the narration alone.",
+        "KU-14 preserves the dashboard's prominent 空值 without inferring completeness or correctness.",
+        "KU-20, KU-21, and KU-29 separate the case claim, adjacent sales template, and arithmetic consistency check."
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        "KU-13 stops at the locally observed paste-to-processing sequence and does not infer record origin, full automation, or accuracy.",
+        "KU-26 treats the three transients as notification/accent-like packaging and explicitly states that they do not prove delivery, automation completion, or efficiency.",
+        "Unstable animal, mechanical, spray, and similar classifier proposals are rejected rather than materialized as sound events."
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        "KU-07 is localized to the 41.267-46.5 second paste sequence.",
+        "KU-17 is localized to the 70.9-72.833 second recipient and permission UI.",
+        "KU-26 spans the independently verified semantic-audio ledger from 0 to 93.601 seconds and localizes transients to 72-78, 82-86, and 92-93.601 seconds."
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        "The source of the existing 212 records and pasted content remains unknown.",
+        "The selected group, administrator permission, bot admission, and actual delivery remain unknown.",
+        "The formula and baseline for 96% remain unknown.",
+        "Music/effect title, creator, library, license, and ownership remain unknown; independent effect versus in-music accent also remains unknown.",
+        "Additional separable screen, location, or inserted-source audio is not asserted absent."
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": false,
+      "detail": "Independent meta-audit found unguarded closures",
+      "examples": [
+        "The required provenance relationship from no-vocals-mono-16k.wav to ast-no-vocals-window-classification.json and ast-no-vocals-fine-classification.json is contradicted by both result files, which declare source=full-mono-16k.wav. Distinct hashes and acoustic fingerprints suggest separated input but cannot replace correct artifact-level source identity."
+      ]
+    }
+  ],
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "failedGateIds": [
+    "eval_meta_gate"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a18d4e700000000070136ab",
+  "capturedAt": "2026-08-16T11:09:34.217Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "Codex app太好用了，尤其是对于非程序员",
+    "postCopy": "强烈推荐Codex的Mac app！千万不要觉得它只是写代码的，它是万能办公助手\n\t\n#codex[话题]# #vibecoding[话题]# #效率神器[话题]# #飞书[话题]# #ppt[话题]#",
+    "hashtags": [
+      "codex",
+      "vibecoding",
+      "效率神器",
+      "飞书",
+      "ppt"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a18d4e700000000070136ab",
+    "mediaType": "video",
+    "publishedAt": "2026-05-28T23:51:03.000Z",
+    "likes": "4752",
+    "collections": "4787",
+    "comments": "159",
+    "shares": "1412",
+    "expectedDurationSec": 250
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 250
+    }
+  ]
+}

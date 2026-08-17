@@ -1,0 +1,336 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-16T12:43:00.857Z",
+  "file": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69f302a500000000220243fc/source.mp4",
+  "status": "verified_complete",
+  "transport": {
+    "bytes": 5315932,
+    "sha256": "e911c53660a1960750cd74690b7930b4927f657e50e40d75b8a4cee99bcf1cd3"
+  },
+  "container": {
+    "durationSec": 171.547574,
+    "streams": [
+      {
+        "index": 0,
+        "codecType": "video",
+        "codecName": "hevc",
+        "width": 1920,
+        "height": 1080,
+        "durationSec": 171.533333
+      },
+      {
+        "index": 1,
+        "codecType": "audio",
+        "codecName": "aac",
+        "width": null,
+        "height": null,
+        "durationSec": 171.547574
+      }
+    ],
+    "decodePass": true,
+    "decodeError": null
+  },
+  "timeline": {
+    "probeTimes": [
+      0.1,
+      42.887,
+      85.774,
+      128.661,
+      166.548,
+      169.548,
+      171.298
+    ],
+    "frameHashes": [
+      {
+        "time": 0.1,
+        "hash": "8a1506176ac09c33dc7c3a7e4a44ce23",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 42.887,
+        "hash": "f0bc25eaa0d36a4c4c8f5030cbccc811",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 85.774,
+        "hash": "ecdf75aa50adab5f2ff8da044604407a",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 128.661,
+        "hash": "45da91f271ae78f31e614f677e06fc39",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 166.548,
+        "hash": "818c67d37eebee8d0005838c57807637",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 169.548,
+        "hash": "96de0b6056c0d21a20189318369ef214",
+        "decoded": true,
+        "error": null
+      },
+      {
+        "time": 171.298,
+        "hash": "e0ad32f6b47d69a4930c84b012815811",
+        "decoded": true,
+        "error": null
+      }
+    ],
+    "allProbeFramesDecoded": true
+  },
+  "contentContinuity": {
+    "freezeEvents": [
+      {
+        "start": 0,
+        "end": 3.2,
+        "duration": 3.2
+      },
+      {
+        "start": 3.2,
+        "end": 5.333333,
+        "duration": 2.133333
+      },
+      {
+        "start": 5.666667,
+        "end": 7.666667,
+        "duration": 2
+      },
+      {
+        "start": 9.833333,
+        "end": 12.366667,
+        "duration": 2.533333
+      },
+      {
+        "start": 12.4,
+        "end": 16.633333,
+        "duration": 4.233333
+      },
+      {
+        "start": 16.633333,
+        "end": 19.966667,
+        "duration": 3.333333
+      },
+      {
+        "start": 20.466667,
+        "end": 23,
+        "duration": 2.533333
+      },
+      {
+        "start": 23.7,
+        "end": 26.666667,
+        "duration": 2.966667
+      },
+      {
+        "start": 26.666667,
+        "end": 29,
+        "duration": 2.333333
+      },
+      {
+        "start": 30.4,
+        "end": 32.8,
+        "duration": 2.4
+      },
+      {
+        "start": 32.833333,
+        "end": 35.2,
+        "duration": 2.366667
+      },
+      {
+        "start": 35.2,
+        "end": 37.3,
+        "duration": 2.1
+      },
+      {
+        "start": 40.166667,
+        "end": 42.5,
+        "duration": 2.333333
+      },
+      {
+        "start": 42.5,
+        "end": 44.5,
+        "duration": 2
+      },
+      {
+        "start": 45.466667,
+        "end": 47.9,
+        "duration": 2.433333
+      },
+      {
+        "start": 52.3,
+        "end": 54.766667,
+        "duration": 2.466667
+      },
+      {
+        "start": 56.633333,
+        "end": 58.7,
+        "duration": 2.066667
+      },
+      {
+        "start": 60.233333,
+        "end": 63.4,
+        "duration": 3.166667
+      },
+      {
+        "start": 63.766667,
+        "end": 65.833333,
+        "duration": 2.066667
+      },
+      {
+        "start": 68.366667,
+        "end": 71.833333,
+        "duration": 3.466667
+      },
+      {
+        "start": 73.933333,
+        "end": 76.166667,
+        "duration": 2.233333
+      },
+      {
+        "start": 76.166667,
+        "end": 78.366667,
+        "duration": 2.2
+      },
+      {
+        "start": 84.266667,
+        "end": 86.5,
+        "duration": 2.233333
+      },
+      {
+        "start": 86.5,
+        "end": 88.933333,
+        "duration": 2.433333
+      },
+      {
+        "start": 88.933333,
+        "end": 91.966667,
+        "duration": 3.033333
+      },
+      {
+        "start": 93.966667,
+        "end": 96.266667,
+        "duration": 2.3
+      },
+      {
+        "start": 96.266667,
+        "end": 98.333333,
+        "duration": 2.066667
+      },
+      {
+        "start": 99.866667,
+        "end": 102.033333,
+        "duration": 2.166667
+      },
+      {
+        "start": 102.033333,
+        "end": 104.433333,
+        "duration": 2.4
+      },
+      {
+        "start": 107.366667,
+        "end": 110.5,
+        "duration": 3.133333
+      },
+      {
+        "start": 115,
+        "end": 117.133333,
+        "duration": 2.133333
+      },
+      {
+        "start": 125.3,
+        "end": 128.133333,
+        "duration": 2.833333
+      },
+      {
+        "start": 128.133333,
+        "end": 130.9,
+        "duration": 2.766667
+      },
+      {
+        "start": 134.033333,
+        "end": 136.333333,
+        "duration": 2.3
+      },
+      {
+        "start": 138.1,
+        "end": 140.266667,
+        "duration": 2.166667
+      },
+      {
+        "start": 145.9,
+        "end": 148.133333,
+        "duration": 2.233333
+      },
+      {
+        "start": 149.566667,
+        "end": 152.8,
+        "duration": 3.233333
+      },
+      {
+        "start": 154.733333,
+        "end": 157.8,
+        "duration": 3.066667
+      },
+      {
+        "start": 161.7,
+        "end": 164.266667,
+        "duration": 2.566667
+      },
+      {
+        "start": 165.333333,
+        "end": 167.5,
+        "duration": 2.166667
+      },
+      {
+        "start": 167.5,
+        "end": 170.466667,
+        "duration": 2.966667
+      }
+    ],
+    "blackEvents": [],
+    "tailMotionStatus": "active",
+    "extendedThresholdSec": 42.887
+  },
+  "subtitleStatus": "absent",
+  "expectedDurationSec": 171,
+  "gates": [
+    {
+      "id": "video_stream",
+      "pass": true,
+      "detail": "hevc 1920x1080"
+    },
+    {
+      "id": "full_decode",
+      "pass": true,
+      "detail": "full video stream decoded"
+    },
+    {
+      "id": "timeline_probes",
+      "pass": true,
+      "detail": "7/7"
+    },
+    {
+      "id": "no_extended_frozen_tail",
+      "pass": true,
+      "detail": "active"
+    },
+    {
+      "id": "no_extended_black_tail",
+      "pass": true,
+      "detail": "none detected"
+    },
+    {
+      "id": "expected_duration",
+      "pass": true,
+      "detail": "expected 171s; container 171.548s; tolerance 8.550s"
+    }
+  ],
+  "unknowns": []
+}

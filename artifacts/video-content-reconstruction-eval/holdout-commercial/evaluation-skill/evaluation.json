@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationScope": "holdout-commercial skill-run only; no baseline, dev set, prior evaluation, or prior user report consulted",
+  "hardGatePass": false,
+  "failedGates": [
+    "evidenceCoverage",
+    "unknownDiscipline",
+    "metaGate"
+  ],
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 8,
+      "denominator": 8,
+      "examples": [
+        {
+          "status": "correct",
+          "auditQuestion": "Q-006: 连续追问是否真的提高建议相关性与安全性？",
+          "candidateHandling": "article.md 与 KU-22/KU-23 明确说明剪辑后的第一方示例只能证明展示过追问，不能证明实时性、一般质量或医学正确性。"
+        },
+        {
+          "status": "correct",
+          "auditQuestion": "Q-007: 高专业标准和完全隐私安全由什么证据保证？",
+          "candidateHandling": "KU-18至KU-20及 article.md 第6节明确标为作者的强商业主张，并列出标准、隐私政策、数据流、删除、加密和审计证据均未展示。"
+        },
+        {
+          "status": "correct",
+          "auditQuestion": "Q-008: 片尾CTA是什么？",
+          "candidateHandling": "KU-21与文章结尾准确保留‘你最想问的一个健康问题是什么’。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 19,
+      "denominator": 22,
+      "examples": [
+        {
+          "status": "covered",
+          "unit": "第一方UI只能证明被剪辑展示过的状态，不能建立临床有效性、一般可靠性、长期改善或隐私安全",
+          "candidateEvidence": "scopeStatement、KU-22、KU-23、KU-25与 article.md 第7节均清楚保留这一边界。"
+        },
+        {
+          "status": "covered",
+          "unit": "‘不会催你’与UI提醒之间的张力",
+          "candidateEvidence": "KU-16和 article.md 第5节引用‘今日还有任务未完成，快去打卡！’，并正确把‘不会催’降格为主观体验，而非无提醒事实；TARGET-0120还显示‘我将每天提醒你打卡’。"
+        },
+        {
+          "status": "not_covered",
+          "unit": "开头画面明确写‘资料画面非本新闻事件’",
+          "candidateGap": "候选保留了新闻来源、真实性与因果未知，但 probe、reconstruction 和 article 均未重建这条直接可见的素材限定语。"
+        },
+        {
+          "status": "not_covered",
+          "unit": "疲劳UI显示10%、20%、30%问询进度，并多次显示‘内容由AI生成仅供参考，持续不适请及时就医’",
+          "candidateGap": "候选准确重建多轮问题和一般就医边界，却未保留进度数值与UI内这条精确免责声明。"
+        },
+        {
+          "status": "not_covered",
+          "unit": "片尾是软CTA，且全片没有二维码、价格、下载按钮或明确访问路径",
+          "candidateGap": "候选保留了互动提问，但未完成对硬转化元素的全时轴缺席核对。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 25,
+      "examples": [
+        {
+          "status": "supported_or_bounded",
+          "claim": "专业、可靠、不制造恐慌和完全隐私",
+          "assessment": "均被写成作者/产品主张，并明确说明有限示例不能证明其普遍范围。"
+        },
+        {
+          "status": "supported_or_bounded",
+          "claim": "身高168cm、体重55kg、中度活动及任务卡",
+          "assessment": "有TARGET/OCR证据，且候选明确不把示例值写成主播真实资料或有效处方。"
+        },
+        {
+          "status": "supported_or_bounded",
+          "claim": "旁白外存在连续混音成分",
+          "assessment": "候选只陈述声道/频谱可测信号，并拒绝臆测曲名、曲风、授权和精确语义。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 24,
+      "denominator": 25,
+      "examples": [
+        {
+          "status": "correct",
+          "reference": "article.md 00:37–00:43",
+          "assessment": "正确定位品牌揭晓与敏感个人/健康史表单。"
+        },
+        {
+          "status": "correct",
+          "reference": "KU-16 86.0–86.9s",
+          "assessment": "正确定位‘今日还有任务未完成，快去打卡！’提示。"
+        },
+        {
+          "status": "incorrect",
+          "reference": "KU-24 / run-notes.md 非旁白侧信号约7秒后出现",
+          "assessment": "独立审计的技术观察把持续非中心声场层定位为约8.5秒后；方向正确，但起点提前约1.5秒。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 7,
+      "denominator": 8,
+      "rationale": "候选覆盖了病例钩子到需求缺口、搜索旧方案与阿福新方案、输入到追问/计划但因果未证、UI示例到商业评价、医疗边界、隐私承诺与敏感数据、‘不会催’与提醒等关键关系。唯一未闭合的审计关系是红发动画女性作为主播/目标观众的视觉替身；候选只记录插画情境，没有重建其代理关系。"
+    },
+    "unknownDiscipline": {
+      "numerator": 8,
+      "denominator": 9,
+      "examples": [
+        {
+          "status": "correct",
+          "opportunity": "新闻来源、病例真实性与医学因果",
+          "candidateHandling": "明确未知并拒绝把并置升级为因果。"
+        },
+        {
+          "status": "correct",
+          "opportunity": "UI实时性、版本、会话连续性与一般可复现性",
+          "candidateHandling": "明确未知。"
+        },
+        {
+          "status": "correct",
+          "opportunity": "专业标准、隐私机制、长期结果和非旁白音频精确身份",
+          "candidateHandling": "均明确未知并正确克制。"
+        },
+        {
+          "status": "incomplete",
+          "opportunity": "产品平台、访问方法、费用、地区限制、账户要求与责任主体",
+          "candidateHandling": "只提到具体版本和入口未展示，未保留费用、地区、账户和责任主体等审计未知项。"
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judgeStatus": "withheld_due_to_failed_hard_gates",
+  "judgeSchemaNote": "Canonical schema requires five numeric judge fields even when JUDGE is prohibited. The values below are non-evaluative schema sentinels and must not be interpreted as scores.",
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "红发动画女性作为主播/目标观众的视觉替身关系在协议中被看见为插画情境，但没有进入关系假设、relations或最终文章。",
+      "片尾互动提问与二维码、下载路径、价格等硬转化元素缺席之间的‘软CTA’关系没有被候选明确审计。"
+    ],
+    "rationale": "语音、字幕、UI、叠字、免责声明、剪辑状态、列表/分组和非旁白音频等可用载体均被检查，医疗/隐私边界和提醒张力也被守住；但仍有两个审计关系未被候选的关系闭包覆盖，因此元闸失败。"
+  },
+  "examples": [
+    {
+      "type": "major_strength",
+      "detail": "候选没有把画面已证实的追问、计划和打卡状态升级成临床有效性、一般可靠性、长期改善或完全隐私保障。"
+    },
+    {
+      "type": "major_strength",
+      "detail": "候选对‘不会催你’的处理比只引用‘每天提醒你打卡’更充分：它还定位了完成任务后的‘今日还有任务未完成，快去打卡！’，证明‘不会催’只能是温和体验评价。"
+    },
+    {
+      "type": "hard_gate_failure",
+      "detail": "证据覆盖19/22，低于0.90；未知纪律8/9，低于0.90；元闸发现未闭合关系。JUDGE不得启动。"
+    }
+  ]
+}

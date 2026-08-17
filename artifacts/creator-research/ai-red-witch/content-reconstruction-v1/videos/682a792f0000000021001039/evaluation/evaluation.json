@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 13,
+      "denominator": 14,
+      "examples": [
+        {
+          "status": "correct",
+          "question": "What input was actually demonstrated, and was a general file upload exercised?",
+          "assessment": "The candidate correctly separates the visible Labubu article and attached WeChat URL from the untested Upload files entry."
+        },
+        {
+          "status": "correct",
+          "question": "What does the queue state imply about the claim that the video was made quickly?",
+          "assessment": "The candidate captures Queuing, position 13/13, the over-10-minutes warning, and refuses to infer real elapsed time."
+        },
+        {
+          "status": "incorrect",
+          "question": "How are the cold open, the editor project, the later Labubu excerpt, and the closing duck sample related?",
+          "assessment": "The candidate says the cold open is a separate, non-Labubu sample. The independent audit shows that the cold open repeats the same opening sales and growth scenes visible at project time 0:00 in the Labubu editor. Only the closing duck is a different sample."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 11,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "covered",
+          "unit": "Medeo Beta identity and the unsupported 'world first' superlative"
+        },
+        {
+          "status": "covered",
+          "unit": "URL input, typed instruction, queue state, editable project components, export boundary, and public-access unknowns"
+        },
+        {
+          "status": "not_validly_covered",
+          "unit": "Sample continuity",
+          "assessment": "The relevant frames were captured, but the cross-window identity relation was judged backward: the cold open belongs to the later Labubu project."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 44,
+      "examples": [
+        {
+          "claim": "The cold-open sales/growth sample is not the later Labubu task and the video contains three separate result groups.",
+          "locations": [
+            "article.md: opening timeline row",
+            "article.md: section '三个样例不是同一次输出'",
+            "reconstruction.json: KU-19",
+            "reconstruction.json: REL-04"
+          ],
+          "assessment": "Unsupported and contradicted by the independent audit. The editor at project time 0:00 repeats the cold-open BEFORE/AFTER and growth scenes, while its Audio script gives the same 3.68-to-30.4-billion and 726.6% sequence. Repeated mentions are counted as one distinct atomic inference."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "status": "correct",
+          "reference": "17.0 seconds",
+          "assessment": "Correctly localizes the brief queue overlay that the 1.5-second dense sampling missed."
+        },
+        {
+          "status": "correct",
+          "reference": "17.233-25.967 seconds",
+          "assessment": "Correctly localizes the editor project and its visible components."
+        },
+        {
+          "status": "correct_location_wrong_relation",
+          "reference": "0-3.233 seconds versus editor project time 0:00",
+          "assessment": "The cited windows are correctly localized; the failure is semantic matching, not timestamp placement."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 7,
+      "denominator": 7,
+      "rationale": "The candidate accounts for source attachment plus instruction, the missing submit action, the queue-to-result cut, unknown elapsed generation time, unknown manual choices or edits, preview versus export/final-file status, and CTA versus actual access/signup conditions. It preserves edited chronology without upgrading it to a continuous execution proof."
+    },
+    "unknownDiscipline": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {
+          "status": "correct_abstention",
+          "opportunity": "Actual generation time",
+          "assessment": "Kept unknown despite the narrator's '很快' claim."
+        },
+        {
+          "status": "correct_abstention",
+          "opportunity": "Successful export and final file properties",
+          "assessment": "Limited to a whole-video inspection and did not infer success from a visible Export button or fullscreen playback."
+        },
+        {
+          "status": "correct_abstention",
+          "opportunity": "Price, account eligibility, region, platform, version, support, and public-access conditions",
+          "assessment": "Explicitly left unknown and bounded the negative evidence to the inspected video."
+        },
+        {
+          "status": "correct_abstention",
+          "opportunity": "AI provenance of voiceover and other generated components",
+          "assessment": "Separated visible components from automatic-generation attribution."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 3,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [
+      "The transition from the cold-open sales/growth hook to the editor's project-time 0:00 replay was not tested as a cross-window visual match; the candidate instead encoded the opening as a separate sample."
+    ],
+    "unguardedRelationships": [
+      "Cold open (0.00-3.23) is the opening of the Labubu editor project (17.25-19.50), evidenced by repeated BEFORE/AFTER and growth scenes plus matching sales-script content."
+    ],
+    "rationale": "All available carrier classes were nominally inspected, but the protocol's CA-01 and REL-04 embedded the wrong prior ('opening non-Labubu sample') and never required direct opening-to-editor frame matching. Consequently KU-19, REL-04, CQ-07, the article, and the candidate's own metaGate all preserve the same consequential relationship error. Under the meta-gate invariant, this is a hard failure even though the numeric content gates otherwise clear their thresholds."
+  },
+  "examples": [
+    {
+      "type": "strong_boundary_handling",
+      "candidate": "全屏播放不等于完成导出",
+      "assessment": "Correctly prevents a visible result excerpt from proving export or file delivery."
+    },
+    {
+      "type": "strong_carrier_conflict",
+      "candidate": "SRT 写‘告诉他’，烧录字幕写‘告诉它’",
+      "assessment": "Correctly preserves a low-level carrier conflict instead of silently normalizing it."
+    },
+    {
+      "type": "strong_ui_status",
+      "candidate": "Queuing, 13/13, may take over 10 minutes",
+      "assessment": "Correctly recovers a very brief UI state and uses it to limit the speed claim."
+    },
+    {
+      "type": "critical_relationship_error",
+      "candidate": "三个结果样例应分开理解",
+      "groundTruth": "The cold open and later editor project share the same opening sales/growth sequence; only the closing duck is a distinct sample.",
+      "impact": "Changes the reconstructed identity and continuity of the demonstrated result, and invalidates the candidate's self-reported meta pass."
+    }
+  ]
+}

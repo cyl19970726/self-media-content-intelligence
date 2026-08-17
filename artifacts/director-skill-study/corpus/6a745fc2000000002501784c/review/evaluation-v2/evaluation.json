@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {"status": "answered", "ids": ["CQ-01", "CQ-03", "CQ-08", "CQ-15"], "note": "组织结构、更新观点、AI边界和结尾承诺均有对应单元与证据。"},
+        {"status": "correctly_unknown", "ids": ["CQ-16", "CQ-17"], "note": "平台机制未外证，技术切分与批注连续性未被升级为事实。"}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {"status": "covered", "ids": ["KU-01", "KU-10", "KU-17"], "note": "审计核心单元分别由试卷设定、第10题未知边界、结尾身份与承诺单元覆盖。"},
+        {"status": "covered", "ids": ["KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-08", "KU-09", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16"], "note": "其余框架主张均有时间范围和可解析 cue/frame/targeted/OCR 引用。"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 28,
+      "examples": [
+        {"status": "supported", "id": "KU-Q10", "note": "中间类型没有被噪声字幕补全，明确保持 unknown。"},
+        {"status": "supported", "id": "KU-CLOSE-IDENTITY-BOUNDARY", "note": "只陈述两个身份载体并存及不能推出主体同一。"},
+        {"status": "supported", "id": "KU-OPEN-INSERT", "note": "开场插入仅作可见描述，来源、作者和权属均保留未知。"}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 29,
+      "denominator": 29,
+      "examples": [
+        {"status": "correct", "ids": ["KU-OPEN-INSERT", "KU-TRANSITION", "KU-Q10", "KU-CLOSE"], "note": "开场、题型转换、第10题和结尾均落在审计窗口内。"},
+        {"status": "correct", "note": "逐一检查全部29个知识单元；未发现越界区间或区间外帧引用。"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "视频讲述观点与分类框架，没有演示可审计的输入—动作—参数—输出流程；批注累积也未被重建当作实时操作依赖。"
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {"status": "correct", "ids": ["U-03", "U-06", "U-08"], "note": "第10题缺项、真实/法律身份、开场插入来源与权属均明确未知。"},
+        {"status": "correct", "ids": ["U-05", "U-09", "U-10", "U-11"], "note": "批注机制、非语音音频作用、90分承诺依据、扶持计划适用边界均未越界补全。"},
+        {"status": "correct", "ids": ["U-01", "U-02", "U-04", "U-07", "U-12"], "note": "外部真实性、术语冲突、文本词项、文档归属及面罩授权均保留来源边界。"}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "独立复核未找到协议和重建根本未检查的可用载体、意义变化或知识关系。语音/SRT、烧录字幕、试卷、红色批注、人物画中画、开场插入、转场/技术分段、水印、结尾身份关系及音轨存在性均有闭合；不确定部分以冲突或 unknown 保留。"
+  },
+  "examples": [
+    {"finding": "Q10_unknown", "result": "pass", "detail": "没有用噪声SRT补写导演扶持计划的中间类型。"},
+    {"finding": "closing_identity", "result": "pass", "detail": "雷自强编导与人类最强编导按不同载体保留，未证明法律或运营主体同一。"},
+    {"finding": "opening_insert_ownership", "result": "pass", "detail": "插入片段来源、作者、授权和权属均明确未知。"}
+  ]
+}

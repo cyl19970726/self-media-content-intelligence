@@ -1,0 +1,145 @@
+{
+  "auditVersion": "1.0",
+  "videoId": "6a4f70470000000021020657",
+  "independence": {
+    "role": "ground_truth_auditor",
+    "candidateEvaluated": false,
+    "allowedInputsUsed": [
+      "raw MP4",
+      "provided SRT",
+      "evidence/evidence-pack.json and its referenced evidence frames"
+    ],
+    "excludedInputs": [
+      "run/",
+      "candidate output",
+      "prior analysis/report",
+      "study-plan conclusions",
+      "cross-video outputs",
+      "external sources"
+    ]
+  },
+  "source": {
+    "durationSeconds": 163.561,
+    "hasAudio": true,
+    "subtitleOrigin": "provided_subtitles",
+    "timelineInspected": "0.000-163.561",
+    "visualSampling": "all 18 shot representative frames, selected cue frames, and 2.5-second dense frames across the full timeline",
+    "nonSpeechAudioDecision": "The MP4 contains AAC audio. The evidence pack does not classify music/effects separately from speech; non-speech audio's semantic role is therefore registered unknown rather than absent."
+  },
+  "viewerCognitiveChange": {
+    "before": "A resource-constrained aspiring creator may assume that director capability requires hiring a director or mechanically studying viral posts.",
+    "after": "The viewer receives the author's capability model spanning topic judgment, adaptation to platform change, script/visual/rhythm/language thinking, broad media knowledge, and daily training habits based on browsing, curation, mental visualization, and perspective-taking.",
+    "status": "author-proposed curriculum; the promised counts and hierarchy are internally ambiguous"
+  },
+  "criticalQuestions": [
+    {"id":"Q01","question":"Who is addressed and what is promised?","answer":"A person who cannot afford a director but wants to make self-media; the author promises to teach director capability from 'four aspects.'","provenance":"author_claim","window":"0.000-9.780","evidence":["CUE-001","CUE-002","CUE-003"]},
+    {"id":"Q02","question":"What capabilities are named for topic selection?","answer":"Hot-topic tracking, public-opinion judgment, demand sensing, and empathy/common-emotion sensing.","provenance":"author_claim","window":"8.119-30.950","evidence":["CUE-003","CUE-004","CUE-005","CUE-006","CUE-007","CUE-008","CUE-009","CUE-010"]},
+    {"id":"Q03","question":"What example limits immediate trend-following?","answer":"The author says a good director would not have a creator immediately follow the '胖猫事件' and says a trend should be judged by '有没有' and '能不能,' but those criteria are not operationally defined.","provenance":"author_claim","window":"11.302-20.447","evidence":["CUE-005","CUE-006"]},
+    {"id":"Q04","question":"What does 'version update' mean in the argument?","answer":"The author says internet tactics iterate quickly and creators who keep using methods that worked in 2021 will see data decline by 2026.","provenance":"author_claim","window":"29.495-47.735","evidence":["CUE-010","CUE-011","CUE-012","CUE-013","CUE-014","CUE-015","CUE-016"]},
+    {"id":"Q05","question":"What personal trait is linked to directing?","answer":"The author claims highly sensitive people are well suited to be directors.","provenance":"author_claim","window":"45.650-47.735","evidence":["CUE-016"]},
+    {"id":"Q06","question":"What is the proposed order for script creation?","answer":"First form the picture in the mind, then write it as text; visual imagination is treated as a prerequisite.","provenance":"author_claim","window":"47.735-66.150","evidence":["CUE-017","CUE-018","CUE-019","CUE-020","CUE-021","CUE-022","CUE-023"]},
+    {"id":"Q07","question":"What does the author say about detailed scripts?","answer":"The author calls highly detailed written shot descriptions wasted time if the creator already knows the intended picture mentally.","provenance":"author_claim","window":"57.521-66.150","evidence":["CUE-021","CUE-022","CUE-023"]},
+    {"id":"Q08","question":"What additional script capabilities are named?","answer":"Rhythm control through BGM and fast/slow cutting, plus language that is understandable, carefully worded, and internet-native.","provenance":"author_claim","window":"66.150-75.780","evidence":["CUE-024","CUE-025","CUE-026"]},
+    {"id":"Q09","question":"What does the author reject about viral-content study?","answer":"The author rejects laborious deep breakdowns/notebooks as 'fake effort' and later recommends browsing more examples with breadth over depth.","provenance":"author_claim","window":"75.790-85.391, 120.520-126.190","evidence":["CUE-027","CUE-028","CUE-029","CUE-042"]},
+    {"id":"Q10","question":"Why is broad accumulation part of directing?","answer":"Media is framed as a generalist field; a director needs a repertoire of presentation forms, BGM, memes/topics, camera placement, body language, common knowledge, and unusual knowledge, then deepens a subject only when needed.","provenance":"author_claim","window":"85.391-115.909","evidence":["CUE-030","CUE-031","CUE-032","CUE-033","CUE-034","CUE-035","CUE-036","CUE-037","CUE-038","CUE-039","CUE-040"]},
+    {"id":"Q11","question":"What concrete training methods are proposed?","answer":"Browse many viral examples; curate likes/favorites as a material library and revisit them; mentally stage films to train visual imagination; and take other perspectives/escape one's information bubble to train demand sensing and empathy.","provenance":"author_claim","window":"115.909-160.227","evidence":["CUE-041","CUE-042","CUE-043","CUE-044","CUE-045","CUE-046","CUE-047","CUE-048","CUE-049","CUE-050","CUE-051","CUE-052","CUE-053"]},
+    {"id":"Q12","question":"What speed benchmark is proposed for retrieval?","answer":"A good director is said to recall a benchmark creator/BGM/video form within three seconds and find the exact corresponding video within five seconds.","provenance":"author_claim","window":"135.563-142.480","evidence":["CUE-046","CUE-047","CUE-048"]},
+    {"id":"Q13","question":"What algorithm/feed intervention is proposed?","answer":"The author says to '反过来大数据' so the system recommends material one may not naturally like, as a way out of an information bubble. The exact operations are not shown.","provenance":"author_claim","window":"151.077-160.227","evidence":["CUE-051","CUE-052","CUE-053"]},
+    {"id":"Q14","question":"Do the promised structural counts reconcile?","answer":"No clear reconciliation is supplied. The opening promises four aspects, script subpoints are renumbered, and the training transition says 'these three aspects.' Several plausible hierarchies exist, but none is explicitly resolved.","provenance":"system_inference","window":"3.662-9.780, 29.495-30.950, 47.735-49.125, 66.150-72.324, 115.909-120.510","evidence":["CUE-002","CUE-003","CUE-010","CUE-017","CUE-024","CUE-025","CUE-041"],"reasoning":"Spoken numbering and transitions conflict."},
+    {"id":"Q15","question":"What evidence demonstrates that the training methods improve director performance?","answer":"Unknown. No learner baseline, exercise execution, produced video, before/after result, or performance metric is shown.","provenance":"unknown","window":"115.909-160.227","evidence":["CUE-041","CUE-053"]},
+    {"id":"Q16","question":"What visible identity and social proof are supplied?","answer":"A masked presenter in one whiteboard setting and an opening Xiaohongshu metric montage; the recurring watermark reads '人类最强编导.' The final burned caption/SRT says '人类这样编导.' Real identity and qualifications are not established.","provenance":"visual_observation","window":"0.000-3.662, 160.067-163.561","evidence":["SHOT-001","SHOT-002","SHOT-018","CUE-001","CUE-054"]},
+    {"id":"Q17","question":"What scope and exceptions bound the advice?","answer":"Unknown. The video does not specify creator maturity, team size, genre, platform, region, measurement window, or cases where detailed scripting and deep analysis are necessary.","provenance":"unknown","window":"0.000-163.561","evidence":["CUE-021","CUE-028","CUE-042"]}
+  ],
+  "coreKnowledgeUnits": [
+    {"id":"K01","unit":"The hook targets creators who cannot afford a director and promises self-trained director capability.","provenance":"author_claim","window":"0.000-9.780","evidence":["CUE-001","CUE-003"]},
+    {"id":"K02","unit":"Topic selection requires trend tracking and public-opinion judgment.","provenance":"author_claim","window":"8.119-20.447","evidence":["CUE-003","CUE-006"]},
+    {"id":"K03","unit":"Topic strategy also requires sensing user needs and shared emotion.","provenance":"author_claim","window":"20.447-30.950","evidence":["CUE-007","CUE-010"]},
+    {"id":"K04","unit":"Creators must update tactics as platforms iterate.","provenance":"author_claim","window":"29.495-47.735","evidence":["CUE-010","CUE-016"]},
+    {"id":"K05","unit":"High sensitivity is claimed to suit directing.","provenance":"author_claim","window":"45.650-47.735","evidence":["CUE-016"]},
+    {"id":"K06","unit":"Script writing begins with a mental picture, then text.","provenance":"author_claim","window":"47.735-66.150","evidence":["CUE-017","CUE-023"]},
+    {"id":"K07","unit":"Detailed written shot descriptions are called unnecessary when the mental picture is already clear.","provenance":"author_claim","window":"57.521-66.150","evidence":["CUE-021","CUE-023"]},
+    {"id":"K08","unit":"Script capability includes rhythm/BGM/cut timing and comprehensible, carefully worded, internet-native language.","provenance":"author_claim","window":"66.150-75.780","evidence":["CUE-024","CUE-026"]},
+    {"id":"K09","unit":"The author opposes deep viral-post breakdowns and favors broad browsing.","provenance":"author_claim","window":"75.790-85.391, 120.520-126.190","evidence":["CUE-027","CUE-029","CUE-042"]},
+    {"id":"K10","unit":"Directing is framed as generalist accumulation across forms, sounds, memes/topics, camera placement, body language, and knowledge.","provenance":"author_claim","window":"85.391-115.909","evidence":["CUE-030","CUE-040"]},
+    {"id":"K11","unit":"Likes and favorites should be curated and revisited as a material library.","provenance":"author_claim","window":"126.200-135.563","evidence":["CUE-043","CUE-045"]},
+    {"id":"K12","unit":"Rapid recall/retrieval of benchmarks, BGM, forms, and exact examples is presented as a director skill.","provenance":"author_claim","window":"135.563-142.480","evidence":["CUE-046","CUE-048"]},
+    {"id":"K13","unit":"Mental filmmaking is proposed as training for visual imagination.","provenance":"author_claim","window":"142.490-148.000","evidence":["CUE-049"]},
+    {"id":"K14","unit":"Perspective-taking and deliberate feed diversification are proposed for demand sensing and empathy.","provenance":"author_claim","window":"148.010-160.227","evidence":["CUE-050","CUE-053"]},
+    {"id":"K15","unit":"The promised hierarchy is unresolved: four aspects at the opening, 'second' labels at multiple levels, and three aspects at the training transition.","provenance":"system_inference","window":"3.662-120.510","evidence":["CUE-002","CUE-017","CUE-024","CUE-041"],"reasoning":"The observable numbering cannot be mapped uniquely without inventing a hierarchy."}
+  ],
+  "relationships": [
+    {"id":"R01","from":"K02","relation":"complements","to":"K03"},
+    {"id":"R02","from":"K04","relation":"updates_over_time","to":"K02/K03"},
+    {"id":"R03","from":"K05","relation":"framed_as_enabler_of","to":"K02/K03"},
+    {"id":"R04","from":"K06","relation":"precedes","to":"written script"},
+    {"id":"R05","from":"K07","relation":"claim_limited_by","to":"K06","note":"Only if the mental image is already known."},
+    {"id":"R06","from":"K08","relation":"part_of","to":"script capability"},
+    {"id":"R07","from":"K10","relation":"supplies repertoire_for","to":"K06/K08"},
+    {"id":"R08","from":"K09","relation":"contrasts_with","to":"K11"},
+    {"id":"R09","from":"K11","relation":"supports","to":"K12"},
+    {"id":"R10","from":"K13","relation":"training_for","to":"K06"},
+    {"id":"R11","from":"K14","relation":"training_for","to":"K03"},
+    {"id":"R12","from":"K15","relation":"limits","to":"overall curriculum structure"}
+  ],
+  "dependencies": [
+    {"id":"D01","requiredFor":"Responsible trend participation","dependsOn":["define '有没有'","define '能不能'","evaluate evidence and public-opinion risk"],"status":"labels stated; operational tests unknown"},
+    {"id":"D02","requiredFor":"Skipping detailed written scripting","dependsOn":["mental picture is sufficiently specified","collaborators can access the intended shot plan","production complexity does not require documentation"],"status":"first condition stated; collaboration/complexity conditions omitted"},
+    {"id":"D03","requiredFor":"Fast example retrieval","dependsOn":["curated material library","repeated review","searchable memory/index"],"status":"first two stated; indexing method unknown"},
+    {"id":"D04","requiredFor":"Diversifying recommendations","dependsOn":["specific interactions that alter the feed","time and account state","platform behavior"],"status":"all operational details unknown"},
+    {"id":"D05","requiredFor":"Evaluating training effectiveness","dependsOn":["baseline task","repeatable exercise","output rubric","after measurement"],"status":"missing"}
+  ],
+  "unknownOpportunities": [
+    {"id":"U01","unknown":"Real identity, credentials, and responsibility of the masked presenter/account operator.","materialBecause":"The video teaches professional capability and uses self-branding/social proof."},
+    {"id":"U02","unknown":"Whether the opening metric montage belongs to the same account, time, and capability claim being taught.","materialBecause":"It serves as authority evidence."},
+    {"id":"U03","unknown":"The definitive four-part or three-part curriculum hierarchy.","materialBecause":"The promised learning structure is internally inconsistent."},
+    {"id":"U04","unknown":"Operational meaning of '有没有' and '能不能' for trend decisions.","materialBecause":"They are the only stated decision tests."},
+    {"id":"U05","unknown":"Evidence and conditions behind the 2021-to-2026 decline example and the high-sensitivity suitability claim.","materialBecause":"They justify adaptation and person-role fit."},
+    {"id":"U06","unknown":"When detailed scripts are necessary for teams, safety, budgets, complex shoots, or handoffs.","materialBecause":"The video broadly calls detail wasted effort."},
+    {"id":"U07","unknown":"What counts as productive browsing versus shallow consumption.","materialBecause":"The main training recommendation rejects deep breakdown."},
+    {"id":"U08","unknown":"How the three-second/five-second benchmark is measured and whether it predicts output quality.","materialBecause":"It is the most concrete performance standard."},
+    {"id":"U09","unknown":"Exact platform actions used to diversify recommendations and whether they work.","materialBecause":"The closing recommends a system/feed intervention without showing it."},
+    {"id":"U10","unknown":"Any before/after evidence that the exercises improve scripts or video performance.","materialBecause":"The video promises capability cultivation."},
+    {"id":"U11","unknown":"Whether non-speech audio contributes examples of rhythm/BGM or is merely production bed.","materialBecause":"BGM is itself part of the lesson, but the pack does not classify the audio channel."}
+  ],
+  "challengeAudit": [
+    {"challenge":"identity","applicability":"applicable","finding":"The persistent visible watermark is '人类最强编导'; the final burned caption/SRT says '人类这样编导.' The masked face resembles a Spider-Man costume but does not establish literal character or real identity. The opening phrase '开头展示教资啊' must not be upgraded into proof of a teaching credential."},
+    {"challenge":"boundary","applicability":"applicable","finding":"The advice is framed for '自媒体' generally, while the opening UI is Xiaohongshu. Platform, creator maturity, solo/team production, genre, region, and measurement period are not bounded."},
+    {"challenge":"referent","applicability":"applicable","finding":"The recurring masked presenter stands for the teaching account. '大博主,' '用户,' and '系统' remain generic; no specific platform recommender, account, or cohort is identified."},
+    {"challenge":"absence","applicability":"applicable","finding":"Across 0.000-163.561, no worked script, BGM example, edit comparison, favorites-library demonstration, feed-setting action, learner before/after, external source, or performance result appears."},
+    {"challenge":"carrier-conflict","applicability":"applicable","finding":"The main consequential conflict is structural speech/caption wording: opening '四个方面' versus later '这三方面的能力,' plus repeated '第二点' labels at different levels. The final self-label '人类这样编导' also differs from the visible watermark '人类最强编导.' Preserve both forms."},
+    {"challenge":"segmentation","applicability":"applicable","finding":"18 technical shots are mainly reframing and gesture inside a single whiteboard setup. Semantic continuity is stronger than shot boundaries. The conceptual hierarchy itself is ambiguous and must not be repaired silently."},
+    {"challenge":"opening-closing","applicability":"applicable","finding":"The opening promise is economical self-training in four aspects; the closing methods partly pay off the self-training promise but do not reconcile the aspect count or demonstrate capability gain. The final feed-diversification advice is an additional action, not proof of the opening promise."},
+    {"challenge":"literal-failure-result-signature","applicability":"not_applicable","finding":"No live workflow, failed state, or transformed result is shown. The relevant omission is lack of any before/after training output, not a hidden UI failure signature."}
+  ],
+  "notApplicableItems": [
+    {"item":"UI progress/status transition","reason":"No software operation or progress state is demonstrated."},
+    {"item":"Literal before/during/after procedure","reason":"The video gives conceptual habits without executing a production or feed-diversification workflow."},
+    {"item":"Price, purchase/download path, login, region restriction, or support entity","reason":"The hook discusses inability to afford a director but offers no product, paid service, download, or operational CTA."},
+    {"item":"Identity inversion between two demonstrated people","reason":"Only one recurring masked presenter is shown; the issue is label/credential ambiguity, not swapping two visible people."}
+  ],
+  "carrierInventory": [
+    {"carrier":"speech/provided subtitles","scope":"full timeline","status":"inspected","role":"primary curriculum and claims"},
+    {"carrier":"burned captions","scope":"full timeline via shot/dense/cue frames","status":"inspected","role":"parallel wording, literal residue, and conflict detection"},
+    {"carrier":"whiteboard text/grouping","scope":"1.100-163.561","status":"inspected with legibility limits","role":"outline, numbered clusters, emphasis, and structural ambiguity"},
+    {"carrier":"opening social-proof montage","scope":"0.000-1.100","status":"inspected","role":"authority/hook; causal relation to lesson unknown"},
+    {"carrier":"gesture/costume/set","scope":"full timeline","status":"inspected","role":"presenter persona, pointing, mental-picture pantomime, continuity"},
+    {"carrier":"editing/juxtaposition","scope":"full timeline","status":"inspected","role":"fast hook, continuous lecture, closing self-label"},
+    {"carrier":"non-speech audio","scope":"full timeline","status":"registered_unknown","role":"AAC stream present; semantic contribution and relation to the BGM lesson not established"}
+  ],
+  "denominators": {
+    "criticalQuestions": 17,
+    "coreKnowledgeUnits": 15,
+    "relationships": 12,
+    "requiredDependencies": 5,
+    "unknownOpportunities": 11,
+    "challengeItemsReviewed": 8,
+    "challengeItemsApplicable": 7,
+    "challengeItemsNotApplicable": 1,
+    "notApplicableItems": 4,
+    "timelineCoverageSeconds": 163.561,
+    "timelineCoverageFraction": "163.561/163.561",
+    "availableCarrierClasses": 7,
+    "inspectedCarrierClasses": 6,
+    "registeredUnknownCarrierClasses": 1
+  }
+}

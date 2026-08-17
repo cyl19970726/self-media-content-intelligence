@@ -1,0 +1,1574 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建 0–171.533 秒内作者的学习观点、演示文稿、Peter Steinberger/OpenClaw 案例与引语。机器转写不是官方字幕；OpenClaw 等规范名需画面/OCR 支持。‘最好/唯一方式’、效率提升 50%、玩就是工作、案例成功原因和引语归属都是待限定主张，片内没有对照实验。",
+  "viewerChange": {
+    "before": "观众可能把学习 AI 等同于持续看教程、读论文和听播客，或只在有明确 KPI 时使用模型。",
+    "after": "观众被引导每天留一小时无明确产出压力地动手试探模型边界，把玩视为工作的一部分；作者认为这种好奇心驱动的实验比只消费资料更快形成手感，也更可持续。",
+    "intendedChanges": [
+      "从被动消费资料转向主动做小实验",
+      "从只围绕 KPI 使用 AI 转向允许无功利探索",
+      "从短期效率焦虑转向以好奇心维持长期练习"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "5 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 171.533
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 75 targeted frames; 446 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 171.533
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 171.533
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "local machine transcription from the complete decoded source audio; not official subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 3.08,
+        "text": "這是我認為學AI最好的方式",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.08,
+        "end": 7.64,
+        "text": "而不是看教程、不是讀paper、不是聽播課",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 7.64,
+        "end": 12.24,
+        "text": "我覺得學AI最好的方式就是每天動手玩一小時",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 12.24,
+        "end": 14.64,
+        "text": "然後我這裡說的玩",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 14.64,
+        "end": 20.24,
+        "text": "指的是不帶有工地性的去探索AI的邊境",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 20.24,
+        "end": 22.92,
+        "text": "就是我們不要帶著特別強的目的性",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 22.92,
+        "end": 26.52,
+        "text": "說我今天就是為了解決某個很嚴肅的問題",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 26.52,
+        "end": 30.28,
+        "text": "或者說我非要做出一個多少的DAU、多少收入的產品",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 30.28,
+        "end": 32.76,
+        "text": "我在去那個我覺得是不 work的",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 32.76,
+        "end": 35.12,
+        "text": "就是因為我覺得現在技術變化太快了",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 35.12,
+        "end": 39.8,
+        "text": "然後我們最重要的是我們每個人必須要理解模型的邊界在哪",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 39.8,
+        "end": 42.36,
+        "text": "然後我們唯一理解模型能力邊界的方式",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 42.36,
+        "end": 44.44,
+        "text": "就是去試探不停的試探",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 44.44,
+        "end": 47.52,
+        "text": "然後帶著後期形象做實驗一樣的去探索",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 47.52,
+        "end": 49.48,
+        "text": "我做這個會怎麼樣、做那個會怎麼樣",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 49.48,
+        "end": 52.24,
+        "text": "我這麼寫破案會怎麼樣、那麼寫破案會怎麼樣",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 52.24,
+        "end": 55.8,
+        "text": "然後你就抱著這種很在玩的心態每天的趨勢",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 55.8,
+        "end": 58.68,
+        "text": "你就會發現你這個時候成長其實是最快的",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 58.68,
+        "end": 60.16,
+        "text": "就看起來你在玩",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 60.16,
+        "end": 63.76,
+        "text": "但實際你這個時候認知的提升是最快的",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 63.76,
+        "end": 66.64,
+        "text": "因為這個東西沒有辦法靠在書本裡",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 66.64,
+        "end": 70.4,
+        "text": "或者是聽別人講、看教程、看社交媒體學會",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 70.4,
+        "end": 71.84,
+        "text": "它必須靠動手",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 71.84,
+        "end": 73.92,
+        "text": "就是get your hands dirty",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002",
+          "SHOT-003",
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 73.92,
+        "end": 78.56,
+        "text": "所以我會比較呼籲大家就是 let's take play seriously",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 78.56,
+        "end": 79.88,
+        "text": "就 play as part of your job",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 79.88,
+        "end": 82.08,
+        "text": "因為大家聽到玩這個此地反應",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 82.08,
+        "end": 87.08,
+        "text": "就是說那是不是在摸語言或者是這個是不是不穩",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 87.08,
+        "end": 91.65,
+        "text": "正業呀 對 但我會認為說在這個時代玩 就是工作的一部分 就玩才是正業",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 91.65,
+        "end": 100.77,
+        "text": "如果你不玩的話 你就不知道這些模型現在能幹什麼 可能你埋口苦幹的那些東西 現在AI早就能解決了 但是你還不知道",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 100.77,
+        "end": 110.21,
+        "text": "所以你的時間都花在了一些你不該花的地方 每天玩個小時之後你就發現一個新的方法可以把你整體的工作效率提升50%",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 110.21,
+        "end": 120.97,
+        "text": "或者你寫了什麼工具可以整 然後你很多你以前花些的事 現在都不用花時間 我覺得大家要把這個事情看做時工作的一部分 而不是說影響工的不好的事情",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 120.97,
+        "end": 127.93,
+        "text": "我覺得一個特別好的例子是Peter Steinberger 就是 OpenCloud的創始 大家知道 OpenCloud就是他自己玩出來的一個項目",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 127.93,
+        "end": 133.81,
+        "text": "他不是說搞個出來的公司 容了很多錢 招團就不是他一個人玩出來的",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 133.81,
+        "end": 142.41,
+        "text": "他在一個顧客上說了一句話 我覺得特別的人客 他說 et cetera to compete with somebody who is just there to have fun",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 142.41,
+        "end": 150.21,
+        "text": "就是因為做 agent的人太多了 就是很多出來公司也都想做類似有 OpenCloud的事情 但是就是沒跑出來",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 150.21,
+        "end": 158.37,
+        "text": "而為什麼就 OpenCloud能這麼火 我覺得很大原因就是Peter沒有帶這個很強的功力性去做這件事",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 158.37,
+        "end": 164.37,
+        "text": "他就是想說我用 agent能玩什麼東西 想解決自己生活中的一些問題",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 164.37,
+        "end": 171.57,
+        "text": "非常純粹的一種對基礎的熱愛和好奇 我覺得才是我們能比較可持續的一種學習方式",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场用反常识排除教程、论文和播客",
+      "importance": "core",
+      "statement": "作者以反常识开场：学习 AI 最好的方式不是看教程、读 paper 或听 podcast，而是每天亲手玩一小时。它是吸引注意和重排优先级的作者主张，片内没有对照实验，也不足以推出资料学习毫无价值。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 12.24
+      },
+      "confidence": "medium",
+      "reasoning": "口播和 slide 同步给出排除项与替代方案；证据形式是个人判断。",
+      "unknowns": [
+        "一小时的来源和必要性",
+        "学习效果对照",
+        "资料学习的补充角色"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0006",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0010",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "‘玩’被定义为无强 KPI 的边界试探",
+      "importance": "core",
+      "statement": "作者把‘玩’定义为暂时放下 DAU、收入或严肃交付目标，带着好奇心改变输入、写法和任务，观察模型会怎样，从反复试探中理解能力边界。它不是纯消遣，但片内没有给出记录变量、评价结果和复盘的完整实验模板。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 12.24,
+        "end": 58.68
+      },
+      "confidence": "medium",
+      "reasoning": "口播明确排除强功利目标，同时连续给出‘这样会怎样’的试探结构。",
+      "unknowns": [
+        "每天实验如何选题",
+        "如何记录和判断边界",
+        "何时从玩转入正式交付"
+      ],
+      "procedural": {
+        "input": "一个模型、一个可快速变化的任务或提示，以及一段无强 KPI 的时间",
+        "actions": [
+          "提出一个好奇问题",
+          "改变输入或写法",
+          "观察模型输出",
+          "继续试探边界",
+          "记录可复用发现"
+        ],
+        "parameters": [
+          "任务类型",
+          "输入变化",
+          "可接受实验成本",
+          "每日约一小时为作者建议"
+        ],
+        "output": "对模型能力边界的个人手感和可复用发现",
+        "unknowns": [
+          "记录模板",
+          "评价标准",
+          "实验安全边界",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0011"
+        ],
+        "duringFrames": [
+          "TARGET-0019"
+        ],
+        "afterFrames": [
+          "TARGET-0027"
+        ]
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0011",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0019",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0027",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "从 get your hands dirty 上升到 play is part of your job",
+      "importance": "core",
+      "statement": "作者用 ‘GET YOUR HANDS DIRTY’ 和 ‘PLAY IS PART OF YOUR JOB’ 两张核心 slide，把每日探索从业余学习提升为 AI 时代工作的一部分。这是价值判断；只有在岗位允许、数据安全、成本可控且探索能被复盘时才更可执行。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 58.68,
+        "end": 91
+      },
+      "confidence": "medium",
+      "reasoning": "演示文稿和口播共同完成从实践建议到职业规范的升维。",
+      "unknowns": [
+        "适用岗位",
+        "组织授权",
+        "探索时间与交付时间的平衡",
+        "安全边界"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0028",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0035",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0041",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "效率收益被作为可能结果，而非已验证 KPI",
+      "importance": "supporting",
+      "statement": "作者认为持续探索可能偶然发现把原流程提效约 50% 的方法，用来说明 play 可以反哺工作。片内没有任务定义、基线、样本、重复测量或因果拆分，因此只能保留为潜在收益举例。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 91,
+        "end": 121
+      },
+      "confidence": "medium",
+      "reasoning": "数字由口播提出，缺少数据载体与实验设计。",
+      "unknowns": [
+        "50% 对应任务",
+        "基线和测量周期",
+        "是否可重复",
+        "模型与流程各自贡献"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0042",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0050",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0057",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "Peter Steinberger/OpenClaw 案例把方法收束到好奇心",
+      "importance": "core",
+      "statement": "作者以 Peter Steinberger 和 OpenClaw 为例，认为其持续投入来自好奇与乐趣而非一开始追求流量或宏大 KPI，并用 ‘It’s hard to compete with somebody who’s just there to have fun’ 收尾。人物、项目和引语可由画面/口播核对，成功因果与完整出处仍需外部验证。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 121,
+        "end": 171.533
+      },
+      "confidence": "medium",
+      "reasoning": "外部案例和引语承担论证与情绪收束，但片内没有外部来源链。",
+      "unknowns": [
+        "项目准确历史",
+        "成功的其他因素",
+        "引语原始出处和上下文",
+        "是否适用于普通学习者"
+      ],
+      "argument": {
+        "claim": "好奇心驱动的长期玩耍，比只追求短期 KPI 更可持续地形成 AI 能力。",
+        "evidenceUnitIndexes": [
+          1,
+          2,
+          4
+        ],
+        "conditions": [
+          "探索成本和风险可控",
+          "持续复盘而非重复消遣",
+          "仍能满足基本交付责任"
+        ],
+        "counterexamples": [
+          "高风险工作不能无约束试错",
+          "没有反馈和记录的玩可能不产生学习",
+          "经济和组织约束会限制探索时间"
+        ],
+        "actions": [
+          "每天预留探索窗口",
+          "每次改变一个变量",
+          "记录边界发现",
+          "把有效发现转入正式工作流"
+        ],
+        "limits": [
+          "缺少学习效果对照",
+          "外部案例因果未验证"
+        ],
+        "evidenceUnitIds": [
+          "KU-02",
+          "KU-03",
+          "KU-05"
+        ]
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0058",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0067",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0075",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "机器转写把 paper、podcast、work、OpenClaw、Peter Steinberger 等词识别为播课、在去、OpenCloud、Peter Stenberger 等变体，也出现‘后期形象/好奇心’等语音误差。报告保留原始 cue；规范化只在烧录字幕、演示文稿和明确语境支持时采用。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 171.533
+      },
+      "confidence": "high",
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "OpenClaw 的画面拼写",
+        "片尾英文引语的完整出处",
+        "部分口语数字和英文词"
+      ],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整混合轨按无缝窗口执行机器语义检查，稳定载体仍是连续口播；没有足够证据把低分候选当作独立音乐、音效或论证材料，声源与权利保持未知。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 171.533
+      },
+      "confidence": "medium",
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "开场口号被进一步定义为一种具体探索方式",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "边界试探的方法被赋予固定时间和职业正当性",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "职业正当性进一步用潜在效率收益做现实支撑",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "潜在效率收益最后被更长期的内在动机取代",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-03"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-04"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-05"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-004"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-018",
+          "CUE-019"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-029",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-032",
+          "CUE-033"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0006"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-004",
+          "TARGET-0019"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-019",
+          "TARGET-0035"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-030",
+          "TARGET-0050"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-033",
+          "TARGET-0067"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0075"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用反常识排除教程、论文和播客"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用反常识排除教程、论文和播客"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用反常识排除教程、论文和播客"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：‘玩’被定义为无强 KPI 的边界试探"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：从 get your hands dirty 上升到 play is part of your job"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：效率收益被作为可能结果，而非已验证 KPI"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：效率收益被作为可能结果，而非已验证 KPI"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：效率收益被作为可能结果，而非已验证 KPI"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：Peter Steinberger/OpenClaw 案例把方法收束到好奇心"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 4,
+      "total": 4
+    },
+    "unknowns": [
+      "每天一小时相对其他学习方法的效果差异",
+      "效率提升 50% 的测量对象、基线、样本和口径",
+      "Peter Steinberger/OpenClaw 案例的完整事实、时间线和因果",
+      "片尾引语的准确出处与上下文",
+      "无明确目的探索在团队和商业环境中的边界",
+      "非语音音频的精确内容、来源、授权与编辑意图"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

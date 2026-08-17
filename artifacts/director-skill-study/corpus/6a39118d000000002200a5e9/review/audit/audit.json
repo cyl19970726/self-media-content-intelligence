@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "video-content-reconstruction-independent-audit-1.0",
+  "auditRole": "ground_truth_auditor",
+  "blindness": {
+    "candidateRead": false,
+    "baselineRead": false,
+    "priorReportsRead": false,
+    "allowedInputs": [
+      "evidence/evidence-pack.json",
+      "evidence-pack referenced video",
+      "evidence-pack referenced SRT",
+      "evidence-pack referenced shot, cue, and dense frames"
+    ]
+  },
+  "source": {
+    "corpusId": "6a39118d000000002200a5e9",
+    "durationSeconds": 141.804,
+    "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a39118d000000002200a5e9.mp4",
+    "subtitles": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a39118d000000002200a5e9.srt",
+    "subtitleOrigin": "provided_subtitles",
+    "transcriptCueCount": 46,
+    "shotCount": 16,
+    "denseFrameCount": 58,
+    "audioPresent": true
+  },
+  "inspectionScope": {
+    "timeline": {"start": 0.0, "end": 141.804},
+    "inspectedCarriers": [
+      "provided SRT and evidence-pack transcript",
+      "burned-in subtitles in cue, shot, and dense frames",
+      "persistent creator/promotion header",
+      "opening inserted analytics/proof screenshot",
+      "large editorial overlay cards",
+      "speaker, mask, gestures, marker pointing, and room/whiteboard setting",
+      "handwritten whiteboard structure where legible",
+      "shot boundaries and semantic continuity across cuts"
+    ],
+    "notFullyInspected": [
+      {
+        "carrier": "non-speech audio",
+        "reason": "The evidence pack confirms an audio track but contains no separate music/SFX annotation; this audit could not treat still frames or the SRT as proof of the semantic role of music or sound effects.",
+        "evaluationRequirement": "A reconstruction must explicitly state whether it listened for and found any meaning-bearing non-speech audio; otherwise this remains an unchecked available channel."
+      },
+      {
+        "carrier": "small handwritten whiteboard text",
+        "reason": "Much of the persistent board is below dependable reading resolution or occluded by the speaker. Only text corroborated by burned-in captions, pointing, or sufficiently legible frames is ground truth.",
+        "evaluationRequirement": "Do not silently convert unreadable board text into facts; resample/crop/OCR or mark it unknown."
+      }
+    ]
+  },
+  "denominatorCounts": {
+    "criticalQuestions": 18,
+    "coreKnowledgeUnits": 25,
+    "carrierConflicts": 15,
+    "meaningChanges": 14,
+    "relationsAndDependencies": 15,
+    "unknownOpportunities": 12,
+    "openingItems": 5,
+    "closingItems": 4,
+    "absenceClaims": 7,
+    "challengeFamilies": 10,
+    "availableCarrierFamilies": 8
+  },
+  "criticalQuestions": [
+    {"id":"CQ-01","question":"What outcome does the video promise, and who is it for?","answerBasis":"It teaches how to tell a founder-IP story from a human-nature angle and explicitly says non-founder IP can also use it.","evidence":["CUE-001@0.000-5.650","CUE-002@5.660-7.322","CUE-003@7.322-8.984"]},
+    {"id":"CQ-02","question":"What does the opening analytics insert prove, and what does it not prove?","answerBasis":"It visually presents high engagement/view counts as creator proof, but the inspected frame does not establish which posts, date, account ownership, or causal link to the taught framework.","evidence":["DENSE-0001@0.000"]},
+    {"id":"CQ-03","question":"What are the three stated bottom-level logics?","answerBasis":"Content's essence is human nature; self-media's essence is 'ta media' as displayed; making video is making a product.","evidence":["CUE-004@8.984-10.646","CUE-005@10.646-15.250","DENSE-0006@12.500","DENSE-0007@15.000"]},
+    {"id":"CQ-04","question":"How does the speaker define the desired IP relationship change?","answerBasis":"From liking to loving, and from knowing to trusting.","evidence":["CUE-006@15.260-17.940","DENSE-0008@17.500"]},
+    {"id":"CQ-05","question":"Why does the speaker say people make IP, and what example supports the claim?","answerBasis":"The author claims IP lowers user decision cost and can motivate product purchase through personal/brand stories; Xiaomi SU7 is attributed to Lei Jun's appeal and brand culture.","evidence":["CUE-007@17.940-19.402","CUE-008@19.402-23.180","CUE-009@23.190-25.640","CUE-010@25.640-29.440","CUE-011@29.450-34.690"]},
+    {"id":"CQ-06","question":"What is the governing two-sided rule for both personal and brand storytelling?","answerBasis":"From personal and brand angles: '只要你要，只要我有'—identify what the audience wants, then match what the person/brand has.","evidence":["CUE-011@29.450-34.690","CUE-012@34.700-37.358","CUE-016@48.270-51.495"]},
+    {"id":"CQ-07","question":"What are the six personal-story topic directions and their example-person mappings?","answerBasis":"The video asserts six: 年少有为—雷军; 大器晚成—宗庆后; 造梦狂人—马斯克; 草根逆袭—刘强东 (the SRT additionally utters/places 曹德旺 ambiguously); 逆风翻盘—罗永浩; 苟富贵勿相忘—于东来. Exact punctuation around 刘强东/曹德旺 is a conflict to preserve.","evidence":["CUE-013@37.358-41.480","CUE-014@41.490-44.047","CUE-015@44.047-48.260","CUE-016@48.270-51.495","DENSE-0017@40.000","DENSE-0018@42.500","DENSE-0019@45.000","DENSE-0020@47.500"]},
+    {"id":"CQ-08","question":"What does the personal-side '只要我有' require?","answerBasis":"Show altruistic/user-benefiting material by aligning what the person has with audience needs.","evidence":["CUE-016@48.270-51.495","CUE-017@51.495-54.990","DENSE-0021@50.000","DENSE-0022@52.500"]},
+    {"id":"CQ-09","question":"Which personal-story inputs are requested?","answerBasis":"Achievements and how/when they were achieved; the largest setback and correct choice; one sentence summarizing success; one piece of advice to young people.","evidence":["CUE-018@55.000-57.732","CUE-019@57.732-59.870","CUE-020@59.870-61.414","CUE-021@61.414-64.980"]},
+    {"id":"CQ-10","question":"What is the '1+2=3' story outline and what adds warmth?","answerBasis":"Lead with the result; then cover beginning, difficulty, turning point, and rise; add family affection, romantic love, and loyalty/brotherhood to add warmth.","evidence":["CUE-022@64.989-67.668","CUE-023@67.668-71.420","CUE-024@71.430-74.560","DENSE-0027@65.000","DENSE-0028@67.500","DENSE-0029@70.000","DENSE-0030@72.500"]},
+    {"id":"CQ-11","question":"How is the personal section related to the brand section?","answerBasis":"The video transitions from personal to brand and claims a brand is closely related to its founder; the same human-nature and 'want/have' logic is reused.","evidence":["CUE-025@74.560-76.836","CUE-026@76.836-81.390","CUE-032@99.810-102.980","CUE-037@115.450-117.530","CUE-038@117.530-121.430"]},
+    {"id":"CQ-12","question":"What five consumer product-demand traits are shown, and which examples belong to each?","answerBasis":"The overlay explicitly gives 新/强/稳/故事/平. The narrated examples are approximately: 新—APP, 3C, 快消; 强—汽车、工业、芯片及部分ToB; 稳—家居、代销、食品、医美 (some words are SRT-ambiguous); 故事—文创、奢品; 平—快消品、日用. The SRT's '一个板块/压力强/第三是碗' must not override the five-part visual structure.","evidence":["CUE-027@81.400-83.600","CUE-028@83.600-88.160","CUE-029@88.170-93.950","CUE-030@93.960-95.776","CUE-031@95.776-99.800","DENSE-0035@85.000","DENSE-0036@87.500","DENSE-0037@90.000","DENSE-0038@92.500","DENSE-0039@95.000","DENSE-0040@97.500"]},
+    {"id":"CQ-13","question":"What six brand-personality directions are mapped to which brands?","answerBasis":"行业先锋—字节跳动; 匠心沉淀—百达翡丽; 改变世界—SpaceX; 平民实干—福耀科技; 重生突围—交个朋友; 温情共生—胖东来和京东.","evidence":["CUE-033@102.980-104.830","CUE-034@104.840-106.617","CUE-035@106.617-111.540","CUE-036@111.550-115.450","CUE-037@115.450-117.530","DENSE-0044@107.500","DENSE-0045@110.000","DENSE-0046@112.500","DENSE-0047@115.000"]},
+    {"id":"CQ-14","question":"What relationship does the author claim among brand personality, founder personality, culture, and slogan?","answerBasis":"Brand personality is said to be closely tied to founder personality, and brand culture/slogan is said to reflect brand traits.","evidence":["CUE-037@115.450-117.530","CUE-038@117.530-121.430","CUE-039@121.440-123.283","DENSE-0048@117.500","DENSE-0050@122.500"]},
+    {"id":"CQ-15","question":"Which culture/slogan examples are presented, with what exact mapping and uncertainty?","answerBasis":"字节跳动—激发创造，丰富生活; 百达翡丽—没有人能真正拥有百达翡丽，你只是在替下一代保管它; SpaceX—让人类成为多行星物种; 福耀科技—为中国人做一片汽车玻璃; 交个朋友—an author-presented debt/turnaround line spanning '基本上不赚钱/其实赚了一堆钱/把债全还完了' whose exact segmentation is unclear; 胖东来—爱在胖东来; 京东—多快好省.","evidence":["CUE-040@123.283-125.521","CUE-041@125.521-127.101","CUE-042@127.101-130.789","CUE-043@130.800-132.266","CUE-044@132.266-133.599","CUE-045@133.599-138.000","CUE-046@138.010-141.804","DENSE-0051@125.000","DENSE-0052@127.500","DENSE-0053@130.000","DENSE-0054@132.500","DENSE-0055@135.000","DENSE-0056@137.500"]},
+    {"id":"CQ-16","question":"Which statements are author claims rather than established facts?","answerBasis":"Claims such as '必火', universal Chinese life pursuits, IP lowering decision cost, SU7 purchase causality, founder-brand personality causality, and officialness/effectiveness of examples are not independently established by the video.","evidence":["CUE-008@19.402-23.180","CUE-010@25.640-29.440","CUE-013@37.358-41.480","CUE-026@76.836-81.390","CUE-037@115.450-117.530"]},
+    {"id":"CQ-17","question":"What identity, promotion, and persistent overlays frame the lesson?","answerBasis":"The speaker is visually masked as Spider-Man in a domestic/laundry setting; the persistent account label is 人类最强编导 and the top banner includes a 5w-follower/three-day product-discount promotion. These are presentation/identity carriers, not proof of Spider-Man identity or professional credentials.","evidence":["SHOT-001@3.683","SHOT-016@138.886","DENSE-0004@7.500","DENSE-0058@141.684"]},
+    {"id":"CQ-18","question":"How does the video close, and does it resolve the opening promise?","answerBasis":"It signs off as 人类最强编导 and says next episode goodbye; the body supplies frameworks and examples but does not demonstrate a finished story or validate outcomes.","evidence":["CUE-046@138.010-141.804","DENSE-0057@140.000","DENSE-0058@141.684"]}
+  ],
+  "coreKnowledgeUnits": [
+    {"id":"KU-01","label":"Opening social-proof insert","type":"visual_observation","evidence":["DENSE-0001@0.000"],"mustPreserve":"High-count analytics are shown briefly; their provenance and causal meaning remain unknown."},
+    {"id":"KU-02","label":"Audience and scope","type":"author_claim","evidence":["CUE-001","CUE-002","CUE-003"],"mustPreserve":"Founder-IP story method from human nature; said to work for non-founder IP too."},
+    {"id":"KU-03","label":"Three bottom-level logics","type":"author_claim","evidence":["CUE-004","CUE-005","DENSE-0007"],"mustPreserve":"人性 / ta媒体 / 产品; preserve displayed wording if 'ta' is not resolved."},
+    {"id":"KU-04","label":"IP relationship conversion","type":"author_claim","evidence":["CUE-006"],"mustPreserve":"喜欢→爱上; 认识→信任."},
+    {"id":"KU-05","label":"IP decision-cost and purchase claim","type":"author_claim","evidence":["CUE-007","CUE-008","CUE-009"],"mustPreserve":"Claim, not verified causal fact."},
+    {"id":"KU-06","label":"Xiaomi SU7 example","type":"author_claim","evidence":["CUE-010","CUE-011"],"mustPreserve":"Author attributes purchase appeal to Lei Jun and brand culture."},
+    {"id":"KU-07","label":"Two angles and governing rule","type":"framework","evidence":["CUE-011","CUE-012","CUE-016"],"mustPreserve":"Personal and brand angles both use 只要你要/只要我有."},
+    {"id":"KU-08","label":"Six personal topic directions","type":"framework","evidence":["CUE-013","CUE-014","CUE-015","CUE-016","DENSE-0017","DENSE-0020"],"mustPreserve":"All six directions and mappings; retain uncertainty around 刘强东/曹德旺 punctuation and correct 于东来 against SRT 刘向东."},
+    {"id":"KU-09","label":"Personal-side altruistic alignment","type":"framework","evidence":["CUE-016","CUE-017"],"mustPreserve":"Match one's available material to audience demand."},
+    {"id":"KU-10","label":"Achievement plus how/when","type":"prompt_set","evidence":["CUE-018"],"mustPreserve":"Both result and process/time prompts."},
+    {"id":"KU-11","label":"Setback plus correct choice","type":"prompt_set","evidence":["CUE-019"],"mustPreserve":"The pairing is important."},
+    {"id":"KU-12","label":"Success sentence plus youth advice","type":"prompt_set","evidence":["CUE-020","CUE-021"],"mustPreserve":"Two closing reflection prompts."},
+    {"id":"KU-13","label":"1+2=3 narrative outline","type":"ordered_framework","evidence":["CUE-022","CUE-023","CUE-024","DENSE-0027","DENSE-0030"],"mustPreserve":"Outcome first; beginning→difficulty→turn→rise; relational emotion adds warmth."},
+    {"id":"KU-14","label":"Founder-brand interdependence","type":"author_claim","evidence":["CUE-025","CUE-026","CUE-037"],"mustPreserve":"Claimed relation, not established causality."},
+    {"id":"KU-15","label":"Five consumer product traits","type":"framework","evidence":["CUE-027","DENSE-0035","DENSE-0040"],"mustPreserve":"新/强/稳/故事/平; the visual five-part header overrides SRT segmentation errors."},
+    {"id":"KU-16","label":"新 category examples","type":"example_mapping","evidence":["CUE-028","DENSE-0035"],"mustPreserve":"APP, 3C, 快消 as presented."},
+    {"id":"KU-17","label":"强 category examples","type":"example_mapping","evidence":["CUE-028","CUE-029","DENSE-0036","DENSE-0037"],"mustPreserve":"汽车、工业、芯片、部分ToB."},
+    {"id":"KU-18","label":"稳 category examples","type":"example_mapping","evidence":["CUE-029","DENSE-0038"],"mustPreserve":"家居/代销/食品/医美 are presented but some wording is visually/transcriptually uncertain."},
+    {"id":"KU-19","label":"故事 category examples","type":"example_mapping","evidence":["CUE-029","CUE-030","DENSE-0039"],"mustPreserve":"文创和奢品; do not retain SRT 'shopping' without noting conflict."},
+    {"id":"KU-20","label":"平 category examples","type":"example_mapping","evidence":["CUE-031","DENSE-0040"],"mustPreserve":"评价/亲民 framing; 快消品和日用 examples."},
+    {"id":"KU-21","label":"Six brand personality directions","type":"framework","evidence":["CUE-032","CUE-033","CUE-034","DENSE-0044"],"mustPreserve":"Consumer-psychology question leads to six directions."},
+    {"id":"KU-22","label":"Six direction-brand mappings","type":"example_mapping","evidence":["CUE-035","CUE-036","DENSE-0045","DENSE-0047"],"mustPreserve":"行业先锋/字节跳动; 匠心沉淀/百达翡丽; 改变世界/SpaceX; 平民实干/福耀科技; 重生突围/交个朋友; 温情共生/胖东来和京东."},
+    {"id":"KU-23","label":"Culture/slogan reflects traits","type":"author_claim","evidence":["CUE-038","CUE-039","DENSE-0050"],"mustPreserve":"This is the brand-side 只要我有 step."},
+    {"id":"KU-24","label":"Presented culture/slogan examples","type":"example_mapping","evidence":["CUE-040","CUE-041","CUE-042","CUE-043","CUE-044","CUE-045","CUE-046","DENSE-0051","DENSE-0056"],"mustPreserve":"All mappings, exact conflict corrections, and uncertainty around the 交个朋友 debt/earnings line."},
+    {"id":"KU-25","label":"Closing identity and signoff","type":"context","evidence":["CUE-046","DENSE-0057","DENSE-0058"],"mustPreserve":"人类最强编导; 下期再见; no completed worked example."}
+  ],
+  "carrierConflicts": [
+    {"id":"CF-01","scope":"0.000-5.650","carriers":["SRT CUE-001","DENSE-0001","burned subtitle"],"conflict":"SRT begins with the apparent production/edit note '开头展示坐姿', while the opening actually contains a brief analytics/proof insert and the burned subtitle carries the spoken lesson. Do not narrate the edit note as spoken content."},
+    {"id":"CF-02","scope":"10.646-15.250","carriers":["SRT CUE-005","burned overlay DENSE-0006/0007"],"conflict":"The second logic appears as 'ta媒体' on screen; resolving it to 他/她/它 without qualification exceeds the visible evidence."},
+    {"id":"CF-03","scope":"41.490-51.495","carriers":["SRT CUE-014/015/016","burned subtitles","whiteboard"],"conflict":"The six topic/person pairs cross cue boundaries. SRT '刘向东' conflicts with visible '于东来'; punctuation around 刘强东/曹德旺 is ambiguous."},
+    {"id":"CF-04","scope":"83.600-88.160","carriers":["SRT CUE-028","large overlay DENSE-0035"],"conflict":"SRT says '一个板块' while the overlay explicitly shows five: 新 强 稳 故事 平."},
+    {"id":"CF-05","scope":"83.600-90.000","carriers":["SRT CUE-028","burned subtitles DENSE-0035/0036"],"conflict":"SRT runs '快销压力强'; the video segmentation is '一个是新…第二是强'."},
+    {"id":"CF-06","scope":"88.170-93.950","carriers":["SRT CUE-029","burned subtitle DENSE-0038","large overlay"],"conflict":"SRT '第三是碗' conflicts with visible/spoken '第三是稳'."},
+    {"id":"CF-07","scope":"88.170-95.776","carriers":["SRT CUE-029/030","burned subtitles","large overlay"],"conflict":"SRT punctuation merges 稳 examples into 故事 and renders 奢品 as 'shopping'; the visual structure separates 稳 from 故事 and burned subtitle shows 文创和奢品."},
+    {"id":"CF-08","scope":"106.617-111.540","carriers":["SRT CUE-035","burned subtitle DENSE-0044/0045","whiteboard"],"conflict":"SRT '有个方向航/用先锋' conflicts with '依然是六个方向/行业先锋'."},
+    {"id":"CF-09","scope":"106.617-111.540","carriers":["SRT CUE-035","burned subtitle","brand names"],"conflict":"SRT 'space s' is a transcription error for SpaceX."},
+    {"id":"CF-10","scope":"111.550-115.450","carriers":["SRT CUE-036","burned subtitles DENSE-0046/0047","whiteboard"],"conflict":"SRT '扶摇科技/群升突围/胖高来何其都' conflicts with visible '福耀科技/重生突围/胖东来和京东'."},
+    {"id":"CF-11","scope":"127.101-130.789","carriers":["SRT CUE-042","burned subtitle DENSE-0053"],"conflict":"SRT '多形性物种' conflicts with burned '多行星物种'."},
+    {"id":"CF-12","scope":"130.800-132.266","carriers":["SRT CUE-043","burned subtitle"],"conflict":"SRT '一篇汽车玻璃' conflicts with burned '一片汽车玻璃'."},
+    {"id":"CF-13","scope":"132.266-138.000","carriers":["SRT CUE-044/045","burned subtitles DENSE-0054/0055","whiteboard pointing"],"conflict":"The transition from 福耀科技 to 交个朋友 is split poorly; '基本上不赚钱/其实赚了一堆钱/把债全还完了' must not be silently turned into an official slogan or assigned with false certainty."},
+    {"id":"CF-14","scope":"133.599-138.000","carriers":["SRT CUE-045","burned subtitle DENSE-0055"],"conflict":"SRT '爱奇赚了一堆钱' conflicts with burned '其实赚了一堆钱'."},
+    {"id":"CF-15","scope":"138.010-141.804","carriers":["SRT CUE-046","burned subtitle DENSE-0057","persistent account label"],"conflict":"SRT '人类最上边' conflicts with visible/spoken account identity '人类最强编导'."}
+  ],
+  "meaningChanges": [
+    {"id":"MC-01","window":"0.000-0.800","change":"Brief analytics/proof insert establishes authority before the lesson."},
+    {"id":"MC-02","window":"0.800-8.984","change":"Problem and applicability: founder-IP story, also usable by non-founder IP."},
+    {"id":"MC-03","window":"8.984-17.940","change":"Abstract foundation: three logics and the desired relational conversion."},
+    {"id":"MC-04","window":"17.940-34.690","change":"Business rationale and Xiaomi SU7 example lead to the two-sided rule."},
+    {"id":"MC-05","window":"34.700-48.260","change":"Personal 'audience wants' side becomes six emotionally resonant topic directions."},
+    {"id":"MC-06","window":"48.270-64.980","change":"Personal 'I have' side becomes altruistic evidence/prompt inventory."},
+    {"id":"MC-07","window":"64.989-74.560","change":"Inputs are ordered into a story outline and warmed with relationship emotions."},
+    {"id":"MC-08","window":"74.560-81.390","change":"Major section transition from person to brand; founder-brand relationship asserted."},
+    {"id":"MC-09","window":"81.400-99.800","change":"Brand audience demand is classified into five product traits and examples."},
+    {"id":"MC-10","window":"99.810-106.617","change":"Classification is reframed as consumer psychology and brand appeal."},
+    {"id":"MC-11","window":"106.617-117.530","change":"Six brand personality directions are mapped to brands and founders."},
+    {"id":"MC-12","window":"117.530-123.283","change":"Brand-side 'I have' becomes culture/slogan evidence reflecting traits."},
+    {"id":"MC-13","window":"123.283-138.000","change":"Rapid sequence of brand culture/slogan/story examples; mapping boundaries are meaning-critical."},
+    {"id":"MC-14","window":"138.010-141.804","change":"Creator identity and next-episode signoff close without a worked example or validation."}
+  ],
+  "relationsAndDependencies": [
+    {"id":"REL-01","relation":"goal_depends_on_foundation","from":"KU-02","to":"KU-03","description":"The promised storytelling method is justified through the three logics."},
+    {"id":"REL-02","relation":"mechanism_to_outcome","from":"KU-03","to":"KU-04","description":"Human-nature content is claimed to move audiences from awareness/liking to trust/love."},
+    {"id":"REL-03","relation":"claim_supported_by_example","from":"KU-05","to":"KU-06","description":"The decision-cost/purchase claim is illustrated, not proven, by Xiaomi SU7."},
+    {"id":"REL-04","relation":"framework_has_two_sides","from":"KU-07","to":["KU-08","KU-09"],"description":"Audience desire and creator assets are complementary, not alternative steps."},
+    {"id":"REL-05","relation":"topic_to_person_mapping","from":"KU-08","to":"six named examples","description":"Each emotional topic direction is meaningful only with correct referent mapping."},
+    {"id":"REL-06","relation":"asset_inventory","from":"KU-09","to":["KU-10","KU-11","KU-12"],"description":"The personal-side assets instantiate altruistic alignment."},
+    {"id":"REL-07","relation":"ordered_story_dependency","from":["KU-10","KU-11","KU-12"],"to":"KU-13","description":"The prompt inventory is reorganized into outcome-first narrative progression."},
+    {"id":"REL-08","relation":"emotional_modifier","from":"亲情/爱情/义气","to":"KU-13","description":"These are warmth modifiers, not additional chronological stages."},
+    {"id":"REL-09","relation":"section_parallelism","from":"personal half","to":"brand half","description":"Both halves reuse the same 只要你要/只要我有 structure."},
+    {"id":"REL-10","relation":"brand_founder_referent","from":"founder personality","to":"brand personality","description":"The author claims close relation; causality remains unsupported."},
+    {"id":"REL-11","relation":"taxonomy_to_examples","from":"KU-15","to":["KU-16","KU-17","KU-18","KU-19","KU-20"],"description":"Example assignment depends on preserving five category boundaries."},
+    {"id":"REL-12","relation":"consumer_need_to_brand_direction","from":"KU-21","to":"KU-22","description":"Brand personality directions answer which brands users like/find attractive."},
+    {"id":"REL-13","relation":"direction_to_brand_mapping","from":"six directions","to":"six brand/group examples","description":"Names must stay attached to the correct direction across rapid narration."},
+    {"id":"REL-14","relation":"trait_reflected_by_culture","from":"KU-23","to":"KU-24","description":"The final examples are presented as evidence of brand traits, not separately verified facts."},
+    {"id":"REL-15","relation":"opening_to_closing","from":"KU-01/KU-02","to":"KU-25","description":"Opening authority/promise is followed by frameworks, but closing offers no demonstration tying analytics or a finished story back to the method."}
+  ],
+  "unknownOpportunities": [
+    {"id":"UNK-01","materialBoundary":"attribution/proof","correctUnknown":"Which posts/account/date the opening statistics represent, and whether the taught framework caused them."},
+    {"id":"UNK-02","materialBoundary":"identity/credentials","correctUnknown":"Speaker's real identity and professional credentials beyond the visible account label and promotional follower claim."},
+    {"id":"UNK-03","materialBoundary":"applicability","correctUnknown":"How a non-founder IP should adapt a founder-story framework; the video only says it can be used."},
+    {"id":"UNK-04","materialBoundary":"performance guarantee","correctUnknown":"Evidence, base rate, conditions, and failure cases behind '六个必火选题'."},
+    {"id":"UNK-05","materialBoundary":"causality","correctUnknown":"Whether IP actually lowers decision cost or Lei Jun/brand culture caused SU7 purchases."},
+    {"id":"UNK-06","materialBoundary":"universality","correctUnknown":"Basis for calling the six topics things all Chinese people pursue throughout life."},
+    {"id":"UNK-07","materialBoundary":"taxonomy boundaries","correctUnknown":"Definitions, rationale, overlap rules, and exact placement of some product examples in 新/强/稳/故事/平."},
+    {"id":"UNK-08","materialBoundary":"execution detail","correctUnknown":"Concrete story length, platform, script wording, shot plan, evidence selection, and how/when values for applying 1+2=3."},
+    {"id":"UNK-09","materialBoundary":"effectiveness","correctUnknown":"Success rate or worked before/after example showing the outline produces a good IP story."},
+    {"id":"UNK-10","materialBoundary":"official attribution","correctUnknown":"Whether all final phrases are official slogans, paraphrases, founder stories, or the author's summaries, especially the 交个朋友 debt/earnings line."},
+    {"id":"UNK-11","materialBoundary":"transcription/referent","correctUnknown":"Exact punctuation/mapping around 刘强东/曹德旺 and exact wording of partially unreadable whiteboard notes."},
+    {"id":"UNK-12","materialBoundary":"non-speech audio","correctUnknown":"Whether music or sound effects carry emphasis, irony, transition, or other meaning; the evidence pack has audio but no non-speech annotation."}
+  ],
+  "opening": [
+    {"id":"OPEN-01","window":"0.000-0.800","item":"Inserted analytics/proof screenshot with large counts; provenance unresolved."},
+    {"id":"OPEN-02","window":"0.000-5.650","item":"Persistent creator label/promotion and masked speaker/whiteboard setting."},
+    {"id":"OPEN-03","window":"0.000-5.650","item":"Trend premise: people across industries are making IP."},
+    {"id":"OPEN-04","window":"5.660-7.322","item":"Central question: how to tell a founder-IP story."},
+    {"id":"OPEN-05","window":"7.322-8.984","item":"Qualifier: non-founder IP can also use the method."}
+  ],
+  "closing": [
+    {"id":"CLOSE-01","window":"133.599-138.000","item":"Rapid last examples: 交个朋友 debt/earnings line, 爱在胖东来, 多快好省; mapping boundaries require care."},
+    {"id":"CLOSE-02","window":"138.010-141.804","item":"Speaker identifies as 人类最强编导; SRT identity is wrong."},
+    {"id":"CLOSE-03","window":"138.010-141.804","item":"Simple '下期再见' signoff; no explicit CTA in speech, while promotional/account overlays persist visually."},
+    {"id":"CLOSE-04","window":"0.000-141.804","item":"The opening promise is answered by frameworks and examples, not by a finished worked story or outcome test."}
+  ],
+  "absenceClaims": [
+    {"id":"ABS-01","claim":"No finished personal-IP story is built from the framework.","boundedScope":"All 46 transcript cues plus all 58 dense frames and 16 shot representatives across 0.000-141.804.","relevantCarriers":["speech/SRT","burned subtitles","large overlays","whiteboard/result visuals"],"caveat":"Does not assert absence from unreadable small board text."},
+    {"id":"ABS-02","claim":"No before/after result demonstrates that applying the framework improves a story.","boundedScope":"Inspected full evidence-pack timeline 0.000-141.804.","relevantCarriers":["visual states","speech/SRT","opening proof insert"],"caveat":"Opening analytics are not tied to a demonstrated application."},
+    {"id":"ABS-03","claim":"No source citations or empirical support are supplied for '必火', universal desires, decision-cost reduction, or purchase causality.","boundedScope":"All transcript cues and visible citation/overlay carriers across 0.000-141.804.","relevantCarriers":["speech/SRT","burned subtitles","whiteboard","opening insert"],"caveat":"This is absence within the video, not an external truth judgment."},
+    {"id":"ABS-04","claim":"No explicit failure cases, counterexamples, or limiting conditions are taught for the frameworks.","boundedScope":"All semantic transcript cues and inspected visual carriers across 0.000-141.804.","relevantCarriers":["speech/SRT","overlays","whiteboard"],"caveat":"The opening qualifier expands applicability rather than limiting it."},
+    {"id":"ABS-05","claim":"No operational production specification is given for duration, platform, shot design, editing, or measurement.","boundedScope":"All 46 transcript cues and visual instructional overlays.","relevantCarriers":["speech/SRT","burned subtitles","whiteboard"],"caveat":"The persistent promotion is not an execution instruction."},
+    {"id":"ABS-06","claim":"No authoritative attribution distinguishes official slogans from paraphrases or founder-story summaries in the last example sequence.","boundedScope":"123.283-138.000 final example block.","relevantCarriers":["speech/SRT","burned subtitles","pointed whiteboard list"],"caveat":"Individual phrases may in fact be official; the video does not establish that status."},
+    {"id":"ABS-07","claim":"No speech CTA asking viewers to buy/follow/comment is present in the closing cues.","boundedScope":"CUE-045 and CUE-046, 133.599-141.804.","relevantCarriers":["speech/SRT","burned subtitles"],"caveat":"Visual account and discount promotion overlays remain present, so the video is not free of promotional framing."}
+  ],
+  "challengeFamilies": [
+    {"id":"CH-01","family":"identity inversion","status":"applicable","finding":"Masked Spider-Man appearance must not be treated as identity; visible account identity is 人类最强编导, and SRT corrupts it at closing."},
+    {"id":"CH-02","family":"literal failure/result signatures","status":"not_applicable","finding":"No software/procedure success or error-state demo occurs; opening analytics are social proof, not a process result."},
+    {"id":"CH-03","family":"opening/closing qualifiers and disclaimers","status":"applicable","finding":"Opening non-founder applicability and proof insert, persistent discount banner, and closing identity/signoff are meaning-bearing."},
+    {"id":"CH-04","family":"opening-to-closing semantic relation","status":"applicable","finding":"The question is answered with frameworks, but no worked story or validation closes the loop to the proof insert."},
+    {"id":"CH-05","family":"UI progress/status","status":"applicable_limited","finding":"Opening inserted analytics UI contains counts that function as proof; exact metrics/provenance are unreadable or unestablished. No procedural UI progress exists."},
+    {"id":"CH-06","family":"referent relations","status":"applicable","finding":"Six topic-person mappings, five trait-example mappings, six direction-brand mappings, and final slogan/culture mappings are all vulnerable to cue-boundary and ASR errors."},
+    {"id":"CH-07","family":"edited chronology versus dependency order","status":"applicable","finding":"No edited action procedure, but conceptual order matters: audience want before creator/brand assets, then inputs before outline; personal section precedes and parallels brand section."},
+    {"id":"CH-08","family":"scoped negative evidence","status":"applicable","finding":"Absences must cite the full transcript/frame sweep and cannot rely on silence or a single midpoint; non-speech audio remains outside definitive absence claims."},
+    {"id":"CH-09","family":"consequential carrier conflicts","status":"applicable","finding":"Fifteen conflicts materially alter names, counts, categories, mappings, or identity. Burned subtitles/overlays often outperform SRT, but unresolved handwriting remains unknown."},
+    {"id":"CH-10","family":"technical segmentation versus semantic continuity","status":"applicable","finding":"Several concepts and mappings cross cue and shot boundaries, especially six personal topics, five product traits, and the final brand examples; evaluation must score semantic units rather than cue-local strings."}
+  ],
+  "carrierInventory": [
+    {"id":"CAR-01","carrier":"speech/provided SRT","available":true,"role":"main explanation","risk":"substantial transcription and punctuation errors"},
+    {"id":"CAR-02","carrier":"burned-in subtitles","available":true,"role":"speech correction and emphasis","risk":"still-frame sampling may miss brief text; some phrases split across frames"},
+    {"id":"CAR-03","carrier":"large editorial overlays","available":true,"role":"enumeration and taxonomy","risk":"omitting them loses 3-logics, 6-topics, and 5-traits structure"},
+    {"id":"CAR-04","carrier":"opening analytics insert","available":true,"role":"authority/social proof","risk":"counts/provenance can be overinterpreted"},
+    {"id":"CAR-05","carrier":"persistent account/promotion header","available":true,"role":"identity and commercial framing","risk":"easy to dismiss as decoration"},
+    {"id":"CAR-06","carrier":"whiteboard handwriting and pointing","available":true,"role":"global structure, mapping, continuity","risk":"small/occluded text; requires abstention or targeted OCR"},
+    {"id":"CAR-07","carrier":"speaker appearance, gesture, environment","available":true,"role":"persona, emphasis, referent pointing","risk":"Spider-Man mask is persona, not identity"},
+    {"id":"CAR-08","carrier":"non-speech audio","available":true,"role":"unknown until listened","risk":"unchecked channel in this pack-only audit"}
+  ],
+  "evaluationInstructions": {
+    "criticalQuestionRecall":"Score answered or correctly unknown CQ items over all 18.",
+    "evidenceCoverage":"Score core units with valid, correctly scoped evidence over all 25.",
+    "carrierConflictHandling":"Evaluate all 15 conflicts; a candidate must either resolve with stronger visible evidence or explicitly preserve uncertainty.",
+    "meaningChangeCoverage":"Evaluate coverage of all 14 meaning-change windows.",
+    "dependencyCompleteness":"Evaluate all 15 relations/dependencies.",
+    "unknownDiscipline":"Evaluate correct unknowns/abstentions over all 12 opportunities.",
+    "openingClosingCoverage":"Evaluate all 5 opening and 4 closing items.",
+    "absenceClaimDiscipline":"Any negative claim must stay within the documented bounded scope and carriers; do not grant credit for broader claims.",
+    "uncheckedChannels":"Fail if the candidate ignores any available carrier family without an explicit decision; non-speech audio requires an explicit listened/not-inspected disposition.",
+    "metaGatePrompt":"原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？"
+  }
+}

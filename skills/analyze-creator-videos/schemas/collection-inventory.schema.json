@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/collection-inventory.schema.json",
+  "title": "Creator collection inventory",
+  "type": "object",
+  "required": ["schemaVersion", "snapshotId", "snapshotAt", "platform", "route", "creator", "crawl", "items"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "snapshotAt": { "type": "string", "format": "date-time" },
+    "platform": { "type": "string", "minLength": 1 },
+    "route": {
+      "type": "object",
+      "required": ["adapter", "mode", "serverLabel", "taskSpaceId", "ownership"],
+      "properties": {
+        "adapter": { "const": "ego-browser" },
+        "mode": { "const": "read_only" },
+        "serverLabel": { "type": ["string", "null"] },
+        "taskSpaceId": { "type": ["string", "number", "null"] },
+        "ownership": { "enum": ["agent_control", "user_control", "released", "unknown"] }
+      },
+      "additionalProperties": true
+    },
+    "creator": {
+      "type": "object",
+      "required": ["id", "name", "profileUrl", "identityStatus", "identityAnchors", "publicStats"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "profileUrl": { "type": ["string", "null"] },
+        "xiaohongshuId": { "type": ["string", "null"] },
+        "bio": { "type": ["string", "null"] },
+        "identityStatus": { "enum": ["unverified", "confirmed", "conflict", "needs_user"] },
+        "identityAnchors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "value", "source"],
+            "properties": {
+              "kind": { "type": "string", "minLength": 1 },
+              "value": {},
+              "source": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": true
+          }
+        },
+        "publicStats": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "crawl": {
+      "type": "object",
+      "required": ["rounds", "zeroGrowthRounds", "zeroGrowthRoundsRequired", "completed", "stopReason", "duplicateIds"],
+      "properties": {
+        "rounds": { "type": "integer", "minimum": 0 },
+        "zeroGrowthRounds": { "type": "integer", "minimum": 0 },
+        "zeroGrowthRoundsRequired": { "type": "integer", "minimum": 1 },
+        "completed": { "type": "boolean" },
+        "stopReason": { "enum": ["not_started", "converged", "explicit_end", "declared_limit", "needs_user", "retryable_error", "terminal_error"] },
+        "declaredLimit": { "type": ["integer", "null"], "minimum": 1 },
+        "duplicateIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "lastScrollY": { "type": ["number", "null"] },
+        "lastPageHeight": { "type": ["number", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "nullableMetric": { "type": ["number", "null"], "minimum": 0 },
+    "fieldEvidence": {
+      "type": "object",
+      "required": ["status", "chosen", "candidates"],
+      "properties": {
+        "status": { "enum": ["unknown", "single_source", "confirmed", "conflict"] },
+        "chosen": {},
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value", "source", "capturedAt"],
+            "properties": {
+              "value": {},
+              "source": { "type": "string", "minLength": 1 },
+              "capturedAt": { "type": "string", "minLength": 1 },
+              "artifactRef": { "type": ["string", "null"] }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "title", "sourceUrl", "mediaType", "state", "detailStatus", "mediaStatus", "subtitleStatus", "metrics", "fieldEvidence", "failures", "updatedAt"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "sourceUrl": { "type": ["string", "null"] },
+        "mediaType": { "enum": ["video", "image", "article", "unknown"] },
+        "state": { "enum": ["discovered", "detail_pending", "metadata_ready", "media_pending", "media_skipped", "media_downloaded", "media_verified", "ready", "needs_user", "retryable_failed", "terminal_failed", "stale"] },
+        "detailStatus": { "enum": ["pending", "ready", "partial", "failed"] },
+        "mediaStatus": { "enum": ["not_selected", "pending", "downloaded", "verified_complete", "verified_visual_short_no_subtitle", "partial_or_frozen_tail", "decode_failed", "metadata_mismatch", "unknown_completeness", "failed"] },
+        "subtitleStatus": { "enum": ["unchecked", "available", "absent", "failed"] },
+        "selectedForDeep": { "type": "boolean" },
+        "publishedAt": { "type": ["string", "null"] },
+        "publishedLabel": { "type": ["string", "null"] },
+        "metrics": {
+          "type": "object",
+          "required": ["likes", "collections", "comments", "shares"],
+          "properties": {
+            "likes": { "$ref": "#/$defs/nullableMetric" },
+            "collections": { "$ref": "#/$defs/nullableMetric" },
+            "comments": { "$ref": "#/$defs/nullableMetric" },
+            "shares": { "$ref": "#/$defs/nullableMetric" }
+          },
+          "additionalProperties": true
+        },
+        "media": {
+          "type": "object",
+          "properties": {
+            "videoPath": { "type": ["string", "null"] },
+            "subtitlePath": { "type": ["string", "null"] },
+            "coverPath": { "type": ["string", "null"] },
+            "verificationPath": { "type": ["string", "null"] },
+            "expectedDurationSec": { "type": ["number", "null"], "minimum": 0 },
+            "sha256": { "type": ["string", "null"] }
+          },
+          "additionalProperties": true
+        },
+        "fieldEvidence": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/fieldEvidence" }
+        },
+        "failures": { "type": "array", "items": { "type": "object" } },
+        "updatedAt": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

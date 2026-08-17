@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 17,
+      "examples": [
+        {"status": "pass", "auditIds": ["CQ-01", "CQ-03", "CQ-04", "CQ-05", "CQ-06", "CQ-07", "CQ-08", "CQ-09", "CQ-11", "CQ-12", "CQ-13", "CQ-14", "CQ-16", "CQ-17"], "note": "Candidate units answer or correctly bound these audit questions."},
+        {"status": "fail", "auditId": "CQ-02", "note": "The knowledge model never preserves the spoken sign-off 雷自强编导 and instead says the speaker signs off as 人类最强编导."},
+        {"status": "fail", "auditId": "CQ-10", "note": "The candidate converts a noisy/blank support-plan item into 纪录片和人间观察; the audit requires the middle type to remain unknown and the visible final type is 微纪录片."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 16,
+      "denominator": 17,
+      "examples": [
+        {"status": "pass", "auditUnitIds": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-08", "KU-09", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17"], "note": "Candidate supplies time-localized cue/frame evidence for these audited core units."},
+        {"status": "fail", "auditUnitId": "KU-10", "note": "Candidate evidence is time-localized but does not validly support the asserted content-type list; the decisive carrier conflict was resolved contrary to the audit."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 2,
+      "total": 25,
+      "examples": [
+        {"candidateUnitId": "KU-Q10", "note": "Unsupported normalization of question 10 into AI短片、纪录片和人间观察."},
+        {"candidateUnitId": "KU-CLOSE", "note": "Identity inversion: the audible sign-off is 雷自强编导, not 人类最强编导; the latter is a visible account/document label."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {"status": "pass", "note": "One evidence window per audited core unit was checked against the candidate unit range; all 17 are localized to the correct source interval, including the opening, section transition, and close."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": false,
+      "numerator": 0,
+      "denominator": 0,
+      "rationale": "The audit identifies a rhetorical mock-exam progression, not an executable procedure with required dependency order."
+    },
+    "unknownDiscipline": {
+      "numerator": 10,
+      "denominator": 12,
+      "examples": [
+        {"status": "pass", "auditIds": ["U-01", "U-02", "U-04", "U-05", "U-06", "U-07", "U-09", "U-10", "U-11", "U-12"], "note": "Candidate generally scopes external truth, identity, chronology, audio, plan access, terminology and affiliation as unknown/unsupported."},
+        {"status": "fail", "auditId": "U-03", "note": "The missing support-plan content type was required to remain unknown but was positively filled."},
+        {"status": "fail", "auditId": "U-08", "note": "Source/ownership of the 0–1.133 s blurred opening insert is not preserved in the reconstruction knowledge model or unknown ledger."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "The 0.000–1.133 s blurred inserted visual and its burned caption 开头展示教程 are absent from the reconstruction knowledge model."
+    ],
+    "unguardedMeaningChanges": [
+      "The opening insert gives way to the full mock-exam setup at 1.133 s, but the candidate collapses both into KU-SETUP."
+    ],
+    "unguardedRelationships": [
+      "The spoken 雷自强编导 sign-off must remain distinct from the visible 人类最强编导 account/document label; KU-CLOSE inverts this relation."
+    ],
+    "rationale": "The candidate's internal meta-gate is contradicted by the independent audit: an opening visual source/ownership boundary and the closing identity-label relation are not safely closed."
+  },
+  "examples": [
+    {"kind": "judge_not_run", "note": "Hard GATE failed. The schema requires numeric JUDGE fields, so value 1 is a sentinel only and must not be interpreted as a completed readability/execution score."},
+    {"kind": "denominator_policy", "note": "Critical questions, core units, and unknown opportunities use the independent audit denominators 17, 17, and 12. Unsupported-inference total counts the 25 positive-claim-bearing candidate units; unknown and bounded-absence units are excluded."}
+  ]
+}

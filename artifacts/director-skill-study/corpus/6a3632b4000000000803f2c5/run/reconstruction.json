@@ -1,0 +1,2029 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "仅重建本地MP4、提供SRT、重新生成的证据包、协议目标帧及经原帧复核的Vision OCR；不使用旧报告、跨视频结论、holdout或外部验证。",
+  "viewerChange": {
+    "before": "只看到短期涨粉账号，不清楚作者接下来提供什么。",
+    "after": "知道30天免费课程承诺、反知识垄断理由、目标人群和收费边界，并能区分作者主张、插图字面信息与未证条件。"
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol_targeted_frames",
+      "producedBy": "capture-protocol-evidence.mjs from local MP4 and capture-protocol.json",
+      "timeRange": {
+        "start": 0,
+        "end": 81.781
+      },
+      "limitations": [
+        "离散帧不能证明完整聊天、转账方向、工作结果或无隐藏剪辑"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS_Vision_OCR_proposals",
+      "producedBy": "ocr-frames.swift; accepted rows manually compared with target frames",
+      "timeRange": {
+        "start": 0,
+        "end": 81.781
+      },
+      "limitations": [
+        "OCR存在误读；只引用已对帧且与可见文字一致的行"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 2.182,
+        "text": "开头展示饺子起号五天已四万粉丝了",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 2.182,
+        "end": 5.73,
+        "text": "很感谢大家相信我，但是今天没有干货，我要宣布一件事情",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 5.74,
+        "end": 8.436,
+        "text": "手把手教你们如何从零粉起号做到十万粉丝",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 8.436,
+        "end": 11.558,
+        "text": "我要用三十天时间免费一个三十条自媒体干货课程",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 11.558,
+        "end": 15.25,
+        "text": "这两天有个做知识付费的公司找我合作，他告诉我要学会割",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 15.26,
+        "end": 18.081,
+        "text": "不要做真正的干货，Ok,你成功惹到我了",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 18.081,
+        "end": 23.28,
+        "text": "我不是来上桌的，我是来掀桌的，在这个时代自媒体是一种给普通人的权利下放",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 23.29,
+        "end": 25.461,
+        "text": "它让一些有困难的人解决了生存问题",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 25.461,
+        "end": 28.447,
+        "text": "让一些普通人用更低的成本得到了逆天改命的机会",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 28.447,
+        "end": 31.57,
+        "text": "我一直在说国内收入超过我的自媒体编导不超过三个",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 31.58,
+        "end": 32.869,
+        "text": "我是一个小城市的孩子",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 32.869,
+        "end": 34.416,
+        "text": "我的一切都是自媒体给我的",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 34.416,
+        "end": 38.93,
+        "text": "所以我很感激这一切，所以我最看不惯那些同行因为信息差的问题去做知识垄断",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 38.94,
+        "end": 41.437,
+        "text": "所以我这三十条课程将免费日更在平台",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 41.437,
+        "end": 46.58,
+        "text": "并且我发誓绝对不会制作任何收费的进阶课程，我可以确保你看完这个课程之后",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 46.59,
+        "end": 48.797,
+        "text": "不需要再给任何所谓的自媒体老师付费",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 48.797,
+        "end": 49.965,
+        "text": "你也不需要给我付费",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 49.965,
+        "end": 51.782,
+        "text": "因为我不会上架任何收费的课程",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 51.782,
+        "end": 55.55,
+        "text": "任何电子资料到最后都是免费的，这个期待给予人民的权利和机会",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 55.56,
+        "end": 56.742,
+        "text": "应该尽数给予人民",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 56.742,
+        "end": 59.255,
+        "text": "我希望可以通过我的课程帮到更多学生",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 59.255,
+        "end": 63.84,
+        "text": "白领，中年失业女性和创业者，从一开始我想做的就不是人类最强编导",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 63.85,
+        "end": 65.003,
+        "text": "我要做人民最强编导啊",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 65.003,
+        "end": 66.733,
+        "text": "其实这段时间有普通人来找我服务",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 66.733,
+        "end": 68.117,
+        "text": "我跟他说我不想赚你这个钱",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 68.117,
+        "end": 69.847,
+        "text": "有一位听力障碍找不到工作的粉丝",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 69.847,
+        "end": 73.08,
+        "text": "我给他推荐了剪辑工作，并且没有从中抽取任何一千块钱的费用",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 73.09,
+        "end": 75.331,
+        "text": "我可以赚完全资本积累的棚主的钱",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 75.331,
+        "end": 76.825,
+        "text": "也可以去赚企业主的钱",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 76.825,
+        "end": 81.757,
+        "text": "但是我不能去赚人民的钱，我只想要一个回馈，我想要三十天后桃李满天下",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开头账号主页可见信息",
+      "importance": "context",
+      "statement": "开头叠加的账号主页式界面可读到“人类最强编导”、IP北京、5关注、4万粉丝、12.9万获赞与收藏；简介还声称五月制作100万点赞视频2条、10万点赞视频30条，擅长0—360万粉丝博主和企业家IP孵化，以及多种服务。界面存在不等于内容真实或归属已验证。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 2.182
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "账号主页界面完整可见"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00059",
+          "supports": "账号名候选"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00061",
+          "supports": "IP北京候选"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00063",
+          "supports": "业绩简介候选"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00064",
+          "supports": "服务范围候选"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00066",
+          "supports": "服务项目候选"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "账号归属和简介真实性未知"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "开头SRT与烧录字幕冲突",
+      "importance": "supporting",
+      "statement": "原SRT的CUE-001写“开头展示饺子起号五天已四万粉丝了”，烧录字幕和账号界面分别显示“开头展示教资啊”与“起号5天已经4万粉丝了”。“饺子”未获视觉支持，重建保留三种原始形式，不静默修正其所指。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 2.182
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "保留原SRT“饺子起号”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00016",
+          "supports": "烧录字幕候选“开头展示教资啊”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00072",
+          "supports": "界面下方字幕“起号5天已经4万粉丝了”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "账号界面与字幕同帧"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“教资”实际指代未知",
+        "原始语音未独立听辨"
+      ],
+      "reasoning": "对比原SRT、烧录字幕和可见账号界面。"
+    },
+    {
+      "id": "KU-03",
+      "title": "30天免费课程承诺",
+      "importance": "core",
+      "statement": "作者宣布要手把手教观众从零粉起号做到十万粉丝，并承诺用30天免费日更30条自媒体干货课程。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 2.182,
+        "end": 11.558
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "宣布事件"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "从零粉到十万粉目标"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "30天与免费课程；SRT语序有噪声"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00112",
+          "supports": "烧录字幕“从0粉起号”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00115",
+          "supports": "做到10万粉丝"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00125",
+          "supports": "免费日更30条自媒体干货课程"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "课程平台、起止日期、入口、每条内容、考核和达到十万粉的保障未知"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "知识付费公司触发说法与插图边界",
+      "importance": "core",
+      "statement": "作者声称有知识付费公司找他合作并告诉他“要学会割、不要做真正的干货”。画面随后插入的是公开评论区样式截图，可读到“不要做真正的干货”等评论，但未显示它来自所述公司或完整合作对话，因此插图只能佐证文字出现，不能证明公司身份与原语境。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 11.558,
+        "end": 18.081
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "作者对合作方的转述"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "不要做真正干货及反应"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0018",
+          "supports": "评论区样式插图"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00150",
+          "supports": "评论行含“不要做真正的干货”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00145",
+          "supports": "可见公开评论时间/地区/回复样式"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "合作方身份、截图真实性、发言人与公司映射、完整上下文未知"
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "“掀桌”式立场转折",
+      "importance": "core",
+      "statement": "作者以“我不是来上桌的，我是来掀桌的”回应上述冲突，把个人愤怒转成对知识付费模式的对抗姿态。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 15.26,
+        "end": 23.28
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "被惹怒"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "上桌/掀桌对照"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00173",
+          "supports": "烧录字幕显示“我是来掀桌的”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-06",
+      "title": "自媒体作为权利下放",
+      "importance": "core",
+      "statement": "作者主张自媒体是给普通人的权利下放，能让有困难者解决生存问题，并让普通人以更低成本获得改变命运的机会。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 18.081,
+        "end": 28.447
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "权利下放"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "解决生存"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "低成本机会"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00174",
+          "supports": "烧录字幕“权力下放”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00178",
+          "supports": "改变命运机会"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "这些广泛效果没有数据、条件或反例"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "个人经历作为价值理由",
+      "importance": "supporting",
+      "statement": "作者声称国内收入超过自己的自媒体编导不超过三人，同时说自己是小城市的孩子、一切由自媒体带来，并以感激解释其选择。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 28.447,
+        "end": 36.673
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "收入排名"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "小城市出身"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "一切来自自媒体"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "感激"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00182",
+          "supports": "烧录字幕“小城市的孩子”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00183",
+          "supports": "一切由自媒体给出"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "收入、因果性和经历未外部验证"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "反知识垄断的免费理由",
+      "importance": "core",
+      "statement": "作者反感同行利用信息差做知识垄断，并把免费课程描述为把属于人民的权利和机会尽数给予人民。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 34.416,
+        "end": 56.742
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "反知识垄断"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "权利和机会"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "尽数给予人民"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00190",
+          "supports": "烧录字幕“知识垄断”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00213",
+          "supports": "烧录字幕“应该尽数给予人民”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“知识垄断”对象与范围由作者定义"
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "免费承诺的具体范围",
+      "importance": "core",
+      "statement": "作者承诺30条课程免费日更在平台，不制作收费的进阶课程，不上架任何收费课程；并称观众看完后不需要再给所谓自媒体老师或作者付费，任何电子资料“到最后”都是免费的。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 38.94,
+        "end": 55.55
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "30条课程免费日更"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "不做收费进阶课"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "无需再向老师付费"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "无需给作者付费"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "不上架收费课程"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "电子资料最终免费"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00192",
+          "supports": "30条免费日更"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00194",
+          "supports": "不做收费进阶课程"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00202",
+          "supports": "电子资料到最后免费"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“平台”和“到最后”的时间/条件未说明",
+        "不收费课程不等于作者所有服务免费"
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "点名受众",
+      "importance": "core",
+      "statement": "作者希望课程帮助学生、白领、中年失业女性和创业者。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 56.742,
+        "end": 63.84
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "希望帮助更多人"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "四类受众"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00221",
+          "supports": "烧录字幕可读白领、中年失业女性和创业者；学生由前一cue承接"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "各群体的不同需求和适用条件未给出"
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "身份口号重塑",
+      "importance": "supporting",
+      "statement": "作者说自己想做的不是“人类最强编导”，而是“人民最强编导”，把品牌自称从能力夸张转向服务人民的立场口号。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 59.255,
+        "end": 65.003
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "不是人类最强编导"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "人民最强编导"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00223",
+          "supports": "前一称号"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00225",
+          "supports": "后一称号"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "是否构成账号正式更名未知"
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "普通人服务截图的字面信息",
+      "importance": "supporting",
+      "statement": "作者说有普通人找他服务、自己不想赚这笔钱。插入的聊天截图可读到“其实不用找我写”“太贵了”“没必要”“不想赚你们的钱”等，但参与者、时间、完整上下文及与后续听障案例的关系没有建立。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 65.003,
+        "end": 68.117
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "普通人找服务"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "不想赚这笔钱"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0052",
+          "supports": "聊天截图"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00235",
+          "supports": "不用找我写"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00236",
+          "supports": "太贵了"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00237",
+          "supports": "没必要"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00239",
+          "supports": "不想赚你们的钱"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "参与者身份、真实性、完整对话、与后续案例映射未知"
+      ]
+    },
+    {
+      "id": "KU-13",
+      "title": "听障粉丝求职案例的作者主张",
+      "importance": "core",
+      "statement": "作者称一名有听力障碍、找不到工作的粉丝得到其剪辑工作推荐，并称自己没有从中收取费用。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 68.117,
+        "end": 73.08
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "听障粉丝与求职困难"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "推荐剪辑工作和未收费主张"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00271",
+          "supports": "烧录字幕“我给他推荐了剪辑工作”"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "粉丝身份、残障状态、工作推荐结果和完整费用历史均未验证"
+      ]
+    },
+    {
+      "id": "KU-14",
+      "title": "费用与客户称谓的载体冲突",
+      "importance": "core",
+      "statement": "CUE-027原SRT写“没有从中抽取任何一千块钱的费用”，烧录字幕清楚显示“没有从中抽取任何一分钱的费用”；CUE-028原SRT写“完成资本积累的棚主”，烧录字幕显示“完成资本积累的博主”。视觉分别支持“一分钱”和“博主”，但费用主张仍只是作者陈述。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 69.847,
+        "end": 75.331
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "原SRT“一千块钱”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00275",
+          "supports": "烧录字幕“一分钱”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "原SRT“棚主”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00281",
+          "supports": "烧录字幕“博主”"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0059",
+          "supports": "博主字样可见"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未独立听辨语音",
+        "未收费事实未外部验证"
+      ],
+      "reasoning": "逐字对比SRT与烧录字幕，并以清晰目标帧保留较受视觉支持的读法。"
+    },
+    {
+      "id": "KU-15",
+      "title": "收费边界",
+      "importance": "core",
+      "statement": "作者划定的收费边界是：可以赚已经完成资本积累的博主和企业主的钱，但不能赚“人民”的钱。该边界限制了“免费”的普遍范围。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 73.09,
+        "end": 78
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "可向完成资本积累者收费；SRT名词冲突见KU-14"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "企业主"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "不能赚人民的钱"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00283",
+          "supports": "博主收费边界"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00285",
+          "supports": "企业主"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00288",
+          "supports": "不能赚人民的钱"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“人民”、资本积累完成的判断标准、服务价格与合同条件未知"
+      ]
+    },
+    {
+      "id": "KU-16",
+      "title": "结尾把回报改写为学员成长",
+      "importance": "core",
+      "statement": "作者说自己只想要一个回馈：30天后“桃李满天下”。这把开头30天课程的回报从收费改写为学员成长的象征性愿景。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 76.825,
+        "end": 81.781
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "唯一回馈与桃李满天下"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00299",
+          "supports": "烧录字幕“我想要30天后桃李满天下”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "如何衡量桃李满天下未知"
+      ],
+      "reasoning": "结尾直接复用30天期限，并与此前不赚人民的钱相连。"
+    },
+    {
+      "id": "KU-17",
+      "title": "课程执行边界缺失",
+      "importance": "supporting",
+      "statement": "在完整时间线、字幕、账号/评论/聊天插图和结尾检查范围内，虽可见约30项课程规划白板，但未观察到课程发布平台名称、具体起止日期、入口、资料领取方式、已发布课程台账、达标机制、售后/支持责任或明确CTA。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 81.781
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "开头账号页检查"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0014",
+          "supports": "白板规划存在但非发布证据"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0067",
+          "supports": "末尾检查"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0089",
+          "supports": "全时间线末端采样"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "这些执行信息可能存在于视频外或未来内容中"
+      ]
+    },
+    {
+      "id": "KU-19",
+      "title": "约30项课程规划白板",
+      "importance": "supporting",
+      "statement": "约10秒的正面白板画面显示一个两列编号的课程规划清单：左列约1—15项，右列延续至约30项，末三项以红字书写；这支持“约30项课程被规划”的视觉状态。除编号、两列分组和约30项规模外，多数手写课题因字号、笔迹和分辨率无法可靠逐条读取。规划白板不证明课程已发布、已教授或产生学习结果。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 8.5,
+        "end": 11.5
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0014",
+          "supports": "白板正面显示两列约30项编号清单"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00126",
+          "supports": "低置信OCR显示白板小字不可可靠逐条采用"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00135",
+          "supports": "烧录字幕确认免费日更30条课程"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "大多数单项课题文字不可可靠读取",
+        "课程规划与最终发布内容是否一致未知"
+      ]
+    },
+    {
+      "id": "KU-20",
+      "title": "听障求职聊天的可见状态",
+      "importance": "supporting",
+      "statement": "约69秒插入的匿名聊天中，对方可见回复“老师”“他们都不要我”“因为我听力残障”。这只证明屏幕呈现了该匿名陈述，不能验证发言者身份、残障事实、被哪些雇主拒绝、拒绝原因或与作者所述粉丝是否同一人。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 68,
+        "end": 70
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0054",
+          "supports": "匿名聊天完整显示拒绝与听力残障陈述"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "相同聊天状态持续"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00253",
+          "supports": "OCR确认“他们都不要我”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00259",
+          "supports": "重复帧确认“他们都不要我”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "聊天参与者、真实性、完整上下文、残障验证和案例映射未知"
+      ]
+    },
+    {
+      "id": "KU-21",
+      "title": "转账记录式截图的可见状态",
+      "importance": "supporting",
+      "statement": "随后画面显示三条遮蔽姓名的“向你好…转账”记录，金额分别为¥50、¥150、¥200，状态为“已被接收”。截图不解析付款方、收款方、用途、与剪辑工作/听障聊天的关系，也不能证明作者完整费用历史为零。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 70,
+        "end": 72.2
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0056",
+          "supports": "三条匿名转账记录式截图"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "交易双方、方向、用途、日期关联和案例关系未知"
+      ]
+    },
+    {
+      "id": "KU-18",
+      "title": "人物、环境、剪辑与音频边界",
+      "importance": "context",
+      "statement": "全片主要由戴蜘蛛侠风格面罩、棕色上衣的讲述者在带白板和滚筒设备的洗衣房式室内空间讲话，并穿插账号、评论、聊天和转账记录式截图；自动检测的15个技术段不等于15个语义场景，截图并置也不等于实时操作或完整证据。现实身份、形象授权与隐藏剪辑未知。媒体含AAC音轨，但现有静态/OCR证据无法可靠判定非语音音乐或音效作用。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 81.781
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-004",
+          "supports": "早段主讲环境"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-011",
+          "supports": "中段主讲环境"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-015",
+          "supports": "末段主讲环境"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0006",
+          "supports": "面罩人物"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0056",
+          "supports": "插入截图"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0067",
+          "supports": "末尾人物环境"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "人物身份、授权、隐藏剪辑和非语音音频作用未知"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-03",
+      "relation": "setup_to_announcement",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "开场涨粉"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "宣布事件"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "author_framed_as_trigger_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "合作方说法"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "被惹怒"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-08",
+      "relation": "rationale_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "权利下放"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "反知识垄断"
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-10",
+      "relation": "addresses",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "希望帮助"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "受众"
+        }
+      ]
+    },
+    {
+      "from": "KU-13",
+      "to": "KU-15",
+      "relation": "example_supports_boundary",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "案例未收费"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "不赚人民的钱"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-16",
+      "relation": "closing_payoff_for",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "30天课程"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "30天后桃李满天下"
+        }
+      ]
+    },
+    {
+      "from": "KU-19",
+      "to": "KU-03",
+      "relation": "planning_artifact_for_promise_not_delivery",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0014",
+          "supports": "约30项白板规划"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "30天30条课程承诺"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-13",
+      "relation": "visible_anonymous_statement_juxtaposed_with_author_claim",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0054",
+          "supports": "听障拒绝聊天"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "作者称听障粉丝求职困难"
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-13",
+      "relation": "transaction_screen_does_not_close_job_or_fee_claim",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0056",
+          "supports": "匿名交易状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "作者的推荐工作和未收费主张"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-11",
+      "relation": "stands_in_for_unverified",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0048",
+          "supports": "面罩人物说人民最强编导"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "自称"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-01",
+      "relation": "carrier_conflict_about_opening",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "SRT原文"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00016",
+          "supports": "烧录字幕"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "账号界面"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-15",
+      "relation": "carrier_conflict_limits_boundary",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "SRT棚主"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00281",
+          "supports": "烧录字幕博主"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-06",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-07",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01",
+          "KU-02"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-03",
+          "KU-04",
+          "KU-05",
+          "KU-19"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-08",
+          "KU-09"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-10",
+          "KU-11"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-12",
+          "KU-13",
+          "KU-14",
+          "KU-20",
+          "KU-21"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-15",
+          "KU-16"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-002"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-006",
+          "TARGET-0018"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-007",
+          "CUE-013"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-021",
+          "CUE-022"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-027",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "REL-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-004",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "REL-07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0048",
+          "CUE-023"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-03",
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-004",
+          "OCR-00125",
+          "CUE-014"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-06",
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-007",
+          "CUE-013"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-10",
+          "KU-15"
+        ],
+        "evidenceRefs": [
+          "CUE-022",
+          "CUE-028",
+          "CUE-029",
+          "CUE-030"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-12",
+          "KU-13",
+          "KU-14",
+          "KU-20",
+          "KU-21"
+        ],
+        "evidenceRefs": [
+          "TARGET-0052",
+          "TARGET-0056",
+          "OCR-00275"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-04",
+          "KU-12",
+          "KU-13",
+          "KU-14",
+          "KU-19",
+          "KU-20",
+          "KU-21"
+        ],
+        "evidenceRefs": [
+          "TARGET-0004",
+          "TARGET-0018",
+          "TARGET-0052",
+          "TARGET-0056"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "unknown",
+        "unitIds": [
+          "KU-17",
+          "KU-19"
+        ],
+        "evidenceRefs": [
+          "TARGET-0004",
+          "TARGET-0013",
+          "TARGET-0067",
+          "TARGET-0089"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-03",
+          "KU-16"
+        ],
+        "evidenceRefs": [
+          "CUE-004",
+          "CUE-030"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-17",
+          "KU-19",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-06",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-11",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-17",
+          "KU-20",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-17",
+          "KU-20",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-14",
+          "KU-17",
+          "KU-20",
+          "KU-21",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue参与对应时间范围内的承诺、价值论证、案例、冲突或边界单位。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 11,
+      "total": 11
+    },
+    "unknowns": [
+      "开头教资/饺子SRT冲突",
+      "一千块钱/一分钱及棚主/博主冲突",
+      "账号、涨粉、收入和案例真实性未验证",
+      "聊天参与者、公司映射、完整上下文、转账方向与工作结果未知",
+      "可见约30项课程规划白板，但平台、日期、入口、领取、发布台账、保障和CTA未观察",
+      "面罩身份、授权、隐藏剪辑与非语音音频作用未知"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "已执行提供字幕、烧录字幕/OCR、账号主页、评论区、服务聊天、听障拒绝聊天、转账记录式截图、白板、人物造型/手势、编辑并置和全时间线执行边界的语义读取。白板被限定为两列约30项规划且多数课题不可可靠逐读，不证明发布或结果；听障聊天只记录匿名发言，不证明身份、残障、雇主拒绝因果或工作结果；转账状态不证明方向、用途或完整费用历史。非语音音频作用保留未知。所有probe变化、关系、问题和30个cue均已问责。"
+  }
+}

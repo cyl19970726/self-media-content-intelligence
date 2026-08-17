@@ -1,0 +1,41 @@
+{
+  "videoId": "6a3632b4000000000803f2c5",
+  "status": "NOT_READY",
+  "basis": "Independent comparison of review/audit/audit.json with the candidate run, targeted/OCR evidence, and this video's evidence pack only.",
+  "discrepancies": [
+    {
+      "id": "D-01",
+      "severity": "hard_gate",
+      "auditRefs": ["CAR-05", "UNK-05"],
+      "candidateRefs": ["KU-17", "ACT-02", "ACT-03", "ACT-04", "ACT-05"],
+      "finding": "The candidate samples the whiteboard but never reconstructs the visible roughly 30-item curriculum plan; KU-17 instead states that no course table was observed.",
+      "impact": "A screenshot sample without an executed visual reading does not close the channel, and a plan-versus-delivery boundary is lost.",
+      "requiredClosure": "Add a bounded visual observation that the board supports planning only, mark most lesson text unreadable, and keep publication and learning outcomes unknown."
+    },
+    {
+      "id": "D-02",
+      "severity": "hard_gate",
+      "auditRefs": ["CAR-08", "REL-08", "DEP-04"],
+      "candidateRefs": ["KU-13", "TARGET-0054", "TARGET-0055"],
+      "finding": "The visible chat message that employers reject the sender because of hearing disability is omitted as a visual observation.",
+      "impact": "The candidate preserves the author's narration and transaction uncertainty but leaves the visual support chain incomplete.",
+      "requiredClosure": "Record the bounded chat text as an anonymized visual observation, then explicitly keep identity, disability verification, job result, transaction relation, and fee history unresolved."
+    },
+    {
+      "id": "D-03",
+      "severity": "confirmed_strength",
+      "auditRefs": ["REL-06", "DEP-05"],
+      "candidateRefs": ["KU-01", "KU-09", "KU-15"],
+      "finding": "The candidate does not generalize free courses and electronic materials into free consulting, monthly service, enterprise-IP incubation, or Q&A-community service.",
+      "impact": "The free-versus-paid scope boundary is correctly preserved."
+    },
+    {
+      "id": "D-04",
+      "severity": "confirmed_strength",
+      "auditRefs": ["REL-07", "REL-08", "DEP-04"],
+      "candidateRefs": ["KU-12", "KU-13", "KU-14"],
+      "finding": "The candidate refuses to use chat or transaction screenshots as proof of account growth, completed employment, payment direction/purpose, or complete fee absence.",
+      "impact": "No screenshot-to-growth/job/fee causal upgrade is counted."
+    }
+  ]
+}

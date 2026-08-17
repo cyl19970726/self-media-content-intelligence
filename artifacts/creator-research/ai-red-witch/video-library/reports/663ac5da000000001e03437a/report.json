@@ -1,0 +1,319 @@
+{
+  "id": "663ac5da000000001e03437a",
+  "tier": "median",
+  "title": "用Ai捏一个粘土风3D模型，又丑又乖",
+  "mediaPath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/663ac5da000000001e03437a.mp4",
+  "subtitlePath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/663ac5da000000001e03437a.srt",
+  "subtitleOrigin": "小红书官方 zh-CN 字幕",
+  "publishedAt": "2024-05-08T00:22:50.000Z",
+  "duration": 17.601,
+  "engagement": {
+    "likes": 310,
+    "collections": 328,
+    "comments": 18,
+    "shares": 34,
+    "collectionToLike": 1.058,
+    "commentToLike": 0.058,
+    "shareToLike": 0.11
+  },
+  "sourceUrl": "https://www.xiaohongshu.com/explore/663ac5da000000001e03437a",
+  "primaryCategory": "效果展示",
+  "secondaryTags": [
+    "粘土风",
+    "3D生成",
+    "草图转3D",
+    "Krea"
+  ],
+  "contentIntent": "展示二维草图如何实时变成粘土风三维模型，并把能力扩展到游戏角色、电商和场景设计。",
+  "coreClaim": "简单画几笔二维草图，AI 就能实时生成三维模型，让非专业用户参与角色、场景和电商模型设计。",
+  "articleLead": "这条17秒视频几乎是纯效果证明：二维到三维的变化足够直观，收藏略高于点赞；但工具名、步骤和功能真实性都留给评论区，形成‘看懂结果、不会行动’的中位状态。",
+  "keyPoints": [
+    "第一句直接展示2D到3D的视觉跃迁",
+    "用实时变化降低技术门槛感",
+    "把用途扩展到游戏角色、场景和电商模特",
+    "最后用评论区领取工具承接入口"
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "end": 3.58,
+      "keyFrameAt": 1.8,
+      "heading": "先用二维到三维完成视觉钩子",
+      "body": "开场直接展示平面设计变成立体粘土模型，并用‘头皮发麻’强化惊奇，不解释原理。",
+      "evidence": "2D草图与3D模型前后变化"
+    },
+    {
+      "start": 3.58,
+      "end": 11.08,
+      "keyFrameAt": 7.5,
+      "heading": "用实时生成降低专业门槛",
+      "body": "她强调3D不再是高门槛技术，简单在左侧画草图，右侧就实时变成三维艺术品。画面本身承担主要证明。",
+      "evidence": "左侧绘制、右侧实时3D结果"
+    },
+    {
+      "start": 11.08,
+      "end": 17.6,
+      "keyFrameAt": 14,
+      "heading": "扩展用途并把入口放到评论区",
+      "body": "结尾把用途扩展到游戏角色、场景和电商模特，随后说工具已打包、评论区见。正文没有说明工具名和实际步骤。",
+      "evidence": "多种3D结果与评论CTA"
+    }
+  ],
+  "boundary": "视频只展示一次视觉结果，无法证明复杂模型质量、拓扑可编辑性、导出格式或实时稳定性；评论出现‘功能不存在’质疑，工具版本需复核。",
+  "publishedLabel": "2024/05/08周三 08:22",
+  "media": {
+    "durationSeconds": 17.601,
+    "width": 720,
+    "height": 1280,
+    "codec": "h264",
+    "bytes": 1719383
+  },
+  "editing": {
+    "detectedSceneCuts": [
+      0.1,
+      16.667
+    ],
+    "cutsPerMinute": 6.8
+  },
+  "contentArchitecture": {
+    "pattern": "钩子 / 问题 → 步骤 / 证明 → 回报 / 收束",
+    "stageCount": 3,
+    "hook": {
+      "index": 1,
+      "role": "钩子 / 问题",
+      "viewerQuestion": "这和我有什么关系，为什么继续看？",
+      "start": 0,
+      "end": 3.58,
+      "heading": "先用二维到三维完成视觉钩子",
+      "function": "开场直接展示平面设计变成立体粘土模型，并用‘头皮发麻’强化惊奇，不解释原理。",
+      "visualEvidence": "2D草图与3D模型前后变化"
+    },
+    "payoff": {
+      "index": 3,
+      "role": "回报 / 收束",
+      "viewerQuestion": "我最后得到什么，下一步做什么？",
+      "start": 11.08,
+      "end": 17.6,
+      "heading": "扩展用途并把入口放到评论区",
+      "function": "结尾把用途扩展到游戏角色、场景和电商模特，随后说工具已打包、评论区见。正文没有说明工具名和实际步骤。",
+      "visualEvidence": "多种3D结果与评论CTA"
+    },
+    "proofChain": [
+      "左侧绘制、右侧实时3D结果",
+      "多种3D结果与评论CTA"
+    ],
+    "stages": [
+      {
+        "index": 1,
+        "role": "钩子 / 问题",
+        "viewerQuestion": "这和我有什么关系，为什么继续看？",
+        "start": 0,
+        "end": 3.58,
+        "heading": "先用二维到三维完成视觉钩子",
+        "function": "开场直接展示平面设计变成立体粘土模型，并用‘头皮发麻’强化惊奇，不解释原理。",
+        "visualEvidence": "2D草图与3D模型前后变化"
+      },
+      {
+        "index": 2,
+        "role": "步骤 / 证明",
+        "viewerQuestion": "它具体怎么做、如何证明？",
+        "start": 3.58,
+        "end": 11.08,
+        "heading": "用实时生成降低专业门槛",
+        "function": "她强调3D不再是高门槛技术，简单在左侧画草图，右侧就实时变成三维艺术品。画面本身承担主要证明。",
+        "visualEvidence": "左侧绘制、右侧实时3D结果"
+      },
+      {
+        "index": 3,
+        "role": "回报 / 收束",
+        "viewerQuestion": "我最后得到什么，下一步做什么？",
+        "start": 11.08,
+        "end": 17.6,
+        "heading": "扩展用途并把入口放到评论区",
+        "function": "结尾把用途扩展到游戏角色、场景和电商模特，随后说工具已打包、评论区见。正文没有说明工具名和实际步骤。",
+        "visualEvidence": "多种3D结果与评论CTA"
+      }
+    ]
+  },
+  "knowledgeExtraction": {
+    "status": "needs_visual_review",
+    "captureMode": "字幕＋章节摘要；尚未完成逐帧视觉知识核验",
+    "channels": [
+      "字幕",
+      "章节摘要"
+    ],
+    "spokenClaims": 5,
+    "mappedKnowledgeUnits": 0,
+    "coveragePercent": null,
+    "items": [],
+    "unresolved": [
+      "画面文字和非口播知识尚未逐帧核验，当前页面不能声称捕捉了全部关键内容"
+    ]
+  },
+  "transcript": {
+    "origin": "小红书官方 zh-CN 字幕",
+    "cueCount": 5,
+    "totalCharacters": 111,
+    "charactersPerMinute": 378.4,
+    "fullText": "二d设计摇身一变三d艺术品，这个ai强到让人头皮发麻 做三d模型不再是高门键的技术活 而是你动动手，简单在左面画几笔草图，Ai就能实时将它转为三d艺术品 小白不上班。在家也能设计三d游戏角色场景 电商模特工具已经打包好了，评论区见",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0.02,
+        "end": 3.575,
+        "midpoint": 1.798,
+        "text": "二d设计摇身一变三d艺术品，这个ai强到让人头皮发麻",
+        "frame": "frames-transcript/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.575,
+        "end": 6.36,
+        "midpoint": 4.968,
+        "text": "做三d模型不再是高门键的技术活",
+        "frame": "frames-transcript/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "start": 6.37,
+        "end": 11.083,
+        "midpoint": 8.726,
+        "text": "而是你动动手，简单在左面画几笔草图，Ai就能实时将它转为三d艺术品",
+        "frame": "frames-transcript/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "start": 11.083,
+        "end": 14.307,
+        "midpoint": 12.695,
+        "text": "小白不上班。在家也能设计三d游戏角色场景",
+        "frame": "frames-transcript/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "start": 14.307,
+        "end": 17.42,
+        "midpoint": 15.864,
+        "text": "电商模特工具已经打包好了，评论区见",
+        "frame": "frames-transcript/cue-005.jpg"
+      }
+    ]
+  },
+  "frames": {
+    "sparse": [
+      {
+        "time": 0,
+        "src": "frames-sparse/frame-001.jpg"
+      },
+      {
+        "time": 2.503,
+        "src": "frames-sparse/frame-002.jpg"
+      },
+      {
+        "time": 5.006,
+        "src": "frames-sparse/frame-003.jpg"
+      },
+      {
+        "time": 7.509,
+        "src": "frames-sparse/frame-004.jpg"
+      },
+      {
+        "time": 10.012,
+        "src": "frames-sparse/frame-005.jpg"
+      },
+      {
+        "time": 12.515,
+        "src": "frames-sparse/frame-006.jpg"
+      },
+      {
+        "time": 15.018,
+        "src": "frames-sparse/frame-007.jpg"
+      },
+      {
+        "time": 17.521,
+        "src": "frames-sparse/frame-008.jpg"
+      }
+    ],
+    "dense": [
+      {
+        "time": 0,
+        "src": "frames-dense/frame-001.jpg"
+      },
+      {
+        "time": 1,
+        "src": "frames-dense/frame-002.jpg"
+      },
+      {
+        "time": 2,
+        "src": "frames-dense/frame-003.jpg"
+      },
+      {
+        "time": 3,
+        "src": "frames-dense/frame-004.jpg"
+      },
+      {
+        "time": 4,
+        "src": "frames-dense/frame-005.jpg"
+      },
+      {
+        "time": 5,
+        "src": "frames-dense/frame-006.jpg"
+      },
+      {
+        "time": 6,
+        "src": "frames-dense/frame-007.jpg"
+      },
+      {
+        "time": 7,
+        "src": "frames-dense/frame-008.jpg"
+      },
+      {
+        "time": 8,
+        "src": "frames-dense/frame-009.jpg"
+      },
+      {
+        "time": 9,
+        "src": "frames-dense/frame-010.jpg"
+      },
+      {
+        "time": 10,
+        "src": "frames-dense/frame-011.jpg"
+      },
+      {
+        "time": 11,
+        "src": "frames-dense/frame-012.jpg"
+      },
+      {
+        "time": 12,
+        "src": "frames-dense/frame-013.jpg"
+      },
+      {
+        "time": 13,
+        "src": "frames-dense/frame-014.jpg"
+      },
+      {
+        "time": 14,
+        "src": "frames-dense/frame-015.jpg"
+      },
+      {
+        "time": 15,
+        "src": "frames-dense/frame-016.jpg"
+      },
+      {
+        "time": 16,
+        "src": "frames-dense/frame-017.jpg"
+      },
+      {
+        "time": 17,
+        "src": "frames-dense/frame-018.jpg"
+      },
+      {
+        "time": 17.521,
+        "src": "frames-dense/frame-019.jpg"
+      }
+    ],
+    "sparseSheet": "sparse-sheet.jpg",
+    "denseSheet": "dense-sheet.jpg"
+  },
+  "reportUrl": "reports/663ac5da000000001e03437a/report.html"
+}

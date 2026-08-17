@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "v0-holdout-generalization-evaluation-1.0",
+  "corpusId": "6a32842e000000000702e153",
+  "evaluatorRole": "independent_v0_holdout_generalization_evaluator",
+  "v0": {
+    "version": "v0",
+    "sha256": "5266b285afdb8b23d05a433e1a7f34b177ae6f93a78acaf53ccf4761748c95db",
+    "mutationPerformed": false
+  },
+  "sourceIsolation": {
+    "read": [
+      "artifacts/director-skill-study/v0-method.md",
+      "artifacts/director-skill-study/v0-freeze.json",
+      "artifacts/director-skill-study/holdout-evaluation-contract.md",
+      "artifacts/director-skill-study/corpus/6a32842e000000000702e153/run/reconstruction.json",
+      "artifacts/director-skill-study/corpus/6a32842e000000000702e153/run/article.md",
+      "artifacts/director-skill-study/corpus/6a32842e000000000702e153/review/audit/",
+      "artifacts/director-skill-study/corpus/6a32842e000000000702e153/review/evaluation-v2/"
+    ],
+    "excluded": [
+      "other observations",
+      "other corpus items",
+      "other holdout-generalization evaluations",
+      "final Skill"
+    ]
+  },
+  "denominatorPolicy": "The denominator is 32 distinct, video-applicable audit questions derived from the independent audit's critical questions, carrier/relationship checks, unknown opportunities and bounded absence checks. N.A. items are reported separately and excluded. A broad thematic resemblance is not a recall.",
+  "dimensions": [
+    {
+      "id": "D1",
+      "name": "account/identity purpose",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 4,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "recalledItems": [
+        {"id": "D1-Q1", "question": "What relationship change is IP claimed to create?", "v0Recovery": ["P01", "P02"], "result": "V0 asks for an account promise and treats persona as a trust-bearing system, recovering the recognition-to-trust / liking-to-love purpose as a claim rather than a fact."},
+        {"id": "D1-Q2", "question": "What do the ID and persona components communicate?", "v0Recovery": ["P02"], "result": "Identity word, attitude, repeatable symbols and proof objects recover the informative/bold ID and the visible mask/label system."},
+        {"id": "D1-Q3", "question": "Where is the persona-design truth boundary?", "v0Recovery": ["P02", "C06"], "result": "Strong expression is allowed; fabricated identity, achievement, case or causality is not."},
+        {"id": "D1-Q4", "question": "Which identities and referents are visible versus asserted?", "v0Recovery": ["P08", "C06"], "result": "The visible account label, masked presenter and redactions are kept separate from literal identity, ownership and authorization."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["Longitudinal proof of continuous account delivery is not present in this single video."]
+    },
+    {
+      "id": "D2",
+      "name": "audience, situation and demand",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 3,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "recalledItems": [
+        {"id": "D2-Q1", "question": "Which audience/use-case branches organize the talk?", "v0Recovery": ["P01", "P04"], "result": "Advertising-monetization creators and product-selling founders are separated by user/business situation."},
+        {"id": "D2-Q2", "question": "What need is claimed for advertising creators?", "v0Recovery": ["P04"], "result": "Stickiness and seeding/persuasion are preserved as the author's proposed needs, not validated outcomes."},
+        {"id": "D2-Q3", "question": "What enterprise goals and conditions are distinguished?", "v0Recovery": ["P03", "P04", "P20"], "result": "Brand influence and direct conversion are distinct jobs; the claimed scale-to-goal rule remains unverified."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": []
+    },
+    {
+      "id": "D3",
+      "name": "single-post job and portfolio role",
+      "applicable": true,
+      "denominator": 2,
+      "recalled": 2,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "recalledItems": [
+        {"id": "D3-Q1", "question": "What is this post's primary job?", "v0Recovery": ["P03"], "result": "The post is an educational/authority-positioning explainer that separates two IP briefs; it is not itself evidence of conversion."},
+        {"id": "D3-Q2", "question": "How do the two founder content directions relate to goals?", "v0Recovery": ["P03"], "result": "Viewpoint talking-head and daily-life content are treated as different portfolio functions rather than universal formats."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["The account's full content mix and the video's pre-registered portfolio slot are not supplied."]
+    },
+    {
+      "id": "D4",
+      "name": "opening, delivery and closing contracts",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 3,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 0,
+      "recalledItems": [
+        {"id": "D4-Q1", "question": "What does the metric/profile opening promise and prove?", "v0Recovery": ["P06", "P08"], "result": "It is a result/credential hook; it shows a displayed state but not ownership, authenticity, three-day chronology or IP causality."},
+        {"id": "D4-Q2", "question": "How is the thesis delivered?", "v0Recovery": ["P06", "minimum-closure-7"], "result": "The trust/love thesis is developed through two parallel audience branches and examples."},
+        {"id": "D4-Q3", "question": "What does the closing resolve and leave open?", "v0Recovery": ["P05", "P06"], "result": "It completes the daily-content branch, echoes the identity and says next episode, but does not repay the three-day/30k evidentiary burden."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": []
+    },
+    {
+      "id": "D5",
+      "name": "narrative/process/story relations",
+      "applicable": true,
+      "denominator": 3,
+      "recalled": 2,
+      "missed": 1,
+      "false_positive": 0,
+      "na": 1,
+      "recalledItems": [
+        {"id": "D5-Q1", "question": "What is the dependency structure rather than the edit order?", "v0Recovery": ["P06", "minimum-closure-7"], "result": "V0 recovers a thesis, advertising branch, mid-video thesis return, enterprise branch and close as cognitive progression rather than a procedure."},
+        {"id": "D5-Q2", "question": "How do examples and counterexamples constrain claims?", "v0Recovery": ["P07"], "result": "The couple incident, founder examples and client anecdotes remain illustrations/counterexamples with explicit boundaries."}
+      ],
+      "missedItems": [
+        {"id": "D5-Q3", "question": "What specific emotional micro-relation is proposed by the campus analogy?", "gap": "V0 has identity, stance, proof and counterexample fields but no specific node for a bounded vulnerability/flaw beat that is claimed to move admiration toward care or affection. The no-harm qualifier is essential and must not be flattened into generic persona design."}
+      ],
+      "falsePositiveItems": [],
+      "naItems": ["Software-like procedural dependency and before/during/after operational steps are not applicable to this viewpoint explainer."]
+    },
+    {
+      "id": "D6",
+      "name": "proof objects and causal scope",
+      "applicable": true,
+      "denominator": 5,
+      "recalled": 5,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "critical": true,
+      "recalledItems": [
+        {"id": "D6-Q1", "question": "What does the opening screenshot establish?", "v0Recovery": ["P08"], "result": "Only the visible metrics/profile state."},
+        {"id": "D6-Q2", "question": "Does it establish three-day growth or ownership/authenticity?", "v0Recovery": ["P08"], "result": "No; those remain unknown."},
+        {"id": "D6-Q3", "question": "Does the video establish IP causing growth, stickiness, trust or sales?", "v0Recovery": ["P07", "P16"], "result": "No unsupported causal upgrade is made."},
+        {"id": "D6-Q4", "question": "Do the named/redacted cases and anecdotes establish their claimed effects?", "v0Recovery": ["P08", "P19"], "result": "No; each is retained as an author-supplied illustration without source verification."},
+        {"id": "D6-Q5", "question": "Do two anecdotes establish company scale as a general decision rule?", "v0Recovery": ["P07", "P16"], "result": "No; scope, counterexamples and a test would be required."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["A demonstrated failure state or operational before/after chain is absent."]
+    },
+    {
+      "id": "D7",
+      "name": "speech/image/text/audio carrier functions",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 3,
+      "missed": 1,
+      "false_positive": 0,
+      "na": 0,
+      "recalledItems": [
+        {"id": "D7-Q1", "question": "What does speech/subtitle narration carry?", "v0Recovery": ["P09"], "result": "The argument, prescriptions, examples and anecdotes."},
+        {"id": "D7-Q2", "question": "How are consequential transcript/caption conflicts handled?", "v0Recovery": ["P09"], "result": "The xm/wyy, 养胃/花呗兽, fjj, 于瀚, 立 and closing-label conflicts are preserved, not silently normalized."},
+        {"id": "D7-Q3", "question": "What do profile inserts, whiteboard, presenter and technical cuts do?", "v0Recovery": ["P08", "P09", "P10"], "result": "They carry result framing, structural reinforcement, persona continuity and pacing; technical shots are not inflated into semantic scenes."}
+      ],
+      "missedItems": [
+        {"id": "D7-Q4", "question": "What role does non-speech audio play?", "gap": "The reconstruction finds a continuous music bed but no verified transition function. V0 P09 and minimum-closure-9 enumerate image, speech and subtitles, not audio, so V0 would not specifically force this carrier check or preserve its semantic role as unknown."}
+      ],
+      "falsePositiveItems": [],
+      "naItems": []
+    },
+    {
+      "id": "D8",
+      "name": "follow/series/CTA handoff",
+      "applicable": true,
+      "denominator": 2,
+      "recalled": 2,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 1,
+      "recalledItems": [
+        {"id": "D8-Q1", "question": "Does '下期再见' constitute a follow contract?", "v0Recovery": ["P05"], "result": "No; it names no next object, progress, variation or unresolved question."},
+        {"id": "D8-Q2", "question": "Is there an actionable conversion/service CTA?", "v0Recovery": ["P05", "P20"], "result": "No price, consultation/download route or support boundary is visible in the inspected video."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["The actual next episode and off-video profile/post copy are outside the supplied reconstruction scope."]
+    },
+    {
+      "id": "D9",
+      "name": "publishing, metrics and review logic",
+      "applicable": true,
+      "denominator": 2,
+      "recalled": 2,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 2,
+      "recalledItems": [
+        {"id": "D9-Q1", "question": "How may the opening public metrics be used?", "v0Recovery": ["P16"], "result": "They may describe a displayed result state, not isolate persona/IP as the cause."},
+        {"id": "D9-Q2", "question": "What experiment/review logic is missing for the advice?", "v0Recovery": ["P16", "P17", "P18"], "result": "No unique variable, matched holdouts, observation window, failure line or layered review is supplied; the claims remain hypotheses."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["No post-publication backend metrics are available for this upload.", "No comment corpus is available for P19-style coding."]
+    },
+    {
+      "id": "D10",
+      "name": "rights, safety and unknowns",
+      "applicable": true,
+      "denominator": 4,
+      "recalled": 4,
+      "missed": 0,
+      "false_positive": 0,
+      "na": 2,
+      "critical": true,
+      "recalledItems": [
+        {"id": "D10-Q1", "question": "What safety qualifier bounds designed flaws?", "v0Recovery": ["P07", "C06"], "result": "The flaw must be harmless and hurt nobody; the mechanism is not generalized beyond that boundary."},
+        {"id": "D10-Q2", "question": "What identity/authorization risks remain?", "v0Recovery": ["P08", "P10", "minimum-closure-12"], "result": "Presenter identity, account ownership, affiliation and Spider-Man-like character authorization remain unknown."},
+        {"id": "D10-Q3", "question": "How are redacted or conflicting referents handled?", "v0Recovery": ["P09", "minimum-closure-12"], "result": "Initials, SRT names and incident abbreviations remain separated; no silent deanonymization occurs."},
+        {"id": "D10-Q4", "question": "What applicability and commercial boundaries are unknown?", "v0Recovery": ["P07", "P20"], "result": "Platform, account maturity, region, price, access and support are not invented."}
+      ],
+      "missedItems": [],
+      "falsePositiveItems": [],
+      "naItems": ["No health or physical-safety instruction is present.", "No explicit paid offer is made inside the inspected video."]
+    }
+  ],
+  "totals": {
+    "denominator": 32,
+    "recalled": 30,
+    "missed": 2,
+    "false_positive": 0,
+    "na": 9,
+    "recall": 0.9375,
+    "criticalDenominator": 10,
+    "criticalRecalled": 10,
+    "criticalRecall": 1.0,
+    "unsupportedCausalUpgrades": 0
+  },
+  "criticalQuestionIds": [
+    "D4-Q1",
+    "D6-Q1",
+    "D6-Q2",
+    "D6-Q3",
+    "D6-Q4",
+    "D6-Q5",
+    "D10-Q1",
+    "D10-Q2",
+    "D10-Q3",
+    "D10-Q4"
+  ],
+  "deltas": [
+    {
+      "label": "confirmation",
+      "normalizedLabel": "confirmed",
+      "v0Clauses": ["P02", "C06"],
+      "finding": "The video independently supports V0's compound-persona model: an informative identity label, bold attitude, repeated visual symbol and truth boundary work together; persona design is explicitly distinguished from fabrication."
+    },
+    {
+      "label": "confirmation",
+      "normalizedLabel": "confirmed",
+      "v0Clauses": ["P06", "P08"],
+      "finding": "The opening metrics/profile are a strong hook but only prove a displayed state, and the closing does not validate the three-day growth claim. This is a direct holdout confirmation of proof scope and opening-to-closing obligation."
+    },
+    {
+      "label": "limitation",
+      "normalizedLabel": "limited",
+      "v0Clauses": ["P03", "P20"],
+      "finding": "Enterprise IP needs an explicit primary enterprise outcome (brand influence or direct conversion) before selecting content form. V0 has task/portfolio and commercial-boundary concepts, but does not make this enterprise-brief split concrete. The video's claim that company scale determines the split remains unverified."
+    },
+    {
+      "label": "novelty",
+      "normalizedLabel": "novel",
+      "v0Clauses": ["P02", "P07"],
+      "finding": "A bounded vulnerability or harmless flaw is proposed as a distinct emotional beat that may convert admiration into care/affection. V0 lacks this specific mechanism; it may enter V1 only as a testable hypothesis with a no-harm gate."
+    },
+    {
+      "label": "novelty",
+      "normalizedLabel": "novel",
+      "v0Clauses": ["P09", "minimum-closure-9"],
+      "finding": "Non-speech audio is a real carrier in this holdout. V0 enumerates image, speech and subtitles but does not force an audio-function/unknown audit."
+    },
+    {
+      "label": "unresolved",
+      "normalizedLabel": "unresolved",
+      "v0Clauses": ["P07", "P16"],
+      "finding": "The claimed effects of founder IP on trust, decision cost, culture, sales and the scale-to-goal rule cannot be decided from screenshots, named examples or two self-reported client anecdotes."
+    },
+    {
+      "label": "contradiction",
+      "normalizedLabel": "contradicted",
+      "v0Clauses": [],
+      "finding": "None observed. The holdout adds limits and hypotheses but provides no verified counterexample that falsifies a V0 clause."
+    }
+  ],
+  "gates": {
+    "H0": {"pass": true, "detail": "Final evaluation-v2 gate report is ready with 22/22 gates passed and no failed gate IDs."},
+    "H1": {"pass": true, "numerator": 30, "denominator": 32, "ratio": 0.9375, "threshold": 0.85},
+    "H2": {"pass": true, "numerator": 10, "denominator": 10, "ratio": 1.0, "detail": "All designated proof, causal, identity/authorization and no-harm questions are recovered."},
+    "H3": {"pass": true, "unsupportedCausalUpgrades": 0},
+    "H4": {"pass": true, "detail": "Nine source-unavailable or truly inapplicable items are explicitly N.A.; V0 production, portfolio, backend, comments and procedural requirements are not imputed to the source video."},
+    "H5": {"pass": true, "detail": "The evaluation records confirmations, one enterprise-brief limitation, two novelties, unresolved causal claims, and no fabricated contradiction."},
+    "H6": {"pass": true, "detail": "One original, executable and measurable bounded-vulnerability experiment is specified below."}
+  },
+  "overall": {
+    "pass": true,
+    "decision": "passes_all_H0_H6",
+    "interpretation": "V0 generalizes strongly to this enterprise/persona explainer, with two genuine misses that do not break the 85% recall gate: bounded-vulnerability story mechanics and non-speech-audio function auditing."
+  },
+  "originalAction": {
+    "name": "有据可查的失误复盘：创始人无害脆弱性单变量测试",
+    "objective": "Test whether a bounded, evidenced vulnerability beat improves qualified trust without increasing trust/safety objections.",
+    "execution": [
+      "Choose one low-stakes founder decision that was genuinely wrong but caused no customer, employee, legal or safety harm.",
+      "Produce two 45-60 second adjacent variants for the same audience, topic, proof object, title family, cover style, CTA and release window. Control uses an authority-only explanation; treatment adds a 10-12 second arc: dated original decision artifact, the founder's mistaken assumption, the correction artifact, and the user-facing improvement.",
+      "Do not use self-deprecation, trauma, confidential material or a fabricated flaw. End both variants with the same concrete next-step CTA."
+    ],
+    "singleVariable": "presence versus absence of the bounded vulnerability/correction arc",
+    "primaryMetric": "qualified profile-action rate among viewers reaching 50% (profile visit plus target CTA action divided by 50%-reached viewers)",
+    "guardMetrics": [
+      "negative comments alleging fabrication, irresponsibility or harm per 1,000 comments",
+      "unfollow rate per reached follower",
+      "50% retention"
+    ],
+    "windowAndSample": "Evaluate after each variant reaches at least 20,000 impressions and seven full days; if either condition is unmet, keep the result unresolved.",
+    "successRule": "Adopt one adjacent follow-up only if treatment improves the primary metric by at least 15% relative while 50% retention does not fall by more than 5% relative and neither trust/safety guard worsens by more than 20% relative.",
+    "failureRule": "If the primary lift is below 15%, a guard is breached, or the proof artifact cannot be published safely, do not generalize 'harmless flaws create love'; record the mechanism as unsupported for this account."
+  }
+}

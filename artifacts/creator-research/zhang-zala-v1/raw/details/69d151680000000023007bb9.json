@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69d151680000000023007bb9",
+  "capturedAt": "2026-08-16T11:10:28.672Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "带着“玩”的心态学AI ，有松弛感才可持续",
+    "postCopy": "Vibe coding和做内容 对我来说都是娱乐活动！\n来自跟@Koji杨远骋 的十字路口播客\n\t\n#vibecoding[话题]# #内容创作[话题]# #播客[话题]#",
+    "hashtags": [
+      "vibecoding",
+      "内容创作",
+      "播客"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69d151680000000023007bb9",
+    "mediaType": "video",
+    "publishedAt": "2026-04-04T17:59:04.000Z",
+    "likes": "683",
+    "collections": "266",
+    "comments": "24",
+    "shares": "113",
+    "expectedDurationSec": 206
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 206
+    }
+  ]
+}

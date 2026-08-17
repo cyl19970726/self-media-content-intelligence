@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "audio-inspection-1.0",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66011c23000000000d00ed40.mp4",
+  "stream": {
+    "present": true,
+    "codec": "aac",
+    "sampleRate": 44100,
+    "channels": 2,
+    "channelLayout": "stereo",
+    "duration": 225.417868,
+    "bitRate": 64039
+  },
+  "checks": [
+    {
+      "method": "full_timeline_waveform",
+      "artifact": "full-waveform.png",
+      "observation": "从开头到结尾都有可见音频能量，无法仅凭波形把旁白、配乐、音效或插入片段原声可靠分离。"
+    },
+    {
+      "method": "full_timeline_spectrogram",
+      "artifact": "full-spectrogram.png",
+      "observation": "全时段存在宽频能量与随时间变化；频谱图不能建立具体非旁白声音的身份或叙事角色。"
+    },
+    {
+      "method": "silencedetect_-40dB_0.5s",
+      "observation": "仅检测到约 37.100–37.721 秒、224.187–224.784 秒和 224.796–225.444 秒的短静音段；其余时段非静音，但非静音不等于存在配乐或音效。"
+    }
+  ],
+  "nonSpeechAudioDecision": {
+    "available": true,
+    "inspected": true,
+    "roleEstablished": false,
+    "disposition": "unknown",
+    "statement": "媒体有连续音频流，但现有检查不能可靠区分或描述配乐、音效与插入片段原声的具体作用；重建不得把任何一种声音类型或情绪功能写成已知。"
+  }
+}

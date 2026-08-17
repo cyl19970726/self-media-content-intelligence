@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能把数字人带货理解为尚未规模落地、容易识别或只能单独念稿的概念演示。",
+    "after": "观众被引导相信京东数字人已经进入品牌直播、可与真人同播并展示穿搭，同时知道视频用安踏、巴拉巴拉及规模/GMV数字支撑商业落地叙事；但这些商业数据、替代范围和能力效果只是视频作者或画面卡片所声称，原视频没有给出可核验来源、计算口径或对照测试。",
+    "intendedChanges": [
+      "注意到数字人已被作者描述为正在实际直播带货，而非未来概念。",
+      "把数字人的能力从基础口型同步扩展到真人同播、商品讲解、穿搭走秀、品类化主播和话术生成。",
+      "用安踏与巴拉巴拉案例以及作者给出的品牌数、带货额和 GMV 占比形成商业规模感。",
+      "在结尾把技术惊讶转化为个人消费选择：自己是否愿意在 AI 直播间购买。"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 4.92},
+      "cognitiveQuestion": "开头如何让观众立刻把 AI 主播与真实带货场景联系起来？",
+      "observedSignals": ["先出现竖屏直播界面与‘安踏数字人直播间’标题，随后切到会场中的真人讲述者", "作者在字幕与源音频旁白中宣称 AI 主播已经开始带货，并自述刚参加‘京东云大会’"],
+      "checkedAlternatives": ["检查字幕", "检查密集帧、提示帧和重叠 shot", "检查人物、插入直播画面及会场环境 referent", "检查 0–4.92 秒源音频中的旁白、音乐与短促音效候选"],
+      "remainingUnknowns": ["开头直播素材的原始账号、录制时间、授权和画面中人物的真实/数字身份均未建立"],
+      "evidenceHints": ["CUE-001", "SHOT-001", "SHOT-002", "DENSE-0001", "DENSE-0003"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 4.92, "end": 13.527},
+      "cognitiveQuestion": "会场背景和数字人主题如何被建立？",
+      "observedSignals": ["画面可确认京东/JD Cloud 相关会展或展位语境，但不能独立认证具体大会名称", "代码挑战赛屏幕和多块竖屏数字人展示被剪入", "语音从零代码 App/Agent 转折到‘最惊艳’的京东数字人"],
+      "checkedAlternatives": ["检查字幕", "检查会场标识、屏幕和剪辑顺序", "检查数字人画面是否为现场展示而非直播执行证明", "检查 4.92–13.527 秒源音频中的旁白与背景音乐"],
+      "remainingUnknowns": ["‘京东云大会’是作者自述；具体大会身份、名称、日期、凭证和独立认证未知", "零代码 App/Agent 的产品名称、功能和操作未展开", "会场屏幕内容与后续商业数据之间没有可见来源链"],
+      "evidenceHints": ["CUE-002", "CUE-003", "SHOT-002", "SHOT-003", "SHOT-004", "DENSE-0005", "DENSE-0008"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 13.527, "end": 21.74},
+      "cognitiveQuestion": "视频怎样建立规模感并把它变成与观众相关的威胁/惊讶？",
+      "observedSignals": ["作者声称超过一万家品牌使用、一年带货超过一百四十亿", "多块现场竖屏作为视觉背景", "CT/扫描风格画面把‘可能是 AI 卖给你’包装成真假难辨的感觉"],
+      "checkedAlternatives": ["检查字幕与烧录大字幕", "检查数值是否有来源、口径或图表", "检查画面能否独立证明规模", "检查 13.527–21.74 秒源音频中的旁白、音乐与稳定插入原声"],
+      "remainingUnknowns": ["品牌数和带货额的来源、统计周期、币种、GMV/成交额口径和去重方式未知", "没有证据确定观众近期购买确由 AI 主播促成"],
+      "evidenceHints": ["CUE-004", "CUE-005", "SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007", "DENSE-0011", "DENSE-0014"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 21.74, "end": 31.958},
+      "cognitiveQuestion": "所谓‘逼真’和口型同步具体由哪些主张与画面支撑？",
+      "observedSignals": ["作者说京东把数字人做得很逼真并把嘴型与语音同步称为基本功", "快切人物、剪影与发布材料后出现‘运动品牌单人直播/女装服装双人直播’等示意画面", "竖屏示例标有 1.0/2.0/3.0 版本式分组"],
+      "checkedAlternatives": ["检查字幕", "检查静帧中的人物、标题、分组和竖屏示例", "把静态外观与动态口型同步分开", "检查 21.74–31.958 秒源音频中的旁白与背景音乐；不把混音听检当作口型对齐测试"],
+      "remainingUnknowns": ["静帧不能证明语音与口型严格同步，需连续帧和音频对照；视频未给出延迟或误差测试", "1.0/2.0/3.0 的官方版本含义和测试条件未知"],
+      "evidenceHints": ["CUE-006", "CUE-007", "SHOT-008", "SHOT-009", "SHOT-010", "SHOT-011", "SHOT-012", "SHOT-013", "SHOT-014", "SHOT-015", "SHOT-016", "DENSE-0019", "DENSE-0021"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 31.958, "end": 40.92},
+      "cognitiveQuestion": "真人同播、讲商品和走秀分别展示到什么程度？",
+      "observedSignals": ["作者声称 AI 与真人可一起直播讲解商品", "发布材料展示双人同框竖屏和多个直播形式标签", "黑衣人物在直播界面中转身/行走并展示服装，被作者描述为数字人走秀"],
+      "checkedAlternatives": ["检查字幕", "检查连续画面中的双人同框、人物运动和商品/服装", "区分同框、真实协作、口播内容与走秀动作", "检查 31.958–40.92 秒源音频中是否出现第二段可理解对话或插入原声"],
+      "remainingUnknowns": ["双人画面是否实时生成、真人是否与数字人同步互动、人物是否全部为数字人未由视频直接证明", "‘完全看不出猫腻’没有盲测或对照依据"],
+      "evidenceHints": ["CUE-008", "CUE-009", "SHOT-016", "DENSE-0022", "DENSE-0024", "DENSE-0026", "DENSE-0027"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 40.92, "end": 56.73},
+      "cognitiveQuestion": "安踏案例实际展示了什么，哪些是作者对线下旗舰店直播间的概括？",
+      "observedSignals": ["插入带‘安踏数字人直播间’标题的直播界面，画面中出现两个人物、价格/优惠元素、评论与商品卡", "中段给出服装局部和直播间画面，作者说商品讲解、折扣和爆款穿搭信息由数字人讲解", "字幕内容转为运动裤混搭和不同造型的示例话术"],
+      "checkedAlternatives": ["检查字幕", "检查直播 UI、安踏标识、人物、商品卡、价格/优惠和服装局部", "检查是否展示旗舰店现场、直播间搭建过程或后台归因", "检查 40.92–56.73 秒源音频；用 45–57 秒 medium ASR 复核 small 漏段并检查插入对话"],
+      "remainingUnknowns": ["画面中每个人物的真人/数字身份、直播发生时间、账号、地点和是否在安踏线下旗舰店未知", "视频未展示数字人独立完成所有讲解，也未展示购买转化或与人工直播的对照"],
+      "evidenceHints": ["CUE-010", "CUE-011", "CUE-012", "CUE-013", "SHOT-017", "SHOT-018", "SHOT-019", "DENSE-0029", "DENSE-0033", "DENSE-0037"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 56.73, "end": 64.79},
+      "cognitiveQuestion": "巴拉巴拉案例如何支撑直播间规模和 GMV 占比？",
+      "observedSignals": ["画面切到电脑上的多窗口/管理界面和多个竖屏现场展示", "作者声称巴拉巴拉搭建近十个直播间，数字人直播占整个 GMV 的 15%"],
+      "checkedAlternatives": ["检查字幕", "检查屏幕是否能数出近十个直播间", "检查是否出现 15% 的统计来源、周期、分母或报表", "检查 56.73–64.79 秒源音频中的连续旁白与音乐"],
+      "remainingUnknowns": ["电脑小字与具体产品界面身份不完全可读", "‘近十个’的具体数量、房间唯一性、运营周期未知", "15% 的来源、统计周期、GMV 分母、归因和是否包含真人协作未知"],
+      "evidenceHints": ["CUE-014", "CUE-015", "CUE-016", "SHOT-019", "SHOT-020", "SHOT-021", "SHOT-022", "DENSE-0039", "DENSE-0041", "DENSE-0043"]
+    },
+    {
+      "id": "SWEEP-08",
+      "range": {"start": 64.79, "end": 80.42},
+      "cognitiveQuestion": "618 新品、情绪音色、自然口型、品类主播和话术能力如何被组合成升级叙事？",
+      "observedSignals": ["视频画面卡片可读为‘行业首批高商业可用数字人’，而 SRT 为‘高盛宴可用的数字人’", "人物阵列与多个竖屏主播示例展示不同外观和背景", "作者声称定制音色有感情起伏、嘴型自然、不同品类有特色主播、没有 AI 味并能生成场景话术"],
+      "checkedAlternatives": ["逐字比较 SRT 与烧录字幕/发布卡片", "检查人物阵列、竖屏主播界面和品类差异", "区分外观多样性、口型运动与情感/自然度判断", "检查 64.79–80.42 秒源音频中的旁白与背景音乐变化"],
+      "remainingUnknowns": ["‘高商业可用’的定义、行业首批范围、发布主体和第三方标准未知", "情感音色、自然度、无 AI 味、话术质量与品类适配没有测试协议或对照样本", "可见人物的来源、授权和生成方式未知"],
+      "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "SHOT-023", "SHOT-024", "SHOT-025", "SHOT-026", "SHOT-027", "SHOT-028", "DENSE-0045", "DENSE-0048", "DENSE-0051"]
+    },
+    {
+      "id": "SWEEP-09",
+      "range": {"start": 80.42, "end": 83.167},
+      "cognitiveQuestion": "结尾怎样把产品能力叙事转成购买决策？",
+      "observedSignals": ["作者用‘信手拈来、分分钟带火’强化效果", "画面出现两个手机式页面/直播间示意", "以‘你会在 AI 直播间买东西吗’直接提问", "80–83.22 秒混音仍有旁白/音乐，AST 提出较明确的 Ding/Ping 类收束音效候选"],
+      "checkedAlternatives": ["检查最后一组字幕和最终画面", "对照开头‘已经开始带货’是否被重复或重新指向观众", "检查是否提供访问路径、CTA、价格或购买链接", "检查 80.42–83.22 秒源音频及短促收束音效候选"],
+      "remainingUnknowns": ["‘分分钟带火’没有销售数据或因果证据", "在完整 0–83.167 秒范围未观察到可执行购买/试用入口、价格、适用平台、账号条件或服务责任说明"],
+      "evidenceHints": ["CUE-021", "SHOT-028", "SHOT-029", "DENSE-0055", "DENSE-0057"]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-SRT",
+      "name": "提供字幕中的作者口播",
+      "modalityKeys": ["speech_transcript", "provided_subtitles"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["承载主线论点、能力主张、品牌案例、商业数字和结尾问题"],
+      "intervals": [{"start": 0, "end": 83.167}],
+      "omissionImpact": "遗漏会失去作者的主张范围、数值和论证链。"
+    },
+    {
+      "id": "CAR-BURNED",
+      "name": "烧录大字幕与发布材料文字",
+      "modalityKeys": ["on_screen_text", "burned_captions", "release_card_text"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["强化口播", "给出安踏直播间等可见标签", "暴露‘高商业可用’与 SRT 的冲突"],
+      "intervals": [{"start": 0, "end": 83.167}],
+      "omissionImpact": "可能静默纠正冲突、丢失品牌/场景标签和短卡片文字。"
+    },
+    {
+      "id": "CAR-FOOTAGE",
+      "name": "会场、发布材料、直播界面与产品示例画面",
+      "modalityKeys": ["inserted_footage", "live_ui", "event_environment", "product_visual"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["展示京东/JD Cloud 相关会展语境；具体‘京东云大会’身份仅由作者口播给出", "展示数字人外观、双人同框、服装走动、品牌直播 UI 和不同主播样式", "为商业落地叙事提供示例但非独立统计证明"],
+      "intervals": [{"start": 0, "end": 83.167}],
+      "omissionImpact": "会把示意/同框误写为能力验证，也会丢失品牌场景与人物 referent 边界。"
+    },
+    {
+      "id": "CAR-MOTION",
+      "name": "人物口型、同框与走秀的连续运动",
+      "modalityKeys": ["motion_sequence", "mouth_motion", "walking_turning", "co_presence"],
+      "discoveredIn": ["SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-08"],
+      "available": true,
+      "inspected": true,
+      "roles": ["用于检查人物是否持续改变口型、是否与另一人物同框、是否有行走/转身展示服装"],
+      "intervals": [{"start": 26.78, "end": 40.92}, {"start": 40.92, "end": 56.73}, {"start": 70.03, "end": 80.42}],
+      "omissionImpact": "单帧会把姿势误写成走秀或把同框误写成真实协作；即使连续帧也不能独立证明音画同步和实时生成。"
+    },
+    {
+      "id": "CAR-EDIT",
+      "name": "快切、并置与开闭环结构",
+      "modalityKeys": ["editing_order", "juxtaposition", "opening_closing_relation"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["把作者口播与会场/发布/直播示例并置为说服结构", "从开头惊讶转到结尾购买提问"],
+      "intervals": [{"start": 0, "end": 83.167}],
+      "omissionImpact": "可能把编辑并置误判为连续操作或独立因果证据，并丢失结尾决策转向。"
+    },
+    {
+      "id": "CAR-LAYOUT",
+      "name": "人物阵列、版本分组、直播 UI、价格和商品卡的空间布局",
+      "modalityKeys": ["layout", "grouping", "count", "spatial_composition", "ui_state"],
+      "discoveredIn": ["SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["展示单人/双人/走秀形式、直播商品语境和主播外观多样性", "支持保守计数与产品身份审计"],
+      "intervals": [{"start": 26.78, "end": 31.958}, {"start": 40.92, "end": 64.79}, {"start": 70.03, "end": 83.167}],
+      "omissionImpact": "可能将可见示例数量升级为普遍能力或把无法读清的 UI 当成数据来源。"
+    },
+    {
+      "id": "CAR-AUDIO",
+      "name": "完整源混音中的旁白、背景音乐、短促音效与可能插入原声",
+      "modalityKeys": ["source_audio", "speech_audio", "non_speech_audio", "music", "sound_effects", "inserted_source_audio"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["完整源音频 ASR 识别 0–83.02 秒连续中文旁白；45–57 秒 medium 复检补回 small 漏段", "AST 每个连续 5 秒窗口都把 Music 列为主要候选之一，支持持续背景音乐床，但不能确认曲目身份或无缝换曲", "80–83.22 秒出现较明确的 Ding/Ping 类收束音效候选", "未识别出第二段稳定可理解对话；被旁白/音乐掩蔽的低电平插入原声不能排除"],
+      "intervals": [{"start": 0, "end": 83.220313}],
+      "omissionImpact": "遗漏会把实际存在的持续音乐与结尾音效候选丢掉，也会错误声称没有插入原声；音轨曲目、来源、权利和细弱被掩蔽声音继续保持 unknown。"
+    },
+    {
+      "id": "CAR-ABSENCE",
+      "name": "决策边界的全时间线缺席证据",
+      "modalityKeys": ["negative_evidence", "boundary_audit"],
+      "discoveredIn": ["SWEEP-03", "SWEEP-04", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["记录在完整检查范围内未观察到统计来源、测试方法、价格、访问/试用路径、平台/账号条件、授权或服务责任说明"],
+      "intervals": [{"start": 0, "end": 83.167}],
+      "omissionImpact": "会把作者的宣传性主张提升为外部已证事实，或让观众误以为具备立即采用与复用所需信息。"
+    },
+    {
+      "id": "CAR-REUSE",
+      "name": "素材/人物/品牌/商业语言的来源与复用边界",
+      "modalityKeys": ["rights_provenance", "likeness_voice", "brand_ui_clearance", "commercial_claim_clearance", "reuse_disposition"],
+      "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08", "SWEEP-09"],
+      "available": true,
+      "inspected": true,
+      "roles": ["区分可抽象复用的编排/功能与未清权的第三方画面、人物身份/声音、品牌案例、平台 UI、音乐音效、商业数字及‘高商业可用/行业首批’语言", "给出最小清权条件而不把视频内出现等同于已授权"],
+      "intervals": [{"start": 0, "end": 83.220313}],
+      "omissionImpact": "若遗漏，读者可能把可重建的编辑功能误当成可直接复制的素材、身份、品牌背书或商业宣称。"
+    }
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 4.92}, "description": "从安踏直播插入画面切到会场真人，引出‘AI 主播已经开始带货’。", "trigger": "直播画面先行与口播钩子", "evidenceHints": ["CUE-001", "SHOT-001", "SHOT-002"]},
+    {"id": "MC-02", "range": {"start": 9.49, "end": 13.527}, "description": "从大会其他 AI 工具转折到最惊艳的京东数字人。", "trigger": "‘但最让我惊艳的是’", "evidenceHints": ["CUE-003", "SHOT-003", "SHOT-004"]},
+    {"id": "MC-03", "range": {"start": 13.527, "end": 21.74}, "description": "从产品存在升级到规模化商业主张，并把它指向观众近期消费。", "trigger": "一万家/一百四十亿与‘说不定都是 AI 卖给你的’", "evidenceHints": ["CUE-004", "CUE-005"]},
+    {"id": "MC-04", "range": {"start": 26.78, "end": 31.958}, "description": "从逼真外观概括升级到口型同步和真人双人直播能力。", "trigger": "‘基本功’与单人/双人形式卡片", "evidenceHints": ["CUE-007", "SHOT-016"]},
+    {"id": "MC-05", "range": {"start": 31.958, "end": 40.92}, "description": "从双人同框进一步升级到一起讲商品和数字人走秀。", "trigger": "讲解商品、走秀和服装运动画面", "evidenceHints": ["CUE-008", "CUE-009", "SHOT-016"]},
+    {"id": "MC-06", "range": {"start": 40.92, "end": 56.73}, "description": "从一般能力转入安踏品牌案例和具体讲解/穿搭话术。", "trigger": "‘就拿安踏来说’与安踏直播 UI", "evidenceHints": ["CUE-009", "CUE-010", "CUE-011", "CUE-012", "CUE-013", "SHOT-017", "SHOT-018", "SHOT-019"]},
+    {"id": "MC-07", "range": {"start": 56.73, "end": 64.79}, "description": "转到巴拉巴拉案例并用近十个直播间和 15% GMV 强化商业结果。", "trigger": "品牌切换和数量/占比", "evidenceHints": ["CUE-013", "CUE-014", "CUE-015", "CUE-016", "SHOT-019", "SHOT-020"]},
+    {"id": "MC-08", "range": {"start": 64.79, "end": 80.42}, "description": "从既有案例转到 618 新品发布，并追加情感音色、自然口型、品类主播和话术能力。", "trigger": "‘这次 618 更是推出’与人物阵列/直播示例", "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "CUE-020", "SHOT-023", "SHOT-025", "SHOT-027"]},
+    {"id": "MC-09", "range": {"start": 80.42, "end": 83.167}, "description": "从能力/效果主张转为直接询问观众是否购买，完成开头的消费决策回环。", "trigger": "‘你会在 AI 直播间买东西吗’", "evidenceHints": ["CUE-021", "SHOT-029"]},
+    {"id": "MC-10", "range": {"start": 64.79, "end": 68.71}, "description": "SRT 的‘高盛宴可用’与画面卡片/烧录文字‘高商业可用’构成影响产品定位的载体冲突。", "trigger": "字幕与画面文字不一致", "evidenceHints": ["CUE-017", "DENSE-0046"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "开头AI已开始带货", "to": "结尾是否在AI直播间购买", "relation": "opening_reframed_as_viewer_decision", "evidenceHints": ["CUE-001", "CUE-021"]},
+    {"id": "REL-02", "from": "作者称京东云大会", "to": "画面所见京东/JD Cloud相关会展语境", "relation": "author_label_more_specific_than_visible_authentication", "evidenceHints": ["CUE-001", "CUE-002", "SHOT-002", "SHOT-003", "TARGET-0006"]},
+    {"id": "REL-03", "from": "超过一万家品牌/一年超过140亿", "to": "数字人已规模商业落地", "relation": "author_claim_used_to_support", "evidenceHints": ["CUE-004"]},
+    {"id": "REL-04", "from": "单人、双人和走秀示例画面", "to": "真人同播/商品讲解/走秀能力", "relation": "visually_illustrates_but_does_not_fully_verify", "evidenceHints": ["CUE-007", "CUE-008", "SHOT-016"]},
+    {"id": "REL-05", "from": "安踏直播插入画面", "to": "安踏线下旗舰店数字人直播间及全量讲解主张", "relation": "presented_as_example_but_scope_unproven", "evidenceHints": ["CUE-010", "CUE-011", "SHOT-017", "SHOT-018", "SHOT-019"]},
+    {"id": "REL-06", "from": "巴拉巴拉屏幕/直播画面", "to": "近十个直播间与15% GMV", "relation": "juxtaposed_with_author_claim_without_statistical_proof", "evidenceHints": ["CUE-014", "CUE-015", "SHOT-019", "SHOT-020"]},
+    {"id": "REL-07", "from": "人物阵列和多主播竖屏", "to": "不同品类特色主播", "relation": "visually_illustrates", "evidenceHints": ["CUE-019", "CUE-020", "SHOT-025", "SHOT-027", "SHOT-028"]},
+    {"id": "REL-08", "from": "SRT高盛宴可用", "to": "画面高商业可用", "relation": "carrier_conflict_resolved_toward_visible_text_with_raw_conflict_preserved", "evidenceHints": ["CUE-017", "DENSE-0046"]},
+    {"id": "REL-09", "from": "技术shot分段", "to": "连续会展/直播/发布材料语义段", "relation": "technical_segments_do_not_establish_semantic_scene_count", "evidenceHints": ["SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008", "SHOT-009", "SHOT-010", "SHOT-011", "SHOT-012", "SHOT-013", "SHOT-014", "SHOT-015"]},
+    {"id": "REL-10", "from": "第三方素材/人物/品牌/数字/商用语言", "to": "复用决定", "relation": "requires_traceable_clearance_before_direct_reuse", "evidenceHints": ["0–83.220313 秒全范围画面、字幕与源音频", "audio-evidence/audio-inspection.json"]},
+    {"id": "REL-11", "from": "抽象叙事编排与功能", "to": "第三方具体表达", "relation": "abstract_function_reusable_without_implying_asset_clearance", "evidenceHints": ["CUE-001", "CUE-003", "CUE-004", "CUE-009", "CUE-021"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把作者商业数字写成已核验事实", "why": "品牌数、带货额、直播间数和 GMV 占比只有作者口播/字幕，没有来源、口径或报表证据。", "where": [{"start": 13.527, "end": 17.97}, {"start": 56.73, "end": 62.32}], "requiredFollowup": "分别建 author_claim 单元，并记录统计周期、币种、分母、归因和来源 unknown。"},
+    {"id": "RISK-02", "risk": "把同框和动作画面写成实时真人协作或数字人身份验证", "why": "画面展示同框与运动，但不能单独证明人物身份、实时性、生成方式或互动同步。", "where": [{"start": 26.78, "end": 40.92}, {"start": 40.92, "end": 56.73}], "requiredFollowup": "以连续帧记录可见口型/同框/行走，把实时、身份和同步测试保持 unknown。"},
+    {"id": "RISK-03", "risk": "用静帧或作者评价证明口型与语音完全同步、自然或没有 AI 味", "why": "同步需要音画时间对照，自然/无 AI 味是主观判断；视频没有测试协议。", "where": [{"start": 26.78, "end": 31.958}, {"start": 68.71, "end": 80.42}], "requiredFollowup": "捕捉运动序列，拆分作者主张与有限视觉观察，并声明无延迟/盲测证据。"},
+    {"id": "RISK-04", "risk": "静默把 SRT 的‘高盛宴可用’改成‘高商业可用’", "why": "这是影响产品定位的载体冲突。", "where": [{"start": 64.79, "end": 68.71}], "requiredFollowup": "OCR/人工核对画面文字，保留 SRT 原文、画面读法和支持理由。"},
+    {"id": "RISK-05", "risk": "把安踏插入素材中的人物都认作数字人，或把画面地点认作线下旗舰店", "why": "可见标题和品牌语境不等于人物身份、地点、时间和授权证明。", "where": [{"start": 0, "end": 2.433}, {"start": 40.92, "end": 56.73}], "requiredFollowup": "对人物、直播 UI、品牌标识、商品卡和环境做 referent/identity 审计，未建立项保持 unknown。"},
+    {"id": "RISK-06", "risk": "把发布材料中的少量人物和竖屏示例外推为全品类、普遍效果或行业领先", "why": "示例可说明外观/布局多样，但不能建立全品类覆盖、自然度或商业效果。", "where": [{"start": 64.79, "end": 80.42}], "requiredFollowup": "保守记录可见示例类型，不用示例数量证明普遍性。"},
+    {"id": "RISK-07", "risk": "忽略决策边界缺席", "why": "视频意在影响采用/购买判断，但完整时间线未见统计来源、访问路径、价格、平台/账号条件、授权和服务责任。", "where": [{"start": 0, "end": 83.167}], "requiredFollowup": "以全时间线密集帧和字幕做负证据复核，只表述‘在检查范围内未观察到’。"},
+    {"id": "RISK-08", "risk": "把 29 个 scene-detection shot 当作 29 个语义场景或连续执行证据", "why": "大量边界出现在同一会场/同一发布材料或直播素材内，可能由运动、遮挡和内容变化触发。", "where": [{"start": 0, "end": 83.167}], "requiredFollowup": "比较边界两侧并仅把 shot 当观察区间，保留隐藏剪辑可能。"},
+    {"id": "RISK-09", "risk": "结尾只写成号召互动，丢失其对开头的消费决策回环", "why": "最后问题把‘AI 已经开始卖货’重新指向观众是否愿意买。", "where": [{"start": 80.42, "end": 83.167}], "requiredFollowup": "建立 opening-to-closing 关系并在核心单元中保留。"},
+    {"id": "RISK-10", "risk": "把元数据或 SRT 当成实际音频检查", "why": "源混音包含连续旁白、持续音乐候选和结尾 Ding/Ping 类音效候选；未听检会漏掉时间变化，也会过早宣称不存在插入原声。", "where": [{"start": 0, "end": 83.220313}], "requiredFollowup": "注册完整 WAV、完整/定向 ASR 和分段 AudioSet 检查；把曲目身份、微弱插入原声、来源和权利保留为 unknown。"},
+    {"id": "RISK-11", "risk": "把作者称‘京东云大会’升级为画面认证的确切大会身份", "why": "画面只支持京东/JD Cloud 相关会展语境，未见大会凭证、日期或独立认证。", "where": [{"start": 2.44, "end": 13.527}], "requiredFollowup": "分开 author_claim 与 visual_observation：作者称京东云大会；画面仅确认 JD/JD Cloud 相关会展语境。"},
+    {"id": "RISK-12", "risk": "把重建可见内容误当成可直接复用且已清权", "why": "视频没有建立第三方画面、人物/声音、品牌案例、平台 UI、音乐音效、商业数字和商用语言的来源与授权范围。", "where": [{"start": 0, "end": 83.220313}], "requiredFollowup": "给出 bounded reuse disposition：只允许抽象编排/功能层复用；具体素材与宣称须满足可追溯来源、授权范围、肖像/声音/模型同意、品牌/UI许可、日期化数据佐证和当前价格核验等最小条件。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "视频的核心结论与开头—结尾认知变化是什么？", "criticality": "critical", "evidenceHints": ["CUE-001", "CUE-003", "CUE-021"]},
+    {"id": "CQ-02", "question": "超过一万家品牌和一年超过一百四十亿是谁的主张，视频给出何种来源与口径？", "criticality": "critical", "evidenceHints": ["CUE-004"]},
+    {"id": "CQ-03", "question": "画面实际能证明口型同步到什么程度，是否存在严格音画测试？", "criticality": "critical", "evidenceHints": ["CUE-007", "CUE-019", "SHOT-016", "SHOT-027"]},
+    {"id": "CQ-04", "question": "真人同播、讲商品和走秀分别有哪些画面证据，哪些实时性/身份/协作结论仍未知？", "criticality": "critical", "evidenceHints": ["CUE-007", "CUE-008", "SHOT-016", "SHOT-017", "SHOT-019"]},
+    {"id": "CQ-05", "question": "安踏案例在画面中可见什么，旗舰店地点、人物身份和‘全靠数字人讲解’是否被独立证明？", "criticality": "critical", "evidenceHints": ["CUE-010", "CUE-011", "SHOT-017", "SHOT-018", "SHOT-019"]},
+    {"id": "CQ-06", "question": "巴拉巴拉近十个直播间和数字人直播占 GMV 15% 的来源、周期、分母与归因是否建立？", "criticality": "critical", "evidenceHints": ["CUE-014", "CUE-015", "SHOT-019", "SHOT-020"]},
+    {"id": "CQ-07", "question": "618 推出的产品到底被文字称作什么，SRT 与画面冲突如何处理？", "criticality": "critical", "evidenceHints": ["CUE-017", "DENSE-0046"]},
+    {"id": "CQ-08", "question": "情感音色、自然口型、品类主播、无 AI 味和场景话术分别是可见观察还是作者效果主张？", "criticality": "critical", "evidenceHints": ["CUE-018", "CUE-019", "CUE-020", "SHOT-025", "SHOT-027", "SHOT-028"]},
+    {"id": "CQ-09", "question": "可见案例能否支持规模化、替代真人、行业领先或‘分分钟带火’的普遍/因果范围？", "criticality": "critical", "evidenceHints": ["CUE-004", "CUE-020", "CUE-021"]},
+    {"id": "CQ-10", "question": "视频是否给出统计来源、价格、使用/购买入口、平台/账号条件、授权或服务责任？", "criticality": "critical", "evidenceHints": ["0–83.167 秒字幕与密集帧全范围"]},
+    {"id": "CQ-11", "question": "开头安踏素材、会场真人、直播人物和发布材料人物分别指代什么，哪些身份未知？", "criticality": "supporting", "evidenceHints": ["SHOT-001", "SHOT-002", "SHOT-016", "SHOT-017", "SHOT-025"]},
+    {"id": "CQ-12", "question": "29 个技术 shot 是否等于 29 个语义场景或连续操作？", "criticality": "supporting", "evidenceHints": ["sceneDetection.cuts", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-016"]},
+    {"id": "CQ-13", "question": "完整源音频中旁白之外的音乐、音效和插入原声如何随时间变化，哪些仍不能确定？", "criticality": "critical", "evidenceHints": ["audio-evidence/source-audio.wav", "audio-evidence/source-audio.json", "audio-evidence/segment-45-57.json", "audio-evidence/audio-inspection.json"]},
+    {"id": "CQ-14", "question": "哪些内容仅可抽象复用，哪些第三方素材/身份/品牌/数字/商用语言在何种最小条件前不得直接复用？", "criticality": "critical", "evidenceHints": ["0–83.220313 秒全范围画面、字幕与源音频", "CAR-REUSE", "RISK-12"]},
+    {"id": "CQ-15", "question": "‘京东云大会’是作者自述还是画面独立认证，视觉证据最多支持到什么范围？", "criticality": "critical", "evidenceHints": ["CUE-001", "CUE-002", "SHOT-002", "SHOT-003", "TARGET-0006"]}
+  ],
+  "unresolved": [
+    "商业规模数据与品牌 GMV 数据的外部来源、统计口径、周期和归因。",
+    "直播素材中人物的真人/数字身份、实时生成方式、授权、账号、录制时间与地点。",
+    "口型同步、自然度、情感音色、无 AI 味和话术质量的测试条件与可复现指标。",
+    "‘行业首批’的比较集合、‘高商业可用’定义及发布主体的完整边界。",
+    "数字人是否替代了真人岗位、替代规模和成本/效率影响；视频只展示/声称应用形式。",
+    "访问路径、价格、平台/账号/地区条件、运维与服务责任。",
+    "背景音乐是否为同一曲目、无缝换曲点、曲目/音效来源、被掩蔽的低电平插入原声与音频权利。",
+    "具体‘京东云大会’身份、日期和凭证；画面只确认京东/JD Cloud 相关会展语境。",
+    "第三方画面、人物/声音、品牌/UI、商业数字和‘行业首批/高商业可用’语言的授权与可复用范围。"
+  ]
+}

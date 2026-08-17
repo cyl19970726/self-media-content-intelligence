@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/probe.json",
+  "protocolName": "X Party 心智模型—四法—三触发器捕捉协议",
+  "rationale": "本片是策略型长视频。真正知识不是孤立的‘四条技巧’，而是增长结果与反 slop 立场、舞台→party 心智转换、feed/回复/频率之间的依赖、Learn/Give feedback/Build in public 三个内容触发器，以及 AI 写作的条件边界。协议需恢复论点—例子—因果主张—限制—行动关系，并用截图和方法卡校正大量英文 ASR 错误。",
+  "knowledgeUnitFields": [
+    {"name": "增长结果与证据边界", "required": true, "reason": "结果建立可信度但不能单因果归因。", "derivedFrom": ["MC-01", "CQ-01"]},
+    {"name": "心智模型", "required": true, "reason": "party 是后续所有方法的解释框架。", "derivedFrom": ["MC-02", "CQ-02"]},
+    {"name": "方法的输入—动作—输出—条件", "required": true, "reason": "把策略恢复为可执行而非口号。", "derivedFrom": ["MC-03", "MC-04", "MC-05", "CQ-03", "CQ-04", "CQ-05"]},
+    {"name": "三个日常内容触发器", "required": true, "reason": "解释每天三条如何实际发生。", "derivedFrom": ["MC-06", "CQ-06"]},
+    {"name": "论点—证据—作者经验—未知", "required": true, "reason": "平台算法和概率主张缺后台验证。", "derivedFrom": ["RISK-01", "RISK-03", "RISK-04"]},
+    {"name": "AI 写作的条件与反例", "required": true, "reason": "避免误写成绝对反 AI。", "derivedFrom": ["MC-07", "CQ-07"]},
+    {"name": "英文术语冲突", "required": true, "reason": "机器转写对方法名和产品名误识别严重。", "derivedFrom": ["RISK-07", "CQ-08"]},
+    {"name": "非语音音频作用", "required": true, "reason": "完成所有信息通道审计。", "derivedFrom": ["RISK-08", "CQ-09"]}
+  ],
+  "captureActions": [
+    {"id": "ACT-01", "range": {"start": 0, "end": 32.56}, "carrier": "follower count, growth chart, third-party post and opening captions", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复结果社会证明与反 slop 立场。", "expectedObservation": "7 万、约 1000 和第三方评价可见；增长因果与统计口径不在画面中。", "derivedFrom": ["SWEEP-01", "RISK-01", "CQ-01"]},
+    {"id": "ACT-02", "range": {"start": 32.56, "end": 59}, "carrier": "talking head plus stage/party diagrams", "mode": "interval_density", "densitySeconds": 1.5, "reason": "恢复心智模型的视觉转换。", "expectedObservation": "舞台独白与 party 关系图把抽象模型压缩成可记结构。", "derivedFrom": ["SWEEP-02", "CQ-02"]},
+    {"id": "ACT-03", "range": {"start": 59, "end": 107.28}, "carrier": "feed-training cards and X UI examples", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复正负反馈动作和目标 feed。", "expectedObservation": "操作建议与例图可见；算法效果没有后台实验。", "derivedFrom": ["SWEEP-03", "CQ-03"]},
+    {"id": "ACT-04", "range": {"start": 107.28, "end": 174.32}, "carrier": "reply examples, A/B diagram and anti-AI-reply cards", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复真诚回复的反例、关系机制和因果边界。", "expectedObservation": "AI 批量回复被作为反例；A/B 图是作者机制解释，不是后台证明。", "derivedFrom": ["SWEEP-04", "RISK-03", "CQ-04"]},
+    {"id": "ACT-05", "range": {"start": 174.32, "end": 214.42}, "carrier": "daily-three-posts cards and trigger framing", "mode": "interval_density", "densitySeconds": 2, "reason": "区分每天三条目标、作者经验与普遍规则。", "expectedObservation": "‘每天发 3 条’高频出现；真实达成率和长期效果不可见。", "derivedFrom": ["SWEEP-05", "RISK-04", "CQ-05"]},
+    {"id": "ACT-06", "range": {"start": 214.42, "end": 328.42}, "carrier": "Learn/Give feedback/Build in public cards and social/product examples", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复三个触发器的输入、动作、输出与例子。", "expectedObservation": "学习引用、产品反馈和 Demo 三类素材链可见；90% 回复率与权利边界仍未知。", "derivedFrom": ["SWEEP-06", "RISK-03", "RISK-06", "CQ-06"]},
+    {"id": "ACT-07", "range": {"start": 328.42, "end": 381.433}, "carrier": "AI-writing condition cards, closing hierarchy and captions", "mode": "interval_density", "densitySeconds": 2, "reason": "恢复禁用条件、允许条件与最终目标。", "expectedObservation": "不是永久禁用 AI；顺序为输入/练习→品味/voice→有条件辅助。", "derivedFrom": ["SWEEP-07", "RISK-05", "CQ-07"]},
+    {"id": "ACT-08", "range": {"start": 0, "end": 381.433}, "carrier": "burned captions, method names, metrics and card text", "mode": "ocr_review", "times": [3, 14, 20, 38, 45, 60, 82, 108, 114, 132, 150, 178, 185, 200, 216, 244, 272, 294, 314, 332, 346, 364, 378], "reason": "校正英文方法名、平台术语、数字和结论卡。", "expectedObservation": "OCR 与画面校正 ASR，但低置信小字和帖子上下文保持未知。", "derivedFrom": ["CAR-02", "CAR-04", "CAR-05", "RISK-07", "CQ-08"]}
+  ],
+  "requiredRelations": [
+    {"relation": "growth result → anti-slop value stance → party mental model", "derivedFrom": ["REL-01"]},
+    {"relation": "party selection → feed training", "derivedFrom": ["REL-02"]},
+    {"relation": "party participation → genuine replies", "derivedFrom": ["REL-03"]},
+    {"relation": "daily posting target → three routine triggers", "derivedFrom": ["REL-04"]},
+    {"relation": "sustained real input/output → taste and voice → conditional AI assistance", "derivedFrom": ["REL-05"]},
+    {"relation": "author algorithm claim ↔ visible example ↔ missing backend evidence", "derivedFrom": ["RISK-01", "RISK-03", "RISK-04"]}
+  ],
+  "stoppingRules": ["0–381.433 秒全部载体阶段无时间缺口。", "四组方法和三个内容触发器都有输入、动作、输出、条件、例子和未知。", "party 心智模型与后续方法的依赖关系已显式恢复。", "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。", "OCR action 已运行并保留原始 ASR/规范化冲突。", "7 万增长、算法分发、90% 回复率、每天三条均按作者主张或公开结果处理。", "AI 写作的禁用与允许条件都被恢复。", "完整混合音轨已有无缝机器提议账本，弱标签不升级。", "meta-gate 列出仍未检查的载体、意义变化和关系。"],
+  "declaredUnknowns": ["增长后台、净增时间线、投流和跨平台受众迁移", "平台算法真实机制及账号/地区差异", "大 V 互动和创始人回复概率的样本口径", "每日三条的达成率、质量与受众疲劳", "引用截图、公开反馈和 @ 他人的上下文/许可/礼仪", "AI 辅助写作的具体流程与 voice 质量门槛", "非语音音频具体声源、曲目与权利"],
+  "audioInspection": {"source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a31edc300000000200387f4/audio-16k.wav", "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/audio/audio-carrier.json", "method": "MIT AudioSet AST over gap-free 10-second windows of the complete mixed track", "boundary": "machine proposals only; no human-listening, source-identity or licensing claim"}
+}

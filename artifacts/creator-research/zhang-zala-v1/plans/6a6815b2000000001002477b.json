@@ -1,0 +1,36 @@
+{
+  "protocolName": "口喷—AI 清理—提词录制—低剪辑捕捉协议",
+  "rationale": "本片短、单点、操作性强，核心链是先用自己的语言自由口述，再让 AI 只清理不代写，最后用手机/电脑提词器一遍录顺，从源头降低剪辑。必须恢复两遍法、设备分支与作者语言权边界，并把 20–30 分钟、5 分钟剪辑保持为作者自述。",
+  "viewerBefore": "观众可能认为口播顺畅靠临场表达天赋，或认为剪辑效率要靠更快的软件技巧。",
+  "viewerAfter": "观众获得一条可直接执行的生产流程：先自由口述生成自己的原料，AI 只清理逻辑与废话，再用提词器录第二遍；剪辑效率来自前端表达可剪，而不是后端硬剪。",
+  "intendedChanges": ["从临场硬说转向两遍录制", "从让 AI 代写转向只清理自己的语言", "从优化剪辑速度转向优化录制素材"],
+  "scopeStatement": "仅重建 0–71.32 秒内两遍录制法、工具分支和时间自述。机器转写不是官方字幕；豆包输入法、Typeless、剪映提词器、Screen Studio 等规范名需画面/烧录字幕支持。20–30 分钟制作、5 分钟剪辑和‘基本无需剪’未做多样本计时。",
+  "defaultDensity": 2,
+  "audioSource": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a6815b2000000001002477b/audio-16k.wav",
+  "audioLedger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a6815b2000000001002477b/skill-run/audio/audio-carrier.json",
+  "globalUnknowns": ["20–30 分钟与 5 分钟的计时口径", "不同长度/难度视频的适用性", "提词自然度和观众感知", "AI 清理提示词与事实校验", "各工具当前价格、版本和地区可用性"],
+  "termConflictStatement": "机器转写把语音输入法、豆包输入法、Typeless、口喷、剪映提词器等识别为语音书法、Type-list、口盆/口喷、剪银体制器。报告保留原始 cue，并用烧录字幕、工具画面和语境给出规范化建议。",
+  "termUnknowns": ["Typeless 具体版本", "Screen Studio 的当前提词器功能和平台支持"],
+  "audioStatement": "完整混合轨机器检查以连续口播为主要稳定信息；没有把任何低分声音候选升级为提词器、按钮、录制或剪辑成功证据。",
+  "rightsHints": ["SWEEP-03", "SWEEP-04"],
+  "visualCarriers": [
+    {"name": "全程 talking-head 与烧录字幕", "modalityKeys": ["visual.person", "visual.caption"], "segmentIndexes": [0,1,2,3], "roles": ["以真人顺畅口播证明结果感", "通过字幕快速推进步骤"], "omissionImpact": "会漏掉‘成品本身就是方法效果展示’的结构。"},
+    {"name": "手机/电脑录制工具插卡", "modalityKeys": ["visual.tool_card", "ocr"], "segmentIndexes": [2], "roles": ["区分手机剪映提词器与电脑 Screen Studio"], "omissionImpact": "会漏掉设备分支或误写工具能力。"}
+  ],
+  "segments": [
+    {
+      "start": 0, "end": 14.04, "title": "结果钩子：20–30 分钟做完且说得顺", "question": "开场承诺的结果和真正问题是什么？", "signals": ["作者称口播视频约 20–30 分钟", "观众问为什么顺、简洁、有逻辑、少废话", "提出只需说两遍"], "alternatives": ["是否所有视频都可 20–30 分钟", "顺畅是否只由这套方法造成"], "meaning": "把剪辑效率问题重定义为录制前表达结构问题。", "trigger": "时间结果、观众疑问和两遍法", "linkFromPrevious": "无", "risk": "把作者自述时间写成普遍效率基准。", "riskWhy": "没有视频长度、选题准备和多次样本。", "followup": "捕捉时间承诺和两遍法总纲，声明计时边界。", "expectedObservation": "结果简单明确，证据主要是作者单例。", "carrier": "talking-head、时间字幕和两遍法总纲", "density": 1.5, "cueHints": ["CUE-001", "CUE-004"], "statement": "作者先给出结果承诺：一条口播视频约 20–30 分钟，并回应观众关于表达顺、简洁、有逻辑、少口头禅的问题。她把秘诀概括为‘说两遍’，但时间是个人自述，不是跨题材基准。", "provenance": "author_claim", "reasoning": "开场用时间和表现结果建立需求，马上给两遍法。", "unknowns": ["视频时长", "选题准备时间", "重录次数"], "core": true
+    },
+    {
+      "start": 14.04, "end": 35.64, "title": "第一遍：自由口述，AI 只清理不代写", "question": "第一遍如何保留作者自己的语言？", "signals": ["使用语音输入法自由口述", "不要求逻辑和简洁", "AI 清理逻辑、废话和口头禅", "明确不要让 AI 重写"], "alternatives": ["清理是否可能改变观点", "自由口述是否需要提纲"], "meaning": "从 AI 代写转向 AI 编辑作者自己的原始表达。", "trigger": "口喷原料与‘不要让它重写’", "linkFromPrevious": "两遍法的第一遍产生自己的语言素材", "risk": "把 AI 清理写成不会改变含义或不需人工核对。", "riskWhy": "任何改写都可能删掉限定或事实。", "followup": "恢复输入、提示约束与人工核对边界。", "expectedObservation": "作者声音权是核心差异。", "carrier": "talking-head、烧录字幕和工具名称", "density": 1.8, "cueHints": ["CUE-005", "CUE-014"], "statement": "第一遍用豆包输入法、Typeless 等语音输入工具随意口述，不追求结构；之后让 AI 只整理逻辑、删口头禅和废话，而不是代写或换成 AI 腔。清理后仍需作者核对事实、限定和个人语气。", "provenance": "author_claim", "reasoning": "口播清楚区分‘自己的原料’和‘AI 只清理’。", "unknowns": ["清理提示词", "事实校验", "是否保留所有重要限定"], "core": true,
+      "procedural": {"input": "作者自由口述的原始文字", "actions": ["打开语音输入", "自由口述全部想法", "把转写交给 AI", "要求只清理逻辑、口头禅和废话", "人工核对并定稿"], "parameters": ["不代写约束", "保留个人语言", "长度和逻辑层级"], "output": "仍属于作者、但更适合口播的提词稿", "unknowns": ["提示词模板", "转写错误处理", "事实审校"]}
+    },
+    {
+      "start": 35.64, "end": 57.72, "title": "第二遍：按设备选择提词器，一次录顺", "question": "第二遍在手机和电脑上如何执行？", "signals": ["手机使用剪映自带提词器", "电脑录人和屏幕时使用 Screen Studio", "边念稿边展示屏幕", "强调语言仍属于作者"], "alternatives": ["Screen Studio 当前是否含提词器", "念稿是否影响眼神和自然度"], "meaning": "把整理后的作者语言转成低卡顿、低剪辑素材。", "trigger": "手机/电脑工具分支与念稿录制", "linkFromPrevious": "第一遍生成提词稿，第二遍将其录成可剪素材", "risk": "把工具插卡写成所有平台和版本都支持同一功能。", "riskWhy": "片内没有版本、价格、平台和完整操作演示。", "followup": "捕捉工具卡和设备分支，把当前功能状态保持未知。", "expectedObservation": "设备分支明确，但工具能力主要为作者主张。", "carrier": "talking-head、剪映/Screen Studio 工具插卡与字幕", "density": 1.8, "cueHints": ["CUE-015", "CUE-016"], "statement": "第二遍把整理后的稿子放入提词器：手机用剪映自带提词器；电脑需要同时录人和屏幕时，作者推荐 Screen Studio。按稿录制能减少卡顿，且稿子来自自己的口述；工具当前功能、价格、平台和自然度仍需核验。", "provenance": "author_claim", "reasoning": "口播明确给出设备分支和目的，画面出现工具插卡。", "unknowns": ["工具当前版本和价格", "眼神自然度", "录屏性能"], "core": true
+    },
+    {
+      "start": 57.72, "end": 71.32, "title": "结论：好剪的根源是先录出好剪的素材", "question": "为什么作者说剪辑只需约五分钟？", "signals": ["AI 没替写，只清理", "录完后基本无需剪", "仅删卡壳处", "五分钟剪辑自述", "好剪的方法说话"], "alternatives": ["是否包含字幕、B-roll、包装和审校", "长视频是否同样适用"], "meaning": "从后期技巧转向前端素材工程。", "trigger": "五分钟剪辑与收尾金句", "linkFromPrevious": "两遍录制的结果被转化为低剪辑成本", "risk": "把‘基本不需要剪’扩大到所有制作环节。", "riskWhy": "片内只谈口播卡顿剪除，未计字幕、包装、审校和发布。", "followup": "限定剪辑指删除卡壳，并列出未计成本。", "expectedObservation": "强记忆点成立，完整制作工时未知。", "carrier": "talking-head、收尾字幕和时间主张", "density": 1.2, "cueHints": ["CUE-017", "CUE-018"], "statement": "作者称素材因为已经按整理稿录顺，导入剪映后只需删卡壳处，约五分钟；收尾总结‘剪辑不花时间的秘诀，是用一种很好剪的方式说话’。该结论主要覆盖口播粗剪，不含选题、事实核查、字幕、B-roll、包装和发布。", "provenance": "author_claim", "reasoning": "收尾直接把低剪辑成本归因到前端录制方式。", "unknowns": ["完整制作时间", "字幕和包装成本", "不同题材适用性"], "core": true,
+      "argument": {"claim": "提高口播视频效率应优先优化原始表达和录制，而不是只优化后期剪辑。", "evidenceUnitIndexes": [0,1,2,3], "conditions": ["内容以口播为主", "作者能核对 AI 清理稿", "提词不破坏自然度"], "counterexamples": ["剧情、采访、多机位和强 B-roll 内容仍需大量后期", "AI 清理可能损失限定", "念稿可能僵硬"], "actions": ["先口述", "AI 只清理", "提词录第二遍", "只删卡壳"], "limits": ["单人经验", "没有完整工时审计"]}
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "66ac4e770000000027010f24",
+  "auditedAt": "2026-08-16T03:05:30Z",
+  "auditMode": "independent_ground_truth_from_original_media_and_new_evidence_only",
+  "scope": {
+    "inputsRead": [
+      {
+        "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66ac4e770000000027010f24.mp4",
+        "sha256": "2757e4d5d36a00a0366b35092d8120689a0fcf5dee7087e60a7f4f5e7ec5e10c"
+      },
+      {
+        "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66ac4e770000000027010f24.srt",
+        "sha256": "d8978cb256cf58d9f2b72e42f1798ed9f06a90a02111f94961ded416d1683826"
+      },
+      {
+        "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/evidence/evidence-pack.json",
+        "sha256": "79b8c674a6cbe361edae45b2f43f44c9baee1f36a4ab1540e73f735967001139"
+      },
+      {
+        "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/evidence/frames",
+        "coverage": "all 14 shot frames and all 59 dense frames at 1.5-second cadence were visually reviewed; the 28 cue-frame mappings/timestamps were reviewed from the evidence index, and key dense frames were enlarged in-memory for legibility"
+      }
+    ],
+    "excluded": [
+      "skills and their instructions",
+      "candidate reconstruction files",
+      "prior or legacy reports",
+      "external web sources"
+    ],
+    "mediaFacts": {
+      "durationSeconds": 86.567,
+      "spokenContentEndSeconds": 63.688,
+      "silentTailSeconds": 22.969,
+      "subtitleCueCount": 28,
+      "subtitleCaveat": "Provided subtitles contain obvious ASR/character errors. Claim wording was cross-checked against burned-in captions and visible frames where possible."
+    }
+  },
+  "verdict": {
+    "overall": "materially_overclaimed",
+    "asQwen2FeatureOverview": "partially_grounded",
+    "asQwen2VersusGPT4Comparison": "unsupported",
+    "asQwen2VersusLlama3ComprehensiveWin": "contradicted_by_visible_counterexamples",
+    "sameTaskQwen2VersusGPT4TestShown": false,
+    "gpt4VersionSpecified": false,
+    "gpt4InterfaceOrOutputShown": false,
+    "qwen2LiveGenerationShown": false,
+    "benchmarkIndependentlyReproduced": false,
+    "licenseCaveatExplainedInNarration": false,
+    "summary": "The video is a promotional Qwen2 overview, not a controlled Qwen2-versus-GPT-4 test. It shows Qwen2 pages, model-card tables, social posts and demo screenshots, but no GPT-4 run, no shared prompt, no timing/cost protocol and no blind grading. Its own benchmark tables include Qwen2 losses to Llama 3, so '全面碾压' is not supported as a comprehensive claim. A visible license paragraph distinguishes Qwen2-72B from Apache-2.0 models, but the narration collapses access, open source and free use into one unqualified recommendation."
+  },
+  "centralComparison": {
+    "headline": {
+      "visibleText": "国产AI碾压GPT4? 学霸级模型免费用!",
+      "evidence": [
+        "DENSE-0001@00:00.000",
+        "SHOT-001@00:02.167"
+      ],
+      "assessment": "The question-mark headline suggests a GPT-4 comparison, but the body never performs or displays one."
+    },
+    "qwen2VersusGpt4": {
+      "samePrompt": "not_shown",
+      "sameSystemPrompt": "not_shown",
+      "sameSamplingSettings": "not_shown",
+      "sameToolAccess": "not_shown",
+      "sameTaskScoring": "not_shown",
+      "latencyOrTokenCost": "not_shown",
+      "modelVersions": {
+        "qwen2": "Family and several sizes are shown; the narration emphasizes Qwen2-72B and 128K context.",
+        "gpt4": "Only the generic label GPT-4 is spoken/shown; no dated snapshot or product/API variant is identified."
+      },
+      "evidence": [
+        "CUE-021@00:49.240-00:50.760",
+        "CUE-022@00:50.760-00:53.280",
+        "CUE-023@00:53.280-00:55.640",
+        "DENSE-0034@00:49.500",
+        "DENSE-0035@00:51.000",
+        "DENSE-0036@00:52.500",
+        "DENSE-0037@00:54.000"
+      ],
+      "groundTruth": "The creator says she previously recommended GPT-4 but now recommends free domestic open models. That is a personal recommendation and cost/open-access argument, not evidence that Qwen2 beats GPT-4 on any specific task."
+    }
+  },
+  "visibleModelAndBenchmarkEvidence": {
+    "qwen2Family": {
+      "visibleSizes": [
+        "0.5B",
+        "1.5B",
+        "7B",
+        "57B-A14B",
+        "72B"
+      ],
+      "contextLengthsShown": {
+        "Qwen2-0.5B": "32K",
+        "Qwen2-1.5B": "32K",
+        "Qwen2-7B": "128K",
+        "Qwen2-72B": "128K"
+      },
+      "evidence": [
+        "DENSE-0012@00:16.500",
+        "DENSE-0013@00:18.000",
+        "DENSE-0016@00:22.500",
+        "DENSE-0017@00:24.000",
+        "SHOT-014@01:22.017"
+      ],
+      "caveat": "The spoken 'from 0.5B to 72B' range is directionally visible, but it is not a claim that every intermediate size exists. The video alternates between a five-size family listing and a four-column specification table."
+    },
+    "benchmarkTables": [
+      {
+        "table": "base-model table",
+        "qwenVersion": "Qwen2-72B",
+        "visibleOpponents": [
+          "Llama3-70B",
+          "Mixtral-8x22B",
+          "Qwen1.5-110B"
+        ],
+        "visibleMetrics": [
+          "MMLU",
+          "MMLU-Pro",
+          "GPQA",
+          "TheoremQA",
+          "BBH",
+          "HumanEval",
+          "MBPP",
+          "MultiPL-E",
+          "GSM8K",
+          "MATH",
+          "C-Eval",
+          "CMMLU",
+          "Multi-Exam",
+          "Multi-Understanding",
+          "Multi-Mathematics"
+        ],
+        "evidence": [
+          "DENSE-0020@00:28.500",
+          "DENSE-0021@00:30.000"
+        ]
+      },
+      {
+        "table": "instruction-tuned 72B/70B table",
+        "qwenVersion": "Qwen2-72B-Instruct",
+        "visibleOpponents": [
+          "Llama3-70B-Instruct",
+          "Qwen1.5-72B-Chat"
+        ],
+        "counterexamplesToComprehensiveWin": [
+          {
+            "metric": "MBPP",
+            "Qwen2-72B-Instruct": 80.2,
+            "Llama3-70B-Instruct": 82.3
+          },
+          {
+            "metric": "GSM8K",
+            "Qwen2-72B-Instruct": 91.1,
+            "Llama3-70B-Instruct": 93.0
+          }
+        ],
+        "evidence": [
+          "DENSE-0021@00:30.000",
+          "SHOT-005@00:31.150"
+        ]
+      },
+      {
+        "table": "small instruction-tuned table",
+        "qwenVersion": "Qwen2-7B-Instruct",
+        "visibleOpponents": [
+          "Llama3-8B-Instruct",
+          "GLM4-9B-Chat"
+        ],
+        "counterexamplesToComprehensiveWin": [
+          {
+            "metric": "HumanEval",
+            "Qwen2-7B-Instruct": 79.9,
+            "Llama3-8B-Instruct": 82.2
+          }
+        ],
+        "evidence": [
+          "DENSE-0022@00:31.500",
+          "DENSE-0023@00:33.000"
+        ]
+      }
+    ],
+    "benchmarkLimits": [
+      "No GPT-4 column appears in the visible benchmark tables.",
+      "The video does not state evaluation-harness versions, prompts/templates, decoding settings, checkpoints, quantization, hardware, sample counts, confidence intervals or test dates.",
+      "The tables are displayed as screenshots/model-card material; the creator does not reproduce the runs.",
+      "The narration groups multimodal processing, multilingual understanding, reasoning and code generation together, but the displayed benchmark material does not establish a multimodal-input evaluation."
+    ]
+  },
+  "visibleTasksAndInterfaces": [
+    {
+      "id": "UI-01",
+      "timeRange": "00:09-00:27",
+      "interface": "Qwen2 repository/model-card and model-listing pages",
+      "visibleContent": "Qwen2 logo, documentation/model links, family sizes, language count and context-length table; a model listing also includes official and community/quantized variants.",
+      "whatItProves": "The video contains Qwen2 documentation/listing material and identifies multiple family sizes.",
+      "whatItDoesNotProve": "It does not prove model quality against GPT-4 or unrestricted/free deployment.",
+      "evidence": [
+        "DENSE-0008@00:10.500",
+        "DENSE-0012@00:16.500",
+        "DENSE-0016@00:22.500"
+      ]
+    },
+    {
+      "id": "UI-02",
+      "timeRange": "00:27-00:35",
+      "interface": "Qwen2 model-card benchmark tables and charts",
+      "visibleContent": "Base and instruction-tuned comparisons against named Llama 3, Mixtral, Qwen1.5 and GLM4 variants, plus code/math charts.",
+      "whatItProves": "Specific benchmark numbers and named opponents are visually asserted by the source page.",
+      "whatItDoesNotProve": "The creator did not independently run or validate them, and the tables do not support an exceptionless win over Llama 3.",
+      "evidence": [
+        "DENSE-0020@00:28.500",
+        "DENSE-0021@00:30.000",
+        "DENSE-0022@00:31.500",
+        "DENSE-0023@00:33.000"
+      ]
+    },
+    {
+      "id": "UI-03",
+      "timeRange": "00:35-00:39",
+      "interface": "Social-post screenshots",
+      "visibleContent": "Posts attributed on screen to Clement Delangue and Yuchen Jin praise Qwen2-72B and refer to the Hugging Face Open LLM Leaderboard and LiveBench.",
+      "whatItProves": "At least two favorable posts are shown.",
+      "whatItDoesNotProve": "The video does not authenticate the posts, explain the referenced leaderboards, or establish that all industry authorities agree.",
+      "evidence": [
+        "DENSE-0025@00:36.000",
+        "DENSE-0026@00:37.500"
+      ]
+    },
+    {
+      "id": "UI-04",
+      "timeRange": "00:39-00:42",
+      "interface": "Node-based Stable Diffusion workflow",
+      "visibleContent": "A Qwen2 node appears to expand a cat-image prompt inside a workflow, with generated cat images displayed below.",
+      "whatItProves": "A screenshot of one apparent Qwen2-assisted application workflow is shown.",
+      "whatItDoesNotProve": "No live interaction, repository, model checkpoint, input/output trace or adoption count is shown; it also does not demonstrate that Qwen2 itself accepts multimodal input.",
+      "evidence": [
+        "DENSE-0027@00:39.000",
+        "DENSE-0028@00:40.500",
+        "DENSE-0029@00:42.000"
+      ]
+    },
+    {
+      "id": "UI-05",
+      "timeRange": "00:51-00:56",
+      "interface": "Qwen-branded/Hugging Face Spaces-style chat demo",
+      "visibleTasks": [
+        "Tell me a joke",
+        "Write python code for fib(n) to compute the nth Fibonacci number"
+      ],
+      "visibleOutput": "A tomato joke and a short recursive Fibonacci function are shown as already-present responses.",
+      "whatItProves": "The video shows two simple Qwen demo outputs.",
+      "whatItDoesNotProve": "The responses are not generated continuously on camera, the code is not executed or tested, and GPT-4 is not given either task.",
+      "evidence": [
+        "DENSE-0035@00:51.000",
+        "DENSE-0036@00:52.500",
+        "DENSE-0037@00:54.000",
+        "DENSE-0038@00:55.500"
+      ]
+    },
+    {
+      "id": "UI-06",
+      "timeRange": "00:57-00:61",
+      "interface": "Side-by-side model-response UI",
+      "visibleContent": "Two answers about options trading are shown under selectors that appear to name Llama3-70B and Qwen2-72B variants.",
+      "sameTaskStatus": "apparently_same_topic_but_not_auditable",
+      "whatItProves": "A Qwen2-versus-Llama side-by-side screenshot exists.",
+      "whatItDoesNotProve": "The full prompt, system prompts, settings, model endpoints, generation trace, latency and grading are absent. No winner is demonstrated, and GPT-4 is not present.",
+      "evidence": [
+        "DENSE-0039@00:57.000",
+        "DENSE-0040@00:58.500",
+        "DENSE-0041@01:00.000"
+      ]
+    }
+  ],
+  "licenseAndCost": {
+    "visibleLicenseStatement": "The model-card frame says that models other than Qwen2-72B base/instruct are Apache 2.0, while Qwen2-72B still uses the original Qianwen License.",
+    "evidence": [
+      "DENSE-0024@00:34.500"
+    ],
+    "assessment": "This is a material qualification to the narration's blanket 'open source' framing, especially because the 72B model is the video's featured version. The exact rights, restrictions and commercial-use conditions of the Qianwen License are not explained. Opponent licenses are not shown or discussed.",
+    "freeClaim": "The video does not define free. It gives no API price, download charge, hosting cost, GPU requirement, electricity cost or total-cost comparison. A downloadable model can still incur deployment and inference costs.",
+    "unknowns": [
+      "Whether the promoted packaged build is free of charge",
+      "Whether the package contains weights or only setup instructions",
+      "Whether the use case is permitted by the relevant model license",
+      "What compute is required for the 72B model",
+      "What GPT-4 price/product/date is being compared"
+    ]
+  },
+  "claimAudit": [
+    {
+      "id": "CLAIM-01",
+      "claim": "Qwen2 is currently the world's hottest open-source model.",
+      "status": "partially_supported_promotional_superlative",
+      "reason": "Model pages and favorable posts are visible, but no market-wide popularity measure, date-bounded ranking methodology or adoption data supports 'the world's hottest'.",
+      "evidence": [
+        "CUE-005@00:12.320-00:16.080",
+        "DENSE-0025@00:36.000",
+        "DENSE-0026@00:37.500"
+      ]
+    },
+    {
+      "id": "CLAIM-02",
+      "claim": "Qwen2 spans 0.5B to 72B, and the 72B version has 128K context.",
+      "status": "supported_with_family-listing_caveat",
+      "reason": "The size range and the 72B 128K value are visible on the Qwen2 page. The family listing also shows 57B-A14B, while the four-column specification table omits it.",
+      "evidence": [
+        "CUE-007@00:19.080-00:22.000",
+        "CUE-008@00:22.000-00:25.760",
+        "DENSE-0012@00:16.500",
+        "DENSE-0017@00:24.000"
+      ]
+    },
+    {
+      "id": "CLAIM-03",
+      "claim": "Qwen2 handles multimodality, multilingual understanding, reasoning and code generation.",
+      "status": "mixed_and_not_fully_demonstrated",
+      "reason": "Language, reasoning and code benchmarks/demos are shown. The Stable Diffusion workflow shows Qwen2 producing a text prompt, not Qwen2 accepting or reasoning over multimodal input; no controlled task validates the bundled claim.",
+      "evidence": [
+        "CUE-010@00:27.600-00:29.920",
+        "CUE-011@00:29.920-00:30.720",
+        "CUE-012@00:30.720-00:32.000",
+        "DENSE-0020@00:28.500",
+        "DENSE-0027@00:39.000"
+      ]
+    },
+    {
+      "id": "CLAIM-04",
+      "claim": "Qwen2 comprehensively crushes Meta's Llama 3.",
+      "status": "contradicted_by_visible_counterexamples",
+      "reason": "The displayed tables contain multiple Llama 3 wins: Llama3-70B-Instruct exceeds Qwen2-72B-Instruct on MBPP (82.3 vs 80.2) and GSM8K (93.0 vs 91.1); Llama3-8B-Instruct exceeds Qwen2-7B-Instruct on HumanEval (82.2 vs 79.9). Many other cells favor Qwen2, but that supports a selective/mixed benchmark conclusion, not an exceptionless comprehensive win.",
+      "evidence": [
+        "CUE-013@00:32.000-00:34.520",
+        "DENSE-0021@00:30.000",
+        "DENSE-0022@00:31.500",
+        "SHOT-005@00:31.150"
+      ]
+    },
+    {
+      "id": "CLAIM-05",
+      "claim": "Top AI authorities are unanimously praising Qwen2.",
+      "status": "overgeneralized",
+      "reason": "Two favorable social-post screenshots are shown. Two examples do not establish unanimity across top industry authorities, and their claims are not independently verified inside the video.",
+      "evidence": [
+        "CUE-014@00:34.520-00:36.600",
+        "CUE-015@00:36.600-00:38.920",
+        "DENSE-0025@00:36.000",
+        "DENSE-0026@00:37.500"
+      ]
+    },
+    {
+      "id": "CLAIM-06",
+      "claim": "Overseas developers are using Qwen2 to build AI applications.",
+      "status": "anecdotal_example_only",
+      "reason": "A workflow screenshot supplies one apparent example, but no developer identity, repository, usage trace or adoption count is given.",
+      "evidence": [
+        "CUE-016@00:38.920-00:42.480",
+        "DENSE-0027@00:39.000",
+        "DENSE-0028@00:40.500",
+        "DENSE-0029@00:42.000"
+      ]
+    },
+    {
+      "id": "CLAIM-07",
+      "claim": "OpenAI is arrogant and expensive.",
+      "status": "opinion_without_comparative_evidence",
+      "reason": "No OpenAI product page, price, license/availability comparison or dated product version is shown. 'Arrogant' is rhetoric rather than a testable performance claim.",
+      "evidence": [
+        "CUE-017@00:42.480-00:44.120",
+        "CUE-018@00:44.120-00:46.280",
+        "DENSE-0030@00:43.500",
+        "DENSE-0031@00:45.000"
+      ]
+    },
+    {
+      "id": "CLAIM-08",
+      "claim": "Users should stop paying for GPT-4 and directly use free domestic open models.",
+      "status": "unsupported_as_general_recommendation",
+      "reason": "There is no same-task GPT-4 comparison, no user/use-case segmentation and no total-cost analysis. The featured Qwen2-72B has a visible license exception, and self-hosting cost is not addressed.",
+      "evidence": [
+        "CUE-021@00:49.240-00:50.760",
+        "CUE-022@00:50.760-00:53.280",
+        "CUE-023@00:53.280-00:55.640",
+        "DENSE-0024@00:34.500",
+        "DENSE-0034@00:49.500",
+        "DENSE-0037@00:54.000"
+      ]
+    },
+    {
+      "id": "CLAIM-09",
+      "claim": "Jensen Huang strongly praised Meta's open-source model and said large AI models should be open source.",
+      "status": "attribution_not_verifiable_from_video",
+      "reason": "The opening shows Jensen Huang and Mark Zuckerberg in an interview setting, but no source/date, audible quotation transcript or on-screen full quote is supplied. The footage alone cannot establish the exact paraphrase.",
+      "evidence": [
+        "CUE-001@00:00.000-00:04.240",
+        "DENSE-0001@00:00.000",
+        "DENSE-0002@00:01.500",
+        "DENSE-0003@00:03.000"
+      ]
+    },
+    {
+      "id": "CLAIM-10",
+      "claim": "The creator has packaged Qwen2 and can arrange it via comments.",
+      "status": "call_to_action_not_verified",
+      "reason": "The spoken CTA is present, but the package, contents, installation method, safety and license compliance are not shown.",
+      "evidence": [
+        "CUE-026@01:00.440-01:02.040",
+        "CUE-027@01:02.040-01:03.680",
+        "DENSE-0042@01:01.500",
+        "DENSE-0043@01:03.000"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Exact publication date and which Qwen2 checkpoint/revision was used in every screenshot",
+    "Which GPT-4 version, access tier and date the recommendation refers to",
+    "Whether any displayed response was generated by the creator rather than copied from a demo",
+    "The full prompt and settings behind the Qwen2/Llama side-by-side options-trading responses",
+    "Whether the benchmark tables were current at publication time and whether contamination controls were applied",
+    "Whether the social posts and leaderboard positions remained current outside the captured moment",
+    "The exact Qianwen License rights/restrictions and whether the promoted use falls within them",
+    "Real deployment cost and hardware requirements for Qwen2-72B",
+    "The contents and provenance of the promised packaged build"
+  ],
+  "minimumSafeConclusion": "The footage supports that Qwen2 was presented as a multi-size model family with a 72B/128K variant, favorable model-card benchmark results and some demo/application screenshots. It does not support the headline implication that Qwen2 was tested head-to-head against GPT-4, does not establish that Qwen2 is the right replacement for GPT-4 across uses, and does not support the absolute claim that it beats Llama 3 on every displayed benchmark."
+}

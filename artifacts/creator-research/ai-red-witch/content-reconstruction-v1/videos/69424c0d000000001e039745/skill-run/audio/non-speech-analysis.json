@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "audio-non-speech-evidence-1.0",
+  "sourceVideo": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69424c0d000000001e039745.mp4",
+  "extractedAudio": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/audio/non-speech-source.wav",
+  "audioSha256": "10d123f104b44124663fc9e890a4a740cc6fe00d587a11e98e39768568ea0a82",
+  "extraction": {
+    "method": "ffmpeg decode of the complete source audio stream",
+    "codec": "pcm_s16le",
+    "sampleRate": 16000,
+    "channels": 1,
+    "duration": 105.629,
+    "sizeBytes": 3380206
+  },
+  "classifier": {
+    "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "snapshot": "f826b80d28226b62986cc218e5cec390b1096902",
+    "task": "AudioSet multi-label audio classification",
+    "inference": "local model; sigmoid scores; continuous 5-second windows plus 4-second windows centered on nine narrative boundaries",
+    "salientNonSpeechThreshold": 0.1,
+    "limitations": [
+      "Scores are model proposals, not human-verified literal sound identities.",
+      "The classifier analyzes the mixed track and cannot isolate narration from music or prove foreground/background placement.",
+      "Labels below threshold are omitted from salientNonSpeech but musicScore and speechScore are retained for every window.",
+      "The analysis cannot establish music title, creator, license, provenance, or editorial intent.",
+      "Five-second windows can miss sub-second silence or effects; boundary windows reduce but do not eliminate that risk."
+    ]
+  },
+  "coverage": {
+    "timelineWindowSeconds": 5,
+    "timelineWindows": 22,
+    "timelineStart": 0,
+    "timelineEnd": 105.629,
+    "timelineGapSeconds": 0,
+    "transitionWindows": 9,
+    "transitionCenters": [7.49, 14.55, 31.958, 38.62, 44.58, 58.79, 73.74, 89.5, 96.51]
+  },
+  "timelineWindows": [
+    {"id": "AUD-TL-001", "start": 0.0, "end": 5.0, "rmsDbfs": -17.64, "musicScore": 0.6233, "speechScore": 0.6005, "salientNonSpeech": []},
+    {"id": "AUD-TL-002", "start": 5.0, "end": 10.0, "rmsDbfs": -21.05, "musicScore": 0.2661, "speechScore": 0.5505, "salientNonSpeech": []},
+    {"id": "AUD-TL-003", "start": 10.0, "end": 15.0, "rmsDbfs": -21.65, "musicScore": 0.0139, "speechScore": 0.5349, "salientNonSpeech": []},
+    {"id": "AUD-TL-004", "start": 15.0, "end": 20.0, "rmsDbfs": -20.66, "musicScore": 0.5742, "speechScore": 0.5293, "salientNonSpeech": []},
+    {"id": "AUD-TL-005", "start": 20.0, "end": 25.0, "rmsDbfs": -20.41, "musicScore": 0.5858, "speechScore": 0.5997, "salientNonSpeech": []},
+    {"id": "AUD-TL-006", "start": 25.0, "end": 30.0, "rmsDbfs": -20.42, "musicScore": 0.5605, "speechScore": 0.5975, "salientNonSpeech": []},
+    {"id": "AUD-TL-007", "start": 30.0, "end": 35.0, "rmsDbfs": -21.19, "musicScore": 0.6295, "speechScore": 0.6126, "salientNonSpeech": []},
+    {"id": "AUD-TL-008", "start": 35.0, "end": 40.0, "rmsDbfs": -20.89, "musicScore": 0.5958, "speechScore": 0.6494, "salientNonSpeech": []},
+    {"id": "AUD-TL-009", "start": 40.0, "end": 45.0, "rmsDbfs": -19.0, "musicScore": 0.4285, "speechScore": 0.4869, "salientNonSpeech": [{"label": "Ding", "score": 0.4414}, {"label": "Clang", "score": 0.1688}]},
+    {"id": "AUD-TL-010", "start": 45.0, "end": 50.0, "rmsDbfs": -19.95, "musicScore": 0.5853, "speechScore": 0.6265, "salientNonSpeech": []},
+    {"id": "AUD-TL-011", "start": 50.0, "end": 55.0, "rmsDbfs": -20.92, "musicScore": 0.6549, "speechScore": 0.5962, "salientNonSpeech": []},
+    {"id": "AUD-TL-012", "start": 55.0, "end": 60.0, "rmsDbfs": -20.59, "musicScore": 0.5899, "speechScore": 0.62, "salientNonSpeech": []},
+    {"id": "AUD-TL-013", "start": 60.0, "end": 65.0, "rmsDbfs": -20.67, "musicScore": 0.6697, "speechScore": 0.6111, "salientNonSpeech": []},
+    {"id": "AUD-TL-014", "start": 65.0, "end": 70.0, "rmsDbfs": -21.53, "musicScore": 0.557, "speechScore": 0.5732, "salientNonSpeech": []},
+    {"id": "AUD-TL-015", "start": 70.0, "end": 75.0, "rmsDbfs": -22.24, "musicScore": 0.6174, "speechScore": 0.6246, "salientNonSpeech": []},
+    {"id": "AUD-TL-016", "start": 75.0, "end": 80.0, "rmsDbfs": -21.02, "musicScore": 0.6062, "speechScore": 0.6171, "salientNonSpeech": []},
+    {"id": "AUD-TL-017", "start": 80.0, "end": 85.0, "rmsDbfs": -19.65, "musicScore": 0.6576, "speechScore": 0.6462, "salientNonSpeech": []},
+    {"id": "AUD-TL-018", "start": 85.0, "end": 90.0, "rmsDbfs": -21.06, "musicScore": 0.5003, "speechScore": 0.5771, "salientNonSpeech": [{"label": "Ding", "score": 0.1817}, {"label": "Ping", "score": 0.1249}]},
+    {"id": "AUD-TL-019", "start": 90.0, "end": 95.0, "rmsDbfs": -19.89, "musicScore": 0.5755, "speechScore": 0.5758, "salientNonSpeech": []},
+    {"id": "AUD-TL-020", "start": 95.0, "end": 100.0, "rmsDbfs": -19.68, "musicScore": 0.4483, "speechScore": 0.3931, "salientNonSpeech": [{"label": "Plop", "score": 0.2045}, {"label": "Whack, thwack", "score": 0.1056}]},
+    {"id": "AUD-TL-021", "start": 100.0, "end": 105.0, "rmsDbfs": -20.49, "musicScore": 0.624, "speechScore": 0.6075, "salientNonSpeech": [{"label": "Plop", "score": 0.6632}]},
+    {"id": "AUD-TL-022", "start": 105.0, "end": 105.629, "rmsDbfs": -23.7, "musicScore": 0.4508, "speechScore": 0.0976, "salientNonSpeech": []}
+  ],
+  "transitionWindows": [
+    {"id": "AUD-TR-001", "center": 7.49, "start": 5.49, "end": 9.49, "rmsDbfs": -20.47, "musicScore": 0.4244, "speechScore": 0.6464, "salientNonSpeech": []},
+    {"id": "AUD-TR-002", "center": 14.55, "start": 12.55, "end": 16.55, "rmsDbfs": -22.36, "musicScore": 0.2321, "speechScore": 0.4592, "salientNonSpeech": []},
+    {"id": "AUD-TR-003", "center": 31.958, "start": 29.958, "end": 33.958, "rmsDbfs": -21.17, "musicScore": 0.555, "speechScore": 0.5742, "salientNonSpeech": []},
+    {"id": "AUD-TR-004", "center": 38.62, "start": 36.62, "end": 40.62, "rmsDbfs": -19.12, "musicScore": 0.4707, "speechScore": 0.4872, "salientNonSpeech": [{"label": "Ding", "score": 0.2141}, {"label": "Beep, bleep", "score": 0.213}]},
+    {"id": "AUD-TR-005", "center": 44.58, "start": 42.58, "end": 46.58, "rmsDbfs": -20.02, "musicScore": 0.6201, "speechScore": 0.597, "salientNonSpeech": []},
+    {"id": "AUD-TR-006", "center": 58.79, "start": 56.79, "end": 60.79, "rmsDbfs": -20.87, "musicScore": 0.5958, "speechScore": 0.5767, "salientNonSpeech": []},
+    {"id": "AUD-TR-007", "center": 73.74, "start": 71.74, "end": 75.74, "rmsDbfs": -22.19, "musicScore": 0.5491, "speechScore": 0.5961, "salientNonSpeech": []},
+    {"id": "AUD-TR-008", "center": 89.5, "start": 87.5, "end": 91.5, "rmsDbfs": -19.97, "musicScore": 0.4615, "speechScore": 0.5641, "salientNonSpeech": [{"label": "Ding", "score": 0.3657}, {"label": "Ping", "score": 0.1421}]},
+    {"id": "AUD-TR-009", "center": 96.51, "start": 94.51, "end": 98.51, "rmsDbfs": -19.6, "musicScore": 0.5069, "speechScore": 0.4764, "salientNonSpeech": [{"label": "Whack, thwack", "score": 0.1381}]}
+  ],
+  "boundedFindings": [
+    "Music and speech are both model-detected in most continuous windows; the 10–15 second window is the only five-second window with a low Music score (0.0139).",
+    "No complete five-second timeline window is silent: RMS ranges from -17.64 to -23.70 dBFS. This does not rule out shorter pauses.",
+    "The strongest proposed tonal/transient accents occur around 38.62–45 seconds, 85–91.5 seconds, and 95–105 seconds.",
+    "The classifier does not establish that every proposed Ding, Ping, Plop, Clang, Beep or Whack label is literally correct; only the existence of model-detected transient non-speech energy in those bounded windows is retained.",
+    "No unique non-speech event was shown by this analysis to carry a medical, privacy, commercial or CTA claim independently of speech, text and visuals."
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "bounded-audio-review-1.0",
+  "sourceVideo": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/6784e718000000000b0227d9.mp4",
+  "sourceAudio": {
+    "id": "AR-SOURCE-01",
+    "path": "audio-review/source-audio.m4a",
+    "derivedBy": "ffmpeg stream-copy of the MP4 AAC audio track; no transcoding",
+    "durationSeconds": 48.653991,
+    "codec": "aac",
+    "sampleRate": 44100,
+    "channels": 2,
+    "limitations": [
+      "The audio stream contains speech and non-speech components mixed together; it is not a clean music stem.",
+      "The source video does not identify the music title, creator, license, ownership, or edit provenance."
+    ]
+  },
+  "reviewMethod": {
+    "coverage": "Five gap-free bounded audio segments cover 0.000-48.667 seconds. Each segment was decoded to 16 kHz mono PCM for actual waveform analysis; no frame, subtitle, or OCR evidence was used as proof of audio content.",
+    "eventClassifiers": [
+      {
+        "name": "MIT AST AudioSet",
+        "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+        "windowSeconds": 4,
+        "hopSeconds": 2,
+        "method": "multi-label sigmoid classification on decoded PCM",
+        "limitations": ["Labels are machine proposals, not ground truth.", "Speech/music mixtures can make precise sound-effect labels unstable."]
+      },
+      {
+        "name": "Apple SoundAnalysis",
+        "model": "SNClassifySoundRequest.version1",
+        "windowSeconds": 2,
+        "hopSeconds": 1,
+        "method": "built-in macOS sound classification on the complete AAC source",
+        "limitations": ["Top labels contain false-positive-like alternatives under dense speech/music mixtures.", "Exact effect names are retained as unknown unless both time localization and classifier pattern are stable."]
+      }
+    ],
+    "signalChecks": {
+      "silenceDetect": "ffmpeg silencedetect, threshold -50 dB, minimum duration 0.10 s",
+      "result": "No >=0.10 s silence was found from 0.000 through 48.470635 s; a 0.208118 s silent tail was detected from 48.470635 to 48.678753 s.",
+      "segmentMeanVolumesDb": {
+        "AR-SEG-01": -10.4,
+        "AR-SEG-02": -11.1,
+        "AR-SEG-03": -10.9,
+        "AR-SEG-04": -11.5,
+        "AR-SEG-05": -10.9
+      }
+    }
+  },
+  "segments": [
+    {
+      "id": "AR-SEG-01",
+      "label": "opening promise and initial result montage",
+      "range": {"start": 0, "end": 6.72},
+      "compressedAudio": "audio-review/segments/AR-SEG-01-opening-0.000-6.720.mp3",
+      "analysisPcm": "audio-review/segments/AR-SEG-01-opening-0.000-6.720.wav",
+      "observations": [
+        "Speech is present throughout the bounded segment.",
+        "Background music is detected throughout all three AST windows (music probability 0.676-0.773) and is also proposed by Apple SoundAnalysis in the same opening scope.",
+        "Music is not absent in the opening; no stable, high-confidence discrete one-shot sound effect was established separately from the mixed speech/music track."
+      ],
+      "musicState": "present and broadly continuous under speech; exact style/title unknown",
+      "soundEffectState": "no distinct effect reliably established in this bounded segment; absence is not universal proof",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "AR-SEG-02",
+      "label": "quality claims and simple/free transition",
+      "range": {"start": 6.72, "end": 15.52},
+      "compressedAudio": "audio-review/segments/AR-SEG-02-quality-6.720-15.520.mp3",
+      "analysisPcm": "audio-review/segments/AR-SEG-02-quality-6.720-15.520.wav",
+      "observations": [
+        "Speech remains present throughout.",
+        "Background music remains strongly detected in all four AST windows (music probability 0.720-0.846), so the opening music bed continues through the quality/tutorial-promise section.",
+        "Near 13-15.52 seconds Apple SoundAnalysis begins proposing plucked-string/click/typing-like transients, but their exact acoustic identity is not established from the mixed track."
+      ],
+      "musicState": "present and broadly continuous; no full stop detected",
+      "soundEffectState": "possible short transition/percussive events near the segment end; exact type unknown",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "AR-SEG-03",
+      "label": "tool entry, interface and prompt input",
+      "range": {"start": 15.52, "end": 25.68},
+      "compressedAudio": "audio-review/segments/AR-SEG-03-interface-15.520-25.680.mp3",
+      "analysisPcm": "audio-review/segments/AR-SEG-03-interface-15.520-25.680.wav",
+      "observations": [
+        "Speech remains present throughout.",
+        "Music remains detectable at the start of the interface segment (AST music 0.684 for 15.52-19.52) but drops sharply across later windows (0.199, 0.028, 0.018, then 0.165), so the non-speech bed changes rather than remaining constant in dominance.",
+        "Both classifiers propose short typing/typewriter/click or camera-like transients around roughly 17-22 seconds; Apple typing/typewriter confidence is especially strong around 17-21 seconds.",
+        "Because the track is a speech/music/effects mixture and classifier labels disagree on exact names, the safest supported description is 'short UI/percussive typing/click-like events', not a literal keyboard action or camera shutter."
+      ],
+      "musicState": "present at entry but materially reduced in dominance during the interface/prompt section",
+      "soundEffectState": "short UI/percussive typing/click-like events detected; precise source and synchronization unknown",
+      "confidence": "medium"
+    },
+    {
+      "id": "AR-SEG-04",
+      "label": "loading, result reveal, adjustment and Logo transition",
+      "range": {"start": 25.68, "end": 36.32},
+      "compressedAudio": "audio-review/segments/AR-SEG-04-result-25.680-36.320.mp3",
+      "analysisPcm": "audio-review/segments/AR-SEG-04-result-25.680-36.320.wav",
+      "observations": [
+        "Speech remains present throughout.",
+        "Music is again detected in every AST window, with changing strength (0.634, 0.166, 0.632, 0.523, 0.400); it is present around the loading/result reveal but not constant in dominance.",
+        "Neither classifier establishes a unique, high-confidence result chime or export sound that can be separated from narration and music.",
+        "No >=0.10 s silence occurs in this result/adjustment segment."
+      ],
+      "musicState": "present through the loading/result/adjustment span with changing prominence",
+      "soundEffectState": "no unique result or export effect reliably established; exact transient content unknown",
+      "confidence": "medium-high for music presence, low for effect identity"
+    },
+    {
+      "id": "AR-SEG-05",
+      "label": "templates, broad claim, job-risk close and CTA",
+      "range": {"start": 36.32, "end": 48.667},
+      "compressedAudio": "audio-review/segments/AR-SEG-05-closing-36.320-48.667.mp3",
+      "analysisPcm": "audio-review/segments/AR-SEG-05-closing-36.320-48.667.wav",
+      "observations": [
+        "Speech remains present through the spoken close.",
+        "Background music is detected in all six AST windows (0.494-0.841), becomes especially strong around 38.32-44.32 seconds, and remains detected through the CTA/end scope.",
+        "Apple SoundAnalysis also continues to propose music while intermittently proposing typing/typewriter-like transients; because the visuals are montage/CTA rather than a literal typing operation, those exact transient labels remain unknown.",
+        "No long silent outro is present: signal continues to 48.470635 seconds, followed only by a 0.208118-second silent tail."
+      ],
+      "musicState": "present and sustained through the broad claim and CTA; terminates only at the final ~0.2-second tail",
+      "soundEffectState": "no unique closing sting reliably separated; intermittent transient labels remain unidentified",
+      "confidence": "medium-high"
+    }
+  ],
+  "crossSegmentFindings": [
+    {
+      "id": "AR-FINDING-01",
+      "finding": "Non-speech audio is not absent: a background music bed is detected across opening, quality, result and closing scopes, with reduced dominance during the interface/prompt section.",
+      "basis": ["AR-SEG-01", "AR-SEG-02", "AR-SEG-03", "AR-SEG-04", "AR-SEG-05"]
+    },
+    {
+      "id": "AR-FINDING-02",
+      "finding": "The largest non-speech change occurs in the interface/prompt scope, where music detection drops and typing/click-like transient proposals become prominent; exact effect identity and synchronization remain unknown.",
+      "basis": ["AR-SEG-02", "AR-SEG-03", "AR-SEG-04"]
+    },
+    {
+      "id": "AR-FINDING-03",
+      "finding": "The result reveal and close retain music under narration; no dedicated result chime, export cue, or unique closing sting is established with sufficient confidence.",
+      "basis": ["AR-SEG-04", "AR-SEG-05"]
+    }
+  ],
+  "unknowns": [
+    "Music title, performer, composer, source library, ownership, license and authorization.",
+    "Exact genre or production style beyond classifier-level 'music' proposals.",
+    "Whether short transients are baked into the music, added UI sound effects, edit accents, or environmental sounds.",
+    "Frame-accurate synchronization and intentional narrative purpose of each transient.",
+    "Whether any source audio was speed-changed, remixed or processed before publication."
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T21:04:44.615Z",
+  "ready": false,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": false,
+      "detail": "ratio=0.833",
+      "examples": [
+        {
+          "status": "missed",
+          "auditId": "CQ-03",
+          "detail": "Candidate reconstructs deep-content and long-Vlog recommendations but drops the audited comparison that Vlog is framed as very competitive while entertainment is framed as least profitable."
+        },
+        {
+          "status": "missed",
+          "auditId": "CQ-04",
+          "detail": "Candidate covers rhythm and alleged down-weighting but omits the author's claimed recovery dependency on a new hit."
+        },
+        {
+          "status": "missed",
+          "auditId": "CQ-18",
+          "detail": "Candidate repeats the thirteen-question promise and supplies topic units, but does not preserve that only some numbers are explicit and that the video does not visibly close all thirteen as enumerated questions."
+        },
+        {
+          "status": "answered",
+          "auditIds": [
+            "CQ-01",
+            "CQ-06",
+            "CQ-12",
+            "CQ-13",
+            "CQ-16",
+            "CQ-17"
+          ],
+          "detail": "Opening promise, monetization timing, delayed diagnosis, MCN types/shares, incubation loop, and closing warning are reconstructed."
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "covered",
+          "detail": "Every independent-audit core knowledge unit has a corresponding candidate unit with at least one resolvable internal evidence reference."
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "status": "supported_or_bounded",
+          "detail": "All 21 non-unknown candidate knowledge units attach evidence and keep platform, budget, MCN, and causal propositions attributed to the author or explicitly unverified."
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "status": "checked",
+          "detail": "Every cue, targeted-frame, and OCR reference attached to all 22 knowledge units resolves and overlaps its unit time range (0.5-second localization tolerance)."
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": false,
+      "detail": "ratio=0.667",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": false,
+      "detail": "ratio=0.385",
+      "examples": [
+        {
+          "status": "correct",
+          "auditIds": [
+            "UNK-01",
+            "UNK-06",
+            "UNK-07",
+            "UNK-11",
+            "UNK-13"
+          ],
+          "detail": "Screenshot attribution/causality, unproven weight and budget claims, the un-demonstrated wait/diagnosis mechanism, and unsupported MCN accusations are bounded."
+        },
+        {
+          "status": "missed",
+          "auditIds": [
+            "UNK-02",
+            "UNK-04",
+            "UNK-05",
+            "UNK-08",
+            "UNK-09",
+            "UNK-10",
+            "UNK-12"
+          ],
+          "detail": "The candidate does not preserve the complete-classification uncertainty; algorithm/platform/account-stage scope for duration advice; access/region/validity of the support plan; evidence and exceptions for lifecycle/100k thresholds; operational variables for copying; privacy/risk limits on interaction; or mixed-contract/exit/IP/liability boundaries."
+        },
+        {
+          "status": "missed",
+          "auditId": "UNK-03",
+          "detail": "The candidate omits rather than explicitly bounding the evidence base and scope for the Vlog-competition and entertainment-profit comparisons."
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": false,
+      "detail": "Independent meta-audit found unguarded closures",
+      "examples": [
+        "Resource/capability -> track -> competition/commercial-space -> format/length decision order is reduced to adjacent chronology.",
+        "Hit-series copying/growth -> fatigue or scale threshold -> advertising is not guarded as a cross-segment dependency.",
+        "Comments/private messages -> topic selection -> multi-series framework -> Tag opportunity is not guarded as an operational feedback chain.",
+        "MCN type -> share/services/capabilities -> contract decision or incubation-risk judgment is not guarded as a decision relation.",
+        "Ad revenue -> paid data amplification -> continued orders is stated in prose but not guarded as the causal loop that motivates the closing warning."
+      ]
+    }
+  ],
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "failedGateIds": [
+    "eval_critical_question_recall",
+    "eval_process_dependency_completeness",
+    "eval_unknown_discipline",
+    "eval_meta_gate"
+  ]
+}

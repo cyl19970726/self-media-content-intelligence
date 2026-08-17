@@ -1,0 +1,2111 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T13:10:18.524Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a31edc300000000200387f4/source.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 0,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 2,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 4,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 6,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 8,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 10,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-01",
+      "time": 12,
+      "frame": "frames/ACT-01-007.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-01",
+      "time": 14,
+      "frame": "frames/ACT-01-008.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-01",
+      "time": 16,
+      "frame": "frames/ACT-01-009.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-01",
+      "time": 18,
+      "frame": "frames/ACT-01-010.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-01",
+      "time": 20,
+      "frame": "frames/ACT-01-011.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-01",
+      "time": 22,
+      "frame": "frames/ACT-01-012.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-01",
+      "time": 24,
+      "frame": "frames/ACT-01-013.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-01",
+      "time": 26,
+      "frame": "frames/ACT-01-014.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-01",
+      "time": 28,
+      "frame": "frames/ACT-01-015.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-01",
+      "time": 30,
+      "frame": "frames/ACT-01-016.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-01",
+      "time": 32,
+      "frame": "frames/ACT-01-017.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-01",
+      "time": 32.56,
+      "frame": "frames/ACT-01-018.jpg",
+      "carrier": "follower count, growth chart, third-party post and opening captions",
+      "reason": "恢复结果社会证明与反 slop 立场。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-02",
+      "time": 32.56,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-02",
+      "time": 34.06,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-02",
+      "time": 35.56,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-02",
+      "time": 37.06,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-02",
+      "time": 38.56,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-02",
+      "time": 40.06,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-02",
+      "time": 41.56,
+      "frame": "frames/ACT-02-007.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-02",
+      "time": 43.06,
+      "frame": "frames/ACT-02-008.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-02",
+      "time": 44.56,
+      "frame": "frames/ACT-02-009.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-02",
+      "time": 46.06,
+      "frame": "frames/ACT-02-010.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-02",
+      "time": 47.56,
+      "frame": "frames/ACT-02-011.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-02",
+      "time": 49.06,
+      "frame": "frames/ACT-02-012.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-02",
+      "time": 50.56,
+      "frame": "frames/ACT-02-013.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-02",
+      "time": 52.06,
+      "frame": "frames/ACT-02-014.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-02",
+      "time": 53.56,
+      "frame": "frames/ACT-02-015.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-02",
+      "time": 55.06,
+      "frame": "frames/ACT-02-016.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-02",
+      "time": 56.56,
+      "frame": "frames/ACT-02-017.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-02",
+      "time": 58.06,
+      "frame": "frames/ACT-02-018.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-02",
+      "time": 59,
+      "frame": "frames/ACT-02-019.jpg",
+      "carrier": "talking head plus stage/party diagrams",
+      "reason": "恢复心智模型的视觉转换。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-03",
+      "time": 59,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-03",
+      "time": 61,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-03",
+      "time": 63,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-03",
+      "time": 65,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-03",
+      "time": 67,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-03",
+      "time": 69,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-03",
+      "time": 71,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-03",
+      "time": 73,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-03",
+      "time": 75,
+      "frame": "frames/ACT-03-009.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-03",
+      "time": 77,
+      "frame": "frames/ACT-03-010.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-03",
+      "time": 79,
+      "frame": "frames/ACT-03-011.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-03",
+      "time": 81,
+      "frame": "frames/ACT-03-012.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-03",
+      "time": 83,
+      "frame": "frames/ACT-03-013.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-03",
+      "time": 85,
+      "frame": "frames/ACT-03-014.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-03",
+      "time": 87,
+      "frame": "frames/ACT-03-015.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-03",
+      "time": 89,
+      "frame": "frames/ACT-03-016.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-03",
+      "time": 91,
+      "frame": "frames/ACT-03-017.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-03",
+      "time": 93,
+      "frame": "frames/ACT-03-018.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-03",
+      "time": 95,
+      "frame": "frames/ACT-03-019.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-03",
+      "time": 97,
+      "frame": "frames/ACT-03-020.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-03",
+      "time": 99,
+      "frame": "frames/ACT-03-021.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-03",
+      "time": 101,
+      "frame": "frames/ACT-03-022.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-03",
+      "time": 103,
+      "frame": "frames/ACT-03-023.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-03",
+      "time": 105,
+      "frame": "frames/ACT-03-024.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-03",
+      "time": 107,
+      "frame": "frames/ACT-03-025.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-03",
+      "time": 107.28,
+      "frame": "frames/ACT-03-026.jpg",
+      "carrier": "feed-training cards and X UI examples",
+      "reason": "恢复正负反馈动作和目标 feed。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-04",
+      "time": 107.28,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-04",
+      "time": 109.28,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-04",
+      "time": 111.28,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-04",
+      "time": 113.28,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-04",
+      "time": 115.28,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-04",
+      "time": 117.28,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-04",
+      "time": 119.28,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-04",
+      "time": 121.28,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-04",
+      "time": 123.28,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-04",
+      "time": 125.28,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-04",
+      "time": 127.28,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-04",
+      "time": 129.28,
+      "frame": "frames/ACT-04-012.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-04",
+      "time": 131.28,
+      "frame": "frames/ACT-04-013.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-04",
+      "time": 133.28,
+      "frame": "frames/ACT-04-014.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-04",
+      "time": 135.28,
+      "frame": "frames/ACT-04-015.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-04",
+      "time": 137.28,
+      "frame": "frames/ACT-04-016.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-04",
+      "time": 139.28,
+      "frame": "frames/ACT-04-017.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-04",
+      "time": 141.28,
+      "frame": "frames/ACT-04-018.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-04",
+      "time": 143.28,
+      "frame": "frames/ACT-04-019.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-04",
+      "time": 145.28,
+      "frame": "frames/ACT-04-020.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-04",
+      "time": 147.28,
+      "frame": "frames/ACT-04-021.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-04",
+      "time": 149.28,
+      "frame": "frames/ACT-04-022.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-04",
+      "time": 151.28,
+      "frame": "frames/ACT-04-023.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-04",
+      "time": 153.28,
+      "frame": "frames/ACT-04-024.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-04",
+      "time": 155.28,
+      "frame": "frames/ACT-04-025.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-04",
+      "time": 157.28,
+      "frame": "frames/ACT-04-026.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-04",
+      "time": 159.28,
+      "frame": "frames/ACT-04-027.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-04",
+      "time": 161.28,
+      "frame": "frames/ACT-04-028.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-04",
+      "time": 163.28,
+      "frame": "frames/ACT-04-029.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-04",
+      "time": 165.28,
+      "frame": "frames/ACT-04-030.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-04",
+      "time": 167.28,
+      "frame": "frames/ACT-04-031.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-04",
+      "time": 169.28,
+      "frame": "frames/ACT-04-032.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-04",
+      "time": 171.28,
+      "frame": "frames/ACT-04-033.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-04",
+      "time": 173.28,
+      "frame": "frames/ACT-04-034.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-04",
+      "time": 174.32,
+      "frame": "frames/ACT-04-035.jpg",
+      "carrier": "reply examples, A/B diagram and anti-AI-reply cards",
+      "reason": "恢复真诚回复的反例、关系机制和因果边界。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-05",
+      "time": 174.32,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-05",
+      "time": 176.32,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-05",
+      "time": 178.32,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-05",
+      "time": 180.32,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-05",
+      "time": 182.32,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-05",
+      "time": 184.32,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-05",
+      "time": 186.32,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-05",
+      "time": 188.32,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-05",
+      "time": 190.32,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-05",
+      "time": 192.32,
+      "frame": "frames/ACT-05-010.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-05",
+      "time": 194.32,
+      "frame": "frames/ACT-05-011.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-05",
+      "time": 196.32,
+      "frame": "frames/ACT-05-012.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0111",
+      "actionId": "ACT-05",
+      "time": 198.32,
+      "frame": "frames/ACT-05-013.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0112",
+      "actionId": "ACT-05",
+      "time": 200.32,
+      "frame": "frames/ACT-05-014.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0113",
+      "actionId": "ACT-05",
+      "time": 202.32,
+      "frame": "frames/ACT-05-015.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0114",
+      "actionId": "ACT-05",
+      "time": 204.32,
+      "frame": "frames/ACT-05-016.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0115",
+      "actionId": "ACT-05",
+      "time": 206.32,
+      "frame": "frames/ACT-05-017.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0116",
+      "actionId": "ACT-05",
+      "time": 208.32,
+      "frame": "frames/ACT-05-018.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0117",
+      "actionId": "ACT-05",
+      "time": 210.32,
+      "frame": "frames/ACT-05-019.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0118",
+      "actionId": "ACT-05",
+      "time": 212.32,
+      "frame": "frames/ACT-05-020.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0119",
+      "actionId": "ACT-05",
+      "time": 214.32,
+      "frame": "frames/ACT-05-021.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0120",
+      "actionId": "ACT-05",
+      "time": 214.42,
+      "frame": "frames/ACT-05-022.jpg",
+      "carrier": "daily-three-posts cards and trigger framing",
+      "reason": "区分每天三条目标、作者经验与普遍规则。"
+    },
+    {
+      "id": "TARGET-0121",
+      "actionId": "ACT-06",
+      "time": 214.42,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0122",
+      "actionId": "ACT-06",
+      "time": 216.42,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0123",
+      "actionId": "ACT-06",
+      "time": 218.42,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0124",
+      "actionId": "ACT-06",
+      "time": 220.42,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0125",
+      "actionId": "ACT-06",
+      "time": 222.42,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0126",
+      "actionId": "ACT-06",
+      "time": 224.42,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0127",
+      "actionId": "ACT-06",
+      "time": 226.42,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0128",
+      "actionId": "ACT-06",
+      "time": 228.42,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0129",
+      "actionId": "ACT-06",
+      "time": 230.42,
+      "frame": "frames/ACT-06-009.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0130",
+      "actionId": "ACT-06",
+      "time": 232.42,
+      "frame": "frames/ACT-06-010.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0131",
+      "actionId": "ACT-06",
+      "time": 234.42,
+      "frame": "frames/ACT-06-011.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0132",
+      "actionId": "ACT-06",
+      "time": 236.42,
+      "frame": "frames/ACT-06-012.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0133",
+      "actionId": "ACT-06",
+      "time": 238.42,
+      "frame": "frames/ACT-06-013.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0134",
+      "actionId": "ACT-06",
+      "time": 240.42,
+      "frame": "frames/ACT-06-014.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0135",
+      "actionId": "ACT-06",
+      "time": 242.42,
+      "frame": "frames/ACT-06-015.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0136",
+      "actionId": "ACT-06",
+      "time": 244.42,
+      "frame": "frames/ACT-06-016.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0137",
+      "actionId": "ACT-06",
+      "time": 246.42,
+      "frame": "frames/ACT-06-017.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0138",
+      "actionId": "ACT-06",
+      "time": 248.42,
+      "frame": "frames/ACT-06-018.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0139",
+      "actionId": "ACT-06",
+      "time": 250.42,
+      "frame": "frames/ACT-06-019.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0140",
+      "actionId": "ACT-06",
+      "time": 252.42,
+      "frame": "frames/ACT-06-020.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0141",
+      "actionId": "ACT-06",
+      "time": 254.42,
+      "frame": "frames/ACT-06-021.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0142",
+      "actionId": "ACT-06",
+      "time": 256.42,
+      "frame": "frames/ACT-06-022.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0143",
+      "actionId": "ACT-06",
+      "time": 258.42,
+      "frame": "frames/ACT-06-023.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0144",
+      "actionId": "ACT-06",
+      "time": 260.42,
+      "frame": "frames/ACT-06-024.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0145",
+      "actionId": "ACT-06",
+      "time": 262.42,
+      "frame": "frames/ACT-06-025.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0146",
+      "actionId": "ACT-06",
+      "time": 264.42,
+      "frame": "frames/ACT-06-026.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0147",
+      "actionId": "ACT-06",
+      "time": 266.42,
+      "frame": "frames/ACT-06-027.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0148",
+      "actionId": "ACT-06",
+      "time": 268.42,
+      "frame": "frames/ACT-06-028.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0149",
+      "actionId": "ACT-06",
+      "time": 270.42,
+      "frame": "frames/ACT-06-029.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0150",
+      "actionId": "ACT-06",
+      "time": 272.42,
+      "frame": "frames/ACT-06-030.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0151",
+      "actionId": "ACT-06",
+      "time": 274.42,
+      "frame": "frames/ACT-06-031.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0152",
+      "actionId": "ACT-06",
+      "time": 276.42,
+      "frame": "frames/ACT-06-032.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0153",
+      "actionId": "ACT-06",
+      "time": 278.42,
+      "frame": "frames/ACT-06-033.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0154",
+      "actionId": "ACT-06",
+      "time": 280.42,
+      "frame": "frames/ACT-06-034.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0155",
+      "actionId": "ACT-06",
+      "time": 282.42,
+      "frame": "frames/ACT-06-035.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0156",
+      "actionId": "ACT-06",
+      "time": 284.42,
+      "frame": "frames/ACT-06-036.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0157",
+      "actionId": "ACT-06",
+      "time": 286.42,
+      "frame": "frames/ACT-06-037.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0158",
+      "actionId": "ACT-06",
+      "time": 288.42,
+      "frame": "frames/ACT-06-038.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0159",
+      "actionId": "ACT-06",
+      "time": 290.42,
+      "frame": "frames/ACT-06-039.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0160",
+      "actionId": "ACT-06",
+      "time": 292.42,
+      "frame": "frames/ACT-06-040.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0161",
+      "actionId": "ACT-06",
+      "time": 294.42,
+      "frame": "frames/ACT-06-041.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0162",
+      "actionId": "ACT-06",
+      "time": 296.42,
+      "frame": "frames/ACT-06-042.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0163",
+      "actionId": "ACT-06",
+      "time": 298.42,
+      "frame": "frames/ACT-06-043.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0164",
+      "actionId": "ACT-06",
+      "time": 300.42,
+      "frame": "frames/ACT-06-044.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0165",
+      "actionId": "ACT-06",
+      "time": 302.42,
+      "frame": "frames/ACT-06-045.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0166",
+      "actionId": "ACT-06",
+      "time": 304.42,
+      "frame": "frames/ACT-06-046.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0167",
+      "actionId": "ACT-06",
+      "time": 306.42,
+      "frame": "frames/ACT-06-047.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0168",
+      "actionId": "ACT-06",
+      "time": 308.42,
+      "frame": "frames/ACT-06-048.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0169",
+      "actionId": "ACT-06",
+      "time": 310.42,
+      "frame": "frames/ACT-06-049.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0170",
+      "actionId": "ACT-06",
+      "time": 312.42,
+      "frame": "frames/ACT-06-050.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0171",
+      "actionId": "ACT-06",
+      "time": 314.42,
+      "frame": "frames/ACT-06-051.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0172",
+      "actionId": "ACT-06",
+      "time": 316.42,
+      "frame": "frames/ACT-06-052.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0173",
+      "actionId": "ACT-06",
+      "time": 318.42,
+      "frame": "frames/ACT-06-053.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0174",
+      "actionId": "ACT-06",
+      "time": 320.42,
+      "frame": "frames/ACT-06-054.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0175",
+      "actionId": "ACT-06",
+      "time": 322.42,
+      "frame": "frames/ACT-06-055.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0176",
+      "actionId": "ACT-06",
+      "time": 324.42,
+      "frame": "frames/ACT-06-056.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0177",
+      "actionId": "ACT-06",
+      "time": 326.42,
+      "frame": "frames/ACT-06-057.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0178",
+      "actionId": "ACT-06",
+      "time": 328.42,
+      "frame": "frames/ACT-06-058.jpg",
+      "carrier": "Learn/Give feedback/Build in public cards and social/product examples",
+      "reason": "恢复三个触发器的输入、动作、输出与例子。"
+    },
+    {
+      "id": "TARGET-0179",
+      "actionId": "ACT-07",
+      "time": 328.42,
+      "frame": "frames/ACT-07-001.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0180",
+      "actionId": "ACT-07",
+      "time": 330.42,
+      "frame": "frames/ACT-07-002.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0181",
+      "actionId": "ACT-07",
+      "time": 332.42,
+      "frame": "frames/ACT-07-003.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0182",
+      "actionId": "ACT-07",
+      "time": 334.42,
+      "frame": "frames/ACT-07-004.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0183",
+      "actionId": "ACT-07",
+      "time": 336.42,
+      "frame": "frames/ACT-07-005.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0184",
+      "actionId": "ACT-07",
+      "time": 338.42,
+      "frame": "frames/ACT-07-006.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0185",
+      "actionId": "ACT-07",
+      "time": 340.42,
+      "frame": "frames/ACT-07-007.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0186",
+      "actionId": "ACT-07",
+      "time": 342.42,
+      "frame": "frames/ACT-07-008.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0187",
+      "actionId": "ACT-07",
+      "time": 344.42,
+      "frame": "frames/ACT-07-009.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0188",
+      "actionId": "ACT-07",
+      "time": 346.42,
+      "frame": "frames/ACT-07-010.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0189",
+      "actionId": "ACT-07",
+      "time": 348.42,
+      "frame": "frames/ACT-07-011.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0190",
+      "actionId": "ACT-07",
+      "time": 350.42,
+      "frame": "frames/ACT-07-012.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0191",
+      "actionId": "ACT-07",
+      "time": 352.42,
+      "frame": "frames/ACT-07-013.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0192",
+      "actionId": "ACT-07",
+      "time": 354.42,
+      "frame": "frames/ACT-07-014.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0193",
+      "actionId": "ACT-07",
+      "time": 356.42,
+      "frame": "frames/ACT-07-015.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0194",
+      "actionId": "ACT-07",
+      "time": 358.42,
+      "frame": "frames/ACT-07-016.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0195",
+      "actionId": "ACT-07",
+      "time": 360.42,
+      "frame": "frames/ACT-07-017.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0196",
+      "actionId": "ACT-07",
+      "time": 362.42,
+      "frame": "frames/ACT-07-018.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0197",
+      "actionId": "ACT-07",
+      "time": 364.42,
+      "frame": "frames/ACT-07-019.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0198",
+      "actionId": "ACT-07",
+      "time": 366.42,
+      "frame": "frames/ACT-07-020.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0199",
+      "actionId": "ACT-07",
+      "time": 368.42,
+      "frame": "frames/ACT-07-021.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0200",
+      "actionId": "ACT-07",
+      "time": 370.42,
+      "frame": "frames/ACT-07-022.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0201",
+      "actionId": "ACT-07",
+      "time": 372.42,
+      "frame": "frames/ACT-07-023.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0202",
+      "actionId": "ACT-07",
+      "time": 374.42,
+      "frame": "frames/ACT-07-024.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0203",
+      "actionId": "ACT-07",
+      "time": 376.42,
+      "frame": "frames/ACT-07-025.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0204",
+      "actionId": "ACT-07",
+      "time": 378.42,
+      "frame": "frames/ACT-07-026.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0205",
+      "actionId": "ACT-07",
+      "time": 380.42,
+      "frame": "frames/ACT-07-027.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0206",
+      "actionId": "ACT-07",
+      "time": 381.313,
+      "frame": "frames/ACT-07-028.jpg",
+      "carrier": "AI-writing condition cards, closing hierarchy and captions",
+      "reason": "恢复禁用条件、允许条件与最终目标。"
+    },
+    {
+      "id": "TARGET-0207",
+      "actionId": "ACT-08",
+      "time": 3,
+      "frame": "frames/ACT-08-001.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0208",
+      "actionId": "ACT-08",
+      "time": 14,
+      "frame": "frames/ACT-08-002.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0209",
+      "actionId": "ACT-08",
+      "time": 20,
+      "frame": "frames/ACT-08-003.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0210",
+      "actionId": "ACT-08",
+      "time": 38,
+      "frame": "frames/ACT-08-004.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0211",
+      "actionId": "ACT-08",
+      "time": 45,
+      "frame": "frames/ACT-08-005.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0212",
+      "actionId": "ACT-08",
+      "time": 60,
+      "frame": "frames/ACT-08-006.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0213",
+      "actionId": "ACT-08",
+      "time": 82,
+      "frame": "frames/ACT-08-007.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0214",
+      "actionId": "ACT-08",
+      "time": 108,
+      "frame": "frames/ACT-08-008.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0215",
+      "actionId": "ACT-08",
+      "time": 114,
+      "frame": "frames/ACT-08-009.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0216",
+      "actionId": "ACT-08",
+      "time": 132,
+      "frame": "frames/ACT-08-010.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0217",
+      "actionId": "ACT-08",
+      "time": 150,
+      "frame": "frames/ACT-08-011.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0218",
+      "actionId": "ACT-08",
+      "time": 178,
+      "frame": "frames/ACT-08-012.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0219",
+      "actionId": "ACT-08",
+      "time": 185,
+      "frame": "frames/ACT-08-013.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0220",
+      "actionId": "ACT-08",
+      "time": 200,
+      "frame": "frames/ACT-08-014.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0221",
+      "actionId": "ACT-08",
+      "time": 216,
+      "frame": "frames/ACT-08-015.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0222",
+      "actionId": "ACT-08",
+      "time": 244,
+      "frame": "frames/ACT-08-016.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0223",
+      "actionId": "ACT-08",
+      "time": 272,
+      "frame": "frames/ACT-08-017.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0224",
+      "actionId": "ACT-08",
+      "time": 294,
+      "frame": "frames/ACT-08-018.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0225",
+      "actionId": "ACT-08",
+      "time": 314,
+      "frame": "frames/ACT-08-019.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0226",
+      "actionId": "ACT-08",
+      "time": 332,
+      "frame": "frames/ACT-08-020.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0227",
+      "actionId": "ACT-08",
+      "time": 346,
+      "frame": "frames/ACT-08-021.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0228",
+      "actionId": "ACT-08",
+      "time": 364,
+      "frame": "frames/ACT-08-022.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    },
+    {
+      "id": "TARGET-0229",
+      "actionId": "ACT-08",
+      "time": 378,
+      "frame": "frames/ACT-08-023.jpg",
+      "carrier": "burned captions, method names, metrics and card text",
+      "reason": "校正英文方法名、平台术语、数字和结论卡。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092",
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110",
+        "TARGET-0111",
+        "TARGET-0112",
+        "TARGET-0113",
+        "TARGET-0114",
+        "TARGET-0115",
+        "TARGET-0116",
+        "TARGET-0117",
+        "TARGET-0118",
+        "TARGET-0119",
+        "TARGET-0120"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0121",
+        "TARGET-0122",
+        "TARGET-0123",
+        "TARGET-0124",
+        "TARGET-0125",
+        "TARGET-0126",
+        "TARGET-0127",
+        "TARGET-0128",
+        "TARGET-0129",
+        "TARGET-0130",
+        "TARGET-0131",
+        "TARGET-0132",
+        "TARGET-0133",
+        "TARGET-0134",
+        "TARGET-0135",
+        "TARGET-0136",
+        "TARGET-0137",
+        "TARGET-0138",
+        "TARGET-0139",
+        "TARGET-0140",
+        "TARGET-0141",
+        "TARGET-0142",
+        "TARGET-0143",
+        "TARGET-0144",
+        "TARGET-0145",
+        "TARGET-0146",
+        "TARGET-0147",
+        "TARGET-0148",
+        "TARGET-0149",
+        "TARGET-0150",
+        "TARGET-0151",
+        "TARGET-0152",
+        "TARGET-0153",
+        "TARGET-0154",
+        "TARGET-0155",
+        "TARGET-0156",
+        "TARGET-0157",
+        "TARGET-0158",
+        "TARGET-0159",
+        "TARGET-0160",
+        "TARGET-0161",
+        "TARGET-0162",
+        "TARGET-0163",
+        "TARGET-0164",
+        "TARGET-0165",
+        "TARGET-0166",
+        "TARGET-0167",
+        "TARGET-0168",
+        "TARGET-0169",
+        "TARGET-0170",
+        "TARGET-0171",
+        "TARGET-0172",
+        "TARGET-0173",
+        "TARGET-0174",
+        "TARGET-0175",
+        "TARGET-0176",
+        "TARGET-0177",
+        "TARGET-0178"
+      ]
+    },
+    {
+      "id": "ACT-07",
+      "frameIds": [
+        "TARGET-0179",
+        "TARGET-0180",
+        "TARGET-0181",
+        "TARGET-0182",
+        "TARGET-0183",
+        "TARGET-0184",
+        "TARGET-0185",
+        "TARGET-0186",
+        "TARGET-0187",
+        "TARGET-0188",
+        "TARGET-0189",
+        "TARGET-0190",
+        "TARGET-0191",
+        "TARGET-0192",
+        "TARGET-0193",
+        "TARGET-0194",
+        "TARGET-0195",
+        "TARGET-0196",
+        "TARGET-0197",
+        "TARGET-0198",
+        "TARGET-0199",
+        "TARGET-0200",
+        "TARGET-0201",
+        "TARGET-0202",
+        "TARGET-0203",
+        "TARGET-0204",
+        "TARGET-0205",
+        "TARGET-0206"
+      ]
+    },
+    {
+      "id": "ACT-08",
+      "frameIds": [
+        "TARGET-0207",
+        "TARGET-0208",
+        "TARGET-0209",
+        "TARGET-0210",
+        "TARGET-0211",
+        "TARGET-0212",
+        "TARGET-0213",
+        "TARGET-0214",
+        "TARGET-0215",
+        "TARGET-0216",
+        "TARGET-0217",
+        "TARGET-0218",
+        "TARGET-0219",
+        "TARGET-0220",
+        "TARGET-0221",
+        "TARGET-0222",
+        "TARGET-0223",
+        "TARGET-0224",
+        "TARGET-0225",
+        "TARGET-0226",
+        "TARGET-0227",
+        "TARGET-0228",
+        "TARGET-0229"
+      ]
+    }
+  ]
+}

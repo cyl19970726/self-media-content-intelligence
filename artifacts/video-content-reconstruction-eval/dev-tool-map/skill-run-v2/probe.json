@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/evidence-v2/evidence-pack.json",
+  "viewerChange": {
+    "before": "A transcript-only reader encounters six deictic ‘这个可以…’ claims without the product referents, promotional qualifiers, visual proof style, item counts, or the global list structure.",
+    "after": "A reader can recover the six complete card-to-claim-to-example entries, the scope and limits of each example, the counted Manus result sets, the recognizable but unverified celebrity-like styling, the image-tool-to-animation boundary, and the montage's global parallel-list structure while retaining all unsupported provenance and workflow details as unknown.",
+    "intendedChanges": [
+      "Resolve every ‘这个’ to the complete visible card text, not only the product name.",
+      "Know what visible example follows each claim and what the example does or does not establish about claim scope.",
+      "Notice likeness, logos, gestures, layout, counts, and recurring setting as meaning-bearing carriers.",
+      "Understand that the six entries are parallel recommendations, not a cross-tool pipeline.",
+      "Separate card promotions and author claims from demonstrated workflow, external truth, identity, authorization, and output provenance."
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-001",
+      "range": {"start": 0, "end": 2.1},
+      "cognitiveQuestion": "What does the opening ‘这个’ refer to, what full card text frames it, and what setup-to-result change illustrates the claim?",
+      "observedSignals": ["opening product card with headline and descriptive subline", "CUE-001 and burned-in subtitle", "presenter points upward", "vertical wipe", "changed sailor-style/VR-headset character", "AI生成 label", "same room/presenter baseline used later"],
+      "checkedAlternatives": ["speech/SRT", "on-screen card text", "gesture and gaze", "before/during/after state", "corner label", "non-speech audio continuity", "editing adjacency"],
+      "remainingUnknowns": ["full card subline requires OCR confirmation", "actual generation workflow and output provenance", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-001", "SHOT-001", "DENSE-0001", "DENSE-0002", "DENSE-0003"]
+    },
+    {
+      "id": "SWEEP-002",
+      "range": {"start": 2.1, "end": 5.167},
+      "cognitiveQuestion": "Which complete card is paired with the special-effect claim, and what temporal effect progression is shown?",
+      "observedSignals": ["PixVerse card with subline", "CUE-002", "upward pointing gesture", "splash/flood-like effect grows around presenter", "reaction and AI生成 label", "hard cut from prior entry"],
+      "checkedAlternatives": ["speech/SRT", "on-screen card text", "gesture and reaction", "motion sequence", "corner label", "non-speech audio continuity", "editing boundary"],
+      "remainingUnknowns": ["exact card subline requires OCR confirmation", "effect-production method and settings", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-002", "SHOT-002", "DENSE-0004", "DENSE-0005", "DENSE-0006", "DENSE-0007"]
+    },
+    {
+      "id": "SWEEP-003",
+      "range": {"start": 5.167, "end": 9.067},
+      "cognitiveQuestion": "How does the Vidu entry turn the universal ‘任何人’ claim into a concrete celebrity-like example, and what remains unproved?",
+      "observedSignals": ["Vidu card with model-category subline", "CUE-003", "presenter initially alone", "man strongly styled to resemble Steve Jobs appears behind her", "black turtleneck", "laptop with visible Apple logo", "presenter looks and gestures toward him", "only one co-frame example", "AI生成 label"],
+      "checkedAlternatives": ["speech/SRT and universal-scope wording", "full card text", "recognizable likeness and styling", "logo/symbol", "before/after occupancy", "gesture/gaze", "example count", "identity/authorization alternatives", "non-speech audio continuity"],
+      "remainingUnknowns": ["literal identity", "authorization and source asset", "generation method", "full claim scope beyond the single shown example", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-003", "SHOT-003", "DENSE-0008", "DENSE-0009", "DENSE-0010", "DENSE-0011", "DENSE-0012"]
+    },
+    {
+      "id": "SWEEP-004",
+      "range": {"start": 9.067, "end": 11.267},
+      "cognitiveQuestion": "What complete Runway card and subtitle wording introduce the outfit claim, and how many complete looks are visibly distinguishable from the baseline?",
+      "observedSignals": ["brief Runway card with feature-category subline", "CUE-004 SRT says 一键穿搭", "burned-in subtitle says 一键换穿搭", "presenter points toward card", "wipes and accessory/clothing changes", "at least two complete looks distinct from baseline", "AI生成 label"],
+      "checkedAlternatives": ["SRT versus burned-in subtitle", "full card text", "gesture", "before/during/after outfit states", "complete-look grouping versus accessory change", "corner label", "non-speech audio continuity"],
+      "remainingUnknowns": ["exact Runway subline requires OCR confirmation", "one-click operation not shown", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-004", "SHOT-004", "DENSE-0013", "DENSE-0014", "DENSE-0015"]
+    },
+    {
+      "id": "SWEEP-005",
+      "range": {"start": 11.267, "end": 11.767},
+      "cognitiveQuestion": "What complete Manus card frames the PPT claim before the result grids begin?",
+      "observedSignals": ["Manus headline plus Monica-team/global-first/general-purpose AI Agent promotional subline", "CUE-005 begins", "presenter gesture", "same room and card placement", "hard cut toward results"],
+      "checkedAlternatives": ["speech/SRT", "full card text", "gesture", "card layout", "transition", "non-speech audio continuity"],
+      "remainingUnknowns": ["exact promotional subline requires OCR confirmation", "external truth of promotional wording", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-005", "SHOT-005", "DENSE-0016", "FRAME-SHOT-005"]
+    },
+    {
+      "id": "SWEEP-006",
+      "range": {"start": 11.767, "end": 12.367},
+      "cognitiveQuestion": "What is the first PPT result group, how many thumbnails are visibly grouped, and how is presenter picture-in-picture organized?",
+      "observedSignals": ["first distinct light-toned PPT grid", "3 rows by 4 columns equals 12 visible thumbnails", "upper result grid", "lower presenter inset", "green-to-brown framing"],
+      "checkedAlternatives": ["grid count", "group boundary", "layout and spatial composition", "thumbnail categories", "small-text legibility", "non-speech audio continuity"],
+      "remainingUnknowns": ["most thumbnail body text", "slide content accuracy and citations", "editability/export/source provenance", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["SHOT-006", "FRAME-SHOT-006", "CUE-005"]
+    },
+    {
+      "id": "SWEEP-007",
+      "range": {"start": 12.367, "end": 13.033},
+      "cognitiveQuestion": "Is the second PPT grid a distinct complete result group, and what count/layout does it preserve?",
+      "observedSignals": ["second distinct dark navy/beige PPT grid", "3 rows by 4 columns equals 12 visible thumbnails", "upper grid/lower presenter inset layout persists", "hard cut marks a new group"],
+      "checkedAlternatives": ["grid count", "group boundary versus minor variation", "palette and layout comparison", "small-text legibility", "non-speech audio continuity"],
+      "remainingUnknowns": ["most thumbnail body text", "theme input and source materials", "content accuracy/citations/editability/export", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["SHOT-007", "FRAME-SHOT-007", "CUE-005"]
+    },
+    {
+      "id": "SWEEP-008",
+      "range": {"start": 13.033, "end": 13.7},
+      "cognitiveQuestion": "Is the third PPT grid distinct from the prior two, and what does the three-group count support or fail to prove?",
+      "observedSignals": ["third distinct pink/beige PPT grid", "3 rows by 4 columns equals 12 visible thumbnails", "upper grid/lower presenter inset layout persists", "three-group montage illustrates stylistic variety"],
+      "checkedAlternatives": ["grid count", "group boundary", "palette/style comparison", "claim-scope support", "small-text legibility", "non-speech audio continuity"],
+      "remainingUnknowns": ["whether each grid represents an editable deck", "content accuracy, citations, source materials, export format, generation attribution", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["SHOT-008", "FRAME-SHOT-008", "CUE-005", "DENSE-0019"]
+    },
+    {
+      "id": "SWEEP-009",
+      "range": {"start": 13.7, "end": 14.233},
+      "cognitiveQuestion": "What complete 即梦 card frames the final claim, and does the card's product scope align with ‘做动漫’?",
+      "observedSignals": ["即梦 headline", "subline identifies 抖音旗下免费AI图片创作工具", "CUE-006 begins with 做动漫 claim", "presenter points upward", "same room/card layout", "hard cut to illustration"],
+      "checkedAlternatives": ["speech/SRT", "full card text", "promotional qualifier 免费", "product-category scope 图片创作工具", "gesture", "claim/card-scope comparison", "non-speech audio continuity"],
+      "remainingUnknowns": ["external truth of card promotion", "unshown bridge from image creation to animation", "specific semantic role of non-speech audio"],
+      "evidenceHints": ["CUE-006", "SHOT-009", "FRAME-SHOT-009"]
+    },
+    {
+      "id": "SWEEP-010",
+      "range": {"start": 14.233, "end": 16.556},
+      "cognitiveQuestion": "What motion is present in the final illustrated result, how does the framing affect interpretation, and does it establish an animation workflow?",
+      "observedSignals": ["green upper and brown lower frame", "AI生成 label", "red-haired VR-headset-wearing illustrated girl and deer", "head/hand pose changes", "butterflies move", "CUE-006", "final 0.30 seconds of audio becomes technically silent"],
+      "checkedAlternatives": ["motion sequence", "layout/framing", "AI label", "speech/SRT", "static-image versus moving-result distinction", "program-dependency alternatives", "non-speech audio continuity and ending silence"],
+      "remainingUnknowns": ["source image and animation method", "whether 即梦 produced the movement", "meaning of non-speech audio before the final silence"],
+      "evidenceHints": ["CUE-006", "SHOT-010", "DENSE-0020", "DENSE-0021", "DENSE-0022", "DENSE-0023"]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-SPEECH",
+      "name": "spoken narration represented by six supplied platform-SRT cues",
+      "modalityKeys": ["audio.speech", "language.deictic_claim", "language.scope"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-009", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["states one capability claim per entry", "uses repeated ‘这个可以…’ syntax", "contains universal scope in ‘任何人’ and one-click scope in ‘一键’"],
+      "intervals": [{"start": 0, "end": 1.68}, {"start": 2, "end": 3.83}, {"start": 5.09, "end": 7.94}, {"start": 8.91, "end": 11.02}, {"start": 11.38, "end": 13.09}, {"start": 13.73, "end": 15.31}],
+      "omissionImpact": "The claimed capabilities and their scope words would disappear."
+    },
+    {
+      "id": "CAR-SUBTITLES",
+      "name": "supplied SRT plus burned-in Chinese subtitle layer",
+      "modalityKeys": ["text.subtitle.external_srt", "text.subtitle.burned_in", "text.source_discrepancy"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-009", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["anchors all six claims in time", "exposes the CUE-004 SRT/burned-in wording difference"],
+      "intervals": [{"start": 0, "end": 15.31}],
+      "omissionImpact": "Cue wording, timing, and the 一键穿搭 versus 一键换穿搭 discrepancy would be lost."
+    },
+    {
+      "id": "CAR-CARD-TEXT",
+      "name": "six short product cards with headlines, sublines, categories, sources, and promotional qualifiers",
+      "modalityKeys": ["text.overlay.card", "text.product_name", "text.product_category", "text.promotion", "brand.logo"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-009"],
+      "available": true,
+      "inspected": true,
+      "roles": ["resolves each deictic ‘这个’", "frames product category and promotional scope", "creates the 即梦 image-tool-to-animation boundary"],
+      "intervals": [{"start": 0, "end": 0.75}, {"start": 2.1, "end": 2.75}, {"start": 5.167, "end": 5.8}, {"start": 9.067, "end": 9.35}, {"start": 11.267, "end": 11.767}, {"start": 13.7, "end": 14.233}],
+      "omissionImpact": "A name-only reconstruction would lose all category/source/promotion text and could miss claim-scope conflicts."
+    },
+    {
+      "id": "CAR-GESTURE-GAZE",
+      "name": "presenter pointing, hand rhythm, gaze, and reaction",
+      "modalityKeys": ["body.gesture.pointing", "body.gaze", "body.reaction", "rhythm.presenter"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-009"],
+      "available": true,
+      "inspected": true,
+      "roles": ["points viewers toward short cards", "maintains list rhythm", "directs attention to the co-frame figure", "amplifies the splash-effect reaction"],
+      "intervals": [{"start": 0, "end": 0.75}, {"start": 2.1, "end": 5.167}, {"start": 5.167, "end": 9.067}, {"start": 9.067, "end": 11.267}, {"start": 11.267, "end": 11.767}, {"start": 13.7, "end": 14.233}],
+      "omissionImpact": "The attentional function that links presenter, cards, and examples would be lost."
+    },
+    {
+      "id": "CAR-VISUAL-STATE",
+      "name": "before/during/after states and motion-dependent result examples",
+      "modalityKeys": ["visual.state.before_after", "visual.motion", "visual.effect", "visual.result"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-006", "SWEEP-007", "SWEEP-008", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["illustrates claims", "shows wipes, effect escalation, person appearance, outfit changes, grid cuts, and final animation"],
+      "intervals": [{"start": 0, "end": 16.556}],
+      "omissionImpact": "Midpoint-only summaries would miss transitions, counts, complete-look grouping, and motion."
+    },
+    {
+      "id": "CAR-LIKENESS-SYMBOLS",
+      "name": "recognizable likeness, styling, logo, headset, costume, and symbolic objects",
+      "modalityKeys": ["visual.likeness", "visual.styling", "visual.logo", "visual.symbolic_object"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-003", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["makes the co-frame example rapidly legible as Steve Jobs-like", "Apple logo reinforces the celebrity/tech association", "VR headset/costume make character and anime examples legible"],
+      "intervals": [{"start": 0.75, "end": 2.1}, {"start": 6.1, "end": 9.067}, {"start": 14.233, "end": 16.556}],
+      "omissionImpact": "The video’s shorthand for character type and celebrity-like co-framing would be flattened; literal identity must still remain unknown."
+    },
+    {
+      "id": "CAR-LAYOUT-COUNT",
+      "name": "layout, grouping, count, scale, and spatial composition",
+      "modalityKeys": ["layout.grid", "layout.picture_in_picture", "layout.frame", "count.result_group", "count.thumbnail"],
+      "discoveredIn": ["SWEEP-006", "SWEEP-007", "SWEEP-008", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["separates three Manus result grids", "organizes 12 thumbnails per grid", "keeps presenter visible below the grids", "uses green/brown framing to present result imagery"],
+      "intervals": [{"start": 11.767, "end": 13.7}, {"start": 14.233, "end": 16.556}],
+      "omissionImpact": "The three-set/12-page structure, presenter inset, and final display framing would disappear."
+    },
+    {
+      "id": "CAR-EDITING-GLOBAL",
+      "name": "hard cuts, adjacency, repeated room/presenter continuity, and parallel-list organization",
+      "modalityKeys": ["editing.hard_cut", "editing.juxtaposition", "editing.parallel_list", "continuity.presenter", "continuity.setting", "workflow.no_handoff"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-006", "SWEEP-007", "SWEEP-008", "SWEEP-009", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["pairs each card, claim, and example", "uses the same presenter and room to unify heterogeneous tools", "marks six parallel entries", "shows no file/API/output handoff between tools"],
+      "intervals": [{"start": 0, "end": 16.556}],
+      "omissionImpact": "The montage could be misread as a workflow pipeline instead of a parallel list, and editing adjacency could be overstated as causal proof."
+    },
+    {
+      "id": "CAR-AI-LABEL",
+      "name": "visible AI生成 corner label",
+      "modalityKeys": ["text.overlay.ai_generated", "provenance.label"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["labels several result shots as AI-generated without naming the generating tool"],
+      "intervals": [{"start": 0.75, "end": 11.267}, {"start": 14.233, "end": 16.556}],
+      "omissionImpact": "The video's own provenance framing would be lost, or the generic label might be wrongly promoted to tool-specific causality."
+    },
+    {
+      "id": "CAR-NONSPEECH-AUDIO",
+      "name": "non-speech audio bed and/or effects, technically present but semantically unresolved",
+      "modalityKeys": ["audio.non_speech", "audio.continuity", "audio.unknown_role", "audio.ending_silence"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-006", "SWEEP-007", "SWEEP-008", "SWEEP-009", "SWEEP-010"],
+      "available": true,
+      "inspected": true,
+      "roles": ["continuous audio energy persists through narration gaps", "may support pacing or transitions", "only the final approximately 0.30 seconds is detected as silence"],
+      "intervals": [{"start": 0, "end": 16.255}, {"start": 16.255, "end": 16.556}],
+      "omissionImpact": "Ignoring the channel would falsely imply that all audio meaning is captured by the transcript; its specific musical or sound-effect role remains unknown."
+    },
+    {
+      "id": "CAR-UI-PARAMETERS",
+      "name": "application UI, prompts, parameters, filenames, generation status, and file handoffs",
+      "modalityKeys": ["ui.application", "ui.parameter", "ui.status", "workflow.file_handoff"],
+      "discoveredIn": ["SWEEP-001", "SWEEP-002", "SWEEP-003", "SWEEP-004", "SWEEP-005", "SWEEP-006", "SWEEP-007", "SWEEP-008", "SWEEP-009", "SWEEP-010"],
+      "available": false,
+      "inspected": true,
+      "roles": ["would establish operational and cross-tool workflow if present"],
+      "intervals": [],
+      "omissionImpact": "Because no UI or handoff is visible, prompts, parameters, workflow, causality, and pipeline steps must not be invented."
+    }
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 2.1}, "description": "The opening card resolves the referent and frames a character-replacement claim that is illustrated by a wipe into a sailor-style VR character.", "trigger": "complete card plus before/after reveal", "evidenceHints": ["SWEEP-001", "CUE-001", "SHOT-001"]},
+    {"id": "MC-02", "range": {"start": 2.1, "end": 5.167}, "description": "The PixVerse card resolves the second referent and is followed by an escalating splash/flood-like special-effect example.", "trigger": "complete card plus motion-dependent effect progression", "evidenceHints": ["SWEEP-002", "CUE-002", "SHOT-002"]},
+    {"id": "MC-03", "range": {"start": 5.167, "end": 9.067}, "description": "The Vidu card and universal ‘任何人’ claim are illustrated by one Steve Jobs-like figure with black turtleneck and Apple-logo laptop; the single example does not establish universal scope or literal identity.", "trigger": "likeness/logo appearance and scope-limited single example", "evidenceHints": ["SWEEP-003", "CUE-003", "SHOT-003"]},
+    {"id": "MC-04", "range": {"start": 9.067, "end": 11.267}, "description": "The Runway card introduces the outfit claim; SRT and burned-in subtitle differ, and the sequence yields at least two complete looks beyond baseline rather than three independently proven outputs.", "trigger": "rapid card, source-text discrepancy, and complete-look grouping", "evidenceHints": ["SWEEP-004", "CUE-004", "SHOT-004"]},
+    {"id": "MC-05A", "range": {"start": 11.267, "end": 11.767}, "description": "The complete Manus card provides a promotional product frame before the PPT claim results.", "trigger": "short promotional card", "evidenceHints": ["SWEEP-005", "CUE-005", "SHOT-005"]},
+    {"id": "MC-05B", "range": {"start": 11.767, "end": 13.7}, "description": "Three distinct PPT thumbnail grids appear in consecutive shots, each organized as 3 by 4 visible thumbnails above a presenter inset; the count illustrates breadth but not accuracy, citations, editability, export, or attribution.", "trigger": "three hard-cut result groups with count/layout change", "evidenceHints": ["SWEEP-006", "SWEEP-007", "SWEEP-008", "SHOT-006", "SHOT-007", "SHOT-008"]},
+    {"id": "MC-06A", "range": {"start": 13.7, "end": 14.233}, "description": "The 即梦 card explicitly frames the product as a free AI image-creation tool while the narration claims it can make animation.", "trigger": "card-scope versus claim-scope boundary", "evidenceHints": ["SWEEP-009", "CUE-006", "SHOT-009"]},
+    {"id": "MC-06B", "range": {"start": 14.233, "end": 16.556}, "description": "A framed moving illustration follows, but the intermediate program that turns image creation into animation is not shown.", "trigger": "moving result without demonstrated image-to-animation workflow", "evidenceHints": ["SWEEP-010", "SHOT-010", "DENSE-0020", "DENSE-0023"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "complete product card", "to": "adjacent deictic claim", "relation": "identifies_referent_and_frames_product_scope_of", "evidenceHints": ["CAR-CARD-TEXT", "CAR-SPEECH", "MC-01", "MC-02", "MC-03", "MC-04", "MC-05A", "MC-06A"]},
+    {"id": "REL-02", "from": "capability claim", "to": "adjacent visual result", "relation": "illustrated_by_without_causal_demonstration", "evidenceHints": ["CAR-VISUAL-STATE", "CAR-EDITING-GLOBAL", "CAR-UI-PARAMETERS"]},
+    {"id": "REL-03", "from": "Vidu universal claim ‘任何人’", "to": "one Steve Jobs-like co-frame example", "relation": "scope_not_established_by_single_example", "evidenceHints": ["MC-03", "CAR-LIKENESS-SYMBOLS"]},
+    {"id": "REL-04", "from": "Steve Jobs-like styling and Apple logo", "to": "co-frame example", "relation": "makes_celebrity_like_example_legible_without_establishing_identity", "evidenceHints": ["SWEEP-003", "CAR-LIKENESS-SYMBOLS"]},
+    {"id": "REL-05", "from": "three Manus grids", "to": "PPT-design claim", "relation": "illustrates_style_breadth_but_not_accuracy_or_editability", "evidenceHints": ["MC-05B", "CAR-LAYOUT-COUNT"]},
+    {"id": "REL-06", "from": "即梦 image-creation-tool card scope", "to": "做动漫 claim and moving illustration", "relation": "requires_unshown_image_to_animation_bridge", "evidenceHints": ["MC-06A", "MC-06B"]},
+    {"id": "REL-07", "from": "presenter pointing and gaze", "to": "cards and co-frame figure", "relation": "directs_attention_and_maintains_list_rhythm", "evidenceHints": ["CAR-GESTURE-GAZE"]},
+    {"id": "REL-08", "from": "same presenter and room", "to": "six heterogeneous entries", "relation": "provides_cross_segment_continuity", "evidenceHints": ["CAR-EDITING-GLOBAL"]},
+    {"id": "REL-09", "from": "six card-claim-result entries", "to": "global montage", "relation": "forms_parallel_list_not_pipeline", "evidenceHints": ["CAR-EDITING-GLOBAL", "CAR-UI-PARAMETERS"]},
+    {"id": "REL-10", "from": "one entry's result", "to": "next entry", "relation": "no_file_api_or_program_handoff_shown", "evidenceHints": ["CAR-EDITING-GLOBAL", "CAR-UI-PARAMETERS"]},
+    {"id": "REL-11", "from": "generic AI生成 label", "to": "labeled result shots", "relation": "frames_as_ai_generated_but_does_not_identify_tool", "evidenceHints": ["CAR-AI-LABEL"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "Card headlines are captured but source/category/promotional sublines are dropped.", "why": "The sublines change product scope and external-verification requirements, especially 即梦 and Manus.", "where": [{"start": 0, "end": 0.75}, {"start": 2.1, "end": 2.75}, {"start": 5.167, "end": 5.8}, {"start": 9.067, "end": 9.35}, {"start": 11.267, "end": 11.767}, {"start": 13.7, "end": 14.233}], "requiredFollowup": "Run OCR review on every card, check every accepted line against the high-resolution frame, and cite OCR line IDs."},
+    {"id": "RISK-02", "risk": "Three Manus result grids are collapsed into two, or 12 thumbnails per grid are not counted.", "why": "Each grid is a separate shot and all use the same upper-grid/lower-presenter layout, making the third easy to merge conceptually.", "where": [{"start": 11.767, "end": 13.7}], "requiredFollowup": "Capture one or more clear frames per shot, verify 3×4 grouping, and keep three groups separate."},
+    {"id": "RISK-03", "risk": "Runway accessory transitions are overcounted as three complete outfits.", "why": "Hat/jacket/accessory changes occur within one later coordinated look.", "where": [{"start": 9.067, "end": 11.267}], "requiredFollowup": "Define complete-look grouping before counting and preserve at least two full looks beyond baseline."},
+    {"id": "RISK-04", "risk": "Cautious identity handling erases the observable Steve Jobs-like likeness and Apple logo.", "why": "Resemblance and symbols are visible carriers even though identity and authorization are unknown.", "where": [{"start": 6.1, "end": 9.067}], "requiredFollowup": "Capture styling and logo clearly; state likeness as observation and literal identity as unknown."},
+    {"id": "RISK-05", "risk": "The universal ‘任何人’ claim is left as vague unknown rather than explicitly judged unestablished by the one shown example.", "why": "One celebrity-like example cannot support a universal range.", "where": [{"start": 5.09, "end": 9.067}], "requiredFollowup": "Count examples and link the claim to an explicit scope-limitation unit."},
+    {"id": "RISK-06", "risk": "The 即梦 card's image-tool category and 免费 qualifier are omitted, hiding the gap to 做动漫.", "why": "The missing bridge from image creation to animation is a core program-dependency unknown.", "where": [{"start": 13.7, "end": 16.556}], "requiredFollowup": "OCR the full card and capture motion; preserve the unshown bridge as unknown."},
+    {"id": "RISK-07", "risk": "Gesture/gaze, layout, and non-speech audio disappear from the model.", "why": "These channels organize attention, count/group results, and may carry pacing even though the audio role is not semantically resolvable.", "where": [{"start": 0, "end": 16.556}], "requiredFollowup": "Create explicit carriers and units or correct unknowns for all three channels."},
+    {"id": "RISK-08", "risk": "The six entries are described individually but the repeated presenter/room and parallel-list/not-pipeline structure are omitted.", "why": "Global montage rhetoric is not recoverable from local units alone.", "where": [{"start": 0, "end": 16.556}], "requiredFollowup": "Capture continuity checkpoints and add cross-segment relations for parallelism and absent handoffs."},
+    {"id": "RISK-09", "risk": "Manus results are treated as accurate, cited, editable, exportable, or generated by Manus.", "why": "The video shows thumbnails only.", "where": [{"start": 11.767, "end": 13.7}], "requiredFollowup": "Preserve theme input, sources, accuracy, citations, editability, export format, and generation attribution as unknown."},
+    {"id": "RISK-10", "risk": "SRT and burned-in CUE-004 wording are silently normalized.", "why": "The SRT omits the visible character 换.", "where": [{"start": 8.91, "end": 11.02}], "requiredFollowup": "Preserve the verbatim SRT and add a separate OCR/visual annotation for burned-in wording."},
+    {"id": "RISK-11", "risk": "Editing adjacency or AI生成 labels are upgraded to product-specific causal proof.", "why": "No tool UI, prompt, parameter, generation state, or handoff is shown.", "where": [{"start": 0, "end": 16.556}], "requiredFollowup": "Represent each pairing as presented/illustrated and preserve causality as unknown."}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "What are all legible lines on each of the six tool cards, and which text is product name, category/source, or promotional qualifier?", "criticality": "critical", "evidenceHints": ["CAR-CARD-TEXT", "RISK-01"]},
+    {"id": "CQ-02", "question": "Which complete card is paired with which verbatim cue and which visible result?", "criticality": "critical", "evidenceHints": ["REL-01", "REL-02"]},
+    {"id": "CQ-03", "question": "How many distinct Manus result grids are shown, how many visible thumbnails are in each grid, and what layout groups them?", "criticality": "critical", "evidenceHints": ["MC-05B", "RISK-02"]},
+    {"id": "CQ-04", "question": "How many complete Runway looks beyond baseline are clearly supported under a conservative grouping rule?", "criticality": "critical", "evidenceHints": ["MC-04", "RISK-03"]},
+    {"id": "CQ-05", "question": "What Steve Jobs-like styling and Apple symbol are observable, and what literal identity/authorization remains unknown?", "criticality": "critical", "evidenceHints": ["MC-03", "RISK-04"]},
+    {"id": "CQ-06", "question": "Does one Steve Jobs-like co-frame example establish the author's universal ‘任何人’ scope?", "criticality": "critical", "evidenceHints": ["REL-03", "RISK-05"]},
+    {"id": "CQ-07", "question": "How does 即梦's card scope as a free AI image-creation tool relate to the 做动漫 claim and moving result, and what intermediate program is not shown?", "criticality": "critical", "evidenceHints": ["MC-06A", "MC-06B", "REL-06"]},
+    {"id": "CQ-08", "question": "What role do presenter pointing, gaze, and reaction play in directing attention and maintaining list rhythm?", "criticality": "supporting", "evidenceHints": ["CAR-GESTURE-GAZE", "REL-07"]},
+    {"id": "CQ-09", "question": "What do the upper PPT grids, lower presenter inset, and final green/brown frame contribute to grouping and presentation?", "criticality": "supporting", "evidenceHints": ["CAR-LAYOUT-COUNT"]},
+    {"id": "CQ-10", "question": "What non-speech audio is technically present, and can its semantic role be established with available evidence?", "criticality": "supporting", "evidenceHints": ["CAR-NONSPEECH-AUDIO"]},
+    {"id": "CQ-11", "question": "Are the six tools presented as a parallel list or a cross-tool pipeline, and is any file/API/program handoff shown?", "criticality": "critical", "evidenceHints": ["REL-09", "REL-10"]},
+    {"id": "CQ-12", "question": "How do the repeated presenter and room provide continuity across the six heterogeneous entries?", "criticality": "supporting", "evidenceHints": ["REL-08"]},
+    {"id": "CQ-13", "question": "Does the video demonstrate tool operation or product-specific causality for any result?", "criticality": "critical", "evidenceHints": ["CAR-UI-PARAMETERS", "REL-02", "RISK-11"]},
+    {"id": "CQ-14", "question": "Which promotional card claims require external verification rather than being accepted as real-world facts?", "criticality": "supporting", "evidenceHints": ["CAR-CARD-TEXT", "RISK-01"]},
+    {"id": "CQ-15", "question": "What does the Manus montage fail to establish about theme input, sources, content accuracy, citations, editability, export format, and generation attribution?", "criticality": "critical", "evidenceHints": ["RISK-09"]},
+    {"id": "CQ-16", "question": "What is the CUE-004 SRT/burned-in subtitle discrepancy, and how is each source preserved?", "criticality": "supporting", "evidenceHints": ["CAR-SUBTITLES", "RISK-10"]},
+    {"id": "CQ-17", "question": "Has every transcript cue been linked to knowledge or otherwise explicitly disposed?", "criticality": "critical", "evidenceHints": ["CAR-SPEECH", "CAR-SUBTITLES"]}
+  ],
+  "unresolved": [
+    "Exact six-card text awaits executed OCR plus frame-level human checking; OCR proposals will not be accepted silently.",
+    "The specific musical, sound-effect, or inserted-source semantic role of the non-speech audio cannot be determined by the available technical inspection; only its continuity and final silence are established.",
+    "Literal identity and authorization of the Steve Jobs-like figure are not established.",
+    "No prompt, source asset, parameter, generation run, filename, export, or cross-tool handoff is visible.",
+    "External truth of product-source/category/promotional card text is not verified.",
+    "Manus theme input, source materials, content accuracy, citations, editability, export format, and generation attribution are not established.",
+    "The program that would bridge 即梦 image creation to the shown moving illustration is absent."
+  ]
+}

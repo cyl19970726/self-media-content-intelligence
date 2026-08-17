@@ -1,0 +1,533 @@
+{
+  "scopeStatement": "仅重建 0–128.867 秒播客摘录与机器转写。64.56–81.45 的长 cue 与 81.45–94.45 的转写空窗造成信息缺失，报告不凭上下文补成逐字原话。technical curiosity、同一起跑线、超过程序员、文科生更懂人性等均为观点性主张。",
+  "transcriptOrigin": "local machine transcription from the complete decoded source audio; not official subtitles",
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "4 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 128.867
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 79 targeted frames; 143 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 128.867
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 128.867
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场否定 non-technical 标签并寻找新定义",
+      "importance": "core",
+      "statement": "开场讨论文科/非技术背景者如何在 AI 时代发挥价值，并认为 ‘non-technical’ 不是理想定义，转而提出 technical curiosity 作为更积极的身份描述。该术语是口语观点，片内没有给出统一定义或出处。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 24.12
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-001",
+          "endCue": "CUE-003"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0008",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0015",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "对旧标签的否定和新词提出是明确转折。",
+      "unknowns": [
+        "新词出处",
+        "主持人完整问题",
+        "专业背景影响边界"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "technical curiosity 被定义为愿意跟进并亲手尝试",
+      "importance": "core",
+      "statement": "片内将 technical curiosity 描述为对新技术保持好奇和了解意愿，主动跟进模型/API，并在出现后亲手试用。嘉宾用身边一些技术同事不关心最新 AI、自己非技术背景却持续尝试作对比；这只能作为个人观察，不能概括群体能力。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 24.12,
+        "end": 54.52
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-004",
+          "endCue": "CUE-015"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0024",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0032",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "定义、反例和本人行为连续组成观点。",
+      "unknowns": [
+        "试用频率",
+        "能力深度",
+        "工程师对照样本"
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "新技术浪潮被描述为重新起跑，但中段转写不完整",
+      "importance": "core",
+      "statement": "嘉宾主张新技术浪潮会让所有人重新学习，即使 AI 科班也要更新，因此文科生不必先用专业标签否定自己。‘一切归零/同一起跑线’是激励性比喻，不是事实上的知识完全归零；81.45–94.45 秒机器字幕缺失，具体过渡不补写。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 54.52,
+        "end": 94.45
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-016",
+          "endCue": "CUE-021"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0033",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0047",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0060",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "现有 cue 支持共同再学习，缺失窗口限制完整性。",
+      "unknowns": [
+        "缺失段原话",
+        "已有基础的真实优势",
+        "不同岗位门槛"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "自然语言降低实现门槛，文科优势落到用户与分发",
+      "importance": "core",
+      "statement": "末段认为自然语言 AI 让不会编程的人也能把想法做成工具；非技术背景者还可把对人和用户的洞察、沟通、分发和营销与工具能力结合。它是机会方向，不证明工程能力不再重要，也不证明文科生天然拥有这些能力。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 94.45,
+        "end": 128.867
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-022",
+          "endCue": "CUE-024"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0061",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0079",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "实现门槛与用户/分发优势形成互补论证。",
+      "unknowns": [
+        "复杂工程边界",
+        "工具维护",
+        "用户洞察的实际能力",
+        "产品结果数据"
+      ],
+      "argument": {
+        "claim": "AI 时代，比专业标签更重要的是技术好奇心、动手实践和把人文/分发优势转成产品价值。",
+        "evidenceUnitIndexes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "conditions": [
+          "持续跟进并亲手尝试",
+          "愿意补必要技术基础",
+          "复杂产品有工程审查",
+          "用户洞察经过真实验证"
+        ],
+        "counterexamples": [
+          "高风险系统仍需深技术",
+          "关注资讯不等于能力",
+          "文科生并不天然擅长用户和分发"
+        ],
+        "actions": [
+          "停止用 non-technical 定义自己",
+          "每周试用新模型/API",
+          "做一个真实小工具",
+          "用用户反馈和分发验证"
+        ],
+        "limits": [
+          "播客观点和个人观察",
+          "中段字幕缺失"
+        ],
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04"
+        ]
+      }
+    },
+    {
+      "id": "KU-05",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "机器转写把 non-technical、technical curiosity、CS、AI、Twitter、API、idea 等识别为 U.N.A.C.T.N、NOTANICAL、Technical Curious、开A、第四笔等变体。报告保留原文，并在画面/上下文支持时给出规范化建议；81.45–94.45 秒缺口不补写。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 128.867
+      },
+      "confidence": "high",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ],
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "开场主持人对嘉宾身份的完整描述",
+        "缺失段的准确原话",
+        "末段 idea/产品语句的精确用词"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整混合轨机器检查用于确认全片有可用语音通道，但本地字幕在 81.45–94.45 秒缺 cue；音频机器类别不能替代准确转写，也不构成观点外部证据。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 128.867
+      },
+      "confidence": "medium",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ],
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ]
+    }
+  ],
+  "cueMap": [
+    {
+      "startCue": "CUE-001",
+      "endCue": "CUE-003",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-01"
+      ],
+      "rationale": "归入语义段：开场否定 non-technical 标签并寻找新定义"
+    },
+    {
+      "startCue": "CUE-004",
+      "endCue": "CUE-015",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-02"
+      ],
+      "rationale": "归入语义段：technical curiosity 被定义为愿意跟进并亲手尝试"
+    },
+    {
+      "startCue": "CUE-016",
+      "endCue": "CUE-021",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-03"
+      ],
+      "rationale": "归入语义段：新技术浪潮被描述为重新起跑，但中段转写不完整"
+    },
+    {
+      "startCue": "CUE-022",
+      "endCue": "CUE-024",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-04"
+      ],
+      "rationale": "归入语义段：自然语言降低实现门槛，文科优势落到用户与分发"
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "新身份通过可观察行为被具体化",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "技术好奇心被置于快速变化的共同学习环境中",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "共同再学习的机会被落到产品和内容能力组合",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "meaningChanges": {
+      "MC-01": [
+        "KU-01"
+      ],
+      "MC-02": [
+        "KU-02"
+      ],
+      "MC-03": [
+        "KU-03"
+      ],
+      "MC-04": [
+        "KU-04"
+      ]
+    },
+    "relationships": {
+      "REL-01": [
+        "CUE-003",
+        "CUE-004"
+      ],
+      "REL-02": [
+        "CUE-015",
+        "CUE-016"
+      ],
+      "REL-03": [
+        "CUE-021",
+        "CUE-022"
+      ]
+    },
+    "criticalQuestions": {
+      "CQ-01": {
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0008"
+        ]
+      },
+      "CQ-02": {
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-004",
+          "TARGET-0024"
+        ]
+      },
+      "CQ-03": {
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-016",
+          "TARGET-0047"
+        ]
+      },
+      "CQ-04": {
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-022",
+          "TARGET-0070"
+        ]
+      },
+      "CQ-05": {
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      "CQ-06": {
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0079"
+        ]
+      },
+      "CQ-07": {
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    }
+  },
+  "unknowns": [
+    "81.45–94.45 秒缺失口述的准确内容",
+    "technical curiosity 的原始定义与出处",
+    "非 CS 背景者和工程师的群体差异数据",
+    "自然语言工具在复杂工程任务中的上限",
+    "播客完整上下文与剪辑边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

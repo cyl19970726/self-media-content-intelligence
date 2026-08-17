@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "candidate": "skill",
+  "hardGatePass": false,
+  "hardGateRationale": "Six count-based gates meet their thresholds, but the unchecked-channel gate and meta-gate fail. Non-speech audio was not represented in the probe/protocol/coverage matrix, and the final hopeful shift at CUE-055 remained only in the verbatim transcript rather than being reconstructed as a knowledge unit or article meaning change.",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 17,
+      "denominator": 18,
+      "examples": [
+        {"id": "CQ-001", "result": "recalled", "candidate": "The article and KU-01/KU-16 recover the high-cost and limited-reality thesis, target audience, and ordinary-creator action."},
+        {"id": "CQ-002", "result": "recalled_as_unknown", "candidate": "The article explicitly says no actual public price or subscription plan is given."},
+        {"id": "CQ-003", "result": "recalled_as_unknown", "candidate": "KU-01/KU-08/KU-19 and the article preserve the absence of an exact public availability date."},
+        {"id": "CQ-004", "result": "missed", "candidate": "The opening and later availability claims are both reproduced, but the candidate never explicitly identifies or adjudicates their internal tension: 'soon/year-end' versus 'not public until compute catches up'."},
+        {"id": "CQ-005", "result": "recalled", "candidate": "KU-03 and KU-04 keep the unnamed 8xA100/3h estimate separate from the CTO 20s/720p/'minutes' report and its caveat."},
+        {"id": "CQ-006", "result": "recalled_as_unknown", "candidate": "The article says the estimate lacks source identity, full formula, and assumptions."},
+        {"id": "CQ-007", "result": "recalled", "candidate": "KU-05 and the article preserve retry/randomness as the multiplier between one inference and usable-output cost."},
+        {"id": "CQ-008", "result": "recalled_negative", "candidate": "KU-06/KU-07 and the article say investment, valuation, GDP, and power figures provide scale framing rather than a calculable user-price chain."},
+        {"id": "CQ-009", "result": "recalled", "candidate": "KU-09 preserves partial open source as the sole price-reduction condition and CloseAI as rhetorical rejection."},
+        {"id": "CQ-010", "result": "recalled", "candidate": "KU-11 through KU-14 recover pirate-ship/water-wave success and candle failure as a paired example/counterexample."},
+        {"id": "CQ-011", "result": "recalled_negative", "candidate": "The article explicitly rejects generalizing two selected samples into system-level physical understanding."},
+        {"id": "CQ-012", "result": "recalled", "candidate": "KU-15 and the article identify the beverage choice as a hypothetical social-understanding requirement, not a Sora test."},
+        {"id": "CQ-013", "result": "recalled_partial", "candidate": "KU-16 attributes the audience segmentation to presumed funding capacity and states that prices, budgets, and ROI are absent."},
+        {"id": "CQ-014", "result": "recalled_negative", "candidate": "KU-17 and the article mark 'future AGI brain' as an unsupported expansion."},
+        {"id": "CQ-015", "result": "recalled", "candidate": "KU-18 and the article recover alternative tools, the phone/camera analogy, story, and personal appeal."},
+        {"id": "CQ-016", "result": "recalled", "candidate": "The article's conclusion is explicitly tool-centered and preserves Sora's value while restoring creator agency."},
+        {"id": "CQ-017", "result": "recalled", "candidate": "The article distinguishes observable samples/screenshots from unverified sources and labels CloseAI and scale imagery as rhetoric/framing."},
+        {"id": "CQ-018", "result": "recalled_as_unknown", "candidate": "The final unknown list states that no common-condition comparison of alternative tools is established."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 26,
+      "denominator": 27,
+      "examples": [
+        {"scope": "denominator", "definition": "Audit ATOM-001 through ATOM-028, excluding ATOM-005 (speaker identity) as non-core; visual carrier observations ATOM-029 through ATOM-034 are assessed under channel/meta coverage rather than counted twice as core knowledge units."},
+        {"ids": ["ATOM-001", "ATOM-002", "ATOM-003", "ATOM-004"], "result": "covered", "candidate": "KU-01, KU-08, KU-19 and article opening preserve release/cost framing while withholding actual price/date."},
+        {"ids": ["ATOM-006", "ATOM-007", "ATOM-008"], "result": "covered", "candidate": "KU-02 and the article preserve definition, positive concession, and unbenchmarked competitive rhetoric."},
+        {"ids": ["ATOM-009", "ATOM-010", "ATOM-011", "ATOM-012", "ATOM-013", "ATOM-014", "ATOM-015"], "result": "covered", "candidate": "KU-03 through KU-08 reconstruct compute, caveat, retries, capital/power framing, and the availability/price prediction with evidence limits."},
+        {"ids": ["ATOM-016", "ATOM-017"], "result": "covered", "candidate": "KU-09 reconstructs condition and rhetorical rebuttal."},
+        {"ids": ["ATOM-018", "ATOM-019", "ATOM-020", "ATOM-021", "ATOM-022"], "result": "covered", "candidate": "KU-10 through KU-15 reconstruct the second question, dynamic positive/negative evidence, and social-behavior extension."},
+        {"ids": ["ATOM-023", "ATOM-024", "ATOM-025", "ATOM-026", "ATOM-027"], "result": "covered", "candidate": "KU-16 through KU-18 and the article reconstruct audience, unsupported AGI expansion, tools, phone analogy, story, and personality."},
+        {"id": "ATOM-028", "result": "not_covered_as_knowledge", "candidate": "CUE-055 is copied in the verbatim transcript, but there is no knowledge unit or article statement for the hopeful universal-future close; KU-18 ends at 219.89 before this cue."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 36,
+      "examples": [
+        {"scope": "denominator", "definition": "The 19 structured knowledge-unit statements plus 17 structured relation claims; transcript quotations are not re-counted as candidate positive inferences."},
+        {"result": "supported_or_bounded", "example": "KU-03 attributes the 8xA100/3h figure to an unnamed estimate and preserves unknown assumptions."},
+        {"result": "supported_or_bounded", "example": "KU-07 labels 'Sora only higher' as the author's inference rather than a measured fact."},
+        {"result": "supported_or_bounded", "example": "KU-11/KU-13 use motion sequences only for visible state changes and do not infer general model understanding."},
+        {"result": "supported_or_bounded", "example": "KU-17 preserves the AGI statement while explicitly denying that the video proves it."},
+        {"errors": [], "note": "No positive structured claim was found that lacked a cited cue/frame or a clear author-claim/unknown boundary."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 23,
+      "denominator": 23,
+      "examples": [
+        {"scope": "denominator", "definition": "All 23 unique TARGET references used in article.md were checked against targeted-evidence.json and the audit evidence windows."},
+        {"refs": ["TARGET-0001", "TARGET-0024"], "result": "correct", "times": [0, 47], "supports": "opening framing and positive Sora setup"},
+        {"refs": ["TARGET-0054", "TARGET-0079", "TARGET-0084", "TARGET-0086"], "result": "correct", "times": [72.5, 78.75, 80, 84], "supports": "compute estimate and CTO timing report"},
+        {"refs": ["TARGET-0088", "TARGET-0094", "TARGET-0154", "TARGET-0191", "TARGET-0213"], "result": "correct", "times": [87.8, 96.8, 112.65, 121.9, 126.8], "supports": "retry, capital scale, and power-report chain"},
+        {"refs": ["TARGET-0277", "TARGET-0289", "TARGET-0304", "TARGET-0319"], "result": "correct", "times": [144, 154.5, 157.5, 160.5], "supports": "CloseAI rhetoric and pirate-ship motion sequence"},
+        {"refs": ["TARGET-0333", "TARGET-0335", "TARGET-0337", "TARGET-0348"], "result": "correct", "times": [163.2, 166.5, 169.5, 185], "supports": "candle before/during/after and beverage hypothetical"},
+        {"refs": ["TARGET-0355", "TARGET-0360", "TARGET-0367", "TARGET-0372"], "result": "correct", "times": [194, 201.5, 209.5, 217], "supports": "audience, AGI statement, alternative tools, and creator-action close"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 19,
+      "denominator": 19,
+      "rationale": "The video's value depends on argumentative relations, so the audit's 19 argument_structure edges are applicable. Each edge is present either as an explicit candidate relation or as a bounded within-unit/article relationship; relations that are only the author's framing are not upgraded to verified causation.",
+      "examples": [
+        {"auditEdges": ["E1→A1", "A1→ROOT"], "result": "covered", "candidate": "KU-02 plus the article's concession-before-critique structure."},
+        {"auditEdges": ["E2→A2", "E3→A2", "E4→A2", "E5→A2", "A2→C1", "C1→ROOT"], "result": "covered", "candidate": "KU-03/04/05/06/07→KU-08, then KU-08→KU-16 and the root narrative."},
+        {"auditEdges": ["X1→C1", "R1→X1"], "result": "covered", "candidate": "KU-09→KU-08 and KU-09 rhetorical self-limitation relation."},
+        {"auditEdges": ["E6→A3", "CE1→A3", "E7→A3", "A3→ROOT"], "result": "covered", "candidate": "KU-11/12/13/14/15→KU-10 and the article's limited-reality branch to its main thesis."},
+        {"auditEdges": ["A2→A4", "A4→ROOT", "A5→ROOT"], "result": "covered", "candidate": "KU-08→KU-16; KU-17 is explicitly marked as adjacent and unsupported."},
+        {"auditEdges": ["ACT1→ROOT", "ACT2→ACT1"], "result": "covered", "candidate": "KU-16→KU-18 and the article's tools→phone analogy→story/personal-expression action chain."}
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 13,
+      "denominator": 14,
+      "examples": [
+        {"ids": ["UNK-001", "UNK-002"], "result": "correct", "candidate": "Date/year and actual public pricing are explicitly withheld."},
+        {"ids": ["UNK-003", "UNK-004", "UNK-005"], "result": "correct", "candidate": "Estimate assumptions, CTO exact time/hardware/comparability, success rate, retries, and cost multiplier remain unknown."},
+        {"ids": ["UNK-006", "UNK-007"], "result": "correct", "candidate": "Capital/power context and cross-product inference are scoped as unverified and non-quantitative."},
+        {"ids": ["UNK-008", "UNK-009", "UNK-010"], "result": "correct", "candidate": "Open-source effects, sample representativeness, and beverage-test meaning/results are withheld."},
+        {"ids": ["UNK-011", "UNK-012", "UNK-013"], "result": "correct", "candidate": "Audience budgets/ROI, AGI mechanism, and common-condition tool comparison remain unestablished."},
+        {"id": "UNK-014", "result": "missed", "candidate": "The probe/protocol never declares music, sound effects, or inserted clip audio as an unchecked/unknown carrier; only platform-SRT alignment is declared unknown."}
+      ]
+    },
+    "uncheckedChannels": [
+      "Non-speech audio (music, sound effects, and inserted clip audio): the audit identifies it as a potential carrier whose contents are unknown, but the probe, protocol, reconstruction coverage matrix, and article do not inventory or abstain on it."
+    ],
+    "uncheckedChannelsAudit": {
+      "errors": 1,
+      "total": 11,
+      "examples": [
+        {"result": "checked", "count": 10, "examples": ["Mandarin narration/SRT", "hard subtitles", "persistent title", "interview/source B-roll", "generated samples", "web/formula/report screenshots", "charts/industry graphics", "generation/red-team interface imagery", "memes/reaction imagery", "platform/creator marks"]},
+        {"result": "unchecked", "count": 1, "example": "non-speech audio"}
+      ]
+    }
+  },
+  "judgeStatus": "non_dispositive_schema_required_scores_because_hard_gates_failed",
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "Non-speech audio is absent from the candidate's carrier inventory and stopping rules, despite the audit identifying possible music, sound effects, or inserted clip audio as unknown."
+    ],
+    "unguardedMeaningChanges": [
+      "The final emotional shift at CUE-055—from present economic exclusion/'tightening belts' to a hope that AI gives everyone a good future—is present only in the verbatim transcript. It is absent from knowledgeUnits and article.md, and KU-18 ends before it at 219.89."
+    ],
+    "unguardedRelationships": [
+      "The relation from ordinary creators' exclusion anxiety to a universal hopeful close is not represented in structured relations; the reconstructed action chain stops at tools, phone filmmaking, story, and personal appeal."
+    ],
+    "rationale": "The candidate's own metaGate is a self-audit and cannot prove completeness. Independent comparison to the audit exposes one omitted carrier plus a partially unguarded final meaning/relationship, so the meta-gate fails."
+  },
+  "examples": [
+    {"type": "strong_recovery", "item": "Random retries are retained as the cost multiplier rather than a throwaway joke."},
+    {"type": "strong_recovery", "item": "Pirate-ship and candle examples are verified as motion sequences, avoiding the single-frame gate anti-pattern."},
+    {"type": "strong_epistemics", "item": "Price, availability, sample representativeness, social-behavior testing, and AGI claims are appropriately bounded."},
+    {"type": "critical_question_gap", "item": "The opening/later availability contradiction is reproduced but not explicitly interpreted."},
+    {"type": "knowledge_gap", "item": "CUE-055's hopeful universal close is copied but not reconstructed."},
+    {"type": "carrier_gap", "item": "Non-speech audio is neither inspected nor declared unchecked."},
+    {"type": "verdict", "item": "HARD GATE FAIL; JUDGE values are schema-required, non-dispositive observations and cannot override the failed unchecked-channel/meta gates."}
+  ]
+}

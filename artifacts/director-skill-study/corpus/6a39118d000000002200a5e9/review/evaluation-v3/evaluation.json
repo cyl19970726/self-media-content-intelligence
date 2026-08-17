@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {"status": "pass", "ids": ["CQ-01", "CQ-02", "CQ-03", "CQ-07", "CQ-12", "CQ-15", "CQ-17", "CQ-18"], "note": "Opening promise/proof limits, three logics, mapping-sensitive lists, identity/promotion, and bounded absences are all answered or correctly unknown."},
+        {"status": "pass", "ids": ["CQ-04", "CQ-05", "CQ-06", "CQ-08", "CQ-09", "CQ-10", "CQ-11", "CQ-13", "CQ-14", "CQ-16"], "note": "Relationship conversion, two-sided framework, personal outline, brand parallel, author-claim boundaries, and final examples are preserved."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 25,
+      "denominator": 25,
+      "examples": [
+        {"status": "pass", "auditUnits": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-08"], "candidateUnits": ["KU-00", "KU-OPEN", "KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-07A"]},
+        {"status": "pass", "auditUnits": ["KU-09", "KU-10", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21", "KU-22", "KU-23", "KU-24", "KU-25"], "candidateUnits": ["KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-12A", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21", "KU-23", "KU-25", "KU-27"]}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 31,
+      "examples": [
+        {"status": "pass", "candidateUnit": "KU-04", "note": "Decision-cost and purchase causality are explicitly labeled author claims, not facts."},
+        {"status": "pass", "candidateUnit": "KU-06", "note": "The cross-section synthesis is labeled system_inference and includes reasoning."},
+        {"status": "pass", "candidateUnit": "KU-20", "note": "The difficult 福耀科技/交个朋友 boundary is medium-confidence and retains the unresolved subject/segmentation caveat."},
+        {"status": "pass", "candidateUnit": "KU-26", "note": "Audio classification is bounded to model category detections and does not claim direct audition or semantic function."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 61,
+      "denominator": 62,
+      "examples": [
+        {"status": "pass", "checked": "all 46 verbatim cue rows", "note": "Cue start/end, representative frame, and overlapping shots match the evidence pack exactly."},
+        {"status": "pass", "checked": ["DENSE-0001", "TARGET-0017", "TARGET-0020", "TARGET-0036", "TARGET-0059", "TARGET-0060", "TARGET-0063", "TARGET-0064", "TARGET-0070", "TARGET-0101", "TARGET-0108", "TARGET-0111", "OCR-00784", "OCR-00785", "OCR-00814"], "note": "Fifteen high-impact visual/OCR references localize inside the independently audited windows."},
+        {"status": "error", "candidateUnit": "KU-27", "reference": "OCR-00788", "note": "OCR-00788 resolves to TARGET-0108 at 0.000 s, outside KU-27's declared 138.010–141.804 s range. Its content supports cross-video header identity, but it is not temporally local evidence for this closing-only unit."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 15,
+      "denominator": 15,
+      "rationale": "All audited conceptual dependencies are represented in explicit relations or within a single evidenced structured unit: foundation→relationship conversion; claim→illustration; demand/supply pairing; topic/person and taxonomy/example mappings; asset→outline order; warmth as modifier; personal/brand parallelism; founder/brand and culture/trait claims; and opening→closing non-demonstration."
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {"status": "pass", "ids": ["UNK-01", "UNK-02", "UNK-03", "UNK-04", "UNK-05", "UNK-06"], "note": "Opening metrics provenance, real identity/credentials, non-founder adaptation, 必火 support, causality, and universality remain unknown."},
+        {"status": "pass", "ids": ["UNK-07", "UNK-08", "UNK-09", "UNK-10", "UNK-11", "UNK-12"], "note": "Taxonomy overlap, execution detail, effectiveness, official attribution, mapping/handwriting uncertainty, and non-speech-audio semantic role remain bounded unknowns."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "No additional carrier, meaning change, or relationship from the independent audit remains outside the protocol/evaluation closure. Speech/SRT, burned captions, large overlays, opening analytics, persistent identity/promotion, whiteboard/pointing, speaker/setting/gesture, and full-timeline non-speech-audio classification all have explicit dispositions; all 14 audited meaning changes and 15 audited relations/dependencies are represented."
+  },
+  "examples": [
+    {"family": "carrier_conflicts", "numerator": 15, "denominator": 15, "result": "pass", "note": "All CF-01..CF-15 are resolved by stronger visible evidence or preserve scoped uncertainty."},
+    {"family": "meaning_changes", "numerator": 14, "denominator": 14, "result": "pass"},
+    {"family": "opening_closing", "numerator": 9, "denominator": 9, "result": "pass"},
+    {"family": "scoped_absences", "numerator": 7, "denominator": 7, "result": "pass", "note": "Absence statements remain video-internal, bounded to named carriers/timeline, and preserve the opening proof insert and persistent promotional framing."},
+    {"family": "challenge_families", "numerator": 10, "denominator": 10, "result": "pass", "note": "The literal process-demo family is independently treated as not applicable; the limited opening analytics UI is still inspected."}
+  ]
+}

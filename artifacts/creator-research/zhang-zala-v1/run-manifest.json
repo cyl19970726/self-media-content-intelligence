@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "zhang-zala-v1-20260816",
+  "creatorId": "59757acd50c4b45e6e9a90df",
+  "createdAt": "2026-08-16T16:50:00+08:00",
+  "updatedAt": "2026-08-16T16:50:00+08:00",
+  "artifacts": {
+    "analysisContract": "analysis-contract.json",
+    "collectionInventory": "collection-inventory.json",
+    "crawlLedger": "crawl-ledger.jsonl",
+    "creatorCorpus": "creator-corpus.json",
+    "collectionStatus": "collection-status.json",
+    "corpusAnalysis": "corpus-analysis.json",
+    "selection": "selection.json",
+    "creatorAnalysis": "creator-analysis.json",
+    "dashboardData": "dashboard-data.json",
+    "dashboardTarget": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/report.html"
+  },
+  "stages": {
+    "collection": { "status": "in_progress", "updatedAt": "2026-08-16T16:50:00+08:00", "reason": "身份已核验，正在执行主页收敛采集。" },
+    "portfolio": { "status": "pending", "updatedAt": null, "reason": null },
+    "selection": { "status": "pending", "updatedAt": null, "reason": null },
+    "reconstruction": { "status": "pending", "updatedAt": null, "reason": null },
+    "synthesis": { "status": "pending", "updatedAt": null, "reason": null },
+    "dashboard": { "status": "pending", "updatedAt": null, "reason": "最终叠加进现有Dashboard。" },
+    "validation": { "status": "pending", "updatedAt": null, "reason": null }
+  },
+  "invalidation": { "sourceRevision": null, "invalidatedStages": [] }
+}

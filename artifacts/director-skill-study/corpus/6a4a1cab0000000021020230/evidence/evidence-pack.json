@@ -1,0 +1,2192 @@
+{
+  "schemaVersion": "video-evidence-pack-1.0",
+  "generatedAt": "2026-08-15T20:40:49.204Z",
+  "source": {
+    "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a4a1cab0000000021020230.mp4",
+    "videoName": "6a4a1cab0000000021020230.mp4",
+    "subtitles": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a4a1cab0000000021020230.srt",
+    "subtitleOrigin": "provided_subtitles"
+  },
+  "media": {
+    "duration": 174.986,
+    "sizeBytes": 25011216,
+    "format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "h264",
+    "width": 720,
+    "height": 1280,
+    "frameRate": "30/1",
+    "hasAudio": true,
+    "audioCodec": "aac"
+  },
+  "sceneDetection": {
+    "threshold": 0.24,
+    "cuts": [
+      1.167,
+      2.467,
+      8.133,
+      10.667,
+      14.167,
+      23.067,
+      32.367,
+      35.167,
+      39.533,
+      47.833,
+      50.933,
+      60.767,
+      64.9,
+      77.4,
+      92.967,
+      113.1,
+      120.867,
+      124.333,
+      125.633,
+      130.1,
+      131.167,
+      136.6,
+      145.433,
+      147.3,
+      152.367,
+      161,
+      167.2,
+      172.533
+    ]
+  },
+  "shots": [
+    {
+      "id": "SHOT-001",
+      "start": 0,
+      "end": 1.167,
+      "representativeTime": 0.584,
+      "representativeFrame": "frames/shots/shot-001.jpg"
+    },
+    {
+      "id": "SHOT-002",
+      "start": 1.167,
+      "end": 2.467,
+      "representativeTime": 1.817,
+      "representativeFrame": "frames/shots/shot-002.jpg"
+    },
+    {
+      "id": "SHOT-003",
+      "start": 2.467,
+      "end": 8.133,
+      "representativeTime": 5.3,
+      "representativeFrame": "frames/shots/shot-003.jpg"
+    },
+    {
+      "id": "SHOT-004",
+      "start": 8.133,
+      "end": 10.667,
+      "representativeTime": 9.4,
+      "representativeFrame": "frames/shots/shot-004.jpg"
+    },
+    {
+      "id": "SHOT-005",
+      "start": 10.667,
+      "end": 14.167,
+      "representativeTime": 12.417,
+      "representativeFrame": "frames/shots/shot-005.jpg"
+    },
+    {
+      "id": "SHOT-006",
+      "start": 14.167,
+      "end": 23.067,
+      "representativeTime": 18.617,
+      "representativeFrame": "frames/shots/shot-006.jpg"
+    },
+    {
+      "id": "SHOT-007",
+      "start": 23.067,
+      "end": 32.367,
+      "representativeTime": 27.717,
+      "representativeFrame": "frames/shots/shot-007.jpg"
+    },
+    {
+      "id": "SHOT-008",
+      "start": 32.367,
+      "end": 35.167,
+      "representativeTime": 33.767,
+      "representativeFrame": "frames/shots/shot-008.jpg"
+    },
+    {
+      "id": "SHOT-009",
+      "start": 35.167,
+      "end": 39.533,
+      "representativeTime": 37.35,
+      "representativeFrame": "frames/shots/shot-009.jpg"
+    },
+    {
+      "id": "SHOT-010",
+      "start": 39.533,
+      "end": 47.833,
+      "representativeTime": 43.683,
+      "representativeFrame": "frames/shots/shot-010.jpg"
+    },
+    {
+      "id": "SHOT-011",
+      "start": 47.833,
+      "end": 50.933,
+      "representativeTime": 49.383,
+      "representativeFrame": "frames/shots/shot-011.jpg"
+    },
+    {
+      "id": "SHOT-012",
+      "start": 50.933,
+      "end": 60.767,
+      "representativeTime": 55.85,
+      "representativeFrame": "frames/shots/shot-012.jpg"
+    },
+    {
+      "id": "SHOT-013",
+      "start": 60.767,
+      "end": 64.9,
+      "representativeTime": 62.834,
+      "representativeFrame": "frames/shots/shot-013.jpg"
+    },
+    {
+      "id": "SHOT-014",
+      "start": 64.9,
+      "end": 77.4,
+      "representativeTime": 71.15,
+      "representativeFrame": "frames/shots/shot-014.jpg"
+    },
+    {
+      "id": "SHOT-015",
+      "start": 77.4,
+      "end": 92.967,
+      "representativeTime": 85.184,
+      "representativeFrame": "frames/shots/shot-015.jpg"
+    },
+    {
+      "id": "SHOT-016",
+      "start": 92.967,
+      "end": 113.1,
+      "representativeTime": 103.034,
+      "representativeFrame": "frames/shots/shot-016.jpg"
+    },
+    {
+      "id": "SHOT-017",
+      "start": 113.1,
+      "end": 120.867,
+      "representativeTime": 116.983,
+      "representativeFrame": "frames/shots/shot-017.jpg"
+    },
+    {
+      "id": "SHOT-018",
+      "start": 120.867,
+      "end": 124.333,
+      "representativeTime": 122.6,
+      "representativeFrame": "frames/shots/shot-018.jpg"
+    },
+    {
+      "id": "SHOT-019",
+      "start": 124.333,
+      "end": 125.633,
+      "representativeTime": 124.983,
+      "representativeFrame": "frames/shots/shot-019.jpg"
+    },
+    {
+      "id": "SHOT-020",
+      "start": 125.633,
+      "end": 130.1,
+      "representativeTime": 127.867,
+      "representativeFrame": "frames/shots/shot-020.jpg"
+    },
+    {
+      "id": "SHOT-021",
+      "start": 130.1,
+      "end": 131.167,
+      "representativeTime": 130.633,
+      "representativeFrame": "frames/shots/shot-021.jpg"
+    },
+    {
+      "id": "SHOT-022",
+      "start": 131.167,
+      "end": 136.6,
+      "representativeTime": 133.883,
+      "representativeFrame": "frames/shots/shot-022.jpg"
+    },
+    {
+      "id": "SHOT-023",
+      "start": 136.6,
+      "end": 145.433,
+      "representativeTime": 141.017,
+      "representativeFrame": "frames/shots/shot-023.jpg"
+    },
+    {
+      "id": "SHOT-024",
+      "start": 145.433,
+      "end": 147.3,
+      "representativeTime": 146.367,
+      "representativeFrame": "frames/shots/shot-024.jpg"
+    },
+    {
+      "id": "SHOT-025",
+      "start": 147.3,
+      "end": 152.367,
+      "representativeTime": 149.834,
+      "representativeFrame": "frames/shots/shot-025.jpg"
+    },
+    {
+      "id": "SHOT-026",
+      "start": 152.367,
+      "end": 161,
+      "representativeTime": 156.683,
+      "representativeFrame": "frames/shots/shot-026.jpg"
+    },
+    {
+      "id": "SHOT-027",
+      "start": 161,
+      "end": 167.2,
+      "representativeTime": 164.1,
+      "representativeFrame": "frames/shots/shot-027.jpg"
+    },
+    {
+      "id": "SHOT-028",
+      "start": 167.2,
+      "end": 172.533,
+      "representativeTime": 169.866,
+      "representativeFrame": "frames/shots/shot-028.jpg"
+    },
+    {
+      "id": "SHOT-029",
+      "start": 172.533,
+      "end": 174.986,
+      "representativeTime": 173.76,
+      "representativeFrame": "frames/shots/shot-029.jpg"
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cueCount": 59,
+    "fullText": "开头展示教资，第二条视频已经七万粉丝了，暴力乔第一期人设与赛道这些视频已经跑了六十多万 今天给大家带来暴力起号第二期爆款视频和爆款系列，那么起号的时候 我们最关注的一个数据就是粉丝增长量 我们要去做离起号最近的事情，就是能够引发关注行为的视频，我给它分为两 两个方向去讲，第一个方向呢就是爆款视频 它分为两种，第一种是原创，那第一个就是你本人，这个人让别人想要关注你 比如说你的人设，这个人设里面可以展示你的身份，成就经历 去给观众营造一些隐形价值 第二种就是你这个人站在这里人家喜欢你，比如说外表这是美的价值，第三种就是人 人格魅力，通过你的一条视频可以看出你的思维表达认知 会让用户觉得你在兼容他，那么第三种呢就是攻略性 小红书上面攻略型的作品特别容易爆 但是会发现像你的作品可能爆了 但是并不能引发关，如果说你的这个攻略型是指的是单次的，比如说某地的旅行 别人搜索出来之后，然后再点个收藏，不会引发关注行为 那么什么样的攻略型的作品可以引发关注行为呢？ 你这个攻略型的作品有延续感，就比如说你出了一个 识谱，他后续还想学到更多的美食教程 他就会关注你，那么第二种呢就是关注你这个人的才华，就是你在这个视频里面 展现你的能力技能，比如说化妆呀，做饭呀，维修啊，还有你的知识和审美，第二点跟 热点的爆款视频，那么我想说的是 百分之八十的跟热点的爆款视频都没有任何的涨粉意义 那么什么样的跟热点的爆款视频可以带来转换呢？ 就是你在这条一二点视频里面展现你的人设 最涨粉的就是人设视频 这种视频给它称为装逼视频，比如说那些名校博主啊，职场博主啊 专家博主，那么爆款视频比爆款系列它劣势在哪里呢？ 就是它给用户制造了一个判断成本，你需要让用户 通过判断去看到你背后的隐形价值，他才会关注你 那么有没有什么更暴力的方法呢？ 那就是爆款系列，就是省去用户判断的这个成本，直接给出用户你的价值 第一可能就是剧情系列 为什么有的博主拍剧情视频只有点赞 但是有的博主拍剧情视频又有点赞又有涨粉，是他把这个剧情做出了系列感 如何做出系列感呢？ 就是你要从中构建人物ip世界观和在这一期视频中 你要透露出宏大的故事框架，让用户知道 哦，我想关注它后续的更新和故事剧情 那么第二种呢就是提升系列，举个最浅显的例子 挑战用多少期视频用多长时间带用户，这个用户可以换成具体的称呼 系统完整全面，这种能够展示延续系列感的词汇 再加上构建提升学习某种能力或者是说知识，比如挑战用三个月时间带 地球小宝系统构建世界观 第三种呢就是挑战性探索 美国第一期欢迎来到texas打开书本里的世界辞职体验一百种职业 一元横穿中国，那就是你要么通过未完结的叙事给用户造成延续感，要么通过用数字给出延续感 那么以上总结呢，就是不管你是拍爆款视频还是爆款系列，你都要通过隐性或者说直接的方式 让用户看到你的价值 他才能够对你进行关注行为，那么讲了 我这期视频已经发了有半个月时间了 但是它慢慢慢的从三十万跑到六十万浏览量，并且给我带 带来了从一万到三四万的粉丝增长 所以当我们想去做一条能够帮我们起号和涨粉的视频的时候 我们也要注意长尾流量，就是首先你的内容要优质起品 那个优质药能够反复观看 特别是抖音，抖音现在非常注重一条视频，能不能够把用户留在站内 那么第二点呢，就是我做到了善用搜索流量 像很多用户来到小红书是把它弄搜索引擎用的，做好你的标题和关键词 来吃掉这一波搜索流量，那今天就说到这里，我是你的智商编导，我们下期再见",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 5.26,
+        "text": "开头展示教资，第二条视频已经七万粉丝了，暴力乔第一期人设与赛道这些视频已经跑了六十多万",
+        "representativeTime": 2.63,
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 5.27,
+        "end": 8.899,
+        "text": "今天给大家带来暴力起号第二期爆款视频和爆款系列，那么起号的时候",
+        "representativeTime": 7.084,
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 8.899,
+        "end": 10.889,
+        "text": "我们最关注的一个数据就是粉丝增长量",
+        "representativeTime": 9.894,
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 10.889,
+        "end": 14.87,
+        "text": "我们要去做离起号最近的事情，就是能够引发关注行为的视频，我给它分为两",
+        "representativeTime": 12.88,
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 14.88,
+        "end": 16.848,
+        "text": "两个方向去讲，第一个方向呢就是爆款视频",
+        "representativeTime": 15.864,
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 16.848,
+        "end": 20.37,
+        "text": "它分为两种，第一种是原创，那第一个就是你本人，这个人让别人想要关注你",
+        "representativeTime": 18.609,
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 20.38,
+        "end": 23.502,
+        "text": "比如说你的人设，这个人设里面可以展示你的身份，成就经历",
+        "representativeTime": 21.941,
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 23.502,
+        "end": 24.889,
+        "text": "去给观众营造一些隐形价值",
+        "representativeTime": 24.195,
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 24.889,
+        "end": 29.17,
+        "text": "第二种就是你这个人站在这里人家喜欢你，比如说外表这是美的价值，第三种就是人",
+        "representativeTime": 27.029,
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 29.18,
+        "end": 32.336,
+        "text": "人格魅力，通过你的一条视频可以看出你的思维表达认知",
+        "representativeTime": 30.758,
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 32.336,
+        "end": 35.24,
+        "text": "会让用户觉得你在兼容他，那么第三种呢就是攻略性",
+        "representativeTime": 33.788,
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 35.25,
+        "end": 37.184,
+        "text": "小红书上面攻略型的作品特别容易爆",
+        "representativeTime": 36.217,
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 37.184,
+        "end": 38.876,
+        "text": "但是会发现像你的作品可能爆了",
+        "representativeTime": 38.03,
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 38.876,
+        "end": 43.11,
+        "text": "但是并不能引发关，如果说你的这个攻略型是指的是单次的，比如说某地的旅行",
+        "representativeTime": 40.993,
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 43.12,
+        "end": 45.798,
+        "text": "别人搜索出来之后，然后再点个收藏，不会引发关注行为",
+        "representativeTime": 44.459,
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 45.798,
+        "end": 48.155,
+        "text": "那么什么样的攻略型的作品可以引发关注行为呢？",
+        "representativeTime": 46.977,
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 48.155,
+        "end": 50.62,
+        "text": "你这个攻略型的作品有延续感，就比如说你出了一个",
+        "representativeTime": 49.388,
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 50.63,
+        "end": 52.477,
+        "text": "识谱，他后续还想学到更多的美食教程",
+        "representativeTime": 51.553,
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 52.477,
+        "end": 56.28,
+        "text": "他就会关注你，那么第二种呢就是关注你这个人的才华，就是你在这个视频里面",
+        "representativeTime": 54.379,
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 56.29,
+        "end": 61.38,
+        "text": "展现你的能力技能，比如说化妆呀，做饭呀，维修啊，还有你的知识和审美，第二点跟",
+        "representativeTime": 58.835,
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 61.39,
+        "end": 63.209,
+        "text": "热点的爆款视频，那么我想说的是",
+        "representativeTime": 62.3,
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 63.209,
+        "end": 66.12,
+        "text": "百分之八十的跟热点的爆款视频都没有任何的涨粉意义",
+        "representativeTime": 64.665,
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 66.12,
+        "end": 68.79,
+        "text": "那么什么样的跟热点的爆款视频可以带来转换呢？",
+        "representativeTime": 67.455,
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 68.8,
+        "end": 71.407,
+        "text": "就是你在这条一二点视频里面展现你的人设",
+        "representativeTime": 70.103,
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 71.407,
+        "end": 72.779,
+        "text": "最涨粉的就是人设视频",
+        "representativeTime": 72.093,
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 72.779,
+        "end": 76.76,
+        "text": "这种视频给它称为装逼视频，比如说那些名校博主啊，职场博主啊",
+        "representativeTime": 74.769,
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 76.77,
+        "end": 80.041,
+        "text": "专家博主，那么爆款视频比爆款系列它劣势在哪里呢？",
+        "representativeTime": 78.405,
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 80.041,
+        "end": 83.04,
+        "text": "就是它给用户制造了一个判断成本，你需要让用户",
+        "representativeTime": 81.541,
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 83.05,
+        "end": 85.887,
+        "text": "通过判断去看到你背后的隐形价值，他才会关注你",
+        "representativeTime": 84.469,
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 85.887,
+        "end": 87.821,
+        "text": "那么有没有什么更暴力的方法呢？",
+        "representativeTime": 86.854,
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 87.821,
+        "end": 91.95,
+        "text": "那就是爆款系列，就是省去用户判断的这个成本，直接给出用户你的价值",
+        "representativeTime": 89.886,
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 91.96,
+        "end": 93.195,
+        "text": "第一可能就是剧情系列",
+        "representativeTime": 92.577,
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 93.195,
+        "end": 95.171,
+        "text": "为什么有的博主拍剧情视频只有点赞",
+        "representativeTime": 94.183,
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 95.171,
+        "end": 99.25,
+        "text": "但是有的博主拍剧情视频又有点赞又有涨粉，是他把这个剧情做出了系列感",
+        "representativeTime": 97.21,
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 99.26,
+        "end": 100.426,
+        "text": "如何做出系列感呢？",
+        "representativeTime": 99.843,
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 100.426,
+        "end": 103.406,
+        "text": "就是你要从中构建人物ip世界观和在这一期视频中",
+        "representativeTime": 101.916,
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 103.406,
+        "end": 105.74,
+        "text": "你要透露出宏大的故事框架，让用户知道",
+        "representativeTime": 104.573,
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 105.75,
+        "end": 107.982,
+        "text": "哦，我想关注它后续的更新和故事剧情",
+        "representativeTime": 106.866,
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 107.982,
+        "end": 110.739,
+        "text": "那么第二种呢就是提升系列，举个最浅显的例子",
+        "representativeTime": 109.361,
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 110.739,
+        "end": 114.68,
+        "text": "挑战用多少期视频用多长时间带用户，这个用户可以换成具体的称呼",
+        "representativeTime": 112.71,
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-016",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 114.69,
+        "end": 117.868,
+        "text": "系统完整全面，这种能够展示延续系列感的词汇",
+        "representativeTime": 116.279,
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 117.868,
+        "end": 122.56,
+        "text": "再加上构建提升学习某种能力或者是说知识，比如挑战用三个月时间带",
+        "representativeTime": 120.214,
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-017",
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 122.57,
+        "end": 124.145,
+        "text": "地球小宝系统构建世界观",
+        "representativeTime": 123.357,
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 124.145,
+        "end": 125.72,
+        "text": "第三种呢就是挑战性探索",
+        "representativeTime": 124.933,
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-018",
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 125.72,
+        "end": 130.16,
+        "text": "美国第一期欢迎来到texas打开书本里的世界辞职体验一百种职业",
+        "representativeTime": 127.94,
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-020",
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 130.169,
+        "end": 136.65,
+        "text": "一元横穿中国，那就是你要么通过未完结的叙事给用户造成延续感，要么通过用数字给出延续感",
+        "representativeTime": 133.41,
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-021",
+          "SHOT-022",
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 136.66,
+        "end": 142.33,
+        "text": "那么以上总结呢，就是不管你是拍爆款视频还是爆款系列，你都要通过隐性或者说直接的方式",
+        "representativeTime": 139.495,
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 142.34,
+        "end": 143.424,
+        "text": "让用户看到你的价值",
+        "representativeTime": 142.882,
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-023"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 143.424,
+        "end": 145.471,
+        "text": "他才能够对你进行关注行为，那么讲了",
+        "representativeTime": 144.447,
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-023",
+          "SHOT-024"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 145.471,
+        "end": 147.398,
+        "text": "我这期视频已经发了有半个月时间了",
+        "representativeTime": 146.435,
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-024",
+          "SHOT-025"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 147.398,
+        "end": 150.41,
+        "text": "但是它慢慢慢的从三十万跑到六十万浏览量，并且给我带",
+        "representativeTime": 148.904,
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-025"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 150.42,
+        "end": 152.43,
+        "text": "带来了从一万到三四万的粉丝增长",
+        "representativeTime": 151.425,
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-025",
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 152.43,
+        "end": 155.914,
+        "text": "所以当我们想去做一条能够帮我们起号和涨粉的视频的时候",
+        "representativeTime": 154.172,
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 155.914,
+        "end": 159.13,
+        "text": "我们也要注意长尾流量，就是首先你的内容要优质起品",
+        "representativeTime": 157.522,
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 159.14,
+        "end": 160.69,
+        "text": "那个优质药能够反复观看",
+        "representativeTime": 159.915,
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 160.69,
+        "end": 164.92,
+        "text": "特别是抖音，抖音现在非常注重一条视频，能不能够把用户留在站内",
+        "representativeTime": 162.805,
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-026",
+          "SHOT-027"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 164.93,
+        "end": 167.213,
+        "text": "那么第二点呢，就是我做到了善用搜索流量",
+        "representativeTime": 166.072,
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-027",
+          "SHOT-028"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 167.213,
+        "end": 170.94,
+        "text": "像很多用户来到小红书是把它弄搜索引擎用的，做好你的标题和关键词",
+        "representativeTime": 169.077,
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-028"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 170.95,
+        "end": 174.985,
+        "text": "来吃掉这一波搜索流量，那今天就说到这里，我是你的智商编导，我们下期再见",
+        "representativeTime": 172.968,
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-028",
+          "SHOT-029"
+        ]
+      }
+    ]
+  },
+  "denseProbe": {
+    "intervalSeconds": 2.5,
+    "frames": [
+      {
+        "id": "DENSE-0001",
+        "time": 0,
+        "frame": "frames/dense/dense-0001.jpg"
+      },
+      {
+        "id": "DENSE-0002",
+        "time": 2.5,
+        "frame": "frames/dense/dense-0002.jpg"
+      },
+      {
+        "id": "DENSE-0003",
+        "time": 5,
+        "frame": "frames/dense/dense-0003.jpg"
+      },
+      {
+        "id": "DENSE-0004",
+        "time": 7.5,
+        "frame": "frames/dense/dense-0004.jpg"
+      },
+      {
+        "id": "DENSE-0005",
+        "time": 10,
+        "frame": "frames/dense/dense-0005.jpg"
+      },
+      {
+        "id": "DENSE-0006",
+        "time": 12.5,
+        "frame": "frames/dense/dense-0006.jpg"
+      },
+      {
+        "id": "DENSE-0007",
+        "time": 15,
+        "frame": "frames/dense/dense-0007.jpg"
+      },
+      {
+        "id": "DENSE-0008",
+        "time": 17.5,
+        "frame": "frames/dense/dense-0008.jpg"
+      },
+      {
+        "id": "DENSE-0009",
+        "time": 20,
+        "frame": "frames/dense/dense-0009.jpg"
+      },
+      {
+        "id": "DENSE-0010",
+        "time": 22.5,
+        "frame": "frames/dense/dense-0010.jpg"
+      },
+      {
+        "id": "DENSE-0011",
+        "time": 25,
+        "frame": "frames/dense/dense-0011.jpg"
+      },
+      {
+        "id": "DENSE-0012",
+        "time": 27.5,
+        "frame": "frames/dense/dense-0012.jpg"
+      },
+      {
+        "id": "DENSE-0013",
+        "time": 30,
+        "frame": "frames/dense/dense-0013.jpg"
+      },
+      {
+        "id": "DENSE-0014",
+        "time": 32.5,
+        "frame": "frames/dense/dense-0014.jpg"
+      },
+      {
+        "id": "DENSE-0015",
+        "time": 35,
+        "frame": "frames/dense/dense-0015.jpg"
+      },
+      {
+        "id": "DENSE-0016",
+        "time": 37.5,
+        "frame": "frames/dense/dense-0016.jpg"
+      },
+      {
+        "id": "DENSE-0017",
+        "time": 40,
+        "frame": "frames/dense/dense-0017.jpg"
+      },
+      {
+        "id": "DENSE-0018",
+        "time": 42.5,
+        "frame": "frames/dense/dense-0018.jpg"
+      },
+      {
+        "id": "DENSE-0019",
+        "time": 45,
+        "frame": "frames/dense/dense-0019.jpg"
+      },
+      {
+        "id": "DENSE-0020",
+        "time": 47.5,
+        "frame": "frames/dense/dense-0020.jpg"
+      },
+      {
+        "id": "DENSE-0021",
+        "time": 50,
+        "frame": "frames/dense/dense-0021.jpg"
+      },
+      {
+        "id": "DENSE-0022",
+        "time": 52.5,
+        "frame": "frames/dense/dense-0022.jpg"
+      },
+      {
+        "id": "DENSE-0023",
+        "time": 55,
+        "frame": "frames/dense/dense-0023.jpg"
+      },
+      {
+        "id": "DENSE-0024",
+        "time": 57.5,
+        "frame": "frames/dense/dense-0024.jpg"
+      },
+      {
+        "id": "DENSE-0025",
+        "time": 60,
+        "frame": "frames/dense/dense-0025.jpg"
+      },
+      {
+        "id": "DENSE-0026",
+        "time": 62.5,
+        "frame": "frames/dense/dense-0026.jpg"
+      },
+      {
+        "id": "DENSE-0027",
+        "time": 65,
+        "frame": "frames/dense/dense-0027.jpg"
+      },
+      {
+        "id": "DENSE-0028",
+        "time": 67.5,
+        "frame": "frames/dense/dense-0028.jpg"
+      },
+      {
+        "id": "DENSE-0029",
+        "time": 70,
+        "frame": "frames/dense/dense-0029.jpg"
+      },
+      {
+        "id": "DENSE-0030",
+        "time": 72.5,
+        "frame": "frames/dense/dense-0030.jpg"
+      },
+      {
+        "id": "DENSE-0031",
+        "time": 75,
+        "frame": "frames/dense/dense-0031.jpg"
+      },
+      {
+        "id": "DENSE-0032",
+        "time": 77.5,
+        "frame": "frames/dense/dense-0032.jpg"
+      },
+      {
+        "id": "DENSE-0033",
+        "time": 80,
+        "frame": "frames/dense/dense-0033.jpg"
+      },
+      {
+        "id": "DENSE-0034",
+        "time": 82.5,
+        "frame": "frames/dense/dense-0034.jpg"
+      },
+      {
+        "id": "DENSE-0035",
+        "time": 85,
+        "frame": "frames/dense/dense-0035.jpg"
+      },
+      {
+        "id": "DENSE-0036",
+        "time": 87.5,
+        "frame": "frames/dense/dense-0036.jpg"
+      },
+      {
+        "id": "DENSE-0037",
+        "time": 90,
+        "frame": "frames/dense/dense-0037.jpg"
+      },
+      {
+        "id": "DENSE-0038",
+        "time": 92.5,
+        "frame": "frames/dense/dense-0038.jpg"
+      },
+      {
+        "id": "DENSE-0039",
+        "time": 95,
+        "frame": "frames/dense/dense-0039.jpg"
+      },
+      {
+        "id": "DENSE-0040",
+        "time": 97.5,
+        "frame": "frames/dense/dense-0040.jpg"
+      },
+      {
+        "id": "DENSE-0041",
+        "time": 100,
+        "frame": "frames/dense/dense-0041.jpg"
+      },
+      {
+        "id": "DENSE-0042",
+        "time": 102.5,
+        "frame": "frames/dense/dense-0042.jpg"
+      },
+      {
+        "id": "DENSE-0043",
+        "time": 105,
+        "frame": "frames/dense/dense-0043.jpg"
+      },
+      {
+        "id": "DENSE-0044",
+        "time": 107.5,
+        "frame": "frames/dense/dense-0044.jpg"
+      },
+      {
+        "id": "DENSE-0045",
+        "time": 110,
+        "frame": "frames/dense/dense-0045.jpg"
+      },
+      {
+        "id": "DENSE-0046",
+        "time": 112.5,
+        "frame": "frames/dense/dense-0046.jpg"
+      },
+      {
+        "id": "DENSE-0047",
+        "time": 115,
+        "frame": "frames/dense/dense-0047.jpg"
+      },
+      {
+        "id": "DENSE-0048",
+        "time": 117.5,
+        "frame": "frames/dense/dense-0048.jpg"
+      },
+      {
+        "id": "DENSE-0049",
+        "time": 120,
+        "frame": "frames/dense/dense-0049.jpg"
+      },
+      {
+        "id": "DENSE-0050",
+        "time": 122.5,
+        "frame": "frames/dense/dense-0050.jpg"
+      },
+      {
+        "id": "DENSE-0051",
+        "time": 125,
+        "frame": "frames/dense/dense-0051.jpg"
+      },
+      {
+        "id": "DENSE-0052",
+        "time": 127.5,
+        "frame": "frames/dense/dense-0052.jpg"
+      },
+      {
+        "id": "DENSE-0053",
+        "time": 130,
+        "frame": "frames/dense/dense-0053.jpg"
+      },
+      {
+        "id": "DENSE-0054",
+        "time": 132.5,
+        "frame": "frames/dense/dense-0054.jpg"
+      },
+      {
+        "id": "DENSE-0055",
+        "time": 135,
+        "frame": "frames/dense/dense-0055.jpg"
+      },
+      {
+        "id": "DENSE-0056",
+        "time": 137.5,
+        "frame": "frames/dense/dense-0056.jpg"
+      },
+      {
+        "id": "DENSE-0057",
+        "time": 140,
+        "frame": "frames/dense/dense-0057.jpg"
+      },
+      {
+        "id": "DENSE-0058",
+        "time": 142.5,
+        "frame": "frames/dense/dense-0058.jpg"
+      },
+      {
+        "id": "DENSE-0059",
+        "time": 145,
+        "frame": "frames/dense/dense-0059.jpg"
+      },
+      {
+        "id": "DENSE-0060",
+        "time": 147.5,
+        "frame": "frames/dense/dense-0060.jpg"
+      },
+      {
+        "id": "DENSE-0061",
+        "time": 150,
+        "frame": "frames/dense/dense-0061.jpg"
+      },
+      {
+        "id": "DENSE-0062",
+        "time": 152.5,
+        "frame": "frames/dense/dense-0062.jpg"
+      },
+      {
+        "id": "DENSE-0063",
+        "time": 155,
+        "frame": "frames/dense/dense-0063.jpg"
+      },
+      {
+        "id": "DENSE-0064",
+        "time": 157.5,
+        "frame": "frames/dense/dense-0064.jpg"
+      },
+      {
+        "id": "DENSE-0065",
+        "time": 160,
+        "frame": "frames/dense/dense-0065.jpg"
+      },
+      {
+        "id": "DENSE-0066",
+        "time": 162.5,
+        "frame": "frames/dense/dense-0066.jpg"
+      },
+      {
+        "id": "DENSE-0067",
+        "time": 165,
+        "frame": "frames/dense/dense-0067.jpg"
+      },
+      {
+        "id": "DENSE-0068",
+        "time": 167.5,
+        "frame": "frames/dense/dense-0068.jpg"
+      },
+      {
+        "id": "DENSE-0069",
+        "time": 170,
+        "frame": "frames/dense/dense-0069.jpg"
+      },
+      {
+        "id": "DENSE-0070",
+        "time": 172.5,
+        "frame": "frames/dense/dense-0070.jpg"
+      },
+      {
+        "id": "DENSE-0071",
+        "time": 174.866,
+        "frame": "frames/dense/dense-0071.jpg"
+      }
+    ]
+  },
+  "frameIndex": [
+    {
+      "id": "FRAME-SHOT-001",
+      "time": 0.584,
+      "frame": "frames/shots/shot-001.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-002",
+      "time": 1.817,
+      "frame": "frames/shots/shot-002.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-003",
+      "time": 5.3,
+      "frame": "frames/shots/shot-003.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-004",
+      "time": 9.4,
+      "frame": "frames/shots/shot-004.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-005",
+      "time": 12.417,
+      "frame": "frames/shots/shot-005.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-006",
+      "time": 18.617,
+      "frame": "frames/shots/shot-006.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-007",
+      "time": 27.717,
+      "frame": "frames/shots/shot-007.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-008",
+      "time": 33.767,
+      "frame": "frames/shots/shot-008.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-009",
+      "time": 37.35,
+      "frame": "frames/shots/shot-009.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-010",
+      "time": 43.683,
+      "frame": "frames/shots/shot-010.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-011",
+      "time": 49.383,
+      "frame": "frames/shots/shot-011.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-012",
+      "time": 55.85,
+      "frame": "frames/shots/shot-012.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-013",
+      "time": 62.834,
+      "frame": "frames/shots/shot-013.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-014",
+      "time": 71.15,
+      "frame": "frames/shots/shot-014.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-015",
+      "time": 85.184,
+      "frame": "frames/shots/shot-015.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-016",
+      "time": 103.034,
+      "frame": "frames/shots/shot-016.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-017",
+      "time": 116.983,
+      "frame": "frames/shots/shot-017.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-018",
+      "time": 122.6,
+      "frame": "frames/shots/shot-018.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-019",
+      "time": 124.983,
+      "frame": "frames/shots/shot-019.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-020",
+      "time": 127.867,
+      "frame": "frames/shots/shot-020.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-021",
+      "time": 130.633,
+      "frame": "frames/shots/shot-021.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-022",
+      "time": 133.883,
+      "frame": "frames/shots/shot-022.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-023",
+      "time": 141.017,
+      "frame": "frames/shots/shot-023.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-024",
+      "time": 146.367,
+      "frame": "frames/shots/shot-024.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-025",
+      "time": 149.834,
+      "frame": "frames/shots/shot-025.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-026",
+      "time": 156.683,
+      "frame": "frames/shots/shot-026.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-027",
+      "time": 164.1,
+      "frame": "frames/shots/shot-027.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-028",
+      "time": 169.866,
+      "frame": "frames/shots/shot-028.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-SHOT-029",
+      "time": 173.76,
+      "frame": "frames/shots/shot-029.jpg",
+      "purpose": "shot_representative"
+    },
+    {
+      "id": "FRAME-CUE-001",
+      "time": 2.63,
+      "frame": "frames/cues/cue-001.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-002",
+      "time": 7.084,
+      "frame": "frames/cues/cue-002.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-003",
+      "time": 9.894,
+      "frame": "frames/cues/cue-003.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-004",
+      "time": 12.88,
+      "frame": "frames/cues/cue-004.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-005",
+      "time": 15.864,
+      "frame": "frames/cues/cue-005.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-006",
+      "time": 18.609,
+      "frame": "frames/cues/cue-006.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-007",
+      "time": 21.941,
+      "frame": "frames/cues/cue-007.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-008",
+      "time": 24.195,
+      "frame": "frames/cues/cue-008.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-009",
+      "time": 27.029,
+      "frame": "frames/cues/cue-009.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-010",
+      "time": 30.758,
+      "frame": "frames/cues/cue-010.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-011",
+      "time": 33.788,
+      "frame": "frames/cues/cue-011.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-012",
+      "time": 36.217,
+      "frame": "frames/cues/cue-012.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-013",
+      "time": 38.03,
+      "frame": "frames/cues/cue-013.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-014",
+      "time": 40.993,
+      "frame": "frames/cues/cue-014.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-015",
+      "time": 44.459,
+      "frame": "frames/cues/cue-015.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-016",
+      "time": 46.977,
+      "frame": "frames/cues/cue-016.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-017",
+      "time": 49.388,
+      "frame": "frames/cues/cue-017.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-018",
+      "time": 51.553,
+      "frame": "frames/cues/cue-018.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-019",
+      "time": 54.379,
+      "frame": "frames/cues/cue-019.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-020",
+      "time": 58.835,
+      "frame": "frames/cues/cue-020.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-021",
+      "time": 62.3,
+      "frame": "frames/cues/cue-021.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-022",
+      "time": 64.665,
+      "frame": "frames/cues/cue-022.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-023",
+      "time": 67.455,
+      "frame": "frames/cues/cue-023.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-024",
+      "time": 70.103,
+      "frame": "frames/cues/cue-024.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-025",
+      "time": 72.093,
+      "frame": "frames/cues/cue-025.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-026",
+      "time": 74.769,
+      "frame": "frames/cues/cue-026.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-027",
+      "time": 78.405,
+      "frame": "frames/cues/cue-027.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-028",
+      "time": 81.541,
+      "frame": "frames/cues/cue-028.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-029",
+      "time": 84.469,
+      "frame": "frames/cues/cue-029.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-030",
+      "time": 86.854,
+      "frame": "frames/cues/cue-030.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-031",
+      "time": 89.886,
+      "frame": "frames/cues/cue-031.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-032",
+      "time": 92.577,
+      "frame": "frames/cues/cue-032.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-033",
+      "time": 94.183,
+      "frame": "frames/cues/cue-033.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-034",
+      "time": 97.21,
+      "frame": "frames/cues/cue-034.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-035",
+      "time": 99.843,
+      "frame": "frames/cues/cue-035.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-036",
+      "time": 101.916,
+      "frame": "frames/cues/cue-036.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-037",
+      "time": 104.573,
+      "frame": "frames/cues/cue-037.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-038",
+      "time": 106.866,
+      "frame": "frames/cues/cue-038.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-039",
+      "time": 109.361,
+      "frame": "frames/cues/cue-039.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-040",
+      "time": 112.71,
+      "frame": "frames/cues/cue-040.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-041",
+      "time": 116.279,
+      "frame": "frames/cues/cue-041.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-042",
+      "time": 120.214,
+      "frame": "frames/cues/cue-042.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-043",
+      "time": 123.357,
+      "frame": "frames/cues/cue-043.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-044",
+      "time": 124.933,
+      "frame": "frames/cues/cue-044.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-045",
+      "time": 127.94,
+      "frame": "frames/cues/cue-045.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-046",
+      "time": 133.41,
+      "frame": "frames/cues/cue-046.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-047",
+      "time": 139.495,
+      "frame": "frames/cues/cue-047.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-048",
+      "time": 142.882,
+      "frame": "frames/cues/cue-048.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-049",
+      "time": 144.447,
+      "frame": "frames/cues/cue-049.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-050",
+      "time": 146.435,
+      "frame": "frames/cues/cue-050.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-051",
+      "time": 148.904,
+      "frame": "frames/cues/cue-051.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-052",
+      "time": 151.425,
+      "frame": "frames/cues/cue-052.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-053",
+      "time": 154.172,
+      "frame": "frames/cues/cue-053.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-054",
+      "time": 157.522,
+      "frame": "frames/cues/cue-054.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-055",
+      "time": 159.915,
+      "frame": "frames/cues/cue-055.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-056",
+      "time": 162.805,
+      "frame": "frames/cues/cue-056.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-057",
+      "time": 166.072,
+      "frame": "frames/cues/cue-057.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-058",
+      "time": 169.077,
+      "frame": "frames/cues/cue-058.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "FRAME-CUE-059",
+      "time": 172.968,
+      "frame": "frames/cues/cue-059.jpg",
+      "purpose": "cue_representative"
+    },
+    {
+      "id": "DENSE-0001",
+      "time": 0,
+      "frame": "frames/dense/dense-0001.jpg"
+    },
+    {
+      "id": "DENSE-0002",
+      "time": 2.5,
+      "frame": "frames/dense/dense-0002.jpg"
+    },
+    {
+      "id": "DENSE-0003",
+      "time": 5,
+      "frame": "frames/dense/dense-0003.jpg"
+    },
+    {
+      "id": "DENSE-0004",
+      "time": 7.5,
+      "frame": "frames/dense/dense-0004.jpg"
+    },
+    {
+      "id": "DENSE-0005",
+      "time": 10,
+      "frame": "frames/dense/dense-0005.jpg"
+    },
+    {
+      "id": "DENSE-0006",
+      "time": 12.5,
+      "frame": "frames/dense/dense-0006.jpg"
+    },
+    {
+      "id": "DENSE-0007",
+      "time": 15,
+      "frame": "frames/dense/dense-0007.jpg"
+    },
+    {
+      "id": "DENSE-0008",
+      "time": 17.5,
+      "frame": "frames/dense/dense-0008.jpg"
+    },
+    {
+      "id": "DENSE-0009",
+      "time": 20,
+      "frame": "frames/dense/dense-0009.jpg"
+    },
+    {
+      "id": "DENSE-0010",
+      "time": 22.5,
+      "frame": "frames/dense/dense-0010.jpg"
+    },
+    {
+      "id": "DENSE-0011",
+      "time": 25,
+      "frame": "frames/dense/dense-0011.jpg"
+    },
+    {
+      "id": "DENSE-0012",
+      "time": 27.5,
+      "frame": "frames/dense/dense-0012.jpg"
+    },
+    {
+      "id": "DENSE-0013",
+      "time": 30,
+      "frame": "frames/dense/dense-0013.jpg"
+    },
+    {
+      "id": "DENSE-0014",
+      "time": 32.5,
+      "frame": "frames/dense/dense-0014.jpg"
+    },
+    {
+      "id": "DENSE-0015",
+      "time": 35,
+      "frame": "frames/dense/dense-0015.jpg"
+    },
+    {
+      "id": "DENSE-0016",
+      "time": 37.5,
+      "frame": "frames/dense/dense-0016.jpg"
+    },
+    {
+      "id": "DENSE-0017",
+      "time": 40,
+      "frame": "frames/dense/dense-0017.jpg"
+    },
+    {
+      "id": "DENSE-0018",
+      "time": 42.5,
+      "frame": "frames/dense/dense-0018.jpg"
+    },
+    {
+      "id": "DENSE-0019",
+      "time": 45,
+      "frame": "frames/dense/dense-0019.jpg"
+    },
+    {
+      "id": "DENSE-0020",
+      "time": 47.5,
+      "frame": "frames/dense/dense-0020.jpg"
+    },
+    {
+      "id": "DENSE-0021",
+      "time": 50,
+      "frame": "frames/dense/dense-0021.jpg"
+    },
+    {
+      "id": "DENSE-0022",
+      "time": 52.5,
+      "frame": "frames/dense/dense-0022.jpg"
+    },
+    {
+      "id": "DENSE-0023",
+      "time": 55,
+      "frame": "frames/dense/dense-0023.jpg"
+    },
+    {
+      "id": "DENSE-0024",
+      "time": 57.5,
+      "frame": "frames/dense/dense-0024.jpg"
+    },
+    {
+      "id": "DENSE-0025",
+      "time": 60,
+      "frame": "frames/dense/dense-0025.jpg"
+    },
+    {
+      "id": "DENSE-0026",
+      "time": 62.5,
+      "frame": "frames/dense/dense-0026.jpg"
+    },
+    {
+      "id": "DENSE-0027",
+      "time": 65,
+      "frame": "frames/dense/dense-0027.jpg"
+    },
+    {
+      "id": "DENSE-0028",
+      "time": 67.5,
+      "frame": "frames/dense/dense-0028.jpg"
+    },
+    {
+      "id": "DENSE-0029",
+      "time": 70,
+      "frame": "frames/dense/dense-0029.jpg"
+    },
+    {
+      "id": "DENSE-0030",
+      "time": 72.5,
+      "frame": "frames/dense/dense-0030.jpg"
+    },
+    {
+      "id": "DENSE-0031",
+      "time": 75,
+      "frame": "frames/dense/dense-0031.jpg"
+    },
+    {
+      "id": "DENSE-0032",
+      "time": 77.5,
+      "frame": "frames/dense/dense-0032.jpg"
+    },
+    {
+      "id": "DENSE-0033",
+      "time": 80,
+      "frame": "frames/dense/dense-0033.jpg"
+    },
+    {
+      "id": "DENSE-0034",
+      "time": 82.5,
+      "frame": "frames/dense/dense-0034.jpg"
+    },
+    {
+      "id": "DENSE-0035",
+      "time": 85,
+      "frame": "frames/dense/dense-0035.jpg"
+    },
+    {
+      "id": "DENSE-0036",
+      "time": 87.5,
+      "frame": "frames/dense/dense-0036.jpg"
+    },
+    {
+      "id": "DENSE-0037",
+      "time": 90,
+      "frame": "frames/dense/dense-0037.jpg"
+    },
+    {
+      "id": "DENSE-0038",
+      "time": 92.5,
+      "frame": "frames/dense/dense-0038.jpg"
+    },
+    {
+      "id": "DENSE-0039",
+      "time": 95,
+      "frame": "frames/dense/dense-0039.jpg"
+    },
+    {
+      "id": "DENSE-0040",
+      "time": 97.5,
+      "frame": "frames/dense/dense-0040.jpg"
+    },
+    {
+      "id": "DENSE-0041",
+      "time": 100,
+      "frame": "frames/dense/dense-0041.jpg"
+    },
+    {
+      "id": "DENSE-0042",
+      "time": 102.5,
+      "frame": "frames/dense/dense-0042.jpg"
+    },
+    {
+      "id": "DENSE-0043",
+      "time": 105,
+      "frame": "frames/dense/dense-0043.jpg"
+    },
+    {
+      "id": "DENSE-0044",
+      "time": 107.5,
+      "frame": "frames/dense/dense-0044.jpg"
+    },
+    {
+      "id": "DENSE-0045",
+      "time": 110,
+      "frame": "frames/dense/dense-0045.jpg"
+    },
+    {
+      "id": "DENSE-0046",
+      "time": 112.5,
+      "frame": "frames/dense/dense-0046.jpg"
+    },
+    {
+      "id": "DENSE-0047",
+      "time": 115,
+      "frame": "frames/dense/dense-0047.jpg"
+    },
+    {
+      "id": "DENSE-0048",
+      "time": 117.5,
+      "frame": "frames/dense/dense-0048.jpg"
+    },
+    {
+      "id": "DENSE-0049",
+      "time": 120,
+      "frame": "frames/dense/dense-0049.jpg"
+    },
+    {
+      "id": "DENSE-0050",
+      "time": 122.5,
+      "frame": "frames/dense/dense-0050.jpg"
+    },
+    {
+      "id": "DENSE-0051",
+      "time": 125,
+      "frame": "frames/dense/dense-0051.jpg"
+    },
+    {
+      "id": "DENSE-0052",
+      "time": 127.5,
+      "frame": "frames/dense/dense-0052.jpg"
+    },
+    {
+      "id": "DENSE-0053",
+      "time": 130,
+      "frame": "frames/dense/dense-0053.jpg"
+    },
+    {
+      "id": "DENSE-0054",
+      "time": 132.5,
+      "frame": "frames/dense/dense-0054.jpg"
+    },
+    {
+      "id": "DENSE-0055",
+      "time": 135,
+      "frame": "frames/dense/dense-0055.jpg"
+    },
+    {
+      "id": "DENSE-0056",
+      "time": 137.5,
+      "frame": "frames/dense/dense-0056.jpg"
+    },
+    {
+      "id": "DENSE-0057",
+      "time": 140,
+      "frame": "frames/dense/dense-0057.jpg"
+    },
+    {
+      "id": "DENSE-0058",
+      "time": 142.5,
+      "frame": "frames/dense/dense-0058.jpg"
+    },
+    {
+      "id": "DENSE-0059",
+      "time": 145,
+      "frame": "frames/dense/dense-0059.jpg"
+    },
+    {
+      "id": "DENSE-0060",
+      "time": 147.5,
+      "frame": "frames/dense/dense-0060.jpg"
+    },
+    {
+      "id": "DENSE-0061",
+      "time": 150,
+      "frame": "frames/dense/dense-0061.jpg"
+    },
+    {
+      "id": "DENSE-0062",
+      "time": 152.5,
+      "frame": "frames/dense/dense-0062.jpg"
+    },
+    {
+      "id": "DENSE-0063",
+      "time": 155,
+      "frame": "frames/dense/dense-0063.jpg"
+    },
+    {
+      "id": "DENSE-0064",
+      "time": 157.5,
+      "frame": "frames/dense/dense-0064.jpg"
+    },
+    {
+      "id": "DENSE-0065",
+      "time": 160,
+      "frame": "frames/dense/dense-0065.jpg"
+    },
+    {
+      "id": "DENSE-0066",
+      "time": 162.5,
+      "frame": "frames/dense/dense-0066.jpg"
+    },
+    {
+      "id": "DENSE-0067",
+      "time": 165,
+      "frame": "frames/dense/dense-0067.jpg"
+    },
+    {
+      "id": "DENSE-0068",
+      "time": 167.5,
+      "frame": "frames/dense/dense-0068.jpg"
+    },
+    {
+      "id": "DENSE-0069",
+      "time": 170,
+      "frame": "frames/dense/dense-0069.jpg"
+    },
+    {
+      "id": "DENSE-0070",
+      "time": 172.5,
+      "frame": "frames/dense/dense-0070.jpg"
+    },
+    {
+      "id": "DENSE-0071",
+      "time": 174.866,
+      "frame": "frames/dense/dense-0071.jpg"
+    }
+  ],
+  "contracts": {
+    "cueFrameShotMapping": true,
+    "verbatimTranscriptPreserved": true
+  }
+}

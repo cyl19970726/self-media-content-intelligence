@@ -1,0 +1,116 @@
+{
+  "creator": {
+    "id": "6166b66a0000000002027a1d",
+    "name": "AI红发魔女",
+    "profile": "https://www.xiaohongshu.com/user/profile/6166b66a0000000002027a1d",
+    "followers": "11.7万",
+    "likesAndCollections": "143.6万"
+  },
+  "coverage": {
+    "capturedNotes": 332,
+    "capturedVideos": 319,
+    "selectedVideos": 7,
+    "capturedAt": "2026-08-15T22:40:00+08:00"
+  },
+  "selectionLogic": "按公开点赞排序后，兼顾搜索型、工具地图型、商业异常样本、热点新品型、社交梗型和强视觉演示型。",
+  "videos": [
+    {
+      "id": "6801c0750000000007037156",
+      "title": "deepseek导入word乱码？教你一句话解决",
+      "publishedAt": "2025-04-18T10:21:09+08:00",
+      "durationSeconds": 29,
+      "likes": 63000,
+      "collections": 96000,
+      "comments": 312,
+      "shares": 6914,
+      "archetype": "高频刚需 / 搜索解题",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6801c0750000000007037156",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/108/01e801c05a1ea58e010370019647530dc1_108.mp4?sign=c91511ac4a9d105255a10f6a00e94214&t=6a851688",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e801c05a1ea58e0103700397aad9539d_11.srt?sign=6675a4b90e6813585165bea4ae7bbacb&t=6A851688"
+    },
+    {
+      "id": "69129479000000000700ac96",
+      "title": "大揭秘！这些强大的AI，都怎么用？",
+      "publishedAt": "2025-11-11T09:42:17+08:00",
+      "durationSeconds": 16,
+      "likes": 56000,
+      "collections": 69000,
+      "comments": 783,
+      "shares": 6414,
+      "archetype": "工具合集 / 认知地图",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69129479000000000700ac96",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/115/01e91293ff25cfb3010370019a70953945_115.mp4?sign=6849b91a5a71a8287c2a848659d47872&t=6a851700",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e91293ff25cfb3010370039a70942182_11.srt?sign=203053bc8d6e6f3d54138a8505c27321&t=6A851700"
+    },
+    {
+      "id": "69424c0d000000001e039745",
+      "title": "熬夜打工人必看！我找到了靠谱的健康搭子",
+      "publishedAt": "2025-12-17T15:27:33+08:00",
+      "durationSeconds": 105,
+      "likes": 51000,
+      "collections": 6219,
+      "comments": 781,
+      "shares": 1351,
+      "archetype": "跨赛道商业曝光 / 异常样本",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69424c0d000000001e039745",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/115/01e9421b7c275f17010370019b2afcdd81_115.mp4?sign=e4aa59b072a6f24e4cff928510b98333&t=6a851724",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e9421b7c275f17010370039b2af93b87_11.srt?sign=e1003a18db3784e28a90f3aba50e9faf&t=6A851724"
+    },
+    {
+      "id": "690ac8730000000004014f67",
+      "title": "大揭秘！这些做设计的AI，都怎么用？",
+      "publishedAt": "2025-11-05T11:45:55+08:00",
+      "durationSeconds": 14,
+      "likes": 31000,
+      "collections": 43000,
+      "comments": 339,
+      "shares": 2838,
+      "archetype": "垂直场景工具地图",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/690ac8730000000004014f67",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/115/01e90ac7e625fd53010370019a521ff8ad_115.mp4?sign=3ce702987900706764dc3c0ad490a9c4&t=6a851748",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e90ac7e625fd53010370039a521f1343_11.srt?sign=de9feb49ff4285d0230c0bd0596ef306&t=6A851748"
+    },
+    {
+      "id": "6808e742000000001e000b85",
+      "title": "skyreels-V2开源！AI视频突破时长限制",
+      "publishedAt": "2025-04-23T20:52:34+08:00",
+      "durationSeconds": 87,
+      "likes": 28000,
+      "collections": 44000,
+      "comments": 273,
+      "shares": 6365,
+      "archetype": "热点新品 / 深度教程",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/6808e742000000001e000b85",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/108/01e808e74061675a010370019662d49260_108.mp4?sign=25af0fab3e562355c22a1d3f2622df94&t=6a851763",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e808e74061675a0103700397ad041d9c_11.srt?sign=7baeb0bf32fa06049506bbbf58cf040e&t=6A851763"
+    },
+    {
+      "id": "69d65879000000001d01e3fa",
+      "title": "笑疯了，人类给claudecode做了条鞭子..",
+      "publishedAt": "2026-04-08T20:10:33+08:00",
+      "durationSeconds": 27,
+      "likes": 24000,
+      "collections": 5559,
+      "comments": 3138,
+      "shares": 16000,
+      "archetype": "社交梗 / 人格化传播",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/69d65879000000001d01e3fa",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/115/01e9d656a7526a0d010370019d6d4a4226_115.mp4?sign=c4c9d66100c71a614841ed3bd70ac3fa&t=6a85177f",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e9d656a7526a0d010370039d6d49ab10_11.srt?sign=e74ffdf68b88a6c1f13c3e000597e507&t=6A85177F"
+    },
+    {
+      "id": "688ab6260000000022020d3e",
+      "title": "太强大啦！AI一键控制任何角色",
+      "publishedAt": "2025-07-31T08:17:42+08:00",
+      "durationSeconds": 22,
+      "likes": 24000,
+      "collections": 31000,
+      "comments": 133,
+      "shares": 3284,
+      "archetype": "强视觉演示 / 工具教程",
+      "sourceUrl": "https://www.xiaohongshu.com/explore/688ab6260000000022020d3e",
+      "videoUrl": "http://sns-video-zl.xhscdn.com/stream/1/110/130/01e88ab54eb6110901037001985de8c703_130.mp4?sign=fe16016fef6846489400cc14dff2893f&t=6a85179a",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e88ab54eb6110901037003985dd79a78_11.srt?sign=5c0e4e1b3d66d7ceaae20823e5fee30e&t=6A85179A"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationScope": {
+    "groundTruth": [
+      "audit/audit.json",
+      "audit/audit.md",
+      "evidence-v2/evidence-pack.json"
+    ],
+    "candidate": [
+      "skill-run-v2/probe.json",
+      "skill-run-v2/capture-protocol.json",
+      "skill-run-v2/targeted-evidence/targeted-evidence.json",
+      "skill-run-v2/targeted-evidence/ocr-evidence.json",
+      "skill-run-v2/targeted-evidence/ocr-crops-evidence.json",
+      "skill-run-v2/reconstruction.json",
+      "skill-run-v2/article.md"
+    ],
+    "freshEvaluation": true
+  },
+  "gateSummary": {
+    "pass": true,
+    "passed": [
+      "criticalQuestionRecall",
+      "evidenceCoverage",
+      "unsupportedInference",
+      "timestampAccuracy",
+      "processDependencyCompleteness",
+      "unknownDiscipline",
+      "uncheckedChannels",
+      "metaGate"
+    ],
+    "failed": [],
+    "rationale": "V2 reconstructs the independently audited causal chain, including the Kimi README command, complete Claude success UI, detailed specification, pre-existing project-state boundary, external image-generation and human file handoff, local index.html SPA boundary, human review/revision ownership, 32/32 cue ledger, and bounded audio uncertainty. Residual evidence-reference defects remain below all hard thresholds and do not leave an unguarded carrier, meaning change, or relationship."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {"id": "CQ-01", "status": "answered", "candidateUnits": ["KU-01", "KU-02"], "note": "Core promise retained as an author claim with timing/code/template qualifications."},
+        {"id": "CQ-02", "status": "answered", "candidateUnits": ["KU-03", "KU-06", "KU-07", "KU-08"], "note": "Claude Code, Moonshot/Kimi K2, and alternative Kimi CLI roles are distinguished."},
+        {"id": "CQ-03", "status": "answered", "candidateUnits": ["KU-04"], "note": "Exact Claude Code npm command retained."},
+        {"id": "CQ-04", "status": "answered", "candidateUnits": ["KU-05"], "note": "Exact uv/Python/package Kimi CLI command retained and correctly described as README text, not demonstrated execution."},
+        {"id": "CQ-05", "status": "answered", "candidateUnits": ["KU-07"], "note": "Endpoint, token boundary, five model variables, zshrc operation, and launch sequence retained."},
+        {"id": "CQ-06", "status": "answered", "candidateUnits": ["KU-08"], "note": "All five success signals are stated: version, model, billing label, English exchange, Chinese exchange."},
+        {"id": "CQ-07", "status": "answered", "candidateUnits": ["KU-09", "KU-10"], "note": "Technical stack, SPA architecture, engine/state/storage, character, UI, and file requirements are reconstructed."},
+        {"id": "CQ-08", "status": "answered", "candidateUnits": ["KU-11"], "note": "Populated story/characters/assets and empty gameplay/image_pipeline are separated from unknown creation provenance."},
+        {"id": "CQ-09", "status": "answered", "candidateUnits": ["KU-12"], "note": "Project premise, cast, values, schedule/action direction, and implementation boundary are retained."},
+        {"id": "CQ-10", "status": "answered", "candidateUnits": ["KU-13", "KU-14", "KU-15"], "note": "External UI, four-variant groups, human selection/save/naming/placement, and Finder assets form a bounded chain."},
+        {"id": "CQ-11", "status": "answered", "candidateUnits": ["KU-16", "KU-17"], "note": "Folder-to-agent integration and local index.html browser-SPA delivery boundary are explicit."},
+        {"id": "CQ-12", "status": "answered", "candidateUnits": ["KU-18"], "note": "Shown preview states are separated from unoperated game systems."},
+        {"id": "CQ-13", "status": "answered", "candidateUnits": ["KU-19", "KU-20", "KU-24"], "note": "Human planning, art/file operations, editorial review, and revision ownership remain visible."},
+        {"id": "CQ-14", "status": "answered", "candidateUnits": ["KU-20"], "note": "Layout before/request/edit/after chain is reconstructed with CSS parameters and continuity caveat."},
+        {"id": "CQ-15", "status": "correctly_unknown", "candidateUnits": ["KU-19"], "note": "Writing quality remains a subjective author assessment without independent validation."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 37,
+      "denominator": 40,
+      "examples": [
+        {"countingUnit": "audit.atomicEvidence entry", "coveredIds": ["AE-001", "AE-002", "AE-003", "AE-004", "AE-005", "AE-006", "AE-007", "AE-008", "AE-009", "AE-010", "AE-011", "AE-012", "AE-013", "AE-014", "AE-015", "AE-016", "AE-017", "AE-019", "AE-020", "AE-021", "AE-022", "AE-023", "AE-024", "AE-026", "AE-027", "AE-028", "AE-029", "AE-030", "AE-032", "AE-033", "AE-034", "AE-035", "AE-036", "AE-037", "AE-038", "AE-039", "AE-040"]},
+        {"countingUnit": "audit.atomicEvidence entry", "missedOrMateriallyIncompleteIds": ["AE-018", "AE-025", "AE-031"], "note": "V2 omits the exact general theme-configuration field inventory (title/background/conflict/goal/3-5 NPC), the agent's emotional-resonance/network/workplace-realism planning suggestions, and the exact first-preview values Day 1/morning, energy 60, mood 40, money 3000, pressure 50. Their surrounding closures remain covered."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 24,
+      "examples": [
+        {"countingUnit": "knowledge-unit positive statement", "errorUnit": "KU-23", "note": "Evidence-v2 independently confirms an AAC audio stream, but the permitted ground truth does not contain the claimed -45 dB/250 ms silence-detection result or persistent-energy measurement. The candidate correctly abstains from naming music/SFX, so the unsupported detail does not contaminate the content reconstruction."},
+        {"supportedPattern": "KU-11, KU-14 through KU-17, KU-22, and KU-24 correctly preserve file origin, external-tool/human/agent ownership, local-runtime boundary, and hard-cut continuity limits."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 78,
+      "denominator": 85,
+      "examples": [
+        {"countingUnit": "knowledge-unit evidence entry; a ranged reference must remain wholly inside the declared unit range with 0.75 s tolerance", "mislocalizedOrOverbroad": [
+          {"unit": "KU-08", "ref": "CUE-014", "unitRange": "37.2-44.0", "refRange": "40.24-44.88"},
+          {"unit": "KU-09", "ref": "CUE-015", "unitRange": "43.767-49.2", "refRange": "44.88-50.15"},
+          {"unit": "KU-09", "ref": "ocr-crops#OCR-00037..OCR-00103", "unitRange": "43.767-49.2", "refRange": "40.2-45.867", "note": "Range begins in the prior Claude-success crop; the relevant spec crop begins later."},
+          {"unit": "KU-12", "ref": "ocr-crops#OCR-00135..OCR-00159", "unitRange": "53.32-61.7", "refRange": "54.51-68.16", "note": "Range spills into the later Finder crop."},
+          {"unit": "KU-17", "ref": "ocr-crops#OCR-00307..OCR-00312", "unitRange": "72.806-77.29", "refRange": "91.2", "note": "Run instructions are visible in a later scrolled terminal crop, not localized to the declared unit window."},
+          {"unit": "KU-20", "ref": "ocr-crops#OCR-00212", "unitRange": "89.23-98.833", "refRange": "72.806", "note": "This OCR line reads '- 构建角色系统？', not the human revision instruction."},
+          {"unit": "KU-20", "ref": "ocr-crops#OCR-00214..OCR-00251", "unitRange": "89.23-98.833", "refRange": "72.806-95.2", "note": "Overbroad range includes unrelated local-SPA lines before the relevant revision/edit crops."}
+        ]},
+        {"correctExample": "Kimi README, complete success UI, project-state, Finder, preview, and most revision references are localized to the correct carrier windows."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 65,
+      "denominator": 70,
+      "rationale": "Counted input, action, parameter, output, before, during, and after for each of the audit's ten stages. Partial fields do not count. V2 closes every demonstrated stage; losses are limited to the partly inferred pre-environment stage, API-key example parameters, and visible external-generation option parameters.",
+      "examples": [
+        {"stage": 0, "score": "4/7", "counted": ["input", "output", "during", "after"], "missed": ["action", "parameter", "before"], "note": "V2 preserves Node/npm/account prerequisites and that setup is not fully shown, but omits the visible Node.js v25.1.0 parameter and does not formalize the unknown initial state."},
+        {"stage": 1, "score": "7/7", "missed": [], "note": "Claude install and Kimi CLI alternative are accurately bounded as shown instructions."},
+        {"stage": 2, "score": "6/7", "missed": ["parameter"], "note": "API-key creation is closed, but example name claudecode and project default are omitted."},
+        {"stage": 3, "score": "7/7", "missed": [], "note": "Configuration and the full visible success state are closed."},
+        {"stage": 4, "score": "7/7", "missed": [], "note": "Detailed specification, already-populated project, agent read/plan boundary, and unknown origin are all present."},
+        {"stage": 5, "score": "6/7", "missed": ["parameter"], "note": "External UI, human save/name/place, and Finder output are closed; visible 1:1/2K/style-description option fragments are not retained."},
+        {"stage": 6, "score": "7/7", "missed": [], "note": "File handoff, agent integration, and local index.html browser output are closed."},
+        {"stage": 7, "score": "7/7", "missed": [], "note": "Human review and the tested-versus-shown boundary are complete."},
+        {"stage": 8, "score": "7/7", "missed": [], "note": "Human request, file/CSS edit, and revised preview form a complete state transition."},
+        {"stage": 9, "score": "7/7", "missed": [], "note": "Genre examples, unverified generalization, and CTA are correctly bounded."}
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {"countingUnit": "audit.unknowns entry", "explicitlyPreservedIds": ["U-01", "U-02", "U-03", "U-04", "U-05", "U-06", "U-07", "U-08", "U-09", "U-12", "U-13", "U-14", "U-15", "U-16", "U-17", "U-18", "U-19"]},
+        {"countingUnit": "audit.unknowns entry", "correctAbstentionIds": ["U-10", "U-11", "U-20"], "note": "V2 does not invent image post-processing, project totals, or key-safety guarantees. It reconstructs no secret and makes no security-safety claim."},
+        {"audioBoundary": "AAC carrier presence is known; specific music/SFX identity and narrative role remain unknown."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judgeDisposition": {
+    "eligible": true,
+    "run": true,
+    "reason": "All hard gates pass; JUDGE scores are therefore substantive and do not override any failed contract."
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 4,
+    "executionValue": 5,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent comparison against the audit finds coverage of speech/platform subtitles, step overlays, README/config/spec/project text, API/terminal/Claude UI, external image UI, Finder files, browser preview, action sequences, examples, editing order, presenter framing, CTA, and the available AAC carrier. All seven audit meaning reversals are represented: showcase-to-tutorial, zero-code-to-technical-operations, plain-language-to-detailed-specification, blank-generation-to-pre-existing-project, agent-art-to-external/human-art, one-pass-to-human-review, and mobile-game-to-local-SPA. The audited graph is closed across human, Claude Code, Moonshot/K2, specification, existing project, external image tool, local files, browser prototype, review, and revision; hard cuts remain explicitly unclosed rather than falsely proved. The 32-cue transcript and cue ledger are independently exact and complete. Residual OCR-reference mistakes are evidence hygiene defects, not unguarded closures."
+  },
+  "examples": [
+    {
+      "type": "cue_ledger",
+      "detail": "Evidence-v2 has 32 cues. reconstruction.transcript has the same 32 IDs, exact text, and exact start/end values; coverageMatrix.cueAccountability has 32 unique entries and every entry maps to at least one knowledge unit."
+    },
+    {
+      "type": "strong_closure",
+      "item": "external art to agent handoff",
+      "detail": "KU-13 through KU-17 preserve the missing-art problem, unbranded external UI, human selection/save/naming/placement, Finder state, agent discovery/integration, and local index.html browser output."
+    },
+    {
+      "type": "strong_closure",
+      "item": "specification and origin boundary",
+      "detail": "KU-09 through KU-12 recover the visible engineering/system requirements while explicitly refusing to assign creation provenance to the already-populated story/characters/assets state."
+    },
+    {
+      "type": "residual_defect",
+      "item": "OCR citation precision",
+      "detail": "KU-20 cites OCR-00212 as the revision instruction, but that line actually reads '- 构建角色系统？'; other OCR ranges cross crop boundaries. The surrounding claim remains independently supported by cues, targeted frames, and later correct crop lines."
+    }
+  ]
+}

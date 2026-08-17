@@ -1,0 +1,68 @@
+{
+  "reportVersion": "2.0",
+  "validatedSchemaVersion": "2.0",
+  "structuralReady": true,
+  "completionReady": true,
+  "completionBlocked": false,
+  "semanticReviewRequired": true,
+  "machineConclusion": "completion_candidate_requires_semantic_review",
+  "errorCount": 0,
+  "errors": [],
+  "blockingConditions": [],
+  "derivedSafety": {
+    "assetRights": {
+      "status": "clear",
+      "clearCount": 3,
+      "blockedCount": 0
+    },
+    "claims": {
+      "verified": 0,
+      "notVerified": 2,
+      "hypothesis": 2
+    },
+    "privacy": {
+      "status": "not_checked",
+      "requiredCount": 0,
+      "coveredCount": 0,
+      "blockedCount": 0
+    },
+    "platform": {
+      "status": "not_checked",
+      "requiredCount": 0,
+      "coveredCount": 0,
+      "blockedCount": 0
+    }
+  },
+  "semanticChecks": [
+    {
+      "id": "S1",
+      "name": "proof_scope_and_fidelity",
+      "status": "not_machine_verified"
+    },
+    {
+      "id": "S2",
+      "name": "promise_alignment",
+      "status": "not_machine_verified"
+    },
+    {
+      "id": "S3",
+      "name": "production_feasibility",
+      "status": "not_machine_verified"
+    },
+    {
+      "id": "S4",
+      "name": "originality_and_source_injection",
+      "status": "not_machine_verified"
+    },
+    {
+      "id": "S5",
+      "name": "claim_and_asset_safety",
+      "status": "not_machine_verified"
+    },
+    {
+      "id": "S6",
+      "name": "causal_calibration",
+      "status": "not_machine_verified"
+    }
+  ]
+}

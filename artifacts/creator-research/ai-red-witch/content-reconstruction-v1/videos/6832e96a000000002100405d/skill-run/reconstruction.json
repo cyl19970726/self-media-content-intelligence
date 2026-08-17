@@ -1,0 +1,659 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/capture-protocol.json",
+  "scopeStatement": "本重建只描述 83.173 秒原视频、提供 SRT、新 evidence pack、本次定向帧/OCR 及对 0–83.220313 秒完整源混音的有界检查。品牌数、带货额、GMV、产品能力、行业定位和商业效果不做外部核验；画面示例与作者主张严格分层，人物外观不被升级为真实身份或数字身份。另给出 bounded reuse disposition：只允许抽象编排/功能层复用，不把视频中出现的具体素材、身份、品牌、数字、商用语言或音频视为已清权。",
+  "viewerChange": {
+    "before": "数字人带货可能被视为尚未落地、容易识别或只能单独念稿的概念。",
+    "after": "视频试图让观众相信京东数字人已被品牌实际采用，形式可扩展到真人同播、商品讲解和穿搭展示，并以安踏、巴拉巴拉及商业数字营造规模感；重建同时明确这些规模、同步、替代和效果范围没有在视频内被独立验证。",
+    "intendedChanges": [
+      "从‘AI 主播是未来概念’转到‘作者称其已在带货’。",
+      "从单一主播想象转到单人、双人、走秀、品类化主播等形式。",
+      "用品牌案例和商业数字建立落地印象。",
+      "以是否愿意在 AI 直播间购买作为最终个人决策问题。"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "protocol_targeted_frame_manifest",
+      "producedBy": "capture-protocol-evidence.mjs using capture-protocol.json",
+      "timeRange": {"start": 0, "end": 83.167},
+      "limitations": ["离散帧/帧序列不能证明整段连续无剪辑", "没有执行音频与唇形的逐帧对齐测试", "隐藏后台操作、人物身份、实时生成和素材授权不可见"]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macos_vision_ocr_proposals_with_human_frame_review",
+      "producedBy": "ocr-frames.swift; high-impact rows checked against source frames",
+      "timeRange": {"start": 0, "end": 83.167},
+      "limitations": ["OCR 是候选读法而非自动真值", "直播 UI 小字、账号、评论和价格存在低置信或误识别", "仅接受与源帧人工核对一致且对语义必要的行"]
+    },
+    {
+      "id": "SRC-AUDIO-WAV",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/audio-evidence/source-audio.wav",
+      "kind": "full_source_mix_pcm_audio",
+      "producedBy": "ffmpeg extraction from original MP4, 16 kHz mono PCM s16le",
+      "timeRange": {"start": 0, "end": 83.220313},
+      "limitations": ["这是旁白、音乐、音效与可能插入原声的混合轨，不是分轨", "不能从混音本身确定曲目、权利或说话人真实身份"]
+    },
+    {
+      "id": "SRC-AUDIO-ASR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/audio-evidence/source-audio.json",
+      "kind": "full_source_audio_machine_transcription",
+      "producedBy": "OpenAI Whisper small, Chinese, word timestamps",
+      "timeRange": {"start": 0, "end": 83.02},
+      "limitations": ["ASR 是机器候选且存在错字", "small 模型漏掉 48.66–53.48 秒，已由 SRC-AUDIO-SEGMENT 复检", "不替代 provided SRT 的逐字合同"]
+    },
+    {
+      "id": "SRC-AUDIO-SEGMENT",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/audio-evidence/segment-45-57.json",
+      "kind": "targeted_source_audio_machine_transcription",
+      "producedBy": "OpenAI Whisper medium on source-audio 45–57 seconds",
+      "timeRange": {"start": 45, "end": 57},
+      "limitations": ["时间戳相对于 45 秒截取片段", "用于证明漏段仍有旁白，不用于静默改写 provided SRT"]
+    },
+    {
+      "id": "SRC-AUDIO-INSPECTION",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6832e96a000000002100405d/skill-run/audio-evidence/audio-inspection.json",
+      "kind": "bounded_full_timeline_audio_carrier_inspection",
+      "producedBy": "full-mix ASR, targeted ASR, 5-second/2-second AST AudioSet classification and 5-second RMS checks",
+      "timeRange": {"start": 0, "end": 83.220313},
+      "limitations": ["AudioSet 标签和分数是机器候选", "未做音乐/人声分轨", "不能确认曲目身份、无缝换曲、低电平被掩蔽原声或任何音频权利"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 4.92, "text": "你肯定想不到ai主播已经开始带货了，就在刚刚我参加完京东云大会", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 4.92, "end": 9.48, "text": "在现场体验了不少京东云出品的神器，比如零代码做app和agent", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]},
+      {"id": "CUE-003", "start": 9.49, "end": 13.527, "text": "但最让我惊艳的是这些已经上岗直播带货的京东数字人", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"]},
+      {"id": "CUE-004", "start": 13.527, "end": 17.97, "text": "这些数字人已经有超过一万家品牌都在用，一年带货超过一百四十亿", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-005", "start": 17.98, "end": 21.74, "text": "想想你最近买的那些东西，说不定都是ai卖给你的，说实话啊", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007"]},
+      {"id": "CUE-006", "start": 21.74, "end": 26.77, "text": "我知道京东在电商加ai上憋大招，但没想到他们把数字人做到了这么逼真", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-007", "SHOT-008", "SHOT-009", "SHOT-010", "SHOT-011", "SHOT-012", "SHOT-013", "SHOT-014", "SHOT-015"]},
+      {"id": "CUE-007", "start": 26.78, "end": 31.958, "text": "嘴型和语音的完全同步，这都是一些基本功了，而数字人加真人的双人直播", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-015", "SHOT-016"]},
+      {"id": "CUE-008", "start": 31.958, "end": 36.31, "text": "Ai和人类一起直播讲解商品，数字人还能走秀展示穿搭", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-016"]},
+      {"id": "CUE-009", "start": 36.32, "end": 40.92, "text": "这个就太赛博了，完全看不出来任何猫腻，就拿大家都知道的安踏来说", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-016", "SHOT-017"]},
+      {"id": "CUE-010", "start": 40.92, "end": 43.79, "text": "他们已经在线下旗舰店打造了数字人直播间", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-017"]},
+      {"id": "CUE-011", "start": 43.8, "end": 48.76, "text": "什么商品讲解折扣情况，爆款穿搭的信息全靠这个数字人在讲解", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-017", "SHOT-018", "SHOT-019"]},
+      {"id": "CUE-012", "start": 48.76, "end": 51.52, "text": "也可以和运动裤混搭，打造出不同的时尚造型", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-019"]},
+      {"id": "CUE-013", "start": 51.53, "end": 56.73, "text": "无论哪种搭配，大家都可以轻松驾驭，另外一个童装品牌巴拉巴拉也借助了数字人", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-019"]},
+      {"id": "CUE-014", "start": 56.73, "end": 58.27, "text": "搭建了近十个直播间", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-019", "SHOT-020"]},
+      {"id": "CUE-015", "start": 58.28, "end": 62.32, "text": "并且数字人直播在整个gmv占比高达百分之十五", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-020", "SHOT-021"]},
+      {"id": "CUE-016", "start": 62.32, "end": 64.78, "text": "所有的这些技术都是基于京东数字人", "representativeFrame": "frames/cues/cue-016.jpg", "overlappingShots": ["SHOT-021", "SHOT-022", "SHOT-023"]},
+      {"id": "CUE-017", "start": 64.79, "end": 68.71, "text": "这次六幺八更是推出了行业首批高盛宴可用的数字人", "representativeFrame": "frames/cues/cue-017.jpg", "overlappingShots": ["SHOT-023"]},
+      {"id": "CUE-018", "start": 68.71, "end": 71.13, "text": "它不仅定制的音色有感情有起伏", "representativeFrame": "frames/cues/cue-018.jpg", "overlappingShots": ["SHOT-023", "SHOT-024", "SHOT-025"]},
+      {"id": "CUE-019", "start": 71.14, "end": 75.54, "text": "嘴型同步的很自然，而且针对不同的品类有各种各样的特色主播", "representativeFrame": "frames/cues/cue-019.jpg", "overlappingShots": ["SHOT-025", "SHOT-026", "SHOT-027"]},
+      {"id": "CUE-020", "start": 75.54, "end": 80.42, "text": "更重要的是也没有那种ai味儿，各种场景的带货话术，真的就是信手拈来", "representativeFrame": "frames/cues/cue-020.jpg", "overlappingShots": ["SHOT-027", "SHOT-028", "SHOT-029"]},
+      {"id": "CUE-021", "start": 80.43, "end": 83.173, "text": "分分钟带火，你会在ai直播间买东西吗？", "representativeFrame": "frames/cues/cue-021.jpg", "overlappingShots": ["SHOT-029"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开头主张：AI 主播已经开始带货",
+      "importance": "core",
+      "statement": "作者以‘AI 主播已经开始带货’为开头结论，并自述刚参加‘京东云大会’；AI 已上岗与具体大会身份都是作者主张，不是画面独立认证的外部事实。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0, "end": 13.527},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "原话给出 AI 主播已开始带货及大会语境。"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "作者将京东数字人描述为已上岗直播带货。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "京东数字人已经进入直播带货。", "evidenceUnitIds": ["KU-02", "KU-03"], "conditions": ["仅重建作者说法和视频内示例"], "counterexamples": [], "actions": ["把问题转向观众是否可能已接触 AI 带货"], "limits": ["无外部部署清单或直播后台证明", "具体大会身份未由画面独立认证"]},
+      "unknowns": ["实际在岗数量、时间范围、直播平台和后台运行方式未知。", "‘京东云大会’的具体名称、日期、凭证和独立认证未知。"]
+    },
+    {
+      "id": "KU-02",
+      "title": "开头画面：安踏直播 UI 与会场真人",
+      "importance": "supporting",
+      "statement": "0–1.2 秒画面可见标题‘安踏数字人直播间’的竖屏直播 UI，内有两个人物、价格/商品及互动控件；约 3–4.5 秒切到会场中的真人讲述者。该画面只建立品牌化直播示例与大会场景，不能确定直播人物的真人/数字身份、素材时间、地点或授权。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 4.92},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "显示竖屏直播 UI、两个人物和标题。"},
+        {"refType": "ocr", "ref": "OCR-00001", "supports": "经源帧人工核对，文字为‘安踏数字人直播间’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0003", "supports": "显示会场中的真人讲述者。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["两个人物各自身份未知。", "直播素材的账号、时间、地点与授权未知。"]
+    },
+    {
+      "id": "KU-03",
+      "title": "画面仅确认京东/JD Cloud 相关会展语境",
+      "importance": "context",
+      "statement": "画面可确认京东/JD Cloud 相关会展或展位语境，并剪入零代码挑战赛屏幕和多块数字人展示屏；这些视觉信号不能独立认证具体活动就是作者所称的‘京东云大会’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 4.92, "end": 13.527},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "显示零代码挑战赛/会场屏幕。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0008", "supports": "显示多块竖屏数字人展示。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["具体大会名称、日期、凭证与独立认证未知。", "具体 App/Agent 产品名、功能与演示结果未知。"]
+    },
+    {
+      "id": "KU-04",
+      "title": "规模主张：一万家品牌与一年 140 亿",
+      "importance": "core",
+      "statement": "作者声称‘超过一万家品牌’正在使用这些数字人，并称其‘一年带货超过一百四十亿’。视频没有给出数据来源、币种、统计周期起止、成交额/GMV 口径、去重、退款或归因方法。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 13.527, "end": 17.97},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-004", "supports": "完整保存品牌数和带货额说法。"},
+        {"refType": "ocr", "ref": "OCR-00071", "supports": "画面大字幕显示‘已经有超过10000家品牌’。"},
+        {"refType": "ocr", "ref": "OCR-00074", "supports": "画面大字幕显示‘一年带货超过140亿’。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "数字人已经形成大规模商业应用。", "evidenceUnitIds": [], "conditions": ["数字来自作者口播/字幕"], "counterexamples": [], "actions": [], "limits": ["没有可核验来源与统计口径", "会场屏幕只能作背景示例，不能独立证明规模"]},
+      "unknowns": ["数据来源、币种、周期、口径、去重、退款和归因未知。"]
+    },
+    {
+      "id": "KU-05",
+      "title": "与观众相关化：近期购买可能由 AI 售出",
+      "importance": "context",
+      "statement": "作者用‘你最近买的那些东西，说不定都是 AI 卖给你的’把规模主张转化为个人相关的可能性；视频没有识别任何具体订单或证明这种可能性。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 17.98, "end": 21.74},
+      "evidence": [{"refType": "cue", "ref": "CUE-005", "supports": "保存带有‘说不定’限定的修辞。"}],
+      "confidence": "high",
+      "unknowns": ["没有具体消费者、订单、直播间或归因证据。"]
+    },
+    {
+      "id": "KU-06",
+      "title": "逼真度是作者评价",
+      "importance": "supporting",
+      "statement": "作者评价京东把数字人做得‘这么逼真’，随后用人物宣传卡和黑白风格素材强化视觉印象；这不是盲测、识别率或与真人的受控比较。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 21.74, "end": 26.77},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-006", "supports": "作者给出逼真评价。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0013", "supports": "显示人物宣传卡。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0017", "supports": "显示黑白人物素材。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["没有逼真度指标、样本规模、盲测对象或比较条件。"]
+    },
+    {
+      "id": "KU-07",
+      "title": "口型与语音同步：主张强于画面证据",
+      "importance": "core",
+      "statement": "作者先称嘴型与语音‘完全同步’只是基本功，后又称嘴型同步‘很自然’。定向连续帧可见多个主播画面及口部姿态随时间变化，但本次证据没有逐帧音画对齐、延迟/误差测量或盲评，因此只能确认作者主张和可见口型运动，不能确认‘完全同步’或自然度。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 26.78, "end": 75.54},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "作者称完全同步。"},
+        {"refType": "cue", "ref": "CUE-019", "supports": "作者称同步自然。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0057", "supports": "主播口部状态的一个时点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0058", "supports": "相邻时点可见口部姿态变化。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "另一主播示例。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "数字人口型同步自然且可达完全同步。", "evidenceUnitIds": ["KU-19"], "conditions": ["画面只展示有限主播片段"], "counterexamples": [], "actions": [], "limits": ["无音画对齐测试", "无延迟/误差指标", "无盲评"]},
+      "unknowns": ["同步误差、音频来源、实时性和自然度评价方法未知。"]
+    },
+    {
+      "id": "KU-08",
+      "title": "发布材料展示单人、双人和走秀式形式",
+      "importance": "core",
+      "statement": "约 28–37 秒的发布材料以 1.0/2.0/3.0/4.0 式编号展示多种竖屏直播形态，可保守确认单人、双人同框及走秀式服装展示的示意；小字命名并非全部可靠可读，编号不被解释为已核验产品版本。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 28, "end": 37.6},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0019", "supports": "显示 1.0 式单人竖屏示意。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0020", "supports": "显示 2.0 式单人店铺实景示意。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "显示 3.0 式双人同框示意。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0028", "supports": "显示 4.0 式安踏服装直播示意。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["各编号的正式名称、版本定义、上线范围和实时生成方式未知。"]
+    },
+    {
+      "id": "KU-09",
+      "title": "真人同播与共同讲商品是作者能力主张",
+      "importance": "core",
+      "statement": "作者声称数字人可与真人双人直播，并称 AI 和人类可一起直播讲解商品。发布材料确有双人同框和商品直播式 UI，但没有显示后台身份标注、实时交互链路或共同完成讲解的可验证过程。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 26.78, "end": 36.31},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "给出数字人加真人双人直播主张。"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "给出一起讲解商品主张。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "显示双人同框竖屏示意。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0025", "supports": "显示双人式直播 UI。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["哪一位是真人/数字人、是否实时、是否彼此响应、讲解分工和延迟未知。"]
+    },
+    {
+      "id": "KU-10",
+      "title": "走秀/展示穿搭的有限画面证据",
+      "importance": "core",
+      "statement": "32–40.8 秒连续帧显示安踏样式直播 UI 中黑衣人物改变位置、行走或转身，并有手部指向服装的画面，可支持‘服装展示/走秀式运动’的视觉观察；它不证明人物一定是数字人、服装自动更换、实时生成或零人工参与。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 32, "end": 40.8},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-008", "supports": "作者把动作称作数字人走秀展示穿搭。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0026", "supports": "显示安踏式直播 UI 中人物站立。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "相邻时段人物位置/姿态变化。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "显示人物手指服装。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0034", "supports": "显示人物继续改变位置/姿态。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["人物身份、生成方式、实时性、服装资产变更流程和人工参与未知。"]
+    },
+    {
+      "id": "KU-11",
+      "title": "安踏线下旗舰店数字人直播间是作者案例主张",
+      "importance": "core",
+      "statement": "作者称安踏已在线下旗舰店打造数字人直播间。视频剪入带安踏语境的直播 UI，但没有展示旗舰店外景、地址、后台或时间证明，故地点与部署状态只作为作者主张保存。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 36.32, "end": 43.79},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-009", "supports": "引出安踏案例。"},
+        {"refType": "cue", "ref": "CUE-010", "supports": "给出线下旗舰店数字人直播间主张。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "显示安踏语境的直播 UI。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["具体旗舰店、地址、账号、时间、运营主体和部署方式未知。"]
+    },
+    {
+      "id": "KU-12",
+      "title": "安踏画面展示商品、优惠、评论与服装局部",
+      "importance": "core",
+      "statement": "41.3–53 秒直播 UI 可见两个人物、商品/价格区域、评论与互动控件；45–49 秒出现黑色服装局部及 ANTA 标识，OCR 还能提出‘满500减70元券’等优惠文字候选。画面支持商品和折扣语境，但小字 OCR 不足以恢复完整商品参数或成交结果。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 41.3, "end": 53},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "显示两个人物、价格/商品和互动 UI。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0038", "supports": "显示服装局部和品牌标识。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0040", "supports": "显示商品直播 UI 和服装/人物。"},
+        {"refType": "ocr", "ref": "OCR-00326", "supports": "低置信 OCR 提出满500减70元券；已仅作为优惠存在的辅助，不采信全部字串。"}
+      ],
+      "confidence": "medium",
+      "unknowns": ["完整商品名、原价/到手价、库存、券条件、账号和成交状态不可可靠读出。"]
+    },
+    {
+      "id": "KU-13",
+      "title": "安踏全量讲解与穿搭话术是作者主张",
+      "importance": "core",
+      "statement": "作者称商品讲解、折扣、爆款穿搭信息‘全靠这个数字人’讲解，并给出运动裤混搭、不同造型和轻松驾驭的示例话术。画面有商品/优惠/服装语境，但没有证明全部内容均由数字人独立生成或完成，也没有展示话术生成后台。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 43.8, "end": 54.13},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-011", "supports": "保存‘全靠数字人’的范围主张。"},
+        {"refType": "cue", "ref": "CUE-012", "supports": "保存运动裤混搭话术。"},
+        {"refType": "cue", "ref": "CUE-013", "supports": "保存轻松驾驭的评价和品牌转折。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "显示品牌直播 UI 与服装/商品语境。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "安踏直播间的商品、折扣和爆款穿搭信息由数字人完成讲解。", "evidenceUnitIds": ["KU-12"], "conditions": ["仅有剪辑后的直播画面和口播"], "counterexamples": [], "actions": [], "limits": ["未见脚本生成后台", "未见人工角色分工", "未证明‘全靠’的全称范围"]},
+      "unknowns": ["话术来源、人工审核、主播身份、覆盖商品范围和效果未知。"]
+    },
+    {
+      "id": "KU-14",
+      "title": "巴拉巴拉：近十个直播间与 15% GMV",
+      "importance": "core",
+      "statement": "作者称童装品牌巴拉巴拉借助数字人搭建了近十个直播间，并称数字人直播占‘整个 GMV’高达 15%。视频没有说明‘近十个’的精确数量、唯一房间数、统计周期、GMV 分母、渠道范围、退款或真人协作归因。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 53, "end": 62.32},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-013", "supports": "引出巴拉巴拉借助数字人。"},
+        {"refType": "cue", "ref": "CUE-014", "supports": "近十个直播间主张。"},
+        {"refType": "cue", "ref": "CUE-015", "supports": "15% GMV 占比主张。"},
+        {"refType": "ocr", "ref": "OCR-00378", "supports": "画面大字幕为‘搭建了近10个直播间’。"},
+        {"refType": "ocr", "ref": "OCR-00391", "supports": "画面大字幕提出‘占比高达到15%’。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "巴拉巴拉数字人直播已形成显著规模和 GMV 贡献。", "evidenceUnitIds": ["KU-15"], "conditions": ["数据仅来自作者口播/字幕"], "counterexamples": [], "actions": [], "limits": ["无统计报表或来源", "无周期、分母和归因", "可见多屏不能证明近十个独立直播间"]},
+      "unknowns": ["精确房间数、统计周期、GMV 分母、渠道、退款和归因未知。"]
+    },
+    {
+      "id": "KU-15",
+      "title": "巴拉巴拉画面只显示多窗口与多个展示屏",
+      "importance": "supporting",
+      "statement": "55–61.5 秒画面先显示电脑上的多窗口/管理式界面，随后显示会场中的两块竖屏，屏内为不同人物/商品页面。它能说明多界面/多屏展示语境，但不能数出‘近十个’唯一直播间，也不能证明 15% GMV。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 55, "end": 61.5},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0043", "supports": "显示电脑多窗口/管理式界面。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "显示会场多块竖屏。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0048", "supports": "显示两块竖屏及 15% 大字幕。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["电脑界面产品身份与小字不可可靠读出；竖屏是否对应独立直播间未知。"]
+    },
+    {
+      "id": "KU-16",
+      "title": "案例技术被归因于京东数字人",
+      "importance": "supporting",
+      "statement": "作者将前述技术统一归因于‘京东数字人’，这是作者的产品归属主张；视频未展示组件清单、第三方技术、部署架构或责任边界。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 62.32, "end": 64.78},
+      "evidence": [{"refType": "cue", "ref": "CUE-016", "supports": "完整保存产品归属表述。"}],
+      "confidence": "high",
+      "unknowns": ["具体技术栈、第三方依赖、品牌定制方和运维责任未知。"]
+    },
+    {
+      "id": "KU-17",
+      "title": "载体冲突：‘高盛宴可用’与‘高商业可用’",
+      "importance": "core",
+      "statement": "提供 SRT 在 64.79–68.71 秒逐字写作‘行业首批高盛宴可用的数字人’，而 68 秒源帧可清楚读出‘高商业可用数字人’，Vision OCR 也提出相同读法。语义上画面文字更支持‘高商业可用’，但重建保留 SRT 原文，不静默改写；‘行业首批’范围和‘高商业可用’标准仍未知。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 64.79, "end": 68.71},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-017", "supports": "保存 SRT 原文‘高盛宴可用’。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "源帧人工可读‘高商业可用数字人’。"},
+        {"refType": "ocr", "ref": "OCR-00403", "supports": "OCR 候选为‘高商业可用数字人’，并已对源帧人工核对。"}
+      ],
+      "confidence": "high",
+      "reasoning": "画面中文字边缘清晰且与产品语境一致，故支持‘高商业可用’作为画面读法；SRT 仍按证据合同原样保留。",
+      "unknowns": ["口播实际字音未作独立听辨；行业比较集合、发布主体和可用性标准未知。"]
+    },
+    {
+      "id": "KU-18",
+      "title": "情感音色是作者效果主张",
+      "importance": "core",
+      "statement": "作者称定制音色‘有感情有起伏’。现有字幕、帧与 OCR 不能测量情感、音色定制过程或与基线的差异，故不把该评价写成已证明性能。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 68.71, "end": 71.13},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-018", "supports": "保存情感音色主张。"},
+        {"refType": "ocr", "ref": "OCR-00425", "supports": "画面大字幕显示‘有感情有起伏’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["音色样本、基线、情感标签、测试者和评价协议未知。"]
+    },
+    {
+      "id": "KU-19",
+      "title": "多个主播外观/背景示例可见，品类适配仍属主张",
+      "importance": "core",
+      "statement": "70.2–80.2 秒至少轮换展示多位不同性别表达、服装和背景的竖屏主播，可支持外观与场景示例多样性；作者进一步称不同品类有各种特色主播，但视频未给出品类列表、匹配规则、覆盖率或效果对照。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 70.2, "end": 80.2},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-019", "supports": "作者提出不同品类特色主播。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "显示女性风格主播示例。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "显示男性风格主播示例。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "显示女性主播及不同背景。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "显示另一男性主播及背景。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "显示另一女性主播及蓝色背景。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["精确品类、主播来源与授权、生成模型、匹配规则和效果未知。"]
+    },
+    {
+      "id": "KU-20",
+      "title": "‘没有 AI 味’与话术信手拈来是作者评价",
+      "importance": "core",
+      "statement": "作者称这些主播‘没有那种 AI 味’，并称各种场景带货话术‘信手拈来’。画面显示直播式 UI、评论和不同主播，但没有自然度盲测、话术输入/生成/审核过程、覆盖场景清单或质量指标。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 75.54, "end": 80.42},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-020", "supports": "保存无 AI 味和话术评价。"},
+        {"refType": "ocr", "ref": "OCR-00511", "supports": "大字幕显示‘也没有那种AI味’。"},
+        {"refType": "ocr", "ref": "OCR-00523", "supports": "大字幕显示‘各种场景的带货话术’。"},
+        {"refType": "ocr", "ref": "OCR-00553", "supports": "大字幕显示‘真的是信手拈来’。"}
+      ],
+      "confidence": "high",
+      "unknowns": ["话术输入、模型、审核、人设约束、覆盖范围、错误率和用户评价未知。"]
+    },
+    {
+      "id": "KU-21",
+      "title": "‘分分钟带火’是未证因果效果主张",
+      "importance": "core",
+      "statement": "作者以‘分分钟带火’强化商业效果，但视频没有给出对应商品、销售时间序列、对照组、投流、价格促销或其他混杂因素，不能据此建立数字人导致销量增长的因果关系。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 80.43, "end": 81.3},
+      "evidence": [{"refType": "cue", "ref": "CUE-021", "supports": "保存效果原话。"}],
+      "confidence": "high",
+      "unknowns": ["商品、销量、时间窗、对照、投流、促销和因果归因未知。"]
+    },
+    {
+      "id": "KU-22",
+      "title": "结尾把技术惊讶转为购买选择",
+      "importance": "core",
+      "statement": "结尾显示两个手机式直播页面，并直接问‘你会在 AI 直播间买东西吗？’，把开头‘AI 主播已经开始带货’的惊讶回环为观众的消费意愿，而不是提供产品购买或使用步骤。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 80.43, "end": 83.173},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "开头建立 AI 已开始带货。"},
+        {"refType": "cue", "ref": "CUE-021", "supports": "结尾提出购买问题。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "显示双手机式页面和结尾问题。"},
+        {"refType": "ocr", "ref": "OCR-00569", "supports": "经源帧核对为‘你会在AI直播间买东西吗’。"}
+      ],
+      "confidence": "high",
+      "reasoning": "同一视频由‘已经开始卖’开场，以‘你会不会买’收尾，信息功能由事实惊讶转向个人选择。",
+      "unknowns": []
+    },
+    {
+      "id": "KU-23",
+      "title": "采用与核验边界在检查范围内未出现",
+      "importance": "core",
+      "statement": "对 0–83.167 秒全部 21 条字幕、1.5 秒 dense frames 与本次 3 秒全时线定向帧检查后，未观察到商业数据来源、测试协议、价格、试用/访问路径、适用平台、账号/地区条件、人物/素材授权或服务责任说明。该结论只限定于已检查视频范围，不表示这些信息在产品外部不存在。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 83.167},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "全时线边界检查起点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "中前段边界检查样本。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0090", "supports": "品牌案例段边界检查样本。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0099", "supports": "全时线边界检查终点。"},
+        {"refType": "cue", "ref": "CUE-001", "supports": "字幕检查起点。"},
+        {"refType": "cue", "ref": "CUE-021", "supports": "字幕检查终点。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "负证据来自完整字幕、原 evidence pack 的 1.5 秒密集帧和协议的全时线 3 秒复核；小字仍可能不可读，因此只陈述未观察到。",
+      "unknowns": ["外部产品文档中是否存在这些信息未知。", "部分直播 UI 小字不可读。"]
+    },
+    {
+      "id": "KU-24",
+      "title": "技术 shot 边界不等于语义场景或连续操作",
+      "importance": "supporting",
+      "statement": "evidence pack 给出 29 个技术 shot；17.8–28.7 秒边界复核显示其中包含快切会场、隐喻素材、人物宣传卡和发布材料，也有同一语义段内的内容变化。它们只用于定位观察，不证明 29 个语义场景、编辑次数或任一直播流程连续无剪辑。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 83.167},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0100", "supports": "边界前后之一。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0101", "supports": "相邻边界后画面变化。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0112", "supports": "同一快切段的另一素材。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0119", "supports": "转入发布材料。"},
+        {"refType": "shot", "ref": "SHOT-016", "supports": "较长技术区间覆盖多个直播形式示意。"}
+      ],
+      "confidence": "high",
+      "reasoning": "自动 scene detection 响应画面差异，不提供语义或剪辑意图标签。",
+      "unknowns": ["未显式可见的隐藏剪辑数量未知。"]
+    },
+    {
+      "id": "KU-25",
+      "title": "完整源音频：连续旁白、持续音乐候选与结尾收束音效",
+      "importance": "context",
+      "statement": "对 0–83.220313 秒源混音的有界检查识别出 0–83.02 秒连续中文旁白；5 秒 AudioSet 窗口均把 Music 列为主要候选之一，支持整段持续背景音乐床；80–83.22 秒出现较明确的 Ding/Ping 类收束音效候选。未识别出稳定的第二段可理解对话，但被旁白/音乐掩蔽的低电平插入原声不能排除。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 83.220313},
+      "evidence": [
+        {"refType": "source", "ref": "SRC-AUDIO-WAV", "supports": "完整源混音证据。"},
+        {"refType": "source", "ref": "SRC-AUDIO-ASR", "supports": "Whisper small 覆盖 0–83.02 秒旁白。"},
+        {"refType": "source", "ref": "SRC-AUDIO-SEGMENT", "supports": "Whisper medium 复核 45–57 秒，补回 small 漏掉的运动裤混搭/造型旁白。"},
+        {"refType": "source", "ref": "SRC-AUDIO-INSPECTION", "supports": "记录全部 5 秒/2 秒声音分类窗口、电平范围和有界结论。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "旁白来自完整与定向 ASR 的一致语义；Music 与结尾 Ding/Ping 来自对完整混音的连续窗口机器听检，故只写候选与受限作用，不升级为曲目或确切音效身份。",
+      "unknowns": ["背景音乐是否为同一曲目、是否有无缝换曲、曲名和来源未知。", "结尾短促音效的精确声音与叙事意图未知。", "被掩蔽的低电平插入原声不能排除。", "音乐、音效、旁白声音和插入原声的权利状态未知。"]
+    },
+    {
+      "id": "KU-26",
+      "title": "视频没有建立‘数字人替代真人主播’的范围",
+      "importance": "core",
+      "statement": "完整视频展示/声称数字人单播、数字人与真人同播、商品讲解和走秀等应用，但没有给出岗位减少、人员替换比例、成本前后、工作时长、人工审核/运营投入或因果对照。因此它能建立‘存在数字人应用形式’的叙事，不能建立数字人已在何种规模上替代真人主播。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 83.167},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-007", "supports": "作者反而明确提出数字人加真人的同播形式。"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "作者称 AI 与人类一起讲解商品。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "显示双人同框示意。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0071", "supports": "全时线边界检查起点。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0099", "supports": "全时线边界检查终点。"}
+      ],
+      "confidence": "high",
+      "reasoning": "‘应用数字人’、‘与真人同播’与‘替代真人岗位’是不同命题，后者需要劳动投入和前后对照，视频未提供。",
+      "unknowns": ["替代岗位数、替代比例、成本/效率变化、人工审核和运营投入未知。"]
+    },
+    {
+      "id": "KU-27",
+      "title": "可复用范围仅限抽象编排与通用功能",
+      "importance": "supporting",
+      "statement": "在不复制具体表达的前提下，可复用的是高层编排/功能：用熟悉场景作钩子、以作者来源语境建立可信度、按能力阶梯展开、用案例承担例证功能、把效果主张与可见证据分层，并用观众决策问题收束。该 disposition 不授予任何具体镜头、人物、品牌、UI、数字、文案或音频的使用权。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 83.220313},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "熟悉直播场景与惊讶钩子。"},
+        {"refType": "cue", "ref": "CUE-003", "supports": "从来源语境转向核心能力。"},
+        {"refType": "cue", "ref": "CUE-009", "supports": "由通用能力转向品牌案例。"},
+        {"refType": "cue", "ref": "CUE-021", "supports": "以观众购买选择收束。"}
+      ],
+      "confidence": "high",
+      "reasoning": "编辑功能和知识关系可抽象描述；具体表达的权利、真实性和商业佐证是不同边界。",
+      "unknowns": []
+    },
+    {
+      "id": "KU-28",
+      "title": "具体素材、身份、品牌、数字与商用语言均未清权",
+      "importance": "core",
+      "statement": "视频本身没有建立第三方直播/会展/宣传素材、人物肖像/声音/数字人模型、安踏与巴拉巴拉案例、品牌/商标/平台 UI、背景音乐/音效、商业数字以及‘行业首批/高商业可用’等商用语言的可复用授权。直接复用前的最小条件包括：可追溯来源；覆盖商业用途、衍生改编、平台、地域和期限的权利范围；人物肖像/声音/模型 release；品牌、商标和平台 UI 许可；品牌案例书面批准；带日期、口径与责任主体的数据佐证；当期价格/优惠复核；音乐、音效和插入原声许可。任一相关条件未闭合时，只能复用 KU-27 的抽象功能。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 83.220313},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "具体安踏直播 UI、人物与品牌元素。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "品牌案例与平台式 UI。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "巴拉巴拉/多屏案例语境。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "‘高商业可用’商用语言和人物宣传素材。"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "品牌数和带货额商业数字。"},
+        {"refType": "cue", "ref": "CUE-015", "supports": "15% GMV 商业数字。"},
+        {"refType": "source", "ref": "SRC-AUDIO-INSPECTION", "supports": "源音频存在持续音乐、结尾音效候选，但曲目/来源/权利未知。"}
+      ],
+      "confidence": "high",
+      "reasoning": "‘视频中出现’不等于‘已获得可复用许可’；检查范围未发现权利链和商业佐证文件，故以未清权为操作默认，而非断言权利绝对不存在。",
+      "unknowns": ["所有相关权利链、release、品牌/UI许可、数据佐证日期与责任主体、当前价格/优惠、音乐音效许可未知。"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-01", "to": "KU-22", "relation": "opening_reframed_as_viewer_decision", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "开头说已开始带货。"}, {"refType": "cue", "ref": "CUE-021", "supports": "结尾问是否购买。"}]},
+    {"from": "KU-01", "to": "KU-03", "relation": "author_label_more_specific_than_visible_event_authentication", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "作者自述‘京东云大会’。"}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "画面仅确认京东/JD Cloud 相关会展语境。"}]},
+    {"from": "KU-04", "to": "KU-01", "relation": "author_claim_used_to_support_scale_of", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "品牌数与带货额用于强化已上岗。"}]},
+    {"from": "KU-08", "to": "KU-09", "relation": "visually_illustrates_but_does_not_fully_verify", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0022", "supports": "双人同框示意。"}]},
+    {"from": "KU-10", "to": "KU-09", "relation": "motion_example_adjacent_to_capability_claim", "evidence": [{"refType": "cue", "ref": "CUE-008", "supports": "同一口播连接真人讲商品与走秀。"}, {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "人物指向服装。"}]},
+    {"from": "KU-12", "to": "KU-13", "relation": "visual_context_supports_but_does_not_establish_full_scope", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0038", "supports": "商品/服装直播语境。"}, {"refType": "cue", "ref": "CUE-011", "supports": "‘全靠’范围来自作者。"}]},
+    {"from": "KU-15", "to": "KU-14", "relation": "juxtaposed_without_statistical_proof", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "可见多个屏幕。"}, {"refType": "cue", "ref": "CUE-015", "supports": "15% 来自口播。"}]},
+    {"from": "KU-19", "to": "KU-20", "relation": "visual_variety_illustrates_but_does_not_verify_quality_claim", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0060", "supports": "显示不同主播外观。"}, {"refType": "cue", "ref": "CUE-020", "supports": "无 AI 味/话术质量来自作者评价。"}]},
+    {"from": "KU-17", "to": "KU-16", "relation": "carrier_conflict_within_product_positioning", "evidence": [{"refType": "cue", "ref": "CUE-017", "supports": "SRT 原文。"}, {"refType": "ocr", "ref": "OCR-00403", "supports": "画面读法。"}]},
+    {"from": "KU-24", "to": "KU-08", "relation": "technical_segmentation_does_not_define_semantic_structure", "evidence": [{"refType": "shot", "ref": "SHOT-016", "supports": "一个技术区间包含多种连续发布示意。"}]},
+    {"from": "KU-09", "to": "KU-26", "relation": "co_streaming_does_not_establish_replacement", "evidence": [{"refType": "cue", "ref": "CUE-007", "supports": "明确说数字人加真人。"}, {"refType": "cue", "ref": "CUE-008", "supports": "明确说 AI 和人类一起。"}]},
+    {"from": "KU-04", "to": "KU-23", "relation": "claim_limited_by_missing_source_and_method", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "只给数值。"}, {"refType": "targeted_frame", "ref": "TARGET-0076", "supports": "对应时间画面未见来源/口径。"}]},
+    {"from": "KU-14", "to": "KU-23", "relation": "claim_limited_by_missing_denominator_and_attribution", "evidence": [{"refType": "cue", "ref": "CUE-015", "supports": "只给 15% 占比。"}, {"refType": "targeted_frame", "ref": "TARGET-0091", "supports": "对应时间画面未见统计报表。"}]},
+    {"from": "KU-25", "to": "KU-22", "relation": "closing_sound_candidate_may_accent_final_question", "evidence": [{"refType": "source", "ref": "SRC-AUDIO-INSPECTION", "supports": "80–83.22 秒出现较明确 Ding/Ping 类候选。"}, {"refType": "cue", "ref": "CUE-021", "supports": "同区间为结尾购买问题。"}]},
+    {"from": "KU-27", "to": "KU-28", "relation": "abstract_function_reuse_bounded_by_specific_expression_clearance", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "可抽象的钩子功能。"}, {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "不可因抽象功能而默认清权的具体品牌/人物/UI。"}]},
+    {"from": "KU-04", "to": "KU-28", "relation": "commercial_figure_requires_dated_substantiation_before_reuse", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "品牌数与带货额数字。"}]},
+    {"from": "KU-17", "to": "KU-28", "relation": "commercial_availability_language_requires_clearance_and_substantiation", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "可见‘高商业可用数字人’。"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-SRT", "available": true, "inspected": true},
+      {"id": "CAR-BURNED", "available": true, "inspected": true},
+      {"id": "CAR-FOOTAGE", "available": true, "inspected": true},
+      {"id": "CAR-MOTION", "available": true, "inspected": true},
+      {"id": "CAR-EDIT", "available": true, "inspected": true},
+      {"id": "CAR-LAYOUT", "available": true, "inspected": true},
+      {"id": "CAR-AUDIO", "available": true, "inspected": true},
+      {"id": "CAR-ABSENCE", "available": true, "inspected": true},
+      {"id": "CAR-REUSE", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01", "KU-02"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-03"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-04", "KU-05"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-07", "KU-08", "KU-09"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-09", "KU-10"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-11", "KU-12", "KU-13"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-14", "KU-15"]},
+      {"id": "MC-08", "captured": true, "unitIds": ["KU-16", "KU-18", "KU-19", "KU-20"]},
+      {"id": "MC-09", "captured": true, "unitIds": ["KU-21", "KU-22"]},
+      {"id": "MC-10", "captured": true, "unitIds": ["KU-17"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-021"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002", "TARGET-0006"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["CUE-004"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["CUE-007", "CUE-008", "TARGET-0022", "TARGET-0032"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["CUE-010", "CUE-011", "TARGET-0036", "TARGET-0038"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["CUE-014", "CUE-015", "TARGET-0045", "TARGET-0048"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["CUE-019", "TARGET-0056", "TARGET-0059", "TARGET-0064"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["CUE-017", "TARGET-0054", "OCR-00403"]},
+      {"id": "REL-09", "evidenced": true, "evidenceRefs": ["SHOT-016", "TARGET-0100", "TARGET-0119"]},
+      {"id": "REL-10", "evidenced": true, "evidenceRefs": ["TARGET-0001", "TARGET-0036", "TARGET-0054", "CUE-004", "CUE-015", "SRC-AUDIO-INSPECTION"]},
+      {"id": "REL-11", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-003", "CUE-009", "CUE-021"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-01", "KU-22"], "evidenceRefs": ["CUE-001", "CUE-003", "CUE-021"]},
+      {"id": "CQ-02", "status": "unknown", "unitIds": ["KU-04", "KU-23"], "evidenceRefs": ["CUE-004", "OCR-00071", "OCR-00074"]},
+      {"id": "CQ-03", "status": "unknown", "unitIds": ["KU-07"], "evidenceRefs": ["CUE-007", "CUE-019", "TARGET-0057", "TARGET-0058"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-08", "KU-09", "KU-10"], "evidenceRefs": ["CUE-007", "CUE-008", "TARGET-0022", "TARGET-0032"]},
+      {"id": "CQ-05", "status": "unknown", "unitIds": ["KU-11", "KU-12", "KU-13"], "evidenceRefs": ["CUE-010", "CUE-011", "TARGET-0036", "TARGET-0038"]},
+      {"id": "CQ-06", "status": "unknown", "unitIds": ["KU-14", "KU-15", "KU-23"], "evidenceRefs": ["CUE-014", "CUE-015", "TARGET-0045", "TARGET-0048"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-17"], "evidenceRefs": ["CUE-017", "TARGET-0054", "OCR-00403"]},
+      {"id": "CQ-08", "status": "answered", "unitIds": ["KU-18", "KU-19", "KU-20"], "evidenceRefs": ["CUE-018", "CUE-019", "CUE-020", "TARGET-0059", "TARGET-0064"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-04", "KU-07", "KU-14", "KU-20", "KU-21", "KU-26"], "evidenceRefs": ["CUE-004", "CUE-015", "CUE-020", "CUE-021"]},
+      {"id": "CQ-10", "status": "unknown", "unitIds": ["KU-23"], "evidenceRefs": ["TARGET-0071", "TARGET-0099", "CUE-001", "CUE-021"]},
+      {"id": "CQ-11", "status": "unknown", "unitIds": ["KU-02", "KU-09", "KU-10", "KU-11", "KU-19"], "evidenceRefs": ["TARGET-0001", "TARGET-0003", "TARGET-0022", "TARGET-0036", "TARGET-0059"]},
+      {"id": "CQ-12", "status": "answered", "unitIds": ["KU-24"], "evidenceRefs": ["SHOT-016", "TARGET-0100", "TARGET-0119"]},
+      {"id": "CQ-13", "status": "answered", "unitIds": ["KU-25"], "evidenceRefs": ["SRC-AUDIO-WAV", "SRC-AUDIO-ASR", "SRC-AUDIO-SEGMENT", "SRC-AUDIO-INSPECTION"]},
+      {"id": "CQ-14", "status": "answered", "unitIds": ["KU-27", "KU-28"], "evidenceRefs": ["CUE-001", "CUE-004", "CUE-015", "TARGET-0001", "TARGET-0054", "SRC-AUDIO-INSPECTION"]},
+      {"id": "CQ-15", "status": "answered", "unitIds": ["KU-01", "KU-03"], "evidenceRefs": ["CUE-001", "TARGET-0006", "TARGET-0008"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01", "KU-03", "KU-22"], "rationale": "开头钩子与作者所称大会身份是核心认知起点；具体会展身份降格处理。"},
+      {"cueId": "CUE-002", "disposition": "context", "unitIds": ["KU-01", "KU-03"], "rationale": "作者称在该活动体验京东云产品；画面仅确认相关会展语境。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-01", "KU-03"], "rationale": "转折到京东数字人上岗带货。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-04"], "rationale": "核心规模数字。"},
+      {"cueId": "CUE-005", "disposition": "context", "unitIds": ["KU-05"], "rationale": "把规模修辞指向观众个人。"},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-06"], "rationale": "作者逼真度评价。"},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-07", "KU-09", "KU-26"], "rationale": "口型同步与真人双播能力主张。"},
+      {"cueId": "CUE-008", "disposition": "knowledge", "unitIds": ["KU-09", "KU-10", "KU-26"], "rationale": "共同讲商品与走秀能力主张。"},
+      {"cueId": "CUE-009", "disposition": "knowledge", "unitIds": ["KU-06", "KU-11"], "rationale": "无法看出猫腻的评价并引出安踏。"},
+      {"cueId": "CUE-010", "disposition": "knowledge", "unitIds": ["KU-11"], "rationale": "安踏旗舰店案例主张。"},
+      {"cueId": "CUE-011", "disposition": "knowledge", "unitIds": ["KU-12", "KU-13"], "rationale": "商品、折扣、穿搭全靠数字人讲解的范围主张。"},
+      {"cueId": "CUE-012", "disposition": "knowledge", "unitIds": ["KU-13"], "rationale": "具体混搭话术。"},
+      {"cueId": "CUE-013", "disposition": "knowledge", "unitIds": ["KU-13", "KU-14"], "rationale": "穿搭评价并转到巴拉巴拉。"},
+      {"cueId": "CUE-014", "disposition": "knowledge", "unitIds": ["KU-14"], "rationale": "近十个直播间主张。"},
+      {"cueId": "CUE-015", "disposition": "knowledge", "unitIds": ["KU-14"], "rationale": "15% GMV 主张。"},
+      {"cueId": "CUE-016", "disposition": "knowledge", "unitIds": ["KU-16"], "rationale": "统一归因京东数字人。"},
+      {"cueId": "CUE-017", "disposition": "knowledge", "unitIds": ["KU-17"], "rationale": "618 产品定位及载体冲突。"},
+      {"cueId": "CUE-018", "disposition": "knowledge", "unitIds": ["KU-18"], "rationale": "情感音色主张。"},
+      {"cueId": "CUE-019", "disposition": "knowledge", "unitIds": ["KU-07", "KU-19"], "rationale": "自然口型与品类主播主张。"},
+      {"cueId": "CUE-020", "disposition": "knowledge", "unitIds": ["KU-20"], "rationale": "无 AI 味和话术质量主张。"},
+      {"cueId": "CUE-021", "disposition": "knowledge", "unitIds": ["KU-21", "KU-22"], "rationale": "效果强化与购买问题构成结尾语义回环。"}
+    ],
+    "coreEvidence": {"covered": 19, "total": 19},
+    "unknowns": [
+      "所有商业数字的数据来源、周期、口径和归因。",
+      "人物真实/数字身份、实时性、授权、账号、时间与地点。",
+      "口型同步、情感音色、自然度、无 AI 味和话术质量的测试协议。",
+      "行业首批/高商业可用的定义和比较范围。",
+      "替代真人岗位的规模、成本、效率和人工投入。",
+      "价格、入口、平台/账号/地区条件、运维和服务责任。",
+      "背景音乐是否为同一曲目、无缝换曲、曲目/音效/旁白/插入原声来源和音频权利。",
+      "具体‘京东云大会’名称、日期、凭证和独立认证。",
+      "第三方素材、人物/声音/模型、品牌/UI、案例、数字、商用语言和音频的权利链与可复用范围。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "内部 coverage 状态现与只读 evaluation-v2 的独立 metaAudit 闭包结果对齐：9 个可用载体均已检查，10 个意义变化、11 个关系假设和 15 个关键问题均已进入证据单元或正确 unknown；uncheckedChannels、overlookedMeaningChanges、overlookedRelationships 均为空。独立 meta auditor 已确认没有未守载体、意义变化或关系，因此内部 metaGate 记录真实通过；该状态不是候选自行证明完整性，也不在此宣布 READY。"
+  }
+}

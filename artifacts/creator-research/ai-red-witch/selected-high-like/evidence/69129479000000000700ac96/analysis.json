@@ -1,0 +1,140 @@
+{
+  "id": "69129479000000000700ac96",
+  "title": "大揭秘！这些强大的AI，都怎么用？",
+  "archetype": "工具合集 / 认知地图",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/69129479000000000700ac96",
+  "media": {
+    "file": "media/69129479000000000700ac96.mp4",
+    "subtitle": "media/69129479000000000700ac96.srt",
+    "durationSeconds": 16.556,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 2564212
+  },
+  "engagement": {
+    "likes": 56000,
+    "collections": 69000,
+    "comments": 783,
+    "shares": 6414,
+    "collectionToLike": 1.232,
+    "commentToLike": 0.014,
+    "shareToLike": 0.115
+  },
+  "transcript": {
+    "cueCount": 6,
+    "totalCharacters": 64,
+    "charactersPerMinute": 231.9,
+    "first3Seconds": "这个可以帮你换人物 这个可以帮你做特效",
+    "first6Seconds": "这个可以帮你换人物 这个可以帮你做特效 这个可以让你和任何人同框拍短视频",
+    "fullText": "这个可以帮你换人物 这个可以帮你做特效 这个可以让你和任何人同框拍短视频 这个可以给你一键穿搭 这个可以给你设计ppt 这个可以给你做动漫",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0,
+        "end": 1.6800000000000002,
+        "duration": 1.68,
+        "midpoint": 0.84,
+        "text": "这个可以帮你换人物",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 2,
+        "end": 3.83,
+        "duration": 1.83,
+        "midpoint": 2.915,
+        "text": "这个可以帮你做特效",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 5.09,
+        "end": 7.9399999999999995,
+        "duration": 2.85,
+        "midpoint": 6.515,
+        "text": "这个可以让你和任何人同框拍短视频",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 8.91,
+        "end": 11.02,
+        "duration": 2.11,
+        "midpoint": 9.965,
+        "text": "这个可以给你一键穿搭",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 11.38,
+        "end": 13.09,
+        "duration": 1.71,
+        "midpoint": 12.235,
+        "text": "这个可以给你设计ppt",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "index": 6,
+        "start": 13.73,
+        "end": 15.31,
+        "duration": 1.58,
+        "midpoint": 14.52,
+        "text": "这个可以给你做动漫",
+        "frame": "evidence/69129479000000000700ac96/transcript-frames/cue-006.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      2.1,
+      5.167,
+      9.067,
+      11.267,
+      11.767,
+      12.367,
+      13.033,
+      13.7,
+      14.233
+    ],
+    "detectedShotCount": 10,
+    "cutsPerMinute": 32.6,
+    "medianShotSeconds": 2.1,
+    "shortestShotSeconds": 0.5,
+    "longestShotSeconds": 3.9
+  },
+  "evidence": {
+    "contactSheet": "evidence/69129479000000000700ac96/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/69129479000000000700ac96/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      0.867,
+      1.734,
+      2.601,
+      3.469,
+      4.336,
+      5.203,
+      6.07,
+      6.937,
+      7.804,
+      8.672,
+      9.539,
+      10.406,
+      11.273,
+      12.14,
+      13.007,
+      13.874,
+      14.742,
+      15.609,
+      16.476
+    ]
+  }
+}

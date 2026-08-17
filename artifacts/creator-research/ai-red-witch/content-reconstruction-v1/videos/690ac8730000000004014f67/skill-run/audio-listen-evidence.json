@@ -1,0 +1,1114 @@
+{
+  "input" : "\/Users\/hhh0x\/self-media\/artifacts\/creator-research\/ai-red-witch\/content-reconstruction-v1\/videos\/690ac8730000000004014f67\/skill-run\/audio-review-full.mp3",
+  "limitations" : [
+    "分类标签是机器听检提议，不是音乐曲名、音效来源或版权证明。",
+    "置信度会受连续人声和背景音乐重叠影响；阶段观察需结合 SRT 时间和完整窗口序列。"
+  ],
+  "method" : "Apple SoundAnalysis SNClassifySoundRequest version1; 1.0-second windows; 0.5 overlap; complete-file audio-sample analysis",
+  "schemaVersion" : "bounded-audio-listen-1.0",
+  "windowCount" : 29,
+  "windows" : [
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.95546948909759521,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.3046453595161438,
+          "label" : "tap"
+        },
+        {
+          "confidence" : 0.27121955156326294,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.15975396335124969,
+          "label" : "sigh"
+        },
+        {
+          "confidence" : 0.14348974823951721,
+          "label" : "typing"
+        },
+        {
+          "confidence" : 0.13905921578407288,
+          "label" : "thump_thud"
+        },
+        {
+          "confidence" : 0.13090510666370392,
+          "label" : "person_walking"
+        },
+        {
+          "confidence" : 0.1305147260427475,
+          "label" : "typing_computer_keyboard"
+        }
+      ],
+      "end" : 1,
+      "start" : 0
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.91629385948181152,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.33668425679206848,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.13158467411994934,
+          "label" : "shout"
+        },
+        {
+          "confidence" : 0.13089761137962341,
+          "label" : "chopping_food"
+        },
+        {
+          "confidence" : 0.12301713973283768,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.11269967257976532,
+          "label" : "typewriter"
+        },
+        {
+          "confidence" : 0.10030493885278702,
+          "label" : "laughter"
+        },
+        {
+          "confidence" : 0.096827238798141479,
+          "label" : "hammer"
+        }
+      ],
+      "end" : 1.5,
+      "start" : 0.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.81458419561386108,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.49391904473304749,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.39482897520065308,
+          "label" : "trombone"
+        },
+        {
+          "confidence" : 0.3325287401676178,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.31394746899604797,
+          "label" : "saxophone"
+        },
+        {
+          "confidence" : 0.27599689364433289,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.2040916234254837,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.1955907791852951,
+          "label" : "piano"
+        }
+      ],
+      "end" : 2,
+      "start" : 1
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.72822493314743042,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.56267184019088745,
+          "label" : "trombone"
+        },
+        {
+          "confidence" : 0.49947941303253174,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.47199380397796631,
+          "label" : "bowed_string_instrument"
+        },
+        {
+          "confidence" : 0.45333102345466614,
+          "label" : "saxophone"
+        },
+        {
+          "confidence" : 0.35236340761184692,
+          "label" : "insect"
+        },
+        {
+          "confidence" : 0.34964841604232788,
+          "label" : "double_bass"
+        },
+        {
+          "confidence" : 0.31341919302940369,
+          "label" : "fly_buzz"
+        }
+      ],
+      "end" : 2.5,
+      "start" : 1.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.79405826330184937,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.49690788984298706,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.47799858450889587,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.45430150628089905,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.3932134211063385,
+          "label" : "trombone"
+        },
+        {
+          "confidence" : 0.37191036343574524,
+          "label" : "door"
+        },
+        {
+          "confidence" : 0.36589306592941284,
+          "label" : "piano"
+        },
+        {
+          "confidence" : 0.3460523784160614,
+          "label" : "saxophone"
+        }
+      ],
+      "end" : 3,
+      "start" : 2
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.66298103332519531,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.38284996151924133,
+          "label" : "sigh"
+        },
+        {
+          "confidence" : 0.34350743889808655,
+          "label" : "door"
+        },
+        {
+          "confidence" : 0.29768303036689758,
+          "label" : "knock"
+        },
+        {
+          "confidence" : 0.23350100219249725,
+          "label" : "thump_thud"
+        },
+        {
+          "confidence" : 0.22195187211036682,
+          "label" : "whoosh_swoosh_swish"
+        },
+        {
+          "confidence" : 0.15493407845497131,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.14742623269557953,
+          "label" : "person_walking"
+        }
+      ],
+      "end" : 3.5,
+      "start" : 2.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.96415048837661743,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.46263283491134644,
+          "label" : "tap"
+        },
+        {
+          "confidence" : 0.42387774586677551,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.33862972259521484,
+          "label" : "door"
+        },
+        {
+          "confidence" : 0.27861121296882629,
+          "label" : "knock"
+        },
+        {
+          "confidence" : 0.2326899915933609,
+          "label" : "thump_thud"
+        },
+        {
+          "confidence" : 0.16001921892166138,
+          "label" : "cough"
+        },
+        {
+          "confidence" : 0.13050569593906403,
+          "label" : "keyboard_musical"
+        }
+      ],
+      "end" : 4,
+      "start" : 3
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.98316824436187744,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.38679215312004089,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.23748567700386047,
+          "label" : "typing"
+        },
+        {
+          "confidence" : 0.23147718608379364,
+          "label" : "typewriter"
+        },
+        {
+          "confidence" : 0.21632441878318787,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.20575079321861267,
+          "label" : "finger_snapping"
+        },
+        {
+          "confidence" : 0.1816786527633667,
+          "label" : "chopping_food"
+        },
+        {
+          "confidence" : 0.16818252205848694,
+          "label" : "laughter"
+        }
+      ],
+      "end" : 4.5,
+      "start" : 3.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.8943595290184021,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.35053804516792297,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.15873774886131287,
+          "label" : "pig_oink"
+        },
+        {
+          "confidence" : 0.1489761620759964,
+          "label" : "trombone"
+        },
+        {
+          "confidence" : 0.13964882493019104,
+          "label" : "wind_instrument"
+        },
+        {
+          "confidence" : 0.12149026989936829,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.10043880343437195,
+          "label" : "insect"
+        },
+        {
+          "confidence" : 0.094908736646175385,
+          "label" : "saxophone"
+        }
+      ],
+      "end" : 5,
+      "start" : 4
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.78912699222564697,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.51653075218200684,
+          "label" : "cough"
+        },
+        {
+          "confidence" : 0.47590309381484985,
+          "label" : "didgeridoo"
+        },
+        {
+          "confidence" : 0.3721252977848053,
+          "label" : "guitar"
+        },
+        {
+          "confidence" : 0.33628657460212708,
+          "label" : "plucked_string_instrument"
+        },
+        {
+          "confidence" : 0.30507084727287292,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.29614800214767456,
+          "label" : "bass_guitar"
+        },
+        {
+          "confidence" : 0.21605855226516724,
+          "label" : "keyboard_musical"
+        }
+      ],
+      "end" : 5.5,
+      "start" : 4.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.58982867002487183,
+          "label" : "cough"
+        },
+        {
+          "confidence" : 0.58845764398574829,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.45098617672920227,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.44702437520027161,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.39901748299598694,
+          "label" : "hiccup"
+        },
+        {
+          "confidence" : 0.26124495267868042,
+          "label" : "plucked_string_instrument"
+        },
+        {
+          "confidence" : 0.21916690468788147,
+          "label" : "guitar"
+        },
+        {
+          "confidence" : 0.18315482139587402,
+          "label" : "bass_guitar"
+        }
+      ],
+      "end" : 6,
+      "start" : 5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.91106891632080078,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.57539272308349609,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.21468323469161987,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.18726103007793427,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.15660718083381653,
+          "label" : "laughter"
+        },
+        {
+          "confidence" : 0.15205463767051697,
+          "label" : "drawer_open_close"
+        },
+        {
+          "confidence" : 0.151919886469841,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.15060892701148987,
+          "label" : "plucked_string_instrument"
+        }
+      ],
+      "end" : 6.5,
+      "start" : 5.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.86959409713745117,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.49733436107635498,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.24182359874248505,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.17526054382324219,
+          "label" : "drawer_open_close"
+        },
+        {
+          "confidence" : 0.16556389629840851,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.15858332812786102,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.15123800933361053,
+          "label" : "laughter"
+        },
+        {
+          "confidence" : 0.12242516875267029,
+          "label" : "drum_kit"
+        }
+      ],
+      "end" : 7,
+      "start" : 6
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.78078466653823853,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.23510678112506866,
+          "label" : "insect"
+        },
+        {
+          "confidence" : 0.22978667914867401,
+          "label" : "hammer"
+        },
+        {
+          "confidence" : 0.22263135015964508,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.18310743570327759,
+          "label" : "slap_smack"
+        },
+        {
+          "confidence" : 0.13961565494537354,
+          "label" : "mosquito_buzz"
+        },
+        {
+          "confidence" : 0.1154736801981926,
+          "label" : "person_walking"
+        },
+        {
+          "confidence" : 0.11036604642868042,
+          "label" : "firecracker"
+        }
+      ],
+      "end" : 7.5,
+      "start" : 6.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.44051274657249451,
+          "label" : "door"
+        },
+        {
+          "confidence" : 0.36823782324790955,
+          "label" : "knock"
+        },
+        {
+          "confidence" : 0.35989999771118164,
+          "label" : "sigh"
+        },
+        {
+          "confidence" : 0.28848329186439514,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.28306350111961365,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.24901370704174042,
+          "label" : "door_slam"
+        },
+        {
+          "confidence" : 0.23028433322906494,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.22976799309253693,
+          "label" : "tap"
+        }
+      ],
+      "end" : 8,
+      "start" : 7
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.8133164644241333,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.44466483592987061,
+          "label" : "sigh"
+        },
+        {
+          "confidence" : 0.36462721228599548,
+          "label" : "person_walking"
+        },
+        {
+          "confidence" : 0.33475503325462341,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.29060539603233337,
+          "label" : "slap_smack"
+        },
+        {
+          "confidence" : 0.24900992214679718,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.17101733386516571,
+          "label" : "hiccup"
+        },
+        {
+          "confidence" : 0.17096656560897827,
+          "label" : "rope_skipping"
+        }
+      ],
+      "end" : 8.5,
+      "start" : 7.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.91625499725341797,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.59623390436172485,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.26401212811470032,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.16790100932121277,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.1589941680431366,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.14289060235023499,
+          "label" : "water"
+        },
+        {
+          "confidence" : 0.13982567191123962,
+          "label" : "mallet_percussion"
+        },
+        {
+          "confidence" : 0.12555879354476929,
+          "label" : "frying_food"
+        }
+      ],
+      "end" : 9,
+      "start" : 8
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.89932787418365479,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.47673389315605164,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.21390542387962341,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.17761889100074768,
+          "label" : "playing_volleyball"
+        },
+        {
+          "confidence" : 0.1739666759967804,
+          "label" : "singing"
+        },
+        {
+          "confidence" : 0.16410663723945618,
+          "label" : "plucked_string_instrument"
+        },
+        {
+          "confidence" : 0.16313545405864716,
+          "label" : "slap_smack"
+        },
+        {
+          "confidence" : 0.15257124602794647,
+          "label" : "percussion"
+        }
+      ],
+      "end" : 9.5,
+      "start" : 8.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.7974623441696167,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.71679270267486572,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.52472829818725586,
+          "label" : "drum_kit"
+        },
+        {
+          "confidence" : 0.5214729905128479,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.46252718567848206,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.35486674308776855,
+          "label" : "cymbal"
+        },
+        {
+          "confidence" : 0.33025586605072021,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.32165536284446716,
+          "label" : "bass_drum"
+        }
+      ],
+      "end" : 10,
+      "start" : 9
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.90186470746994019,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.7800133228302002,
+          "label" : "chopping_food"
+        },
+        {
+          "confidence" : 0.51981490850448608,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.30238455533981323,
+          "label" : "plucked_string_instrument"
+        },
+        {
+          "confidence" : 0.22319731116294861,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.21554797887802124,
+          "label" : "guitar"
+        },
+        {
+          "confidence" : 0.20676141977310181,
+          "label" : "tap"
+        },
+        {
+          "confidence" : 0.18683098256587982,
+          "label" : "drum"
+        }
+      ],
+      "end" : 10.5,
+      "start" : 9.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.8816724419593811,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.41014105081558228,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.2098221629858017,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.16793833673000336,
+          "label" : "laughter"
+        },
+        {
+          "confidence" : 0.1532415896654129,
+          "label" : "water"
+        },
+        {
+          "confidence" : 0.14085818827152252,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.13504968583583832,
+          "label" : "rapping"
+        },
+        {
+          "confidence" : 0.13287645578384399,
+          "label" : "shout"
+        }
+      ],
+      "end" : 11,
+      "start" : 10
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.88832610845565796,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.49937579035758972,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.22943556308746338,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.22345538437366486,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.1959385871887207,
+          "label" : "truck"
+        },
+        {
+          "confidence" : 0.19066376984119415,
+          "label" : "chopping_food"
+        },
+        {
+          "confidence" : 0.186733677983284,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.16873952746391296,
+          "label" : "air_horn"
+        }
+      ],
+      "end" : 11.5,
+      "start" : 10.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.88608652353286743,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.8763124942779541,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.83745282888412476,
+          "label" : "disc_scratching"
+        },
+        {
+          "confidence" : 0.76470214128494263,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.60669630765914917,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.20643419027328491,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.17709991335868835,
+          "label" : "piano"
+        },
+        {
+          "confidence" : 0.1710534542798996,
+          "label" : "rapping"
+        }
+      ],
+      "end" : 12,
+      "start" : 11
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.57339620590209961,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.47394776344299316,
+          "label" : "disc_scratching"
+        },
+        {
+          "confidence" : 0.17676688730716705,
+          "label" : "writing"
+        },
+        {
+          "confidence" : 0.14154757559299469,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.14132970571517944,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.1189248114824295,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.1105680838227272,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.078064724802970886,
+          "label" : "tearing"
+        }
+      ],
+      "end" : 12.5,
+      "start" : 11.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.91032636165618896,
+          "label" : "sneeze"
+        },
+        {
+          "confidence" : 0.64528775215148926,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.36567920446395874,
+          "label" : "cough"
+        },
+        {
+          "confidence" : 0.27450487017631531,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.15084406733512878,
+          "label" : "nose_blowing"
+        },
+        {
+          "confidence" : 0.10775581747293472,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.082883059978485107,
+          "label" : "hiccup"
+        },
+        {
+          "confidence" : 0.074137821793556213,
+          "label" : "synthesizer"
+        }
+      ],
+      "end" : 13,
+      "start" : 12
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.92484581470489502,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.49792805314064026,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.28370818495750427,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.21646168828010559,
+          "label" : "typing"
+        },
+        {
+          "confidence" : 0.20996123552322388,
+          "label" : "mallet_percussion"
+        },
+        {
+          "confidence" : 0.1909618079662323,
+          "label" : "drum"
+        },
+        {
+          "confidence" : 0.1846546083688736,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.17258086800575256,
+          "label" : "typewriter"
+        }
+      ],
+      "end" : 13.5,
+      "start" : 12.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.95052814483642578,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.43942999839782715,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.21505513787269592,
+          "label" : "percussion"
+        },
+        {
+          "confidence" : 0.2082187831401825,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.18380241096019745,
+          "label" : "singing"
+        },
+        {
+          "confidence" : 0.17746049165725708,
+          "label" : "rapping"
+        },
+        {
+          "confidence" : 0.16854012012481689,
+          "label" : "laughter"
+        },
+        {
+          "confidence" : 0.16322103142738342,
+          "label" : "typing"
+        }
+      ],
+      "end" : 14,
+      "start" : 13
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.79813617467880249,
+          "label" : "speech"
+        },
+        {
+          "confidence" : 0.72358644008636475,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.55122941732406616,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.48265111446380615,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.24738295376300812,
+          "label" : "brass_instrument"
+        },
+        {
+          "confidence" : 0.24708129465579987,
+          "label" : "door"
+        },
+        {
+          "confidence" : 0.24653604626655579,
+          "label" : "piano"
+        },
+        {
+          "confidence" : 0.21815413236618042,
+          "label" : "saxophone"
+        }
+      ],
+      "end" : 14.5,
+      "start" : 13.5
+    },
+    {
+      "classifications" : [
+        {
+          "confidence" : 0.90282398462295532,
+          "label" : "synthesizer"
+        },
+        {
+          "confidence" : 0.90249985456466675,
+          "label" : "music"
+        },
+        {
+          "confidence" : 0.86186987161636353,
+          "label" : "keyboard_musical"
+        },
+        {
+          "confidence" : 0.47485169768333435,
+          "label" : "disc_scratching"
+        },
+        {
+          "confidence" : 0.42364060878753662,
+          "label" : "piano"
+        },
+        {
+          "confidence" : 0.3384595513343811,
+          "label" : "electric_piano"
+        },
+        {
+          "confidence" : 0.31076908111572266,
+          "label" : "bass_guitar"
+        },
+        {
+          "confidence" : 0.30093568563461304,
+          "label" : "plucked_string_instrument"
+        }
+      ],
+      "end" : 15,
+      "start" : 14
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4a1cab0000000021020230/run/probe.json",
+  "protocolName": "6a4a1cab0000000021020230 论点—结构—边界动态取证协议",
+  "rationale": "该视频以口播论证为主，但烧录字幕、白板层级、短暂插入截图、讲者指向、固定环境和开闭场关系各自承载信息；协议围绕发现的冲突、例证、全局关系、身份与缺席风险取证。",
+  "knowledgeUnitFields": [
+    {
+      "name": "provenance_class",
+      "required": true,
+      "reason": "防止把作者主张升级为事实",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "bounded_time_range",
+      "required": true,
+      "reason": "确保每个知识单元可定位",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "evidence_references",
+      "required": true,
+      "reason": "连接字幕、帧、OCR和shot",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "claim_or_observation",
+      "required": true,
+      "reason": "保留论证原貌",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "conditions_and_limits",
+      "required": true,
+      "reason": "限制普遍性和因果范围",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "visual_identity_and_referent",
+      "required": true,
+      "reason": "防止面罩、账号或软件身份过度推断",
+      "derivedFrom": [
+        "OR-05"
+      ]
+    },
+    {
+      "name": "carrier_conflict",
+      "required": true,
+      "reason": "保留SRT/烧录文字冲突",
+      "derivedFrom": [
+        "OR-02"
+      ]
+    },
+    {
+      "name": "global_role",
+      "required": true,
+      "reason": "保留开场—主体—结尾及并列/依赖关系",
+      "derivedFrom": [
+        "RH-OPEN-CLOSE"
+      ]
+    },
+    {
+      "name": "unknowns",
+      "required": true,
+      "reason": "阻止填补视频未建立的信息",
+      "derivedFrom": [
+        "CQ-10"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "A-01",
+      "range": {
+        "start": 0,
+        "end": 8.899
+      },
+      "carrier": "inserted screenshots and burned captions",
+      "mode": "ocr_review",
+      "times": [
+        0.3,
+        1.2,
+        2.5,
+        4.8,
+        7.5
+      ],
+      "reason": "读取开场账号/作品截图、数据、续集标题及可见身份边界",
+      "expectedObservation": "读取开场账号/作品截图、数据、续集标题及可见身份边界",
+      "derivedFrom": [
+        "MC-01",
+        "OR-02",
+        "CQ-07"
+      ]
+    },
+    {
+      "id": "A-02",
+      "range": {
+        "start": 8.899,
+        "end": 61.39
+      },
+      "carrier": "whiteboard hierarchy, gestures, burned captions",
+      "mode": "ocr_review",
+      "times": [
+        10,
+        17.5,
+        25,
+        35,
+        42.5,
+        50,
+        57.5,
+        61
+      ],
+      "reason": "核对原创单条的白板层级、一次性攻略反例及“食谱/识谱”冲突",
+      "expectedObservation": "核对原创单条的白板层级、一次性攻略反例及“食谱/识谱”冲突",
+      "derivedFrom": [
+        "MC-02",
+        "MC-03",
+        "OR-03",
+        "OR-06",
+        "CQ-02",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "A-03",
+      "range": {
+        "start": 61.39,
+        "end": 80.041
+      },
+      "carrier": "speech-caption-whiteboard conflict and argument scope",
+      "mode": "ocr_review",
+      "times": [
+        62.5,
+        66,
+        69.5,
+        72.5,
+        77.5,
+        80
+      ],
+      "reason": "读取80%断言、蹭热点标签、人设条件和单条劣势",
+      "expectedObservation": "读取80%断言、蹭热点标签、人设条件和单条劣势",
+      "derivedFrom": [
+        "MC-04",
+        "OR-03",
+        "CQ-04"
+      ]
+    },
+    {
+      "id": "A-04",
+      "range": {
+        "start": 80.041,
+        "end": 107.982
+      },
+      "carrier": "whiteboard hierarchy and presenter pointing",
+      "mode": "ocr_review",
+      "times": [
+        82.5,
+        88,
+        92.5,
+        97.5,
+        101,
+        105,
+        107.9
+      ],
+      "reason": "读取判断成本、剧情系列、人物IP/世界观/框架及追更关系",
+      "expectedObservation": "读取判断成本、剧情系列、人物IP/世界观/框架及追更关系",
+      "derivedFrom": [
+        "MC-05",
+        "OR-06",
+        "CQ-05",
+        "CQ-06"
+      ]
+    },
+    {
+      "id": "A-05",
+      "range": {
+        "start": 107.982,
+        "end": 136.65
+      },
+      "carrier": "series templates, account screenshots, burned captions",
+      "mode": "ocr_review",
+      "times": [
+        110,
+        115,
+        118.5,
+        121.5,
+        123.2,
+        126.5,
+        129,
+        132.5,
+        136.5
+      ],
+      "reason": "核对提升/探索模板、例名、数字和短截图",
+      "expectedObservation": "核对提升/探索模板、例名、数字和短截图",
+      "derivedFrom": [
+        "MC-06",
+        "OR-02",
+        "OR-03",
+        "CQ-06"
+      ]
+    },
+    {
+      "id": "A-06",
+      "range": {
+        "start": 136.65,
+        "end": 152.43
+      },
+      "carrier": "summary and claimed result screenshots",
+      "mode": "ocr_review",
+      "times": [
+        138,
+        142.5,
+        146,
+        148.5,
+        150.5,
+        152.3
+      ],
+      "reason": "读取总结、两组插入截图及30万→60万/1万→3-4万声称",
+      "expectedObservation": "读取总结、两组插入截图及30万→60万/1万→3-4万声称",
+      "derivedFrom": [
+        "MC-07",
+        "OR-02",
+        "OR-04",
+        "CQ-07"
+      ]
+    },
+    {
+      "id": "A-07",
+      "range": {
+        "start": 152.43,
+        "end": 174.986
+      },
+      "carrier": "closing speech, burned captions, whiteboard and absence scope",
+      "mode": "ocr_review",
+      "times": [
+        154,
+        157.5,
+        160.5,
+        165,
+        168.5,
+        171.5,
+        174.8
+      ],
+      "reason": "读取长尾/站内留存/搜索关键词与最终身份口号，检查CTA/价格/入口缺项",
+      "expectedObservation": "读取长尾/站内留存/搜索关键词与最终身份口号，检查CTA/价格/入口缺项",
+      "derivedFrom": [
+        "MC-08",
+        "OR-07",
+        "CQ-08",
+        "CQ-10"
+      ]
+    },
+    {
+      "id": "A-08",
+      "range": {
+        "start": 0,
+        "end": 174.986
+      },
+      "carrier": "technical shots versus semantic continuity",
+      "mode": "exact_times",
+      "times": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        174.8
+      ],
+      "reason": "比较固定白板环境、讲者造型与插入截图，避免把shot数等同剪辑数",
+      "expectedObservation": "比较固定白板环境、讲者造型与插入截图，避免把shot数等同剪辑数",
+      "derivedFrom": [
+        "OR-05",
+        "OR-08"
+      ]
+    },
+    {
+      "id": "A-09",
+      "range": {
+        "start": 0,
+        "end": 174.986
+      },
+      "carrier": "non-speech audio",
+      "mode": "exact_times",
+      "times": [
+        5,
+        45,
+        90,
+        135,
+        170
+      ],
+      "reason": "登记音轨并检查非语音成分；语义无法可靠识别则保留未知",
+      "expectedObservation": "登记音轨并检查非语音成分；语义无法可靠识别则保留未知",
+      "derivedFrom": [
+        "OR-01"
+      ]
+    },
+    {
+      "id": "A-10",
+      "range": {
+        "start": 120.867,
+        "end": 147.3
+      },
+      "carrier": "audited example cards and result-card boundary text",
+      "mode": "ocr_review",
+      "times": [
+        122.6,
+        127.867,
+        130.633,
+        146.367
+      ],
+      "reason": "逐卡读取现在是吴克、何香蓓Betty、张根源Genyuan，以及结果卡06-15日期和5.7万心形计数",
+      "expectedObservation": "逐卡读取现在是吴克、何香蓓Betty、张根源Genyuan，以及结果卡06-15日期和5.7万心形计数",
+      "derivedFrom": [
+        "OR-02",
+        "OR-04",
+        "CQ-07"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "RH-01"
+      ]
+    },
+    {
+      "relation": "reframed_by",
+      "derivedFrom": [
+        "RH-02"
+      ]
+    },
+    {
+      "relation": "opening_promise_paid_off_or_narrowed_by_closing",
+      "derivedFrom": [
+        "RH-03"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "每个critical question得到证据支持的答案或明确unknown",
+    "每个meaning change均有目标帧与知识单元",
+    "所有available carrier均已检查，非语音音频不能识别时明确unknown",
+    "SRT与烧录字幕的重要冲突并列保存",
+    "白板层级、短截图、身份/指代与开闭场关系不丢失",
+    "技术shot不升级为语义场景或剪辑次数",
+    "范围化缺席结论覆盖完整时间线或明确窗口",
+    "元门问题没有未检查的载体、意义变化或关系"
+  ],
+  "declaredUnknowns": [
+    "截图中的账号身份、数据口径及日期未由视频建立",
+    "白板小字局部不可可靠辨读",
+    "面罩与讲者真实身份、授权关系未知",
+    "SRT“识谱”与画面字幕“食谱”存在冲突",
+    "80%无样本、口径或外部验证；SRT疑似将“蹭热点”误写为“一二点”",
+    "没有展示账号后台以证明因果",
+    "若干例名的SRT连写/误识别；账号截图细字与身份未完全可读",
+    "截图是否同一账号/同一视频、统计窗口和因果未知",
+    "平台机制、搜索效果、数据真实性未外部验证；未给具体标题模板"
+  ]
+}

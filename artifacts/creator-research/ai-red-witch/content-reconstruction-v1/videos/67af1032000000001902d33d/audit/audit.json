@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "independent-video-ground-truth-audit-1.0",
+  "videoId": "67af1032000000001902d33d",
+  "auditMode": "independent_read_only_source_audit",
+  "scope": {
+    "sourcesRead": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/67af1032000000001902d33d.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/67af1032000000001902d33d.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67af1032000000001902d33d/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/67af1032000000001902d33d/evidence/frames/"
+    ],
+    "excluded": [
+      "skills",
+      "candidate outputs",
+      "prior reports"
+    ]
+  },
+  "mediaFacts": {
+    "orientation": "vertical",
+    "width": 1080,
+    "height": 1920,
+    "frameRate": "30/1",
+    "videoCodec": "hevc",
+    "audioCodec": "aac",
+    "hasAudio": true,
+    "durationSeconds": {
+      "ffprobeContainer": 26.774059,
+      "evidencePack": 26.733,
+      "subtitleEnd": 26.749,
+      "interpretation": "约26.7秒；三个读数的小差异属于容器、抽帧边界与字幕边界差异。"
+    }
+  },
+  "groundTruthSummary": {
+    "topic": "创作者推荐并简要演示口播所称的 Luma Ray2 视频模型。",
+    "demonstrationType": "经过剪辑的界面演示加样片蒙太奇，不是从输入到生成结果的完整实时操作记录。",
+    "uiIdentity": "口播明确称为 Luma；画面显示 Ray2、Ray1.6、Keyframe、1080p、5s 等界面元素，但未显示浏览器地址、完整产品标志或账户信息，因此只能确认“视频将该界面表述为 Luma”，不能仅凭画面独立认证站点身份。",
+    "configuredExample": "Keyframe/视频模式；上传一张龙与武者题材图片作为起始帧；结束帧为空；提示词为 \"dragon and the charactor is doing reaction,ocean wave\"；显示参数为 5s、1080p、Ray2。",
+    "causalCompleteness": "不完整",
+    "causalGap": "视频没有清楚展示实际点击提交、排队/生成过程、完成状态，也没有展示与该龙/武者输入和提示词可对应的结果。21秒后出现的三组动漫样片与配置示例在主体、场景和风格上不对应，不能作为该操作的因果输出。"
+  },
+  "uiAndParameters": {
+    "workflowTab": "Keyframe",
+    "mediaMode": "Videos",
+    "inputImage": {
+      "present": true,
+      "description": "中国神话/国风幻想画面：红黑服装武者，背后有金色龙。",
+      "endFrame": "空白占位符",
+      "uploadActionVisibility": "先见空输入区，剪辑后直接出现缩略图；没有文件选择器或明确上传完成反馈。"
+    },
+    "prompt": {
+      "visibleText": "dragon and the charactor is doing reaction,ocean wave",
+      "language": "English",
+      "notes": "画面原文使用 charactor 拼写，并在 reaction 与 ocean wave 之间使用逗号。"
+    },
+    "duration": {
+      "visibleSelectedValue": "5s",
+      "scope": "界面配置值及多张图库卡片标签，不等于对所有样片实测时长。"
+    },
+    "quality": {
+      "visibleSelectedValue": "1080p",
+      "scope": "界面配置值及多张图库卡片标签，不是对原发布视频或所有嵌入样片的独立画质测量。"
+    },
+    "model": {
+      "visibleSelectedValue": "Ray2",
+      "visibleAlternative": "Ray1.6"
+    },
+    "aspectRatiosShown": [
+      "9:16",
+      "3:4",
+      "1:1",
+      "4:3",
+      "16:9",
+      "21:9"
+    ],
+    "aspectRatioState": "Keyframe 面板文字说明使用所附媒体的宽高比；没有看到本示例主动选择某个比例。19.5秒后另一个空输入栏显示 VIDEO · 16:9，但该栏与前述 Keyframe 示例的状态连续性不明。",
+    "submitControl": "输入卡右下角可见上箭头按钮；口播称直接点击生成，但画面没有可靠显示一次可辨认的点击动作或生成反馈。"
+  },
+  "sampleGroups": [
+    {
+      "id": "GROUP-A",
+      "timeRange": [0.0, 1.933],
+      "description": "火焰背景中的三维卡通儿童/神话角色行走，创作者叠在右下角。",
+      "role": "开场吸睛样片",
+      "relationToConfiguredExample": "无可见对应关系",
+      "evidence": ["SHOT-001", "DENSE-0001..DENSE-0003"]
+    },
+    {
+      "id": "GROUP-B",
+      "timeRange": [1.933, 5.433],
+      "description": "创作者正面口播。",
+      "role": "引题与推荐",
+      "relationToConfiguredExample": "非生成样片",
+      "evidence": ["SHOT-002", "DENSE-0004..DENSE-0008", "CUE-001", "CUE-002起始部分"]
+    },
+    {
+      "id": "GROUP-C",
+      "timeRange": [5.433, 12.367],
+      "description": "灰色生成详情/图库界面内依次展示机械羊、骑自行车的胖人物、雪地/水墨河谷与橙色鱼等 Ray2 标记样片；顶部有多张缩略图，卡片下方可见 Modify、Extend Video 等按钮。",
+      "role": "模型样片与能力说明背景",
+      "relationToConfiguredExample": "这些样片先于教程配置出现，不能认定为本次操作输出。",
+      "evidence": ["SHOT-003", "DENSE-0009..DENSE-0017", "CUE-002", "CUE-003"]
+    },
+    {
+      "id": "GROUP-D",
+      "timeRange": [12.367, 13.667],
+      "description": "创作者正面口播，提出 Ray2 怎么用。",
+      "role": "教程转场",
+      "relationToConfiguredExample": "非生成样片",
+      "evidence": ["SHOT-004", "DENSE-0018..DENSE-0019", "CUE-003"]
+    },
+    {
+      "id": "GROUP-E",
+      "timeRange": [13.667, 20.967],
+      "description": "展示图库、空 Keyframe 输入区、已附加的龙/武者图片、英文提示词、5s、1080p、Ray2 模型菜单及提交箭头；随后切到另一空的 VIDEO · 16:9 输入栏。",
+      "role": "操作演示",
+      "relationToConfiguredExample": "这是配置示例本体，但链路在提交前后被剪断。",
+      "evidence": ["SHOT-005..SHOT-007", "DENSE-0020..DENSE-0028", "CUE-004", "CUE-005"]
+    },
+    {
+      "id": "GROUP-F",
+      "timeRange": [20.967, 25.5],
+      "description": "三段样片蒙太奇：发光火焰手的少年、海滩自拍式动漫女孩、白发动漫角色与强烈闪电/战斗运动。",
+      "role": "对连贯性、物理效果和大范围运动的结果性展示",
+      "relationToConfiguredExample": "主体、场景、风格均不匹配龙/武者输入及 ocean wave 提示，缺少界面任务记录，不能建立因果归属。",
+      "evidence": ["SHOT-008..SHOT-010", "DENSE-0029..DENSE-0035", "CUE-006", "CUE-007起始部分"]
+    },
+    {
+      "id": "GROUP-G",
+      "timeRange": [25.5, 26.774059],
+      "description": "快速转回创作者近景并号召观众尝试。",
+      "role": "结尾行动号召",
+      "relationToConfiguredExample": "非生成样片",
+      "evidence": ["SHOT-010..SHOT-012", "DENSE-0035..DENSE-0037", "CUE-007"]
+    }
+  ],
+  "claimAudit": [
+    {
+      "claim": "推荐的模型是 Ray2。",
+      "source": "口播与屏幕",
+      "verdict": "直接支持",
+      "evidence": ["CUE-002", "DENSE-0007..DENSE-0008", "DENSE-0023..DENSE-0025"],
+      "limits": "这是视频所示产品/模型名称，不包含外部版本核验。"
+    },
+    {
+      "claim": "这是 Luma。",
+      "source": "口播",
+      "verdict": "视频内表述支持，视觉身份未独立认证",
+      "evidence": ["CUE-002", "CUE-004"],
+      "limits": "画面未显示完整站点标志或地址。"
+    },
+    {
+      "claim": "Luma 直接以高质量视频数据训练 Ray2。",
+      "source": "口播",
+      "verdict": "未在视频内证明",
+      "evidence": ["CUE-002"],
+      "limits": "没有数据来源、训练说明、文档或实验。"
+    },
+    {
+      "claim": "可根据一句话和一张图生成视频。",
+      "source": "口播与配置界面",
+      "verdict": "输入能力被部分演示，输出因果未证明",
+      "evidence": ["CUE-003", "CUE-004", "DENSE-0021..DENSE-0027"],
+      "limits": "看到了图片和提示词，但没有完整提交、生成与对应结果。"
+    },
+    {
+      "claim": "示例可选 Ray2、5 秒、1080p。",
+      "source": "屏幕",
+      "verdict": "直接支持为界面显示状态",
+      "evidence": ["DENSE-0023..DENSE-0026"],
+      "limits": "5s 和 1080p 是界面所示参数；未独立检查服务端生成文件。"
+    },
+    {
+      "claim": "生成结果非常逼真、高美学、高动态。",
+      "source": "口播与选样",
+      "verdict": "主观宣传性判断，只得到挑选片段的有限视觉佐证",
+      "evidence": ["CUE-003", "GROUP-C", "GROUP-F"],
+      "limits": "没有比较基线、失败样本、原始输出或系统性评测。"
+    },
+    {
+      "claim": "连贯性和物理效果很好，即使大范围运动也不会扭曲。",
+      "source": "口播与样片蒙太奇",
+      "verdict": "不能由本视频充分证明",
+      "evidence": ["CUE-006", "DENSE-0029..DENSE-0035"],
+      "limits": "样片很短且经过剪辑、缩放、字幕和人物叠加；与配置示例不对应；‘不会扭曲’是绝对化表述，单个精选片段不能证明。"
+    }
+  ],
+  "operationCausality": {
+    "verdict": "incomplete",
+    "observedSteps": [
+      "出现空 Keyframe 输入区",
+      "剪辑后出现已附加的龙/武者起始图",
+      "出现英文动作/场景提示词",
+      "出现并展开模型菜单，Ray2 打勾，Ray1.6 为备选",
+      "同一面板显示 5s 和 1080p",
+      "输入卡右下角出现提交箭头"
+    ],
+    "missingSteps": [
+      "可辨认的上传选择与确认动作",
+      "可辨认的提交点击",
+      "排队、进度或生成中状态",
+      "生成成功/完成反馈",
+      "任务详情或元数据把输出绑定到输入图、提示词、Ray2、5s、1080p",
+      "与龙/武者输入相对应的最终视频"
+    ]
+  },
+  "limitationsAndUnknowns": [
+    "无法从视频内确认界面的具体发布日期、账户、套餐、地区或当时价格。",
+    "无法确认口播所称训练数据的来源、规模、许可或质量。",
+    "无法确认样片是否全部由 Ray2 生成、是否后期处理、是否经过插帧、增强或剪辑。",
+    "无法确认 21 秒后的三段样片与演示账户、输入、提示词或参数的关系。",
+    "无法确认实际服务端输出的原始分辨率、编码、精确时长或生成耗时。",
+    "无法据精选短片量化连贯性、物理正确性、提示遵循或畸变率。",
+    "界面显示的 1080p/5s 与成片本身 1080x1920、约26.7秒是不同层级的事实，不能混同。",
+    "字幕中的 dipsick、re二 属于自动/音译写法；画面字幕明确显示 DeepSeek、Ray2，应以画面拼写为模型/品牌证据。"
+  ],
+  "evidenceIndex": {
+    "subtitleCues": [
+      {"id": "CUE-001", "time": [0.0, 4.23], "fact": "引题：不聊 DeepSeek，推荐视频模型。"},
+      {"id": "CUE-002", "time": [4.23, 8.07], "fact": "称模型为 Ray2、产品为 Luma，并声称以高质量视频数据训练。"},
+      {"id": "CUE-003", "time": [8.08, 13.72], "fact": "声称一句话加一张图可生成逼真、高美学、高动态视频，并转入教程。"},
+      {"id": "CUE-004", "time": [13.72, 17.8], "fact": "口述打开 Luma、上传图片、选择 Ray2。"},
+      {"id": "CUE-005", "time": [17.81, 21.035], "fact": "口述按画质与时长选择并点击生成。"},
+      {"id": "CUE-006", "time": [21.035, 25.675], "fact": "宣称连贯性、物理效果好，大范围运动不扭曲。"},
+      {"id": "CUE-007", "time": [25.675, 26.749], "fact": "号召尝试。"}
+    ],
+    "shotFrames": [
+      {"id": "SHOT-001", "time": 0.967, "fact": "火焰三维儿童样片。"},
+      {"id": "SHOT-002", "time": 3.683, "fact": "创作者正面口播。"},
+      {"id": "SHOT-003", "time": 8.9, "fact": "Ray2 标记的雪地/鱼样片。"},
+      {"id": "SHOT-004", "time": 13.017, "fact": "创作者提问 Ray2 怎么用。"},
+      {"id": "SHOT-005", "time": 14.5, "fact": "图库与 Keyframe 输入区。"},
+      {"id": "SHOT-006", "time": 15.633, "fact": "龙/武者输入图。"},
+      {"id": "SHOT-007", "time": 18.45, "fact": "教程配置界面。"},
+      {"id": "SHOT-008", "time": 23.117, "fact": "海滩动漫女孩样片。"},
+      {"id": "SHOT-009", "time": 25.383, "fact": "高速闪电/战斗样片。"},
+      {"id": "SHOT-010", "time": 25.633, "fact": "战斗样片向结尾切换。"},
+      {"id": "SHOT-011", "time": 26.217, "fact": "创作者结尾。"},
+      {"id": "SHOT-012", "time": 26.7, "fact": "最后一帧附近。"}
+    ],
+    "denseFrameCoverage": {
+      "DENSE-0001..DENSE-0003": "开场火焰角色",
+      "DENSE-0004..DENSE-0008": "创作者引题与 Ray2 命名",
+      "DENSE-0009..DENSE-0017": "Ray2 图库样片：机械羊、骑车人物、雪地鱼",
+      "DENSE-0018..DENSE-0019": "教程转场",
+      "DENSE-0020..DENSE-0022": "空 Keyframe 区、加入图片、龙/武者源图",
+      "DENSE-0023..DENSE-0026": "提示词、Keyframe/Videos、5s、1080p、Ray2/Ray1.6",
+      "DENSE-0027..DENSE-0028": "退出配置面板，出现空输入栏；未见生成状态",
+      "DENSE-0029..DENSE-0035": "三组结果性动漫样片",
+      "DENSE-0036..DENSE-0037": "创作者结尾"
+    },
+    "rawVideoInspection": "直接检查原视频关键时间点，确认提示词、参数菜单、输入图与剪辑断点；帧包用于时间定位和交叉核验。"
+  }
+}

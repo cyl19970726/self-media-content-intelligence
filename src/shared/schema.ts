@@ -1,0 +1,465 @@
+import { z } from "zod";
+
+export const platformSchema = z.enum(["xiaohongshu", "x"]);
+export type Platform = z.infer<typeof platformSchema>;
+
+export const runStatusSchema = z.enum([
+  "queued",
+  "running",
+  "complete",
+  "partial",
+  "blocked",
+  "failed"
+]);
+export type RunStatus = z.infer<typeof runStatusSchema>;
+
+export const stageStatusSchema = z.enum([
+  "pending",
+  "running",
+  "complete",
+  "partial",
+  "blocked",
+  "failed"
+]);
+
+export const stageRecordSchema = z.object({
+  id: z.enum(["collect", "media", "analyze"]),
+  label: z.string(),
+  status: stageStatusSchema,
+  startedAt: z.string().nullable(),
+  finishedAt: z.string().nullable(),
+  message: z.string().nullable(),
+  artifactRefs: z.array(z.string())
+});
+
+export const metricSchema = z.object({
+  views: z.number().nonnegative().nullable(),
+  likes: z.number().nonnegative().nullable(),
+  comments: z.number().nonnegative().nullable(),
+  shares: z.number().nonnegative().nullable(),
+  bookmarks: z.number().nonnegative().nullable(),
+  quotes: z.number().nonnegative().nullable(),
+  followers: z.number().nonnegative().nullable()
+});
+export type Metrics = z.infer<typeof metricSchema>;
+
+export const derivedMetricsSchema = z.object({
+  engagementRate: z.number().nullable(),
+  deepValueRate: z.number().nullable(),
+  conversationRate: z.number().nullable(),
+  amplificationRate: z.number().nullable()
+});
+export type DerivedMetrics = z.infer<typeof derivedMetricsSchema>;
+
+export const comparablePostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  authorName: z.string(),
+  sourceUrl: z.string().nullable(),
+  publishedAt: z.string().nullable(),
+  source: z.enum(["author", "topic"]),
+  metrics: metricSchema
+});
+export type ComparablePost = z.infer<typeof comparablePostSchema>;
+
+export const contextSnapshotSchema = z.object({
+  status: z.enum(["ready", "partial", "unavailable"]),
+  query: z.string().nullable(),
+  authorPosts: z.array(comparablePostSchema),
+  topicPosts: z.array(comparablePostSchema),
+  notes: z.array(z.string()),
+  rawArtifactRefs: z.array(z.string())
+});
+export type ContextSnapshot = z.infer<typeof contextSnapshotSchema>;
+
+export const mediaItemSchema = z.object({
+  kind: z.enum(["image", "video", "unknown"]),
+  url: z.string().nullable(),
+  localPath: z.string().nullable(),
+  mimeType: z.string().nullable()
+});
+export type MediaItem = z.infer<typeof mediaItemSchema>;
+
+export const commentSchema = z.object({
+  id: z.string(),
+  author: z.string().nullable(),
+  text: z.string(),
+  likes: z.number().nullable()
+});
+export type Comment = z.infer<typeof commentSchema>;
+
+export const sourceSnapshotSchema = z.object({
+  platform: platformSchema,
+  sourceUrl: z.string(),
+  externalId: z.string(),
+  retrievedAt: z.string(),
+  author: z.object({
+    id: z.string().nullable(),
+    handle: z.string().nullable(),
+    name: z.string(),
+    followers: z.number().nullable(),
+    avatarUrl: z.string().nullable()
+  }),
+  title: z.string(),
+  text: z.string(),
+  publishedAt: z.string().nullable(),
+  tags: z.array(z.string()),
+  metrics: metricSchema,
+  media: z.array(mediaItemSchema),
+  comments: z.array(commentSchema),
+  rawArtifactRef: z.string().nullable()
+});
+export type SourceSnapshot = z.infer<typeof sourceSnapshotSchema>;
+
+export const transcriptSegmentSchema = z.object({
+  start: z.number().nonnegative(),
+  end: z.number().nonnegative(),
+  text: z.string()
+});
+
+export const shotSchema = z.object({
+  id: z.string(),
+  start: z.number().nonnegative(),
+  end: z.number().nonnegative(),
+  frameRef: z.string().nullable(),
+  transcript: z.string(),
+  function: z.enum(["hook", "context", "proof", "turn", "payoff", "cta", "unknown"]),
+  observation: z.string(),
+  boundaryReason: z.enum(["scene-change", "duration-fallback", "single-scene"]).default("duration-fallback"),
+  onScreenText: z.array(z.string()).default([])
+});
+
+export const mediaBreakdownSchema = z.object({
+  durationSeconds: z.number().nonnegative().nullable(),
+  width: z.number().int().positive().nullable(),
+  height: z.number().int().positive().nullable(),
+  hasAudio: z.boolean().nullable(),
+  contactSheetRef: z.string().nullable(),
+  transcript: z.array(transcriptSegmentSchema),
+  shots: z.array(shotSchema),
+  sceneDetectionMethod: z.string().default("unknown"),
+  cutsPerMinute: z.number().nonnegative().nullable().default(null),
+  averageShotSeconds: z.number().nonnegative().nullable().default(null),
+  speechWordsPerMinute: z.number().nonnegative().nullable().default(null),
+  silenceRatio: z.number().min(0).max(1).nullable().default(null)
+});
+export type MediaBreakdown = z.infer<typeof mediaBreakdownSchema>;
+
+export const findingSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  statement: z.string(),
+  grade: z.enum(["fact", "observation", "inference"]),
+  confidence: z.enum(["high", "medium", "low"]),
+  evidenceRefs: z.array(z.string())
+});
+export type Finding = z.infer<typeof findingSchema>;
+
+const evidenceCoverageSchema = z.object({
+  percent: z.number().min(0).max(100),
+  available: z.array(z.string()),
+  missing: z.array(z.string()),
+  warnings: z.array(z.string()),
+  tiers: z.array(z.object({
+    id: z.enum(["public", "comparative", "owner"]),
+    label: z.string(),
+    status: z.enum(["ready", "partial", "missing"]),
+    note: z.string()
+  }))
+});
+
+const benchmarkMetricSchema = z.object({
+  key: z.enum(["likes", "comments", "shares", "bookmarks", "quotes", "views"]),
+  label: z.string(),
+  subject: z.number().nullable(),
+  authorMedian: z.number().nullable(),
+  topicMedian: z.number().nullable(),
+  authorPercentile: z.number().min(0).max(100).nullable(),
+  topicPercentile: z.number().min(0).max(100).nullable()
+});
+
+const benchmarkAnalysisSchema = z.object({
+  status: z.enum(["ready", "partial", "unavailable"]),
+  authorSampleSize: z.number().int().nonnegative(),
+  topicSampleSize: z.number().int().nonnegative(),
+  metrics: z.array(benchmarkMetricSchema),
+  verdict: z.string(),
+  caveat: z.string()
+});
+
+const dataIndicatorSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  value: z.number().nullable(),
+  unit: z.enum(["percent", "multiple", "per-thousand", "per-day"]),
+  numerator: z.number().nullable(),
+  denominator: z.number().nullable(),
+  formula: z.string(),
+  status: z.enum(["ready", "partial", "unavailable"]),
+  interpretation: z.string()
+});
+
+const interactionMixItemSchema = z.object({
+  key: z.enum(["likes", "comments", "shares", "bookmarks", "quotes"]),
+  label: z.string(),
+  value: z.number().nullable(),
+  sharePercent: z.number().min(0).max(100).nullable(),
+  perThousandViews: z.number().nonnegative().nullable(),
+  authorLift: z.number().nonnegative().nullable(),
+  topicLift: z.number().nonnegative().nullable()
+});
+
+const dataAnalysisSchema = z.object({
+  status: z.enum(["ready", "partial", "unavailable"]),
+  totalInteractions: z.number().nonnegative().nullable(),
+  highIntentInteractions: z.number().nonnegative().nullable(),
+  knownMetricCount: z.number().int().nonnegative(),
+  expectedMetricCount: z.number().int().positive(),
+  completenessPercent: z.number().min(0).max(100),
+  ageDays: z.number().nonnegative().nullable(),
+  interactionMix: z.array(interactionMixItemSchema),
+  indicators: z.array(dataIndicatorSchema),
+  headline: z.string(),
+  caveats: z.array(z.string())
+});
+
+const packagingAnalysisSchema = z.object({
+  promise: z.string(),
+  audience: z.string(),
+  tension: z.string(),
+  specificitySignals: z.array(z.string()),
+  searchSignals: z.array(z.string()),
+  titlePattern: z.string(),
+  evidenceRefs: z.array(z.string())
+});
+
+const scriptSegmentAnalysisSchema = z.object({
+  id: z.string(),
+  function: z.enum(["hook", "problem", "mechanism", "proof", "payoff", "cta"]),
+  text: z.string(),
+  source: z.enum(["transcript", "post-copy"]),
+  start: z.number().nonnegative().nullable(),
+  end: z.number().nonnegative().nullable(),
+  evidenceRef: z.string()
+});
+
+const scriptAnalysisSchema = z.object({
+  source: z.enum(["transcript", "post-copy", "unavailable"]),
+  wordCount: z.number().int().nonnegative(),
+  estimatedReadSeconds: z.number().nonnegative().nullable(),
+  informationUnits: z.number().int().nonnegative(),
+  claimCount: z.number().int().nonnegative(),
+  proofCount: z.number().int().nonnegative(),
+  claimProofRatio: z.number().nonnegative().nullable(),
+  rhetoricalDevices: z.array(z.string()),
+  segments: z.array(scriptSegmentAnalysisSchema),
+  diagnosis: z.string()
+});
+
+const audienceThemeSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  intent: z.enum(["approval", "question", "implementation", "objection", "follow-up", "other"]),
+  count: z.number().int().nonnegative(),
+  share: z.number().min(0).max(100),
+  examples: z.array(z.string()),
+  evidenceRefs: z.array(z.string())
+});
+
+const audienceAnalysisSchema = z.object({
+  sampleSize: z.number().int().nonnegative(),
+  weightedSampleLikes: z.number().nonnegative(),
+  themes: z.array(audienceThemeSchema),
+  unansweredQuestions: z.array(z.string()),
+  objections: z.array(z.string()),
+  nextContentDemand: z.array(z.string()),
+  caveat: z.string()
+});
+
+const causalNodeSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  mechanism: z.string(),
+  status: z.enum(["supported", "plausible", "unknown", "contradicted"]),
+  confidence: z.enum(["high", "medium", "low"]),
+  evidenceRefs: z.array(z.string()),
+  counterEvidence: z.array(z.string()),
+  alternativeExplanations: z.array(z.string())
+});
+
+const experimentSchema = z.object({
+  id: z.string(),
+  hypothesis: z.string(),
+  variantA: z.string(),
+  variantB: z.string(),
+  primaryMetric: z.string(),
+  guardrails: z.array(z.string()),
+  successCriteria: z.string(),
+  minimumRuns: z.number().int().positive(),
+  measurementStatus: z.enum(["ready", "blocked"]).default("blocked"),
+  missingMetrics: z.array(z.string()).default([])
+});
+
+const qualityStatusSchema = z.enum(["strong", "mixed", "weak", "unknown"]);
+const qualityDimensionIdSchema = z.enum([
+  "source", "scale", "retention", "depth", "fit", "conversion", "durability", "negative"
+]);
+const ratioBenchmarkSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  subject: z.number().nullable(),
+  authorMedian: z.number().nullable(),
+  topicMedian: z.number().nullable(),
+  liftVsAuthorPercent: z.number().nullable(),
+  liftVsTopicPercent: z.number().nullable(),
+  status: qualityStatusSchema
+});
+const qualityDimensionSchema = z.object({
+  id: qualityDimensionIdSchema,
+  label: z.string(),
+  status: qualityStatusSchema,
+  confidence: z.enum(["high", "medium", "low"]),
+  summary: z.string(),
+  metrics: z.array(z.string()),
+  evidenceRefs: z.array(z.string()),
+  missing: z.array(z.string())
+});
+const objectiveProfileSchema = z.object({
+  id: z.enum(["awareness", "growth", "authority", "conversion"]),
+  label: z.string(),
+  requiredDimensions: z.array(qualityDimensionIdSchema),
+  verdict: z.string()
+});
+const trafficQualitySchema = z.object({
+  defaultObjective: z.enum(["awareness", "growth", "authority", "conversion"]),
+  verdict: z.string(),
+  ratioBenchmarks: z.array(ratioBenchmarkSchema),
+  dimensions: z.array(qualityDimensionSchema),
+  objectiveProfiles: z.array(objectiveProfileSchema)
+});
+
+const creatorAnalysisSchema = z.object({
+  status: z.enum(["ready", "partial", "unavailable"]),
+  sampleSize: z.number().int().nonnegative(),
+  medianInteractions: z.number().nonnegative().nullable(),
+  topTwentySharePercent: z.number().min(0).max(100).nullable(),
+  hitRatePercent: z.number().min(0).max(100).nullable(),
+  medianCadenceDays: z.number().nonnegative().nullable(),
+  stability: z.enum(["stable", "mixed", "volatile", "unknown"]),
+  pillars: z.array(z.object({ label: z.string(), postCount: z.number().int().positive(), medianInteractions: z.number().nonnegative().nullable() })),
+  repeatableSignals: z.array(z.string()),
+  outliers: z.array(z.object({ id: z.string(), title: z.string(), direction: z.enum(["high", "low"]), interactions: z.number().nonnegative().nullable(), multipleOfMedian: z.number().nonnegative().nullable() })),
+  verdict: z.string(),
+  limitations: z.array(z.string())
+});
+
+const reportV2Schema = z.object({
+  evidenceCoverage: evidenceCoverageSchema,
+  context: contextSnapshotSchema,
+  benchmark: benchmarkAnalysisSchema,
+  dataAnalysis: dataAnalysisSchema,
+  packaging: packagingAnalysisSchema,
+  scriptAnalysis: scriptAnalysisSchema,
+  audienceAnalysis: audienceAnalysisSchema,
+  causalModel: z.array(causalNodeSchema),
+  trafficQuality: trafficQualitySchema,
+  creatorAnalysis: creatorAnalysisSchema,
+  replication: z.object({
+    invariants: z.array(z.string()),
+    variables: z.array(z.string()),
+    accountDependencies: z.array(z.string()),
+    risks: z.array(z.string()),
+    crossPlatform: z.array(z.object({ platform: z.string(), adaptation: z.string() }))
+  }),
+  experiments: z.array(experimentSchema)
+});
+export type ReportV2 = z.infer<typeof reportV2Schema>;
+
+export function emptyContext(): ContextSnapshot {
+  return { status: "unavailable", query: null, authorPosts: [], topicPosts: [], notes: [], rawArtifactRefs: [] };
+}
+
+export function emptyReportV2(): ReportV2 {
+  return {
+    evidenceCoverage: { percent: 0, available: [], missing: [], warnings: [], tiers: [
+      { id: "public", label: "公开内容证据", status: "missing", note: "等待采集" },
+      { id: "comparative", label: "作者与竞品基线", status: "missing", note: "等待采集" },
+      { id: "owner", label: "账号后台数据", status: "missing", note: "未导入" }
+    ] },
+    context: emptyContext(),
+    benchmark: { status: "unavailable", authorSampleSize: 0, topicSampleSize: 0, metrics: [], verdict: "没有基线，不能判断是否异常。", caveat: "等待上下文数据。" },
+    dataAnalysis: { status: "unavailable", totalInteractions: null, highIntentInteractions: null, knownMetricCount: 0, expectedMetricCount: 6,
+      completenessPercent: 0, ageDays: null, interactionMix: [], indicators: [], headline: "等待公开指标。", caveats: [] },
+    packaging: { promise: "等待分析", audience: "等待分析", tension: "等待分析", specificitySignals: [], searchSignals: [], titlePattern: "等待分析", evidenceRefs: [] },
+    scriptAnalysis: { source: "unavailable", wordCount: 0, estimatedReadSeconds: null, informationUnits: 0, claimCount: 0, proofCount: 0, claimProofRatio: null, rhetoricalDevices: [], segments: [], diagnosis: "等待分析" },
+    audienceAnalysis: { sampleSize: 0, weightedSampleLikes: 0, themes: [], unansweredQuestions: [], objections: [], nextContentDemand: [], caveat: "等待评论证据。" },
+    causalModel: [],
+    trafficQuality: {
+      defaultObjective: "authority",
+      verdict: "证据尚未形成流量质量判断。",
+      ratioBenchmarks: [],
+      dimensions: [],
+      objectiveProfiles: []
+    },
+    creatorAnalysis: { status: "unavailable", sampleSize: 0, medianInteractions: null, topTwentySharePercent: null,
+      hitRatePercent: null, medianCadenceDays: null, stability: "unknown", pillars: [], repeatableSignals: [], outliers: [],
+      verdict: "尚未取得博主主页样本。", limitations: ["需要作者主页与至少 5 条公开笔记。"] },
+    replication: { invariants: [], variables: [], accountDependencies: [], risks: [], crossPlatform: [] },
+    experiments: []
+  };
+}
+
+export const reportEnvelopeSchema = z.object({
+  schemaVersion: z.enum(["1.0.0", "2.0.0"]),
+  id: z.string().uuid(),
+  sourceUrl: z.string(),
+  shareTitle: z.string().nullable().default(null),
+  platform: platformSchema,
+  status: runStatusSchema,
+  currentStage: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  stages: z.array(stageRecordSchema),
+  source: sourceSnapshotSchema.nullable(),
+  mediaBreakdown: mediaBreakdownSchema.nullable(),
+  derivedMetrics: derivedMetricsSchema,
+  executiveSummary: z.string(),
+  findings: z.array(findingSchema),
+  limitations: z.array(z.string()),
+  actions: z.object({
+    reusablePatterns: z.array(z.string()),
+    avoidCopying: z.array(z.string()),
+    hookRewrites: z.array(z.string()),
+    nextExperiments: z.array(z.string())
+  })
+}).and(reportV2Schema.partial()).transform((report) => ({ ...emptyReportV2(), ...report }));
+export type ReportEnvelope = z.infer<typeof reportEnvelopeSchema>;
+
+export const runSummarySchema = z.object({
+  id: z.string().uuid(),
+  sourceUrl: z.string(),
+  platform: platformSchema,
+  status: runStatusSchema,
+  currentStage: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  executiveSummary: z.string(),
+  title: z.string(),
+  authorName: z.string()
+});
+export type RunSummary = z.infer<typeof runSummarySchema>;
+
+export const createRunInputSchema = z.object({
+  url: z.string().min(1),
+  localVideoPath: z.string().optional()
+});
+
+export const parsedSourceSchema = z.object({
+  platform: platformSchema,
+  sourceUrl: z.string(),
+  externalId: z.string(),
+  xsecToken: z.string().nullable(),
+  shareTitle: z.string().nullable().default(null),
+  fixture: z.boolean()
+});
+export type ParsedSource = z.infer<typeof parsedSourceSchema>;

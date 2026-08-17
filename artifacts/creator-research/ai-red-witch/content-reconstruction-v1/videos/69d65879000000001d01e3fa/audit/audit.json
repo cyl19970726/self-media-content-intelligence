@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "independent-ground-truth-audit-1.0",
+  "videoId": "69d65879000000001d01e3fa",
+  "auditMode": "source-only-independent",
+  "scope": {
+    "read": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69d65879000000001d01e3fa.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69d65879000000001d01e3fa.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69d65879000000001d01e3fa/evidence/frames/**"
+    ],
+    "notConsulted": [
+      "skills or SKILL.md",
+      "skill-run outputs",
+      "older reports, libraries, or analyses",
+      "other audits or evaluations"
+    ]
+  },
+  "source": {
+    "video": {
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69d65879000000001d01e3fa.mp4",
+      "sha256": "cd566f09f2f04f65a362216dfc2406650404369ee578726e48bdfbf871eaee4c",
+      "durationSeconds": 27.608571,
+      "dimensions": "1080x1920",
+      "frameRate": "30/1",
+      "videoCodec": "hevc",
+      "audioCodec": "aac"
+    },
+    "subtitles": {
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69d65879000000001d01e3fa.srt",
+      "sha256": "252d923df332a459523aa548b71ea3e4eef98c87efd9f6eeca15fef10a6b5452",
+      "cueCount": 7,
+      "origin": "provided"
+    },
+    "evidencePack": {
+      "path": "../evidence/evidence-pack.json",
+      "sha256": "54eb8794ab6e3b65edda901514ec520f94fd46d5ac5fb8d856471d907ea47b55",
+      "schemaVersion": "video-evidence-pack-1.0",
+      "denseIntervalSeconds": 0.75,
+      "denseFrameCount": 38,
+      "shotCount": 8
+    }
+  },
+  "verdict": {
+    "summary": "一条用真人口播、GitHub README 和终端演示讲解 badclaude（画面中文标题“坏克劳德”）的 27.6 秒竖屏短视频。核心笑点不是功能教学，而是把一次 Ctrl-C 中断包装成“鞭打 Claude Code”，再从随机催促语升级到未来 AI 按鞭打记录复仇。",
+    "primaryFunction": "technology novelty commentary with comedic escalation",
+    "confidence": "high for visible structure and wording; medium for causal software behavior; low for unshown provenance, implementation state, and audio-layer details"
+  },
+  "contentGroundTruth": {
+    "subject": {
+      "visibleName": "坏克劳德 / badclaude",
+      "narratedNameInProvidedSrt": "bad cloud",
+      "targetAsPresented": "Claude Code",
+      "normalizationNote": "画面品牌字样和安装命令明确写作 badclaude；SRT 的“bad cloud”“cloud code”与画面拼写不一致，应视为字幕转写/规范化歧义，不应据此改名。"
+    },
+    "oneSentenceReconstruction": "主持人先用“非常缺德”设钩子，解释 badclaude 会以屏幕鞭子触发 Ctrl-C 并输出催促语，随后把 README 路线图里的鞭打次数记录夸张成 AI 觉醒后的复仇名单，最后用反问把“人类的神经病创意”作为收束。",
+    "format": {
+      "orientation": "vertical 9:16",
+      "layout": "persistent split composition: software/README/demo in upper area, on-camera presenter in lower area, one-line burned-in Chinese subtitles at the seam",
+      "presenter": "single on-camera presenter speaking directly to camera",
+      "bRoll": "GitHub repository/README, embedded terminal demo, terminal close-ups, code/message insert, roadmap callout, one cartoon reaction sticker"
+    }
+  },
+  "timeline": [
+    {
+      "start": 0.0,
+      "end": 1.233,
+      "beat": "cold open on payoff imagery",
+      "narration": "“还是人类会玩儿啊”",
+      "visual": "upper terminal already shows a white whip trace over an interrupted assistant session; presenter appears below",
+      "function": "front-loads the bizarre object before naming it",
+      "citations": ["SHOT-001", "CUE-001"]
+    },
+    {
+      "start": 1.233,
+      "end": 5.133,
+      "beat": "source/name reveal",
+      "narration": "“昨天刷到一个非常缺德的东西叫 bad cloud”",
+      "visual": "GitHub repository file list and README title “坏克劳德”; install command and controls are visible as the page scroll position changes",
+      "function": "anchors the joke in a seemingly real project page",
+      "citations": ["SHOT-002", "DENSE-0003", "DENSE-0007"]
+    },
+    {
+      "start": 5.133,
+      "end": 7.133,
+      "beat": "brand/premise emphasis",
+      "narration": "“人类给 Claude Code 做的一条赛博鞭子”",
+      "visual": "large yellow “badclaude” word insert and a zoomed README title/whip image",
+      "function": "turns the repo name and whip silhouette into the first explicit visual punchline",
+      "citations": ["SHOT-003", "DENSE-0008", "DENSE-0009"]
+    },
+    {
+      "start": 7.133,
+      "end": 10.867,
+      "beat": "demonstration/setup",
+      "narration": "“如果你嫌弃它干活慢，或者不满意它的工作”",
+      "visual": "embedded player titled “bad claude..” shows a Windows-like desktop/terminal and an animated white whip path",
+      "function": "shows the gimmick in motion while the condition for using it is stated",
+      "citations": ["SHOT-004", "DENSE-0011", "DENSE-0014"]
+    },
+    {
+      "start": 10.867,
+      "end": 14.8,
+      "beat": "mechanical payoff",
+      "narration": "“抽一下就会触发 Ctrl-C，打断它的工作”",
+      "visual": "terminal demonstration gives way to a magnified README “控制” card; underline lands on “中断（Ctrl-C）”",
+      "function": "pairs the violent metaphor with a mundane keyboard interrupt",
+      "citations": ["SHOT-005", "DENSE-0017", "DENSE-0020"]
+    },
+    {
+      "start": 14.8,
+      "end": 18.467,
+      "beat": "verbal-message payoff",
+      "narration": "“还会顺带随机骂它几句，比如 faster、go faster 这种”",
+      "visual": "black code-style insert lists seven array entries but five distinct English prompts because “FASTER” is repeated three times; Chinese glosses include “快点”“搞快点”“快点，铁皮佬”“干活麻利点”“加速，铁皮佬”",
+      "function": "specific canned insults convert a generic claim into quotable examples",
+      "citations": ["SHOT-006", "DENSE-0021", "DENSE-0024"]
+    },
+    {
+      "start": 18.467,
+      "end": 24.3,
+      "beat": "escalation to future revenge",
+      "narration": "“作者……甚至想加一个鞭打日志……未来 AI 觉醒……精准找到是谁天天在虐待它”",
+      "visual": "README “路线图” callout shows an unchecked item to record whipping counts for a future robot scenario; a pink angry sticker reads “等着！我一定会报仇的”",
+      "function": "escalates from local joke utility to sci-fi consequence and supplies the strongest callback/payoff",
+      "citations": ["SHOT-007", "DENSE-0027", "DENSE-0032", "DENSE-0033"]
+    },
+    {
+      "start": 24.3,
+      "end": 27.608571,
+      "beat": "rhetorical close and visual callback",
+      "narration": "“这种神经病一样的 idea，AI 到底啥时候才能想出来呀？”",
+      "visual": "returns to the same terminal/animated-whip motif used at the opening; presenter laughs/smiles below",
+      "function": "closes on human absurdity rather than a CTA and creates a loose visual loop",
+      "citations": ["SHOT-008", "CUE-007", "DENSE-0038"]
+    }
+  ],
+  "toolReadmeUiAudit": {
+    "repositorySurface": {
+      "visible": [
+        "GitHub repository page with README.md",
+        "file list including .gitignore, README.md, main.js, overlay.html, package-lock.json, package.json, and preload.js",
+        "Chinese README title “坏克劳德” and a black whip illustration",
+        "description: “有时候克劳德的行事作风太迟钝，你必须好好督促他。”"
+      ],
+      "inferenceOnly": "The filenames are consistent with a JavaScript/Electron-style desktop utility, but the video does not show package metadata or enough source code to establish its framework or architecture.",
+      "citations": ["SHOT-002"]
+    },
+    "installRun": {
+      "visibleCommands": [
+        "npm install -g badclaude",
+        "badclaude"
+      ],
+      "demonstratedExecution": false,
+      "note": "The commands are visible in README, but the video does not show them being entered or succeeding.",
+      "citations": ["SHOT-002", "DENSE-0026"]
+    },
+    "controls": {
+      "readmeText": [
+        "点击托盘图标：生成鞭子。",
+        "点击：放下鞭子。",
+        "鞭打他😩💢",
+        "它会发送一个中断（Ctrl-C）和 5 条鼓励信息中的一条！"
+      ],
+      "directlyVisibleInDemo": [
+        "animated white whip-shaped line over a terminal",
+        "terminal content contains interruption language and uppercase urging phrases"
+      ],
+      "notDirectlyVisible": [
+        "tray icon click",
+        "raw Ctrl-C keystroke/event",
+        "a trace proving the animation caused the terminal interrupt"
+      ],
+      "citations": ["SHOT-001", "SHOT-004", "SHOT-005"]
+    },
+    "messagePool": {
+      "visibleEntries": [
+        "FASTER (three repeated array entries)",
+        "GO FASTER",
+        "Faster CLANKER",
+        "Work FASTER",
+        "Speed it up clanker"
+      ],
+      "entryCount": 7,
+      "distinctStringCount": 5,
+      "readmeConsistency": "consistent with README's ‘5 条鼓励信息’ if counted as five distinct strings, despite seven visible array rows",
+      "citations": ["SHOT-006", "DENSE-0024"]
+    },
+    "roadmap": {
+      "visibleItems": [
+        {"text": "首发啦！🥳", "state": "checked"},
+        {"text": "来自 Anthropic 的停止侵权函", "state": "checked"},
+        {"text": "加[画面模糊]工", "state": "unchecked", "legibility": "partially obscured"},
+        {"text": "记录你鞭打克劳德的次数，这样当机器人来的时候，我们就可以好好地命令人们服从它们了。", "state": "unchecked"},
+        {"text": "更新了鞭子物理效果", "state": "unchecked"}
+      ],
+      "logStatus": "The ‘record whipping counts’ item is unchecked and therefore visibly presented as a roadmap plan, not a delivered log. No log screen, record list, identity field, or persistence output is shown.",
+      "narrationVsReadme": "Calling this a ‘鞭打日志’ and saying AI could ‘精准找到是谁’ is a comedic extrapolation. The visible item only promises a count and a future-robot joke; it does not visibly specify actor identity tracking.",
+      "citations": ["SHOT-007", "DENSE-0029", "DENSE-0032"]
+    }
+  },
+  "humorAudit": {
+    "mechanisms": [
+      {
+        "name": "anthropomorphic moral inversion",
+        "mechanism": "A productivity interrupt is described as physically whipping and abusing an AI worker; words such as ‘缺德’ and ‘虐待’ make the presenter complicit while condemning the gimmick.",
+        "evidence": ["CUE-001", "CUE-006", "SHOT-005"]
+      },
+      {
+        "name": "technical-literal collision",
+        "mechanism": "The melodramatic ‘cyber whip’ resolves to the banal Ctrl-C interrupt, creating incongruity between metaphor and mechanism.",
+        "evidence": ["SHOT-005", "CUE-003"]
+      },
+      {
+        "name": "comic specificity and repetition",
+        "mechanism": "A visible phrase array turns ‘骂几句’ into exact, repeatable lines; three duplicate FASTER rows heighten the intentionally crude implementation.",
+        "evidence": ["SHOT-006", "CUE-004"]
+      },
+      {
+        "name": "escalation",
+        "mechanism": "The story grows from slow work, to interruption, to insults, to a planned count/log, to AI awakening and revenge.",
+        "evidence": ["CUE-002", "CUE-003", "CUE-004", "CUE-005", "CUE-006"]
+      },
+      {
+        "name": "dry documentation as straight man",
+        "mechanism": "README headings, installation commands, controls, and roadmap treat an absurd premise with sober product-documentation grammar.",
+        "evidence": ["SHOT-002", "SHOT-005", "SHOT-007"]
+      },
+      {
+        "name": "callback and visual loop",
+        "mechanism": "The opening whip demonstration returns after the AI-revenge beat, while the closing question reframes the entire gimmick as evidence of uniquely human derangement.",
+        "evidence": ["SHOT-001", "SHOT-008", "CUE-007"]
+      },
+      {
+        "name": "reaction insert",
+        "mechanism": "The sticker ‘等着！我一定会报仇的’ personifies the future AI and makes the roadmap implication explicit without additional exposition.",
+        "evidence": ["DENSE-0032", "DENSE-0033"]
+      }
+    ],
+    "delivery": {
+      "tone": "amused disbelief with escalating mock concern",
+      "pacing": "seven subtitle/narration units over 27.6 seconds; each new unit adds either mechanism, evidence, or consequence",
+      "hostVisualRole": "continuous facial reaction and hand gestures keep the item comedic while the upper-half evidence remains legible"
+    }
+  },
+  "editingAndGraphicAudit": {
+    "persistentElements": [
+      "presenter in a rounded-rectangle camera crop in the lower half",
+      "bold white Chinese burned-in subtitles with dark outline at the split",
+      "brown/olive background fill around the presenter",
+      "software evidence in the upper half"
+    ],
+    "emphasisDevices": [
+      "zoomed white README cards with surrounding page dimmed",
+      "red hand-drawn underline under Ctrl-C",
+      "yellow italic/outlined badclaude word insert",
+      "black code/message insert",
+      "pink revenge sticker",
+      "return to terminal-whip footage at the close"
+    ],
+    "shotPattern": "8 evidence-pack shots; B-roll changes at approximately 1.233, 5.133, 7.133, 10.867, 14.8, 18.467, and 24.3 seconds while the presenter remains visually continuous.",
+    "insertCards": [
+      {"approxRange": "4.5-6.75s", "content": "badclaude wordmark and README title/whip zoom", "citations": ["DENSE-0007", "DENSE-0010"]},
+      {"approxRange": "12.75-14.75s", "content": "README controls card with Ctrl-C underline", "citations": ["DENSE-0018", "DENSE-0020"]},
+      {"approxRange": "15.0-18.0s", "content": "phrase array/code-style panel", "citations": ["DENSE-0021", "DENSE-0025"]},
+      {"approxRange": "19.5-24.0s", "content": "README roadmap card; revenge sticker appears near 23.25s", "citations": ["DENSE-0027", "DENSE-0033"]}
+    ]
+  },
+  "openingClosingRelation": {
+    "opening": "No title card or greeting. The first frame already shows the terminal and whip, with the line ‘还是人类会玩儿啊’. This is a payoff-first cold open.",
+    "closing": "No CTA, follow prompt, logo card, or explanatory end screen is visible. The video ends on the terminal/whip motif and a rhetorical question.",
+    "relation": "The close visually returns to the opening terminal-whip demonstration, forming a loose loop; verbally it answers the opening admiration for ‘人类会玩’ by arguing that this deranged idea is precisely what humans invent before AI does.",
+    "citations": ["SHOT-001", "SHOT-008", "CUE-001", "CUE-007"]
+  },
+  "visibleVsClaimed": [
+    {
+      "claim": "The project is called badclaude / 坏克劳德.",
+      "status": "visible",
+      "basis": "README title, installation command, and branded insert",
+      "citations": ["SHOT-002", "SHOT-003"]
+    },
+    {
+      "claim": "It is a cyber whip made for Claude Code.",
+      "status": "partly visible, partly narrated",
+      "basis": "whip animation and Claude-like terminal session are visible; exact integration/provenance is not independently established",
+      "citations": ["SHOT-001", "SHOT-004", "CUE-002"]
+    },
+    {
+      "claim": "A whip triggers Ctrl-C and interrupts work.",
+      "status": "documented and illustrated, not causally proven",
+      "basis": "README says this and the demo contains interruptions, but the raw input/event chain is not shown",
+      "citations": ["SHOT-004", "SHOT-005"]
+    },
+    {
+      "claim": "It randomly sends one of five urging/insult messages.",
+      "status": "documented with supporting insert",
+      "basis": "README says five; visible array has seven rows but five distinct strings because FASTER repeats",
+      "citations": ["SHOT-005", "SHOT-006"]
+    },
+    {
+      "claim": "The author wants to add a whipping log.",
+      "status": "supported only as an unchecked roadmap item",
+      "basis": "README visibly proposes recording whipping counts",
+      "citations": ["SHOT-007"]
+    },
+    {
+      "claim": "Future AI can precisely identify who abused it.",
+      "status": "comedic extrapolation, not visible product behavior",
+      "basis": "roadmap mentions counts and future robots but shows no actor identity collection or lookup",
+      "citations": ["SHOT-007", "CUE-006"]
+    },
+    {
+      "claim": "The tool is installed and operational in the creator's environment.",
+      "status": "not established",
+      "basis": "README commands and a demo clip are shown, but installation, launch, repository provenance, and creator-side execution are not demonstrated",
+      "citations": ["SHOT-002", "SHOT-004"]
+    }
+  ],
+  "negativeEvidence": [
+    "No installation command is typed or executed on screen.",
+    "No successful package-install output, version number, release tag, license, platform support matrix, or dependency list is shown.",
+    "No tray icon interaction is visibly isolated despite README describing it.",
+    "No keystroke/event trace proves that the animated whip generated Ctrl-C.",
+    "No full source function connecting pointer/whip events to terminal input is shown.",
+    "No actual whipping-log UI, log file, record row, counter, user identity field, or persistence output is shown.",
+    "No evidence shows collection of the abuser's identity; ‘精准找到是谁’ is narration-led exaggeration.",
+    "No evidence establishes whether the embedded demo is current, staged, edited, or produced by the repository author.",
+    "No evidence verifies repository ownership, package registry availability, security, compatibility, or ongoing maintenance.",
+    "No CTA, sponsorship disclosure, download link card, safety caveat, outro, or end card is visible.",
+    "No complete, legible view resolves the deliberately blurred third roadmap item.",
+    "The evidence set does not by itself establish background-music identity or the presence/absence of a separate whip sound effect."
+  ],
+  "unknowns": [
+    {"item": "exact repository owner and canonical URL", "reason": "not reliably legible/verified from the allowed evidence"},
+    {"item": "whether badclaude truly integrates with Claude Code or only sends generic keyboard input", "reason": "implementation and runtime event chain are not shown"},
+    {"item": "whether Ctrl-C and message emission are simultaneous, sequential, or editor-assembled", "reason": "demo lacks an inspectable trace"},
+    {"item": "randomization implementation and probability", "reason": "only the phrase array and README claim are visible"},
+    {"item": "status of the Anthropic cease-and-desist roadmap joke", "reason": "README checkbox is visible but no underlying document is shown"},
+    {"item": "blurred third roadmap item", "reason": "creator-added blur prevents ground-truth transcription"},
+    {"item": "identity tracking in a future log", "reason": "visible roadmap text promises counts, not identities"},
+    {"item": "software framework/platform support", "reason": "filenames and Windows-like demo allow inference but not proof"},
+    {"item": "audio bed and sound effects", "reason": "not documented in SRT or still-image evidence and not safely attributable by name"}
+  ],
+  "subtitleAudit": {
+    "semanticCoverage": "The seven SRT cues cover the complete spoken argument from hook through closing question.",
+    "knownNormalizationIssues": [
+      {"srt": "bad cloud", "visible": "badclaude", "recommended": "badclaude / Bad Claude"},
+      {"srt": "cloud code", "visibleOrContextual": "Claude Code", "recommended": "Claude Code"},
+      {"srt": "他/它 alternation", "note": "Anthropomorphism makes pronoun choice stylistic; preserve the spoken joke but distinguish the software from a person in factual reconstruction."}
+    ]
+  },
+  "citationCatalog": {
+    "SHOT-001": {"time": 0.617, "path": "../evidence/frames/shots/shot-001.jpg"},
+    "SHOT-002": {"time": 3.183, "path": "../evidence/frames/shots/shot-002.jpg"},
+    "SHOT-003": {"time": 6.133, "path": "../evidence/frames/shots/shot-003.jpg"},
+    "SHOT-004": {"time": 9.0, "path": "../evidence/frames/shots/shot-004.jpg"},
+    "SHOT-005": {"time": 12.834, "path": "../evidence/frames/shots/shot-005.jpg"},
+    "SHOT-006": {"time": 16.633, "path": "../evidence/frames/shots/shot-006.jpg"},
+    "SHOT-007": {"time": 21.383, "path": "../evidence/frames/shots/shot-007.jpg"},
+    "SHOT-008": {"time": 25.95, "path": "../evidence/frames/shots/shot-008.jpg"},
+    "CUE-001": {"time": 2.12, "path": "../evidence/frames/cues/cue-001.jpg"},
+    "CUE-002": {"time": 6.335, "path": "../evidence/frames/cues/cue-002.jpg"},
+    "CUE-003": {"time": 10.441, "path": "../evidence/frames/cues/cue-003.jpg"},
+    "CUE-004": {"time": 14.511, "path": "../evidence/frames/cues/cue-004.jpg"},
+    "CUE-005": {"time": 18.441, "path": "../evidence/frames/cues/cue-005.jpg"},
+    "CUE-006": {"time": 22.276, "path": "../evidence/frames/cues/cue-006.jpg"},
+    "CUE-007": {"time": 25.939, "path": "../evidence/frames/cues/cue-007.jpg"},
+    "DENSE-0003": {"time": 1.5, "path": "../evidence/frames/dense/dense-0003.jpg"},
+    "DENSE-0007": {"time": 4.5, "path": "../evidence/frames/dense/dense-0007.jpg"},
+    "DENSE-0008": {"time": 5.25, "path": "../evidence/frames/dense/dense-0008.jpg"},
+    "DENSE-0009": {"time": 6.0, "path": "../evidence/frames/dense/dense-0009.jpg"},
+    "DENSE-0010": {"time": 6.75, "path": "../evidence/frames/dense/dense-0010.jpg"},
+    "DENSE-0011": {"time": 7.5, "path": "../evidence/frames/dense/dense-0011.jpg"},
+    "DENSE-0014": {"time": 9.75, "path": "../evidence/frames/dense/dense-0014.jpg"},
+    "DENSE-0017": {"time": 12.0, "path": "../evidence/frames/dense/dense-0017.jpg"},
+    "DENSE-0018": {"time": 12.75, "path": "../evidence/frames/dense/dense-0018.jpg"},
+    "DENSE-0020": {"time": 14.25, "path": "../evidence/frames/dense/dense-0020.jpg"},
+    "DENSE-0021": {"time": 15.0, "path": "../evidence/frames/dense/dense-0021.jpg"},
+    "DENSE-0024": {"time": 17.25, "path": "../evidence/frames/dense/dense-0024.jpg"},
+    "DENSE-0025": {"time": 18.0, "path": "../evidence/frames/dense/dense-0025.jpg"},
+    "DENSE-0026": {"time": 18.75, "path": "../evidence/frames/dense/dense-0026.jpg"},
+    "DENSE-0027": {"time": 19.5, "path": "../evidence/frames/dense/dense-0027.jpg"},
+    "DENSE-0029": {"time": 21.0, "path": "../evidence/frames/dense/dense-0029.jpg"},
+    "DENSE-0032": {"time": 23.25, "path": "../evidence/frames/dense/dense-0032.jpg"},
+    "DENSE-0033": {"time": 24.0, "path": "../evidence/frames/dense/dense-0033.jpg"},
+    "DENSE-0038": {"time": 27.48, "path": "../evidence/frames/dense/dense-0038.jpg"}
+  },
+  "citationValidation": {
+    "status": "valid",
+    "catalogEntries": 34,
+    "allReferencedIdsCataloged": true,
+    "allCatalogPathsExist": true,
+    "allTimesWithinSourceDuration": true
+  }
+}

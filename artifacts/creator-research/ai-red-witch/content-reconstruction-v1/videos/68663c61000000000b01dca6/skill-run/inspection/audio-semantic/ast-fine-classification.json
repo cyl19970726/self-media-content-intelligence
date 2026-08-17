@@ -1,0 +1,2559 @@
+{
+  "schemaVersion": "audio-semantic-classification-1.0",
+  "generatedAt": "2026-08-16T03:54:57.493702+00:00",
+  "source": "full-mono-16k.wav",
+  "sourceDurationSeconds": 93.601,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "modelLabelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 4.0,
+    "hopSeconds": 2.0,
+    "topK": 12,
+    "scoreTransform": "sigmoid(logits)",
+    "coverage": "gap-free overlapping windows"
+  },
+  "limitations": [
+    "Mixed-track classifier proposals only; no source separation or ownership inference.",
+    "Short-window inputs are padded by the feature extractor and may produce false-positive effect labels."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 4.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.677124
+        },
+        {
+          "label": "Music",
+          "score": 0.347639
+        },
+        {
+          "label": "Ding",
+          "score": 0.066611
+        },
+        {
+          "label": "Ping",
+          "score": 0.049188
+        },
+        {
+          "label": "Hoot",
+          "score": 0.040526
+        },
+        {
+          "label": "Ringtone",
+          "score": 0.031787
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.02019
+        },
+        {
+          "label": "Clang",
+          "score": 0.019237
+        },
+        {
+          "label": "Owl",
+          "score": 0.016381
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013468
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.011054
+        },
+        {
+          "label": "Cash register",
+          "score": 0.009781
+        }
+      ]
+    },
+    {
+      "start": 2.0,
+      "end": 6.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.618527
+        },
+        {
+          "label": "Music",
+          "score": 0.433442
+        },
+        {
+          "label": "Hoot",
+          "score": 0.07563
+        },
+        {
+          "label": "Owl",
+          "score": 0.046011
+        },
+        {
+          "label": "Whoop",
+          "score": 0.019644
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.018842
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013171
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.011747
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.011509
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.010053
+        },
+        {
+          "label": "Animal",
+          "score": 0.008955
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.00884
+        }
+      ]
+    },
+    {
+      "start": 4.0,
+      "end": 8.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.72647
+        },
+        {
+          "label": "Music",
+          "score": 0.719223
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.072211
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.040424
+        },
+        {
+          "label": "Conversation",
+          "score": 0.018795
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.016839
+        },
+        {
+          "label": "Television",
+          "score": 0.011616
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011593
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.01133
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.011254
+        },
+        {
+          "label": "Drip",
+          "score": 0.010422
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.010249
+        }
+      ]
+    },
+    {
+      "start": 6.0,
+      "end": 10.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.789478
+        },
+        {
+          "label": "Music",
+          "score": 0.7857
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.033136
+        },
+        {
+          "label": "Television",
+          "score": 0.024478
+        },
+        {
+          "label": "Conversation",
+          "score": 0.021144
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.020748
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.016658
+        },
+        {
+          "label": "Spray",
+          "score": 0.014669
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.012896
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.010613
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.010472
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.009929
+        }
+      ]
+    },
+    {
+      "start": 8.0,
+      "end": 12.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.865144
+        },
+        {
+          "label": "Music",
+          "score": 0.792516
+        },
+        {
+          "label": "Television",
+          "score": 0.043348
+        },
+        {
+          "label": "Jingle (music)",
+          "score": 0.019225
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.015954
+        },
+        {
+          "label": "Conversation",
+          "score": 0.015193
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.013927
+        },
+        {
+          "label": "Spray",
+          "score": 0.013906
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.011634
+        },
+        {
+          "label": "Meow",
+          "score": 0.009873
+        },
+        {
+          "label": "Radio",
+          "score": 0.009514
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.009079
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 14.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.728901
+        },
+        {
+          "label": "Music",
+          "score": 0.672816
+        },
+        {
+          "label": "Baby cry, infant cry",
+          "score": 0.189449
+        },
+        {
+          "label": "Meow",
+          "score": 0.064707
+        },
+        {
+          "label": "Whimper",
+          "score": 0.050431
+        },
+        {
+          "label": "Cat",
+          "score": 0.030463
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.029542
+        },
+        {
+          "label": "Animal",
+          "score": 0.014798
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014731
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.012546
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.011077
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.009719
+        }
+      ]
+    },
+    {
+      "start": 12.0,
+      "end": 16.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.711287
+        },
+        {
+          "label": "Music",
+          "score": 0.68338
+        },
+        {
+          "label": "Baby cry, infant cry",
+          "score": 0.093471
+        },
+        {
+          "label": "Meow",
+          "score": 0.05603
+        },
+        {
+          "label": "Cat",
+          "score": 0.039416
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.029062
+        },
+        {
+          "label": "Whimper",
+          "score": 0.020348
+        },
+        {
+          "label": "Door",
+          "score": 0.020312
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.016644
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013281
+        },
+        {
+          "label": "Slam",
+          "score": 0.012739
+        },
+        {
+          "label": "Animal",
+          "score": 0.012233
+        }
+      ]
+    },
+    {
+      "start": 14.0,
+      "end": 18.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.71523
+        },
+        {
+          "label": "Music",
+          "score": 0.699383
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.036846
+        },
+        {
+          "label": "Door",
+          "score": 0.032665
+        },
+        {
+          "label": "Bang",
+          "score": 0.029923
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.027803
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.020916
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.016528
+        },
+        {
+          "label": "Chop",
+          "score": 0.013522
+        },
+        {
+          "label": "Sliding door",
+          "score": 0.013235
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.012044
+        },
+        {
+          "label": "Slam",
+          "score": 0.011765
+        }
+      ]
+    },
+    {
+      "start": 16.0,
+      "end": 20.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.69363
+        },
+        {
+          "label": "Speech",
+          "score": 0.677609
+        },
+        {
+          "label": "Accordion",
+          "score": 0.076101
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.018101
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.016751
+        },
+        {
+          "label": "Harmonica",
+          "score": 0.014571
+        },
+        {
+          "label": "Television",
+          "score": 0.013934
+        },
+        {
+          "label": "Funny music",
+          "score": 0.01085
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.008396
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007615
+        },
+        {
+          "label": "Jingle (music)",
+          "score": 0.005005
+        },
+        {
+          "label": "Video game music",
+          "score": 0.004907
+        }
+      ]
+    },
+    {
+      "start": 18.0,
+      "end": 22.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.664925
+        },
+        {
+          "label": "Music",
+          "score": 0.652552
+        },
+        {
+          "label": "Accordion",
+          "score": 0.037284
+        },
+        {
+          "label": "Animal",
+          "score": 0.033939
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.033091
+        },
+        {
+          "label": "Bow-wow",
+          "score": 0.027463
+        },
+        {
+          "label": "Dog",
+          "score": 0.025053
+        },
+        {
+          "label": "Television",
+          "score": 0.017151
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.009598
+        },
+        {
+          "label": "Yip",
+          "score": 0.009152
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009054
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.007542
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 24.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.711627
+        },
+        {
+          "label": "Speech",
+          "score": 0.666309
+        },
+        {
+          "label": "Television",
+          "score": 0.077624
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.027723
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.015167
+        },
+        {
+          "label": "Conversation",
+          "score": 0.012761
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.011946
+        },
+        {
+          "label": "Funny music",
+          "score": 0.010195
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.009122
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.009075
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.008937
+        },
+        {
+          "label": "Video game music",
+          "score": 0.008716
+        }
+      ]
+    },
+    {
+      "start": 22.0,
+      "end": 26.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.682572
+        },
+        {
+          "label": "Speech",
+          "score": 0.674934
+        },
+        {
+          "label": "Television",
+          "score": 0.020409
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.019966
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.015517
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.01354
+        },
+        {
+          "label": "Spray",
+          "score": 0.013045
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012756
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.012753
+        },
+        {
+          "label": "Conversation",
+          "score": 0.011696
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.011109
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.008295
+        }
+      ]
+    },
+    {
+      "start": 24.0,
+      "end": 28.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.73262
+        },
+        {
+          "label": "Speech",
+          "score": 0.673827
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.021902
+        },
+        {
+          "label": "Television",
+          "score": 0.018433
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.018162
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.017283
+        },
+        {
+          "label": "Spray",
+          "score": 0.017266
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.015429
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.014223
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.012843
+        },
+        {
+          "label": "Techno",
+          "score": 0.010421
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010332
+        }
+      ]
+    },
+    {
+      "start": 26.0,
+      "end": 30.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.710661
+        },
+        {
+          "label": "Music",
+          "score": 0.704265
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.02574
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.020989
+        },
+        {
+          "label": "Television",
+          "score": 0.019767
+        },
+        {
+          "label": "Conversation",
+          "score": 0.016516
+        },
+        {
+          "label": "Spray",
+          "score": 0.013909
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.012327
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010922
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.009677
+        },
+        {
+          "label": "Animal",
+          "score": 0.009259
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.008295
+        }
+      ]
+    },
+    {
+      "start": 28.0,
+      "end": 32.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.461933
+        },
+        {
+          "label": "Speech",
+          "score": 0.424055
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.416289
+        },
+        {
+          "label": "Chop",
+          "score": 0.142179
+        },
+        {
+          "label": "Knock",
+          "score": 0.014068
+        },
+        {
+          "label": "Door",
+          "score": 0.010117
+        },
+        {
+          "label": "Tap",
+          "score": 0.007394
+        },
+        {
+          "label": "Slam",
+          "score": 0.006428
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.005669
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.005656
+        },
+        {
+          "label": "Whack, thwack",
+          "score": 0.005521
+        },
+        {
+          "label": "Sliding door",
+          "score": 0.004725
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 34.0,
+      "topLabels": [
+        {
+          "label": "Chopping (food)",
+          "score": 0.372399
+        },
+        {
+          "label": "Music",
+          "score": 0.365887
+        },
+        {
+          "label": "Speech",
+          "score": 0.33741
+        },
+        {
+          "label": "Chop",
+          "score": 0.071895
+        },
+        {
+          "label": "Knock",
+          "score": 0.058016
+        },
+        {
+          "label": "Tap",
+          "score": 0.010804
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.006222
+        },
+        {
+          "label": "Ping",
+          "score": 0.005146
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.003926
+        },
+        {
+          "label": "Door",
+          "score": 0.003878
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.003708
+        },
+        {
+          "label": "Bouncing",
+          "score": 0.002985
+        }
+      ]
+    },
+    {
+      "start": 32.0,
+      "end": 36.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.744042
+        },
+        {
+          "label": "Music",
+          "score": 0.734853
+        },
+        {
+          "label": "Boing",
+          "score": 0.213005
+        },
+        {
+          "label": "Plop",
+          "score": 0.033827
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019836
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014963
+        },
+        {
+          "label": "Music for children",
+          "score": 0.013049
+        },
+        {
+          "label": "Drip",
+          "score": 0.012674
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.009572
+        },
+        {
+          "label": "Knock",
+          "score": 0.006206
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.005948
+        },
+        {
+          "label": "Conversation",
+          "score": 0.004424
+        }
+      ]
+    },
+    {
+      "start": 34.0,
+      "end": 38.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.836408
+        },
+        {
+          "label": "Music",
+          "score": 0.832572
+        },
+        {
+          "label": "Boing",
+          "score": 0.215708
+        },
+        {
+          "label": "Plop",
+          "score": 0.050451
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.023097
+        },
+        {
+          "label": "Music for children",
+          "score": 0.02181
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.020527
+        },
+        {
+          "label": "Drip",
+          "score": 0.020283
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.012491
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.00673
+        },
+        {
+          "label": "Television",
+          "score": 0.00501
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.004973
+        }
+      ]
+    },
+    {
+      "start": 36.0,
+      "end": 40.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.782735
+        },
+        {
+          "label": "Music",
+          "score": 0.690148
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.041887
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.038864
+        },
+        {
+          "label": "Conversation",
+          "score": 0.025508
+        },
+        {
+          "label": "Spray",
+          "score": 0.019058
+        },
+        {
+          "label": "Television",
+          "score": 0.018963
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.018592
+        },
+        {
+          "label": "Drip",
+          "score": 0.0134
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.013343
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.012609
+        },
+        {
+          "label": "Techno",
+          "score": 0.011291
+        }
+      ]
+    },
+    {
+      "start": 38.0,
+      "end": 42.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.739479
+        },
+        {
+          "label": "Music",
+          "score": 0.686317
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.038833
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.028853
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.023485
+        },
+        {
+          "label": "Spray",
+          "score": 0.018531
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.016679
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01285
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012439
+        },
+        {
+          "label": "Television",
+          "score": 0.010992
+        },
+        {
+          "label": "Gasp",
+          "score": 0.010703
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.010249
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 44.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.719309
+        },
+        {
+          "label": "Music",
+          "score": 0.662757
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.026928
+        },
+        {
+          "label": "Television",
+          "score": 0.022024
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.016873
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.016555
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01377
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.010803
+        },
+        {
+          "label": "Spray",
+          "score": 0.010283
+        },
+        {
+          "label": "Gasp",
+          "score": 0.010115
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.010106
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.009317
+        }
+      ]
+    },
+    {
+      "start": 42.0,
+      "end": 46.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.81009
+        },
+        {
+          "label": "Music",
+          "score": 0.767639
+        },
+        {
+          "label": "Ringtone",
+          "score": 0.038161
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.026147
+        },
+        {
+          "label": "Boing",
+          "score": 0.023045
+        },
+        {
+          "label": "Telephone bell ringing",
+          "score": 0.02033
+        },
+        {
+          "label": "Telephone",
+          "score": 0.01718
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.014315
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.010492
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010118
+        },
+        {
+          "label": "Frog",
+          "score": 0.009137
+        },
+        {
+          "label": "Television",
+          "score": 0.008342
+        }
+      ]
+    },
+    {
+      "start": 44.0,
+      "end": 48.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.762579
+        },
+        {
+          "label": "Music",
+          "score": 0.738978
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.032911
+        },
+        {
+          "label": "Ringtone",
+          "score": 0.024703
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.017245
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016443
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.015045
+        },
+        {
+          "label": "Telephone bell ringing",
+          "score": 0.013056
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.009686
+        },
+        {
+          "label": "Boing",
+          "score": 0.009608
+        },
+        {
+          "label": "Plop",
+          "score": 0.009466
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.008743
+        }
+      ]
+    },
+    {
+      "start": 46.0,
+      "end": 50.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.668203
+        },
+        {
+          "label": "Music",
+          "score": 0.604678
+        },
+        {
+          "label": "Oink",
+          "score": 0.065696
+        },
+        {
+          "label": "Snort",
+          "score": 0.032304
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.028594
+        },
+        {
+          "label": "Animal",
+          "score": 0.021231
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.018707
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014168
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.01394
+        },
+        {
+          "label": "Cat",
+          "score": 0.009225
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.008468
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.008259
+        }
+      ]
+    },
+    {
+      "start": 48.0,
+      "end": 52.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.682392
+        },
+        {
+          "label": "Music",
+          "score": 0.648468
+        },
+        {
+          "label": "Television",
+          "score": 0.020285
+        },
+        {
+          "label": "Spray",
+          "score": 0.01872
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.016486
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.015287
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.01496
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.011897
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.010512
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.009592
+        },
+        {
+          "label": "Tap",
+          "score": 0.009394
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.00905
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 54.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.770556
+        },
+        {
+          "label": "Music",
+          "score": 0.648438
+        },
+        {
+          "label": "Television",
+          "score": 0.04229
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.038685
+        },
+        {
+          "label": "Spray",
+          "score": 0.02394
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.021874
+        },
+        {
+          "label": "Animal",
+          "score": 0.019558
+        },
+        {
+          "label": "Oink",
+          "score": 0.012945
+        },
+        {
+          "label": "Conversation",
+          "score": 0.012185
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.011713
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.011512
+        },
+        {
+          "label": "Slap, smack",
+          "score": 0.010888
+        }
+      ]
+    },
+    {
+      "start": 52.0,
+      "end": 56.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.747078
+        },
+        {
+          "label": "Music",
+          "score": 0.612081
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.087692
+        },
+        {
+          "label": "Cat",
+          "score": 0.040815
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.039659
+        },
+        {
+          "label": "Television",
+          "score": 0.038007
+        },
+        {
+          "label": "Animal",
+          "score": 0.035432
+        },
+        {
+          "label": "Meow",
+          "score": 0.026991
+        },
+        {
+          "label": "Spray",
+          "score": 0.024938
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.022298
+        },
+        {
+          "label": "Quack",
+          "score": 0.016837
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015271
+        }
+      ]
+    },
+    {
+      "start": 54.0,
+      "end": 58.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.723314
+        },
+        {
+          "label": "Music",
+          "score": 0.628896
+        },
+        {
+          "label": "Bleat",
+          "score": 0.093884
+        },
+        {
+          "label": "Sheep",
+          "score": 0.093606
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.046635
+        },
+        {
+          "label": "Animal",
+          "score": 0.041522
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.029152
+        },
+        {
+          "label": "Meow",
+          "score": 0.018557
+        },
+        {
+          "label": "Television",
+          "score": 0.01763
+        },
+        {
+          "label": "Cat",
+          "score": 0.016654
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.01135
+        },
+        {
+          "label": "Giggle",
+          "score": 0.010313
+        }
+      ]
+    },
+    {
+      "start": 56.0,
+      "end": 60.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.538162
+        },
+        {
+          "label": "Music",
+          "score": 0.431125
+        },
+        {
+          "label": "Fly, housefly",
+          "score": 0.320514
+        },
+        {
+          "label": "Insect",
+          "score": 0.257546
+        },
+        {
+          "label": "Mosquito",
+          "score": 0.120415
+        },
+        {
+          "label": "Bee, wasp, etc.",
+          "score": 0.082639
+        },
+        {
+          "label": "Animal",
+          "score": 0.013038
+        },
+        {
+          "label": "Television",
+          "score": 0.008566
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.007489
+        },
+        {
+          "label": "Spray",
+          "score": 0.007444
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.006591
+        },
+        {
+          "label": "Hoot",
+          "score": 0.006551
+        }
+      ]
+    },
+    {
+      "start": 58.0,
+      "end": 62.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.813589
+        },
+        {
+          "label": "Music",
+          "score": 0.682474
+        },
+        {
+          "label": "Vehicle horn, car horn, honking",
+          "score": 0.120138
+        },
+        {
+          "label": "Ding",
+          "score": 0.07635
+        },
+        {
+          "label": "Ping",
+          "score": 0.049951
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.040213
+        },
+        {
+          "label": "Buzzer",
+          "score": 0.032434
+        },
+        {
+          "label": "Clang",
+          "score": 0.021299
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.020264
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.013428
+        },
+        {
+          "label": "Television",
+          "score": 0.012657
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.011065
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 64.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.699954
+        },
+        {
+          "label": "Music",
+          "score": 0.558906
+        },
+        {
+          "label": "Ding",
+          "score": 0.240448
+        },
+        {
+          "label": "Ping",
+          "score": 0.094527
+        },
+        {
+          "label": "Clang",
+          "score": 0.084265
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.050379
+        },
+        {
+          "label": "Jingle, tinkle",
+          "score": 0.01617
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.013697
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.010767
+        },
+        {
+          "label": "Coin (dropping)",
+          "score": 0.01026
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.00978
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.007595
+        }
+      ]
+    },
+    {
+      "start": 62.0,
+      "end": 66.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.638047
+        },
+        {
+          "label": "Music",
+          "score": 0.537481
+        },
+        {
+          "label": "Ding",
+          "score": 0.143008
+        },
+        {
+          "label": "Clang",
+          "score": 0.0763
+        },
+        {
+          "label": "Television",
+          "score": 0.033353
+        },
+        {
+          "label": "Ping",
+          "score": 0.0272
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.02473
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.017614
+        },
+        {
+          "label": "Coin (dropping)",
+          "score": 0.016995
+        },
+        {
+          "label": "Ringtone",
+          "score": 0.014403
+        },
+        {
+          "label": "Jingle, tinkle",
+          "score": 0.013116
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.012778
+        }
+      ]
+    },
+    {
+      "start": 64.0,
+      "end": 68.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.739839
+        },
+        {
+          "label": "Music",
+          "score": 0.649974
+        },
+        {
+          "label": "Television",
+          "score": 0.026026
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.020091
+        },
+        {
+          "label": "Animal",
+          "score": 0.014626
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.011914
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.011863
+        },
+        {
+          "label": "Spray",
+          "score": 0.010517
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.009558
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.009453
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.008881
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.008487
+        }
+      ]
+    },
+    {
+      "start": 66.0,
+      "end": 70.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.741606
+        },
+        {
+          "label": "Music",
+          "score": 0.650823
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.030395
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.027245
+        },
+        {
+          "label": "Television",
+          "score": 0.023052
+        },
+        {
+          "label": "Animal",
+          "score": 0.018125
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.018071
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017933
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.016571
+        },
+        {
+          "label": "Spray",
+          "score": 0.015405
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014546
+        },
+        {
+          "label": "Gasp",
+          "score": 0.013854
+        }
+      ]
+    },
+    {
+      "start": 68.0,
+      "end": 72.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.737621
+        },
+        {
+          "label": "Music",
+          "score": 0.660953
+        },
+        {
+          "label": "Television",
+          "score": 0.046723
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.029059
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.021166
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.014903
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014272
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014103
+        },
+        {
+          "label": "Spray",
+          "score": 0.011261
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.011134
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.00989
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.00952
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 74.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.754544
+        },
+        {
+          "label": "Music",
+          "score": 0.685044
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.036456
+        },
+        {
+          "label": "Television",
+          "score": 0.023369
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.022107
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.017957
+        },
+        {
+          "label": "Frog",
+          "score": 0.013572
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.012492
+        },
+        {
+          "label": "Drip",
+          "score": 0.012361
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01169
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.01065
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.010589
+        }
+      ]
+    },
+    {
+      "start": 72.0,
+      "end": 76.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.691252
+        },
+        {
+          "label": "Music",
+          "score": 0.596763
+        },
+        {
+          "label": "Ding",
+          "score": 0.13514
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.056755
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.045312
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.044783
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.023648
+        },
+        {
+          "label": "Clang",
+          "score": 0.020151
+        },
+        {
+          "label": "Jingle, tinkle",
+          "score": 0.014241
+        },
+        {
+          "label": "Ping",
+          "score": 0.013435
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.0085
+        },
+        {
+          "label": "Marimba, xylophone",
+          "score": 0.007342
+        }
+      ]
+    },
+    {
+      "start": 74.0,
+      "end": 78.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.697308
+        },
+        {
+          "label": "Music",
+          "score": 0.609292
+        },
+        {
+          "label": "Ding",
+          "score": 0.195897
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.049321
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.046289
+        },
+        {
+          "label": "Clang",
+          "score": 0.029536
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.027752
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.018665
+        },
+        {
+          "label": "Jingle, tinkle",
+          "score": 0.014713
+        },
+        {
+          "label": "Ping",
+          "score": 0.013809
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.008323
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.007897
+        }
+      ]
+    },
+    {
+      "start": 76.0,
+      "end": 80.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.759787
+        },
+        {
+          "label": "Music",
+          "score": 0.673337
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.041369
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.028442
+        },
+        {
+          "label": "Conversation",
+          "score": 0.027799
+        },
+        {
+          "label": "Television",
+          "score": 0.021921
+        },
+        {
+          "label": "Gasp",
+          "score": 0.014943
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.012066
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.012027
+        },
+        {
+          "label": "Spray",
+          "score": 0.011754
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010008
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.009911
+        }
+      ]
+    },
+    {
+      "start": 78.0,
+      "end": 82.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.723051
+        },
+        {
+          "label": "Music",
+          "score": 0.70823
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.037791
+        },
+        {
+          "label": "Television",
+          "score": 0.02286
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017983
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014372
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.013028
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.010557
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.009919
+        },
+        {
+          "label": "Spray",
+          "score": 0.00967
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.009429
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.008776
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 84.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.763344
+        },
+        {
+          "label": "Music",
+          "score": 0.735911
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.039125
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.030935
+        },
+        {
+          "label": "Television",
+          "score": 0.025993
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017013
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.014095
+        },
+        {
+          "label": "Throat clearing",
+          "score": 0.011625
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011027
+        },
+        {
+          "label": "Spray",
+          "score": 0.010771
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.010627
+        },
+        {
+          "label": "Animal",
+          "score": 0.010335
+        }
+      ]
+    },
+    {
+      "start": 82.0,
+      "end": 86.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.62965
+        },
+        {
+          "label": "Music",
+          "score": 0.53412
+        },
+        {
+          "label": "Ding",
+          "score": 0.21596
+        },
+        {
+          "label": "Ping",
+          "score": 0.052808
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.049553
+        },
+        {
+          "label": "Clang",
+          "score": 0.045482
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.023851
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.01735
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.017098
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013757
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.007598
+        },
+        {
+          "label": "Jingle, tinkle",
+          "score": 0.007583
+        }
+      ]
+    },
+    {
+      "start": 84.0,
+      "end": 88.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.541973
+        },
+        {
+          "label": "Music",
+          "score": 0.477715
+        },
+        {
+          "label": "Ding",
+          "score": 0.167462
+        },
+        {
+          "label": "Ping",
+          "score": 0.046689
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.032237
+        },
+        {
+          "label": "Clang",
+          "score": 0.031126
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.030279
+        },
+        {
+          "label": "Plop",
+          "score": 0.029707
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.012327
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.012193
+        },
+        {
+          "label": "Boing",
+          "score": 0.008308
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.008037
+        }
+      ]
+    },
+    {
+      "start": 86.0,
+      "end": 90.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.587042
+        },
+        {
+          "label": "Speech",
+          "score": 0.555644
+        },
+        {
+          "label": "Ding",
+          "score": 0.064932
+        },
+        {
+          "label": "Plop",
+          "score": 0.041238
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.024359
+        },
+        {
+          "label": "Boing",
+          "score": 0.022502
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015118
+        },
+        {
+          "label": "Ping",
+          "score": 0.012135
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.011269
+        },
+        {
+          "label": "Music for children",
+          "score": 0.011257
+        },
+        {
+          "label": "Clang",
+          "score": 0.010618
+        },
+        {
+          "label": "Squeak",
+          "score": 0.008007
+        }
+      ]
+    },
+    {
+      "start": 88.0,
+      "end": 92.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.671856
+        },
+        {
+          "label": "Music",
+          "score": 0.583977
+        },
+        {
+          "label": "Whoop",
+          "score": 0.065904
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.019869
+        },
+        {
+          "label": "Conversation",
+          "score": 0.012702
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.011325
+        },
+        {
+          "label": "Crowd",
+          "score": 0.011254
+        },
+        {
+          "label": "Giggle",
+          "score": 0.011042
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.010564
+        },
+        {
+          "label": "Animal",
+          "score": 0.010237
+        },
+        {
+          "label": "Cat",
+          "score": 0.009903
+        },
+        {
+          "label": "Bellow",
+          "score": 0.009626
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 93.601,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.555516
+        },
+        {
+          "label": "Music",
+          "score": 0.513873
+        },
+        {
+          "label": "Ding",
+          "score": 0.266455
+        },
+        {
+          "label": "Ping",
+          "score": 0.07614
+        },
+        {
+          "label": "Clang",
+          "score": 0.054446
+        },
+        {
+          "label": "Owl",
+          "score": 0.053857
+        },
+        {
+          "label": "Hoot",
+          "score": 0.032981
+        },
+        {
+          "label": "Child speech, kid speaking",
+          "score": 0.013569
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.013558
+        },
+        {
+          "label": "Boing",
+          "score": 0.011675
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.010485
+        },
+        {
+          "label": "Whoop",
+          "score": 0.00953
+        }
+      ]
+    },
+    {
+      "start": 92.0,
+      "end": 93.601,
+      "topLabels": [
+        {
+          "label": "Ding",
+          "score": 0.554029
+        },
+        {
+          "label": "Music",
+          "score": 0.463622
+        },
+        {
+          "label": "Speech",
+          "score": 0.380373
+        },
+        {
+          "label": "Clang",
+          "score": 0.234215
+        },
+        {
+          "label": "Ping",
+          "score": 0.092982
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.026375
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.024669
+        },
+        {
+          "label": "Coin (dropping)",
+          "score": 0.021193
+        },
+        {
+          "label": "Bell",
+          "score": 0.011445
+        },
+        {
+          "label": "Dishes, pots, and pans",
+          "score": 0.008224
+        },
+        {
+          "label": "Jingle bell",
+          "score": 0.007972
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007799
+        }
+      ]
+    }
+  ]
+}

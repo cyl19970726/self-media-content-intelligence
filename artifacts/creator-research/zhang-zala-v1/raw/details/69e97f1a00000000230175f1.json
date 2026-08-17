@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69e97f1a00000000230175f1",
+  "capturedAt": "2026-08-16T11:10:04.661Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "AI 能写诗，但是功夫在诗外",
+    "postCopy": "如图",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69e97f1a00000000230175f1",
+    "mediaType": "image",
+    "publishedAt": "2026-04-23T02:08:27.000Z",
+    "likes": "565",
+    "collections": "206",
+    "comments": "33",
+    "shares": "70",
+    "expectedDurationSec": null
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": []
+}

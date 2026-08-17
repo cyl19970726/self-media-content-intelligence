@@ -1,0 +1,2308 @@
+{
+  "frames" : [
+    {
+      "actionId" : "CAP-01-CARD",
+      "frameId" : "TARGET-0001",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3388888866111111,
+            0.78437499984375,
+            0.2277777777777778,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00001",
+          "text" : "通义万相AI视频"
+        },
+        {
+          "boundingBox" : [
+            0.3388888951851849,
+            0.7625,
+            0.3777777777777778,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00002",
+          "text" : "通义万相AI视頻是阿里推出的.."
+        },
+        {
+          "boundingBox" : [
+            0.26111110796296294,
+            0.19999999968750015,
+            0.4777777777777778,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00003",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 0.05
+    },
+    {
+      "actionId" : "CAP-01-CARD",
+      "frameId" : "TARGET-0002",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.33333333138888893,
+            0.78124999984375,
+            0.23333333333333334,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00004",
+          "text" : "通义万相AI视频"
+        },
+        {
+          "boundingBox" : [
+            0.33888889527777755,
+            0.7625,
+            0.3833333333333333,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00005",
+          "text" : "通义万相AI视頻是阿里推出的.."
+        },
+        {
+          "boundingBox" : [
+            0.2611111084126984,
+            0.19999999973214277,
+            0.4777777777777778,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00006",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 0.3
+    },
+    {
+      "actionId" : "CAP-01-CARD",
+      "frameId" : "TARGET-0003",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.33874972889311095,
+            0.7839067587235067,
+            0.22805610232883033,
+            0.02281148135662081
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00007",
+          "text" : "通义万相AI视频"
+        },
+        {
+          "boundingBox" : [
+            0.3388888951851849,
+            0.7625,
+            0.3777777777777778,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00008",
+          "text" : "通义万相AI视頻是阿里推出的.."
+        },
+        {
+          "boundingBox" : [
+            0.26111110796296294,
+            0.19999999968750015,
+            0.4777777777777778,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00009",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 0.6
+    },
+    {
+      "actionId" : "CAP-01-RESULT",
+      "frameId" : "TARGET-0004",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3388888866111111,
+            0.78437499984375,
+            0.2277777777777778,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00010",
+          "text" : "通义万相AI视频"
+        },
+        {
+          "boundingBox" : [
+            0.33888889527777755,
+            0.7625,
+            0.3833333333333333,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00011",
+          "text" : "通义万相AI视頻是阿里推出的.."
+        },
+        {
+          "boundingBox" : [
+            0.2611111084126984,
+            0.19999999973214277,
+            0.4777777777777778,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00012",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-RESULT-001.jpg",
+      "status" : "processed",
+      "time" : 0.2
+    },
+    {
+      "actionId" : "CAP-01-RESULT",
+      "frameId" : "TARGET-0005",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333486111106,
+            0.953125000078125,
+            0.12222222222222223,
+            0.025000000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00013",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.2611111140972222,
+            0.20000000015624997,
+            0.47777777777777775,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00014",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-RESULT-002.jpg",
+      "status" : "processed",
+      "time" : 0.75
+    },
+    {
+      "actionId" : "CAP-01-RESULT",
+      "frameId" : "TARGET-0006",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776500000014,
+            0.94999999984375,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00015",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.26111110791666664,
+            0.19999999968750015,
+            0.48333333333333334,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00016",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-RESULT-003.jpg",
+      "status" : "processed",
+      "time" : 1.05
+    },
+    {
+      "actionId" : "CAP-01-RESULT",
+      "frameId" : "TARGET-0007",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333361111111,
+            0.9499999996484375,
+            0.12222222222222222,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00017",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.2611111159444443,
+            0.20000000018749997,
+            0.48333333333333334,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00018",
+          "text" : "这个可以帮你换人物"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-RESULT-004.jpg",
+      "status" : "processed",
+      "time" : 1.5
+    },
+    {
+      "actionId" : "CAP-01-RESULT",
+      "frameId" : "TARGET-0008",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02777777894444442,
+            0.94999999971875,
+            0.1277777777777778,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00019",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-01-RESULT-005.jpg",
+      "status" : "processed",
+      "time" : 1.9
+    },
+    {
+      "actionId" : "CAP-02-CARD",
+      "frameId" : "TARGET-0009",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28888889048611105,
+            0.8437500000781251,
+            0.12777777777777777,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00020",
+          "text" : "PixVerse"
+        },
+        {
+          "boundingBox" : [
+            0.2888888936805555,
+            0.8218750001171875,
+            0.3833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00021",
+          "text" : "爱诗科技推出的AI视领生成工具"
+        },
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00022",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 2.15
+    },
+    {
+      "actionId" : "CAP-02-CARD",
+      "frameId" : "TARGET-0010",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28888889048611105,
+            0.8437500000781251,
+            0.12777777777777777,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00023",
+          "text" : "PixVerse"
+        },
+        {
+          "boundingBox" : [
+            0.2888888936805555,
+            0.8218750001171875,
+            0.3833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00024",
+          "text" : "爱诗科技推出的AI视领生成工具"
+        },
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00025",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 2.3
+    },
+    {
+      "actionId" : "CAP-02-CARD",
+      "frameId" : "TARGET-0011",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28888889048611105,
+            0.8437500000781251,
+            0.12777777777777777,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00026",
+          "text" : "PixVerse"
+        },
+        {
+          "boundingBox" : [
+            0.2888888936805555,
+            0.8218750001171875,
+            0.3833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00027",
+          "text" : "爱诗科技推出的AI视领生成工具"
+        },
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00028",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 2.55
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0012",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.28888889048611105,
+            0.8437500000781251,
+            0.12777777777777777,
+            0.018749999999999933
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00029",
+          "text" : "PixVerse"
+        },
+        {
+          "boundingBox" : [
+            0.2888888936805555,
+            0.8218750001171875,
+            0.3833333333333333,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00030",
+          "text" : "爱诗科技推出的AI视领生成工具"
+        },
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00031",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-001.jpg",
+      "status" : "processed",
+      "time" : 2.5
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0013",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00032",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-002.jpg",
+      "status" : "processed",
+      "time" : 2.75
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0014",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00033",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-003.jpg",
+      "status" : "processed",
+      "time" : 3
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0015",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888924537036,
+            0.20000000015624997,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00034",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-004.jpg",
+      "status" : "processed",
+      "time" : 3.25
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0016",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888919444445,
+            0.20000000017857145,
+            0.42777777777777776,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00035",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-005.jpg",
+      "status" : "processed",
+      "time" : 3.5
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0017",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2888888931666666,
+            0.2031250001562499,
+            0.42777777777777776,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00036",
+          "text" : "这个可以帮做特效"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-006.jpg",
+      "status" : "processed",
+      "time" : 3.75
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0018",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-007.jpg",
+      "status" : "processed",
+      "time" : 4
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0019",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-008.jpg",
+      "status" : "processed",
+      "time" : 4.25
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0020",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-009.jpg",
+      "status" : "processed",
+      "time" : 4.5
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0021",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-010.jpg",
+      "status" : "processed",
+      "time" : 4.75
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0022",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-011.jpg",
+      "status" : "processed",
+      "time" : 5
+    },
+    {
+      "actionId" : "CAP-02-MOTION",
+      "frameId" : "TARGET-0023",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.26111111201388887,
+            0.8375000001171875,
+            0.07222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00037",
+          "text" : "Vidu"
+        },
+        {
+          "boundingBox" : [
+            0.2611111071666667,
+            0.812499999875,
+            0.39444444444444443,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00038",
+          "text" : "生数科技推出的AI视频生成大模型"
+        },
+        {
+          "boundingBox" : [
+            0.2333333366666666,
+            0.20000000015624997,
+            0.5333333333333334,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00039",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-02-MOTION-012.jpg",
+      "status" : "processed",
+      "time" : 5.167
+    },
+    {
+      "actionId" : "CAP-03-CARD",
+      "frameId" : "TARGET-0024",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.26111111201388887,
+            0.8375000001171875,
+            0.07222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00040",
+          "text" : "Vidu"
+        },
+        {
+          "boundingBox" : [
+            0.2611111071666667,
+            0.812499999875,
+            0.39444444444444443,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00041",
+          "text" : "生数科技推出的AI视频生成大模型"
+        },
+        {
+          "boundingBox" : [
+            0.2333333366666666,
+            0.20000000015624997,
+            0.5333333333333334,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00042",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 5.2
+    },
+    {
+      "actionId" : "CAP-03-CARD",
+      "frameId" : "TARGET-0025",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.26111111201388887,
+            0.8375000001171875,
+            0.07222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00043",
+          "text" : "Vidu"
+        },
+        {
+          "boundingBox" : [
+            0.2611111071666667,
+            0.812499999875,
+            0.39444444444444443,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00044",
+          "text" : "生数科技推出的AI视频生成大模型"
+        },
+        {
+          "boundingBox" : [
+            0.23333333833333328,
+            0.19999999962500004,
+            0.5333333333333333,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00045",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 5.35
+    },
+    {
+      "actionId" : "CAP-03-CARD",
+      "frameId" : "TARGET-0026",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.26111111201388887,
+            0.8375000001171875,
+            0.07222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00046",
+          "text" : "Vidu"
+        },
+        {
+          "boundingBox" : [
+            0.2611111071666667,
+            0.812499999875,
+            0.39444444444444443,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00047",
+          "text" : "生数科技推出的AI视频生成大模型"
+        },
+        {
+          "boundingBox" : [
+            0.23333333759259256,
+            0.19999999968750015,
+            0.5333333333333333,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00048",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 5.6
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0027",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.26111111201388887,
+            0.8375000001171875,
+            0.07222222222222224,
+            0.015625
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00049",
+          "text" : "Vidu"
+        },
+        {
+          "boundingBox" : [
+            0.2611111071666667,
+            0.812499999875,
+            0.39444444444444443,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00050",
+          "text" : "生数科技推出的AI视频生成大模型"
+        },
+        {
+          "boundingBox" : [
+            0.23333333759259256,
+            0.19999999968750015,
+            0.5333333333333333,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00051",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-001.jpg",
+      "status" : "processed",
+      "time" : 5.6
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0028",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776500000014,
+            0.94999999984375,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00052",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.23333333759259256,
+            0.19999999968750015,
+            0.5333333333333333,
+            0.03749999999999987
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00053",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-002.jpg",
+      "status" : "processed",
+      "time" : 6.1
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0029",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02777777819444442,
+            0.950000000234375,
+            0.1277777777777778,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00054",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.23333333833333328,
+            0.19999999962500004,
+            0.5333333333333333,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00055",
+          "text" : "这个可以让你和任何人"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-003.jpg",
+      "status" : "processed",
+      "time" : 6.6
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0030",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776500000014,
+            0.94999999984375,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00056",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.344300600546372,
+            0.20270064934389398,
+            0.3169543584187825,
+            0.03522370010614395
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00057",
+          "text" : "同框拍短视频"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-004.jpg",
+      "status" : "processed",
+      "time" : 7.2
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0031",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776180555592,
+            0.9499999998046875,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00058",
+          "text" : "AI生成"
+        },
+        {
+          "boundingBox" : [
+            0.34423927928730047,
+            0.2025165902031294,
+            0.31707700093587243,
+            0.035591819882392794
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00059",
+          "text" : "同框拍短视频"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-005.jpg",
+      "status" : "processed",
+      "time" : 7.8
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0032",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333246031746,
+            0.94999999984375,
+            0.12222222222222222,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00060",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-006.jpg",
+      "status" : "processed",
+      "time" : 8.4
+    },
+    {
+      "actionId" : "CAP-03-SEQUENCE",
+      "frameId" : "TARGET-0033",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776180555592,
+            0.9499999998046875,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00061",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-03-SEQUENCE-007.jpg",
+      "status" : "processed",
+      "time" : 8.9
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0034",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776500000014,
+            0.94999999984375,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00062",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 8.8
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0035",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777776180555592,
+            0.9499999998046875,
+            0.12777777777777777,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00063",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 8.9
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0036",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027524440007325998,
+            0.9496317180325152,
+            0.12828445434570312,
+            0.028861562907695704
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00064",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 9
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0037",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.12777777753968253,
+            0.8250000003125,
+            0.07777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00065",
+          "text" : "R"
+        },
+        {
+          "boundingBox" : [
+            0.22764559099867607,
+            0.8465730204035866,
+            0.13359770245022243,
+            0.019353958964347884
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00066",
+          "text" : "Runway"
+        },
+        {
+          "boundingBox" : [
+            0.2333333437037033,
+            0.825,
+            0.6222222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00067",
+          "text" : "AI视频工具，绿幕抠除、视频生成、动态捕捉等."
+        },
+        {
+          "boundingBox" : [
+            0.2055555604166666,
+            0.2000000001822917,
+            0.5833333333333334,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00068",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-004.jpg",
+      "status" : "processed",
+      "time" : 9.1
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0038",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.12777777753968253,
+            0.8250000003125,
+            0.07777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00069",
+          "text" : "R"
+        },
+        {
+          "boundingBox" : [
+            0.22764559099867607,
+            0.8465730204035866,
+            0.13359770245022243,
+            0.019353958964347884
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00070",
+          "text" : "Runway"
+        },
+        {
+          "boundingBox" : [
+            0.2333333437037033,
+            0.825,
+            0.6222222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00071",
+          "text" : "AI视频工具，绿幕抠除、视频生成、动态捕捉等."
+        },
+        {
+          "boundingBox" : [
+            0.2055555604166666,
+            0.2000000001822917,
+            0.5833333333333334,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00072",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-005.jpg",
+      "status" : "processed",
+      "time" : 9.2
+    },
+    {
+      "actionId" : "CAP-04-CARD",
+      "frameId" : "TARGET-0039",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.12777777753968253,
+            0.8250000003125,
+            0.07777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00073",
+          "text" : "R"
+        },
+        {
+          "boundingBox" : [
+            0.22764559099867607,
+            0.8465730204035866,
+            0.13359770245022243,
+            0.019353958964347884
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00074",
+          "text" : "Runway"
+        },
+        {
+          "boundingBox" : [
+            0.2333333437037033,
+            0.825,
+            0.6222222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00075",
+          "text" : "AI视频工具，绿幕抠除、视频生成、动态捕捉等."
+        },
+        {
+          "boundingBox" : [
+            0.2055555604166666,
+            0.2000000001822917,
+            0.5833333333333334,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00076",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-CARD-006.jpg",
+      "status" : "processed",
+      "time" : 9.3
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0040",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.12777777753968253,
+            0.8250000003125,
+            0.07777777777777778,
+            0.043749999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00077",
+          "text" : "R"
+        },
+        {
+          "boundingBox" : [
+            0.22764559099867607,
+            0.8465730204035866,
+            0.13359770245022243,
+            0.019353958964347884
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00078",
+          "text" : "Runway"
+        },
+        {
+          "boundingBox" : [
+            0.2333333437037033,
+            0.825,
+            0.6222222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00079",
+          "text" : "AI视频工具，绿幕抠除、视频生成、动态捕捉等."
+        },
+        {
+          "boundingBox" : [
+            0.20555554972222234,
+            0.19999999984375005,
+            0.5833333333333334,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00080",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-001.jpg",
+      "status" : "processed",
+      "time" : 9.15
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0041",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.23333333205555556,
+            0.846874999875,
+            0.12777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00081",
+          "text" : "Runway"
+        },
+        {
+          "boundingBox" : [
+            0.2333333437037033,
+            0.825,
+            0.6222222222222222,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00082",
+          "text" : "AI视频工具，绿幕抠除、视频生成、动态捕捉等."
+        },
+        {
+          "boundingBox" : [
+            0.20555554972222234,
+            0.19999999984375005,
+            0.5833333333333334,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00083",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-002.jpg",
+      "status" : "processed",
+      "time" : 9.55
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0042",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.022222220888888918,
+            0.94999999984375,
+            0.13333333333333333,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00084",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.20555555976190476,
+            0.20000000017857145,
+            0.5888888888888889,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00085",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-003.jpg",
+      "status" : "processed",
+      "time" : 9.95
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0043",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.022222220888888918,
+            0.94999999984375,
+            0.13333333333333333,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00086",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.20555554966666673,
+            0.19999999987499995,
+            0.5888888888888888,
+            0.03750000000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00087",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-004.jpg",
+      "status" : "processed",
+      "time" : 10.35
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0044",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02222222317460315,
+            0.95000000015625,
+            0.13333333333333333,
+            0.028125000000000067
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00088",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.20555554937500015,
+            0.19999999957031245,
+            0.5833333333333333,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00089",
+          "text" : "这个可以给你一键换穿搭"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-005.jpg",
+      "status" : "processed",
+      "time" : 10.75
+    },
+    {
+      "actionId" : "CAP-04-OUTFITS",
+      "frameId" : "TARGET-0045",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02222222317460315,
+            0.95000000015625,
+            0.13333333333333333,
+            0.028125000000000067
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00090",
+          "text" : "Al生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-04-OUTFITS-006.jpg",
+      "status" : "processed",
+      "time" : 11.15
+    },
+    {
+      "actionId" : "CAP-05-CARD",
+      "frameId" : "TARGET-0046",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.25000000029819114,
+            0.82812499984375,
+            0.0999999894036187,
+            0.009375000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00091",
+          "text" : "manus"
+        },
+        {
+          "boundingBox" : [
+            0.2555555491666668,
+            0.80312499984375,
+            0.5111111111111112,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00092",
+          "text" : "Monica团队推出的全球首款通用型 Al Agent"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 11.267
+    },
+    {
+      "actionId" : "CAP-05-CARD",
+      "frameId" : "TARGET-0047",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2499999986805556,
+            0.8249999998828125,
+            0.10555555555555557,
+            0.015625
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00093",
+          "text" : "Manus"
+        },
+        {
+          "boundingBox" : [
+            0.2555555619444443,
+            0.8031250000781249,
+            0.5111111111111111,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00094",
+          "text" : "Monica团队推出的全球首款通用型 Al Agent"
+        },
+        {
+          "boundingBox" : [
+            0.23821640575966793,
+            0.21799171564046604,
+            0.5291136423746744,
+            0.041761568188667275
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00095",
+          "text" : "这个可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 11.517
+    },
+    {
+      "actionId" : "CAP-05-CARD",
+      "frameId" : "TARGET-0048",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777779861111,
+            0.6156250001953125,
+            0.16666666666666669,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00096",
+          "text" : "09909"
+        },
+        {
+          "boundingBox" : [
+            0.294444441468254,
+            0.39687499986607144,
+            0.41666666666666663,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00097",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 11.767
+    },
+    {
+      "actionId" : "CAP-05-CARD",
+      "frameId" : "TARGET-0049",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777779861111,
+            0.6156250001953125,
+            0.16666666666666669,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00098",
+          "text" : "09909"
+        },
+        {
+          "boundingBox" : [
+            0.2944444486666665,
+            0.3968750001249999,
+            0.4222222222222223,
+            0.03750000000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00099",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-CARD-004.jpg",
+      "status" : "processed",
+      "time" : 12
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0050",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.2499999986805556,
+            0.8249999998828125,
+            0.10555555555555557,
+            0.015625
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00100",
+          "text" : "Manus"
+        },
+        {
+          "boundingBox" : [
+            0.2555555619444443,
+            0.8031250000781249,
+            0.5111111111111111,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00101",
+          "text" : "Monica团队推出的全球首款通用型 Al Agent"
+        },
+        {
+          "boundingBox" : [
+            0.23821640575966793,
+            0.21799171564046604,
+            0.5291136423746744,
+            0.041761568188667275
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00102",
+          "text" : "这个可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-001.jpg",
+      "status" : "processed",
+      "time" : 11.7
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0051",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777779861111,
+            0.6156250001953125,
+            0.16666666666666669,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00103",
+          "text" : "09909"
+        },
+        {
+          "boundingBox" : [
+            0.2944444486666665,
+            0.3968750001249999,
+            0.4222222222222223,
+            0.03750000000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00104",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-002.jpg",
+      "status" : "processed",
+      "time" : 11.9
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0052",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777779861111,
+            0.6156250001953125,
+            0.16666666666666669,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00105",
+          "text" : "09909"
+        },
+        {
+          "boundingBox" : [
+            0.294444441468254,
+            0.39687499986607144,
+            0.41666666666666663,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00106",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-003.jpg",
+      "status" : "processed",
+      "time" : 12.1
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0053",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.277777779861111,
+            0.6156250001953125,
+            0.16666666666666669,
+            0.021874999999999978
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00107",
+          "text" : "09909"
+        },
+        {
+          "boundingBox" : [
+            0.2944444486666665,
+            0.3968750001249999,
+            0.4222222222222223,
+            0.03750000000000009
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00108",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-004.jpg",
+      "status" : "processed",
+      "time" : 12.3
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0054",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4166666674444444,
+            0.731250000125,
+            0.07777777777777778,
+            0.03750000000000009
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00109",
+          "text" : "◎"
+        },
+        {
+          "boundingBox" : [
+            0.2944444479629629,
+            0.39687500015625,
+            0.42222222222222217,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00110",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-005.jpg",
+      "status" : "processed",
+      "time" : 12.5
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0055",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4166666674444444,
+            0.731250000125,
+            0.07777777777777778,
+            0.03750000000000009
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00111",
+          "text" : "◎"
+        },
+        {
+          "boundingBox" : [
+            0.2944444479629629,
+            0.39687500015625,
+            0.42222222222222217,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00112",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-006.jpg",
+      "status" : "processed",
+      "time" : 12.7
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0056",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.4166666674444444,
+            0.731250000125,
+            0.07777777777777778,
+            0.03750000000000009
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00113",
+          "text" : "◎"
+        },
+        {
+          "boundingBox" : [
+            0.2944444479629629,
+            0.39687500015625,
+            0.42222222222222217,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00114",
+          "text" : "可以给你设计ppt"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-007.jpg",
+      "status" : "processed",
+      "time" : 12.9
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0057",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.37215137296363565,
+            0.8779640382509629,
+            0.1112528059217665,
+            0.015946922451257728
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00115",
+          "text" : "0003"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-008.jpg",
+      "status" : "processed",
+      "time" : 13.1
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0058",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.37215137296363565,
+            0.8779640382509629,
+            0.1112528059217665,
+            0.015946922451257728
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00116",
+          "text" : "0003"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-009.jpg",
+      "status" : "processed",
+      "time" : 13.3
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0059",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.3722222203703704,
+            0.8781249938832856,
+            0.1111111111111111,
+            0.015625011175870895
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00117",
+          "text" : "0003"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-010.jpg",
+      "status" : "processed",
+      "time" : 13.5
+    },
+    {
+      "actionId" : "CAP-05-PPT",
+      "frameId" : "TARGET-0060",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.31111111027777777,
+            0.82187499984375,
+            0.06666666666666665,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00118",
+          "text" : "即梦"
+        },
+        {
+          "boundingBox" : [
+            0.3111111148888888,
+            0.796875000125,
+            0.3777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00119",
+          "text" : "抖音旗下免费AI图片创作工具"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-05-PPT-011.jpg",
+      "status" : "processed",
+      "time" : 13.7
+    },
+    {
+      "actionId" : "CAP-06-CARD",
+      "frameId" : "TARGET-0061",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.31111111027777777,
+            0.82187499984375,
+            0.06666666666666665,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00120",
+          "text" : "即梦"
+        },
+        {
+          "boundingBox" : [
+            0.3111111148888888,
+            0.796875000125,
+            0.3777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00121",
+          "text" : "抖音旗下免费AI图片创作工具"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-CARD-001.jpg",
+      "status" : "processed",
+      "time" : 13.72
+    },
+    {
+      "actionId" : "CAP-06-CARD",
+      "frameId" : "TARGET-0062",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.31111111027777777,
+            0.82187499984375,
+            0.06666666666666665,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00122",
+          "text" : "即梦"
+        },
+        {
+          "boundingBox" : [
+            0.3111111148888888,
+            0.796875000125,
+            0.3777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00123",
+          "text" : "抖音旗下免费AI图片创作工具"
+        },
+        {
+          "boundingBox" : [
+            0.44444444537037037,
+            0.20000000026041664,
+            0.1111111111111111,
+            0.03749999999999998
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00124",
+          "text" : "这个"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-CARD-002.jpg",
+      "status" : "processed",
+      "time" : 13.9
+    },
+    {
+      "actionId" : "CAP-06-CARD",
+      "frameId" : "TARGET-0063",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.31111111027777777,
+            0.82187499984375,
+            0.06666666666666665,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00125",
+          "text" : "即梦"
+        },
+        {
+          "boundingBox" : [
+            0.3111111148888888,
+            0.796875000125,
+            0.3777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00126",
+          "text" : "抖音旗下免费AI图片创作工具"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-CARD-003.jpg",
+      "status" : "processed",
+      "time" : 14.1
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0064",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.31111111027777777,
+            0.82187499984375,
+            0.06666666666666665,
+            0.018750000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00127",
+          "text" : "即梦"
+        },
+        {
+          "boundingBox" : [
+            0.3111111148888888,
+            0.796875000125,
+            0.3777777777777777,
+            0.018750000000000044
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00128",
+          "text" : "抖音旗下免费AI图片创作工具"
+        },
+        {
+          "boundingBox" : [
+            0.4444444438095238,
+            0.20000000026785725,
+            0.1111111111111111,
+            0.03749999999999998
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00129",
+          "text" : "这个"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-001.jpg",
+      "status" : "processed",
+      "time" : 14.2
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0065",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333388888888,
+            0.73437500028125,
+            0.12222222222222223,
+            0.028124999999999956
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00130",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00131",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-002.jpg",
+      "status" : "processed",
+      "time" : 14.4
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0066",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.02777777611111113,
+            0.7343749998437501,
+            0.13333333333333333,
+            0.02499999999999991
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00132",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00133",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-003.jpg",
+      "status" : "processed",
+      "time" : 14.6
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0067",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333250000001,
+            0.7343749998660715,
+            0.11666666666666667,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00134",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00135",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-004.jpg",
+      "status" : "processed",
+      "time" : 14.8
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0068",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777779374999964,
+            0.734375,
+            0.12777777777777777,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00136",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00137",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-005.jpg",
+      "status" : "processed",
+      "time" : 15
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0069",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333486111106,
+            0.734375,
+            0.12222222222222223,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00138",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00139",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-006.jpg",
+      "status" : "processed",
+      "time" : 15.2
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0070",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333486111106,
+            0.73437500015625,
+            0.12222222222222223,
+            0.025000000000000022
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00140",
+          "text" : "Al生成"
+        },
+        {
+          "boundingBox" : [
+            0.3166666693253968,
+            0.1562500001562499,
+            0.37222222222222223,
+            0.034375000000000044
+          ],
+          "confidence" : 1,
+          "id" : "OCR-00141",
+          "text" : "可以给你做动漫"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-007.jpg",
+      "status" : "processed",
+      "time" : 15.4
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0071",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333455555554,
+            0.7343750001875,
+            0.12222222222222223,
+            0.02499999999999991
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00142",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-008.jpg",
+      "status" : "processed",
+      "time" : 15.6
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0072",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.038888890055555535,
+            0.73750000015625,
+            0.11666666666666667,
+            0.021874999999999978
+          ],
+          "confidence" : 0.5,
+          "id" : "OCR-00143",
+          "text" : "Al生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-009.jpg",
+      "status" : "processed",
+      "time" : 15.8
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0073",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.027777779374999964,
+            0.73437500015625,
+            0.12777777777777777,
+            0.025000000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00144",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-010.jpg",
+      "status" : "processed",
+      "time" : 16
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0074",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333283333333,
+            0.73124999971875,
+            0.11666666666666667,
+            0.028124999999999956
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00145",
+          "text" : "Al生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-011.jpg",
+      "status" : "processed",
+      "time" : 16.2
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "frameId" : "TARGET-0075",
+      "lines" : [
+        {
+          "boundingBox" : [
+            0.03333333435185184,
+            0.73437500015625,
+            0.1222222222222222,
+            0.025000000000000022
+          ],
+          "confidence" : 0.3,
+          "id" : "OCR-00146",
+          "text" : "AI生成"
+        }
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-012.jpg",
+      "status" : "processed",
+      "time" : 16.4
+    },
+    {
+      "actionId" : "CAP-06-ANIMATION",
+      "error" : "Error Domain=com.apple.Vision Code=13 \"CRImage Reader Detector was given zero-dimensioned image (0 x 0)\" UserInfo={NSLocalizedDescription=CRImage Reader Detector was given zero-dimensioned image (0 x 0)}",
+      "frameId" : "TARGET-0076",
+      "lines" : [
+
+      ],
+      "sourceFrame" : "frames/CAP-06-ANIMATION-013.jpg",
+      "status" : "failed",
+      "time" : 16.516
+    }
+  ],
+  "generatedAt" : "2026-08-15T18:06:43Z",
+  "manifest" : "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-tool-map/skill-run/targeted-evidence/targeted-evidence.json",
+  "recognitionLanguages" : [
+    "zh-Hans",
+    "en-US"
+  ],
+  "schemaVersion" : "ocr-evidence-1.0"
+}

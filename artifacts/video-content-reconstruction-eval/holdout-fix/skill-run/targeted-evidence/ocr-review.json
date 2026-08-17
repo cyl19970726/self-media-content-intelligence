@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "ocr-review-1.0",
+  "source": "ocr-evidence.json",
+  "reviewMethod": "逐帧查看 targeted-evidence 源图；OCR 仅作提案。下列 acceptedRows 只接受明确可见且与源帧一致的部分，其他行不因上下文而静默更正。",
+  "acceptedRows": [
+    {"ocrId": "OCR-00001", "frameId": "TARGET-0001", "acceptedText": "我发现一个效率神技", "scope": "整行", "note": "开场大字字幕与帧一致。"},
+    {"ocrId": "OCR-00057", "frameId": "TARGET-0007", "acceptedText": "格式全乱", "scope": "整行", "note": "失败态大字字幕与帧一致。"},
+    {"ocrId": "OCR-00139", "frameId": "TARGET-0014", "acceptedText": "能立马解决这样的乱码问题", "scope": "整行", "note": "作者主张字幕与帧一致。"},
+    {"ocrId": "OCR-00193", "frameId": "TARGET-0018", "acceptedText": "你现在只需要给到deepseek", "scope": "整行", "note": "只作为烧录字幕文本，不据此确认产品版本。"},
+    {"ocrId": "OCR-00347", "frameId": "TARGET-0027", "acceptedText": "1、一级标题：字体为三号仿宋GB-2312字体，行距33磅值", "scope": "去除 OCR 末尾标点差异后的可见主体", "note": "源帧可见主体一致；句末标点不用于参数结论。"},
+    {"ocrId": "OCR-00348", "frameId": "TARGET-0027", "acceptedText": "2、二级标题：字体为黑体（三号）字体行距30磅值段后空0.5行。", "scope": "整行", "note": "与源帧一致。"},
+    {"ocrId": "OCR-00349", "frameId": "TARGET-0027", "acceptedText": "对齐方式为两端对齐，首行缩进两个字符。", "scope": "仅接受后半句", "note": "OCR 前半句‘份来’错误，拒绝；源帧另行支持‘正文：三号仿宋GB-2312字体’。"},
+    {"ocrId": "OCR-00383", "frameId": "TARGET-0031", "acceptedText": "写完以后直接点击发送", "scope": "整行", "note": "烧录字幕与帧一致；同帧中 HTML 已经生成，因此不证明该时刻实际点击。"},
+    {"ocrId": "OCR-00400", "frameId": "TARGET-0034", "acceptedText": "建一个文本文档", "scope": "整行", "note": "烧录字幕与帧一致；随后界面显示的是 Word 空白文档。"},
+    {"ocrId": "OCR-00454", "frameId": "TARGET-0044", "acceptedText": "把这里面的文字复制进word", "scope": "整行", "note": "烧录字幕与帧一致。"},
+    {"ocrId": "OCR-00494", "frameId": "TARGET-0048", "acceptedText": "排版格式啥的就全对了", "scope": "整行", "note": "这是作者主张，不升级为外部事实。"},
+    {"ocrId": "OCR-00563", "frameId": "TARGET-0061", "acceptedText": "2. 热点事件节点", "scope": "整行", "note": "最终 Word 结果中的二级分节标题可见。"}
+  ],
+  "manualVisualReadings": [
+    {
+      "frameIds": ["TARGET-0024", "TARGET-0025", "TARGET-0026", "TARGET-0027", "TARGET-0028"],
+      "timeRange": {"start": 14.8, "end": 18.0},
+      "reading": [
+        "将内容用html格式输出格式和排版排版要求如下：",
+        "1、一级标题：字体为三号仿宋GB-2312字体，行距33磅值。",
+        "2、二级标题：字体为黑体（三号）字体行距30磅值段后空0.5行。",
+        "3、正文：三号仿宋GB-2312字体，对齐方式为两端对齐，首行缩进两个字符。"
+      ],
+      "limitations": ["保留画面中‘排版排版’的重复字样，不自行润色。", "字体与行距字符串是画面文字，不证明软件一定按中文字号语义执行。"]
+    },
+    {
+      "frameIds": ["TARGET-0031", "TARGET-0032", "TARGET-0033"],
+      "timeRange": {"start": 19.2, "end": 20.4},
+      "reading": ["以下是符合您要求的HTML格式内容：", "深色代码块右上角有‘复制’，右下角有‘运行 HTML’", "可见 CSS 片段含 body 的 font-family、font-size、line-height、text-align、text-indent、margin 与 padding"],
+      "limitations": ["代码全文未逐字符确认。", "口播说‘点击发送’时输出已经出现在画面，发送动作本身未连续显示。"]
+    },
+    {
+      "frameIds": ["TARGET-0043", "TARGET-0044", "TARGET-0046", "TARGET-0047", "TARGET-0050", "TARGET-0051"],
+      "timeRange": {"start": 22.4, "end": 25.6},
+      "reading": ["HTML 代码块后出现一个标题为‘黑神话悟空热点事件介绍’的运行预览窗口。", "预览中的多段文字被逐步全选。", "随后切到 Word 空白文档并显示粘贴选项浮层，之后出现带分级标题的排版内容。"],
+      "limitations": ["点击‘运行 HTML’的瞬间、复制命令、粘贴命令与具体粘贴选项都未连续显示。", "未显示文件名、保存动作或把 HTML 写入独立纯文本文件。"]
+    },
+    {
+      "frameIds": ["TARGET-0061", "TARGET-0062", "TARGET-0063", "TARGET-0064", "TARGET-0065"],
+      "timeRange": {"start": 26.0, "end": 27.5},
+      "reading": ["最终只显示一个 Word 文档结果组。", "可见居中标题‘黑神话悟空热点事件介绍’，以及‘1. 核心亮点’、‘2. 热点事件节点’等分级结构。", "正文较失败态更大、更疏朗，段落与分节更清楚。"],
+      "limitations": ["正文小字 OCR 误识别较多，不逐句采用。", "单个结果组不能证明所有输入、版本或粘贴方式都成功。"]
+    }
+  ],
+  "rejectedOrUnresolved": [
+    {"ocrIds": ["OCR-00262", "OCR-00263", "OCR-00264", "OCR-00265", "OCR-00278", "OCR-00279", "OCR-00281", "OCR-00295", "OCR-00296", "OCR-00298", "OCR-00312", "OCR-00313", "OCR-00315", "OCR-00328", "OCR-00329", "OCR-00331", "OCR-00346", "OCR-00366"], "reason": "提示词行含‘諭出/排板/仿末/份来/学符’等 OCR 错误；不接受错误字符，改由源帧人工读出并保留可见原文。"},
+    {"ocrIds": ["OCR-00378", "OCR-00413"], "reason": "HTML 说明行被识别为‘HTMAL’或缺字；用源帧视觉观察，不静默把 OCR 改成 HTML。"},
+    {"ocrIds": ["OCR-00441", "OCR-00442", "OCR-00443", "OCR-00444", "OCR-00445", "OCR-00455", "OCR-00457", "OCR-00509", "OCR-00511", "OCR-00512", "OCR-00567", "OCR-00568", "OCR-00571", "OCR-00572", "OCR-00586", "OCR-00587", "OCR-00590", "OCR-00591"], "reason": "预览/结果正文或标题存在字符误识别；仅采用经帧确认的标题和分节，不采用正文事实。"},
+    {"ocrIds": [], "reason": "‘运行 HTML’和粘贴选项控件未被 Vision OCR 稳定提取，只作为源帧视觉观察，不创建虚构 OCR 行。"}
+  ]
+}

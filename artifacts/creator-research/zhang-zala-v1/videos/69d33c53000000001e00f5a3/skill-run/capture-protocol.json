@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/skill-run/probe.json",
+  "protocolName": "文科生标签—technical curiosity—动手实践—分发优势捕捉协议",
+  "rationale": "本片是播客摘录，真正主题不是工具，而是重新定义非技术背景者在 AI 时代的位置：比‘文科生/非技术’标签更重要的是 technical curiosity，愿意跟进、亲手尝试，并把人性洞察、沟通和分发变成优势。字幕在 64–94 秒存在明显断层/缺口，必须显式承认，不能自动补齐。",
+  "knowledgeUnitFields": [
+    {
+      "name": "开场否定 non-technical 标签并寻找新定义",
+      "required": true,
+      "reason": "视频试图替换掉哪个身份标签？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "technical curiosity 被定义为愿意跟进并亲手尝试",
+      "required": true,
+      "reason": "技术好奇心在片内包含哪些行为？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "新技术浪潮被描述为重新起跑，但中段转写不完整",
+      "required": true,
+      "reason": "‘同一起跑线’主张和缺失段应如何处理？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "自然语言降低实现门槛，文科优势落到用户与分发",
+      "required": true,
+      "reason": "末段给非技术背景者哪些具体优势和行动方向？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 24.12
+      },
+      "carrier": "播客双人机位、主持人口播和字幕",
+      "mode": "interval_density",
+      "densitySeconds": 1.8,
+      "reason": "捕捉主持/嘉宾切换和关键词烧录字幕，保持定义来源未知。",
+      "expectedObservation": "身份重定义意图清楚，术语来源不清。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 24.12,
+        "end": 54.52
+      },
+      "carrier": "嘉宾近景、字幕和例子",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "恢复行为定义，并把群体对比限定为个人观察。",
+      "expectedObservation": "行为清晰，群体结论弱。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 54.52,
+        "end": 94.45
+      },
+      "carrier": "播客画面、现有字幕与转写缺口",
+      "mode": "interval_density",
+      "densitySeconds": 1.5,
+      "reason": "明确空窗并只使用现有 cue/画面，不生成伪逐字稿。",
+      "expectedObservation": "观点方向可恢复，关键中段不完整。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 94.45,
+        "end": 128.867
+      },
+      "carrier": "嘉宾近景、字幕和末段总结",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "恢复机会链并列出工程/群体边界。",
+      "expectedObservation": "行动方向明确，绝对化表述需收窄。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "新身份通过可观察行为被具体化",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "技术好奇心被置于快速变化的共同学习环境中",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "共同再学习的机会被落到产品和内容能力组合",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–128.867 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "81.45–94.45 秒缺失口述的准确内容",
+    "technical curiosity 的原始定义与出处",
+    "非 CS 背景者和工程师的群体差异数据",
+    "自然语言工具在复杂工程任务中的上限",
+    "播客完整上下文与剪辑边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69d33c53000000001e00f5a3/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69d33c53000000001e00f5a3/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

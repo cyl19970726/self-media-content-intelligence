@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69eefa6d000000003700eade",
+  "capturedAt": "2026-08-16T11:09:59.891Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "全程回放（1）Demo Day：我如何与agent共事",
+    "postCopy": "上周举办的线上活动，内容非常精彩，分成3个部分上传回放，这是part 1\n1. Sparks（Founder, Midaz）：如何用 Agent 把世界的噪音编译成认知，辅助交易\n2. Brandon (Founder, Intent): 用AI复盘自己的工作，以及用AI正反馈循环提高AI的使用能力\n3. Siqi (Head of Product at Pika): How my AI Siqi is co-living and co-working with me daily\n4. 张昊然 Ryan (Moxt 创始人）：Moxt 是一个 AI 原生的工作空间，今天向大家演示一些日常使用 Moxt 和 AI 搭子们一起工作的场景",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69eefa6d000000003700eade",
+    "mediaType": "video",
+    "publishedAt": "2026-04-27T05:55:57.000Z",
+    "likes": "823",
+    "collections": "735",
+    "comments": "33",
+    "shares": "255",
+    "expectedDurationSec": 3257
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 3257
+    }
+  ]
+}

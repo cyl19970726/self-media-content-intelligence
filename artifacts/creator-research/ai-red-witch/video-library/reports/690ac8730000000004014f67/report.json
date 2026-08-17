@@ -1,0 +1,318 @@
+{
+  "id": "690ac8730000000004014f67",
+  "tier": "high",
+  "title": "大揭秘！这些做设计的AI，都怎么用？",
+  "mediaPath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/690ac8730000000004014f67.mp4",
+  "subtitlePath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/690ac8730000000004014f67.srt",
+  "subtitleOrigin": "小红书官方 zh-CN 字幕",
+  "publishedAt": "2025-11-05T03:45:55.000Z",
+  "duration": 14.907,
+  "engagement": {
+    "likes": 31000,
+    "collections": 43000,
+    "comments": 339,
+    "shares": 2838,
+    "collectionToLike": 1.387,
+    "commentToLike": 0.011,
+    "shareToLike": 0.092
+  },
+  "sourceUrl": "https://www.xiaohongshu.com/explore/690ac8730000000004014f67",
+  "primaryCategory": "工具地图",
+  "secondaryTags": [
+    "设计AI",
+    "海报",
+    "Logo",
+    "PPT",
+    "UI",
+    "3D",
+    "网页"
+  ],
+  "contentIntent": "用六个设计任务快速展示 AI 的覆盖范围。",
+  "coreClaim": "设计类 AI 的价值可以按具体交付物理解：海报、Logo、PPT、UI、3D 手办和网页。",
+  "articleLead": "这是一条高度压缩的垂直工具地图。它把泛泛的“AI 能做设计”拆成六种交付物，但速度过快，评论区不得不由观众补充工具对应关系。",
+  "keyPoints": [
+    "围绕设计交付物而不是模型品牌组织信息",
+    "每个任务只给一到两秒结果证明",
+    "评论中的‘太快’说明密度超过部分用户的吸收速度"
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "end": 4.5,
+      "keyFrameAt": 2,
+      "heading": "海报与 Logo",
+      "body": "开场用海报和 Logo 两类最直观的品牌设计结果建立能力边界。",
+      "evidence": "海报和 Logo 结果画面"
+    },
+    {
+      "start": 4.5,
+      "end": 8.2,
+      "keyFrameAt": 6.5,
+      "heading": "PPT 与 UI",
+      "body": "中段转向办公演示和产品界面，让设计 AI 从视觉创意延伸到工作交付。",
+      "evidence": "PPT 与 UI 示例"
+    },
+    {
+      "start": 8.2,
+      "end": 14.91,
+      "keyFrameAt": 11.5,
+      "heading": "3D 手办与网页",
+      "body": "最后用 3D 手办和网页扩大能力想象。视频完成了用途盘点，却没有交代工具、价格、操作和风险。",
+      "evidence": "3D 与网页结果"
+    }
+  ],
+  "boundary": "工具名称和生成条件未在口播中完整出现；评论区的工具映射属于用户补充，不能自动视为作者已证明的步骤。",
+  "publishedLabel": "2025/11/05周三 11:45",
+  "media": {
+    "durationSeconds": 14.907,
+    "width": 1080,
+    "height": 1920,
+    "codec": "hevc",
+    "bytes": 2722214
+  },
+  "editing": {
+    "detectedSceneCuts": [
+      0.5,
+      1.9,
+      3.1,
+      5.333,
+      5.767,
+      7.7,
+      8.167,
+      9.7,
+      10.2,
+      12.267,
+      12.767
+    ],
+    "cutsPerMinute": 44.3
+  },
+  "contentArchitecture": {
+    "pattern": "钩子 / 问题 → 展开 / 证明 → 回报 / 收束",
+    "stageCount": 3,
+    "hook": {
+      "index": 1,
+      "role": "钩子 / 问题",
+      "viewerQuestion": "这和我有什么关系，为什么继续看？",
+      "start": 0,
+      "end": 4.5,
+      "heading": "海报与 Logo",
+      "function": "开场用海报和 Logo 两类最直观的品牌设计结果建立能力边界。",
+      "visualEvidence": "海报和 Logo 结果画面"
+    },
+    "payoff": {
+      "index": 3,
+      "role": "回报 / 收束",
+      "viewerQuestion": "我最后得到什么，下一步做什么？",
+      "start": 8.2,
+      "end": 14.91,
+      "heading": "3D 手办与网页",
+      "function": "最后用 3D 手办和网页扩大能力想象。视频完成了用途盘点，却没有交代工具、价格、操作和风险。",
+      "visualEvidence": "3D 与网页结果"
+    },
+    "proofChain": [
+      "PPT 与 UI 示例",
+      "3D 与网页结果"
+    ],
+    "stages": [
+      {
+        "index": 1,
+        "role": "钩子 / 问题",
+        "viewerQuestion": "这和我有什么关系，为什么继续看？",
+        "start": 0,
+        "end": 4.5,
+        "heading": "海报与 Logo",
+        "function": "开场用海报和 Logo 两类最直观的品牌设计结果建立能力边界。",
+        "visualEvidence": "海报和 Logo 结果画面"
+      },
+      {
+        "index": 2,
+        "role": "展开 / 证明",
+        "viewerQuestion": "这个主张如何成立？",
+        "start": 4.5,
+        "end": 8.2,
+        "heading": "PPT 与 UI",
+        "function": "中段转向办公演示和产品界面，让设计 AI 从视觉创意延伸到工作交付。",
+        "visualEvidence": "PPT 与 UI 示例"
+      },
+      {
+        "index": 3,
+        "role": "回报 / 收束",
+        "viewerQuestion": "我最后得到什么，下一步做什么？",
+        "start": 8.2,
+        "end": 14.91,
+        "heading": "3D 手办与网页",
+        "function": "最后用 3D 手办和网页扩大能力想象。视频完成了用途盘点，却没有交代工具、价格、操作和风险。",
+        "visualEvidence": "3D 与网页结果"
+      }
+    ]
+  },
+  "knowledgeExtraction": {
+    "status": "needs_visual_review",
+    "captureMode": "字幕＋章节摘要；尚未完成逐帧视觉知识核验",
+    "channels": [
+      "字幕",
+      "章节摘要"
+    ],
+    "spokenClaims": 5,
+    "mappedKnowledgeUnits": 0,
+    "coveragePercent": null,
+    "items": [],
+    "unresolved": [
+      "画面文字和非口播知识尚未逐帧核验，当前页面不能声称捕捉了全部关键内容"
+    ]
+  },
+  "transcript": {
+    "origin": "小红书官方 zh-CN 字幕",
+    "cueCount": 5,
+    "totalCharacters": 71,
+    "charactersPerMinute": 285.8,
+    "fullText": "这个可以帮你设计一张海报 这个可以帮你设计logo 这个可以帮你做一个ppt 这个可以帮你设计一个ui，这个可以帮你设计三d手办 这个可以帮你设计网页",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 1.9,
+        "midpoint": 0.95,
+        "text": "这个可以帮你设计一张海报",
+        "frame": "frames-transcript/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.06,
+        "end": 4.85,
+        "midpoint": 3.955,
+        "text": "这个可以帮你设计logo",
+        "frame": "frames-transcript/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "start": 5.26,
+        "end": 7.24,
+        "midpoint": 6.25,
+        "text": "这个可以帮你做一个ppt",
+        "frame": "frames-transcript/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "start": 7.63,
+        "end": 11.73,
+        "midpoint": 9.68,
+        "text": "这个可以帮你设计一个ui，这个可以帮你设计三d手办",
+        "frame": "frames-transcript/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "start": 12.19,
+        "end": 14.14,
+        "midpoint": 13.165,
+        "text": "这个可以帮你设计网页",
+        "frame": "frames-transcript/cue-005.jpg"
+      }
+    ]
+  },
+  "frames": {
+    "sparse": [
+      {
+        "time": 0,
+        "src": "frames-sparse/frame-001.jpg"
+      },
+      {
+        "time": 2.118,
+        "src": "frames-sparse/frame-002.jpg"
+      },
+      {
+        "time": 4.236,
+        "src": "frames-sparse/frame-003.jpg"
+      },
+      {
+        "time": 6.354,
+        "src": "frames-sparse/frame-004.jpg"
+      },
+      {
+        "time": 8.473,
+        "src": "frames-sparse/frame-005.jpg"
+      },
+      {
+        "time": 10.591,
+        "src": "frames-sparse/frame-006.jpg"
+      },
+      {
+        "time": 12.709,
+        "src": "frames-sparse/frame-007.jpg"
+      },
+      {
+        "time": 14.827,
+        "src": "frames-sparse/frame-008.jpg"
+      }
+    ],
+    "dense": [
+      {
+        "time": 0,
+        "src": "frames-dense/frame-001.jpg"
+      },
+      {
+        "time": 1,
+        "src": "frames-dense/frame-002.jpg"
+      },
+      {
+        "time": 2,
+        "src": "frames-dense/frame-003.jpg"
+      },
+      {
+        "time": 3,
+        "src": "frames-dense/frame-004.jpg"
+      },
+      {
+        "time": 4,
+        "src": "frames-dense/frame-005.jpg"
+      },
+      {
+        "time": 5,
+        "src": "frames-dense/frame-006.jpg"
+      },
+      {
+        "time": 6,
+        "src": "frames-dense/frame-007.jpg"
+      },
+      {
+        "time": 7,
+        "src": "frames-dense/frame-008.jpg"
+      },
+      {
+        "time": 8,
+        "src": "frames-dense/frame-009.jpg"
+      },
+      {
+        "time": 9,
+        "src": "frames-dense/frame-010.jpg"
+      },
+      {
+        "time": 10,
+        "src": "frames-dense/frame-011.jpg"
+      },
+      {
+        "time": 11,
+        "src": "frames-dense/frame-012.jpg"
+      },
+      {
+        "time": 12,
+        "src": "frames-dense/frame-013.jpg"
+      },
+      {
+        "time": 13,
+        "src": "frames-dense/frame-014.jpg"
+      },
+      {
+        "time": 14,
+        "src": "frames-dense/frame-015.jpg"
+      },
+      {
+        "time": 14.827,
+        "src": "frames-dense/frame-016.jpg"
+      }
+    ],
+    "sparseSheet": "sparse-sheet.jpg",
+    "denseSheet": "dense-sheet.jpg"
+  },
+  "reportUrl": "reports/690ac8730000000004014f67/report.html"
+}

@@ -1,0 +1,400 @@
+{
+  "id": "67af1032000000001902d33d",
+  "tier": "median",
+  "title": "AI视频又进化！教你用ray2做大片",
+  "mediaPath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/67af1032000000001902d33d.mp4",
+  "subtitlePath": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/67af1032000000001902d33d.srt",
+  "subtitleOrigin": "小红书官方 zh-CN 字幕",
+  "publishedAt": "2025-02-14T09:43:15.000Z",
+  "duration": 26.775,
+  "engagement": {
+    "likes": 324,
+    "collections": 463,
+    "comments": 16,
+    "shares": 62,
+    "collectionToLike": 1.429,
+    "commentToLike": 0.049,
+    "shareToLike": 0.191
+  },
+  "sourceUrl": "https://www.xiaohongshu.com/explore/67af1032000000001902d33d",
+  "primaryCategory": "新品深度解读",
+  "secondaryTags": [
+    "Luma Ray2",
+    "AI视频",
+    "图生视频",
+    "教程"
+  ],
+  "contentIntent": "介绍 Luma Ray2 的视频生成能力，并用一张图完成一次图生视频操作。",
+  "coreClaim": "Ray2 能从文字或图片生成动态幅度较大、连贯性较好的视频，基本流程是上传图片、选择模型与时长后生成。",
+  "articleLead": "这是一条典型的中位新品教程：26秒内完成工具介绍、能力主张、三步操作和结果展示，结构完整但惊喜点并不稀缺；价格、额度、入口与关键帧限制全部留在评论区追问。",
+  "keyPoints": [
+    "用‘今天不聊DeepSeek’制造话题切换",
+    "用高美学、高动态和大范围运动定义能力",
+    "操作流程压成上传图片、选择Ray2、设置画质与时长",
+    "结尾只展示成功结果，没有价格、耗时和失败样本"
+  ],
+  "sections": [
+    {
+      "start": 0,
+      "end": 4.23,
+      "keyFrameAt": 2,
+      "heading": "从热点疲劳切换到新工具",
+      "body": "开场用‘今天不聊 DeepSeek’制造反差，随后承诺推荐一个更强的视频模型。钩子依赖时效和新鲜感，而不是用户具体痛点。",
+      "evidence": "真人口播与 Ray2 名称"
+    },
+    {
+      "start": 4.23,
+      "end": 13.72,
+      "keyFrameAt": 9,
+      "heading": "先定义能力，再抛出使用问题",
+      "body": "她介绍 Ray2 由 Luma 用高质量视频数据训练，能够通过一句话或一张图生成高美学、高动态视频，并用成片证明运动幅度。",
+      "evidence": "多段高动态生成样片"
+    },
+    {
+      "start": 13.72,
+      "end": 21.04,
+      "keyFrameAt": 17,
+      "heading": "把操作压缩成三步",
+      "body": "进入 Luma，上传一张图、选择 Ray2，再选择画质和时长并点击生成。步骤非常短，但没有解释入口、套餐或参数差异。",
+      "evidence": "Luma 上传、模型与画质界面"
+    },
+    {
+      "start": 21.04,
+      "end": 26.78,
+      "keyFrameAt": 23.5,
+      "heading": "用连贯运动完成结果回报",
+      "body": "最终视频展示大范围运动下仍较连贯、物理效果不易扭曲，随后用‘快去玩’收束。结果完成闭环，但缺少失败对照。",
+      "evidence": "生成结果与大范围运动"
+    }
+  ],
+  "boundary": "公开视频只能证明一次成功演示与公开互动；评论中的价格、免费额度、入口和关键帧能力仍未在正文解决，无法判断点击率、完播或转粉。",
+  "publishedLabel": "2025/02/14周五 17:43",
+  "media": {
+    "durationSeconds": 26.774,
+    "width": 1080,
+    "height": 1920,
+    "codec": "hevc",
+    "bytes": 3033748
+  },
+  "editing": {
+    "detectedSceneCuts": [
+      1.933,
+      5.433,
+      8.933,
+      12.367,
+      13.667,
+      15.333,
+      15.933,
+      20.967,
+      25.267,
+      25.5,
+      25.767,
+      26.667
+    ],
+    "cutsPerMinute": 26.9
+  },
+  "contentArchitecture": {
+    "pattern": "钩子 / 问题 → 承诺 / 定义 → 展开 / 证明 → 回报 / 收束",
+    "stageCount": 4,
+    "hook": {
+      "index": 1,
+      "role": "钩子 / 问题",
+      "viewerQuestion": "这和我有什么关系，为什么继续看？",
+      "start": 0,
+      "end": 4.23,
+      "heading": "从热点疲劳切换到新工具",
+      "function": "开场用‘今天不聊 DeepSeek’制造反差，随后承诺推荐一个更强的视频模型。钩子依赖时效和新鲜感，而不是用户具体痛点。",
+      "visualEvidence": "真人口播与 Ray2 名称"
+    },
+    "payoff": {
+      "index": 4,
+      "role": "回报 / 收束",
+      "viewerQuestion": "我最后得到什么，下一步做什么？",
+      "start": 21.04,
+      "end": 26.78,
+      "heading": "用连贯运动完成结果回报",
+      "function": "最终视频展示大范围运动下仍较连贯、物理效果不易扭曲，随后用‘快去玩’收束。结果完成闭环，但缺少失败对照。",
+      "visualEvidence": "生成结果与大范围运动"
+    },
+    "proofChain": [
+      "多段高动态生成样片",
+      "Luma 上传、模型与画质界面",
+      "生成结果与大范围运动"
+    ],
+    "stages": [
+      {
+        "index": 1,
+        "role": "钩子 / 问题",
+        "viewerQuestion": "这和我有什么关系，为什么继续看？",
+        "start": 0,
+        "end": 4.23,
+        "heading": "从热点疲劳切换到新工具",
+        "function": "开场用‘今天不聊 DeepSeek’制造反差，随后承诺推荐一个更强的视频模型。钩子依赖时效和新鲜感，而不是用户具体痛点。",
+        "visualEvidence": "真人口播与 Ray2 名称"
+      },
+      {
+        "index": 2,
+        "role": "承诺 / 定义",
+        "viewerQuestion": "这条内容承诺解决什么？",
+        "start": 4.23,
+        "end": 13.72,
+        "heading": "先定义能力，再抛出使用问题",
+        "function": "她介绍 Ray2 由 Luma 用高质量视频数据训练，能够通过一句话或一张图生成高美学、高动态视频，并用成片证明运动幅度。",
+        "visualEvidence": "多段高动态生成样片"
+      },
+      {
+        "index": 3,
+        "role": "展开 / 证明",
+        "viewerQuestion": "这个主张如何成立？",
+        "start": 13.72,
+        "end": 21.04,
+        "heading": "把操作压缩成三步",
+        "function": "进入 Luma，上传一张图、选择 Ray2，再选择画质和时长并点击生成。步骤非常短，但没有解释入口、套餐或参数差异。",
+        "visualEvidence": "Luma 上传、模型与画质界面"
+      },
+      {
+        "index": 4,
+        "role": "回报 / 收束",
+        "viewerQuestion": "我最后得到什么，下一步做什么？",
+        "start": 21.04,
+        "end": 26.78,
+        "heading": "用连贯运动完成结果回报",
+        "function": "最终视频展示大范围运动下仍较连贯、物理效果不易扭曲，随后用‘快去玩’收束。结果完成闭环，但缺少失败对照。",
+        "visualEvidence": "生成结果与大范围运动"
+      }
+    ]
+  },
+  "knowledgeExtraction": {
+    "status": "needs_visual_review",
+    "captureMode": "字幕＋章节摘要；尚未完成逐帧视觉知识核验",
+    "channels": [
+      "字幕",
+      "章节摘要"
+    ],
+    "spokenClaims": 7,
+    "mappedKnowledgeUnits": 0,
+    "coveragePercent": null,
+    "items": [],
+    "unresolved": [
+      "画面文字和非口播知识尚未逐帧核验，当前页面不能声称捕捉了全部关键内容"
+    ]
+  },
+  "transcript": {
+    "origin": "小红书官方 zh-CN 字幕",
+    "cueCount": 7,
+    "totalCharacters": 185,
+    "charactersPerMinute": 414.6,
+    "fullText": "终于来啦，今天我们不聊dipsick，给大家推荐一个超强的视频模型 那就是re二，这是luma直接以高质量的视频数据来训练 能根据一句话一张图生成非常逼真的高美学高动态的视频，那么re二怎么用呢？ 我们打开luma在这里直接上传一张图，在这里选re二模型 根据画质和时长再选一下，直接点击生成就好啦 可以看到它的连贯性和物理效果都很棒，即使是大范围的运动也不会扭曲 朋友们快去玩儿吧",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 4.23,
+        "midpoint": 2.115,
+        "text": "终于来啦，今天我们不聊dipsick，给大家推荐一个超强的视频模型",
+        "frame": "frames-transcript/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "start": 4.23,
+        "end": 8.07,
+        "midpoint": 6.15,
+        "text": "那就是re二，这是luma直接以高质量的视频数据来训练",
+        "frame": "frames-transcript/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "start": 8.08,
+        "end": 13.72,
+        "midpoint": 10.9,
+        "text": "能根据一句话一张图生成非常逼真的高美学高动态的视频，那么re二怎么用呢？",
+        "frame": "frames-transcript/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "start": 13.72,
+        "end": 17.8,
+        "midpoint": 15.76,
+        "text": "我们打开luma在这里直接上传一张图，在这里选re二模型",
+        "frame": "frames-transcript/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "start": 17.81,
+        "end": 21.035,
+        "midpoint": 19.422,
+        "text": "根据画质和时长再选一下，直接点击生成就好啦",
+        "frame": "frames-transcript/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "start": 21.035,
+        "end": 25.675,
+        "midpoint": 23.355,
+        "text": "可以看到它的连贯性和物理效果都很棒，即使是大范围的运动也不会扭曲",
+        "frame": "frames-transcript/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "start": 25.675,
+        "end": 26.749,
+        "midpoint": 26.212,
+        "text": "朋友们快去玩儿吧",
+        "frame": "frames-transcript/cue-007.jpg"
+      }
+    ]
+  },
+  "frames": {
+    "sparse": [
+      {
+        "time": 0,
+        "src": "frames-sparse/frame-001.jpg"
+      },
+      {
+        "time": 3.813,
+        "src": "frames-sparse/frame-002.jpg"
+      },
+      {
+        "time": 7.627,
+        "src": "frames-sparse/frame-003.jpg"
+      },
+      {
+        "time": 11.44,
+        "src": "frames-sparse/frame-004.jpg"
+      },
+      {
+        "time": 15.254,
+        "src": "frames-sparse/frame-005.jpg"
+      },
+      {
+        "time": 19.067,
+        "src": "frames-sparse/frame-006.jpg"
+      },
+      {
+        "time": 22.881,
+        "src": "frames-sparse/frame-007.jpg"
+      },
+      {
+        "time": 26.694,
+        "src": "frames-sparse/frame-008.jpg"
+      }
+    ],
+    "dense": [
+      {
+        "time": 0,
+        "src": "frames-dense/frame-001.jpg"
+      },
+      {
+        "time": 1,
+        "src": "frames-dense/frame-002.jpg"
+      },
+      {
+        "time": 2,
+        "src": "frames-dense/frame-003.jpg"
+      },
+      {
+        "time": 3,
+        "src": "frames-dense/frame-004.jpg"
+      },
+      {
+        "time": 4,
+        "src": "frames-dense/frame-005.jpg"
+      },
+      {
+        "time": 5,
+        "src": "frames-dense/frame-006.jpg"
+      },
+      {
+        "time": 6,
+        "src": "frames-dense/frame-007.jpg"
+      },
+      {
+        "time": 7,
+        "src": "frames-dense/frame-008.jpg"
+      },
+      {
+        "time": 8,
+        "src": "frames-dense/frame-009.jpg"
+      },
+      {
+        "time": 9,
+        "src": "frames-dense/frame-010.jpg"
+      },
+      {
+        "time": 10,
+        "src": "frames-dense/frame-011.jpg"
+      },
+      {
+        "time": 11,
+        "src": "frames-dense/frame-012.jpg"
+      },
+      {
+        "time": 12,
+        "src": "frames-dense/frame-013.jpg"
+      },
+      {
+        "time": 13,
+        "src": "frames-dense/frame-014.jpg"
+      },
+      {
+        "time": 14,
+        "src": "frames-dense/frame-015.jpg"
+      },
+      {
+        "time": 15,
+        "src": "frames-dense/frame-016.jpg"
+      },
+      {
+        "time": 16,
+        "src": "frames-dense/frame-017.jpg"
+      },
+      {
+        "time": 17,
+        "src": "frames-dense/frame-018.jpg"
+      },
+      {
+        "time": 18,
+        "src": "frames-dense/frame-019.jpg"
+      },
+      {
+        "time": 19,
+        "src": "frames-dense/frame-020.jpg"
+      },
+      {
+        "time": 20,
+        "src": "frames-dense/frame-021.jpg"
+      },
+      {
+        "time": 21,
+        "src": "frames-dense/frame-022.jpg"
+      },
+      {
+        "time": 22,
+        "src": "frames-dense/frame-023.jpg"
+      },
+      {
+        "time": 23,
+        "src": "frames-dense/frame-024.jpg"
+      },
+      {
+        "time": 24,
+        "src": "frames-dense/frame-025.jpg"
+      },
+      {
+        "time": 25,
+        "src": "frames-dense/frame-026.jpg"
+      },
+      {
+        "time": 26,
+        "src": "frames-dense/frame-027.jpg"
+      },
+      {
+        "time": 26.694,
+        "src": "frames-dense/frame-028.jpg"
+      }
+    ],
+    "sparseSheet": "sparse-sheet.jpg",
+    "denseSheet": "dense-sheet.jpg"
+  },
+  "reportUrl": "reports/67af1032000000001902d33d/report.html"
+}

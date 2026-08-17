@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gateDecision": "fail",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 10,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "answered",
+          "question": "Kimi 是否为单轮生成，还是存在会改变工作流含义的多轮修订？",
+          "candidateEvidence": ["KU-03", "KU-04", "KU-05"],
+          "auditBasis": "GT-02"
+        },
+        {
+          "status": "not_fully_answered",
+          "question": "即梦有哪些可见参数、候选与完成状态？",
+          "candidateEvidence": ["KU-07", "KU-08", "KU-10"],
+          "missing": ["生成按钮消耗标记 1", "16/16 生成完成"],
+          "auditBasis": "GT-03"
+        },
+        {
+          "status": "not_answered",
+          "question": "CUE-014 的 SRT 与烧录字幕是否冲突？",
+          "candidateEvidence": ["CUE-014 verbatim only"],
+          "missing": "SRT 的‘辅助 Vlog’应与画面字幕‘独居 Vlog’分层记录",
+          "auditBasis": "transcriptFindings:CUE-014"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 16,
+      "denominator": 20,
+      "examples": [
+        {
+          "covered": ["三阶段宏观结构", "Kimi 初稿与两轮返工", "即梦模型/精细度/比例", "2/4 人物选择", "剪辑工程与六镜头摘录", "人物漂移", "授权/导出/发布未知"]
+        },
+        {
+          "missing": ["Kimi‘已阅读55个网页’状态", "生成按钮消耗标记 1", "16/16 生成完成", "可见音乐电平 -1.8 dB"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 58,
+      "examples": [
+        {
+          "result": "supported",
+          "claim": "人物与画风不能判为严格一致",
+          "candidateEvidence": ["TARGET-0036", "TARGET-0084", "TARGET-0093"],
+          "auditBasis": "GT-06"
+        },
+        {
+          "result": "supported_with_scope",
+          "claim": "全片未展示授权、导出和发布条件",
+          "candidateEvidence": ["KU-19", "KU-20"],
+          "auditBasis": ["GT-08", "GT-09"]
+        },
+        {
+          "result": "supported_with_scope",
+          "claim": "结果摘录未证明具体动效或转场",
+          "candidateEvidence": ["KU-17"],
+          "auditBasis": "GT-04 and GT-05"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 55,
+      "denominator": 55,
+      "examples": [
+        {
+          "result": "correct",
+          "references": ["SHOT-018", "SHOT-019", "SHOT-020", "SHOT-021", "SHOT-022", "SHOT-023"],
+          "localizedRange": "00:52.633-00:58.867"
+        },
+        {
+          "result": "correct",
+          "references": ["TARGET-0018", "TARGET-0021", "TARGET-0023"],
+          "localizedRange": "Kimi 两轮修订区间"
+        },
+        {
+          "result": "minor_source_defect_not_mislocalization",
+          "reference": "CUE-015",
+          "note": "所给 SRT 的结束时间比媒体时长晚约 0.008 秒，但候选对 CTA 的定位仍正确。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 8,
+      "denominator": 8,
+      "rationale": "候选覆盖了初始 brief→Kimi 初稿→补空镜→广告位修订→即梦场景生成→生成静帧进入剪辑→剪辑工程形成短摘录→结果后接 CTA 的主要依赖，并把编辑后顺序与生产依赖区分开。"
+    },
+    "unknownDiscipline": {
+      "numerator": 17,
+      "denominator": 18,
+      "examples": [
+        {
+          "correct": ["参考图来源与许可", "真实商业关系", "人物/素材权利", "完整导出和发布", "工具账户/价格/地区", "增长因果", "完整工程与30秒目标的关系"]
+        },
+        {
+          "missedOpportunity": "候选未捕获‘16/16 生成完成’，因此也没有明确说明该状态不能推出精确提示词数量、最终下载数量或成片实际使用 16 张。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "可听辨的非语音音频语义：候选只做了音轨/响度/静音检测，并明确声明未听辨 52.700-58.810 秒样片及全轨中的鸟叫、流水、音乐或其他声音。"
+    ]
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "已提取但未做语义听辨的非语音音频"
+    ],
+    "unguardedMeaningChanges": [
+      "CUE-014：SRT‘辅助 Vlog’与烧录字幕‘独居 Vlog’的目标身份冲突未进入 KU-21 式冲突账本",
+      "即梦‘16/16 生成完成’这一 UI 进度/完成状态未进入知识单元"
+    ],
+    "unguardedRelationships": [
+      "‘16/16 生成完成’与精确提示词数、下载数、成片用图数之间的不可推导关系未被显式守住",
+      "时间线可见音频素材/口述音效与结果摘录中实际可听声音之间的关系未被检查"
+    ],
+    "rationale": "候选自身的 metaGate 不能证明自身闭包。独立对照审计后仍能找到一个可用但未语义检查的载体、两个遗漏的意义变化和两条未闭合关系，因此元闸失败。"
+  },
+  "examples": [
+    {
+      "id": "D-01",
+      "severity": "hard_gate",
+      "finding": "关键问题召回 10/12，低于 0.85。"
+    },
+    {
+      "id": "D-02",
+      "severity": "hard_gate",
+      "finding": "核心证据覆盖 16/20，低于 0.90。"
+    },
+    {
+      "id": "D-03",
+      "severity": "hard_gate",
+      "finding": "存在一个可用但未语义检查的非语音音频载体。"
+    },
+    {
+      "id": "D-04",
+      "severity": "hard_gate",
+      "finding": "元审计发现 CUE-014 冲突与 16/16 状态等未守内容。"
+    }
+  ]
+}

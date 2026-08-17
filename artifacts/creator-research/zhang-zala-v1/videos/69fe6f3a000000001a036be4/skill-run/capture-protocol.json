@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69fe6f3a000000001a036be4/skill-run/probe.json",
+  "protocolName": "HTML Slides 的结果欲望—双路径—身份价值捕捉协议",
+  "rationale": "第一轮探针发现本片的知识不只在口播步骤，而在多套成品形成的审美差距、AnyGen 与 GitHub/coding agent 两条路径、剪辑过的界面状态边界，以及最后从工具结果上升到 AI-native 形象的价值主张。因此需同时捕捉成品多样性、UI 前中后状态、仓库文字与主张边界。",
+  "knowledgeUnitFields": [
+    {"name": "观众问题与承诺结果", "required": true, "reason": "解释为什么开场不是普通教程。", "derivedFrom": ["MC-01", "CQ-01"]},
+    {"name": "审美资产与样例证据", "required": true, "reason": "恢复模板如何被用作结果上限的解释。", "derivedFrom": ["MC-02", "RISK-01"]},
+    {"name": "小白路径的步骤与状态", "required": true, "reason": "恢复 AnyGen 路径并防止虚构连续因果。", "derivedFrom": ["MC-03", "CQ-02"]},
+    {"name": "coding agent 路径的资产与限制", "required": true, "reason": "恢复 GitHub 路径并标注安装/许可未知。", "derivedFrom": ["MC-04", "CQ-03"]},
+    {"name": "作者主张—可见证据—未知", "required": true, "reason": "避免把 HTML 优势和身份感知写成事实。", "derivedFrom": ["MC-05", "CQ-05"]},
+    {"name": "专有名词冲突", "required": true, "reason": "机器转写存在明显术语错误。", "derivedFrom": ["RISK-05", "CQ-06"]},
+    {"name": "非语音音频作用", "required": true, "reason": "完成音频信息通道审计。", "derivedFrom": ["RISK-06", "CQ-07"]}
+  ],
+  "captureActions": [
+    {"id": "ACT-01", "range": {"start": 0, "end": 13.52}, "carrier": "Slides results, burned captions and narrator layout", "mode": "interval_density", "densitySeconds": 1.5, "reason": "识别开场如何快速建立好看/不好看的结果差距。", "expectedObservation": "多种高设计感成品先于操作出现，右下角保持真人画中画。", "derivedFrom": ["SWEEP-01", "CQ-01"]},
+    {"id": "ACT-02", "range": {"start": 13.52, "end": 54.76}, "carrier": "template-result montage and visible labels", "mode": "interval_density", "densitySeconds": 2, "reason": "检查模板多样性、重复和具体可见文字。", "expectedObservation": "不同配色、版式、图表与视觉风格构成结果资产墙；数量主张需要与可见样例分开。", "derivedFrom": ["SWEEP-02", "RISK-01"]},
+    {"id": "ACT-03", "range": {"start": 57.4, "end": 110.93}, "carrier": "AnyGen UI and task state", "mode": "interval_density", "densitySeconds": 1.5, "reason": "恢复模板选择、输入、生成、结果与分享的实际可见顺序。", "expectedObservation": "多个剪辑状态可见，但同一任务的连续生成因果和时长未必可证。", "derivedFrom": ["SWEEP-03", "RISK-02", "CQ-02"]},
+    {"id": "ACT-04", "range": {"start": 57.4, "end": 110.93}, "carrier": "AnyGen buttons, field labels, template names and output text", "mode": "ocr_review", "times": [60, 64, 68, 72, 76, 80, 84, 90, 100, 108], "reason": "校正平台名、按钮、模板与分享相关文字。", "expectedObservation": "OCR 只采纳高置信 UI 文本，并记录被烧录字幕遮挡或无法读取的小字。", "derivedFrom": ["CAR-02", "CAR-04", "CQ-06"]},
+    {"id": "ACT-05", "range": {"start": 110.93, "end": 151.45}, "carrier": "GitHub repository, files, preview and instructions", "mode": "interval_density", "densitySeconds": 1.5, "reason": "恢复仓库路径与可见资产，确认没有展示的安装/执行步骤。", "expectedObservation": "可见仓库/预览/说明状态与 agent 匹配概念；许可证、clone/安装和实际 agent 执行仍未知。", "derivedFrom": ["SWEEP-04", "RISK-03", "CQ-03"]},
+    {"id": "ACT-06", "range": {"start": 110.93, "end": 151.45}, "carrier": "repository identity, instructions and keyword descriptions", "mode": "ocr_review", "times": [114, 120, 126, 132, 138, 144, 150], "reason": "校正 GitHub、Beautiful HTML Templates、instructions 等关键术语。", "expectedObservation": "恢复高置信仓库文字；访问性和许可不由页面出现推断。", "derivedFrom": ["CAR-05", "RISK-05"]},
+    {"id": "ACT-07", "range": {"start": 151.45, "end": 173.467}, "carrier": "closing result montage, captions and narrator claim", "mode": "interval_density", "densitySeconds": 2, "reason": "检查价值升维如何与结果画面配对。", "expectedObservation": "作者主张 HTML 的视觉冲击和 AI-native 形象，画面继续展示成品但不构成客户感知实验。", "derivedFrom": ["SWEEP-05", "RISK-04", "CQ-05"]}
+  ],
+  "requiredRelations": [
+    {"relation": "problem-gap → template-asset explanation", "derivedFrom": ["REL-01"]},
+    {"relation": "result desire → novice path", "derivedFrom": ["REL-02"]},
+    {"relation": "novice path ↔ coding-agent path", "derivedFrom": ["REL-03"]},
+    {"relation": "executable asset → identity/value claim", "derivedFrom": ["REL-04"]},
+    {"relation": "visible UI state → missing causal bridge → bounded conclusion", "derivedFrom": ["RISK-02", "RISK-03"]}
+  ],
+  "stoppingRules": [
+    "0–173.467 秒所有载体阶段均有对应检查，carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "AnyGen 与 GitHub 两条路径均恢复实际可见状态、步骤、输入/输出和未展示桥接。",
+    "关键 UI/OCR action 已执行；低置信小字不得猜测。",
+    "模板数量、生成时长、平台可用性、费用、许可和客户感知均按证据边界处理。",
+    "完整非语音音频提议账本已注册；不把弱标签升级为声音事实。",
+    "meta-gate 明确回答尚未检查的载体、意义变化或关系；不得声称笼统 100% 完整。"
+  ],
+  "declaredUnknowns": [
+    "三十多个模板的完整清单与第三方资产授权",
+    "AnyGen 当前账户、地区、费用、导出和分享限制",
+    "演示任务的连续生成链、真实等待时间和镜头外修改",
+    "GitHub 仓库当前入口、版本、许可证与安装命令",
+    "agent 自动匹配模板的准确性和适用条件",
+    "HTML 相对 PowerPoint 的普遍优势与客户/观众实际感知",
+    "非语音音频的具体声源、曲目、来源与权利"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69fe6f3a000000001a036be4/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69fe6f3a000000001a036be4/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free 10-second windows of the complete mixed track",
+    "boundary": "machine proposals only; no human-listening, source-identity or licensing claim"
+  }
+}

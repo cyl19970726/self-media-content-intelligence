@@ -1,0 +1,2756 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/run/capture-protocol.json",
+  "scopeStatement": "仅重建本地MP4、提供SRT、初始evidence-pack及本轮目标帧/OCR中可观察或可归因的内容；不使用旧报告，不外部验证作者主张。",
+  "viewerChange": {
+    "before": "观众可能把编导能力理解成写逐字脚本或机械拆爆款，不清楚真正需要的感知、画面、节奏、表达和知识储备。",
+    "after": "观众获得一套作者提出的能力地图与训练法：选题判断、脚本画面化、媒介素材积累，以及通过多刷、管理收藏、脑内拍电影和反向拓展信息环境来训练。",
+    "intendedChanges": [
+      "把编导能力拆为选题、脚本、积累与训练",
+      "把写脚本前置为脑中画面而非详尽文本",
+      "反对机械拆爆款，强调多刷和可调用素材库",
+      "把需求感知与共情训练连接到突破信息茧房"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/run/targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-targeted frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs from local MP4 and capture-protocol.json",
+      "timeRange": {
+        "start": 0,
+        "end": 163.561
+      },
+      "limitations": [
+        "采样帧不能证明连续未剪辑操作",
+        "单帧只证明该时刻可见内容"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/run/targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift; high-impact rows manually compared with target frames",
+      "timeRange": {
+        "start": 0,
+        "end": 163.561
+      },
+      "limitations": [
+        "OCR含低置信度误识别",
+        "只引用人工核验后仍与画面一致的行"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 3.662,
+        "text": "开头展示饺子啊，如果你非常穷请不起编导，但是又想做自媒体",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 3.662,
+        "end": 8.109,
+        "text": "有没有什么不吃经济的打法呢？那么今天我将从四个方面教会你如何培养你的",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 8.119,
+        "end": 9.78,
+        "text": "编导能力啊，第一点是选题",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 9.78,
+        "end": 11.302,
+        "text": "你要有很好的热点追踪力",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 11.302,
+        "end": 16.01,
+        "text": "也有舆情判断力，比如说好的编导是绝对不会让他的博主在胖猫事件第一时间",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 16.02,
+        "end": 20.447,
+        "text": "就跟这个热点，我们拍热点的时候一定要讲两点，一个是有没有，第二点是能不能",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 20.447,
+        "end": 22.291,
+        "text": "第二个点呢就是我们的需求感知力",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 22.291,
+        "end": 25.12,
+        "text": "你这个视频的核心表达能不能触及用户所需要的东西",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 25.13,
+        "end": 29.495,
+        "text": "还有的就是共情力，就是你这条视频的核心表达有没有触及到人类的共同情感记忆",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 29.495,
+        "end": 30.95,
+        "text": "那么下一点呢就是版本更新",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 30.95,
+        "end": 34.71,
+        "text": "你经常会发现那种几百万粉丝的大博主，他数据非常惨淡，为什么呢？",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 34.72,
+        "end": 36.382,
+        "text": "互联网是一个快速迭代的平台",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 36.382,
+        "end": 40.09,
+        "text": "那些大博主在二零二一年的时候，他们的打法尝到了甜头，于是他",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 40.1,
+        "end": 41.259,
+        "text": "固执己见不愿去更改",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 41.259,
+        "end": 45.64,
+        "text": "所以他二零二六年还用老的版本去打，自然数据就会下滑，所以说我们会说啊",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 45.65,
+        "end": 47.735,
+        "text": "高敏感人群是非常适合去做编导的",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 47.735,
+        "end": 49.125,
+        "text": "那么第二点是写脚本了",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 49.125,
+        "end": 54.27,
+        "text": "很多人去问脚本怎么写，脚本一定是先在你的脑袋有画面，然后再去给它写成文本的",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 54.28,
+        "end": 56.036,
+        "text": "所以画面想象力是非常重要的",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 56.036,
+        "end": 57.521,
+        "text": "好的风景一定是在心中的",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 57.521,
+        "end": 62.25,
+        "text": "我看到很多人写这个小本会写得特别详细啊，其实完全是浪费时间加努力的行为",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 62.26,
+        "end": 64.813,
+        "text": "只要你脑子里面知道这个画面应该是长什么样的",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 64.813,
+        "end": 66.15,
+        "text": "你就不用再去给它写下来",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 66.15,
+        "end": 70.65,
+        "text": "那么第二点呢就是节奏把控力，用什么样的bgm在什么时候快切，在什么时候慢切",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 70.66,
+        "end": 72.324,
+        "text": "那么第三点呢就是语言表达力",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 72.324,
+        "end": 75.78,
+        "text": "我们的文本一定要是第一是能懂，第二要练字，第三要有网感",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 75.79,
+        "end": 77.901,
+        "text": "这时候就在想了，很多人都喜欢去拆解爆款",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 77.901,
+        "end": 81.79,
+        "text": "我觉得这是一个非常没有意义的行为，反击了一大堆笔记，还以为自己多努力呢",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 81.8,
+        "end": 85.391,
+        "text": "其实又不是高考，你要做物理题写错题本了，那么下一个点呢",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 85.391,
+        "end": 87.12,
+        "text": "就是只要是传媒领域都是杂学",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 87.12,
+        "end": 91.11,
+        "text": "你的日常积累是非常重要的，就比如说同样是口播，我们的呈现形式",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 91.12,
+        "end": 93.425,
+        "text": "就很多种一人多角坐播对话情景演绎",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 93.425,
+        "end": 97.46,
+        "text": "你的脑子里面如果没有这些表达形式，你要怎么给它拍出来呢？",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 97.47,
+        "end": 98.821,
+        "text": "那么还有要积累的",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 98.821,
+        "end": 103.89,
+        "text": "那是bgm梗话题，镜头摆放常识与杂食，还有就是肢体语言的表达",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 103.9,
+        "end": 105.43,
+        "text": "什么样的画面是有张力的",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 105.43,
+        "end": 108.074,
+        "text": "这一点也是我们需要在日常生活中去积累的",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 108.074,
+        "end": 112.39,
+        "text": "此外呢变得需要有常识和杂识，和杂识就是你要有一些莫名其妙的知识",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 112.4,
+        "end": 113.852,
+        "text": "做编导呢就是什么都懂一点",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 113.852,
+        "end": 115.909,
+        "text": "只有需要的时候再把这个东西再弄到精",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 115.909,
+        "end": 120.51,
+        "text": "那么最后问题来了，我们现在知道我们需要这三方面的能力了，我们要怎么去培养呢？",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 120.52,
+        "end": 126.19,
+        "text": "第一点就是少拆爆款多刷，在阅读爆款这个上，一是求多不求精的，不要假努力",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 126.2,
+        "end": 128.162,
+        "text": "第二点呢就是用好你的点赞和收藏",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 128.162,
+        "end": 132.61,
+        "text": "你的点赞和收藏就是你的素材库，在你点赞一条视频之前一定要三视反复筛选",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 132.62,
+        "end": 135.563,
+        "text": "并且保持每天多次观看你的点赞和收藏的习惯",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 135.563,
+        "end": 136.74,
+        "text": "要做一个好的编导",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 136.74,
+        "end": 140.713,
+        "text": "你必须要三秒钟脑中里面就能想到对标博主bgm和视频形式",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 140.713,
+        "end": 142.48,
+        "text": "五秒钟找到具体的对应视频",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 142.49,
+        "end": 148,
+        "text": "那么第三点，如何去培养我们刚刚说写脚本里面的画面想象力呢，就是多在你的脑中拍电影",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 148.01,
+        "end": 151.077,
+        "text": "最后一点呢，就是为了锻炼我们的需求感知力和共情力",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 151.077,
+        "end": 155.55,
+        "text": "我们要多站在别人的视角去想问题，你一定不要把自己控制在一个信息茧房里面",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 155.56,
+        "end": 156.76,
+        "text": "你要去反过来大数据",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 156.76,
+        "end": 160.227,
+        "text": "你的大数据让系统给你推荐那些可能根本不是你爱看的东西",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-017",
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 160.227,
+        "end": 163.561,
+        "text": "那么今天就说到这里，我是人类最强编导，我们下期再见",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-018"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场受众与承诺",
+      "importance": "core",
+      "statement": "作者面向“请不起编导但想做自媒体”的观众，承诺从四个方面训练编导能力，随后从选题开始。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 9.78
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "开场受众条件"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "四方面承诺"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "第一点选题"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "后文编号重复，无法无歧义压成严格四章"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "选题的四种感知",
+      "importance": "core",
+      "statement": "作者把选题能力展开为热点追踪、舆情判断、“有没有/能不能”的可做性判断、需求感知与共情；需求要触及用户所需，共情要触及共同情感记忆。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 9.78,
+        "end": 30.95
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "热点追踪"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "舆情判断例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "有没有/能不能"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "需求感知解释"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "共情解释"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“有没有/能不能”的具体判定流程未给出"
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "版本更新论证",
+      "importance": "core",
+      "statement": "作者以“大博主沿用2021年打法到2026年”解释数据下滑，主张互联网快速迭代、旧版本会失效。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 30.95,
+        "end": 45.65
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "大博主数据惨淡问题"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "快速迭代"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "2021打法"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "2026仍用旧版本"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00164",
+          "supports": "画面字幕2021"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00180",
+          "supports": "画面字幕2026"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "没有账号样本、版本定义或因果控制"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "高敏感适配结论",
+      "importance": "supporting",
+      "statement": "作者据前述迭代与感知需求，得出高敏感人群适合做编导的判断。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 45.65,
+        "end": 49.125
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "直接结论"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00201",
+          "supports": "烧录字幕确认高敏感结论"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "“高敏感”未定义，也未证明适配性"
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "脚本先有画面",
+      "importance": "core",
+      "statement": "作者认为脚本应先在脑中形成画面，再写成文本；若已清楚画面长什么样，过度详细写下来的劳动是浪费。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 49.125,
+        "end": 66.15
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "先有画面再文本"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "画面想象力"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "详尽脚本是浪费"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "脑中知道画面"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "不必再写"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未展示脚本样例，无法确定必要细节边界"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "节奏与语言标准",
+      "importance": "core",
+      "statement": "节奏把控包括选择BGM、决定何时快切或慢切；文本表达则要求能懂、炼字和有网感。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 66.15,
+        "end": 75.78
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "BGM与快慢切"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "语言表达力"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "能懂/原SRT练字/网感"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00310",
+          "supports": "画面字幕“什么时候慢切”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "“网感”没有操作性定义"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "反对机械拆爆款",
+      "importance": "core",
+      "statement": "作者批评大量拆爆款、堆笔记并自认为努力的做法，把它类比为高考错题本；这段只建立了对机械式深拆的批评。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 75.79,
+        "end": 85.391
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "提出拆爆款"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "无意义与笔记批评"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "错题本类比"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "不能据此推断作者反对所有分析或复盘"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "编导是可调用的杂学",
+      "importance": "core",
+      "statement": "作者把传媒/编导视为杂学：日常要积累一人多角、坐播、对话、情景演绎等呈现形式，以及BGM、梗、话题、镜头摆放、常识杂识、肢体语言与画面张力；需要时再深入。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 85.391,
+        "end": 120.51
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "传媒领域是杂学"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "日常积累"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "呈现形式"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "BGM梗话题镜头与肢体"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "常识杂识"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "需要时再弄精"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00407",
+          "supports": "画面字幕一人多角"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00408",
+          "supports": "坐播/对话/情景演绎"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "列举不是穷尽清单"
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "多刷而非假努力",
+      "importance": "core",
+      "statement": "训练的第一项是少拆爆款、多刷；作者要求在阅读爆款时求多不求精，并警惕以密集笔记替代素材摄入。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 120.51,
+        "end": 128.162
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "训练动作与边界"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00531",
+          "supports": "画面字幕“少拆爆款”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00546",
+          "supports": "画面字幕“求多不求精”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "没有给每日数量或选择标准"
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "点赞收藏作为素材库",
+      "importance": "core",
+      "statement": "作者建议把点赞和收藏当素材库：点赞前要“三思”反复筛选，并保持每天多次回看点赞与收藏。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 126.2,
+        "end": 135.563
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "用好点赞收藏"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "原SRT“三视”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "每天多次观看"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00557",
+          "supports": "画面字幕“点赞和收藏”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00572",
+          "supports": "画面字幕“之前一定要三思”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未展示素材库分类、检索或平台操作"
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "快速素材调用目标",
+      "importance": "core",
+      "statement": "作者把熟练度目标设为：三秒内想到对标博主、BGM和视频形式，五秒内找到对应视频。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 135.563,
+        "end": 142.48
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "好编导前提"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "三秒联想"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "五秒找到"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00609",
+          "supports": "画面字幕“五秒钟找到”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "没有计时演示或训练效果数据"
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "画面想象训练",
+      "importance": "core",
+      "statement": "作者建议通过“多在脑中拍电影”训练写脚本所需的画面想象力。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 142.49,
+        "end": 151.077
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "脑中拍电影"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00622",
+          "supports": "烧录字幕确认"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "训练频率、反馈方式和效果未说明"
+      ]
+    },
+    {
+      "id": "KU-13",
+      "title": "需求与共情训练",
+      "importance": "core",
+      "statement": "作者建议多站在他人视角思考，不把自己困在信息茧房；所谓“反过来大数据”由后句解释为让系统推荐自己可能不爱看的内容。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 148.01,
+        "end": 163.561
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "训练目标"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "他人视角与信息茧房"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "反过来大数据"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "让系统推荐不爱看的内容"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00666",
+          "supports": "画面字幕保留原表达"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00674",
+          "supports": "画面字幕“不爱看的东西”"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "未给具体设置步骤，推荐系统如何变化未知"
+      ]
+    },
+    {
+      "id": "KU-14",
+      "title": "关键字幕冲突",
+      "importance": "supporting",
+      "statement": "原SRT写“好的风景一定是在心中的”“三视反复筛选”，而烧录字幕分别为“好的分镜一定是在心中的”“之前一定要三思”；原SRT首句与画面同为“开头展示教资啊”，但其语义和所指仍不清。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 135.563
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "原SRT“风景”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00265",
+          "supports": "烧录字幕“分镜”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "原SRT“三视”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00572",
+          "supports": "烧录字幕“三思”"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00010",
+          "supports": "开头画面字幕"
+        }
+      ],
+      "confidence": "high",
+      "reasoning": "对同一时间窗的原SRT与人工核验后的烧录字幕逐项比较；保留原始文本，仅把画面支持的差异解释为载体冲突。",
+      "unknowns": [
+        "“开头展示教资啊”的实际意图无法仅凭现有字幕确定"
+      ]
+    },
+    {
+      "id": "KU-15",
+      "title": "固定讲解环境与造型",
+      "importance": "context",
+      "statement": "除开场短插入拼贴外，全片可见同一名戴蜘蛛侠风格红色全脸面罩、穿深色衣服的讲者在白板前讲解、书写或指向板书；技术shot不能等同语义场景或剪辑次数。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 163.561
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "开场造型与插入画面"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0058",
+          "supports": "中段白板环境"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0061",
+          "supports": "结尾同一环境"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "真实身份、面罩授权和隐藏剪辑未知"
+      ]
+    },
+    {
+      "id": "KU-16",
+      "title": "视频未建立的训练边界",
+      "importance": "supporting",
+      "statement": "在检查的完整时间线内，未观察到具体收藏管理界面、脚本/剪辑操作演示、训练前后对照、成功率样本、课程价格或购买入口；视频提供的是作者方法论而非验证实验。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 163.561
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "协议覆盖完整时间线与结尾缺席检查"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "结尾仅身份口号与告别"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "外部是否存在这些信息不在本重建范围"
+      ]
+    },
+    {
+      "id": "KU-17",
+      "title": "开场社会证明与结尾名称冲突",
+      "importance": "core",
+      "statement": "开场是多组短视频指标拼贴，可见832.7万、611.9万、976.0万浏览、2903.0万浏览、1358.0万浏览等数字；全片持续水印为“人类最强编导”，而结尾烧录字幕出现“人类这样编导”。这些选择性画面与名称不建立真实身份、资质或指标与所授能力的归属关系。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 163.561
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0067",
+          "supports": "开场指标拼贴补抓"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00840",
+          "supports": "开场OCR读取832.7万"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00841",
+          "supports": "开场OCR读取611.9万"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00842",
+          "supports": "开场OCR读取976.0万浏览"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00844",
+          "supports": "开场OCR读取2903.0万浏览"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00845",
+          "supports": "开场OCR读取1358.0万浏览"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0071",
+          "supports": "结尾身份句补抓"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00883",
+          "supports": "烧录字幕“我是人类这样编导”"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "原SRT为“人类最强编导”"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "拼贴账号所有权、采集时间、指标口径、与编导能力的关联，以及真实身份/资质未知"
+      ]
+    },
+    {
+      "id": "KU-18",
+      "title": "省略详细脚本的适用条件",
+      "importance": "supporting",
+      "statement": "作者只明确“脑中已经知道画面”这一前提；视频没有建立团队协作、交接、安全、预算或复杂拍摄时是否仍可省略详细脚本，因此这些例外必须保持未知。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 49.125,
+        "end": 66.15
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "作者称过细记录浪费"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "明确脑中知道画面的条件"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "由该条件推出不用写"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "协作者如何访问镜头计划，以及安全/预算/复杂度何时要求文档均未知"
+      ]
+    },
+    {
+      "id": "KU-19",
+      "title": "有效浏览的边界",
+      "importance": "supporting",
+      "statement": "作者要求少拆多刷、求多不求精，但没有定义什么是能积累可调用素材的有效浏览，什么只是浅层消费，也没有给数量、筛选质量或复习效果标准。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 120.52,
+        "end": 135.563
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "少拆多刷与求多不求精"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "点赞前筛选"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "每天复看"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "有效浏览与浅层消费的判定、数量和质量标准未知"
+      ]
+    },
+    {
+      "id": "KU-20",
+      "title": "推荐流干预依赖",
+      "importance": "supporting",
+      "statement": "“反过来大数据”要成为可执行方法，还依赖能改变推荐的具体互动、足够时间、特定账号状态与平台行为；视频只给意图，没有展示这些依赖或效果。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 151.077,
+        "end": 160.227
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "离开信息茧房的目标"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "反过来大数据"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "期望系统推荐陌生内容"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "具体互动、平台、时间、账号状态和推荐变化未知"
+      ]
+    },
+    {
+      "id": "KU-21",
+      "title": "训练效果评估链缺失",
+      "importance": "supporting",
+      "statement": "判断这些训练是否提升编导能力需要基线任务、可重复练习、输出评价标准和训练后测量；完整时间线没有展示这条评估链。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 115.909,
+        "end": 160.227
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "从能力清单转向如何培养"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "训练建议结束"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "完整训练段未见执行或前后测"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "基线、练习一致性、输出rubric和后测均未知"
+      ]
+    },
+    {
+      "id": "KU-22",
+      "title": "快速检索的缺失索引依赖",
+      "importance": "supporting",
+      "statement": "三秒联想、五秒找到对应视频除了依赖已整理的点赞收藏和反复复习，还需要可检索的记忆或索引；视频陈述前两项，但没有说明索引方式。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 126.2,
+        "end": 142.48
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "点赞收藏作为素材库"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "反复观看"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "三秒联想"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "五秒找到"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "分类、标签、搜索和记忆索引方法未知"
+      ]
+    },
+    {
+      "id": "KU-23",
+      "title": "负责任追热点的操作依赖",
+      "importance": "supporting",
+      "statement": "将“有没有/能不能”用于负责任的热点判断，还需要定义两个问题并评估证据与舆情风险；视频只给出标签和胖猫事件例子，没有操作测试。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 11.302,
+        "end": 20.447
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "胖猫事件作为警示例"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "只提出有没有/能不能"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "两个测试的定义、证据阈值和风险评估方法未知"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "expanded_by_version_update",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "framed_as_support_for",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "combined_with",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-12",
+      "relation": "trained_by",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-09",
+      "relation": "critique_answered_by",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-08",
+      "to": "KU-09",
+      "relation": "material_acquired_by",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-08",
+      "to": "KU-10",
+      "relation": "organized_as",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-10",
+      "to": "KU-11",
+      "relation": "enables_fast_retrieval",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-13",
+      "relation": "trained_by",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-01",
+      "to": "KU-13",
+      "relation": "opening_promise_paid_off_by_closing_action",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-05",
+      "relation": "carrier_conflict_resolved_for_interpretation",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-10",
+      "relation": "carrier_conflict_resolved_for_interpretation",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-05",
+      "relation": "limits_application_of",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-19",
+      "to": "KU-09",
+      "relation": "missing_quality_boundary_for",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-13",
+      "relation": "missing_dependency_for",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-01",
+      "relation": "limits_claimed_training_payoff",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-23",
+      "to": "KU-02",
+      "relation": "missing_operational_dependency_for",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    },
+    {
+      "from": "KU-22",
+      "to": "KU-11",
+      "relation": "missing_index_dependency_for",
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-TARGETED",
+          "supports": "目标取证清单记录协议动作及帧时间"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "IC-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-06",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-07",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "IC-08",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01",
+          "KU-17"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-03",
+          "KU-04"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-05",
+          "KU-06"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-08"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-09",
+          "KU-10",
+          "KU-11",
+          "KU-12",
+          "KU-19",
+          "KU-21",
+          "KU-22"
+        ]
+      },
+      {
+        "id": "MC-08",
+        "captured": true,
+        "unitIds": [
+          "KU-13",
+          "KU-17",
+          "KU-20"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "RH-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      },
+      {
+        "id": "RH-OPEN-CLOSE",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SRC-TARGETED"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-004",
+          "CUE-005",
+          "CUE-006",
+          "CUE-008",
+          "CUE-009"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-03",
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-011",
+          "CUE-012",
+          "CUE-013",
+          "CUE-015",
+          "OCR-00164",
+          "OCR-00180",
+          "CUE-016",
+          "OCR-00201"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-018",
+          "CUE-019",
+          "CUE-021",
+          "CUE-022",
+          "CUE-023"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "CUE-024",
+          "CUE-025",
+          "CUE-026",
+          "OCR-00310"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-07",
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "CUE-027",
+          "CUE-028",
+          "CUE-029",
+          "CUE-042",
+          "OCR-00531",
+          "OCR-00546"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "CUE-030",
+          "CUE-031",
+          "CUE-032",
+          "CUE-035",
+          "CUE-038",
+          "CUE-040",
+          "OCR-00407",
+          "OCR-00408"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-10",
+          "KU-11"
+        ],
+        "evidenceRefs": [
+          "CUE-043",
+          "CUE-044",
+          "CUE-045",
+          "OCR-00557",
+          "OCR-00572",
+          "CUE-046",
+          "CUE-047",
+          "CUE-048",
+          "OCR-00609"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-12",
+          "KU-13"
+        ],
+        "evidenceRefs": [
+          "CUE-049",
+          "OCR-00622",
+          "CUE-050",
+          "CUE-051",
+          "CUE-052",
+          "CUE-053",
+          "OCR-00666",
+          "OCR-00674"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "answered",
+        "unitIds": [
+          "KU-14"
+        ],
+        "evidenceRefs": [
+          "CUE-020",
+          "OCR-00265",
+          "CUE-044",
+          "OCR-00572",
+          "OCR-00010"
+        ]
+      },
+      {
+        "id": "CQ-10",
+        "status": "unknown",
+        "unitIds": [
+          "KU-16"
+        ],
+        "evidenceRefs": [
+          "SRC-TARGETED",
+          "CUE-054"
+        ]
+      },
+      {
+        "id": "CQ-11",
+        "status": "answered",
+        "unitIds": [
+          "KU-17"
+        ],
+        "evidenceRefs": [
+          "TARGET-0067",
+          "OCR-00840",
+          "OCR-00841",
+          "OCR-00842",
+          "OCR-00844",
+          "OCR-00845",
+          "TARGET-0071",
+          "OCR-00883",
+          "CUE-054"
+        ]
+      },
+      {
+        "id": "CQ-12",
+        "status": "answered",
+        "unitIds": [
+          "KU-17"
+        ],
+        "evidenceRefs": [
+          "TARGET-0067",
+          "OCR-00840",
+          "OCR-00841",
+          "OCR-00842",
+          "OCR-00844",
+          "OCR-00845",
+          "TARGET-0071",
+          "OCR-00883",
+          "CUE-054"
+        ]
+      },
+      {
+        "id": "CQ-13",
+        "status": "answered",
+        "unitIds": [
+          "KU-18",
+          "KU-20",
+          "KU-21",
+          "KU-22",
+          "KU-23"
+        ],
+        "evidenceRefs": [
+          "CUE-021",
+          "CUE-022",
+          "CUE-023",
+          "CUE-051",
+          "CUE-052",
+          "CUE-053",
+          "CUE-041",
+          "CUE-053",
+          "SRC-TARGETED",
+          "CUE-043",
+          "CUE-045",
+          "CUE-047",
+          "CUE-048",
+          "CUE-005",
+          "CUE-006"
+        ]
+      },
+      {
+        "id": "CQ-14",
+        "status": "answered",
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ],
+        "evidenceRefs": [
+          "CUE-021",
+          "CUE-022",
+          "CUE-023",
+          "CUE-042",
+          "CUE-044",
+          "CUE-045"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-23"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-23"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-10",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-14",
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-16",
+          "KU-17",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-16",
+          "KU-17",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-16",
+          "KU-17",
+          "KU-21",
+          "KU-22"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-16",
+          "KU-17",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-13",
+          "KU-16",
+          "KU-17",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-16",
+          "KU-17",
+          "KU-20",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-16",
+          "KU-17",
+          "KU-20",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-16",
+          "KU-17",
+          "KU-20",
+          "KU-21"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-16",
+          "KU-17"
+        ],
+        "rationale": "该cue的主张被相交时间范围的知识单元保留"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 13,
+      "total": 13
+    },
+    "unknowns": [
+      "后文编号重复，无法无歧义压成严格四章",
+      "“有没有/能不能”的具体判定流程未给出",
+      "没有账号样本、版本定义或因果控制",
+      "“高敏感”未定义，也未证明适配性",
+      "未展示脚本样例，无法确定必要细节边界",
+      "“网感”没有操作性定义",
+      "不能据此推断作者反对所有分析或复盘",
+      "列举不是穷尽清单",
+      "没有给每日数量或选择标准",
+      "未展示素材库分类、检索或平台操作",
+      "没有计时演示或训练效果数据",
+      "训练频率、反馈方式和效果未说明",
+      "未给具体设置步骤，推荐系统如何变化未知",
+      "“开头展示教资啊”的实际意图无法仅凭现有字幕确定",
+      "真实身份、面罩授权和隐藏剪辑未知",
+      "外部是否存在这些信息不在本重建范围",
+      "拼贴账号所有权、采集时间、指标口径、与编导能力的关联，以及真实身份/资质未知",
+      "协作者如何访问镜头计划，以及安全/预算/复杂度何时要求文档均未知",
+      "有效浏览与浅层消费的判定、数量和质量标准未知",
+      "具体互动、平台、时间、账号状态和推荐变化未知",
+      "基线、练习一致性、输出rubric和后测均未知",
+      "分类、标签、搜索和记忆索引方法未知",
+      "两个测试的定义、证据阈值和风险评估方法未知"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整时间线已按连续认知区间检查口播/SRT、烧录字幕/OCR、白板、插入截图、讲者手势与造型、环境、编辑顺序、技术shot连续性、非语音音轨及范围化缺席；所有探针事件、关系与critical question均落入目标动作和知识/unknown单元。非语音的具体语义无法可靠识别，已作为显式unknown而非未检查通道。"
+  }
+}

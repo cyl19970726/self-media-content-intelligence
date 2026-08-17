@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "videoId": "6a37cd9300000000070278d1",
+  "blocking": [],
+  "nonBlocking": [
+    {
+      "id": "D-V3-01",
+      "severity": "minor",
+      "auditRefs": ["K12", "Q09", "REL10", "U08"],
+      "candidateRefs": ["KU-10", "article.md#第三部分：平台可能投放的商业品类"],
+      "finding": "候选恢复了广告品类清单和词形不确定性，但 reconstruction.json 未完整保存‘商业合作案例部分→类别清单’的段落角色，也未明确说全片没有展示实际商业案例画面。",
+      "metricImpact": "evidenceCoverage 计为 21/22，仍高于 0.90 hard threshold。"
+    },
+    {
+      "id": "D-V3-02",
+      "severity": "minor",
+      "auditRefs": ["denominators.coreKnowledgeUnits=22"],
+      "candidateRefs": ["coverageMatrix.coreEvidence=16/16"],
+      "finding": "候选把多个审计核心单元合并为 16 个 core 声明；内容大体保留，但自报 16/16 不能替代独立审计的 22 单元分母。",
+      "metricImpact": "不直接失败；独立 evaluator 使用 22 作为 evidence coverage 分母。"
+    },
+    {
+      "id": "D-V3-03",
+      "severity": "minor",
+      "auditRefs": ["relationships=21"],
+      "candidateRefs": ["relations=13", "coverageMatrix.relationships=11"],
+      "finding": "候选通过复合知识单元和文章保存了多数关系，但关系数组/coverage 矩阵的显式粒度明显低于独立审计，且两者内部数量不一致。",
+      "metricImpact": "未发现完全 unguarded relationship，因此 meta-gate 仍通过；压低 evidence usefulness 与 compression-without-loss JUDGE。"
+    },
+    {
+      "id": "D-V3-04",
+      "severity": "minor",
+      "auditRefs": ["U09"],
+      "candidateRefs": ["article.md#第四部分：用户→需求→场景→选题→迭代", "coverageMatrix.unknowns"],
+      "finding": "article.md 明确保留五步法适用阶段、赛道、资源与例外为未知，但 reconstruction.json 的 coverageMatrix.unknowns 未列出该项，形成 JSON 与下游文章之间的可追溯性差距。",
+      "metricImpact": "整体 unknown discipline 仍为 13/13，因为候选交付文章明确 abstain；但结构化重建应补齐。"
+    },
+    {
+      "id": "D-V3-05",
+      "severity": "minor",
+      "auditRefs": ["subtitleCues=60"],
+      "candidateRefs": ["coverageMatrix.cueAccountability"],
+      "finding": "60 个 cue 均有唯一 accountability 行，但大量 rationale 使用相同模板，且若干 cue 被链接到过宽的复合单元，降低逐句审计解释力。",
+      "metricImpact": "不影响 deterministic cue-accountability gate，但压低 evidence usefulness。"
+    }
+  ],
+  "summary": {
+    "blockingCount": 0,
+    "nonBlockingCount": 5,
+    "readyImpact": "none"
+  }
+}

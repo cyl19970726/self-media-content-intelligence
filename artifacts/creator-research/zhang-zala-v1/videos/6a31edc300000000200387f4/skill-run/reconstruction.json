@@ -1,0 +1,4641 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/capture-protocol.json",
+  "scopeStatement": "重建 0–381.433 秒视频内的 X 增长结果、party 心智模型、四组方法与三个日常内容触发器。机器转写不是官方字幕；7 万增长归因、算法机制、90% 回复概率、每天三条普遍性与外部权利不由本片独立证明。",
+  "viewerChange": {
+    "before": "观众可能把 X/Twitter 运营想成站上舞台持续输出，或期待 AI 代写、批量回复和增长 hack。",
+    "after": "观众被引导把 X 理解为 party：先训练 feed 进入正确对话，再真诚回复建立关系，把学习、产品反馈和 build in public 变成低门槛高频发帖习惯，并在形成品味与 voice 后才谨慎使用 AI。",
+    "intendedChanges": [
+      "以一年约 1000 到 7 万粉丝建立方法可信度",
+      "用舞台→party 隐喻重构平台心智模型",
+      "掌握四组可执行方法与三个日常发帖触发器",
+      "把真实、社区价值和个人 voice 放在增长 hack 之前"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "eight probe-derived capture actions over growth evidence, party diagrams, four methods, three triggers and AI-writing conditions",
+      "timeRange": {
+        "start": 0,
+        "end": 381.313
+      },
+      "limitations": [
+        "抽帧不证明社交算法或增长因果",
+        "社交截图上下文可能被裁切"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 229 targeted frames; 961 lines; zero frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 381.313
+      },
+      "limitations": [
+        "下半屏小字和社交截图可能误读",
+        "OCR 不证明账号/帖子当前状态"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a31edc300000000200387f4/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free 10-second windows",
+      "timeRange": {
+        "start": 0,
+        "end": 381.457
+      },
+      "limitations": [
+        "机器提议不是人耳听检",
+        "混合轨不能分离旁白和非语音声音",
+        "不能建立声源、权利或编辑意图"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "local machine transcription from the complete decoded source audio; not official subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 2.32,
+        "text": "昨天我的推特粉丝长到了7万",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 2.32,
+        "end": 4.72,
+        "text": "而在一年前我大概只有1000多粉丝",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 4.72,
+        "end": 6.28,
+        "text": "这个是我的推特账号",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 6.28,
+        "end": 10.04,
+        "text": "其实我发推特的频率是远远高于我发小红书的频率的",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 10.04,
+        "end": 12.16,
+        "text": "这个投资人在我铁的下面留言",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 12.16,
+        "end": 13.32,
+        "text": "我觉得很贴切",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 13.32,
+        "end": 14.68,
+        "text": "他说我发的东西是",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 14.68,
+        "end": 15.92,
+        "text": "all signal no no no",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 15.92,
+        "end": 17.28,
+        "text": "no slap no hax",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 17.28,
+        "end": 19.52,
+        "text": "and still find the way to girl her audience",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 19.52,
+        "end": 22.48,
+        "text": "我觉得这个就是这个时代做品牌的核心",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 22.48,
+        "end": 25.56,
+        "text": "怎么他他实施真诚地去分享和建立影响力",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 25.56,
+        "end": 29.8,
+        "text": "而不是靠AI寫一堆slop或者依赖各种投机取消的 hax",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 29.8,
+        "end": 32.56,
+        "text": "今天我想想想我做x的一些方法",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 32.56,
+        "end": 34.12,
+        "text": "大部分在推特上做不起来",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 34.12,
+        "end": 36.72,
+        "text": "是因为他们一开始的新制模型就错了",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 36.72,
+        "end": 38.84,
+        "text": "他们把x想象成一个舞台",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 38.84,
+        "end": 40.16,
+        "text": "觉得自己要走上去",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 40.16,
+        "end": 42.28,
+        "text": "对着台下一堆观众发表演讲",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 42.28,
+        "end": 45.24,
+        "text": "但是正确的新制模型其实是一个party",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 45.24,
+        "end": 46.88,
+        "text": "你想想你走进一个party",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 46.88,
+        "end": 50.04,
+        "text": "你不会一个人躲在角落里对着空气自演自语",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 50.04,
+        "end": 52.28,
+        "text": "你会先找的一群正在聊天的人",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 52.28,
+        "end": 53.4,
+        "text": "听听他们在聊什么",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 53.4,
+        "end": 55.08,
+        "text": "然后自然地加入进去",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 55.08,
+        "end": 56.68,
+        "text": "这个party的新制模型",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 56.68,
+        "end": 59,
+        "text": "就是我下面讲的所有打法的基础",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 59,
+        "end": 61.28,
+        "text": "我一个有四个打法一个一个来讲",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 61.28,
+        "end": 64.04,
+        "text": "第一你要调教你的推特算法和feed",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 64.04,
+        "end": 65.44,
+        "text": "你可以把这一步理解成",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 65.44,
+        "end": 66.92,
+        "text": "决定去参加哪些party",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 66.92,
+        "end": 68.36,
+        "text": "你想混哪些圈子",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 68.36,
+        "end": 71.04,
+        "text": "如果你的feed里全是垃圾内容和标题档",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 71.04,
+        "end": 72.76,
+        "text": "你是不会有灵感发贴的",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 72.76,
+        "end": 74.96,
+        "text": "因为你参与的就是错误的对话",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 74.96,
+        "end": 76.96,
+        "text": "所以在我开始规律的发贴之前",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 76.96,
+        "end": 80.64,
+        "text": "我特意花了几周的时间去调教我的x算法",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 80.64,
+        "end": 81.76,
+        "text": "具体怎么做呢",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 81.76,
+        "end": 84.44,
+        "text": "每次刷到标题档或者我不关心的话题",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 84.44,
+        "end": 86,
+        "text": "我就点右上角三个点",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 86,
+        "end": 87.16,
+        "text": "选择不敢兴趣",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 87.16,
+        "end": 89.92,
+        "text": "然后每次刷到有深度有价值的干货内容",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 89.92,
+        "end": 92.24,
+        "text": "我就点赞转发评论或者收藏",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 92.24,
+        "end": 95.64,
+        "text": "慢慢的算法就学会给你推更多高纸量的内容",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 95.64,
+        "end": 97.96,
+        "text": "现在我的推特feed里基本都是",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 97.96,
+        "end": 100.64,
+        "text": "AI的知识新产品的发布技巧",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 100.64,
+        "end": 103.24,
+        "text": "以及稳真正想参与的高纸量的讨论",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 103.24,
+        "end": 104.52,
+        "text": "干货浓度非常的高",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 104.52,
+        "end": 105.64,
+        "text": "非常的inspiring",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 105.64,
+        "end": 107.28,
+        "text": "第二是真诚的回复",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 107.28,
+        "end": 108.64,
+        "text": "这里我要重点强调",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 108.64,
+        "end": 111.6,
+        "text": "千万不要用AI机型人帮你批量回复",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 111.6,
+        "end": 112.28,
+        "text": "再说一遍",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 112.28,
+        "end": 115.28,
+        "text": "千万不要用AI机型人帮你批量回复",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 115.28,
+        "end": 117.44,
+        "text": "为了回复而回复没有任何意义",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 117.44,
+        "end": 119.04,
+        "text": "当我看到我自己贴的下面",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 119.04,
+        "end": 120.96,
+        "text": "有一些明显是AI生成的回复",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 120.96,
+        "end": 123.64,
+        "text": "只是把我说的话换个方法再说一遍",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 123.64,
+        "end": 125.52,
+        "text": "我其实会觉得挺被冒烦的",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-060",
+        "start": 125.52,
+        "end": 126.8,
+        "text": "这种感觉特别扶眼",
+        "representativeFrame": "frames/cues/cue-060.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-061",
+        "start": 126.8,
+        "end": 128.76,
+        "text": "特别不真诚也非常的懒",
+        "representativeFrame": "frames/cues/cue-061.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-062",
+        "start": 128.76,
+        "end": 130.92,
+        "text": "那么我们回到Party的这个比喻",
+        "representativeFrame": "frames/cues/cue-062.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-063",
+        "start": 130.92,
+        "end": 134.36,
+        "text": "回复就像是你把头探现一个正在聊天的圈子",
+        "representativeFrame": "frames/cues/cue-063.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-064",
+        "start": 134.36,
+        "end": 136.52,
+        "text": "你加入了他们已经开始的对话",
+        "representativeFrame": "frames/cues/cue-064.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-065",
+        "start": 136.52,
+        "end": 138.56,
+        "text": "那你得说点真正有意思的东西",
+        "representativeFrame": "frames/cues/cue-065.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-066",
+        "start": 138.56,
+        "end": 139.96,
+        "text": "这样大家才会注意到你",
+        "representativeFrame": "frames/cues/cue-066.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-067",
+        "start": 139.96,
+        "end": 141.88,
+        "text": "也会欢迎你进入他们的圈子",
+        "representativeFrame": "frames/cues/cue-067.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-068",
+        "start": 141.88,
+        "end": 143.84,
+        "text": "举个具体的例子假设你是A",
+        "representativeFrame": "frames/cues/cue-068.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-069",
+        "start": 143.84,
+        "end": 146.96,
+        "text": "然后你想跟一个粉丝圆壁你多的必须互动",
+        "representativeFrame": "frames/cues/cue-069.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-070",
+        "start": 146.96,
+        "end": 148.76,
+        "text": "你去他的铁子下面回复",
+        "representativeFrame": "frames/cues/cue-070.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-071",
+        "start": 148.76,
+        "end": 151.32,
+        "text": "当你的回复非常真诚有价值的时候",
+        "representativeFrame": "frames/cues/cue-071.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-072",
+        "start": 151.32,
+        "end": 153.28,
+        "text": "必就会来回复你的回复",
+        "representativeFrame": "frames/cues/cue-072.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-073",
+        "start": 153.28,
+        "end": 156.08,
+        "text": "可能是点赞回复或者反过来关注你",
+        "representativeFrame": "frames/cues/cue-073.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-074",
+        "start": 156.08,
+        "end": 157.6,
+        "text": "这个动作就会告诉算法",
+        "representativeFrame": "frames/cues/cue-074.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-075",
+        "start": 157.6,
+        "end": 159.92,
+        "text": "这两个人互相喜欢彼此的内容",
+        "representativeFrame": "frames/cues/cue-075.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-076",
+        "start": 159.92,
+        "end": 162.28,
+        "text": "那以后我就多把A的内容推给B",
+        "representativeFrame": "frames/cues/cue-076.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-077",
+        "start": 162.28,
+        "end": 164.64,
+        "text": "然后以后你在自己主缘发铁子的时候",
+        "representativeFrame": "frames/cues/cue-077.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-078",
+        "start": 164.64,
+        "end": 167.2,
+        "text": "他就更容易出现在B的时间线上",
+        "representativeFrame": "frames/cues/cue-078.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-079",
+        "start": 167.2,
+        "end": 170.56,
+        "text": "他甚至就有可能去点赞回复或者转发你的铁子",
+        "representativeFrame": "frames/cues/cue-079.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-080",
+        "start": 170.56,
+        "end": 172.32,
+        "text": "这样才是你掌粉的方式",
+        "representativeFrame": "frames/cues/cue-080.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-081",
+        "start": 172.32,
+        "end": 174.32,
+        "text": "就是靠这些大V把你带起来的",
+        "representativeFrame": "frames/cues/cue-081.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-082",
+        "start": 174.32,
+        "end": 177.44,
+        "text": "第三是高屏的条件反射时的发铁",
+        "representativeFrame": "frames/cues/cue-082.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-083",
+        "start": 177.44,
+        "end": 178.92,
+        "text": "这是最重要的一条规则",
+        "representativeFrame": "frames/cues/cue-083.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-084",
+        "start": 178.92,
+        "end": 181.72,
+        "text": "如果这一条做不到前面所有东西都是白达",
+        "representativeFrame": "frames/cues/cue-084.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-085",
+        "start": 181.72,
+        "end": 184.44,
+        "text": "我给自己的目标是每天发三条",
+        "representativeFrame": "frames/cues/cue-085.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-086",
+        "start": 184.44,
+        "end": 185.48,
+        "text": "大家如果看我的推特",
+        "representativeFrame": "frames/cues/cue-086.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-087",
+        "start": 185.48,
+        "end": 189.08,
+        "text": "你会发现我发推特的频率是远远高于我发小红书的",
+        "representativeFrame": "frames/cues/cue-087.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-088",
+        "start": 189.08,
+        "end": 190.72,
+        "text": "这不是时间管理的问题",
+        "representativeFrame": "frames/cues/cue-088.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-089",
+        "start": 190.72,
+        "end": 195.72,
+        "text": "很多超级忙的创业者CEO投资人也能做到每天发5-10条",
+        "representativeFrame": "frames/cues/cue-089.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-090",
+        "start": 195.72,
+        "end": 201.02,
+        "text": "关键是你要把门砍降到极其低 让发帖变成一种条件反射的动作",
+        "representativeFrame": "frames/cues/cue-090.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-091",
+        "start": 201.02,
+        "end": 204.72,
+        "text": "它必须成为你每天就已经在做的事儿的自然眼神",
+        "representativeFrame": "frames/cues/cue-091.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-092",
+        "start": 204.72,
+        "end": 208.72,
+        "text": "而不能专门抽出时间来干这件事 就是不要想太多",
+        "representativeFrame": "frames/cues/cue-092.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-093",
+        "start": 208.72,
+        "end": 211.22,
+        "text": "那这些条件反射具体是什么呢?",
+        "representativeFrame": "frames/cues/cue-093.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-094",
+        "start": 211.22,
+        "end": 214.42,
+        "text": "我有几个习惯帮助我一直高频的更新",
+        "representativeFrame": "frames/cues/cue-094.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-095",
+        "start": 214.42,
+        "end": 216.42,
+        "text": "第一个习惯是Learn in Public",
+        "representativeFrame": "frames/cues/cue-095.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-096",
+        "start": 216.42,
+        "end": 221.42,
+        "text": "比如我平时会看大量的AI和创业相关的视频 剥克、Newsletter等等",
+        "representativeFrame": "frames/cues/cue-096.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-097",
+        "start": 221.42,
+        "end": 226.42,
+        "text": "每次看到让我很有过敏的内容 我就会结个图把那句话发到推特上",
+        "representativeFrame": "frames/cues/cue-097.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-098",
+        "start": 226.42,
+        "end": 230.42,
+        "text": "然后有一点很重要 我一定会@真正说这句话的那个人",
+        "representativeFrame": "frames/cues/cue-098.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-099",
+        "start": 230.42,
+        "end": 233.42,
+        "text": "这个即使一种标注出出的礼貌 也能让对方注意到你",
+        "representativeFrame": "frames/cues/cue-099.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-100",
+        "start": 233.42,
+        "end": 236.92,
+        "text": "然后它就有可能来转发你 毕竟人都喜欢听别人夸自己",
+        "representativeFrame": "frames/cues/cue-100.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-101",
+        "start": 236.92,
+        "end": 239.42,
+        "text": "然后也会有可能因为这个来关注你",
+        "representativeFrame": "frames/cues/cue-101.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-102",
+        "start": 239.42,
+        "end": 243.42,
+        "text": "学到了新东西就分享出去 你可以把X当成一个公开的笔记本",
+        "representativeFrame": "frames/cues/cue-102.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-103",
+        "start": 243.42,
+        "end": 246.42,
+        "text": "第二个习惯是Give feedback in public",
+        "representativeFrame": "frames/cues/cue-103.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-104",
+        "start": 246.42,
+        "end": 249.42,
+        "text": "我在工作中需要体验各种新的AI产品",
+        "representativeFrame": "frames/cues/cue-104.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-105",
+        "start": 249.42,
+        "end": 252.42,
+        "text": "然后每次遇到让我眼前一辆的产品或者功能",
+        "representativeFrame": "frames/cues/cue-105.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-106",
+        "start": 252.42,
+        "end": 255.42,
+        "text": "我都会在X上协调公开的推荐或者反馈",
+        "representativeFrame": "frames/cues/cue-106.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-107",
+        "start": 255.42,
+        "end": 258.42,
+        "text": "并且我一定会@他们的官方张号和创始人",
+        "representativeFrame": "frames/cues/cue-107.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-108",
+        "start": 258.42,
+        "end": 261.42,
+        "text": "放业者 尤其是早期创业者 非常喜欢产品反馈",
+        "representativeFrame": "frames/cues/cue-108.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-109",
+        "start": 261.42,
+        "end": 265.92,
+        "text": "根据我的经验只要你作为用户分享了真诚有深度的反馈",
+        "representativeFrame": "frames/cues/cue-109.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-110",
+        "start": 265.92,
+        "end": 270.42,
+        "text": "90%的情况下创始人都会亲自回复你转发你甚至私心里",
+        "representativeFrame": "frames/cues/cue-110.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-111",
+        "start": 270.42,
+        "end": 273.42,
+        "text": "第三个习惯是Bullen Public",
+        "representativeFrame": "frames/cues/cue-111.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-112",
+        "start": 273.42,
+        "end": 275.42,
+        "text": "今年我开始做很多Web Coding",
+        "representativeFrame": "frames/cues/cue-112.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-113",
+        "start": 275.42,
+        "end": 279.42,
+        "text": "我最火的一些铁子都是我用Web Coding做出来的一些产品的Demo",
+        "representativeFrame": "frames/cues/cue-113.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-114",
+        "start": 279.42,
+        "end": 281.42,
+        "text": "X特别喜欢产品Demo",
+        "representativeFrame": "frames/cues/cue-114.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-115",
+        "start": 281.42,
+        "end": 283.42,
+        "text": "包括各大AI Lab的开发者关系的负责人",
+        "representativeFrame": "frames/cues/cue-115.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-116",
+        "start": 283.42,
+        "end": 286.42,
+        "text": "也都在主动关注大家用他们的技术做出了什么",
+        "representativeFrame": "frames/cues/cue-116.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-117",
+        "start": 286.42,
+        "end": 290.42,
+        "text": "我有两个项目就都被Google AI开发者的官方账号转发过",
+        "representativeFrame": "frames/cues/cue-117.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-118",
+        "start": 290.42,
+        "end": 294.42,
+        "text": "一可以用类似Scream Studio这样的工具同时录屏幕和你自己",
+        "representativeFrame": "frames/cues/cue-118.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-119",
+        "start": 294.42,
+        "end": 296.42,
+        "text": "做一到两分钟的Demo视频",
+        "representativeFrame": "frames/cues/cue-119.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-120",
+        "start": 296.42,
+        "end": 299.42,
+        "text": "不需要特别精美 只要把功能讲清楚就可以",
+        "representativeFrame": "frames/cues/cue-120.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-121",
+        "start": 299.42,
+        "end": 302.42,
+        "text": "尤其是在新模型刚刚发布的时候",
+        "representativeFrame": "frames/cues/cue-121.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-122",
+        "start": 302.42,
+        "end": 304.42,
+        "text": "尽快用它做点东西分享出来",
+        "representativeFrame": "frames/cues/cue-122.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-123",
+        "start": 304.42,
+        "end": 306.42,
+        "text": "哪怕是一个很粗糙的原型也没关系",
+        "representativeFrame": "frames/cues/cue-123.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-124",
+        "start": 306.42,
+        "end": 311.42,
+        "text": "所有副媒体的内容比如截图 录屏 动图都非常容易在X上有流量",
+        "representativeFrame": "frames/cues/cue-124.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-125",
+        "start": 311.42,
+        "end": 315.42,
+        "text": "但是记住不要一上来就只顾着推销自己的产品或者公司",
+        "representativeFrame": "frames/cues/cue-125.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-126",
+        "start": 315.42,
+        "end": 317.42,
+        "text": "我上面这些所有的习惯",
+        "representativeFrame": "frames/cues/cue-126.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-127",
+        "start": 317.42,
+        "end": 319.42,
+        "text": "本质上都是在给社区提供价值",
+        "representativeFrame": "frames/cues/cue-127.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-128",
+        "start": 319.42,
+        "end": 320.42,
+        "text": "而不期待任何的回报",
+        "representativeFrame": "frames/cues/cue-128.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-129",
+        "start": 320.42,
+        "end": 324.42,
+        "text": "就是大家得先把你看成是一个真诚的持续提供价值的人",
+        "representativeFrame": "frames/cues/cue-129.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-130",
+        "start": 324.42,
+        "end": 326.42,
+        "text": "之后他们才会愿意去听你讲",
+        "representativeFrame": "frames/cues/cue-130.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-131",
+        "start": 326.42,
+        "end": 328.42,
+        "text": "你想说什么或者你想卖什么",
+        "representativeFrame": "frames/cues/cue-131.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-132",
+        "start": 328.42,
+        "end": 331.42,
+        "text": "第四就是在你形成自己的品味和风格之前",
+        "representativeFrame": "frames/cues/cue-132.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-133",
+        "start": 331.42,
+        "end": 332.42,
+        "text": "不要用AI写作",
+        "representativeFrame": "frames/cues/cue-133.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-134",
+        "start": 332.42,
+        "end": 335.42,
+        "text": "我觉得AI写作本身不是一件坏事",
+        "representativeFrame": "frames/cues/cue-134.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-135",
+        "start": 335.42,
+        "end": 339.42,
+        "text": "但是真正危险的是在你还没有培养出什么是好内容的判断力之前",
+        "representativeFrame": "frames/cues/cue-135.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-136",
+        "start": 339.42,
+        "end": 340.42,
+        "text": "就开始依赖AI",
+        "representativeFrame": "frames/cues/cue-136.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-137",
+        "start": 340.42,
+        "end": 342.42,
+        "text": "因为如果AI给你产出的是垃圾",
+        "representativeFrame": "frames/cues/cue-137.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-138",
+        "start": 342.42,
+        "end": 344.42,
+        "text": "你自己都判断不出来的是垃圾",
+        "representativeFrame": "frames/cues/cue-138.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-139",
+        "start": 344.42,
+        "end": 346.42,
+        "text": "X最看重的就是真实和真诚",
+        "representativeFrame": "frames/cues/cue-139.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-140",
+        "start": 346.42,
+        "end": 350.42,
+        "text": "粗糙和真实原比精之和空洞更有心力",
+        "representativeFrame": "frames/cues/cue-140.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-141",
+        "start": 350.42,
+        "end": 352.42,
+        "text": "所以重点不在于你的语法",
+        "representativeFrame": "frames/cues/cue-141.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-142",
+        "start": 352.42,
+        "end": 354.42,
+        "text": "都完美 用斯多华历等等",
+        "representativeFrame": "frames/cues/cue-142.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-143",
+        "start": 354.42,
+        "end": 356.42,
+        "text": "你平时怎么说话的 你就怎么写",
+        "representativeFrame": "frames/cues/cue-143.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-144",
+        "start": 356.42,
+        "end": 358.42,
+        "text": "做真实的自己最重要",
+        "representativeFrame": "frames/cues/cue-144.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-145",
+        "start": 358.42,
+        "end": 359.42,
+        "text": "你去多读好的东西",
+        "representativeFrame": "frames/cues/cue-145.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-146",
+        "start": 359.42,
+        "end": 362.42,
+        "text": "你才能知道好的写作是长什么样子的",
+        "representativeFrame": "frames/cues/cue-146.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-147",
+        "start": 362.42,
+        "end": 365.42,
+        "text": "然后你多发才能知道你自己的Voice是什么样的",
+        "representativeFrame": "frames/cues/cue-147.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-148",
+        "start": 365.42,
+        "end": 367.42,
+        "text": "只有当你已经去备了辩别能力",
+        "representativeFrame": "frames/cues/cue-148.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-149",
+        "start": 367.42,
+        "end": 369.42,
+        "text": "也形成了自己的风格之后",
+        "representativeFrame": "frames/cues/cue-149.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-150",
+        "start": 369.42,
+        "end": 371.42,
+        "text": "再尝试上AI去帮你写",
+        "representativeFrame": "frames/cues/cue-150.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-151",
+        "start": 371.42,
+        "end": 374.42,
+        "text": "但是一定要去保他写出来东西真的停起来向你",
+        "representativeFrame": "frames/cues/cue-151.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-152",
+        "start": 374.42,
+        "end": 376.42,
+        "text": "而且真的是你的观点",
+        "representativeFrame": "frames/cues/cue-152.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-153",
+        "start": 376.42,
+        "end": 379.42,
+        "text": "说到底我们的目标并不是单纯的在X上增长",
+        "representativeFrame": "frames/cues/cue-153.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-154",
+        "start": 379.42,
+        "end": 381.42,
+        "text": "而是在增长的同时依然做你自己",
+        "representativeFrame": "frames/cues/cue-154.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "7 万粉丝结果被用来建立方法可信度",
+      "importance": "core",
+      "statement": "作者称 X 粉丝达到 7 万，而一年前约 1000，并展示账号、增长曲线和第三方评价；她把方法立场概括为 all signal, no noise / no slop, no hacks，并反对 AI 批量生成低质内容。结果和截图可见，净增口径及其与后续方法的单一因果不可见。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 32.56
+      },
+      "confidence": "medium",
+      "argument": {
+        "claim": "真诚、持续提供信号比 AI slop 和投机 hacks 更能建立长期影响力。",
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-06",
+          "KU-07",
+          "KU-08",
+          "KU-09",
+          "KU-10"
+        ],
+        "conditions": [
+          "内容确实有价值且来自真实参与",
+          "长期持续输出",
+          "进入正确社区对话"
+        ],
+        "counterexamples": [
+          "增长也受账号起点、跨平台名气、产品成果和分发影响",
+          "真实不等于无需结构和质量"
+        ],
+        "actions": [
+          "减少低质自动化",
+          "把日常学习和工作转成内容",
+          "持续参与社区"
+        ],
+        "limits": [
+          "片内没有后台归因实验",
+          "第三方评价只是一条样本"
+        ]
+      },
+      "unknowns": [
+        "增长时间线与净增口径",
+        "投流、平台推荐与外部受众迁移",
+        "第三方评价身份与完整上下文"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "开场真人与增长主题"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0006",
+          "supports": "7 万/增长相关画面"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0011",
+          "supports": "第三方评价/反 slop 立场"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "英文评价与数字 OCR 账本"
+        }
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "舞台模型被替换为 party 模型",
+      "importance": "core",
+      "statement": "作者认为多数人做不起来，是因为把 X 想成面向观众演讲的舞台；正确模型是 party：先找到正在聊天的人，听他们聊什么，再自然加入。下半屏关系图把这一心智转换视觉化，后续方法都依赖‘进入已有对话’而非单向广播。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 32.56,
+        "end": 59
+      },
+      "confidence": "high",
+      "unknowns": [
+        "不同账号阶段、私域或品牌公告场景下该隐喻是否同样适用"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0018",
+          "supports": "舞台模型段"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0024",
+          "supports": "party/关系图段"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "四个打法入口"
+        }
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "方法一：训练 feed 等于选择参与哪些对话",
+      "importance": "core",
+      "statement": "作者建议先花几周训练 X feed：遇到标题党或不关心的话题点不感兴趣；遇到高质量内容就点赞、转发、评论或收藏，让 feed 更集中于 AI 知识、新产品、发布技巧和高质量讨论。具体动作可执行，但算法学习效果与时间阈值是作者经验。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 59,
+        "end": 107.28
+      },
+      "confidence": "medium",
+      "procedural": {
+        "input": "当前 X feed 与明确关注领域",
+        "actions": [
+          "对标题党/不相关内容点不感兴趣",
+          "对高质量内容点赞、转发、评论或收藏",
+          "持续数周观察 feed 变化",
+          "保留真正想参与的对话"
+        ],
+        "parameters": [
+          "关注领域：AI 知识、新产品、发布技巧等",
+          "持续时间：作者称数周"
+        ],
+        "output": "更高信号、更能激发参与和发帖灵感的 feed",
+        "beforeFrames": [
+          "TARGET-0032"
+        ],
+        "duringFrames": [
+          "TARGET-0042"
+        ],
+        "afterFrames": [
+          "TARGET-0055"
+        ],
+        "unknowns": [
+          "平台算法真实权重",
+          "账号/地区差异",
+          "需要的反馈数量和持续时间"
+        ]
+      },
+      "unknowns": [
+        "算法当前机制",
+        "该方法对所有账号的净效果"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0032",
+          "supports": "方法一开场卡"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0042",
+          "supports": "正负反馈动作段"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0055",
+          "supports": "目标 feed 结果段"
+        }
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "方法二：真诚回复，而不是 AI 批量改写",
+      "importance": "core",
+      "statement": "作者两次强调不要让 AI 机器人批量回复，认为只把原帖换一种说法既虚假又懒惰。回到 party 隐喻，回复应当给已有对话增加真正有意思的东西，才可能获得注意和欢迎。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 107.28,
+        "end": 143.84
+      },
+      "confidence": "high",
+      "argument": {
+        "claim": "回复的价值来自真实增量，而非回复数量。",
+        "evidenceUnitIds": [
+          "KU-02",
+          "KU-04"
+        ],
+        "conditions": [
+          "理解原对话",
+          "提供新观点、经验或问题",
+          "不骚扰、不套话"
+        ],
+        "counterexamples": [
+          "AI 可辅助措辞，但不能替代真实观点",
+          "形式真诚不等于内容有价值"
+        ],
+        "actions": [
+          "先读懂对话",
+          "只在有增量时回复",
+          "避免批量机器人回复"
+        ],
+        "limits": [
+          "片内没有比较不同回复策略的后台实验"
+        ]
+      },
+      "unknowns": [
+        "AI 辅助和 AI 代写的精确边界",
+        "不同文化/社区的回复礼仪"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-063",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-066",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0057",
+          "supports": "真诚回复方法起点"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0060",
+          "supports": "反 AI 批量回复强调"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0073",
+          "supports": "party 圈子/增加价值"
+        }
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "作者用 A/B 关系图解释大 V 互动带来的后续分发",
+      "importance": "supporting",
+      "statement": "作者举例：小账号 A 在大账号 B 的帖子下留下真诚高价值回复，B 点赞/回复/关注后，算法可能增加 A 的内容出现在 B 时间线上的机会；此后 B 的互动又可能继续放大分发。该链是作者的算法机制解释，不是片内后台数据。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 143.84,
+        "end": 174.32
+      },
+      "confidence": "low",
+      "unknowns": [
+        "算法是否按该机制运行",
+        "互动导致分发的真实增量",
+        "大 V 回复/关注概率"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-069",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-070",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-072",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-073",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-074",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-075",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-076",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-077",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-079",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-080",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-081",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0075",
+          "supports": "A/B 关系机制起点"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0085",
+          "supports": "关系图/后续分发解释"
+        }
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "方法三：把每天三条变成低门槛条件反射",
+      "importance": "core",
+      "statement": "作者给自己的目标是每天发三条，并称高频不是时间管理问题，而是要把发帖门槛降得极低，让它成为每天已经在做的事情的自然延伸。每天三条是作者目标，不是片内验证的普遍成功阈值。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 174.32,
+        "end": 214.42
+      },
+      "confidence": "medium",
+      "unknowns": [
+        "实际达成率",
+        "发帖质量变化",
+        "受众疲劳与领域差异"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-083",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-084",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-085",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-086",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-087",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-088",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-089",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-090",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-091",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-093",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0099",
+          "supports": "每天三条方法卡"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0107",
+          "supports": "低门槛/自然延伸说明"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0117",
+          "supports": "转入具体习惯"
+        }
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "触发器一：Learn in Public",
+      "importance": "core",
+      "statement": "学习 AI/创业视频、博客或 Newsletter 时，遇到有共鸣的内容就截图并发布自己的观察，同时 @ 原作者；作者认为这既是出处礼貌，也可能让原作者注意、转发或关注。可执行核心是把学习瞬间直接转为公开笔记。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 214.42,
+        "end": 243.42
+      },
+      "confidence": "medium",
+      "procedural": {
+        "input": "日常阅读/观看中真正有启发的内容",
+        "actions": [
+          "截取关键句或画面",
+          "补充自己的理解",
+          "标注并 @ 原作者",
+          "把 X 当公开笔记本"
+        ],
+        "parameters": [
+          "只选真正有启发的内容",
+          "保留出处和上下文"
+        ],
+        "output": "一条带来源和个人观点的学习型帖子",
+        "beforeFrames": [
+          "TARGET-0124"
+        ],
+        "duringFrames": [
+          "TARGET-0129"
+        ],
+        "afterFrames": [
+          "TARGET-0134"
+        ],
+        "unknowns": [
+          "截图版权和引用范围",
+          "原作者是否愿意被 @",
+          "转发/关注概率"
+        ]
+      },
+      "unknowns": [
+        "引用许可和上下文完整性"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-095",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-096",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-097",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-098",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-099",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-101",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-102",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0124",
+          "supports": "Learn in Public 方法段"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0134",
+          "supports": "截图、标注出处与公开笔记动作"
+        }
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "触发器二：Give Feedback in Public",
+      "importance": "core",
+      "statement": "体验新 AI 产品时，遇到亮点就公开推荐或给反馈，并 @ 官方账号和创始人。作者称早期创始人重视真实深度反馈，90% 情况会回复、转发甚至私信；做法可复用，90% 概率没有片内样本口径。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 243.42,
+        "end": 273.42
+      },
+      "confidence": "low",
+      "procedural": {
+        "input": "真实使用过的新 AI 产品/功能",
+        "actions": [
+          "记录具体亮点或问题",
+          "公开发布有深度的反馈",
+          "@ 官方账号和创始人"
+        ],
+        "parameters": [
+          "反馈必须来自真实使用",
+          "描述具体而非泛夸"
+        ],
+        "output": "一条产品反馈型帖子，并可能形成与团队的互动",
+        "beforeFrames": [
+          "TARGET-0136"
+        ],
+        "duringFrames": [
+          "TARGET-0139"
+        ],
+        "afterFrames": [
+          "TARGET-0144"
+        ],
+        "unknowns": [
+          "90% 口径",
+          "公开反馈对关系的负面风险",
+          "品牌/创始人回复概率"
+        ]
+      },
+      "unknowns": [
+        "90% 样本数与选择偏差",
+        "公开反馈礼仪"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-103",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-105",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-106",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-107",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-108",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-109",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0136",
+          "supports": "Give Feedback in Public 起点"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0144",
+          "supports": "产品反馈与 @ 行为"
+        }
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "触发器三：Build in Public",
+      "importance": "core",
+      "statement": "把用新模型或 vibe coding 做出的产品 Demo 录成一到两分钟视频，重点是讲清功能，不必过度精美；新模型刚发布时尽快做出哪怕粗糙的原型，截图、录屏和动图在 X 上更容易传播。作者又强调先给社区价值，不能一开始只推销产品。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 273.42,
+        "end": 328.42
+      },
+      "confidence": "medium",
+      "procedural": {
+        "input": "一个新模型或新技术 + 可运行的产品/原型",
+        "actions": [
+          "尽快做出原型",
+          "同时录屏和本人讲解",
+          "用一到两分钟讲清功能",
+          "发布截图/录屏/动图",
+          "先提供价值后再谈销售"
+        ],
+        "parameters": [
+          "速度优先于精修",
+          "功能必须讲清",
+          "新模型发布窗口"
+        ],
+        "output": "一条功能清晰的 Build in Public Demo",
+        "beforeFrames": [
+          "TARGET-0151"
+        ],
+        "duringFrames": [
+          "TARGET-0159"
+        ],
+        "afterFrames": [
+          "TARGET-0169"
+        ],
+        "unknowns": [
+          "不同产品和账号阶段的最佳时长",
+          "素材权利",
+          "具体曝光增量"
+        ]
+      },
+      "unknowns": [
+        "多媒体形式相对纯文本的真实流量优势",
+        "Google AI 转发案例的完整上下文"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-111",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-112",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-113",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-114",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-115",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-116",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-117",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-118",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-119",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-120",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-121",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-122",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-123",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-124",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-125",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-126",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-127",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-128",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-129",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-130",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-131",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0151",
+          "supports": "Build in Public 方法卡"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0159",
+          "supports": "Demo/录屏建议"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0169",
+          "supports": "先提供社区价值再销售的结论"
+        }
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "方法四：形成品味和 voice 前不要依赖 AI 写作",
+      "importance": "core",
+      "statement": "作者并非绝对反对 AI 写作，而是认为在尚未形成好内容判断力、个人风格和 voice 前依赖 AI 很危险：如果 AI 产出垃圾，自己也无法判断。她建议先多读、多发，形成辨别力和风格后再用 AI，且必须保证文字听起来像自己并表达自己的观点。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 328.42,
+        "end": 381.433
+      },
+      "confidence": "high",
+      "argument": {
+        "claim": "AI 写作应晚于个人内容判断力与 voice 的形成。",
+        "evidenceUnitIds": [
+          "KU-01",
+          "KU-06",
+          "KU-07",
+          "KU-08",
+          "KU-09",
+          "KU-10"
+        ],
+        "conditions": [
+          "能识别好坏内容",
+          "已有稳定观点和语言风格",
+          "人工审阅最终输出"
+        ],
+        "counterexamples": [
+          "AI 可用于提纲、纠错或翻译而不替代观点",
+          "粗糙真实也可能不可读或缺证据"
+        ],
+        "actions": [
+          "多读好内容",
+          "持续亲自写和发",
+          "总结自己的 voice",
+          "再让 AI 辅助并逐句审阅"
+        ],
+        "limits": [
+          "片内没有可操作的 voice 测量工具",
+          "不同写作任务边界未细分"
+        ]
+      },
+      "unknowns": [
+        "如何判断 voice 已形成",
+        "可接受的 AI 辅助范围",
+        "AI 参与披露标准"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-132",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-133",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-134",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-135",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-136",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-137",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-138",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-139",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-140",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-141",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-142",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-143",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-144",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-145",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-146",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-147",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-148",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-149",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-150",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-151",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-152",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-153",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-154",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0180",
+          "supports": "不要过早用 AI 写作的条件"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0190",
+          "supports": "真实粗糙高于精致空洞"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0205",
+          "supports": "形成 voice 后有条件使用 AI 的结论"
+        }
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "英文方法名与关键术语需要 OCR 规范化",
+      "importance": "context",
+      "statement": "机器转写把 all signal no noise、slop、hacks、party、feed、Learn/Give Feedback/Build in Public、Screen Studio、voice 等多处误识别。原始 cue 保留，阅读层只在卡片/截图/OCR 支持时规范化。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 381.433
+      },
+      "confidence": "high",
+      "reasoning": "可见英文卡与上下文提供规范化依据，但原始机器转写仍作为证据保留。",
+      "unknowns": [
+        "部分社交截图小字和第三方账号上下文"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-095",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-103",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-111",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-118",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-147",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "229 帧/961 行的字幕、卡片和截图 OCR"
+        }
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "非语音音频不用于证明平台互动或增长机制",
+      "importance": "context",
+      "statement": "完整 0–381.457 秒混合轨以无缝 10 秒窗完成 AudioSet 机器提议检查。由于旁白持续、混合轨未分离，任何音乐或短促声音候选都不能作为点赞、回复、转发、算法分发或 Demo 效果的独立证据。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 381.457
+      },
+      "confidence": "medium",
+      "reasoning": "机器语义标签只说明混合轨候选，不建立社交平台事件或编辑因果。",
+      "unknowns": [
+        "具体配乐/音效身份",
+        "声音来源、权利和编辑意图"
+      ],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "39 个完整时间线机器提议窗口和方法限制"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "增长结果只提供可信入口，party 心智模型才是后续方法的统摄框架",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "转入方法"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "正确模型是 party"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "先选择参加哪些 party，落实为训练 feed 进入正确对话",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "party 是打法基础"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "feed 决定参加哪些 party"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-04",
+      "relation": "party 中自然加入对话，落实为只做有增量的真诚回复",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "回到 party 比喻"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "需要说有意思的东西"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "真诚回复被作者进一步解释为关系互动与后续分发机制",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "引入具体例子"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-074",
+          "supports": "转入算法解释"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-07",
+      "relation": "每天三条通过学习触发器降低发帖摩擦",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "引入习惯"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-095",
+          "supports": "第一个习惯"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-08",
+      "relation": "每天三条通过产品反馈触发器降低发帖摩擦",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-103",
+          "supports": "第二个习惯"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0139",
+          "supports": "产品反馈画面"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-09",
+      "relation": "每天三条通过构建 Demo 触发器降低发帖摩擦",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-111",
+          "supports": "第三个习惯"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0159",
+          "supports": "Demo 建议画面"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-10",
+      "relation": "先持续真实输入/输出形成判断与 voice，之后才允许 AI 辅助",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-102",
+          "supports": "学习即分享"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-145",
+          "supports": "多读好内容"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-150",
+          "supports": "形成风格后再用 AI"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-06",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-03"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-06"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-09"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-10"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-014",
+          "CUE-020"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-028",
+          "CUE-031"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-062",
+          "CUE-065"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-094",
+          "CUE-095",
+          "CUE-103",
+          "CUE-111"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-129",
+          "CUE-145",
+          "CUE-150"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0006",
+          "SRC-OCR"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-02",
+          "KU-03",
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-020",
+          "CUE-028",
+          "CUE-062"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-039",
+          "CUE-043",
+          "TARGET-0042"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-052",
+          "CUE-065",
+          "CUE-074"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-06",
+          "KU-07",
+          "KU-08",
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "CUE-085",
+          "CUE-095",
+          "CUE-103",
+          "CUE-111"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "TARGET-0134",
+          "TARGET-0139",
+          "TARGET-0159"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-10"
+        ],
+        "evidenceRefs": [
+          "CUE-132",
+          "CUE-150",
+          "TARGET-0205"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-11"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR",
+          "CUE-118"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "answered",
+        "unitIds": [
+          "KU-12"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "增长结果与价值立场。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "舞台到 party 心智模型。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "方法一训练 feed。"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-060",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-061",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-062",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-063",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-064",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-065",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-066",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-067",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-068",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "方法二真诚回复与反例。"
+      },
+      {
+        "cueId": "CUE-069",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-070",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-071",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-072",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-073",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-074",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-075",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-076",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-077",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-078",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-079",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-080",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-081",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "A/B 互动机制解释。"
+      },
+      {
+        "cueId": "CUE-082",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-083",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-084",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-085",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-086",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-087",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-088",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-089",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-090",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-091",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-092",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-093",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-094",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "方法三高频条件反射。"
+      },
+      {
+        "cueId": "CUE-095",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-096",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-097",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-098",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-099",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-100",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-101",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-102",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "Learn in Public。"
+      },
+      {
+        "cueId": "CUE-103",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-104",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-105",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-106",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-107",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-108",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-109",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-110",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Give Feedback in Public。"
+      },
+      {
+        "cueId": "CUE-111",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-112",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-113",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-114",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-115",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-116",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-117",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-118",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-119",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-120",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-121",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-122",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-123",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-124",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-125",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-126",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-127",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-128",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-129",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-130",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-131",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09"
+        ],
+        "rationale": "Build in Public 与先价值后销售。"
+      },
+      {
+        "cueId": "CUE-132",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-133",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-134",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-135",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-136",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-137",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-138",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-139",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-140",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-141",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-142",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-143",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-144",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-145",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-146",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-147",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-148",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-149",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-150",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-151",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-152",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-153",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      },
+      {
+        "cueId": "CUE-154",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10"
+        ],
+        "rationale": "AI 写作条件与 voice。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 9,
+      "total": 9
+    },
+    "unknowns": [
+      "粉丝增长后台、净增时间线、投流和跨平台受众迁移",
+      "X 算法真实机制及不同账号/地区适用性",
+      "大 V 互动与创始人回复概率的样本口径",
+      "每日三条的达成率、质量与受众疲劳",
+      "截图、引用、公开反馈和 @ 他人的上下文/许可/礼仪",
+      "AI 辅助写作的具体流程与 voice 评估标准",
+      "非语音音频具体声源、曲目和权利"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕、真人口播人像、方法卡/关系图、社交/产品截图和完整混合音轨均已检查；七个意义变化和五条探针关系全部映射。剩余均为已声明的后台归因、算法概率、权利和普遍性未知。内部检查不替代独立 reviewer。"
+  }
+}

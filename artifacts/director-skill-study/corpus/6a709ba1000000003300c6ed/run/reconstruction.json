@@ -1,0 +1,587 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "仅重建本地7.533秒MP4、无字幕evidence pack与本次targeted/OCR视觉证据；不创建逐字稿，不验证人物身份、素材来源或授权。",
+  "viewerChange": {
+    "before": "观众尚未看到这段短小的上下分屏对应表演。",
+    "after": "观众能识别上下画面中两名人物在桌边以相似姿态形成视觉模仿/并置；视频未提供字幕，不能据此恢复任何逐字台词或明确情节。",
+    "intendedChanges": [
+      "注意上下分屏人物、姿态和桌面动作的对应",
+      "感受由外观反差与同步构图产生的视觉效果",
+      "知道语音/音乐语义未被现有文字证据建立"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "dense protocol-targeted frames",
+      "producedBy": "capture-protocol-evidence.mjs",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "limitations": [
+        "离散帧不能证明无隐藏编辑或同步拍摄"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals",
+      "producedBy": "ocr-frames.swift plus visual frame review",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "limitations": [
+        "多行置信度为0.5",
+        "叠层小字指标含义不可见"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "none",
+    "cues": []
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-UPPER",
+      "title": "上半画面人物与场景",
+      "importance": "core",
+      "statement": "上半画面是一名黑衣、长发人物，坐在昏暗桌边，一只手靠头部，另一只手靠近一只盛有深色液体的高脚杯。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "上半画面是一名黑衣、长发人物，坐在昏暗桌边，一只手靠头部，另一只手靠近一只盛有深色液体的高脚杯。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "上半画面是一名黑衣、长发人物，坐在昏暗桌边，一只手靠头部，另一只手靠近一只盛有深色液体的高脚杯。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "上半画面是一名黑衣、长发人物，坐在昏暗桌边，一只手靠头部，另一只手靠近一只盛有深色液体的高脚杯。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "id": "KU-LOWER",
+      "title": "下半画面人物与场景",
+      "importance": "core",
+      "statement": "下半画面是一名黑衣、戴红色蜘蛛侠式面罩的人物，坐在桌边，一只手靠头部，另一只手靠近杯子/桌面区域；桌上还有纸张或卡片状物。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "下半画面是一名黑衣、戴红色蜘蛛侠式面罩的人物，坐在桌边，一只手靠头部，另一只手靠近杯子/桌面区域；桌上还有纸张或卡片状物。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "下半画面是一名黑衣、戴红色蜘蛛侠式面罩的人物，坐在桌边，一只手靠头部，另一只手靠近杯子/桌面区域；桌上还有纸张或卡片状物。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "下半画面是一名黑衣、戴红色蜘蛛侠式面罩的人物，坐在桌边，一只手靠头部，另一只手靠近杯子/桌面区域；桌上还有纸张或卡片状物。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "人物真实身份和面罩角色授权未建立"
+      ]
+    },
+    {
+      "id": "KU-RELATION",
+      "title": "上下分屏的视觉对应",
+      "importance": "core",
+      "statement": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0007",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0013",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0019",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0025",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "上下人物被并置在同一竖屏中，黑衣、撑头姿态、另一只手靠近桌面/杯子的构图持续相似，因此可描述为视觉模仿式或镜像式对应。"
+        }
+      ],
+      "confidence": "medium",
+      "reasoning": "多个开中结帧支持姿态与场景构成相似；但画面不证明表演意图、身份关系或同步拍摄。",
+      "unknowns": [
+        "确切模仿意图、上下素材因果关系、是否同步拍摄均未知"
+      ]
+    },
+    {
+      "id": "KU-MOTION",
+      "title": "全片动作变化",
+      "importance": "core",
+      "statement": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0008",
+          "supports": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0024",
+          "supports": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "0至7.533秒内分屏布局和桌边场景保持，人物头部与手部有小幅运动，没有观察到独立结尾卡或明显视觉反转。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "一个技术shot不能证明无隐藏编辑"
+      ]
+    },
+    {
+      "id": "KU-OVERLAY",
+      "title": "后段叠层出现/位置变化与小数字边界",
+      "importance": "core",
+      "statement": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 4.5,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0019",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0022",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0028",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0035",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0036",
+          "supports": "约4.5至5.25秒起，小红书与“人类最强编导”标记出现在上方角落，同时上下比较画面继续；下方面板另有小数字，但OCR仅以0.5置信度提出具体读数，不能将其确认为事实。"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "下方小数字的准确文本、指标、来源和含义",
+        "平台/账号标记不证明上方素材权属或人物身份"
+      ]
+    },
+    {
+      "id": "KU-TRANSCRIPT",
+      "title": "无可恢复逐字稿",
+      "importance": "core",
+      "statement": "evidence pack没有字幕或转写cue；按无字幕视觉视频处理，本重建不补写任何对白、歌词或逐字语音内容。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "evidence pack没有字幕或转写cue；按无字幕视觉视频处理，本重建不补写任何对白、歌词或逐字语音内容。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0043",
+          "supports": "evidence pack没有字幕或转写cue；按无字幕视觉视频处理，本重建不补写任何对白、歌词或逐字语音内容。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0045",
+          "supports": "evidence pack没有字幕或转写cue；按无字幕视觉视频处理，本重建不补写任何对白、歌词或逐字语音内容。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "音轨中是否有人声、歌词、音乐或音效及其语义作用"
+      ]
+    },
+    {
+      "id": "KU-IDENTITY",
+      "title": "身份、来源与编辑机制边界",
+      "importance": "supporting",
+      "statement": "完整画面只支持人物外观、构图和动作观察；上方人物身份、上下素材来源、面罩授权、两画面同步关系及编辑机制均未被视频建立。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 7.533
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "完整画面只支持人物外观、构图和动作观察；上方人物身份、上下素材来源、面罩授权、两画面同步关系及编辑机制均未被视频建立。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "完整画面只支持人物外观、构图和动作观察；上方人物身份、上下素材来源、面罩授权、两画面同步关系及编辑机制均未被视频建立。"
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-001",
+          "supports": "完整画面只支持人物外观、构图和动作观察；上方人物身份、上下素材来源、面罩授权、两画面同步关系及编辑机制均未被视频建立。"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "所有具体身份、授权、来源与同步机制"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-UPPER",
+      "to": "KU-LOWER",
+      "relation": "visually_mirrored_or_imitation_like",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "多时刻姿态与桌边构图相似"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "多时刻姿态与桌边构图相似"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "多时刻姿态与桌边构图相似"
+        }
+      ]
+    },
+    {
+      "from": "KU-UPPER",
+      "to": "KU-LOWER",
+      "relation": "scene_composition_corresponds_with",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "桌、杯/物件和黑衣人物构成对应"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "桌、杯/物件和黑衣人物构成对应"
+        }
+      ]
+    },
+    {
+      "from": "KU-RELATION",
+      "to": "KU-MOTION",
+      "relation": "composition_persists_through",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "开头到结尾保持分屏对应"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "开头到结尾保持分屏对应"
+        }
+      ]
+    },
+    {
+      "from": "KU-OVERLAY",
+      "to": "KU-MOTION",
+      "relation": "appears_while_comparison_persists",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0019",
+          "supports": "后段账号/平台标记出现在上方角落时，分屏比较仍持续"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0022",
+          "supports": "后段账号/平台标记出现在上方角落时，分屏比较仍持续"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0031",
+          "supports": "后段账号/平台标记出现在上方角落时，分屏比较仍持续"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-SPLIT",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-PEOPLE",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-OBJECTS",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-MOTION",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-OVERLAY",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-AUDIO",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-UPPER",
+          "KU-LOWER",
+          "KU-RELATION"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-MOTION",
+          "KU-RELATION",
+          "KU-OVERLAY"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-MOTION"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0019",
+          "TARGET-0022",
+          "TARGET-0031"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-UPPER",
+          "KU-LOWER"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0016",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-RELATION"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-MOTION",
+          "KU-OVERLAY"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0019",
+          "TARGET-0022",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "unknown",
+        "unitIds": [
+          "KU-OVERLAY"
+        ],
+        "evidenceRefs": [
+          "TARGET-0019",
+          "TARGET-0022",
+          "TARGET-0031"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "unknown",
+        "unitIds": [
+          "KU-TRANSCRIPT"
+        ],
+        "evidenceRefs": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "unknown",
+        "unitIds": [
+          "KU-IDENTITY"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0031"
+        ]
+      }
+    ],
+    "cueAccountability": [],
+    "coreEvidence": {
+      "covered": 6,
+      "total": 6
+    },
+    "unknowns": [
+      "人物真实身份和面罩角色授权未建立",
+      "确切模仿意图、上下素材因果关系、是否同步拍摄均未知",
+      "一个技术shot不能证明无隐藏编辑",
+      "下方小数字的准确文本、指标、来源和含义",
+      "平台/账号标记不证明上方素材权属或人物身份",
+      "音轨中是否有人声、歌词、音乐或音效及其语义作用",
+      "所有具体身份、授权、来源与同步机制"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "全7.533秒以0.25秒动作序列覆盖；上下分屏、人物/姿态、桌面物件、约4.5至5.25秒后平台/账号叠层在上方角落的出现/位置变化、低置信小数字边界、技术shot和音频存在性均检查。无字幕/无cue使音频语义明确保留未知，未补写逐字稿。"
+  }
+}

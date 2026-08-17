@@ -1,0 +1,743 @@
+{
+  "scopeStatement": "仅重建 0–272.667 秒视频内的口播、插件界面、文档/会议演示及构建自述。字幕为本地机器转写，不是官方字幕；OpenAI Realtime、飞书 CLI 等规范名只在烧录字幕/UI 支持时作为阅读建议。低延迟、三小时会议、来源准确性、半小时至一小时构建、当前 GitHub 可用性和数据权限均不由剪辑后的单例完全证明。",
+  "transcriptOrigin": "local machine transcription from the complete decoded source audio; not official subtitles",
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "6 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 272.667
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 115 targeted frames; 110 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 272.667
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 272.667
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "新 API 与空白文档痛点共同建立工具承诺",
+      "importance": "core",
+      "statement": "作者以 OpenAI Realtime API 和飞书 CLI 的组合为背景，展示右下角浏览器语音助手，并把核心问题定义为：面对空白文档时，让 AI 一次问一个问题，用户口述回答，再把表达转成文章。低延迟与组合可行性是作者主张，片内没有性能基准。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 28
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-001",
+          "endCue": "CUE-012"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0008",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0015",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播把技术更新、工具身份和具体写作痛点连续连接；画面提供助手和文档状态，但没有基准测量。",
+      "unknowns": [
+        "准确 API 版本",
+        "低延迟数值与网络条件",
+        "插件权限和数据流向"
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "逐问采访把口述内容组织成文档",
+      "importance": "core",
+      "statement": "演示进入采访模式后，AI 先问文章主题，用户口述想介绍飞书 CLI 能力，随后画面在对话与文档正文之间切换。可恢复的设计模式是‘一个问题—一次回答—逐步写入’，但提交、等待、改写和同一任务连续性未被完整展示。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 28,
+        "end": 97
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-013",
+          "endCue": "CUE-036"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0030",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0044",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "机器转写给出问题和回答，定向帧可核对文档前后状态；剪辑结构不足以建立全流程因果。",
+      "unknowns": [
+        "原始回答与成文之间的改写规则",
+        "文档是否预置",
+        "真实延迟和失败率"
+      ],
+      "procedural": {
+        "input": "空白或待写文档，以及用户口述主题",
+        "actions": [
+          "打开采访模式",
+          "AI 一次提出一个问题",
+          "用户口述回答",
+          "系统组织回答并写入文档",
+          "继续追问或修订"
+        ],
+        "parameters": [
+          "文章主题",
+          "采访问题顺序",
+          "写入目标文档"
+        ],
+        "output": "逐步形成的文章草稿",
+        "unknowns": [
+          "触发写入的具体命令",
+          "成文改写规则",
+          "错误恢复和撤销机制",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0016"
+        ],
+        "duringFrames": [
+          "TARGET-0030"
+        ],
+        "afterFrames": [
+          "TARGET-0044"
+        ]
+      }
+    },
+    {
+      "id": "KU-03",
+      "title": "同一语音入口被扩展为组织资料问答",
+      "importance": "core",
+      "statement": "作者继续展示让语音助手读取群总结和长会议资料，并称可以对三小时会议提问、返回回答和来源。画面可证明存在问题、回答与资料/来源界面状态，不能单凭单例确认已完整读取三小时、引用逐句准确或跨权限安全。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 97,
+        "end": 183
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-037",
+          "endCue": "CUE-050"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0045",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0060",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0074",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "口播提出能力范围，界面提供局部结果状态；缺少原始会议、引用逐句对照和失败测试。",
+      "unknowns": [
+        "真实会议长度",
+        "资料召回与答案准确率",
+        "来源链接忠实性",
+        "组织权限隔离"
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "CLI、API 与 Skill 被提出为可组合基础设施",
+      "importance": "core",
+      "statement": "作者把前述演示抽象为一种组合方式：用飞书 CLI/API 暴露组织文档和会议资料，再交给通用模型或封装成 Skill；还提出可用于 slides 等更多应用。这是构建方向，不等于片内逐项完成并验证了所有能力。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 183,
+        "end": 228
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-051",
+          "endCue": "CUE-055"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0075",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0083",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0090",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "叙事从具体插件切到可扩展组件和用途，语气包含建议与设想。",
+      "unknowns": [
+        "各接口的权限与速率限制",
+        "Skill 输入输出契约",
+        "哪些扩展已经实现"
+      ],
+      "argument": {
+        "claim": "将组织资料接口与实时语音模型组合，可以降低知识工作启动成本并扩展为多种 AI 工具。",
+        "evidenceUnitIndexes": [
+          1,
+          2,
+          3
+        ],
+        "conditions": [
+          "用户有合法资料访问权限",
+          "接口和模型稳定",
+          "回答保留来源并允许人工核验"
+        ],
+        "counterexamples": [
+          "高敏感资料不适合送入外部模型",
+          "资料过长或格式复杂会影响召回",
+          "实时体验可能受网络和调用成本限制"
+        ],
+        "actions": [
+          "先选一个高频卡点",
+          "用逐问交互降低启动门槛",
+          "接入可审计资料源",
+          "保留来源与人工复核"
+        ],
+        "limits": [
+          "片内是原型单例",
+          "没有性能、准确率或隐私审计"
+        ],
+        "evidenceUnitIds": [
+          "KU-02",
+          "KU-03",
+          "KU-04"
+        ]
+      }
+    },
+    {
+      "id": "KU-05",
+      "title": "获得工具的入口与当前可用性仍需核验",
+      "importance": "supporting",
+      "statement": "视频末段给出搜索或仓库/CLI 的入口线索，但没有连续展示下载、安装、授权、配置和成功运行。页面出现只能证明拍摄时画面中存在相关入口，不能证明当前仍可用、免费、可商用或适配所有账户。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 228,
+        "end": 247
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-056",
+          "endCue": "CUE-057"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0091",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0096",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0101",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "可见页面与口播提供发现线索，执行链和外部状态缺席。",
+      "unknowns": [
+        "当前地址和版本",
+        "许可证",
+        "安装依赖",
+        "费用和账号地区"
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "收尾用低门槛构建自述和社区 CTA 降低行动阻力",
+      "importance": "core",
+      "statement": "作者称插件用 Codex 和自然语言构建，最初提示很短，随后多次迭代，单次大约半小时到一小时；并以社区入口收尾。它承担的是降低行动门槛的 CTA，但时长口径、准备工作、失败成本和普通用户复现率均未验证。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 247,
+        "end": 272.667
+      },
+      "confidence": "medium",
+      "cueSelectors": [
+        {
+          "startCue": "CUE-058",
+          "endCue": "CUE-060"
+        }
+      ],
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0102",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0109",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0115",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ],
+      "reasoning": "收尾从产品能力转向制作过程和参与邀请，属于动员性主张。",
+      "unknowns": [
+        "准确提示词",
+        "迭代次数",
+        "构建起止口径",
+        "普通用户复现率"
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "机器转写把 OpenAI Realtime、飞书 CLI、浏览器插件、voice write、frontend slides 等多处专有名词识别成 Realtime2、FacebookCY、流冷器等变体。报告保留原始 cue；规范名仅由烧录字幕、界面文字和上下文共同支持时用于阅读层，仍不等于确认产品当前版本。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 272.667
+      },
+      "confidence": "high",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ],
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "Realtime 的具体 API 版本",
+        "插件和仓库的正式名称",
+        "部分英文命令与按钮小字"
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整混合轨按无缝窗口执行机器语义检查，稳定信息主要仍是旁白/对话；低分环境声或其他候选不足以证明实时响应、按钮点击、写入成功或资料调用成功。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 272.667
+      },
+      "confidence": "medium",
+      "cueSelectors": [],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ],
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ]
+    }
+  ],
+  "cueMap": [
+    {
+      "startCue": "CUE-001",
+      "endCue": "CUE-012",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-01"
+      ],
+      "rationale": "归入语义段：新 API 与空白文档痛点共同建立工具承诺"
+    },
+    {
+      "startCue": "CUE-013",
+      "endCue": "CUE-036",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-02"
+      ],
+      "rationale": "归入语义段：逐问采访把口述内容组织成文档"
+    },
+    {
+      "startCue": "CUE-037",
+      "endCue": "CUE-050",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-03"
+      ],
+      "rationale": "归入语义段：同一语音入口被扩展为组织资料问答"
+    },
+    {
+      "startCue": "CUE-051",
+      "endCue": "CUE-055",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-04"
+      ],
+      "rationale": "归入语义段：CLI、API 与 Skill 被提出为可组合基础设施"
+    },
+    {
+      "startCue": "CUE-056",
+      "endCue": "CUE-057",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-05"
+      ],
+      "rationale": "归入语义段：获得工具的入口与当前可用性仍需核验"
+    },
+    {
+      "startCue": "CUE-058",
+      "endCue": "CUE-060",
+      "disposition": "knowledge",
+      "unitIds": [
+        "KU-06"
+      ],
+      "rationale": "归入语义段：收尾用低门槛构建自述和社区 CTA 降低行动阻力"
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "开场承诺通过逐问采访演示获得第一个可见结果",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "个人写作能力被扩展为组织知识检索与问答",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "资料问答单例被概括为可复用的工具组合模式",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "抽象组合方法落到可搜索的入口线索",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "入口线索进一步被包装为低门槛亲手构建的行动邀请",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "meaningChanges": {
+      "MC-01": [
+        "KU-01"
+      ],
+      "MC-02": [
+        "KU-02"
+      ],
+      "MC-03": [
+        "KU-03"
+      ],
+      "MC-04": [
+        "KU-04"
+      ],
+      "MC-05": [
+        "KU-05"
+      ],
+      "MC-06": [
+        "KU-06"
+      ]
+    },
+    "relationships": {
+      "REL-01": [
+        "CUE-012",
+        "CUE-013"
+      ],
+      "REL-02": [
+        "CUE-036",
+        "CUE-037"
+      ],
+      "REL-03": [
+        "CUE-050",
+        "CUE-051"
+      ],
+      "REL-04": [
+        "CUE-055",
+        "CUE-056"
+      ],
+      "REL-05": [
+        "CUE-057",
+        "CUE-058"
+      ]
+    },
+    "criticalQuestions": {
+      "CQ-01": {
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0008"
+        ]
+      },
+      "CQ-02": {
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-013",
+          "TARGET-0030"
+        ]
+      },
+      "CQ-03": {
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-037",
+          "TARGET-0060"
+        ]
+      },
+      "CQ-04": {
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-051",
+          "TARGET-0083"
+        ]
+      },
+      "CQ-05": {
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-056",
+          "TARGET-0096"
+        ]
+      },
+      "CQ-06": {
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "CUE-058",
+          "TARGET-0109"
+        ]
+      },
+      "CQ-07": {
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      "CQ-08": {
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05",
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0115"
+        ]
+      },
+      "CQ-09": {
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    }
+  },
+  "unknowns": [
+    "OpenAI Realtime API 与飞书 CLI 的准确版本、账户、费用和地区条件",
+    "插件当前下载地址、源代码、许可证和数据权限",
+    "演示中的真实延迟、任务连续性和镜头外编辑",
+    "会议来源链接、回答准确性和权限隔离是否经独立验证",
+    "半小时至一小时构建时长的起止口径和可复现性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

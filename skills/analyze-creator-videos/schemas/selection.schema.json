@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/selection.schema.json",
+  "title": "Creator comparison and deep selection",
+  "type": "object",
+  "required": ["schemaVersion", "method", "averageAnchor", "comparisonSet", "deepSet"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "method": { "type": "string", "minLength": 1 },
+    "averageAnchor": {
+      "type": "object",
+      "required": ["status", "decision"],
+      "properties": {
+        "status": { "enum": ["natural_cluster", "mean_gap"] },
+        "decision": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "comparisonSet": { "type": "array", "items": { "$ref": "#/$defs/item" } },
+    "deepSet": { "type": "array", "items": { "$ref": "#/$defs/item" }, "minItems": 1 }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": ["id", "tier", "selectionReason", "representedMechanism", "knownConfounds"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "tier": { "enum": ["high", "median", "average", "low"] },
+        "selectionReason": { "type": "string", "minLength": 1 },
+        "representedMechanism": { "type": "string", "minLength": 1 },
+        "knownConfounds": { "type": "array", "items": { "type": "string" } },
+        "gateStatus": { "enum": ["ready", "failed", "pending"] },
+        "reportPath": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

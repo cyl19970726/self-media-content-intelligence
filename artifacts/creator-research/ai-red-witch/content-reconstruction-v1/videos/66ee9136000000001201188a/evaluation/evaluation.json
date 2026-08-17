@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "overallGatePass": false,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 11,
+      "denominator": 13,
+      "threshold": 0.85,
+      "pass": false,
+      "examples": [
+        {
+          "result": "correct",
+          "question": "Does the video prove the one-minute workflow claim?",
+          "candidate": "Correctly treats one minute as an unverified author promise and notes the absence of continuous timing."
+        },
+        {
+          "result": "missed",
+          "question": "What does the queue panel literally say, and how does it bear on the one-minute claim?",
+          "candidate": "Records only In queue and says the subline was not fully readable; it misses Your video is in queue and will start in a few minutes and therefore misses the strongest direct tension with the headline."
+        },
+        {
+          "result": "missed",
+          "question": "Does the displayed result have usable audio, and was Lip Sync applied?",
+          "candidate": "Discusses the source video's general audio carrier but does not preserve these result-specific unknowns or the visible Lip Sync control."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 13,
+      "denominator": 15,
+      "threshold": 0.9,
+      "pass": false,
+      "examples": [
+        {
+          "covered": true,
+          "unit": "The visible sequence is edited states rather than a continuous end-to-end execution trace.",
+          "candidateEvidence": ["KU-08", "KU-13", "KU-19"]
+        },
+        {
+          "covered": false,
+          "unit": "The queue microcopy says the video will start in a few minutes.",
+          "auditEvidence": ["audit/audit.json workflowGroundTruth.queue", "audit/audit.json uiStates@9.25"]
+        },
+        {
+          "covered": false,
+          "unit": "Result-specific audio and Lip Sync status remain unknown; Lip Sync is a visible result action.",
+          "auditEvidence": ["audit/audit.json workflowGroundTruth.result", "audit/audit.json unknowns"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 2,
+      "total": 44,
+      "threshold": 0.05,
+      "pass": true,
+      "examples": [
+        {
+          "claim": "KU-17 says the AAC track is stereo.",
+          "finding": "The cited evidence-pack establishes audio presence and AAC, but the candidate cites no carrier establishing channel layout."
+        },
+        {
+          "claim": "KU-17 says a tool check found no significant silence at its threshold.",
+          "finding": "Neither cited DS-EVP nor DS-TARGET contains a silence-analysis result; DS-TARGET is a visual frame manifest."
+        },
+        {
+          "claim": "The displayed input, prompt, queue state, model label, and result duration are present.",
+          "finding": "Supported by localized visual evidence and the independent audit."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 24,
+      "denominator": 24,
+      "threshold": 0.9,
+      "pass": true,
+      "examples": [
+        {
+          "result": "correct",
+          "reference": "TARGET-0029 / 9.75 seconds",
+          "finding": "Correctly localizes the already-loaded input and In queue state."
+        },
+        {
+          "result": "correct",
+          "reference": "TARGET-0059 / approximately 13.35 seconds",
+          "finding": "Correctly localizes the input/result side-by-side view."
+        },
+        {
+          "result": "correct",
+          "reference": "TARGET-0041 and TARGET-0046 / approximately 15.45-18.13 seconds",
+          "finding": "Correctly localizes the result pane, Gen-3 Alpha label, and playback progression."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 9,
+      "denominator": 11,
+      "threshold": 0.85,
+      "pass": false,
+      "rationale": "The candidate covers file selection/upload, prompt entry, generation settings, Generate submission, waiting/progress, completion evidence, causal continuity, and export as shown or explicitly unshown. It does not separately preserve model-selection as an unshown dependency and does not cover result-audio/Lip Sync application as a delivery dependency."
+    },
+    "unknownDiscipline": {
+      "numerator": 11,
+      "denominator": 14,
+      "threshold": 0.9,
+      "pass": false,
+      "examples": [
+        {
+          "result": "correct",
+          "opportunity": "Whether the displayed result was generated from the displayed source and prompt.",
+          "candidate": "Correctly left unknown in KU-13."
+        },
+        {
+          "result": "correct",
+          "opportunity": "Account, price/credits, region, parameters, failure/retry, export, montage provenance, post-processing, and CTA delivery terms.",
+          "candidate": "Correctly bounded across KU-02, KU-04, KU-10, KU-12, KU-14, and KU-16."
+        },
+        {
+          "result": "missed",
+          "opportunity": "Whether the shown UI is a live session or staged/prerecorded display.",
+          "candidate": "Questions same-session causality but does not explicitly preserve the live-versus-staged boundary."
+        },
+        {
+          "result": "missed",
+          "opportunity": "Whether the result itself has usable audio.",
+          "candidate": "General carrier-level audio uncertainty is not the same decision boundary."
+        },
+        {
+          "result": "missed",
+          "opportunity": "Whether Lip Sync was applied.",
+          "candidate": "Not stated."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "Queue-panel microcopy at about 9.25 seconds: Your video is in queue and will start in a few minutes.",
+      "Result-pane action/status carrier: the visible Lip Sync control and whether it was applied."
+    ]
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 4,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "The readable queue subline stating that the video will start in a few minutes.",
+      "The result-pane Lip Sync action as a result-specific audio-processing carrier."
+    ],
+    "unguardedMeaningChanges": [
+      "The product UI moves the timing semantics from the headline's one-minute promise to a queue state that says execution will only start in a few minutes; the candidate records the queue label but loses this sharper change."
+    ],
+    "unguardedRelationships": [
+      "Direct contradiction/tension between 1分钟做科幻大片 and will start in a few minutes.",
+      "Relationship between the visible Lip Sync control and the unresolved question of whether the displayed output has or received synchronized audio."
+    ],
+    "rationale": "The candidate's self-reported metaGate cannot prove its own completeness. Independent comparison with the audit exposes a consequential UI microcopy carrier and a result-audio branch that its coverage matrix marked as fully checked."
+  },
+  "examples": [
+    {
+      "type": "major_strength",
+      "candidate": "Correctly separates author-stated Runway identity from the UI-visible Gen-3 Alpha label and avoids identity inversion."
+    },
+    {
+      "type": "major_strength",
+      "candidate": "Correctly distinguishes edited chronology from dependency order and refuses to infer continuous generation causality."
+    },
+    {
+      "type": "major_failure",
+      "candidate": "Misses the literal queue message that most directly challenges the video's central one-minute promise."
+    },
+    {
+      "type": "major_failure",
+      "candidate": "Marks all channels and its own metaGate complete despite omitting visible, consequential UI carriers."
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationTarget": "holdout-fix baseline",
+  "overallGatePass": false,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 5,
+      "denominator": 7,
+      "examples": [
+        {
+          "ids": ["Q-01", "Q-02", "Q-03", "Q-04", "Q-06"],
+          "result": "pass",
+          "note": "The baseline captures the problem, DeepSeek/HTML method, prompt parameters, rendered-result copy target, and visible success result."
+        },
+        {
+          "id": "Q-05",
+          "result": "fail",
+          "note": "It repeatedly identifies the demonstrated target as Word, although the independently audited screen shows WPS Writer and only the narration uses Word generically."
+        },
+        {
+          "id": "Q-07",
+          "result": "fail",
+          "note": "It mentions local font availability but does not report the central visible limits: no Microsoft Word test, no save/reopen test, and no property-panel verification of exact formatting values."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 0,
+      "denominator": 20,
+      "examples": [
+        {
+          "auditUnits": "AE-001 through AE-020",
+          "result": "fail",
+          "note": "The baseline supplies no timestamp, cue, shot, or frame locator for any atomic knowledge unit. Correct prose without an independently checkable locator is not counted as a unit with valid evidence."
+        },
+        {
+          "auditUnits": ["AE-006", "AE-007", "AE-008", "AE-009", "AE-013", "AE-014", "AE-015", "AE-018"],
+          "result": "content present but evidence absent",
+          "note": "These are prominent examples whose substance appears in the baseline but whose evidence windows are not delivered."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 2,
+      "total": 27,
+      "examples": [
+        {
+          "claim": "The demonstrated application is Word and the method was shown working in Word.",
+          "result": "unsupported/incorrect",
+          "note": "The screen evidence verifies WPS Writer with a .docx tab, not Microsoft Word."
+        },
+        {
+          "claim": "The demonstrated first-level heading, second-level heading, and body are already presented exactly as required.",
+          "result": "overstated",
+          "note": "The final document looks orderly, but no font or paragraph property panel verifies exact font names, 33/30-point line spacing, or 0.5-line spacing."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 0,
+      "denominator": 1,
+      "examples": [
+        {
+          "result": "fail",
+          "note": "No checkable evidence reference is present. The 0/1 denominator is an explicit schema sentinel because evaluation.schema.json does not allow a not-applicable form for timestamp accuracy; it must not be read as one sampled timestamp being wrong."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 7,
+      "denominator": 7,
+      "rationale": "All audited dependency stages STEP-00 through STEP-06 are represented: failed direct copy, acceptable source answer, parameterized HTML request, generation, target document, run-and-copy rendered output, and paste/visual verification. The WPS-versus-Word misidentification is scored under accuracy and unknown discipline rather than deleting a present dependency."
+    },
+    "unknownDiscipline": {
+      "numerator": 7,
+      "denominator": 9,
+      "examples": [
+        {
+          "ids": ["UNK-01", "UNK-03", "UNK-04", "UNK-06", "UNK-07", "UNK-08", "UNK-09"],
+          "result": "correct unknown or abstention",
+          "note": "The baseline does not invent model/version, shortcut, persistence, non-voice audio, or text-file details; it correctly uses DeepSeek and explicitly warns about local font availability."
+        },
+        {
+          "id": "UNK-02",
+          "result": "fail",
+          "note": "It treats Word compatibility as demonstrated instead of stating that only WPS Writer was shown."
+        },
+        {
+          "id": "UNK-05",
+          "result": "fail",
+          "note": "It says the three formatting levels are already presented as required even though exact values were not independently checked in a property panel."
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "CAR-02 真人出镜/手势/抱猫",
+      "CAR-03 环境与道具",
+      "CAR-10 烧录字幕及其与平台 SRT 的专名差异",
+      "CAR-11 竖屏构图、画中画与屏录适配版式",
+      "CAR-12 剪辑转场与阶段节奏",
+      "CAR-13 非旁白音频"
+    ]
+  },
+  "gateVerdicts": {
+    "criticalQuestionRecall": "fail",
+    "evidenceCoverage": "fail",
+    "unsupportedInference": "fail",
+    "timestampAccuracy": "fail",
+    "processDependencyCompleteness": "pass",
+    "unknownDiscipline": "fail",
+    "uncheckedChannels": "fail",
+    "metaGate": "pass"
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 1,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The meta audit explicitly checked all 13 audited carriers, SEM-01 through SEM-05, and REL-01 through REL-05 against both baseline files. Baseline omissions are preserved as discrepancies; no additional carrier, meaning change, or relationship is left outside this evaluation. The schema's lack of a timestamp not-applicable representation is disclosed through an explicit sentinel rather than hidden."
+  },
+  "examples": [
+    {
+      "type": "strong",
+      "baselineText": "复制的是‘运行 HTML’后的排版结果，不是黑色代码框里的 HTML 源码。",
+      "auditMatch": ["Q-04", "SEM-01", "REL-02", "AE-013", "AE-014", "AE-015"]
+    },
+    {
+      "type": "critical_discrepancy",
+      "baselineText": "新建一个空白 Word 文档。",
+      "auditMatch": ["Q-05", "SEM-03", "UNK-02", "STEP-04"],
+      "note": "The actual application shown is WPS Writer."
+    },
+    {
+      "type": "evidence_gap",
+      "baselineText": "No timestamps, cue IDs, shot IDs, or frame IDs are included anywhere in the baseline.",
+      "auditMatch": ["AE-001", "AE-020"]
+    }
+  ]
+}

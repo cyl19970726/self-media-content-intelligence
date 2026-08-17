@@ -1,0 +1,709 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建本地18.133秒视频、提供SRT、新evidence-pack与skill-run内定向采样/OCR所能建立的内容。产品性能、生成因果、真实耗时、版本、价格、账号/地区/平台、授权、保存/导出和评论交付均未做外部验证；负证据只限已检查的0–18.133秒范围。",
+  "viewerChange": {
+    "before": "把电影感科幻特效理解为高成本、复杂技术，且不知道视频会展示什么最小AI操作。",
+    "after": "理解作者的高度压缩配方：口播称在Runway中上传一段真人实拍，并输入包含科幻电影风格、女性士兵坐着演讲、电影质感和CG动画的提示词；随后画面把真人输入与红发科幻女兵结果并置。观众同时应知道，‘1分钟’和‘有手就行’是视频承诺，而同屏队列文案称视频‘will start in a few minutes’。18秒剪辑没有证明完整操作、Gen-3 Alpha选择、live会话、Lip Sync应用、结果可用音频、真实耗时、版本/门槛、因果或导出。",
+    "intendedChanges": [
+      "相信AI可把居家实拍框定为电影感科幻结果",
+      "记住上传实拍加风格/画面提示词的最小配方",
+      "看到输入、提示词与结果三种界面状态",
+      "被引导评论666索取工具安排"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "DS-EVP",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/evidence/evidence-pack.json",
+      "kind": "supplied_evidence_pack",
+      "producedBy": "upstream build-evidence-pack.mjs run supplied as fresh evidence",
+      "timeRange": {"start": 0, "end": 18.133},
+      "limitations": ["场景检测仅给出技术shot边界", "稠密帧间隔0.75秒可能漏掉瞬态UI", "不包含对产品主张的外部验证"]
+    },
+    {
+      "id": "DS-TARGET",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "video_specific_targeted_frame_manifest",
+      "producedBy": "capture-protocol-evidence.mjs using capture-protocol.json",
+      "timeRange": {"start": 0, "end": 18.133},
+      "limitations": ["182离散帧不证明采样点之间连续无剪辑", "显示器内小字仍受720×1280源分辨率限制"]
+    },
+    {
+      "id": "DS-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "macos_vision_ocr_proposals",
+      "producedBy": "ocr-frames.swift over all 182 targeted frames (1138 line proposals), followed by manual frame/crop review of accepted high-impact text",
+      "timeRange": {"start": 0, "end": 18.013},
+      "limitations": ["OCR原始行包含中英文误拼，未被静默改写", "仅引用经人工对照源帧接受的行；精确提示词另以源帧和放大审阅图确认"]
+    },
+    {
+      "id": "DS-CROPS",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/targeted-evidence/review-crops",
+      "kind": "ui_review_crops",
+      "producedBy": "ffmpeg extraction at 9.25, 9.75, 11.50, 12.50, 14.25 and 15.80 seconds; monitor region cropped and 2x Lanczos-upscaled for human reading",
+      "timeRange": {"start": 9.75, "end": 15.8},
+      "limitations": ["放大不创造源视频中不存在的细节", "只覆盖六个审阅时点", "用于人工核对，时间证据仍回指原targeted frame"]
+    },
+    {
+      "id": "DS-AUDIO-SOURCE",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/audio-evidence/source-audio-0-18.137.wav",
+      "kind": "decoded_full_source_audio_for_listening",
+      "producedBy": "ffmpeg decoded the source AAC track to PCM WAV and bounded it to 0–18.137 seconds",
+      "timeRange": {"start": 0, "end": 18.137},
+      "limitations": ["PCM is a decode of the compressed AAC source", "The bound follows the requested 18.137-second listening scope", "Audio alone cannot attribute mixed sounds to the embedded UI result clip"]
+    },
+    {
+      "id": "DS-AUDIO-RAW",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/audio-evidence/machine-listening-raw.json",
+      "kind": "full_timeline_machine_listening_raw_evidence",
+      "producedBy": "MIT/ast-finetuned-audioset-10-10-0.4593 auditioned the decoded full mix using multi-label sigmoid scores in 19 overlapping 2-second windows, four semantic regions, and supplementary L-R residuals",
+      "timeRange": {"start": 0, "end": 18.137},
+      "limitations": ["Machine audition is not human auditory perception", "Speech can mask low-level music/effects", "AudioSet labels can describe timbre rather than literal event identity", "L-R residual can suppress any centered content"]
+    },
+    {
+      "id": "DS-AUDIO-SEG",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/audio-evidence/listening-segments.json",
+      "kind": "auditable_semantic_audio_segment_ledger",
+      "producedBy": "bounded interpretation of DS-AUDIO-RAW across opening, input/queue, result, and closing regions",
+      "timeRange": {"start": 0, "end": 18.137},
+      "limitations": ["Exact SFX identities remain unknown", "Music continuity means detected across every audited region, not proof of one sample-continuous track", "No independently attributable result sound does not prove the result clip silent"]
+    },
+    {
+      "id": "DS-AUDIO-NOTES",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ee9136000000001201188a/skill-run/audio-evidence/listening-notes.md",
+      "kind": "human_readable_machine_listening_notes",
+      "producedBy": "four-region listening summary generated from DS-AUDIO-RAW and DS-AUDIO-SEG",
+      "timeRange": {"start": 0, "end": 18.137},
+      "limitations": ["Summarizes machine listening rather than adding new evidence", "Preserves unknown attribution and identity boundaries"]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 5.4,
+        "text": "你在家里也能拍好莱坞大片了，你没有听错，以前拍大片需要巨额成本和复杂技术",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": ["SHOT-001", "SHOT-002"]
+      },
+      {
+        "id": "CUE-002",
+        "start": 5.4,
+        "end": 9.09,
+        "text": "而现在你用ai在家也能拍好莱坞大片，操作非常简单",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": ["SHOT-002"]
+      },
+      {
+        "id": "CUE-003",
+        "start": 9.1,
+        "end": 13.82,
+        "text": "直接在runway里上传一段实拍，再写一段提示词，描述风格和画面，很快呀",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": ["SHOT-002"]
+      },
+      {
+        "id": "CUE-004",
+        "start": 13.82,
+        "end": 18.134,
+        "text": "一段视频就渲染好了，真的有手就行，找不到工具的回六六六给你们安排",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": ["SHOT-002"]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "视频把‘1分钟’和‘小白有手就行’作为固定承诺",
+      "importance": "core",
+      "statement": "9.2秒后固定大标题持续写着‘1分钟做科幻大片 / 小白有手就行！’，这是视频内的作者承诺，而不是已被计时证明的事实。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 9.2, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "9.75秒固定双行标题完整可见"},
+        {"refType": "ocr", "ref": "OCR-00143", "supports": "OCR并人工确认第一行‘1分钟做科幻大片’"},
+        {"refType": "ocr", "ref": "OCR-00144", "supports": "OCR并人工确认第二行‘小白有手就行！’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "18秒结尾仍保留同一固定标题"}
+      ],
+      "confidence": "high",
+      "headlinePromise": {"text": "1分钟做科幻大片 / 小白有手就行！", "status": "author_claim_not_timed_proof"},
+      "unknowns": ["标题中的1分钟是否为真实生成耗时"]
+    },
+    {
+      "id": "KU-02",
+      "title": "开场用实拍与科幻结果分屏制造效果差异",
+      "importance": "core",
+      "statement": "0–9.1秒的上下分屏分别用黄色标签标为‘AI生成’和‘实拍’：上方依次出现装甲人物、绿色科幻枪战/角色以及专业摄影设备，下方出现居家空间中的真人简易装甲/枪战和家用摄影设备；视频以多组近似动作与语境并置，建立‘在家实拍可获得大片感’的视觉类比。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 0, "end": 9.1},
+      "evidence": [
+        {"refType": "frame", "ref": "DENSE-0002", "supports": "上下分屏、AI生成/实拍标签和装甲人物对照"},
+        {"refType": "frame", "ref": "DENSE-0004", "supports": "绿色科幻枪战与室内真人枪战对照"},
+        {"refType": "frame", "ref": "DENSE-0010", "supports": "科幻角色与家庭环境简易装甲人物对照"},
+        {"refType": "frame", "ref": "DENSE-0013", "supports": "专业摄影设备与家中摄影设备对照"}
+      ],
+      "confidence": "high",
+      "visualContrast": {"topLabel": "AI生成", "bottomLabel": "实拍", "groupingRule": "按连续分屏中明显不同的人物/动作/设备组合保守描述，不以技术shot数计组"},
+      "unknowns": ["上下素材是否对应同一原始素材的一次连续转换", "素材来源与授权"]
+    },
+    {
+      "id": "KU-03",
+      "title": "作者把传统大片制作描述为高成本且技术复杂",
+      "importance": "core",
+      "statement": "作者声称，以前拍大片需要‘巨额成本和复杂技术’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 2.1, "end": 5.4},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "提供字幕逐字承载旧门槛主张"},
+        {"refType": "frame", "ref": "DENSE-0008", "supports": "烧录字幕‘巨额成本和复杂技术’"}
+      ],
+      "confidence": "high",
+      "unknowns": ["成本数值、技术清单和比较基准"]
+    },
+    {
+      "id": "KU-04",
+      "title": "作者把AI重新框定为在家可做且操作简单",
+      "importance": "core",
+      "statement": "作者声称，现在用AI在家也能拍‘好莱坞大片’，并称操作‘非常简单’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 5.4, "end": 9.1},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-002", "supports": "提供字幕给出AI、在家和操作简单的转折"},
+        {"refType": "frame", "ref": "DENSE-0011", "supports": "烧录字幕‘在家也能拍好莱坞大片’"},
+        {"refType": "frame", "ref": "DENSE-0013", "supports": "烧录字幕‘操作非常简单’并有设备对照"}
+      ],
+      "confidence": "high",
+      "unknowns": ["简单的适用条件、失败率和最低门槛"]
+    },
+    {
+      "id": "KU-05",
+      "title": "作者口播给出的最小工具与操作配方",
+      "importance": "core",
+      "statement": "作者把工具称为‘runway’，并指示：上传一段实拍，再写一段提示词描述风格和画面。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 9.1, "end": 13.82},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "提供字幕逐字给出runway、上传实拍和写提示词"},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "烧录字幕‘上传一段实拍’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "烧录字幕‘再写一段提示词’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0035", "supports": "烧录字幕‘描述风格和画面’"}
+      ],
+      "confidence": "high",
+      "visibleIdentity": {"productName": "Runway", "basis": "author_stated_in_speech/subtitles", "uiBrandWordObserved": false},
+      "unknowns": ["画面取景内未读到Runway品牌字样，因此产品身份不是由UI独立确认", "具体产品版本"]
+    },
+    {
+      "id": "KU-06",
+      "title": "输入页展示10秒真人视频、文件名与排队状态",
+      "importance": "core",
+      "statement": "9.20–10.75秒的网页状态可见左侧Sessions/Prompt/Presets，主区域文件名为‘9月21日(1).mp4’，预览是一名红发女性在居家背景讲话，播放器显示约0:04/0:10到0:05/0:10；右侧完整状态为‘In queue / Your video is in queue and will start in a few minutes.’。9.20秒帧已出现该输入与队列状态，9.25秒放大帧进一步确认完整子文案。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9.2, "end": 10.75},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0161", "supports": "9.25秒同屏显示文件名、真人输入、In queue和队列子文案"},
+        {"refType": "ocr", "ref": "OCR-00139", "supports": "9.20秒TARGET-0028的OCR提出并人工确认状态标题‘In queue’"},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "9.25秒放大审阅逐字确认队列子文案；9.75秒审阅确认文件名、导航与播放器0:04/0:10"},
+        {"refType": "targeted_frame", "ref": "TARGET-0030", "supports": "10.25秒输入视频仍在播放"}
+      ],
+      "confidence": "high",
+      "inputState": {"fileName": "9月21日(1).mp4", "extension": ".mp4", "visibleDuration": "0:10", "subject": "red-haired woman speaking in a domestic interior", "status": "In queue", "statusDetail": "Your video is in queue and will start in a few minutes."},
+      "queueMicrocopy": {"headline": "In queue", "detail": "Your video is in queue and will start in a few minutes.", "directTensionWith": "1分钟做科幻大片"},
+      "unknowns": ["文件真实来源、编码、分辨率和上传是否在该录屏中执行完成"]
+    },
+    {
+      "id": "KU-07",
+      "title": "界面给出完整英文提示词和中文概括",
+      "importance": "core",
+      "statement": "提示词框清晰显示：‘Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation’；黄色中文条写‘科幻风格，女士坐着发表演讲，CG动画’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 11.5, "end": 13.0},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "11.6秒英文提示词主体可读"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "12.5秒英文提示词和中文概括完整可见"},
+        {"refType": "ocr", "ref": "OCR-00548", "supports": "OCR并人工确认中文概括‘科幻风格，女士坐着发表演讲，CG动画’"},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "11.50与12.50秒放大审阅图用于逐字确认英文提示词；原OCR误拼被保留而未静默替换"}
+      ],
+      "confidence": "high",
+      "promptText": {"english": "Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation", "chineseOverlay": "科幻风格，女士坐着发表演讲，CG动画", "review": "human-checked against targeted frames and crops; OCR proposals contain errors"},
+      "unknowns": ["未显示种子、比例、输出时长、运动强度、镜头或质量等其他参数"]
+    },
+    {
+      "id": "KU-08",
+      "title": "可见的是编辑后的页面时序，不是完整实时操作",
+      "importance": "core",
+      "statement": "证据支持的屏幕强调顺序为：同屏已有真人输入、已填写提示词与‘In queue / will start in a few minutes’状态 → 更近展示已填写提示词 → 真人输入与CG结果并排页 → 结果单独播放页。它不是从空白输入到完成的live操作录像；视频没有显示文件选择、实际键入、点击生成、排队进度、完成日志或页面间的连续桥接。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 9.2, "end": 15.8},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "输入页和In queue前态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "提示词页面中态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0036", "supports": "切换后的真人输入/CG输出并排态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "结果单独播放后态"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-03与ACT-04对9.1–16.3秒逐状态密采未捕获桥接动作"}
+      ],
+      "confidence": "high",
+      "reasoning": "页面状态的先后在密采帧中直接成立；‘未显示’仅限9.1–16.3秒密采范围，不推断后台未发生。",
+      "observedChronology": ["input_preview_and_prompt_already_present_with_in_queue", "closer_prompt_view", "input_output_side_by_side", "result_player"],
+      "visibleActionState": {"shown": ["input video playing", "prompt present", "result playing"], "notObservedInScope": ["file picker", "typing", "generate click", "queue progression", "completion log", "save/download/export action"]},
+      "procedural": {
+        "input": "UI中名为‘9月21日(1).mp4’的10秒真人讲话视频",
+        "actions": ["作者口播要求上传实拍", "画面切到已存在的英文提示词", "画面切到输入/结果并排", "画面切到Gen-3 Alpha结果播放"],
+        "parameters": ["Sci-fi movie style, a female soldier sitting and giving a speech, cinematic texture, CG animation"],
+        "output": "UI中10秒红发科幻女兵/CG角色讲话视频预览",
+        "beforeFrames": ["TARGET-0029", "TARGET-0030"],
+        "duringFrames": ["TARGET-0032", "TARGET-0035", "TARGET-0036"],
+        "afterFrames": ["TARGET-0038", "TARGET-0041"],
+        "unknowns": ["文件选择、实际上传、实际键入、点击生成、后台模型调用、排队与完成是否发生", "真实依赖顺序和屏外动作"]
+      },
+      "unknowns": ["采样点之间是否有隐藏点击、加速或剪辑"]
+    },
+    {
+      "id": "KU-09",
+      "title": "结果是10秒红发科幻女兵讲话动画",
+      "importance": "core",
+      "statement": "13.35秒起，界面右侧出现一名红发、黑色金属感服装的CG女性角色，在蓝绿色室内背景中讲话并抬手；15.45秒后结果占据主播放器，顶部可见‘Gen-3 Alpha’和提示词摘要，播放器从约0:00/0:10推进到0:02/0:10。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 13.35, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "真人输入与红发CG女性结果并排"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "结果在主播放器播放，Gen-3 Alpha可见"},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "角色抬手且播放进度推进到约0:02/0:10"},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "15.80秒放大审阅确认Gen-3 Alpha、角色外观和‘You're ready to generate.’通知"}
+      ],
+      "confidence": "high",
+      "resultState": {"modelLabel": "Gen-3 Alpha", "visibleDuration": "0:10", "character": "red-haired CG female soldier in black metallic costume", "setting": "blue-green interior", "motion": "speaking and gesturing"},
+      "visualContrast": {"input": "real red-haired woman in a bright domestic interior", "output": "stylized red-haired CG soldier in a blue-green sci-fi-like interior"},
+      "unknowns": ["结果文件是否已保存或导出", "结果的真实生成来源和账号"]
+    },
+    {
+      "id": "KU-10",
+      "title": "作者声称结果很快渲染完成且门槛极低",
+      "importance": "core",
+      "statement": "作者在结果出现时说‘很快呀，一段视频就渲染好了’，随后说‘真的有手就行’。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 13.25, "end": 16.25},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "结尾词‘很快呀’"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "‘一段视频就渲染好了，真的有手就行’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0037", "supports": "烧录字幕‘一段视频就渲染好了’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "烧录字幕‘真的有手就行’"}
+      ],
+      "confidence": "high",
+      "timeClaimStatus": {"spoken": "很快", "headline": "1分钟", "demonstratedElapsedTime": null},
+      "unknowns": ["‘很快’的计时起止点", "成功条件和失败情形"]
+    },
+    {
+      "id": "KU-11",
+      "title": "18秒成片没有证明生成只需1分钟",
+      "importance": "core",
+      "statement": "视频总时长18.133秒，但画面经过多次语义切换，且9.25秒队列面板明确写‘Your video is in queue and will start in a few minutes.’。这与同屏‘1分钟做科幻大片’形成直接字面张力：任务被告知几分钟后才开始，而标题承诺1分钟做成。全片又未出现从生成触发到完成的连续计时、进度或日志，因此视频没有建立实际渲染是否在1分钟内完成。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 18.133},
+      "evidence": [
+        {"refType": "source", "ref": "DS-EVP", "supports": "媒体元数据记录18.133秒总时长"},
+        {"refType": "targeted_frame", "ref": "TARGET-0161", "supports": "9.25秒1分钟标题与完整队列文案同屏"},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "放大审阅确认‘will start in a few minutes’字面时间信息"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-07覆盖0–18.133秒检查计时/进度载体，未捕获连续计时或完成日志"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "结果页显示播放结果，但不含生成耗时"}
+      ],
+      "confidence": "high",
+      "reasoning": "负结论仅是‘本视频未建立’，并不声称Runway在现实中不能或一定能在1分钟完成。",
+      "timeClaimStatus": {"videoDurationSeconds": 18.133, "claim": "1分钟", "queueDetail": "will start in a few minutes", "relationship": "direct_tension", "timingProofObserved": false, "scope": "0–18.133 seconds"},
+      "unknowns": ["真实生成耗时", "视频是否删除了等待时段"]
+    },
+    {
+      "id": "KU-12",
+      "title": "工具身份和使用门槛只建立到口播Runway与可见Gen-3 Alpha",
+      "importance": "core",
+      "statement": "本视频只建立：作者口播称工具为Runway，结果页可见‘Gen-3 Alpha’标签；没有展示选择Gen-3 Alpha的动作。在0–18.133秒范围内也没有建立精确产品/模型版本、日期、账号或订阅层级、价格、地区、浏览器/系统、硬件/网络门槛、输入规格和其他生成参数。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 18.133},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-003", "supports": "作者口播把工具称为runway"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "结果页可见Gen-3 Alpha"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-07对完整时间线的版本/账号/价格/平台/规格载体检查"}
+      ],
+      "confidence": "high",
+      "reasoning": "保留author-stated产品名、UI-observed模型标签与未出现的决策边界三层，不用一般产品知识补全。",
+      "visibleIdentity": {"authorStatedProduct": "Runway", "uiObservedModelLabel": "Gen-3 Alpha", "uiObservedBrandWord": null, "uiObservedFields": ["Sessions", "Prompt", "Presets", "9月21日(1).mp4", "In queue", "You're ready to generate."]},
+      "modelSelectionStatus": {"labelObserved": "Gen-3 Alpha", "selectionActionObserved": false, "selectedForThisGeneration": "unknown"},
+      "boundaryUnknowns": ["whether Gen-3 Alpha was actively selected", "exact product/model version", "date", "account/subscription", "price", "region", "browser/OS", "hardware/network", "input/output specifications", "seed/aspect/motion/quality parameters"],
+      "unknowns": ["上述所有边界"]
+    },
+    {
+      "id": "KU-13",
+      "title": "输入、提示词与结果的视觉对应不等于已证明的生成因果",
+      "importance": "core",
+      "statement": "视频把真人女性输入、英文提示词和红发CG女兵结果按顺序并置，足以说明作者把该结果框定为这些输入的产物；但由于生成点击、后台调用、排队到完成和连续会话证据缺失，不能确认结果由当前所示文件和提示词在同一次操作中生成。",
+      "provenance": "unknown",
+      "timeRange": {"start": 9.75, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "真人输入和In queue状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "提示词状态"},
+        {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "输入/结果在同一页面并排"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-03/04密采未出现必要桥接动作"}
+      ],
+      "confidence": "high",
+      "causalStatus": {"framedAs": "input+prompt produces displayed result", "demonstrated": "edited sequence and side-by-side correspondence", "notEstablished": "single continuous generation causality"},
+      "unknowns": ["是否同一次生成", "是否使用了额外提示词、参数、后处理或其他源素材"]
+    },
+    {
+      "id": "KU-14",
+      "title": "视频只展示结果预览，没有展示导出",
+      "importance": "core",
+      "statement": "13.82–18.133秒可见结果在网页播放器内播放；在这段结果与结尾范围内没有观察到保存、下载、导出动作、落盘文件或输出分辨率/格式证明。",
+      "provenance": "unknown",
+      "timeRange": {"start": 13.82, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0090", "supports": "结果在网页并排预览"},
+        {"refType": "targeted_frame", "ref": "TARGET-0100", "supports": "结果播放器主视图，可见裁剪/删除等图标但无执行导出"},
+        {"refType": "targeted_frame", "ref": "TARGET-0111", "supports": "结尾仍为网页结果播放和CTA"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-06以0.2秒密度覆盖13.82–18.133秒，未捕获保存/下载/导出操作"}
+      ],
+      "confidence": "high",
+      "reasoning": "该负证据只证明视频未展示导出，不证明页面无导出能力。",
+      "boundaryUnknowns": ["save/download/export method", "file format", "resolution", "watermark", "local file existence"],
+      "unknowns": ["是否在视频外导出", "输出文件规格"]
+    },
+    {
+      "id": "KU-15",
+      "title": "结尾把结果证明转成评论666的获取动作",
+      "importance": "core",
+      "statement": "作者在结果播放时要求‘找不到工具的回六六六’，并说‘给你们安排’，把开场的低门槛承诺收束为评论CTA。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 16.15, "end": 18.133},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-004", "supports": "提供字幕逐字承载六六六CTA"},
+        {"refType": "ocr", "ref": "OCR-00242", "supports": "OCR并人工确认‘找不到工具的回666’"},
+        {"refType": "ocr", "ref": "OCR-00259", "supports": "OCR并人工确认‘给你们安排！’"},
+        {"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "结果播放上叠加结尾安排字幕"}
+      ],
+      "confidence": "high",
+      "ctaTerms": {"userAction": "评论666", "authorPromise": "给你们安排", "deliveryDetails": null},
+      "unknowns": ["具体安排内容与履约方式"]
+    },
+    {
+      "id": "KU-16",
+      "title": "评论666后的交付条件未建立",
+      "importance": "supporting",
+      "statement": "在16.15–18.133秒的CTA范围内，视频没有说明评论666后会获得链接、教程、软件入口还是其他材料，也没有说明费用、交付路径、时效、资格或责任主体。",
+      "provenance": "unknown",
+      "timeRange": {"start": 16.15, "end": 18.133},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-004", "supports": "口播只说回六六六并安排"},
+        {"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "CTA前半句"},
+        {"refType": "targeted_frame", "ref": "TARGET-0046", "supports": "CTA后半句与视频结束"}
+      ],
+      "confidence": "high",
+      "ctaTerms": {"scope": "16.15–18.133 seconds", "unspecified": ["deliverable", "price", "delivery route", "timing", "eligibility", "responsible entity"]},
+      "unknowns": ["交付物与全部条件"]
+    },
+    {
+      "id": "KU-17",
+      "title": "非语音音频存在，但具体叙事角色未能可靠识别",
+      "importance": "context",
+      "statement": "fresh evidence只建立媒体存在AAC音轨；它不建立声道布局、静音段结构，也不能可靠分离并识别背景音乐、音效或其来源和叙事作用。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0, "end": 18.133},
+      "evidence": [
+        {"refType": "source", "ref": "DS-EVP", "supports": "evidence-pack只记录hasAudio=true与audioCodec=AAC"}
+      ],
+      "confidence": "medium",
+      "nonSpeechAudioDecision": {"channelAvailable": true, "inspected": true, "codec": "AAC", "channelLayout": "unknown", "silenceStructure": "unknown", "semanticRole": "unknown", "reason": "fresh evidence provides no channel-layout or silence-analysis artifact and no reliable source separation"},
+      "unknowns": ["声道布局", "静音段", "音乐/音效类型", "来源", "是否含插入素材原声", "叙事作用"]
+    },
+    {
+      "id": "KU-18",
+      "title": "技术shot分段不能代表语义场景或剪辑数",
+      "importance": "context",
+      "statement": "evidence-pack只检测到2.1秒一个技术切点并给出2个shot，但0–18.133秒稠密帧显示其后仍包含多组分屏内容、桌面UI、提示词、并排结果和结果主视图等明显语义变化；因此不能把2个shot解释成2个语义场景或一次真实剪辑。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 18.133},
+      "evidence": [
+        {"refType": "source", "ref": "DS-EVP", "supports": "sceneDetection只列出2.1秒切点和2个shot"},
+        {"refType": "frame", "ref": "DENSE-0004", "supports": "2.25秒仍为分屏枪战"},
+        {"refType": "frame", "ref": "DENSE-0014", "supports": "9.75秒已切到桌面UI"},
+        {"refType": "frame", "ref": "DENSE-0022", "supports": "15.75秒已切到结果主视图"}
+      ],
+      "confidence": "high",
+      "reasoning": "技术镜头检测对运动和内容切换敏感度有限，只作为采样辅助。",
+      "unknowns": ["真实隐藏剪辑和加速次数"]
+    },
+    {
+      "id": "KU-19",
+      "title": "可见状态从‘In queue’剪到‘You're ready to generate.’，没有完成态桥接",
+      "importance": "core",
+      "statement": "输入页右侧在9.2–10秒显示‘In queue’，完整子文案为‘Your video is in queue and will start in a few minutes.’；结果主视图在15.45秒后顶部显示‘You're ready to generate.’。两条文字都是真实可见的UI状态，但视频没有展示它们之间的排队进度、完成状态或状态因果；后一句也不能被改写成‘生成已完成’。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 9.2, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0161", "supports": "输入页右侧显示In queue及完整子文案"},
+        {"refType": "ocr", "ref": "OCR-00139", "supports": "OCR并人工确认In queue"},
+        {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "结果主视图顶部显示You're ready to generate."},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "15.80秒放大审阅确认字面状态，不把它改写为完成通知"}
+      ],
+      "confidence": "high",
+      "queueMicrocopy": {"headline": "In queue", "detail": "Your video is in queue and will start in a few minutes."},
+      "visibleActionState": {"earlierStatus": "In queue — Your video is in queue and will start in a few minutes.", "laterStatus": "You're ready to generate.", "bridgeObserved": false, "completionStatusObserved": false},
+      "unknowns": ["两条状态是否属于同一次任务或同一界面流程", "真实排队与完成过程"]
+    },
+    {
+      "id": "KU-20",
+      "title": "结果区可见Extend与Lip Sync控件",
+      "importance": "core",
+      "statement": "真人输入与CG结果并排时，结果播放器下方可见‘Extend’和‘Lip Sync’控件。它们是可见的后续处理分支；视频没有显示点击Lip Sync或任何已应用状态。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 13.35, "end": 15.25},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0168", "supports": "14.25秒结果播放器下方可见Extend与Lip Sync"},
+        {"refType": "source", "ref": "DS-CROPS", "supports": "14.25秒结果控件放大审阅确认Lip Sync字样"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-09覆盖13.35–15.45秒，未见Lip Sync点击或应用状态"}
+      ],
+      "confidence": "high",
+      "resultControls": {"observed": ["Extend", "Lip Sync"], "lipSyncClickObserved": false, "lipSyncAppliedStatusObserved": false},
+      "unknowns": ["Lip Sync是否在视频外或隐藏步骤中应用"]
+    },
+    {
+      "id": "KU-21",
+      "title": "结果素材自身是否含可用音频或已同步口型未知",
+      "importance": "core",
+      "statement": "完整0–18.137秒机器听检在结果与结尾阶段继续检测到帖子旁白和音乐，但没有出现可独立归因给屏幕中10秒CG结果的新声音来源。结合界面另有Lip Sync控件且未显示应用，结果是否自带可用音频、声音内容为何、是否与口型同步仍未知；不能写成‘无声’。",
+      "provenance": "unknown",
+      "timeRange": {"start": 13.35, "end": 18.133},
+      "evidence": [
+        {"refType": "source", "ref": "DS-EVP", "supports": "只建立整条帖子文件有AAC音轨"},
+        {"refType": "targeted_frame", "ref": "TARGET-0168", "supports": "结果运动与Lip Sync控件同时可见"},
+        {"refType": "targeted_frame", "ref": "TARGET-0180", "supports": "结果主播放器继续显示角色运动，但无独立结果音轨证明"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-09结果区检查未见Lip Sync应用或结果音频状态"},
+        {"refType": "source", "ref": "DS-AUDIO-SEG", "supports": "AUD-SEG-03与AUD-SEG-04均记录旁白/音乐继续，结果片段原声not separately attributable"},
+        {"refType": "source", "ref": "DS-AUDIO-RAW", "supports": "13.35–18.137秒原始分类与滑窗概率可审计"}
+      ],
+      "confidence": "high",
+      "resultAudioStatus": {"postAudioCodec": "AAC", "embeddedResultAudioUsable": "unknown", "resultAudioContent": "unknown", "lipSyncApplied": "unknown", "lipSyncQuality": "unknown"},
+      "unknowns": ["结果自身是否有音轨", "音频是否可用", "口型是否同步", "Lip Sync是否应用"]
+    },
+    {
+      "id": "KU-22",
+      "title": "所示UI无法确认为live会话",
+      "importance": "core",
+      "statement": "画面拍摄的是桌面显示器，并通过剪辑突出队列、提示词、并排结果和结果主视图。视频没有提供连续光标操作、会话刷新、系统时间或其他足以区分live网页会话、预录录屏和摆拍展示的证据；因此UI会话真实性保持未知。",
+      "provenance": "unknown",
+      "timeRange": {"start": 9.1, "end": 18.133},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0174", "supports": "9.25秒为拍摄物理显示器的队列画面"},
+        {"refType": "targeted_frame", "ref": "TARGET-0179", "supports": "14.25秒同一桌面构图内展示结果页"},
+        {"refType": "targeted_frame", "ref": "TARGET-0180", "supports": "15.8秒剪到结果主视图"},
+        {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-10跨UI阶段检查，未发现可认证live会话的连续操作证据"}
+      ],
+      "confidence": "high",
+      "sessionAuthenticity": {"live": "unknown", "prerecordedScreen": "possible", "stagedDisplay": "possible", "continuousSessionProofObserved": false},
+      "unknowns": ["是否live会话", "是否预录录屏", "是否摆拍展示", "各页面是否来自同一会话"]
+    },
+    {
+      "id": "KU-23",
+      "title": "音乐在四个语义区间均被听检到，但能量发生变化",
+      "importance": "supporting",
+      "statement": "机器听检在开场、输入/排队、结果揭示和结尾四段的原始全混音与L–R辅助残差中都检测到Music；没有检测到跨段停止。辅助残差RMS由开场0.011046降至输入/排队0.005030、结果揭示0.002582，再在结尾升至0.011893。因此可写‘音乐贯穿四段且能量变化’，不能写成音量恒定、同一曲目严格连续或已知曲风。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 18.137},
+      "evidence": [
+        {"refType": "source", "ref": "DS-AUDIO-RAW", "supports": "四个semanticRegions与19个slidingWindows保存Music概率和残差RMS"},
+        {"refType": "source", "ref": "DS-AUDIO-SEG", "supports": "AUD-SEG-01至04无缝记录music present及跨段变化"},
+        {"refType": "source", "ref": "DS-AUDIO-NOTES", "supports": "四段人类可读听检摘要"}
+      ],
+      "confidence": "medium",
+      "reasoning": "AudioSet模型实际摄入完整解码波形；全混音受旁白主导，L–R残差只作辅助，因此只接受跨四段存在与能量变化，不接受曲目身份或精确连续性。",
+      "nonSpeechAudioDecision": {"music": "present_across_all_four_regions", "constantOrChange": "continuous_detection_with_level_change", "exactTrack": "unknown", "style": "unknown", "ownership": "unknown"},
+      "unknowns": ["曲目身份", "音乐风格", "所有片段是否来自同一音乐床", "所有采样点是否严格无间断", "版权/来源"]
+    },
+    {
+      "id": "KU-24",
+      "title": "短促效果只可确认为间歇性effect-like候选",
+      "importance": "supporting",
+      "statement": "机器听检的若干窗口间歇性给出generic Sound effect，以及低置信Whoosh/swoosh/swish、Bang、Ding或Ping候选；它们没有在每个窗口恒定出现，并可能只是音乐打击/音色。故只能记录‘短促效果样候选随时间变化、非恒定’，不能断言具体音效名称或数量。",
+      "provenance": "system_inference",
+      "timeRange": {"start": 0, "end": 18.137},
+      "evidence": [
+        {"refType": "source", "ref": "DS-AUDIO-RAW", "supports": "0–2、4–6、8–12、14–18.137秒窗口保存低置信effect-like标签"},
+        {"refType": "source", "ref": "DS-AUDIO-SEG", "supports": "四段ledger把短效果统一限定为intermittent candidates"}
+      ],
+      "confidence": "low",
+      "reasoning": "AudioSet标签可能描述音色而非真实物体事件；只接受间歇性类别变化，拒绝字面whoosh/keyboard/typing等身份。",
+      "nonSpeechAudioDecision": {"shortEffects": "intermittent_effect_like_candidates", "constantOrChange": "change/intermittent", "literalIdentity": "unknown", "count": "unknown"},
+      "unknowns": ["是否存在独立SFX轨", "候选是否只是音乐打击", "具体音效名称", "准确次数", "来源/版权"]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "reversal_of",
+      "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "‘而现在’把旧高门槛反转为AI在家可做"}]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-09",
+      "relation": "opening_promise_illustrated_by",
+      "evidence": [{"refType": "frame", "ref": "DENSE-0002", "supports": "开场AI生成/实拍对照"}, {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "结尾输入/CG结果并排"}]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-07",
+      "relation": "precedes_in_edited_demonstration",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0161", "supports": "队列与输入先被强调，提示词其实已在同屏下方存在"}, {"refType": "targeted_frame", "ref": "TARGET-0032", "supports": "随后剪到提示词区域近景"}]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-09",
+      "relation": "input_visually_compared_with_output",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "真人输入与CG输出同页并排"}]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-09",
+      "relation": "framed_as_instruction_producing_result",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "提示词先出现"}, {"refType": "targeted_frame", "ref": "TARGET-0059", "supports": "随后出现CG结果"}, {"refType": "cue", "ref": "CUE-004", "supports": "作者称视频已经渲染好"}]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-15",
+      "relation": "result_used_to_support_low_barrier_cta",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0042", "supports": "结果播放上叠加评论666 CTA"}]
+    },
+    {
+      "from": "KU-01",
+      "to": "KU-15",
+      "relation": "closing_strengthens_opening_promise",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0045", "supports": "固定‘1分钟/小白有手就行’标题与‘给你们安排’同时出现"}]
+    },
+    {
+      "from": "KU-08",
+      "to": "KU-13",
+      "relation": "edited_chronology_limited_by_missing_execution_bridges",
+      "evidence": [{"refType": "source", "ref": "DS-TARGET", "supports": "密采建立页面顺序，也显示必要桥接动作未被呈现"}]
+    },
+    {
+      "from": "KU-10",
+      "to": "KU-11",
+      "relation": "claim_not_established_by_timing_evidence",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "前态已在排队"}, {"refType": "source", "ref": "DS-TARGET", "supports": "全片无连续计时"}]
+    },
+    {
+      "from": "KU-19",
+      "to": "KU-13",
+      "relation": "literal_status_sequence_does_not_close_generation_causality",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "先出现In queue"}, {"refType": "targeted_frame", "ref": "TARGET-0041", "supports": "后出现You're ready to generate.而非完成日志"}]
+    },
+    {
+      "from": "KU-01",
+      "to": "KU-06",
+      "relation": "one_minute_headline_in_direct_tension_with_queue_starting_in_a_few_minutes",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0161", "supports": "同屏上方标题承诺1分钟，右侧子文案称几分钟后才开始"}, {"refType": "source", "ref": "DS-CROPS", "supports": "9.25秒放大审阅逐字确认两端文字"}]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-21",
+      "relation": "visible_lip_sync_branch_exposes_unclosed_result_audio_dependency",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0168", "supports": "Lip Sync控件可见但没有应用状态"}]
+    },
+    {
+      "from": "KU-12",
+      "to": "KU-22",
+      "relation": "visible_model_label_does_not_establish_selection_or_live_session",
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0180", "supports": "Gen-3 Alpha标签可见"}, {"refType": "source", "ref": "DS-TARGET", "supports": "ACT-10未捕获选择动作或live认证"}]
+    },
+    {
+      "from": "KU-23",
+      "to": "KU-21",
+      "relation": "continuing_post_music_and_narration_prevent_result_audio_attribution",
+      "evidence": [{"refType": "source", "ref": "DS-AUDIO-SEG", "supports": "AUD-SEG-03和04记录音乐/旁白继续且结果原声不可独立归因"}]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "available": true, "inspected": true},
+      {"id": "CAR-02", "available": true, "inspected": true},
+      {"id": "CAR-03", "available": true, "inspected": true},
+      {"id": "CAR-04", "available": true, "inspected": true},
+      {"id": "CAR-05", "available": true, "inspected": true},
+      {"id": "CAR-06", "available": true, "inspected": true},
+      {"id": "CAR-07", "available": true, "inspected": true},
+      {"id": "CAR-08", "available": true, "inspected": true},
+      {"id": "CAR-09", "available": true, "inspected": true},
+      {"id": "CAR-10", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-01", "KU-02"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-03"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-04"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-05", "KU-06", "KU-19", "KU-22"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-07", "KU-08"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-09", "KU-10", "KU-13", "KU-19", "KU-20", "KU-21", "KU-22"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-15", "KU-16"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["DENSE-0002", "TARGET-0059"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["TARGET-0030", "TARGET-0032"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["TARGET-0059"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["TARGET-0084", "TARGET-0059", "CUE-004"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["TARGET-0042"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["TARGET-0045"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["TARGET-0161", "DS-CROPS"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "unknown", "unitIds": ["KU-01", "KU-06", "KU-10", "KU-11", "KU-19"], "evidenceRefs": ["OCR-00143", "TARGET-0161", "DS-CROPS", "DS-EVP", "DS-TARGET"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-05", "KU-06", "KU-09", "KU-12", "KU-22"], "evidenceRefs": ["CUE-003", "TARGET-0161", "TARGET-0041", "DS-TARGET"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-05", "KU-06", "KU-07", "KU-08"], "evidenceRefs": ["CUE-003", "TARGET-0029", "TARGET-0084"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-08", "KU-19"], "evidenceRefs": ["DS-TARGET", "TARGET-0029", "TARGET-0032", "TARGET-0036", "TARGET-0041"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-09"], "evidenceRefs": ["TARGET-0059", "TARGET-0041", "TARGET-0046"]},
+      {"id": "CQ-06", "status": "unknown", "unitIds": ["KU-08", "KU-13", "KU-19"], "evidenceRefs": ["TARGET-0059", "TARGET-0029", "TARGET-0041", "DS-TARGET"]},
+      {"id": "CQ-07", "status": "unknown", "unitIds": ["KU-12"], "evidenceRefs": ["DS-TARGET"]},
+      {"id": "CQ-08", "status": "unknown", "unitIds": ["KU-14"], "evidenceRefs": ["TARGET-0090", "TARGET-0111", "DS-TARGET"]},
+      {"id": "CQ-09", "status": "answered", "unitIds": ["KU-02", "KU-03", "KU-04", "KU-09"], "evidenceRefs": ["DENSE-0002", "DENSE-0013", "TARGET-0059"]},
+      {"id": "CQ-10", "status": "unknown", "unitIds": ["KU-15", "KU-16"], "evidenceRefs": ["CUE-004", "TARGET-0042", "TARGET-0046"]},
+      {"id": "CQ-11", "status": "answered", "unitIds": ["KU-17", "KU-23", "KU-24"], "evidenceRefs": ["DS-EVP", "DS-AUDIO-RAW", "DS-AUDIO-SEG", "DS-AUDIO-NOTES"]},
+      {"id": "CQ-12", "status": "answered", "unitIds": ["KU-01", "KU-06", "KU-11", "KU-19"], "evidenceRefs": ["TARGET-0161", "DS-CROPS"]},
+      {"id": "CQ-13", "status": "unknown", "unitIds": ["KU-20", "KU-21"], "evidenceRefs": ["TARGET-0168", "DS-TARGET", "DS-CROPS"]},
+      {"id": "CQ-14", "status": "unknown", "unitIds": ["KU-21", "KU-23"], "evidenceRefs": ["DS-EVP", "TARGET-0168", "TARGET-0180", "DS-AUDIO-RAW", "DS-AUDIO-SEG"]},
+      {"id": "CQ-15", "status": "unknown", "unitIds": ["KU-12", "KU-22"], "evidenceRefs": ["TARGET-0174", "TARGET-0179", "TARGET-0180", "DS-TARGET"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-02", "KU-03"], "rationale": "承载在家大片承诺、传统高成本/复杂技术主张，并与分屏视觉共同构成开场。"},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-04"], "rationale": "承载从旧门槛到AI在家可做和操作简单的核心反转。"},
+      {"cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-05", "KU-06", "KU-07", "KU-08", "KU-10", "KU-19", "KU-22"], "rationale": "承载Runway命名、上传实拍、写提示词、描述风格/画面和‘很快’主张；视觉单元补足完整队列文案、具体输入、提示词和live/staged边界。"},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-09", "KU-10", "KU-11", "KU-15", "KU-16", "KU-20", "KU-21"], "rationale": "承载已渲染、低门槛和评论666 CTA；同时触发对真实耗时、Lip Sync/结果音频和CTA条款的unknown边界。"}
+    ],
+    "coreEvidence": {"covered": 19, "total": 19},
+    "unknowns": [
+      {"topic": "1分钟真实耗时", "unitIds": ["KU-11"]},
+      {"topic": "精确版本、账号、价格、平台/地区与参数", "unitIds": ["KU-12"]},
+      {"topic": "单次连续生成因果", "unitIds": ["KU-13"]},
+      {"topic": "保存/下载/导出与文件规格", "unitIds": ["KU-14"]},
+      {"topic": "评论666交付条件", "unitIds": ["KU-16"]},
+      {"topic": "非语音音频角色", "unitIds": ["KU-17"]},
+      {"topic": "音乐曲目/风格/来源和严格连续性", "unitIds": ["KU-23"]},
+      {"topic": "短促效果候选的准确身份、数量与是否独立SFX", "unitIds": ["KU-24"]},
+      {"topic": "Lip Sync是否应用与结果自身可用音频", "unitIds": ["KU-20", "KU-21"]},
+      {"topic": "Gen-3 Alpha选择动作", "unitIds": ["KU-12"]},
+      {"topic": "live会话、预录录屏或摆拍展示", "unitIds": ["KU-22"]},
+      {"topic": "音轨声道布局和静音结构", "unitIds": ["KU-17"]},
+      {"topic": "隐藏剪辑和加速次数", "unitIds": ["KU-18"]}
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "视觉协议无缝覆盖0–18.133秒，音频机器听检无缝覆盖0–18.137秒。口播/SRT、烧录文字、固定标题、完整队列微文案、UI身份/状态、文件名、提示词、输入/结果对照、Extend/Lip Sync控件、结果自身音频边界、Gen-3 Alpha选择、live/staged状态、动作与编辑顺序、环境/人物、帖子音轨与有界缺失均已检查。音频ledger记录音乐四段存在但能量变化、短效果样候选间歇出现、结果片段原声不可独立归因且保持unknown；‘1分钟’—‘几分钟后开始’直接张力、开场—结尾强化、旧门槛—AI反转、输入—提示词—结果及其因果限制均进入关系图。此metaGate只表示重建内部无已知漏检载体，不是独立evaluation或deterministic gate；本任务明确未生成evaluation.json或gate-report.json。"
+  }
+}

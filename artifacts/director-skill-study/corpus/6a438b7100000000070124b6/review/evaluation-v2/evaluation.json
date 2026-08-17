@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {"status": "pass", "auditIds": ["CQ-01", "CQ-02", "CQ-03", "CQ-04", "CQ-05", "CQ-06"], "candidateUnits": ["KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-26"]},
+        {"status": "pass", "auditIds": ["CQ-07", "CQ-08", "CQ-09", "CQ-10"], "candidateUnits": ["KU-08", "KU-09", "KU-10", "KU-11", "KU-27", "KU-28"]},
+        {"status": "pass", "auditIds": ["CQ-11", "CQ-12", "CQ-13", "CQ-14", "CQ-15", "CQ-16", "CQ-17", "CQ-18"], "candidateUnits": ["KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-20", "KU-29"]}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 16,
+      "denominator": 16,
+      "examples": [
+        {"status": "pass", "auditUnits": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06"], "candidateUnits": ["KU-02", "KU-04", "KU-05", "KU-06", "KU-07", "KU-26"]},
+        {"status": "pass", "auditUnits": ["KU-07", "KU-08", "KU-09", "KU-10", "KU-11"], "candidateUnits": ["KU-08", "KU-09", "KU-10", "KU-11", "KU-27", "KU-28"]},
+        {"status": "pass", "auditUnits": ["KU-12", "KU-13", "KU-14", "KU-15", "KU-16"], "candidateUnits": ["KU-12", "KU-13", "KU-15", "KU-16", "KU-17", "KU-18"]}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 22,
+      "examples": [
+        {"status": "pass", "detail": "All 22 positive knowledge units are typed as author_claim or visual_observation and carry time-bounded evidence; strong scale, causality, universality, identity, attribution, and execution claims are not promoted beyond the evidence."},
+        {"status": "pass", "detail": "KU-26 through KU-29 explicitly bound the 8-billion claim, Lila participation scale, image/BGM referent, and drawing attribution."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {"status": "pass", "windows": ["0.030-18.899", "18.899-24.130", "24.140-65.840", "65.850-71.650"]},
+        {"status": "pass", "windows": ["71.660-101.180", "101.190-114.110", "114.120-136.497", "136.497-144.767"]},
+        {"status": "pass", "windows": ["42.840-44.346", "47.525-51.040", "87.499-95.828", "101.267-103.233"], "detail": "Conflict and inserted-UI references localize to the audited windows."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 12,
+      "denominator": 12,
+      "rationale": "This is an argumentative rather than procedural video. All 12 audited relations are preserved: three parallel examples, each example's argument chain and visual scope limits, their generalization into creator advice, opening/closing reinforcement, the Lila image/BGM referent, edited continuity, and assertion-versus-demonstration boundary."
+    },
+    "unknownDiscipline": {
+      "numerator": 16,
+      "denominator": 16,
+      "examples": [
+        {"status": "pass", "auditIds": ["UNK-01", "UNK-02", "UNK-03", "UNK-04", "UNK-05"], "candidateUnits": ["KU-26", "KU-07", "KU-18"]},
+        {"status": "pass", "auditIds": ["UNK-06", "UNK-07", "UNK-08", "UNK-09"], "candidateUnits": ["KU-09", "KU-27", "KU-28"]},
+        {"status": "pass", "auditIds": ["UNK-10", "UNK-11", "UNK-12", "UNK-13", "UNK-14", "UNK-15", "UNK-16"], "candidateUnits": ["KU-29", "KU-12", "KU-13", "KU-18", "KU-19", "KU-20"]}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "The protocol and reconstruction inspect narration/SRT, burned captions and consequential conflicts, presenter/setting/gestures, persistent watermarks, three inserted Xiaohongshu UI states, editing and technical segmentation, non-speech audio, decision-relevant absences, all eight semantic phases, opening-to-closing reinforcement, referents, and evidentiary scope. Non-speech audio was inspected diagnostically and its semantic role was correctly left unknown, so the audit's previously open carrier is guarded rather than silently claimed closed."
+  },
+  "examples": [
+    {"type": "strength", "detail": "The candidate preserves the visible '骈文/时期/发声' readings while retaining verbatim SRT conflicts instead of silently normalizing them."},
+    {"type": "strength", "detail": "The three Xiaohongshu inserts are used only for what they visibly establish; aggregate scale and causal claims remain author assertions or unknowns."},
+    {"type": "strength", "detail": "The phrase '一张图片一段BGM' is attached to the Lila example and explicitly separated from this video's own audio carrier."},
+    {"type": "strength", "detail": "The masked presenter, visible account label 人类最强编导, spoken sign-off 雷子酱编导, and Xiaohongshu platform identity are kept separate."},
+    {"type": "minor_discrepancy", "detail": "The candidate's self-authored coreEvidence matrix uses 15/15 and its critical-question matrix uses the probe's 8 questions, whereas this independent audit uses 16 core units and 18 questions. Independent comparison finds all external items represented, so this is a denominator-documentation mismatch rather than a recall failure."}
+  ]
+}

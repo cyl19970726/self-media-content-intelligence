@@ -1,0 +1,864 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T20:49:57.135Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a2e823100000000210217e8.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a2e823100000000210217e8/run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 0,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 0.5,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 1,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 1.5,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 2,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 2.5,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-01",
+      "time": 3.5,
+      "frame": "frames/ACT-01-007.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-01",
+      "time": 4.5,
+      "frame": "frames/ACT-01-008.jpg",
+      "carrier": "inserted_ui,on_screen_text,recognizable_styling",
+      "reason": "复核开头数据界面、字幕和人物造型。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-02",
+      "time": 14,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-02",
+      "time": 17,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-02",
+      "time": 20,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-02",
+      "time": 22.5,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-02",
+      "time": 25,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-02",
+      "time": 27.5,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-02",
+      "time": 30,
+      "frame": "frames/ACT-02-007.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-02",
+      "time": 32.5,
+      "frame": "frames/ACT-02-008.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-02",
+      "time": 35,
+      "frame": "frames/ACT-02-009.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-02",
+      "time": 37.5,
+      "frame": "frames/ACT-02-010.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-02",
+      "time": 40,
+      "frame": "frames/ACT-02-011.jpg",
+      "carrier": "burned_caption,whiteboard,gesture",
+      "reason": "锁定新规数字、长尾与抓价值转折，并检查白板是否提供不同文字。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-03",
+      "time": 41,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-03",
+      "time": 43,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-03",
+      "time": 45,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-03",
+      "time": 47,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-03",
+      "time": 49,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-03",
+      "time": 51,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-03",
+      "time": 53,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-03",
+      "time": 55,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-03",
+      "time": 57,
+      "frame": "frames/ACT-03-009.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-03",
+      "time": 59,
+      "frame": "frames/ACT-03-010.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-03",
+      "time": 61,
+      "frame": "frames/ACT-03-011.jpg",
+      "carrier": "whiteboard,inserted_material,burned_caption",
+      "reason": "复核精选视频、创作大会、扶持/推流及价值内容关键词。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-04",
+      "time": 61.5,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-04",
+      "time": 64,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-04",
+      "time": 66.5,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-04",
+      "time": 68.5,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-04",
+      "time": 70.5,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-04",
+      "time": 72.5,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-04",
+      "time": 74.5,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-04",
+      "time": 76.5,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-04",
+      "time": 78.5,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-04",
+      "time": 80.5,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-04",
+      "time": 82.5,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-04",
+      "time": 84,
+      "frame": "frames/ACT-04-012.jpg",
+      "carrier": "burned_caption,gesture,whiteboard",
+      "reason": "保留收藏判断和点赞反例的完整枚举与语气推进。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-05",
+      "time": 84.5,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-05",
+      "time": 87,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-05",
+      "time": 90,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-05",
+      "time": 93,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-05",
+      "time": 95.5,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-05",
+      "time": 98.5,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-05",
+      "time": 101.5,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-05",
+      "time": 104.5,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-05",
+      "time": 107.5,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-05",
+      "time": 110.5,
+      "frame": "frames/ACT-05-010.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-05",
+      "time": 113.5,
+      "frame": "frames/ACT-05-011.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-05",
+      "time": 116.5,
+      "frame": "frames/ACT-05-012.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-05",
+      "time": 119.5,
+      "frame": "frames/ACT-05-013.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-05",
+      "time": 122.5,
+      "frame": "frames/ACT-05-014.jpg",
+      "carrier": "burned_caption,whiteboard,list_grouping",
+      "reason": "复核两条路径、三类短片、时长和限定，防止把枚举泛化。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-06",
+      "time": 123,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-06",
+      "time": 124,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-06",
+      "time": 125,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-06",
+      "time": 126,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-06",
+      "time": 127,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-06",
+      "time": 128,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-06",
+      "time": 129,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-06",
+      "time": 129.58,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "burned_caption,environment,editing_order",
+      "reason": "确认最终语义陈述、结束画面和开合关系。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-07",
+      "time": 0,
+      "frame": "frames/ACT-07-001.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-07",
+      "time": 5,
+      "frame": "frames/ACT-07-002.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-07",
+      "time": 10,
+      "frame": "frames/ACT-07-003.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-07",
+      "time": 15,
+      "frame": "frames/ACT-07-004.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-07",
+      "time": 20,
+      "frame": "frames/ACT-07-005.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-07",
+      "time": 25,
+      "frame": "frames/ACT-07-006.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-07",
+      "time": 30,
+      "frame": "frames/ACT-07-007.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-07",
+      "time": 35,
+      "frame": "frames/ACT-07-008.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-07",
+      "time": 40,
+      "frame": "frames/ACT-07-009.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-07",
+      "time": 45,
+      "frame": "frames/ACT-07-010.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-07",
+      "time": 50,
+      "frame": "frames/ACT-07-011.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-07",
+      "time": 55,
+      "frame": "frames/ACT-07-012.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-07",
+      "time": 60,
+      "frame": "frames/ACT-07-013.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-07",
+      "time": 65,
+      "frame": "frames/ACT-07-014.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-07",
+      "time": 70,
+      "frame": "frames/ACT-07-015.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-07",
+      "time": 75,
+      "frame": "frames/ACT-07-016.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-07",
+      "time": 80,
+      "frame": "frames/ACT-07-017.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-07",
+      "time": 85,
+      "frame": "frames/ACT-07-018.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-07",
+      "time": 90,
+      "frame": "frames/ACT-07-019.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-07",
+      "time": 95,
+      "frame": "frames/ACT-07-020.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-07",
+      "time": 100,
+      "frame": "frames/ACT-07-021.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-07",
+      "time": 105,
+      "frame": "frames/ACT-07-022.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-07",
+      "time": 110,
+      "frame": "frames/ACT-07-023.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-07",
+      "time": 115,
+      "frame": "frames/ACT-07-024.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-07",
+      "time": 120,
+      "frame": "frames/ACT-07-025.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-07",
+      "time": 125,
+      "frame": "frames/ACT-07-026.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-07",
+      "time": 129.58,
+      "frame": "frames/ACT-07-027.jpg",
+      "carrier": "visible_identity,CTA,access_conditions,editing_continuity,non_speech_audio",
+      "reason": "完成身份、规则入口/条件/CTA、环境连续性和音频未知的全时间线边界检查。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060",
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064"
+      ]
+    },
+    {
+      "id": "ACT-07",
+      "frameIds": [
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091"
+      ]
+    }
+  ]
+}

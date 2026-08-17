@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a1ceb8a00000000080306aa",
+  "capturedAt": "2026-08-16T11:09:23.214Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "分享我如何从0到1做一个skill",
+    "postCopy": "我做skill的方法\n\t\n#skill[话题]# #vibecoding[话题]#",
+    "hashtags": [
+      "skill",
+      "vibecoding"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a1ceb8a00000000080306aa",
+    "mediaType": "video",
+    "publishedAt": "2026-06-01T02:16:42.000Z",
+    "likes": "2114",
+    "collections": "2092",
+    "comments": "32",
+    "shares": "385",
+    "expectedDurationSec": 102
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 102
+    }
+  ]
+}

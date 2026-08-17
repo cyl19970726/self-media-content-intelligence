@@ -1,0 +1,383 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a4f70470000000021020657/run/probe.json",
+  "protocolName": "6a4f70470000000021020657 论点—结构—边界动态取证协议",
+  "rationale": "该视频以口播论证为主，但烧录字幕、白板层级、短暂插入截图、讲者指向、固定环境和开闭场关系各自承载信息；协议围绕发现的冲突、例证、全局关系、身份与缺席风险取证。",
+  "knowledgeUnitFields": [
+    {
+      "name": "provenance_class",
+      "required": true,
+      "reason": "防止把作者主张升级为事实",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "bounded_time_range",
+      "required": true,
+      "reason": "确保每个知识单元可定位",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "evidence_references",
+      "required": true,
+      "reason": "连接字幕、帧、OCR和shot",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "claim_or_observation",
+      "required": true,
+      "reason": "保留论证原貌",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "conditions_and_limits",
+      "required": true,
+      "reason": "限制普遍性和因果范围",
+      "derivedFrom": [
+        "MC-01"
+      ]
+    },
+    {
+      "name": "visual_identity_and_referent",
+      "required": true,
+      "reason": "防止面罩、账号或软件身份过度推断",
+      "derivedFrom": [
+        "OR-05"
+      ]
+    },
+    {
+      "name": "carrier_conflict",
+      "required": true,
+      "reason": "保留SRT/烧录文字冲突",
+      "derivedFrom": [
+        "OR-02"
+      ]
+    },
+    {
+      "name": "global_role",
+      "required": true,
+      "reason": "保留开场—主体—结尾及并列/依赖关系",
+      "derivedFrom": [
+        "RH-OPEN-CLOSE"
+      ]
+    },
+    {
+      "name": "unknowns",
+      "required": true,
+      "reason": "阻止填补视频未建立的信息",
+      "derivedFrom": [
+        "CQ-10"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "A-01",
+      "range": {
+        "start": 0,
+        "end": 9.78
+      },
+      "carrier": "opening inserted clip, burned captions and promise",
+      "mode": "ocr_review",
+      "times": [
+        0.2,
+        1.2,
+        2.5,
+        5,
+        8,
+        9.7
+      ],
+      "reason": "读取开场插入画面、条件、四方面承诺与首句冲突",
+      "expectedObservation": "读取开场插入画面、条件、四方面承诺与首句冲突",
+      "derivedFrom": [
+        "MC-01",
+        "OR-02",
+        "CQ-09"
+      ]
+    },
+    {
+      "id": "A-02",
+      "range": {
+        "start": 9.78,
+        "end": 49.125
+      },
+      "carrier": "whiteboard hierarchy, burned captions and argument examples",
+      "mode": "ocr_review",
+      "times": [
+        10,
+        13,
+        17.5,
+        21,
+        25,
+        29,
+        32.5,
+        37.5,
+        42.5,
+        47.5,
+        49
+      ],
+      "reason": "核对选题维度、胖猫例、2021/2026版本对比与高敏感结论",
+      "expectedObservation": "核对选题维度、胖猫例、2021/2026版本对比与高敏感结论",
+      "derivedFrom": [
+        "MC-02",
+        "MC-03",
+        "OR-03",
+        "OR-04",
+        "CQ-01",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "A-03",
+      "range": {
+        "start": 49.125,
+        "end": 70.65
+      },
+      "carrier": "script/visual imagination and rhythm hierarchy",
+      "mode": "ocr_review",
+      "times": [
+        50,
+        54,
+        57.5,
+        60,
+        64,
+        67.5,
+        70.5
+      ],
+      "reason": "读取先画面后文本、详尽脚本批评、疑似“分镜”冲突及BGM快慢切",
+      "expectedObservation": "读取先画面后文本、详尽脚本批评、疑似“分镜”冲突及BGM快慢切",
+      "derivedFrom": [
+        "MC-04",
+        "OR-02",
+        "OR-04",
+        "CQ-03",
+        "CQ-04"
+      ]
+    },
+    {
+      "id": "A-04",
+      "range": {
+        "start": 70.65,
+        "end": 85.391
+      },
+      "carrier": "language standards and anti-breakdown claim",
+      "mode": "ocr_review",
+      "times": [
+        72,
+        75,
+        78.5,
+        82.5,
+        85.3
+      ],
+      "reason": "读取能懂/炼字/网感、拆爆款与错题本类比",
+      "expectedObservation": "读取能懂/炼字/网感、拆爆款与错题本类比",
+      "derivedFrom": [
+        "MC-05",
+        "OR-02",
+        "OR-06",
+        "CQ-04",
+        "CQ-05"
+      ]
+    },
+    {
+      "id": "A-05",
+      "range": {
+        "start": 85.391,
+        "end": 120.51
+      },
+      "carrier": "media forms, accumulated materials and knowledge list",
+      "mode": "ocr_review",
+      "times": [
+        87,
+        91,
+        94,
+        99,
+        102.5,
+        106,
+        110,
+        114,
+        118,
+        120.4
+      ],
+      "reason": "核对杂学、呈现形式、BGM/梗/话题/镜头/肢体/杂识清单",
+      "expectedObservation": "核对杂学、呈现形式、BGM/梗/话题/镜头/肢体/杂识清单",
+      "derivedFrom": [
+        "MC-06",
+        "OR-04",
+        "CQ-06"
+      ]
+    },
+    {
+      "id": "A-06",
+      "range": {
+        "start": 120.51,
+        "end": 148
+      },
+      "carrier": "training actions and timing claims",
+      "mode": "ocr_review",
+      "times": [
+        121,
+        124,
+        128,
+        131,
+        134.5,
+        138,
+        141,
+        145,
+        147.8
+      ],
+      "reason": "读取少拆多刷、点赞收藏素材库、筛选/复看、3秒/5秒和脑内拍片",
+      "expectedObservation": "读取少拆多刷、点赞收藏素材库、筛选/复看、3秒/5秒和脑内拍片",
+      "derivedFrom": [
+        "MC-07",
+        "OR-02",
+        "OR-06",
+        "OR-07",
+        "CQ-05",
+        "CQ-07"
+      ]
+    },
+    {
+      "id": "A-07",
+      "range": {
+        "start": 148,
+        "end": 163.561
+      },
+      "carrier": "closing actions, burned captions and absence scope",
+      "mode": "ocr_review",
+      "times": [
+        149,
+        152,
+        155,
+        157.5,
+        160,
+        163.4
+      ],
+      "reason": "读取换位、信息茧房、反向大数据、推荐内容与最终口号；检查操作/CTA缺项",
+      "expectedObservation": "读取换位、信息茧房、反向大数据、推荐内容与最终口号；检查操作/CTA缺项",
+      "derivedFrom": [
+        "MC-08",
+        "OR-08",
+        "CQ-08",
+        "CQ-10"
+      ]
+    },
+    {
+      "id": "A-08",
+      "range": {
+        "start": 0,
+        "end": 163.561
+      },
+      "carrier": "technical shots versus semantic continuity and presenter referent",
+      "mode": "exact_times",
+      "times": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        163.4
+      ],
+      "reason": "比较固定白板环境、面罩造型与开场插入画面，避免shot语义化",
+      "expectedObservation": "比较固定白板环境、面罩造型与开场插入画面，避免shot语义化",
+      "derivedFrom": [
+        "OR-05",
+        "OR-09"
+      ]
+    },
+    {
+      "id": "A-09",
+      "range": {
+        "start": 0,
+        "end": 163.561
+      },
+      "carrier": "non-speech audio",
+      "mode": "exact_times",
+      "times": [
+        5,
+        45,
+        90,
+        135,
+        160
+      ],
+      "reason": "登记音轨并检查非语音角色，不能可靠判断则保留未知",
+      "expectedObservation": "登记音轨并检查非语音角色，不能可靠判断则保留未知",
+      "derivedFrom": [
+        "OR-01"
+      ]
+    },
+    {
+      "id": "A-10",
+      "range": {
+        "start": 0,
+        "end": 163.561
+      },
+      "carrier": "opening social proof and closing identity-label conflict",
+      "mode": "ocr_review",
+      "times": [
+        0.2,
+        1,
+        2,
+        160.3,
+        161.5,
+        163
+      ],
+      "reason": "读取开场指标拼贴、持续水印与结尾自称/烧录字幕，保留归属和名称冲突",
+      "expectedObservation": "读取开场指标拼贴、持续水印与结尾自称/烧录字幕，保留归属和名称冲突",
+      "derivedFrom": [
+        "OR-02",
+        "OR-05",
+        "CQ-09",
+        "CQ-10"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "RH-01"
+      ]
+    },
+    {
+      "relation": "reframed_by",
+      "derivedFrom": [
+        "RH-02"
+      ]
+    },
+    {
+      "relation": "opening_promise_paid_off_or_narrowed_by_closing",
+      "derivedFrom": [
+        "RH-03"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "每个critical question得到证据支持的答案或明确unknown",
+    "每个meaning change均有目标帧与知识单元",
+    "所有available carrier均已检查，非语音音频不能识别时明确unknown",
+    "SRT与烧录字幕的重要冲突并列保存",
+    "白板层级、短截图、身份/指代与开闭场关系不丢失",
+    "技术shot不升级为语义场景或剪辑次数",
+    "范围化缺席结论覆盖完整时间线或明确窗口",
+    "元门问题没有未检查的载体、意义变化或关系"
+  ],
+  "declaredUnknowns": [
+    "SRT首句“展示饺子”与烧录字幕/画面可能冲突；四方面与后文编号不完全整齐",
+    "胖猫事件只作例子，未给判断流程或事实核验",
+    "因果与普遍性没有数据证明；“版本”没有平台级定义",
+    "“好的风景一定是在心中的”可能是SRT/烧录字幕冲突；未展示脚本文档或剪辑时间线",
+    "“炼字”SRT可能写作“练字”；反对范围是机械拆解还是全部拆解需保留原话边界",
+    "白板小字部分被人遮挡；没有列尽所有形式",
+    "“三视反复筛选”可能为ASR错误；3秒/5秒是目标口号，未实测",
+    "“反过来大数据”含义只由后句解释；未给具体平台操作"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {"auditIds": ["CQ-01", "CQ-02", "CQ-03", "CQ-04", "CQ-05"], "candidateUnits": ["KU-01", "KU-04", "KU-05", "KU-06"], "result": "answered with the promise, author-claim boundary, business formula, platform premise, and two product conditions"},
+        {"auditIds": ["CQ-06", "CQ-07", "CQ-08", "CQ-09"], "candidateUnits": ["KU-07", "KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13"], "result": "answered with the outside-search order and all audited example chains"},
+        {"auditIds": ["CQ-10", "CQ-11", "CQ-12", "CQ-13"], "candidateUnits": ["KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21"], "result": "answered with the inside-search reversal, three mappings, and product-to-content mapping"},
+        {"auditIds": ["CQ-14", "CQ-15"], "candidateUnits": ["KU-02", "KU-03", "KU-25", "KU-27", "KU-28", "KU-29"], "result": "correctly distinguishes unproved results and closes the opening-to-closing identity relation"}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 24,
+      "denominator": 24,
+      "examples": [
+        {"auditRange": "KU-01..KU-06", "candidateUnits": ["KU-02", "KU-01", "KU-04", "KU-05", "KU-06"], "result": "all six opening and model units have cue, frame, targeted-frame, or OCR evidence"},
+        {"auditRange": "KU-07..KU-14", "candidateUnits": ["KU-07", "KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13"], "result": "all eight outside-search units are evidenced; some audit units are deliberately consolidated"},
+        {"auditRange": "KU-15..KU-22", "candidateUnits": ["KU-14", "KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21"], "result": "all eight inside-search and content-form units are evidenced"},
+        {"auditRange": "KU-23..KU-24", "candidateUnits": ["KU-03", "KU-27"], "result": "persistent promotion and closing identity/signoff are both visually and textually evidenced"}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 25,
+      "examples": [
+        {"candidateUnit": "KU-02", "result": "visible metric values are bounded to the opening collage and ownership/causality are explicitly unknown"},
+        {"candidateUnits": ["KU-11", "KU-12"], "result": "buyer profile and need chain remain author claims rather than verified market facts"},
+        {"candidateUnit": "KU-24", "result": "same-setting continuity is supported while hidden edits remain unknown"},
+        {"candidateUnit": "KU-27", "result": "the brand echo is framed as a visible/spoken relation, not real-person identity proof"}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 131,
+      "denominator": 131,
+      "examples": [
+        {"scope": "all knowledge-unit evidence references", "result": "all 131 references resolve and are localized within the declared unit ranges under the canonical tolerance"},
+        {"candidateUnit": "KU-22", "result": "the broad range is explicitly documented as a non-contiguous conflict ledger spanning its earliest and latest evidence"},
+        {"candidateUnits": ["KU-25", "KU-28", "KU-29"], "result": "negative claims name bounded full-film or opportunity-window scopes and inspected carriers"}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 19,
+      "denominator": 19,
+      "rationale": "The video is strategic rather than an executed UI procedure, but the audit identifies 19 argument and dependency relations. The reconstruction preserves all 19 through 22 explicit evidence-backed relations, including product+channel+advertising, buyer-before-product, profile-to-need-to-product, parallel outside/inside paths, three interest mappings, two content-form mappings, and opening-to-closing attribution limits."
+    },
+    "unknownDiscipline": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        {"auditIds": ["UNK-01", "UNK-02", "UNK-03"], "candidateUnits": ["KU-02", "KU-03", "KU-27"], "result": "real identity, metric ownership, and method attribution remain unknown"},
+        {"auditIds": ["UNK-04", "UNK-05", "UNK-06", "UNK-09"], "candidateUnits": ["KU-04", "KU-11", "KU-12", "KU-25"], "result": "trend evidence, profile research, viability, and actual results remain unknown"},
+        {"auditIds": ["UNK-07", "UNK-08", "UNK-10", "UNK-13"], "candidateUnits": ["KU-25", "KU-28"], "result": "buyer acquisition, delivery/support, compliance boundaries, and course terms are bounded abstentions"},
+        {"auditIds": ["UNK-11", "UNK-12", "UNK-14"], "candidateUnits": ["KU-19", "KU-20", "KU-21", "KU-29"], "result": "hybrid-product rules, execution parameters, and failure conditions are not invented"}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent comparison against the audit found no unguarded carrier, meaning change, or relation family. Speech/SRT, burned captions, whiteboard, opening metrics, persistent overlay, presenter/gesture, shot continuity, non-speech audio uncertainty, consequential text conflicts, bounded absences, and opening-to-closing attribution are all registered."
+  },
+  "examples": [
+    {"kind": "carrier_conflict", "auditIds": ["CC-01", "CC-02", "CC-03", "CC-04", "CC-05", "CC-06", "CC-07", "CC-08"], "candidateUnit": "KU-22", "result": "8/8 audited conflicts are preserved or conservatively unresolved; candidate additionally records the CUE-016 wording difference"},
+    {"kind": "opening_closing", "auditIds": ["OC-01", "OC-02", "OC-03", "OC-04", "OC-05", "OC-06", "OC-07"], "candidateUnits": ["KU-01", "KU-02", "KU-03", "KU-19", "KU-20", "KU-21", "KU-27"], "result": "7/7 opening/closing items captured"},
+    {"kind": "negative_evidence", "auditIds": ["ABS-01", "ABS-02", "ABS-03", "ABS-04", "ABS-05", "ABS-06", "ABS-07", "ABS-08", "ABS-09", "ABS-10"], "candidateUnits": ["KU-02", "KU-03", "KU-04", "KU-25", "KU-28", "KU-29"], "result": "all audited absence families are represented with bounded scope or explicit unknowns"},
+    {"kind": "non_blocking_presentation_note", "candidateUnit": "KU-03", "result": "the quoted persistent-overlay string contains an unmatched opening parenthesis; this is typographic and does not alter the recovered date, city, promotion, or identity boundary"}
+  ]
+}

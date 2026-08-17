@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/run/probe.json",
+  "protocolName": "6a3d085300000000060239b0 cue-conflict-and-decision-chain capture",
+  "rationale": "由逐字稿错识别、白板/字幕双重载体、同一讲述者连续布景、作者经验主张与决策边界共同导出。",
+  "knowledgeUnitFields": [
+    {
+      "name": "topic_or_decision",
+      "required": true,
+      "reason": "保留每一问/命题的决策对象",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    },
+    {
+      "name": "author_claim",
+      "required": true,
+      "reason": "防止把经验判断升级为事实",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    },
+    {
+      "name": "visible_caption_or_board",
+      "required": true,
+      "reason": "SRT冲突和白板结构有意义",
+      "derivedFrom": [
+        "RISK-SRT"
+      ]
+    },
+    {
+      "name": "condition_and_scope",
+      "required": true,
+      "reason": "保留平台、受众、时间与例外",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    },
+    {
+      "name": "recommended_action",
+      "required": true,
+      "reason": "视频包含可执行建议",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    },
+    {
+      "name": "example_or_rationale",
+      "required": true,
+      "reason": "区分举例与证明",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    },
+    {
+      "name": "conflict_or_unknown",
+      "required": true,
+      "reason": "保留错识别、未示范和未外证边界",
+      "derivedFrom": [
+        "RISK-SRT"
+      ]
+    },
+    {
+      "name": "referent_and_setting",
+      "required": true,
+      "reason": "同一匿名面罩主持人与白板语境连接全片",
+      "derivedFrom": [
+        "Q-01"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-CUE-OCR",
+      "range": {
+        "start": 0,
+        "end": 315.067
+      },
+      "carrier": "烧录字幕、黄色强调词与白板",
+      "mode": "ocr_review",
+      "times": [
+        0.912,
+        3.598,
+        6.815,
+        10.27,
+        13.411,
+        15.692,
+        19.026,
+        21.96,
+        23.544,
+        24.937,
+        27.788,
+        31.412,
+        33.835,
+        37.227,
+        40.644,
+        44.248,
+        47.814,
+        50.684,
+        53.724,
+        55.6,
+        56.869,
+        59.078,
+        61.615,
+        63.898,
+        66.923,
+        69.583,
+        71.376,
+        73.399,
+        76.522,
+        80.97,
+        84.662,
+        87.832,
+        90.627,
+        92.103,
+        94.466,
+        97.982,
+        101.402,
+        103.93,
+        105.769,
+        108.559,
+        111.528,
+        113.266,
+        116.062,
+        118.934,
+        120.811,
+        124.147,
+        127.597,
+        130.153,
+        132.466,
+        135.042,
+        137.246,
+        140.124,
+        143.249,
+        145.087,
+        148.129,
+        151.1,
+        152.85,
+        154.88,
+        158.1,
+        161.44,
+        163.685,
+        166.05,
+        169.98,
+        173.298,
+        176.668,
+        179.803,
+        181.0,
+        183.817,
+        187.277,
+        190.947,
+        194.267,
+        197.183,
+        199.841,
+        201.313,
+        204.493,
+        208.014,
+        209.728,
+        212.715,
+        216.35,
+        219.829,
+        223.309,
+        225.38,
+        228.325,
+        231.062,
+        232.497,
+        235.195,
+        238.514,
+        241.814,
+        244.866,
+        248.551,
+        251.71,
+        253.985,
+        257.914,
+        261.883,
+        266.833,
+        270.776,
+        272.176,
+        274.909,
+        278.549,
+        280.962,
+        283.858,
+        288.61,
+        292.769,
+        296.358,
+        299.544,
+        301.311,
+        304.476,
+        307.716,
+        310.026,
+        313.328
+      ],
+      "reason": "逐cue对照可见字幕、白板与SRT，定位冲突和关键词。",
+      "expectedObservation": "每个cue的可见字幕提案、强调词、可读白板条目及置信度。",
+      "derivedFrom": [
+        "CAR-CAPTION",
+        "CAR-WHITEBOARD",
+        "RISK-SRT",
+        "RISK-BOARD",
+        "REL-CONFLICT"
+      ]
+    },
+    {
+      "id": "ACT-REFERENT",
+      "range": {
+        "start": 0,
+        "end": 315.067
+      },
+      "carrier": "讲述者、面罩、白板、家居布景与手势",
+      "mode": "exact_times",
+      "times": [
+        0,
+        5,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        314.867
+      ],
+      "reason": "核对反复出现的人物/环境指代、连续性及开闭关系。",
+      "expectedObservation": "同一蜘蛛侠风格面罩讲述者与白板/家居布景是否贯穿，开场插图和结尾有何变化。",
+      "derivedFrom": [
+        "CAR-PRESENTER",
+        "CAR-GESTURE",
+        "CAR-EDIT",
+        "RISK-IDENTITY",
+        "RISK-SEGMENT",
+        "REL-PRESENTER"
+      ]
+    },
+    {
+      "id": "ACT-ABSENCE",
+      "range": {
+        "start": 0,
+        "end": 315.067
+      },
+      "carrier": "逐字稿、烧录字幕、画面卡片和白板",
+      "mode": "interval_density",
+      "densitySeconds": 5,
+      "reason": "在完整时间轴范围检查访问路径、价格、版本、账号、外部证明、CTA等决策边界。",
+      "expectedObservation": "仅能陈述在该完整检查范围内是否观察到具体边界，不作普遍不存在推断。",
+      "derivedFrom": [
+        "CAR-ABSENCE",
+        "RISK-ABSENCE"
+      ]
+    },
+    {
+      "id": "ACT-AUDIO-BOUNDARY",
+      "range": {
+        "start": 0,
+        "end": 315.067
+      },
+      "carrier": "AAC音轨与非语音音频",
+      "mode": "exact_times",
+      "times": [
+        0,
+        157.534,
+        314.867
+      ],
+      "reason": "显式登记音轨及无法可靠分离的非语音语义作用。",
+      "expectedObservation": "确认有音轨；若无法从帧证据辨明音乐/音效角色，则保持未知。",
+      "derivedFrom": [
+        "CAR-AUDIO",
+        "RISK-AUDIO"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-04"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-05"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-06"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-07"
+      ]
+    },
+    {
+      "relation": "precedes_and_frames",
+      "derivedFrom": [
+        "REL-08"
+      ]
+    },
+    {
+      "relation": "presents_and_connects",
+      "derivedFrom": [
+        "REL-PRESENTER"
+      ]
+    },
+    {
+      "relation": "may_conflict_with",
+      "derivedFrom": [
+        "REL-CONFLICT"
+      ]
+    },
+    {
+      "relation": "maps_spoken_items_to",
+      "derivedFrom": [
+        "REL-WHITEBOARD"
+      ]
+    },
+    {
+      "relation": "decision_chain_for",
+      "derivedFrom": [
+        "SEM-RESOURCE-TRACK-FORMAT"
+      ]
+    },
+    {
+      "relation": "author_claimed_dependency",
+      "derivedFrom": [
+        "SEM-RHYTHM-WEIGHT"
+      ]
+    },
+    {
+      "relation": "dependency_order_distinct_from_edit_order",
+      "derivedFrom": [
+        "SEM-HIT-MONETIZE"
+      ]
+    },
+    {
+      "relation": "conceptual_feedback_chain",
+      "derivedFrom": [
+        "SEM-FEEDBACK-TAG"
+      ]
+    },
+    {
+      "relation": "partially_established_dependency",
+      "derivedFrom": [
+        "SEM-DIAGNOSE"
+      ]
+    },
+    {
+      "relation": "requires_unshown_verification_bridge",
+      "derivedFrom": [
+        "SEM-MCN-DUE-DILIGENCE"
+      ]
+    },
+    {
+      "relation": "author_claimed_feedback_loop",
+      "derivedFrom": [
+        "SEM-AD-LOOP"
+      ]
+    },
+    {
+      "relation": "promise_not_visibly_enumerated_to_completion",
+      "derivedFrom": [
+        "SEM-OPEN-ENUM"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "每个critical question均由单位回答或以带范围证据的unknown关闭",
+    "每个meaning change关联至少一个知识单位",
+    "所有cue有accountability行",
+    "SRT与可见字幕的关键冲突不被静默修正",
+    "白板小字不可读时保留unknown",
+    "开头与结尾语义关系被建模",
+    "人物/面罩/布景指代及技术镜头边界被审计",
+    "决策相关缺失只在0到全片时长范围表述",
+    "非语音音频已登记且具体作用若不可判读则明确未知",
+    "meta-gate无未检查的信息载体、意义变化或关系"
+  ],
+  "declaredUnknowns": [
+    "烧录字幕与白板的逐项准确文本待targeted OCR复核",
+    "非语音音频具体类型/作用未知",
+    "平台机制、收入、流量、预算和成功率均未做外部核验",
+    "讲述者真实身份及面罩造型授权未知"
+  ]
+}

@@ -1,0 +1,2673 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "../evidence-v2/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "This reconstruction covers the 111.061-second tutorial, its complete 32-cue SRT, all probed visual/UI/OCR carriers, the observable operations and before/during/after transitions, and the AAC stereo track. It distinguishes author claims from visible state; pre-existing files from agent changes; external art generation and human file handling from coding-agent work; and a local index.html browser SPA preview from a shipped mobile, hosted, or standalone game. Secrets, external image-tool identity/settings, cross-cut project continuity, exact elapsed development time, and unoperated functionality remain unknown.",
+  "viewerChange": {
+    "from": "A viewer may initially understand the video as a fully automatic, three-hour, zero-code AI game build.",
+    "to": "The evidence supports a narrower workflow: install/configure Claude Code with Kimi K2, supply a detailed prewritten specification and already populated project materials, fill an art gap in a separate image UI, manually save/name/place files, hand them to the coding agent, inspect a local browser SPA, and ask for a CSS/layout revision. Several headline claims remain unverified.",
+    "practicalOutcome": "The viewer can reproduce the shown setup and handoff sequence while preserving human ownership, provenance boundaries, local-runtime limits, and untested/unknown claims."
+  },
+  "transcript": {
+    "origin": "../evidence-v2/evidence-pack.json#transcript (verbatim SRT cues; recognition errors retained)",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0.06,
+        "end": 4.58,
+        "text": "被大厂优化后，我和搞ai的算法在一起了，这不是gemini三做的",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 4.58,
+        "end": 6.75,
+        "text": "是我用cloud cord开发的乙女文游",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 6.76,
+        "end": 9.08,
+        "text": "全程只用了三个小时，不写一行代码",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 9.08,
+        "end": 11.79,
+        "text": "而且我已经把开发游戏的提示词整理成为了模板",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 11.8,
+        "end": 14.252,
+        "text": "你拿去改改就能用，这段视频你也能学会",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 14.252,
+        "end": 17.48,
+        "text": "首先我们需要给cloudcode配置k二dinkino api",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004",
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 17.48,
+        "end": 20.24,
+        "text": "你没有装cloudcode可以把这段提示词发给终端",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 20.25,
+        "end": 23.45,
+        "text": "就能一键安装，不想配置也可以直接装kimi颗粒",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 23.45,
+        "end": 26.62,
+        "text": "这是一个能边思考边行动的有agent能力的模型",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 26.63,
+        "end": 28.91,
+        "text": "国内用起来也很方便，没有正面的三m版本",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 28.91,
+        "end": 32.75,
+        "text": "安装好了以后我们来到kimi开发者平台，在这里获取一个api",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 32.759,
+        "end": 36.986,
+        "text": "复制好再替换到这句提示词里的api部分，再把这段提示词发给终端",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 36.986,
+        "end": 40.23,
+        "text": "Care的模型就配置好了，我们来试一下看，恭喜你",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 40.24,
+        "end": 44.88,
+        "text": "成功运行了cloud code现在可以直接给他发需求了，这是我的提示词",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 44.88,
+        "end": 50.15,
+        "text": "你们可以参考一下，大概的信息就是告诉他游戏的世界观，主角剧情玩法",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 50.16,
+        "end": 53.32,
+        "text": "数值等等看，很快就把你的游戏框架写好了",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 53.32,
+        "end": 57.48,
+        "text": "主题就是大厂女工被裁后的都市生存困境，有这么些个男性角色",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 57.48,
+        "end": 60.55,
+        "text": "核心数值也设计好了。现在文游里的文字有了",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 60.55,
+        "end": 64.829,
+        "text": "但还缺少很多图片，尤其几位角色的形象，简直就是游戏的灵魂",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 64.829,
+        "end": 68.2,
+        "text": "其实这个也很好解决，你自己动手跑了放在文件夹里",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016",
+          "SHOT-017",
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 68.21,
+        "end": 72.806,
+        "text": "然后告诉crowd code在文件夹放了美术资产，让他自己去找并放在游戏里",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 72.806,
+        "end": 77.29,
+        "text": "很快他就搞定了，来我们打开这个预览看一下，嗯，有点那意思了",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-018",
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 77.3,
+        "end": 82.5,
+        "text": "而且这些对话设计都是cloud code和k二自己去写的，我每句都认真看了",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 82.51,
+        "end": 85.811,
+        "text": "人物之间的交流非常自然，有生活气息，有情绪",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 85.811,
+        "end": 89.23,
+        "text": "没有deep seek那种声音感，我觉得吧，比大部分的编剧都写得好",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 89.23,
+        "end": 90.86,
+        "text": "但现在的布局我不太喜欢",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-020",
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 90.87,
+        "end": 94.691,
+        "text": "同样你告诉cloud code布局应该怎么改，它就会去再跑一次代码",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 94.691,
+        "end": 97.695,
+        "text": "然后给到你新的版本。改完以后效果就好多啦",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-021",
+          "SHOT-022"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 97.695,
+        "end": 102.615,
+        "text": "是不是超级简单，不管你是想做职场逆袭，还是古风穿越，或者是悬疑解谜",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-022",
+          "SHOT-023",
+          "SHOT-024",
+          "SHOT-025"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 102.615,
+        "end": 105.3,
+        "text": "用这套方法和提示词，就算你不懂游戏开发",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-025",
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 105.31,
+        "end": 109.59,
+        "text": "不懂代码，不懂ai就说大白话，也能拥有自己的独立文，由",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-026"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 109.59,
+        "end": 111.061,
+        "text": "需要文档的朋友来找我要",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-026"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "Hook: an AI-assisted otome visual-novel example",
+      "importance": "context",
+      "statement": "The opening presents a visual-novel-style project about a woman laid off by a large internet company and says it was developed with Claude Code. The opening's attribution contrast and showcased output are framing, not independent proof of authorship or provenance.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 6.75
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "Opening premise and attribution wording."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "Author says the otome visual novel was developed with Claude Code."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "Opening title card."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0010",
+          "supports": "Opening visual example within the unit window."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "The opening does not establish the complete production provenance or exclude all other tools and human work."
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "Three-hour, zero-code, reusable-template promise",
+      "importance": "core",
+      "statement": "The author claims the whole process took three hours, required no code to be written by the viewer, and can be reused through an edited prompt template. The video does not show a clock, a complete uninterrupted session, or a test across beginners/genres, so these remain claims rather than verified measurements.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 6.76,
+        "end": 14.252
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "Three-hour and no-code claim."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "Prompt was organized as a template."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "Reuse and learnability promise."
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "The workflow is fast, code-free for the operator, and reusable.",
+        "evidenceUnitIds": [
+          "KU-02"
+        ],
+        "conditions": [
+          "Treat three hours, no-code and learnability as author claims."
+        ],
+        "counterexamples": [
+          "No clock or uninterrupted build is shown.",
+          "No novice or cross-genre test is shown."
+        ],
+        "actions": [
+          "Use the template only after adapting and validating it."
+        ],
+        "limits": [
+          "Elapsed time and absolute absence of manual coding are unverified."
+        ]
+      },
+      "unknowns": [
+        "Whether any code was manually edited outside the shown recording.",
+        "Whether the total elapsed time was three hours."
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "Step 1 is Claude Code plus Kimi K2 API configuration",
+      "importance": "core",
+      "statement": "The first operational step is framed as configuring Claude Code to use a Kimi K2 thinking API, beginning with installation/setup screens and a provider/developer page.",
+      "provenance": "raw_fact",
+      "timeRange": {
+        "start": 14.252,
+        "end": 17.48
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "Narrated step-one instruction."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0040",
+          "supports": "Step card/provider-page UI within the unit window."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "No API account eligibility, pricing, or current availability is established."
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "Claude Code installation command shown",
+      "importance": "core",
+      "statement": "A code card shows `npm install -g @anthropic-ai/claude-code`. The narration says it can be sent to the terminal for one-click installation; the video shows terminal imagery but not an uninterrupted, auditable install log from command entry through completion.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 17.48,
+        "end": 21.3
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "Instruction to send the command to a terminal."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0052",
+          "supports": "Exact npm command is legible in the code card."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Node/npm prerequisites and actual command exit status are not shown."
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "Kimi CLI README commands and their status",
+      "importance": "core",
+      "statement": "The Kimi CLI README says it is a Python package and shows `uv tool install --python 3.13 kimi-cli`; verification uses `kimi --help`; upgrading uses `uv tool upgrade kimi-cli --no-cache`. These are README instructions visible on screen, not commands demonstrated as executed in this segment.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 21.3,
+        "end": 23.367
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "Installation, verification and upgrade blocks are visible."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads the exact Kimi README commands; spacing was checked against TARGET-0070."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "The README's current upstream version and whether the commands were run in this production are not established."
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "Kimi K2 capability and availability claims",
+      "importance": "context",
+      "statement": "The author describes the model as able to think and act with agent capability and convenient to use domestically. These statements are promotional/contextual claims; the clip does not benchmark the model or compare provider/version alternatives.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 23.367,
+        "end": 28.91
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "Agent-capability claim."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "Convenience/version wording retained verbatim despite recognition ambiguity."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0087",
+          "supports": "Kimi K2 feature-card transition."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0095",
+          "supports": "Kimi claim card within the unit window."
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "The final phrase in CUE-010 is transcription-ambiguous.",
+        "No comparative performance evaluation is shown."
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "API creation and environment configuration",
+      "importance": "core",
+      "statement": "The workflow visits the Kimi developer platform, creates/obtains an API key, replaces the token portion of a terminal snippet, and appends Kimi-related environment variables to `~/.zshrc`. The visible snippet includes `ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic`, an `ANTHROPIC_AUTH_TOKEN` placeholder/value area, and model variables set to `kimi-k2-thinking-turbo`, including default Opus/Sonnet/Haiku and `CLAUDE_CODE_SUBAGENT_MODEL`. The secret itself is not reconstructed.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 28.91,
+        "end": 38.5
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "Developer-platform/API acquisition step."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "Token replacement and terminal submission step."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "API creation state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0140",
+          "supports": "Terminal configuration state."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01019",
+          "supports": "Canonical OCR reads the Moonshot Anthropic base URL."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01021",
+          "supports": "Canonical OCR reads ANTHROPIC_MODEL."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01024",
+          "supports": "Canonical OCR reads the default Haiku model variable."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01025",
+          "supports": "Canonical OCR reads CLAUDE_CODE_SUBAGENT_MODEL."
+        }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Kimi developer-platform API key plus the visible shell snippet.",
+        "actions": [
+          "Create or obtain the API key.",
+          "Replace the token field only.",
+          "Append the ANTHROPIC/Kimi variables to ~/.zshrc.",
+          "Load the configuration and launch Claude Code."
+        ],
+        "parameters": [
+          "ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic",
+          "ANTHROPIC_AUTH_TOKEN=<secret not reconstructed>",
+          "ANTHROPIC_MODEL=kimi-k2-thinking-turbo",
+          "ANTHROPIC_DEFAULT_OPUS_MODEL=kimi-k2-thinking-turbo",
+          "ANTHROPIC_DEFAULT_SONNET_MODEL=kimi-k2-thinking-turbo",
+          "ANTHROPIC_DEFAULT_HAIKU_MODEL=kimi-k2-thinking-turbo",
+          "CLAUDE_CODE_SUBAGENT_MODEL=kimi-k2-thinking-turbo"
+        ],
+        "output": "A Claude Code session ready for the visible greeting test.",
+        "beforeFrames": [
+          "TARGET-0110"
+        ],
+        "duringFrames": [
+          "TARGET-0118",
+          "TARGET-0140"
+        ],
+        "afterFrames": [
+          "TARGET-0174"
+        ],
+        "unknowns": [
+          "API secret value.",
+          "Exact shell persistence outside the shown session."
+        ]
+      },
+      "unknowns": [
+        "The API key value.",
+        "Whether variables persist outside the shown shell and whether all names were required by the current software version."
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "Visible configuration success criteria",
+      "importance": "core",
+      "statement": "The visible Claude Code success state contains five distinct signals: `Claude Code v2.0.31`, model `kimi-k2-thinking-turbo`, label `API Usage Billing`, an English `hi` greeting exchange, and a Chinese `你好` exchange/response. High-resolution OCR resolves these correctly; the initial low-resolution OCR misread the version and is not used for the value.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 37.2,
+        "end": 44.88
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "Configuration test and congratulations."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "Successful client run and transition to requirements."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0174",
+          "supports": "All visible terminal success signals in one state."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement resolves version, model, billing, and greeting text against TARGET-0174."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "A greeting test does not prove all coding operations or billing behavior work correctly."
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "The specification is much richer than the spoken five fields",
+      "importance": "core",
+      "statement": "The displayed `universal_game_prompt.md` is a detailed implementation specification, not merely world view, protagonist, plot, gameplay, and values. It asks for a single-page application; semantic HTML5; Vanilla CSS with no Tailwind and handwritten advanced CSS; a modern glassmorphism visual style with micro-interactions and responsive desktop/mobile behavior; Vanilla JavaScript ES6+, OOP and separated state management.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 43.767,
+        "end": 50.15
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "Narration summarizes world view, protagonist, plot and gameplay."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0221",
+          "supports": "Tech-stack and architecture lines are visible."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads SPA, HTML5, Vanilla CSS/no Tailwind, ES6+, OOP and state management against TARGET-0221."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "The video does not show a complete conformance test against every specification line."
+      ]
+    },
+    {
+      "id": "KU-10",
+      "title": "Specified systems, UI, and local file structure",
+      "importance": "core",
+      "statement": "The specification names a GameEngine with day/time-period management, state updates, branching Intro/Ending and random daily events, plus localStorage save/load. It specifies protagonist values and visual feedback with Bad Ending conditions; CharacterManager/NPC data, dating/gift/dialogue affinity changes and character details; typewriter dialogue, portrait switching, top date/time/core-value HUD, and menu/record UI. It calls for `index.html`, `styles.css`, and `game.js` or multiple JS files plus assets under `assets/images/`.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 46.0,
+        "end": 53.32
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0234",
+          "supports": "GameEngine, localStorage and CharacterManager lines."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0248",
+          "supports": "Bad Ending, NPC, UI/HUD and index.html structure."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-02244",
+          "supports": "Canonical OCR reads CharacterManager."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-02365",
+          "supports": "Canonical OCR reads the character-system heading in a later spec state."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-02478",
+          "supports": "Canonical OCR reads the index.html structure line."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "Author says the framework is quickly written."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "These are requirements; the preview does not prove that each one was implemented correctly."
+      ]
+    },
+    {
+      "id": "KU-11",
+      "title": "The agent reads an already populated project state",
+      "importance": "core",
+      "statement": "Before the shown implementation work, the coding-agent terminal reports a current folder where `/story` already has a complete design document, `/characters` already has JSON for five romance targets, and `/assets/images` already contains game images, while `/gameplay` is currently empty and `/image_pipeline` is empty. The video does not establish who created the populated files or when; they must not be described as newly generated in this moment.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 50.16,
+        "end": 56.0
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0301",
+          "supports": "Existing folder state is visible."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads populated and empty directory status against TARGET-0301."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Who authored the design/JSON files and which assets predate this screen.",
+        "Whether the screen is the first project state or a later edited copy."
+      ]
+    },
+    {
+      "id": "KU-12",
+      "title": "Project premise, cast, values, schedule and action plan",
+      "importance": "core",
+      "statement": "The visible project document describes an otome/simulation/urban-realism/workplace-rebirth game about a 25-year-old woman laid off by an internet company in a fictional city. The agent enumerates five male targets (OCR reads names/ages/jobs such as a 28-year-old algorithm leader, 30-year-old PM, 26-year-old growth operator, 25-year-old UI designer, and 33-year-old deputy director), core status categories including energy, mood, pressure, money, career and social, plus time-of-day/actions. The agent says the document is complete enough that game code, event logic and interaction systems still need implementation.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 53.32,
+        "end": 61.7
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "Premise and multiple male characters."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "Core values and existing text."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads the project overview and five-character inventory against TARGET-0301."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-03644",
+          "supports": "Canonical OCR reads the story directory."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-03645",
+          "supports": "Canonical OCR reads the character JSON directory and count."
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-03774",
+          "supports": "Canonical OCR states that code, events and interaction systems remain to be implemented."
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "Several Chinese character names and some action labels are OCR-ambiguous, so exact spellings beyond clearly legible rows should be checked in the source document."
+      ]
+    },
+    {
+      "id": "KU-13",
+      "title": "Art is identified as the remaining gap",
+      "importance": "core",
+      "statement": "After text, framework and design material are discussed, the author says many images are missing—especially character portraits—and treats those images as central to the visual novel.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 60.55,
+        "end": 64.829
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "Explicit art gap and character-image priority."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0352",
+          "supports": "Project-content state immediately before the external-art transition."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "No complete inventory of required versus existing images is shown."
+      ]
+    },
+    {
+      "id": "KU-14",
+      "title": "External unbranded image-generation result grids",
+      "importance": "core",
+      "statement": "A hard cut shows a separate, unbranded image-generation interface with text prompts/descriptions and repeated groups of four visual variants for character concepts. Save/download-like controls are visible. The interface brand, model, prompt history, generation parameters and licensing are not shown, and four variants in a row must not be counted as four final game assets.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 61.7,
+        "end": 66.6
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0383",
+          "supports": "One four-variant character group and controls."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0389",
+          "supports": "Additional four-variant groups."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0395",
+          "supports": "Step-three art-assets framing and additional groups."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Product/model identity, prompt text in full, seed/settings, selected variant, download event, and rights/licensing."
+      ]
+    },
+    {
+      "id": "KU-15",
+      "title": "Human save/name/place step and Finder file convention",
+      "importance": "core",
+      "statement": "The author explicitly keeps the art step: she says to run it yourself and put the results in a folder. A Finder `images` directory then shows two Chinese-named files plus assets using conventions such as `protagonist_neutral.png`, `lin_yushen_neutral.png`, other `*_neutral.png` portraits, and `bg_*.png` backgrounds including street-rain, office-day, home, park-evening, convenience-store and bookstore names. This visible folder state supports a manual save/download/naming/placement handoff, not automatic creation by Claude Code.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 64.829,
+        "end": 68.2
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "Author says to run the art step and place files in a folder."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0423",
+          "supports": "Finder images directory with portrait/background assets."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads Finder filename conventions against TARGET-0423."
+        }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Candidate character/background images shown in the external results UI.",
+        "actions": [
+          "Human reviews variant groups.",
+          "Human saves or downloads selected images.",
+          "Human names the files.",
+          "Human places them in the local images folder."
+        ],
+        "parameters": [
+          "portrait convention: *_neutral.png",
+          "background convention: bg_*.png"
+        ],
+        "output": "A local Finder images folder containing named portrait and background PNG files.",
+        "beforeFrames": [
+          "TARGET-0383"
+        ],
+        "duringFrames": [
+          "TARGET-0395"
+        ],
+        "afterFrames": [
+          "TARGET-0423"
+        ],
+        "unknowns": [
+          "Exact selected variant for each file.",
+          "Exact download click and per-file generation provenance."
+        ]
+      },
+      "unknowns": [
+        "Which exact variant was selected for each file and whether all visible files came from the same generator session."
+      ]
+    },
+    {
+      "id": "KU-16",
+      "title": "Local asset handoff to the coding agent",
+      "importance": "core",
+      "statement": "The next instruction tells Claude Code that art assets have been placed in the folder and asks it to find and add them to the game. The agent UI reads/analyzes files and reports implementation work. The human supplies organized local inputs; the agent's role begins at discovery/integration rather than at the external image generation itself.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 68.2,
+        "end": 74.033
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "Explicit folder-to-agent instruction."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0425",
+          "supports": "Finder before handoff."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0431",
+          "supports": "Agent reads/handles the art instruction."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0437",
+          "supports": "Agent work/completion state before preview."
+        }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Named local art files and a human instruction that assets are in the folder.",
+        "actions": [
+          "Tell Claude Code where the art assets were placed.",
+          "Agent searches/reads the folder.",
+          "Agent integrates the files into the game."
+        ],
+        "parameters": [],
+        "output": "Agent reports a runnable project before the preview cut.",
+        "beforeFrames": [
+          "TARGET-0425"
+        ],
+        "duringFrames": [
+          "TARGET-0431"
+        ],
+        "afterFrames": [
+          "TARGET-0437"
+        ],
+        "unknowns": [
+          "Exact path/transport and complete code diff."
+        ]
+      },
+      "unknowns": [
+        "Exact file-transfer mechanism/path and complete file diff are not shown."
+      ]
+    },
+    {
+      "id": "KU-17",
+      "title": "Delivery boundary is a local index.html browser SPA",
+      "importance": "core",
+      "statement": "The agent's completion note says the project can be run by double-clicking `index.html` in a browser; it also points to story and character files and reuse of `universal_game_prompt.md`. A later local browser-like preview is shown. Although a human prompt calls the intended product a mobile game, the observable deliverable is only an HTML/browser preview: the clip does not show hosting, packaging, app-store deployment, a native build, or a standalone executable.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 72.806,
+        "end": 91.2
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "Agent completion and preview opening."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0445",
+          "supports": "Local browser preview state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0526",
+          "supports": "Later scrolled agent completion state containing the index.html/browser instruction."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads the index.html/browser instruction against TARGET-0526."
+        }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "Agent-completed HTML/CSS/JavaScript project.",
+        "actions": [
+          "Double-click index.html.",
+          "Run it in a local browser.",
+          "Open the visual preview."
+        ],
+        "parameters": [
+          "entry file: index.html",
+          "runtime: local web browser",
+          "architecture: SPA"
+        ],
+        "output": "A locally previewable visual-novel prototype.",
+        "beforeFrames": [
+          "TARGET-0438"
+        ],
+        "duringFrames": [
+          "TARGET-0443"
+        ],
+        "afterFrames": [
+          "TARGET-0445"
+        ],
+        "unknowns": [
+          "No hosting, native/mobile packaging, app-store release or standalone executable is shown."
+        ]
+      },
+      "unknowns": [
+        "Browser URL/path is not continuously legible.",
+        "No mobile packaging, hosting or release is demonstrated."
+      ]
+    },
+    {
+      "id": "KU-18",
+      "title": "What the preview actually shows—and does not test",
+      "importance": "core",
+      "statement": "The preview visibly contains a top HUD with day/period and multiple numeric/color status indicators, character portraits over several backgrounds, a protagonist thumbnail, and a dialogue box that advances through several lines. At least a dark-haired character and a glasses-wearing character appear in distinct scenes. The clip does not visibly operate save/load, bad endings, random events, character detail, affinity changes, schedule/action menus, responsive/mobile behavior or release packaging, so those specified systems remain unverified.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 74.0,
+        "end": 90.86
+      },
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0445",
+          "supports": "Initial office scene, top HUD, two characters and dialogue."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0453",
+          "supports": "Advanced dialogue in same scene."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0469",
+          "supports": "Different character/background scene."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0522",
+          "supports": "Another character/background and the old overlapping layout."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Exact number of implemented characters/scenes beyond the examples shown."
+      ]
+    },
+    {
+      "id": "KU-19",
+      "title": "AI-written dialogue claim plus human editorial review",
+      "importance": "core",
+      "statement": "The author says Claude Code and K2 wrote the dialogue, while she personally reviewed every line. She judges the exchanges natural, lived-in and emotional, and better than most screenwriters, while contrasting them with DeepSeek. The authorship allocation and review step are claims consistent with the workflow; the quality comparison is subjective and not independently tested.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 77.3,
+        "end": 89.23
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "AI-writing and human line-by-line review claim."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "Natural/lived-in/emotional judgment."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "DeepSeek and screenwriter comparison."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0461",
+          "supports": "First dialogue example in the review window."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0490",
+          "supports": "Additional preview/dialogue state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0510",
+          "supports": "Later dialogue example before layout rejection."
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "The AI-generated dialogue is unusually natural and strong.",
+        "evidenceUnitIds": [
+          "KU-19"
+        ],
+        "conditions": [
+          "Based on the visible examples and the author’s personal review."
+        ],
+        "counterexamples": [
+          "No blinded comparison, rubric or external reviewer is provided."
+        ],
+        "actions": [
+          "Retain human line-by-line editorial review."
+        ],
+        "limits": [
+          "The full script and complete authorship provenance are unavailable."
+        ]
+      },
+      "unknowns": [
+        "Whether every dialogue line was AI-written and whether every line was reviewed cannot be audited from the clip."
+      ]
+    },
+    {
+      "id": "KU-20",
+      "title": "Human-directed layout revision with visible CSS edit",
+      "importance": "core",
+      "statement": "The old preview places a large character image over the scene. The author says she dislikes the overlap and asks that, during dialogue, only the thumbnail under the dialogue box remain while the background character image is hidden. Claude Code reads the project and edits `Desktop/乙女向大厂裁员文游_副本/styles.css`; visible parameters include absolute positioning, bottom/left/transform, `height: 85vh`, flex-end alignment, pointer-events control, and a `display: none !important` rule. The after state shows dialogue/choice screens without the same large overlapping foreground character. This is a human review-and-revise loop, not one-pass automation.",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 89.23,
+        "end": 98.833
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "Human rejects the current layout."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "Human instructs Claude Code to revise."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "New-version and improved-effect claim."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0522",
+          "supports": "Before state with foreground overlap."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0530",
+          "supports": "Human revision prompt state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0534",
+          "supports": "styles.css edit state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0537",
+          "supports": "After state without the same large foreground overlap."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement reads revision prompt and CSS edit against TARGET-0530 and TARGET-0534."
+        }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "An initial preview with a large character overlapping the scene and dialogue composition.",
+        "actions": [
+          "Human rejects the layout.",
+          "Human requests keeping only the dialogue-box thumbnail and hiding the larger character during dialogue.",
+          "Claude Code reads the project and edits styles.css.",
+          "The revised preview is opened."
+        ],
+        "parameters": [
+          "position:absolute",
+          "bottom:0",
+          "left/transform centering",
+          "height:85vh",
+          "display:flex",
+          "align-items:flex-end",
+          "pointer-events:none",
+          "display:none !important for the dialogue-state image rule"
+        ],
+        "output": "A revised dialogue/choice state without the same large overlapping foreground character.",
+        "beforeFrames": [
+          "TARGET-0522"
+        ],
+        "duringFrames": [
+          "TARGET-0530",
+          "TARGET-0534"
+        ],
+        "afterFrames": [
+          "TARGET-0537",
+          "TARGET-0541"
+        ],
+        "unknowns": [
+          "Hard cuts prevent proof of an unchanged runtime session.",
+          "Responsive behavior was not tested."
+        ]
+      },
+      "unknowns": [
+        "Hard cuts prevent proving every after frame is the exact same runtime session or that all breakpoints were tested."
+      ]
+    },
+    {
+      "id": "KU-21",
+      "title": "Closing genre generalization and document CTA",
+      "importance": "context",
+      "statement": "The ending illustrates workplace comeback, historical/fantasy crossing, and mystery/puzzle themes, then claims the same method/template works even for viewers unfamiliar with game development, code or AI, and invites viewers to ask for the document. The three illustrations are genre examples, not three completed games or proof of universal beginner success.",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 97.695,
+        "end": 111.061
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "Three genre examples and simplicity framing."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "Method/template generalization."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "Beginner/plain-language/own-game claim."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "Document request CTA."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0542",
+          "supports": "Opening closing-genre example."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0560",
+          "supports": "Later closing claim/overlay state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0577",
+          "supports": "Final CTA state."
+        }
+      ],
+      "confidence": "high",
+      "argument": {
+        "claim": "The prompt/workflow generalizes to multiple genres and novice users.",
+        "evidenceUnitIds": [
+          "KU-21"
+        ],
+        "conditions": [
+          "Three genres are shown only as illustrations."
+        ],
+        "counterexamples": [
+          "No separate end-to-end builds or novice-user trials are shown."
+        ],
+        "actions": [
+          "Validate each adapted genre project independently."
+        ],
+        "limits": [
+          "Universal beginner success is not established."
+        ]
+      },
+      "unknowns": [
+        "Document availability, contents, license and suitability outside this example."
+      ]
+    },
+    {
+      "id": "KU-22",
+      "title": "Cross-cut project continuity is not proven",
+      "importance": "core",
+      "statement": "Terminal, document, external-art, Finder and preview sections are connected by narration and similar project language, but frequent hard cuts and incomplete path/version visibility do not prove they all belong to one unchanged project version or uninterrupted session. Relationships across those segments are workflow-level associations, not forensically closed continuity.",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 28.91,
+        "end": 98.833
+      },
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-009",
+          "supports": "API/developer transition begins a hard-cut sequence."
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-014",
+          "supports": "Specification/project document segment."
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-018",
+          "supports": "Finder/agent handoff segment."
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-022",
+          "supports": "Revised-preview segment."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0301",
+          "supports": "One visible project state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0423",
+          "supports": "Finder asset state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0445",
+          "supports": "Preview state."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Exact session, revision, timestamps and checksums for documents/assets/code are unavailable."
+      ],
+      "reasoning": "The narration links these stages, but the source changes applications and shots without a continuously visible path, revision identifier, checksum, or session marker. Therefore the workflow association is supported while identity as one unchanged project version remains unproved."
+    },
+    {
+      "id": "KU-23",
+      "title": "Non-speech audio channel inspected; role remains unknown",
+      "importance": "context",
+      "statement": "The media has an AAC stereo audio stream throughout the 111.061-second file. Local signal inspection found persistent energy and no silence interval of at least 250 ms under the chosen -45 dB threshold, but waveform/spectrogram inspection could not reliably separate narration leakage from distinct music or sound effects. No specific music/SFX identity or narrative function is asserted.",
+      "provenance": "raw_fact",
+      "timeRange": {
+        "start": 0,
+        "end": 111.061
+      },
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6928316c000000001e0397ba.mp4",
+          "supports": "Raw video path registered by the evidence pack; media metadata confirms the AAC audio carrier."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-04",
+          "supports": "Registered derived audio inspection; source separation remained inconclusive."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Whether a distinct background-music or sound-effect track exists and what role it serves."
+      ]
+    },
+    {
+      "id": "KU-24",
+      "title": "Human retains workflow ownership",
+      "importance": "core",
+      "statement": "The demonstrated process is human-directed: the author supplies/curates a detailed specification, chooses to proceed, creates or obtains the API key, handles external image generation and local files, reviews dialogue line by line, rejects a layout, and formulates the revision. The coding agent performs configuration-dependent generation/integration/editing inside those human decisions. Describing the workflow as autonomous end-to-end generation would erase necessary inputs and review gates.",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 28.91,
+        "end": 98.833
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "Human replaces API data and sends terminal input."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "Human supplies the prompt/specification."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "Human handles art generation/files."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "Human line-by-line review."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "Human rejects layout."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "Human specifies revision direction."
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "The proportion of off-camera human editing or curation is not measurable from the clip."
+      ],
+      "reasoning": "CUE-012 shows the human replacing/sending configuration input; CUE-015 shows the human supplying the specification; CUE-020 shows the human operating the art/file step; CUE-023 shows line-by-line review; and CUE-026/CUE-027 show human rejection and revision direction. Across independent stages, those observable actions justify the inference that the human retains workflow ownership."
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-03",
+      "to": "KU-07",
+      "relation": "setup requires an API key and environment configuration",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "Configuration is introduced as step one."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "API acquisition follows installation."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "Token/configuration is sent to the terminal."
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-08",
+      "relation": "configuration is checked by visible client/model/billing/greeting state",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0174",
+          "supports": "Configuration outcome UI."
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-10",
+      "relation": "high-level game brief expands into engineering, system, UI and file requirements",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0221",
+          "supports": "High-level and technical specification state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0234",
+          "supports": "System/character specification state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0248",
+          "supports": "UI/file structure state."
+        }
+      ]
+    },
+    {
+      "from": "KU-11",
+      "to": "KU-12",
+      "relation": "agent analyzes pre-existing project documents before implementation",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0301",
+          "supports": "Agent reads current directory/project state."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution project-state OCR against TARGET-0301."
+        }
+      ]
+    },
+    {
+      "from": "KU-13",
+      "to": "KU-14",
+      "relation": "missing art motivates a separate image-generation pass",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "Art gap motivates the next stage."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0352",
+          "supports": "Pre-transition project state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0383",
+          "supports": "External result grid."
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-15",
+      "relation": "external candidate images become human-curated local files",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "Human-run and folder-placement step."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0423",
+          "supports": "Local assets after external UI."
+        }
+      ]
+    },
+    {
+      "from": "KU-15",
+      "to": "KU-16",
+      "relation": "named local files are handed to the coding agent for discovery/integration",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "Explicit handoff instruction."
+        }
+      ]
+    },
+    {
+      "from": "KU-16",
+      "to": "KU-17",
+      "relation": "agent integration leads to a locally previewable HTML result",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "Agent completion leads to preview."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0445",
+          "supports": "Local browser preview."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0526",
+          "supports": "Later visible run instruction."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered OCR supplement for TARGET-0526."
+        }
+      ]
+    },
+    {
+      "from": "KU-17",
+      "to": "KU-18",
+      "relation": "local runtime shows selected UI states but not full system verification",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0445",
+          "supports": "First preview state."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0469",
+          "supports": "Different preview scene."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0522",
+          "supports": "Later preview/layout state."
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-20",
+      "relation": "human review of the preview produces a layout revision and changed UI",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "Human rejects the old layout."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "Human requests revision."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "Revised result is presented."
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-09",
+      "relation": "human planning constrains agent implementation",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "Human provides the prompt/specification."
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-15",
+      "relation": "human asset operations bridge the external tool and agent",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "Human runs and places assets."
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-20",
+      "relation": "human editorial judgment directs a concrete code revision",
+      "evidence": [
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0530",
+          "supports": "Human revision prompt."
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0534",
+          "supports": "Agent CSS edit."
+        },
+        {
+          "refType": "source",
+          "ref": "DS-03",
+          "supports": "Registered high-resolution OCR supplement for those frames."
+        }
+      ]
+    },
+    {
+      "from": "KU-22",
+      "to": "KU-16",
+      "relation": "hard-cut continuity limits causal certainty across the file handoff",
+      "evidence": [
+        {
+          "refType": "shot",
+          "ref": "SHOT-015",
+          "supports": "External-art transition shot."
+        },
+        {
+          "refType": "shot",
+          "ref": "SHOT-018",
+          "supports": "Finder/agent handoff shot."
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-02",
+      "relation": "closing generalization restates the opening speed/accessibility promise without adding validation",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "Closing genre generalization."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "Template generalization."
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "Beginner-accessibility promise."
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-06",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-07",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-08",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-09",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-10",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-11",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-12",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-13",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-14",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-03",
+          "KU-04",
+          "KU-05"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-06"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-07"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-08"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-09",
+          "KU-10"
+        ]
+      },
+      {
+        "id": "MC-08",
+        "captured": true,
+        "unitIds": [
+          "KU-11",
+          "KU-12"
+        ]
+      },
+      {
+        "id": "MC-09",
+        "captured": true,
+        "unitIds": [
+          "KU-13",
+          "KU-14"
+        ]
+      },
+      {
+        "id": "MC-10",
+        "captured": true,
+        "unitIds": [
+          "KU-15"
+        ]
+      },
+      {
+        "id": "MC-11",
+        "captured": true,
+        "unitIds": [
+          "KU-16",
+          "KU-17"
+        ]
+      },
+      {
+        "id": "MC-12",
+        "captured": true,
+        "unitIds": [
+          "KU-18",
+          "KU-19"
+        ]
+      },
+      {
+        "id": "MC-13",
+        "captured": true,
+        "unitIds": [
+          "KU-20"
+        ]
+      },
+      {
+        "id": "MC-14",
+        "captured": true,
+        "unitIds": [
+          "KU-21"
+        ]
+      },
+      {
+        "id": "MC-15",
+        "captured": true,
+        "unitIds": [
+          "KU-21"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-H01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-012",
+          "TARGET-0174"
+        ]
+      },
+      {
+        "id": "REL-H02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-015",
+          "TARGET-0221",
+          "TARGET-0234"
+        ]
+      },
+      {
+        "id": "REL-H03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0221",
+          "TARGET-0301",
+          "DS-03"
+        ]
+      },
+      {
+        "id": "REL-H04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0301",
+          "OCR-03774"
+        ]
+      },
+      {
+        "id": "REL-H05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0383",
+          "TARGET-0395",
+          "CUE-020",
+          "TARGET-0423"
+        ]
+      },
+      {
+        "id": "REL-H06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0423",
+          "CUE-021",
+          "TARGET-0431"
+        ]
+      },
+      {
+        "id": "REL-H07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-022",
+          "TARGET-0445",
+          "TARGET-0526",
+          "DS-03"
+        ]
+      },
+      {
+        "id": "REL-H08",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-023",
+          "CUE-024",
+          "CUE-025",
+          "TARGET-0461"
+        ]
+      },
+      {
+        "id": "REL-H09",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0522",
+          "CUE-027",
+          "TARGET-0534",
+          "TARGET-0537"
+        ]
+      },
+      {
+        "id": "REL-H10",
+        "evidenced": true,
+        "evidenceRefs": [
+          "TARGET-0445",
+          "CUE-029",
+          "CUE-030",
+          "CUE-031",
+          "TARGET-0542"
+        ]
+      },
+      {
+        "id": "REL-H11",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-012",
+          "CUE-015",
+          "CUE-020",
+          "CUE-023",
+          "CUE-026",
+          "CUE-027"
+        ]
+      },
+      {
+        "id": "REL-H12",
+        "evidenced": true,
+        "evidenceRefs": [
+          "SHOT-009",
+          "SHOT-014",
+          "SHOT-018",
+          "SHOT-022"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01",
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-004",
+          "CUE-005"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-03",
+          "KU-06",
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-009",
+          "TARGET-0174"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-007",
+          "TARGET-0052"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "TARGET-0070",
+          "DS-03"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "CUE-011",
+          "CUE-012",
+          "TARGET-0140",
+          "OCR-01019"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "TARGET-0174",
+          "DS-03"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-09",
+          "KU-10"
+        ],
+        "evidenceRefs": [
+          "CUE-015",
+          "TARGET-0221",
+          "TARGET-0234",
+          "TARGET-0248"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-11"
+        ],
+        "evidenceRefs": [
+          "TARGET-0301",
+          "DS-03"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "answered",
+        "unitIds": [
+          "KU-12"
+        ],
+        "evidenceRefs": [
+          "CUE-017",
+          "CUE-018",
+          "OCR-03644",
+          "OCR-03645",
+          "OCR-03774"
+        ]
+      },
+      {
+        "id": "CQ-10",
+        "status": "answered",
+        "unitIds": [
+          "KU-14",
+          "KU-15"
+        ],
+        "evidenceRefs": [
+          "TARGET-0383",
+          "TARGET-0395",
+          "CUE-020",
+          "TARGET-0423"
+        ]
+      },
+      {
+        "id": "CQ-11",
+        "status": "answered",
+        "unitIds": [
+          "KU-16",
+          "KU-17"
+        ],
+        "evidenceRefs": [
+          "CUE-021",
+          "TARGET-0431",
+          "CUE-022",
+          "TARGET-0445",
+          "TARGET-0526"
+        ]
+      },
+      {
+        "id": "CQ-12",
+        "status": "answered",
+        "unitIds": [
+          "KU-18"
+        ],
+        "evidenceRefs": [
+          "TARGET-0445",
+          "TARGET-0469",
+          "TARGET-0522"
+        ]
+      },
+      {
+        "id": "CQ-13",
+        "status": "answered",
+        "unitIds": [
+          "KU-24"
+        ],
+        "evidenceRefs": [
+          "CUE-015",
+          "CUE-020",
+          "CUE-023",
+          "CUE-026",
+          "CUE-027"
+        ]
+      },
+      {
+        "id": "CQ-14",
+        "status": "answered",
+        "unitIds": [
+          "KU-20"
+        ],
+        "evidenceRefs": [
+          "TARGET-0522",
+          "TARGET-0530",
+          "TARGET-0534",
+          "TARGET-0537"
+        ]
+      },
+      {
+        "id": "CQ-15",
+        "status": "answered",
+        "unitIds": [
+          "KU-19"
+        ],
+        "evidenceRefs": [
+          "CUE-023",
+          "CUE-024",
+          "CUE-025"
+        ]
+      },
+      {
+        "id": "CQ-16",
+        "status": "answered",
+        "unitIds": [
+          "KU-02",
+          "KU-18",
+          "KU-21"
+        ],
+        "evidenceRefs": [
+          "CUE-003",
+          "CUE-030",
+          "CUE-031"
+        ]
+      },
+      {
+        "id": "CQ-17",
+        "status": "answered",
+        "unitIds": [
+          "KU-22"
+        ],
+        "evidenceRefs": [
+          "SHOT-009",
+          "SHOT-014",
+          "SHOT-018",
+          "SHOT-022"
+        ]
+      },
+      {
+        "id": "CQ-18",
+        "status": "answered",
+        "unitIds": [
+          "KU-21"
+        ],
+        "evidenceRefs": [
+          "CUE-029",
+          "TARGET-0542",
+          "CUE-032",
+          "TARGET-0577"
+        ]
+      },
+      {
+        "id": "CQ-19",
+        "status": "answered",
+        "unitIds": [
+          "KU-23"
+        ],
+        "evidenceRefs": [
+          "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6928316c000000001e0397ba.mp4",
+          "DS-04"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "context",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "Opening premise/attribution is retained as framing with provenance limit."
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "Names the development tool and output type."
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "Core speed/no-code claim, explicitly bounded."
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "Establishes reusable prompt-template claim."
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "Establishes reuse/learnability promise."
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "Defines step one."
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "Gives Claude Code installation operation."
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ],
+        "rationale": "Links one-click Claude installation framing and direct Kimi CLI alternative."
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "context",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "Capability claim retained without benchmark inflation."
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "uncertain",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "Domestic-use claim retained, but final ASR phrase is ambiguous."
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "API acquisition step."
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-24"
+        ],
+        "rationale": "Token replacement and terminal input; also human ownership."
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08"
+        ],
+        "rationale": "Configuration test transition."
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-09"
+        ],
+        "rationale": "Successful client run and move to requirements."
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-10",
+          "KU-24"
+        ],
+        "rationale": "Spoken brief is expanded by the visible specification."
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-11"
+        ],
+        "rationale": "Framework claim is reconciled with observed existing project state."
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12"
+        ],
+        "rationale": "Premise and cast."
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-13"
+        ],
+        "rationale": "Existing values/text and transition to missing visuals."
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13"
+        ],
+        "rationale": "Art gap."
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-15",
+          "KU-24"
+        ],
+        "rationale": "External generation and human folder placement."
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16"
+        ],
+        "rationale": "File handoff to the coding agent."
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-18"
+        ],
+        "rationale": "Completion and local preview."
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-19",
+          "KU-24"
+        ],
+        "rationale": "AI dialogue authorship claim and human review ownership."
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "context",
+        "unitIds": [
+          "KU-19"
+        ],
+        "rationale": "Subjective dialogue-quality judgment."
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "context",
+        "unitIds": [
+          "KU-19"
+        ],
+        "rationale": "Subjective comparison, not independently validated."
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20",
+          "KU-24"
+        ],
+        "rationale": "Human rejects initial layout."
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20",
+          "KU-24"
+        ],
+        "rationale": "Revision instruction and agent rerun/edit."
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-20"
+        ],
+        "rationale": "New-version/after-state claim."
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "context",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "Genre generalization examples."
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "context",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "Method/template generalization."
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "context",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "Beginner/plain-language promise, bounded as unverified."
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "context",
+        "unitIds": [
+          "KU-21"
+        ],
+        "rationale": "Closing document CTA."
+      }
+    ],
+    "coreEvidence": {
+      "covered": 20,
+      "total": 20
+    },
+    "unknowns": [
+      "API secret/token value.",
+      "External image generator brand, model, prompts, settings and licenses.",
+      "Origin and creation time of already populated project files/assets.",
+      "Continuous version/session identity across hard cuts.",
+      "Independent proof of three-hour, absolute zero-code and beginner/cross-genre claims.",
+      "Implementation correctness of save/load, bad endings, random events, character details, affinity, schedules/actions and responsive behavior.",
+      "Release/hosting/mobile/native/standalone status beyond the local index.html browser preview.",
+      "Specific non-speech audio identity or narrative role."
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "The protocol checked the full gap-free timeline, all 32 cues and mapped shots, OCR/UI and action carriers, before/during/after state changes, file provenance and human handoffs, local-runtime/release limits, hard-cut continuity, and the AAC audio carrier. This is only the reconstruction meta-gate; no independent evaluator or READY determination is claimed."
+  },
+  "derivedSources": [
+    {
+      "id": "DS-01",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-derived targeted frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs",
+      "timeRange": {
+        "start": 0,
+        "end": 111.061
+      },
+      "limitations": [
+        "Frames are protocol-selected samples, not every video frame.",
+        "Generated JPEG frames are 360x640 and may make small UI text difficult to OCR."
+      ]
+    },
+    {
+      "id": "DS-02",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "full targeted-frame OCR evidence",
+      "producedBy": "ocr-frames.swift over DS-01",
+      "timeRange": {
+        "start": 0,
+        "end": 111.061
+      },
+      "limitations": [
+        "OCR text is a proposal and was checked against frames.",
+        "Low-resolution OCR can misread code, names, punctuation and version numbers."
+      ]
+    },
+    {
+      "id": "DS-03",
+      "path": "targeted-evidence/ocr-crops-evidence.json",
+      "kind": "high-resolution critical-frame OCR supplement",
+      "producedBy": "exact-time source-video crops plus ocr-frames.swift",
+      "timeRange": {
+        "start": 21.7,
+        "end": 95.2
+      },
+      "limitations": [
+        "Contains ten selected critical frames, not a complete second pass.",
+        "Manual visual verification remains authoritative when OCR punctuation or spacing conflicts with the image."
+      ]
+    },
+    {
+      "id": "DS-04",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/6928316c000000001e0397ba.mp4#audio",
+      "kind": "audio stream and signal inspection",
+      "producedBy": "ffprobe plus ffmpeg silencedetect and spectrogram inspection",
+      "timeRange": {
+        "start": 0,
+        "end": 111.061
+      },
+      "limitations": [
+        "Signal inspection cannot reliably separate narration leakage from distinct music or sound effects.",
+        "No source-separation or semantic audio classifier result is available."
+      ]
+    }
+  ]
+}

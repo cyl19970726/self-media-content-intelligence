@@ -1,0 +1,127 @@
+{
+  "id": "688ab6260000000022020d3e",
+  "title": "太强大啦！AI一键控制任何角色",
+  "archetype": "强视觉演示 / 工具教程",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/688ab6260000000022020d3e",
+  "media": {
+    "file": "media/688ab6260000000022020d3e.mp4",
+    "subtitle": "media/688ab6260000000022020d3e.srt",
+    "durationSeconds": 22.477,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 2728882
+  },
+  "engagement": {
+    "likes": 24000,
+    "collections": 31000,
+    "comments": 133,
+    "shares": 3284,
+    "collectionToLike": 1.292,
+    "commentToLike": 0.006,
+    "shareToLike": 0.137
+  },
+  "transcript": {
+    "cueCount": 5,
+    "totalCharacters": 139,
+    "charactersPerMinute": 371,
+    "first3Seconds": "演员的天塌了，你现在就是任意演员，不管是动漫角色还是电影角色",
+    "first6Seconds": "演员的天塌了，你现在就是任意演员，不管是动漫角色还是电影角色 你都能靠一张嘴驱动，口型和动作都能同步",
+    "fullText": "演员的天塌了，你现在就是任意演员，不管是动漫角色还是电影角色 你都能靠一张嘴驱动，口型和动作都能同步 这就是runway的黑科技act one 你只需要上传一段视频，再贴一张你想祛痘的图，几分钟就能让土里的人活过来 你可以用一句话就可以批图改图，比如给图片换表情，改动作，变风格都超级简单",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0,
+        "end": 5.17,
+        "duration": 5.17,
+        "midpoint": 2.585,
+        "text": "演员的天塌了，你现在就是任意演员，不管是动漫角色还是电影角色",
+        "frame": "evidence/688ab6260000000022020d3e/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 5.18,
+        "end": 8.66,
+        "duration": 3.48,
+        "midpoint": 6.92,
+        "text": "你都能靠一张嘴驱动，口型和动作都能同步",
+        "frame": "evidence/688ab6260000000022020d3e/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 8.66,
+        "end": 10.79,
+        "duration": 2.13,
+        "midpoint": 9.725,
+        "text": "这就是runway的黑科技act one",
+        "frame": "evidence/688ab6260000000022020d3e/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 10.8,
+        "end": 16.26,
+        "duration": 5.46,
+        "midpoint": 13.53,
+        "text": "你只需要上传一段视频，再贴一张你想祛痘的图，几分钟就能让土里的人活过来",
+        "frame": "evidence/688ab6260000000022020d3e/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 16.27,
+        "end": 22.476,
+        "duration": 6.206,
+        "midpoint": 19.373,
+        "text": "你可以用一句话就可以批图改图，比如给图片换表情，改动作，变风格都超级简单",
+        "frame": "evidence/688ab6260000000022020d3e/transcript-frames/cue-005.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      1.6,
+      3.2,
+      6.833,
+      8.6,
+      10.833,
+      16.333
+    ],
+    "detectedShotCount": 7,
+    "cutsPerMinute": 16,
+    "medianShotSeconds": 2.233,
+    "shortestShotSeconds": 1.6,
+    "longestShotSeconds": 6.144
+  },
+  "evidence": {
+    "contactSheet": "evidence/688ab6260000000022020d3e/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/688ab6260000000022020d3e/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      1.179,
+      2.358,
+      3.536,
+      4.715,
+      5.894,
+      7.073,
+      8.252,
+      9.43,
+      10.609,
+      11.788,
+      12.967,
+      14.145,
+      15.324,
+      16.503,
+      17.682,
+      18.861,
+      20.039,
+      21.218,
+      22.397
+    ]
+  }
+}

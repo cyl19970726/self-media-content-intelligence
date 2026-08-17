@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/run-manifest.schema.json",
+  "title": "Creator analysis run manifest",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "creatorId", "createdAt", "updatedAt", "artifacts", "stages", "invalidation"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "creatorId": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "minLength": 1 },
+    "updatedAt": { "type": "string", "minLength": 1 },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": ["string", "null"] }
+    },
+    "stages": {
+      "type": "object",
+      "required": ["collection", "portfolio", "selection", "reconstruction", "synthesis", "dashboard", "validation"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "enum": ["pending", "in_progress", "blocked", "complete", "invalidated"] },
+          "updatedAt": { "type": ["string", "null"] },
+          "reason": { "type": ["string", "null"] }
+        },
+        "additionalProperties": true
+      }
+    },
+    "invalidation": {
+      "type": "object",
+      "required": ["sourceRevision", "invalidatedStages"],
+      "properties": {
+        "sourceRevision": { "type": ["string", "null"] },
+        "invalidatedStages": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

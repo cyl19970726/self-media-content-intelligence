@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "id": "69e17ae8000000002003ba1f",
+  "capturedAt": "2026-08-16T11:10:10.673Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "线上Demo Day：来演示你与agents的协作方式",
+    "postCopy": "上次在湾区的线下活动“如何打造AI native的组织”干货很多，为了让更多各地的朋友有机会参与谈论和学习，我将会办一场线上活动！\n\t\n形式是Demo Day，会请10-20位在与agents深度协作的朋友来现场投屏演示自己的工作方式，只有干货，不讲虚的～\n\t\n报名方式：图3\n\t\n欢迎大家报名参与旁听或演示，旁听无需筛选（报名即可），演示需要填写申请表单、通过筛选",
+    "hashtags": [],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/69e17ae8000000002003ba1f",
+    "mediaType": "image",
+    "publishedAt": "2026-04-17T00:12:24.000Z",
+    "likes": "788",
+    "collections": "600",
+    "comments": "81",
+    "shares": "456",
+    "expectedDurationSec": null
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": []
+}

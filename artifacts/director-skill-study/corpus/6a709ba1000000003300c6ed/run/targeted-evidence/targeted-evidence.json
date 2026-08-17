@@ -1,0 +1,435 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T20:47:39.125Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a709ba1000000003300c6ed.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a709ba1000000003300c6ed/run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-MOTION",
+      "time": 0,
+      "frame": "frames/ACT-MOTION-001.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-MOTION",
+      "time": 0.25,
+      "frame": "frames/ACT-MOTION-002.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-MOTION",
+      "time": 0.5,
+      "frame": "frames/ACT-MOTION-003.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-MOTION",
+      "time": 0.75,
+      "frame": "frames/ACT-MOTION-004.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-MOTION",
+      "time": 1,
+      "frame": "frames/ACT-MOTION-005.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-MOTION",
+      "time": 1.25,
+      "frame": "frames/ACT-MOTION-006.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-MOTION",
+      "time": 1.5,
+      "frame": "frames/ACT-MOTION-007.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-MOTION",
+      "time": 1.75,
+      "frame": "frames/ACT-MOTION-008.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-MOTION",
+      "time": 2,
+      "frame": "frames/ACT-MOTION-009.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-MOTION",
+      "time": 2.25,
+      "frame": "frames/ACT-MOTION-010.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-MOTION",
+      "time": 2.5,
+      "frame": "frames/ACT-MOTION-011.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-MOTION",
+      "time": 2.75,
+      "frame": "frames/ACT-MOTION-012.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-MOTION",
+      "time": 3,
+      "frame": "frames/ACT-MOTION-013.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-MOTION",
+      "time": 3.25,
+      "frame": "frames/ACT-MOTION-014.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-MOTION",
+      "time": 3.5,
+      "frame": "frames/ACT-MOTION-015.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-MOTION",
+      "time": 3.75,
+      "frame": "frames/ACT-MOTION-016.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-MOTION",
+      "time": 4,
+      "frame": "frames/ACT-MOTION-017.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-MOTION",
+      "time": 4.25,
+      "frame": "frames/ACT-MOTION-018.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-MOTION",
+      "time": 4.5,
+      "frame": "frames/ACT-MOTION-019.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-MOTION",
+      "time": 4.75,
+      "frame": "frames/ACT-MOTION-020.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-MOTION",
+      "time": 5,
+      "frame": "frames/ACT-MOTION-021.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-MOTION",
+      "time": 5.25,
+      "frame": "frames/ACT-MOTION-022.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-MOTION",
+      "time": 5.5,
+      "frame": "frames/ACT-MOTION-023.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-MOTION",
+      "time": 5.75,
+      "frame": "frames/ACT-MOTION-024.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-MOTION",
+      "time": 6,
+      "frame": "frames/ACT-MOTION-025.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-MOTION",
+      "time": 6.25,
+      "frame": "frames/ACT-MOTION-026.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-MOTION",
+      "time": 6.5,
+      "frame": "frames/ACT-MOTION-027.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-MOTION",
+      "time": 6.75,
+      "frame": "frames/ACT-MOTION-028.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-MOTION",
+      "time": 7,
+      "frame": "frames/ACT-MOTION-029.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-MOTION",
+      "time": 7.25,
+      "frame": "frames/ACT-MOTION-030.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-MOTION",
+      "time": 7.413,
+      "frame": "frames/ACT-MOTION-031.jpg",
+      "carrier": "split-screen people, gestures, props",
+      "reason": "以30帧覆盖全片小幅动作与构图持续性。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-OCR",
+      "time": 0.2,
+      "frame": "frames/ACT-OCR-001.jpg",
+      "carrier": "overlay and watermark",
+      "reason": "检查账号、水印和左下角小字，不凭模糊帧补全。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-OCR",
+      "time": 2,
+      "frame": "frames/ACT-OCR-002.jpg",
+      "carrier": "overlay and watermark",
+      "reason": "检查账号、水印和左下角小字，不凭模糊帧补全。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-OCR",
+      "time": 3.8,
+      "frame": "frames/ACT-OCR-003.jpg",
+      "carrier": "overlay and watermark",
+      "reason": "检查账号、水印和左下角小字，不凭模糊帧补全。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-OCR",
+      "time": 5.6,
+      "frame": "frames/ACT-OCR-004.jpg",
+      "carrier": "overlay and watermark",
+      "reason": "检查账号、水印和左下角小字，不凭模糊帧补全。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-OCR",
+      "time": 7.3,
+      "frame": "frames/ACT-OCR-005.jpg",
+      "carrier": "overlay and watermark",
+      "reason": "检查账号、水印和左下角小字，不凭模糊帧补全。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-RELATION",
+      "time": 0,
+      "frame": "frames/ACT-RELATION-001.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-RELATION",
+      "time": 1.5,
+      "frame": "frames/ACT-RELATION-002.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-RELATION",
+      "time": 3,
+      "frame": "frames/ACT-RELATION-003.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-RELATION",
+      "time": 4.5,
+      "frame": "frames/ACT-RELATION-004.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-RELATION",
+      "time": 6,
+      "frame": "frames/ACT-RELATION-005.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-RELATION",
+      "time": 7.413,
+      "frame": "frames/ACT-RELATION-006.jpg",
+      "carrier": "upper/lower spatial composition",
+      "reason": "在开中结多个时刻验证视觉对应及持续性。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-AUDIO-BOUNDARY",
+      "time": 0,
+      "frame": "frames/ACT-AUDIO-BOUNDARY-001.jpg",
+      "carrier": "audio existence and absent subtitle channel",
+      "reason": "登记音频流存在但无cue/字幕，不创建转写。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-AUDIO-BOUNDARY",
+      "time": 3.75,
+      "frame": "frames/ACT-AUDIO-BOUNDARY-002.jpg",
+      "carrier": "audio existence and absent subtitle channel",
+      "reason": "登记音频流存在但无cue/字幕，不创建转写。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-AUDIO-BOUNDARY",
+      "time": 7.413,
+      "frame": "frames/ACT-AUDIO-BOUNDARY-003.jpg",
+      "carrier": "audio existence and absent subtitle channel",
+      "reason": "登记音频流存在但无cue/字幕，不创建转写。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-MOTION",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007",
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016",
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024",
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031"
+      ]
+    },
+    {
+      "id": "ACT-OCR",
+      "frameIds": [
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036"
+      ]
+    },
+    {
+      "id": "ACT-RELATION",
+      "frameIds": [
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042"
+      ]
+    },
+    {
+      "id": "ACT-AUDIO-BOUNDARY",
+      "frameIds": [
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045"
+      ]
+    }
+  ]
+}

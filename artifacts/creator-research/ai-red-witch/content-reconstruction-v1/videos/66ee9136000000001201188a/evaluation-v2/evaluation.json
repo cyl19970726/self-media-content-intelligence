@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationOrder": "GATE_then_JUDGE",
+  "videoId": "66ee9136000000001201188a",
+  "scope": {
+    "included": [
+      "current evidence/evidence-pack.json and indexed frames",
+      "current repaired skill-run candidate and its registered visual/audio evidence",
+      "independent audit/audit.json and audit/audit.md",
+      "canonical evaluation protocol/schema and deterministic validator"
+    ],
+    "excluded": [
+      "prior evaluation and evaluation-v2 verdicts or scores",
+      "legacy reports or library conclusions",
+      "external web claims"
+    ],
+    "candidateModified": false
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "status": "covered",
+          "item": "The one-minute headline is treated as an unproved author promise and directly opposed to the same-screen queue message saying the job will start in a few minutes.",
+          "candidateRefs": ["KU-01", "KU-06", "KU-11", "KU-19", "CQ-01", "CQ-12"]
+        },
+        {
+          "status": "covered",
+          "item": "The candidate separates visible input, prompt, queue, result, Gen-3 Alpha label, Extend/Lip Sync controls, and the absent execution bridges.",
+          "candidateRefs": ["KU-06", "KU-07", "KU-08", "KU-09", "KU-19", "KU-20", "KU-22"]
+        },
+        {
+          "status": "covered_after_audio_repair",
+          "item": "Non-speech audio is answered with bounded machine-listening evidence while result-clip audio remains correctly unknown.",
+          "candidateRefs": ["KU-21", "KU-23", "KU-24", "CQ-11", "CQ-14", "DS-AUDIO-RAW", "DS-AUDIO-SEG"]
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 19,
+      "denominator": 19,
+      "examples": [
+        {
+          "status": "covered",
+          "item": "All 19 audit-relevant core units have resolvable evidence: marketing promise, split-screen framing, claims, input, prompt, queue, result, missing workflow bridges, timing tension, provenance limits, export absence, CTA, status text, controls, result-audio boundary, and session authenticity."
+        },
+        {
+          "status": "covered",
+          "item": "The input/result visual match is preserved without upgrading edited juxtaposition into generation causality.",
+          "candidateRefs": ["KU-08", "KU-09", "KU-13", "REL-08", "REL-10"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 24,
+      "examples": [
+        {
+          "status": "supported_or_qualified",
+          "item": "All 24 structured knowledge-unit statements either cite direct evidence, record author claims, or preserve bounded unknowns with explicit reasoning."
+        },
+        {
+          "status": "not_overclaimed",
+          "item": "AudioSet labels are kept as machine-audition proposals; low-confidence whoosh, ding, keyboard and similar labels are rejected as literal events.",
+          "candidateRefs": ["KU-23", "KU-24", "DS-AUDIO-RAW", "DS-AUDIO-SEG"]
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 23,
+      "denominator": 24,
+      "examples": [
+        {
+          "status": "localized_except_one_contract_mismatch",
+          "item": "23 of 24 knowledge units have ranges and cited visual/audio evidence aligned with their stated intervals. KU-06 starts at 9.75 seconds but cites OCR-00139 at 9.20 seconds; the validator's 0.5-second tolerance ends at 9.25 seconds."
+        },
+        {
+          "status": "localized",
+          "item": "The queue tension is localized at 9.25 seconds; result controls at 13.35-15.25 seconds; result playback and CTA at 15.45-18.133 seconds."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 9,
+      "denominator": 9,
+      "rationale": "The candidate accounts for all audited generation/export dependencies: already-loaded input, pre-existing prompt, queue state and displayed result are shown; file selection/upload, prompt entry, model selection/settings, generate submission, continuous waiting/progress, completion tied to the result, measured elapsed time, and export/download are explicitly not shown."
+    },
+    "unknownDiscipline": {
+      "numerator": 10,
+      "denominator": 10,
+      "examples": [
+        {
+          "status": "correct_unknown",
+          "item": "Actual queue/generation/total time and same-session causality remain unknown despite the edited result reveal."
+        },
+        {
+          "status": "correct_unknown",
+          "item": "Plan, credits, region, settings, retries, export integrity, montage provenance, and third-party postprocessing remain unknown."
+        },
+        {
+          "status": "correct_unknown_after_audio_repair",
+          "item": "The post's music/effect behavior is bounded, but the embedded result file's own audio and Lip Sync state remain un-attributable rather than being labeled silent."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgeStatus": "not_run_hard_gate_failed",
+  "judgeSchemaSentinel": "The five numeric 1 values exist only because the canonical schema requires JUDGE fields. They are not quality scores and cannot offset the failed deterministic hard gate.",
+  "deterministicValidation": {
+    "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-reconstruction.mjs",
+    "passed": 21,
+    "total": 22,
+    "allPassRequired": true,
+    "result": "fail",
+    "failedGateIds": [
+      "internal_timestamp_bounds"
+    ],
+    "failures": [
+      {
+        "gate": "internal_timestamp_bounds",
+        "example": "KU-06:frame_outside_range:OCR-00139",
+        "detail": "KU-06 declares 9.75-10.75 seconds, while OCR-00139 resolves to TARGET-0028 at 9.20 seconds. The canonical tolerance permits evidence no earlier than 9.25 seconds."
+      }
+    ]
+  },
+  "overallAssessment": {
+    "hardGate": "fail",
+    "independentCountAndMetaGates": "pass",
+    "deterministicContract": "fail",
+    "judgeExecuted": false,
+    "rationale": "The repaired audio, one-minute causality, and queue-tension closures pass independent review, and all independent threshold/channel/meta gates pass. Hard gates remain conjunctive: one canonical deterministic timestamp-bound failure blocks JUDGE."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent review found no unguarded available carrier, meaning change, or audited relationship. The non-speech channel is no longer passed from AAC presence alone: the registered, hash-matched decoded waveform is auditioned in 19 overlapping windows and four gap-free semantic regions, with raw probabilities, changing energy, rejected literal labels, and attribution limits preserved. The one-minute promise is connected directly to the queue's few-minutes-to-start text, and the edited input-prompt-result sequence is connected to its missing execution bridges rather than treated as causally complete."
+  },
+  "examples": [
+    {
+      "type": "focus_check",
+      "item": "semantic non-narration audio",
+      "result": "covered_with_bounded_machine_listening_and_unknown_attribution"
+    },
+    {
+      "type": "focus_check",
+      "item": "one-minute causality",
+      "result": "not_demonstrated"
+    },
+    {
+      "type": "focus_check",
+      "item": "queue tension",
+      "result": "directly_captured"
+    },
+    {
+      "type": "deterministic_gate_failure",
+      "item": "KU-06:frame_outside_range:OCR-00139",
+      "result": "hard_gate_fail"
+    },
+    {
+      "type": "verdict",
+      "item": "HARD GATE FAIL; JUDGE not run."
+    }
+  ]
+}

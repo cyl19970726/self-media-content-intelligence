@@ -1,0 +1,4889 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/run/capture-protocol.json",
+  "scopeStatement": "只重建本地MP4、提供SRT、evidence pack以及本次协议产生的targeted frames/OCR；不使用外部资料或旧分析，不验证作者商业/平台主张。",
+  "viewerChange": {
+    "before": "观众可能只有泛化的起号/涨粉愿望，未形成决策顺序和边界。",
+    "after": "观众能按视频给出的关系组织定位、内容、用户、更新、变现或机构选择，同时知道这些是作者主张且哪些边界未被证明。",
+    "intendedChanges": [
+      "know: 记住作者列出的关键问题与条目",
+      "decide: 用用户需求、赛道和商业空间筛选内容",
+      "do: 按作者提出的更新、复盘或互动动作执行",
+      "believe-with-boundaries: 区分作者经验判断、可见结构与未证明机制"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted-evidence-1.0",
+      "producedBy": "capture-protocol-evidence.mjs using capture-protocol.json",
+      "timeRange": {
+        "start": 0,
+        "end": 315.067
+      },
+      "limitations": [
+        "离散帧不能证明帧间动作；ACT-ABSENCE以5秒密度补充全时间轴，仍与逐字稿联合限定范围"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a3d085300000000060239b0/run/targeted-evidence/ocr-evidence.json",
+      "kind": "ocr-evidence-1.0",
+      "producedBy": "macOS Vision via ocr-frames.swift",
+      "timeRange": {
+        "start": 0,
+        "end": 315.067
+      },
+      "limitations": [
+        "OCR是提案而非真值；低置信小字不作事实；烧录字幕时点可能与cue中点错开"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 1.825,
+        "text": "开头展示饺子啊，这期视频我要告诉你",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 1.825,
+        "end": 5.37,
+        "text": "从零粉到一万粉，你必须要知道的十三个问题，这期视频非常干，没有任何",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 5.38,
+        "end": 8.25,
+        "text": "浮点没有任何钩子，那么我们直接开始第一个问题是选择赛道",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-002",
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 8.25,
+        "end": 12.29,
+        "text": "赛道一共就分问题，就运势，口播就是非口播，口播就是情感成长后黑吃后播套，嘿嘿",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 12.3,
+        "end": 14.522,
+        "text": "口播就是分logo两篇agc微综合颜值",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-003"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 14.522,
+        "end": 16.861,
+        "text": "但如果去选择一个你要的赛道，你非不能选择",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-003",
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 16.861,
+        "end": 21.19,
+        "text": "就是只要你要结合好友，你要看机器好什么东西不要搜，原来是一个鸟的拍vlog",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 21.2,
+        "end": 22.72,
+        "text": "金刚钻就不要揽瓷器活的呀",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 22.72,
+        "end": 24.367,
+        "text": "问题是赛道的卷度和商业空间",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 24.367,
+        "end": 25.507,
+        "text": "我可以直白的告诉你",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 25.507,
+        "end": 30.07,
+        "text": "现在的无那个赛道是最卷最难拍火的东西，还现在商业空间是最大的，娱乐赛道是",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 30.08,
+        "end": 32.745,
+        "text": "最不赚钱，商业空间最小的都哪些赛道是蓝海呢？",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 32.745,
+        "end": 34.925,
+        "text": "我会告诉你短片a I g c和微综艺",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 34.925,
+        "end": 39.53,
+        "text": "这是抖音现在正在大推的两分钟以上的深度内容，并且我推荐你如果拍vlog的时候",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 39.54,
+        "end": 41.747,
+        "text": "则拍六到七分钟以上的长vlog",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-004"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 41.747,
+        "end": 46.75,
+        "text": "并且你可以关注亚托音，对于igc短片和微综艺都有大力的新导演扶持计划",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-004",
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 46.76,
+        "end": 48.868,
+        "text": "那么第三个问题是更新频率和断更和权重",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 48.868,
+        "end": 52.5,
+        "text": "两个更新频率完全是根据你的内容质量来评价的，没有任何的标准答案",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 52.51,
+        "end": 54.938,
+        "text": "我对你的唯一要求就是不要断更，什么叫断更呢？",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 54.938,
+        "end": 56.262,
+        "text": "如果你是一个日更博主的话",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 56.262,
+        "end": 57.476,
+        "text": "你一周没更新就算断更了",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 57.476,
+        "end": 60.68,
+        "text": "如果你是周更博主，一个月没更新算断更了，你也可以是年更博主",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 60.69,
+        "end": 62.541,
+        "text": "其中最直接的体现就是基础播放量",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 62.541,
+        "end": 65.256,
+        "text": "我可以告诉你粉丝虽体相更大的博主它的权重越大",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 65.256,
+        "end": 68.59,
+        "text": "但是它下降的速度也越快，可能经常会看那些百万博主他们点",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 68.6,
+        "end": 70.566,
+        "text": "流量直接少的可怜的一千，为什么呢？",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 70.566,
+        "end": 72.185,
+        "text": "微花是你是一个百万的博主的话",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 72.185,
+        "end": 74.613,
+        "text": "并觉得你的正常的高质量内容可能是在三万点赞",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 74.613,
+        "end": 78.43,
+        "text": "如果你连续更了几条三千点赞以下的视频的话，平台就会觉得你这个人特别",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-005"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 78.44,
+        "end": 83.5,
+        "text": "那就会把你的权重基础播放降低，再降的速度会比那些素人和小博主降的更快，所以大",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-005",
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 83.51,
+        "end": 85.815,
+        "text": "而你是大博主，你才不能懈怠，不能够水视频",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-006"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 85.815,
+        "end": 89.85,
+        "text": "不然你的权重就加了来，并且很难再提上去的，除非你做出一个爆款绝世好内容",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-006",
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 89.86,
+        "end": 91.395,
+        "text": "那么下一个问题就是商业空间",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 91.395,
+        "end": 92.812,
+        "text": "你要明白你拍自媒体的目的",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 92.812,
+        "end": 96.12,
+        "text": "如果最终是赚钱的话，你就不要拍那些完全没有广告位的视频了",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 96.13,
+        "end": 99.834,
+        "text": "所有的山野空间指的就是你的视频里有哪些可以植入的场景",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 99.834,
+        "end": 102.97,
+        "text": "没有你是个口播博主的话，你可能就只能只有那些",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 102.98,
+        "end": 104.879,
+        "text": "电影书啊，A p p之类的东西了",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 104.879,
+        "end": 106.659,
+        "text": "但是如果你是个vlog博主的话",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-007"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 106.659,
+        "end": 110.46,
+        "text": "你会发现你什么都可以植入，看现在主要有哪些广告商呢，就是三c e",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-007",
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 110.47,
+        "end": 112.586,
+        "text": "Tp汽车文旅电影输快销和耐销",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 112.586,
+        "end": 113.946,
+        "text": "就我可以告诉你的是",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 113.946,
+        "end": 118.178,
+        "text": "今年六幺八我能明显的感受到这些广告商的预算越来越来越低了",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 118.178,
+        "end": 119.69,
+        "text": "六幺八是一年广告最旺",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 119.7,
+        "end": 121.923,
+        "text": "最旺的时候，然而今年一点实话都没有",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-008"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 121.923,
+        "end": 126.37,
+        "text": "但好好在呢，现在三c e p p汽车还有美妆客户，他们依然还挺有钱的",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-008",
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 126.38,
+        "end": 128.814,
+        "text": "所以这个时候你选择你要拍的视频内容的时候",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-009"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 128.814,
+        "end": 131.491,
+        "text": "你可以重点考虑一下你的视频能不能植入这些品牌",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-009",
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 131.491,
+        "end": 133.44,
+        "text": "下一个问题呢，就是你何时可以变现",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 133.45,
+        "end": 136.634,
+        "text": "可以告诉你的是，如果你发现你做出了一个爆款系列的时候",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 136.634,
+        "end": 137.858,
+        "text": "千万不要立刻去接广告",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 137.858,
+        "end": 142.39,
+        "text": "哼，爆款系列就是你涨粉最好的时间，你这个时候去接那些你现在价格并不高的广告",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 142.4,
+        "end": 144.097,
+        "text": "其实就是被广告上薅羊毛了",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 144.097,
+        "end": 146.077,
+        "text": "并且它绝对会放慢你的涨粉速度",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 146.077,
+        "end": 150.18,
+        "text": "你到瓶颈期的时候你就知道涨粉有多难了，那么我可以告诉你一个",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 150.19,
+        "end": 152.01,
+        "text": "系列的生命周期是三到六个月",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 152.01,
+        "end": 153.69,
+        "text": "我们在什么时候去变现呢？",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 153.69,
+        "end": 156.07,
+        "text": "我们等我们这个系列它慢慢倦怠的时候",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 156.07,
+        "end": 160.13,
+        "text": "或者说你已经是成为一个十万体量的博主的时候，再去接这些广告",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-060",
+        "start": 160.14,
+        "end": 162.74,
+        "text": "下个问题就是当你拍出一个爆款之后你要怎么办？",
+        "representativeFrame": "frames/cues/cue-060.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-061",
+        "start": 162.74,
+        "end": 164.631,
+        "text": "首先千万不要去回应一些粉丝的评论",
+        "representativeFrame": "frames/cues/cue-061.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-062",
+        "start": 164.631,
+        "end": 167.47,
+        "text": "或者解释一下你是怎么拍出这个爆款的，只要做的就是",
+        "representativeFrame": "frames/cues/cue-062.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-063",
+        "start": 167.48,
+        "end": 172.48,
+        "text": "复制这个爆款，拍一个和这个爆款差不多的东西，然后一直拍一直拍，直到你发现这个爆款没有用了",
+        "representativeFrame": "frames/cues/cue-063.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-064",
+        "start": 172.49,
+        "end": 174.107,
+        "text": "那第八点就是评论区和私信",
+        "representativeFrame": "frames/cues/cue-064.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-065",
+        "start": 174.107,
+        "end": 179.23,
+        "text": "我是非常推荐你在合理的范围内和你评论区的粉丝大幅互动的，并且你可以和评论区中",
+        "representativeFrame": "frames/cues/cue-065.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-066",
+        "start": 179.24,
+        "end": 180.366,
+        "text": "到一些数据的反馈",
+        "representativeFrame": "frames/cues/cue-066.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-067",
+        "start": 180.366,
+        "end": 181.633,
+        "text": "我知道他们想看什么",
+        "representativeFrame": "frames/cues/cue-067.jpg",
+        "overlappingShots": [
+          "SHOT-010"
+        ]
+      },
+      {
+        "id": "CUE-068",
+        "start": 181.633,
+        "end": 186,
+        "text": "他们爱看什么和提问去获得选题的灵感，我反复强调自媒体做自他媒体",
+        "representativeFrame": "frames/cues/cue-068.jpg",
+        "overlappingShots": [
+          "SHOT-010",
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-069",
+        "start": 186.01,
+        "end": 188.545,
+        "text": "但这就是你知道用户想看什么的最好的地方",
+        "representativeFrame": "frames/cues/cue-069.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-070",
+        "start": 188.545,
+        "end": 193.35,
+        "text": "私信回不回看你能不能掌握这个尺度，但是你同样可以从私信中获得好的选题灵感",
+        "representativeFrame": "frames/cues/cue-070.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-071",
+        "start": 193.36,
+        "end": 195.174,
+        "text": "那么第九点呢就是你的更新框架",
+        "representativeFrame": "frames/cues/cue-071.jpg",
+        "overlappingShots": [
+          "SHOT-011"
+        ]
+      },
+      {
+        "id": "CUE-072",
+        "start": 195.174,
+        "end": 199.192,
+        "text": "我建议你通常用两个以上的系列去维持你的更新tag问题就是tag",
+        "representativeFrame": "frames/cues/cue-072.jpg",
+        "overlappingShots": [
+          "SHOT-011",
+          "SHOT-012"
+        ]
+      },
+      {
+        "id": "CUE-073",
+        "start": 199.192,
+        "end": 200.49,
+        "text": "你要带什么tag呢？",
+        "representativeFrame": "frames/cues/cue-073.jpg",
+        "overlappingShots": [
+          "SHOT-012",
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-074",
+        "start": 200.5,
+        "end": 202.126,
+        "text": "不要带那些能彰显你身份",
+        "representativeFrame": "frames/cues/cue-074.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-075",
+        "start": 202.126,
+        "end": 206.86,
+        "text": "你赛道的有流量的tag之外，你可以去多关注一下官方近期有什么活动",
+        "representativeFrame": "frames/cues/cue-075.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-076",
+        "start": 206.87,
+        "end": 209.157,
+        "text": "帮他发布了近期有哪些推流计划的tag",
+        "representativeFrame": "frames/cues/cue-076.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-077",
+        "start": 209.157,
+        "end": 210.3,
+        "text": "把这个tag给带上",
+        "representativeFrame": "frames/cues/cue-077.jpg",
+        "overlappingShots": [
+          "SHOT-013"
+        ]
+      },
+      {
+        "id": "CUE-078",
+        "start": 210.3,
+        "end": 215.13,
+        "text": "第十一点就是系列的生命周期，我已经回应过了，是三到六个月，但是也有例外就是你",
+        "representativeFrame": "frames/cues/cue-078.jpg",
+        "overlappingShots": [
+          "SHOT-013",
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-079",
+        "start": 215.14,
+        "end": 217.56,
+        "text": "拍了一个特别特别大爆款的长系列片",
+        "representativeFrame": "frames/cues/cue-079.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-080",
+        "start": 217.56,
+        "end": 222.098,
+        "text": "你说洗澡的慈禧体验一百种职业和六个月之内你的数据肯定会有疲软",
+        "representativeFrame": "frames/cues/cue-080.jpg",
+        "overlappingShots": [
+          "SHOT-014"
+        ]
+      },
+      {
+        "id": "CUE-081",
+        "start": 222.098,
+        "end": 224.52,
+        "text": "这个时候你要做的就是优化和调整了",
+        "representativeFrame": "frames/cues/cue-081.jpg",
+        "overlappingShots": [
+          "SHOT-014",
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-082",
+        "start": 224.53,
+        "end": 226.231,
+        "text": "问题就是数据不好时怎么办？",
+        "representativeFrame": "frames/cues/cue-082.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-083",
+        "start": 226.231,
+        "end": 230.42,
+        "text": "首先我可以告诉你数据不好不要去想别的原因，肯定是你的内容出了问题",
+        "representativeFrame": "frames/cues/cue-083.jpg",
+        "overlappingShots": [
+          "SHOT-015"
+        ]
+      },
+      {
+        "id": "CUE-084",
+        "start": 230.43,
+        "end": 231.693,
+        "text": "这个时候你就会问了，唉",
+        "representativeFrame": "frames/cues/cue-084.jpg",
+        "overlappingShots": [
+          "SHOT-015",
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-085",
+        "start": 231.693,
+        "end": 233.3,
+        "text": "我如果发了一条数据不好的内容",
+        "representativeFrame": "frames/cues/cue-085.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-086",
+        "start": 233.3,
+        "end": 237.09,
+        "text": "我来删除和隐藏吗？现在因为推流机制的改变，使我们的推流时间变得更长",
+        "representativeFrame": "frames/cues/cue-086.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-087",
+        "start": 237.1,
+        "end": 239.928,
+        "text": "我建议你三到七天内都不要删除你的视频",
+        "representativeFrame": "frames/cues/cue-087.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-088",
+        "start": 239.928,
+        "end": 243.7,
+        "text": "但如果砍断在三到七天之后视频就会重新去调这个数据",
+        "representativeFrame": "frames/cues/cue-088.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-089",
+        "start": 243.71,
+        "end": 246.022,
+        "text": "要做的就是去点开你的后台数据空间",
+        "representativeFrame": "frames/cues/cue-089.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-090",
+        "start": 246.022,
+        "end": 251.08,
+        "text": "去分析一下这条视频的到底是封面点击率还是跳出率还是完播率，哪里出了问题",
+        "representativeFrame": "frames/cues/cue-090.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-091",
+        "start": 251.09,
+        "end": 252.33,
+        "text": "及时的去做优化调整",
+        "representativeFrame": "frames/cues/cue-091.jpg",
+        "overlappingShots": [
+          "SHOT-016"
+        ]
+      },
+      {
+        "id": "CUE-092",
+        "start": 252.33,
+        "end": 255.639,
+        "text": "十三点就是mcn的类型与选择什么型，我可以告诉您",
+        "representativeFrame": "frames/cues/cue-092.jpg",
+        "overlappingShots": [
+          "SHOT-016",
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-093",
+        "start": 255.639,
+        "end": 260.19,
+        "text": "市面上百分之九十九的mc，它没有帮你做出爆款系列或者爆款内容的能力",
+        "representativeFrame": "frames/cues/cue-093.jpg",
+        "overlappingShots": [
+          "SHOT-017"
+        ]
+      },
+      {
+        "id": "CUE-094",
+        "start": 260.2,
+        "end": 263.566,
+        "text": "Mcn呢也就分三种类型，一种是商签",
+        "representativeFrame": "frames/cues/cue-094.jpg",
+        "overlappingShots": [
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-095",
+        "start": 263.566,
+        "end": 270.1,
+        "text": "也就是通常是二八三七分，第二种就是全约，它通常是三七四六或者五五分",
+        "representativeFrame": "frames/cues/cue-095.jpg",
+        "overlappingShots": [
+          "SHOT-018"
+        ]
+      },
+      {
+        "id": "CUE-096",
+        "start": 270.11,
+        "end": 271.443,
+        "text": "第三种就是孵化型公司",
+        "representativeFrame": "frames/cues/cue-096.jpg",
+        "overlappingShots": [
+          "SHOT-018",
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-097",
+        "start": 271.443,
+        "end": 272.909,
+        "text": "这时候mcn就会拿大头",
+        "representativeFrame": "frames/cues/cue-097.jpg",
+        "overlappingShots": [
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-098",
+        "start": 272.909,
+        "end": 276.91,
+        "text": "比如说七成八成甚至九成，这个时候这个出镜的博主他就相当于一个",
+        "representativeFrame": "frames/cues/cue-098.jpg",
+        "overlappingShots": [
+          "SHOT-019"
+        ]
+      },
+      {
+        "id": "CUE-099",
+        "start": 276.92,
+        "end": 280.178,
+        "text": "附近的演员的，那么既然我说的m c没有那么强的内容能力",
+        "representativeFrame": "frames/cues/cue-099.jpg",
+        "overlappingShots": [
+          "SHOT-019",
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-100",
+        "start": 280.178,
+        "end": 281.746,
+        "text": "它能给你提供的什么好处呢？",
+        "representativeFrame": "frames/cues/cue-100.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-101",
+        "start": 281.746,
+        "end": 285.97,
+        "text": "就它可能会有一些年框的商务资源，并且它的执行和商务可以去帮你去对接那些",
+        "representativeFrame": "frames/cues/cue-101.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-102",
+        "start": 285.98,
+        "end": 291.24,
+        "text": "繁杂的商务信息，且他能够帮你去写一些简单的上单脚本，除此之外没有别的了",
+        "representativeFrame": "frames/cues/cue-102.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-103",
+        "start": 291.25,
+        "end": 294.287,
+        "text": "那么孵化公司呢，能给你提供最大的帮助就是投流",
+        "representativeFrame": "frames/cues/cue-103.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-104",
+        "start": 294.287,
+        "end": 298.43,
+        "text": "不过也有很多孵化公司啊，是单纯只雇一个演员作为他的账号的出镜",
+        "representativeFrame": "frames/cues/cue-104.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-105",
+        "start": 298.44,
+        "end": 300.648,
+        "text": "花钱买了一个号或者说嫁接一个号",
+        "representativeFrame": "frames/cues/cue-105.jpg",
+        "overlappingShots": [
+          "SHOT-020"
+        ]
+      },
+      {
+        "id": "CUE-106",
+        "start": 300.648,
+        "end": 301.973,
+        "text": "执行了几条视频之后",
+        "representativeFrame": "frames/cues/cue-106.jpg",
+        "overlappingShots": [
+          "SHOT-020",
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-107",
+        "start": 301.973,
+        "end": 306.98,
+        "text": "这就有广告商来寻单了，这个时候他拿着广告商的给他的钱去投他的视频数据",
+        "representativeFrame": "frames/cues/cue-107.jpg",
+        "overlappingShots": [
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-108",
+        "start": 306.99,
+        "end": 308.442,
+        "text": "保证他能够持续的接到单",
+        "representativeFrame": "frames/cues/cue-108.jpg",
+        "overlappingShots": [
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-109",
+        "start": 308.442,
+        "end": 311.611,
+        "text": "所以这个时候他也不在乎他的视频内容到底优不优质了",
+        "representativeFrame": "frames/cues/cue-109.jpg",
+        "overlappingShots": [
+          "SHOT-021"
+        ]
+      },
+      {
+        "id": "CUE-110",
+        "start": 311.611,
+        "end": 315.046,
+        "text": "今天的课程就到这里，我不建议被这样骗的好吗？下期再见",
+        "representativeFrame": "frames/cues/cue-110.jpg",
+        "overlappingShots": [
+          "SHOT-021",
+          "SHOT-022",
+          "SHOT-023"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "十三问开场承诺",
+      "importance": "core",
+      "statement": "作者承诺直接讲从零粉到一万粉必须知道的十三个问题，并称内容无铺垫、无钩子。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 0,
+        "end": 8.25
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "十三问开场承诺的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "十三问开场承诺对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "十三问开场承诺的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0003",
+          "supports": "十三问开场承诺对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者承诺直接讲从零粉到一万粉必须知道的十三个问题，并称内容无铺垫、无钩子。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "十三问",
+          "开场"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-02",
+      "title": "选择赛道要结合自身条件",
+      "importance": "core",
+      "statement": "尽管作者的决策规则较清楚——结合自己的资源/擅长项，不要因他人某类内容火就盲目照搬——口播/非口播的完整分类及若干赛道专名在SRT中严重损坏，烧录字幕与白板也不足以可靠闭合全部名称。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 8.25,
+        "end": 22.72
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "选择赛道要结合自身条件的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0004",
+          "supports": "选择赛道要结合自身条件对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "选择赛道要结合自身条件的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0008",
+          "supports": "选择赛道要结合自身条件对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00076",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "尽管作者的决策规则较清楚——结合自己的资源/擅长项，不要因他人某类内容火就盲目照搬——口播/非口播的完整分类及若干赛道专名在SRT中严重损坏，烧录字幕与白板也不足以可靠闭合全部名称。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "赛道",
+          "个人条件",
+          "完整分类未知",
+          "专名损坏"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-03",
+      "title": "卷度、商业空间与所谓蓝海",
+      "importance": "core",
+      "statement": "作者把赛道评估拆为卷度与商业空间，称Vlog很卷、难火但商业空间大，娱乐赛道最不赚钱；又称短片、AIGC和微综艺是平台推动的两分钟以上深度内容，建议Vlog做六到七分钟以上，并关注抖音相关新导演扶持。竞争/盈利比较没有样本、平台、时间或统计方法；时长建议没有算法依据、适用平台或账号阶段；扶持计划的准确专名、入口、条件、地区和有效期均未建立。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 22.72,
+        "end": 46.75
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "卷度、商业空间与所谓蓝海的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0009",
+          "supports": "卷度、商业空间与所谓蓝海对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "卷度、商业空间与所谓蓝海的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0016",
+          "supports": "卷度、商业空间与所谓蓝海对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00120",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者把赛道评估拆为卷度与商业空间，称Vlog很卷、难火但商业空间大，娱乐赛道最不赚钱；又称短片、AIGC和微综艺是平台推动的两分钟以上深度内容，建议Vlog做六到七分钟以上，并关注抖音相关新导演扶持。竞争/盈利比较没有样本、平台、时间或统计方法；时长建议没有算法依据、适用平台或账号阶段；扶持计划的准确专名、入口、条件、地区和有效期均未建立。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "卷度",
+          "商业空间",
+          "AIGC",
+          "长Vlog",
+          "适用范围未知",
+          "扶持入口未知"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-04",
+      "title": "更新频率没有统一答案但不要断更",
+      "importance": "core",
+      "statement": "作者称更新频率取决于内容质量，没有标准答案；日更博主一周未更、周更博主一个月未更可算断更，并把基础播放量视为直接表现。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 46.76,
+        "end": 62.541
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "更新频率没有统一答案但不要断更的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0017",
+          "supports": "更新频率没有统一答案但不要断更对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "更新频率没有统一答案但不要断更的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0023",
+          "supports": "更新频率没有统一答案但不要断更对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00234",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者称更新频率取决于内容质量，没有标准答案；日更博主一周未更、周更博主一个月未更可算断更，并把基础播放量视为直接表现。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "更新频率",
+          "断更"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-05",
+      "title": "权重与大博主下滑",
+      "importance": "core",
+      "statement": "作者称粉丝体量越大权重越大、下降也越快；连续发布明显低于常态点赞的视频会降低基础播放，大博主因此更不能“水视频”，并称恢复依赖再做出一个爆款级好内容。这些平台机制、计算口径和恢复条件没有数据或官方规则证明。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 62.541,
+        "end": 89.85
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "权重与大博主下滑的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0024",
+          "supports": "权重与大博主下滑对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "权重与大博主下滑的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0032",
+          "supports": "权重与大博主下滑对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00290",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "视频内部没有独立外部证明或完整操作演示。"
+      ],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者称粉丝体量越大权重越大、下降也越快；连续发布明显低于常态点赞的视频会降低基础播放，大博主因此更不能“水视频”，并称恢复依赖再做出一个爆款级好内容。这些平台机制、计算口径和恢复条件没有数据或官方规则证明。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "权重",
+          "大博主",
+          "恢复依赖",
+          "未证明机制"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "视频内部没有独立外部证明或完整操作演示。"
+        ]
+      }
+    },
+    {
+      "id": "KU-06",
+      "title": "商业空间是可植入场景",
+      "importance": "core",
+      "statement": "作者把商业空间解释为视频中可植入的场景：口播可植入电影、书、App等，Vlog可植入范围更广；随后列举3C、App、汽车、文旅、电影、书、快消、耐消等广告品类。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 89.86,
+        "end": 112.586
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "商业空间是可植入场景的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0033",
+          "supports": "商业空间是可植入场景对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "商业空间是可植入场景的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0041",
+          "supports": "商业空间是可植入场景对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00418",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者把商业空间解释为视频中可植入的场景：口播可植入电影、书、App等，Vlog可植入范围更广；随后列举3C、App、汽车、文旅、电影、书、快消、耐消等广告品类。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "植入场景",
+          "广告品类"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-07",
+      "title": "广告预算判断与选题适配",
+      "importance": "core",
+      "statement": "作者以个人感受称当年618广告预算降低，但3C、App、汽车、美妆客户仍较有预算，并建议选题时考虑能否植入这些品牌；时间年份和预算数据未展示。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 112.586,
+        "end": 131.491
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "广告预算判断与选题适配的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0042",
+          "supports": "广告预算判断与选题适配对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "广告预算判断与选题适配的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0048",
+          "supports": "广告预算判断与选题适配对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00521",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者以个人感受称当年618广告预算降低，但3C、App、汽车、美妆客户仍较有预算，并建议选题时考虑能否植入这些品牌；时间年份和预算数据未展示。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "618",
+          "预算",
+          "品牌适配"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-08",
+      "title": "爆款系列不宜立刻变现",
+      "importance": "core",
+      "statement": "作者认为爆款系列正处涨粉期，过早接低价广告会放慢涨粉；建议等系列倦怠或账号约十万粉时变现，并称一般生命周期为三到六个月。视频没有给出这些阈值的样本、统计依据、账号条件或例外边界。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 131.491,
+        "end": 160.13
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "爆款系列不宜立刻变现的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0049",
+          "supports": "爆款系列不宜立刻变现对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "爆款系列不宜立刻变现的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0059",
+          "supports": "爆款系列不宜立刻变现对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00612",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者认为爆款系列正处涨粉期，过早接低价广告会放慢涨粉；建议等系列倦怠或账号约十万粉时变现，并称一般生命周期为三到六个月。视频没有给出这些阈值的样本、统计依据、账号条件或例外边界。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "变现时机",
+          "生命周期",
+          "阈值依据未知"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-09",
+      "title": "爆款之后先复制结构",
+      "importance": "core",
+      "statement": "作者建议爆款后不要急于回应解释拍法，而要连续复制相近内容，直到该爆款模式失效；但没有定义应保持/改变哪些结构变量、产量、观察窗口或失效标准。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 160.14,
+        "end": 172.48
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "爆款之后先复制结构的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0060",
+          "supports": "爆款之后先复制结构对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-063",
+          "supports": "爆款之后先复制结构的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0063",
+          "supports": "爆款之后先复制结构对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00735",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者建议爆款后不要急于回应解释拍法，而要连续复制相近内容，直到该爆款模式失效；但没有定义应保持/改变哪些结构变量、产量、观察窗口或失效标准。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "复制爆款",
+          "执行变量未知"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "复制爆款"
+        ],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-10",
+      "title": "评论区和私信用于获取选题",
+      "importance": "core",
+      "statement": "作者推荐在合理范围内与评论区大幅互动，从反馈和提问判断用户想看什么；私信是否回复取决于尺度，但也可提供选题灵感。视频没有界定“合理尺度”、隐私处理、骚扰风险或平台风控边界。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 172.49,
+        "end": 193.35
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "评论区和私信用于获取选题的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0064",
+          "supports": "评论区和私信用于获取选题对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-070",
+          "supports": "评论区和私信用于获取选题的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "评论区和私信用于获取选题对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00776",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者推荐在合理范围内与评论区大幅互动，从反馈和提问判断用户想看什么；私信是否回复取决于尺度，但也可提供选题灵感。视频没有界定“合理尺度”、隐私处理、骚扰风险或平台风控边界。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "互动",
+          "选题",
+          "隐私风控未知"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-11",
+      "title": "更新框架与tag",
+      "importance": "core",
+      "statement": "作者建议用两个以上系列维持更新；tag除身份、赛道和流量标签外，还应关注官方近期活动/推流计划。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 193.36,
+        "end": 210.3
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "更新框架与tag的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0071",
+          "supports": "更新框架与tag对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-077",
+          "supports": "更新框架与tag的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0077",
+          "supports": "更新框架与tag对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00854",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者建议用两个以上系列维持更新；tag除身份、赛道和流量标签外，还应关注官方近期活动/推流计划。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "双系列",
+          "tag"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "双系列"
+        ],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-12",
+      "title": "长系列生命周期的例外与调整",
+      "importance": "supporting",
+      "statement": "作者重申一般生命周期三到六个月，同时以大型长系列为例说明可能例外；数据疲软时需要优化调整。所举阈值和例外没有样本、统计方法或适用账号条件。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 210.3,
+        "end": 224.52
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "长系列生命周期的例外与调整的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0078",
+          "supports": "长系列生命周期的例外与调整对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-081",
+          "supports": "长系列生命周期的例外与调整的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0081",
+          "supports": "长系列生命周期的例外与调整对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00932",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者重申一般生命周期三到六个月，同时以大型长系列为例说明可能例外；数据疲软时需要优化调整。所举阈值和例外没有样本、统计方法或适用账号条件。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "生命周期例外",
+          "优化",
+          "阈值依据未知"
+        ],
+        "counterexamples": [],
+        "actions": [
+          "优化"
+        ],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-13",
+      "title": "数据不好后的等待与诊断",
+      "importance": "core",
+      "statement": "作者把数据差归因于内容，建议因推流时间变长而在三到七天内不要删除视频；之后查看后台，分析封面点击率、跳出率和完播率，再优化。推流机制与等待窗口未被演示。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 224.53,
+        "end": 252.33
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "数据不好后的等待与诊断的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0082",
+          "supports": "数据不好后的等待与诊断对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-091",
+          "supports": "数据不好后的等待与诊断的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0091",
+          "supports": "数据不好后的等待与诊断对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00987",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者把数据差归因于内容，建议因推流时间变长而在三到七天内不要删除视频；之后查看后台，分析封面点击率、跳出率和完播率，再优化。推流机制与等待窗口未被演示。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "三到七天",
+          "后台指标",
+          "未演示"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-14",
+      "title": "对多数MCN内容能力的判断",
+      "importance": "core",
+      "statement": "作者声称市面上99%的MCN没有做出爆款系列/内容的能力；视频未给样本或统计依据。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 252.33,
+        "end": 260.19
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对多数MCN内容能力的判断的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0092",
+          "supports": "对多数MCN内容能力的判断对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-093",
+          "supports": "对多数MCN内容能力的判断的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0093",
+          "supports": "对多数MCN内容能力的判断对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01097",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "视频内部没有独立外部证明或完整操作演示。"
+      ],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者声称市面上99%的MCN没有做出爆款系列/内容的能力；视频未给样本或统计依据。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "99%",
+          "MCN",
+          "未外证"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "视频内部没有独立外部证明或完整操作演示。"
+        ]
+      }
+    },
+    {
+      "id": "KU-15",
+      "title": "MCN三类与分成",
+      "importance": "core",
+      "statement": "作者把MCN分为商签、全约、孵化型：商签常见二八/三七，全约常见三七/四六/五五，孵化型公司可能拿七至九成，使出镜博主更像演员；具体比例是作者概括。视频没有说明混合合同、解约、IP/账号归属、违约责任或地域法律条件。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 260.2,
+        "end": 280.178
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN三类与分成的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0094",
+          "supports": "MCN三类与分成对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-099",
+          "supports": "MCN三类与分成的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0099",
+          "supports": "MCN三类与分成对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01127",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者把MCN分为商签、全约、孵化型：商签常见二八/三七，全约常见三七/四六/五五，孵化型公司可能拿七至九成，使出镜博主更像演员；具体比例是作者概括。视频没有说明混合合同、解约、IP/账号归属、违约责任或地域法律条件。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "MCN类型",
+          "分成",
+          "合同边界未知"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-16",
+      "title": "MCN可提供的资源",
+      "importance": "core",
+      "statement": "作者认为MCN可提供年框商务资源、商务执行对接和简单商单脚本；除此之外内容帮助有限，孵化公司最大的帮助是投流。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 280.178,
+        "end": 294.287
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "MCN可提供的资源的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0100",
+          "supports": "MCN可提供的资源对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-103",
+          "supports": "MCN可提供的资源的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0103",
+          "supports": "MCN可提供的资源对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01196",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者认为MCN可提供年框商务资源、商务执行对接和简单商单脚本；除此之外内容帮助有限，孵化公司最大的帮助是投流。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "商务资源",
+          "投流"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-17",
+      "title": "孵化账号的投流循环",
+      "importance": "core",
+      "statement": "作者描述一种模式：公司雇演员或购买/嫁接账号，更新后接商单，再把广告收入用于投流以持续接单，因此不在乎内容质量；视频未展示具体公司或操作证据。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 294.287,
+        "end": 311.611
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "孵化账号的投流循环的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0104",
+          "supports": "孵化账号的投流循环对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-109",
+          "supports": "孵化账号的投流循环的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0109",
+          "supports": "孵化账号的投流循环对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01233",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "视频内部没有独立外部证明或完整操作演示。"
+      ],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "作者描述一种模式：公司雇演员或购买/嫁接账号，更新后接商单，再把广告收入用于投流以持续接单，因此不在乎内容质量；视频未展示具体公司或操作证据。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "孵化模式",
+          "因果未证"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": [
+          "视频内部没有独立外部证明或完整操作演示。"
+        ]
+      }
+    },
+    {
+      "id": "KU-18",
+      "title": "结尾警示",
+      "importance": "core",
+      "statement": "结尾以“不建议被这样骗”收束，把前面的MCN结构说明转成防骗提醒。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 311.611,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "结尾警示对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01307",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。",
+      "argument": {
+        "claim": "结尾以“不建议被这样骗”收束，把前面的MCN结构说明转成防骗提醒。",
+        "evidenceUnitIds": [],
+        "conditions": [
+          "结尾重框"
+        ],
+        "counterexamples": [],
+        "actions": [],
+        "limits": []
+      }
+    },
+    {
+      "id": "KU-19",
+      "title": "匿名面罩讲述者与白板清单贯穿",
+      "importance": "supporting",
+      "statement": "同一位戴蜘蛛侠风格面罩的讲述者在同一白板和家居/洗衣机布景前逐项讲解；白板像总目录，顶部进度条与黄色字幕提示推进。真实身份、授权和隐藏剪辑未知。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "匿名面罩讲述者与白板清单贯穿的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "匿名面罩讲述者与白板清单贯穿对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "匿名面罩讲述者与白板清单贯穿的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "匿名面罩讲述者与白板清单贯穿对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    },
+    {
+      "id": "KU-20",
+      "title": "SRT与可见字幕的关键冲突",
+      "importance": "supporting",
+      "statement": "SRT在赛道分类、平台名、广告品类和MCN缩写处有大量错识别；烧录字幕/OCR可支持“AIGC、抖音、6-7分钟长Vlog、MCN”等读法，但白板小字与部分术语仍不能可靠补全。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "SRT与可见字幕的关键冲突的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "SRT与可见字幕的关键冲突对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "SRT与可见字幕的关键冲突的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "SRT与可见字幕的关键冲突对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "部分SRT、烧录字幕或白板小字冲突/不可可靠辨认。"
+      ],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    },
+    {
+      "id": "KU-21",
+      "title": "视频未证明的机制与边界",
+      "importance": "supporting",
+      "statement": "在0—315.067秒逐字稿、5秒抽帧及逐cue画面范围内，未观察到平台政策原文、预算数据、后台实操、MCN合同、成功率、访问/购买入口或外部验证；这些只能保留为作者主张或未知。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "视频未证明的机制与边界的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "视频未证明的机制与边界对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "视频未证明的机制与边界的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "视频未证明的机制与边界对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    },
+    {
+      "id": "KU-22",
+      "title": "开场业绩拼贴",
+      "importance": "supporting",
+      "statement": "0秒开场叠加一组账号/作品表现截图拼贴，可见多组十万级互动数字与数百万至数千万级“浏览/播放”数字；拼贴中项目的唯一计数、日期、平台、账号归属和这些结果是否由讲述者本人取得，均无法从画面独立确认。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 1.825
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "开场业绩拼贴的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "开场业绩拼贴对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0111",
+          "supports": "0秒开场拼贴的完整可见状态"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    },
+    {
+      "id": "KU-23",
+      "title": "“十三问”未被可见编号逐项闭合",
+      "importance": "core",
+      "statement": "视频可见/可听的明确编号锚点只覆盖部分节点（如1、3、8、9、11、13）；虽然主题可整理成一组课程节点，但编辑后的讲述没有把十三项逐一以完整编号闭合，也没有后台、合同或前后结果操作证明。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 0,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "“十三问”未被可见编号逐项闭合的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "“十三问”未被可见编号逐项闭合对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "“十三问”未被可见编号逐项闭合的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "“十三问”未被可见编号逐项闭合对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-00008",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    },
+    {
+      "id": "KU-24",
+      "title": "MCN签约判断缺少核验桥梁",
+      "importance": "supporting",
+      "statement": "视频从MCN类型、分成和作者所称服务能力走向“不建议被骗”的警告，但没有提供签约前如何核验商务资源、投流能力、合同条款、账号/IP归属和退出责任的步骤；因此只能建立“需要核验”的决策依赖，不能替观众作签约结论。",
+      "provenance": "unknown",
+      "timeRange": {
+        "start": 260.2,
+        "end": 315.046
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN签约判断缺少核验桥梁的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0094",
+          "supports": "MCN签约判断缺少核验桥梁对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "MCN签约判断缺少核验桥梁的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0110",
+          "supports": "MCN签约判断缺少核验桥梁对应时点的可见字幕/白板/人物状态"
+        },
+        {
+          "refType": "ocr",
+          "ref": "OCR-01127",
+          "supports": "经源帧复核的OCR提案；仅支持该处存在相应可见文本，不替代原SRT"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [],
+      "reasoning": "逐字cue与对应targeted frame对照；作者主张不升级为外部事实。"
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "十三问开场承诺的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "选择赛道要结合自身条件的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "选择赛道要结合自身条件的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "卷度、商业空间与所谓蓝海的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "卷度、商业空间与所谓蓝海的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "更新频率没有统一答案但不要断更的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "更新频率没有统一答案但不要断更的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "权重与大博主下滑的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "权重与大博主下滑的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "商业空间是可植入场景的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-07",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "商业空间是可植入场景的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "广告预算判断与选题适配的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-07",
+      "to": "KU-08",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "广告预算判断与选题适配的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "爆款系列不宜立刻变现的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-08",
+      "to": "KU-09",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "爆款系列不宜立刻变现的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "爆款之后先复制结构的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-10",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "爆款之后先复制结构的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "评论区和私信用于获取选题的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-10",
+      "to": "KU-11",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "评论区和私信用于获取选题的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "更新框架与tag的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-11",
+      "to": "KU-12",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "更新框架与tag的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "长系列生命周期的例外与调整的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-12",
+      "to": "KU-13",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "长系列生命周期的例外与调整的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "数据不好后的等待与诊断的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-13",
+      "to": "KU-14",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "数据不好后的等待与诊断的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对多数MCN内容能力的判断的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-14",
+      "to": "KU-15",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对多数MCN内容能力的判断的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN三类与分成的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-15",
+      "to": "KU-16",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN三类与分成的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "MCN可提供的资源的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-16",
+      "to": "KU-17",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "MCN可提供的资源的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "孵化账号的投流循环的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-17",
+      "to": "KU-18",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "孵化账号的投流循环的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-19",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "匿名面罩讲述者与白板清单贯穿的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-19",
+      "to": "KU-20",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "匿名面罩讲述者与白板清单贯穿的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "SRT与可见字幕的关键冲突的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-21",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "SRT与可见字幕的关键冲突的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "视频未证明的机制与边界的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-21",
+      "to": "KU-22",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "视频未证明的机制与边界的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "开场业绩拼贴的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-22",
+      "to": "KU-23",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "开场业绩拼贴的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "“十三问”未被可见编号逐项闭合的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-23",
+      "to": "KU-24",
+      "relation": "precedes_or_develops",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "“十三问”未被可见编号逐项闭合的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN签约判断缺少核验桥梁的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-19",
+      "to": "KU-01",
+      "relation": "presents_and_connects",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "十三问开场承诺的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "匿名面罩讲述者与白板清单贯穿的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-20",
+      "to": "KU-01",
+      "relation": "qualifies_transcript_reading",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "SRT与可见字幕的关键冲突的逐字口播"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "SRT与可见字幕的关键冲突对应时点的可见字幕/白板/人物状态"
+        }
+      ]
+    },
+    {
+      "from": "KU-18",
+      "to": "KU-14",
+      "relation": "closing_warning_payoff_for_mcn_claims",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对多数MCN内容能力的判断的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "resources_and_capabilities_constrain_track_then_format_decision",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "选择赛道要结合自身条件的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "卷度、商业空间与所谓蓝海的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "self_relative_rhythm_and_quality_claimed_to_condition_weight",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "更新频率没有统一答案但不要断更的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "权重与大博主下滑的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-09",
+      "to": "KU-08",
+      "relation": "copy_and_grow_before_fatigue_or_scale_then_advertise_dependency_order",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "爆款之后先复制结构的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "爆款系列不宜立刻变现的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-10",
+      "to": "KU-11",
+      "relation": "feedback_sources_feed_topics_then_multi_series_and_tag_loop",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "评论区和私信用于获取选题的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "更新框架与tag的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-13",
+      "to": "KU-12",
+      "relation": "diagnostic_adjustment_complements_lifecycle_optimization",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "数据不好后的等待与诊断的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "长系列生命周期的例外与调整的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-15",
+      "to": "KU-16",
+      "relation": "mcn_type_and_share_maps_to_claimed_services",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN三类与分成的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "MCN可提供的资源的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-16",
+      "to": "KU-24",
+      "relation": "claimed_services_require_unshown_due_diligence_before_contract_decision",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "MCN可提供的资源的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN签约判断缺少核验桥梁的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-24",
+      "to": "KU-18",
+      "relation": "missing_verification_bridge_limits_closing_warning",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "MCN签约判断缺少核验桥梁的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-17",
+      "to": "KU-18",
+      "relation": "ad_revenue_to_paid_amplification_loop_motivates_warning",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "孵化账号的投流循环的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-110",
+          "supports": "结尾警示的逐字口播"
+        }
+      ]
+    },
+    {
+      "from": "KU-01",
+      "to": "KU-23",
+      "relation": "thirteen_question_promise_not_visibly_enumerated_to_completion",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "十三问开场承诺的逐字口播"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "“十三问”未被可见编号逐项闭合的逐字口播"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-SPEECH",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-CAPTION",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-WHITEBOARD",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-GESTURE",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-PRESENTER",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-EDIT",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-AUDIO",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-ABSENCE",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-22",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-06",
+          "KU-07",
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-09",
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-11",
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-08",
+        "captured": true,
+        "unitIds": [
+          "KU-13",
+          "KU-14",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ]
+      },
+      {
+        "id": "MC-09",
+        "captured": true,
+        "unitIds": [
+          "KU-13",
+          "KU-14",
+          "KU-15",
+          "KU-16",
+          "KU-17",
+          "KU-18",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-004",
+          "CUE-003"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-017"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-020",
+          "CUE-033"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-036",
+          "CUE-048"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-051",
+          "CUE-060"
+        ]
+      },
+      {
+        "id": "REL-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-063",
+          "CUE-071"
+        ]
+      },
+      {
+        "id": "REL-07",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-074",
+          "CUE-082"
+        ]
+      },
+      {
+        "id": "REL-08",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-085",
+          "CUE-091"
+        ]
+      },
+      {
+        "id": "REL-PRESENTER",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-094"
+        ]
+      },
+      {
+        "id": "REL-CONFLICT",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-094"
+        ]
+      },
+      {
+        "id": "REL-WHITEBOARD",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-094"
+        ]
+      },
+      {
+        "id": "SEM-RESOURCE-TRACK-FORMAT",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-006",
+          "CUE-009",
+          "CUE-015"
+        ]
+      },
+      {
+        "id": "SEM-RHYTHM-WEIGHT",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-018",
+          "CUE-032"
+        ]
+      },
+      {
+        "id": "SEM-HIT-MONETIZE",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-050",
+          "CUE-058",
+          "CUE-063"
+        ]
+      },
+      {
+        "id": "SEM-FEEDBACK-TAG",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-065",
+          "CUE-072",
+          "CUE-077"
+        ]
+      },
+      {
+        "id": "SEM-DIAGNOSE",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-086",
+          "CUE-091"
+        ]
+      },
+      {
+        "id": "SEM-MCN-DUE-DILIGENCE",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-092",
+          "CUE-103",
+          "CUE-110"
+        ]
+      },
+      {
+        "id": "SEM-AD-LOOP",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-104",
+          "CUE-109"
+        ]
+      },
+      {
+        "id": "SEM-OPEN-ENUM",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-002",
+          "CUE-017",
+          "CUE-064",
+          "CUE-092",
+          "CUE-110"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "Q-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01",
+          "KU-22"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "CUE-001"
+        ]
+      },
+      {
+        "id": "Q-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-004"
+        ]
+      },
+      {
+        "id": "Q-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-009"
+        ]
+      },
+      {
+        "id": "Q-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-04",
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-017",
+          "CUE-024"
+        ]
+      },
+      {
+        "id": "Q-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-06",
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "CUE-033",
+          "CUE-042"
+        ]
+      },
+      {
+        "id": "Q-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "CUE-049"
+        ]
+      },
+      {
+        "id": "Q-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "CUE-060"
+        ]
+      },
+      {
+        "id": "Q-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-10"
+        ],
+        "evidenceRefs": [
+          "CUE-064"
+        ]
+      },
+      {
+        "id": "Q-09",
+        "status": "answered",
+        "unitIds": [
+          "KU-11"
+        ],
+        "evidenceRefs": [
+          "CUE-071"
+        ]
+      },
+      {
+        "id": "Q-10",
+        "status": "answered",
+        "unitIds": [
+          "KU-12"
+        ],
+        "evidenceRefs": [
+          "CUE-078"
+        ]
+      },
+      {
+        "id": "Q-11",
+        "status": "answered",
+        "unitIds": [
+          "KU-13"
+        ],
+        "evidenceRefs": [
+          "CUE-082"
+        ]
+      },
+      {
+        "id": "Q-12",
+        "status": "answered",
+        "unitIds": [
+          "KU-13"
+        ],
+        "evidenceRefs": [
+          "CUE-082"
+        ]
+      },
+      {
+        "id": "Q-13",
+        "status": "answered",
+        "unitIds": [
+          "KU-15"
+        ],
+        "evidenceRefs": [
+          "CUE-094"
+        ]
+      },
+      {
+        "id": "Q-14",
+        "status": "answered",
+        "unitIds": [
+          "KU-14"
+        ],
+        "evidenceRefs": [
+          "CUE-092"
+        ]
+      },
+      {
+        "id": "Q-15",
+        "status": "answered",
+        "unitIds": [
+          "KU-16"
+        ],
+        "evidenceRefs": [
+          "CUE-100"
+        ]
+      },
+      {
+        "id": "Q-16",
+        "status": "answered",
+        "unitIds": [
+          "KU-17"
+        ],
+        "evidenceRefs": [
+          "CUE-104"
+        ]
+      },
+      {
+        "id": "Q-17",
+        "status": "answered",
+        "unitIds": [
+          "KU-18"
+        ],
+        "evidenceRefs": [
+          "CUE-110"
+        ]
+      },
+      {
+        "id": "Q-18",
+        "status": "unknown",
+        "unitIds": [
+          "KU-23"
+        ],
+        "evidenceRefs": [
+          "CUE-001"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-22",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-22",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02",
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04",
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06",
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07",
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-08",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-060",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-061",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-062",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-063",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-09",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-064",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-065",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-066",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-067",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-068",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-069",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-070",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-10",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-071",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-072",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-073",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-074",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-075",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-076",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-077",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-078",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-11",
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-079",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-080",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-081",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-12",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-082",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-083",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-084",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-085",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-086",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-087",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-088",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-089",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-090",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-091",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-14",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-092",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-13",
+          "KU-14",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-093",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-14",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-094",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-095",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-096",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-097",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-098",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-099",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-16",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-100",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-15",
+          "KU-16",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-101",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-102",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-103",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-104",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-16",
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-105",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-106",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-107",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-108",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-109",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-18",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      },
+      {
+        "cueId": "CUE-110",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-17",
+          "KU-18",
+          "KU-19",
+          "KU-20",
+          "KU-21",
+          "KU-23",
+          "KU-24"
+        ],
+        "rationale": "该cue直接支撑所链接的命题/列表/边界。"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 18,
+      "total": 18
+    },
+    "unknowns": [
+      "0–8.25秒开场截图的账号归属、时间、平台口径与从零到一万粉的因果未知。",
+      "6.967–16.861秒口播/非口播赛道的完整分类及受损专名未知。",
+      "22.72–34.925秒Vlog卷度、娱乐盈利比较的样本、平台、时间和统计方法未知。",
+      "34.925–46.75秒两分钟/6–7分钟建议的算法依据、适用平台和账号阶段未知。",
+      "41.747–46.75秒新导演扶持计划的准确机构名、入口、条件、地区和有效期未知。",
+      "46.733–89.85秒权重、基础播放、降权及恢复的官方定义和计算未知。",
+      "108.133–131.491秒618预算判断的数据、年份和市场范围未知。",
+      "131.167–160.13及210.3–224.52秒3–6个月/约十万粉阈值的样本与例外未知。",
+      "160.14–174.107秒复制爆款应保持或改变的变量、观察窗口和失效标准未知。",
+      "172.49–193.35秒评论/私信互动的合理尺度、隐私与平台风控边界未知。",
+      "230.433–252.33秒3–7天阈值、之后删除/隐藏条件和指标基准未知。",
+      "252.7–277.7秒MCN分类是否覆盖混合合同，以及解约、IP/账号归属、违约责任未知。",
+      "252.33–315.067秒99%主张和孵化模式的样本、责任主体及可验证案例未知。",
+      "非语音音频角色、讲述者身份/授权、隐藏剪辑及部分白板小字未知。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整时间轴载体均已检查；协议另以SEM-RESOURCE-TRACK-FORMAT, SEM-RHYTHM-WEIGHT, SEM-HIT-MONETIZE, SEM-FEEDBACK-TAG, SEM-DIAGNOSE, SEM-MCN-DUE-DILIGENCE, SEM-AD-LOOP, SEM-OPEN-ENUM显式守护跨段决策、条件、反馈、诊断、开闭与未展示核验桥梁。概念依赖与编辑顺序分开记录，未把口播关系臆造为已执行操作；不可判读载体均保留为有界unknown。"
+  }
+}

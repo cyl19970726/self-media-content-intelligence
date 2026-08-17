@@ -1,0 +1,356 @@
+{
+  "schemaVersion": "reconstruction-gate-report-1.0",
+  "generatedAt": "2026-08-15T22:18:42.571Z",
+  "ready": true,
+  "gates": [
+    {
+      "id": "no_global_completeness_score",
+      "pass": true,
+      "detail": "No global completeness percentage",
+      "examples": []
+    },
+    {
+      "id": "schema_contract",
+      "pass": true,
+      "detail": "All schema versions and independent evaluation flag are valid",
+      "examples": []
+    },
+    {
+      "id": "verbatim_transcript_and_overlap",
+      "pass": true,
+      "detail": "Every cue, representative frame, and overlapping shot is preserved",
+      "examples": []
+    },
+    {
+      "id": "probe_inspects_available_carriers",
+      "pass": true,
+      "detail": "All available carriers inspected",
+      "examples": []
+    },
+    {
+      "id": "full_timeline_carrier_sweep",
+      "pass": true,
+      "detail": "Carrier sweep covers the source and traces every discovered carrier",
+      "examples": []
+    },
+    {
+      "id": "protocol_is_probe_derived",
+      "pass": true,
+      "detail": "Every protocol field and action traces to the probe",
+      "examples": []
+    },
+    {
+      "id": "targeted_capture_execution",
+      "pass": true,
+      "detail": "Every capture action produced resolvable evidence",
+      "examples": []
+    },
+    {
+      "id": "ocr_and_ui_evidence_execution",
+      "pass": true,
+      "detail": "Every OCR/UI frame was processed",
+      "examples": []
+    },
+    {
+      "id": "core_evidence_references",
+      "pass": true,
+      "detail": "All core evidence references resolve",
+      "examples": []
+    },
+    {
+      "id": "internal_unsupported_inference",
+      "pass": true,
+      "detail": "Inference provenance and reasoning are explicit",
+      "examples": []
+    },
+    {
+      "id": "internal_timestamp_bounds",
+      "pass": true,
+      "detail": "All unit ranges and frame references fit the source timeline",
+      "examples": []
+    },
+    {
+      "id": "internal_process_dependencies",
+      "pass": true,
+      "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "coverage_matrix",
+      "pass": true,
+      "detail": "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for",
+      "examples": []
+    },
+    {
+      "id": "internal_meta_gate",
+      "pass": true,
+      "detail": "Internal meta-gate found no unchecked closure",
+      "examples": []
+    },
+    {
+      "id": "eval_critical_question_recall",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditIds": [
+            "CQ-01",
+            "CQ-02",
+            "CQ-03",
+            "CQ-04",
+            "CQ-05"
+          ],
+          "candidateUnits": [
+            "KU-01",
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ],
+          "result": "answered with the promise, author-claim boundary, business formula, platform premise, and two product conditions"
+        },
+        {
+          "auditIds": [
+            "CQ-06",
+            "CQ-07",
+            "CQ-08",
+            "CQ-09"
+          ],
+          "candidateUnits": [
+            "KU-07",
+            "KU-08",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13"
+          ],
+          "result": "answered with the outside-search order and all audited example chains"
+        },
+        {
+          "auditIds": [
+            "CQ-10",
+            "CQ-11",
+            "CQ-12",
+            "CQ-13"
+          ],
+          "candidateUnits": [
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "KU-19",
+            "KU-20",
+            "KU-21"
+          ],
+          "result": "answered with the inside-search reversal, three mappings, and product-to-content mapping"
+        },
+        {
+          "auditIds": [
+            "CQ-14",
+            "CQ-15"
+          ],
+          "candidateUnits": [
+            "KU-02",
+            "KU-03",
+            "KU-25",
+            "KU-27",
+            "KU-28",
+            "KU-29"
+          ],
+          "result": "correctly distinguishes unproved results and closes the opening-to-closing identity relation"
+        }
+      ]
+    },
+    {
+      "id": "eval_evidence_coverage",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditRange": "KU-01..KU-06",
+          "candidateUnits": [
+            "KU-02",
+            "KU-01",
+            "KU-04",
+            "KU-05",
+            "KU-06"
+          ],
+          "result": "all six opening and model units have cue, frame, targeted-frame, or OCR evidence"
+        },
+        {
+          "auditRange": "KU-07..KU-14",
+          "candidateUnits": [
+            "KU-07",
+            "KU-08",
+            "KU-09",
+            "KU-10",
+            "KU-11",
+            "KU-12",
+            "KU-13"
+          ],
+          "result": "all eight outside-search units are evidenced; some audit units are deliberately consolidated"
+        },
+        {
+          "auditRange": "KU-15..KU-22",
+          "candidateUnits": [
+            "KU-14",
+            "KU-15",
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "KU-19",
+            "KU-20",
+            "KU-21"
+          ],
+          "result": "all eight inside-search and content-form units are evidenced"
+        },
+        {
+          "auditRange": "KU-23..KU-24",
+          "candidateUnits": [
+            "KU-03",
+            "KU-27"
+          ],
+          "result": "persistent promotion and closing identity/signoff are both visually and textually evidenced"
+        }
+      ]
+    },
+    {
+      "id": "eval_unsupported_inference",
+      "pass": true,
+      "detail": "error_ratio=0.000",
+      "examples": [
+        {
+          "candidateUnit": "KU-02",
+          "result": "visible metric values are bounded to the opening collage and ownership/causality are explicitly unknown"
+        },
+        {
+          "candidateUnits": [
+            "KU-11",
+            "KU-12"
+          ],
+          "result": "buyer profile and need chain remain author claims rather than verified market facts"
+        },
+        {
+          "candidateUnit": "KU-24",
+          "result": "same-setting continuity is supported while hidden edits remain unknown"
+        },
+        {
+          "candidateUnit": "KU-27",
+          "result": "the brand echo is framed as a visible/spoken relation, not real-person identity proof"
+        }
+      ]
+    },
+    {
+      "id": "eval_timestamp_accuracy",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "scope": "all knowledge-unit evidence references",
+          "result": "all 131 references resolve and are localized within the declared unit ranges under the canonical tolerance"
+        },
+        {
+          "candidateUnit": "KU-22",
+          "result": "the broad range is explicitly documented as a non-contiguous conflict ledger spanning its earliest and latest evidence"
+        },
+        {
+          "candidateUnits": [
+            "KU-25",
+            "KU-28",
+            "KU-29"
+          ],
+          "result": "negative claims name bounded full-film or opportunity-window scopes and inspected carriers"
+        }
+      ]
+    },
+    {
+      "id": "eval_process_dependency_completeness",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": []
+    },
+    {
+      "id": "eval_unknown_discipline",
+      "pass": true,
+      "detail": "ratio=1.000",
+      "examples": [
+        {
+          "auditIds": [
+            "UNK-01",
+            "UNK-02",
+            "UNK-03"
+          ],
+          "candidateUnits": [
+            "KU-02",
+            "KU-03",
+            "KU-27"
+          ],
+          "result": "real identity, metric ownership, and method attribution remain unknown"
+        },
+        {
+          "auditIds": [
+            "UNK-04",
+            "UNK-05",
+            "UNK-06",
+            "UNK-09"
+          ],
+          "candidateUnits": [
+            "KU-04",
+            "KU-11",
+            "KU-12",
+            "KU-25"
+          ],
+          "result": "trend evidence, profile research, viability, and actual results remain unknown"
+        },
+        {
+          "auditIds": [
+            "UNK-07",
+            "UNK-08",
+            "UNK-10",
+            "UNK-13"
+          ],
+          "candidateUnits": [
+            "KU-25",
+            "KU-28"
+          ],
+          "result": "buyer acquisition, delivery/support, compliance boundaries, and course terms are bounded abstentions"
+        },
+        {
+          "auditIds": [
+            "UNK-11",
+            "UNK-12",
+            "UNK-14"
+          ],
+          "candidateUnits": [
+            "KU-19",
+            "KU-20",
+            "KU-21",
+            "KU-29"
+          ],
+          "result": "hybrid-product rules, execution parameters, and failure conditions are not invented"
+        }
+      ]
+    },
+    {
+      "id": "eval_unchecked_channels",
+      "pass": true,
+      "detail": "No unchecked channels",
+      "examples": []
+    },
+    {
+      "id": "eval_meta_gate",
+      "pass": true,
+      "detail": "Independent meta-audit passed",
+      "examples": []
+    }
+  ],
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "failedGateIds": []
+}

@@ -1,0 +1,672 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a02a261000000000702ccfa/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能知道实时语音模型和飞书资料，但不知道怎样把它们连接成能采访、写作、读会议和调用组织知识的小工具。",
+    "after": "观众被引导形成一条构建思路：让语音 AI 逐问采访以降低空白文档启动成本，再把回答写入文档；进一步通过飞书 CLI/API/Skill 读取会议与文档，让通用模型获得组织上下文。",
+    "intendedChanges": [
+      "从面对空白文档无从下手，转向用逐问采访外化观点",
+      "从只做语音聊天，转向让语音层调用文档和会议资料",
+      "从把工具当完成品，转向理解它是可由 CLI、API 和 Skill 组合的原型"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {
+        "start": 0,
+        "end": 28
+      },
+      "cognitiveQuestion": "开场究竟承诺什么结果，为什么观众需要它？",
+      "observedSignals": [
+        "口播提到 OpenAI Realtime 与低延迟",
+        "右下角出现语音助手",
+        "空白文档不知道如何开始被设为用户痛点"
+      ],
+      "checkedAlternatives": [
+        "是否只是 API 新闻",
+        "是否已经展示真实延迟基准"
+      ],
+      "remainingUnknowns": [
+        "准确 API 版本",
+        "低延迟数值与网络条件",
+        "插件权限和数据流向"
+      ],
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-012"
+      ]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {
+        "start": 28,
+        "end": 97
+      },
+      "cognitiveQuestion": "采访模式真实展示了哪些输入、操作和输出？",
+      "observedSignals": [
+        "AI 提出开场问题",
+        "用户口述想写的主题",
+        "文档出现被组织后的文字",
+        "对话与文档状态多次切换"
+      ],
+      "checkedAlternatives": [
+        "是否为完全连续实时录屏",
+        "文档是否可能在镜头外预置或改写"
+      ],
+      "remainingUnknowns": [
+        "原始回答与成文之间的改写规则",
+        "文档是否预置",
+        "真实延迟和失败率"
+      ],
+      "evidenceHints": [
+        "CUE-013",
+        "CUE-031"
+      ]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {
+        "start": 97,
+        "end": 183
+      },
+      "cognitiveQuestion": "长会议和群总结演示能证明什么，不能证明什么？",
+      "observedSignals": [
+        "画面进入群总结/妙记或会议资料",
+        "口播称可问三小时会议",
+        "回答旁出现来源或资料线索"
+      ],
+      "checkedAlternatives": [
+        "是否真的读取完整三小时内容",
+        "来源链接是否与回答逐句一致"
+      ],
+      "remainingUnknowns": [
+        "真实会议长度",
+        "资料召回与答案准确率",
+        "来源链接忠实性",
+        "组织权限隔离"
+      ],
+      "evidenceHints": [
+        "CUE-032",
+        "CUE-043"
+      ]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {
+        "start": 183,
+        "end": 228
+      },
+      "cognitiveQuestion": "作者如何从三个演示推导出通用构建方法？",
+      "observedSignals": [
+        "口播从当前插件扩展到更多文档与 API",
+        "提到把飞书 CLI 做成 Skill",
+        "举出 slides 等可组合方向"
+      ],
+      "checkedAlternatives": [
+        "是否已经实现所有扩展能力",
+        "是否只是未来构想"
+      ],
+      "remainingUnknowns": [
+        "各接口的权限与速率限制",
+        "Skill 输入输出契约",
+        "哪些扩展已经实现"
+      ],
+      "evidenceHints": [
+        "CUE-044",
+        "CUE-050"
+      ]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {
+        "start": 228,
+        "end": 247
+      },
+      "cognitiveQuestion": "视频给出了哪些入口线索，哪些安装和可用性信息没有闭环？",
+      "observedSignals": [
+        "出现搜索或 GitHub/CLI 页面",
+        "口播提示检索关键词或仓库",
+        "没有完整安装到运行的连续演示"
+      ],
+      "checkedAlternatives": [
+        "页面出现是否等于当前可下载可运行",
+        "仓库是否包含完整插件"
+      ],
+      "remainingUnknowns": [
+        "当前地址和版本",
+        "许可证",
+        "安装依赖",
+        "费用和账号地区"
+      ],
+      "evidenceHints": [
+        "CUE-051",
+        "CUE-054"
+      ]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {
+        "start": 247,
+        "end": 272.667
+      },
+      "cognitiveQuestion": "作者如何把观看转成观众下一步行动？",
+      "observedSignals": [
+        "口播称用 Codex 和自然语言完成插件",
+        "称最初提示很短、后续迭代",
+        "给出半小时到一小时量级自述与社区 CTA"
+      ],
+      "checkedAlternatives": [
+        "是否真的零代码或人人可复现",
+        "构建时间是否包含调试和准备"
+      ],
+      "remainingUnknowns": [
+        "准确提示词",
+        "迭代次数",
+        "构建起止口径",
+        "普通用户复现率"
+      ],
+      "evidenceHints": [
+        "CUE-055",
+        "CUE-060"
+      ]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-01",
+      "name": "完整机器转写口播",
+      "modalityKeys": [
+        "audio.speech",
+        "transcript.machine"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05",
+        "SWEEP-06"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供叙事主线、步骤、论点与行动建议"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 272.667
+        }
+      ],
+      "omissionImpact": "会丢失作者真正提出的方法、条件和结论。"
+    },
+    {
+      "id": "CAR-02",
+      "name": "烧录字幕与画面文字",
+      "modalityKeys": [
+        "visual.caption",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05",
+        "SWEEP-06"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "校正专有名词",
+        "锚定章节、数字、按钮和引语"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 272.667
+        }
+      ],
+      "omissionImpact": "会把机器转写误识别静默升级为原话，并漏掉只在画面出现的信息。"
+    },
+    {
+      "id": "CAR-03",
+      "name": "浏览器语音插件、对话状态与文档写入",
+      "modalityKeys": [
+        "visual.ui",
+        "visual.state",
+        "visual.person"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "展示右下角语音助手",
+        "承载采访问题、回答和文档变化"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 28
+        },
+        {
+          "start": 28,
+          "end": 97
+        }
+      ],
+      "omissionImpact": "会把概念性口播误写成已经完整验证的实时工作流。"
+    },
+    {
+      "id": "CAR-04",
+      "name": "飞书文档、群总结和妙记/会议资料界面",
+      "modalityKeys": [
+        "visual.ui",
+        "visual.document",
+        "visual.state"
+      ],
+      "discoveredIn": [
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "展示长会议问答",
+        "显示来源链接和组织资料调用线索"
+      ],
+      "intervals": [
+        {
+          "start": 97,
+          "end": 183
+        },
+        {
+          "start": 183,
+          "end": 228
+        }
+      ],
+      "omissionImpact": "会漏掉第二个核心能力，也会忽略资料权限与引用是否真实可追溯。"
+    },
+    {
+      "id": "CAR-05",
+      "name": "搜索、GitHub/CLI 页面与收尾构建自述",
+      "modalityKeys": [
+        "visual.ui",
+        "visual.code_repository",
+        "visual.layout"
+      ],
+      "discoveredIn": [
+        "SWEEP-05",
+        "SWEEP-06"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "展示获得工具/代码的入口线索",
+        "把用法扩展成构建方法与社区 CTA"
+      ],
+      "intervals": [
+        {
+          "start": 228,
+          "end": 247
+        },
+        {
+          "start": 247,
+          "end": 272.667
+        }
+      ],
+      "omissionImpact": "会漏掉从演示到可组合基础设施的价值升维，也可能虚构当前可用入口。"
+    },
+    {
+      "id": "CAR-06",
+      "name": "非语音音频机器语义检查",
+      "modalityKeys": [
+        "audio.non_speech"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05",
+        "SWEEP-06"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "检查配乐或音效是否承担独立叙事/操作证明"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 272.667
+        }
+      ],
+      "omissionImpact": "会凭音频存在臆测配乐、点击或生成成功音。"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {
+        "start": 0,
+        "end": 28
+      },
+      "description": "从新 API 资讯转成一个具体写作问题：让 AI 逐问采访，帮助用户开始表达。",
+      "trigger": "API/CLI 组合、自制小工具、空白文档与逐问采访",
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-012"
+      ]
+    },
+    {
+      "id": "MC-02",
+      "range": {
+        "start": 28,
+        "end": 97
+      },
+      "description": "把‘AI 帮写’具体化为先采访、后组织，而不是直接代写。",
+      "trigger": "进入采访模式、逐问回答、文档形成",
+      "evidenceHints": [
+        "CUE-013",
+        "CUE-031"
+      ]
+    },
+    {
+      "id": "MC-03",
+      "range": {
+        "start": 97,
+        "end": 183
+      },
+      "description": "从个人口述写作扩展到读取既有组织资料并回答问题。",
+      "trigger": "群总结、会议/妙记问答和来源链接",
+      "evidenceHints": [
+        "CUE-032",
+        "CUE-043"
+      ]
+    },
+    {
+      "id": "MC-04",
+      "range": {
+        "start": 183,
+        "end": 228
+      },
+      "description": "从一个插件转向‘组织资料接口 + 通用模型 + Skill’的组合方法。",
+      "trigger": "CLI、外部 API、Skill 和更多应用设想",
+      "evidenceHints": [
+        "CUE-044",
+        "CUE-050"
+      ]
+    },
+    {
+      "id": "MC-05",
+      "range": {
+        "start": 228,
+        "end": 247
+      },
+      "description": "观众从理解能力走向寻找入口，但仍需要自行验证版本与依赖。",
+      "trigger": "搜索、GitHub/CLI 与获取提示",
+      "evidenceHints": [
+        "CUE-051",
+        "CUE-054"
+      ]
+    },
+    {
+      "id": "MC-06",
+      "range": {
+        "start": 247,
+        "end": 272.667
+      },
+      "description": "从‘这个工具很复杂’转向‘可以先用自然语言做原型并持续迭代’。",
+      "trigger": "Codex 构建自述、短提示、迭代和社群入口",
+      "evidenceHints": [
+        "CUE-055",
+        "CUE-060"
+      ]
+    }
+  ],
+  "relationshipHypotheses": [
+    {
+      "id": "REL-01",
+      "from": "MC-01",
+      "to": "MC-02",
+      "relation": "开场承诺通过逐问采访演示获得第一个可见结果",
+      "evidenceHints": [
+        "CUE-012",
+        "CUE-013"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "from": "MC-02",
+      "to": "MC-03",
+      "relation": "个人写作能力被扩展为组织知识检索与问答",
+      "evidenceHints": [
+        "CUE-031",
+        "CUE-032"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "from": "MC-03",
+      "to": "MC-04",
+      "relation": "资料问答单例被概括为可复用的工具组合模式",
+      "evidenceHints": [
+        "CUE-043",
+        "CUE-044"
+      ]
+    },
+    {
+      "id": "REL-04",
+      "from": "MC-04",
+      "to": "MC-05",
+      "relation": "抽象组合方法落到可搜索的入口线索",
+      "evidenceHints": [
+        "CUE-050",
+        "CUE-051"
+      ]
+    },
+    {
+      "id": "REL-05",
+      "from": "MC-05",
+      "to": "MC-06",
+      "relation": "入口线索进一步被包装为低门槛亲手构建的行动邀请",
+      "evidenceHints": [
+        "CUE-054",
+        "CUE-055"
+      ]
+    }
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "把作者口述的低延迟和组合能力当成已测性能。",
+      "why": "片内没有基准、网络条件或多次测量。",
+      "where": [
+        {
+          "start": 0,
+          "end": 28
+        }
+      ],
+      "requiredFollowup": "捕捉助手身份、空白文档和第一轮采访前状态；分开承诺与实测。"
+    },
+    {
+      "id": "RISK-02",
+      "risk": "把剪辑后的问题、回答和文档状态写成无中断端到端因果。",
+      "why": "相邻状态可能经过剪辑，提交、等待和写入桥接不一定完整出现。",
+      "where": [
+        {
+          "start": 28,
+          "end": 97
+        }
+      ],
+      "requiredFollowup": "密集检查提问前、回答中和文档出现后的状态，标明未展示桥接。"
+    },
+    {
+      "id": "RISK-03",
+      "risk": "把单次剪辑演示升级为三小时会议全量准确检索和可审计引用。",
+      "why": "片内缺少资料长度验证、召回率、引用逐句核对和失败样例。",
+      "where": [
+        {
+          "start": 97,
+          "end": 183
+        }
+      ],
+      "requiredFollowup": "检查问题、回答、来源和会议界面，明确单例与普遍能力边界。"
+    },
+    {
+      "id": "RISK-04",
+      "risk": "把作者提出的扩展方向当作片内全部已运行能力。",
+      "why": "一些能力只是口播建议或相邻画面，没有逐项完成链。",
+      "where": [
+        {
+          "start": 183,
+          "end": 228
+        }
+      ],
+      "requiredFollowup": "区分已演示能力、概念示例和未来扩展；记录依赖。"
+    },
+    {
+      "id": "RISK-05",
+      "risk": "把搜索结果或仓库页面出现写成当前可安装、免费和可商用。",
+      "why": "缺少版本、许可证、安装命令、账号条件和成功运行闭环。",
+      "where": [
+        {
+          "start": 228,
+          "end": 247
+        }
+      ],
+      "requiredFollowup": "OCR 可见入口文字，并把当前可用性、价格、许可和安装保持未知。"
+    },
+    {
+      "id": "RISK-06",
+      "risk": "把作者单次构建自述普遍化为任何人半小时即可完成。",
+      "why": "缺少起止口径、技能基础、调试过程、失败记录和复现实验。",
+      "where": [
+        {
+          "start": 247,
+          "end": 272.667
+        }
+      ],
+      "requiredFollowup": "捕捉构建自述与 CTA，并明确时间和难度是作者单例。"
+    },
+    {
+      "id": "RISK-07",
+      "risk": "把机器转写、烧录字幕或 UI 中的专有名词冲突静默改写。",
+      "why": "专有名词误识别会改变工具身份、案例身份或方法含义。",
+      "where": [
+        {
+          "start": 0,
+          "end": 272.667
+        }
+      ],
+      "requiredFollowup": "保留原始 cue，并用 OCR/画面建立规范化建议和 unresolved。"
+    },
+    {
+      "id": "RISK-08",
+      "risk": "把非语音音频机器候选升级为具体声音事实或因果证明。",
+      "why": "混合音轨分类只能提供候选，不能确认声源、版权或 UI 动作。",
+      "where": [
+        {
+          "start": 0,
+          "end": 272.667
+        }
+      ],
+      "requiredFollowup": "注册完整音频账本，并把精确声源与权利保持未知。"
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "CQ-01",
+      "question": "开场究竟承诺什么结果，为什么观众需要它？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "RISK-01"
+      ]
+    },
+    {
+      "id": "CQ-02",
+      "question": "采访模式真实展示了哪些输入、操作和输出？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "RISK-02"
+      ]
+    },
+    {
+      "id": "CQ-03",
+      "question": "长会议和群总结演示能证明什么，不能证明什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "RISK-03"
+      ]
+    },
+    {
+      "id": "CQ-04",
+      "question": "作者如何从三个演示推导出通用构建方法？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "RISK-04"
+      ]
+    },
+    {
+      "id": "CQ-05",
+      "question": "视频给出了哪些入口线索，哪些安装和可用性信息没有闭环？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "SWEEP-05",
+        "RISK-05"
+      ]
+    },
+    {
+      "id": "CQ-06",
+      "question": "作者如何把观看转成观众下一步行动？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-06",
+        "RISK-06"
+      ]
+    },
+    {
+      "id": "CQ-07",
+      "question": "哪些专有名词、界面身份或数字存在转写/画面冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "CAR-02",
+        "RISK-07"
+      ]
+    },
+    {
+      "id": "CQ-08",
+      "question": "平台可用性、费用、账号地区、隐私、素材和结果权利有哪些仍未知？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "SWEEP-05",
+        "SWEEP-06"
+      ]
+    },
+    {
+      "id": "CQ-09",
+      "question": "非语音音频是否承载独立知识或操作证明？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "CAR-06"
+      ]
+    }
+  ],
+  "unresolved": [
+    "OpenAI Realtime API 与飞书 CLI 的准确版本、账户、费用和地区条件",
+    "插件当前下载地址、源代码、许可证和数据权限",
+    "演示中的真实延迟、任务连续性和镜头外编辑",
+    "会议来源链接、回答准确性和权限隔离是否经独立验证",
+    "半小时至一小时构建时长的起止口径和可复现性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ]
+}

@@ -1,0 +1,1318 @@
+{
+  "schemaVersion": "audio-semantic-classification-1.0",
+  "generatedAt": "2026-08-16T04:09:35.507706+00:00",
+  "source": "no-vocals-mono-16k.wav",
+  "sourceSha256": "dac4eba26cc588bf7897c9c3d0ed1fb51c8246ee12de492506c1ddbb4db17632",
+  "sourceDurationSeconds": 93.601,
+  "sampleRate": 16000,
+  "channels": 1,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "modelLabelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 10.0,
+    "hopSeconds": 5.0,
+    "topK": 15,
+    "scoreTransform": "sigmoid(logits)",
+    "coverage": "gap-free through overlapping windows from 0 to source end"
+  },
+  "limitations": [
+    "Mixed-track classification does not isolate narration from background audio.",
+    "Scores are model proposals, not human listening or source attribution.",
+    "Absence from top labels does not prove that a sound is absent.",
+    "The model cannot establish ownership, licensing, or original source."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "rms": 0.05713,
+      "peak": 1.0,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.514072
+        },
+        {
+          "label": "Speech",
+          "score": 0.202124
+        },
+        {
+          "label": "Whistle",
+          "score": 0.071772
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.029365
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.020658
+        },
+        {
+          "label": "Disco",
+          "score": 0.015147
+        },
+        {
+          "label": "Wind instrument, woodwind instrument",
+          "score": 0.011897
+        },
+        {
+          "label": "Smoke detector, smoke alarm",
+          "score": 0.011498
+        },
+        {
+          "label": "Animal",
+          "score": 0.010991
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.010248
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.008963
+        },
+        {
+          "label": "Harmonica",
+          "score": 0.008899
+        },
+        {
+          "label": "Ping",
+          "score": 0.008608
+        },
+        {
+          "label": "House music",
+          "score": 0.006989
+        },
+        {
+          "label": "Flute",
+          "score": 0.006615
+        }
+      ]
+    },
+    {
+      "start": 5.0,
+      "end": 15.0,
+      "rms": 0.059544,
+      "peak": 0.440039,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.573138
+        },
+        {
+          "label": "Speech",
+          "score": 0.16043
+        },
+        {
+          "label": "Toothbrush",
+          "score": 0.048687
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.048057
+        },
+        {
+          "label": "Drum",
+          "score": 0.038838
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.037924
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.030241
+        },
+        {
+          "label": "Disco",
+          "score": 0.027824
+        },
+        {
+          "label": "Drum kit",
+          "score": 0.027182
+        },
+        {
+          "label": "House music",
+          "score": 0.026842
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.026228
+        },
+        {
+          "label": "Techno",
+          "score": 0.022932
+        },
+        {
+          "label": "Percussion",
+          "score": 0.021667
+        },
+        {
+          "label": "Funk",
+          "score": 0.020462
+        },
+        {
+          "label": "Dance music",
+          "score": 0.020314
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "rms": 0.06396,
+      "peak": 0.533663,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.521433
+        },
+        {
+          "label": "Accordion",
+          "score": 0.233037
+        },
+        {
+          "label": "Insect",
+          "score": 0.146473
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.108829
+        },
+        {
+          "label": "Fly, housefly",
+          "score": 0.107505
+        },
+        {
+          "label": "Speech",
+          "score": 0.067813
+        },
+        {
+          "label": "Bee, wasp, etc.",
+          "score": 0.044282
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.026372
+        },
+        {
+          "label": "Harmonica",
+          "score": 0.021247
+        },
+        {
+          "label": "Mosquito",
+          "score": 0.016189
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012383
+        },
+        {
+          "label": "Animal",
+          "score": 0.010757
+        },
+        {
+          "label": "Techno",
+          "score": 0.009949
+        },
+        {
+          "label": "Sampler",
+          "score": 0.008486
+        },
+        {
+          "label": "Wind instrument, woodwind instrument",
+          "score": 0.008072
+        }
+      ]
+    },
+    {
+      "start": 15.0,
+      "end": 25.0,
+      "rms": 0.060314,
+      "peak": 0.66439,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.543764
+        },
+        {
+          "label": "Accordion",
+          "score": 0.163019
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.095105
+        },
+        {
+          "label": "Speech",
+          "score": 0.085127
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.034857
+        },
+        {
+          "label": "Insect",
+          "score": 0.03318
+        },
+        {
+          "label": "Disco",
+          "score": 0.029381
+        },
+        {
+          "label": "Fly, housefly",
+          "score": 0.026559
+        },
+        {
+          "label": "Techno",
+          "score": 0.021695
+        },
+        {
+          "label": "House music",
+          "score": 0.020843
+        },
+        {
+          "label": "Sampler",
+          "score": 0.018713
+        },
+        {
+          "label": "Electronica",
+          "score": 0.018633
+        },
+        {
+          "label": "Dance music",
+          "score": 0.01492
+        },
+        {
+          "label": "Bee, wasp, etc.",
+          "score": 0.014796
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.013454
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "rms": 0.055489,
+      "peak": 0.66439,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.567896
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.186181
+        },
+        {
+          "label": "Accordion",
+          "score": 0.115954
+        },
+        {
+          "label": "Speech",
+          "score": 0.106916
+        },
+        {
+          "label": "Keyboard (musical)",
+          "score": 0.038386
+        },
+        {
+          "label": "Disco",
+          "score": 0.032106
+        },
+        {
+          "label": "Violin, fiddle",
+          "score": 0.031798
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.024152
+        },
+        {
+          "label": "Piano",
+          "score": 0.020372
+        },
+        {
+          "label": "Dance music",
+          "score": 0.019526
+        },
+        {
+          "label": "Sampler",
+          "score": 0.019489
+        },
+        {
+          "label": "Animal",
+          "score": 0.019446
+        },
+        {
+          "label": "House music",
+          "score": 0.016782
+        },
+        {
+          "label": "Techno",
+          "score": 0.016716
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.013684
+        }
+      ]
+    },
+    {
+      "start": 25.0,
+      "end": 35.0,
+      "rms": 0.057635,
+      "peak": 0.512512,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.451092
+        },
+        {
+          "label": "Whistling",
+          "score": 0.09217
+        },
+        {
+          "label": "Whistle",
+          "score": 0.089929
+        },
+        {
+          "label": "Speech",
+          "score": 0.063183
+        },
+        {
+          "label": "Bird",
+          "score": 0.053238
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032645
+        },
+        {
+          "label": "Animal",
+          "score": 0.02997
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.019809
+        },
+        {
+          "label": "Pigeon, dove",
+          "score": 0.019273
+        },
+        {
+          "label": "Dubstep",
+          "score": 0.017919
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.012594
+        },
+        {
+          "label": "Bird vocalization, bird call, bird song",
+          "score": 0.009526
+        },
+        {
+          "label": "Techno",
+          "score": 0.009523
+        },
+        {
+          "label": "House music",
+          "score": 0.008968
+        },
+        {
+          "label": "Disco",
+          "score": 0.007899
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "rms": 0.056801,
+      "peak": 0.512512,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.449111
+        },
+        {
+          "label": "Bird",
+          "score": 0.171325
+        },
+        {
+          "label": "Speech",
+          "score": 0.081444
+        },
+        {
+          "label": "Whistling",
+          "score": 0.076046
+        },
+        {
+          "label": "Pigeon, dove",
+          "score": 0.062093
+        },
+        {
+          "label": "Whistle",
+          "score": 0.058484
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.053399
+        },
+        {
+          "label": "Animal",
+          "score": 0.040597
+        },
+        {
+          "label": "Bird vocalization, bird call, bird song",
+          "score": 0.04045
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.02274
+        },
+        {
+          "label": "Chirp, tweet",
+          "score": 0.019552
+        },
+        {
+          "label": "Coo",
+          "score": 0.01849
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.017284
+        },
+        {
+          "label": "Dubstep",
+          "score": 0.015933
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.01177
+        }
+      ]
+    },
+    {
+      "start": 35.0,
+      "end": 45.0,
+      "rms": 0.051911,
+      "peak": 0.247388,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.535958
+        },
+        {
+          "label": "Speech",
+          "score": 0.10077
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.052062
+        },
+        {
+          "label": "House music",
+          "score": 0.04337
+        },
+        {
+          "label": "Bird",
+          "score": 0.037204
+        },
+        {
+          "label": "Techno",
+          "score": 0.034995
+        },
+        {
+          "label": "Liquid",
+          "score": 0.033005
+        },
+        {
+          "label": "Drip",
+          "score": 0.028234
+        },
+        {
+          "label": "Pigeon, dove",
+          "score": 0.027572
+        },
+        {
+          "label": "Disco",
+          "score": 0.026028
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.025562
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.025018
+        },
+        {
+          "label": "Dance music",
+          "score": 0.022335
+        },
+        {
+          "label": "Animal",
+          "score": 0.021703
+        },
+        {
+          "label": "Electronica",
+          "score": 0.018824
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "rms": 0.051759,
+      "peak": 0.457622,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.481045
+        },
+        {
+          "label": "Dog",
+          "score": 0.248156
+        },
+        {
+          "label": "Animal",
+          "score": 0.217354
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.157936
+        },
+        {
+          "label": "Speech",
+          "score": 0.075304
+        },
+        {
+          "label": "Canidae, dogs, wolves",
+          "score": 0.036084
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.024157
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.024013
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.02227
+        },
+        {
+          "label": "Patter",
+          "score": 0.020973
+        },
+        {
+          "label": "Techno",
+          "score": 0.018291
+        },
+        {
+          "label": "Disco",
+          "score": 0.018099
+        },
+        {
+          "label": "Bark",
+          "score": 0.017376
+        },
+        {
+          "label": "Pant",
+          "score": 0.01707
+        },
+        {
+          "label": "House music",
+          "score": 0.016999
+        }
+      ]
+    },
+    {
+      "start": 45.0,
+      "end": 55.0,
+      "rms": 0.040004,
+      "peak": 0.550074,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.599302
+        },
+        {
+          "label": "Dog",
+          "score": 0.076299
+        },
+        {
+          "label": "Animal",
+          "score": 0.064699
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.062369
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.035351
+        },
+        {
+          "label": "Speech",
+          "score": 0.024875
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.021192
+        },
+        {
+          "label": "Bark",
+          "score": 0.010474
+        },
+        {
+          "label": "Bow-wow",
+          "score": 0.010315
+        },
+        {
+          "label": "Canidae, dogs, wolves",
+          "score": 0.009788
+        },
+        {
+          "label": "Brass instrument",
+          "score": 0.009508
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.008994
+        },
+        {
+          "label": "Funk",
+          "score": 0.008336
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.007747
+        },
+        {
+          "label": "Squish",
+          "score": 0.00733
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "rms": 0.031215,
+      "peak": 0.550074,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.58672
+        },
+        {
+          "label": "Dog",
+          "score": 0.062004
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.040707
+        },
+        {
+          "label": "Animal",
+          "score": 0.036008
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.027135
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.017923
+        },
+        {
+          "label": "Speech",
+          "score": 0.015271
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.014543
+        },
+        {
+          "label": "Organ",
+          "score": 0.012734
+        },
+        {
+          "label": "Keyboard (musical)",
+          "score": 0.012369
+        },
+        {
+          "label": "Flute",
+          "score": 0.011649
+        },
+        {
+          "label": "Canidae, dogs, wolves",
+          "score": 0.007795
+        },
+        {
+          "label": "Bark",
+          "score": 0.007386
+        },
+        {
+          "label": "Synthesizer",
+          "score": 0.007111
+        },
+        {
+          "label": "Squish",
+          "score": 0.007073
+        }
+      ]
+    },
+    {
+      "start": 55.0,
+      "end": 65.0,
+      "rms": 0.054947,
+      "peak": 0.670812,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.475878
+        },
+        {
+          "label": "Speech",
+          "score": 0.144801
+        },
+        {
+          "label": "Animal",
+          "score": 0.040067
+        },
+        {
+          "label": "Insect",
+          "score": 0.026174
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.024599
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.02382
+        },
+        {
+          "label": "Fly, housefly",
+          "score": 0.023768
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.021697
+        },
+        {
+          "label": "Bird",
+          "score": 0.021115
+        },
+        {
+          "label": "Bee, wasp, etc.",
+          "score": 0.016182
+        },
+        {
+          "label": "Walk, footsteps",
+          "score": 0.015961
+        },
+        {
+          "label": "Synthesizer",
+          "score": 0.013805
+        },
+        {
+          "label": "Whistle",
+          "score": 0.013453
+        },
+        {
+          "label": "Bird vocalization, bird call, bird song",
+          "score": 0.011074
+        },
+        {
+          "label": "Keyboard (musical)",
+          "score": 0.009875
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "rms": 0.0565,
+      "peak": 0.670812,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.492455
+        },
+        {
+          "label": "Bird",
+          "score": 0.161772
+        },
+        {
+          "label": "Speech",
+          "score": 0.107217
+        },
+        {
+          "label": "Pigeon, dove",
+          "score": 0.074764
+        },
+        {
+          "label": "Bird vocalization, bird call, bird song",
+          "score": 0.073159
+        },
+        {
+          "label": "Coo",
+          "score": 0.060112
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.026961
+        },
+        {
+          "label": "Animal",
+          "score": 0.023077
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.017975
+        },
+        {
+          "label": "Whistle",
+          "score": 0.017383
+        },
+        {
+          "label": "Chirp, tweet",
+          "score": 0.017373
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.01563
+        },
+        {
+          "label": "Outside, urban or manmade",
+          "score": 0.010358
+        },
+        {
+          "label": "Techno",
+          "score": 0.010202
+        },
+        {
+          "label": "Insect",
+          "score": 0.00995
+        }
+      ]
+    },
+    {
+      "start": 65.0,
+      "end": 75.0,
+      "rms": 0.044815,
+      "peak": 0.200907,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.524404
+        },
+        {
+          "label": "Speech",
+          "score": 0.142073
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.055212
+        },
+        {
+          "label": "Techno",
+          "score": 0.049291
+        },
+        {
+          "label": "House music",
+          "score": 0.044563
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.038544
+        },
+        {
+          "label": "Disco",
+          "score": 0.034632
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032929
+        },
+        {
+          "label": "Dance music",
+          "score": 0.021234
+        },
+        {
+          "label": "Electronica",
+          "score": 0.019427
+        },
+        {
+          "label": "Animal",
+          "score": 0.016286
+        },
+        {
+          "label": "Sampler",
+          "score": 0.014042
+        },
+        {
+          "label": "Dubstep",
+          "score": 0.012405
+        },
+        {
+          "label": "Drip",
+          "score": 0.011579
+        },
+        {
+          "label": "Squish",
+          "score": 0.010574
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 80.0,
+      "rms": 0.058833,
+      "peak": 0.608073,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.449752
+        },
+        {
+          "label": "Ding",
+          "score": 0.067153
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.036246
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.034604
+        },
+        {
+          "label": "Marimba, xylophone",
+          "score": 0.033878
+        },
+        {
+          "label": "Speech",
+          "score": 0.033006
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.032762
+        },
+        {
+          "label": "Techno",
+          "score": 0.029181
+        },
+        {
+          "label": "House music",
+          "score": 0.021601
+        },
+        {
+          "label": "Glockenspiel",
+          "score": 0.017471
+        },
+        {
+          "label": "Clang",
+          "score": 0.016189
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016091
+        },
+        {
+          "label": "Mallet percussion",
+          "score": 0.014769
+        },
+        {
+          "label": "Dubstep",
+          "score": 0.014628
+        },
+        {
+          "label": "Bicycle bell",
+          "score": 0.014286
+        }
+      ]
+    },
+    {
+      "start": 75.0,
+      "end": 85.0,
+      "rms": 0.076909,
+      "peak": 0.898833,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.457178
+        },
+        {
+          "label": "Ding",
+          "score": 0.077068
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.042134
+        },
+        {
+          "label": "Ding-dong",
+          "score": 0.027344
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.027005
+        },
+        {
+          "label": "Marimba, xylophone",
+          "score": 0.026303
+        },
+        {
+          "label": "Techno",
+          "score": 0.0208
+        },
+        {
+          "label": "Speech",
+          "score": 0.020027
+        },
+        {
+          "label": "Mallet percussion",
+          "score": 0.019813
+        },
+        {
+          "label": "Clang",
+          "score": 0.018391
+        },
+        {
+          "label": "Glockenspiel",
+          "score": 0.017394
+        },
+        {
+          "label": "Glass",
+          "score": 0.016832
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.013917
+        },
+        {
+          "label": "Doorbell",
+          "score": 0.013803
+        },
+        {
+          "label": "Keyboard (musical)",
+          "score": 0.013487
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 90.0,
+      "rms": 0.073046,
+      "peak": 0.898833,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.421362
+        },
+        {
+          "label": "Whistle",
+          "score": 0.027284
+        },
+        {
+          "label": "Speech",
+          "score": 0.025655
+        },
+        {
+          "label": "Ding",
+          "score": 0.021319
+        },
+        {
+          "label": "Musical instrument",
+          "score": 0.021292
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.016462
+        },
+        {
+          "label": "Bird",
+          "score": 0.013334
+        },
+        {
+          "label": "Techno",
+          "score": 0.01294
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012573
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.009104
+        },
+        {
+          "label": "Beep, bleep",
+          "score": 0.008548
+        },
+        {
+          "label": "Patter",
+          "score": 0.007768
+        },
+        {
+          "label": "Dubstep",
+          "score": 0.007135
+        },
+        {
+          "label": "Outside, rural or natural",
+          "score": 0.006936
+        },
+        {
+          "label": "Clang",
+          "score": 0.006859
+        }
+      ]
+    },
+    {
+      "start": 85.0,
+      "end": 93.601,
+      "rms": 0.076229,
+      "peak": 0.835686,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.512992
+        },
+        {
+          "label": "Whistle",
+          "score": 0.116721
+        },
+        {
+          "label": "Speech",
+          "score": 0.054854
+        },
+        {
+          "label": "Whistling",
+          "score": 0.035947
+        },
+        {
+          "label": "Owl",
+          "score": 0.035018
+        },
+        {
+          "label": "Ping",
+          "score": 0.025493
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.017574
+        },
+        {
+          "label": "Ding",
+          "score": 0.016979
+        },
+        {
+          "label": "Techno",
+          "score": 0.014837
+        },
+        {
+          "label": "Frog",
+          "score": 0.01362
+        },
+        {
+          "label": "Bird",
+          "score": 0.013253
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.012496
+        },
+        {
+          "label": "Animal",
+          "score": 0.011429
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.009984
+        },
+        {
+          "label": "Bird vocalization, bird call, bird song",
+          "score": 0.009663
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 93.601,
+      "rms": 0.096904,
+      "peak": 0.835686,
+      "topLabels": [
+        {
+          "label": "Music",
+          "score": 0.458725
+        },
+        {
+          "label": "Speech",
+          "score": 0.155937
+        },
+        {
+          "label": "Vehicle horn, car horn, honking",
+          "score": 0.09546
+        },
+        {
+          "label": "Ding",
+          "score": 0.090875
+        },
+        {
+          "label": "Ping",
+          "score": 0.045298
+        },
+        {
+          "label": "Sound effect",
+          "score": 0.028218
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.016015
+        },
+        {
+          "label": "Vehicle",
+          "score": 0.015119
+        },
+        {
+          "label": "Outside, urban or manmade",
+          "score": 0.013328
+        },
+        {
+          "label": "Techno",
+          "score": 0.013245
+        },
+        {
+          "label": "Clang",
+          "score": 0.011012
+        },
+        {
+          "label": "Air horn, truck horn",
+          "score": 0.00955
+        },
+        {
+          "label": "Animal",
+          "score": 0.009185
+        },
+        {
+          "label": "Whistle",
+          "score": 0.008763
+        },
+        {
+          "label": "Meow",
+          "score": 0.008645
+        }
+      ]
+    }
+  ]
+}

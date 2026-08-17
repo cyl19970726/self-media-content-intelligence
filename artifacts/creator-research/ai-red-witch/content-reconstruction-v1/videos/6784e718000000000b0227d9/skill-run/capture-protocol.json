@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "probe.json",
+  "protocolName": "扣子营销海报：时长主张、输入链、结果态与未执行能力取证",
+  "rationale": "该视频的核心认知变化依赖三条必须分开的链：作者的“不到10秒/免费/质量/职业影响”主张，扣子“营销海报生成”界面的可见操作链，以及被剪辑并列的海报示例。协议因此集中捕捉工具身份冲突、提示词结构与参数、生成前/加载中/结果后的状态、修改/Logo/模板/开发能力是否闭环，以及完整时间线中未出现的计时、账号、导出和后处理证据。",
+  "knowledgeUnitFields": [
+    {"name": "visible_identity_and_carrier_conflict", "required": true, "reason": "SRT 写“coz”而烧录字幕写“扣子”，且界面卡片名为“营销海报生成”。", "derivedFrom": ["CAR-02", "CAR-03", "RISK-02", "CQ-01", "REL-09"]},
+    {"name": "input_action_parameter_output", "required": true, "reason": "教程是否可复现取决于提示词、比例、生成控件和结果状态。", "derivedFrom": ["MC-06", "MC-07", "RISK-03", "CQ-02", "CQ-03", "CQ-06"]},
+    {"name": "before_during_after_frames", "required": true, "reason": "必须区分输入、加载、结果并防止用单帧冒充连续生成。", "derivedFrom": ["CAR-03", "CAR-05", "MC-07", "RISK-01", "CQ-04", "CQ-05", "CQ-06"]},
+    {"name": "author_claim_vs_video_timing_evidence", "required": true, "reason": "“不到10秒”多次出现，但视频没有连续秒表。", "derivedFrom": ["MC-02", "MC-07", "RISK-01", "CQ-05", "REL-10"]},
+    {"name": "edited_chronology_vs_dependency_order", "required": true, "reason": "界面状态被剪辑连接，部分点击、提交、网络等待和选择步骤缺失。", "derivedFrom": ["CAR-05", "REL-05", "REL-06", "RISK-07", "CQ-04"]},
+    {"name": "prompt_structure_and_exact_visible_text", "required": true, "reason": "可复用输入结构主要由短暂黄底叠字承载。", "derivedFrom": ["MC-06", "RISK-03", "CQ-02"]},
+    {"name": "literal_input_output_text_fidelity", "required": true, "reason": "提示词日期“2024/12/3”与生成结果“2024/12/24”不一致，且后续红发人物海报日期行字形紊乱。", "derivedFrom": ["RISK-11", "CQ-14"]},
+    {"name": "capability_surface_vs_executed_result", "required": true, "reason": "修改、变高清、Logo、模板和开发应用多数只展示入口。", "derivedFrom": ["MC-08", "MC-09", "RISK-04", "CQ-07"]},
+    {"name": "reproducibility_conditions_and_unknowns", "required": true, "reason": "账号、端、版本、额度、模型和地区未被建立。", "derivedFrom": ["RISK-05", "CQ-08"]},
+    {"name": "export_and_postprocessing_unknowns", "required": true, "reason": "画面出现“导出海报”表面但未显示成功导出、文件规格或后处理。", "derivedFrom": ["RISK-04", "RISK-05", "CQ-09"]},
+    {"name": "example_scope_and_unproven_generalization", "required": true, "reason": "精选结果只能说明可见样例，不能证明普遍质量、稳定性或职业结论。", "derivedFrom": ["MC-03", "MC-10", "RISK-06", "CQ-10"]},
+    {"name": "opening_to_closing_relation", "required": true, "reason": "开场职业威胁在结尾被明确重申。", "derivedFrom": ["REL-01", "CQ-12"]},
+    {"name": "cta_scope", "required": true, "reason": "评论区资源不在视频内部证据中。", "derivedFrom": ["MC-11", "RISK-08", "CQ-11"]},
+    {"name": "non_speech_audio_role", "required": true, "reason": "媒体有音轨但语义角色无法由当前证据可靠建立。", "derivedFrom": ["CAR-07", "RISK-10", "CQ-13"]},
+    {"name": "recording_date_and_historical_ui_state", "required": true, "reason": "海报内容日期、证据生成时间和潜在平台发布日期不能证明录制日期、界面运行日期或是否为历史/回放录屏。", "derivedFrom": ["RISK-12", "CQ-15"]}
+  ],
+  "captureActions": [
+    {"id": "ACT-01", "range": {"start": 0, "end": 15.52}, "carrier": "result images, presenter, burned captions and opening promise", "mode": "exact_times", "times": [0.1, 0.6, 0.9, 1.3, 1.7, 2.2, 2.9, 3.6, 4.3, 5.2, 5.9, 6.8, 7.6, 8.8, 10.0, 11.3, 12.5, 13.8, 14.9, 15.4], "reason": "核对开场威胁、示例类别、质量与免费主张，并保留不同结果而不把它们当作同一次连续生成。", "expectedObservation": "多种电影/活动/节日/菜单或插画海报、presenter、黄底“10秒”标题、烧录字幕和“FREE”叠字。", "derivedFrom": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "MC-01", "MC-02", "MC-03", "MC-04", "RISK-06", "CQ-10", "CQ-12"]},
+    {"id": "ACT-02", "range": {"start": 15.52, "end": 17.72}, "carrier": "burned caption and visible application card identity", "mode": "ocr_review", "times": [15.6, 16.0, 16.4, 16.8, 17.2, 17.6], "reason": "解决 SRT“coz”与烧录字幕“扣子”的冲突并读取应用卡名。", "expectedObservation": "烧录字幕“我们来到扣子/找到营销海报生成”和界面中的“营销海报生成”卡片；URL、版本与账号状态可能不可见。", "derivedFrom": ["SWEEP-05", "MC-05", "REL-09", "RISK-02", "CQ-01"]},
+    {"id": "ACT-03", "range": {"start": 17.72, "end": 21.8}, "carrier": "input UI, tags, ratio and controls", "mode": "ui_state_review", "times": [17.8, 18.2, 18.8, 19.4, 20.0, 20.6, 21.2, 21.7], "reason": "恢复生成前状态和可见参数，避免只抄口播。", "expectedObservation": "参考图、灯光/镜头标签、文本输入框、2:3 比例和“生成”按钮；模型/分辨率/数量可能缺失。", "derivedFrom": ["SWEEP-06", "MC-06", "RISK-03", "CQ-03", "CQ-06"]},
+    {"id": "ACT-04", "range": {"start": 21.8, "end": 26.9}, "carrier": "prompt overlay and input text", "mode": "ocr_review", "times": [21.9, 22.4, 22.9, 23.4, 23.9, 24.4, 24.9, 25.4, 25.9, 26.4, 26.8], "reason": "完整读取结构化提示词及示例，而不从 ASR 自动补字。", "expectedObservation": "结构“风格+标题+小标题+日期+署名”及复古磨损、圣诞树、“圣诞快乐”、“红发魔女”、日期“2024/12/3”等示例内容。", "derivedFrom": ["SWEEP-07", "MC-06", "RISK-03", "CQ-02", "CQ-06"]},
+    {"id": "ACT-05", "range": {"start": 25.68, "end": 30.52}, "carrier": "input/loading/result chronology, literal text fidelity and any timer/status", "mode": "before_during_after", "times": [25.7, 26.2, 26.6, 26.85, 26.95, 27.1, 27.3, 27.5, 27.6, 27.8, 28.1, 28.4, 28.8, 29.3, 29.9, 30.4], "reason": "用前中后帧区分作者“不到10秒”主张与视频可见计时证据，并核对提示词与结果中的日期/中文。", "expectedObservation": "提示词要求日期“2024/12/3”、短暂白色加载态、结果海报显示“2024/12/24”；无连续秒表或明确起止标记时保留耗时未知。", "derivedFrom": ["SWEEP-08", "MC-07", "REL-05", "REL-10", "RISK-01", "RISK-11", "CQ-04", "CQ-05", "CQ-06", "CQ-14"]},
+    {"id": "ACT-06", "range": {"start": 30.52, "end": 34.32}, "carrier": "adjustment UI and result state", "mode": "before_during_after", "times": [30.55, 30.9, 31.3, 31.7, 32.1, 32.5, 32.9, 33.3, 33.7, 34.1, 34.3], "reason": "检查修改与变高清是否形成提交后结果。", "expectedObservation": "原海报、画面调整文本框、输入中的修改意见、按钮；如果未见点击和修改后结果，记录未闭环。", "derivedFrom": ["SWEEP-09", "MC-08", "REL-06", "RISK-04", "CQ-07"]},
+    {"id": "ACT-07", "range": {"start": 34.32, "end": 36.32}, "carrier": "Logo/export UI", "mode": "ui_state_review", "times": [34.35, 34.7, 35.0, 35.3, 35.6, 35.9, 36.2], "reason": "读取 Logo 上传和导出表面状态，检查是否真的上传/导出成功。", "expectedObservation": "“导出海报”、Logo 上传框、0/1 文件数量、Logo 位置；不应出现已完成 Logo 输出，除非帧中可见。", "derivedFrom": ["SWEEP-09", "MC-08", "RISK-04", "CQ-07", "CQ-09"]},
+    {"id": "ACT-08", "range": {"start": 36.32, "end": 40.6}, "carrier": "template grid, collage and development claim", "mode": "exact_times", "times": [36.35, 36.8, 37.2, 37.6, 38.0, 38.4, 38.8, 39.2, 39.6, 40.0, 40.4, 40.58], "reason": "区分模板/开发入口展示与已执行操作。", "expectedObservation": "模板网格与多张示例拼贴；未见复制模板的点击、编辑结果或应用开发界面。", "derivedFrom": ["SWEEP-10", "MC-09", "RISK-04", "CQ-07"]},
+    {"id": "ACT-09", "range": {"start": 40.6, "end": 48.667}, "carrier": "closing result montage, generalization and CTA", "mode": "exact_times", "times": [40.65, 41.1, 41.7, 42.3, 42.9, 43.5, 44.1, 44.7, 45.3, 45.9, 46.4, 46.9, 47.4, 47.9, 48.3, 48.6], "reason": "捕捉从样例到“大部分基础设计/设计师危险”结论及评论区 CTA 的语义升级。", "expectedObservation": "多种海报/菜单示例、职业风险字幕、最后“冬日温暖”图和转黑；视频内部不见评论、链接、二维码或下载。", "derivedFrom": ["SWEEP-11", "SWEEP-12", "MC-10", "MC-11", "REL-01", "REL-07", "REL-08", "RISK-06", "RISK-08", "CQ-10", "CQ-11", "CQ-12"]},
+    {"id": "ACT-10", "range": {"start": 0, "end": 48.667}, "carrier": "full-timeline reproducibility, export and postprocessing absence audit", "mode": "exact_times", "times": [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 48.6], "reason": "在可能出现价格/账户/平台/版本/额度/模型/导出成功/文件规格/后处理/CTA 控件的完整时间线中做范围化缺席审计。", "expectedObservation": "全片可能出现的 UI、叠字和结果；若未发现相关元素，只能写“在 0-48.667 秒所检查的视频/字幕/UI 范围内未观察到”。", "derivedFrom": ["CAR-08", "RISK-05", "RISK-08", "CQ-08", "CQ-09", "CQ-11"]},
+    {"id": "ACT-11", "range": {"start": 0, "end": 48.667}, "carrier": "audiovisual alignment anchors for the separate bounded audio review", "mode": "exact_times", "times": [0, 8, 16, 24, 32, 40, 48], "reason": "这些帧只用于把实际音频分段与语义段对齐；它们不作为音乐或音效证据。非语音通道由 audioReviewActions 对源 AAC 波形单独闭合。", "expectedObservation": "与 AR-SEG-01 至 AR-SEG-05 音频时间窗对应的视觉语义锚点；任何音频结论必须引用 DS-04，而不是这些静帧。", "derivedFrom": ["CAR-07", "RISK-10", "CQ-13"]}
+  ],
+  "audioReviewActions": [
+    {"id": "AR-ACT-01", "range": {"start": 0, "end": 48.667}, "carrier": "source AAC waveform", "method": "ffmpeg stream-copy plus five gap-free bounded MP3/PCM segments", "segments": ["AR-SEG-01", "AR-SEG-02", "AR-SEG-03", "AR-SEG-04", "AR-SEG-05"], "reason": "实际检查完整非语音音频，而不是用静帧、SRT 或音轨存在性代替。", "derivedFrom": ["CAR-07", "RISK-10", "CQ-13"]},
+    {"id": "AR-ACT-02", "range": {"start": 0, "end": 48.667}, "carrier": "decoded PCM sound events", "method": "MIT AST AudioSet 4 s windows/2 s hop plus Apple SoundAnalysis 2 s windows/1 s hop", "segments": ["AR-SEG-01", "AR-SEG-02", "AR-SEG-03", "AR-SEG-04", "AR-SEG-05"], "reason": "分别判断开场、界面、结果、收尾的音乐和短促音效是否存在、持续或变化。", "derivedFrom": ["CAR-07", "RISK-10", "CQ-13"]},
+    {"id": "AR-ACT-03", "range": {"start": 0, "end": 48.667}, "carrier": "audio signal continuity", "method": "ffmpeg silencedetect at -50 dB for >=0.10 s and per-segment volume scan", "segments": ["AR-SEG-01", "AR-SEG-02", "AR-SEG-03", "AR-SEG-04", "AR-SEG-05"], "reason": "限定 absent/continuous/changed 的时间范围，并确认片尾静音只发生在最后约0.2秒。", "derivedFrom": ["CAR-07", "RISK-10", "CQ-13"]}
+  ],
+  "requiredRelations": [
+    {"relation": "opening_threat_paid_off_by_closing_job_risk_claim", "derivedFrom": ["REL-01", "CQ-12"]},
+    {"relation": "result_montage_used_to_illustrate_not_prove_quality_claim", "derivedFrom": ["REL-02", "RISK-06", "CQ-10"]},
+    {"relation": "application_entry_precedes_prompt_input", "derivedFrom": ["REL-04", "CQ-04"]},
+    {"relation": "prompt_input_precedes_edited_loading_and_result", "derivedFrom": ["REL-05", "CQ-04", "CQ-06"]},
+    {"relation": "generated_result_leads_to_unclosed_adjustment_or_export_surfaces", "derivedFrom": ["REL-06", "RISK-04", "CQ-07", "CQ-09"]},
+    {"relation": "author_timing_claim_is_not_equivalent_to_continuous_timing_evidence", "derivedFrom": ["REL-10", "RISK-01", "CQ-05"]},
+    {"relation": "srt_coz_conflicts_with_burned_caption_kouzi", "derivedFrom": ["REL-09", "RISK-02", "CQ-01"]},
+    {"relation": "prompt_in_tutorial_is_promised_via_external_comment_cta", "derivedFrom": ["REL-08", "RISK-08", "CQ-11"]},
+    {"relation": "presenter_narrates_edited_ui_in_recurring_room_layout", "derivedFrom": ["REL-11", "RISK-09"]}
+    ,{"relation": "prompt_date_conflicts_with_result_date", "derivedFrom": ["RISK-11", "CQ-14"]}
+  ],
+  "stoppingRules": [
+    "每个 critical question 均有答案或带范围的 unknown。",
+    "“不到10秒”至少有一次完整 input/loading/result 密采，并明确记录无连续秒表时不能升级为计时事实。",
+    "扣子/营销海报生成的可见身份与 SRT“coz”冲突均被保留。",
+    "提示词结构、示例文本、2:3、生成按钮等可见参数经 OCR 建议与人工帧核对。",
+    "提示词日期、首个结果日期与后续红发人物海报日期行逐帧核对，任何不一致均保留。",
+    "修改、变高清、Logo、模板、开发应用分别区分入口展示、执行和结果，缺失环节标 unknown。",
+    "价格、账户、端、版本、额度、模型、地区、导出、文件规格、后处理和 CTA 的缺席只在 0-48.667 秒完整范围内陈述。",
+    "开场职业威胁与结尾职业风险主张建立关系，不让结尾只留在 cue ledger。",
+    "技术 shot 边界不被升级为语义场景数或真实生成用时。",
+    "非语音音频已用五个无缝分段实际检查；音乐的存在/持续/变化有源音频证据，精确曲目、来源、许可、风格及短促音效身份保留 unknown。",
+    "所有 core unit 具有可解析证据和有界时间；前/中/后帧不以单个 midpoint 代替。",
+    "录制日期、发布日期、界面运行日期和界面历史状态分别陈述；MP4 无 creation_time 时不以海报内容日期、文件时间或 evidence pack generatedAt 代填。"
+  ],
+  "declaredUnknowns": [
+    "真实生成耗时以及“10秒”计时起止口径。",
+    "加载段是否加速、剪短或重演；是否有未展示的重试/选择。",
+    "扣子的具体端、URL、版本、账号、地区、免费额度与模型参数。",
+    "参考图是否必需，默认值、分辨率、生成数量和随机性参数。",
+    "修改和变高清是否提交并成功。",
+    "Logo 是否上传、定位并导出成功。",
+    "模板复制和 AI 应用开发的实际操作步骤与结果。",
+    "导出/下载文件格式、分辨率、存储位置及视频外后处理。",
+    "评论区是否真实提供了可复制提示词及取用条件。",
+    "精选样例的生成归属、成功率与普遍质量。",
+    "背景音乐的精确曲目、表演者、来源、许可、所有权与剪辑处理。",
+    "界面段和收尾段短促音效是独立 UI 音效、剪辑重音、音乐成分还是环境声。",
+    "实际录制日期、平台发布日期、界面运行日期，以及界面是当时实时状态还是历史/回放录屏。"
+  ]
+}

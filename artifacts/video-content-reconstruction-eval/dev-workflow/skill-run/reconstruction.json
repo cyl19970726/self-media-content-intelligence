@@ -1,0 +1,354 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-workflow/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-workflow/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-workflow/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建本地视频、同 stem 平台 SRT、给定 evidence-pack 与由协议脚本从该视频生成的 targeted frames 所包含的信息。未读取既有报告、分析、编辑笔记、评论、指标、外部网页或其他 agent 输出；不对产品能力、质量、耗时和可复现性做互联网核验。屏幕文字作为 visual_observation，口播断言作为 author_claim，密钥和缺失步骤保持 unknown。",
+  "viewerChange": {
+    "before": "只看到一个乙女文游成品，尚不知道视频作者所展示的代理开发链与证据边界。",
+    "after": "能按依赖顺序复述 Claude Code/Kimi 路径、API 配置、需求提示、框架输出、美术资产接入和布局返修，并区分可见操作、作者评价与未被视频建立的信息。",
+    "intendedChanges": [
+      "know: 识别工具、输入、参数、状态和输出",
+      "do: 理解视频提出的自然语言代理开发流程",
+      "decide: 判断哪些步骤可以从画面复述，哪些仍需额外文档",
+      "believe-with-limits: 不把三小时、零代码、文本质量和普适性主张当成已验证事实"
+    ]
+  },
+  "transcript": {
+    "origin": "platform_srt",
+    "cues": [
+      {"id": "CUE-001", "start": 0.06, "end": 4.58, "text": "被大厂优化后，我和搞ai的算法在一起了，这不是gemini三做的", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-002", "start": 4.58, "end": 6.75, "text": "是我用cloud cord开发的乙女文游", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002"]},
+      {"id": "CUE-003", "start": 6.76, "end": 9.08, "text": "全程只用了三个小时，不写一行代码", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]},
+      {"id": "CUE-004", "start": 9.08, "end": 11.79, "text": "而且我已经把开发游戏的提示词整理成为了模板", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-005", "start": 11.8, "end": 14.252, "text": "你拿去改改就能用，这段视频你也能学会", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-006", "start": 14.252, "end": 17.48, "text": "首先我们需要给cloudcode配置k二dinkino api", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-003", "SHOT-004", "SHOT-005", "SHOT-006"]},
+      {"id": "CUE-007", "start": 17.48, "end": 20.24, "text": "你没有装cloudcode可以把这段提示词发给终端", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-006"]},
+      {"id": "CUE-008", "start": 20.25, "end": 23.45, "text": "就能一键安装，不想配置也可以直接装kimi颗粒", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-006", "SHOT-007", "SHOT-008"]},
+      {"id": "CUE-009", "start": 23.45, "end": 26.62, "text": "这是一个能边思考边行动的有agent能力的模型", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-008"]},
+      {"id": "CUE-010", "start": 26.63, "end": 28.91, "text": "国内用起来也很方便，没有正面的三m版本", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-008", "SHOT-009"]},
+      {"id": "CUE-011", "start": 28.91, "end": 32.75, "text": "安装好了以后我们来到kimi开发者平台，在这里获取一个api", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-009", "SHOT-010"]},
+      {"id": "CUE-012", "start": 32.759, "end": 36.986, "text": "复制好再替换到这句提示词里的api部分，再把这段提示词发给终端", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-010", "SHOT-011", "SHOT-012"]},
+      {"id": "CUE-013", "start": 36.986, "end": 40.23, "text": "Care的模型就配置好了，我们来试一下看，恭喜你", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-012"]},
+      {"id": "CUE-014", "start": 40.24, "end": 44.88, "text": "成功运行了cloud code现在可以直接给他发需求了，这是我的提示词", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-012", "SHOT-013", "SHOT-014"]},
+      {"id": "CUE-015", "start": 44.88, "end": 50.15, "text": "你们可以参考一下，大概的信息就是告诉他游戏的世界观，主角剧情玩法", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-014"]},
+      {"id": "CUE-016", "start": 50.16, "end": 53.32, "text": "数值等等看，很快就把你的游戏框架写好了", "representativeFrame": "frames/cues/cue-016.jpg", "overlappingShots": ["SHOT-014"]},
+      {"id": "CUE-017", "start": 53.32, "end": 57.48, "text": "主题就是大厂女工被裁后的都市生存困境，有这么些个男性角色", "representativeFrame": "frames/cues/cue-017.jpg", "overlappingShots": ["SHOT-014"]},
+      {"id": "CUE-018", "start": 57.48, "end": 60.55, "text": "核心数值也设计好了。现在文游里的文字有了", "representativeFrame": "frames/cues/cue-018.jpg", "overlappingShots": ["SHOT-014"]},
+      {"id": "CUE-019", "start": 60.55, "end": 64.829, "text": "但还缺少很多图片，尤其几位角色的形象，简直就是游戏的灵魂", "representativeFrame": "frames/cues/cue-019.jpg", "overlappingShots": ["SHOT-014", "SHOT-015"]},
+      {"id": "CUE-020", "start": 64.829, "end": 68.2, "text": "其实这个也很好解决，你自己动手跑了放在文件夹里", "representativeFrame": "frames/cues/cue-020.jpg", "overlappingShots": ["SHOT-015", "SHOT-016", "SHOT-017", "SHOT-018"]},
+      {"id": "CUE-021", "start": 68.21, "end": 72.806, "text": "然后告诉crowd code在文件夹放了美术资产，让他自己去找并放在游戏里", "representativeFrame": "frames/cues/cue-021.jpg", "overlappingShots": ["SHOT-018"]},
+      {"id": "CUE-022", "start": 72.806, "end": 77.29, "text": "很快他就搞定了，来我们打开这个预览看一下，嗯，有点那意思了", "representativeFrame": "frames/cues/cue-022.jpg", "overlappingShots": ["SHOT-018", "SHOT-019"]},
+      {"id": "CUE-023", "start": 77.3, "end": 82.5, "text": "而且这些对话设计都是cloud code和k二自己去写的，我每句都认真看了", "representativeFrame": "frames/cues/cue-023.jpg", "overlappingShots": ["SHOT-019", "SHOT-020"]},
+      {"id": "CUE-024", "start": 82.51, "end": 85.811, "text": "人物之间的交流非常自然，有生活气息，有情绪", "representativeFrame": "frames/cues/cue-024.jpg", "overlappingShots": ["SHOT-020"]},
+      {"id": "CUE-025", "start": 85.811, "end": 89.23, "text": "没有deep seek那种声音感，我觉得吧，比大部分的编剧都写得好", "representativeFrame": "frames/cues/cue-025.jpg", "overlappingShots": ["SHOT-020"]},
+      {"id": "CUE-026", "start": 89.23, "end": 90.86, "text": "但现在的布局我不太喜欢", "representativeFrame": "frames/cues/cue-026.jpg", "overlappingShots": ["SHOT-020", "SHOT-021"]},
+      {"id": "CUE-027", "start": 90.87, "end": 94.691, "text": "同样你告诉cloud code布局应该怎么改，它就会去再跑一次代码", "representativeFrame": "frames/cues/cue-027.jpg", "overlappingShots": ["SHOT-021"]},
+      {"id": "CUE-028", "start": 94.691, "end": 97.695, "text": "然后给到你新的版本。改完以后效果就好多啦", "representativeFrame": "frames/cues/cue-028.jpg", "overlappingShots": ["SHOT-021", "SHOT-022"]},
+      {"id": "CUE-029", "start": 97.695, "end": 102.615, "text": "是不是超级简单，不管你是想做职场逆袭，还是古风穿越，或者是悬疑解谜", "representativeFrame": "frames/cues/cue-029.jpg", "overlappingShots": ["SHOT-022", "SHOT-023", "SHOT-024", "SHOT-025"]},
+      {"id": "CUE-030", "start": 102.615, "end": 105.3, "text": "用这套方法和提示词，就算你不懂游戏开发", "representativeFrame": "frames/cues/cue-030.jpg", "overlappingShots": ["SHOT-025", "SHOT-026"]},
+      {"id": "CUE-031", "start": 105.31, "end": 109.59, "text": "不懂代码，不懂ai就说大白话，也能拥有自己的独立文，由", "representativeFrame": "frames/cues/cue-031.jpg", "overlappingShots": ["SHOT-026"]},
+      {"id": "CUE-032", "start": 109.59, "end": 111.061, "text": "需要文档的朋友来找我要", "representativeFrame": "frames/cues/cue-032.jpg", "overlappingShots": ["SHOT-026"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01", "title": "成品钩子", "importance": "supporting",
+      "statement": "开场画面展示一款竖屏乙女文字游戏：有办公室场景、人物立绘、对话框和顶部数值栏，随后切到作者出镜。",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 4.58},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "办公室场景、人物立绘、对话框与顶栏可见"}, {"refType": "shot", "ref": "SHOT-001", "supports": "开场成品镜头范围"}, {"refType": "shot", "ref": "SHOT-002", "supports": "成品与作者出镜转场"}],
+      "confidence": "high", "unknowns": ["开场成品的部署方式、版本与完整可玩范围未展示。"]
+    },
+    {
+      "id": "KU-02", "title": "开发工具归属主张", "importance": "core",
+      "statement": "作者说这款乙女文游是她用 Claude Code 开发的；verbatim 字幕把名称识别为 cloud cord，但后续安装命令和界面显示 Claude Code。",
+      "provenance": "author_claim", "timeRange": {"start": 4.58, "end": 6.75},
+      "evidence": [{"refType": "cue", "ref": "CUE-002", "supports": "作者口播中的开发工具归属"}, {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "安装命令含 @anthropic-ai/claude-code"}, {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "运行界面自称 Claude Code"}],
+      "confidence": "high", "reasoning": "规范名称由屏幕证据纠正理解，但逐字稿原文保持不变。", "unknowns": ["视频未给出 Claude Code 版本。"]
+    },
+    {
+      "id": "KU-03", "title": "三小时与零代码", "importance": "core",
+      "statement": "作者声称全程只用了三个小时，而且没有写一行代码。",
+      "provenance": "author_claim", "timeRange": {"start": 6.76, "end": 9.08},
+      "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "三小时与零代码口播"}, {"refType": "targeted_frame", "ref": "TARGET-0006", "supports": "三小时字幕"}, {"refType": "targeted_frame", "ref": "TARGET-0007", "supports": "不写一行代码字幕"}],
+      "confidence": "high",
+      "argument": {"claim": "三小时、零手写代码完成", "authorProvidedEvidence": "剪辑后的开发与预览镜头", "conditions": "作者自己的案例", "limits": "无连续计时、操作日志或独立复现；后段可见 Claude Code 修改 CSS，但不能判断作者是否在视频外手改代码", "proposedAction": "把它当成作者经验主张，不当作验证后的时长或通用承诺"},
+      "unknowns": ["真实总耗时", "作者是否在剪辑外手工编辑代码"]
+    },
+    {
+      "id": "KU-04", "title": "提示词模板承诺", "importance": "supporting",
+      "statement": "作者说已把开发游戏的提示词整理成模板，观众拿去修改即可使用并可从视频学会。",
+      "provenance": "author_claim", "timeRange": {"start": 9.08, "end": 14.252},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "提示词整理为模板"}, {"refType": "cue", "ref": "CUE-005", "supports": "观众可修改使用的承诺"}, {"refType": "targeted_frame", "ref": "TARGET-0008", "supports": "屏幕上显示长提示文本片段"}],
+      "confidence": "high", "unknowns": ["视频画面没有完整、逐字公开整个模板；是否与结尾可索取文档一致未知。"]
+    },
+    {
+      "id": "KU-05", "title": "step1：配置 API", "importance": "core",
+      "statement": "视频把第一步标成“配置 API”，作者要求先给 Claude Code 配置 K2 Thinking 的 API。",
+      "provenance": "author_claim", "timeRange": {"start": 14.252, "end": 17.48},
+      "evidence": [{"refType": "cue", "ref": "CUE-006", "supports": "配置步骤口播"}, {"refType": "targeted_frame", "ref": "TARGET-0013", "supports": "step1 配置 API 叠字"}, {"refType": "targeted_frame", "ref": "TARGET-0019", "supports": "字幕显示配置 k2 thinking 的 API"}],
+      "confidence": "high", "unknowns": ["口播未提供账户、计费、权限或地区要求。"]
+    },
+    {
+      "id": "KU-06", "title": "Claude Code 安装命令", "importance": "core",
+      "statement": "屏幕清晰显示命令 npm install -g @anthropic-ai/claude-code；作者说未安装 Claude Code 时可把这段提示词发给终端来一键安装。",
+      "provenance": "visual_observation", "timeRange": {"start": 17.48, "end": 21.3},
+      "evidence": [{"refType": "cue", "ref": "CUE-007", "supports": "作者说明未安装时发送终端"}, {"refType": "cue", "ref": "CUE-008", "supports": "一键安装说法"}, {"refType": "targeted_frame", "ref": "TARGET-0029", "supports": "完整 npm 安装命令可读"}, {"refType": "shot", "ref": "SHOT-006", "supports": "安装命令镜头"}],
+      "confidence": "high",
+      "procedural": {"input": "有 npm 的终端环境（视频未逐项说明）", "orderedAction": ["复制屏幕所示命令", "在终端执行"], "parameters": ["-g", "@anthropic-ai/claude-code"], "beforeFrame": "TARGET-0025", "duringFrames": ["TARGET-0029"], "afterFrame": "TARGET-0048", "output": "后续进入已安装状态；视频未连续展示安装日志", "unresolvedFailureConditions": ["Node/npm 版本、权限、网络错误与系统兼容性未说明"]},
+      "unknowns": ["安装过程、成功退出码与报错恢复未展示。"]
+    },
+    {
+      "id": "KU-07", "title": "Kimi CLI 替代路径", "importance": "supporting",
+      "statement": "作者说不想配置时可以直接安装 Kimi CLI，并称其为能边思考边行动、具备 agent 能力且在国内方便使用的模型/工具路径。",
+      "provenance": "author_claim", "timeRange": {"start": 20.25, "end": 28.91},
+      "evidence": [{"refType": "cue", "ref": "CUE-008", "supports": "Kimi CLI 替代安装口播；字幕误识别为 kimi颗粒"}, {"refType": "cue", "ref": "CUE-009", "supports": "agent 能力主张"}, {"refType": "cue", "ref": "CUE-010", "supports": "国内使用方便的主张"}, {"refType": "targeted_frame", "ref": "TARGET-0034", "supports": "页面标题 Kimi CLI 可见"}, {"refType": "targeted_frame", "ref": "TARGET-0040", "supports": "模型介绍/基准页面"}],
+      "confidence": "high", "unknowns": ["Kimi CLI 的完整安装命令、版本、与 Claude Code 配置路径是否功能等价未由视频建立。"]
+    },
+    {
+      "id": "KU-08", "title": "在开发者平台创建 API Key", "importance": "core",
+      "statement": "画面进入 API Key 管理页，先显示空列表和“新建 API Key”按钮，随后出现确认弹窗；作者说要在 Kimi 开发者平台获取一个 API 并复制。",
+      "provenance": "visual_observation", "timeRange": {"start": 28.867, "end": 32.817},
+      "evidence": [{"refType": "cue", "ref": "CUE-011", "supports": "作者说明获取 API"}, {"refType": "targeted_frame", "ref": "TARGET-0049", "supports": "API Key 管理页 before 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "新建 API Key 按钮"}, {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "创建确认弹窗 during 状态"}],
+      "confidence": "high",
+      "procedural": {"input": "已登录的开发者平台账户", "orderedAction": ["进入 API Key 管理", "点击新建 API Key", "按作者口播复制生成的 API"], "parameters": [], "beforeFrame": "TARGET-0049", "duringFrames": ["TARGET-0052", "TARGET-0054"], "afterFrame": "TARGET-0055", "output": "进入配置文本镜头；真实密钥不在可安全确认范围", "unresolvedFailureConditions": ["账户资格、额度、密钥创建失败与撤销未说明"]},
+      "unknowns": ["真实 API Key 值；视频没有提供可公开复用的密钥。"]
+    },
+    {
+      "id": "KU-09", "title": "屏幕展示的环境变量", "importance": "core",
+      "statement": "MacOS/Linux 配置块清晰展示 ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic，ANTHROPIC_AUTH_TOKEN=${YOUR_MOONSHOT_API_KEY}，并把 ANTHROPIC_MODEL、ANTHROPIC_DEFAULT_OPUS_MODEL、ANTHROPIC_DEFAULT_SONNET_MODEL、ANTHROPIC_DEFAULT_HAIKU_MODEL 与 CLAUDE_CODE_SUBAGENT_MODEL 都设为 kimi-k2-thinking-turbo。",
+      "provenance": "visual_observation", "timeRange": {"start": 34.033, "end": 36.433},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "完整 MacOS/Linux 配置块与占位符可读"}, {"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "同一配置块持续可读"}, {"refType": "cue", "ref": "CUE-012", "supports": "作者说明替换 API 部分并发送终端"}],
+      "confidence": "high", "reasoning": "记录的是屏幕文本，不代表外部核验过该端点或配置一定适用于所有版本。", "unknowns": ["Windows 配置块未完整转录", "真实 token 值未显示且不应推断"]
+    },
+    {
+      "id": "KU-10", "title": "配置文本进入终端并出现 Claude Code", "importance": "core",
+      "statement": "终端中可见上述 export 行，随后界面显示“Hello! I'm Claude Code, ready to help you with software engineering tasks. How can I help you today?”；作者称 K2 模型已配置好并成功运行。",
+      "provenance": "visual_observation", "timeRange": {"start": 36.433, "end": 43.767},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0076", "supports": "export 行进入终端的 during 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "Claude Code 问候语 after 状态"}, {"refType": "cue", "ref": "CUE-013", "supports": "作者配置完成口播"}, {"refType": "cue", "ref": "CUE-014", "supports": "作者成功运行口播"}],
+      "confidence": "high",
+      "procedural": {"input": "API Key 与配置文本", "orderedAction": ["用真实 API 替换占位符", "把配置文本发送给终端", "启动/测试 Claude Code"], "parameters": ["ANTHROPIC_BASE_URL", "ANTHROPIC_AUTH_TOKEN", "五个模型相关变量"], "beforeFrame": "TARGET-0055", "duringFrames": ["TARGET-0064", "TARGET-0076"], "afterFrame": "TARGET-0083", "output": "Claude Code 问候界面", "unresolvedFailureConditions": ["终端实际 token 不可读", "没有连续显示命令退出码或 API 调用日志"]},
+      "unknowns": ["该问候界面本身不能证明所有模型路由与后续请求都成功。"]
+    },
+    {
+      "id": "KU-11", "title": "step2：开始发送游戏需求", "importance": "core",
+      "statement": "作者把成功运行后的下一步标为“step2. 搭框架”，并说现在可以直接给 Claude Code 发需求。",
+      "provenance": "author_claim", "timeRange": {"start": 40.24, "end": 44.88},
+      "evidence": [{"refType": "cue", "ref": "CUE-014", "supports": "可直接发送需求的口播"}, {"refType": "targeted_frame", "ref": "TARGET-0085", "supports": "step2. 搭框架叠字"}, {"refType": "shot", "ref": "SHOT-013", "supports": "步骤转场"}],
+      "confidence": "high", "unknowns": []
+    },
+    {
+      "id": "KU-12", "title": "游戏需求字段", "importance": "core",
+      "statement": "作者明确说提示词大致要告诉代理游戏的世界观、主角、剧情、玩法和数值；画面展示一个较长、代码式结构的提示词文件，但没有在视频中完整逐字展开成可直接复制的全文。",
+      "provenance": "author_claim", "timeRange": {"start": 43.767, "end": 53.32},
+      "evidence": [{"refType": "cue", "ref": "CUE-015", "supports": "世界观、主角、剧情、玩法字段"}, {"refType": "cue", "ref": "CUE-016", "supports": "数值字段和框架输出口播"}, {"refType": "targeted_frame", "ref": "TARGET-0092", "supports": "长提示词文件的可见结构"}, {"refType": "targeted_frame", "ref": "TARGET-0101", "supports": "提示词多段字段持续显示"}],
+      "confidence": "high", "unknowns": ["完整提示词全文、所有默认值和字段约束未由视频清晰公开。"]
+    },
+    {
+      "id": "KU-13", "title": "框架生成后的可见文档", "importance": "core",
+      "statement": "画面从提示词切到 Claude Code/终端与一份生成文档；文档可见项目结构、人物/角色条目、数值字段和较长的世界观/剧情文字，说明视频展示了结构化游戏框架输出。",
+      "provenance": "visual_observation", "timeRange": {"start": 50.16, "end": 61.7},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0109", "supports": "Claude Code/终端生成状态"}, {"refType": "targeted_frame", "ref": "TARGET-0114", "supports": "生成文档中的主题与角色条目"}, {"refType": "targeted_frame", "ref": "TARGET-0118", "supports": "核心数值与长文本"}, {"refType": "targeted_frame", "ref": "TARGET-0121", "supports": "文档延伸到缺图问题前"}],
+      "confidence": "high",
+      "procedural": {"input": "包含世界观、主角、剧情、玩法和数值的提示词", "orderedAction": ["向 Claude Code 提交需求", "等待代理生成项目框架"], "parameters": ["世界观", "主角", "剧情", "玩法", "数值"], "beforeFrame": "TARGET-0092", "duringFrames": ["TARGET-0109"], "afterFrame": "TARGET-0118", "output": "结构化游戏框架和文字内容", "unresolvedFailureConditions": ["提交动作和完整生成日志被剪辑", "框架是否可直接运行只由后续预览间接呈现"]},
+      "unknowns": ["视频没有逐项核验生成文档的正确性。"]
+    },
+    {
+      "id": "KU-14", "title": "作者描述的游戏设定输出", "importance": "core",
+      "statement": "作者说生成的主题是“大厂女工被裁后的都市生存困境”，已有若干男性角色，核心数值也设计好了。",
+      "provenance": "author_claim", "timeRange": {"start": 53.32, "end": 60.55},
+      "evidence": [{"refType": "cue", "ref": "CUE-017", "supports": "主题与男性角色口播"}, {"refType": "cue", "ref": "CUE-018", "supports": "核心数值和文字内容口播"}, {"refType": "targeted_frame", "ref": "TARGET-0114", "supports": "屏幕文档与该描述同期出现"}],
+      "confidence": "high", "unknowns": ["完整角色名单和所有核心数值不在重建中猜写。"]
+    },
+    {
+      "id": "KU-15", "title": "文字已有但人物图片不足", "importance": "core",
+      "statement": "作者指出文游文字已经有了，但图片仍然不足，尤其角色形象；画面从生成文档切到多名男性角色立绘与美术资产示例。",
+      "provenance": "author_claim", "timeRange": {"start": 60.55, "end": 64.829},
+      "evidence": [{"refType": "cue", "ref": "CUE-019", "supports": "缺少图片和角色形象重要性的口播"}, {"refType": "targeted_frame", "ref": "TARGET-0124", "supports": "文档 before 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0126", "supports": "男性角色立绘示意"}, {"refType": "shot", "ref": "SHOT-015", "supports": "角色形象转场"}],
+      "confidence": "high", "unknowns": ["缺图的精确数量和必需规格未建立。"]
+    },
+    {
+      "id": "KU-16", "title": "美术资产必须由用户先准备", "importance": "core",
+      "statement": "作者说用户需要先自己“跑图”，把生成的图片放到文件夹；视频没有展示跑图工具、提示词、模型或参数。",
+      "provenance": "author_claim", "timeRange": {"start": 64.829, "end": 68.2},
+      "evidence": [{"refType": "cue", "ref": "CUE-020", "supports": "用户自行跑图并放入文件夹的口播"}, {"refType": "targeted_frame", "ref": "TARGET-0134", "supports": "step3 美术资产与自行跑图字幕"}, {"refType": "targeted_frame", "ref": "TARGET-0137", "supports": "图片文件夹可见"}],
+      "confidence": "high", "unknowns": ["图像生成工具", "美术提示词", "模型与参数", "角色一致性和版权处理"]
+    },
+    {
+      "id": "KU-17", "title": "把资产文件夹交给代理接入", "importance": "core",
+      "statement": "画面先显示含多张人物和场景图片的文件夹，再显示给 Claude Code 的自然语言要求；作者说只需告诉它文件夹里有美术资产，让它自己寻找并放进游戏。",
+      "provenance": "visual_observation", "timeRange": {"start": 66.4, "end": 74.033},
+      "evidence": [{"refType": "cue", "ref": "CUE-021", "supports": "查找并放进游戏的口播"}, {"refType": "targeted_frame", "ref": "TARGET-0137", "supports": "资产文件夹 before 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0138", "supports": "Claude Code 界面与资产说明 during 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0141", "supports": "代理继续处理的界面"}],
+      "confidence": "high",
+      "procedural": {"input": "用户已准备并放在项目文件夹中的人物/场景图片", "orderedAction": ["把美术资产放入文件夹", "告诉 Claude Code 文件夹内有美术资产", "要求它自行查找并放进游戏", "打开预览"], "parameters": ["资产文件夹位置未清晰转录"], "beforeFrame": "TARGET-0137", "duringFrames": ["TARGET-0138", "TARGET-0141"], "afterFrame": "TARGET-0143", "output": "带角色图片的游戏预览", "unresolvedFailureConditions": ["文件命名、路径匹配、缺失资产和错误映射的处理未说明"]},
+      "unknowns": ["自然语言指令全文与实际文件路径未完整可读。"]
+    },
+    {
+      "id": "KU-18", "title": "资产接入后的游戏预览", "importance": "core",
+      "statement": "接入后预览中可见办公室/城市等背景、角色大图、对话框以及对话框下方的小头像；作者评价“有点那意思了”。",
+      "provenance": "visual_observation", "timeRange": {"start": 72.806, "end": 81.4},
+      "evidence": [{"refType": "cue", "ref": "CUE-022", "supports": "打开预览和作者评价"}, {"refType": "targeted_frame", "ref": "TARGET-0143", "supports": "角色图片进入游戏后的 preview after 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0145", "supports": "办公室背景、人物与对话框"}, {"refType": "shot", "ref": "SHOT-019", "supports": "预览持续区间"}],
+      "confidence": "high", "unknowns": ["预览是否覆盖完整剧情和所有资产未展示。"]
+    },
+    {
+      "id": "KU-19", "title": "对话由代理与模型编写的主张", "importance": "core",
+      "statement": "作者说预览中的对话设计都是 Claude Code 和 K2 自己写的，并说自己逐句看过。",
+      "provenance": "author_claim", "timeRange": {"start": 77.3, "end": 82.5},
+      "evidence": [{"refType": "cue", "ref": "CUE-023", "supports": "对话作者归属与逐句阅读口播"}, {"refType": "targeted_frame", "ref": "TARGET-0148", "supports": "对话预览例子"}, {"refType": "targeted_frame", "ref": "TARGET-0149", "supports": "作者归属字幕与另一角色预览"}],
+      "confidence": "high", "unknowns": ["视频未提供完整生成日志，不能排除后续人工编辑。"]
+    },
+    {
+      "id": "KU-20", "title": "对话质量判断", "importance": "core",
+      "statement": "作者评价人物交流自然、有生活气息和情绪，没有她所说的 DeepSeek 那种“声音感”，并认为比大部分编剧写得好。",
+      "provenance": "author_claim", "timeRange": {"start": 82.51, "end": 89.23},
+      "evidence": [{"refType": "cue", "ref": "CUE-024", "supports": "自然、生活气息和情绪的评价"}, {"refType": "cue", "ref": "CUE-025", "supports": "与 DeepSeek 和编剧比较的评价"}, {"refType": "targeted_frame", "ref": "TARGET-0150", "supports": "角色与对话框例子"}, {"refType": "targeted_frame", "ref": "TARGET-0154", "supports": "另一角色与对话框例子"}],
+      "confidence": "high",
+      "argument": {"claim": "生成对话自然、有情绪且优于多数编剧", "authorProvidedEvidence": "视频选择展示的几张对话预览与作者逐句阅读经验", "conditions": "本案例、作者个人审美", "examples": ["棕发、金发、黑发等多个男性角色的对话画面"], "counterexamples": [], "limits": "无完整脚本、盲测、编剧对照或独立评价", "proposedAction": "仅作为作者主观评价引用"},
+      "unknowns": ["完整对话质量与外部比较结果未建立。"]
+    },
+    {
+      "id": "KU-21", "title": "旧布局问题", "importance": "core",
+      "statement": "旧预览把角色大图叠在背景场景上，并在下方对话框保留小头像；作者说不喜欢这种布局。",
+      "provenance": "author_claim", "timeRange": {"start": 89.23, "end": 90.86},
+      "evidence": [{"refType": "cue", "ref": "CUE-026", "supports": "作者不喜欢布局的口播"}, {"refType": "targeted_frame", "ref": "TARGET-0157", "supports": "旧布局 before 状态：背景、人物大图、对话框与缩略图重叠"}],
+      "confidence": "high", "unknowns": []
+    },
+    {
+      "id": "KU-22", "title": "布局修改的自然语言输入", "importance": "core",
+      "statement": "输入框中可读到作者要求：不喜欢人物和场景重合的布局，对话时只保留对话框下的缩略图，并去掉背景里的角色。",
+      "provenance": "visual_observation", "timeRange": {"start": 91, "end": 93.5},
+      "evidence": [{"refType": "cue", "ref": "CUE-027", "supports": "告诉 Claude Code 布局应如何修改"}, {"refType": "targeted_frame", "ref": "TARGET-0162", "supports": "输入前半句与只保留对话框下缩略图"}, {"refType": "targeted_frame", "ref": "TARGET-0165", "supports": "提交后的完整请求与代理复述"}],
+      "confidence": "high", "unknowns": ["输入法组合阶段有逐字变化，本单元只保留提交后可读意图。"]
+    },
+    {
+      "id": "KU-23", "title": "代理修改 CSS 并报告完成", "importance": "core",
+      "statement": "Claude Code 先读取 index.html 和 styles.css，随后显示对 styles.css 的更新，代码片段把 character-layer 设为 display: none，并报告成功修改对话界面：隐藏背景人物大图、保留下方缩略图。",
+      "provenance": "visual_observation", "timeRange": {"start": 93.5, "end": 96.5},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0165", "supports": "读取 index.html 的 during 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0167", "supports": "读取 styles.css 与解释旧布局"}, {"refType": "targeted_frame", "ref": "TARGET-0168", "supports": "styles.css 修改 diff"}, {"refType": "targeted_frame", "ref": "TARGET-0170", "supports": "修改完成摘要与预期效果"}],
+      "confidence": "high",
+      "procedural": {"input": "旧布局与自然语言修改要求", "orderedAction": ["Claude Code 读取 index.html", "读取 styles.css", "修改 styles.css 中角色层显示", "报告隐藏背景人物大图并保留缩略图"], "parameters": ["character-layer", "display: none !important"], "beforeFrame": "TARGET-0157", "duringFrames": ["TARGET-0165", "TARGET-0167", "TARGET-0168"], "afterFrame": "TARGET-0170", "output": "代码修改完成摘要", "unresolvedFailureConditions": ["没有展示自动测试或回归检查"]},
+      "unknowns": ["代码修改是否影响其他页面/状态未展示。"]
+    },
+    {
+      "id": "KU-24", "title": "新布局结果", "importance": "core",
+      "statement": "新预览中背景场景保留，人物大图不再覆盖场景，对话框下方仍有角色缩略图；作者评价效果好很多。",
+      "provenance": "visual_observation", "timeRange": {"start": 96.1, "end": 98.833},
+      "evidence": [{"refType": "cue", "ref": "CUE-028", "supports": "新版本与效果评价口播"}, {"refType": "targeted_frame", "ref": "TARGET-0171", "supports": "新布局 after 状态"}, {"refType": "targeted_frame", "ref": "TARGET-0172", "supports": "另一背景下的新布局"}, {"refType": "shot", "ref": "SHOT-022", "supports": "新版本结果镜头"}],
+      "confidence": "high", "unknowns": ["只展示少量场景，不能确认所有页面的布局一致。"]
+    },
+    {
+      "id": "KU-25", "title": "多题材例子", "importance": "supporting",
+      "statement": "结尾快速并置了职场女性、古风女性和侦探造型女性的图像，分别对应作者口中的职场逆袭、古风穿越和悬疑解谜。",
+      "provenance": "visual_observation", "timeRange": {"start": 97.695, "end": 103},
+      "evidence": [{"refType": "cue", "ref": "CUE-029", "supports": "三类题材口播"}, {"refType": "targeted_frame", "ref": "TARGET-0178", "supports": "职场题材画面"}, {"refType": "targeted_frame", "ref": "TARGET-0179", "supports": "古风题材画面"}, {"refType": "targeted_frame", "ref": "TARGET-0181", "supports": "悬疑题材画面"}],
+      "confidence": "high", "unknowns": ["视频未展示这三套题材各自的提示词、生成过程或可玩版本。"]
+    },
+    {
+      "id": "KU-26", "title": "低门槛与可复用主张", "importance": "core",
+      "statement": "作者把单个案例推广为通用方法：用这套方法和提示词，即使不懂游戏开发、不懂代码、不懂 AI，只说大白话，也能拥有自己的独立文游。",
+      "provenance": "author_claim", "timeRange": {"start": 97.695, "end": 109.59},
+      "evidence": [{"refType": "cue", "ref": "CUE-029", "supports": "多题材适用口播"}, {"refType": "cue", "ref": "CUE-030", "supports": "不懂游戏开发的条件"}, {"refType": "cue", "ref": "CUE-031", "supports": "不懂代码/AI与独立文游承诺"}, {"refType": "targeted_frame", "ref": "TARGET-0184", "supports": "不懂游戏开发/不懂代码叠字"}, {"refType": "targeted_frame", "ref": "TARGET-0187", "supports": "独自搞定叠字"}],
+      "confidence": "high",
+      "argument": {"claim": "新手只用自然语言即可复用到多题材并拥有独立文游", "authorProvidedEvidence": "一个经过剪辑的乙女文游案例和三种题材画面", "conditions": "隐含已有终端、账户、API、资产与运行环境", "examples": ["职场逆袭", "古风穿越", "悬疑解谜"], "counterexamples": [], "limits": "无新手独立复现、失败案例、时间成本或跨题材完整流程", "proposedAction": "向作者索取文档后仍需补齐环境与资产依赖"},
+      "unknowns": ["普适性", "新手成功率", "跨题材是否同一提示词即可完成"]
+    },
+    {
+      "id": "KU-27", "title": "索取文档的行动号召", "importance": "context",
+      "statement": "结尾作者让需要文档的朋友来找她索取。",
+      "provenance": "raw_fact", "timeRange": {"start": 109.59, "end": 111.061},
+      "evidence": [{"refType": "cue", "ref": "CUE-032", "supports": "索取文档口播"}, {"refType": "targeted_frame", "ref": "TARGET-0188", "supports": "结尾作者出镜"}],
+      "confidence": "high", "unknowns": ["联系方式、文档内容、获取条件未在输入证据中建立。"]
+    },
+    {
+      "id": "KU-28", "title": "流程未建立的依赖与失败条件", "importance": "supporting",
+      "statement": "视频没有建立账户开通与计费、版本兼容、真实密钥、完整提示词、跑图方法、部署/保存/分享、错误恢复、自动测试、连续耗时记录和他人复现成功率。",
+      "provenance": "unknown", "timeRange": {"start": 0, "end": 111.061},
+      "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "耗时与零代码主张出现但无连续证明"}, {"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "配置画面使用密钥占位符"}, {"refType": "targeted_frame", "ref": "TARGET-0137", "supports": "仅显示已生成资产文件夹"}, {"refType": "targeted_frame", "ref": "TARGET-0170", "supports": "修改完成摘要未含测试"}, {"refType": "cue", "ref": "CUE-032", "supports": "完整文档被留到视频外索取"}],
+      "confidence": "high", "reasoning": "在全部口播、字幕、密集视觉、UI 与操作状态检查范围内未见这些依赖被完整说明。", "unknowns": ["这些信息可能存在于视频外文档，但未提供给本次重建。"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-06", "to": "KU-08", "relation": "installation_precedes_API_configuration_path", "evidence": [{"refType": "cue", "ref": "CUE-007", "supports": "先说明安装"}, {"refType": "cue", "ref": "CUE-011", "supports": "安装后进入开发者平台"}]},
+    {"from": "KU-07", "to": "KU-08", "relation": "alternative_to_manual_configuration_as_presented", "evidence": [{"refType": "cue", "ref": "CUE-008", "supports": "作者用“不想配置也可以”提出替代路径"}]},
+    {"from": "KU-08", "to": "KU-09", "relation": "API_key_input_to_environment_configuration", "evidence": [{"refType": "cue", "ref": "CUE-012", "supports": "复制 API 并替换占位符"}, {"refType": "targeted_frame", "ref": "TARGET-0064", "supports": "配置块中的 API 占位符"}]},
+    {"from": "KU-09", "to": "KU-10", "relation": "configuration_precondition_for_Claude_Code_test", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0076", "supports": "配置行进入终端"}, {"refType": "targeted_frame", "ref": "TARGET-0083", "supports": "后续 Claude Code 问候界面"}]},
+    {"from": "KU-12", "to": "KU-13", "relation": "requirements_input_to_framework_output_as_presented", "evidence": [{"refType": "cue", "ref": "CUE-016", "supports": "作者说输入这些信息后框架很快写好"}, {"refType": "targeted_frame", "ref": "TARGET-0092", "supports": "输入提示词"}, {"refType": "targeted_frame", "ref": "TARGET-0118", "supports": "输出文档"}]},
+    {"from": "KU-15", "to": "KU-16", "relation": "missing_images_dependency_resolved_by_user_prepared_assets", "evidence": [{"refType": "cue", "ref": "CUE-019", "supports": "提出缺图问题"}, {"refType": "cue", "ref": "CUE-020", "supports": "用户自行跑图"}]},
+    {"from": "KU-16", "to": "KU-17", "relation": "prepared_assets_input_to_agent_integration", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0137", "supports": "资产文件夹"}, {"refType": "cue", "ref": "CUE-021", "supports": "告诉代理查找并放进游戏"}]},
+    {"from": "KU-17", "to": "KU-18", "relation": "integration_action_precedes_preview_with_art", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0138", "supports": "代理处理资产"}, {"refType": "targeted_frame", "ref": "TARGET-0143", "supports": "带角色图片的预览"}]},
+    {"from": "KU-18", "to": "KU-20", "relation": "selected_preview_examples_used_as_rationale_for_quality_claim", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0149", "supports": "对话预览例子"}, {"refType": "cue", "ref": "CUE-024", "supports": "作者质量评价"}]},
+    {"from": "KU-21", "to": "KU-22", "relation": "old_layout_motivates_revision_request", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0157", "supports": "旧布局"}, {"refType": "targeted_frame", "ref": "TARGET-0165", "supports": "修改请求"}]},
+    {"from": "KU-22", "to": "KU-23", "relation": "natural_language_request_causes_code_edit_as_shown", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0165", "supports": "提交请求"}, {"refType": "targeted_frame", "ref": "TARGET-0168", "supports": "CSS diff"}]},
+    {"from": "KU-23", "to": "KU-24", "relation": "code_edit_precedes_new_layout_result", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0170", "supports": "完成摘要"}, {"refType": "targeted_frame", "ref": "TARGET-0171", "supports": "新预览"}]},
+    {"from": "KU-25", "to": "KU-26", "relation": "genre_examples_framed_as_support_for_generalization", "evidence": [{"refType": "cue", "ref": "CUE-029", "supports": "三个题材与简单性主张相连"}, {"refType": "targeted_frame", "ref": "TARGET-0181", "supports": "悬疑题材例子"}, {"refType": "targeted_frame", "ref": "TARGET-0184", "supports": "低门槛叠字"}]},
+    {"from": "KU-03", "to": "KU-28", "relation": "author_claim_limited_by_missing_continuous_evidence", "evidence": [{"refType": "cue", "ref": "CUE-003", "supports": "三小时零代码主张"}, {"refType": "shot", "ref": "SHOT-001", "supports": "视频从成品钩子开始而非连续计时"}, {"refType": "shot", "ref": "SHOT-026", "supports": "结尾主张而非验证"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "name": "speech", "available": true, "inspected": true, "scope": "32 个平台 SRT cue 的口播语义与视频字幕对齐检查"},
+      {"id": "CAR-02", "name": "platform subtitles", "available": true, "inspected": true, "scope": "32/32 cues 逐字保留；术语歧义另注"},
+      {"id": "CAR-03", "name": "on-screen text and overlays", "available": true, "inspected": true, "scope": "step 标题、命令、环境变量、提示词、修改请求与大字"},
+      {"id": "CAR-04", "name": "software and interface state", "available": true, "inspected": true, "scope": "API 平台、终端、Claude Code、文件夹、文档与游戏预览"},
+      {"id": "CAR-05", "name": "cursor, gesture, and action sequence", "available": true, "inspected": true, "scope": "API 创建、配置发送、资产接入、打开预览与布局返修；剪辑跳步保留"},
+      {"id": "CAR-06", "name": "parameters and values", "available": true, "inspected": true, "scope": "npm 命令、7 个环境变量、提示词字段、CSS 修改；密钥占位符不补写"},
+      {"id": "CAR-07", "name": "before/after visual state", "available": true, "inspected": true, "scope": "API 空列表→创建、未接图→带图预览、旧布局→新布局"},
+      {"id": "CAR-08", "name": "examples and result previews", "available": true, "inspected": true, "scope": "开场成品、多角色对话、新布局与三题材示例"},
+      {"id": "CAR-09", "name": "editing order, juxtaposition, and reversal", "available": true, "inspected": true, "scope": "成品钩子、缺图修复、布局反转与通用化收束"}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "units": ["KU-01", "KU-02", "KU-03", "KU-04"]},
+      {"id": "MC-02", "captured": true, "units": ["KU-05"]},
+      {"id": "MC-03", "captured": true, "units": ["KU-06", "KU-07"]},
+      {"id": "MC-04", "captured": true, "units": ["KU-08", "KU-09", "KU-10"]},
+      {"id": "MC-05", "captured": true, "units": ["KU-11"]},
+      {"id": "MC-06", "captured": true, "units": ["KU-12", "KU-13", "KU-14"]},
+      {"id": "MC-07", "captured": true, "units": ["KU-15", "KU-16"]},
+      {"id": "MC-08", "captured": true, "units": ["KU-17", "KU-18"]},
+      {"id": "MC-09", "captured": true, "units": ["KU-19", "KU-20", "KU-21"]},
+      {"id": "MC-10", "captured": true, "units": ["KU-22", "KU-23", "KU-24"]},
+      {"id": "MC-11", "captured": true, "units": ["KU-25", "KU-26", "KU-27"]}
+    ],
+    "relationships": [
+      {"probe": "REL-H01", "status": "evidenced", "relationIndex": [2, 3]},
+      {"probe": "REL-H02", "status": "evidenced_as_author_alternative", "relationIndex": [1]},
+      {"probe": "REL-H03", "status": "evidenced_as_presented_not_causal_verification", "relationIndex": [4]},
+      {"probe": "REL-H04", "status": "evidenced", "relationIndex": [5]},
+      {"probe": "REL-H05", "status": "evidenced_with_editing_gap", "relationIndex": [6, 7]},
+      {"probe": "REL-H06", "status": "evidenced_as_author_rationale", "relationIndex": [8]},
+      {"probe": "REL-H07", "status": "evidenced_before_during_after", "relationIndex": [9, 10, 11]},
+      {"probe": "REL-H08", "status": "evidenced_as_framing_not_general_truth", "relationIndex": [12]},
+      {"probe": "REL-H09", "status": "evidenced_as_limited_claim", "relationIndex": [13]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "units": ["KU-02", "KU-05", "KU-07", "KU-09"]},
+      {"id": "CQ-02", "status": "answered_with_unknowns", "units": ["KU-06", "KU-08", "KU-09", "KU-10", "KU-28"]},
+      {"id": "CQ-03", "status": "answered_with_unknown", "units": ["KU-04", "KU-12"]},
+      {"id": "CQ-04", "status": "answered", "units": ["KU-13", "KU-14"]},
+      {"id": "CQ-05", "status": "answered_with_unknown", "units": ["KU-15", "KU-16", "KU-17", "KU-18"]},
+      {"id": "CQ-06", "status": "answered_with_provenance_limit", "units": ["KU-18", "KU-19", "KU-20"]},
+      {"id": "CQ-07", "status": "answered", "units": ["KU-21", "KU-22", "KU-23", "KU-24"]},
+      {"id": "CQ-08", "status": "correctly_unknown", "units": ["KU-03", "KU-26", "KU-28"]},
+      {"id": "CQ-09", "status": "correctly_unknown", "units": ["KU-25", "KU-26"]},
+      {"id": "CQ-10", "status": "answered_as_unknown_inventory", "units": ["KU-28"]}
+    ],
+    "coreEvidence": {"covered": 22, "total": 22},
+    "unknowns": [
+      {"item": "真实 API 密钥、账户权限、价格、额度与地区限制", "status": "preserved_unknown", "evidenceScope": ["TARGET-0049", "TARGET-0054", "TARGET-0064"]},
+      {"item": "完整提示词模板全文", "status": "preserved_unknown", "evidenceScope": ["TARGET-0092", "TARGET-0101", "CUE-032"]},
+      {"item": "跑图工具、提示词、模型与参数", "status": "preserved_unknown", "evidenceScope": ["CUE-020", "TARGET-0137"]},
+      {"item": "连续三小时与完全零手写代码", "status": "preserved_as_unverified_author_claim", "evidenceScope": ["CUE-003", "TARGET-0006", "TARGET-0007"]},
+      {"item": "部署、保存、分享、测试与错误恢复", "status": "preserved_unknown", "evidenceScope": ["TARGET-0170", "CUE-032"]},
+      {"item": "对话优于多数编剧与新手普适性", "status": "preserved_as_unverified_author_claim", "evidenceScope": ["CUE-025", "CUE-030", "CUE-031"]},
+      {"item": "结尾三题材是否由同一流程生成", "status": "preserved_unknown", "evidenceScope": ["TARGET-0178", "TARGET-0179", "TARGET-0181"]}
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "协议覆盖口播/字幕、屏幕文字、API/终端/Claude Code/文件夹/文档/游戏 UI、动作序列、参数值、before/during/after、结果例子与剪辑关系；11/11 个意义变化和 9/9 个关系假设均有对应捕获。不可读或视频外信息被列为 unknown，而不是当作未检查渠道。"
+  }
+}

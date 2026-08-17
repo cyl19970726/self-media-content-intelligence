@@ -1,0 +1,6 @@
+Method: ffmpeg 8.0.1 silencedetect
+Source: video path declared by ../evidence/evidence-pack.json
+Command parameters: silencedetect=n=-42dB:d=0.5
+Inspected scope: 0.000-144.767 seconds, AAC HE-AAC 44.1 kHz stereo stream
+Observed diagnostic result: no silence_start/silence_end events were emitted.
+Limitation: this level-based diagnostic cannot determine whether background music, sound effects, inserted-source audio, or other non-speech audio is present, nor what narrative role it has.

@@ -1,0 +1,933 @@
+{
+  "schemaVersion": "audio-semantic-evidence-1.0",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/6808e742000000001e000b85/skill-run/audio/full-track-16k.wav",
+  "duration": 87.957188,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "method": "Full-track overlapping 10-second AudioSet AST classification with 5-second hop; top 12 sigmoid labels retained per window.",
+  "limitations": [
+    "AudioSet labels are machine proposals and may confuse quiet background music with speech or environmental sound.",
+    "The classifier does not identify track ownership, song title, license, or whether sound belongs to inserted footage.",
+    "Window-level labels do not prove frame-exact onset or continuity."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 10.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.859506
+        },
+        {
+          "label": "Music",
+          "score": 0.511979
+        },
+        {
+          "label": "Plop",
+          "score": 0.101437
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.034793
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032379
+        },
+        {
+          "label": "Music for children",
+          "score": 0.022313
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.021558
+        },
+        {
+          "label": "Boing",
+          "score": 0.021471
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.019085
+        },
+        {
+          "label": "Chink, clink",
+          "score": 0.017362
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.015094
+        },
+        {
+          "label": "Conversation",
+          "score": 0.011968
+        }
+      ]
+    },
+    {
+      "start": 5.0,
+      "end": 15.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.697443
+        },
+        {
+          "label": "Music",
+          "score": 0.684552
+        },
+        {
+          "label": "Plop",
+          "score": 0.258376
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.040971
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.025134
+        },
+        {
+          "label": "Animal",
+          "score": 0.017248
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.016467
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.014002
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.013538
+        },
+        {
+          "label": "Techno",
+          "score": 0.011686
+        },
+        {
+          "label": "Drip",
+          "score": 0.011253
+        },
+        {
+          "label": "Music for children",
+          "score": 0.010323
+        }
+      ]
+    },
+    {
+      "start": 10.0,
+      "end": 20.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.817644
+        },
+        {
+          "label": "Music",
+          "score": 0.777066
+        },
+        {
+          "label": "Sheep",
+          "score": 0.078302
+        },
+        {
+          "label": "Bleat",
+          "score": 0.061469
+        },
+        {
+          "label": "Radio",
+          "score": 0.051134
+        },
+        {
+          "label": "Techno",
+          "score": 0.029719
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.028721
+        },
+        {
+          "label": "Electronic music",
+          "score": 0.027615
+        },
+        {
+          "label": "Electronica",
+          "score": 0.026421
+        },
+        {
+          "label": "Animal",
+          "score": 0.01767
+        },
+        {
+          "label": "Television",
+          "score": 0.016047
+        },
+        {
+          "label": "Spray",
+          "score": 0.014502
+        }
+      ]
+    },
+    {
+      "start": 15.0,
+      "end": 25.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.78887
+        },
+        {
+          "label": "Music",
+          "score": 0.71637
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.068583
+        },
+        {
+          "label": "Conversation",
+          "score": 0.056774
+        },
+        {
+          "label": "Whoop",
+          "score": 0.034845
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.030877
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.020654
+        },
+        {
+          "label": "Bellow",
+          "score": 0.019041
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.015909
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012471
+        },
+        {
+          "label": "Radio",
+          "score": 0.009551
+        },
+        {
+          "label": "Gasp",
+          "score": 0.009414
+        }
+      ]
+    },
+    {
+      "start": 20.0,
+      "end": 30.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.714967
+        },
+        {
+          "label": "Music",
+          "score": 0.714832
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.062692
+        },
+        {
+          "label": "Conversation",
+          "score": 0.057955
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.033828
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.020479
+        },
+        {
+          "label": "Whoop",
+          "score": 0.019969
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011844
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.011573
+        },
+        {
+          "label": "Electronica",
+          "score": 0.010652
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.010595
+        },
+        {
+          "label": "Radio",
+          "score": 0.009434
+        }
+      ]
+    },
+    {
+      "start": 25.0,
+      "end": 35.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.791622
+        },
+        {
+          "label": "Music",
+          "score": 0.772375
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.062571
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.034573
+        },
+        {
+          "label": "Spray",
+          "score": 0.029475
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.028901
+        },
+        {
+          "label": "Electronica",
+          "score": 0.028572
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.024475
+        },
+        {
+          "label": "Conversation",
+          "score": 0.024367
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.021326
+        },
+        {
+          "label": "Television",
+          "score": 0.016069
+        },
+        {
+          "label": "Radio",
+          "score": 0.015543
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 40.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.805983
+        },
+        {
+          "label": "Music",
+          "score": 0.77415
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.044436
+        },
+        {
+          "label": "Spray",
+          "score": 0.043287
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.035093
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.031488
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.026896
+        },
+        {
+          "label": "Conversation",
+          "score": 0.02229
+        },
+        {
+          "label": "Electronica",
+          "score": 0.022176
+        },
+        {
+          "label": "Radio",
+          "score": 0.017927
+        },
+        {
+          "label": "Television",
+          "score": 0.01722
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.015711
+        }
+      ]
+    },
+    {
+      "start": 35.0,
+      "end": 45.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.784784
+        },
+        {
+          "label": "Music",
+          "score": 0.748866
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.060946
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.054883
+        },
+        {
+          "label": "Spray",
+          "score": 0.047265
+        },
+        {
+          "label": "Conversation",
+          "score": 0.029384
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.02096
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.018045
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017667
+        },
+        {
+          "label": "Animal",
+          "score": 0.016747
+        },
+        {
+          "label": "Cat",
+          "score": 0.016528
+        },
+        {
+          "label": "Domestic animals, pets",
+          "score": 0.014731
+        }
+      ]
+    },
+    {
+      "start": 40.0,
+      "end": 50.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.735143
+        },
+        {
+          "label": "Music",
+          "score": 0.655878
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.138163
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.062609
+        },
+        {
+          "label": "Spray",
+          "score": 0.033832
+        },
+        {
+          "label": "Conversation",
+          "score": 0.03121
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.021973
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.020026
+        },
+        {
+          "label": "Radio",
+          "score": 0.019686
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016947
+        },
+        {
+          "label": "Squish",
+          "score": 0.015703
+        },
+        {
+          "label": "Television",
+          "score": 0.012278
+        }
+      ]
+    },
+    {
+      "start": 45.0,
+      "end": 55.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.687157
+        },
+        {
+          "label": "Music",
+          "score": 0.404016
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.080616
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.053061
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.046155
+        },
+        {
+          "label": "Radio",
+          "score": 0.035649
+        },
+        {
+          "label": "Conversation",
+          "score": 0.028248
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.027095
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.023703
+        },
+        {
+          "label": "Squish",
+          "score": 0.015156
+        },
+        {
+          "label": "Spray",
+          "score": 0.015118
+        },
+        {
+          "label": "Chop",
+          "score": 0.010344
+        }
+      ]
+    },
+    {
+      "start": 50.0,
+      "end": 60.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.741241
+        },
+        {
+          "label": "Music",
+          "score": 0.365867
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.064154
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.044956
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.042757
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.040135
+        },
+        {
+          "label": "Radio",
+          "score": 0.030475
+        },
+        {
+          "label": "Conversation",
+          "score": 0.029262
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.02554
+        },
+        {
+          "label": "Spray",
+          "score": 0.017813
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.01765
+        },
+        {
+          "label": "Squish",
+          "score": 0.01724
+        }
+      ]
+    },
+    {
+      "start": 55.0,
+      "end": 65.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.837271
+        },
+        {
+          "label": "Music",
+          "score": 0.730953
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.245143
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.070398
+        },
+        {
+          "label": "Spray",
+          "score": 0.069916
+        },
+        {
+          "label": "Squish",
+          "score": 0.063351
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.030899
+        },
+        {
+          "label": "Conversation",
+          "score": 0.029134
+        },
+        {
+          "label": "Drip",
+          "score": 0.026939
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.026824
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.018677
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.015965
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 70.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.837384
+        },
+        {
+          "label": "Music",
+          "score": 0.797576
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.100509
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.055621
+        },
+        {
+          "label": "Spray",
+          "score": 0.040944
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.036718
+        },
+        {
+          "label": "Conversation",
+          "score": 0.03573
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.028731
+        },
+        {
+          "label": "Radio",
+          "score": 0.02701
+        },
+        {
+          "label": "Television",
+          "score": 0.021959
+        },
+        {
+          "label": "Background music",
+          "score": 0.014266
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.011675
+        }
+      ]
+    },
+    {
+      "start": 65.0,
+      "end": 75.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.848981
+        },
+        {
+          "label": "Music",
+          "score": 0.814835
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.149658
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.072741
+        },
+        {
+          "label": "Conversation",
+          "score": 0.064559
+        },
+        {
+          "label": "Radio",
+          "score": 0.04813
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.033199
+        },
+        {
+          "label": "Spray",
+          "score": 0.021558
+        },
+        {
+          "label": "Television",
+          "score": 0.019328
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.014161
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.011535
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.009529
+        }
+      ]
+    },
+    {
+      "start": 70.0,
+      "end": 80.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.770286
+        },
+        {
+          "label": "Music",
+          "score": 0.604677
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.126263
+        },
+        {
+          "label": "Conversation",
+          "score": 0.072622
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.058483
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.054736
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.041429
+        },
+        {
+          "label": "Radio",
+          "score": 0.036986
+        },
+        {
+          "label": "Chop",
+          "score": 0.02185
+        },
+        {
+          "label": "Spray",
+          "score": 0.01492
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011806
+        },
+        {
+          "label": "Chopping (food)",
+          "score": 0.010523
+        }
+      ]
+    },
+    {
+      "start": 75.0,
+      "end": 85.0,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.847126
+        },
+        {
+          "label": "Music",
+          "score": 0.764688
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.153112
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.056677
+        },
+        {
+          "label": "Conversation",
+          "score": 0.046493
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.036691
+        },
+        {
+          "label": "Spray",
+          "score": 0.0247
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.02044
+        },
+        {
+          "label": "Radio",
+          "score": 0.019719
+        },
+        {
+          "label": "Television",
+          "score": 0.017442
+        },
+        {
+          "label": "Electronica",
+          "score": 0.0161
+        },
+        {
+          "label": "Background music",
+          "score": 0.011963
+        }
+      ]
+    },
+    {
+      "start": 80.0,
+      "end": 87.957,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.969657
+        },
+        {
+          "label": "Music",
+          "score": 0.936693
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.066102
+        },
+        {
+          "label": "Spray",
+          "score": 0.057122
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.049293
+        },
+        {
+          "label": "Television",
+          "score": 0.022861
+        },
+        {
+          "label": "Exciting music",
+          "score": 0.022567
+        },
+        {
+          "label": "Zipper (clothing)",
+          "score": 0.019878
+        },
+        {
+          "label": "Conversation",
+          "score": 0.019358
+        },
+        {
+          "label": "Electronica",
+          "score": 0.014783
+        },
+        {
+          "label": "Single-lens reflex camera",
+          "score": 0.012107
+        },
+        {
+          "label": "Soundtrack music",
+          "score": 0.011584
+        }
+      ]
+    }
+  ]
+}

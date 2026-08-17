@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69fe6f3a000000001a036be4/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能只知道 AI 能生成 HTML/PPT，但不清楚为什么同样使用 AI，成品审美差异很大，也不知道如何低门槛复用一套经过筛选的视觉体系。",
+    "after": "观众被引导相信：高质量 HTML Slides 的关键不是多写提示词，而是先给 AI 一套有明确审美取向的模板与说明；随后可按是否拥有 coding agent 选择 AnyGen 或 GitHub 两条路径。",
+    "intendedChanges": [
+      "从‘AI 自动生成就会好看’转向‘审美参考与模板资产决定设计上限’",
+      "从只看成品转向知道小白和 coding agent 用户各自的入口",
+      "从把 HTML Slides 当小技巧转向把它视为对外展示和 AI-native 形象的一部分"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 13.52},
+      "cognitiveQuestion": "视频先制造了什么问题与结果差距？",
+      "observedSignals": ["连续多张高设计感 Slides 成品", "口播提出同样使用 AI 但好看与不好看的差异"],
+      "checkedAlternatives": ["是否直接从操作步骤开始", "是否只靠抽象审美观点开场"],
+      "remainingUnknowns": ["开场样例是否都由同一套模板与同一流程生成"],
+      "evidenceHints": ["CUE-001", "CUE-005", "DENSE-0001", "DENSE-0005"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 13.52, "end": 54.76},
+      "cognitiveQuestion": "作者用什么资产和证据解释审美差距？",
+      "observedSignals": ["作者称把个人审美做成 Skill", "称制作三十多个模板", "画面高频展示多种不同版式、色彩和图表"],
+      "checkedAlternatives": ["是否只有一个前后对比样例", "是否只展示提示词不展示结果"],
+      "remainingUnknowns": ["三十多个模板的精确数量与完整列表", "模板中第三方图片、字体与设计参考的授权"],
+      "evidenceHints": ["CUE-006", "CUE-016", "DENSE-0007", "DENSE-0022"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 54.76, "end": 110.93},
+      "cognitiveQuestion": "没有 coding agent 的用户如何获得结果？",
+      "observedSignals": ["口播给出 AnyGen → Build Slides → Frontend Slides → 选择模板 → 输入需求 → 生成的顺序", "界面在模板、附件/参考与生成结果之间切换", "作者称一个分析案例约用三个 prompts 调整"],
+      "checkedAlternatives": ["是否为端到端无剪辑操作录像", "是否证明任意输入都能复现同等质量"],
+      "remainingUnknowns": ["界面版本、账户、地区与费用条件", "生成等待时间", "例子是否在镜头外修改", "导出和分享的当前可用性"],
+      "evidenceHints": ["CUE-017", "CUE-036", "DENSE-0025", "DENSE-0045"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 110.93, "end": 151.45},
+      "cognitiveQuestion": "拥有 coding agent 的用户如何使用 GitHub 资产？",
+      "observedSignals": ["口播称模板以 HTML 文件进入 GitHub repo", "仓库页面与模板预览画面", "作者称另写 instructions、描述和关键词供 agent 匹配模板"],
+      "checkedAlternatives": ["是否逐步展示 clone、安装或 agent 调用", "是否证明 agent 自动理解所有模板"],
+      "remainingUnknowns": ["仓库当前地址、版本和许可证", "安装与调用命令", "agent 匹配准确率"],
+      "evidenceHints": ["CUE-037", "CUE-043", "DENSE-0046", "DENSE-0061"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 151.45, "end": 173.467},
+      "cognitiveQuestion": "视频最后把工具价值上升到什么层面？",
+      "observedSignals": ["作者建议用 HTML 取代 PPT", "主张 HTML 更能实现视觉冲击与 AI-native 展示", "回到多套高设计感结果"],
+      "checkedAlternatives": ["是否只以下载入口或关注 CTA 结束", "是否给出 PowerPoint 与 HTML 的系统对比证据"],
+      "remainingUnknowns": ["‘只有 HTML 能实现’的适用边界", "客户或观众是否真的因此认为使用者更 AI-native"],
+      "evidenceHints": ["CUE-044", "CUE-047", "DENSE-0064", "DENSE-0071"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "机器转写的中文口播", "modalityKeys": ["audio.speech", "transcript.machine"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["解释问题、步骤、主张与边界", "提供两条使用路径"], "intervals": [{"start": 0, "end": 173.21}], "omissionImpact": "会丢失模板资产、操作顺序、价值主张与适用人群。"},
+    {"id": "CAR-02", "name": "烧录中文字幕", "modalityKeys": ["visual.caption", "ocr"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["对口播关键词做视觉锚定", "帮助校正 ASR 专有名词"], "intervals": [{"start": 0, "end": 173.467}], "omissionImpact": "会把 PBT/PPT、Clocko/Claude Code、AnyGen 等 ASR 误识别直接当作原话。"},
+    {"id": "CAR-03", "name": "Slides 成品与模板样例", "modalityKeys": ["visual.result", "visual.design"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-05"], "available": true, "inspected": true, "roles": ["先建立想要感", "证明模板覆盖不同视觉方向", "把抽象审美转成可见结果"], "intervals": [{"start": 0, "end": 54.76}, {"start": 84.2, "end": 110.93}, {"start": 151.45, "end": 173.467}], "omissionImpact": "会误把爆发解释为口播教程，而忽略视觉结果本身是主要钩子与证据。"},
+    {"id": "CAR-04", "name": "AnyGen 界面状态与操作对象", "modalityKeys": ["visual.ui", "visual.state", "ocr"], "discoveredIn": ["SWEEP-03"], "available": true, "inspected": true, "roles": ["承载小白路径", "显示模板选择、输入、生成与分享相关界面"], "intervals": [{"start": 57.4, "end": 110.93}], "omissionImpact": "会把剪辑后的演示升级为连续、可复现的端到端流程。"},
+    {"id": "CAR-05", "name": "GitHub 仓库、文件与说明页面", "modalityKeys": ["visual.ui", "visual.code_repository", "ocr"], "discoveredIn": ["SWEEP-04"], "available": true, "inspected": true, "roles": ["承载 coding agent 路径", "展示模板预览与说明结构"], "intervals": [{"start": 110.93, "end": 151.45}], "omissionImpact": "会漏掉第二条使用路径和模板如何被 agent 检索的概念。"},
+    {"id": "CAR-06", "name": "右下角主讲人圆形画中画", "modalityKeys": ["visual.person", "visual.layout"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["持续提供真人身份与口播归属", "不遮挡主体演示"], "intervals": [{"start": 0, "end": 173.467}], "omissionImpact": "会漏掉其‘真人讲解 + 大面积作品/UI’的稳定画面语法。"},
+    {"id": "CAR-07", "name": "非语音音频机器检查", "modalityKeys": ["audio.non_speech"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["完整混音 10 秒无缝窗口以 Speech 为稳定高分标签", "没有形成稳定、高置信的音乐或独立 UI 音效结论"], "intervals": [{"start": 0, "end": 173.546}], "omissionImpact": "若不检查会凭元数据臆测背景音乐或把界面动作当成有音效证明。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0, "end": 13.52}, "description": "从‘AI 会做 Slides’转为意识到同样用 AI 也存在显著审美差距。", "trigger": "多套成品与好看/不好看的口播对比", "evidenceHints": ["CUE-001", "CUE-005"]},
+    {"id": "MC-02", "range": {"start": 13.52, "end": 54.76}, "description": "把差距归因到可复用的个人审美资产，而不是一次性提示词技巧。", "trigger": "Skill、三十多个模板、个人筛选参考与模板展示", "evidenceHints": ["CUE-006", "CUE-016"]},
+    {"id": "MC-03", "range": {"start": 54.76, "end": 110.93}, "description": "降低小白门槛：无需自己的 coding agent，也可在 AnyGen 选择模板生成。", "trigger": "双路径分流中的第一条路径", "evidenceHints": ["CUE-017", "CUE-036"]},
+    {"id": "MC-04", "range": {"start": 110.93, "end": 151.45}, "description": "把模板从平台内功能扩展为可交给 coding agent 的 GitHub 资产。", "trigger": "仓库、HTML 文件、instructions、描述与关键词", "evidenceHints": ["CUE-037", "CUE-043"]},
+    {"id": "MC-05", "range": {"start": 151.45, "end": 173.467}, "description": "从制作技巧上升为对外品味与 AI-native 身份信号。", "trigger": "HTML 取代 PPT 与客户/观众感知主张", "evidenceHints": ["CUE-044", "CUE-047"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "MC-01", "to": "MC-02", "relation": "问题差距由模板化审美资产提供解释", "evidenceHints": ["CUE-005", "CUE-006"]},
+    {"id": "REL-02", "from": "MC-02", "to": "MC-03", "relation": "先建立结果与资产价值，再提供低门槛获得路径", "evidenceHints": ["CUE-016", "CUE-017"]},
+    {"id": "REL-03", "from": "MC-03", "to": "MC-04", "relation": "按用户技术能力形成平台路径与仓库路径", "evidenceHints": ["CUE-017", "CUE-037"]},
+    {"id": "REL-04", "from": "MC-04", "to": "MC-05", "relation": "可执行资产被进一步包装为专业与身份价值", "evidenceHints": ["CUE-043", "CUE-047"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "只总结操作步骤，漏掉前 54 秒的视觉欲望与审美资产论证。", "why": "爆发可能主要由成品价值先行而非按钮步骤驱动。", "where": [{"start": 0, "end": 54.76}], "requiredFollowup": "密集检查成品种类、画面顺序和口播如何把差距归因到模板。"},
+    {"id": "RISK-02", "risk": "把剪辑过的 AnyGen 演示写成无中断端到端流程。", "why": "密集帧显示多个界面状态，但没有天然证明每一步同一任务连续发生。", "where": [{"start": 57.4, "end": 110.93}], "requiredFollowup": "捕捉输入前/中/后、模板选择、生成结果与分享界面的状态边界。"},
+    {"id": "RISK-03", "risk": "把 GitHub 页面可见升级为仓库当前可安装、免费、可商用或 agent 自动匹配可靠。", "why": "视频只给概念和部分页面，缺版本、许可证与完整执行链。", "where": [{"start": 110.93, "end": 151.45}], "requiredFollowup": "OCR 仓库身份、说明和可见文件；把访问、许可和执行效果保留未知。"},
+    {"id": "RISK-04", "risk": "把作者价值主张写成普遍事实。", "why": "‘只有 HTML 能实现’和‘观众会认为你 AI-native’未在片内比较实验中验证。", "where": [{"start": 151.45, "end": 173.467}], "requiredFollowup": "分开作者主张、可见结果与系统推断。"},
+    {"id": "RISK-05", "risk": "忽略机器转写中的专有名词错误。", "why": "PBT、Clocko、扣顶 Agent 等明显需要烧录字幕/UI 校正。", "where": [{"start": 0, "end": 173.467}], "requiredFollowup": "对专有名词和关键按钮做 OCR；保留原始机器转写。"},
+    {"id": "RISK-06", "risk": "凭音频流存在就宣称有音乐或 UI 音效。", "why": "完整 AudioSet 窗口以 Speech 为稳定主标签，其他候选弱且不稳定。", "where": [{"start": 0, "end": 173.546}], "requiredFollowup": "注册完整音频提议账本并限制结论。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "视频实际承诺的核心结果是什么，先用哪些画面让人想要？", "criticality": "critical", "evidenceHints": ["SWEEP-01", "SWEEP-02"]},
+    {"id": "CQ-02", "question": "小白路径的实际操作对象、状态顺序与未展示桥接是什么？", "criticality": "critical", "evidenceHints": ["SWEEP-03", "RISK-02"]},
+    {"id": "CQ-03", "question": "GitHub/coding agent 路径提供了哪些可见资产，哪些可用性仍未知？", "criticality": "critical", "evidenceHints": ["SWEEP-04", "RISK-03"]},
+    {"id": "CQ-04", "question": "‘审美模板决定结果’由哪些结果与流程证据支持，是否存在反例或限制？", "criticality": "critical", "evidenceHints": ["MC-02", "RISK-01"]},
+    {"id": "CQ-05", "question": "作者的价值判断、片内可见事实和系统推断如何分开？", "criticality": "critical", "evidenceHints": ["MC-05", "RISK-04"]},
+    {"id": "CQ-06", "question": "专有名词、按钮和仓库身份中有哪些 ASR/OCR 冲突？", "criticality": "supporting", "evidenceHints": ["CAR-02", "RISK-05"]},
+    {"id": "CQ-07", "question": "非语音音频是否承载了独立信息或操作证明？", "criticality": "supporting", "evidenceHints": ["CAR-07", "RISK-06"]},
+    {"id": "CQ-08", "question": "模板、图片、字体、代码的来源、许可证、费用、地区与账户条件是否可确认？", "criticality": "critical", "evidenceHints": ["RISK-03", "RISK-04"]}
+  ],
+  "unresolved": [
+    "模板、图片、字体和设计参考的完整来源与授权",
+    "GitHub 仓库当前版本、许可证与入口可用性",
+    "AnyGen 当前费用、地区、账户和导出限制",
+    "演示任务是否存在镜头外修改以及真实生成时长",
+    "HTML 相对 PowerPoint 的普遍优势与客户感知效果",
+    "非语音音轨的精确内容、来源与权利"
+  ]
+}

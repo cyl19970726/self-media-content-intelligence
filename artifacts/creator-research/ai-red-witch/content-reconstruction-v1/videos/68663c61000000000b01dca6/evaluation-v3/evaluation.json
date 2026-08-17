@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "68663c61000000000b01dca6",
+  "evaluationMode": "fresh",
+  "scope": {
+    "included": [
+      "current audit/audit.json and audit/audit.md",
+      "current evidence/evidence-pack.json and current skill-run evidence derivatives",
+      "current skill-run probe, protocol, reconstruction, report, and semantic-audio artifacts",
+      "canonical evaluation protocol, schema, and deterministic validator"
+    ],
+    "excluded": [
+      "all earlier evaluation outputs and discrepancy reports",
+      "candidate modification"
+    ]
+  },
+  "countingBasis": {
+    "criticalQuestions": "Thirteen independently audited claim questions plus one evaluator-added question for the available non-speech audio carrier.",
+    "coreEvidence": "Twenty-two independently checked core knowledge units; the audio unit is context but is separately mandatory under uncheckedChannels.",
+    "positiveUnitStatements": "Twenty-eight knowledge units whose provenance is not unknown; KU-23 is the single explicit unknown unit.",
+    "timestamps": "One primary localization check for each of the 29 knowledge units.",
+    "processDependencies": "Eight workflow dependencies or separations independently required by the visible sequence and case claim.",
+    "unknownOpportunities": "Ten audit-derived decision boundaries plus three audio-specific attribution and source boundaries."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 14,
+      "denominator": 14,
+      "examples": [
+        "CQ-04 preserves the existing 212-record table, bulk paste, paste-success state, processing state, and later structured fields.",
+        "CQ-07 preserves 1.负责人 as the personal target, the blank group selector, permissions, and lack of execution proof.",
+        "CQ-14 answers the evaluator-added non-speech-audio question with bounded classifications and explicit attribution unknowns."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 22,
+      "denominator": 22,
+      "examples": [
+        "KU-07 and KU-13 are supported by the dense correction sequence rather than the narration alone.",
+        "KU-14 preserves the dashboard's prominent 空值 without inferring completeness or correctness.",
+        "KU-20, KU-21, and KU-29 separate the case claim, adjacent sales template, and arithmetic consistency check."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 28,
+      "examples": [
+        "KU-13 stops at the locally observed paste-to-processing sequence and does not infer record origin, full automation, or accuracy.",
+        "KU-26 treats the three transients as notification/accent-like packaging and explicitly states that they do not prove delivery, automation completion, or efficiency.",
+        "Unstable animal, mechanical, spray, and similar classifier proposals are rejected rather than materialized as sound events."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 29,
+      "denominator": 29,
+      "examples": [
+        "KU-07 is localized to the 41.267-46.5 second paste sequence.",
+        "KU-17 is localized to the 70.9-72.833 second recipient and permission UI.",
+        "KU-26 spans the independently verified semantic-audio ledger from 0 to 93.601 seconds and localizes transients to 72-78, 82-86, and 92-93.601 seconds."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 8,
+      "denominator": 8,
+      "rationale": "The reconstruction distinguishes template entry from existing data, paste from processing, structured fields from a separately shown dashboard, scheduled dashboard push from record-triggered messaging, personal target from blank group target, configuration from successful execution, edited demonstration from case proof, and the case claim from its arithmetic check."
+    },
+    "unknownDiscipline": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        "The source of the existing 212 records and pasted content remains unknown.",
+        "The selected group, administrator permission, bot admission, and actual delivery remain unknown.",
+        "The formula and baseline for 96% remain unknown.",
+        "Music/effect title, creator, library, license, and ownership remain unknown; independent effect versus in-music accent also remains unknown.",
+        "Additional separable screen, location, or inserted-source audio is not asserted absent."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "gateDisposition": {
+    "pass": false,
+    "failed": [
+      "metaGate"
+    ],
+    "rationale": "The content and channel-count gates pass, and the audio semantics are covered across 0-93.601 seconds. The hard meta-gate fails because both purported separated-track AST results identify their source as full-mono-16k.wav: the required no-vocals-waveform-to-classification provenance relationship is contradicted by the artifacts themselves and cannot be closed by evaluator inference from acoustic fingerprints."
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgeDisposition": {
+    "performed": false,
+    "rationale": "JUDGE was not performed because the hard meta-gate failed. The five numeric values are schema-required sentinels and are not substantive scores."
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "The required provenance relationship from no-vocals-mono-16k.wav to ast-no-vocals-window-classification.json and ast-no-vocals-fine-classification.json is contradicted by both result files, which declare source=full-mono-16k.wav. Distinct hashes and acoustic fingerprints suggest separated input but cannot replace correct artifact-level source identity."
+    ],
+    "rationale": "Semantic findings, time coverage, transient attribution limits, rejected labels, and rights unknowns are all bounded. However, the two-ledger claim depends on an independently auditable separated-waveform-to-classification relationship. Both separated-result files hard-code the mixed-track filename, so the candidate cannot prove which waveform each AST result classified. This is a concrete provenance blocker, not an invitation for further open-ended inspection."
+  },
+  "examples": [
+    {
+      "id": "EX-01",
+      "status": "gate_pass",
+      "finding": "The mixed and Demucs-separated ledgers both cover 0-93.601 seconds with 19 overlapping 10-second/5-second-hop windows; the separated ledger ranks Music first in all 19 windows, while Music is present in all 19 mixed windows.",
+      "references": [
+        "AUDIO-NS-01",
+        "AUDIO-F-01",
+        "ast-window-classification.json",
+        "ast-no-vocals-window-classification.json"
+      ]
+    },
+    {
+      "id": "EX-02",
+      "status": "gate_pass",
+      "finding": "Forty-seven overlapping fine windows cover the full timeline and isolate three bounded transient groups at 72-78, 82-86, and 92-93.601 seconds.",
+      "references": [
+        "AUDIO-F-02",
+        "AUDIO-F-03",
+        "AUDIO-F-04",
+        "ast-no-vocals-fine-classification.json"
+      ]
+    },
+    {
+      "id": "EX-03",
+      "status": "gate_pass",
+      "finding": "The continuous music is treated as promotional pacing, and the three transient groups as notification/emphasis/closing packaging; none is promoted into proof of product execution or commercial results.",
+      "references": [
+        "KU-26",
+        "REL-12",
+        "REL-13",
+        "REL-14",
+        "REL-15"
+      ]
+    },
+    {
+      "id": "EX-04",
+      "status": "gate_pass",
+      "finding": "The reconstruction keeps effect-versus-musical-accent attribution, other source audio, track/library identity, creator, license, and ownership unknown.",
+      "references": [
+        "KU-26",
+        "AUDIO-NS-01"
+      ]
+    },
+    {
+      "id": "EX-05",
+      "status": "hard_gate_fail",
+      "finding": "The two no-vocals AST JSON files hard-code source=full-mono-16k.wav. Independent waveform hashes and acoustic fingerprints make separated input likely, but the artifacts do not correctly establish their own source relationship; the independent meta-gate therefore fails.",
+      "references": [
+        "ast-no-vocals-window-classification.json",
+        "ast-no-vocals-fine-classification.json",
+        "classify_ast.py",
+        "classify_ast_fine.py"
+      ]
+    }
+  ]
+}

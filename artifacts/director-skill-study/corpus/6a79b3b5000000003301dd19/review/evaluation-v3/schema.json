@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "reconstruction-schema-validation-report-1.0",
+  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
+  "pass": true,
+  "validated": [
+    "probe",
+    "protocol",
+    "reconstruction",
+    "evaluation",
+    "ocr"
+  ],
+  "failures": [],
+  "inputs": {
+    "probe": "run/probe.json",
+    "protocol": "run/capture-protocol.json",
+    "reconstruction": "run/reconstruction.json",
+    "evaluation": "review/evaluation-v3/evaluation.json",
+    "ocr": "run/targeted-evidence/ocr-evidence.json"
+  }
+}

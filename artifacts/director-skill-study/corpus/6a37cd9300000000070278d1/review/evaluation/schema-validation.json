@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "validated": ["probe", "protocol", "reconstruction", "evaluation", "ocr"],
+  "failures": [],
+  "command": "validate-schemas.py --probe run/probe.json --protocol run/capture-protocol.json --reconstruction run/reconstruction.json --evaluation review/evaluation/evaluation.json --ocr run/targeted-evidence/ocr-evidence.json"
+}

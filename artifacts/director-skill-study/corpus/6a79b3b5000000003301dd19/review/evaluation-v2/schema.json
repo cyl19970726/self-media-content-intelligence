@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "evaluation-schema-validation-1.0",
+  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
+  "pass": true,
+  "validated": [
+    "run/probe.json",
+    "run/capture-protocol.json",
+    "run/reconstruction.json",
+    "review/evaluation-v2/evaluation.json",
+    "run/targeted-evidence/ocr-evidence.json"
+  ],
+  "failures": [],
+  "note": "Schema validation passed. Gate readiness is reported separately and remains false because internal_timestamp_bounds failed."
+}

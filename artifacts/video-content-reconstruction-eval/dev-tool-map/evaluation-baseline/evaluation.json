@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 7,
+      "denominator": 15,
+      "examples": [
+        {
+          "result": "covered",
+          "ids": ["CQ-01", "CQ-02", "CQ-04", "CQ-05", "CQ-07", "CQ-08", "CQ-15"],
+          "note": "保留了六项并列映射、全部工具名、Steve Jobs 式样边界、‘任何人’的宣传性质、Runway 操作/耗时不可核验、多套 PPT 的方向判断以及非教程性质。"
+        },
+        {
+          "result": "missed",
+          "ids": ["CQ-03", "CQ-06", "CQ-09", "CQ-10", "CQ-11", "CQ-12", "CQ-13", "CQ-14"],
+          "note": "未回答生成归因是否被证明、Runway 至少两套、PPT 的可编辑/准确/来源 unknown、即梦卡片—动漫不一致与独立动画归因、卡片宣传文案外部真实性、AI生成标签边界及无跨工具程序依赖。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 10,
+      "denominator": 25,
+      "examples": [
+        {
+          "countingRule": "以 audit.json 的 AE-001 至 AE-025 为内容知识单元；AE-026 是证据包质量问题，不要求普通视频总结覆盖。只在单元核心命题完整且未被相反表述破坏时计入。候选没有证据引用，因此这里衡量的是有审计支持的知识单元覆盖，不把不存在的帧号或时间码补进候选。"
+        },
+        {
+          "result": "covered",
+          "ids": ["AE-004", "AE-005", "AE-008", "AE-009", "AE-011", "AE-012", "AE-014", "AE-017", "AE-020", "AE-024"]
+        },
+        {
+          "result": "not_fully_covered",
+          "ids": ["AE-003", "AE-007", "AE-010", "AE-013", "AE-016", "AE-018", "AE-019", "AE-021", "AE-022", "AE-025"],
+          "note": "工具名虽出现，但六张卡片副文案、三套且每套 12 页、即梦图片工具卡片、结尾随帧运动、工具卡解决‘这个’指代及完整负事实没有被完整保留。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 8,
+      "total": 36,
+      "examples": [
+        {
+          "countingRule": "按 baseline.md 中可独立核验的事实、能力或程序命题分句计数；纯规范性安全建议不计，只有在建议同时断言片中未展示的工具输入—输出流程时才计错。"
+        },
+        {
+          "candidateClaim": "‘视频把原本出镜的真人替换成……动漫角色造型’",
+          "issue": "画面只支持同一机位中的前后造型变化，不能确定身份替换而非换装/角色化，也不能证明由通义万相直接生成。"
+        },
+        {
+          "candidateClaim": "PixVerse 示例‘说明它可用于给短视频快速增加生成式视觉效果’",
+          "issue": "单个剪辑演示不证明真实工具能力；‘快速’还把剪辑速度误当成生成速度。"
+        },
+        {
+          "candidateClaim": "Vidu 段‘生成了一个类似乔布斯的人物’",
+          "issue": "‘类似乔布斯’边界正确，但视频没有工具界面或生成记录，不能把人物生成归因给当前卡片工具。"
+        },
+        {
+          "candidateClaim": "Runway 被直接写为‘一键换穿搭’并用于局部造型修改",
+          "issue": "‘一键’是片内宣传主张；点击次数、处理过程和具体工具归因均未被展示。"
+        },
+        {
+          "candidateClaim": "‘真人画面被转成……动漫插画’",
+          "issue": "只可确认相似角色元素出现在森林动画化画面，不能确认真人身份连续性、输入来源或转换过程。"
+        },
+        {
+          "candidateClaim": "即梦被用于‘图像风格化和动漫创作’",
+          "issue": "卡片只称 AI 图片创作工具，动画化结果的中间工作流与即梦单独归因均 unknown。"
+        },
+        {
+          "candidateClaim": "按六个演示直接给出六项工具选择建议",
+          "issue": "视频只提供宣传性配对，没有比较标准、版本、可用性或独立能力验证，不能支撑工具选型结论。"
+        },
+        {
+          "candidateClaim": "整理主题、受众、页数等后‘再交给 Manus 生成初稿’",
+          "issue": "片中没有题目输入、生成界面、可编辑文件或导出流程，这一输入—输出依赖是外加流程。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 1,
+      "denominator": 1,
+      "examples": [
+        {
+          "candidateReference": "约 16 秒 / 16.56 秒",
+          "auditReference": "16.556 秒",
+          "result": "accurate",
+          "scopeNote": "候选没有段落时间码、帧号或证据引用；本项只检查候选实际存在的唯一时间陈述，不补造不存在的证据引用。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 2,
+      "denominator": 4,
+      "rationale": "审计给出三条观察到的编辑依赖，并明确一条无跨工具程序链的关系。候选覆盖了工具卡/口播配对和主张/演示配对；未保留同一主持人与房间作为跨项连续锚点，也未明确说明六项不存在程序依赖或文件传递链。候选可执行事项中的输入建议不作为片中依赖补计。"
+    },
+    "unknownDiscipline": {
+      "numerator": 2,
+      "denominator": 9,
+      "examples": [
+        {
+          "result": "covered",
+          "ids": ["U-01", "U-03"],
+          "note": "明确指出提示词、参数、费用、耗时与稳定性未给出，且不把这些缺口写成已知事实。"
+        },
+        {
+          "result": "missed_or_overclaimed",
+          "ids": ["U-02", "U-04", "U-05", "U-06", "U-07", "U-08", "U-09"],
+          "note": "尤其未保持结果归因、Runway 一键、Manus 文件属性、即梦动画流程及工具卡宣传真实性的 unknown；音频语义层也未检查。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "audio_beyond_transcribed_speech：baseline-process.md 只声明读取 SRT 和抽帧，没有声明试听或检查背景音乐/音效；审计对此通道保持 unknown。"
+    ]
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 1,
+    "executionValue": 3,
+    "compressionWithoutLoss": 2
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "本评估将 audit.json/audit.md 中列出的全部载体、MC-01 至 MC-07、并列关系与编辑依赖逐类映射到候选。未检查的附加音频通道已由 uncheckedChannels 显式守住，未把 unknown 伪装成已检查或 PASS。"
+  },
+  "examples": [
+    {
+      "id": "D-01",
+      "severity": "critical",
+      "summary": "无 UI/输入/过程/导出证据，却多处把剪辑配对写成工具能力或生成因果。"
+    },
+    {
+      "id": "D-02",
+      "severity": "high",
+      "summary": "人物身份边界不稳：通义段写成真人被替换，即梦段写成真人画面被转成插画。"
+    },
+    {
+      "id": "D-03",
+      "severity": "high",
+      "summary": "六个工具名齐全，但卡片副文案及其解决‘这个’指代的结构性作用缺失。"
+    },
+    {
+      "id": "D-04",
+      "severity": "high",
+      "summary": "Manus 只写成套/多种版式，漏掉三套且每套可见 12 页。"
+    },
+    {
+      "id": "D-05",
+      "severity": "critical",
+      "summary": "即梦的图片工具卡片、动画化运动和中间工作流 unknown 均未保留，并被改写成静态插画转换。"
+    },
+    {
+      "id": "D-06",
+      "severity": "medium",
+      "summary": "Runway 用复数造型概括，但没有明确至少两套，也没有把‘一键’限定为片内主张。"
+    }
+  ]
+}

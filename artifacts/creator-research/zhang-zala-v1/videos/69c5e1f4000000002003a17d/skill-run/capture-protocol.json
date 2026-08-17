@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69c5e1f4000000002003a17d/skill-run/probe.json",
+  "protocolName": "Builder × Influencer 交集—业务教育—内容筛选—正循环捕捉协议",
+  "rationale": "本片是讲座/演讲摘录，画面用 Venn 图和内容筛选流程支撑观点：做业务和做内容并不对立，内容负责教育用户、解释价值、筛选同类人，并服务创业/工作/求职目标。必须恢复 builder 与 influencer 的协同关系，同时限制 OpenClaw/Peter、99.9% 正向评论和‘没有人会说学习的人不好’等外部或绝对化主张。",
+  "knowledgeUnitFields": [
+    {
+      "name": "核心定位：站在 Builder 与 Influencer 的交集",
+      "required": true,
+      "reason": "为什么作者认为做业务和做内容不对立？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "内容承担教育用户和解释产品价值",
+      "required": true,
+      "reason": "内容如何直接服务业务，而不只是个人曝光？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "交集定位改变内容目标：服务业务，而非只追流量",
+      "required": true,
+      "reason": "站在交集后，内容策略与纯流量策略有什么不同？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "持续同类内容筛选正确的人，形成社区正循环",
+      "required": true,
+      "reason": "作者如何解释同类受众、线下活动和正向评论？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 40.12
+      },
+      "carrier": "Venn 图、讲者画中画和字幕",
+      "mode": "interval_density",
+      "densitySeconds": 2.5,
+      "reason": "OCR 图表标签，恢复核心关系并保持案例身份/因果未知。",
+      "expectedObservation": "模型简洁强，案例证据弱。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 40.12,
+        "end": 67.52
+      },
+      "carrier": "Venn 图、案例口播和字幕",
+      "mode": "interval_density",
+      "densitySeconds": 2.2,
+      "reason": "恢复作者论点，列出未证转化和外部案例边界。",
+      "expectedObservation": "逻辑直观，因果数据缺失。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 67.52,
+        "end": 97.52
+      },
+      "carrier": "Venn 图、目标口播和字幕",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "恢复目标函数对照，并加入流量与业务协同条件。",
+      "expectedObservation": "定位差异清晰，二分需收窄。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 97.52,
+        "end": 194.967
+      },
+      "carrier": "筛选流程图、主讲人画中画和收尾字幕",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "恢复筛选机制和作者数据主张，明确算法与样本偏差。",
+      "expectedObservation": "社区机制有启发，量化论证不足。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "交集定位通过用户教育获得业务解释",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "用户教育功能进一步落到内容选题和衡量标准",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "业务目标一致的内容通过长期重复筛选同类人",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–194.967 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "Venn 图两圈精确标签的 OCR 读数",
+    "Claude Code/OpenClaw/Peter 案例完整事实和因果",
+    "作者受众规模、评论样本和 99.9% 口径",
+    "内容对业务目标的转化数据",
+    "线下活动和社区的具体设计",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69c5e1f4000000002003a17d/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69c5e1f4000000002003a17d/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

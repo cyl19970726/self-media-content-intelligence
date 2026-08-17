@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "6801c0750000000007037156",
+  "evaluationDate": "2026-08-16",
+  "evaluationOrder": "GATE_then_JUDGE",
+  "evidenceScope": {
+    "included": [
+      "current evidence/evidence-pack.json and referenced frames",
+      "current repaired skill-run artifacts and newly generated targeted/audio evidence",
+      "independent audit/audit.json and audit/audit.md",
+      "evaluation/discrepancies.md as closure targets only",
+      "canonical evaluation protocol/schema and evaluator-design GATE/JUDGE rules"
+    ],
+    "excluded": [
+      "prior evaluation verdict and score",
+      "prior evaluation rationale except the discrepancy list used as repair targets",
+      "legacy reports, video-library conclusions, and unrelated candidate evaluations"
+    ]
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        "The literal failure signature is preserved as Markdown-style residue rather than generic encoding corruption (KU-04/KU-05).",
+        "The SRT dipsick/dipstick conflict, DeepSeek reading, visible WPS identity, edited chronology, result limits, opening-to-closing relation, shot segmentation warning, audio role, and cross-state text identity boundary are all answered or correctly retained as unknown.",
+        "Audit CQ-13 is closed by KU-19 and SRC-AUDIO-INSPECTION, which inspect the complete decoded source rather than audio metadata alone."
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        "All 12 independently audited core knowledge units have corresponding current candidate units with resolvable cue, shot, targeted-frame, OCR, or registered-source evidence.",
+        "High-impact visual claims are supported by TARGET-0003/TARGET-0004, TARGET-0023/TARGET-0025, TARGET-0033/TARGET-0039/TARGET-0042/TARGET-0045, and TARGET-0050/TARGET-0055.",
+        "The repaired relationship matrix contains direct resolvable evidence references for REL-01 through REL-11 and no KU-* pseudo-references."
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 19,
+      "examples": [
+        "Nineteen material positive knowledge-unit claims were checked; the bounded-absence unit KU-15 was not counted as a positive claim.",
+        "WPS is supported by visible WPS AI UI in TARGET-0036 and TARGET-0055; Microsoft Word is not inferred from the author's generic word label.",
+        "The candidate labels operation continuity, verbatim text identity, exact formatting compliance, universal applicability, hidden edits, and music source/ownership as unknown rather than asserting them."
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 53,
+      "denominator": 53,
+      "examples": [
+        "All 53 unique evidence references used by the 20 knowledge units resolve to the stated cue, shot, targeted-frame/OCR moment, or full-range registered source.",
+        "TARGET-0003 localizes the visible Markdown residue near 4.0 seconds; TARGET-0023/TARGET-0025 localize the prompt; TARGET-0033 through TARGET-0055 preserve the edited transfer/result sequence.",
+        "SRC-AUDIO-INSPECTION is explicitly bounded to 0-29.067 seconds and maps ten contiguous analysis windows into six video stages."
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 8,
+      "denominator": 8,
+      "rationale": "The candidate covers the eight audited process/dependency nodes: source answer, HTML/style prompt, send/generation claim, HTML/CSS response, rendered preview, text selection, target-document/menu state, and formatted result. It also explicitly preserves the unshown Run HTML, copy, paste-option, file, save/open, application-switch, and verbatim-diff bridges as unknown instead of smoothing the edit into continuous execution."
+    },
+    "unknownDiscipline": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        "KU-15 now separately names the absence of privacy notice/input-data handling within the inspected 0-29.067-second scope.",
+        "KU-20 now states that the four text states share topic and similar four-part structure while word-for-word identity and complete transfer remain unknown.",
+        "Product version, filename/extension, model/account/access/price/region, exact paste path, exact parameter fulfillment, universality, hidden edits, presenter identity, and audio source/ownership remain explicitly bounded unknowns."
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "gateDecision": {
+    "pass": true,
+    "rationale": "All count/rate thresholds pass, no available carrier remains unchecked, and the independent meta-audit finds no unguarded carrier, meaning change, or relationship. This is a GATE result only, not a workflow readiness declaration."
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "judgeRationale": {
+    "readability": "The article leads with the actual method and its three governing boundaries, then separates failure signature, prompt, observed sequence, result limits, audio, and closing relation.",
+    "knowledgePrioritization": "Identity conflicts, literal failure evidence, exact prompt controls, edited chronology, and result limitations are prioritized ahead of incidental presenter/environment detail.",
+    "evidenceUsefulness": "Material claims carry precise cue/frame/OCR/source references, and the structured reconstruction keeps direct evidence distinct from inference and unknowns.",
+    "executionValue": "The output is useful for understanding and cautiously reproducing the demonstrated idea, but the source video itself omits decisive execution bridges and compatibility conditions, limiting actionability.",
+    "compressionWithoutLoss": "The article preserves all consequential distinctions, though the full prompt transcription and extensive boundary discussion make it longer than the source video's simple headline method requires."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent comparison against the audit finds all 12 audited carrier families represented, even where the repaired probe groups them differently: speech/SRT, burned captions, AI UI/text, WPS/document state, selection/menu actions, before/after and cross-state structure, edit order, presenter/PIP/gesture, environment/props, layout/count, bounded absence, and decoded non-speech audio. All nine meaning changes are captured. Core identity, failure-signature, prompt-to-code-to-preview-to-result, edited-chronology/dependency, before/after, cross-state text, presenter continuity, opening-to-closing, segmentation/continuity, and audio-to-missing-step relations are guarded. Remaining limits are explicit unknowns rather than uncovered closures."
+  },
+  "discrepancyClosure": [
+    {
+      "id": "D-00",
+      "status": "closed",
+      "evidence": "coverageMatrix.relationships REL-01 through REL-11 contain only resolvable cue, shot, targeted-frame, OCR, or source refs; the current deterministic self-check records coverage_matrix pass."
+    },
+    {
+      "id": "D-01",
+      "status": "closed",
+      "evidence": "audio-evidence/audio-inspection.json covers the complete decoded 0-29.067-second source in ten contiguous windows and six stages; KU-19 preserves the music/atmosphere, closing accent, absent step-proof, and classifier limitations."
+    },
+    {
+      "id": "D-02",
+      "status": "closed",
+      "evidence": "KU-15 and article.md explicitly preserve privacy notice and input-data handling as bounded unknowns."
+    },
+    {
+      "id": "D-03",
+      "status": "closed",
+      "evidence": "KU-20 and REL-11 model same topic/similar four-part structure across failure, source, preview, and result states while retaining verbatim identity as unknown."
+    }
+  ],
+  "examples": [
+    {
+      "type": "supported_identity_boundary",
+      "candidate": "The author says word, while visible TARGET-0036/TARGET-0055 support a WPS text-processing interface.",
+      "assessment": "supported and correctly bounded"
+    },
+    {
+      "type": "literal_failure_signature",
+      "candidate": "TARGET-0003/TARGET-0004 show ####, **, and hyphen-style Markdown residue rather than unreadable encoded characters.",
+      "assessment": "supported"
+    },
+    {
+      "type": "process_boundary",
+      "candidate": "The visible order reaches code, preview, selection, menu, and result but does not directly show several bridge actions.",
+      "assessment": "supported; missing actions correctly retained as unknown"
+    },
+    {
+      "type": "audio_closure",
+      "candidate": "A low-level bed and closing accent are detected, while no decoded event independently proves send/copy/paste actions.",
+      "assessment": "supported within the stated machine-listening and source-scope limits"
+    }
+  ]
+}

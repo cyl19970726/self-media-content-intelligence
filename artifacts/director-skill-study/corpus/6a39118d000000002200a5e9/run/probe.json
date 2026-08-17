@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能知道创始人或品牌可以做个人 IP，但不知道该从何种人性需求切入，也没有一套把个人经历、品牌特性和口号组织成故事的结构。",
+    "after": "观众被引导相信 IP 能通过熟悉、信任和情感降低决策成本，并能用‘只要你要、只要我有’把受众欲望与个人/品牌可供给的经历、特性、文化和口号对应起来，形成个人故事和品牌故事的大纲。",
+    "intendedChanges": [
+      "believe：把 IP 理解为从认识到信任、从喜欢到爱上的决策成本降低机制",
+      "know：记住内容/自媒体/视频的三个底层判断及‘只要你要、只要我有’总法则",
+      "do：能按受众欲望选题，并用成就、挫折、选择、总结、忠告和情感关系搭个人故事",
+      "decide：能按产品的消费者心理特性和创始人个性选择品牌叙事方向，再用品牌文化与 slogan 承接"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 15.25},
+      "cognitiveQuestion": "视频解决什么问题，适用边界和底层前提是什么？",
+      "observedSignals": ["0 秒出现两张社交内容/数据面板式插入截图，能辨认多组互动与浏览量数字，用作开场社会证明", "蒙面讲述者在家庭洗衣区白板前正面讲解", "烧录字幕提出创始人 IP 故事问题并说非创始人 IP 也可用", "口播/字幕列出三个底层逻辑"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions in cue/dense frames", "presenter gesture and whiteboard", "technical shot boundaries", "full-timeline non-speech-audio AST classification"],
+      "remainingUnknowns": ["开场数据截图对应的账号、帖子、统计窗口、数据来源及其与本方法的关系", "讲述者真实身份与面具使用动机", "‘ta媒体’究竟指他媒体还是其他概念", "音乐型底层的具体曲风、来源、版权与精确语义作用"],
+      "evidenceHints": ["DENSE-0001@0.000", "CUE-001..CUE-005", "FRAME-CUE-001", "FRAME-CUE-005", "DENSE-0001..DENSE-0007"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 15.25, "end": 34.7},
+      "cognitiveQuestion": "作者为何主张做 IP，并如何引入贯穿个人与品牌的法则？",
+      "observedSignals": ["从喜欢到爱上、从认识到信任", "IP 降低用户决策成本并促使其因个人/品牌故事购买的作者主张", "小米 SU7/雷军例子", "只要你要、只要我有的双向法则"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "whiteboard pointing", "full-frame setting continuity", "full-timeline non-speech audio classification: speech+music co-detected, no independent SFX class in top labels"],
+      "remainingUnknowns": ["小米 SU7 购买动机是否被视频内证据证明", "开场存在社交互动/浏览数据截图，但没有建立这些数字与本视频方法或购买转化之间的因果联系，也没有反例"],
+      "evidenceHints": ["CUE-006..CUE-011", "FRAME-CUE-010", "FRAME-CUE-011", "SHOT-004..SHOT-008"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 34.7, "end": 48.27},
+      "cognitiveQuestion": "个人 IP 的‘只要你要’具体对应哪些欲望/选题和人物例子？",
+      "observedSignals": ["黄色短卡写‘中国人一生追求的6件事’", "白板右侧列出六组主题与人物", "口播把年少有为、大器晚成、造梦狂人、草根逆袭、逆风翻盘、苟富贵勿相忘称为六个必火选题"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "whiteboard list/count/grouping", "presenter pointing gesture", "dense frames around short yellow overlay"],
+      "remainingUnknowns": ["六个主题可确认，但人物与主题的精确一一映射在连续口播、字幕跨帧和白板小字中存在分组歧义，尤其涉及曹德旺、刘强东、于东来", "‘必火’是未经视频内验证的普遍性主张"],
+      "evidenceHints": ["CUE-012..CUE-015", "FRAME-CUE-013", "FRAME-CUE-015", "DENSE-0016..DENSE-0020"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 48.27, "end": 74.56},
+      "cognitiveQuestion": "个人 IP 的‘只要我有’如何变成利他内容和可执行故事大纲？",
+      "observedSignals": ["作者要求用自身拥有的材料对齐用户需求", "内容项包括成就及 how/when、最大挫折、正确选择、一句成功总结、给年轻人的忠告", "‘1+2=3’白板结构把成果、开始、困难、转折、上升与亲情爱情义气组合"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "whiteboard structure", "pointing/marker gesture", "technical shot continuity"],
+      "remainingUnknowns": ["‘1+2=3’中 1、2、3 的精确白板标签需核对", "没有完整成片案例证明该结构效果"],
+      "evidenceHints": ["CUE-016..CUE-024", "FRAME-CUE-018", "FRAME-CUE-022", "SHOT-010"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 74.56, "end": 99.81},
+      "cognitiveQuestion": "品牌故事如何从产品特性/消费者心理进行分类？",
+      "observedSignals": ["话题从个人切换到品牌", "顶部大字卡稳定显示‘用户心理看产品特性 新 强 稳 故事 平’", "口播分别给出 APP/3C/快消、汽车/工业/芯片/ToB、家居/代销/食品/医美、文创/shopping、快消品/日用等例子"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "persistent top overlay", "whiteboard left list", "presenter pointing", "dense frames covering the full list"],
+      "remainingUnknowns": ["SRT 中‘压力强’‘第三是碗’等明显疑似识别错误与画面分类词冲突", "‘代销’是否实为‘带货’等小字需 OCR 核对", "五类是并列分类还是可重叠标签未明确"],
+      "evidenceHints": ["CUE-025..CUE-031", "FRAME-CUE-028", "FRAME-CUE-031", "DENSE-0031..DENSE-0040"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 99.81, "end": 117.53},
+      "cognitiveQuestion": "品牌‘只要你要’怎样转化为品牌方向，并与创始人个性关联？",
+      "observedSignals": ["作者把消费者心理问题转成品牌受喜欢/有魅力的方向", "口播/白板列行业先锋、匠心沉淀、改变世界、平民实干、重生突围、温情共生等方向及品牌例子", "作者主张方向与创始人个性息息相关"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "whiteboard brand-direction mapping", "pointing gesture", "continuous environment and presenter"],
+      "remainingUnknowns": ["多个品牌名在 SRT 中失真，例如 SpaceX、胖东来等需按画面保留冲突", "品牌与方向之间是作者示例而非视频内验证的因果关系"],
+      "evidenceHints": ["CUE-032..CUE-037", "FRAME-CUE-035", "FRAME-CUE-036", "SHOT-012"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 117.53, "end": 138.01},
+      "cognitiveQuestion": "品牌‘只要我有’通过哪些文化或 slogan 例子兑现？",
+      "observedSignals": ["作者主张品牌文化和 slogan 反映品牌特性", "依次引用字节跳动、百达翡丽、SpaceX、汽车玻璃相关企业、扶摇科技、交个朋友、胖东来、京东等语句或故事", "讲述者逐项指向白板"],
+      "checkedAlternatives": ["provided subtitle cues", "burned captions", "whiteboard list", "presenter pointing sequence", "technical shot boundaries and continuity"],
+      "remainingUnknowns": ["汽车玻璃条目对应品牌/创始人及原句不清", "扶摇科技条目是否为‘基本上不赚钱’以及主体身份需核对", "这些口号和故事的真实性、官方归属和准确措辞未外部验证"],
+      "evidenceHints": ["CUE-038..CUE-045", "FRAME-CUE-040..FRAME-CUE-045", "SHOT-013..SHOT-016"]
+    },
+    {
+      "id": "SWEEP-08",
+      "range": {"start": 138.01, "end": 141.804},
+      "cognitiveQuestion": "结尾是否总结、收窄或改写开头承诺？",
+      "observedSignals": ["继续点名胖东来和京东", "讲述者自称‘人类最强编导’并说下期再见", "结尾没有重新复述完整方法或展示 CTA/下载入口"],
+      "checkedAlternatives": ["final subtitle cue", "final burned caption", "final dense frames through 141.684", "whiteboard and presenter setting", "audio classification through 141.806 with music-like score declining in the final windows"],
+      "remainingUnknowns": ["自称是否为账号身份或角色设定", "无可见证据将蜘蛛侠面具指向具体人物身份"],
+      "evidenceHints": ["CUE-046", "FRAME-CUE-046", "DENSE-0056..DENSE-0058", "SHOT-016"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "提供的字幕/口播文本", "modalityKeys": ["speech", "subtitles", "provided_srt"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["提出主张", "给出方法", "列举例子", "承接转场与结尾"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会丢失主要论证、列表内容与顺序。"},
+    {"id": "CAR-02", "name": "烧录字幕与短时大字卡", "modalityKeys": ["on_screen_text", "burned_caption", "overlay"], "discoveredIn": ["SWEEP-01", "SWEEP-03", "SWEEP-05", "SWEEP-06", "SWEEP-08"], "available": true, "inspected": true, "roles": ["复述/纠正口播", "强调六件事", "提供五个产品心理分类"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会静默修正 SRT 冲突并漏掉分类大字。"},
+    {"id": "CAR-03", "name": "白板文字、分区、连线与数量结构", "modalityKeys": ["whiteboard", "diagram", "list", "layout", "count"], "discoveredIn": ["SWEEP-01", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["展示方法全貌", "保持个人/品牌两部分关系", "列出选题、品牌方向和 slogan 示例"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会丢失并列、分组、计数和口播未读清的小字。"},
+    {"id": "CAR-04", "name": "讲述者手势、指向与 marker 动作", "modalityKeys": ["gesture", "physical_action", "deictic_pointing"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["把口播条目映射到白板位置", "强调结构转换"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会混淆白板条目与口播映射。"},
+    {"id": "CAR-05", "name": "蒙面人物、服装与家庭洗衣区环境", "modalityKeys": ["recognizable_styling", "person", "environment", "set_continuity"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["形成匿名/角色化讲述者形象", "维持单一讲解场景连续性", "制造非正式家庭授课氛围"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会把可见蜘蛛侠式面具误当成真实身份，或漏掉持续设置关系。"},
+    {"id": "CAR-06", "name": "剪辑顺序、近远景与技术镜头段", "modalityKeys": ["editing_order", "camera_distance", "scene_detection_segments"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05", "SWEEP-06", "SWEEP-07", "SWEEP-08"], "available": true, "inspected": true, "roles": ["在讲者近景与白板指向之间切换", "按个人后品牌推进"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "可能把算法切点误称为多个场景或连续操作证据。"},
+    {"id": "CAR-07", "name": "非语音音频", "modalityKeys": ["non_speech_audio", "music", "sound_effect", "full_timeline_audio_classification"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-08"], "available": true, "inspected": true, "roles": ["完整音轨按 10 秒窗、5 秒步长执行本地 AudioSet AST 分类：29/29 窗同时检出 speech-like 与 music-like 类别，0/29 窗检出独立 sfx-like 类别；支持描述为持续伴随口播的音乐型底层，但精确曲风、来源、版权和情绪/强调作用仍受工具边界限制"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "若遗漏会把持续音乐型底层错误标成未检查；若过度解读则会虚构曲风、来源或具体情绪功能。"},
+    {"id": "CAR-08", "name": "决策相关缺席信息", "modalityKeys": ["negative_evidence", "full_timeline_absence_audit"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-08"], "available": true, "inspected": true, "roles": ["界定教程边界：除 0 秒社交互动/浏览数据插入外，全时间轴未观察到这些数字与方法成效或购买转化的对应关系，也未观察到完整样片、下载模板、价格、平台/账号要求或明确 CTA"], "intervals": [{"start": 0, "end": 141.804}], "omissionImpact": "会把开场社会证明误写成方法效果或转化证明，或把启发性框架误写成完整课程。"},
+    {"id": "CAR-09", "name": "开场社交数据/社会证明插入", "modalityKeys": ["inserted_clip", "analytics_screenshot", "social_proof", "engagement_count", "view_count"], "discoveredIn": ["SWEEP-01"], "available": true, "inspected": true, "roles": ["在方法讲解前展示多组社交互动和浏览量数字，构成讲述者能力/影响力的编辑性社会证明"], "intervals": [{"start": 0, "end": 1}], "omissionImpact": "会错误断言视频没有播放/互动数据，并漏掉开场信誉框架。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-00", "range": {"start": 0, "end": 1}, "description": "先插入社交内容数据截图，以互动量/浏览量构成社会证明，再进入方法讲解。", "trigger": "DENSE-0001 中两张数据面板式截图和多组数值", "evidenceHints": ["DENSE-0001@0.000", "TARGET-0072@0.000", "OCR-00555", "OCR-00556", "OCR-00557"]},
+    {"id": "MC-01", "range": {"start": 0, "end": 10.646}, "description": "从行业现象转入‘创始人 IP 故事怎么讲’，并扩大到非创始人 IP 也可用。", "trigger": "问题卡与口播适用边界", "evidenceHints": ["CUE-001..CUE-004", "FRAME-CUE-002", "FRAME-CUE-003"]},
+    {"id": "MC-02", "range": {"start": 10.646, "end": 17.94}, "description": "给出三个底层判断，并把做 IP 定义为喜爱与信任的升级。", "trigger": "三条底层逻辑与两组状态变化", "evidenceHints": ["CUE-005", "CUE-006", "FRAME-CUE-005"]},
+    {"id": "MC-03", "range": {"start": 17.94, "end": 34.69}, "description": "用降低决策成本和小米 SU7/雷军例子论证做 IP 的价值，再提出双向法则。", "trigger": "因果主张、例子、‘只要你要，只要我有’", "evidenceHints": ["CUE-007..CUE-011"]},
+    {"id": "MC-04", "range": {"start": 34.7, "end": 48.27}, "description": "个人部分第一步：把用户欲望转为六类选题。", "trigger": "六件事黄色大字与人物列表", "evidenceHints": ["CUE-012..CUE-015", "FRAME-CUE-013", "FRAME-CUE-015"]},
+    {"id": "MC-05", "range": {"start": 48.27, "end": 74.56}, "description": "个人部分第二步：把自身材料对齐需求，形成‘成果—开始/困难/转折/上升—情感温度’故事大纲。", "trigger": "利他性、内容项列表与 1+2=3", "evidenceHints": ["CUE-016..CUE-024", "FRAME-CUE-022"]},
+    {"id": "MC-06", "range": {"start": 74.56, "end": 99.8}, "description": "转入品牌部分，并提出‘新、强、稳、故事、平’五种产品/消费者心理特性。", "trigger": "转场句与顶部五词大字卡", "evidenceHints": ["CUE-025..CUE-031", "FRAME-CUE-028", "FRAME-CUE-031"]},
+    {"id": "MC-07", "range": {"start": 99.81, "end": 117.53}, "description": "品牌第一步：把消费者心理映射到行业先锋、匠心沉淀、改变世界、平民实干等品牌方向，并连到创始人个性。", "trigger": "品牌方向/品牌例子列表与创始人关系主张", "evidenceHints": ["CUE-032..CUE-037", "FRAME-CUE-035"]},
+    {"id": "MC-08", "range": {"start": 117.53, "end": 138}, "description": "品牌第二步：用文化、口号或品牌故事表达品牌特性。", "trigger": "品牌文化和 slogan 主张及连续例子", "evidenceHints": ["CUE-038..CUE-045", "FRAME-CUE-040..FRAME-CUE-045"]},
+    {"id": "MC-09", "range": {"start": 138.01, "end": 141.804}, "description": "从最后两个品牌名收束到讲述者自我称谓与告别；未重述方法或给出执行入口。", "trigger": "最终 cue 的身份式签名与告别", "evidenceHints": ["CUE-046", "FRAME-CUE-046", "DENSE-0058"]},
+    {"id": "MC-10", "range": {"start": 99.81, "end": 106.617}, "description": "从产品五特性重构为消费者心理问题：什么样的品牌会被用户喜欢、什么样的品牌有魅力，为后续六个品牌方向搭桥。", "trigger": "只要你要的消费者心理重述与连续两个品牌吸引力问题", "evidenceHints": ["CUE-032", "CUE-033", "CUE-034"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "三个底层逻辑", "to": "IP 价值主张", "relation": "frames", "evidenceHints": ["CUE-005..CUE-009"]},
+    {"id": "REL-02", "from": "IP 降低决策成本", "to": "小米 SU7/雷军", "relation": "claim_illustrated_by", "evidenceHints": ["CUE-008..CUE-010"]},
+    {"id": "REL-03", "from": "只要你要", "to": "只要我有", "relation": "demand_then_supply_pair", "evidenceHints": ["CUE-011..CUE-017", "CUE-032..CUE-038"]},
+    {"id": "REL-04", "from": "六类人生欲望选题", "to": "个人故事素材", "relation": "demand_aligned_with_supply", "evidenceHints": ["CUE-013..CUE-021"]},
+    {"id": "REL-05", "from": "个人故事素材", "to": "1+2=3 故事大纲", "relation": "organized_into", "evidenceHints": ["CUE-018..CUE-024", "FRAME-CUE-022"]},
+    {"id": "REL-06", "from": "个人 IP 方法", "to": "品牌故事方法", "relation": "parallel_application_of_same_rule", "evidenceHints": ["CUE-011", "CUE-025..CUE-026", "CUE-038"]},
+    {"id": "REL-07", "from": "产品心理五特性", "to": "品牌叙事方向", "relation": "maps_to", "evidenceHints": ["CUE-027..CUE-036", "FRAME-CUE-028", "FRAME-CUE-035"]},
+    {"id": "REL-08", "from": "品牌叙事方向", "to": "创始人个性", "relation": "author_claimed_link", "evidenceHints": ["CUE-035..CUE-037"]},
+    {"id": "REL-09", "from": "品牌文化与 slogan", "to": "品牌特性", "relation": "author_claimed_reflection", "evidenceHints": ["CUE-038..CUE-045"]},
+    {"id": "REL-10", "from": "蒙面讲述者", "to": "‘人类最强编导’自称", "relation": "possibly_same_presenter_referent", "evidenceHints": ["FRAME-CUE-001", "CUE-046", "FRAME-CUE-046"]},
+    {"id": "REL-11", "from": "开头方法承诺", "to": "结尾告别", "relation": "closing_terminates_without_recap", "evidenceHints": ["CUE-002..CUE-004", "CUE-046"]},
+    {"id": "REL-12", "from": "16 个技术镜头段", "to": "持续白板讲解设置", "relation": "segmentation_with_observed_setting_continuity", "evidenceHints": ["SHOT-001..SHOT-016", "DENSE-0001..DENSE-0058"]},
+    {"id": "REL-13", "from": "开场社交数据截图", "to": "随后方法讲解", "relation": "credibility_setup_for", "evidenceHints": ["DENSE-0001@0.000", "CUE-001..CUE-004"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把作者的普遍性/因果性判断写成已证实事实", "why": "‘必火’、降低决策成本、品牌方向与创始人个性等均由作者断言；0 秒虽有社交互动/浏览数据截图，但来源、对象、统计窗口及其与该方法的联系未建立。", "where": [{"start": 0, "end": 1}, {"start": 17.94, "end": 48.27}, {"start": 99.81, "end": 123.283}], "requiredFollowup": "在重建中拆分开场社会证明、作者主张、例子和未建立的因果/普遍范围。"},
+    {"id": "RISK-02", "risk": "SRT 识别错误被静默当成准确文字", "why": "画面可见‘ta媒体’、五词分类和多个品牌名，与 SRT 的‘他媒体’‘压力强’‘碗’‘space s’‘胖高来’等有冲突。", "where": [{"start": 10.646, "end": 15.25}, {"start": 83.6, "end": 99.8}, {"start": 106.617, "end": 138}], "requiredFollowup": "执行 OCR/逐帧核对并保留原 SRT、画面读法、支持解释与未知。"},
+    {"id": "RISK-03", "risk": "漏掉白板的并列、分组、连线与计数", "why": "许多关系只通过白板空间布局和讲者指向表达，字幕不能完整保留。", "where": [{"start": 34.7, "end": 138}], "requiredFollowup": "对六件事、1+2=3、五类产品、品牌方向、slogan 列表进行定点高密度抓帧和 OCR。"},
+    {"id": "RISK-04", "risk": "把技术镜头边界当成 16 个语义场景或无剪辑连续演示", "why": "密集帧显示同一白板和洗衣区持续出现，但距离、遮挡和动作会触发切点，仍不能排除隐藏剪辑。", "where": [{"start": 0, "end": 141.804}], "requiredFollowup": "比较边界前后画面，记录可见设置连续与隐藏剪辑未知。"},
+    {"id": "RISK-05", "risk": "把蜘蛛侠式面具或账号抬头升级为真实身份/授权", "why": "画面只证明可见造型和账号式抬头，不能证明人物真实身份、授权或 IP 归属。", "where": [{"start": 0, "end": 141.804}], "requiredFollowup": "建立讲述者/造型/自称 referent 单元并保留身份未知。"},
+    {"id": "RISK-06", "risk": "把开场数据卡等同于本方法的效果/转化证明，或把框架写成完整可执行教程", "why": "全时间轴有社交互动与浏览数字的社会证明插入，但未建立其来源、对象、统计窗口、与方法的对应关系或购买转化；同时未见完整样片、模板下载、执行入口、价格、账号要求或平台边界。", "where": [{"start": 0, "end": 141.804}], "requiredFollowup": "精确记录开场可见数字和未知归属；负面陈述仅限未观察到因果链接、转化指标、完整案例与执行入口。"},
+    {"id": "RISK-09", "risk": "把草根逆袭段刘强东/曹德旺的标点边界写成确定映射，或把局部冲突过度扩散", "why": "年少有为—雷军、大器晚成—宗庆后、造梦狂人—马斯克、逆风翻盘—罗永浩、苟富贵勿相忘—于东来可由载体恢复；真正不稳的是草根逆袭段刘强东/曹德旺的邻接与再次出现的刘强东。", "where": [{"start": 37.358, "end": 51.495}], "requiredFollowup": "恢复五个可辨映射，只将草根逆袭条目中刘强东/曹德旺的标点和分组保留未知。"},
+    {"id": "RISK-07", "risk": "把非语音音频继续当成未执行频道或过度命名其作用", "why": "媒体有 AAC 音轨；完整时间轴 AST 分类支持 speech+music 共存且未检出独立 SFX，但当前运行时不支持模型直接试听返回音频，分类模型也不能证明曲风、来源或具体情绪功能。", "where": [{"start": 0, "end": 141.804}], "requiredFollowup": "登记 audio-classification.json 的 29 个窗口结果：音乐型底层可作为系统推断；曲风、来源、版权、精确叙事作用及静默小音效保留未知。"},
+    {"id": "RISK-08", "risk": "结尾 cue 仅被记账而未进入知识模型", "why": "最后自称与告别定义了账号/角色签名，但没有重新总结方法。", "where": [{"start": 138.01, "end": 141.804}], "requiredFollowup": "建立结尾功能单元并链接开头承诺。"}
+  ],
+  "criticalQuestions": [
+    {"id": "Q-01", "question": "作者认为做 IP 的本质变化和商业价值是什么？", "criticality": "critical", "evidenceHints": ["CUE-006..CUE-010"]},
+    {"id": "Q-02", "question": "‘只要你要、只要我有’分别指什么，如何同时用于个人和品牌？", "criticality": "critical", "evidenceHints": ["CUE-011..CUE-017", "CUE-032..CUE-039"]},
+    {"id": "Q-03", "question": "个人 IP 的六类选题、可供给素材和 1+2=3 大纲分别是什么？", "criticality": "critical", "evidenceHints": ["CUE-013..CUE-024", "whiteboard frames"]},
+    {"id": "Q-04", "question": "品牌部分的五种产品/用户心理特性与品牌方向、创始人个性、文化/slogan 如何连接？", "criticality": "critical", "evidenceHints": ["CUE-027..CUE-045", "top overlay and whiteboard"]},
+    {"id": "Q-05", "question": "哪些例子只是作者的说明，哪些结论被视频实际证明？", "criticality": "critical", "evidenceHints": ["CUE-010", "CUE-013..CUE-015", "CUE-035..CUE-045", "full-timeline absence audit"]},
+    {"id": "Q-06", "question": "字幕、烧录字幕和白板之间有哪些影响含义的冲突，支持哪种读法，哪些仍未知？", "criticality": "critical", "evidenceHints": ["CUE-005", "CUE-028..CUE-031", "CUE-035..CUE-046", "targeted OCR needed"]},
+    {"id": "Q-07", "question": "蒙面讲述者、可见账号抬头和‘人类最强编导’自称之间能建立到什么程度的指代？", "criticality": "supporting", "evidenceHints": ["FRAME-CUE-001", "FRAME-CUE-046", "CUE-046"]},
+    {"id": "Q-08", "question": "开场出现了哪些社交互动/浏览数据，它们能否证明本方法的效果或购买转化；视频还提供了哪些完整案例、模板/CTA、价格、平台或账号条件？", "criticality": "critical", "evidenceHints": ["DENSE-0001@0.000", "TARGET-0072@0.000", "DENSE-0001..DENSE-0058", "CUE-001..CUE-046"]},
+    {"id": "Q-09", "question": "结尾如何回应开头的‘怎么讲’承诺？", "criticality": "supporting", "evidenceHints": ["CUE-002..CUE-004", "CUE-046"]},
+    {"id": "Q-10", "question": "六个人性主题与雷军、宗庆后、马斯克、刘强东、曹德旺、罗永浩、于东来之间的精确分组和一一映射是什么？", "criticality": "critical", "evidenceHints": ["CUE-013..CUE-016", "FRAME-CUE-013..FRAME-CUE-016", "DENSE-0017..DENSE-0021"]},
+    {"id": "Q-11", "question": "品牌六方向的第一个完整词是什么，是否为‘行业先锋’？", "criticality": "supporting", "evidenceHints": ["CUE-035", "whiteboard around 107.8..109.0"]},
+    {"id": "Q-12", "question": "这套创始人 IP 故事法是否仅限创始人使用？", "criticality": "critical", "evidenceHints": ["CUE-002", "CUE-003", "FRAME-CUE-003"]},
+    {"id": "Q-13", "question": "非语音音频包含什么类别、覆盖什么时间、承担什么作用，哪些只能因工具边界保持未知？", "criticality": "critical", "evidenceHints": ["run/audio-review/audio-classification.json", "full timeline 0..141.804"]},
+    {"id": "Q-14", "question": "非创始人 IP 应如何把创始人/品牌框架改造为自己的版本？", "criticality": "critical", "evidenceHints": ["CUE-003", "full timeline inspected for adaptation instructions"]}
+  ],
+  "unresolved": [
+    "完整音轨分类支持持续音乐型底层，但精确曲风、来源、版权、具体情绪/强调作用以及是否存在分类器未检出的低电平短音效仍未知。",
+    "讲述者真实身份、蜘蛛侠式面具授权/来源、账号抬头与自称的法律或真实归属未知。",
+    "开场数据截图对应的账号/帖子、统计窗口、来源及其与该方法和购买转化的关系未知。",
+    "六个人性主题与人物的精确一一映射未知，尤其是曹德旺、刘强东、于东来的分组边界。",
+    "白板若干小字品牌名、分类词与口号需目标 OCR 和视觉复核。",
+    "视频未在内部证明‘必火’、购买动机或所述品牌文化/口号的外部准确性。",
+    "同一设置在密集帧中持续可见，但隐藏剪辑是否存在未知。",
+    "作者只说非创始人 IP 也可使用，没有说明具体如何改写创始人/品牌字段、例子或适用条件。"
+  ]
+}

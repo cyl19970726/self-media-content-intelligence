@@ -1,0 +1,572 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69f302a500000000220243fc/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能把学习 AI 等同于持续看教程、读论文和听播客，或只在有明确 KPI 时使用模型。",
+    "after": "观众被引导每天留一小时无明确产出压力地动手试探模型边界，把玩视为工作的一部分；作者认为这种好奇心驱动的实验比只消费资料更快形成手感，也更可持续。",
+    "intendedChanges": [
+      "从被动消费资料转向主动做小实验",
+      "从只围绕 KPI 使用 AI 转向允许无功利探索",
+      "从短期效率焦虑转向以好奇心维持长期练习"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {
+        "start": 0,
+        "end": 12.24
+      },
+      "cognitiveQuestion": "作者的核心学习主张是什么，如何制造冲突？",
+      "observedSignals": [
+        "演示文稿列出教程/paper/播客",
+        "作者连续否定三种被动学习",
+        "提出每天动手玩一小时"
+      ],
+      "checkedAlternatives": [
+        "是否真的主张完全不看资料",
+        "每天一小时是否有对照证据"
+      ],
+      "remainingUnknowns": [
+        "一小时的来源和必要性",
+        "学习效果对照",
+        "资料学习的补充角色"
+      ],
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-003"
+      ]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {
+        "start": 12.24,
+        "end": 58.68
+      },
+      "cognitiveQuestion": "作者说的玩具体包含什么，不包含什么？",
+      "observedSignals": [
+        "不带强功利性和明确 DAU/收入目标",
+        "不断尝试不同输入和写法",
+        "把模型边界作为学习对象"
+      ],
+      "checkedAlternatives": [
+        "是否等于漫无目的闲逛",
+        "是否完全不需要问题意识"
+      ],
+      "remainingUnknowns": [
+        "每天实验如何选题",
+        "如何记录和判断边界",
+        "何时从玩转入正式交付"
+      ],
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-018"
+      ]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {
+        "start": 58.68,
+        "end": 91
+      },
+      "cognitiveQuestion": "作者如何把个人练习变成工作优先级？",
+      "observedSignals": [
+        "slide 出现 GET YOUR HANDS DIRTY",
+        "随后出现 LET'S TAKE PLAY SERIOUSLY",
+        "作者称 play is part of your job"
+      ],
+      "checkedAlternatives": [
+        "是否适用于所有岗位",
+        "组织是否会为探索时间买单"
+      ],
+      "remainingUnknowns": [
+        "适用岗位",
+        "组织授权",
+        "探索时间与交付时间的平衡",
+        "安全边界"
+      ],
+      "evidenceHints": [
+        "CUE-019",
+        "CUE-024"
+      ]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {
+        "start": 91,
+        "end": 121
+      },
+      "cognitiveQuestion": "片内关于效率提升的证据强度有多高？",
+      "observedSignals": [
+        "作者称探索可能找到节省大量时间的方法",
+        "出现 50% 等效率例子",
+        "没有基线、样本或重复测量"
+      ],
+      "checkedAlternatives": [
+        "是否为实际测量",
+        "提升是否来自模型、流程重构或个体熟练度"
+      ],
+      "remainingUnknowns": [
+        "50% 对应任务",
+        "基线和测量周期",
+        "是否可重复",
+        "模型与流程各自贡献"
+      ],
+      "evidenceHints": [
+        "CUE-025",
+        "CUE-030"
+      ]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {
+        "start": 121,
+        "end": 171.533
+      },
+      "cognitiveQuestion": "外部人物案例和片尾引语实际支撑了什么？",
+      "observedSignals": [
+        "作者举 Peter Steinberger/OpenClaw 作为例子",
+        "强调不是先追求流量或宏大目标",
+        "片尾出现 hard to compete with somebody who's just there to have fun 引语"
+      ],
+      "checkedAlternatives": [
+        "OpenClaw 成功是否主要由玩驱动",
+        "引语是否完整准确归属该人物"
+      ],
+      "remainingUnknowns": [
+        "项目准确历史",
+        "成功的其他因素",
+        "引语原始出处和上下文",
+        "是否适用于普通学习者"
+      ],
+      "evidenceHints": [
+        "CUE-031",
+        "CUE-039"
+      ]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-01",
+      "name": "完整机器转写口播",
+      "modalityKeys": [
+        "audio.speech",
+        "transcript.machine"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供叙事主线、步骤、论点与行动建议"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 171.533
+        }
+      ],
+      "omissionImpact": "会丢失作者真正提出的方法、条件和结论。"
+    },
+    {
+      "id": "CAR-02",
+      "name": "烧录字幕与画面文字",
+      "modalityKeys": [
+        "visual.caption",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "校正专有名词",
+        "锚定章节、数字、按钮和引语"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 171.533
+        }
+      ],
+      "omissionImpact": "会把机器转写误识别静默升级为原话，并漏掉只在画面出现的信息。"
+    },
+    {
+      "id": "CAR-03",
+      "name": "静态演示文稿、英文强调语和主讲人画中画",
+      "modalityKeys": [
+        "visual.slide",
+        "visual.caption",
+        "visual.person"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "把核心观点压成口号",
+        "用版式重复强化每天动手和 play is work"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 12.24
+        },
+        {
+          "start": 12.24,
+          "end": 58.68
+        },
+        {
+          "start": 58.68,
+          "end": 91
+        },
+        {
+          "start": 91,
+          "end": 121
+        }
+      ],
+      "omissionImpact": "会漏掉本片高度静态、口号化的内容形式，也会高估画面证据丰富度。"
+    },
+    {
+      "id": "CAR-04",
+      "name": "Peter Steinberger/OpenClaw 案例与片尾引语",
+      "modalityKeys": [
+        "visual.example",
+        "visual.quote",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "为好奇心驱动提供人物例子",
+        "以英文引语完成长期主义收束"
+      ],
+      "intervals": [
+        {
+          "start": 121,
+          "end": 171.533
+        }
+      ],
+      "omissionImpact": "会漏掉论证例子和情绪收束；也可能把外部案例当成片内已验证因果。"
+    },
+    {
+      "id": "CAR-05",
+      "name": "非语音音频机器语义检查",
+      "modalityKeys": [
+        "audio.non_speech"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04",
+        "SWEEP-05"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "检查配乐或音效是否承担独立叙事/操作证明"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 171.533
+        }
+      ],
+      "omissionImpact": "会凭音频存在臆测配乐、点击或生成成功音。"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {
+        "start": 0,
+        "end": 12.24
+      },
+      "description": "把学习 AI 的第一优先级从消费内容移到亲手实验。",
+      "trigger": "连续否定与每天玩一小时的明确替代方案",
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-003"
+      ]
+    },
+    {
+      "id": "MC-02",
+      "range": {
+        "start": 12.24,
+        "end": 58.68
+      },
+      "description": "把‘玩’从消遣改写为低压力、可重复、以理解模型边界为目标的实验。",
+      "trigger": "反复试探、像实验一样问‘这样会怎样’",
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-018"
+      ]
+    },
+    {
+      "id": "MC-03",
+      "range": {
+        "start": 58.68,
+        "end": 91
+      },
+      "description": "从可选学习习惯上升为 AI 时代知识工作的正式组成部分。",
+      "trigger": "英文 slide 的两次价值升维",
+      "evidenceHints": [
+        "CUE-019",
+        "CUE-024"
+      ]
+    },
+    {
+      "id": "MC-04",
+      "range": {
+        "start": 91,
+        "end": 121
+      },
+      "description": "把无功利探索重新连接到潜在生产力收益。",
+      "trigger": "从 play 的内在价值转向效率例子",
+      "evidenceHints": [
+        "CUE-025",
+        "CUE-030"
+      ]
+    },
+    {
+      "id": "MC-05",
+      "range": {
+        "start": 121,
+        "end": 171.533
+      },
+      "description": "从效率动机回到内在动机：好奇和乐趣被视为更可持续的竞争力。",
+      "trigger": "人物案例、成功归因和英文引语",
+      "evidenceHints": [
+        "CUE-031",
+        "CUE-039"
+      ]
+    }
+  ],
+  "relationshipHypotheses": [
+    {
+      "id": "REL-01",
+      "from": "MC-01",
+      "to": "MC-02",
+      "relation": "开场口号被进一步定义为一种具体探索方式",
+      "evidenceHints": [
+        "CUE-003",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "from": "MC-02",
+      "to": "MC-03",
+      "relation": "边界试探的方法被赋予固定时间和职业正当性",
+      "evidenceHints": [
+        "CUE-018",
+        "CUE-019"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "from": "MC-03",
+      "to": "MC-04",
+      "relation": "职业正当性进一步用潜在效率收益做现实支撑",
+      "evidenceHints": [
+        "CUE-024",
+        "CUE-025"
+      ]
+    },
+    {
+      "id": "REL-04",
+      "from": "MC-04",
+      "to": "MC-05",
+      "relation": "潜在效率收益最后被更长期的内在动机取代",
+      "evidenceHints": [
+        "CUE-030",
+        "CUE-031"
+      ]
+    }
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "把有冲击力的开场写成已证明的唯一最佳学习法。",
+      "why": "片内没有学习效果对照，也未明确资料学习完全无价值。",
+      "where": [
+        {
+          "start": 0,
+          "end": 12.24
+        }
+      ],
+      "requiredFollowup": "捕捉开场 slide、否定结构和替代主张，列出适用边界。"
+    },
+    {
+      "id": "RISK-02",
+      "risk": "把无强 KPI 误写成没有观察、记录和复盘的随意使用。",
+      "why": "作者强调的是试探和实验，而不是纯娱乐。",
+      "where": [
+        {
+          "start": 12.24,
+          "end": 58.68
+        }
+      ],
+      "requiredFollowup": "恢复输入变化—观察结果—理解边界的关系，并标注作者没有给完整实验模板。"
+    },
+    {
+      "id": "RISK-03",
+      "risk": "把作者价值判断写成所有岗位的客观职责。",
+      "why": "岗位风险、组织目标、数据权限和实验成本差异巨大。",
+      "where": [
+        {
+          "start": 58.68,
+          "end": 91
+        }
+      ],
+      "requiredFollowup": "捕捉两张 slide 的文字和叙事过渡，列出组织条件。"
+    },
+    {
+      "id": "RISK-04",
+      "risk": "把 50% 等效率数字当作普遍、精确、因果成立的结果。",
+      "why": "没有定义任务、基线、时间窗、样本或对照。",
+      "where": [
+        {
+          "start": 91,
+          "end": 121
+        }
+      ],
+      "requiredFollowup": "提取数字原话并明确为作者举例/主张，禁止计算普遍 ROI。"
+    },
+    {
+      "id": "RISK-05",
+      "risk": "把外部成功案例的复杂因果压缩为‘因为好玩所以成功’，或误归引语。",
+      "why": "片内没有外部资料、反例、时间线和完整出处。",
+      "where": [
+        {
+          "start": 121,
+          "end": 171.533
+        }
+      ],
+      "requiredFollowup": "OCR 人名、项目名和引语；严格分开片内作者归因与可见事实。"
+    },
+    {
+      "id": "RISK-06",
+      "risk": "把机器转写、烧录字幕或 UI 中的专有名词冲突静默改写。",
+      "why": "专有名词误识别会改变工具身份、案例身份或方法含义。",
+      "where": [
+        {
+          "start": 0,
+          "end": 171.533
+        }
+      ],
+      "requiredFollowup": "保留原始 cue，并用 OCR/画面建立规范化建议和 unresolved。"
+    },
+    {
+      "id": "RISK-07",
+      "risk": "把非语音音频机器候选升级为具体声音事实或因果证明。",
+      "why": "混合音轨分类只能提供候选，不能确认声源、版权或 UI 动作。",
+      "where": [
+        {
+          "start": 0,
+          "end": 171.533
+        }
+      ],
+      "requiredFollowup": "注册完整音频账本，并把精确声源与权利保持未知。"
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "CQ-01",
+      "question": "作者的核心学习主张是什么，如何制造冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "RISK-01"
+      ]
+    },
+    {
+      "id": "CQ-02",
+      "question": "作者说的玩具体包含什么，不包含什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "RISK-02"
+      ]
+    },
+    {
+      "id": "CQ-03",
+      "question": "作者如何把个人练习变成工作优先级？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "RISK-03"
+      ]
+    },
+    {
+      "id": "CQ-04",
+      "question": "片内关于效率提升的证据强度有多高？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "SWEEP-04",
+        "RISK-04"
+      ]
+    },
+    {
+      "id": "CQ-05",
+      "question": "外部人物案例和片尾引语实际支撑了什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-05",
+        "RISK-05"
+      ]
+    },
+    {
+      "id": "CQ-06",
+      "question": "哪些专有名词、界面身份或数字存在转写/画面冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "CAR-02",
+        "RISK-06"
+      ]
+    },
+    {
+      "id": "CQ-07",
+      "question": "平台可用性、费用、账号地区、隐私、素材和结果权利有哪些仍未知？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "SWEEP-05"
+      ]
+    },
+    {
+      "id": "CQ-08",
+      "question": "非语音音频是否承载独立知识或操作证明？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "CAR-05"
+      ]
+    }
+  ],
+  "unresolved": [
+    "每天一小时相对其他学习方法的效果差异",
+    "效率提升 50% 的测量对象、基线、样本和口径",
+    "Peter Steinberger/OpenClaw 案例的完整事实、时间线和因果",
+    "片尾引语的准确出处与上下文",
+    "无明确目的探索在团队和商业环境中的边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ]
+}

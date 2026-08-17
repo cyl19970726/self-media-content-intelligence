@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "independent-video-audit-v1",
+  "videoId": "6a745fc2000000002501784c",
+  "auditStatus": "COMPLETE_WITH_TRANSCRIPT_CONFLICTS_AND_UNKNOWNS",
+  "auditIndependence": {
+    "candidateEvaluated": false,
+    "crossVideoConclusionsUsed": false,
+    "allowedInputs": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a745fc2000000002501784c.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/human-director/media/6a745fc2000000002501784c.srt",
+      "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a745fc2000000002501784c/evidence/evidence-pack.json",
+      "/Users/hhh0x/self-media/artifacts/director-skill-study/corpus/6a745fc2000000002501784c/evidence/frames/"
+    ],
+    "excludedInputs": ["run candidate", "old reports or analysis", "study-plan", "cross-video conclusions"]
+  },
+  "sourceFacts": {
+    "durationSeconds": 218.082,
+    "noteOnTaskDescription": "This source is not an approximately eight-second subtitle-free clip. It is a 218.082-second video with 69 provided subtitle cues; the audit follows the actual source.",
+    "dimensions": "960x720",
+    "frameRate": "30/1",
+    "hasAudio": true,
+    "audioCodec": "aac",
+    "subtitleOrigin": "provided_subtitles",
+    "subtitleCueCount": 69,
+    "evidencePackShots": 3,
+    "evidencePackDenseFrames": 89,
+    "sceneCutsDetected": 2
+  },
+  "viewerCognitiveChange": {
+    "before": "The viewer has not been exposed to the presenter's self-media framework.",
+    "after": "The viewer has been walked through a mock 2026 self-media exam whose twenty questions package the presenter's opinions on updating, distribution, audience needs, Vlogs, viral formats, AI use, promotion, scripting, topic selection, and series lifecycle.",
+    "boundary": "The answers are the presenter's claims and framework, not externally verified platform rules or universal facts."
+  },
+  "carrierSweep": [
+    {
+      "start": 0.0,
+      "end": 1.133,
+      "cognitiveQuestion": "How is the exam/tutorial frame introduced?",
+      "observedSignals": ["A brief blurred vertical insert appears over the exam-page background.", "Burned caption reads 开头展示教程.", "A masked presenter inset and account/platform marks are already visible."],
+      "modalitiesChecked": ["speech/SRT", "burned caption", "inserted image", "masked presenter", "watermarks", "audio-stream presence"],
+      "remainingUnknowns": ["source and ownership of the inserted visual", "whether it is literally a tutorial rather than an editing cue"],
+      "evidenceRefs": ["SHOT-001", "FRAME-CUE-001", "DENSE-0001"]
+    },
+    {
+      "start": 1.133,
+      "end": 9.64,
+      "cognitiveQuestion": "What is the organizing device and who claims authorship?",
+      "observedSignals": ["The displayed document title reads 2026年普通高等自媒体全国统一考试.", "The page labels the subject as 自媒体 and the question setter as 人类最强编导.", "Narration says the setter is 人类最强编导, '也就是我'."],
+      "modalitiesChecked": ["SRT", "burned captions", "document text", "speaker inset", "account mark"],
+      "remainingUnknowns": ["legal or production authorship of the document", "real identity of the masked speaker"],
+      "evidenceRefs": ["SHOT-002", "FRAME-CUE-002", "FRAME-CUE-003", "FRAME-CUE-004", "DENSE-0002", "DENSE-0003", "DENSE-0004"]
+    },
+    {
+      "start": 9.64,
+      "end": 54.896,
+      "cognitiveQuestion": "What positions are taught through questions 1-3?",
+      "observedSignals": ["Red annotations accumulate over the top half of the exam.", "The presenter selects B for update cadence, B for deeper/value-oriented content, and C for combining resources, user demand, and platform preference."],
+      "modalitiesChecked": ["speech/SRT", "burned captions", "question sheet", "red annotations", "presenter gesture", "editing continuity"],
+      "remainingUnknowns": ["external truth of platform claims", "whether red marks were drawn live or composited in edit"],
+      "evidenceRefs": ["CUE-005", "CUE-020", "SHOT-002", "DENSE-0005", "DENSE-0022"]
+    },
+    {
+      "start": 54.896,
+      "end": 96.27,
+      "cognitiveQuestion": "What audience, Vlog, and viral-content framework is taught in questions 4-7?",
+      "observedSignals": ["养号活跃 is rejected as one of six user needs.", "The six needs are narrated as 审美、共鸣、成长、猎奇、情绪、解决问题.", "Preferred Vlog features are 真实、反差、交互.", "Three viral types are named, with one term conflicting across carriers."],
+      "modalitiesChecked": ["SRT", "burned captions", "document choices", "red answer marks", "presenter inset"],
+      "remainingUnknowns": ["exact canonical spelling of the first viral-type term", "external support for necessity/universality claims"],
+      "evidenceRefs": ["CUE-021", "CUE-030", "SHOT-002", "FRAME-CUE-030", "DENSE-0023", "DENSE-0039"]
+    },
+    {
+      "start": 96.27,
+      "end": 114.62,
+      "cognitiveQuestion": "What AI use does question 8 recommend and reject?",
+      "observedSignals": ["The presenter rejects fully generating the script/shoot and replacing the creator.", "Choice C is selected: use AI to fill knowledge gaps and participate in brainstorming.", "Guaranteeing viral data is rejected."],
+      "modalitiesChecked": ["SRT", "burned captions", "document choices", "red C annotation", "tone"],
+      "remainingUnknowns": ["exact wording where SRT mistranscribes 头脑风暴 as 通道风暴", "whether the coarse language is rhetorical or literal policy"],
+      "evidenceRefs": ["CUE-031", "CUE-037", "FRAME-CUE-034", "FRAME-CUE-036", "FRAME-CUE-037"]
+    },
+    {
+      "start": 114.62,
+      "end": 119.96,
+      "cognitiveQuestion": "How does the video change sections?",
+      "observedSignals": ["Narration closes the multiple-choice section and announces fill-in questions.", "The visible page shifts downward to questions 9-20."],
+      "modalitiesChecked": ["speech/SRT", "burned captions", "page position", "editing transition"],
+      "remainingUnknowns": ["whether the page move is a live scroll, crop animation, or edit"],
+      "evidenceRefs": ["CUE-038", "CUE-039", "SHOT-002", "DENSE-0047", "DENSE-0048"]
+    },
+    {
+      "start": 119.96,
+      "end": 162.885,
+      "cognitiveQuestion": "What answers are given for fill-ins 9-14?",
+      "observedSignals": ["Answers cover a roughly seven-day distribution window, support-program content types, six audience needs, the limits of paid promotion, four Vlog IP dimensions, and daily-versus-challenge Vlog types.", "Red handwritten answers accumulate on the lower page."],
+      "modalitiesChecked": ["SRT", "burned captions", "printed questions", "red handwritten answers", "presenter inset"],
+      "remainingUnknowns": ["exact first missing content type in question 10", "external truth and scope of the named support plan"],
+      "evidenceRefs": ["CUE-040", "CUE-052", "SHOT-002", "DENSE-0050", "DENSE-0066"]
+    },
+    {
+      "start": 162.885,
+      "end": 210.52,
+      "cognitiveQuestion": "What answers are given for fill-ins 15-20?",
+      "observedSignals": ["The presenter repeats viral types; gives three self-based topic-selection checks; two hotspot questions; three writing requirements; two channel families with examples; and a three-to-six-month series lifecycle with optimize/monetize advice.", "The page becomes densely annotated in red."],
+      "modalitiesChecked": ["SRT", "burned captions", "printed questions", "handwritten answers", "presenter inset", "opening-to-closing accumulation"],
+      "remainingUnknowns": ["exact canonical wording of several poorly transcribed answer terms", "whether any unshown answer key differs"],
+      "evidenceRefs": ["CUE-053", "CUE-066", "SHOT-002", "DENSE-0066", "DENSE-0085"]
+    },
+    {
+      "start": 210.52,
+      "end": 218.082,
+      "cognitiveQuestion": "What closing promise and identity claim reframe the exercise?",
+      "observedSignals": ["The presenter calls the paper basic and says viewers scoring over 90 can prepare to pursue large self-media results.", "The speaker signs off as 雷自强编导 and says 下期再见.", "The completed marked exam remains visible."],
+      "modalitiesChecked": ["SRT", "burned captions", "speaker gesture", "completed document", "account mark", "closing relation"],
+      "remainingUnknowns": ["whether the name is a legal name, handle, or persona", "evidentiary basis for the score-to-result promise"],
+      "evidenceRefs": ["SHOT-003", "CUE-067", "CUE-068", "CUE-069", "FRAME-CUE-069", "DENSE-0086", "DENSE-0089"]
+    }
+  ],
+  "carriers": [
+    {"carrier": "spoken narration represented by supplied SRT", "available": true, "inspected": true, "role": "Carries questions, selected answers, explanations, emphasis, and sign-off.", "omissionRisk": "Rewriting opinions as verified platform facts."},
+    {"carrier": "provided SRT verbatim cues", "available": true, "inspected": true, "role": "Time-localizes 69 utterance units.", "omissionRisk": "Silent correction or trusting recognition errors such as 通道风暴 and 万古同杯."},
+    {"carrier": "burned captions", "available": true, "inspected": true, "role": "Provides a second text carrier and sometimes clearer wording than SRT.", "omissionRisk": "Ignoring consequential text conflicts."},
+    {"carrier": "printed mock exam document", "available": true, "inspected": true, "role": "Supplies title, structure, question count, answer choices, and knowledge-point labels.", "omissionRisk": "Reducing the video to speech loses the 20-question exam metaphor and visible answer options."},
+    {"carrier": "red handwritten/animated annotations", "available": true, "inspected": true, "role": "Marks selected answers and accumulates a completed-exam state.", "omissionRisk": "Mistaking annotation order for proven live writing chronology."},
+    {"carrier": "masked presenter inset and gestures", "available": true, "inspected": true, "role": "Anchors voice/persona and adds emphatic delivery.", "omissionRisk": "Inferring real identity or licensed Spider-Man affiliation."},
+    {"carrier": "account/platform marks", "available": true, "inspected": true, "role": "Shows Xiaohongshu-style presentation and 人类最强编导 account branding.", "omissionRisk": "Equating a platform/account label with legal authorship or identity."},
+    {"carrier": "editing, page movement, and section order", "available": true, "inspected": true, "role": "Sequences opening insert, multiple choice, fill-ins, and closing score promise.", "omissionRisk": "Treating three detected shots as three semantic scenes or as proof of live continuity."},
+    {"carrier": "non-speech audio", "available": "audio stream exists", "inspected": "channel registered; independent role not conclusively established", "role": "Possible music, sound effects, or ambience beneath narration.", "omissionRisk": "Silently dropping an available channel or inventing mood/cues."}
+  ],
+  "coreKnowledgeUnits": [
+    {"id": "KU-01", "provenance": "visual_observation", "timeRange": [1.133, 9.64], "statement": "The video frames itself as a mock '2026年普通高等自媒体全国统一考试' with 20 questions, 100 points, 8 multiple-choice questions and 12 fill-ins.", "evidenceRefs": ["SHOT-002", "FRAME-CUE-003", "DENSE-0003"]},
+    {"id": "KU-02", "provenance": "author_claim", "timeRange": [9.64, 26.023], "statement": "For account updating, there is no single frequency standard, but creators should not stop for long; the presenter dismisses generic '养号/活跃' advice.", "evidenceRefs": ["CUE-005", "CUE-010", "FRAME-CUE-008"]},
+    {"id": "KU-03", "provenance": "author_claim", "timeRange": [26.023, 36.34], "statement": "If a main distribution window extends from about 24 hours toward seven days, the presenter says content should shift from chasing trends toward deeper, more valuable material.", "evidenceRefs": ["CUE-011", "CUE-013", "DENSE-0013", "DENSE-0015"]},
+    {"id": "KU-04", "provenance": "author_claim", "timeRange": [36.35, 54.896], "statement": "Content should not be chosen from personal preference alone; it should combine available resources, user demand, and platform preference.", "evidenceRefs": ["CUE-014", "CUE-020", "DENSE-0016", "DENSE-0022"]},
+    {"id": "KU-05", "provenance": "author_claim", "timeRange": [54.896, 69.3], "statement": "The presenter names six user needs: 审美、共鸣、成长、猎奇、情绪、解决问题, and excludes 养号活跃.", "evidenceRefs": ["CUE-021", "CUE-024", "DENSE-0023", "DENSE-0028"]},
+    {"id": "KU-06", "provenance": "author_claim", "timeRange": [69.31, 74.85], "statement": "The preferred Vlog traits are 真实、反差、交互.", "evidenceRefs": ["CUE-025", "DENSE-0030"]},
+    {"id": "KU-07", "provenance": "author_claim", "timeRange": [74.86, 87.98], "statement": "The presenter treats understandability, low participation/understanding cost, broad audience linkage, and fulfillment of emotional or informational needs as viral-content conditions; the exact mapping to printed A/B/C choices should remain traceable to the page.", "evidenceRefs": ["CUE-026", "CUE-028", "DENSE-0032", "DENSE-0035"]},
+    {"id": "KU-08", "provenance": "author_claim", "timeRange": [87.99, 96.26], "statement": "Three viral types are named as 万古同悲, 惊世骇俗, and 节奏打破型/打破节奏型; the supplied SRT renders the first term inconsistently as 万古同杯/灌骨铜杯 elsewhere.", "evidenceRefs": ["CUE-029", "CUE-030", "FRAME-CUE-030", "CUE-053", "CUE-054"]},
+    {"id": "KU-09", "provenance": "author_claim", "timeRange": [96.27, 114.61], "statement": "AI is recommended for filling knowledge gaps and participating in brainstorming, not replacing the creator, generating the entire production, or guaranteeing viral results.", "evidenceRefs": ["CUE-031", "CUE-037", "FRAME-CUE-036", "FRAME-CUE-037"]},
+    {"id": "KU-10", "provenance": "author_claim", "timeRange": [119.96, 141.78], "statement": "Fill-ins repeat the roughly seven-day distribution window and six user needs, and reference a 导演扶持计划 that includes AI短片, an unclear middle type, and 微纪录片.", "evidenceRefs": ["CUE-040", "CUE-045", "DENSE-0050", "DENSE-0057"]},
+    {"id": "KU-11", "provenance": "author_claim", "timeRange": [141.79, 152.85], "statement": "Paid promotion only 'adds flowers to brocade' and does not rescue weak content; four Vlog IP observation dimensions are 刻板行为、作风、个人风格、IP立体度.", "evidenceRefs": ["CUE-046", "CUE-048", "DENSE-0058", "DENSE-0062"]},
+    {"id": "KU-12", "provenance": "author_claim", "timeRange": [152.86, 162.885], "statement": "Vlogs are divided into 日常型/软素材 ('有啥拍啥') and 挑战型/硬素材 (doing something in order to shoot that Vlog).", "evidenceRefs": ["CUE-049", "CUE-052", "DENSE-0062", "DENSE-0066"]},
+    {"id": "KU-13", "provenance": "author_claim", "timeRange": [167.85, 177.6], "statement": "When selecting viral topics from oneself, check: something one has done or can do that most people cannot; one's unusually large strengths and weaknesses; and what one is extremely good at.", "evidenceRefs": ["CUE-055", "CUE-058", "DENSE-0068", "DENSE-0072"]},
+    {"id": "KU-14", "provenance": "author_claim", "timeRange": [177.61, 192.99], "statement": "Hotspot pursuit should ask '有没有' and '能不能' and consider whether timely follow-up is feasible; script text should be understandable, practice wording/characters, and have internet fluency, though exact SRT wording is imperfect.", "evidenceRefs": ["CUE-059", "CUE-062", "FRAME-CUE-060", "FRAME-CUE-062"]},
+    {"id": "KU-15", "provenance": "author_claim", "timeRange": [193.0, 202.86], "statement": "Self-media tracks are divided into 口播 and 非口播; the former includes 情感、成长、厚黑、干货, while the latter includes Vlog、短片、AIGC、微综艺、颜值.", "evidenceRefs": ["CUE-063", "CUE-064", "DENSE-0078", "DENSE-0082"]},
+    {"id": "KU-16", "provenance": "author_claim", "timeRange": [202.87, 210.51], "statement": "A viral series is said to have a typical three-to-six-month lifecycle; when it weakens, optimize/adjust it or consider monetization.", "evidenceRefs": ["CUE-065", "CUE-066", "DENSE-0082", "DENSE-0085"]},
+    {"id": "KU-17", "provenance": "author_claim", "timeRange": [210.52, 218.082], "statement": "The presenter calls the paper basic, claims a score above 90 prepares viewers for major self-media results, and signs off as 雷自强编导.", "evidenceRefs": ["CUE-067", "CUE-069", "SHOT-003", "FRAME-CUE-069"]}
+  ],
+  "relationships": [
+    {"from": "mock exam format", "relation": "organizes", "to": "twenty framework claims", "status": "observed", "evidenceRefs": ["DENSE-0003", "DENSE-0050"]},
+    {"from": "question prompt", "relation": "answered_by", "to": "spoken selection plus red annotation", "status": "observed throughout", "evidenceRefs": ["FRAME-CUE-008", "FRAME-CUE-018", "FRAME-CUE-037"]},
+    {"from": "six user needs", "relation": "repeated_from", "to": "question 4/11", "status": "observed", "evidenceRefs": ["CUE-021", "CUE-024", "CUE-043", "CUE-045"]},
+    {"from": "three viral types", "relation": "repeated_from", "to": "question 7/15", "status": "observed_with_text_conflict", "evidenceRefs": ["CUE-030", "CUE-054", "FRAME-CUE-030"]},
+    {"from": "24-hour-to-seven-day window", "relation": "motivates_author_claim", "to": "deeper/value-oriented content", "status": "author-framed causal/strategic relation, not independently demonstrated", "evidenceRefs": ["CUE-011", "CUE-013"]},
+    {"from": "opening blank exam", "relation": "transforms_into", "to": "closing heavily annotated exam", "status": "visual progression", "evidenceRefs": ["DENSE-0003", "DENSE-0085"]},
+    {"from": "score above 90", "relation": "framed_as_predictive_of", "to": "large self-media results", "status": "unsupported author promise", "evidenceRefs": ["CUE-068"]}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "What is the video's organizing device?", "answer": "A mock 2026 national self-media exam with 20 questions, visually marked while the presenter answers it.", "evidenceWindow": [1.133, 218.082], "evidenceRefs": ["SHOT-002", "SHOT-003", "DENSE-0003", "DENSE-0085"]},
+    {"id": "CQ-02", "question": "Whose framework is being taught?", "answer": "The speaker presents it as the views of 人类最强编导 and signs off as 雷自强编导; real/legal identity remains unverified.", "evidenceWindow": [4.339, 9.63], "evidenceRefs": ["CUE-003", "CUE-004", "CUE-069"]},
+    {"id": "CQ-03", "question": "What is the update/养号 position?", "answer": "No uniform update frequency, but no long hiatus; generic 养号/活跃 advice is rejected.", "evidenceWindow": [9.64, 26.023], "evidenceRefs": ["CUE-005", "CUE-010"]},
+    {"id": "CQ-04", "question": "What content-logic change follows the longer distribution window?", "answer": "The presenter recommends moving toward deeper, more valuable content.", "evidenceWindow": [26.023, 36.34], "evidenceRefs": ["CUE-011", "CUE-013"]},
+    {"id": "CQ-05", "question": "How should personal preference, resources, users, and platforms be balanced?", "answer": "Use available resources while considering user demand and platform preference, not personal preference alone.", "evidenceWindow": [36.35, 54.896], "evidenceRefs": ["CUE-014", "CUE-020"]},
+    {"id": "CQ-06", "question": "What six user needs and three Vlog traits are named?", "answer": "Needs: 审美、共鸣、成长、猎奇、情绪、解决问题. Vlog traits: 真实、反差、交互.", "evidenceWindow": [54.896, 74.85], "evidenceRefs": ["CUE-021", "CUE-025"]},
+    {"id": "CQ-07", "question": "What viral-content conditions/types are named?", "answer": "Conditions include understandability/low cost, broad audience linkage, and emotional or informational fulfillment. Types are 万古同悲, 惊世骇俗, 节奏打破型, with SRT spelling conflicts retained.", "evidenceWindow": [74.86, 96.26], "evidenceRefs": ["CUE-026", "CUE-030", "FRAME-CUE-030"]},
+    {"id": "CQ-08", "question": "What AI use is recommended?", "answer": "Fill knowledge gaps and participate in brainstorming; do not replace the creator or guarantee viral performance.", "evidenceWindow": [96.27, 114.61], "evidenceRefs": ["CUE-031", "CUE-037"]},
+    {"id": "CQ-09", "question": "What does the video claim about paid promotion?", "answer": "It only adds to already-good content and does not rescue weak content.", "evidenceWindow": [141.79, 147.06], "evidenceRefs": ["CUE-046"]},
+    {"id": "CQ-10", "question": "What Vlog IP dimensions and types are named?", "answer": "Dimensions: 刻板行为、作风、个人风格、IP立体度. Types: 日常型/软素材 and 挑战型/硬素材.", "evidenceWindow": [147.07, 162.885], "evidenceRefs": ["CUE-047", "CUE-052"]},
+    {"id": "CQ-11", "question": "What self-based topic-selection checks are given?", "answer": "Things one can do that most cannot; unusually large strengths and weaknesses; and what one is extremely good at.", "evidenceWindow": [167.85, 177.6], "evidenceRefs": ["CUE-055", "CUE-058"]},
+    {"id": "CQ-12", "question": "What hotspot and text-expression checks are given?", "answer": "Ask whether there is a relevant hotspot and whether one can follow it in time; writing should be understandable, practiced/polished, and possess internet fluency, with exact middle wording not fully secure.", "evidenceWindow": [177.61, 192.99], "evidenceRefs": ["CUE-059", "CUE-062"]},
+    {"id": "CQ-13", "question": "How are tracks divided?", "answer": "口播 versus 非口播, with the examples listed in KU-15.", "evidenceWindow": [193.0, 202.86], "evidenceRefs": ["CUE-063", "CUE-064"]},
+    {"id": "CQ-14", "question": "What series-lifecycle advice is given?", "answer": "Roughly three to six months; optimize/adjust or consider monetization as the series weakens.", "evidenceWindow": [202.87, 210.51], "evidenceRefs": ["CUE-065", "CUE-066"]},
+    {"id": "CQ-15", "question": "What does the close add?", "answer": "A score-above-90 promise, the name 雷自强编导, and a next-episode farewell; the promise is not demonstrated.", "evidenceWindow": [210.52, 218.082], "evidenceRefs": ["CUE-067", "CUE-069", "SHOT-003"]},
+    {"id": "CQ-16", "question": "Are platform mechanisms and viral success claims externally proven?", "answer": "No. They remain author claims within the mock exam.", "evidenceWindow": [9.64, 218.082], "evidenceRefs": ["CUE-006", "CUE-068"]},
+    {"id": "CQ-17", "question": "Do the three detected shots establish three semantic scenes or a live marking process?", "answer": "No. The same document/presenter setup continues across most of the export; annotations may be edited or animated and technical cuts do not prove procedure chronology.", "evidenceWindow": [0.0, 218.082], "evidenceRefs": ["SHOT-001", "SHOT-002", "SHOT-003"]}
+  ],
+  "carrierConflicts": [
+    {"id": "CC-01", "timeRange": [87.99, 96.26], "srtForm": "万古同杯", "visibleOrContextualForm": "burned caption visibly reads 万古同悲", "disposition": "Use 万古同悲 as checked visible text while preserving the verbatim SRT form."},
+    {"id": "CC-02", "timeRange": [162.885, 167.84], "srtForm": "灌骨铜杯", "visibleOrContextualForm": "appears to repeat 万古同悲 from question 7", "disposition": "Do not normalize inside the verbatim layer; mark exact repeated audio form uncertain unless checked directly."},
+    {"id": "CC-03", "timeRange": [108.275, 114.61], "srtForm": "参与通道风暴", "visibleOrContextualForm": "semantic context indicates 参与头脑风暴; burned caption should be preferred only when directly legible", "disposition": "Report brainstorming meaning with a transcription-conflict note, not as silently corrected SRT."},
+    {"id": "CC-04", "timeRange": [187.35, 192.99], "srtForm": "一是能等，二是练字，三是网感", "visibleOrContextualForm": "printed question visibly supplies 第一是能懂; later terms are not equally secure", "disposition": "Use 能懂 and preserve the remaining exact wording as lower-confidence."},
+    {"id": "CC-05", "timeRange": [129.99, 133.9], "srtForm": "什么何为纪录片，人间观察", "visibleOrContextualForm": "printed question visibly says 导演扶持计划 includes AI短片、[blank]和微纪录片", "disposition": "The missing middle content type remains unknown; do not turn noisy SRT into a fact."}
+  ],
+  "unknownOpportunities": [
+    {"id": "U-01", "item": "External accuracy of distribution-window and platform-preference claims", "correctDisposition": "author_claim_not_verified"},
+    {"id": "U-02", "item": "Canonical spelling of the first viral-type label", "correctDisposition": "retain carrier conflict; checked burned text favors 万古同悲"},
+    {"id": "U-03", "item": "Question 10 missing support-plan content type", "correctDisposition": "unknown"},
+    {"id": "U-04", "item": "Exact second writing requirement in question 18", "correctDisposition": "uncertain due transcript/legibility limits"},
+    {"id": "U-05", "item": "Whether red marking is live, pre-recorded, composited, or animated", "correctDisposition": "unknown"},
+    {"id": "U-06", "item": "Real/legal identity behind masked presenter, 雷自强编导, and 人类最强编导", "correctDisposition": "unknown"},
+    {"id": "U-07", "item": "Authorship and source file of the mock exam document", "correctDisposition": "unknown"},
+    {"id": "U-08", "item": "Source/ownership of opening blurred insert", "correctDisposition": "unknown"},
+    {"id": "U-09", "item": "Independent semantic role of music/SFX/ambience", "correctDisposition": "unknown channel registered"},
+    {"id": "U-10", "item": "Evidence behind the 90-point-to-large-result promise", "correctDisposition": "unsupported author claim"},
+    {"id": "U-11", "item": "Exact scope, date, platform, eligibility, and access route of 导演扶持计划", "correctDisposition": "unknown"},
+    {"id": "U-12", "item": "Whether Spider-Man-like mask implies licensed affiliation", "correctDisposition": "not established"}
+  ],
+  "challengeChecks": {
+    "identity": {"status": "PASS_WITH_UNKNOWNS", "finding": "Visible account label, self-introduction, and mask are kept separate from legal identity and licensed character affiliation."},
+    "boundary": {"status": "PASS_WITH_UNKNOWNS", "finding": "Mock-exam claims are scoped to the presenter; platform mechanisms, support-plan details, and outcome promises are not upgraded to external facts."},
+    "referent": {"status": "PASS_WITH_UNKNOWNS", "finding": "Masked inset refers to the speaking presenter/persona; the document and opening insert are separate visual sources with unproven ownership."},
+    "absence": {"status": "PASS", "finding": "Across the full 0.000-218.082 timeline, no external evidence, methodology, eligibility/access details for the support plan, or proof of the 90-point outcome promise is shown. Absence is scoped to all three shots, 89 dense frames, and 69 cue windows."},
+    "carrierConflict": {"status": "PASS_WITH_CONFLICT_LEDGER", "finding": "Five consequential SRT-versus-visible/context conflicts are preserved rather than silently normalized."},
+    "segmentation": {"status": "PASS_WITH_GUARD", "finding": "Three technical shots are not treated as three independent semantic scenes; most of the video is one continuing document/presenter composition with accumulated annotations."},
+    "openingClosing": {"status": "PASS", "finding": "Opening promises a mock exam; closing converts the now-marked exam into a score threshold and outcome promise, then adds speaker sign-off."},
+    "literalFailureResultSignature": {"status": "NOT_APPLICABLE", "finding": "No software/process failure-to-result demonstration occurs; the blank-to-marked page is rhetorical progression, not proof that viewers can obtain the claimed outcome."},
+    "uiProgressStatus": {"status": "NOT_APPLICABLE", "finding": "No operative software UI progress/status is material."},
+    "editedChronologyVsDependencyOrder": {"status": "PASS_WITH_GUARD", "finding": "Question order is clear, but the visual accumulation of red marks does not prove live action order or causality."}
+  },
+  "auditCoverage": {
+    "criticalQuestions": {"numerator": 17, "denominator": 17},
+    "coreUnitsWithEvidence": {"numerator": 17, "denominator": 17},
+    "timelineRegionsInspected": {"numerator": 9, "denominator": 9, "note": "Regions cover 0.000-218.082 without gaps."},
+    "subtitleCuesAccountedForAtAuditLevel": {"numerator": 69, "denominator": 69, "note": "All cues were read; key claims and all conflict-prone cues are represented in units or conflict ledger."},
+    "availableCarrierFamiliesChecked": {"numerator": 9, "denominator": 9},
+    "unknownOpportunitiesPreserved": {"numerator": 12, "denominator": 12},
+    "challengeChecksClosedOrMarkedNotApplicable": {"numerator": 10, "denominator": 10},
+    "metaGate": {
+      "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+      "answer": "No wholly unchecked video-internal carrier was found. The independent semantic contribution of non-speech audio remains unresolved but explicitly registered. Ambiguous printed/handwritten words, identity, document/insert ownership, and external claim truth remain bounded unknowns rather than omissions."
+    }
+  }
+}

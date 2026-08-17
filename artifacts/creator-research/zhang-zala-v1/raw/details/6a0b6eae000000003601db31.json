@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "id": "6a0b6eae000000003601db31",
+  "capturedAt": "2026-08-16T11:09:40.425Z",
+  "strategy": "structured_state",
+  "artifactRef": null,
+  "error": null,
+  "fields": {
+    "title": "任川分享：我如何用5个agent管理一人公司",
+    "postCopy": "上次在湾区的“如何打造AI-native组织”线下活动上，@任川 的精彩分享\n- 我的5个agent如何分工\n- 为什么我日常只跟一个agent聊天\n- 作为一人公司，我的时间如何分配\n\t\n#独立开发[话题]# #vibecoding[话题]# #agent[话题]# #创业者[话题]# #OPC[话题]#",
+    "hashtags": [
+      "独立开发",
+      "vibecoding",
+      "agent",
+      "创业者",
+      "OPC"
+    ],
+    "sourceUrl": "https://www.xiaohongshu.com/explore/6a0b6eae000000003601db31",
+    "mediaType": "video",
+    "publishedAt": "2026-05-18T19:55:26.000Z",
+    "likes": "5937",
+    "collections": "7554",
+    "comments": "182",
+    "shares": "2939",
+    "expectedDurationSec": 969
+  },
+  "subtitleStatus": "unchecked",
+  "mediaCandidates": [
+    {
+      "kind": "video",
+      "availability": "available",
+      "expectedDurationSec": 969
+    }
+  ]
+}

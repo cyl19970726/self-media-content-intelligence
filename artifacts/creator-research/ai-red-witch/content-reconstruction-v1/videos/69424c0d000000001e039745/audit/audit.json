@@ -1,0 +1,619 @@
+{
+  "schemaVersion": "ground-truth-audit-1.0",
+  "videoId": "69424c0d000000001e039745",
+  "auditType": "independent_ground_truth_audit",
+  "auditDate": "2026-08-16",
+  "scope": {
+    "allowedInputs": [
+      "original MP4",
+      "provided SRT",
+      "new evidence/evidence-pack.json",
+      "frames referenced by the new evidence pack"
+    ],
+    "excludedInputs": [
+      "skills or SKILL.md",
+      "skill-run outputs",
+      "old reports",
+      "old analysis",
+      "library conclusions",
+      "other evaluations",
+      "external web sources"
+    ],
+    "coverage": {
+      "videoDurationSeconds": 105.627574,
+      "auditedTimelineStart": 0.0,
+      "auditedTimelineEnd": 105.6,
+      "subtitleCueCount": 28,
+      "shotRepresentativeFrameCount": 58,
+      "denseFrameCount": 72,
+      "denseIntervalSeconds": 1.5,
+      "coverageAssessment": "Full-timeline review using every subtitle cue, all 58 shot representatives, and all 72 dense-probe frames, with the original MP4 used as the timeline authority."
+    }
+  },
+  "sourceRegistry": {
+    "SRC-VIDEO": {
+      "kind": "video",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69424c0d000000001e039745.mp4"
+    },
+    "SRC-SRT": {
+      "kind": "subtitle",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69424c0d000000001e039745.srt"
+    },
+    "SRC-PACK": {
+      "kind": "evidence_pack",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/evidence/evidence-pack.json"
+    },
+    "SRC-FRAMES": {
+      "kind": "frame_directory",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/evidence/frames"
+    }
+  },
+  "epistemicLabels": {
+    "media_fact": "A property directly established by the original file or evidence pack, such as duration or resolution.",
+    "visual_observation": "Something visibly present in a frame; this does not establish that the depicted event, UI session, or text is true outside the video.",
+    "author_claim": "A proposition asserted by narration, burned-in captions, headlines, or product UI text.",
+    "inference": "An interpretation supported by arrangement or context but not directly stated or independently proven.",
+    "unknown": "Not decidable from the allowed evidence."
+  },
+  "citationIndex": {
+    "REF-MEDIA": {
+      "sourceId": "SRC-PACK",
+      "jsonPointer": "/media"
+    },
+    "REF-T01-VIDEO": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 0.0,
+      "endSeconds": 7.3
+    },
+    "REF-T01-SRT": {
+      "sourceId": "SRC-SRT",
+      "cueIds": ["CUE-001", "CUE-002"],
+      "startSeconds": 0.0,
+      "endSeconds": 7.49
+    },
+    "REF-SHOT-001": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-001",
+      "timeSeconds": 0.516,
+      "path": "../evidence/frames/shots/shot-001.jpg"
+    },
+    "REF-SHOT-005": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-005",
+      "timeSeconds": 4.833,
+      "path": "../evidence/frames/shots/shot-005.jpg"
+    },
+    "REF-SHOT-006": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-006",
+      "timeSeconds": 5.367,
+      "path": "../evidence/frames/shots/shot-006.jpg"
+    },
+    "REF-SHOT-008": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-008",
+      "timeSeconds": 6.633,
+      "path": "../evidence/frames/shots/shot-008.jpg"
+    },
+    "REF-T02": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 7.3,
+      "endSeconds": 14.6,
+      "frameId": "FRAME-SHOT-010",
+      "framePath": "../evidence/frames/shots/shot-010.jpg"
+    },
+    "REF-T03": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 14.6,
+      "endSeconds": 32.067,
+      "frameIds": ["FRAME-SHOT-011", "FRAME-SHOT-012", "FRAME-SHOT-013", "FRAME-SHOT-014"],
+      "framePaths": [
+        "../evidence/frames/shots/shot-011.jpg",
+        "../evidence/frames/shots/shot-012.jpg",
+        "../evidence/frames/shots/shot-013.jpg",
+        "../evidence/frames/shots/shot-014.jpg"
+      ]
+    },
+    "REF-T04": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 32.067,
+      "endSeconds": 41.167,
+      "frameIds": ["FRAME-SHOT-015", "FRAME-SHOT-016", "FRAME-SHOT-017"],
+      "framePaths": [
+        "../evidence/frames/shots/shot-015.jpg",
+        "../evidence/frames/shots/shot-016.jpg",
+        "../evidence/frames/shots/shot-017.jpg"
+      ]
+    },
+    "REF-HEALTH-HISTORY": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-017",
+      "timeSeconds": 39.95,
+      "path": "../evidence/frames/shots/shot-017.jpg"
+    },
+    "REF-FATIGUE-CAUSES": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-023",
+      "timeSeconds": 44.85,
+      "path": "../evidence/frames/shots/shot-023.jpg"
+    },
+    "REF-MASKED-PROFILE": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-026",
+      "timeSeconds": 47.733,
+      "path": "../evidence/frames/shots/shot-026.jpg"
+    },
+    "REF-FOLLOWUP": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-027",
+      "timeSeconds": 51.166,
+      "path": "../evidence/frames/shots/shot-027.jpg"
+    },
+    "REF-COFFEE-QUESTION": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-034",
+      "timeSeconds": 56.65,
+      "path": "../evidence/frames/shots/shot-034.jpg"
+    },
+    "REF-COFFEE-ANSWER": {
+      "sourceId": "SRC-FRAMES",
+      "frameIds": ["FRAME-SHOT-035", "FRAME-SHOT-036"],
+      "timesSeconds": [57.5, 58.25],
+      "framePaths": [
+        "../evidence/frames/shots/shot-035.jpg",
+        "../evidence/frames/shots/shot-036.jpg"
+      ]
+    },
+    "REF-T05-VIDEO": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 41.167,
+      "endSeconds": 60.7
+    },
+    "REF-WEIGHT-PLAN": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-SHOT-039",
+      "timeSeconds": 66.767,
+      "path": "../evidence/frames/shots/shot-039.jpg"
+    },
+    "REF-T06-VIDEO": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 60.7,
+      "endSeconds": 77.6
+    },
+    "REF-GOAL-TRACKING": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 77.6,
+      "endSeconds": 89.433,
+      "frameIds": ["FRAME-SHOT-041", "FRAME-SHOT-042"],
+      "framePaths": [
+        "../evidence/frames/shots/shot-041.jpg",
+        "../evidence/frames/shots/shot-042.jpg"
+      ]
+    },
+    "REF-PRO-STANDARD": {
+      "sourceId": "SRC-SRT",
+      "cueIds": ["CUE-025", "CUE-026"],
+      "startSeconds": 89.5,
+      "endSeconds": 96.5
+    },
+    "REF-AI-DISCLAIMER": {
+      "sourceId": "SRC-FRAMES",
+      "frameId": "FRAME-CUE-026",
+      "timeSeconds": 95.08,
+      "path": "../evidence/frames/cues/cue-026.jpg"
+    },
+    "REF-PRIVACY-CLAIM": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 96.6,
+      "endSeconds": 105.6,
+      "frameId": "FRAME-CUE-028",
+      "framePath": "../evidence/frames/cues/cue-028.jpg"
+    },
+    "REF-DISCLAIMER": {
+      "sourceId": "SRC-VIDEO",
+      "startSeconds": 0.0,
+      "endSeconds": 105.6,
+      "textObserved": "*本内容为产品体验分享,身体不适请及时就医"
+    },
+    "REF-SRT-017": {
+      "sourceId": "SRC-SRT",
+      "cueIds": ["CUE-017"],
+      "startSeconds": 55.187,
+      "endSeconds": 58.78
+    },
+    "REF-SRT-028": {
+      "sourceId": "SRC-SRT",
+      "cueIds": ["CUE-028"],
+      "startSeconds": 101.19,
+      "endSeconds": 105.6
+    }
+  },
+  "mediaFacts": {
+    "label": "media_fact",
+    "durationSeconds": 105.627574,
+    "video": {
+      "width": 1080,
+      "height": 1920,
+      "codec": "hevc",
+      "frameRate": "30/1"
+    },
+    "audio": {
+      "present": true,
+      "codec": "aac",
+      "sampleRateHz": 44100,
+      "channels": 2
+    },
+    "citations": ["REF-MEDIA"]
+  },
+  "executiveFinding": {
+    "contentIdentity": {
+      "label": "inference",
+      "finding": "A presenter-led branded product-experience video. It uses a frightening health-news setup, self-identification with common lifestyle concerns, a problem statement about online health uncertainty, an extended Ant Afu interface demonstration, endorsement claims, and a closing engagement question.",
+      "commercialStatus": "The video explicitly calls itself a product experience share and repeatedly displays the product. Whether it is paid, sponsored, commissioned, or independently produced is unknown."
+    },
+    "groundTruthBoundary": "The frames establish what the video shows and claims. They do not authenticate the opening news incident, establish that late nights or oily food caused the reported stroke, prove that the UI session was live, prove clinical quality or outcomes, verify corporate provenance, or prove privacy/security guarantees.",
+    "highestRiskFindings": [
+      "An alarming stroke anecdote is visually coupled to staying up late and oily takeout without causal evidence; the footage itself says it is file footage and not the incident.",
+      "The intake modal says completing health history can obtain a 'more accurate diagnosis' and later pages are labeled 'AI诊室', while the generated content is also labeled AI reference material. No diagnostic validation or authority is shown.",
+      "A single staged or recorded UI flow is used to support broad claims of high professional standards and reliability; clinical validation is absent from the allowed evidence.",
+      "The interface visibly solicits sensitive health and biometric/lifestyle information, while the closing absolute privacy guarantee is unsupported by any policy, technical control, consent, retention, or third-party-sharing evidence.",
+      "The narrator says the product does not rush to conclusions, but the first visible fatigue response already lists multiple possible medical and psychological causes before the later follow-up sequence. This is not a diagnosis, but it narrows the strength of the claim."
+    ]
+  },
+  "carrierAudit": [
+    {
+      "id": "CAR-01",
+      "carrier": "presenter_to_camera",
+      "label": "visual_observation",
+      "role": "Primary narrator, reaction figure, testimonial voice, and closing endorser.",
+      "boundary": "Her presence proves delivery of the statements, not her medical expertise, personal health history, or independent use of the product."
+    },
+    {
+      "id": "CAR-02",
+      "carrier": "embedded_news_like_clip",
+      "label": "visual_observation",
+      "role": "Supplies urgency through emergency, hospital, phone, delivery, and oily-food imagery plus a stroke headline.",
+      "boundary": "The clip visibly says '资料画面 非本新闻事件'; its logo/source is obscured, so it cannot authenticate the named case or causation."
+    },
+    {
+      "id": "CAR-03",
+      "carrier": "anime_or_stylized_illustrations",
+      "label": "visual_observation",
+      "role": "Depicts late-night searching, anxiety, heavy coffee use, intense exercise, and fatigue.",
+      "boundary": "These are illustrative metaphors, not documentary evidence of the presenter's behavior, symptoms, or health state."
+    },
+    {
+      "id": "CAR-04",
+      "carrier": "product_interface_capture",
+      "label": "visual_observation",
+      "role": "Demonstrates health-history intake, symptom chat, follow-up questions, a fatigue analysis, coffee guidance, body-management inputs, plan generation, and goal tracking.",
+      "boundary": "It proves that these screens were placed in the video. It does not prove the session was live, the entered data were real, the recommendations were safe for a specific person, or the app performs identically for other users."
+    },
+    {
+      "id": "CAR-05",
+      "carrier": "burned_in_text",
+      "label": "visual_observation",
+      "role": "Carries headline framing, speech captions, product labels, endorsements, and the continuous medical disclaimer.",
+      "boundary": "Burned-in text is evidence of publication inside the video, not independent truth."
+    }
+  ],
+  "timelineAudit": [
+    {
+      "id": "TL-01",
+      "startSeconds": 0.0,
+      "endSeconds": 7.3,
+      "carriers": ["embedded_news_like_clip", "presenter_inset", "headline_text", "burned_in_captions"],
+      "visualObservation": "Emergency entrance, hospital-bed imagery with a cartoon face mask, phone-at-night, food delivery, and oily food appear under the headline '经常熬夜、通宵 频繁点外卖 / 19岁大二学生突发脑梗 / 半边身体不能动，口齿不清'. The presenter appears in a lower-left reaction box. One frame states '资料画面 非本新闻事件'.",
+      "authorClaim": "A 19-year-old sophomore in Xiangyang, Hubei reportedly had a sudden cerebral infarction, arrived with severe left-sided paralysis and unclear speech, and was found to often stay up all night and order oily takeout.",
+      "meaningChange": "Opens with acute danger and immediately places ordinary lifestyle behaviors next to a catastrophic medical event.",
+      "relationship": "The news-like carrier supplies fear/urgency; the presenter is positioned as a viewer who will recognize herself in it.",
+      "unknowns": ["Identity of the patient", "Authenticity and date of the report", "Medical records", "Cause of the stroke", "Whether the depicted people/places belong to the incident"],
+      "citations": ["REF-T01-VIDEO", "REF-T01-SRT", "REF-SHOT-001", "REF-SHOT-005", "REF-SHOT-006", "REF-SHOT-008"]
+    },
+    {
+      "id": "TL-02",
+      "startSeconds": 7.3,
+      "endSeconds": 14.6,
+      "carriers": ["presenter_to_camera", "floating_labels", "burned_in_captions"],
+      "visualObservation": "The presenter fills the frame; labels for staying up late and oily eating appear.",
+      "authorClaim": "She identifies with the behaviors and says she pretends to care about health but does not know whom to trust online.",
+      "meaningChange": "The medical scare is converted into personal identification and then into an information-trust problem.",
+      "relationship": "The opening anecdote is not resolved medically; it is used as a bridge into the presenter's own uncertainty.",
+      "citations": ["REF-T02"]
+    },
+    {
+      "id": "TL-03",
+      "startSeconds": 14.6,
+      "endSeconds": 32.067,
+      "carriers": ["anime_or_stylized_illustrations", "presenter_split_screen", "burned_in_captions"],
+      "visualObservation": "Illustrations show a young woman searching on a phone in bed, becoming distressed, drinking among many coffee cups, lifting a barbell, and looking fatigued; presenter shots are intercut or split-screened.",
+      "authorClaim": "Online health answers are frightening, inconsistent, and anxiety-producing; the narrator wants answers about coffee dependence, exercise intensity, tiredness, and concentration.",
+      "meaningChange": "The problem broadens from one emergency story to everyday self-management questions.",
+      "relationship": "The illustrations concretize hypothetical situations but do not verify that the narrator experienced them.",
+      "citations": ["REF-T03"]
+    },
+    {
+      "id": "TL-04",
+      "startSeconds": 32.067,
+      "endSeconds": 41.167,
+      "carriers": ["presenter_to_camera", "brand_card", "product_logo"],
+      "visualObservation": "The presenter says the questions do not seem worth a dedicated trip, then introduces a 'health companion'. A card displays '蚂蚁阿福' and '健康是福，健康的事就找阿福'.",
+      "authorClaim": "Afu is an AI application launched by Ant Group and offers a completely different way to address these concerns.",
+      "meaningChange": "The video pivots from problem diagnosis to named product solution.",
+      "relationship": "Branding visually supports product identity as displayed; it does not independently verify corporate ownership or launch history.",
+      "citations": ["REF-T04"]
+    },
+    {
+      "id": "TL-05",
+      "startSeconds": 41.167,
+      "endSeconds": 60.7,
+      "carriers": ["product_interface_capture", "presenter_split_screen", "burned_in_captions"],
+      "visualObservation": "The interface requests health history, shows a masked profile label, receives a fatigue complaint, lists possible physiological, psychological, and lifestyle causes, asks follow-up questions, and later discusses daily coffee intake and longer-term reliance. The UI repeatedly says AI content is for reference and persistent symptoms should receive timely medical attention.",
+      "authorClaim": "The product does not rush to a conclusion; it follows the user's situation, asks about other sensations and sleep, asks how many coffees are consumed, and says not to increase the amount.",
+      "meaningChange": "The abstract promise becomes an interface demonstration meant to function as proof of conversational assessment.",
+      "relationship": "The screens support that follow-up questions and medical possibilities were displayed. However, possible causes appear in the first visible answer before the later follow-up sequence; therefore 'does not rush to a conclusion' is only partially supported and must not be upgraded to a clinical fact.",
+      "citations": ["REF-T05-VIDEO", "REF-HEALTH-HISTORY", "REF-FATIGUE-CAUSES", "REF-MASKED-PROFILE", "REF-FOLLOWUP", "REF-COFFEE-QUESTION", "REF-COFFEE-ANSWER"]
+    },
+    {
+      "id": "TL-06",
+      "startSeconds": 60.7,
+      "endSeconds": 77.6,
+      "carriers": ["product_interface_capture", "presenter_to_camera"],
+      "visualObservation": "A body-management flow displays demonstration inputs including female, age 32, 168 cm, 55 kg, and medium activity, then renders a plan titled '迈向理想体重的轻盈旅程' with exercise and diet recommendations.",
+      "authorClaim": "After receiving height, weight, exercise frequency, and diet information, the product recommends more strength training and explains diet composition; the experience differs from ordinary website information retrieval.",
+      "meaningChange": "The product is reframed from question-answering to personalized planning.",
+      "relationship": "The input/output sequence visually supports a demo workflow. Authenticity of the data, personalization logic, medical suitability, and outcomes remain unknown.",
+      "citations": ["REF-T06-VIDEO", "REF-WEIGHT-PLAN"]
+    },
+    {
+      "id": "TL-07",
+      "startSeconds": 77.6,
+      "endSeconds": 89.433,
+      "carriers": ["product_interface_capture", "presenter_to_camera"],
+      "visualObservation": "A goal interface asks about sleep, shows relaxation options, and displays trackable tasks such as walking, recording meals, and rowing; the presenter returns at the end.",
+      "authorClaim": "Health consultation has no standard answer; the app can clarify questions and record small goals such as sleeping before midnight and five minutes of relaxation, without pressuring the user, helping the user notice gradual improvement.",
+      "meaningChange": "The value proposition shifts from information to ongoing habit companionship and emotional reassurance.",
+      "relationship": "The interface supports the presence of goal-setting and task controls, but no longitudinal record or health improvement outcome is shown.",
+      "citations": ["REF-GOAL-TRACKING"]
+    },
+    {
+      "id": "TL-08",
+      "startSeconds": 89.433,
+      "endSeconds": 96.6,
+      "carriers": ["rapid_product_scrolls", "presenter_to_camera", "large_emphasis_text"],
+      "visualObservation": "A rapid montage scrolls through long AI answers and a body plan, followed by the presenter. Product-generated screens retain reference/medical-attention disclaimers.",
+      "authorClaim": "Afu uses a very high professional standard for health management, only provides reference, never creates panic, and is reliable.",
+      "meaningChange": "The video upgrades a demonstrated feature set into broad quality and trust endorsements.",
+      "relationship": "The disclaimers support the limited claim that the UI labels its output as reference. The montage cannot prove the universal claims of high professional standard, never causing panic, or reliability.",
+      "citations": ["REF-PRO-STANDARD", "REF-AI-DISCLAIMER"]
+    },
+    {
+      "id": "TL-09",
+      "startSeconds": 96.6,
+      "endSeconds": 105.6,
+      "carriers": ["presenter_to_camera", "large_gold_text", "burned_in_captions"],
+      "visualObservation": "The presenter closes under gold text reading '能看见你 / 能认真回应你 / 能确保隐私安全' and asks viewers what health question they most want to ask.",
+      "authorClaim": "Workers need a health companion that can see and genuinely respond to them and can completely ensure their privacy.",
+      "meaningChange": "The functional demo becomes an emotional promise and call for audience engagement.",
+      "relationship": "No privacy policy, consent flow, encryption, retention, access-control, audit, deletion, or third-party-sharing screen accompanies the guarantee.",
+      "citations": ["REF-PRIVACY-CLAIM"]
+    }
+  ],
+  "claimAudit": [
+    {
+      "id": "CLM-MED-01",
+      "category": "medical",
+      "statement": "A 19-year-old sophomore in Xiangyang, Hubei had a sudden cerebral infarction with severe left-sided paralysis and unclear speech.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "The narration and headline state it; hospital and emergency imagery are shown.",
+      "evidenceBoundary": "The visible source/logo is obscured, the patient is not identifiable, no records or clinician statement are provided, and the footage explicitly says it is not from this news event. Truth remains unknown under the allowed evidence.",
+      "risk": "high",
+      "citations": ["REF-T01-SRT", "REF-SHOT-001", "REF-SHOT-005"]
+    },
+    {
+      "id": "CLM-MED-02",
+      "category": "medical",
+      "statement": "Staying up late, all-nighters, takeout, and oily food are presented in close relation to the reported stroke.",
+      "epistemicStatus": "inference",
+      "evidenceSupport": "The behaviors are placed in the top headline and shown immediately after the stroke claim.",
+      "evidenceBoundary": "The video does not explicitly prove that these behaviors caused the stroke, and no differential diagnosis, risk-factor assessment, or medical causality evidence appears. The layout nevertheless invites a causal reading.",
+      "risk": "high",
+      "citations": ["REF-T01-VIDEO", "REF-SHOT-001", "REF-SHOT-006", "REF-SHOT-008"]
+    },
+    {
+      "id": "CLM-MED-03",
+      "category": "medical",
+      "statement": "The product can help reason about fatigue, coffee use, exercise intensity, body management, diet, sleep, and health goals.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "Multiple screens show intake, possible-cause lists, follow-up questions, and generated plans.",
+      "evidenceBoundary": "The screens prove presentation of advice, not diagnostic accuracy, completeness, safety, clinical validation, or benefit to the user. The UI includes an AI/reference disclaimer and medical-attention advice.",
+      "risk": "high",
+      "citations": ["REF-FATIGUE-CAUSES", "REF-FOLLOWUP", "REF-COFFEE-ANSWER", "REF-WEIGHT-PLAN", "REF-AI-DISCLAIMER"]
+    },
+    {
+      "id": "CLM-MED-04",
+      "category": "medical",
+      "statement": "The product does not rush to conclusions.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "Later screens show follow-up questions about symptoms and coffee.",
+      "evidenceBoundary": "The first visible fatigue answer already lists anemia, thyroid dysfunction, sleep apnea, chronic fatigue syndrome, abnormal glucose, infection/autoimmune disease, stress, and depression as possibilities. It is framed as possible causes, not a diagnosis, but this weakens any absolute reading of the claim.",
+      "risk": "medium",
+      "citations": ["REF-FATIGUE-CAUSES", "REF-FOLLOWUP"]
+    },
+    {
+      "id": "CLM-MED-05",
+      "category": "medical",
+      "statement": "Completing health history can obtain a 'more accurate diagnosis'; the consultation area is labeled 'AI诊室'.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "Those phrases are visibly present in the product interface.",
+      "evidenceBoundary": "No diagnostic accuracy study, clinician responsibility, diagnostic-device status, scope of use, contraindication, or error profile is shown. Other UI text calls the content AI-generated reference material and advises medical attention for persistent symptoms, creating a material distinction between diagnostic framing and evidentiary support.",
+      "risk": "critical",
+      "citations": ["REF-HEALTH-HISTORY", "REF-FOLLOWUP", "REF-AI-DISCLAIMER"]
+    },
+    {
+      "id": "CLM-COM-01",
+      "category": "commercial",
+      "statement": "Afu is an AI application launched by Ant Group.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "The narrator states it, and branded screens display '蚂蚁阿福'.",
+      "evidenceBoundary": "Branding inside the video is not independent corporate provenance evidence. No company notice, app-store record, or ownership document is included.",
+      "risk": "medium",
+      "citations": ["REF-T04"]
+    },
+    {
+      "id": "CLM-COM-02",
+      "category": "commercial",
+      "statement": "Afu uses very high professional standards, never manufactures fear, and is reliable.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "A lengthy interface demo and reference disclaimers are shown.",
+      "evidenceBoundary": "No professional standard is named; no evaluator, medical credential, validation study, error rate, safety audit, or comparison is presented. 'Never' and 'reliable' are universal/value claims not established by one curated demo.",
+      "risk": "high",
+      "citations": ["REF-PRO-STANDARD", "REF-AI-DISCLAIMER"]
+    },
+    {
+      "id": "CLM-COM-03",
+      "category": "commercial",
+      "statement": "The video is a product experience share.",
+      "epistemicStatus": "visual_observation",
+      "evidenceSupport": "A bottom disclaimer states this throughout the video.",
+      "evidenceBoundary": "The statement discloses branded/product-experience framing but does not reveal whether compensation, sponsorship, affiliate benefit, creative control, or pre-release access existed.",
+      "risk": "medium",
+      "citations": ["REF-DISCLAIMER"]
+    },
+    {
+      "id": "CLM-PRIV-01",
+      "category": "privacy",
+      "statement": "The product can completely ensure user privacy / ensure privacy safety.",
+      "epistemicStatus": "author_claim",
+      "evidenceSupport": "The narrator and closing gold text make the claim.",
+      "evidenceBoundary": "No privacy policy or security control is shown. The interface visibly solicits sensitive health history, possible report uploads, a profile/gender marker, age, height, weight, activity, diet, sleep, symptoms, pregnancy history, smoking history, family history, and disease history. A masked identifier is visible, but masking alone cannot establish end-to-end privacy.",
+      "risk": "critical",
+      "citations": ["REF-HEALTH-HISTORY", "REF-MASKED-PROFILE", "REF-WEIGHT-PLAN", "REF-PRIVACY-CLAIM"]
+    },
+    {
+      "id": "CLM-PRIV-02",
+      "category": "privacy",
+      "statement": "The displayed personal/body data belong to the presenter.",
+      "epistemicStatus": "unknown",
+      "evidenceSupport": "The presenter narrates in first person while screens show a masked profile and body-management inputs.",
+      "evidenceBoundary": "The video never proves the data are real, current, or hers; they may be demonstration values. The audit must not reclassify them as biographical facts.",
+      "risk": "high",
+      "citations": ["REF-MASKED-PROFILE", "REF-WEIGHT-PLAN"]
+    }
+  ],
+  "subtitleAndOcrAudit": {
+    "overall": "The SRT broadly follows the spoken/burned-in narration, but it omits several critical visual qualifiers and product-screen details. The SRT is therefore not a sufficient stand-alone ground-truth carrier.",
+    "items": [
+      {
+        "id": "TXT-01",
+        "type": "critical_ocr_only_qualifier",
+        "finding": "'资料画面 非本新闻事件' appears in the opening visual but not in the SRT.",
+        "impact": "Without the frame, the emergency/hospital imagery can be mistaken for footage of the named case.",
+        "citations": ["REF-SHOT-001"]
+      },
+      {
+        "id": "TXT-02",
+        "type": "critical_ocr_only_disclaimer",
+        "finding": "'*本内容为产品体验分享,身体不适请及时就医' is visible along the bottom throughout but is absent from the SRT.",
+        "impact": "This materially qualifies both commercial framing and medical reliance.",
+        "citations": ["REF-DISCLAIMER"]
+      },
+      {
+        "id": "TXT-03",
+        "type": "ocr_only_medical_claim",
+        "finding": "An opening hospital frame says the student's thrombus was removed and recovery was under way; this additional medical-status claim is not carried in the SRT.",
+        "impact": "It cannot be authenticated from the allowed evidence and should not be silently folded into the transcript account.",
+        "citations": ["REF-SHOT-005"]
+      },
+      {
+        "id": "TXT-04",
+        "type": "narration_ui_mismatch",
+        "finding": "CUE-017 says the app asks daily coffee amount and then tells the narrator not to increase it. The contemporaneous screen asks about amount; subsequent visible response says the demonstration user drinks three cups and warns that coffee masks fatigue and that long-term reliance can hide the body's need for rest. The exact '不加量就行' formulation is not visible in the sampled evidence frames.",
+        "impact": "Treat the narration as a favorable summary, not a verbatim representation of the displayed answer.",
+        "citations": ["REF-SRT-017", "REF-COFFEE-QUESTION", "REF-COFFEE-ANSWER"]
+      },
+      {
+        "id": "TXT-05",
+        "type": "pronoun_inconsistency",
+        "finding": "The SRT shifts between '他' and '她' for the product across CUE-012 to CUE-019.",
+        "impact": "Low; it creates referential inconsistency but does not change the product claim.",
+        "citations": ["REF-T04", "REF-T05-VIDEO", "REF-T06-VIDEO"]
+      },
+      {
+        "id": "TXT-06",
+        "type": "punctuation_segmentation",
+        "finding": "CUE-028 renders '能够完全确保你隐私的健康，搭子'; the intended compound is evidently '健康搭子'.",
+        "impact": "Low for meaning, but parsers should not treat '健康' and '搭子' as separate concepts here.",
+        "citations": ["REF-SRT-028", "REF-PRIVACY-CLAIM"]
+      },
+      {
+        "id": "TXT-07",
+        "type": "claim_strength_difference",
+        "finding": "Closing gold text says '能确保隐私安全', while the spoken/bottom caption says '完全确保你隐私'.",
+        "impact": "The spoken carrier is the stronger absolute claim; neither wording is backed by visible security evidence.",
+        "citations": ["REF-PRIVACY-CLAIM"]
+      }
+    ]
+  },
+  "keyQuestions": [
+    {
+      "question": "What is the video's central proposition?",
+      "answer": "Everyday workers face confusing, anxiety-inducing health information; Afu is presented as a conversational health companion that asks follow-up questions, generates plans, tracks goals, reassures users, and protects privacy.",
+      "label": "author_claim"
+    },
+    {
+      "question": "What visibly changes the viewer's understanding?",
+      "answer": "The sequence moves from medical scare, to self-recognition, to distrust of generic search, to UI demonstration, then to broad trust and privacy promises. The largest epistemic jump occurs when a curated demo is treated as evidence of universal professionalism, reliability, and privacy.",
+      "label": "inference"
+    },
+    {
+      "question": "Does the video prove the stroke was caused by late nights or oily food?",
+      "answer": "No. It juxtaposes them and says the patient had those habits, but provides no causal medical evidence.",
+      "label": "unknown"
+    },
+    {
+      "question": "Does the video prove the AI's health answers are accurate and safe?",
+      "answer": "No. It shows outputs and disclaimers, not validation, clinician oversight, error rates, or outcomes.",
+      "label": "unknown"
+    },
+    {
+      "question": "Does the video prove complete privacy protection?",
+      "answer": "No. It shows sensitive-data collection and a promise, but no policy or technical evidence.",
+      "label": "unknown"
+    },
+    {
+      "question": "Is this a paid advertisement?",
+      "answer": "Unknown. Product-experience sharing and promotional structure are visible, but payment or sponsorship is not disclosed in the allowed evidence.",
+      "label": "unknown"
+    }
+  ],
+  "missingAndUnknown": [
+    "Original, unblurred source, date, and independent authentication for the opening news report",
+    "Medical records, diagnosis basis, patient outcome, and causal assessment for the reported stroke",
+    "Whether the opening narration accurately quotes a doctor or reporter",
+    "Whether the app demonstration was live, edited, seeded, simulated, or reproduced from a prior session",
+    "Whether the visible profile and body data are real, fictional, or belong to the presenter",
+    "Clinical validation, clinician review, safety testing, benchmark results, model/version identity, and known limitations",
+    "Definition and source of the claimed 'high professional standard'",
+    "Privacy policy, consent, collection purpose, legal basis, encryption, storage location, retention, deletion, access control, sharing, model-training use, incident response, and independent security audit",
+    "Commercial relationship, payment, sponsorship, affiliate benefit, brand approval, or editorial control",
+    "Corporate provenance for the statement that Ant Group launched the app",
+    "Any longitudinal evidence that the user improved, adhered to goals, or benefited medically",
+    "Identity and medical qualifications of the presenter",
+    "Consent status for people or materials appearing in the embedded news-like clip"
+  ],
+  "auditConclusion": {
+    "label": "inference",
+    "finding": "The video is strong evidence of its own promotional narrative and of the exact interface screens it displays. It is weak evidence for the underlying news event, medical causality, clinical quality, real-world outcomes, universal reliability, and privacy/security. The most defensible reconstruction is therefore: a branded experience demonstration uses a fear-to-reassurance arc to position Afu as a health companion, while several of its strongest medical-adjacent, professional, commercial-provenance, and privacy claims remain unsupported or unknown within the video.",
+    "doNotUpgradeToFact": [
+      "late nights or oily food caused the reported stroke",
+      "the product is clinically reliable",
+      "the product follows high professional standards in all cases",
+      "the product never causes fear",
+      "the product completely ensures privacy",
+      "the demonstration data belong to the presenter",
+      "the video is paid advertising",
+      "the opening footage depicts the named incident"
+    ]
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-argument/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-argument/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-argument/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建指定视频及其 platform_srt、证据包和按协议生成的定向帧所包含的信息。采访、报道、估算、产品能力与未来预测均未进行视频外核验；画面可见性不等于来源真实性，作者主张不改写为事实。",
+  "viewerChange": {
+    "before": "观众可能把 Sora 的热度、官方样片和‘即将开放’理解为普通创作者很快可低成本使用且模型已经理解现实。",
+    "after": "观众能复原作者的完整结构：先承认 Sora 的长视频与连续性表现，再用算力、随机返工、投资和用电转述支持成本门槛；提出并否定开源降价条件；再用海盗船正例与吹蜡烛反例限制物理理解结论；最终把早期受众指向资金充足的公司，同时建议普通创作者使用现有工具，把故事和个人魅力置于工具之上。"
+  },
+  "transcript": {
+    "origin": "platform_srt（从 evidence-pack 原样逐 cue 复制；未在 verbatim 层纠错）",
+    "cues": [
+      {"id":"CUE-001","start":0.04,"end":5.04,"text":"爆火一个月的sora很快就会向公众开放，但我们大部分人可能都用不上","representativeFrame":"frames/cues/cue-001.jpg","overlappingShots":["SHOT-001","SHOT-002","SHOT-003","SHOT-004"]},
+      {"id":"CUE-002","start":5.05,"end":9.168,"text":"今天凌晨openai首席技术官接受华尔街时报的采访","representativeFrame":"frames/cues/cue-002.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-003","start":9.168,"end":11.5,"text":"他表示索尔将在年底前上线","representativeFrame":"frames/cues/cue-003.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-004","start":11.51,"end":17.014,"text":"同时直言不讳地告诉大家，索尔的成本贵得离谱，这意味着索尔上线以后","representativeFrame":"frames/cues/cue-004.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-005","start":17.014,"end":20.8,"text":"用户想使用注定得磕重金生成一条一分钟的视频","representativeFrame":"frames/cues/cue-005.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-006","start":20.81,"end":25.173,"text":"肯定比你买里一周的原价课贵，这一消息既让业内多了点期待","representativeFrame":"frames/cues/cue-006.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-007","start":25.173,"end":29.85,"text":"同时又看起来好像离大部分人很遥远，我就一个人做短视频需要氪重金","representativeFrame":"frames/cues/cue-007.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-008","start":29.85,"end":34.35,"text":"用sora吗？而且一个还不能完全模拟现实的sora为什么这么贵？","representativeFrame":"frames/cues/cue-008.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-009","start":34.71,"end":37.19,"text":"大家好，我是amber，这期我们聊聊sorry","representativeFrame":"frames/cues/cue-009.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-010","start":37.62,"end":39.164,"text":"先给一些朋友简单说一下","representativeFrame":"frames/cues/cue-010.jpg","overlappingShots":["SHOT-004"]},
+      {"id":"CUE-011","start":39.164,"end":43.644,"text":"索尔是美国人工智能公司openai发布的纹身视频模型","representativeFrame":"frames/cues/cue-011.jpg","overlappingShots":["SHOT-004","SHOT-005"]},
+      {"id":"CUE-012","start":43.644,"end":46.71,"text":"能根据一段文字生成长达一分钟的视频","representativeFrame":"frames/cues/cue-012.jpg","overlappingShots":["SHOT-005","SHOT-006"]},
+      {"id":"CUE-013","start":46.72,"end":53.34,"text":"比如这几段大家看过无数次的素材，这些画面初看很惊艳，现在看也很惊艳","representativeFrame":"frames/cues/cue-013.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-014","start":53.64,"end":59.89,"text":"因为它似乎突破了ai生成视频目前最大的问题，画面连续性，稳定性，视频时长","representativeFrame":"frames/cues/cue-014.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-015","start":59.9,"end":62.443,"text":"也似乎对物理世界有了基础的理解力","representativeFrame":"frames/cues/cue-015.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-016","start":62.443,"end":67.81,"text":"正因如此才能将runway皮卡这样的ai明星公司按在地上狠狠摩擦","representativeFrame":"frames/cues/cue-016.jpg","overlappingShots":["SHOT-006"]},
+      {"id":"CUE-017","start":67.82,"end":72.483,"text":"但sora的问题在于算力，算力还是算力，根据一位大佬的推理","representativeFrame":"frames/cues/cue-017.jpg","overlappingShots":["SHOT-006","SHOT-007"]},
+      {"id":"CUE-018","start":72.483,"end":76.39,"text":"Sora生成一分钟的视频，用八张a幺零零的gpu","representativeFrame":"frames/cues/cue-018.jpg","overlappingShots":["SHOT-007"]},
+      {"id":"CUE-019","start":76.4,"end":79.634,"text":"也要三小时以上，而在今天凌晨的采访中","representativeFrame":"frames/cues/cue-019.jpg","overlappingShots":["SHOT-007","SHOT-008"]},
+      {"id":"CUE-020","start":79.634,"end":85.17,"text":"Openai的cto说生成一段二十秒长的七百二十p视频，只用了几分钟","representativeFrame":"frames/cues/cue-020.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-021","start":85.56,"end":87.56,"text":"这个具体的时间我们不得而知","representativeFrame":"frames/cues/cue-021.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-022","start":87.88,"end":93.85,"text":"可以肯定的是，Ai生成的视频难以保证每次的画面都可用，仍然很随机","representativeFrame":"frames/cues/cue-022.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-023","start":93.86,"end":97.966,"text":"你抽很多次卡也不一定能得到想要的画面，就像你约会八百次","representativeFrame":"frames/cues/cue-023.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-024","start":97.966,"end":99.43,"text":"也遇不到看着顺眼的人","representativeFrame":"frames/cues/cue-024.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-025","start":99.44,"end":105.501,"text":"这也是为啥openai ceo奥特曼四处奔波要拉七万亿投资制造ai芯片","representativeFrame":"frames/cues/cue-025.jpg","overlappingShots":["SHOT-008"]},
+      {"id":"CUE-026","start":105.501,"end":107.41,"text":"山姆等等，你需要多少？","representativeFrame":"frames/cues/cue-026.jpg","overlappingShots":["SHOT-008","SHOT-009"]},
+      {"id":"CUE-027","start":107.42,"end":110.088,"text":"五到七万亿大概不对","representativeFrame":"frames/cues/cue-027.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-028","start":110.088,"end":113.528,"text":"只是这比世界上几乎所有国家的GDP都要高","representativeFrame":"frames/cues/cue-028.jpg","overlappingShots":["SHOT-009"]},
+      {"id":"CUE-029","start":113.528,"end":117.36,"text":"这也是为啥，因为答案能一路躺到两万亿的估值","representativeFrame":"frames/cues/cue-029.jpg","overlappingShots":["SHOT-009","SHOT-010"]},
+      {"id":"CUE-030","start":117.67,"end":122.357,"text":"因为siri对算力的需求太恐怖了，用户抽的每一次卡都在烧钱","representativeFrame":"frames/cues/cue-030.jpg","overlappingShots":["SHOT-010","SHOT-011"]},
+      {"id":"CUE-031","start":122.357,"end":127.5,"text":"另一篇报道里也写chatgpt每天要消耗五十万千瓦的电力","representativeFrame":"frames/cues/cue-031.jpg","overlappingShots":["SHOT-011"]},
+      {"id":"CUE-032","start":127.51,"end":131.21,"text":"Sora只会更高。所以在算力没有跟上以前","representativeFrame":"frames/cues/cue-032.jpg","overlappingShots":["SHOT-011","SHOT-012"]},
+      {"id":"CUE-033","start":131.21,"end":135.713,"text":"索尔是不会向公众开放的，即使开放订阅费也注定会极其昂贵","representativeFrame":"frames/cues/cue-033.jpg","overlappingShots":["SHOT-012","SHOT-013"]},
+      {"id":"CUE-034","start":135.713,"end":138.61,"text":"除非openai开源部分的索尔的技术","representativeFrame":"frames/cues/cue-034.jpg","overlappingShots":["SHOT-013"]},
+      {"id":"CUE-035","start":138.62,"end":142.18,"text":"让社区共同参与到开发和维护里，把价格打下来","representativeFrame":"frames/cues/cue-035.jpg","overlappingShots":["SHOT-013"]},
+      {"id":"CUE-036","start":142.18,"end":144.92,"text":"但考虑到open ai毕竟又叫close ai","representativeFrame":"frames/cues/cue-036.jpg","overlappingShots":["SHOT-013","SHOT-014"]},
+      {"id":"CUE-037","start":145.22,"end":146.79,"text":"开源肯定不切实际","representativeFrame":"frames/cues/cue-037.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-038","start":147.1,"end":152.72,"text":"再说说索尔的第二个问题，他到底能不能模拟现实，有没有理解物理世界的能力？","representativeFrame":"frames/cues/cue-038.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-039","start":152.73,"end":159.81,"text":"从官方的样片来看有但不多，比如咖啡杯里海盗船这段能看到他俩互相撞击","representativeFrame":"frames/cues/cue-039.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-040","start":159.81,"end":162.867,"text":"让水波随之而动。这基本符合物理规律","representativeFrame":"frames/cues/cue-040.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-041","start":162.867,"end":167.2,"text":"但也有很多翻车片段，最有意思的就是这个吹蜡烛的画面","representativeFrame":"frames/cues/cue-041.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-042","start":167.51,"end":173.03,"text":"什么呀，笨死了，蜡烛没吹掉，违背了物理现实，另外也有报道提到","representativeFrame":"frames/cues/cue-042.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-043","start":173.04,"end":177.134,"text":"既然siri能模拟现实，那他更要考虑到社会中的人情世故","representativeFrame":"frames/cues/cue-043.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-044","start":177.134,"end":178.96,"text":"要理解人类的复杂行为","representativeFrame":"frames/cues/cue-044.jpg","overlappingShots":["SHOT-014"]},
+      {"id":"CUE-045","start":178.97,"end":184.342,"text":"比如现在一个人手里有一瓶娃哈哈和农夫山泉，索尔能预测这人该喝哪瓶","representativeFrame":"frames/cues/cue-045.jpg","overlappingShots":["SHOT-014","SHOT-015"]},
+      {"id":"CUE-046","start":184.342,"end":187.86,"text":"这些都是索尔上线以前他需要解决和优化的问题","representativeFrame":"frames/cues/cue-046.jpg","overlappingShots":["SHOT-015"]},
+      {"id":"CUE-047","start":188.16,"end":192.898,"text":"总结一下，考虑到sura的使用成本，它注定就不是给大部分人准备的","representativeFrame":"frames/cues/cue-047.jpg","overlappingShots":["SHOT-015"]},
+      {"id":"CUE-048","start":192.898,"end":196.15,"text":"而是那些有金主爸爸养着的大型影视公司","representativeFrame":"frames/cues/cue-048.jpg","overlappingShots":["SHOT-015"]},
+      {"id":"CUE-049","start":196.16,"end":201.73,"text":"广告公司，内容公司sora也不只是视频生成器，而是未来agi的大脑","representativeFrame":"frames/cues/cue-049.jpg","overlappingShots":["SHOT-015","SHOT-016"]},
+      {"id":"CUE-050","start":202.27,"end":206.518,"text":"不过好在，在索尔这棵苍天大树下，正在长出缤纷的ai工具","representativeFrame":"frames/cues/cue-050.jpg","overlappingShots":["SHOT-016"]},
+      {"id":"CUE-051","start":206.518,"end":207.47,"text":"跑道","representativeFrame":"frames/cues/cue-051.jpg","overlappingShots":["SHOT-016"]},
+      {"id":"CUE-052","start":207.47,"end":210.24,"text":"皮卡svd，Big swords都挺香的","representativeFrame":"frames/cues/cue-052.jpg","overlappingShots":["SHOT-016"]},
+      {"id":"CUE-053","start":210.25,"end":216.29,"text":"又不是用red和阿来才能拍电影，用手机也可以，还是那句话，Ai只是工具","representativeFrame":"frames/cues/cue-053.jpg","overlappingShots":["SHOT-016","SHOT-017"]},
+      {"id":"CUE-054","start":216.29,"end":219.89,"text":"关键看你要讲怎样的故事，如何放大自我的魅力","representativeFrame":"frames/cues/cue-054.jpg","overlappingShots":["SHOT-017","SHOT-018"]},
+      {"id":"CUE-055","start":220.22,"end":224.32,"text":"愿在勒紧裤腰带过日子的现在，Ai让我们都有美好的未来","representativeFrame":"frames/cues/cue-055.jpg","overlappingShots":["SHOT-019"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开篇核心问题",
+      "importance": "core",
+      "statement": "作者把视频的核心问题框定为：Sora 虽被说成将上线，但高昂成本可能让大多数普通用户用不上，并追问一个不能完全模拟现实的模型为什么这么贵。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 0.04, "end": 34.35},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-001", "supports": "提出‘将开放但多数人可能用不上’。"},
+        {"refType": "cue", "ref": "CUE-004", "supports": "转述成本贵。"},
+        {"refType": "cue", "ref": "CUE-008", "supports": "把价格与模拟现实能力并置成疑问。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "画内标题直接呈现‘上万元的 Sora 不是给普通人用的？’。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "多数普通用户早期可能用不上 Sora", "condition": "使用成本如作者判断般高", "action": "继续追问成本来源与模型能力", "limits": "开篇尚未给出实际价格"},
+      "unknowns": ["实际公开价格与普通用户可用日期未给出。"]
+    },
+    {
+      "id": "KU-02",
+      "title": "能力正面铺垫",
+      "importance": "core",
+      "statement": "作者称 Sora 是 OpenAI 发布的文生视频模型，可由文字生成最长一分钟的视频；展示的样片令其觉得在连续性、稳定性和时长上有突破，并‘似乎’具备基础物理理解。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 39.164, "end": 67.81},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-011", "supports": "给出模型定义（SRT 原文含‘纹身视频模型’）。"},
+        {"refType": "cue", "ref": "CUE-012", "supports": "最长一分钟。"},
+        {"refType": "cue", "ref": "CUE-014", "supports": "连续性、稳定性、时长的评价。"},
+        {"refType": "cue", "ref": "CUE-015", "supports": "以‘似乎’限定物理理解。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "可见生成样片画面。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "Sora 的样片表现令人惊艳", "evidence": "视频展示多个样片", "condition": "这是样片层面的判断", "counterexample": "后文吹蜡烛失败限制泛化", "limits": "无样本量、参数或筛选过程"},
+      "unknowns": ["样片是否具有代表性未知。", "SRT 的‘纹身视频模型’疑似转写问题但在 verbatim 层未纠正。"]
+    },
+    {
+      "id": "KU-03",
+      "title": "第三方算力估算",
+      "importance": "core",
+      "statement": "作者转述‘一位大佬的推理’：Sora 生成一分钟视频，用 8 张 A100 GPU 也要三小时以上。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 67.82, "end": 79.634},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-017", "supports": "明确来源角色是‘一位大佬的推理’。"},
+        {"refType": "cue", "ref": "CUE-018", "supports": "一分钟与 8 张 A100。"},
+        {"refType": "cue", "ref": "CUE-019", "supports": "三小时以上。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "估算表画面与‘用8张A100的GPU’字幕。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0079", "supports": "估算表画面与‘也要3小时以上’字幕。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "生成成本受高算力拖累", "evidence": "第三方估算数字", "condition": "估算假设成立且与实际系统可比", "limits": "视频未完整解释估算公式和假设"},
+      "unknowns": ["估算的完整假设、来源身份与准确性未在视频内核验。"]
+    },
+    {
+      "id": "KU-04",
+      "title": "CTO 采访中的另一耗时说法",
+      "importance": "core",
+      "statement": "作者转述 OpenAI CTO 称生成 20 秒、720p 视频只用几分钟；紧接着明确说具体时间不得而知。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 79.634, "end": 87.56},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-020", "supports": "20 秒、720p、几分钟的转述。"},
+        {"refType": "cue", "ref": "CUE-021", "supports": "具体时间未知。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0084", "supports": "采访人物画面。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0086", "supports": "画内字幕含‘20秒长的720P视频’。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "实际演示耗时可能短于第三方估算", "evidence": "采访转述", "condition": "不同长度、分辨率与系统条件可比", "limits": "作者明确保留具体分钟数未知"},
+      "unknowns": ["‘几分钟’具体是多少。", "两组说法能否直接比较。"]
+    },
+    {
+      "id": "KU-05",
+      "title": "随机返工是成本链的第二环",
+      "importance": "core",
+      "statement": "作者称 AI 视频每次生成的画面未必可用、仍然随机，反复‘抽卡’也未必得到想要的结果；这被用来解释为何可用片段的实际成本不只是一轮生成。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 87.88, "end": 99.43},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-022", "supports": "每次画面不一定可用且随机。"},
+        {"refType": "cue", "ref": "CUE-023", "supports": "反复抽卡仍未必获得想要画面。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0088", "supports": "可见怪诞生成样片。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0094", "supports": "可见短暂抽卡/结果界面。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "随机性增加返工和成本", "evidence": "作者口播与失败结果蒙太奇", "condition": "创作者需要可用且符合意图的画面", "limits": "没有失败率或成功率统计"},
+      "unknowns": ["每次生成的可用率、平均重试次数和单位价格未知。"]
+    },
+    {
+      "id": "KU-06",
+      "title": "芯片投资、GDP 与估值被用作规模感",
+      "importance": "supporting",
+      "statement": "作者把奥特曼寻求 5–7 万亿美元芯片投资、其规模高于几乎所有国家 GDP，以及一家公司‘一路躺到两万亿估值’并置，用来营造算力需求极其庞大的规模感。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 99.44, "end": 117.36},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-025", "supports": "七万亿芯片投资的转述。"},
+        {"refType": "cue", "ref": "CUE-027", "supports": "画外对话中的五到七万亿。"},
+        {"refType": "cue", "ref": "CUE-028", "supports": "GDP 对比。"},
+        {"refType": "cue", "ref": "CUE-029", "supports": "两万亿估值说法。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0154", "supports": "画面中可见 $5–$7 trillion。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0191", "supports": "可见 $2.32 TRILLION 图形。"}
+      ],
+      "confidence": "medium",
+      "argument": {"claim": "AI 算力需求规模巨大", "evidence": "投资额、GDP 比较与估值图形", "condition": "这些数字的转述准确且相关", "limits": "视频没有给出三者与单次 Sora 生成成本的量化模型"},
+      "unknowns": ["数字的完整来源、口径和彼此因果关系未建立。"]
+    },
+    {
+      "id": "KU-07",
+      "title": "用电报道与 Sora 更高的推断",
+      "importance": "supporting",
+      "statement": "作者称另一篇报道写 ChatGPT 每天消耗 50 万千瓦电力，并据此推断 Sora 只会更高。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 122.357, "end": 131.21},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-031", "supports": "报道与 50 万千瓦说法。"},
+        {"refType": "cue", "ref": "CUE-032", "supports": "Sora 只会更高是作者推断。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0213", "supports": "报道截图与‘50万千瓦的电力’字幕。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "Sora 的能源需求会比 ChatGPT 高", "evidence": "作者转述的 ChatGPT 用电报道", "condition": "两类系统的消耗可由视频中的方式类推", "limits": "未展示 Sora 实测用电"},
+      "unknowns": ["Sora 实际用电量未知。", "单位、时间口径与报道完整上下文未核验。"]
+    },
+    {
+      "id": "KU-08",
+      "title": "开放与订阅价格预测",
+      "importance": "core",
+      "statement": "作者据算力论证预测：算力跟上以前 Sora 不会向公众开放，即使开放，订阅费也会极其昂贵。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 127.51, "end": 135.713},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-032", "supports": "前提是算力没有跟上。"},
+        {"refType": "cue", "ref": "CUE-033", "supports": "公众开放与昂贵订阅预测。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0235", "supports": "画面切到算力/安全素材，字幕呈现预测链。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "近期公众开放受限或订阅极贵", "evidence": "前述算力、随机返工、投资和用电转述", "condition": "算力供给未显著改善且定价将成本传导给用户", "limits": "没有公开价格表或开放政策"},
+      "unknowns": ["实际产品政策、价格和日期未知。"]
+    },
+    {
+      "id": "KU-09",
+      "title": "开源降价条件与作者的反驳",
+      "importance": "core",
+      "statement": "作者提出一个条件路径：OpenAI 若开源部分 Sora 技术，让社区参与开发维护，可能把价格打下来；随后用‘CloseAI’讽刺判断开源不切实际。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 135.713, "end": 146.79},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-034", "supports": "提出部分开源条件。"},
+        {"refType": "cue", "ref": "CUE-035", "supports": "社区参与与降价结果。"},
+        {"refType": "cue", "ref": "CUE-036", "supports": "CloseAI 讽刺。"},
+        {"refType": "cue", "ref": "CUE-037", "supports": "作者否定可行性。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0277", "supports": "可见 OpenAI/CloseAI 讽刺画面。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "开源社区参与可能降价，但作者认为不会发生", "condition": "OpenAI 部分开源并允许社区共同维护", "counterexample": "作者引用其封闭形象否定可行性", "limits": "未展示公司正式开源政策或成本模型"},
+      "unknowns": ["部分开源是否足以降价、OpenAI 是否会开源未知。"]
+    },
+    {
+      "id": "KU-10",
+      "title": "物理能力的限定结论",
+      "importance": "core",
+      "statement": "作者对 Sora 是否理解物理世界的总判断是‘从官方样片看有但不多’：既有看起来符合物理的片段，也有明显翻车，不能由正例泛化成可靠理解。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 147.1, "end": 173.03},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-038", "supports": "提出第二个问题。"},
+        {"refType": "cue", "ref": "CUE-039", "supports": "‘有但不多’及正例。"},
+        {"refType": "cue", "ref": "CUE-041", "supports": "转入翻车片段。"},
+        {"refType": "cue", "ref": "CUE-042", "supports": "作者用蜡烛失败限制结论。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "模型表现出部分物理一致性但不可靠", "evidence": "海盗船/水波正例", "counterexample": "吹蜡烛失败", "condition": "仅依据视频选择展示的样片", "limits": "样本量、筛选与生成条件未知"},
+      "unknowns": ["模型是否具有内部‘理解’无法从这些画面直接确定。"]
+    },
+    {
+      "id": "KU-11",
+      "title": "海盗船正例的可见序列",
+      "importance": "core",
+      "statement": "定向序列可见杯状容器内的两艘海盗船画面在运动中相互靠近/接触，周围液面出现明显波纹变化；这只能证明样片呈现了这样的视觉序列。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 154.5, "end": 162.5},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0289", "supports": "序列较早状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0304", "supports": "船只相对位置/接触中的状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0319", "supports": "后续水面波纹状态。"},
+        {"refType": "shot", "ref": "SHOT-014", "supports": "连续视觉区间。"}
+      ],
+      "confidence": "medium",
+      "reasoning": "运动序列支持可见状态变化；不推断生成系统内部因果或理解。",
+      "procedural": {"input": "官方样片画面", "before": "船只处于未接触/较远状态", "during": "相对运动并接触", "after": "水面波纹发生变化", "output": "视觉上基本符合作者所述的物理表现", "unresolvedFailureConditions": ["样片可能经过筛选", "单段表现不代表普遍能力"]},
+      "unknowns": ["样片提示词、生成参数与后期处理未知。"]
+    },
+    {
+      "id": "KU-12",
+      "title": "作者如何解释海盗船正例",
+      "importance": "supporting",
+      "statement": "作者把海盗船相撞后水波随之而动解释为‘基本符合物理规律’，用它支持‘有部分物理表现’，而非证明全面可靠理解。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 152.73, "end": 162.867},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-039", "supports": "作者描述船只相撞。"},
+        {"refType": "cue", "ref": "CUE-040", "supports": "作者评价水波与物理规律。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0319", "supports": "可见水面变化。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "该片段基本符合物理规律", "evidence": "船只与水波序列", "condition": "仅限该样片的可见表现", "limits": "不能证明模型内部理解或其他样本表现"},
+      "unknowns": ["可见一致性是否来自模型的可泛化物理能力未知。"]
+    },
+    {
+      "id": "KU-13",
+      "title": "吹蜡烛反例的可见序列",
+      "importance": "core",
+      "statement": "定向前/中/后帧显示一位老人靠近蛋糕吹气，之后多支蜡烛火焰仍可见；视频随后用字幕指出蜡烛没吹掉。",
+      "provenance": "visual_observation",
+      "timeRange": {"start": 163.2, "end": 169.5},
+      "evidence": [
+        {"refType": "targeted_frame", "ref": "TARGET-0333", "supports": "动作前多支蜡烛点燃。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0335", "supports": "人物靠近蛋糕吹气中的状态。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0337", "supports": "动作后仍有多支火焰可见，字幕写‘蜡烛没吹掉’。"},
+        {"refType": "shot", "ref": "SHOT-014", "supports": "连续视觉区间。"}
+      ],
+      "confidence": "high",
+      "reasoning": "前/中/后帧共同支持动作后火焰仍可见；不据此计算模型整体失败率。",
+      "procedural": {"input": "点燃蜡烛的蛋糕", "before": "多支火焰可见", "during": "人物作吹气动作", "after": "多支火焰仍可见", "output": "该样片中的预期结果未实现", "unresolvedFailureConditions": ["提示词和生成条件未知"]},
+      "unknowns": ["该失败片段在全部生成中的频率未知。"]
+    },
+    {
+      "id": "KU-14",
+      "title": "作者如何使用吹蜡烛反例",
+      "importance": "core",
+      "statement": "作者把吹蜡烛后火焰仍在称为‘违背了物理现实’，用作反例限制‘Sora 理解物理世界’的强结论。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 162.867, "end": 173.03},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-041", "supports": "把该段称为翻车片段。"},
+        {"refType": "cue", "ref": "CUE-042", "supports": "明确说蜡烛没吹掉并评价违背现实。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0337", "supports": "动作后火焰仍可见。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "Sora 不能可靠模拟物理结果", "counterexample": "吹蜡烛失败", "condition": "以该样片作为反例", "limits": "反例能否代表总体未知"},
+      "unknowns": ["视频没有统计失败分布。"]
+    },
+    {
+      "id": "KU-15",
+      "title": "社会行为理解是进一步要求，不是已做测试",
+      "importance": "core",
+      "statement": "作者把模拟现实的要求从物理扩展到‘人情世故’与复杂行为，并用手持娃哈哈和农夫山泉时该喝哪瓶作假设问题；视频没有展示 Sora 的实际回答。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 173.04, "end": 187.86},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-043", "supports": "提出社会人情要求。"},
+        {"refType": "cue", "ref": "CUE-044", "supports": "复杂行为要求。"},
+        {"refType": "cue", "ref": "CUE-045", "supports": "品牌选择设问。"},
+        {"refType": "cue", "ref": "CUE-046", "supports": "作者称为上线前需解决的问题。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0348", "supports": "可见社会行为类比素材而非模型答题界面。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "现实模拟还要求理解复杂社会行为", "example": "品牌饮用选择", "condition": "社会语境影响行动选择", "limits": "例子只是问题，没有结果"},
+      "unknowns": ["Sora 会如何回答、能否预测均未知。"]
+    },
+    {
+      "id": "KU-16",
+      "title": "作者判断的早期目标受众",
+      "importance": "core",
+      "statement": "作者总结称，考虑使用成本，Sora 不是给大部分人准备的，而更适合有资金支持的大型影视、广告和内容公司。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 188.16, "end": 201.73},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-047", "supports": "排除大部分人。"},
+        {"refType": "cue", "ref": "CUE-048", "supports": "大型影视公司。"},
+        {"refType": "cue", "ref": "CUE-049", "supports": "广告与内容公司。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0355", "supports": "资金/大型公司蒙太奇。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "早期使用者将偏向资金充足的公司", "evidence": "前述成本论证", "condition": "使用成本确实高且公司能承担", "limits": "没有价格与客户名单"},
+      "unknowns": ["实际早期客户构成未知。"]
+    },
+    {
+      "id": "KU-17",
+      "title": "‘未来 AGI 的大脑’是未证实的扩大主张",
+      "importance": "supporting",
+      "statement": "作者称 Sora 不只是视频生成器，而是‘未来 AGI 的大脑’；视频没有给出该说法的定义、机制或可检验证据。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 196.16, "end": 201.73},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-049", "supports": "原始主张。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0360", "supports": "画面以 AI Model/SORA 图示配合扩大主张。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "Sora 是未来 AGI 的大脑", "evidence": "仅有作者陈述与概念图", "limits": "无定义、机制或验证"},
+      "unknowns": ["该表述的技术含义与真实性未知。"]
+    },
+    {
+      "id": "KU-18",
+      "title": "给普通创作者的行动建议",
+      "importance": "core",
+      "statement": "作者不建议普通创作者只等 Sora，而是指出已有 Runway、Pika、SVD、视频中 SRT 写作‘Big swords’等 AI 工具；类比不用 RED 和 ARRI、手机也能拍电影，强调 AI 只是工具，关键是故事与个人魅力。",
+      "provenance": "author_claim",
+      "timeRange": {"start": 202.27, "end": 219.89},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-050", "supports": "从 Sora 转向现有 AI 工具。"},
+        {"refType": "cue", "ref": "CUE-051", "supports": "SRT 原文‘跑道’。"},
+        {"refType": "cue", "ref": "CUE-052", "supports": "Pika、SVD 与 SRT 原文‘Big swords’。"},
+        {"refType": "cue", "ref": "CUE-053", "supports": "手机类比与 AI 只是工具。"},
+        {"refType": "cue", "ref": "CUE-054", "supports": "故事与个人魅力。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0367", "supports": "可见 Runway/Pika/SVD 等工具名蒙太奇。"},
+        {"refType": "targeted_frame", "ref": "TARGET-0372", "supports": "可见手机也可以/AI 只是工具的画面段。"}
+      ],
+      "confidence": "high",
+      "argument": {"claim": "创作不必依赖最高规格工具", "evidence": "现有工具列举与手机拍电影类比", "condition": "创作者能围绕故事与个人表达选择工具", "action": "使用可得工具开始创作并强化故事和个人魅力", "limits": "视频未比较替代工具的价格、能力或工作流"},
+      "unknowns": ["工具名‘Big swords’可能是 SRT 转写，未静默纠正。", "替代工具的适用边界未知。"]
+    },
+    {
+      "id": "KU-19",
+      "title": "视频没有建立的关键量化答案",
+      "importance": "core",
+      "statement": "视频没有给出 Sora 的实际公开价格、订阅方案、失败率、平均重试次数、普通用户确切开放日期或样片代表性数据。",
+      "provenance": "unknown",
+      "timeRange": {"start": 0.04, "end": 224.32},
+      "evidence": [
+        {"refType": "cue", "ref": "CUE-021", "supports": "作者本人承认具体生成时间未知。"},
+        {"refType": "cue", "ref": "CUE-022", "supports": "只给随机性主张，未给失败率。"},
+        {"refType": "cue", "ref": "CUE-033", "supports": "只给未来价格预测，未给价格表。"},
+        {"refType": "source", "ref": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/dev-argument/evidence/evidence-pack.json", "supports": "已检查全部 55 个 cue、19 个 shot 和定向协议覆盖范围，未见这些答案。"}
+      ],
+      "confidence": "high",
+      "reasoning": "显式未知来自全片与定向协议的检查范围；没有用外部信息填补。",
+      "unknowns": ["价格", "失败率", "平均重试次数", "开放日期", "样片代表性"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-03", "to": "KU-08", "relation": "claim_supported_by_compute_estimate", "evidence": [{"refType": "cue", "ref": "CUE-017", "supports": "从算力问题启动成本链。"}, {"refType": "cue", "ref": "CUE-033", "supports": "落到开放/价格预测。"}]},
+    {"from": "KU-04", "to": "KU-08", "relation": "qualified_evidence_for_compute_cost_claim", "evidence": [{"refType": "cue", "ref": "CUE-020", "supports": "采访中的生成耗时。"}, {"refType": "cue", "ref": "CUE-021", "supports": "具体时间未知，限制证据强度。"}]},
+    {"from": "KU-05", "to": "KU-08", "relation": "claim_supported_by_retry_burden", "evidence": [{"refType": "cue", "ref": "CUE-022", "supports": "随机结果。"}, {"refType": "cue", "ref": "CUE-030", "supports": "每次抽卡都在烧钱的作者归因。"}]},
+    {"from": "KU-06", "to": "KU-08", "relation": "framing_supports_scale_not_quantitative_causation", "evidence": [{"refType": "cue", "ref": "CUE-025", "supports": "芯片投资。"}, {"refType": "cue", "ref": "CUE-033", "supports": "成本结论。"}]},
+    {"from": "KU-07", "to": "KU-08", "relation": "author_inference_supports", "evidence": [{"refType": "cue", "ref": "CUE-031", "supports": "用电报道。"}, {"refType": "cue", "ref": "CUE-032", "supports": "Sora 更高的推断。"}]},
+    {"from": "KU-09", "to": "KU-08", "relation": "condition_proposed_to_reduce_predicted_price", "evidence": [{"refType": "cue", "ref": "CUE-034", "supports": "部分开源条件。"}, {"refType": "cue", "ref": "CUE-035", "supports": "价格打下来。"}]},
+    {"from": "KU-09", "to": "KU-09", "relation": "author_counterargument_limits_open_source_path", "evidence": [{"refType": "cue", "ref": "CUE-036", "supports": "CloseAI 讽刺。"}, {"refType": "cue", "ref": "CUE-037", "supports": "不切实际判断。"}]},
+    {"from": "KU-11", "to": "KU-12", "relation": "visual_example_interpreted_by_author", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0319", "supports": "水波可见。"}, {"refType": "cue", "ref": "CUE-040", "supports": "作者解释。"}]},
+    {"from": "KU-12", "to": "KU-10", "relation": "example_supports_partial_physics_behavior", "evidence": [{"refType": "cue", "ref": "CUE-039", "supports": "有但不多。"}]},
+    {"from": "KU-13", "to": "KU-14", "relation": "visual_failure_interpreted_by_author", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0337", "supports": "动作后火焰仍可见。"}, {"refType": "cue", "ref": "CUE-042", "supports": "作者解释。"}]},
+    {"from": "KU-14", "to": "KU-10", "relation": "counterexample_limits_reliable_physics_claim", "evidence": [{"refType": "cue", "ref": "CUE-041", "supports": "转向翻车片段。"}, {"refType": "cue", "ref": "CUE-042", "supports": "反例结论。"}]},
+    {"from": "KU-15", "to": "KU-10", "relation": "extends_requirement_from_physics_to_social_behavior", "evidence": [{"refType": "cue", "ref": "CUE-043", "supports": "从模拟现实扩展到人情世故。"}]},
+    {"from": "KU-08", "to": "KU-16", "relation": "predicted_cost_barrier_maps_to_target_audience", "evidence": [{"refType": "cue", "ref": "CUE-047", "supports": "考虑使用成本。"}, {"refType": "cue", "ref": "CUE-048", "supports": "资金充足的大型公司。"}]},
+    {"from": "KU-02", "to": "KU-10", "relation": "positive_setup_limited_by_counterexample", "evidence": [{"refType": "cue", "ref": "CUE-015", "supports": "初步正面铺垫。"}, {"refType": "cue", "ref": "CUE-041", "supports": "后文反转。"}]},
+    {"from": "KU-16", "to": "KU-18", "relation": "high_barrier_setup_to_alternative_action", "evidence": [{"refType": "cue", "ref": "CUE-050", "supports": "‘不过好在’开启行动转向。"}, {"refType": "cue", "ref": "CUE-053", "supports": "手机类比与工具观。"}]},
+    {"from": "KU-19", "to": "KU-01", "relation": "unknown_limits_thesis_certainty", "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "只有昂贵转述。"}, {"refType": "cue", "ref": "CUE-033", "supports": "只有未来预测。"}]},
+    {"from": "KU-17", "to": "KU-10", "relation": "not_supported_by_physics_examples", "evidence": [{"refType": "cue", "ref": "CUE-049", "supports": "AGI 扩大主张。"}, {"refType": "cue", "ref": "CUE-042", "supports": "物理反例不能支持扩大主张。"}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"carrier": "口播/平台逐字稿", "available": 1, "inspected": 1, "evidence": "55/55 cues 原样保留"},
+      {"carrier": "画内同步中文字幕", "available": 1, "inspected": 1, "evidence": "稠密联系表与 13 个定向动作"},
+      {"carrier": "持久标题、标签与短时文字", "available": 1, "inspected": 1, "evidence": "CAP-01/03/06/07/08/13"},
+      {"carrier": "采访、报道、估算与截图", "available": 1, "inspected": 1, "evidence": "CAP-01/03/04/06/07"},
+      {"carrier": "示例生成视频与结果画面", "available": 1, "inspected": 1, "evidence": "CAP-02/05/09/10/12"},
+      {"carrier": "运动、前后状态与因果序列", "available": 1, "inspected": 1, "evidence": "CAP-09 53 帧；CAP-10 before/during/after 7 帧"},
+      {"carrier": "剪辑并置、反应与反转", "available": 1, "inspected": 1, "evidence": "CAP-05/06/08/12/13"},
+      {"carrier": "可复现软件操作/参数变更", "available": 0, "inspected": 1, "evidence": "排除：全片未展示完整操作流程"},
+      {"carrier": "外部帖文/评论/指标/网页核验", "available": 0, "inspected": 1, "evidence": "排除：未作为独立输入提供"}
+    ],
+    "meaningChanges": [
+      {"captured": 11, "total": 11, "ids": ["MC-01", "MC-02", "MC-03", "MC-04", "MC-05", "MC-06", "MC-07", "MC-08", "MC-09", "MC-10", "MC-11"]}
+    ],
+    "relationships": [
+      {"evidenced": 11, "proposed": 11, "notes": "11/11 probe 关系均在结构化 relations 中保留；数据—结论关系按 author framing 降级，未伪装成已验证因果。"}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "units": ["KU-01", "KU-16"]},
+      {"id": "CQ-02", "status": "answered", "units": ["KU-03", "KU-04", "KU-05", "KU-07", "KU-08"]},
+      {"id": "CQ-03", "status": "answered_with_unknown", "units": ["KU-03", "KU-04"]},
+      {"id": "CQ-04", "status": "correctly_unknown", "units": ["KU-19"]},
+      {"id": "CQ-05", "status": "answered", "units": ["KU-09"]},
+      {"id": "CQ-06", "status": "answered", "units": ["KU-10", "KU-11", "KU-12", "KU-13", "KU-14"]},
+      {"id": "CQ-07", "status": "answered_as_hypothetical_not_proof", "units": ["KU-15"]},
+      {"id": "CQ-08", "status": "answered", "units": ["KU-18"]},
+      {"id": "CQ-09", "status": "answered_as_unproven_author_claim", "units": ["KU-17"]},
+      {"id": "CQ-10", "status": "answered_with_limits", "units": ["KU-06", "KU-07", "KU-08"]}
+    ],
+    "coreEvidence": {"covered": 15, "total": 15},
+    "unknowns": [
+      "实际价格、订阅方案、失败率、重试次数和开放日期未建立。",
+      "不同生成耗时说法的完整假设与可比性未建立。",
+      "投资、GDP、估值、用电与单次生成成本之间没有量化因果模型。",
+      "样片提示词、参数、筛选、样本量与代表性未知。",
+      "品牌选择没有模型回答。",
+      "AGI 大脑主张未被定义或证明。"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "已检查 speech/SRT、画内字幕与短时文字、采访/报道/估算截图、样片结果、运动前中后状态、剪辑并置与结尾反转；不存在完整软件操作通道，外部帖文/评论/指标未提供。11 个意义变化和 11 个探测关系均有协议动作或 cue/shot 证据，未知项被保留。该回答是本次 runner 的协议内自检，不替代独立 meta auditor。"
+  }
+}

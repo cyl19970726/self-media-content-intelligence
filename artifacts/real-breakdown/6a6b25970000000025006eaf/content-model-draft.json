@@ -1,0 +1,18 @@
+{
+  "id": "PLAYBOOK-PROOF-BURST-01",
+  "playbookType": "script_archetype",
+  "title": "解释放缓—证明爆发",
+  "status": "draft",
+  "statement": "知识口播先用稳定真人与录屏建立理解，再在关键主张后用短促的真实输出窗口完成证明。",
+  "applicability": "小红书知识口播、工具教程；仅由当前单帖支持，尚未经过作者或题材对照。",
+  "dependencies": [
+    "必须拥有可核验的真实界面或输出素材",
+    "证明片段必须与前一条主张存在明确对应",
+    "移动端字幕与界面需要保持可读"
+  ],
+  "counterExamples": [
+    "证明片段过长或对白与教程主线无关时，会中断理解",
+    "没有留存数据，不能声称快切一定提高完播"
+  ],
+  "derivedFromFindings": ["F-HOOK-001", "F-PACING-001", "F-UNKNOWN-001"]
+}

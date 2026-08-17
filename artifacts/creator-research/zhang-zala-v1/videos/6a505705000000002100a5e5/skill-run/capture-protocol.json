@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a505705000000002100a5e5/skill-run/probe.json",
+  "protocolName": "成人逆向学习—英语案例—AI 编程案例—行动闭环捕捉协议",
+  "rationale": "本片是纯口播观点视频，唯一开场外部载体是 330 万浏览推文截图。核心不是知识清单，而是用英语学习失败和作者 AI 编程经历论证‘成年人应从现实问题/项目倒推知识、先做后学’。必须恢复论点—案例—三条条件—行动，并把浏览量、世界级导师、学习一年等绝对化主张保持为作者说法。",
+  "knowledgeUnitFields": [
+    {
+      "name": "330 万浏览钩子与英语学习失败案例提出问题",
+      "required": true,
+      "reason": "开场如何把一个人的英语坚持失败归因到学校式学习？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "成人逆向学习：兴趣/问题先行，再倒推知识",
+      "required": true,
+      "reason": "英语案例给出的替代学习流程是什么？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "作者的 AI 编程经历把逆向学习变成个人证据",
+      "required": true,
+      "reason": "作者自己的编程经历实际支持到什么程度？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "三项成人条件解释为什么动力比系统性更重要",
+      "required": true,
+      "reason": "作者用哪些成人/学生差异支撑逆向学习？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "name": "收尾压缩成先做后学、通过产出变强",
+      "required": true,
+      "reason": "观众看完能立即执行的动作是什么？",
+      "derivedFrom": [
+        "MC-05",
+        "CQ-05"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 40.72
+      },
+      "carrier": "推文截图、talking-head 与字幕",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "捕捉推文截图、案例链和因果措辞，区分社会证明与证据。",
+      "expectedObservation": "钩子强，因果仍是作者解释。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 40.72,
+        "end": 83.44
+      },
+      "carrier": "talking-head、字幕和英语示例",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "恢复输入—动作—输出，并补充系统知识何时回补。",
+      "expectedObservation": "流程明确但条件和补基础机制需补全。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 83.44,
+        "end": 141.22
+      },
+      "carrier": "talking-head、字幕和个人经历",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "恢复前后对比和具体动作，标明比较口径未知。",
+      "expectedObservation": "个人动机变化强，教育效果比较弱。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 141.22,
+        "end": 177.58
+      },
+      "carrier": "talking-head 与编号式口播",
+      "mode": "interval_density",
+      "densitySeconds": 3,
+      "reason": "恢复三项理由并加入反例。",
+      "expectedObservation": "解释简洁易传播，分类边界并不绝对。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "range": {
+        "start": 177.58,
+        "end": 199.22
+      },
+      "carrier": "talking-head、字幕和收尾口号",
+      "mode": "interval_density",
+      "densitySeconds": 2,
+      "reason": "恢复行动关系并补反馈、校验和回补基础条件。",
+      "expectedObservation": "记忆点强，执行边界需补充。",
+      "derivedFrom": [
+        "SWEEP-05",
+        "MC-05",
+        "CQ-05"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "对学校式路径的批评转成可执行替代方案",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "抽象学习法通过作者 AI 编程经历获得个人案例",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "个人案例被概括为成人学习的三项条件",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    },
+    {
+      "relation": "动力结构最终转为项目化行动指令",
+      "derivedFrom": [
+        "REL-04"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–199.3 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "推文真实浏览量与统计时间",
+    "逆向学习相对系统学习的长期效果",
+    "AI 回答准确性和错误校验方法",
+    "作者几个项目和一年大学讲座的可比口径",
+    "不同成人学习目标的适用边界",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a505705000000002100a5e5/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a505705000000002100a5e5/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

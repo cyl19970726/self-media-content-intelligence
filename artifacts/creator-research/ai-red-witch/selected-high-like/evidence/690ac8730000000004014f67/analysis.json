@@ -1,0 +1,132 @@
+{
+  "id": "690ac8730000000004014f67",
+  "title": "大揭秘！这些做设计的AI，都怎么用？",
+  "archetype": "垂直场景工具地图",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/690ac8730000000004014f67",
+  "media": {
+    "file": "media/690ac8730000000004014f67.mp4",
+    "subtitle": "media/690ac8730000000004014f67.srt",
+    "durationSeconds": 14.907,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 2722214
+  },
+  "engagement": {
+    "likes": 31000,
+    "collections": 43000,
+    "comments": 339,
+    "shares": 2838,
+    "collectionToLike": 1.387,
+    "commentToLike": 0.011,
+    "shareToLike": 0.092
+  },
+  "transcript": {
+    "cueCount": 5,
+    "totalCharacters": 71,
+    "charactersPerMinute": 285.8,
+    "first3Seconds": "这个可以帮你设计一张海报",
+    "first6Seconds": "这个可以帮你设计一张海报 这个可以帮你设计logo 这个可以帮你做一个ppt",
+    "fullText": "这个可以帮你设计一张海报 这个可以帮你设计logo 这个可以帮你做一个ppt 这个可以帮你设计一个ui，这个可以帮你设计三d手办 这个可以帮你设计网页",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0,
+        "end": 1.9,
+        "duration": 1.9,
+        "midpoint": 0.95,
+        "text": "这个可以帮你设计一张海报",
+        "frame": "evidence/690ac8730000000004014f67/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 3.06,
+        "end": 4.85,
+        "duration": 1.79,
+        "midpoint": 3.955,
+        "text": "这个可以帮你设计logo",
+        "frame": "evidence/690ac8730000000004014f67/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 5.26,
+        "end": 7.24,
+        "duration": 1.98,
+        "midpoint": 6.25,
+        "text": "这个可以帮你做一个ppt",
+        "frame": "evidence/690ac8730000000004014f67/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 7.63,
+        "end": 11.73,
+        "duration": 4.1,
+        "midpoint": 9.68,
+        "text": "这个可以帮你设计一个ui，这个可以帮你设计三d手办",
+        "frame": "evidence/690ac8730000000004014f67/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 12.19,
+        "end": 14.14,
+        "duration": 1.95,
+        "midpoint": 13.165,
+        "text": "这个可以帮你设计网页",
+        "frame": "evidence/690ac8730000000004014f67/transcript-frames/cue-005.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      0.5,
+      1.9,
+      3.1,
+      5.333,
+      5.767,
+      7.7,
+      8.167,
+      9.7,
+      10.2,
+      12.267,
+      12.767
+    ],
+    "detectedShotCount": 12,
+    "cutsPerMinute": 44.3,
+    "medianShotSeconds": 1.4,
+    "shortestShotSeconds": 0.434,
+    "longestShotSeconds": 2.233
+  },
+  "evidence": {
+    "contactSheet": "evidence/690ac8730000000004014f67/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/690ac8730000000004014f67/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      0.78,
+      1.561,
+      2.341,
+      3.121,
+      3.902,
+      4.682,
+      5.463,
+      6.243,
+      7.023,
+      7.804,
+      8.584,
+      9.364,
+      10.145,
+      10.925,
+      11.706,
+      12.486,
+      13.266,
+      14.047,
+      14.827
+    ]
+  }
+}

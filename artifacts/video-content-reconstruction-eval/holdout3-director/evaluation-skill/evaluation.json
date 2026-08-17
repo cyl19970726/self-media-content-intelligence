@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationScope": {
+    "candidate": "holdout3-director/skill-run",
+    "groundTruth": "holdout3-director/audit/audit.json and audit.md",
+    "evidence": "holdout3-director/evidence/evidence-pack.json and evidence frames",
+    "blindRestrictionsObserved": true,
+    "baselineInspected": false,
+    "skillBodyInspected": false
+  },
+  "hardGatePass": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 8,
+      "denominator": 8,
+      "examples": [
+        {
+          "auditItems": ["Q-01", "Q-02"],
+          "result": "answered",
+          "candidateEvidence": ["KU-04", "KU-05", "KU-06"],
+          "note": "The seller-incentive claim and both branches of the profile test are retained as the author's claims, with the missing threshold and authorship proof preserved."
+        },
+        {
+          "auditItems": ["Q-06", "Q-07"],
+          "result": "answered",
+          "candidateEvidence": ["KU-11", "KU-12", "KU-13", "KU-14"],
+          "note": "The undefined 60-point scale, the numerical weight hypothetical, and the breakthrough-versus-accumulation claim are all distinguished from verified platform facts."
+        },
+        {
+          "auditItem": "Q-08",
+          "result": "answered",
+          "candidateEvidence": ["KU-15", "KU-16", "KU-17"],
+          "note": "The close is correctly reconstructed as permission for gap-filling/brainstorming and rejection of one-click script substitution."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 17,
+      "denominator": 17,
+      "examples": [
+        {
+          "auditRange": "AK-01 through AK-04",
+          "result": "covered",
+          "candidateEvidence": ["KU-04", "KU-05", "KU-06"]
+        },
+        {
+          "auditRange": "AK-05 through AK-13",
+          "result": "covered",
+          "candidateEvidence": ["KU-07", "KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13"]
+        },
+        {
+          "auditRange": "AK-14 through AK-17",
+          "result": "covered",
+          "candidateEvidence": ["KU-14", "KU-15", "KU-16", "KU-17"]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 45,
+      "examples": [
+        {
+          "method": "Distinct-proposition census",
+          "detail": "Counted 25 positive knowledge-unit propositions and 20 explicit relationship propositions. Four units whose payload is bounded absence or unresolved unknown were excluded from the positive-claim denominator; prose duplicates were not double-counted."
+        },
+        {
+          "claim": "Promoters' successful posts definitely were not AI-made and real bloggers do not use AI",
+          "result": "supported as attributed speech, not upgraded to fact",
+          "candidateEvidence": "KU-06 and article paragraphs explicitly call this an unsupported author assertion."
+        },
+        {
+          "claim": "Million followers, 50,000 normal likes, several 3,000-like posts, then reduced weight/base distribution",
+          "result": "supported as a hypothetical only",
+          "candidateEvidence": "KU-13 and the article explicitly deny platform-rule or analytics proof."
+        },
+        {
+          "claim": "The technical shot list does not equal semantic scene count",
+          "result": "supported inference",
+          "candidateEvidence": "KU-23/KU-24 and relation KU-23 to KU-24 are backed by paired boundary frames and the long SHOT-008 span."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 29,
+      "denominator": 29,
+      "examples": [
+        {
+          "candidateEvidence": "KU-02",
+          "range": "2.066-6.200",
+          "result": "correctly localizes the three-part opening prohibition"
+        },
+        {
+          "candidateEvidence": "KU-13",
+          "range": "103.868-124.018",
+          "result": "correctly localizes the numerical weight hypothetical"
+        },
+        {
+          "candidateEvidence": ["KU-15", "KU-16", "KU-21"],
+          "ranges": ["143.645-149.095", "149.095-154.033", "154.033-156.267"],
+          "result": "correctly separates permitted assistance, prohibited substitution, and the visible closing label"
+        },
+        {
+          "candidateEvidence": ["KU-27", "KU-28", "KU-29"],
+          "range": "0.000-2.066",
+          "result": "correctly localizes the unresolved opening-fragment carrier conflict"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "Although the source is an argument rather than a product tutorial, the audit defines five consequential dependency chains. The candidate covers all five: seller motive to profile check; topic selection versus one-click purchase/adaptation; 60-point premise to novice/established-account consequences; persistence claim to breakthrough explanation; and AI assistance versus script substitution. It does not mistake edited chronology for proof of causal validity.",
+      "examples": [
+        {
+          "dependency": "seller motive -> profile/data test -> poor-data and good-data branches",
+          "candidateEvidence": ["KU-04", "KU-05", "KU-06"]
+        },
+        {
+          "dependency": "60-point premise -> audience split -> hypothetical weight consequence",
+          "candidateEvidence": ["KU-11", "KU-12", "KU-13"]
+        },
+        {
+          "dependency": "broad opening -> permitted assistance/prohibited substitution -> narrowed close",
+          "candidateEvidence": ["KU-02", "KU-15", "KU-16", "KU-17"]
+        }
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 8,
+      "denominator": 8,
+      "examples": [
+        {
+          "auditItems": ["UNK-01", "UNK-02", "UNK-03"],
+          "result": "correctly unknown",
+          "candidateEvidence": "KU-25 bounds the absence of product/version, platform, price, access, account, region, and support details to 0-156.367 seconds."
+        },
+        {
+          "auditItems": ["UNK-04", "UNK-05", "UNK-06"],
+          "result": "correctly unknown",
+          "candidateEvidence": ["KU-01", "KU-18", "KU-22", "KU-24", "KU-29"]
+        },
+        {
+          "auditItems": ["UNK-07", "UNK-08"],
+          "result": "correctly unknown",
+          "candidateEvidence": ["KU-13", "KU-14"],
+          "note": "The candidate does not turn the weight or breakthrough narratives into established causal rules."
+        },
+        {
+          "opportunity": "non-speech audio",
+          "result": "correctly unknown",
+          "candidateEvidence": "KU-26 states that the inspected methods cannot reliably establish either presence/absence or an independent semantic role for music/effects."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "gateResults": {
+    "criticalQuestionRecall": "pass",
+    "evidenceCoverage": "pass",
+    "unsupportedInference": "pass",
+    "timestampAccuracy": "pass",
+    "processDependencyCompleteness": "pass",
+    "unknownDiscipline": "pass",
+    "uncheckedChannels": "pass",
+    "metaGate": "pass"
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 5
+  },
+  "judgeRationale": {
+    "readability": "The article leads with the opening/closing correction and maintains clear separation between the author's position and verified fact.",
+    "knowledgePrioritization": "The main thesis, incentive critique, topic/empathy rationale, 60-point/weight hypothesis, breakthrough claim, and final boundary are ordered by argumentative importance.",
+    "evidenceUsefulness": "Time windows are usable and the structured reconstruction resolves visual, subtitle, OCR, shot, and bounded-absence evidence without collapsing conflicts.",
+    "executionValue": "The article provides a usable decision boundary and cautions against treating unverified platform claims as rules, but the source itself supplies no operational topic test, platform evidence, or AI fact-checking workflow; the candidate correctly cannot manufacture these.",
+    "compressionWithoutLoss": "The public-facing article compresses a dense audit while the structured artifact preserves all core units, conflicts, relations, and unknowns."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent recheck found no carrier, meaning change, or relationship left unguarded. The candidate covers spoken/SRT content, burned captions, opening collage, whiteboard and gestures, persistent presenter/environment referents, technical shot/dense evidence, OCR conflicts, audio-stream inspection, scoped absence review, and non-speech audio uncertainty. It captures the decisive broad-opening-to-narrow-closing relation, both carrier conflicts, all audited argument dependencies, and the distinction between technical cuts and semantic continuity. Identity inversion, literal product result/failure signatures, and UI progress/status are not applicable because the video contains one masked presenter and no product/UI demonstration; the candidate correctly records that absence rather than treating those probes as unchecked. All 20 candidate relation records have distinct endpoints; there is no self-edge."
+  },
+  "examples": [
+    {
+      "type": "opening-closing qualifier",
+      "assessment": "The candidate correctly rejects a literal zero-AI summary and reconstructs the ending as AI assistance allowed, AI authorship substitution rejected."
+    },
+    {
+      "type": "carrier conflict",
+      "assessment": "The opening SRT/insert mismatch and closing 智商/最强 self-label conflict are preserved rather than harmonized."
+    },
+    {
+      "type": "strong assertion and numbers",
+      "assessment": "Universal creator claims, 60 points, 1 million followers, 50,000 likes, 3,000 likes, weight, and base distribution are all attributed to the author or hypothetical and explicitly marked unverified."
+    },
+    {
+      "type": "negative evidence",
+      "assessment": "Absence claims are bounded to the inspected 0-156.367-second internal scope and name the inspected carriers; no universal absence is claimed."
+    },
+    {
+      "type": "technical segmentation",
+      "assessment": "The candidate does not equate 11 detected shots with 11 semantic scenes and correctly notes that one long technical shot contains multiple argument units."
+    }
+  ]
+}

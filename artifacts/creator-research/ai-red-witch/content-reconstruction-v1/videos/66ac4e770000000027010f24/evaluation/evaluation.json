@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 11,
+      "denominator": 12,
+      "examples": [
+        {
+          "status": "covered",
+          "question": "视频是否展示 Qwen2 与 GPT-4 的同题实测",
+          "candidateEvidence": "report.md 一句话结论与 KU-02/KU-12/KU-17/KU-18/KU-24 正确区分了 GPT-4 钩子、个人推荐和缺失的 GPT-4 输出/版本/成本基线。"
+        },
+        {
+          "status": "covered",
+          "question": "72B 的免费/开源表述有哪些许可与成本边界",
+          "candidateEvidence": "KU-13、KU-18、KU-27、KU-30 捕获 72B 的 Qianwen License 例外、算力/TCO 未知和打包交付边界。"
+        },
+        {
+          "status": "missed",
+          "question": "画面中的字面结果是否直接反驳‘全面碾压 Llama 3’",
+          "auditEvidence": "TARGET-0023@31.2s 显示 Qwen2-72B-Instruct 在 MBPP 为 80.2、Llama3-70B-Instruct 为 82.3；GSM8K 为 91.1 对 93.0。candidate 只说选取性与方法不完整，没有回答这两个可见失败结果。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 17,
+      "denominator": 20,
+      "examples": [
+        {
+          "status": "covered",
+          "unit": "central-comparison",
+          "detail": "正确覆盖没有 GPT-4 界面、同题输出、版本、统一参数、评分或成本核算。"
+        },
+        {
+          "status": "covered",
+          "unit": "license-and-cta-boundaries",
+          "detail": "正确覆盖 72B 许可例外、部署成本未知、评论区打包内容/来源/安全/系统要求未知。"
+        },
+        {
+          "status": "missed",
+          "unit": "literal-benchmark-counterexamples",
+          "detail": "遗漏 MBPP 80.2<82.3 与 GSM8K 91.1<93.0，因而未抓住画面内部最强反证。"
+        },
+        {
+          "status": "missed",
+          "unit": "benchmark-table-identity-scoping",
+          "detail": "把 Qwen2-72B-Instruct/Llama3-70B-Instruct 与 GLM4-9B-Chat 压成同一比较组；GLM4 实际出现在 Qwen2-7B-Instruct/Llama3-8B-Instruct 小模型表。"
+        },
+        {
+          "status": "missed",
+          "unit": "five-size-family-listing",
+          "detail": "遗漏 00:16.5 左右页面列出的 57B-A14B；candidate 只保留四列规格卡中的 0.5B/1.5B/7B/72B，没有说明五尺寸列表与四列规格卡并存。"
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 1,
+      "total": 24,
+      "examples": [
+        {
+          "status": "error",
+          "claim": "KU-10/report.md 将 Qwen2-72B-Instruct、Llama3-70B-Instruct、GLM4-9B-Chat 写成同一组主要数值对照",
+          "reason": "TARGET-0023 显示 72B 表第三列是 Qwen1.5-72B-Chat；GLM4-9B-Chat 属于下方 7B/8B/9B 小模型表。"
+        },
+        {
+          "status": "bounded-not-error",
+          "claim": "candidate 对 GPT-4、代码执行、评分、许可条款和打包内容的否定/未知陈述",
+          "reason": "这些陈述均给出完整时间范围或相关 UI/CTA 载体，没有把画面未见升级为世界范围不存在。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "status": "correct",
+          "references": [
+            "TARGET-0001@0.2s",
+            "TARGET-0016@24.3s",
+            "TARGET-0023@31.2s",
+            "TARGET-0026@34.5s",
+            "TARGET-0050@51.5s",
+            "TARGET-0055@55.4s",
+            "TARGET-0056@55.7s",
+            "TARGET-0062@60.2s"
+          ],
+          "detail": "抽查的高影响引用均落在对应标题、规格、基准、许可、demo 与对照 UI 窗口内。"
+        },
+        {
+          "status": "correct",
+          "references": [
+            "silence_start@63.689s",
+            "late-card@77.467-86.567s"
+          ],
+          "detail": "静音尾段和迟到规格卡的定位与 evidence/audit 一致。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 5,
+      "denominator": 5,
+      "rationale": "该视频把推荐转成下载/部署决策，因此依赖链适用。KU-30/report.md 完整给出：锁定 checkpoint/量化与尺寸 → 核对应许可证 → 估算硬件与持续成本 → 用真实任务做同提示词/同评分对照 → 从官方来源获取并校验评论区打包物。"
+    },
+    "unknownDiscipline": {
+      "numerator": 9,
+      "denominator": 9,
+      "examples": [
+        {
+          "status": "correct-unknown",
+          "items": [
+            "GPT-4 版本/套餐/价格/同题结果",
+            "各 UI 的 checkpoint/量化/参数",
+            "基准方法/硬件/日期/统计不确定性",
+            "Fibonacci 代码是否执行",
+            "期权回答的完整输出与评分",
+            "社媒截图来源与采用规模",
+            "Qianwen License 具体法律效果",
+            "72B 部署总成本",
+            "评论区打包物的内容/来源/安全/交付条件"
+          ],
+          "detail": "candidate 均保留为未知或要求后续验证，没有凭外部常识补齐。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "00:00-63.689 的非语音音频语义未被实际识别；现有检查只证明 63.689s 后静音，且 inspection 文件明确声明不能识别音乐、音效或说话人。"
+    ]
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 4,
+    "executionValue": 4,
+    "compressionWithoutLoss": 3
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "非语音音频在 00:00-63.689 内的语义角色；振幅静音检测不能替代听辨。"
+    ],
+    "unguardedMeaningChanges": [
+      "00:31.2 的 72B 指令表出现 MBPP、GSM8K 两个 Llama 3 胜项，使‘全面碾压’从‘方法不足’进一步变成‘被自身画面反例直接否定’，candidate 未捕获该变化。",
+      "Qwen2 页面先展示五尺寸家族（含 57B-A14B），随后四列规格卡只列 0.5B/1.5B/7B/72B；candidate 没有解释这两个可见口径的差异。"
+    ],
+    "unguardedRelationships": [
+      "旁白的‘全面碾压 Llama 3’与同屏表格中 MBPP/GSM8K 反例之间的直接矛盾。",
+      "72B 大模型表与 7B 小模型表的身份/对手归属关系；candidate 把 GLM4-9B-Chat 错接到 72B 比较组。"
+    ],
+    "rationale": "元闸失败：至少一个可用载体未完成语义检查，且基准表最具后果的失败签名及其与旁白的矛盾没有进入 candidate。candidate 自己声明 metaGate=false 是正确的非自证做法，但不能代替本次独立元审计。"
+  },
+  "examples": [
+    {
+      "type": "gateSummary",
+      "result": "fail",
+      "failed": [
+        "evidenceCoverage 17/20 < 0.90",
+        "uncheckedChannels 非空",
+        "metaAudit.pass=false"
+      ],
+      "passed": [
+        "criticalQuestionRecall 11/12 >= 0.85",
+        "unsupportedInference 1/24 <= 0.05",
+        "timestampAccuracy 20/20 >= 0.90",
+        "processDependencyCompleteness 5/5 >= 0.85",
+        "unknownDiscipline 9/9 >= 0.90"
+      ]
+    },
+    {
+      "type": "auditCorrection",
+      "detail": "独立 audit 把小模型表的 HumanEval 写成 Qwen2-7B-Instruct 79.9 对 Llama3-8B-Instruct 82.2；TARGET-0023 与 DENSE-0022 实际显示 Llama3 值为 62.2。该审计误读未计入 candidate 失败。"
+    }
+  ]
+}

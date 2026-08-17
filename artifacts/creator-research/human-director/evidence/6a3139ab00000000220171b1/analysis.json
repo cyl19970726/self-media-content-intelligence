@@ -1,0 +1,519 @@
+{
+  "id": "6a3139ab00000000220171b1",
+  "title": "全中国比我收入高的编导不超过三个",
+  "archetype": "系列迭代 / Vlog垂直教程",
+  "sourceUrl": "https://www.xiaohongshu.com/explore/6a3139ab00000000220171b1",
+  "media": {
+    "file": "media/6a3139ab00000000220171b1.mp4",
+    "subtitle": "media/6a3139ab00000000220171b1.srt",
+    "durationSeconds": 135.001,
+    "width": 2160,
+    "height": 3840,
+    "fps": 30,
+    "codec": "hevc",
+    "bytes": 63458735
+  },
+  "engagement": {
+    "likes": 19000,
+    "collections": 14000,
+    "comments": 337,
+    "shares": 2591,
+    "collectionToLike": 0.737,
+    "commentToLike": 0.018,
+    "shareToLike": 0.136
+  },
+  "transcript": {
+    "cueCount": 43,
+    "totalCharacters": 1031,
+    "charactersPerMinute": 458.2,
+    "first3Seconds": "我也不想两条视频起号两万 但是作为人类最强编导 今天不管是新手小白，不猪宰鸡还是企业p猪，看完这条视频也能把流水账",
+    "first6Seconds": "我也不想两条视频起号两万 但是作为人类最强编导 今天不管是新手小白，不猪宰鸡还是企业p猪，看完这条视频也能把流水账",
+    "fullText": "我也不想两条视频起号两万 但是作为人类最强编导 今天不管是新手小白，不猪宰鸡还是企业p猪，看完这条视频也能把流水账 拍成爆款vlog上期视频我说拍视频就是做产品 所以我们第一步还是看用户需求 用户需求也有三种，第一点就是好奇，比如说国外生活，环球旅行或者是小众工作 第二点就是陪伴上学实习打工人和宝妈 第三点就是造梦，什么是造梦，就是你过的生活就是用户想过的生活，比如说高知小资 和自由，那么说完用户我们来说平台 二零二零年平台看vlog最喜欢的三个点是什么？ 第一点就是真实，现在平台要的vlog不是造假和摆拍了 两个参考博主小马和百分之二十一，第二点就是反差，什么叫做反差 这里我举个例子，白日梦想家，你以为英国留学是这个是纸醉金迷的生活 但是他每天过得像流浪汉一样 这就是反差，第三点就是交互，就让用户参与你的生活交互做的比较好的博主举两 例子一个是情思，第二个就是萝卜巧巧 那么vlog也分为两种 第一种就是日常型，那么这种我们主要是拍软素材，但是软素材不代表 流水账，那么第一种就是叙事型 就它每一期故事都会有一个主线，那比如就是情思 那么第二种呢就是固定的，就是它每一期视频都是拍一样的内容，比如说良心和小马 那么第二种呢就是挑战类型vlog依旧强求主线和叙事 比如说蓝湛菲亚，迟早这个时候我就讲什么叫硬素材 硬素材就不是屎盆子镶金边了，就是猪窝来拍都能火，比如说一元横穿中国徒步回家 少年创业和零元生存 那么不管拍什么类型的视频 它的本质还是要做ip 而vlog就是把ip展示最立体的形式，那么如何打造vlog里面的ip呢？ 第一就是刻板行为，比如说陈振他的视频里面会说谢谢和牛肉面不要面 第二种就是作风，你是高经历自律还是低经历老鼠人，而这种作风呢一定要做到极致 如果你是中不溜子，那就没有任何意义，那么第三种呢 就是你要找到自己的个人风格，比如说西台美式 那么第四点就是怎么让我们的ip能立体，这里只有一个指标，就是看完你的log 用户就会很了解你，他会了解你喜欢的音乐，喜欢的书 喜欢的电影，你有什么技能，还有你的穿衣风格等等，接下来是一条视频最值钱的部分 就是我要告诉你slogan和标题决定饰品的一生 标题我举两个例子，第一个就是括服日记，第二个就是天才交易员 再把一个本来看似普通的故事加上一个莫名其妙的标题 这段视频直接就爆了 那么第二种呢就是slogan，我要举两个例子，一个是迟早，一个是彪马野人 迟早就是打扮的美美的出门上班了 彪马野人就是欢迎收看我独自升级的一天 今天先讲到这里，我是人类最强编导，我们下期再见",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "index": 1,
+        "start": 0.01,
+        "end": 1.504,
+        "duration": 1.494,
+        "midpoint": 0.757,
+        "text": "我也不想两条视频起号两万",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-001.jpg"
+      },
+      {
+        "id": "CUE-002",
+        "index": 2,
+        "start": 1.504,
+        "end": 2.749,
+        "duration": 1.245,
+        "midpoint": 2.127,
+        "text": "但是作为人类最强编导",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-002.jpg"
+      },
+      {
+        "id": "CUE-003",
+        "index": 3,
+        "start": 2.749,
+        "end": 6.86,
+        "duration": 4.111,
+        "midpoint": 4.804,
+        "text": "今天不管是新手小白，不猪宰鸡还是企业p猪，看完这条视频也能把流水账",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-003.jpg"
+      },
+      {
+        "id": "CUE-004",
+        "index": 4,
+        "start": 6.87,
+        "end": 9.632,
+        "duration": 2.762,
+        "midpoint": 8.251,
+        "text": "拍成爆款vlog上期视频我说拍视频就是做产品",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-004.jpg"
+      },
+      {
+        "id": "CUE-005",
+        "index": 5,
+        "start": 9.632,
+        "end": 11.389,
+        "duration": 1.757,
+        "midpoint": 10.511,
+        "text": "所以我们第一步还是看用户需求",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-005.jpg"
+      },
+      {
+        "id": "CUE-006",
+        "index": 6,
+        "start": 11.389,
+        "end": 15.91,
+        "duration": 4.521,
+        "midpoint": 13.649,
+        "text": "用户需求也有三种，第一点就是好奇，比如说国外生活，环球旅行或者是小众工作",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-006.jpg"
+      },
+      {
+        "id": "CUE-007",
+        "index": 7,
+        "start": 15.92,
+        "end": 18.225,
+        "duration": 2.305,
+        "midpoint": 17.073,
+        "text": "第二点就是陪伴上学实习打工人和宝妈",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-007.jpg"
+      },
+      {
+        "id": "CUE-008",
+        "index": 8,
+        "start": 18.225,
+        "end": 23.38,
+        "duration": 5.155,
+        "midpoint": 20.803,
+        "text": "第三点就是造梦，什么是造梦，就是你过的生活就是用户想过的生活，比如说高知小资",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-008.jpg"
+      },
+      {
+        "id": "CUE-009",
+        "index": 9,
+        "start": 23.39,
+        "end": 25.408,
+        "duration": 2.018,
+        "midpoint": 24.399,
+        "text": "和自由，那么说完用户我们来说平台",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-009.jpg"
+      },
+      {
+        "id": "CUE-010",
+        "index": 10,
+        "start": 25.408,
+        "end": 28.309,
+        "duration": 2.901,
+        "midpoint": 26.858,
+        "text": "二零二零年平台看vlog最喜欢的三个点是什么？",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-010.jpg"
+      },
+      {
+        "id": "CUE-011",
+        "index": 11,
+        "start": 28.309,
+        "end": 31.59,
+        "duration": 3.281,
+        "midpoint": 29.95,
+        "text": "第一点就是真实，现在平台要的vlog不是造假和摆拍了",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-011.jpg"
+      },
+      {
+        "id": "CUE-012",
+        "index": 12,
+        "start": 31.6,
+        "end": 35.412,
+        "duration": 3.812,
+        "midpoint": 33.506,
+        "text": "两个参考博主小马和百分之二十一，第二点就是反差，什么叫做反差",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-012.jpg"
+      },
+      {
+        "id": "CUE-013",
+        "index": 13,
+        "start": 35.412,
+        "end": 39.48,
+        "duration": 4.068,
+        "midpoint": 37.446,
+        "text": "这里我举个例子，白日梦想家，你以为英国留学是这个是纸醉金迷的生活",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-013.jpg"
+      },
+      {
+        "id": "CUE-014",
+        "index": 14,
+        "start": 39.49,
+        "end": 41.317,
+        "duration": 1.827,
+        "midpoint": 40.404,
+        "text": "但是他每天过得像流浪汉一样",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-014.jpg"
+      },
+      {
+        "id": "CUE-015",
+        "index": 15,
+        "start": 41.317,
+        "end": 46.38,
+        "duration": 5.063,
+        "midpoint": 43.849,
+        "text": "这就是反差，第三点就是交互，就让用户参与你的生活交互做的比较好的博主举两",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-015.jpg"
+      },
+      {
+        "id": "CUE-016",
+        "index": 16,
+        "start": 46.39,
+        "end": 48.568,
+        "duration": 2.178,
+        "midpoint": 47.479,
+        "text": "例子一个是情思，第二个就是萝卜巧巧",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-016.jpg"
+      },
+      {
+        "id": "CUE-017",
+        "index": 17,
+        "start": 48.568,
+        "end": 49.977,
+        "duration": 1.409,
+        "midpoint": 49.272,
+        "text": "那么vlog也分为两种",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-017.jpg"
+      },
+      {
+        "id": "CUE-018",
+        "index": 18,
+        "start": 49.977,
+        "end": 53.95,
+        "duration": 3.973,
+        "midpoint": 51.963,
+        "text": "第一种就是日常型，那么这种我们主要是拍软素材，但是软素材不代表",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-018.jpg"
+      },
+      {
+        "id": "CUE-019",
+        "index": 19,
+        "start": 53.96,
+        "end": 55.687,
+        "duration": 1.727,
+        "midpoint": 54.823,
+        "text": "流水账，那么第一种就是叙事型",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-019.jpg"
+      },
+      {
+        "id": "CUE-020",
+        "index": 20,
+        "start": 55.687,
+        "end": 58.402,
+        "duration": 2.715,
+        "midpoint": 57.044,
+        "text": "就它每一期故事都会有一个主线，那比如就是情思",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-020.jpg"
+      },
+      {
+        "id": "CUE-021",
+        "index": 21,
+        "start": 58.402,
+        "end": 62.97,
+        "duration": 4.568,
+        "midpoint": 60.686,
+        "text": "那么第二种呢就是固定的，就是它每一期视频都是拍一样的内容，比如说良心和小马",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-021.jpg"
+      },
+      {
+        "id": "CUE-022",
+        "index": 22,
+        "start": 62.98,
+        "end": 66.927,
+        "duration": 3.947,
+        "midpoint": 64.954,
+        "text": "那么第二种呢就是挑战类型vlog依旧强求主线和叙事",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-022.jpg"
+      },
+      {
+        "id": "CUE-023",
+        "index": 23,
+        "start": 66.927,
+        "end": 70.56,
+        "duration": 3.633,
+        "midpoint": 68.744,
+        "text": "比如说蓝湛菲亚，迟早这个时候我就讲什么叫硬素材",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-023.jpg"
+      },
+      {
+        "id": "CUE-024",
+        "index": 24,
+        "start": 70.57,
+        "end": 76.17,
+        "duration": 5.6,
+        "midpoint": 73.37,
+        "text": "硬素材就不是屎盆子镶金边了，就是猪窝来拍都能火，比如说一元横穿中国徒步回家",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-024.jpg"
+      },
+      {
+        "id": "CUE-025",
+        "index": 25,
+        "start": 76.18,
+        "end": 77.43,
+        "duration": 1.25,
+        "midpoint": 76.805,
+        "text": "少年创业和零元生存",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-025.jpg"
+      },
+      {
+        "id": "CUE-026",
+        "index": 26,
+        "start": 77.43,
+        "end": 79.097,
+        "duration": 1.667,
+        "midpoint": 78.263,
+        "text": "那么不管拍什么类型的视频",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-026.jpg"
+      },
+      {
+        "id": "CUE-027",
+        "index": 27,
+        "start": 79.097,
+        "end": 80.486,
+        "duration": 1.389,
+        "midpoint": 79.791,
+        "text": "它的本质还是要做ip",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-027.jpg"
+      },
+      {
+        "id": "CUE-028",
+        "index": 28,
+        "start": 80.486,
+        "end": 85.49,
+        "duration": 5.004,
+        "midpoint": 82.988,
+        "text": "而vlog就是把ip展示最立体的形式，那么如何打造vlog里面的ip呢？",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-028.jpg"
+      },
+      {
+        "id": "CUE-029",
+        "index": 29,
+        "start": 85.5,
+        "end": 89.643,
+        "duration": 4.143,
+        "midpoint": 87.572,
+        "text": "第一就是刻板行为，比如说陈振他的视频里面会说谢谢和牛肉面不要面",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-029.jpg"
+      },
+      {
+        "id": "CUE-030",
+        "index": 30,
+        "start": 89.643,
+        "end": 94.59,
+        "duration": 4.947,
+        "midpoint": 92.117,
+        "text": "第二种就是作风，你是高经历自律还是低经历老鼠人，而这种作风呢一定要做到极致",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-030.jpg"
+      },
+      {
+        "id": "CUE-031",
+        "index": 31,
+        "start": 94.6,
+        "end": 97.301,
+        "duration": 2.701,
+        "midpoint": 95.951,
+        "text": "如果你是中不溜子，那就没有任何意义，那么第三种呢",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-031.jpg"
+      },
+      {
+        "id": "CUE-032",
+        "index": 32,
+        "start": 97.301,
+        "end": 99.664,
+        "duration": 2.363,
+        "midpoint": 98.483,
+        "text": "就是你要找到自己的个人风格，比如说西台美式",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-032.jpg"
+      },
+      {
+        "id": "CUE-033",
+        "index": 33,
+        "start": 99.664,
+        "end": 103.83,
+        "duration": 4.166,
+        "midpoint": 101.747,
+        "text": "那么第四点就是怎么让我们的ip能立体，这里只有一个指标，就是看完你的log",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-033.jpg"
+      },
+      {
+        "id": "CUE-034",
+        "index": 34,
+        "start": 103.84,
+        "end": 106.99,
+        "duration": 3.15,
+        "midpoint": 105.415,
+        "text": "用户就会很了解你，他会了解你喜欢的音乐，喜欢的书",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-034.jpg"
+      },
+      {
+        "id": "CUE-035",
+        "index": 35,
+        "start": 106.99,
+        "end": 111.98,
+        "duration": 4.99,
+        "midpoint": 109.485,
+        "text": "喜欢的电影，你有什么技能，还有你的穿衣风格等等，接下来是一条视频最值钱的部分",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-035.jpg"
+      },
+      {
+        "id": "CUE-036",
+        "index": 36,
+        "start": 111.99,
+        "end": 114.891,
+        "duration": 2.901,
+        "midpoint": 113.441,
+        "text": "就是我要告诉你slogan和标题决定饰品的一生",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-036.jpg"
+      },
+      {
+        "id": "CUE-037",
+        "index": 37,
+        "start": 114.891,
+        "end": 118.55,
+        "duration": 3.659,
+        "midpoint": 116.721,
+        "text": "标题我举两个例子，第一个就是括服日记，第二个就是天才交易员",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-037.jpg"
+      },
+      {
+        "id": "CUE-038",
+        "index": 38,
+        "start": 118.56,
+        "end": 121.52,
+        "duration": 2.96,
+        "midpoint": 120.04,
+        "text": "再把一个本来看似普通的故事加上一个莫名其妙的标题",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-038.jpg"
+      },
+      {
+        "id": "CUE-039",
+        "index": 39,
+        "start": 121.52,
+        "end": 122.63,
+        "duration": 1.11,
+        "midpoint": 122.075,
+        "text": "这段视频直接就爆了",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-039.jpg"
+      },
+      {
+        "id": "CUE-040",
+        "index": 40,
+        "start": 122.63,
+        "end": 127.07,
+        "duration": 4.44,
+        "midpoint": 124.85,
+        "text": "那么第二种呢就是slogan，我要举两个例子，一个是迟早，一个是彪马野人",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-040.jpg"
+      },
+      {
+        "id": "CUE-041",
+        "index": 41,
+        "start": 127.08,
+        "end": 129.195,
+        "duration": 2.115,
+        "midpoint": 128.137,
+        "text": "迟早就是打扮的美美的出门上班了",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-041.jpg"
+      },
+      {
+        "id": "CUE-042",
+        "index": 42,
+        "start": 129.195,
+        "end": 131.733,
+        "duration": 2.538,
+        "midpoint": 130.464,
+        "text": "彪马野人就是欢迎收看我独自升级的一天",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-042.jpg"
+      },
+      {
+        "id": "CUE-043",
+        "index": 43,
+        "start": 131.733,
+        "end": 134.977,
+        "duration": 3.244,
+        "midpoint": 133.355,
+        "text": "今天先讲到这里，我是人类最强编导，我们下期再见",
+        "frame": "evidence/6a3139ab00000000220171b1/transcript-frames/cue-043.jpg"
+      }
+    ]
+  },
+  "editing": {
+    "sceneThreshold": 0.22,
+    "detectedSceneCuts": [
+      1.6,
+      18.567,
+      23.8,
+      29.333,
+      32.833,
+      33.8,
+      48.433,
+      51,
+      54.633,
+      62.867,
+      77.667,
+      92.567,
+      98.567,
+      99.867,
+      109.9,
+      118.333,
+      123.133,
+      132.167
+    ],
+    "detectedShotCount": 19,
+    "cutsPerMinute": 8,
+    "medianShotSeconds": 5.533,
+    "shortestShotSeconds": 0.967,
+    "longestShotSeconds": 16.967
+  },
+  "evidence": {
+    "contactSheet": "evidence/6a3139ab00000000220171b1/contact-sheet.jpg",
+    "transcriptContactSheet": "evidence/6a3139ab00000000220171b1/transcript-contact-sheet.jpg",
+    "sampleTimes": [
+      0,
+      7.101,
+      14.202,
+      21.303,
+      28.404,
+      35.505,
+      42.607,
+      49.708,
+      56.809,
+      63.91,
+      71.011,
+      78.112,
+      85.213,
+      92.314,
+      99.415,
+      106.516,
+      113.618,
+      120.719,
+      127.82,
+      134.921
+    ]
+  }
+}

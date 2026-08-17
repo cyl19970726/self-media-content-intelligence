@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signal Room V3 — 关键页面线框</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="../../node_modules/@fontsource/ibm-plex-sans-condensed/400.css" />
+  <link rel="stylesheet" href="../../node_modules/@fontsource/ibm-plex-sans-condensed/600.css" />
+  <link rel="stylesheet" href="../../node_modules/@fontsource/ibm-plex-mono/400.css" />
+  <style>
+    :root {
+      --paper: #f4f1e8;
+      --ink: #171713;
+      --line: #d7d1c4;
+      --line-dark: #8f8a80;
+      --verified: #2f6b4f;
+      --hypothesis: #c86b3c;
+      --risk: #a94a3f;
+      --muted: #77746c;
+      --wash: #ebe7dc;
+      --white: #fbf9f3;
+      --rail: 72px;
+      --evidence: 336px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #d8d3c8; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 23, 19, 0.025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 100% 28px;
+      font-family: "IBM Plex Sans Condensed", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+    }
+
+    button, input { font: inherit; }
+
+    .mono {
+      font-family: "IBM Plex Mono", "Noto Sans Mono CJK SC", monospace;
+      letter-spacing: .04em;
+    }
+
+    .preview-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 64px;
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto minmax(240px, 1fr);
+      align-items: center;
+      gap: 24px;
+      padding: 10px 24px;
+      color: var(--paper);
+      background: var(--ink);
+      border-bottom: 1px solid #000;
+    }
+
+    .preview-title { display: flex; align-items: center; gap: 12px; }
+    .preview-title b { font-size: 18px; letter-spacing: .06em; }
+    .preview-title span { color: #aaa69d; font-size: 12px; }
+    .preview-badge {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #716e67;
+      color: #d8d3c8;
+      font-size: 11px;
+    }
+
+    .preview-tabs { display: flex; border: 1px solid #5b5953; }
+    .preview-tabs button {
+      min-width: 148px;
+      padding: 10px 16px;
+      color: #c9c5bc;
+      background: transparent;
+      border: 0;
+      border-right: 1px solid #5b5953;
+      cursor: pointer;
+    }
+    .preview-tabs button:last-child { border-right: 0; }
+    .preview-tabs button[aria-selected="true"] { color: var(--ink); background: var(--paper); }
+
+    .preview-note { justify-self: end; text-align: right; color: #aaa69d; font-size: 11px; }
+    .preview-note strong { color: #db8b62; font-weight: 400; }
+
+    .frame-wrap { padding: 28px; }
+
+    .screen {
+      display: none;
+      width: min(1500px, 100%);
+      min-height: 920px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--ink);
+    }
+    .screen.active { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); }
+
+    .rail {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 920px;
+      background: var(--ink);
+      color: var(--paper);
+      border-right: 1px solid var(--ink);
+    }
+    .brand-index {
+      width: 100%;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      background: var(--hypothesis);
+      font-size: 13px;
+    }
+    .rail-nav { display: grid; gap: 2px; width: 100%; padding-top: 18px; }
+    .rail-item {
+      width: 100%;
+      min-height: 54px;
+      display: grid;
+      place-items: center;
+      color: #9f9b91;
+      border-left: 3px solid transparent;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .rail-item.active { color: var(--paper); background: #24241f; border-left-color: var(--verified); }
+    .rail-spacer { flex: 1; }
+    .rail-user {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid #625f58;
+      color: #c9c5bc;
+      font-size: 11px;
+    }
+
+    .app-area { min-width: 0; }
+
+    .topbar {
+      height: 72px;
+      display: grid;
+      grid-template-columns: minmax(320px, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--line-dark);
+      background: rgba(244, 241, 232, .94);
+    }
+    .command {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 720px;
+      padding: 0 13px;
+      border: 1px solid var(--line-dark);
+      background: var(--white);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .command b { color: var(--ink); font-weight: 600; }
+    .command-key { margin-left: auto; padding: 3px 7px; border: 1px solid var(--line); font-size: 10px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+
+    .text-button, .solid-button, .outline-button {
+      min-height: 36px;
+      padding: 8px 12px;
+      border: 1px solid var(--line-dark);
+      cursor: default;
+      font-size: 12px;
+    }
+    .text-button { background: transparent; color: var(--muted); }
+    .outline-button { background: var(--paper); color: var(--ink); }
+    .solid-button { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .solid-button.verified { background: var(--verified); border-color: var(--verified); }
+
+    .project-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .breadcrumbs { margin-bottom: 7px; color: var(--hypothesis); font-size: 10px; text-transform: uppercase; }
+    .project-head h1 { max-width: 920px; margin: 0; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.06; font-weight: 600; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 12px; color: var(--muted); font-size: 12px; }
+    .project-meta b { color: var(--ink); font-weight: 600; }
+    .project-state { align-self: end; min-width: 190px; text-align: right; }
+    .project-state .state-line { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 10px; }
+
+    .tag, .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .tag::before, .status-tag::before { content: ""; width: 6px; height: 6px; background: var(--line-dark); }
+    .status-tag.ready::before { background: var(--verified); }
+    .status-tag.draft::before { background: var(--hypothesis); }
+    .status-tag.blocked::before { background: var(--risk); }
+
+    .mode-nav {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .mode-nav span.active { color: var(--ink); border-bottom: 2px solid var(--hypothesis); line-height: 40px; }
+    .mode-nav .spacer { flex: 1; }
+    .mode-nav .warning { color: var(--risk); }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--evidence);
+      min-height: 714px;
+    }
+    .canvas { min-width: 0; border-right: 1px solid var(--line-dark); }
+    .evidence-panel { min-width: 0; background: #efebe1; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 40px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .section-label strong { color: var(--ink); font-weight: 600; }
+
+    .verdict-strip {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.7fr) repeat(3, minmax(120px, .7fr));
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .verdict-main { padding: 20px; background: var(--ink); color: var(--paper); }
+    .verdict-main small { color: #aaa69d; font-size: 10px; }
+    .verdict-main h2 { max-width: 520px; margin: 9px 0 7px; font-size: 23px; line-height: 1.1; }
+    .verdict-main p { max-width: 560px; margin: 0; color: #c7c3b8; font-size: 12px; line-height: 1.45; }
+    .metric-cell { padding: 16px; border-right: 1px solid var(--line); }
+    .metric-cell:last-child { border-right: 0; }
+    .metric-cell label { display: block; color: var(--muted); font-size: 10px; }
+    .metric-cell b { display: block; margin: 8px 0 3px; font-size: 25px; }
+    .metric-cell span { color: var(--muted); font-size: 10px; }
+    .metric-cell .good { color: var(--verified); }
+    .metric-cell .unknown { color: var(--muted); }
+
+    .single-body { display: grid; grid-template-columns: minmax(270px, .85fr) minmax(380px, 1.35fr); }
+    .media-stage { min-height: 390px; border-right: 1px solid var(--line-dark); }
+    .media-content { display: grid; grid-template-columns: 132px 1fr; gap: 15px; padding: 16px; }
+    .video-mock {
+      position: relative;
+      height: 246px;
+      overflow: hidden;
+      background: #272822;
+      border: 1px solid #10100d;
+    }
+    .video-mock::before {
+      content: "00:13";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #d4d0c7;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+    }
+    .video-mock::after {
+      content: "代表帧 / 待替换真实画面";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 12px;
+      padding-top: 9px;
+      color: #d4d0c7;
+      border-top: 1px solid #77736a;
+      font-size: 10px;
+    }
+    .frame-shape { position: absolute; border: 1px solid #a6a096; }
+    .frame-shape.one { width: 72px; height: 92px; left: 28px; top: 52px; background: #b76b44; }
+    .frame-shape.two { width: 86px; height: 46px; left: 18px; top: 156px; background: #d9d2c1; }
+    .timeline { display: grid; gap: 7px; align-content: start; }
+    .shot-row { display: grid; grid-template-columns: 42px 1fr; gap: 8px; min-height: 45px; }
+    .shot-time { padding-top: 4px; color: var(--muted); font-size: 9px; }
+    .shot-block { position: relative; padding: 7px 8px; background: var(--wash); border-left: 3px solid var(--line-dark); font-size: 10px; }
+    .shot-block.active { background: #e2ebe2; border-left-color: var(--verified); }
+    .shot-block.hypo { background: #f0e2d9; border-left-color: var(--hypothesis); }
+    .shot-block b { display: block; margin-bottom: 3px; font-size: 11px; }
+
+    .xray { min-width: 0; }
+    .chain { display: grid; grid-template-columns: repeat(5, 1fr); padding: 15px; }
+    .chain-step { position: relative; min-height: 104px; padding: 11px 10px; border: 1px solid var(--line); border-right: 0; background: var(--white); }
+    .chain-step:last-child { border-right: 1px solid var(--line); }
+    .chain-step small { display: block; color: var(--hypothesis); font-size: 9px; }
+    .chain-step b { display: block; margin: 9px 0 6px; font-size: 14px; }
+    .chain-step p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.35; }
+    .chain-step::after { content: ""; position: absolute; top: 16px; right: -4px; width: 7px; height: 7px; background: var(--hypothesis); z-index: 2; }
+    .chain-step:last-child::after { display: none; }
+
+    .script-map { padding: 0 15px 15px; }
+    .script-row { display: grid; grid-template-columns: 86px 1fr 52px; align-items: center; min-height: 40px; border-top: 1px solid var(--line); }
+    .script-row:last-child { border-bottom: 1px solid var(--line); }
+    .script-row label { color: var(--muted); font-size: 10px; }
+    .script-row p { margin: 0; font-size: 11px; }
+    .script-row span { justify-self: end; color: var(--muted); font-size: 9px; }
+
+    .hypothesis-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-top: 1px solid var(--line-dark); }
+    .hypothesis-card { min-height: 122px; padding: 14px 16px; border-right: 1px solid var(--line); }
+    .hypothesis-card:last-child { border-right: 0; }
+    .hypothesis-card small { color: var(--muted); font-size: 9px; }
+    .hypothesis-card h3 { margin: 7px 0 5px; font-size: 14px; }
+    .hypothesis-card p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.4; }
+    .hypothesis-card.orange { border-top: 3px solid var(--hypothesis); }
+    .hypothesis-card.red { border-top: 3px solid var(--risk); }
+    .hypothesis-card.green { border-top: 3px solid var(--verified); }
+
+    .evidence-head { min-height: 78px; padding: 16px; color: var(--paper); background: var(--verified); }
+    .evidence-head small { display: block; color: #c5d5c9; font-size: 9px; }
+    .evidence-head h2 { margin: 8px 0 0; font-size: 18px; }
+    .evidence-meta { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+    .evidence-meta div { padding: 11px 14px; border-right: 1px solid var(--line); }
+    .evidence-meta div:last-child { border-right: 0; }
+    .evidence-meta small { display: block; color: var(--muted); font-size: 9px; }
+    .evidence-meta b { font-size: 12px; }
+    .evidence-block { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .evidence-block .type { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; color: var(--muted); font-size: 9px; }
+    .evidence-block blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--verified); font-size: 12px; line-height: 1.5; }
+    .evidence-block p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .evidence-block b { color: var(--ink); }
+    .evidence-block.risk blockquote { border-left-color: var(--risk); }
+    .evidence-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px; }
+
+    .sample-strip {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(4, 1fr);
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .sample-summary { padding: 16px 18px; color: var(--paper); background: var(--ink); }
+    .sample-summary small { color: #aaa69d; font-size: 9px; }
+    .sample-summary b { display: block; margin-top: 6px; font-size: 18px; }
+    .cohort { padding: 13px 14px; border-right: 1px solid var(--line); }
+    .cohort:last-child { border-right: 0; }
+    .cohort label { display: block; color: var(--muted); font-size: 9px; }
+    .cohort b { display: block; margin: 5px 0; font-size: 21px; }
+    .cohort span { color: var(--muted); font-size: 9px; }
+    .cohort.winner { border-top: 3px solid var(--verified); }
+    .cohort.middle { border-top: 3px solid var(--line-dark); }
+    .cohort.low { border-top: 3px solid var(--risk); }
+    .cohort.excluded { border-top: 3px solid var(--hypothesis); }
+
+    .matrix-wrap { padding: 14px 18px 18px; }
+    .matrix-title { display: flex; align-items: end; justify-content: space-between; margin-bottom: 11px; }
+    .matrix-title h2 { margin: 0; font-size: 19px; }
+    .matrix-title span { color: var(--muted); font-size: 10px; }
+    .matrix {
+      display: grid;
+      grid-template-columns: minmax(130px, 1.1fr) repeat(3, minmax(90px, 1fr)) minmax(110px, .9fr);
+      border-top: 1px solid var(--line-dark);
+      border-left: 1px solid var(--line);
+    }
+    .matrix > div { min-height: 48px; padding: 9px 10px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 10px; }
+    .matrix .head { min-height: 34px; color: var(--muted); background: var(--wash); text-transform: uppercase; }
+    .matrix .row-name { font-weight: 600; }
+    .matrix .effect { font-family: "IBM Plex Mono", monospace; }
+    .matrix .effect.positive { color: var(--verified); }
+    .matrix .effect.negative { color: var(--risk); }
+    .mini-bar { height: 5px; margin: 7px 0 4px; background: var(--line); }
+    .mini-bar i { display: block; height: 100%; background: var(--line-dark); }
+    .mini-bar.green i { background: var(--verified); }
+    .mini-bar.red i { background: var(--risk); }
+
+    .topic-insights { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-dark); }
+    .insight-column { min-height: 164px; padding: 14px 16px; border-right: 1px solid var(--line); }
+    .insight-column:last-child { border-right: 0; }
+    .insight-column small { color: var(--muted); font-size: 9px; }
+    .insight-column h3 { margin: 7px 0 10px; font-size: 14px; }
+    .insight-column ul { margin: 0; padding-left: 16px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .insight-column.verified { border-top: 3px solid var(--verified); }
+    .insight-column.neutral { border-top: 3px solid var(--line-dark); }
+    .insight-column.risk { border-top: 3px solid var(--risk); }
+
+    .sample-card { display: grid; grid-template-columns: 46px 1fr; gap: 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+    .thumb { height: 54px; display: grid; place-items: center; color: #c9c5bc; background: #3b3b35; font-size: 9px; }
+    .sample-card b { display: block; font-size: 11px; }
+    .sample-card span { color: var(--muted); font-size: 9px; }
+
+    .creator-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(112px, 1fr));
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line-dark);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .creator-node { position: relative; min-height: 118px; padding: 12px; border: 1px solid #5f5c55; }
+    .creator-node::after { content: ""; position: absolute; right: -13px; top: 50%; width: 13px; height: 1px; background: var(--hypothesis); }
+    .creator-node:last-child::after { display: none; }
+    .creator-node small { color: #a9a59b; font-size: 9px; }
+    .creator-node b { display: block; margin: 9px 0 7px; font-size: 15px; }
+    .creator-node p { margin: 0; color: #c8c3b8; font-size: 10px; line-height: 1.4; }
+    .creator-node.muted { border-style: dashed; }
+
+    .creator-body { display: grid; grid-template-columns: 1.35fr .85fr; }
+    .pillar-panel { border-right: 1px solid var(--line-dark); }
+    .pillar-table { padding: 0 16px 16px; }
+    .pillar-row { display: grid; grid-template-columns: 1.4fr 72px 90px 88px; align-items: center; min-height: 54px; border-bottom: 1px solid var(--line); font-size: 10px; }
+    .pillar-row.head { min-height: 34px; color: var(--muted); }
+    .pillar-name b { display: block; font-size: 12px; }
+    .pillar-name span { color: var(--muted); font-size: 9px; }
+    .coverage { height: 7px; margin-right: 12px; background: var(--line); }
+    .coverage i { display: block; height: 100%; background: var(--verified); }
+    .pending { color: var(--hypothesis); }
+
+    .grammar-panel { min-width: 0; }
+    .grammar-wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 14px 15px; }
+    .grammar-card { min-width: 0; }
+    .grammar-image { aspect-ratio: 3 / 4; position: relative; overflow: hidden; background: #33342f; border: 1px solid #20201c; }
+    .grammar-image i { position: absolute; display: block; border: 1px solid #aaa398; }
+    .grammar-image i:first-child { width: 54%; height: 23%; left: 9%; top: 10%; background: #d7d0c1; }
+    .grammar-image i:last-child { width: 72%; height: 42%; left: 14%; bottom: 9%; background: #b7653f; }
+    .grammar-card b { display: block; margin-top: 7px; font-size: 10px; }
+    .grammar-card span { color: var(--muted); font-size: 9px; }
+
+    .creator-actions { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-dark); }
+    .creator-action { min-height: 132px; padding: 14px 16px; border-right: 1px solid var(--line); }
+    .creator-action:last-child { border-right: 0; }
+    .creator-action small { color: var(--muted); font-size: 9px; }
+    .creator-action h3 { margin: 7px 0; font-size: 14px; }
+    .creator-action p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
+    .creator-action.copy { border-top: 3px solid var(--verified); }
+    .creator-action.dependency { border-top: 3px solid var(--risk); }
+    .creator-action.difference { border-top: 3px solid var(--hypothesis); }
+
+    .empty-evidence { padding: 18px 16px; border-bottom: 1px solid var(--line); }
+    .empty-evidence b { display: block; margin-bottom: 7px; font-size: 14px; }
+    .empty-evidence p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .source-note { margin-top: 12px; padding: 10px; background: var(--white); border: 1px solid var(--line); font-size: 10px; }
+
+    @media (max-width: 1180px) {
+      :root { --evidence: 300px; }
+      .preview-bar { grid-template-columns: 1fr; gap: 8px; }
+      .preview-title, .preview-note { display: none; }
+      .preview-tabs { justify-self: stretch; }
+      .preview-tabs button { flex: 1; min-width: 0; }
+      .verdict-strip { grid-template-columns: 1.6fr repeat(3, .7fr); }
+      .single-body { grid-template-columns: 1fr; }
+      .media-stage { border-right: 0; border-bottom: 1px solid var(--line-dark); }
+      .creator-body { grid-template-columns: 1fr; }
+      .pillar-panel { border-right: 0; border-bottom: 1px solid var(--line-dark); }
+    }
+
+    @media (max-width: 980px) {
+      :root { --rail: 54px; }
+      .frame-wrap { padding: 10px; }
+      .analysis-grid { grid-template-columns: 1fr; }
+      .canvas { border-right: 0; }
+      .evidence-panel { border-top: 2px solid var(--ink); }
+      .project-head { grid-template-columns: 1fr; }
+      .project-state { text-align: left; }
+      .project-state .state-line { justify-content: flex-start; }
+      .verdict-strip, .sample-strip { grid-template-columns: repeat(2, 1fr); }
+      .verdict-main, .sample-summary { grid-column: 1 / -1; }
+      .creator-map { grid-template-columns: repeat(2, 1fr); }
+      .creator-node::after { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .screen.active { grid-template-columns: 1fr; }
+      .rail { display: none; }
+      .topbar { grid-template-columns: 1fr; height: auto; padding: 10px 12px; }
+      .top-actions { display: none; }
+      .project-head, .mode-nav { padding-left: 12px; padding-right: 12px; }
+      .verdict-strip, .sample-strip { grid-template-columns: 1fr; }
+      .single-body { grid-template-columns: 1fr; }
+      .media-content { grid-template-columns: 110px 1fr; }
+      .chain { grid-template-columns: 1fr; }
+      .chain-step { border-right: 1px solid var(--line); border-bottom: 0; }
+      .chain-step:last-child { border-bottom: 1px solid var(--line); }
+      .hypothesis-row, .topic-insights, .creator-actions { grid-template-columns: 1fr; }
+      .hypothesis-card, .insight-column, .creator-action { border-right: 0; border-bottom: 1px solid var(--line); }
+      .matrix { grid-template-columns: 130px repeat(4, 92px); overflow-x: auto; }
+      .creator-map, .grammar-wall { grid-template-columns: 1fr; }
+      .pillar-row { grid-template-columns: 1fr 58px 66px 70px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="preview-bar">
+    <div class="preview-title">
+      <div class="preview-badge mono">V3</div>
+      <div><b>SIGNAL ROOM / WIREFRAME REVIEW</b><br /><span>产品确认包 · 不修改现有前端</span></div>
+    </div>
+    <nav class="preview-tabs" aria-label="选择线框图">
+      <button type="button" data-target="single" aria-selected="true">01 单帖研究台</button>
+      <button type="button" data-target="topic" aria-selected="false">02 专题对照台</button>
+      <button type="button" data-target="creator" aria-selected="false">03 博主研究台</button>
+    </nav>
+    <div class="preview-note mono"><strong>WIREFRAME DATA</strong><br />页面数据仅验证结构，不代表真实结论</div>
+  </header>
+
+  <main class="frame-wrap">
+    <section class="screen active" data-screen="single" aria-label="单帖研究台线框图">
+      <aside class="rail">
+        <div class="brand-index mono">01</div>
+        <div class="rail-nav mono">
+          <div class="rail-item active">R</div>
+          <div class="rail-item">L</div>
+          <div class="rail-item">P</div>
+          <div class="rail-item">V</div>
+        </div>
+        <div class="rail-spacer"></div>
+        <div class="rail-user mono">HH</div>
+      </aside>
+
+      <div class="app-area">
+        <div class="topbar">
+          <div class="command"><b>投递到研究台</b><span>粘贴帖子、博主主页、多条链接或研究问题</span><span class="command-key mono">⌘ K</span></div>
+          <div class="top-actions"><button class="text-button">加入专题</button><button class="outline-button">分析该博主</button><button class="solid-button verified">生成 Brief</button></div>
+        </div>
+
+        <header class="project-head">
+          <div>
+            <div class="breadcrumbs mono">研究台 / 单帖 / 小红书</div>
+            <h1>这条解释型视频为什么获得更深互动，而真实流量质量仍未闭环？</h1>
+            <div class="project-meta"><span>目标 <b>内容资产</b></span><span>主体 <b>单条帖子</b></span><span>基线 <b>作者 8 / 题材 12</b></span><span>更新 <b>今天 15:42</b></span></div>
+          </div>
+          <div class="project-state">
+            <div class="state-line"><span class="status-tag ready">分析可读</span><span class="tag">公开数据</span></div>
+            <button class="outline-button">调整研究问题</button>
+          </div>
+        </header>
+
+        <nav class="mode-nav"><span class="active">诊断</span><span>内容 X-Ray</span><span>拉片</span><span>评论需求</span><span>行动</span><span class="spacer"></span><span class="warning mono">3 项后台指标未知</span></nav>
+
+        <div class="analysis-grid">
+          <div class="canvas">
+            <section class="verdict-strip">
+              <div class="verdict-main"><small class="mono">DECISION BRIEF / 不是综合分</small><h2>公开互动支持“值得保存与讨论”，但不能证明它带来转粉或长尾。</h2><p>当前最值得复用的是“限定交付范围 + 三段递进解释”；下一条需验证封面承诺，而不是继续复制标题。</p></div>
+              <div class="metric-cell"><label>作者相对位置</label><b class="good mono">P82</b><span>收藏／点赞维度</span></div>
+              <div class="metric-cell"><label>题材相对位置</label><b class="good mono">+71%</b><span>相对题材中位</span></div>
+              <div class="metric-cell"><label>真实转粉</label><b class="unknown">未知</b><span>需要后台导入</span></div>
+            </section>
+
+            <div class="single-body">
+              <section class="media-stage">
+                <div class="section-label"><strong>真实拉片</strong><span class="mono">VIDEO / 00:42</span></div>
+                <div class="media-content">
+                  <div class="video-mock"><span class="frame-shape one"></span><span class="frame-shape two"></span></div>
+                  <div class="timeline">
+                    <div class="shot-row"><span class="shot-time mono">00:00</span><div class="shot-block hypo"><b>钩子：否定常见做法</b>建立认知冲突</div></div>
+                    <div class="shot-row"><span class="shot-time mono">00:04</span><div class="shot-block"><b>问题：信息堆叠</b>给出错误范式</div></div>
+                    <div class="shot-row"><span class="shot-time mono">00:11</span><div class="shot-block active"><b>机制：三层解释</b>当前选中证据</div></div>
+                    <div class="shot-row"><span class="shot-time mono">00:27</span><div class="shot-block"><b>证明：示例对比</b>降低抽象程度</div></div>
+                    <div class="shot-row"><span class="shot-time mono">00:38</span><div class="shot-block"><b>收束：行动提示</b>引导保存复看</div></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="xray">
+                <div class="section-label"><strong>内容 X-Ray</strong><span>点击节点查看证据</span></div>
+                <div class="chain">
+                  <div class="chain-step"><small class="mono">01 AUDIENCE</small><b>知识表达者</b><p>想讲清复杂概念的人</p></div>
+                  <div class="chain-step"><small class="mono">02 JOB</small><b>降低理解成本</b><p>避免“信息越多越好”</p></div>
+                  <div class="chain-step"><small class="mono">03 PROMISE</small><b>只做三层</b><p>限定范围与交付预期</p></div>
+                  <div class="chain-step"><small class="mono">04 PROOF</small><b>结构对比</b><p>证据强度待核查</p></div>
+                  <div class="chain-step"><small class="mono">05 RESPONSE</small><b>保存与追问</b><p>评论样本方向信号</p></div>
+                </div>
+                <div class="script-map">
+                  <div class="script-row"><label>标题／封面</label><p>认知冲突 + 数字限定</p><span class="mono">假设</span></div>
+                  <div class="script-row"><label>开头 0–4s</label><p>直接否定用户正在做的事</p><span class="mono">观察</span></div>
+                  <div class="script-row"><label>主体 4–27s</label><p>错误示范 → 三层机制 → 应用方式</p><span class="mono">事实</span></div>
+                  <div class="script-row"><label>证明 27–38s</label><p>案例对比，但外部证据不足</p><span class="mono">混合</span></div>
+                  <div class="script-row"><label>CTA 38–42s</label><p>把结构转成可复看清单</p><span class="mono">事实</span></div>
+                </div>
+              </section>
+            </div>
+
+            <section class="hypothesis-row">
+              <article class="hypothesis-card orange"><small class="mono">PLAUSIBLE MECHANISM</small><h3>数字限定降低了预期理解成本</h3><p>需用同作者、相近题材的非数字标题作为反例验证，当前不能称为因果。</p></article>
+              <article class="hypothesis-card red"><small class="mono">COUNTER EVIDENCE</small><h3>高收藏可能来自题材，而非结构</h3><p>需要比较 DeepSeek／AI 工具等同类高实用题材。</p></article>
+              <article class="hypothesis-card green"><small class="mono">NEXT TEST</small><h3>保持脚本，替换封面承诺</h3><p>主要指标：收藏／点赞；守护指标：评论问题质量。</p></article>
+            </section>
+          </div>
+
+          <aside class="evidence-panel">
+            <div class="evidence-head"><small class="mono">EVIDENCE INSPECTOR / E-014</small><h2>“三层机制”脚本段</h2></div>
+            <div class="evidence-meta"><div><small>类型</small><b>转录 + 镜头</b></div><div><small>来源</small><b>公开内容</b></div></div>
+            <div class="evidence-block"><div class="type mono"><span>TRANSCRIPT</span><span>00:11–00:27</span></div><blockquote>第一层先给结论，第二层解释原因，第三层才补充细节……</blockquote></div>
+            <div class="evidence-block"><div class="type mono"><span>CALCULATION</span><span>可审计</span></div><p><b>收藏／点赞：</b>收藏数 ÷ 点赞数。当前值高于作者与题材样本中位；不能替代真实留存。</p></div>
+            <div class="evidence-block"><div class="type mono"><span>COMMENT SAMPLE</span><span>8 / 12</span></div><p>样本中出现继续交付、实践或追问意图。评论排序偏差使其只能作为方向信号。</p></div>
+            <div class="evidence-block risk"><div class="type mono"><span>LIMITATION</span><span>OWNER DATA</span></div><blockquote>缺少流量来源、逐秒留存和转粉数据，无法闭环“真实流量质量”。</blockquote></div>
+            <div class="evidence-footer"><button class="outline-button">修正判断</button><button class="solid-button">保存为模型</button></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="topic" aria-label="专题对照台线框图">
+      <aside class="rail">
+        <div class="brand-index mono">02</div>
+        <div class="rail-nav mono"><div class="rail-item active">R</div><div class="rail-item">L</div><div class="rail-item">P</div><div class="rail-item">V</div></div>
+        <div class="rail-spacer"></div><div class="rail-user mono">HH</div>
+      </aside>
+
+      <div class="app-area">
+        <div class="topbar">
+          <div class="command"><b>投递到「DeepSeek 内容研究」</b><span>粘贴更多链接，或从样本库选择</span><span class="command-key mono">24 样本</span></div>
+          <div class="top-actions"><button class="text-button">编辑样本</button><button class="outline-button">调整分组</button><button class="solid-button verified">生成选题组</button></div>
+        </div>
+
+        <header class="project-head">
+          <div>
+            <div class="breadcrumbs mono">研究台 / 专题 / DEEPSEEK</div>
+            <h1>DeepSeek 内容中，什么真正区分“值得收藏”与“不符合预期”？</h1>
+            <div class="project-meta"><span>目标 <b>内容资产</b></span><span>平台 <b>小红书</b></span><span>窗口 <b>发布后 7 天</b></span><span>规则 <b>同体量分层</b></span></div>
+          </div>
+          <div class="project-state"><div class="state-line"><span class="status-tag draft">探索模式</span><span class="tag">示例结构</span></div><button class="outline-button">查看可比性规则</button></div>
+        </header>
+
+        <nav class="mode-nav"><span class="active">表现地图</span><span>赢家 vs 低表现</span><span>内容聚类</span><span>机会地图</span><span>样本</span><span class="spacer"></span><span class="warning mono">4 条样本观察窗口不齐</span></nav>
+
+        <div class="analysis-grid">
+          <div class="canvas">
+            <section class="sample-strip">
+              <div class="sample-summary"><small class="mono">COHORT DEFINITION / 非真实数据</small><b>按作者基线提升与收藏深度分组</b></div>
+              <div class="cohort winner"><label>赢家组</label><b class="mono">06</b><span>Top 25%</span></div>
+              <div class="cohort middle"><label>中位组</label><b class="mono">10</b><span>可比样本</span></div>
+              <div class="cohort low"><label>低表现组</label><b class="mono">04</b><span>Bottom 25%</span></div>
+              <div class="cohort excluded"><label>暂时排除</label><b class="mono">04</b><span>窗口／字段不齐</span></div>
+            </section>
+
+            <section class="matrix-wrap">
+              <div class="matrix-title"><div><span class="mono">DISTINGUISHING MATRIX</span><h2>哪些维度可能真正拉开差距</h2></div><span>点击任一格查看代表帖与反例</span></div>
+              <div class="matrix">
+                <div class="head">分析维度</div><div class="head">赢家组</div><div class="head">中位组</div><div class="head">低表现组</div><div class="head">区分力</div>
+                <div class="row-name">承诺具体程度</div><div><div class="mini-bar green"><i style="width:84%"></i></div>高覆盖</div><div><div class="mini-bar"><i style="width:55%"></i></div>中等</div><div><div class="mini-bar red"><i style="width:31%"></i></div>较低</div><div class="effect positive">待验证 +</div>
+                <div class="row-name">结果／过程演示</div><div><div class="mini-bar green"><i style="width:76%"></i></div>高覆盖</div><div><div class="mini-bar"><i style="width:44%"></i></div>中等</div><div><div class="mini-bar red"><i style="width:26%"></i></div>较低</div><div class="effect positive">待验证 +</div>
+                <div class="row-name">标题含 DeepSeek</div><div><div class="mini-bar"><i style="width:82%"></i></div>常见</div><div><div class="mini-bar"><i style="width:79%"></i></div>常见</div><div><div class="mini-bar"><i style="width:84%"></i></div>常见</div><div class="effect">无区分力</div>
+                <div class="row-name">面向明确人群</div><div><div class="mini-bar green"><i style="width:69%"></i></div>较高</div><div><div class="mini-bar"><i style="width:48%"></i></div>中等</div><div><div class="mini-bar red"><i style="width:35%"></i></div>较低</div><div class="effect positive">探索 +</div>
+                <div class="row-name">信息密度</div><div><div class="mini-bar"><i style="width:66%"></i></div>混合</div><div><div class="mini-bar"><i style="width:61%"></i></div>混合</div><div><div class="mini-bar"><i style="width:58%"></i></div>混合</div><div class="effect">不稳定</div>
+                <div class="row-name">作者体量</div><div><div class="mini-bar"><i style="width:73%"></i></div>偏高</div><div><div class="mini-bar"><i style="width:50%"></i></div>中等</div><div><div class="mini-bar"><i style="width:38%"></i></div>偏低</div><div class="effect negative">混杂因素</div>
+              </div>
+            </section>
+
+            <section class="topic-insights">
+              <article class="insight-column verified"><small class="mono">POSSIBLE DIFFERENTIATORS</small><h3>可能区分赢家的因素</h3><ul><li>承诺对应明确结果或可执行任务</li><li>画面真正演示过程，而非只说结论</li><li>需检查作者体量控制后的稳定性</li></ul></article>
+              <article class="insight-column neutral"><small class="mono">NON-DIFFERENTIATORS</small><h3>常见但可能无区分力</h3><ul><li>仅在标题中出现 DeepSeek</li><li>单纯提高信息密度</li><li>使用“效率提升”等泛化词</li></ul></article>
+              <article class="insight-column risk"><small class="mono">CONFOUNDERS / UNKNOWNS</small><h3>混杂因素与未知</h3><ul><li>作者体量分布仍不均衡</li><li>4 条内容观察窗口不足 7 天</li><li>没有搜索流量和真实转粉数据</li></ul></article>
+            </section>
+
+            <section class="hypothesis-row">
+              <article class="hypothesis-card green"><small class="mono">CONTENT GAP 01</small><h3>面向具体岗位的任务清单</h3><p>例如运营、编导或销售各自如何使用；需要真实样本验证。</p></article>
+              <article class="hypothesis-card orange"><small class="mono">CONTENT GAP 02</small><h3>失败过程与边界条件</h3><p>多数候选样本只展示成功结果，反向案例可能形成差异。</p></article>
+              <article class="hypothesis-card red"><small class="mono">AVOID</small><h3>只追热点词，不提供可见结果</h3><p>当前只是探索判断，必须随样本更新。</p></article>
+            </section>
+          </div>
+
+          <aside class="evidence-panel">
+            <div class="evidence-head"><small class="mono">DIMENSION INSPECTOR / D-003</small><h2>承诺具体程度</h2></div>
+            <div class="evidence-meta"><div><small>样本覆盖</small><b>20 / 24</b></div><div><small>状态</small><b>探索观察</b></div></div>
+            <div class="evidence-block"><div class="type mono"><span>WINNER EXAMPLE</span><span>A07</span></div><div class="sample-card"><div class="thumb mono">A07</div><div><b>具体岗位 + 明确交付</b><span>示例卡片，非真实帖子</span></div></div></div>
+            <div class="evidence-block"><div class="type mono"><span>UNDERPERFORMER</span><span>A18</span></div><div class="sample-card"><div class="thumb mono">A18</div><div><b>热点概述 + 泛化收益</b><span>示例卡片，非真实帖子</span></div></div></div>
+            <div class="evidence-block risk"><div class="type mono"><span>COUNTER EXAMPLE</span><span>A11</span></div><p>存在承诺具体但表现普通的反例；可能受作者体量、封面或发布时间影响。</p></div>
+            <div class="evidence-block"><div class="type mono"><span>METHOD</span><span>可审计</span></div><p>显示分组规则、维度标注规则、组内覆盖率和排除样本，不输出单一相关系数冒充因果。</p></div>
+            <div class="evidence-footer"><button class="outline-button">查看全部样本</button><button class="solid-button">保存为假设</button></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="creator" aria-label="博主研究台线框图">
+      <aside class="rail">
+        <div class="brand-index mono">03</div>
+        <div class="rail-nav mono"><div class="rail-item active">R</div><div class="rail-item">L</div><div class="rail-item">P</div><div class="rail-item">V</div></div>
+        <div class="rail-spacer"></div><div class="rail-user mono">HH</div>
+      </aside>
+
+      <div class="app-area">
+        <div class="topbar">
+          <div class="command"><b>博主研究</b><span>粘贴主页链接，或从一条帖子进入对应博主</span><span class="command-key mono">PROFILE</span></div>
+          <div class="top-actions"><button class="text-button">加入关注</button><button class="outline-button">创建对照博主</button><button class="solid-button verified">生成起号 Brief</button></div>
+        </div>
+
+        <header class="project-head">
+          <div>
+            <div class="breadcrumbs mono">研究台 / 博主 / 小红书</div>
+            <h1>人类最强编导｜这个账号如何构建内容系统，哪些能力可用于起号？</h1>
+            <div class="project-meta"><span>主页 <b>xhslink.cn/m/6Qx…</b></span><span>用户提供 <b>30.9 万赞藏（待验证）</b></span><span>样本 <b>待真实采集</b></span><span>更新 <b>尚未开始</b></span></div>
+          </div>
+          <div class="project-state"><div class="state-line"><span class="status-tag blocked">等待采集</span><span class="tag">真实目标</span></div><button class="outline-button">检查小红书连接</button></div>
+        </header>
+
+        <nav class="mode-nav"><span class="active">账号操作系统</span><span>内容支柱</span><span>表达系统</span><span>表现结构</span><span>起号决策</span><span class="spacer"></span><span class="warning mono">结论区在采集前锁定</span></nav>
+
+        <div class="analysis-grid">
+          <div class="canvas">
+            <section class="creator-map">
+              <div class="creator-node muted"><small class="mono">01 AUDIENCE</small><b>服务谁</b><p>从评论、简介与内容样本识别人群；当前待采集。</p></div>
+              <div class="creator-node muted"><small class="mono">02 JOB</small><b>解决什么任务</b><p>理解用户想提升的能力、效率或身份结果。</p></div>
+              <div class="creator-node muted"><small class="mono">03 PROMISE</small><b>账号承诺</b><p>区分明确承诺与分析者推断。</p></div>
+              <div class="creator-node muted"><small class="mono">04 SYSTEM</small><b>支柱与形式</b><p>占比、表现、稳定性、代表帖和反例。</p></div>
+              <div class="creator-node muted"><small class="mono">05 OUTCOME</small><b>用户响应</b><p>公开互动方向与后台转化严格分层。</p></div>
+            </section>
+
+            <div class="creator-body">
+              <section class="pillar-panel">
+                <div class="section-label"><strong>内容支柱矩阵</strong><span>分类名称为线框占位，待真实样本校正</span></div>
+                <div class="pillar-table">
+                  <div class="pillar-row head"><div>候选支柱</div><div>占比</div><div>表现</div><div>稳定性</div></div>
+                  <div class="pillar-row"><div class="pillar-name"><b>编导方法</b><span>样例分类／待采集</span></div><div><div class="coverage"><i style="width:72%"></i></div></div><div class="pending">待计算</div><div>待验证</div></div>
+                  <div class="pillar-row"><div class="pillar-name"><b>案例拆解</b><span>样例分类／待采集</span></div><div><div class="coverage"><i style="width:54%"></i></div></div><div class="pending">待计算</div><div>待验证</div></div>
+                  <div class="pillar-row"><div class="pillar-name"><b>行业观点</b><span>样例分类／待采集</span></div><div><div class="coverage"><i style="width:38%"></i></div></div><div class="pending">待计算</div><div>待验证</div></div>
+                  <div class="pillar-row"><div class="pillar-name"><b>课程／服务</b><span>样例分类／待采集</span></div><div><div class="coverage"><i style="width:22%"></i></div></div><div class="pending">待计算</div><div>待验证</div></div>
+                </div>
+              </section>
+
+              <section class="grammar-panel">
+                <div class="section-label"><strong>视觉语法样本墙</strong><span>真实画面帧</span></div>
+                <div class="grammar-wall">
+                  <div class="grammar-card"><div class="grammar-image"><i></i><i></i></div><b>封面承诺</b><span>标题层级／主体关系</span></div>
+                  <div class="grammar-card"><div class="grammar-image"><i></i><i></i></div><b>口播布景</b><span>景别／字幕／证据</span></div>
+                  <div class="grammar-card"><div class="grammar-image"><i></i><i></i></div><b>案例演示</b><span>过程／结果／节奏</span></div>
+                </div>
+              </section>
+            </div>
+
+            <section class="creator-actions">
+              <article class="creator-action copy"><small class="mono">REPLICABLE</small><h3>可复制能力</h3><p>采集后列出可跨账号迁移的结构、制作方法和选题系统，并关联代表帖与低表现例。</p></article>
+              <article class="creator-action dependency"><small class="mono">DEPENDENCIES</small><h3>身份与资源依赖</h3><p>明确哪些效果依赖个人履历、行业资源、课程产品或已有粉丝信任。</p></article>
+              <article class="creator-action difference"><small class="mono">DIFFERENTIATION</small><h3>差异化起号方向</h3><p>从未被满足的人群任务和内容空位出发，避免照搬外在包装。</p></article>
+            </section>
+          </div>
+
+          <aside class="evidence-panel">
+            <div class="evidence-head"><small class="mono">CREATOR EVIDENCE / PENDING</small><h2>采集前不生成博主结论</h2></div>
+            <div class="empty-evidence"><b>当前只有用户提供的主页分享文案</b><p>它可以建立目标项目，但不能证明内容支柱、受众、爆款依赖或商业路径。</p><div class="source-note mono">SOURCE INPUT<br />人类最强编导 · 30.9 万次赞与收藏<br />VERIFICATION: UNVERIFIED</div></div>
+            <div class="evidence-block"><div class="type mono"><span>COLLECTION PLAN</span><span>最低门槛</span></div><p><b>主页快照：</b>简介、粉丝、赞藏与观察时间。<br /><b>内容样本：</b>至少 12 条，覆盖不少于 3 个发布时间段。<br /><b>代表样本：</b>高表现、低表现和常规内容都必须存在。</p></div>
+            <div class="evidence-block"><div class="type mono"><span>ANALYSIS GATES</span><span>硬边界</span></div><p>样本不足时只展示探索性分类；没有后台数据时不判断转粉、留资或成交。</p></div>
+            <div class="evidence-block risk"><div class="type mono"><span>BLOCKER</span><span>XHS CONNECTION</span></div><blockquote>小红书扩展／登录未连接时，项目保留为“等待采集”，不得用演示数据替代。</blockquote></div>
+            <div class="evidence-footer"><button class="outline-button">保存目标项目</button><button class="solid-button">开始真实采集</button></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabButtons = Array.from(document.querySelectorAll("[data-target]"));
+    const screens = Array.from(document.querySelectorAll("[data-screen]"));
+
+    function showScreen(target) {
+      tabButtons.forEach((button) => button.setAttribute("aria-selected", String(button.dataset.target === target)));
+      screens.forEach((screen) => screen.classList.toggle("active", screen.dataset.screen === target));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    tabButtons.forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.target)));
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "id": "690ac8730000000004014f67",
+  "cues": [
+    {
+      "id": "CUE-001",
+      "index": 1,
+      "start": 0,
+      "end": 1.9,
+      "duration": 1.9,
+      "midpoint": 0.95,
+      "text": "这个可以帮你设计一张海报"
+    },
+    {
+      "id": "CUE-002",
+      "index": 2,
+      "start": 3.06,
+      "end": 4.85,
+      "duration": 1.79,
+      "midpoint": 3.955,
+      "text": "这个可以帮你设计logo"
+    },
+    {
+      "id": "CUE-003",
+      "index": 3,
+      "start": 5.26,
+      "end": 7.24,
+      "duration": 1.98,
+      "midpoint": 6.25,
+      "text": "这个可以帮你做一个ppt"
+    },
+    {
+      "id": "CUE-004",
+      "index": 4,
+      "start": 7.63,
+      "end": 11.73,
+      "duration": 4.1,
+      "midpoint": 9.68,
+      "text": "这个可以帮你设计一个ui，这个可以帮你设计三d手办"
+    },
+    {
+      "id": "CUE-005",
+      "index": 5,
+      "start": 12.19,
+      "end": 14.14,
+      "duration": 1.95,
+      "midpoint": 13.165,
+      "text": "这个可以帮你设计网页"
+    }
+  ]
+}

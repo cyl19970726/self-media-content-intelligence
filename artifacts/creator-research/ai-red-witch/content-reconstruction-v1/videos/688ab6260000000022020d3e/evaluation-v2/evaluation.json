@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "videoId": "688ab6260000000022020d3e",
+  "evaluationOrder": "GATE_then_JUDGE",
+  "evaluationScope": {
+    "used": [
+      "current evidence/evidence-pack.json and its referenced frames",
+      "current repaired skill-run",
+      "independent audit",
+      "canonical evaluation protocol and schema",
+      "fresh evaluator inspection of the Act-Two UI, result-player and motion contact sheets",
+      "fresh evaluator audio event rerun from the supplied source video"
+    ],
+    "excluded": [
+      "prior evaluation and discrepancy conclusions",
+      "prior reports or video-library conclusions",
+      "other candidates or evaluations",
+      "external product documentation",
+      "candidate self-reported metaGate as proof of completeness"
+    ],
+    "candidateModified": false,
+    "downstreamStatusDeclared": false
+  },
+  "gateDecision": {
+    "pass": true,
+    "rationale": "All seven independent evaluation metrics meet threshold, no semantically available carrier remains unchecked, and the independent meta-audit found no unguarded carrier, meaning change, or relationship. This independent pass does not override the separate canonical deterministic validator result, which failed 2 of 22 internal contract gates. The audit's fail_requires_correction verdict describes the source video's misleading claims; the repaired reconstruction accurately preserves and bounds those conflicts rather than repeating them as facts."
+  },
+  "deterministicGate": {
+    "pass": false,
+    "passed": 20,
+    "total": 22,
+    "failedGateIds": [
+      "full_timeline_carrier_sweep",
+      "internal_timestamp_bounds"
+    ],
+    "report": "evaluation-v2/gate-report.json",
+    "rationale": "CAR-NONSPEECH-AUDIO is semantically inspected but its modalityKeys do not contain the validator-recognized non_speech_audio form, and KU-08's 5.18-8.66 range cites OCR-00107/OCR-00108 from the later Act-Two UI interval. The candidate was not modified."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 14,
+      "denominator": 14,
+      "threshold": ">=0.85",
+      "pass": true,
+      "examples": [
+        {
+          "status": "answered",
+          "item": "The spoken/overlaid Act-One label is directly contradicted by the active Act-Two workspace and Act-Two result player."
+        },
+        {
+          "status": "answered",
+          "item": "Gen-4: Now for Image and Video / Try it now is a promotional card, not the active mode."
+        },
+        {
+          "status": "correctly_unknown",
+          "item": "The presenter-to-character driving relation, input-to-result lineage, exact operation sequence, timing, rights, and P图/批图 orthography remain unknown where the source does not establish them."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 28,
+      "denominator": 28,
+      "threshold": ">=0.90",
+      "pass": true,
+      "denominatorRule": "The independent audit was decomposed into 28 non-duplicated core facts across scope/role samples, Act-One versus Act-Two identity, Gen-4 promo status, visible inputs and result state, operation and lineage gaps, continuous motion, unsupported one-sentence editing, subtitle conflicts, audio, and authorization/access boundaries.",
+      "examples": [
+        {
+          "covered": "Act-One/Act-Two consequential conflict",
+          "evidence": [
+            "CUE-003",
+            "TARGET-0060",
+            "SRC-RESULT-PLAYER-CONTACT"
+          ],
+          "finding": "The candidate preserves the author's Act-One wording but identifies the visible active workflow and result as Act-Two."
+        },
+        {
+          "covered": "Act-Two result-player state",
+          "evidence": [
+            "TARGET-0231",
+            "SRC-RESULT-PLAYER-CONTACT"
+          ],
+          "finding": "The completed video player, Act-Two label, playback timeline, 0:19 output duration, Use frame and Restyle controls are distinguished from generation latency."
+        },
+        {
+          "covered": "Closing image-editing mismatch",
+          "evidence": [
+            "CUE-005",
+            "SRC-FINAL-MOTION-CONTACT",
+            "TARGET-0229"
+          ],
+          "finding": "Continuous character motion is covered, while prompt entry, before/after image editing, and style switching are correctly reported absent."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 40,
+      "threshold": "<=0.05",
+      "pass": true,
+      "denominatorRule": "The check covers 40 distinct structured positive propositions: one scope proposition, 27 knowledge-unit statements, and 12 explicit relation statements. Repeated report prose was not double-counted.",
+      "examples": [
+        {
+          "status": "bounded",
+          "claim": "The limited montage demonstrates motion across several curated visual styles but does not establish any-character universality."
+        },
+        {
+          "status": "bounded",
+          "claim": "The split screen suggests possible correspondence but does not prove that the presenter supplied the driving-performance file."
+        },
+        {
+          "status": "bounded",
+          "claim": "Speech and a music bed are acoustically supported; low-confidence transient labels are not promoted to confirmed sound effects."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 50,
+      "denominator": 52,
+      "threshold": ">=0.90",
+      "pass": true,
+      "denominatorRule": "All 52 unique structured evidence references were checked for existence and localization: 21 targeted frames, 20 OCR lines, 5 subtitle cues, and 6 bounded derived sources. All resolve, but OCR-00107 and OCR-00108 are outside KU-08's declared 5.18-8.66-second unit range.",
+      "examples": [
+        {
+          "reference": "TARGET-0060",
+          "time": 10.2,
+          "finding": "The active Act-Two chip and the overlaid act one text are localized in the same UI interval."
+        },
+        {
+          "reference": "TARGET-0231",
+          "time": 14.2,
+          "finding": "The completed Act-Two result player is localized immediately after the character-input segment."
+        },
+        {
+          "reference": "SRC-FINAL-MOTION-CONTACT",
+          "range": "16.333-22.467",
+          "finding": "The full closing motion interval is covered by a 0.2-second frame sequence."
+        },
+        {
+          "reference": "OCR-00107 / OCR-00108",
+          "status": "range_error",
+          "finding": "The OCR text correctly describes the later Performance UI, but KU-08's author-claim interval ends before those frames."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 11,
+      "denominator": 11,
+      "threshold": ">=0.85",
+      "pass": true,
+      "rationale": "The candidate covers every audited dependency group: driving performance with voice/gestures/facial expressions up to 30s and Record/Select asset; separate character image-or-video input; visible Generate control; missing selection/upload/click/progress/wait bridge; completed Act-Two player; playback duration versus generation time; unknown lineage from inputs to the player; unknown relationship from the player result to the later anime segment; possible but unproved presenter-driver mapping; and the absence of the prompt/before-after/style-change workflow claimed in narration.",
+      "examples": [
+        {
+          "dependency": "Performance input + Character input + Generate",
+          "status": "visible_structure_only; execution not shown"
+        },
+        {
+          "dependency": "visible input slots -> completed Act-Two player",
+          "status": "lineage unknown"
+        },
+        {
+          "dependency": "Act-Two plumber-like player result -> closing pink-haired anime motion",
+          "status": "edited adjacency only; same generation chain unknown"
+        }
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 18,
+      "denominator": 18,
+      "threshold": ">=0.90",
+      "pass": true,
+      "denominatorRule": "Material unknown opportunities were separated by decision boundary: universal role scope, exact identities, asset/likeness rights, presenter-driver mapping, sample and output lineage, selection/click/generation/wait/export operations, generation time, synchronization accuracy/latency, hidden cuts, one-sentence input mechanism, P图/批图 spelling, music/SFX provenance, access/price/account/region/support, product version, and the cause of the Act-One mislabel.",
+      "examples": [
+        {
+          "boundary": "operation and lineage",
+          "finding": "Selection, upload, Generate click, progress, wait, save/export, and input-to-output provenance remain unknown."
+        },
+        {
+          "boundary": "causality and synchronization",
+          "finding": "Visible co-motion and continuous output motion do not establish driving-file identity, frame-accurate synchronization, latency, or hidden-cut absence."
+        },
+        {
+          "boundary": "identity and authorization",
+          "finding": "Exact people/characters, source ownership, consent, copyright, likeness and character authorization remain unknown."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judgeStatus": "completed_after_gate_pass",
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "judgeRationale": {
+    "readability": "The report is clearly staged from promotional promise through UI, result player and closing output, though dense for a 22.5-second source.",
+    "knowledgePrioritization": "The Act-One/Act-Two contradiction, Gen-4 promo boundary, completed result state and missing operation/lineage bridges are placed first and kept distinct.",
+    "evidenceUsefulness": "The reconstruction supplies exact UI copy, frame-sequence evidence, bounded negative checks, subtitle conflicts and a full-track audio inspection with conservative interpretation.",
+    "executionValue": "A reader can identify the visible two-input structure and what must still be verified before treating it as a reproducible workflow; the source does not provide the missing execution itself.",
+    "compressionWithoutLoss": "No decisive audit nuance is lost, but some repeated caveats and role descriptions could be compressed."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent review covered speech, verbatim SRT, burned captions, UI/OCR, presenter picture-in-picture, multi-role motion montage, Act-Two result-player motion, closing continuous motion, layout/count, recognizable symbols, full-track non-speech audio, and bounded full-timeline negative evidence. It explicitly guarded the Act-One/Act-Two carrier conflict, Gen-4 promo-versus-active-mode distinction, player result versus generation-time distinction, edited adjacency versus input/output lineage, split-screen correspondence versus causality, opening universal promise versus one closing result, SRT/hard-caption/ASR conflicts, and technical segmentation versus semantic continuity. A fresh evaluator-side AST pass on three contiguous windows of the source independently confirmed speech and music in every window; low and unstable transient candidates were not promoted to sound-effect facts. The candidate's own metaGate was not used as proof."
+  },
+  "discrepancySummary": {
+    "materialCandidateAuditDiscrepancies": 0,
+    "deterministicContractResiduals": 2,
+    "residuals": [
+      "CAR-NONSPEECH-AUDIO modalityKeys are not machine-recognizable as the non-speech-audio carrier required by the canonical validator.",
+      "KU-08's declared interval does not contain OCR-00107/OCR-00108, even though the later UI evidence is relevant to its interpretation."
+    ],
+    "details": "The repaired candidate matches the independent audit on all material facts and uncertainty boundaries, but two deterministic internal-contract gaps remain."
+  },
+  "examples": [
+    {
+      "id": "EX-01",
+      "type": "consequential_carrier_conflict",
+      "finding": "Spoken and burned Act-One labeling is retained as an author claim, while two independent UI states identify the demonstrated workflow as Act-Two."
+    },
+    {
+      "id": "EX-02",
+      "type": "promo_not_mode",
+      "finding": "Gen-4 / Try it now is represented as a right-side promotion because the active chip and result page remain Act-Two."
+    },
+    {
+      "id": "EX-03",
+      "type": "result_state_without_lineage",
+      "finding": "A completed Act-Two video player is positively recorded without inventing the missing selection, Generate, progress, wait or provenance bridge."
+    },
+    {
+      "id": "EX-04",
+      "type": "audio_empty_gate_avoided",
+      "finding": "The full audio channel is semantically inspected; music is retained, while uncertain transient events and P图/批图 orthography remain unresolved."
+    }
+  ]
+}

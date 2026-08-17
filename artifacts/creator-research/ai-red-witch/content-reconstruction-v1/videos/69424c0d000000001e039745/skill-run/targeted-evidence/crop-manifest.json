@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-16T11:00:00+08:00",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69424c0d000000001e039745.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/69424c0d000000001e039745/skill-run/capture-protocol.json",
+  "actions": [
+    {"id": "ACT-01-OPENING-SOURCE-BOUNDARY-CROP", "frameIds": ["CROP-OPENING-001", "CROP-OPENING-002"]}
+  ],
+  "frames": [
+    {
+      "id": "CROP-OPENING-001",
+      "actionId": "ACT-01-OPENING-SOURCE-BOUNDARY-CROP",
+      "time": 0.2,
+      "frame": "crops/opening-source-0.2.jpg",
+      "carrier": "开场插入素材右侧来源限定",
+      "reason": "原全帧 OCR 未识别竖排细字，放大裁切后复核。"
+    },
+    {
+      "id": "CROP-OPENING-002",
+      "actionId": "ACT-01-OPENING-SOURCE-BOUNDARY-CROP",
+      "time": 5.7,
+      "frame": "crops/opening-source-5.7.jpg",
+      "carrier": "开场插入素材右侧潜在来源限定",
+      "reason": "比较病例素材不同段落中来源限定是否持续。"
+    }
+  ]
+}

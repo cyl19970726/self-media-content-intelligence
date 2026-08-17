@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/analyze-creator-videos/creator-corpus.schema.json",
+  "title": "Creator video corpus",
+  "type": "object",
+  "required": ["schemaVersion", "snapshotAt", "creator", "posts"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "snapshotAt": { "type": "string", "minLength": 1 },
+    "creator": {
+      "type": "object",
+      "required": ["id", "name", "platform", "profileUrl", "publicStats"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "platform": { "type": "string", "minLength": 1 },
+        "profileUrl": { "type": ["string", "null"] },
+        "bio": { "type": ["string", "null"] },
+        "publicStats": {
+          "type": "object",
+          "properties": {
+            "followers": { "type": ["number", "null"], "minimum": 0 },
+            "likesAndCollections": { "type": ["number", "null"], "minimum": 0 }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "collectionStatus": { "type": ["object", "null"], "additionalProperties": true },
+    "posts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/post" }
+    }
+  },
+  "$defs": {
+    "nullableMetric": { "type": ["number", "null"], "minimum": 0 },
+    "stringList": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "post": {
+      "type": "object",
+      "required": ["id", "title", "sourceUrl", "mediaType", "metrics", "annotations"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "sourceUrl": { "type": ["string", "null"] },
+        "mediaType": { "enum": ["video", "image", "article", "unknown"] },
+        "publishedAt": { "type": ["string", "null"] },
+        "publishedLabel": { "type": ["string", "null"] },
+        "durationSec": { "type": ["number", "null"], "minimum": 0 },
+        "postCopy": { "type": ["string", "null"] },
+        "metrics": {
+          "type": "object",
+          "required": ["likes", "collections", "comments", "shares"],
+          "properties": {
+            "likes": { "$ref": "#/$defs/nullableMetric" },
+            "collections": { "$ref": "#/$defs/nullableMetric" },
+            "comments": { "$ref": "#/$defs/nullableMetric" },
+            "shares": { "$ref": "#/$defs/nullableMetric" }
+          },
+          "additionalProperties": true
+        },
+        "annotations": {
+          "type": "object",
+          "required": ["topicTags", "formatTags", "audienceTags", "hookTypes", "proofModes", "visualPatterns", "contentMechanisms", "likelyAudienceActions", "annotationEvidence"],
+          "properties": {
+            "topicTags": { "$ref": "#/$defs/stringList" },
+            "formatTags": { "$ref": "#/$defs/stringList" },
+            "audienceTags": { "$ref": "#/$defs/stringList" },
+            "hookTypes": { "$ref": "#/$defs/stringList" },
+            "proofModes": { "$ref": "#/$defs/stringList" },
+            "visualPatterns": { "$ref": "#/$defs/stringList" },
+            "contentMechanisms": { "$ref": "#/$defs/stringList" },
+            "likelyAudienceActions": { "$ref": "#/$defs/stringList" },
+            "annotationEvidence": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "media": {
+          "type": "object",
+          "properties": {
+            "videoPath": { "type": ["string", "null"] },
+            "subtitlePath": { "type": ["string", "null"] },
+            "coverPath": { "type": ["string", "null"] }
+          },
+          "additionalProperties": true
+        },
+        "raw": { "type": ["object", "null"], "additionalProperties": true }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,21 @@
+{
+  "videoId": "6a3a5c6800000000080243f0",
+  "status": "READY_FOR_DOWNSTREAM_USE",
+  "hardGateDiscrepancies": [],
+  "nonBlockingDiscrepancies": [
+    {
+      "id": "D08-implicit",
+      "severity": "minor",
+      "auditTarget": "成片可发布→选择发布时间",
+      "candidateLocation": ["KU-11", "KU-13"],
+      "finding": "顺序可从相邻单元恢复，但 reconstruction.relations 没有直接表达这条依赖。",
+      "metricImpact": "processDependencyCompleteness=7/8 (0.875), above the 0.85 hard threshold"
+    }
+  ],
+  "strengths": [
+    "14/14 critical questions answered or correctly unknown",
+    "14/14 audited core units evidenced",
+    "11/11 unknown opportunities handled",
+    "carrier-conflict and bounded-absence handling are explicit"
+  ]
+}

@@ -1,0 +1,1724 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "generatedAt": "2026-08-15T18:58:56.823Z",
+  "video": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/media/69424c0d000000001e039745.mp4",
+  "protocol": "/Users/hhh0x/self-media/artifacts/video-content-reconstruction-eval/holdout-commercial/skill-run/capture-protocol.json",
+  "frames": [
+    {
+      "id": "TARGET-0001",
+      "actionId": "ACT-01",
+      "time": 0.2,
+      "frame": "frames/ACT-01-001.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0002",
+      "actionId": "ACT-01",
+      "time": 1,
+      "frame": "frames/ACT-01-002.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0003",
+      "actionId": "ACT-01",
+      "time": 2.5,
+      "frame": "frames/ACT-01-003.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0004",
+      "actionId": "ACT-01",
+      "time": 4.5,
+      "frame": "frames/ACT-01-004.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0005",
+      "actionId": "ACT-01",
+      "time": 5.5,
+      "frame": "frames/ACT-01-005.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0006",
+      "actionId": "ACT-01",
+      "time": 6.5,
+      "frame": "frames/ACT-01-006.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0007",
+      "actionId": "ACT-01",
+      "time": 7.3,
+      "frame": "frames/ACT-01-007.jpg",
+      "carrier": "新闻式素材、顶部病例卡、作者反应小窗与免责声明",
+      "reason": "核对病例卡的所有行、画面性质、作者小窗和健康因果边界。"
+    },
+    {
+      "id": "TARGET-0008",
+      "actionId": "ACT-02",
+      "time": 0.5,
+      "frame": "frames/ACT-02-001.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0009",
+      "actionId": "ACT-02",
+      "time": 12,
+      "frame": "frames/ACT-02-002.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0010",
+      "actionId": "ACT-02",
+      "time": 24,
+      "frame": "frames/ACT-02-003.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0011",
+      "actionId": "ACT-02",
+      "time": 38,
+      "frame": "frames/ACT-02-004.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0012",
+      "actionId": "ACT-02",
+      "time": 52,
+      "frame": "frames/ACT-02-005.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0013",
+      "actionId": "ACT-02",
+      "time": 66,
+      "frame": "frames/ACT-02-006.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0014",
+      "actionId": "ACT-02",
+      "time": 80,
+      "frame": "frames/ACT-02-007.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0015",
+      "actionId": "ACT-02",
+      "time": 92,
+      "frame": "frames/ACT-02-008.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0016",
+      "actionId": "ACT-02",
+      "time": 104,
+      "frame": "frames/ACT-02-009.jpg",
+      "carrier": "持续底部免责声明",
+      "reason": "确认免责声明原文及跨段持续性，避免把体验分享当作医疗建议。"
+    },
+    {
+      "id": "TARGET-0017",
+      "actionId": "ACT-03",
+      "time": 37.1,
+      "frame": "frames/ACT-03-001.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0018",
+      "actionId": "ACT-03",
+      "time": 37.8,
+      "frame": "frames/ACT-03-002.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0019",
+      "actionId": "ACT-03",
+      "time": 38.5,
+      "frame": "frames/ACT-03-003.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0020",
+      "actionId": "ACT-03",
+      "time": 39.5,
+      "frame": "frames/ACT-03-004.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0021",
+      "actionId": "ACT-03",
+      "time": 40.5,
+      "frame": "frames/ACT-03-005.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0022",
+      "actionId": "ACT-03",
+      "time": 41.5,
+      "frame": "frames/ACT-03-006.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0023",
+      "actionId": "ACT-03",
+      "time": 42.5,
+      "frame": "frames/ACT-03-007.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0024",
+      "actionId": "ACT-03",
+      "time": 43.2,
+      "frame": "frames/ACT-03-008.jpg",
+      "carrier": "品牌揭晓与咨询人信息/健康史UI",
+      "reason": "捕获产品命名、归属说法和进入咨询前显示的个人/健康信息字段。"
+    },
+    {
+      "id": "TARGET-0025",
+      "actionId": "ACT-04",
+      "time": 43.3,
+      "frame": "frames/ACT-04-001.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0026",
+      "actionId": "ACT-04",
+      "time": 43.8,
+      "frame": "frames/ACT-04-002.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0027",
+      "actionId": "ACT-04",
+      "time": 44.3,
+      "frame": "frames/ACT-04-003.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0028",
+      "actionId": "ACT-04",
+      "time": 44.8,
+      "frame": "frames/ACT-04-004.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0029",
+      "actionId": "ACT-04",
+      "time": 45.3,
+      "frame": "frames/ACT-04-005.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0030",
+      "actionId": "ACT-04",
+      "time": 45.8,
+      "frame": "frames/ACT-04-006.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0031",
+      "actionId": "ACT-04",
+      "time": 46.3,
+      "frame": "frames/ACT-04-007.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0032",
+      "actionId": "ACT-04",
+      "time": 46.8,
+      "frame": "frames/ACT-04-008.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0033",
+      "actionId": "ACT-04",
+      "time": 47.3,
+      "frame": "frames/ACT-04-009.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0034",
+      "actionId": "ACT-04",
+      "time": 47.8,
+      "frame": "frames/ACT-04-010.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0035",
+      "actionId": "ACT-04",
+      "time": 48.3,
+      "frame": "frames/ACT-04-011.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0036",
+      "actionId": "ACT-04",
+      "time": 48.8,
+      "frame": "frames/ACT-04-012.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0037",
+      "actionId": "ACT-04",
+      "time": 49.3,
+      "frame": "frames/ACT-04-013.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0038",
+      "actionId": "ACT-04",
+      "time": 49.8,
+      "frame": "frames/ACT-04-014.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0039",
+      "actionId": "ACT-04",
+      "time": 50.3,
+      "frame": "frames/ACT-04-015.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0040",
+      "actionId": "ACT-04",
+      "time": 50.8,
+      "frame": "frames/ACT-04-016.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0041",
+      "actionId": "ACT-04",
+      "time": 51.3,
+      "frame": "frames/ACT-04-017.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0042",
+      "actionId": "ACT-04",
+      "time": 51.8,
+      "frame": "frames/ACT-04-018.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0043",
+      "actionId": "ACT-04",
+      "time": 52.3,
+      "frame": "frames/ACT-04-019.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0044",
+      "actionId": "ACT-04",
+      "time": 52.8,
+      "frame": "frames/ACT-04-020.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0045",
+      "actionId": "ACT-04",
+      "time": 53.3,
+      "frame": "frames/ACT-04-021.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0046",
+      "actionId": "ACT-04",
+      "time": 53.8,
+      "frame": "frames/ACT-04-022.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0047",
+      "actionId": "ACT-04",
+      "time": 54.3,
+      "frame": "frames/ACT-04-023.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0048",
+      "actionId": "ACT-04",
+      "time": 54.8,
+      "frame": "frames/ACT-04-024.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0049",
+      "actionId": "ACT-04",
+      "time": 55.3,
+      "frame": "frames/ACT-04-025.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0050",
+      "actionId": "ACT-04",
+      "time": 55.8,
+      "frame": "frames/ACT-04-026.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0051",
+      "actionId": "ACT-04",
+      "time": 56.3,
+      "frame": "frames/ACT-04-027.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0052",
+      "actionId": "ACT-04",
+      "time": 56.8,
+      "frame": "frames/ACT-04-028.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0053",
+      "actionId": "ACT-04",
+      "time": 57.3,
+      "frame": "frames/ACT-04-029.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0054",
+      "actionId": "ACT-04",
+      "time": 57.8,
+      "frame": "frames/ACT-04-030.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0055",
+      "actionId": "ACT-04",
+      "time": 58.3,
+      "frame": "frames/ACT-04-031.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0056",
+      "actionId": "ACT-04",
+      "time": 58.8,
+      "frame": "frames/ACT-04-032.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0057",
+      "actionId": "ACT-04",
+      "time": 59.3,
+      "frame": "frames/ACT-04-033.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0058",
+      "actionId": "ACT-04",
+      "time": 59.8,
+      "frame": "frames/ACT-04-034.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0059",
+      "actionId": "ACT-04",
+      "time": 60.3,
+      "frame": "frames/ACT-04-035.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0060",
+      "actionId": "ACT-04",
+      "time": 60.7,
+      "frame": "frames/ACT-04-036.jpg",
+      "carrier": "疲劳与咖啡对话UI、输入气泡、长回答和追问",
+      "reason": "该段多次快速切换和滚动，小字承载原因分类、行动建议、就医提示、追问和杯数信息。"
+    },
+    {
+      "id": "TARGET-0061",
+      "actionId": "ACT-05",
+      "time": 60.7,
+      "frame": "frames/ACT-05-001.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0062",
+      "actionId": "ACT-05",
+      "time": 61.1,
+      "frame": "frames/ACT-05-002.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0063",
+      "actionId": "ACT-05",
+      "time": 61.5,
+      "frame": "frames/ACT-05-003.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0064",
+      "actionId": "ACT-05",
+      "time": 61.9,
+      "frame": "frames/ACT-05-004.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0065",
+      "actionId": "ACT-05",
+      "time": 62.3,
+      "frame": "frames/ACT-05-005.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0066",
+      "actionId": "ACT-05",
+      "time": 62.7,
+      "frame": "frames/ACT-05-006.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0067",
+      "actionId": "ACT-05",
+      "time": 63.1,
+      "frame": "frames/ACT-05-007.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0068",
+      "actionId": "ACT-05",
+      "time": 63.5,
+      "frame": "frames/ACT-05-008.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0069",
+      "actionId": "ACT-05",
+      "time": 63.9,
+      "frame": "frames/ACT-05-009.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0070",
+      "actionId": "ACT-05",
+      "time": 64.3,
+      "frame": "frames/ACT-05-010.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0071",
+      "actionId": "ACT-05",
+      "time": 64.7,
+      "frame": "frames/ACT-05-011.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0072",
+      "actionId": "ACT-05",
+      "time": 65.1,
+      "frame": "frames/ACT-05-012.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0073",
+      "actionId": "ACT-05",
+      "time": 65.5,
+      "frame": "frames/ACT-05-013.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0074",
+      "actionId": "ACT-05",
+      "time": 65.9,
+      "frame": "frames/ACT-05-014.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0075",
+      "actionId": "ACT-05",
+      "time": 66.3,
+      "frame": "frames/ACT-05-015.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0076",
+      "actionId": "ACT-05",
+      "time": 66.7,
+      "frame": "frames/ACT-05-016.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0077",
+      "actionId": "ACT-05",
+      "time": 67.1,
+      "frame": "frames/ACT-05-017.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0078",
+      "actionId": "ACT-05",
+      "time": 67.5,
+      "frame": "frames/ACT-05-018.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0079",
+      "actionId": "ACT-05",
+      "time": 67.9,
+      "frame": "frames/ACT-05-019.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0080",
+      "actionId": "ACT-05",
+      "time": 68.3,
+      "frame": "frames/ACT-05-020.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0081",
+      "actionId": "ACT-05",
+      "time": 68.7,
+      "frame": "frames/ACT-05-021.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0082",
+      "actionId": "ACT-05",
+      "time": 69.1,
+      "frame": "frames/ACT-05-022.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0083",
+      "actionId": "ACT-05",
+      "time": 69.5,
+      "frame": "frames/ACT-05-023.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0084",
+      "actionId": "ACT-05",
+      "time": 69.9,
+      "frame": "frames/ACT-05-024.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0085",
+      "actionId": "ACT-05",
+      "time": 70.3,
+      "frame": "frames/ACT-05-025.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0086",
+      "actionId": "ACT-05",
+      "time": 70.7,
+      "frame": "frames/ACT-05-026.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0087",
+      "actionId": "ACT-05",
+      "time": 71.1,
+      "frame": "frames/ACT-05-027.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0088",
+      "actionId": "ACT-05",
+      "time": 71.5,
+      "frame": "frames/ACT-05-028.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0089",
+      "actionId": "ACT-05",
+      "time": 71.9,
+      "frame": "frames/ACT-05-029.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0090",
+      "actionId": "ACT-05",
+      "time": 72.3,
+      "frame": "frames/ACT-05-030.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0091",
+      "actionId": "ACT-05",
+      "time": 72.7,
+      "frame": "frames/ACT-05-031.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0092",
+      "actionId": "ACT-05",
+      "time": 72.833,
+      "frame": "frames/ACT-05-032.jpg",
+      "carrier": "身材管理表单、参数变化、计划页和任务卡",
+      "reason": "需要区分过渡中的数值变化、最终可见参数、生成计划和结果结构。"
+    },
+    {
+      "id": "TARGET-0093",
+      "actionId": "ACT-06",
+      "time": 72.833,
+      "frame": "frames/ACT-06-001.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0094",
+      "actionId": "ACT-06",
+      "time": 73.233,
+      "frame": "frames/ACT-06-002.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0095",
+      "actionId": "ACT-06",
+      "time": 73.633,
+      "frame": "frames/ACT-06-003.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0096",
+      "actionId": "ACT-06",
+      "time": 74.033,
+      "frame": "frames/ACT-06-004.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0097",
+      "actionId": "ACT-06",
+      "time": 74.433,
+      "frame": "frames/ACT-06-005.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0098",
+      "actionId": "ACT-06",
+      "time": 74.833,
+      "frame": "frames/ACT-06-006.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0099",
+      "actionId": "ACT-06",
+      "time": 75.233,
+      "frame": "frames/ACT-06-007.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0100",
+      "actionId": "ACT-06",
+      "time": 75.633,
+      "frame": "frames/ACT-06-008.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0101",
+      "actionId": "ACT-06",
+      "time": 76.033,
+      "frame": "frames/ACT-06-009.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0102",
+      "actionId": "ACT-06",
+      "time": 76.433,
+      "frame": "frames/ACT-06-010.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0103",
+      "actionId": "ACT-06",
+      "time": 76.833,
+      "frame": "frames/ACT-06-011.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0104",
+      "actionId": "ACT-06",
+      "time": 77.233,
+      "frame": "frames/ACT-06-012.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0105",
+      "actionId": "ACT-06",
+      "time": 77.633,
+      "frame": "frames/ACT-06-013.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0106",
+      "actionId": "ACT-06",
+      "time": 78.033,
+      "frame": "frames/ACT-06-014.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0107",
+      "actionId": "ACT-06",
+      "time": 78.433,
+      "frame": "frames/ACT-06-015.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0108",
+      "actionId": "ACT-06",
+      "time": 78.833,
+      "frame": "frames/ACT-06-016.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0109",
+      "actionId": "ACT-06",
+      "time": 79.233,
+      "frame": "frames/ACT-06-017.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0110",
+      "actionId": "ACT-06",
+      "time": 79.633,
+      "frame": "frames/ACT-06-018.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0111",
+      "actionId": "ACT-06",
+      "time": 80.033,
+      "frame": "frames/ACT-06-019.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0112",
+      "actionId": "ACT-06",
+      "time": 80.433,
+      "frame": "frames/ACT-06-020.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0113",
+      "actionId": "ACT-06",
+      "time": 80.833,
+      "frame": "frames/ACT-06-021.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0114",
+      "actionId": "ACT-06",
+      "time": 81.233,
+      "frame": "frames/ACT-06-022.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0115",
+      "actionId": "ACT-06",
+      "time": 81.633,
+      "frame": "frames/ACT-06-023.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0116",
+      "actionId": "ACT-06",
+      "time": 82.033,
+      "frame": "frames/ACT-06-024.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0117",
+      "actionId": "ACT-06",
+      "time": 82.433,
+      "frame": "frames/ACT-06-025.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0118",
+      "actionId": "ACT-06",
+      "time": 82.833,
+      "frame": "frames/ACT-06-026.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0119",
+      "actionId": "ACT-06",
+      "time": 83.233,
+      "frame": "frames/ACT-06-027.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0120",
+      "actionId": "ACT-06",
+      "time": 83.633,
+      "frame": "frames/ACT-06-028.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0121",
+      "actionId": "ACT-06",
+      "time": 84.033,
+      "frame": "frames/ACT-06-029.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0122",
+      "actionId": "ACT-06",
+      "time": 84.433,
+      "frame": "frames/ACT-06-030.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0123",
+      "actionId": "ACT-06",
+      "time": 84.833,
+      "frame": "frames/ACT-06-031.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0124",
+      "actionId": "ACT-06",
+      "time": 85.233,
+      "frame": "frames/ACT-06-032.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0125",
+      "actionId": "ACT-06",
+      "time": 85.633,
+      "frame": "frames/ACT-06-033.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0126",
+      "actionId": "ACT-06",
+      "time": 86.033,
+      "frame": "frames/ACT-06-034.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0127",
+      "actionId": "ACT-06",
+      "time": 86.433,
+      "frame": "frames/ACT-06-035.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0128",
+      "actionId": "ACT-06",
+      "time": 86.833,
+      "frame": "frames/ACT-06-036.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0129",
+      "actionId": "ACT-06",
+      "time": 87.233,
+      "frame": "frames/ACT-06-037.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0130",
+      "actionId": "ACT-06",
+      "time": 87.633,
+      "frame": "frames/ACT-06-038.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0131",
+      "actionId": "ACT-06",
+      "time": 88.033,
+      "frame": "frames/ACT-06-039.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0132",
+      "actionId": "ACT-06",
+      "time": 88.433,
+      "frame": "frames/ACT-06-040.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0133",
+      "actionId": "ACT-06",
+      "time": 88.833,
+      "frame": "frames/ACT-06-041.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0134",
+      "actionId": "ACT-06",
+      "time": 89.233,
+      "frame": "frames/ACT-06-042.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0135",
+      "actionId": "ACT-06",
+      "time": 89.5,
+      "frame": "frames/ACT-06-043.jpg",
+      "carrier": "目标问卷、任务卡、生成/添加/打卡状态与情绪叠字",
+      "reason": "核对多个任务组、选择状态、任务数量和‘慢慢变好’的情绪回报。"
+    },
+    {
+      "id": "TARGET-0136",
+      "actionId": "ACT-07",
+      "time": 89.5,
+      "frame": "frames/ACT-07-001.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0137",
+      "actionId": "ACT-07",
+      "time": 89.9,
+      "frame": "frames/ACT-07-002.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0138",
+      "actionId": "ACT-07",
+      "time": 90.3,
+      "frame": "frames/ACT-07-003.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0139",
+      "actionId": "ACT-07",
+      "time": 90.7,
+      "frame": "frames/ACT-07-004.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0140",
+      "actionId": "ACT-07",
+      "time": 91.1,
+      "frame": "frames/ACT-07-005.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0141",
+      "actionId": "ACT-07",
+      "time": 91.5,
+      "frame": "frames/ACT-07-006.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0142",
+      "actionId": "ACT-07",
+      "time": 91.9,
+      "frame": "frames/ACT-07-007.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0143",
+      "actionId": "ACT-07",
+      "time": 92.3,
+      "frame": "frames/ACT-07-008.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0144",
+      "actionId": "ACT-07",
+      "time": 92.7,
+      "frame": "frames/ACT-07-009.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0145",
+      "actionId": "ACT-07",
+      "time": 93.1,
+      "frame": "frames/ACT-07-010.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0146",
+      "actionId": "ACT-07",
+      "time": 93.5,
+      "frame": "frames/ACT-07-011.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0147",
+      "actionId": "ACT-07",
+      "time": 93.9,
+      "frame": "frames/ACT-07-012.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0148",
+      "actionId": "ACT-07",
+      "time": 94.3,
+      "frame": "frames/ACT-07-013.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0149",
+      "actionId": "ACT-07",
+      "time": 94.7,
+      "frame": "frames/ACT-07-014.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0150",
+      "actionId": "ACT-07",
+      "time": 95.1,
+      "frame": "frames/ACT-07-015.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0151",
+      "actionId": "ACT-07",
+      "time": 95.5,
+      "frame": "frames/ACT-07-016.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0152",
+      "actionId": "ACT-07",
+      "time": 95.9,
+      "frame": "frames/ACT-07-017.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0153",
+      "actionId": "ACT-07",
+      "time": 96.3,
+      "frame": "frames/ACT-07-018.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0154",
+      "actionId": "ACT-07",
+      "time": 96.7,
+      "frame": "frames/ACT-07-019.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0155",
+      "actionId": "ACT-07",
+      "time": 97.1,
+      "frame": "frames/ACT-07-020.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0156",
+      "actionId": "ACT-07",
+      "time": 97.5,
+      "frame": "frames/ACT-07-021.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0157",
+      "actionId": "ACT-07",
+      "time": 97.9,
+      "frame": "frames/ACT-07-022.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0158",
+      "actionId": "ACT-07",
+      "time": 98.3,
+      "frame": "frames/ACT-07-023.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0159",
+      "actionId": "ACT-07",
+      "time": 98.7,
+      "frame": "frames/ACT-07-024.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0160",
+      "actionId": "ACT-07",
+      "time": 99.1,
+      "frame": "frames/ACT-07-025.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0161",
+      "actionId": "ACT-07",
+      "time": 99.5,
+      "frame": "frames/ACT-07-026.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0162",
+      "actionId": "ACT-07",
+      "time": 99.9,
+      "frame": "frames/ACT-07-027.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0163",
+      "actionId": "ACT-07",
+      "time": 100.3,
+      "frame": "frames/ACT-07-028.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0164",
+      "actionId": "ACT-07",
+      "time": 100.7,
+      "frame": "frames/ACT-07-029.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0165",
+      "actionId": "ACT-07",
+      "time": 101.1,
+      "frame": "frames/ACT-07-030.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0166",
+      "actionId": "ACT-07",
+      "time": 101.5,
+      "frame": "frames/ACT-07-031.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0167",
+      "actionId": "ACT-07",
+      "time": 101.9,
+      "frame": "frames/ACT-07-032.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0168",
+      "actionId": "ACT-07",
+      "time": 102.3,
+      "frame": "frames/ACT-07-033.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0169",
+      "actionId": "ACT-07",
+      "time": 102.7,
+      "frame": "frames/ACT-07-034.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0170",
+      "actionId": "ACT-07",
+      "time": 103.1,
+      "frame": "frames/ACT-07-035.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0171",
+      "actionId": "ACT-07",
+      "time": 103.5,
+      "frame": "frames/ACT-07-036.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0172",
+      "actionId": "ACT-07",
+      "time": 103.9,
+      "frame": "frames/ACT-07-037.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0173",
+      "actionId": "ACT-07",
+      "time": 104.3,
+      "frame": "frames/ACT-07-038.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0174",
+      "actionId": "ACT-07",
+      "time": 104.7,
+      "frame": "frames/ACT-07-039.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0175",
+      "actionId": "ACT-07",
+      "time": 105.1,
+      "frame": "frames/ACT-07-040.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0176",
+      "actionId": "ACT-07",
+      "time": 105.5,
+      "frame": "frames/ACT-07-041.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0177",
+      "actionId": "ACT-07",
+      "time": 105.508,
+      "frame": "frames/ACT-07-042.jpg",
+      "carrier": "快速对话UI、商业评价、金色叠字、隐私绝对承诺与CTA",
+      "reason": "该段把有限示例升级为专业、可靠和隐私承诺，需要逐项保留主张、视觉强化和未被建立的证明范围。"
+    },
+    {
+      "id": "TARGET-0178",
+      "actionId": "ACT-08",
+      "time": 0,
+      "frame": "frames/ACT-08-001.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0179",
+      "actionId": "ACT-08",
+      "time": 7,
+      "frame": "frames/ACT-08-002.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0180",
+      "actionId": "ACT-08",
+      "time": 21,
+      "frame": "frames/ACT-08-003.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0181",
+      "actionId": "ACT-08",
+      "time": 37,
+      "frame": "frames/ACT-08-004.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0182",
+      "actionId": "ACT-08",
+      "time": 52,
+      "frame": "frames/ACT-08-005.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0183",
+      "actionId": "ACT-08",
+      "time": 66,
+      "frame": "frames/ACT-08-006.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0184",
+      "actionId": "ACT-08",
+      "time": 82,
+      "frame": "frames/ACT-08-007.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0185",
+      "actionId": "ACT-08",
+      "time": 90,
+      "frame": "frames/ACT-08-008.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    },
+    {
+      "id": "TARGET-0186",
+      "actionId": "ACT-08",
+      "time": 105,
+      "frame": "frames/ACT-08-009.jpg",
+      "carrier": "非旁白音频信号",
+      "reason": "登记音频流存在与非中央信号的全局分布；捕帧脚本不能听辨音频，因此重建仅引用已执行的声道/频谱测量并保留精确类型未知。"
+    }
+  ],
+  "actions": [
+    {
+      "id": "ACT-01",
+      "frameIds": [
+        "TARGET-0001",
+        "TARGET-0002",
+        "TARGET-0003",
+        "TARGET-0004",
+        "TARGET-0005",
+        "TARGET-0006",
+        "TARGET-0007"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "frameIds": [
+        "TARGET-0008",
+        "TARGET-0009",
+        "TARGET-0010",
+        "TARGET-0011",
+        "TARGET-0012",
+        "TARGET-0013",
+        "TARGET-0014",
+        "TARGET-0015",
+        "TARGET-0016"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "frameIds": [
+        "TARGET-0017",
+        "TARGET-0018",
+        "TARGET-0019",
+        "TARGET-0020",
+        "TARGET-0021",
+        "TARGET-0022",
+        "TARGET-0023",
+        "TARGET-0024"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "frameIds": [
+        "TARGET-0025",
+        "TARGET-0026",
+        "TARGET-0027",
+        "TARGET-0028",
+        "TARGET-0029",
+        "TARGET-0030",
+        "TARGET-0031",
+        "TARGET-0032",
+        "TARGET-0033",
+        "TARGET-0034",
+        "TARGET-0035",
+        "TARGET-0036",
+        "TARGET-0037",
+        "TARGET-0038",
+        "TARGET-0039",
+        "TARGET-0040",
+        "TARGET-0041",
+        "TARGET-0042",
+        "TARGET-0043",
+        "TARGET-0044",
+        "TARGET-0045",
+        "TARGET-0046",
+        "TARGET-0047",
+        "TARGET-0048",
+        "TARGET-0049",
+        "TARGET-0050",
+        "TARGET-0051",
+        "TARGET-0052",
+        "TARGET-0053",
+        "TARGET-0054",
+        "TARGET-0055",
+        "TARGET-0056",
+        "TARGET-0057",
+        "TARGET-0058",
+        "TARGET-0059",
+        "TARGET-0060"
+      ]
+    },
+    {
+      "id": "ACT-05",
+      "frameIds": [
+        "TARGET-0061",
+        "TARGET-0062",
+        "TARGET-0063",
+        "TARGET-0064",
+        "TARGET-0065",
+        "TARGET-0066",
+        "TARGET-0067",
+        "TARGET-0068",
+        "TARGET-0069",
+        "TARGET-0070",
+        "TARGET-0071",
+        "TARGET-0072",
+        "TARGET-0073",
+        "TARGET-0074",
+        "TARGET-0075",
+        "TARGET-0076",
+        "TARGET-0077",
+        "TARGET-0078",
+        "TARGET-0079",
+        "TARGET-0080",
+        "TARGET-0081",
+        "TARGET-0082",
+        "TARGET-0083",
+        "TARGET-0084",
+        "TARGET-0085",
+        "TARGET-0086",
+        "TARGET-0087",
+        "TARGET-0088",
+        "TARGET-0089",
+        "TARGET-0090",
+        "TARGET-0091",
+        "TARGET-0092"
+      ]
+    },
+    {
+      "id": "ACT-06",
+      "frameIds": [
+        "TARGET-0093",
+        "TARGET-0094",
+        "TARGET-0095",
+        "TARGET-0096",
+        "TARGET-0097",
+        "TARGET-0098",
+        "TARGET-0099",
+        "TARGET-0100",
+        "TARGET-0101",
+        "TARGET-0102",
+        "TARGET-0103",
+        "TARGET-0104",
+        "TARGET-0105",
+        "TARGET-0106",
+        "TARGET-0107",
+        "TARGET-0108",
+        "TARGET-0109",
+        "TARGET-0110",
+        "TARGET-0111",
+        "TARGET-0112",
+        "TARGET-0113",
+        "TARGET-0114",
+        "TARGET-0115",
+        "TARGET-0116",
+        "TARGET-0117",
+        "TARGET-0118",
+        "TARGET-0119",
+        "TARGET-0120",
+        "TARGET-0121",
+        "TARGET-0122",
+        "TARGET-0123",
+        "TARGET-0124",
+        "TARGET-0125",
+        "TARGET-0126",
+        "TARGET-0127",
+        "TARGET-0128",
+        "TARGET-0129",
+        "TARGET-0130",
+        "TARGET-0131",
+        "TARGET-0132",
+        "TARGET-0133",
+        "TARGET-0134",
+        "TARGET-0135"
+      ]
+    },
+    {
+      "id": "ACT-07",
+      "frameIds": [
+        "TARGET-0136",
+        "TARGET-0137",
+        "TARGET-0138",
+        "TARGET-0139",
+        "TARGET-0140",
+        "TARGET-0141",
+        "TARGET-0142",
+        "TARGET-0143",
+        "TARGET-0144",
+        "TARGET-0145",
+        "TARGET-0146",
+        "TARGET-0147",
+        "TARGET-0148",
+        "TARGET-0149",
+        "TARGET-0150",
+        "TARGET-0151",
+        "TARGET-0152",
+        "TARGET-0153",
+        "TARGET-0154",
+        "TARGET-0155",
+        "TARGET-0156",
+        "TARGET-0157",
+        "TARGET-0158",
+        "TARGET-0159",
+        "TARGET-0160",
+        "TARGET-0161",
+        "TARGET-0162",
+        "TARGET-0163",
+        "TARGET-0164",
+        "TARGET-0165",
+        "TARGET-0166",
+        "TARGET-0167",
+        "TARGET-0168",
+        "TARGET-0169",
+        "TARGET-0170",
+        "TARGET-0171",
+        "TARGET-0172",
+        "TARGET-0173",
+        "TARGET-0174",
+        "TARGET-0175",
+        "TARGET-0176",
+        "TARGET-0177"
+      ]
+    },
+    {
+      "id": "ACT-08",
+      "frameIds": [
+        "TARGET-0178",
+        "TARGET-0179",
+        "TARGET-0180",
+        "TARGET-0181",
+        "TARGET-0182",
+        "TARGET-0183",
+        "TARGET-0184",
+        "TARGET-0185",
+        "TARGET-0186"
+      ]
+    }
+  ]
+}

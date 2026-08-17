@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 5,
+      "denominator": 6,
+      "examples": [
+        {
+          "status": "covered",
+          "auditQuestion": "Does the video prove complete privacy protection?",
+          "candidateEvidence": ["KU-11", "KU-28"],
+          "finding": "The candidate correctly treats complete privacy as an unsupported absolute claim and inventories missing controls."
+        },
+        {
+          "status": "missed",
+          "auditQuestion": "Is this a paid advertisement?",
+          "candidateEvidence": ["scopeStatement", "KU-03"],
+          "finding": "The candidate records the visible product-experience disclaimer and makes only a generic commercial-boundary statement, but never explicitly answers that payment, sponsorship, affiliate benefit, brand approval, or editorial control are unknown."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 28,
+      "denominator": 30,
+      "examples": [
+        {
+          "status": "covered",
+          "auditUnit": "Opening source boundary",
+          "candidateEvidence": ["KU-02", "SRC-CROP-OPENING"],
+          "finding": "The candidate preserves the visible qualifier that the file footage is not from the named news event."
+        },
+        {
+          "status": "missed",
+          "auditUnit": "Diagnostic framing in onboarding and consultation UI",
+          "auditEvidence": ["CLM-MED-05", "REF-HEALTH-HISTORY", "REF-FOLLOWUP"],
+          "finding": "The candidate does not record the visible phrases '获得更精准诊断' and 'AI诊室', so it misses the video's strongest diagnostic framing and its tension with the AI-reference disclaimer."
+        },
+        {
+          "status": "missed",
+          "auditUnit": "OCR-only recovery-status claim in the opening insert",
+          "auditEvidence": ["TXT-03", "REF-SHOT-005"],
+          "finding": "The candidate omits the visible claim that the student's thrombus had been removed and recovery was under way; the audit marks this claim unauthenticated."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 28,
+      "examples": [
+        {
+          "status": "supported",
+          "candidateEvidence": "KU-31",
+          "finding": "The opening-to-closing fear/trust/payoff interpretation is explicitly labeled system inference and cites both ends of the video."
+        },
+        {
+          "status": "supported",
+          "candidateEvidence": "KU-30",
+          "finding": "The negative access/price/platform claim names the inspected timeline and carriers and does not generalize beyond the video."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "status": "correct",
+          "candidateEvidence": "KU-15 / TARGET-0076 and TARGET-0080",
+          "finding": "Coffee-question and conditional-answer references localize to 56.167s and 58.167s within the audited 41.167-60.7s segment."
+        },
+        {
+          "status": "correct",
+          "candidateEvidence": "KU-21 / TARGET-0143",
+          "finding": "The reminder-versus-non-urging conflict is correctly localized to the 82.27-86.91s semantic segment; TARGET-0143 is at 86.24s."
+        },
+        {
+          "status": "correct",
+          "candidateEvidence": "KU-28 / TARGET-0213",
+          "finding": "The privacy guarantee is correctly localized to the closing at 102.76s."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 6,
+      "denominator": 6,
+      "rationale": "The candidate covers all six audited process dependencies: personal/health intake before consultation; initial fatigue query to follow-up sequence; coffee inputs to conditional result; body parameters to plan; sleep inputs to suggested tasks and visible task state; and the distinction between edited UI states and unshown clicks, generation, saving, reminders, or longitudinal outcomes."
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 13,
+      "examples": [
+        {
+          "status": "correct_unknown",
+          "candidateEvidence": ["KU-10", "KU-16"],
+          "finding": "The candidate does not assign demonstration age, height, weight, or health-history data to the presenter."
+        },
+        {
+          "status": "correct_unknown",
+          "candidateEvidence": ["KU-11", "KU-28"],
+          "finding": "Privacy controls, retention, sharing, deletion, responsibility, and remedy remain unknown."
+        },
+        {
+          "status": "missed_unknown",
+          "auditOpportunity": "Commercial relationship",
+          "finding": "Payment, sponsorship, affiliate benefit, brand approval, and editorial control are not explicitly marked unknown."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [
+      "The onboarding/chat UI's shift into explicit diagnostic framing ('获得更精准诊断', 'AI诊室') is absent from the candidate even though the same UI carrier was inspected."
+    ],
+    "unguardedRelationships": [
+      "The candidate does not connect the UI's diagnostic framing to the later '内容由AI生成仅供参考/及时就医' qualifier, leaving a consequential internal tension unguarded."
+    ],
+    "rationale": "The candidate's self-reported meta pass is rejected. Its carrier sweep is broad, but an inspected carrier still contains a critical unreported meaning and relationship: diagnostic wording in the product UI conflicts with the reference-only framing. The opening OCR-only recovery-status claim is also omitted, and commercial compensation status is not explicitly resolved as unknown."
+  },
+  "examples": [
+    {
+      "type": "strong_boundary",
+      "candidateEvidence": "KU-02/KU-04",
+      "finding": "The candidate separates the stroke narration from the visible file-footage qualifier and refuses to infer medical causation."
+    },
+    {
+      "type": "strong_conflict_capture",
+      "candidateEvidence": "KU-21",
+      "finding": "It preserves the literal conflict between '不会催你' and the UI's daily-reminder/'快去打卡' wording."
+    },
+    {
+      "type": "blocking_omission",
+      "auditEvidence": "CLM-MED-05",
+      "finding": "It omits explicit diagnostic framing and therefore misses a high-risk relation that the meta-gate must guard."
+    }
+  ],
+  "gateDisposition": {
+    "pass": false,
+    "failed": ["criticalQuestionRecall", "metaGate"],
+    "thresholdNotes": {
+      "criticalQuestionRecall": "5/6 = 0.833, below 0.85",
+      "evidenceCoverage": "28/30 = 0.933, at or above 0.90",
+      "unsupportedInference": "0/28 = 0.000, at or below 0.05",
+      "timestampAccuracy": "20/20 = 1.000, at or above 0.90",
+      "processDependencyCompleteness": "6/6 = 1.000, at or above 0.85",
+      "unknownDiscipline": "12/13 = 0.923, at or above 0.90",
+      "uncheckedChannels": "0",
+      "metaGate": "failed because an unguarded meaning change and relationship remain"
+    }
+  },
+  "judgeDisposition": {
+    "status": "not_run_due_to_failed_hard_gates",
+    "sentinelValue": 1,
+    "note": "The five numeric judge fields are schema-required sentinels, not substantive quality scores, and must not be aggregated or compared."
+  }
+}

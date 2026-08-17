@@ -1,0 +1,4056 @@
+{
+  "schemaVersion": "audio-carrier-proposals-1.0",
+  "generatedAt": "2026-08-16T13:21:57.937835+00:00",
+  "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/69f1a54500000000360023e7/audio-16k.wav",
+  "sourceSha256": "c679b959dd131f6a7777c8b3b4a696724ffdb3640ba51fb37a4b000e379ac848",
+  "durationSeconds": 2518.111188,
+  "sampleRate": 16000,
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+  "labelSpace": "AudioSet",
+  "method": {
+    "windowSeconds": 30.0,
+    "hopSeconds": 30.0,
+    "coverage": "gap-free; overlapping when hop is smaller than window",
+    "scoreTransform": "sigmoid(logits)"
+  },
+  "limitations": [
+    "Labels and scores are machine proposals, not human listening or source attribution.",
+    "Mixed-track classification does not isolate speech, music, UI sounds, or inserted-clip audio.",
+    "Absence from top labels does not prove a sound is absent.",
+    "The model cannot establish track identity, ownership, licensing, or editorial intent."
+  ],
+  "windows": [
+    {
+      "start": 0.0,
+      "end": 30.0,
+      "rms": 0.0666561,
+      "peak": 0.6297799,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.74436
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.219531
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.201059
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.173077
+        },
+        {
+          "label": "Radio",
+          "score": 0.017068
+        },
+        {
+          "label": "Clicking",
+          "score": 0.016174
+        },
+        {
+          "label": "Conversation",
+          "score": 0.013602
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.0115
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004338
+        },
+        {
+          "label": "Television",
+          "score": 0.003499
+        }
+      ]
+    },
+    {
+      "start": 30.0,
+      "end": 60.0,
+      "rms": 0.0643736,
+      "peak": 0.7088229,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.825923
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.320286
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.235966
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.199605
+        },
+        {
+          "label": "Conversation",
+          "score": 0.034852
+        },
+        {
+          "label": "Radio",
+          "score": 0.010913
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009418
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.007345
+        },
+        {
+          "label": "Gasp",
+          "score": 0.005176
+        },
+        {
+          "label": "Clicking",
+          "score": 0.00348
+        }
+      ]
+    },
+    {
+      "start": 60.0,
+      "end": 90.0,
+      "rms": 0.0684052,
+      "peak": 0.8426771,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.777406
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.103841
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.094587
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.064994
+        },
+        {
+          "label": "Smoke detector, smoke alarm",
+          "score": 0.028644
+        },
+        {
+          "label": "Bicycle bell",
+          "score": 0.023035
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013081
+        },
+        {
+          "label": "Ding",
+          "score": 0.01163
+        },
+        {
+          "label": "Conversation",
+          "score": 0.010671
+        },
+        {
+          "label": "Radio",
+          "score": 0.007736
+        }
+      ]
+    },
+    {
+      "start": 90.0,
+      "end": 120.0,
+      "rms": 0.0701625,
+      "peak": 0.6399732,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.840684
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.496717
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.458322
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.455571
+        },
+        {
+          "label": "Radio",
+          "score": 0.013578
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01098
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.004633
+        },
+        {
+          "label": "Television",
+          "score": 0.003659
+        },
+        {
+          "label": "Inside, large room or hall",
+          "score": 0.002569
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.002311
+        }
+      ]
+    },
+    {
+      "start": 120.0,
+      "end": 150.0,
+      "rms": 0.0710835,
+      "peak": 0.6568193,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.806281
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.306803
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.299306
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.20443
+        },
+        {
+          "label": "Conversation",
+          "score": 0.024882
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009703
+        },
+        {
+          "label": "Radio",
+          "score": 0.008099
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.006377
+        },
+        {
+          "label": "Clicking",
+          "score": 0.00433
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004115
+        }
+      ]
+    },
+    {
+      "start": 150.0,
+      "end": 180.0,
+      "rms": 0.0736863,
+      "peak": 0.6631672,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.845407
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.532157
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.417531
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.306832
+        },
+        {
+          "label": "Conversation",
+          "score": 0.015944
+        },
+        {
+          "label": "Radio",
+          "score": 0.010728
+        },
+        {
+          "label": "Television",
+          "score": 0.008292
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007238
+        },
+        {
+          "label": "Music",
+          "score": 0.004502
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.003384
+        }
+      ]
+    },
+    {
+      "start": 180.0,
+      "end": 210.0,
+      "rms": 0.0746673,
+      "peak": 0.7335124,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.849753
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.295998
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.269257
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.184114
+        },
+        {
+          "label": "Radio",
+          "score": 0.027737
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014566
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.0117
+        },
+        {
+          "label": "Gasp",
+          "score": 0.009035
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.008772
+        },
+        {
+          "label": "Telephone",
+          "score": 0.006014
+        }
+      ]
+    },
+    {
+      "start": 210.0,
+      "end": 240.0,
+      "rms": 0.073717,
+      "peak": 0.7575915,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.63906
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.226803
+        },
+        {
+          "label": "Conversation",
+          "score": 0.208776
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.054426
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.040918
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.022914
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.022195
+        },
+        {
+          "label": "Gasp",
+          "score": 0.009141
+        },
+        {
+          "label": "Sigh",
+          "score": 0.005505
+        },
+        {
+          "label": "Radio",
+          "score": 0.004608
+        }
+      ]
+    },
+    {
+      "start": 240.0,
+      "end": 270.0,
+      "rms": 0.0845593,
+      "peak": 0.7688223,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.781121
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.510312
+        },
+        {
+          "label": "Music",
+          "score": 0.43855
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.077482
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.041092
+        },
+        {
+          "label": "Radio",
+          "score": 0.021326
+        },
+        {
+          "label": "Clicking",
+          "score": 0.014765
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014138
+        },
+        {
+          "label": "Television",
+          "score": 0.011908
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.01054
+        }
+      ]
+    },
+    {
+      "start": 270.0,
+      "end": 300.0,
+      "rms": 0.0741154,
+      "peak": 0.7966552,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.65677
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.275454
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.126375
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.082485
+        },
+        {
+          "label": "Conversation",
+          "score": 0.018699
+        },
+        {
+          "label": "Radio",
+          "score": 0.01368
+        },
+        {
+          "label": "Sigh",
+          "score": 0.012558
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.00915
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008712
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.003909
+        }
+      ]
+    },
+    {
+      "start": 300.0,
+      "end": 330.0,
+      "rms": 0.0793578,
+      "peak": 0.7489852,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.835
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.48406
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.379303
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.311454
+        },
+        {
+          "label": "Conversation",
+          "score": 0.011845
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.007102
+        },
+        {
+          "label": "Sigh",
+          "score": 0.004832
+        },
+        {
+          "label": "Clicking",
+          "score": 0.004592
+        },
+        {
+          "label": "Radio",
+          "score": 0.004255
+        },
+        {
+          "label": "Mantra",
+          "score": 0.003293
+        }
+      ]
+    },
+    {
+      "start": 330.0,
+      "end": 360.0,
+      "rms": 0.0805304,
+      "peak": 0.6828822,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.619284
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.105574
+        },
+        {
+          "label": "Conversation",
+          "score": 0.070215
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.046908
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.046894
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.022822
+        },
+        {
+          "label": "Plop",
+          "score": 0.021863
+        },
+        {
+          "label": "Clicking",
+          "score": 0.019196
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.01766
+        },
+        {
+          "label": "Tick",
+          "score": 0.015678
+        }
+      ]
+    },
+    {
+      "start": 360.0,
+      "end": 390.0,
+      "rms": 0.0760567,
+      "peak": 0.8065737,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.851921
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.193616
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.097102
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.089905
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.028653
+        },
+        {
+          "label": "Gasp",
+          "score": 0.01096
+        },
+        {
+          "label": "Radio",
+          "score": 0.010092
+        },
+        {
+          "label": "Conversation",
+          "score": 0.008739
+        },
+        {
+          "label": "Mantra",
+          "score": 0.006887
+        },
+        {
+          "label": "Clicking",
+          "score": 0.005616
+        }
+      ]
+    },
+    {
+      "start": 390.0,
+      "end": 420.0,
+      "rms": 0.077959,
+      "peak": 0.7591479,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.710319
+        },
+        {
+          "label": "Clicking",
+          "score": 0.139345
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.057342
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.050336
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.033261
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.031696
+        },
+        {
+          "label": "Stomach rumble",
+          "score": 0.019047
+        },
+        {
+          "label": "Tick",
+          "score": 0.010859
+        },
+        {
+          "label": "Conversation",
+          "score": 0.010489
+        },
+        {
+          "label": "Heart murmur",
+          "score": 0.009508
+        }
+      ]
+    },
+    {
+      "start": 420.0,
+      "end": 450.0,
+      "rms": 0.0667948,
+      "peak": 0.6175115,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.712541
+        },
+        {
+          "label": "Stomach rumble",
+          "score": 0.304578
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.041789
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.022008
+        },
+        {
+          "label": "Radio",
+          "score": 0.019778
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.0158
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.013652
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011149
+        },
+        {
+          "label": "Clicking",
+          "score": 0.009735
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.007567
+        }
+      ]
+    },
+    {
+      "start": 450.0,
+      "end": 480.0,
+      "rms": 0.068707,
+      "peak": 0.6635029,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.700623
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.301236
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.119426
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.080877
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016784
+        },
+        {
+          "label": "Clicking",
+          "score": 0.011636
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.011322
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008815
+        },
+        {
+          "label": "Tick",
+          "score": 0.00826
+        },
+        {
+          "label": "Conversation",
+          "score": 0.007198
+        }
+      ]
+    },
+    {
+      "start": 480.0,
+      "end": 510.0,
+      "rms": 0.0639354,
+      "peak": 0.7632679,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.804479
+        },
+        {
+          "label": "Clicking",
+          "score": 0.179354
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.146061
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.048935
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.040923
+        },
+        {
+          "label": "Stomach rumble",
+          "score": 0.029962
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.024535
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01468
+        },
+        {
+          "label": "Silence",
+          "score": 0.01388
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.007469
+        }
+      ]
+    },
+    {
+      "start": 510.0,
+      "end": 540.0,
+      "rms": 0.07026,
+      "peak": 0.7917722,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.814828
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.277487
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.096126
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.072298
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019318
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01371
+        },
+        {
+          "label": "Clicking",
+          "score": 0.012369
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.007634
+        },
+        {
+          "label": "Tick",
+          "score": 0.005275
+        },
+        {
+          "label": "Radio",
+          "score": 0.005031
+        }
+      ]
+    },
+    {
+      "start": 540.0,
+      "end": 570.0,
+      "rms": 0.0667959,
+      "peak": 0.7830439,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.788004
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.30367
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.134541
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.086833
+        },
+        {
+          "label": "Clicking",
+          "score": 0.039201
+        },
+        {
+          "label": "Conversation",
+          "score": 0.025631
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.023798
+        },
+        {
+          "label": "Gasp",
+          "score": 0.007802
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.007285
+        },
+        {
+          "label": "Radio",
+          "score": 0.007066
+        }
+      ]
+    },
+    {
+      "start": 570.0,
+      "end": 600.0,
+      "rms": 0.066943,
+      "peak": 0.5625782,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.808879
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.267175
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.104994
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.070833
+        },
+        {
+          "label": "Clicking",
+          "score": 0.03049
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.028159
+        },
+        {
+          "label": "Gasp",
+          "score": 0.011087
+        },
+        {
+          "label": "Conversation",
+          "score": 0.008896
+        },
+        {
+          "label": "Writing",
+          "score": 0.005763
+        },
+        {
+          "label": "Radio",
+          "score": 0.003698
+        }
+      ]
+    },
+    {
+      "start": 600.0,
+      "end": 630.0,
+      "rms": 0.063371,
+      "peak": 0.6615192,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.728144
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.148681
+        },
+        {
+          "label": "Clicking",
+          "score": 0.085304
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.048308
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.034116
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.028654
+        },
+        {
+          "label": "Writing",
+          "score": 0.027889
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.01967
+        },
+        {
+          "label": "Tick",
+          "score": 0.015922
+        },
+        {
+          "label": "Radio",
+          "score": 0.01223
+        }
+      ]
+    },
+    {
+      "start": 630.0,
+      "end": 660.0,
+      "rms": 0.0656002,
+      "peak": 0.6030458,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.702666
+        },
+        {
+          "label": "Clicking",
+          "score": 0.106364
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.088838
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.066074
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.04172
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.035122
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.027283
+        },
+        {
+          "label": "Tick",
+          "score": 0.023823
+        },
+        {
+          "label": "Gasp",
+          "score": 0.022848
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017592
+        }
+      ]
+    },
+    {
+      "start": 660.0,
+      "end": 690.0,
+      "rms": 0.0559854,
+      "peak": 0.7459944,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.831053
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.229879
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.103031
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.068306
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.028995
+        },
+        {
+          "label": "Clicking",
+          "score": 0.020045
+        },
+        {
+          "label": "Gasp",
+          "score": 0.018351
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.011529
+        },
+        {
+          "label": "Conversation",
+          "score": 0.008487
+        },
+        {
+          "label": "Writing",
+          "score": 0.007119
+        }
+      ]
+    },
+    {
+      "start": 690.0,
+      "end": 720.0,
+      "rms": 0.0710495,
+      "peak": 0.84991,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.846927
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.346251
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.067052
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.056797
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.04245
+        },
+        {
+          "label": "Clicking",
+          "score": 0.023965
+        },
+        {
+          "label": "Conversation",
+          "score": 0.018121
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008889
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.006518
+        },
+        {
+          "label": "Tick",
+          "score": 0.005052
+        }
+      ]
+    },
+    {
+      "start": 720.0,
+      "end": 750.0,
+      "rms": 0.0677664,
+      "peak": 0.7371135,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.760822
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.127992
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.066589
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.056681
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.049829
+        },
+        {
+          "label": "Clicking",
+          "score": 0.043772
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014647
+        },
+        {
+          "label": "Gasp",
+          "score": 0.013666
+        },
+        {
+          "label": "Silence",
+          "score": 0.011164
+        },
+        {
+          "label": "Sigh",
+          "score": 0.005787
+        }
+      ]
+    },
+    {
+      "start": 750.0,
+      "end": 780.0,
+      "rms": 0.0760742,
+      "peak": 0.771569,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.739491
+        },
+        {
+          "label": "Conversation",
+          "score": 0.145187
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.110639
+        },
+        {
+          "label": "Clicking",
+          "score": 0.083457
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.07458
+        },
+        {
+          "label": "Silence",
+          "score": 0.033028
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.025741
+        },
+        {
+          "label": "Plop",
+          "score": 0.017689
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.017656
+        },
+        {
+          "label": "Sigh",
+          "score": 0.010588
+        }
+      ]
+    },
+    {
+      "start": 780.0,
+      "end": 810.0,
+      "rms": 0.0539516,
+      "peak": 0.6072573,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.728894
+        },
+        {
+          "label": "Clicking",
+          "score": 0.425206
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.108909
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.066098
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.039355
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032063
+        },
+        {
+          "label": "Sigh",
+          "score": 0.021132
+        },
+        {
+          "label": "Tick",
+          "score": 0.017491
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.012861
+        },
+        {
+          "label": "Silence",
+          "score": 0.012556
+        }
+      ]
+    },
+    {
+      "start": 810.0,
+      "end": 840.0,
+      "rms": 0.0615415,
+      "peak": 0.7246925,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.769266
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.413914
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.065919
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.047885
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015446
+        },
+        {
+          "label": "Clicking",
+          "score": 0.007072
+        },
+        {
+          "label": "Conversation",
+          "score": 0.005517
+        },
+        {
+          "label": "Radio",
+          "score": 0.005307
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.004459
+        },
+        {
+          "label": "Music",
+          "score": 0.003315
+        }
+      ]
+    },
+    {
+      "start": 840.0,
+      "end": 870.0,
+      "rms": 0.0764992,
+      "peak": 0.9485763,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.697675
+        },
+        {
+          "label": "Conversation",
+          "score": 0.181718
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.15311
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.107334
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.078448
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.03543
+        },
+        {
+          "label": "Clicking",
+          "score": 0.033207
+        },
+        {
+          "label": "Writing",
+          "score": 0.030261
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.023736
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012533
+        }
+      ]
+    },
+    {
+      "start": 870.0,
+      "end": 900.0,
+      "rms": 0.0677784,
+      "peak": 0.670217,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.804603
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.258403
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.084548
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.063839
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032875
+        },
+        {
+          "label": "Conversation",
+          "score": 0.028463
+        },
+        {
+          "label": "Clicking",
+          "score": 0.011842
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.010242
+        },
+        {
+          "label": "Gasp",
+          "score": 0.009925
+        },
+        {
+          "label": "Tick",
+          "score": 0.006252
+        }
+      ]
+    },
+    {
+      "start": 900.0,
+      "end": 930.0,
+      "rms": 0.0917833,
+      "peak": 0.9255959,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.711794
+        },
+        {
+          "label": "Stomach rumble",
+          "score": 0.249834
+        },
+        {
+          "label": "Clicking",
+          "score": 0.175943
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.029641
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.02166
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.01809
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.012379
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.004502
+        },
+        {
+          "label": "Conversation",
+          "score": 0.003673
+        },
+        {
+          "label": "Tick",
+          "score": 0.003601
+        }
+      ]
+    },
+    {
+      "start": 930.0,
+      "end": 960.0,
+      "rms": 0.1170352,
+      "peak": 0.8854335,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.883409
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.304421
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.107897
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.076171
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.040629
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01565
+        },
+        {
+          "label": "Clicking",
+          "score": 0.014617
+        },
+        {
+          "label": "Radio",
+          "score": 0.010442
+        },
+        {
+          "label": "Television",
+          "score": 0.005125
+        },
+        {
+          "label": "Writing",
+          "score": 0.004477
+        }
+      ]
+    },
+    {
+      "start": 960.0,
+      "end": 990.0,
+      "rms": 0.115613,
+      "peak": 0.928312,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.858983
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.567875
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.202495
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.089307
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.020937
+        },
+        {
+          "label": "Conversation",
+          "score": 0.015616
+        },
+        {
+          "label": "Radio",
+          "score": 0.00955
+        },
+        {
+          "label": "Clicking",
+          "score": 0.009247
+        },
+        {
+          "label": "Television",
+          "score": 0.005634
+        },
+        {
+          "label": "Telephone",
+          "score": 0.002884
+        }
+      ]
+    },
+    {
+      "start": 990.0,
+      "end": 1020.0,
+      "rms": 0.1055066,
+      "peak": 0.9527268,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.859836
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.417898
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.10963
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.053067
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014003
+        },
+        {
+          "label": "Conversation",
+          "score": 0.013474
+        },
+        {
+          "label": "Clicking",
+          "score": 0.007518
+        },
+        {
+          "label": "Radio",
+          "score": 0.006043
+        },
+        {
+          "label": "Television",
+          "score": 0.004752
+        },
+        {
+          "label": "Writing",
+          "score": 0.004123
+        }
+      ]
+    },
+    {
+      "start": 1020.0,
+      "end": 1050.0,
+      "rms": 0.1131221,
+      "peak": 0.9255043,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.862233
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.215227
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.087507
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.045761
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.031646
+        },
+        {
+          "label": "Clicking",
+          "score": 0.019901
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008032
+        },
+        {
+          "label": "Conversation",
+          "score": 0.007998
+        },
+        {
+          "label": "Writing",
+          "score": 0.007961
+        },
+        {
+          "label": "Radio",
+          "score": 0.006142
+        }
+      ]
+    },
+    {
+      "start": 1050.0,
+      "end": 1080.0,
+      "rms": 0.1152878,
+      "peak": 0.9146092,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.846755
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.371602
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.110391
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.066261
+        },
+        {
+          "label": "Conversation",
+          "score": 0.016996
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014488
+        },
+        {
+          "label": "Clicking",
+          "score": 0.009476
+        },
+        {
+          "label": "Radio",
+          "score": 0.00515
+        },
+        {
+          "label": "Television",
+          "score": 0.004496
+        },
+        {
+          "label": "Gasp",
+          "score": 0.003911
+        }
+      ]
+    },
+    {
+      "start": 1080.0,
+      "end": 1110.0,
+      "rms": 0.119515,
+      "peak": 0.9642323,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.908844
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.480761
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.136038
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.081346
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016108
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014236
+        },
+        {
+          "label": "Clicking",
+          "score": 0.006038
+        },
+        {
+          "label": "Radio",
+          "score": 0.005866
+        },
+        {
+          "label": "Television",
+          "score": 0.004226
+        },
+        {
+          "label": "Writing",
+          "score": 0.002484
+        }
+      ]
+    },
+    {
+      "start": 1110.0,
+      "end": 1140.0,
+      "rms": 0.1157014,
+      "peak": 0.9581897,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.898986
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.399611
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.164657
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.098564
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.029047
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017115
+        },
+        {
+          "label": "Clicking",
+          "score": 0.011866
+        },
+        {
+          "label": "Radio",
+          "score": 0.005234
+        },
+        {
+          "label": "Television",
+          "score": 0.004286
+        },
+        {
+          "label": "Writing",
+          "score": 0.004192
+        }
+      ]
+    },
+    {
+      "start": 1140.0,
+      "end": 1170.0,
+      "rms": 0.1139077,
+      "peak": 0.9642323,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.865108
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.381071
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.137865
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.069465
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017921
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014506
+        },
+        {
+          "label": "Clicking",
+          "score": 0.007909
+        },
+        {
+          "label": "Writing",
+          "score": 0.005258
+        },
+        {
+          "label": "Gasp",
+          "score": 0.00349
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.003433
+        }
+      ]
+    },
+    {
+      "start": 1170.0,
+      "end": 1200.0,
+      "rms": 0.120754,
+      "peak": 0.947264,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.869984
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.511859
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.144523
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.067006
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019965
+        },
+        {
+          "label": "Conversation",
+          "score": 0.013414
+        },
+        {
+          "label": "Clicking",
+          "score": 0.01078
+        },
+        {
+          "label": "Radio",
+          "score": 0.009427
+        },
+        {
+          "label": "Telephone",
+          "score": 0.006179
+        },
+        {
+          "label": "Writing",
+          "score": 0.004922
+        }
+      ]
+    },
+    {
+      "start": 1200.0,
+      "end": 1230.0,
+      "rms": 0.1181337,
+      "peak": 0.8197577,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.871058
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.453724
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.201971
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.111412
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.025076
+        },
+        {
+          "label": "Conversation",
+          "score": 0.012874
+        },
+        {
+          "label": "Clicking",
+          "score": 0.012042
+        },
+        {
+          "label": "Radio",
+          "score": 0.009181
+        },
+        {
+          "label": "Television",
+          "score": 0.004879
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.003157
+        }
+      ]
+    },
+    {
+      "start": 1230.0,
+      "end": 1260.0,
+      "rms": 0.1164691,
+      "peak": 0.872097,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.882449
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.457366
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.119716
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.069018
+        },
+        {
+          "label": "Conversation",
+          "score": 0.021383
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.02138
+        },
+        {
+          "label": "Clicking",
+          "score": 0.008789
+        },
+        {
+          "label": "Television",
+          "score": 0.004318
+        },
+        {
+          "label": "Radio",
+          "score": 0.003778
+        },
+        {
+          "label": "Writing",
+          "score": 0.002639
+        }
+      ]
+    },
+    {
+      "start": 1260.0,
+      "end": 1290.0,
+      "rms": 0.1156977,
+      "peak": 0.9528489,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.838378
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.615826
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.139111
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.071626
+        },
+        {
+          "label": "Conversation",
+          "score": 0.024399
+        },
+        {
+          "label": "Clicking",
+          "score": 0.011399
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009608
+        },
+        {
+          "label": "Radio",
+          "score": 0.004634
+        },
+        {
+          "label": "Writing",
+          "score": 0.004044
+        },
+        {
+          "label": "Television",
+          "score": 0.003112
+        }
+      ]
+    },
+    {
+      "start": 1290.0,
+      "end": 1320.0,
+      "rms": 0.1092332,
+      "peak": 0.8925748,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.884853
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.35213
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.116551
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.086255
+        },
+        {
+          "label": "Telephone",
+          "score": 0.017658
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014488
+        },
+        {
+          "label": "Clicking",
+          "score": 0.011637
+        },
+        {
+          "label": "Conversation",
+          "score": 0.010008
+        },
+        {
+          "label": "Radio",
+          "score": 0.007494
+        },
+        {
+          "label": "Television",
+          "score": 0.005873
+        }
+      ]
+    },
+    {
+      "start": 1320.0,
+      "end": 1350.0,
+      "rms": 0.0828027,
+      "peak": 0.7618335,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.862452
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.271129
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.138405
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.066196
+        },
+        {
+          "label": "Conversation",
+          "score": 0.020384
+        },
+        {
+          "label": "Clicking",
+          "score": 0.0182
+        },
+        {
+          "label": "Radio",
+          "score": 0.013745
+        },
+        {
+          "label": "Telephone",
+          "score": 0.010868
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010863
+        },
+        {
+          "label": "Writing",
+          "score": 0.005134
+        }
+      ]
+    },
+    {
+      "start": 1350.0,
+      "end": 1380.0,
+      "rms": 0.0975018,
+      "peak": 0.8375805,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.874368
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.371714
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.162019
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.059199
+        },
+        {
+          "label": "Conversation",
+          "score": 0.035015
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015249
+        },
+        {
+          "label": "Clicking",
+          "score": 0.009896
+        },
+        {
+          "label": "Writing",
+          "score": 0.00619
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.004716
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004323
+        }
+      ]
+    },
+    {
+      "start": 1380.0,
+      "end": 1410.0,
+      "rms": 0.0839831,
+      "peak": 0.764275,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.877612
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.304742
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.124149
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.117551
+        },
+        {
+          "label": "Conversation",
+          "score": 0.025156
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.022277
+        },
+        {
+          "label": "Radio",
+          "score": 0.010357
+        },
+        {
+          "label": "Clicking",
+          "score": 0.007719
+        },
+        {
+          "label": "Television",
+          "score": 0.006534
+        },
+        {
+          "label": "Writing",
+          "score": 0.004432
+        }
+      ]
+    },
+    {
+      "start": 1410.0,
+      "end": 1440.0,
+      "rms": 0.1037651,
+      "peak": 0.8104495,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.562828
+        },
+        {
+          "label": "Conversation",
+          "score": 0.182067
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.080576
+        },
+        {
+          "label": "Sigh",
+          "score": 0.037183
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.034281
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.03386
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.026615
+        },
+        {
+          "label": "Groan",
+          "score": 0.014729
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.014136
+        },
+        {
+          "label": "Gasp",
+          "score": 0.009557
+        }
+      ]
+    },
+    {
+      "start": 1440.0,
+      "end": 1470.0,
+      "rms": 0.086316,
+      "peak": 0.7406842,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.857044
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.444996
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.155314
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.063858
+        },
+        {
+          "label": "Conversation",
+          "score": 0.029098
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.010292
+        },
+        {
+          "label": "Clicking",
+          "score": 0.006497
+        },
+        {
+          "label": "Television",
+          "score": 0.004673
+        },
+        {
+          "label": "Radio",
+          "score": 0.004133
+        },
+        {
+          "label": "Writing",
+          "score": 0.003385
+        }
+      ]
+    },
+    {
+      "start": 1470.0,
+      "end": 1500.0,
+      "rms": 0.0959015,
+      "peak": 0.9334391,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.770495
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.186433
+        },
+        {
+          "label": "Conversation",
+          "score": 0.178658
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.080063
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.025899
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.021478
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014936
+        },
+        {
+          "label": "Clicking",
+          "score": 0.010588
+        },
+        {
+          "label": "Writing",
+          "score": 0.009895
+        },
+        {
+          "label": "Radio",
+          "score": 0.005499
+        }
+      ]
+    },
+    {
+      "start": 1500.0,
+      "end": 1530.0,
+      "rms": 0.0997135,
+      "peak": 0.923307,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.773124
+        },
+        {
+          "label": "Conversation",
+          "score": 0.499405
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.154857
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.122704
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.090654
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.02117
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.02049
+        },
+        {
+          "label": "Telephone",
+          "score": 0.011398
+        },
+        {
+          "label": "Writing",
+          "score": 0.009631
+        },
+        {
+          "label": "Plop",
+          "score": 0.008143
+        }
+      ]
+    },
+    {
+      "start": 1530.0,
+      "end": 1560.0,
+      "rms": 0.0842337,
+      "peak": 0.8209174,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.843297
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.502925
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.175404
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.120363
+        },
+        {
+          "label": "Clicking",
+          "score": 0.03413
+        },
+        {
+          "label": "Conversation",
+          "score": 0.019205
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.014372
+        },
+        {
+          "label": "Radio",
+          "score": 0.011981
+        },
+        {
+          "label": "Telephone",
+          "score": 0.007887
+        },
+        {
+          "label": "Television",
+          "score": 0.006502
+        }
+      ]
+    },
+    {
+      "start": 1560.0,
+      "end": 1590.0,
+      "rms": 0.0771357,
+      "peak": 0.7695242,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.76166
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.176638
+        },
+        {
+          "label": "Conversation",
+          "score": 0.078024
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.074993
+        },
+        {
+          "label": "Clicking",
+          "score": 0.048343
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.030175
+        },
+        {
+          "label": "Music",
+          "score": 0.01844
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017185
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.015996
+        },
+        {
+          "label": "Silence",
+          "score": 0.007524
+        }
+      ]
+    },
+    {
+      "start": 1590.0,
+      "end": 1620.0,
+      "rms": 0.1022118,
+      "peak": 0.8548845,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.828662
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.410594
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.14183
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.070102
+        },
+        {
+          "label": "Conversation",
+          "score": 0.020308
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.009988
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004813
+        },
+        {
+          "label": "Clicking",
+          "score": 0.004013
+        },
+        {
+          "label": "Radio",
+          "score": 0.00343
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.003358
+        }
+      ]
+    },
+    {
+      "start": 1620.0,
+      "end": 1650.0,
+      "rms": 0.1052845,
+      "peak": 0.840907,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.885755
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.347928
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.182601
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.074646
+        },
+        {
+          "label": "Conversation",
+          "score": 0.055401
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.02459
+        },
+        {
+          "label": "Television",
+          "score": 0.008117
+        },
+        {
+          "label": "Radio",
+          "score": 0.008043
+        },
+        {
+          "label": "Writing",
+          "score": 0.006678
+        },
+        {
+          "label": "Clicking",
+          "score": 0.006568
+        }
+      ]
+    },
+    {
+      "start": 1650.0,
+      "end": 1680.0,
+      "rms": 0.0902047,
+      "peak": 0.8914456,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.692635
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.279664
+        },
+        {
+          "label": "Conversation",
+          "score": 0.210944
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.077005
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.048409
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.032072
+        },
+        {
+          "label": "Clicking",
+          "score": 0.014997
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.014772
+        },
+        {
+          "label": "Sigh",
+          "score": 0.00835
+        },
+        {
+          "label": "Writing",
+          "score": 0.005768
+        }
+      ]
+    },
+    {
+      "start": 1680.0,
+      "end": 1710.0,
+      "rms": 0.1010858,
+      "peak": 0.9145482,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.707749
+        },
+        {
+          "label": "Conversation",
+          "score": 0.43754
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.174489
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.163582
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.117406
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.037328
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.024814
+        },
+        {
+          "label": "Clicking",
+          "score": 0.022965
+        },
+        {
+          "label": "Writing",
+          "score": 0.007734
+        },
+        {
+          "label": "Sigh",
+          "score": 0.006537
+        }
+      ]
+    },
+    {
+      "start": 1710.0,
+      "end": 1740.0,
+      "rms": 0.1089329,
+      "peak": 0.9626454,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.814518
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.364087
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.109887
+        },
+        {
+          "label": "Conversation",
+          "score": 0.096196
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.059148
+        },
+        {
+          "label": "Clicking",
+          "score": 0.035992
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.029748
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.008735
+        },
+        {
+          "label": "Telephone",
+          "score": 0.008659
+        },
+        {
+          "label": "Silence",
+          "score": 0.007542
+        }
+      ]
+    },
+    {
+      "start": 1740.0,
+      "end": 1770.0,
+      "rms": 0.0891451,
+      "peak": 0.7734611,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.834717
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.290063
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.151251
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.06236
+        },
+        {
+          "label": "Conversation",
+          "score": 0.026757
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015094
+        },
+        {
+          "label": "Clicking",
+          "score": 0.0137
+        },
+        {
+          "label": "Writing",
+          "score": 0.005263
+        },
+        {
+          "label": "Gasp",
+          "score": 0.003795
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.003266
+        }
+      ]
+    },
+    {
+      "start": 1770.0,
+      "end": 1800.0,
+      "rms": 0.0545473,
+      "peak": 0.9731132,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.770789
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.126599
+        },
+        {
+          "label": "Conversation",
+          "score": 0.11429
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.113163
+        },
+        {
+          "label": "Gasp",
+          "score": 0.059742
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.052472
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.050968
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.02906
+        },
+        {
+          "label": "Clicking",
+          "score": 0.024843
+        },
+        {
+          "label": "Sigh",
+          "score": 0.022264
+        }
+      ]
+    },
+    {
+      "start": 1800.0,
+      "end": 1830.0,
+      "rms": 0.0513266,
+      "peak": 0.6434217,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.778656
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.527775
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.180739
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.092703
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.013591
+        },
+        {
+          "label": "Clicking",
+          "score": 0.00964
+        },
+        {
+          "label": "Conversation",
+          "score": 0.008232
+        },
+        {
+          "label": "Sigh",
+          "score": 0.005614
+        },
+        {
+          "label": "Gasp",
+          "score": 0.005488
+        },
+        {
+          "label": "Radio",
+          "score": 0.004183
+        }
+      ]
+    },
+    {
+      "start": 1830.0,
+      "end": 1860.0,
+      "rms": 0.0551869,
+      "peak": 0.6060671,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.758321
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.528791
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.140003
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.084509
+        },
+        {
+          "label": "Conversation",
+          "score": 0.021437
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.015696
+        },
+        {
+          "label": "Clicking",
+          "score": 0.007586
+        },
+        {
+          "label": "Radio",
+          "score": 0.004502
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004391
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.00274
+        }
+      ]
+    },
+    {
+      "start": 1860.0,
+      "end": 1890.0,
+      "rms": 0.0497533,
+      "peak": 0.4853969,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.804945
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.248975
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.143521
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.08894
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.047919
+        },
+        {
+          "label": "Clicking",
+          "score": 0.041642
+        },
+        {
+          "label": "Conversation",
+          "score": 0.01032
+        },
+        {
+          "label": "Gasp",
+          "score": 0.010051
+        },
+        {
+          "label": "Silence",
+          "score": 0.007316
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.006355
+        }
+      ]
+    },
+    {
+      "start": 1890.0,
+      "end": 1920.0,
+      "rms": 0.056199,
+      "peak": 0.7626575,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.788971
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.481075
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.213457
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.106595
+        },
+        {
+          "label": "Conversation",
+          "score": 0.023807
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.016187
+        },
+        {
+          "label": "Clicking",
+          "score": 0.012947
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008326
+        },
+        {
+          "label": "Radio",
+          "score": 0.004555
+        },
+        {
+          "label": "Sigh",
+          "score": 0.004398
+        }
+      ]
+    },
+    {
+      "start": 1920.0,
+      "end": 1950.0,
+      "rms": 0.0524925,
+      "peak": 0.6345103,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.821873
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.464369
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.233475
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.135953
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.02103
+        },
+        {
+          "label": "Conversation",
+          "score": 0.015384
+        },
+        {
+          "label": "Clicking",
+          "score": 0.014426
+        },
+        {
+          "label": "Gasp",
+          "score": 0.00527
+        },
+        {
+          "label": "Radio",
+          "score": 0.004417
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.002916
+        }
+      ]
+    },
+    {
+      "start": 1950.0,
+      "end": 1980.0,
+      "rms": 0.0537223,
+      "peak": 0.597705,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.738485
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.119405
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.074833
+        },
+        {
+          "label": "Clicking",
+          "score": 0.047422
+        },
+        {
+          "label": "Heart murmur",
+          "score": 0.036076
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.034218
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.028532
+        },
+        {
+          "label": "Sigh",
+          "score": 0.013904
+        },
+        {
+          "label": "Heart sounds, heartbeat",
+          "score": 0.011183
+        },
+        {
+          "label": "Gasp",
+          "score": 0.008589
+        }
+      ]
+    },
+    {
+      "start": 1980.0,
+      "end": 2010.0,
+      "rms": 0.0468353,
+      "peak": 0.4301584,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.697088
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.357425
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.137096
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.112633
+        },
+        {
+          "label": "Sigh",
+          "score": 0.05474
+        },
+        {
+          "label": "Gasp",
+          "score": 0.023353
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.017159
+        },
+        {
+          "label": "Conversation",
+          "score": 0.009813
+        },
+        {
+          "label": "Clicking",
+          "score": 0.005987
+        },
+        {
+          "label": "Breathing",
+          "score": 0.003794
+        }
+      ]
+    },
+    {
+      "start": 2010.0,
+      "end": 2040.0,
+      "rms": 0.05217,
+      "peak": 0.671926,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.72683
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.148931
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.11651
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.089024
+        },
+        {
+          "label": "Clicking",
+          "score": 0.076651
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.038624
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012641
+        },
+        {
+          "label": "Conversation",
+          "score": 0.008953
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.008258
+        },
+        {
+          "label": "Sigh",
+          "score": 0.008015
+        }
+      ]
+    },
+    {
+      "start": 2040.0,
+      "end": 2070.0,
+      "rms": 0.0589225,
+      "peak": 0.7224647,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.685134
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.428456
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.119584
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.044193
+        },
+        {
+          "label": "Clicking",
+          "score": 0.022246
+        },
+        {
+          "label": "Conversation",
+          "score": 0.020307
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.018053
+        },
+        {
+          "label": "Gasp",
+          "score": 0.013864
+        },
+        {
+          "label": "Sigh",
+          "score": 0.010151
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.006616
+        }
+      ]
+    },
+    {
+      "start": 2070.0,
+      "end": 2100.0,
+      "rms": 0.0515738,
+      "peak": 0.6662496,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.790406
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.451394
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.133246
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.069491
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.029068
+        },
+        {
+          "label": "Conversation",
+          "score": 0.022632
+        },
+        {
+          "label": "Clicking",
+          "score": 0.008087
+        },
+        {
+          "label": "Gasp",
+          "score": 0.00707
+        },
+        {
+          "label": "Radio",
+          "score": 0.003998
+        },
+        {
+          "label": "Sigh",
+          "score": 0.003624
+        }
+      ]
+    },
+    {
+      "start": 2100.0,
+      "end": 2130.0,
+      "rms": 0.0612303,
+      "peak": 0.7611316,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.676157
+        },
+        {
+          "label": "Clicking",
+          "score": 0.198107
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.114193
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.049429
+        },
+        {
+          "label": "Tick",
+          "score": 0.033687
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.025084
+        },
+        {
+          "label": "Sigh",
+          "score": 0.015692
+        },
+        {
+          "label": "Conversation",
+          "score": 0.014974
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.014891
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.01437
+        }
+      ]
+    },
+    {
+      "start": 2130.0,
+      "end": 2160.0,
+      "rms": 0.0481261,
+      "peak": 0.6245003,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.744684
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.265914
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.110191
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.05145
+        },
+        {
+          "label": "Clicking",
+          "score": 0.048648
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.03807
+        },
+        {
+          "label": "Gasp",
+          "score": 0.017472
+        },
+        {
+          "label": "Sigh",
+          "score": 0.015549
+        },
+        {
+          "label": "Conversation",
+          "score": 0.013496
+        },
+        {
+          "label": "Silence",
+          "score": 0.007891
+        }
+      ]
+    },
+    {
+      "start": 2160.0,
+      "end": 2190.0,
+      "rms": 0.0440499,
+      "peak": 0.3913999,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.793041
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.168679
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.108321
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.075371
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.064842
+        },
+        {
+          "label": "Clicking",
+          "score": 0.039153
+        },
+        {
+          "label": "Conversation",
+          "score": 0.013765
+        },
+        {
+          "label": "Gasp",
+          "score": 0.013015
+        },
+        {
+          "label": "Mouse",
+          "score": 0.012633
+        },
+        {
+          "label": "Whistling",
+          "score": 0.00876
+        }
+      ]
+    },
+    {
+      "start": 2190.0,
+      "end": 2220.0,
+      "rms": 0.0541491,
+      "peak": 0.7733085,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.795834
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.49873
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.161785
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.077648
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.027467
+        },
+        {
+          "label": "Conversation",
+          "score": 0.012322
+        },
+        {
+          "label": "Clicking",
+          "score": 0.00859
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.002928
+        },
+        {
+          "label": "Gasp",
+          "score": 0.002923
+        },
+        {
+          "label": "Silence",
+          "score": 0.002443
+        }
+      ]
+    },
+    {
+      "start": 2220.0,
+      "end": 2250.0,
+      "rms": 0.0422234,
+      "peak": 0.5129551,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.788674
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.518772
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.201654
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.090823
+        },
+        {
+          "label": "Conversation",
+          "score": 0.021531
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.012182
+        },
+        {
+          "label": "Clicking",
+          "score": 0.008015
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.005133
+        },
+        {
+          "label": "Gasp",
+          "score": 0.003195
+        },
+        {
+          "label": "Radio",
+          "score": 0.002078
+        }
+      ]
+    },
+    {
+      "start": 2250.0,
+      "end": 2280.0,
+      "rms": 0.0522814,
+      "peak": 0.4745628,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.712375
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.648111
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.110438
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.060221
+        },
+        {
+          "label": "Conversation",
+          "score": 0.025958
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.011997
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004563
+        },
+        {
+          "label": "Sigh",
+          "score": 0.003635
+        },
+        {
+          "label": "Clicking",
+          "score": 0.003472
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.003281
+        }
+      ]
+    },
+    {
+      "start": 2280.0,
+      "end": 2310.0,
+      "rms": 0.048471,
+      "peak": 0.5391705,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.625179
+        },
+        {
+          "label": "Clicking",
+          "score": 0.111439
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.053347
+        },
+        {
+          "label": "Sigh",
+          "score": 0.049239
+        },
+        {
+          "label": "Sidetone",
+          "score": 0.032992
+        },
+        {
+          "label": "Heart murmur",
+          "score": 0.026756
+        },
+        {
+          "label": "Silence",
+          "score": 0.022087
+        },
+        {
+          "label": "Stomach rumble",
+          "score": 0.016706
+        },
+        {
+          "label": "Conversation",
+          "score": 0.00935
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.008559
+        }
+      ]
+    },
+    {
+      "start": 2310.0,
+      "end": 2340.0,
+      "rms": 0.051298,
+      "peak": 0.7347026,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.81863
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.375404
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.222773
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.109222
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.021989
+        },
+        {
+          "label": "Clicking",
+          "score": 0.01707
+        },
+        {
+          "label": "Conversation",
+          "score": 0.017054
+        },
+        {
+          "label": "Gasp",
+          "score": 0.005941
+        },
+        {
+          "label": "Writing",
+          "score": 0.003146
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.002708
+        }
+      ]
+    },
+    {
+      "start": 2340.0,
+      "end": 2370.0,
+      "rms": 0.0611496,
+      "peak": 0.5161901,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.731558
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.195661
+        },
+        {
+          "label": "Conversation",
+          "score": 0.151161
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.129734
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.128964
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.019965
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.015331
+        },
+        {
+          "label": "Sigh",
+          "score": 0.014853
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012747
+        },
+        {
+          "label": "Silence",
+          "score": 0.004858
+        }
+      ]
+    },
+    {
+      "start": 2370.0,
+      "end": 2400.0,
+      "rms": 0.061002,
+      "peak": 0.5462813,
+      "topLabels": [
+        {
+          "label": "Sigh",
+          "score": 0.513
+        },
+        {
+          "label": "Speech",
+          "score": 0.469405
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.053047
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.039017
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.037658
+        },
+        {
+          "label": "Conversation",
+          "score": 0.031802
+        },
+        {
+          "label": "Gasp",
+          "score": 0.029683
+        },
+        {
+          "label": "Clicking",
+          "score": 0.02966
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.026089
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.018309
+        }
+      ]
+    },
+    {
+      "start": 2400.0,
+      "end": 2430.0,
+      "rms": 0.0631966,
+      "peak": 0.5593432,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.710833
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.253207
+        },
+        {
+          "label": "Conversation",
+          "score": 0.194626
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.17059
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.130479
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.025897
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.021448
+        },
+        {
+          "label": "Sigh",
+          "score": 0.004836
+        },
+        {
+          "label": "Silence",
+          "score": 0.004659
+        },
+        {
+          "label": "Gasp",
+          "score": 0.003814
+        }
+      ]
+    },
+    {
+      "start": 2430.0,
+      "end": 2460.0,
+      "rms": 0.0513976,
+      "peak": 0.5554368,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.838736
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.36852
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.098019
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.05488
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.024667
+        },
+        {
+          "label": "Clicking",
+          "score": 0.01243
+        },
+        {
+          "label": "Conversation",
+          "score": 0.006879
+        },
+        {
+          "label": "Tick-tock",
+          "score": 0.005812
+        },
+        {
+          "label": "Gasp",
+          "score": 0.004733
+        },
+        {
+          "label": "Tick",
+          "score": 0.003944
+        }
+      ]
+    },
+    {
+      "start": 2460.0,
+      "end": 2490.0,
+      "rms": 0.0578358,
+      "peak": 0.5799432,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.843756
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.225374
+        },
+        {
+          "label": "Conversation",
+          "score": 0.213879
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.123805
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.073615
+        },
+        {
+          "label": "Male speech, man speaking",
+          "score": 0.046863
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.036504
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012362
+        },
+        {
+          "label": "Clicking",
+          "score": 0.012352
+        },
+        {
+          "label": "Silence",
+          "score": 0.00857
+        }
+      ]
+    },
+    {
+      "start": 2490.0,
+      "end": 2518.111,
+      "rms": 0.0863149,
+      "peak": 0.5959044,
+      "topLabels": [
+        {
+          "label": "Speech",
+          "score": 0.711738
+        },
+        {
+          "label": "Female speech, woman speaking",
+          "score": 0.170259
+        },
+        {
+          "label": "Narration, monologue",
+          "score": 0.049602
+        },
+        {
+          "label": "Conversation",
+          "score": 0.043971
+        },
+        {
+          "label": "Inside, small room",
+          "score": 0.031709
+        },
+        {
+          "label": "Sigh",
+          "score": 0.020083
+        },
+        {
+          "label": "Heart murmur",
+          "score": 0.01521
+        },
+        {
+          "label": "Speech synthesizer",
+          "score": 0.014564
+        },
+        {
+          "label": "Gasp",
+          "score": 0.012903
+        },
+        {
+          "label": "Plop",
+          "score": 0.011434
+        }
+      ]
+    }
+  ]
+}

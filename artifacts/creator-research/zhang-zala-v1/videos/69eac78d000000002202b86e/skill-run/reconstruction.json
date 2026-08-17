@@ -1,0 +1,3361 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/skill-run/capture-protocol.json",
+  "scopeStatement": "仅重建 0–247.467 秒内 Tab Out 插件演示、HTML 聊天重现和作者方法论。机器转写不是官方字幕；Type Out/Cloud/Chrome 等误识别保留，规范名需画面支持。插件当前状态、浏览历史权限、隐私、音效来源、Twitter 传播数据、服务器是否必要和公开反馈真实性不由片内单独证明。",
+  "viewerChange": {
+    "before": "观众可能以为做 AI 产品要先想出完整方案或强行加入 AI 功能。",
+    "after": "观众被引导采用另一种方法：带着真实问题而非完整方案与 AI 对话；自己负责问题和使用场景，AI 帮助提出技术解法；做出来后长期使用、公开收反馈，并把没人用的 AI 功能和服务器依赖删掉。",
+    "intendedChanges": [
+      "从先想完整产品，转向先说清真实问题",
+      "从堆 AI 能力，转向让 AI 只承担必要解法",
+      "从完成即结束，转向使用、公开、反馈和持续删减"
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/skill-run/targeted-evidence/targeted-evidence.json",
+      "kind": "targeted_visual_evidence",
+      "producedBy": "7 probe-derived capture actions over the complete semantic timeline",
+      "timeRange": {
+        "start": 0,
+        "end": 247.467
+      },
+      "limitations": [
+        "抽帧不能证明帧间连续因果",
+        "隐藏剪辑和低频动作可能位于采样间隔"
+      ]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/skill-run/targeted-evidence/ocr-evidence.json",
+      "kind": "apple_vision_ocr",
+      "producedBy": "macOS Vision OCR over 117 targeted frames; 180 lines; 0 frame failures",
+      "timeRange": {
+        "start": 0,
+        "end": 247.467
+      },
+      "limitations": [
+        "烧录字幕可能遮挡界面",
+        "OCR 小字可能误读",
+        "OCR 不证明按钮点击或任务因果"
+      ]
+    },
+    {
+      "id": "SRC-AUDIO",
+      "path": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/69eac78d000000002202b86e/skill-run/audio/audio-carrier.json",
+      "kind": "audio.non_speech_machine_proposals",
+      "producedBy": "complete mixed-track decode plus MIT AudioSet AST over gap-free windows",
+      "timeRange": {
+        "start": 0,
+        "end": 247.467
+      },
+      "limitations": [
+        "机器提议不等于人工听审",
+        "混合轨不能可靠分离声源",
+        "不能确认曲目、权利或编辑意图"
+      ]
+    }
+  ],
+  "transcript": {
+    "origin": "local machine transcription from the complete decoded source audio; not official subtitles",
+    "cues": [
+      {
+        "id": "CUE-001",
+        "start": 0,
+        "end": 2.84,
+        "text": "我最近做了一个很实用的小工具叫Type Out",
+        "representativeFrame": "frames/cues/cue-001.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-002",
+        "start": 2.84,
+        "end": 7,
+        "text": "它是一个插件可以把你Crom的New Tab这个台变成一个Landing page",
+        "representativeFrame": "frames/cues/cue-002.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-003",
+        "start": 7,
+        "end": 9.64,
+        "text": "让你很方便的看到你现在有哪些开着的Type",
+        "representativeFrame": "frames/cues/cue-003.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-004",
+        "start": 9.64,
+        "end": 11.84,
+        "text": "然后就可以一键批亮了把他们关掉",
+        "representativeFrame": "frames/cues/cue-004.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-005",
+        "start": 11.84,
+        "end": 15.4,
+        "text": "并且关的时候还会有音效和撒花",
+        "representativeFrame": "frames/cues/cue-005.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-006",
+        "start": 15.4,
+        "end": 17.44,
+        "text": "很多朋友问我这个ID是怎么来的",
+        "representativeFrame": "frames/cues/cue-006.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-007",
+        "start": 17.44,
+        "end": 19.44,
+        "text": "尤其是New Tab的这个ID",
+        "representativeFrame": "frames/cues/cue-007.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-008",
+        "start": 19.44,
+        "end": 21.44,
+        "text": "因为我觉得这个胶还是挺巧妙的",
+        "representativeFrame": "frames/cues/cue-008.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-009",
+        "start": 21.44,
+        "end": 25.04,
+        "text": "因为New Tab这个动作是我每天都会做好几十次的",
+        "representativeFrame": "frames/cues/cue-009.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-010",
+        "start": 25.04,
+        "end": 28.88,
+        "text": "然后很多以前没有想到过这个New Tab 里面可以作为一个产品的入口",
+        "representativeFrame": "frames/cues/cue-010.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-011",
+        "start": 28.88,
+        "end": 31.32,
+        "text": "然后我就去找我的Cloud Code还远了一下",
+        "representativeFrame": "frames/cues/cue-011.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-012",
+        "start": 31.32,
+        "end": 32.84,
+        "text": "我跟它聊天的记录",
+        "representativeFrame": "frames/cues/cue-012.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-013",
+        "start": 32.84,
+        "end": 36.04,
+        "text": "然后我让它用HTML大致还原了一下我们聊天的过程",
+        "representativeFrame": "frames/cues/cue-013.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-014",
+        "start": 36.04,
+        "end": 37.4,
+        "text": "顺便给大家分享一下",
+        "representativeFrame": "frames/cues/cue-014.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-015",
+        "start": 37.4,
+        "end": 39.12,
+        "text": "我是长跟Cloud的聊天状态",
+        "representativeFrame": "frames/cues/cue-015.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-016",
+        "start": 39.12,
+        "end": 42.68,
+        "text": "首先这个ID并不是我带这个完整的ID去找Cloud",
+        "representativeFrame": "frames/cues/cue-016.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-017",
+        "start": 42.68,
+        "end": 44.16,
+        "text": "我其实第一次问它的问题",
+        "representativeFrame": "frames/cues/cue-017.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-018",
+        "start": 44.16,
+        "end": 47.04,
+        "text": "就是说你是否能访问到我的Crom流览历史",
+        "representativeFrame": "frames/cues/cue-018.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-019",
+        "start": 47.04,
+        "end": 49.72,
+        "text": "然后Cloud说我的确能看到你所有流览期的历史",
+        "representativeFrame": "frames/cues/cue-019.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-020",
+        "start": 49.72,
+        "end": 50.8,
+        "text": "因为都是存在本地的",
+        "representativeFrame": "frames/cues/cue-020.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-021",
+        "start": 50.8,
+        "end": 53.56,
+        "text": "然后我就跟它说我有一个标签业管理的问题",
+        "representativeFrame": "frames/cues/cue-021.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-022",
+        "start": 53.56,
+        "end": 55.16,
+        "text": "我总是开着巨大的Type",
+        "representativeFrame": "frames/cues/cue-022.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-023",
+        "start": 55.16,
+        "end": 58.68,
+        "text": "然后不愿意关而且经常在各种Type Switching很难集中经历",
+        "representativeFrame": "frames/cues/cue-023.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-024",
+        "start": 58.68,
+        "end": 61.36,
+        "text": "然后这时候我也没有一个很具体的产品的想法",
+        "representativeFrame": "frames/cues/cue-024.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-025",
+        "start": 61.36,
+        "end": 64.12,
+        "text": "我就是说你能不能用我的流览记录做点啥",
+        "representativeFrame": "frames/cues/cue-025.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-026",
+        "start": 64.12,
+        "end": 65.88,
+        "text": "就我只是描述了问题本身",
+        "representativeFrame": "frames/cues/cue-026.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-027",
+        "start": 65.88,
+        "end": 67.72,
+        "text": "我并没有给它一个解决方案",
+        "representativeFrame": "frames/cues/cue-027.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-028",
+        "start": 67.72,
+        "end": 69.4,
+        "text": "然后它就给我提了几个ID",
+        "representativeFrame": "frames/cues/cue-028.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-029",
+        "start": 69.4,
+        "end": 70.56,
+        "text": "然后它提的这个ID",
+        "representativeFrame": "frames/cues/cue-029.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-030",
+        "start": 70.56,
+        "end": 73.88,
+        "text": "我觉得挺好的就是把流览历史具类成任务",
+        "representativeFrame": "frames/cues/cue-030.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-031",
+        "start": 73.88,
+        "end": 76.4,
+        "text": "但是这个时候我又给它提了一个很重要的问题",
+        "representativeFrame": "frames/cues/cue-031.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-032",
+        "start": 76.4,
+        "end": 79.6,
+        "text": "就是我怎么才能真的把它用起来不是忘掉它",
+        "representativeFrame": "frames/cues/cue-032.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-033",
+        "start": 79.6,
+        "end": 81.36,
+        "text": "因为我装过很多这种小工具",
+        "representativeFrame": "frames/cues/cue-033.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-034",
+        "start": 81.36,
+        "end": 83.52,
+        "text": "很多流览器插件的入口是在这吗",
+        "representativeFrame": "frames/cues/cue-034.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-035",
+        "start": 83.52,
+        "end": 84.8,
+        "text": "每次需要你去点一下",
+        "representativeFrame": "frames/cues/cue-035.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-036",
+        "start": 84.8,
+        "end": 86.56,
+        "text": "然后我认为一切需要我点的东西",
+        "representativeFrame": "frames/cues/cue-036.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-037",
+        "start": 86.56,
+        "end": 87.6,
+        "text": "我都一定不会去点",
+        "representativeFrame": "frames/cues/cue-037.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-038",
+        "start": 87.6,
+        "end": 89.52,
+        "text": "然后这个时候Claw的给我提了一个建议",
+        "representativeFrame": "frames/cues/cue-038.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-039",
+        "start": 89.52,
+        "end": 91.88,
+        "text": "说你要不要把它变成你的新标签议",
+        "representativeFrame": "frames/cues/cue-039.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-040",
+        "start": 91.88,
+        "end": 93.24,
+        "text": "就是New Tab的这个Page",
+        "representativeFrame": "frames/cues/cue-040.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-041",
+        "start": 93.24,
+        "end": 96.16,
+        "text": "然后这时候我才发现原来New Tab的这个Page",
+        "representativeFrame": "frames/cues/cue-041.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-042",
+        "start": 96.16,
+        "end": 97.08,
+        "text": "可以更新化的",
+        "representativeFrame": "frames/cues/cue-042.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-043",
+        "start": 97.08,
+        "end": 99.4,
+        "text": "我以前是不知道这件事情的是Claw的告诉我",
+        "representativeFrame": "frames/cues/cue-043.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-044",
+        "start": 99.4,
+        "end": 100.08,
+        "text": "我才知道的",
+        "representativeFrame": "frames/cues/cue-044.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-045",
+        "start": 100.08,
+        "end": 103.68,
+        "text": "这件事告诉我的就是Claw的对于技术能实现什么",
+        "representativeFrame": "frames/cues/cue-045.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-046",
+        "start": 103.68,
+        "end": 104.84,
+        "text": "比我是更懂的",
+        "representativeFrame": "frames/cues/cue-046.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-047",
+        "start": 104.84,
+        "end": 107.4,
+        "text": "那我是更懂问题的Claw的更懂解决方案",
+        "representativeFrame": "frames/cues/cue-047.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-048",
+        "start": 107.4,
+        "end": 110.28,
+        "text": "所以我们两个一碰撞就碰撞出一个非常好的ID",
+        "representativeFrame": "frames/cues/cue-048.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-049",
+        "start": 110.28,
+        "end": 112.96,
+        "text": "所以我会建议大家跟AI聊天的时候",
+        "representativeFrame": "frames/cues/cue-049.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-050",
+        "start": 112.96,
+        "end": 115.28,
+        "text": "不一定非得带着解决方案去跟它聊",
+        "representativeFrame": "frames/cues/cue-050.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-051",
+        "start": 115.28,
+        "end": 116.76,
+        "text": "而是带着问题跟它聊",
+        "representativeFrame": "frames/cues/cue-051.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-052",
+        "start": 116.76,
+        "end": 119.24,
+        "text": "就是完整的描述你遇到的痛脸和问题",
+        "representativeFrame": "frames/cues/cue-052.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-053",
+        "start": 119.24,
+        "end": 121.6,
+        "text": "然后开放性的让AI去想解决方案",
+        "representativeFrame": "frames/cues/cue-053.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-054",
+        "start": 121.6,
+        "end": 123.8,
+        "text": "也许它想的解决方案会比我们想",
+        "representativeFrame": "frames/cues/cue-054.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-055",
+        "start": 123.8,
+        "end": 126.64,
+        "text": "好很多然后后面我就开始跟他不断的跌带",
+        "representativeFrame": "frames/cues/cue-055.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-056",
+        "start": 126.64,
+        "end": 128.8,
+        "text": "然后到这一点的时候我们这个产品",
+        "representativeFrame": "frames/cues/cue-056.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-057",
+        "start": 128.8,
+        "end": 132.16,
+        "text": "他有一个额外的功能就是AI整理你的taps",
+        "representativeFrame": "frames/cues/cue-057.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-058",
+        "start": 132.16,
+        "end": 135.28,
+        "text": "会有一个大模型他去读取我所有的开支的taps",
+        "representativeFrame": "frames/cues/cue-058.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-059",
+        "start": 135.28,
+        "end": 137.6,
+        "text": "然后他帮我把这些taps规内成任务",
+        "representativeFrame": "frames/cues/cue-059.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-060",
+        "start": 137.6,
+        "end": 138.8,
+        "text": "然后可以按照任务去关",
+        "representativeFrame": "frames/cues/cue-060.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-061",
+        "start": 138.8,
+        "end": 140,
+        "text": "但是我用了好一天之后",
+        "representativeFrame": "frames/cues/cue-061.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-062",
+        "start": 140,
+        "end": 143.04,
+        "text": "我就发现我从来没有点过AI整理的按钮",
+        "representativeFrame": "frames/cues/cue-062.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-063",
+        "start": 143.04,
+        "end": 146.48,
+        "text": "就好像按照域名分组这一件事就已经足够了",
+        "representativeFrame": "frames/cues/cue-063.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-064",
+        "start": 146.48,
+        "end": 149.44,
+        "text": "我就跟Cloud说我们所姓就把AI功能直接去掉",
+        "representativeFrame": "frames/cues/cue-064.jpg",
+        "overlappingShots": [
+          "SHOT-001"
+        ]
+      },
+      {
+        "id": "CUE-065",
+        "start": 149.44,
+        "end": 151.6,
+        "text": "然后我就把这个项目发到了推特上",
+        "representativeFrame": "frames/cues/cue-065.jpg",
+        "overlappingShots": [
+          "SHOT-001",
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-066",
+        "start": 151.6,
+        "end": 154.64,
+        "text": "然后他非常的火然后很多用户在做自己的版本",
+        "representativeFrame": "frames/cues/cue-066.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-067",
+        "start": 154.64,
+        "end": 156.32,
+        "text": "然后这时候推特有网友评论说",
+        "representativeFrame": "frames/cues/cue-067.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-068",
+        "start": 156.32,
+        "end": 158.72,
+        "text": "你为什么要跑一个No.js服务器",
+        "representativeFrame": "frames/cues/cue-068.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-069",
+        "start": 158.72,
+        "end": 160.16,
+        "text": "不能直接用crumb.store",
+        "representativeFrame": "frames/cues/cue-069.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-070",
+        "start": 160.16,
+        "end": 162.08,
+        "text": "什么其实我亚哥不知道这些什么东西",
+        "representativeFrame": "frames/cues/cue-070.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-071",
+        "start": 162.08,
+        "end": 164.64,
+        "text": "然后我就远方不动把他的评论转发给Cloud",
+        "representativeFrame": "frames/cues/cue-071.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-072",
+        "start": 164.64,
+        "end": 167.6,
+        "text": "然后CloudCloud说你那个服务器是原来",
+        "representativeFrame": "frames/cues/cue-072.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-073",
+        "start": 167.6,
+        "end": 169.84,
+        "text": "基于另一个AI功能才需要的",
+        "representativeFrame": "frames/cues/cue-073.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-074",
+        "start": 169.84,
+        "end": 172.4,
+        "text": "我们现在没有这个AI功能了就不需要了",
+        "representativeFrame": "frames/cues/cue-074.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-075",
+        "start": 172.4,
+        "end": 174.08,
+        "text": "然后就说OK 那你就砍掉吧",
+        "representativeFrame": "frames/cues/cue-075.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-076",
+        "start": 174.08,
+        "end": 177.12,
+        "text": "然后这个交给我的就是说我觉得AI很擅长",
+        "representativeFrame": "frames/cues/cue-076.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-077",
+        "start": 177.12,
+        "end": 179.44,
+        "text": "加功能太很擅长把简单声音复杂话",
+        "representativeFrame": "frames/cues/cue-077.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-078",
+        "start": 179.44,
+        "end": 182.24,
+        "text": "但他不擅长简化AI不擅长做简法",
+        "representativeFrame": "frames/cues/cue-078.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-079",
+        "start": 182.24,
+        "end": 185.2,
+        "text": "所以我这个产品大概有30%时间在做功能",
+        "representativeFrame": "frames/cues/cue-079.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-080",
+        "start": 185.2,
+        "end": 186.96,
+        "text": "70%时间在砍功能",
+        "representativeFrame": "frames/cues/cue-080.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-081",
+        "start": 186.96,
+        "end": 188.96,
+        "text": "然后我把所有的这些东西砍掉之后",
+        "representativeFrame": "frames/cues/cue-081.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-082",
+        "start": 188.96,
+        "end": 191.12,
+        "text": "产品定位是更sharp的 更好用的",
+        "representativeFrame": "frames/cues/cue-082.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-083",
+        "start": 191.12,
+        "end": 192.96,
+        "text": "而且它安装也变得非常的简化",
+        "representativeFrame": "frames/cues/cue-083.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-084",
+        "start": 192.96,
+        "end": 196.16,
+        "text": "然后另外我觉得这也是标准poble的一个很大的好处",
+        "representativeFrame": "frames/cues/cue-084.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-085",
+        "start": 196.16,
+        "end": 198.8,
+        "text": "就是当我把这个开源发到推特上之后",
+        "representativeFrame": "frames/cues/cue-085.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-086",
+        "start": 198.8,
+        "end": 201.12,
+        "text": "就会有网友教我做很多事情",
+        "representativeFrame": "frames/cues/cue-086.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-087",
+        "start": 201.12,
+        "end": 203.28,
+        "text": "比如说这个不需要服气这件事情",
+        "representativeFrame": "frames/cues/cue-087.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-088",
+        "start": 203.28,
+        "end": 204.56,
+        "text": "我本来都没意识到",
+        "representativeFrame": "frames/cues/cue-088.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-089",
+        "start": 204.56,
+        "end": 206.8,
+        "text": "但是网友就会提示我这些事情",
+        "representativeFrame": "frames/cues/cue-089.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-090",
+        "start": 206.8,
+        "end": 209.2,
+        "text": "他们会告诉我怎么让我的产品变得更好",
+        "representativeFrame": "frames/cues/cue-090.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-091",
+        "start": 209.2,
+        "end": 211.92,
+        "text": "所以我觉得很多网友就是我的老师",
+        "representativeFrame": "frames/cues/cue-091.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-092",
+        "start": 211.92,
+        "end": 214.24,
+        "text": "所以我总结一下几个lesson就是第一",
+        "representativeFrame": "frames/cues/cue-092.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-093",
+        "start": 214.24,
+        "end": 216.8,
+        "text": "不一定要给到AI很完整的解决方案",
+        "representativeFrame": "frames/cues/cue-093.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-094",
+        "start": 216.8,
+        "end": 218.08,
+        "text": "而是带着问题来",
+        "representativeFrame": "frames/cues/cue-094.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-095",
+        "start": 218.08,
+        "end": 220,
+        "text": "开放性的把问题描述清楚",
+        "representativeFrame": "frames/cues/cue-095.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-096",
+        "start": 220,
+        "end": 221.6,
+        "text": "第二我觉得所有的产品",
+        "representativeFrame": "frames/cues/cue-096.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-097",
+        "start": 221.6,
+        "end": 224.96,
+        "text": "它一定要经过自己的长时间使用的体感",
+        "representativeFrame": "frames/cues/cue-097.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-098",
+        "start": 224.96,
+        "end": 226,
+        "text": "它才是可用的",
+        "representativeFrame": "frames/cues/cue-098.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-099",
+        "start": 226,
+        "end": 228.88,
+        "text": "虽然AI做出来第一版看起来也很像样",
+        "representativeFrame": "frames/cues/cue-099.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-100",
+        "start": 228.88,
+        "end": 231.76,
+        "text": "但是你实际用起来会发现有很多不顺手的地方",
+        "representativeFrame": "frames/cues/cue-100.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-101",
+        "start": 231.76,
+        "end": 232.96,
+        "text": "或者过于复杂的地方",
+        "representativeFrame": "frames/cues/cue-101.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-102",
+        "start": 232.96,
+        "end": 235.44,
+        "text": "所以我们要花时间真的去体验它",
+        "representativeFrame": "frames/cues/cue-102.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-103",
+        "start": 235.44,
+        "end": 237.04,
+        "text": "然后再去打磨一些细节",
+        "representativeFrame": "frames/cues/cue-103.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-104",
+        "start": 237.04,
+        "end": 238.88,
+        "text": "再让它做很多很多的简反",
+        "representativeFrame": "frames/cues/cue-104.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-105",
+        "start": 238.88,
+        "end": 242,
+        "text": "第三就是把产品发出来收到反馈之后",
+        "representativeFrame": "frames/cues/cue-105.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-106",
+        "start": 242,
+        "end": 244.08,
+        "text": "我们才能知道它怎么能变得更好",
+        "representativeFrame": "frames/cues/cue-106.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-107",
+        "start": 244.08,
+        "end": 244.92,
+        "text": "然后很多时候",
+        "representativeFrame": "frames/cues/cue-107.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      },
+      {
+        "id": "CUE-108",
+        "start": 244.92,
+        "end": 247.44,
+        "text": "互联网上的网友就是我们最好的老师",
+        "representativeFrame": "frames/cues/cue-108.jpg",
+        "overlappingShots": [
+          "SHOT-002"
+        ]
+      }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01",
+      "title": "开场用产品完成态说明 Tab Out 做什么",
+      "importance": "core",
+      "statement": "开场展示 Tab Out：它把 Chrome New Tab 变成一个 landing page，让用户看到已打开的 tabs，并称可一键关闭且伴随音效和撒花。完成态支持产品价值，但没有展示安装、权限、数据处理、失败状态或可重复的实时触发链。",
+      "provenance": "visual_observation",
+      "timeRange": {
+        "start": 0,
+        "end": 15.4
+      },
+      "confidence": "medium",
+      "reasoning": "界面与口播共同定义输入和结果；缺席信息限制了对底层机制的判断。",
+      "unknowns": [
+        "浏览器权限",
+        "历史/标签数据是否离开本机",
+        "关闭失败恢复",
+        "音效与撒花来源"
+      ],
+      "procedural": {
+        "input": "浏览器当前打开的标签页集合",
+        "actions": [
+          "打开 Chrome New Tab",
+          "查看聚合的 tabs",
+          "选择或批量关闭",
+          "接收视觉/声音反馈"
+        ],
+        "parameters": [
+          "标签页分组或域名",
+          "关闭范围"
+        ],
+        "output": "减少或清空的标签页集合",
+        "unknowns": [
+          "权限授权流程",
+          "撤销机制",
+          "是否读取浏览历史",
+          "抽帧和剪辑不能单独证明全部状态属于同一连续任务"
+        ],
+        "beforeFrames": [
+          "TARGET-0001"
+        ],
+        "duringFrames": [
+          "TARGET-0009"
+        ],
+        "afterFrames": [
+          "TARGET-0017"
+        ]
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-001",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-002",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-003",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-004",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0001",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0009",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0017",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-02",
+      "title": "作者明确聊天画面是 HTML 重现而非原始记录",
+      "importance": "core",
+      "statement": "作者明确说她找回与 Claude Code 的聊天记录，并让它用 HTML ‘大致还原’聊天过程。因此后续橙黑对话页可用于理解问题—方案关系，但不是原始聊天逐字、完整、无删改的直接证据。",
+      "provenance": "raw_fact",
+      "timeRange": {
+        "start": 15.4,
+        "end": 37.4
+      },
+      "confidence": "medium",
+      "reasoning": "证据边界由作者口播直接声明，应优先于画面看起来像真实聊天的印象。",
+      "unknowns": [
+        "与原始聊天的逐字一致性",
+        "删减和重排范围"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-007",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-008",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-009",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-010",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-011",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-012",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-013",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0018",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0024",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0029",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-03",
+      "title": "第一原则：带真实问题，而不是带完整方案找 AI",
+      "importance": "core",
+      "statement": "作者强调自己不是带着完整 New Tab 方案找 Claude，而是从‘能否访问 Chrome 浏览历史/标签’和日常 tabs 太多、切换困难的真实问题开始。关键方法不是一句提示自动生产品，而是人先提供长期体验中的问题。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 37.4,
+        "end": 69
+      },
+      "confidence": "medium",
+      "reasoning": "口播反复对比完整方案与最初问题，HTML 重现提供问题语境。",
+      "unknowns": [
+        "原始第一问逐字内容",
+        "当时已有多少方案预设",
+        "浏览历史访问的真实权限"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-016",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-017",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-018",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-019",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-020",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-021",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-022",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-023",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-024",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-025",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-026",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-027",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0030",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0037",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0043",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-04",
+      "title": "人负责使用场景，AI 提出 New Tab 作为技术入口",
+      "importance": "core",
+      "statement": "重现对话中，候选方案因作者判断自己不会主动点扩展图标而被否定；高频发生的 New Tab 动作随后成为入口。作者将此概括为‘人更懂问题和真实使用行为，AI 更懂技术解法’，但片内没有证明 New Tab 是所有用户的唯一最优入口。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 69,
+        "end": 110
+      },
+      "confidence": "medium",
+      "reasoning": "问题、行为反证和入口方案按叙事顺序收敛，体现人机角色分工。",
+      "unknowns": [
+        "其他候选方案",
+        "用户研究样本",
+        "New Tab 对不同浏览习惯的适用性"
+      ],
+      "argument": {
+        "claim": "做 AI 产品时，人应提供真实问题和使用行为约束，AI 提供候选技术解法。",
+        "evidenceUnitIndexes": [
+          2,
+          3
+        ],
+        "conditions": [
+          "人对自己的问题有长期观察",
+          "愿意质疑 AI 方案",
+          "方案经过实际使用"
+        ],
+        "counterexamples": [
+          "用户自述与真实行为可能不一致",
+          "AI 可能忽略权限、隐私和实现成本",
+          "单人习惯未必代表市场"
+        ],
+        "actions": [
+          "先描述问题",
+          "让 AI 提多个方案",
+          "用真实行为逐项反驳",
+          "选择进入频率最高的入口"
+        ],
+        "limits": [
+          "本片是单个创作者单例",
+          "没有多用户验证"
+        ],
+        "evidenceUnitIds": [
+          "KU-03",
+          "KU-04"
+        ]
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-030",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-031",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-032",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-033",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-034",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-035",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-036",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-037",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-038",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-039",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-040",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-041",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-042",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-043",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-044",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-045",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-046",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-047",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0044",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0053",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0061",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-05",
+      "title": "持续使用暴露出 AI 分组没人用，删除反而更好",
+      "importance": "core",
+      "statement": "作者称最初想让 AI 根据浏览历史或任务对标签页分组，但自己长期使用后几乎不用该能力，按域名分组已足够，于是删除 AI 功能。它支持‘真实使用胜过功能想象’的单例，不证明其他用户都不需要智能分组。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 110,
+        "end": 149
+      },
+      "confidence": "medium",
+      "reasoning": "作者用自己的使用行为作为删减依据，叙事明确由功能设想到删除。",
+      "unknowns": [
+        "使用周期和频率",
+        "其他用户反馈",
+        "删除前后性能与隐私变化"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-050",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-051",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-052",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-053",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-054",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-055",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-056",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-057",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-058",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-059",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-060",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-061",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-062",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-063",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0062",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0070",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0078",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-06",
+      "title": "公开后反馈进一步移除 Node 服务器依赖",
+      "importance": "core",
+      "statement": "作者称把产品发到 Twitter 后，有用户指出移除 AI 功能后也不再需要 Node server，于是继续简化，并总结自己约 30% 时间加功能、70% 时间删功能。反馈—删减关系是作者叙事；原帖表现、服务器的全部安全/同步需求和 30/70 时间口径未被独立证明。",
+      "provenance": "author_claim",
+      "timeRange": {
+        "start": 149,
+        "end": 192
+      },
+      "confidence": "medium",
+      "reasoning": "口播直接描述反馈改变架构，并以比例原则总结。",
+      "unknowns": [
+        "原始反馈和作者身份",
+        "传播数据",
+        "Node server 原用途",
+        "30/70 的统计口径"
+      ],
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-066",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-067",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-068",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-069",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-070",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-071",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-072",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-073",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-074",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-075",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-076",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-077",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-078",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-079",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-080",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-081",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0079",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0088",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0097",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-07",
+      "title": "收尾沉淀四步产品方法：问题、共创、使用、公开",
+      "importance": "core",
+      "statement": "收尾方法可压缩为四步：带真实问题与 AI 共创而非先给完整方案；做出最小版本；自己长期使用并删除闲置能力；公开获得反馈后继续简化。它适合低风险个人工具原型，不自动覆盖多人协作、商业、安全和合规场景。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 192,
+        "end": 247.467
+      },
+      "confidence": "medium",
+      "reasoning": "片尾多条经验均可回指前文的具体产品演变，形成闭环。",
+      "unknowns": [
+        "对多人产品和商业产品的适用性",
+        "如何筛选矛盾反馈",
+        "何时停止删减"
+      ],
+      "argument": {
+        "claim": "AI 产品的好 idea 通过真实问题、持续使用和反馈删减形成，而不是一次提示生成。",
+        "evidenceUnitIndexes": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "conditions": [
+          "问题来自真实高频行为",
+          "原型风险可控",
+          "创作者持续使用",
+          "反馈被验证而非盲从"
+        ],
+        "counterexamples": [
+          "医疗金融等高风险产品不能只靠快速试错",
+          "单人偏好不代表市场",
+          "过度删减可能破坏核心价值"
+        ],
+        "actions": [
+          "记录高频问题",
+          "让 AI 提候选方案",
+          "选择最自然入口",
+          "亲自使用",
+          "删掉闲置 AI",
+          "公开并验证反馈"
+        ],
+        "limits": [
+          "单个产品案例",
+          "缺少留存、活跃和传播数据"
+        ],
+        "evidenceUnitIds": [
+          "KU-03",
+          "KU-04",
+          "KU-05",
+          "KU-06",
+          "KU-07"
+        ]
+      },
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-083",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-084",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-085",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-086",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-087",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-088",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-089",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-090",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-091",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-092",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-093",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-094",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-095",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-096",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-097",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-098",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-099",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-100",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-101",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-102",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-103",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-104",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-105",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-106",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-107",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-108",
+          "supports": "对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0098",
+          "supports": "该语义段起始状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0108",
+          "supports": "该语义段中间关键状态"
+        },
+        {
+          "refType": "targeted_frame",
+          "ref": "TARGET-0117",
+          "supports": "该语义段结束状态"
+        },
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "定向帧真实 OCR 账本，用于核对烧录字幕与界面文字"
+        }
+      ]
+    },
+    {
+      "id": "KU-08",
+      "title": "专有名词与字幕冲突保留",
+      "importance": "context",
+      "statement": "机器转写多次把 Tab Out 识别为 Type Out，把 Chrome、Claude Code、idea、tabs 等识别成 Crom、Cloud、ID、Type。报告保留全部原始 cue；只在画面标题、界面和语境共同支持时使用 Tab Out、Chrome New Tab、Claude Code 等规范化建议。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 247.467
+      },
+      "confidence": "high",
+      "reasoning": "原始机器转写不能被静默覆盖；只在烧录字幕或界面有支持时提供规范化阅读建议。",
+      "unknowns": [
+        "插件正式大小写与版本",
+        "部分 HTML 重现中的英文文字",
+        "公开反馈者身份与原帖"
+      ],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-OCR",
+          "supports": "完整定向 OCR 账本"
+        }
+      ]
+    },
+    {
+      "id": "KU-09",
+      "title": "非语音音频不构成独立操作证明",
+      "importance": "context",
+      "statement": "完整混合轨的无缝机器检查主要支持连续口播；即使口播称关闭标签时有音效和撒花，机器音频候选也不能单独证明该音效来自插件、在演示时实时触发或具有什么来源与许可。",
+      "provenance": "system_inference",
+      "timeRange": {
+        "start": 0,
+        "end": 247.467
+      },
+      "confidence": "medium",
+      "reasoning": "机器候选只能说明混合轨中的可能类别，不能证明界面动作、生成成功、来源或许可。",
+      "unknowns": [
+        "精确声源、曲目、来源、授权和被旁白遮蔽的低电平事件"
+      ],
+      "evidence": [
+        {
+          "refType": "source",
+          "ref": "SRC-AUDIO",
+          "supports": "完整混合音轨的无缝机器语义窗口与限制"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "KU-01",
+      "to": "KU-02",
+      "relation": "完成态结果转入产品想法如何产生的回溯",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-005",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-006",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-02",
+      "to": "KU-03",
+      "relation": "载体边界明确后，重现对话开始恢复最初问题",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-014",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-015",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-03",
+      "to": "KU-04",
+      "relation": "真实问题经过行为约束，收敛到高频 New Tab 入口",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-028",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-029",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-04",
+      "to": "KU-05",
+      "relation": "入口方案做成后，通过真实使用检验功能价值",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-048",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-049",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-05",
+      "to": "KU-06",
+      "relation": "内部使用触发功能删减，外部反馈继续触发架构删减",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-064",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-065",
+          "supports": "后一语义段起点"
+        }
+      ]
+    },
+    {
+      "from": "KU-06",
+      "to": "KU-07",
+      "relation": "两轮删减经验被压缩为可复用方法",
+      "evidence": [
+        {
+          "refType": "cue",
+          "ref": "CUE-082",
+          "supports": "前一语义段末端"
+        },
+        {
+          "refType": "cue",
+          "ref": "CUE-083",
+          "supports": "后一语义段起点"
+        }
+      ]
+    }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {
+        "id": "CAR-01",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-02",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-03",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-04",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-05",
+        "available": true,
+        "inspected": true
+      },
+      {
+        "id": "CAR-06",
+        "available": true,
+        "inspected": true
+      }
+    ],
+    "meaningChanges": [
+      {
+        "id": "MC-01",
+        "captured": true,
+        "unitIds": [
+          "KU-01"
+        ]
+      },
+      {
+        "id": "MC-02",
+        "captured": true,
+        "unitIds": [
+          "KU-02"
+        ]
+      },
+      {
+        "id": "MC-03",
+        "captured": true,
+        "unitIds": [
+          "KU-03"
+        ]
+      },
+      {
+        "id": "MC-04",
+        "captured": true,
+        "unitIds": [
+          "KU-04"
+        ]
+      },
+      {
+        "id": "MC-05",
+        "captured": true,
+        "unitIds": [
+          "KU-05"
+        ]
+      },
+      {
+        "id": "MC-06",
+        "captured": true,
+        "unitIds": [
+          "KU-06"
+        ]
+      },
+      {
+        "id": "MC-07",
+        "captured": true,
+        "unitIds": [
+          "KU-07"
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "id": "REL-01",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-005",
+          "CUE-006"
+        ]
+      },
+      {
+        "id": "REL-02",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-014",
+          "CUE-015"
+        ]
+      },
+      {
+        "id": "REL-03",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-028",
+          "CUE-029"
+        ]
+      },
+      {
+        "id": "REL-04",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-048",
+          "CUE-049"
+        ]
+      },
+      {
+        "id": "REL-05",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-064",
+          "CUE-065"
+        ]
+      },
+      {
+        "id": "REL-06",
+        "evidenced": true,
+        "evidenceRefs": [
+          "CUE-082",
+          "CUE-083"
+        ]
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": "CQ-01",
+        "status": "answered",
+        "unitIds": [
+          "KU-01"
+        ],
+        "evidenceRefs": [
+          "CUE-001",
+          "TARGET-0009"
+        ]
+      },
+      {
+        "id": "CQ-02",
+        "status": "answered",
+        "unitIds": [
+          "KU-02"
+        ],
+        "evidenceRefs": [
+          "CUE-006",
+          "TARGET-0024"
+        ]
+      },
+      {
+        "id": "CQ-03",
+        "status": "answered",
+        "unitIds": [
+          "KU-03"
+        ],
+        "evidenceRefs": [
+          "CUE-015",
+          "TARGET-0037"
+        ]
+      },
+      {
+        "id": "CQ-04",
+        "status": "answered",
+        "unitIds": [
+          "KU-04"
+        ],
+        "evidenceRefs": [
+          "CUE-029",
+          "TARGET-0053"
+        ]
+      },
+      {
+        "id": "CQ-05",
+        "status": "answered",
+        "unitIds": [
+          "KU-05"
+        ],
+        "evidenceRefs": [
+          "CUE-049",
+          "TARGET-0070"
+        ]
+      },
+      {
+        "id": "CQ-06",
+        "status": "answered",
+        "unitIds": [
+          "KU-06"
+        ],
+        "evidenceRefs": [
+          "CUE-065",
+          "TARGET-0088"
+        ]
+      },
+      {
+        "id": "CQ-07",
+        "status": "answered",
+        "unitIds": [
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "CUE-083",
+          "TARGET-0108"
+        ]
+      },
+      {
+        "id": "CQ-08",
+        "status": "answered",
+        "unitIds": [
+          "KU-08"
+        ],
+        "evidenceRefs": [
+          "SRC-OCR"
+        ]
+      },
+      {
+        "id": "CQ-09",
+        "status": "unknown",
+        "unitIds": [
+          "KU-01",
+          "KU-02",
+          "KU-03",
+          "KU-04",
+          "KU-05",
+          "KU-06",
+          "KU-07"
+        ],
+        "evidenceRefs": [
+          "TARGET-0001",
+          "TARGET-0117"
+        ]
+      },
+      {
+        "id": "CQ-10",
+        "status": "answered",
+        "unitIds": [
+          "KU-09"
+        ],
+        "evidenceRefs": [
+          "SRC-AUDIO"
+        ]
+      }
+    ],
+    "cueAccountability": [
+      {
+        "cueId": "CUE-001",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用产品完成态说明 Tab Out 做什么"
+      },
+      {
+        "cueId": "CUE-002",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用产品完成态说明 Tab Out 做什么"
+      },
+      {
+        "cueId": "CUE-003",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用产品完成态说明 Tab Out 做什么"
+      },
+      {
+        "cueId": "CUE-004",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用产品完成态说明 Tab Out 做什么"
+      },
+      {
+        "cueId": "CUE-005",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-01"
+        ],
+        "rationale": "归入语义段：开场用产品完成态说明 Tab Out 做什么"
+      },
+      {
+        "cueId": "CUE-006",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-007",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-008",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-009",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-010",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-011",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-012",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-013",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-014",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-02"
+        ],
+        "rationale": "归入语义段：作者明确聊天画面是 HTML 重现而非原始记录"
+      },
+      {
+        "cueId": "CUE-015",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-016",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-017",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-018",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-019",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-020",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-021",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-022",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-023",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-024",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-025",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-026",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-027",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-028",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-03"
+        ],
+        "rationale": "归入语义段：第一原则：带真实问题，而不是带完整方案找 AI"
+      },
+      {
+        "cueId": "CUE-029",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-030",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-031",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-032",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-033",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-034",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-035",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-036",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-037",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-038",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-039",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-040",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-041",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-042",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-043",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-044",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-045",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-046",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-047",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-048",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-04"
+        ],
+        "rationale": "归入语义段：人负责使用场景，AI 提出 New Tab 作为技术入口"
+      },
+      {
+        "cueId": "CUE-049",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-050",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-051",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-052",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-053",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-054",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-055",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-056",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-057",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-058",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-059",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-060",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-061",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-062",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-063",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-064",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-05"
+        ],
+        "rationale": "归入语义段：持续使用暴露出 AI 分组没人用，删除反而更好"
+      },
+      {
+        "cueId": "CUE-065",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-066",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-067",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-068",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-069",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-070",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-071",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-072",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-073",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-074",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-075",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-076",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-077",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-078",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-079",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-080",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-081",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-082",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-06"
+        ],
+        "rationale": "归入语义段：公开后反馈进一步移除 Node 服务器依赖"
+      },
+      {
+        "cueId": "CUE-083",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-084",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-085",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-086",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-087",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-088",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-089",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-090",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-091",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-092",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-093",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-094",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-095",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-096",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-097",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-098",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-099",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-100",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-101",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-102",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-103",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-104",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-105",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-106",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-107",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      },
+      {
+        "cueId": "CUE-108",
+        "disposition": "knowledge",
+        "unitIds": [
+          "KU-07"
+        ],
+        "rationale": "归入语义段：收尾沉淀四步产品方法：问题、共创、使用、公开"
+      }
+    ],
+    "coreEvidence": {
+      "covered": 7,
+      "total": 7
+    },
+    "unknowns": [
+      "Tab Out 当前版本、下载地址、许可证与浏览器兼容性",
+      "读取历史记录和标签页所需权限、隐私处理与数据是否出端",
+      "HTML 聊天重现与原始 Claude 对话的逐字一致性",
+      "Twitter 反馈数量、传播表现和具体原帖",
+      "删除服务器后功能边界与安全性",
+      "非语音音频的精确内容、来源、授权与编辑意图"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "完整机器口播、烧录字幕/OCR、视频特有画面载体、人物/布局和完整非语音混合轨均已检查；每个意义变化与相邻关系都映射到知识单元。剩余是已声明的外部可用性、权利、因果与效果未知。该内部自检不替代独立 reviewer。"
+  }
+}

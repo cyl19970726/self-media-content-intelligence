@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "../evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能把短视频爆款主要归因于钩子、网感、梗或标题技巧。",
+    "after": "视频意图让观众相信：跨赛道爆款的共同逻辑是核心表达触发人类或特定群体的共同情感记忆，并据此重新判断内容创作重点。",
+    "intendedChanges": [
+      "从技巧优先转向核心表达与共同情感记忆优先",
+      "借三个案例识别人生迷茫、性别处境和民族记忆三种共情路径",
+      "把短视频理解为艺术表达形式、平台理解为媒介，而非内容价值本身"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 18.899},
+      "cognitiveQuestion": "开场如何提出并界定反常识中心论点？",
+      "observedSignals": ["连续口播与烧录字幕提出‘不是钩子也不是网感’的对照", "固定室内机位、黑衣红色蜘蛛侠式面罩人物、手势强化陈述", "右上角持续账号水印‘人类最强编导’"],
+      "checkedAlternatives": ["逐字字幕", "2.5秒密集帧", "逐cue代表帧", "技术shot代表帧", "音频流存在性与静音检测"],
+      "remainingUnknowns": ["面罩人物的真实身份与面罩授权关系未建立", "非语音音频是否含背景音乐及其叙事作用无法由现有工具可靠判定", "‘2026年上半年’与爆火数据的外部真实性不在视频内证成"],
+      "evidenceHints": ["CUE-001", "CUE-002", "CUE-003", "CUE-004", "CUE-005", "DENSE-0001", "DENSE-0008"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 18.899, "end": 65.85},
+      "cognitiveQuestion": "‘奥德赛时期’案例怎样把当代青年迷茫连接到古代文本并推出爆款结论？",
+      "observedSignals": ["约23秒短暂插入小红书搜索结果页，搜索词可见为‘奥德赛时期’", "口播依次给出概念释义、来源主张、屈原与王勃引文、跨时空共同情感结论", "烧录字幕疑与SRT在‘骈文/篇文’和‘时期/时机’处冲突"],
+      "checkedAlternatives": ["逐字字幕", "密集帧", "SHOT-002短插入页", "相邻cue代表帧", "全段可见人物、手势、字幕与设置连续性"],
+      "remainingUnknowns": ["搜索页结果不能证明口播的‘浏览量超80亿’", "概念来源、人物年龄、古文归属与引文准确性未在视频内独立验证", "短插入页小字与各条指标需OCR复核"],
+      "evidenceHints": ["CUE-006", "CUE-009", "CUE-012", "CUE-014", "CUE-018", "FRAME-SHOT-002"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 65.85, "end": 101.19},
+      "cognitiveQuestion": "‘莉拉坐’案例如何把毕业照姿势解释为女性群体的共同性别情感记忆？",
+      "observedSignals": ["约69秒短暂插入小红书搜索结果页，搜索词可见为‘莉拉毕业照’，多个毕业照姿势缩略图可见", "口播用角色失学与未拥有毕业照的故事解释纪念动作", "SRT‘纪念和发生’疑与烧录字幕‘纪念和发声’冲突"],
+      "checkedAlternatives": ["逐字字幕", "密集帧", "SHOT-005与SHOT-006边界", "搜索结果代表帧", "人物姿态与烧录字幕"],
+      "remainingUnknowns": ["视频未展示原剧片段来证成角色经历", "单一搜索页不能证明‘数以万计’或‘亿万女性’规模", "作品年份、名称载体（电影/剧集）与角色事实未外部核验"],
+      "evidenceHints": ["CUE-019", "CUE-020", "CUE-021", "CUE-023", "CUE-025", "CUE-028", "FRAME-SHOT-006"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 101.19, "end": 114.12},
+      "cognitiveQuestion": "绘画作品截图与口播如何支持民族情感记忆案例？",
+      "observedSignals": ["约102秒插入小红书作品页，蓝色调绘画、账号、日期、互动指标及说明文字可见", "口播从年轻人未亲历战争和开国大典转向民族记忆与复兴骄傲", "SRT‘民族回忆’疑与烧录字幕‘民族记忆’冲突"],
+      "checkedAlternatives": ["逐字字幕", "SHOT-008作品页代表帧", "相邻密集帧", "烧录字幕", "作品页可见布局与计数"],
+      "remainingUnknowns": ["作品页截图真实性、指标时点与作者身份未由视频外部验证", "截图画面与开国大典的具体对应关系需保留为视频语境下的呈现", "作品页部分小字与音频标签需OCR复核"],
+      "evidenceHints": ["CUE-029", "CUE-030", "CUE-031", "CUE-032", "FRAME-SHOT-008"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 114.12, "end": 144.767},
+      "cognitiveQuestion": "结尾怎样把三个案例归纳为创作原则并回扣开场？",
+      "observedSignals": ["口播批评对网感、梗、钩子、标题技巧的过度关注", "把自媒体作品定义为艺术作品、短视频定义为形式、平台定义为媒介", "结尾声称共情用户后爆款和数据会顺其自然，并自报‘雷子酱编导’"],
+      "checkedAlternatives": ["逐字字幕", "密集帧至144.647秒", "最后十条cue代表帧", "结尾画面与水印", "音频流连续性"],
+      "remainingUnknowns": ["视频没有给出可执行的选题/写作步骤或成功边界", "‘一定’‘必然’与‘顺其自然’等强因果范围没有被案例证明", "水印‘人类最强编导’与自报‘雷子酱编导’的关系未建立"],
+      "evidenceHints": ["CUE-033", "CUE-036", "CUE-037", "CUE-038", "CUE-039", "CUE-040", "CUE-042", "DENSE-0059"]
+    }
+  ],
+  "informationCarriers": [
+    {"id": "CAR-01", "name": "提供字幕中的口播文字", "modalityKeys": ["speech_transcript", "provided_subtitles"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["提出中心论点", "陈述案例与因果主张", "给出结论和署名"], "intervals": [{"start": 0.03, "end": 144.869}], "omissionImpact": "会丢失论证链与作者主张；但不得把字幕当作已验证事实。"},
+    {"id": "CAR-02", "name": "烧录中文字幕", "modalityKeys": ["on_screen_text", "burned_captions", "ocr"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["复述口播", "暴露SRT转写冲突", "提供逐句可视锚点"], "intervals": [{"start": 0.03, "end": 144.767}], "omissionImpact": "会把‘骈文/篇文’、‘时期/时机’、‘发声/发生’、‘记忆/回忆’等冲突静默归一。"},
+    {"id": "CAR-03", "name": "讲述者可见造型、手势与固定室内环境", "modalityKeys": ["person", "gesture", "recognizable_styling", "environment", "continuity"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["形成匿名/角色化讲述者形象", "以手势加强语气", "提供跨段视觉连续性"], "intervals": [{"start": 0, "end": 144.767}], "omissionImpact": "会丢失红色蜘蛛侠式面罩这一显著角色化表达和固定场景连续性；不可据此断言真人身份或授权。"},
+    {"id": "CAR-04", "name": "右上账号水印与平台界面身份", "modalityKeys": ["watermark", "platform_ui", "visible_identity"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["标示视频账号水印‘人类最强编导’", "短插入页显示小红书界面"], "intervals": [{"start": 0, "end": 144.767}], "omissionImpact": "会混淆可见账号水印、自报姓名和被插入的平台内容来源。"},
+    {"id": "CAR-05", "name": "三处短暂小红书截图/作品页", "modalityKeys": ["inserted_clip", "software_interface_state", "examples", "counts", "layout"], "discoveredIn": ["SWEEP-02", "SWEEP-03", "SWEEP-04"], "available": true, "inspected": true, "roles": ["为三个案例提供搜索结果或作品页视觉例证", "展示可见关键词、缩略图、账号和互动指标"], "intervals": [{"start": 22.967, "end": 24}, {"start": 65.9, "end": 69.633}, {"start": 101.267, "end": 103.233}], "omissionImpact": "会把案例的可见平台身份、搜索词和指标证据丢掉，或夸大成对宏观规模主张的证明。"},
+    {"id": "CAR-06", "name": "剪辑顺序与短插入关系", "modalityKeys": ["editing_order", "juxtaposition", "technical_segmentation"], "discoveredIn": ["SWEEP-02", "SWEEP-03", "SWEEP-04"], "available": true, "inspected": true, "roles": ["在对应口播节点插入案例页后回到同一讲述设置", "将示例视觉与论点并置"], "intervals": [{"start": 18.899, "end": 114.12}], "omissionImpact": "会把剪辑并置误写为现场连续演示，或把10个技术shot误当10个语义场景。"},
+    {"id": "CAR-07", "name": "语音之外的音频", "modalityKeys": ["non_speech_audio", "music", "sound_effect"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["音频流全程存在且未检测到超过0.5秒的-42dB静音段；音乐或音效的具体角色无法可靠识别"], "intervals": [{"start": 0, "end": 144.767}], "omissionImpact": "若存在BGM或音效，其情绪/节奏作用会被遗漏；因此保留为未知而不臆测。"},
+    {"id": "CAR-08", "name": "决策相关缺失项", "modalityKeys": ["negative_evidence", "absence"], "discoveredIn": ["SWEEP-01", "SWEEP-02", "SWEEP-03", "SWEEP-04", "SWEEP-05"], "available": true, "inspected": true, "roles": ["全时轴未观察到可执行方法步骤、适用条件、失败反例或外部来源链接", "截图未证明80亿、数以万计与普遍必然性"], "intervals": [{"start": 0, "end": 144.767}], "omissionImpact": "会把观点型论证误写成已验证、可复现的爆款方法。"}
+  ],
+  "meaningChanges": [
+    {"id": "MC-01", "range": {"start": 0.03, "end": 18.899}, "description": "从‘未听过的观点’钩子转入‘爆款本质是共情共同情感记忆’的中心命题。", "trigger": "否定钩子/网感并明确提出替代解释。", "evidenceHints": ["CUE-001", "CUE-002", "CUE-003", "CUE-005"]},
+    {"id": "MC-02", "range": {"start": 18.899, "end": 24.13}, "description": "进入第一案例并以平台搜索页给‘奥德赛时期’可见身份。", "trigger": "‘排名第一’口播与小红书搜索结果页短插入。", "evidenceHints": ["CUE-006", "FRAME-SHOT-002"]},
+    {"id": "MC-03", "range": {"start": 24.14, "end": 65.84}, "description": "把当代青年自由与迷茫连接至古代诗文，推出跨时代人类情感记忆与爆款因果主张。", "trigger": "从概念释义转向屈原、王勃引文并在结尾使用‘必然爆款’。", "evidenceHints": ["CUE-007", "CUE-012", "CUE-014", "CUE-016", "CUE-018"]},
+    {"id": "MC-04", "range": {"start": 65.85, "end": 71.65}, "description": "转入第二案例，展示‘莉拉毕业照’搜索页并提出女性成长/力量语境。", "trigger": "‘第二点’与小红书搜索结果短插入。", "evidenceHints": ["CUE-019", "CUE-020", "FRAME-SHOT-006"]},
+    {"id": "MC-05", "range": {"start": 71.66, "end": 101.18}, "description": "由角色失学叙事转向现实毕业照纪念实践，再归纳为女性共同性别情感记忆。", "trigger": "角色经历、群体行动与‘为什么能爆火’问答形成因果链。", "evidenceHints": ["CUE-021", "CUE-023", "CUE-025", "CUE-027", "CUE-028"]},
+    {"id": "MC-06", "range": {"start": 101.19, "end": 114.11}, "description": "第三案例用千万点赞作品页与战争/开国大典记忆，推出跨年龄身份的民族情感共鸣。", "trigger": "作品页短插入及口播从未亲历转向共同民族记忆。", "evidenceHints": ["CUE-029", "FRAME-SHOT-008", "CUE-030", "CUE-032"]},
+    {"id": "MC-07", "range": {"start": 114.12, "end": 136.497}, "description": "从案例归纳为创作观：少迷恋技巧，把自媒体作品当艺术，以跨媒介核心表达为重点。", "trigger": "问题‘怎么做出爆款’后连续对比技巧、艺术、形式与媒介。", "evidenceHints": ["CUE-033", "CUE-034", "CUE-035", "CUE-036", "CUE-038", "CUE-040"]},
+    {"id": "MC-08", "range": {"start": 136.497, "end": 144.767}, "description": "结尾把中心命题强化为‘能共情用户，爆款和数据顺其自然’，并署名告别。", "trigger": "条件句、结果句与最后署名。", "evidenceHints": ["CUE-041", "CUE-042", "DENSE-0059"]}
+  ],
+  "relationshipHypotheses": [
+    {"id": "REL-01", "from": "MC-01", "to": "MC-03", "relation": "claim_illustrated_by", "evidenceHints": ["CUE-005", "CUE-006", "CUE-018"]},
+    {"id": "REL-02", "from": "MC-01", "to": "MC-05", "relation": "claim_illustrated_by", "evidenceHints": ["CUE-005", "CUE-019", "CUE-028"]},
+    {"id": "REL-03", "from": "MC-01", "to": "MC-06", "relation": "claim_illustrated_by", "evidenceHints": ["CUE-005", "CUE-029", "CUE-032"]},
+    {"id": "REL-04", "from": "MC-03", "to": "MC-07", "relation": "example_generalized_into", "evidenceHints": ["CUE-018", "CUE-033", "CUE-037"]},
+    {"id": "REL-05", "from": "MC-05", "to": "MC-07", "relation": "example_generalized_into", "evidenceHints": ["CUE-028", "CUE-033", "CUE-037"]},
+    {"id": "REL-06", "from": "MC-06", "to": "MC-07", "relation": "example_generalized_into", "evidenceHints": ["CUE-032", "CUE-033", "CUE-037"]},
+    {"id": "REL-07", "from": "MC-01", "to": "MC-08", "relation": "opening_claim_strengthened_by_closing", "evidenceHints": ["CUE-002", "CUE-003", "CUE-041", "CUE-042"]},
+    {"id": "REL-08", "from": "visible-account-watermark", "to": "spoken-signoff", "relation": "identity_relation_unknown", "evidenceHints": ["FRAME-CUE-001", "CUE-042"]},
+    {"id": "REL-09", "from": "masked-presenter", "to": "spoken-author", "relation": "appears_to_deliver_but_literal_identity_unknown", "evidenceHints": ["FRAME-CUE-001", "FRAME-CUE-042", "CUE-042"]},
+    {"id": "REL-10", "from": "technical-shot-boundaries", "to": "semantic-continuity", "relation": "mostly_tracks_short_insertions_not_ten_distinct_settings", "evidenceHints": ["SHOT-001", "SHOT-002", "SHOT-003", "SHOT-010"]}
+  ],
+  "omissionRisks": [
+    {"id": "RISK-01", "risk": "把作者的强因果与规模断言写成事实。", "why": "‘80亿’‘数以万计’‘亿万女性’‘无视年龄性别身份’‘必然爆款’均是作者主张，画面只展示有限例子。", "where": [{"start": 18.899, "end": 114.11}], "requiredFollowup": "逐一分离主张、可见例证、推断和未证范围。"},
+    {"id": "RISK-02", "risk": "漏掉SRT与烧录字幕的实质冲突。", "why": "初始帧已显示‘骈文/篇文’、‘时期/时机’、‘发声/发生’、‘记忆/回忆’等疑似差异。", "where": [{"start": 42.84, "end": 51.04}, {"start": 91.2, "end": 93.08}, {"start": 106.28, "end": 109.504}], "requiredFollowup": "对每条高风险cue做OCR并人工对帧，保留两种原始形式。"},
+    {"id": "RISK-03", "risk": "把短暂小红书页面的有限视觉例证夸大成宏观数据证明。", "why": "三个插入页存在时间短、字小；搜索结果页不能证明全平台总量或因果。", "where": [{"start": 22.967, "end": 24}, {"start": 65.9, "end": 69.633}, {"start": 101.267, "end": 103.233}], "requiredFollowup": "密集捕获三段页面，OCR搜索词、账号、说明和指标，并记录所能与不能支持的范围。"},
+    {"id": "RISK-04", "risk": "把蜘蛛侠式面罩视觉造型升级为角色身份、真人身份或授权。", "why": "可见的是相似造型；视频内部没有身份或授权说明。", "where": [{"start": 0, "end": 144.767}], "requiredFollowup": "建立人物/造型指代单元并把真人身份、授权保留未知。"},
+    {"id": "RISK-05", "risk": "混淆账号水印‘人类最强编导’与结尾自报‘雷子酱编导’。", "why": "两个名称同时出现但视频未解释关系。", "where": [{"start": 0, "end": 144.767}], "requiredFollowup": "捕获开头和结尾可见水印与口播署名，记录关系未知。"},
+    {"id": "RISK-06", "risk": "把技术shot边界当作十个不同场景或连续实录。", "why": "绝大多数时间是同一固定室内构图，短边界对应平台页插入或运动；隐藏剪辑仍未知。", "where": [{"start": 0, "end": 144.767}], "requiredFollowup": "比较每个边界前后帧并分开技术分段、可见插入和隐藏剪辑未知。"},
+    {"id": "RISK-07", "risk": "忽略非语音音频。", "why": "媒体有AAC立体声音轨且全程未见长静音，但现有检查不能确定BGM/音效及作用。", "where": [{"start": 0, "end": 144.767}], "requiredFollowup": "保留已检查但语义角色未知，不从字幕静默推断。"},
+    {"id": "RISK-08", "risk": "文章把观点型视频改写成可复现教程。", "why": "全时轴未见选题、脚本或验证步骤，也没有失败案例、适用条件或反例。", "where": [{"start": 0, "end": 144.767}], "requiredFollowup": "将可执行性边界列为未知/未建立，并保持论证结构。"}
+  ],
+  "criticalQuestions": [
+    {"id": "CQ-01", "question": "视频的中心爆款解释是什么，它否定了哪些常见解释？", "criticality": "critical", "evidenceHints": ["CUE-002", "CUE-003", "CUE-005"]},
+    {"id": "CQ-02", "question": "三个案例分别对应哪一种共同情感记忆，作者如何连接例子与结论？", "criticality": "critical", "evidenceHints": ["CUE-016", "CUE-028", "CUE-032"]},
+    {"id": "CQ-03", "question": "三处小红书页面实际可见哪些身份、搜索词、作品信息和指标，又不能证明哪些宏观主张？", "criticality": "critical", "evidenceHints": ["FRAME-SHOT-002", "FRAME-SHOT-006", "FRAME-SHOT-008"]},
+    {"id": "CQ-04", "question": "SRT与烧录字幕有哪些 consequential 冲突，重建应采用何种可追溯读法？", "criticality": "critical", "evidenceHints": ["CUE-013", "CUE-015", "CUE-026", "CUE-031"]},
+    {"id": "CQ-05", "question": "作者最后给出的创作观是什么，结尾如何回扣并强化开场？", "criticality": "critical", "evidenceHints": ["CUE-033", "CUE-036", "CUE-038", "CUE-040", "CUE-042"]},
+    {"id": "CQ-06", "question": "视频是否证明共同情感记忆必然导致爆款，或给出可执行方法与适用边界？", "criticality": "critical", "evidenceHints": ["CUE-018", "CUE-037", "CUE-042", "SWEEP-05"]},
+    {"id": "CQ-07", "question": "可见面罩人物、水印账号与自报署名之间分别是什么关系？", "criticality": "supporting", "evidenceHints": ["FRAME-CUE-001", "FRAME-CUE-042", "CUE-042"]},
+    {"id": "CQ-08", "question": "非语音音频、剪辑边界和固定设置分别承担什么作用，哪些仍未知？", "criticality": "supporting", "evidenceHints": ["SHOT-001", "SHOT-002", "SHOT-010", "CAR-07"]}
+  ],
+  "unresolved": [
+    "三处平台页的全部小字需OCR和人工复核。",
+    "SRT与烧录字幕疑似冲突需逐帧确认。",
+    "面罩人物、水印账号与口播署名之间的真实身份关系未知。",
+    "非语音音频的音乐/音效成分及语义作用未知。",
+    "作者援引的概念来源、历史人物年龄、作品年份、平台规模与因果主张均未外部验证。",
+    "技术shot边界之外是否还有隐藏剪辑未知。"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion":"capture-protocol-1.0",
+  "probe":"probe.json",
+  "protocolName":"无字幕上下分屏视觉对应协议",
+  "rationale":"短片没有字幕/cue，核心信息完全来自上下分屏、人物姿态、桌面物件、微动作序列和叠层；协议用高密度帧检查对应关系，同时禁止补写任何台词。",
+  "knowledgeUnitFields":[
+    {"name":"upper_visual_state","required":true,"reason":"上画面是对应关系的一端。","derivedFrom":["CQ-01","REL-01"]},
+    {"name":"lower_visual_state","required":true,"reason":"下画面是对应关系的另一端。","derivedFrom":["CQ-01","REL-01"]},
+    {"name":"motion_change","required":true,"reason":"不能用单帧代表7.533秒动作。","derivedFrom":["CQ-03","RISK-03"]},
+    {"name":"relation_strength_and_limits","required":true,"reason":"只允许视觉对应，不升级为身份、意图或因果。","derivedFrom":["CQ-02","RISK-02","RISK-05"]},
+    {"name":"overlay_reading","required":false,"reason":"叠层可能提供账号来源但小字难读。","derivedFrom":["CQ-04","RISK-04"]},
+    {"name":"audio_transcript_unknown","required":true,"reason":"无字幕且任务禁止臆造逐字稿。","derivedFrom":["CQ-05","RISK-01"]}
+  ],
+  "captureActions":[
+    {"id":"ACT-MOTION","range":{"start":0,"end":7.533},"carrier":"split-screen people, gestures, props","mode":"motion_sequence","densitySeconds":0.25,"reason":"以30帧覆盖全片小幅动作与构图持续性。","expectedObservation":"上下人物撑头/手靠桌面或杯子附近的姿态对应、手头位置微变、无明显新场景。","derivedFrom":["MC-01","MC-02","MC-03","CQ-01","CQ-03","RISK-03"]},
+    {"id":"ACT-OCR","range":{"start":0,"end":7.533},"carrier":"overlay and watermark","mode":"ocr_review","times":[0.2,2,3.8,5.6,7.3],"reason":"检查约4.5至5.25秒后的平台/账号叠层出现或位置变化及下方小字，不凭低置信OCR补全。","expectedObservation":"小红书与‘人类最强编导’标记后段出现在上方角落，分屏比较继续；下方面板小数字的准确文本保持未知。","derivedFrom":["CAR-OVERLAY","MC-02","REL-04","CQ-04","RISK-04"]},
+    {"id":"ACT-RELATION","range":{"start":0,"end":7.533},"carrier":"upper/lower spatial composition","mode":"exact_times","times":[0,1.5,3,4.5,6,7.413],"reason":"在开中结多个时刻验证视觉对应及持续性。","expectedObservation":"两画面均保持桌边人物、黑衣、撑头和另一手近杯/桌区域；不能证明身份、意图或同步拍摄。","derivedFrom":["REL-01","REL-02","REL-03","CQ-02","CQ-06"]},
+    {"id":"ACT-AUDIO-BOUNDARY","range":{"start":0,"end":7.533},"carrier":"audio existence and absent subtitle channel","mode":"exact_times","times":[0,3.75,7.413],"reason":"登记音频流存在但无cue/字幕，不创建转写。","expectedObservation":"evidence pack确认AAC音轨且transcript cues为空；语音/音乐/音效语义未知。","derivedFrom":["CAR-AUDIO","CQ-05","RISK-01"]}
+  ],
+  "requiredRelations":[
+    {"relation":"visually_mirrored_or_imitation_like","derivedFrom":["REL-01"]},
+    {"relation":"scene_composition_corresponds_with","derivedFrom":["REL-02"]},
+    {"relation":"composition_persists_through","derivedFrom":["REL-03"]},
+    {"relation":"appears_while_comparison_persists","derivedFrom":["REL-04"]}
+  ],
+  "stoppingRules":["transcript保持origin=none且cues为空，不生成逐字稿","全7.533秒由0.25秒动作序列覆盖","上下人物、姿态、物件与构图两端均有证据","叠层已OCR并人工核对，不可读小字保持未知","身份、授权、来源、意图、同步/剪辑机制不被升级为事实","音频流已登记且语义明确未知","meta-gate无未检查载体、意义变化或关系"],
+  "declaredUnknowns":["所有逐字语音/歌词内容","音频类别与叙事作用","上下人物身份与素材来源","面罩IP授权","两画面是否同步拍摄及确切模仿意图","左下角小字叠层完整文本"]
+}

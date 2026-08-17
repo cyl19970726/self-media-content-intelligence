@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "ai-creator-benchmark-4-20260816",
+  "creatorId": "benchmark:four-ai-creators",
+  "createdAt": "2026-08-16T00:00:00+08:00",
+  "updatedAt": "2026-08-16T16:45:00+08:00",
+  "artifacts": {
+    "analysisContract": "analysis-contract.json",
+    "collectionStatus": "collection-status.json",
+    "siteAiTestPlan": "site-ai-test-plan.json",
+    "siteAiObservations": "site-ai-observations.json",
+    "comparisonDashboardTarget": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/selected-high-like/report.html"
+  },
+  "stages": {
+    "collection": { "status": "in_progress", "updatedAt": "2026-08-16T16:45:00+08:00", "reason": "默认 Ego bridge 已验证继承用户登录态；hhh-01 只是未注册的命名服务。站内 AI 已完成两轮发现，下一步独立核验主页。" },
+    "portfolio": { "status": "pending", "updatedAt": null, "reason": "等待账号身份和完整主页库存。" },
+    "selection": { "status": "pending", "updatedAt": null, "reason": "等待各账号完整公开点赞分布。" },
+    "reconstruction": { "status": "pending", "updatedAt": null, "reason": "等待代表视频与媒体验真。" },
+    "synthesis": { "status": "pending", "updatedAt": null, "reason": "等待四账号证据层完成。" },
+    "dashboard": { "status": "pending", "updatedAt": null, "reason": "最终叠加到现有 AI 红发魔女 Dashboard。" },
+    "validation": { "status": "pending", "updatedAt": null, "reason": null }
+  },
+  "invalidation": {
+    "sourceRevision": null,
+    "invalidatedStages": []
+  }
+}

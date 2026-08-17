@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a6815b2000000001002477b/skill-run/probe.json",
+  "protocolName": "口喷—AI 清理—提词录制—低剪辑捕捉协议",
+  "rationale": "本片短、单点、操作性强，核心链是先用自己的语言自由口述，再让 AI 只清理不代写，最后用手机/电脑提词器一遍录顺，从源头降低剪辑。必须恢复两遍法、设备分支与作者语言权边界，并把 20–30 分钟、5 分钟剪辑保持为作者自述。",
+  "knowledgeUnitFields": [
+    {
+      "name": "结果钩子：20–30 分钟做完且说得顺",
+      "required": true,
+      "reason": "开场承诺的结果和真正问题是什么？",
+      "derivedFrom": [
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "name": "第一遍：自由口述，AI 只清理不代写",
+      "required": true,
+      "reason": "第一遍如何保留作者自己的语言？",
+      "derivedFrom": [
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "name": "第二遍：按设备选择提词器，一次录顺",
+      "required": true,
+      "reason": "第二遍在手机和电脑上如何执行？",
+      "derivedFrom": [
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "name": "结论：好剪的根源是先录出好剪的素材",
+      "required": true,
+      "reason": "为什么作者说剪辑只需约五分钟？",
+      "derivedFrom": [
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "captureActions": [
+    {
+      "id": "ACT-01",
+      "range": {
+        "start": 0,
+        "end": 14.04
+      },
+      "carrier": "talking-head、时间字幕和两遍法总纲",
+      "mode": "interval_density",
+      "densitySeconds": 1.5,
+      "reason": "捕捉时间承诺和两遍法总纲，声明计时边界。",
+      "expectedObservation": "结果简单明确，证据主要是作者单例。",
+      "derivedFrom": [
+        "SWEEP-01",
+        "MC-01",
+        "CQ-01"
+      ]
+    },
+    {
+      "id": "ACT-02",
+      "range": {
+        "start": 14.04,
+        "end": 35.64
+      },
+      "carrier": "talking-head、烧录字幕和工具名称",
+      "mode": "interval_density",
+      "densitySeconds": 1.8,
+      "reason": "恢复输入、提示约束与人工核对边界。",
+      "expectedObservation": "作者声音权是核心差异。",
+      "derivedFrom": [
+        "SWEEP-02",
+        "MC-02",
+        "CQ-02"
+      ]
+    },
+    {
+      "id": "ACT-03",
+      "range": {
+        "start": 35.64,
+        "end": 57.72
+      },
+      "carrier": "talking-head、剪映/Screen Studio 工具插卡与字幕",
+      "mode": "interval_density",
+      "densitySeconds": 1.8,
+      "reason": "捕捉工具卡和设备分支，把当前功能状态保持未知。",
+      "expectedObservation": "设备分支明确，但工具能力主要为作者主张。",
+      "derivedFrom": [
+        "SWEEP-03",
+        "MC-03",
+        "CQ-03"
+      ]
+    },
+    {
+      "id": "ACT-04",
+      "range": {
+        "start": 57.72,
+        "end": 71.32
+      },
+      "carrier": "talking-head、收尾字幕和时间主张",
+      "mode": "interval_density",
+      "densitySeconds": 1.2,
+      "reason": "限定剪辑指删除卡壳，并列出未计成本。",
+      "expectedObservation": "强记忆点成立，完整制作工时未知。",
+      "derivedFrom": [
+        "SWEEP-04",
+        "MC-04",
+        "CQ-04"
+      ]
+    }
+  ],
+  "requiredRelations": [
+    {
+      "relation": "两遍法的第一遍产生自己的语言素材",
+      "derivedFrom": [
+        "REL-01"
+      ]
+    },
+    {
+      "relation": "第一遍生成提词稿，第二遍将其录成可剪素材",
+      "derivedFrom": [
+        "REL-02"
+      ]
+    },
+    {
+      "relation": "两遍录制的结果被转化为低剪辑成本",
+      "derivedFrom": [
+        "REL-03"
+      ]
+    }
+  ],
+  "stoppingRules": [
+    "0–71.367 秒 carrier sweep 无时间缺口。",
+    "每条机器转写 cue 保留原文、时间码、代表帧和全部 overlapping shots。",
+    "每一语义段均有定向画面证据，关键界面与烧录字幕执行真实 OCR。",
+    "作者主张、画面观察、系统推断和未知严格分层。",
+    "剪辑相邻状态不得自动升级为同一任务连续因果。",
+    "完整非语音音频账本已注册，机器候选不升级为具体声源事实。",
+    "meta-gate 逐项回答未检查载体、意义变化和关系，禁止笼统完整性 100%。"
+  ],
+  "declaredUnknowns": [
+    "20–30 分钟与 5 分钟的计时口径",
+    "不同长度/难度视频的适用性",
+    "提词自然度和观众感知",
+    "AI 清理提示词与事实校验",
+    "各工具当前价格、版本和地区可用性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ],
+  "audioInspection": {
+    "source": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/media/6a6815b2000000001002477b/audio-16k.wav",
+    "ledger": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a6815b2000000001002477b/skill-run/audio/audio-carrier.json",
+    "method": "MIT AudioSet AST over gap-free windows of the complete mixed track",
+    "boundary": "machine proposals only; no source identity, licensing or UI-causality claim"
+  }
+}

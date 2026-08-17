@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "status": "READY_FOR_DOWNSTREAM_USE",
+  "auditBasis": {
+    "audit": "review/audit/audit.json",
+    "candidate": "run/reconstruction.json",
+    "article": "run/article.md",
+    "note": "Fresh holdout re-evaluation against the independent audit. No prior evaluation output was used as ground truth."
+  },
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "result": "hit",
+          "auditIds": ["CQ-01", "CQ-02", "CQ-03", "CQ-04", "CQ-07", "CQ-10", "CQ-12", "CQ-15"],
+          "detail": "The candidate preserves the opening promise and product premise, all three user needs, the platform claim boundary, the nested taxonomy, all four IP dimensions, the title/slogan thesis, and the closing non-closure."
+        },
+        {
+          "result": "correctly_unknown",
+          "auditIds": ["CQ-04", "CQ-13", "CQ-15"],
+          "detail": "Platform identity/year reliability and causal efficacy remain bounded; the closing is explicitly identified as a sign-off rather than proof."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {
+          "result": "covered",
+          "auditIds": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17", "KU-18"],
+          "detail": "Every audited core unit is represented by one or more localized candidate units with cue, targeted-frame, OCR, or bounded full-timeline evidence."
+        },
+        {
+          "result": "boundary_preserved",
+          "auditIds": ["KU-01", "KU-05", "KU-09", "KU-15", "KU-16", "KU-18"],
+          "detail": "Credential, platform preference, hard-material, title, and virality statements remain author claims; the closing remains non-proof."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 31,
+      "examples": [
+        {
+          "result": "no_error",
+          "candidateUnits": ["KU-05", "KU-12", "KU-13", "KU-17", "KU-20", "KU-21", "KU-22", "KU-23", "KU-28", "KU-29", "KU-31"],
+          "detail": "High-risk identity, year, wording, causality, absence, audio, and opening-to-closing claims are either visibly sourced, attributed to the author, or explicitly left unknown."
+        },
+        {
+          "result": "scoped_negative_evidence",
+          "candidateUnits": ["KU-23", "KU-28"],
+          "detail": "Negative claims name the inspected 0-135.001 second scope and relevant carriers instead of generalizing beyond the video."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 31,
+      "denominator": 31,
+      "examples": [
+        {
+          "result": "correct",
+          "candidateUnits": ["KU-01", "KU-05", "KU-10", "KU-15", "KU-20", "KU-23", "KU-31"],
+          "detail": "Opening, platform-year conflict, taxonomy, IP bridge, packaging claim, closing boundary, and identity echo are localized to the audited windows or to an explicitly bounded full-timeline absence scope."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 16,
+      "denominator": 16,
+      "rationale": "All audited rhetorical and structural dependencies are preserved across the relation graph, knowledge-unit statements, scope statement, viewer-change chain, and article: user demand precedes product design; platform preferences complement that input; contrast/interaction define parts of the platform claim; daily contains narrative/fixed subtypes; soft/hard material are qualified and contrasted; IP applies across types; its four dimensions are co-components; the legibility criterion operationalizes the IP goal; title and slogan examples illustrate packaging claims; screenshots illustrate rather than prove; the body only partially supports the opening promise; and the closing does not close it."
+    },
+    "unknownDiscipline": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        {
+          "result": "correctly_guarded",
+          "auditIds": ["UO-01", "UO-02", "UO-03", "UO-04", "UO-05", "UO-06", "UO-07", "UO-08", "UO-09", "UO-10", "UO-11", "UO-12", "UO-13"],
+          "detail": "Platform and year, breakout threshold, account ownership/causality, source authority, title causality, screenshot role, reproducibility threshold, missing workflow, proper noun, whiteboard text, non-speech audio, and closing non-closure all receive the audited disposition."
+        },
+        {
+          "result": "ocr_rejection",
+          "auditId": "UO-02",
+          "detail": "The unsupported OCR proposal '2026年' is explicitly rejected; the SRT's 2020 and the unheard audio are not promoted to a reliable year."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 5,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "judgeRationale": {
+    "readability": "The article has a clear strategy chain, visible claim boundaries, and an explicit closing synthesis.",
+    "knowledgePrioritization": "It foregrounds the framework, hierarchy, causal caveats, and opening-to-closing gap rather than treating all OCR details as equally important.",
+    "evidenceUsefulness": "Claims are paired with cue/frame/OCR references, and consequential carrier conflicts are explained where they change meaning.",
+    "executionValue": "The strategic framework is actionable, but the source video itself does not supply a full production workflow, so the reconstruction correctly cannot create one.",
+    "compressionWithoutLoss": "The article is necessarily long because it preserves ten consequential carrier conflicts and scoped unknowns; it remains navigable but is not maximally compressed."
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "No known video-internal carrier, audited meaning change, or required relationship remains wholly uninspected. Non-speech audio semantics, occluded whiteboard text, and uncertain proper nouns are guarded unknowns, not silent closures. The candidate also separates technical shot segmentation from semantic continuity and explicitly preserves the opening-promise/closing-nonclosure relation."
+  },
+  "examples": [
+    {
+      "kind": "carrier_conflict",
+      "result": "pass",
+      "detail": "The candidate preserves all ten audited SRT/burned-text conflicts, including 博主转型/企业IP, year uncertainty, 秦思, 梁馨, 蓝战非, 高精力/低精力, 视频, 阔夫日记, and 池早."
+    },
+    {
+      "kind": "hierarchy",
+      "result": "pass",
+      "detail": "Daily and challenge remain top-level vlog types; narrative and fixed formats remain nested under daily."
+    },
+    {
+      "kind": "opening_closing",
+      "result": "pass",
+      "detail": "The repeated self-title is treated as an identity echo, while the breakout-vlog promise remains explicitly unproven and unclosed."
+    },
+    {
+      "kind": "negative_evidence",
+      "result": "pass",
+      "detail": "Missing threshold, workflow, before/after proof, platform source, causal test, and CTA are limited to the documented full-timeline carrier sweep."
+    }
+  ]
+}

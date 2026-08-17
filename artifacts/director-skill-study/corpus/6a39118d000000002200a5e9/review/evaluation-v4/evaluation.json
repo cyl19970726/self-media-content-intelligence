@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 18,
+      "denominator": 18,
+      "examples": [
+        {"status": "pass", "ids": ["CQ-01", "CQ-02", "CQ-03", "CQ-04", "CQ-05", "CQ-06"], "note": "The promise/scope, opening proof insert and its limits, three logics, IP relationship conversion, decision-cost claim, SU7 illustration, and governing two-sided rule are all answered with claim/observation boundaries."},
+        {"status": "pass", "ids": ["CQ-07", "CQ-08", "CQ-09", "CQ-10", "CQ-11", "CQ-12"], "note": "The six personal topics and narrowed person-mapping uncertainty, personal asset prompts, 1+2=3 ordering, warmth modifier, personal-to-brand parallel, and five product traits are reconstructed."},
+        {"status": "pass", "ids": ["CQ-13", "CQ-14", "CQ-15", "CQ-16", "CQ-17", "CQ-18"], "note": "Six brand mappings, founder/brand/culture relation, final phrase sequence with attribution uncertainty, author-claim status, creator/promotion framing, and closing-loop limitation are present."}
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 25,
+      "denominator": 25,
+      "examples": [
+        {"status": "pass", "ids": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07"], "note": "Audit core units for the opening, scope, three logics, relationship conversion, commercial claim, SU7 example, and shared rule have resolvable cue/frame evidence."},
+        {"status": "pass", "ids": ["KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13", "KU-14"], "note": "Personal topics, personal-side inputs, ordered outline, and founder-brand transition are evidenced across cue boundaries and targeted frames."},
+        {"status": "pass", "ids": ["KU-15", "KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21", "KU-22", "KU-23", "KU-24", "KU-25"], "note": "Five traits and examples, six brand directions and mappings, culture/slogan function and examples, and closing identity/signoff are evidenced; candidate unit IDs differ from audit IDs but semantic coverage is complete."}
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 48,
+      "examples": [
+        {"status": "pass", "scope": "29 positive knowledge-unit statements plus 19 explicit relations", "note": "Author claims are labeled as claims; visual readings are observations; system inferences carry evidence/reasoning; uncertain mapping and attribution are not promoted to facts."},
+        {"status": "pass", "ids": ["candidate KU-00", "candidate KU-04", "candidate KU-05", "candidate KU-07", "candidate KU-14", "candidate KU-15"], "note": "Opening analytics, decision-cost/SU7 causality, '必火'/universality, founder-brand dependence, and slogan-reflection claims all retain non-verification boundaries."},
+        {"status": "pass", "ids": ["candidate KU-20", "candidate KU-25", "candidate KU-26"], "note": "The 交个朋友 line is not silently made an official slogan; absence claims are bounded; audio-classifier output is not treated as proof of exact music/SFX meaning."}
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "examples": [
+        {"status": "pass", "scope": "opening and personal section", "checked": 20, "note": "Checked opening insert/qualifier, three-logics, six-topic, prompt, and 1+2=3 references against audit windows and evidence-pack cue/frame times."},
+        {"status": "pass", "scope": "product and brand taxonomies", "checked": 20, "note": "Checked five-trait overlays and six-direction mappings, including cross-cue localization from 81.400 through 117.530."},
+        {"status": "pass", "scope": "final example sequence, identity, absences, and audio source", "checked": 20, "note": "Checked SpaceX, 福耀科技, 交个朋友, 胖东来/京东, closing identity/signoff, full-range negatives, and full-timeline audio disposition."}
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 15,
+      "denominator": 15,
+      "rationale": "All 15 audited conceptual dependencies are represented: foundation to outcome, claim to illustration, want/have complementarity, topic/person mappings, asset inventory to ordered outline, warmth as modifier, personal/brand parallelism, five-trait and six-direction mappings, culture-to-example relation, and opening-to-closing non-demonstration. This is a conceptual framework rather than a software/process demonstration."
+    },
+    "unknownDiscipline": {
+      "numerator": 12,
+      "denominator": 12,
+      "examples": [
+        {"status": "pass", "ids": ["UNK-01", "UNK-02", "UNK-03", "UNK-04"], "note": "Opening-metric provenance/causality, real identity/credentials, non-founder adaptation, and '必火' conditions remain unknown."},
+        {"status": "pass", "ids": ["UNK-05", "UNK-06", "UNK-07", "UNK-08", "UNK-09"], "note": "Purchase causality, universality, taxonomy overlap, production details, and worked effectiveness remain unknown or are captured as bounded absence."},
+        {"status": "pass", "ids": ["UNK-10", "UNK-11", "UNK-12"], "note": "Official phrase attribution, 刘强东/曹德旺 and small-board ambiguity, and exact non-speech-audio role remain explicitly unresolved."}
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4.4,
+    "knowledgePrioritization": 4.5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4.3,
+    "compressionWithoutLoss": 4.2
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent challenge against the audit found no carrier family, audit meaning-change window, or audit dependency family that the probe/protocol/reconstruction left wholly unexamined. Speech/SRT, burned captions, large overlays, opening analytics UI, persistent identity/promotion header, whiteboard/pointing, speaker/setting/gesture, and non-speech audio each have an explicit inspected disposition. The reconstruction also closes opening-to-closing semantics, cross-cue referents, taxonomy boundaries, conceptual dependency order, scoped negative evidence, carrier conflicts, and technical-versus-semantic continuity."
+  },
+  "examples": [
+    {"kind": "carrier_conflict", "result": "pass", "ids": ["CF-01", "CF-02", "CF-03"], "note": "The SRT edit note is not narrated as speech; ta媒体 remains qualified; 于东来 is corrected while 刘强东/曹德旺 punctuation remains narrow unknown."},
+    {"kind": "carrier_conflict", "result": "pass", "ids": ["CF-04", "CF-05", "CF-06", "CF-07"], "note": "The visible five-part 新/强/稳/故事/平 structure overrides broken SRT segmentation; 文创/奢品 is preserved and uncertain small 稳 examples are not invented."},
+    {"kind": "carrier_conflict", "result": "pass", "ids": ["CF-08", "CF-09", "CF-10"], "note": "Six directions and the mappings 字节跳动/百达翡丽/SpaceX/福耀科技/交个朋友/胖东来和京东 are restored from stronger carriers."},
+    {"kind": "carrier_conflict", "result": "pass", "ids": ["CF-11", "CF-12", "CF-13", "CF-14", "CF-15"], "note": "多行星物种, 一片汽车玻璃, the ambiguous debt/earnings transition, 其实, and 人类最强编导 are handled without false official attribution."},
+    {"kind": "opening_closing", "result": "pass", "note": "All five opening and four closing audit items are present, including persistent promotion and the lack of a finished worked story or outcome validation."},
+    {"kind": "absence_discipline", "result": "pass", "note": "The candidate bounds negative claims to 0–141.804 and the inspected transcript/targeted/dense carriers; it does not extend them to external truth or unreadable whiteboard text."},
+    {"kind": "judge_note", "result": "non_gate", "note": "The JSON is long and evidence-dense, but its uncertainty narrowing and mapping fidelity are unusually strong; execution value is limited by the source video's own lack of a worked example and operational production specification."}
+  ]
+}

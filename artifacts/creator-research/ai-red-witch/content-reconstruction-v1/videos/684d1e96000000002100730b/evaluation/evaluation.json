@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 4,
+      "denominator": 4,
+      "pass": true,
+      "examples": [
+        {
+          "auditQuestion": "观众真正学会了什么？",
+          "candidateCoverage": "KU-05 与 report.md 的操作路径恢复了进入夸克、选择深度搜索并提问，同时把教学密度限定为基础入口演示。"
+        },
+        {
+          "auditQuestion": "画面最强的可证事实是什么？",
+          "candidateCoverage": "KU-07、KU-12、KU-14、KU-16 区分了 UI 状态、可见答案与图片前后状态，不把它们升级为外部真实性。"
+        },
+        {
+          "auditQuestion": "最关键的未证结论是什么？",
+          "candidateCoverage": "KU-15、KU-19、KU-20 明确保留权威性、相对优势、引用真实性、答案正确性与免费范围为未证或未知。"
+        },
+        {
+          "auditQuestion": "叙事如何推动转化？",
+          "candidateCoverage": "KU-01→KU-18 的关系及 report.md 结尾链条恢复了荒诞钩子、办公/健康/图片案例累积和 CTA。"
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 18,
+      "denominator": 18,
+      "pass": true,
+      "examples": [
+        {
+          "coveredCore": "产品身份与基础入口",
+          "candidateEvidence": [
+            "KU-02",
+            "KU-05",
+            "TARGET-0021",
+            "TARGET-0022",
+            "TARGET-0024"
+          ]
+        },
+        {
+          "coveredCore": "HTML/PPT 输入、分析状态、来源计数、答案路径与限制",
+          "candidateEvidence": [
+            "KU-06",
+            "KU-07",
+            "KU-08",
+            "TARGET-0029",
+            "TARGET-0031",
+            "TARGET-0034",
+            "TARGET-0041"
+          ]
+        },
+        {
+          "coveredCore": "猫咪案例的输入、阅读痕迹、作者论文主张、结果页及医学边界",
+          "candidateEvidence": [
+            "KU-11",
+            "KU-12",
+            "KU-13",
+            "KU-14",
+            "KU-15"
+          ]
+        },
+        {
+          "coveredCore": "图片编辑前/指令/后与结尾总评",
+          "candidateEvidence": [
+            "KU-16",
+            "KU-17",
+            "KU-18",
+            "TARGET-0060",
+            "TARGET-0062",
+            "TARGET-0065"
+          ]
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 3,
+      "total": 25,
+      "pass": false,
+      "examples": [
+        {
+          "location": "skill-run/report.md 标题",
+          "claim": "为什么你的 AI 搜索总在瞎编？",
+          "problem": "原视频只给出作者关于机械抓词和不可靠信息的概括，没有建立‘你的 AI 搜索总在瞎编’这一普遍且持续的事实。"
+        },
+        {
+          "location": "reconstruction.json KU-16",
+          "claim": "背景人群被移除",
+          "problem": "独立审计能稳定确认的是主体后方一名清晰男子消失；把结果写成已证实删除‘人群’沿用了输入措辞并扩大了可见结果范围。"
+        },
+        {
+          "location": "reconstruction.json KU-24",
+          "claim": "技术扫描只发现约 4.29–4.62 秒的短静音",
+          "problem": "KU-24 只引用 DS-TARGETED；该来源是定向画面帧 manifest，并明确承认画面不是音频语义证据。候选未提供所称独立音频扫描的可审计来源。"
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 30,
+      "denominator": 30,
+      "pass": true,
+      "examples": [
+        {
+          "checked": [
+            "TARGET-0002@1.4",
+            "TARGET-0006@8.7",
+            "TARGET-0021@29.2",
+            "TARGET-0024@32.2"
+          ],
+          "result": "与开头问题、产品入口和提问状态的审计窗口一致。"
+        },
+        {
+          "checked": [
+            "TARGET-0029@41.5",
+            "TARGET-0031@45.0",
+            "TARGET-0034@48.8",
+            "TARGET-0041@54.1"
+          ],
+          "result": "与 HTML/PPT 输入、规划、答案页和 PDF 中转窗口一致。"
+        },
+        {
+          "checked": [
+            "TARGET-0050@65.2",
+            "TARGET-0051@66.0",
+            "TARGET-0055@69.2",
+            "TARGET-0060@73.3",
+            "TARGET-0065@77.8"
+          ],
+          "result": "与猫咪输入/阅读/答案及图片前后状态窗口一致。"
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 4,
+      "denominator": 4,
+      "pass": true,
+      "rationale": "四条经独立审计确认的依赖链均被恢复：入口→深度搜索→提问；HTML/PPT 问题→分析/来源状态→答案；猫咪问题→阅读列表→结果；原图→自然语言指令/处理中→结果图。候选也明确保留剪辑连续性和后台执行未知。",
+      "examples": [
+        "KU-05",
+        "KU-06→KU-07→KU-08",
+        "KU-11→KU-12→KU-14",
+        "KU-16→KU-17"
+      ]
+    },
+    "unknownDiscipline": {
+      "numerator": 6,
+      "denominator": 9,
+      "pass": false,
+      "examples": [
+        {
+          "correctlyPreserved": "免费额度/期限、账号、版本、平台和地区条件",
+          "candidateLocation": "KU-20"
+        },
+        {
+          "correctlyPreserved": "HTML/PPT 方案未执行验证、来源/引用未核验、猫咪个案条件不足",
+          "candidateLocation": "KU-08、KU-09、KU-11、KU-14、KU-15"
+        },
+        {
+          "missedBoundary": "图片原图版权与人物授权",
+          "auditLocation": "UNK-07",
+          "candidateGap": "KU-16/KU-17 只保留连续性、耗时、隐藏步骤和泛化未知。"
+        },
+        {
+          "missedBoundary": "隐私/数据使用、版权、延迟与性能波动",
+          "auditLocation": "UNK-08",
+          "candidateGap": "KU-19 记录失败、引用错误、事实核查和竞品对照缺席，但未覆盖这些决策边界。"
+        },
+        {
+          "missedBoundary": "讲述者专业资质及是否亲自完成全部录屏测试",
+          "auditLocation": "UNK-09",
+          "candidateGap": "KU-23 只说明现实身份、产品方关系和授权未建立。"
+        }
+      ]
+    },
+    "uncheckedChannels": [
+      "非语音音频：候选只提供 AAC 音频流元数据、画面帧协议和自身的‘已检查’声明；没有可审计的听检、音频检测或频谱证据，因此配乐/SFX 载体并未真正闭合。"
+    ]
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 4,
+    "evidenceUsefulness": 4,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [
+      "非语音音频载体：ACT-11 实际产物仍是画面帧，KU-24 所称独立音频扫描没有可解析证据。"
+    ],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "图片原图/人物与版权、肖像授权边界的关系未进入候选 unknowns。",
+      "讲述者与其专业资质、以及是否亲自完成全部录屏测试的归属关系未被完整检查。"
+    ],
+    "rationale": "候选对口述、SRT、烧录字幕、UI 状态、小字、操作序列、presenter、剪辑与 opening→closing 关系覆盖很强；但它把没有独立证据的非语音音轨检查自报为完成，构成 self-proof 空转闸。另有三项审计中的决策边界只被部分覆盖。因此候选自己的 metaGate.pass=true 不能独立证明覆盖闭包。"
+  },
+  "examples": [
+    {
+      "type": "strength",
+      "summary": "搜索状态、来源/引用痕迹和外部真实性被清楚拆成不同层，避免把 UI 自报计数当作真实检索或权威性证明。",
+      "candidateLocations": [
+        "KU-07",
+        "KU-12",
+        "KU-15"
+      ]
+    },
+    {
+      "type": "strength",
+      "summary": "SRT 的 is二十六、认给他、搜赏与烧录字幕 iOS26、扔给它、搜商之间的冲突被逐项保留。",
+      "candidateLocations": [
+        "KU-21"
+      ]
+    },
+    {
+      "type": "failure",
+      "summary": "音频通道以帧 manifest 和候选自述代替独立音频证据，导致 uncheckedChannels 与 meta-gate 失败。",
+      "candidateLocations": [
+        "ACT-11",
+        "DS-TARGETED",
+        "KU-24",
+        "coverageMatrix.channels[CAR-AUDIO-NONSPEECH]"
+      ]
+    },
+    {
+      "type": "failure",
+      "summary": "报告标题、图片‘人群’范围和无来源的精确静音区间形成 3/25 的不支持正向主张率，高于 5% 阈值。",
+      "candidateLocations": [
+        "report.md title",
+        "KU-16",
+        "KU-24"
+      ]
+    }
+  ]
+}

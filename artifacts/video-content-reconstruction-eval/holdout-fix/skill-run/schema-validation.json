@@ -1,0 +1,14 @@
+{
+  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
+  "validatedAt": "2026-08-16",
+  "pass": true,
+  "validated": ["probe", "protocol", "reconstruction", "ocr"],
+  "failures": [],
+  "inputs": {
+    "probe": "probe.json",
+    "protocol": "capture-protocol.json",
+    "reconstruction": "reconstruction.json",
+    "ocr": "targeted-evidence/ocr-evidence.json"
+  },
+  "note": "未传入 evaluation：本次最新任务契约明确禁止 runner 自评和生成独立 evaluation。"
+}

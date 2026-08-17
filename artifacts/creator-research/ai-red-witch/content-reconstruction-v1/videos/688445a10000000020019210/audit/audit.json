@@ -1,0 +1,477 @@
+{
+  "schemaVersion": "independent-video-audit-1.0",
+  "videoId": "688445a10000000020019210",
+  "auditDate": "2026-08-16",
+  "auditMode": "source-only-independent-ground-truth",
+  "scope": {
+    "readSources": [
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/688445a10000000020019210.mp4",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/median-performance/media/688445a10000000020019210.srt",
+      "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/688445a10000000020019210/evidence/evidence-pack.json"
+    ],
+    "notConsulted": [
+      "skills",
+      "candidate reconstruction",
+      "prior reports or audits",
+      "external web sources"
+    ],
+    "method": [
+      "read the supplied SRT verbatim",
+      "inspect source-video frames across every shot and at UI-detail timestamps",
+      "inspect the source audio waveform and spectrogram for the ThinkSound before/after region",
+      "validate evidence-pack counts, referenced-frame existence, and media metadata"
+    ]
+  },
+  "overallVerdict": {
+    "status": "usable_with_material_corrections",
+    "summary": "The video visibly presents three tools in sequence, but several narration claims are broader than the evidence. The most important corrections are: use FLUX.1 Kontext as the canonical second-tool name; treat sunglasses and snow-background changes as one combined prompt; describe the later Kontext example as a three-image composition rather than two-person fusion; do not call BAGEL's packaged figurine image a verified 3D model; and do not treat open-source status, asset permissions, authorship, or tool causality as established where the video supplies only narration or edited juxtaposition."
+  },
+  "sourceIntegrity": {
+    "sha256": {
+      "video": "bb797f9b2e5f3ac92f6b252786c52517bafd202b9e3a5b1a7909c06f3100d7c8",
+      "srt": "cc3ec0e7fe90a0a062d9da7bd56c6c2d4ff908461b603f15c978ce100f2d37d5",
+      "evidencePack": "8d38dabb05877a26039707ae5bae685e5841db70a109fc432b2c240d10822434"
+    },
+    "ffprobe": {
+      "durationSeconds": 47.577778,
+      "sizeBytes": 3657816,
+      "videoCodec": "hevc",
+      "width": 1080,
+      "height": 1920,
+      "frameRate": "30/1",
+      "audioCodec": "aac"
+    }
+  },
+  "timeline": [
+    {
+      "start": 0.0,
+      "end": 3.767,
+      "content": "presenter hook and title-card montage: three creative AI tools"
+    },
+    {
+      "start": 3.767,
+      "end": 16.533,
+      "content": "BAGEL landing/UI animation and edit/style/figurine examples"
+    },
+    {
+      "start": 16.533,
+      "end": 28.833,
+      "content": "FLUX.1 Kontext website, single-reference edit, and three-image ComfyUI composition"
+    },
+    {
+      "start": 28.833,
+      "end": 31.867,
+      "content": "ThinkSound landing page and demo form"
+    },
+    {
+      "start": 31.867,
+      "end": 35.633,
+      "content": "first violin-video copy, described by the presenter as having no sound effects"
+    },
+    {
+      "start": 35.633,
+      "end": 39.8,
+      "content": "second violin-video copy, presented as the sound-added result"
+    },
+    {
+      "start": 39.8,
+      "end": 44.833,
+      "content": "coffee-pouring, armed-person, and fireplace montage under narration"
+    },
+    {
+      "start": 44.833,
+      "end": 47.577778,
+      "content": "presenter conclusion and aerial city visual"
+    }
+  ],
+  "tools": [
+    {
+      "order": 1,
+      "canonicalName": "BAGEL",
+      "spokenOrOverlayVariants": [
+        "bagel",
+        "1. Bagel"
+      ],
+      "segment": {
+        "start": 3.767,
+        "end": 16.533
+      },
+      "safeCardSubtitle": "统一多模态模型；画面展示参考图加文本的局部改图、风格示例与盒装手办效果图。",
+      "visibleProductCopy": [
+        {
+          "time": 3.8,
+          "text": "BAGEL — The Open-Source Unified Multimodal Model"
+        },
+        {
+          "time": 5.8,
+          "text": "Edit / Motion / Style Transfer / 3D Rotate"
+        },
+        {
+          "time": 14.2,
+          "text": "Ghibli-style / Sketch-style / Picasso-style / 3D model figurine / Skeleton; additional edge labels are clipped"
+        }
+      ],
+      "visibleUI": {
+        "referenceImage": "a grayscale photograph of Michelangelo's David statue",
+        "controls": [
+          "image attachment thumbnail",
+          "plus button",
+          "Think control",
+          "Video control",
+          "Send or Edit button depending on view"
+        ],
+        "numericParameters": [],
+        "parameterNote": "No model version, seed, steps, guidance, resolution, duration, latency, or export setting is shown."
+      },
+      "inputsAndResults": [
+        {
+          "timeRange": "09.2-10.2",
+          "input": "Give a thumbs-up",
+          "result": "the David statue is shown with a raised thumb",
+          "relationship": "input and edited result are visibly paired in the same stylized UI sequence",
+          "verdict": "visibly_supported"
+        },
+        {
+          "timeRange": "10.2-11.2",
+          "input": "only the visible fragment 'Put on sungla…' can be read",
+          "result": "the statue is shown wearing dark sunglasses",
+          "relationship": "paired by the edit sequence; the full hidden prompt wording is not recoverable from the frame",
+          "verdict": "visibly_supported_with_truncated_input"
+        },
+        {
+          "timeRange": "11.2-12.2",
+          "input": "Put on a mink coat",
+          "result": "the statue is shown wearing a fur-like coat",
+          "relationship": "input and result are visibly paired",
+          "verdict": "visibly_supported"
+        },
+        {
+          "timeRange": "12.2-13.667",
+          "input": "Laugh heartily",
+          "result": "the statue's face is changed to a broad smile/laugh",
+          "relationship": "the Chinese overlay says '改动作', but the visible change is primarily facial expression rather than body action",
+          "verdict": "overlay_label_imprecise"
+        },
+        {
+          "timeRange": "13.667-14.9",
+          "input": "no concrete prompt or parameter is shown",
+          "result": "a stylized Picasso-like image is surrounded by style labels",
+          "relationship": "capability illustration only; no generation trace is shown",
+          "verdict": "result_example_only"
+        },
+        {
+          "timeRange": "14.9-16.533",
+          "input": "no concrete prompt or parameter is shown",
+          "result": "a two-dimensional image of a David-like figurine inside retail-style packaging",
+          "relationship": "the video does not show a rotatable mesh, geometry, multi-view output, downloadable 3D file, or 3D editor",
+          "verdict": "does_not_verify_3d_model_generation"
+        }
+      ],
+      "claimChecks": [
+        {
+          "claim": "BAGEL is an open-source unified multimodal model",
+          "source": "visible landing-page subtitle and presenter narration",
+          "verdict": "visible_self_description",
+          "limitation": "The video does not show a repository, license text, commit, weights, or permitted-use terms."
+        },
+        {
+          "claim": "BAGEL is an open-source GPT-4o",
+          "source": "presenter analogy only",
+          "verdict": "unsupported_comparison",
+          "limitation": "No benchmark, architecture comparison, or equivalence evidence is shown."
+        },
+        {
+          "claim": "one sentence can edit an image",
+          "source": "several text-plus-reference edit examples",
+          "verdict": "visibly_demonstrated_as_examples",
+          "limitation": "The edited montage is not an uncut end-to-end run, so runtime reliability and exact causality remain unverified."
+        },
+        {
+          "claim": "one click generates a 3D model",
+          "source": "presenter narration plus a packaged-figurine image",
+          "verdict": "not_verified",
+          "limitation": "Only a 2D rendered image is visible."
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "canonicalName": "FLUX.1 Kontext",
+      "spokenOrOverlayVariants": [
+        "context",
+        "kontext",
+        "2. kontext",
+        "Flux Kontext",
+        "Flux Kontext Pro",
+        "Flux.1 Kontext [pro] Image"
+      ],
+      "segment": {
+        "start": 16.533,
+        "end": 28.833
+      },
+      "safeCardSubtitle": "文本指令编辑参考图；同一条提示词同时加墨镜并换雪山背景，另展示女孩、斑点狗与沙发场景三图合成。",
+      "visibleProductCopy": [
+        {
+          "time": 17.0,
+          "text": "上下文AI图像生成与编辑；使用Flux Kontext AI创建惊人的视觉效果。从文本到图像，释放你的创造力。"
+        },
+        {
+          "time": 18.0,
+          "text": "Flux Kontext 应用；使用我们的一系列 AI 驱动的编辑工具来变换您的图像。从风格转移到人脸增强，发现适合您创意愿景的完美工具。"
+        },
+        {
+          "time": 18.0,
+          "text": "example cards include Age Progression, AI Baby Filter, and Background Change, each showing 16 Credits"
+        }
+      ],
+      "singleReferenceEdit": {
+        "visibleUI": {
+          "model": "Flux Kontext Pro",
+          "modelDescription": "Context-aware image editing with high quality results",
+          "referenceCount": 1,
+          "moreImageToggle": "off",
+          "prompt": "Put sunglasses on this character and change to a snow capped mountain background",
+          "translateToggle": "off",
+          "displayMode": "Auto",
+          "promptStrength": 3.5,
+          "privacy": "Public selected; Private also shown",
+          "advancedSettings": "collapsed; Content Filters label visible",
+          "generationCost": "16 credits shown on the generate control",
+          "history": "No images yet before generation"
+        },
+        "result": "a before/after pair shows the same woman without/with sunglasses and a gray/snowy-mountain background change",
+        "relationship": "The sunglasses addition and background replacement are parallel requirements inside one prompt, not two sequential edit operations.",
+        "identityAssessment": "The result resembles the source subject in hair, clothing, pose, and facial structure, but 'very good character consistency' is a qualitative presenter judgment rather than an objective identity measurement.",
+        "verdict": "input_and_result_visibly_paired"
+      },
+      "multiReferenceComposition": {
+        "visibleUI": {
+          "environment": "ComfyUI-style node graph",
+          "modelNode": "Flux.1 Kontext [pro] Image",
+          "inputImages": [
+            "girl.jpg — stylized girl character, 800x800",
+            "dog.jpg — stylized Dalmatian puppy, 800x800",
+            "sofa.jpg — living-room sofa scene"
+          ],
+          "imageStitch": [
+            "one stitch node shows direction up, match_image_size true, spacing_width 8, spacing_color white",
+            "one stitch node shows direction right, match_image_size true, spacing_width 20, spacing_color white"
+          ],
+          "prompt": "The character is sitting cross-legged on the sofa, and the Dalmatian is lying on the blanket sleeping.",
+          "aspectRatio": "1:1",
+          "guidance": 3.0,
+          "steps": 50,
+          "seed": "957601647357878",
+          "controlAfterGenerate": "randomize",
+          "promptUpsampling": false,
+          "visibleOutputResolution": "1024x1024"
+        },
+        "result": "one square image places the stylized girl and the sleeping Dalmatian into the sofa-room scene",
+        "relationship": "This is a three-image, two-subject-plus-scene composition. It is not accurately described as two people from two images being fused.",
+        "verdict": "narration_and_overlay_contradicted_by_visible_input_count"
+      },
+      "claimChecks": [
+        {
+          "claim": "Kontext is an open-source model",
+          "source": "presenter narration only",
+          "verdict": "unknown_from_video",
+          "limitation": "No repository, license, weights, or usage terms are shown. The visible UI also shows credits and privacy controls, which describe the interface, not the underlying license."
+        },
+        {
+          "claim": "add sunglasses, then change to a snow-mountain background",
+          "source": "one combined English prompt and one result",
+          "verdict": "supported_as_parallel_combined_edit_not_sequence",
+          "limitation": "Do not reconstruct this as two separately executed steps."
+        },
+        {
+          "claim": "two images' people can be fused into one scene",
+          "source": "presenter narration and Chinese overlay",
+          "verdict": "contradicted_by_visible_ui",
+          "limitation": "The node graph visibly loads three images: a girl, a dog, and a sofa scene."
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "canonicalName": "ThinkSound",
+      "spokenOrOverlayVariants": [
+        "think sound",
+        "3. thinksound"
+      ],
+      "segment": {
+        "start": 28.833,
+        "end": 44.833
+      },
+      "safeCardSubtitle": "网页自述可把视频、Caption 或 CoT 描述作为输入来生成音频；视频给出小提琴片段的前后对照，但未展示实际生成流程。",
+      "visibleProductCopy": [
+        {
+          "time": 29.0,
+          "text": "ThinkSound：革命性的视频转音频AI生成平台"
+        },
+        {
+          "time": 29.0,
+          "text": "下一代多模态AI平台，无缝地将视频转换为同步音效、语音和沉浸式音景。由ThinkSound的先进神经网络和逐步推理能力驱动。从无声视频到丰富的音效体验——通过智能视频音效合成革命化内容创作。"
+        },
+        {
+          "time": 30.0,
+          "text": "ThinkSound Demo — Upload a video, caption, or CoT to generate audio. For an enhanced experience, we automatically merge the generated audio with your original silent video. (Note: Flexible audio generation lengths are supported.)"
+        },
+        {
+          "time": 31.0,
+          "text": "Upload Video / Caption (optional) / CoT Description (optional) / Clear / Submit / Share via Link"
+        }
+      ],
+      "visibleUI": {
+        "inputFields": [
+          "Upload Video",
+          "Caption (optional)",
+          "CoT Description (optional)"
+        ],
+        "actions": [
+          "Clear",
+          "Submit",
+          "Share via Link"
+        ],
+        "actualUploadedFilename": null,
+        "actualCaption": null,
+        "actualCoTDescription": null,
+        "generationParameters": [],
+        "resultPanelEvidence": "No completed result UI or downloadable output is shown."
+      },
+      "beforeAfterAudioCheck": {
+        "firstCopy": {
+          "timeRange": "31.867-35.633",
+          "visual": "woman playing violin",
+          "presentation": "presenter says this generated video has no sound effects",
+          "audit": "The source track is not literally silent because presenter narration continues. The video supports only 'no depicted violin sound effect under the voiceover', not absolute silence."
+        },
+        "secondCopy": {
+          "timeRange": "35.633-39.8",
+          "visual": "the same violin-playing scene is repeated",
+          "audio": "after narration falls away at about 35.69 seconds, the source audio contains a sustained tonal/harmonic passage through about 39.7 seconds that is consistent with a violin-like sound",
+          "audit": "The audiovisual before/after contrast is present in the edited video, but no ThinkSound upload, processing, job status, or result record links this audio to the tool."
+        },
+        "montage": {
+          "timeRange": "39.8-44.833",
+          "visuals": [
+            "liquid poured into a cup",
+            "an armed person aiming/moving a firearm",
+            "a burning fireplace"
+          ],
+          "audioCondition": "presenter narration is mixed over this montage",
+          "audit": "These visuals illustrate the narration about environment and motion matching. The video does not isolate each generated effect or prove its provenance."
+        }
+      },
+      "claimChecks": [
+        {
+          "claim": "ThinkSound gives videos sound effects",
+          "source": "visible website self-description plus an edited before/after example",
+          "verdict": "demonstrated_as_presentation_not_end_to_end_proof",
+          "limitation": "No filled input, generation run, output page, file metadata, or reproducible job is shown."
+        },
+        {
+          "claim": "environment sounds and object-motion changes basically match the picture",
+          "source": "presenter qualitative judgment and illustrative montage",
+          "verdict": "subjective_claim",
+          "limitation": "The source contains narration over much of the montage and provides no synchronization metric or isolated stems."
+        },
+        {
+          "claim": "ThinkSound is open source",
+          "source": "presenter's final grouped claim only",
+          "verdict": "unknown_from_video",
+          "limitation": "No repository, license, model weights, or usage terms are visible."
+        }
+      ]
+    }
+  ],
+  "parallelAndReferenceRelations": [
+    {
+      "id": "REL-001",
+      "statement": "The three tools are a parallel recommendation list, not a workflow where one tool's output feeds the next.",
+      "verdict": "verified_by_structure"
+    },
+    {
+      "id": "REL-002",
+      "statement": "In the single-reference Kontext example, 'this character' refers to the one uploaded portrait. Sunglasses and a snow-capped mountain background are joined by 'and' in one prompt.",
+      "verdict": "verified_by_visible_prompt"
+    },
+    {
+      "id": "REL-003",
+      "statement": "In the ComfyUI prompt, 'The character' refers to girl.jpg, 'the Dalmatian' refers to dog.jpg, and 'the sofa' refers to sofa.jpg. These are three separate source images.",
+      "verdict": "verified_by_visible_node_graph"
+    },
+    {
+      "id": "REL-004",
+      "statement": "The first and second violin clips are edited before/after presentations of the same type of source scene; the video does not visibly establish that the second file is the direct output of the shown ThinkSound webpage.",
+      "verdict": "causal_link_unknown"
+    }
+  ],
+  "capabilityCausalityAndRights": {
+    "capabilityBoundary": [
+      "Examples show what appears in this edited video, not guaranteed product behavior, quality, speed, availability, or reproducibility.",
+      "BAGEL 3D generation is not established by a 2D packaged-figurine image.",
+      "Kontext identity consistency is a qualitative impression, not measured identity preservation.",
+      "ThinkSound generation is not shown end to end."
+    ],
+    "causalityUnknown": [
+      "The video does not show uncut generation runs for BAGEL edits.",
+      "The Kontext before/after and ComfyUI examples are visually associated with inputs, but provenance files and job logs are absent.",
+      "The ThinkSound audio is associated by narration and editing; the actual upload and result workflow is absent."
+    ],
+    "licensingAndAuthorizationUnknown": [
+      "Only BAGEL visibly self-describes as open source; FLUX.1 Kontext and ThinkSound open-source status is not evidenced in the video.",
+      "No exact software license, model-weight license, commercial-use clause, hosted-service terms, or attribution requirement is shown for any tool.",
+      "No rights or licenses are shown for the portrait, David photograph, style examples, generated clips, music/sound effects, or other source assets.",
+      "No subject consent, likeness release, performer release, or authorization for the presenter and depicted people is shown.",
+      "The statement 'this is the video I generated' is an authorship assertion by the presenter; generation provenance and reuse permission remain unknown.",
+      "Open-source status, even if true, would not by itself establish rights to every input or output asset."
+    ]
+  },
+  "evidencePackValidation": {
+    "schemaVersion": "video-evidence-pack-1.0",
+    "shotCount": 15,
+    "cueCount": 12,
+    "denseFrameCount": 33,
+    "frameIndexCount": 60,
+    "uniqueFramePathCount": 60,
+    "missingReferencedFrames": 0,
+    "transcriptAssessment": "The 12 cue texts preserve the supplied SRT wording and timing structure.",
+    "mediaAssessment": "Codec, dimensions, frame rate, audio presence, and byte size agree with ffprobe.",
+    "durationNote": "The pack records 47.567 seconds, while ffprobe reports 47.577778 seconds and the supplied SRT ends at 47.577 seconds. The approximately 0.011-second difference is minor but should not be represented as exact identity.",
+    "evidentiaryLimit": "Representative and dense frames support visible-content checks but cannot establish licensing, authorship, model capability in general, or causal provenance of edited outputs."
+  },
+  "requiredCorrections": [
+    {
+      "priority": "critical",
+      "correction": "Use FLUX.1 Kontext as the canonical second-tool name; preserve 'Kontext' spelling rather than normalizing it to Context."
+    },
+    {
+      "priority": "critical",
+      "correction": "Represent sunglasses and snow-background replacement as two parallel clauses in one prompt, not two sequential operations."
+    },
+    {
+      "priority": "critical",
+      "correction": "Replace 'two people from two images' with 'three-image composition using a girl, a Dalmatian, and a sofa scene'."
+    },
+    {
+      "priority": "critical",
+      "correction": "Do not state that BAGEL generated a verified 3D model; only a 2D packaged-figurine result image is visible."
+    },
+    {
+      "priority": "high",
+      "correction": "Describe BAGEL's 'Laugh heartily' result as a facial-expression edit; the video's 'change action' overlay is imprecise."
+    },
+    {
+      "priority": "high",
+      "correction": "Qualify ThinkSound as an edited audio before/after demonstration without a shown end-to-end generation trace."
+    },
+    {
+      "priority": "high",
+      "correction": "Mark open-source status, exact licenses, asset permissions, subject releases, output rights, and authorship/provenance as unknown unless separately sourced."
+    },
+    {
+      "priority": "medium",
+      "correction": "Retain visible parameters exactly: Kontext Pro, prompt strength 3.5, Public, 16 credits; and ComfyUI aspect ratio 1:1, guidance 3.0, 50 steps, seed 957601647357878, randomize, prompt upsampling false, 1024x1024 output."
+    }
+  ]
+}

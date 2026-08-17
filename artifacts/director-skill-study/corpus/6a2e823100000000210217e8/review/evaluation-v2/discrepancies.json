@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "reconstruction-discrepancies-1.0",
+  "videoId": "6a2e823100000000210217e8",
+  "evaluationRound": "v2-fresh-independent",
+  "blocking": [],
+  "nonBlocking": [],
+  "focusChecks": [
+    {
+      "id": "FC-01",
+      "status": "closed",
+      "topic": "four_program_identities",
+      "candidateRefs": ["KU-07", "KU-18", "KU-13"],
+      "finding": "四个身份分离，关系未知，手册未被用作口述政策证明。"
+    },
+    {
+      "id": "FC-02",
+      "status": "closed",
+      "topic": "time_reference_conflict",
+      "candidateRefs": ["KU-04", "KU-05", "KU-19"],
+      "finding": "5 月/24 小时的视觉读数与 SRT 噪声分层；年份、规则来源、适用范围仍未知。"
+    },
+    {
+      "id": "FC-03",
+      "status": "closed",
+      "topic": "bounded_absence",
+      "candidateRefs": ["KU-19"],
+      "finding": "入口、价格、账户/地区、支持实体和 CTA 的缺失明确限定于全片检查范围。"
+    }
+  ],
+  "summary": "No blocking or non-blocking discrepancies remain against the independent audit."
+}

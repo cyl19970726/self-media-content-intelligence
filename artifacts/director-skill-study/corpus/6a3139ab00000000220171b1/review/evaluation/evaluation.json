@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "evaluationStatus": "NOT_READY",
+  "gateFirst": true,
+  "judgesStatus": "NOT_RUN_HARD_GATE_FAILURE",
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 14,
+      "denominator": 15,
+      "examples": [
+        {
+          "auditId": "CQ-15",
+          "result": "miss",
+          "detail": "The candidate describes the closing as an identity/sign-off loop and notes no CTA, but does not preserve the audited opening-to-closing gap: no demonstration and no explicit qualification or guarantee of the breakout-vlog promise."
+        },
+        {
+          "auditIds": ["CQ-01", "CQ-03", "CQ-07", "CQ-10", "CQ-12", "CQ-14"],
+          "result": "hit",
+          "detail": "The broad promise, three user needs, nested taxonomy, four IP dimensions, title/slogan claim, and slogan mappings are reconstructed with evidence and author-claim boundaries."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 17,
+      "denominator": 18,
+      "examples": [
+        {
+          "auditId": "KU-18",
+          "result": "not_covered_as_core_meaning",
+          "detail": "CUE-043 is cited for the sign-off, but the candidate does not state that the closing is not proof and does not explicitly close the opening result promise."
+        },
+        {
+          "auditIds": ["KU-01", "KU-02", "KU-03", "KU-04", "KU-05", "KU-06", "KU-07", "KU-08", "KU-09", "KU-10", "KU-11", "KU-12", "KU-13", "KU-14", "KU-15", "KU-16", "KU-17"],
+          "result": "covered",
+          "detail": "The remaining audited core units have localized cue/frame/OCR evidence, notwithstanding the separate correctness errors reported under unsupported inference."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 2,
+      "total": 28,
+      "examples": [
+        {
+          "candidateUnit": "KU-05",
+          "result": "unsupported_positive_visual_claim",
+          "detail": "The candidate says the burned subtitle clearly shows 2026. Audit CC-02/AC-08 finds no visible year in the burned subtitle over 25.408-28.309; only the provided SRT supplies 2020, while the audible year is unresolved."
+        },
+        {
+          "candidateUnit": "KU-12",
+          "result": "incorrect_visible_identity",
+          "detail": "The candidate reports the fixed-format example approximately as 梁桑. Audit CC-04 resolves the burned subtitle/profile insert as 梁馨和小马; the provided SRT's 良心 is the conflicting form."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 30,
+      "denominator": 30,
+      "examples": [
+        {
+          "result": "pass",
+          "detail": "All 30 candidate knowledge-unit ranges are within the 135.001-second source and align with the cited segment or declared full-timeline scope; semantic correctness is scored separately."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 15,
+      "denominator": 16,
+      "rationale": "The candidate preserves the user-demand-to-platform chain, nested daily/challenge taxonomy, cross-type IP thesis, four IP dimensions, title/slogan illustration, opening framework relation, and profile-as-illustration boundary. It misses RD-15: the closing does not explicitly close the opening promise."
+    },
+    "unknownDiscipline": {
+      "numerator": 9,
+      "denominator": 13,
+      "examples": [
+        {
+          "auditId": "UO-02",
+          "result": "incorrect_disposition",
+          "detail": "The audible year should remain unknown because the SRT and visible burned text do not establish a reliable year; the candidate invents a visible 2026 reading."
+        },
+        {
+          "auditId": "UO-03",
+          "result": "miss",
+          "detail": "The candidate does not explicitly preserve the missing numerical threshold for 爆款."
+        },
+        {
+          "auditId": "UO-09",
+          "result": "miss",
+          "detail": "The candidate never explicitly states that no end-to-end filming/editing/testing workflow or before-after transformation demonstration is established."
+        },
+        {
+          "auditId": "UO-13",
+          "result": "miss",
+          "detail": "The candidate notes a sign-off and no CTA, but does not state that the closing neither guarantees success nor recaps/fulfills the promised transformation."
+        },
+        {
+          "auditIds": ["UO-01", "UO-04", "UO-05", "UO-06", "UO-07", "UO-08", "UO-10", "UO-11", "UO-12"],
+          "result": "correctly_guarded",
+          "detail": "Platform identity, screenshot ownership/causality, source authority, title causality, screenshot role, hard-material threshold, proper noun, whiteboard text, and non-speech audio semantics are bounded or left unknown."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 1,
+    "knowledgePrioritization": 1,
+    "evidenceUsefulness": 1,
+    "executionValue": 1,
+    "compressionWithoutLoss": 1
+  },
+  "judgePlaceholders": true,
+  "judgePlaceholderRationale": "The schema requires numeric judge fields. These 1 values are non-substantive placeholders only; JUDGE was not run because hard gates failed and must not be interpreted as scores.",
+  "metaAudit": {
+    "pass": false,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [
+      "The closing sign-off does not demonstrate, qualify, guarantee, or explicitly close the opening promise to turn a chronological vlog into a breakout vlog."
+    ],
+    "rationale": "All seven audited carrier classes are at least inspected or explicitly guarded as unknown, including non-speech audio. However, the candidate's internal meta-gate declares closure while omitting the audited opening-to-closing non-closure relation (RD-15/CF-04), so the independent meta-gate fails."
+  },
+  "examples": [
+    {
+      "type": "carrier_conflict_error",
+      "candidate": "burned subtitle clearly shows 2026",
+      "audit": "burned subtitle does not visibly state a year; audible year remains unresolved"
+    },
+    {
+      "type": "identity_error",
+      "candidate": "梁桑和小马",
+      "audit": "梁馨和小马"
+    },
+    {
+      "type": "relationship_omission",
+      "candidate": "identity loop/sign-off",
+      "audit": "body provides only a partial framework; closing does not close the promised result"
+    }
+  ]
+}

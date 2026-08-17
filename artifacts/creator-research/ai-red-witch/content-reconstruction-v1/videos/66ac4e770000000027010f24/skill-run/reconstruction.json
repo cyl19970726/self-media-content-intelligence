@@ -1,0 +1,412 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/evidence/evidence-pack.json",
+  "probe": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/probe.json",
+  "protocol": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/capture-protocol.json",
+  "scopeStatement": "Fresh reconstruction from the supplied MP4/SRT, new evidence-pack, and skill-run targeted frames/OCR only. It reports video-internal claims, visible interfaces, edited task/result screens, conditions, scoped absences, and unknowns; it does not externally verify product performance, openness, price, identity, or benchmark validity. No prior report was consulted.",
+  "viewerChange": {
+    "before": "Viewer may treat GPT-4 as the default recommendation and US models as the center of open-model progress.",
+    "after": "The video tries to move the viewer toward Qwen2—especially the 72B model—as a powerful free/open domestic alternative, while the reconstructed evidence shows that the visible numeric baseline is Llama 3/other open models rather than GPT-4 and that important version, license, compute, and test conditions remain unresolved."
+  },
+  "derivedSources": [
+    {"id": "SRC-CONTACT", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/full-contact.jpg", "kind": "2-second full-timeline contact sheet", "producedBy": "ffmpeg fps=1/2, scale and tile", "timeRange": {"start": 0, "end": 86.567}, "limitations": ["Each tile is an instantaneous sample", "Small text is not reliable without targeted frames/OCR"]},
+    {"id": "SRC-FIB-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/fibonacci-54.6.png", "kind": "magnified crop of Hugging Face Qwen chat", "producedBy": "ffmpeg crop and 2x scale at 54.6 s", "timeRange": {"start": 54.6, "end": 54.6}, "limitations": ["Magnification adds no new source detail", "Presenter overlay obscures the lower-right area", "Shows a generated text state, not code execution"]},
+    {"id": "SRC-OPT-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/options-compare-55.7.png", "kind": "magnified crop of side-by-side model response screen", "producedBy": "ffmpeg crop and 2x scale at 55.7 s", "timeRange": {"start": 55.7, "end": 55.7}, "limitations": ["Magnification adds no new source detail", "Only the visible portions of responses can be read", "No score or generation settings are visible"]},
+    {"id": "SRC-LICENSE-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/license-qualifier-34.5.png", "kind": "magnified crop of visible Qwen2 license qualifier", "producedBy": "ffmpeg crop and 2x scale at 34.5 s", "timeRange": {"start": 34.5, "end": 34.5}, "limitations": ["Opening words are clipped by the source framing", "Meaning is corroborated by adjacent targeted frames and OCR", "Does not externally verify license status"]},
+    {"id": "SRC-SOCIAL-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/social-proof-36.3.png", "kind": "magnified crop of inserted Clement Delangue post", "producedBy": "ffmpeg crop and 2x scale at 36.3 s", "timeRange": {"start": 36.3, "end": 36.3}, "limitations": ["Inserted screenshot provenance/authenticity is not independently verified", "Presenter overlay obscures lower-right text"]},
+    {"id": "SRC-AUDIO-SILENCE", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/audio-silence-inspection.txt", "kind": "audio amplitude/silence inspection note", "producedBy": "ffmpeg silencedetect at -45 dB for >=0.5 s, then recorded verbatim", "timeRange": {"start": 0, "end": 86.567}, "limitations": ["Amplitude threshold is method-dependent", "Does not identify music, effects, or speaker identity"]},
+    {"id": "SRC-FIVE-SIZES-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/family-five-sizes-16.5.png", "kind": "magnified crop of the Qwen2 five-size family listing", "producedBy": "ffmpeg crop and 2x scale at 16.5 s", "timeRange": {"start": 16.5, "end": 16.5}, "limitations": ["Magnification adds no new source detail", "Page context outside the crop is partial", "Shows a five-size catalog while a later card uses four specification columns"]},
+    {"id": "SRC-BENCH-72B-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/benchmark-72b-30.4.png", "kind": "magnified crop of the Qwen2-72B/Llama3-70B/Qwen1.5-72B benchmark table", "producedBy": "ffmpeg crop and 2x scale at 30.4 s", "timeRange": {"start": 30.4, "end": 30.4}, "limitations": ["Magnification adds no new source detail", "Only rows visible in the source frame are represented", "Benchmark methodology remains absent"]},
+    {"id": "SRC-BENCH-7B-CROP", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/benchmark-7b-31.2.png", "kind": "magnified crop spanning the lower 72B rows and separate 7B comparison table", "producedBy": "ffmpeg crop and 2x scale at 31.2 s", "timeRange": {"start": 31.2, "end": 31.2}, "limitations": ["Burned caption obscures parts of the small table", "HumanEval values remain clearly readable as 79.9/62.2/71.8", "No methodology is supplied"]},
+    {"id": "SRC-AUDIO-SEMANTIC", "path": "/Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/content-reconstruction-v1/videos/66ac4e770000000027010f24/skill-run/inspection/audio-semantic-listen.json", "kind": "bounded machine semantic audio listening manifest", "producedBy": "MIT Audio Spectrogram Transformer on contiguous coarse windows plus 2-second followup windows, cross-checked with ffmpeg silence detection", "timeRange": {"start": 0, "end": 86.567}, "limitations": ["Machine semantic listening, not human auditory review", "Mixed speech/non-speech signal rather than separated stems", "Only stable recurrent/time-localized labels are accepted", "Exact music/effect source and ownership remain unknown"]}
+  ],
+  "transcript": {
+    "origin": "provided_subtitles",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 4.24, "text": "黃仁熊猛跨META開源模型並表示AI大模型就該開源", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001"]},
+      {"id": "CUE-002", "start": 4.24, "end": 8, "text": "之前可能有的朋友會說「美國一開源我們就有自言了」", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"]},
+      {"id": "CUE-003", "start": 8, "end": 9.28, "text": "自己別填了", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"]},
+      {"id": "CUE-004", "start": 9.28, "end": 12.32, "text": "如今AI大模型的格局早就不是美國獨霸了", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-005", "start": 12.32, "end": 16.08, "text": "國產的千問二才是現在全球至首可熱的開源模型", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-006", "start": 16.08, "end": 19.08, "text": "來自阿里雲的這款通意千問開源大模型", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-007", "start": 19.08, "end": 22, "text": "從0.5B到72B的尺寸因有進有", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-003"]},
+      {"id": "CUE-008", "start": 22, "end": 25.76, "text": "特別是72B版本128K上下文處理能力", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"]},
+      {"id": "CUE-009", "start": 25.76, "end": 27.6, "text": "簡直是學霸級別的存在", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-004"]},
+      {"id": "CUE-010", "start": 27.6, "end": 29.92, "text": "它還在多摩泰處理多語言理解", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"]},
+      {"id": "CUE-011", "start": 29.92, "end": 30.72, "text": "邏輯推理", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-005"]},
+      {"id": "CUE-012", "start": 30.72, "end": 32, "text": "代碼生成等領域", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-005"]},
+      {"id": "CUE-013", "start": 32, "end": 34.52, "text": "全面黏壓META的開源模型La Ma 3", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-005"]},
+      {"id": "CUE-014", "start": 34.52, "end": 36.6, "text": "AI行業內的頂尖全位人士", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-005", "SHOT-006", "SHOT-007"]},
+      {"id": "CUE-015", "start": 36.6, "end": 38.92, "text": "都幸福口服的出來猛跨千問二", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-007", "SHOT-008"]},
+      {"id": "CUE-016", "start": 38.92, "end": 42.48, "text": "海外開發者們也都在用千問二來搭建自己的AI應用", "representativeFrame": "frames/cues/cue-016.jpg", "overlappingShots": ["SHOT-008", "SHOT-009"]},
+      {"id": "CUE-017", "start": 42.48, "end": 44.12, "text": "而一直不 open的 openAI", "representativeFrame": "frames/cues/cue-017.jpg", "overlappingShots": ["SHOT-009"]},
+      {"id": "CUE-018", "start": 44.12, "end": 46.28, "text": "現在看起來是那麼傲慢和昂貴", "representativeFrame": "frames/cues/cue-018.jpg", "overlappingShots": ["SHOT-009"]},
+      {"id": "CUE-019", "start": 46.28, "end": 47.4, "text": "差不多半年前", "representativeFrame": "frames/cues/cue-019.jpg", "overlappingShots": ["SHOT-009"]},
+      {"id": "CUE-020", "start": 47.4, "end": 49.24, "text": "如果有小夥伴問我用啥AI", "representativeFrame": "frames/cues/cue-020.jpg", "overlappingShots": ["SHOT-009"]},
+      {"id": "CUE-021", "start": 49.24, "end": 50.76, "text": "我都會推薦 GPT-4", "representativeFrame": "frames/cues/cue-021.jpg", "overlappingShots": ["SHOT-009", "SHOT-010"]},
+      {"id": "CUE-022", "start": 50.76, "end": 53.28, "text": "但現在朋友們別去花園望前了", "representativeFrame": "frames/cues/cue-022.jpg", "overlappingShots": ["SHOT-010"]},
+      {"id": "CUE-023", "start": 53.28, "end": 55.64, "text": "直接用免費的國產開源錯不了", "representativeFrame": "frames/cues/cue-023.jpg", "overlappingShots": ["SHOT-010", "SHOT-011"]},
+      {"id": "CUE-024", "start": 55.64, "end": 58.04, "text": "而隨著AI大模型的開源路線深化", "representativeFrame": "frames/cues/cue-024.jpg", "overlappingShots": ["SHOT-011"]},
+      {"id": "CUE-025", "start": 58.04, "end": 60.44, "text": "未來我們還能擺飄更強大的模型", "representativeFrame": "frames/cues/cue-025.jpg", "overlappingShots": ["SHOT-011", "SHOT-012"]},
+      {"id": "CUE-026", "start": 60.44, "end": 62.04, "text": "千問二我已經打爆好了", "representativeFrame": "frames/cues/cue-026.jpg", "overlappingShots": ["SHOT-012"]},
+      {"id": "CUE-027", "start": 62.04, "end": 63.68, "text": "需要的朋友評論去安排", "representativeFrame": "frames/cues/cue-027.jpg", "overlappingShots": ["SHOT-012", "SHOT-013"]},
+      {"id": "CUE-028", "start": 85.64, "end": 87.64, "text": "( 字幕:J Chong )", "representativeFrame": "frames/cues/cue-028.jpg", "overlappingShots": ["SHOT-014"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01", "title": "Visible creator/presenter context", "importance": "context",
+      "statement": "The vertical Xiaohongshu-style video repeatedly displays the creator label 'AI红发魔女' and a red-haired presenter speaking from a home-studio-like room; the presenter's legal identity and whether the likeness is synthetic are not established.",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 63.667},
+      "evidence": [{"refType": "frame", "ref": "FRAME-SHOT-009", "supports": "Shows the presenter and creator branding in the recurring room setting."}, {"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "Shows the presenter/branding during the CTA."}],
+      "confidence": "high", "unknowns": ["Legal identity", "Whether the presenter image/voice is synthetic or edited"]
+    },
+    {
+      "id": "KU-02", "title": "Provocative opening promise", "importance": "core",
+      "statement": "The opening on-screen hook asks '国产AI碾压GPT4?' and adds '学霸级模型免费用!', framing the video as a possible GPT-4 replacement story rather than presenting a completed result at that moment.",
+      "provenance": "visual_observation", "timeRange": {"start": 0, "end": 3.0},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "Displays the complete opening hook."}, {"refType": "shot", "ref": "SHOT-001", "supports": "Opening interval contains title, inserted stage footage, and presenter."}],
+      "confidence": "high", "argument": {"claim": "Domestic AI may beat GPT-4 and be free to use.", "evidenceUnitIds": [], "conditions": ["Presented as a question/hook"], "counterexamples": ["No GPT-4 output or score appears in the opening"], "actions": [], "limits": ["A question card is not benchmark evidence"]}, "unknowns": []
+    },
+    {
+      "id": "KU-03", "title": "Opening authority attribution", "importance": "supporting",
+      "statement": "The narrator attributes praise of Meta open models and the view that large AI models should be open to '黄仁勋'; inserted stage footage shows two recognizable public-figure likenesses, but the source, date, exact speakers, and exact quoted wording are not identified by the video.",
+      "provenance": "author_claim", "timeRange": {"start": 0, "end": 4.24},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "Supplies the narrator's attribution in the verbatim subtitle layer."}, {"refType": "targeted_frame", "ref": "TARGET-0002", "supports": "Shows the inserted stage footage and burned caption."}],
+      "confidence": "medium", "argument": {"claim": "A prominent industry figure supports open models.", "evidenceUnitIds": [], "conditions": ["Attribution comes from narrator/edit"], "counterexamples": [], "actions": [], "limits": ["Original source and exact quote absent"]}, "unknowns": ["Source/date of footage", "Exact quote and context", "Authorization/provenance"]
+    },
+    {
+      "id": "KU-04", "title": "Qwen2 as the new open-model leader", "importance": "core",
+      "statement": "The presenter claims that AI models are no longer dominated by the United States and that domestic Qwen2 is currently a globally sought-after open model.",
+      "provenance": "author_claim", "timeRange": {"start": 9.28, "end": 16.08},
+      "evidence": [{"refType": "cue", "ref": "CUE-004", "supports": "States the end of US-exclusive dominance."}, {"refType": "cue", "ref": "CUE-005", "supports": "Names Qwen2 as globally hot/open."}, {"refType": "frame", "ref": "FRAME-SHOT-003", "supports": "Shows the Qwen2 repository/readme montage."}],
+      "confidence": "high", "argument": {"claim": "Qwen2 represents a shift away from US-exclusive open-model leadership.", "evidenceUnitIds": ["KU-06", "KU-10", "KU-14"], "conditions": ["Video uses selected product pages, benchmarks, and posts"], "counterexamples": [], "actions": ["Consider Qwen2 as an alternative"], "limits": ["Global leadership is not independently verified"]}, "unknowns": []
+    },
+    {
+      "id": "KU-05", "title": "Narrated provider and product identity", "importance": "core",
+      "statement": "The presenter identifies the product as Alibaba Cloud's Tongyi Qianwen open large model, Qwen2.",
+      "provenance": "author_claim", "timeRange": {"start": 16.08, "end": 19.08},
+      "evidence": [{"refType": "cue", "ref": "CUE-006", "supports": "Narrates Alibaba Cloud/Tongyi Qianwen identity."}],
+      "confidence": "high", "unknowns": ["Exact repository commit/release date"]
+    },
+    {
+      "id": "KU-06", "title": "Visible five-size Qwen2 family listing", "importance": "core",
+      "statement": "A visible Qwen2 family page says it contains pretrained and instruction-tuned models of five sizes: 0.5B, 1.5B, 7B, 57B-A14B, and 72B. It also visibly lists Qwen2-72B-Instruct and Qwen2-72B entries, confirming that family size and base/Instruct identity are separate dimensions.",
+      "provenance": "visual_observation", "timeRange": {"start": 16.4, "end": 16.6},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0105", "supports": "Shows the five-size Qwen2 family page and 72B model entries."}, {"refType": "source", "ref": "SRC-FIVE-SIZES-CROP", "supports": "Magnifies the five-size listing and 57B-A14B label."}, {"refType": "ocr", "ref": "OCR-01822", "supports": "Checked OCR begins the family description."}, {"refType": "ocr", "ref": "OCR-01823", "supports": "Checked OCR lists 0.5B, 1.5B, 7B, and 57B-A14B."}, {"refType": "ocr", "ref": "OCR-01824", "supports": "Checked OCR completes the list with 72B."}],
+      "confidence": "high", "unknowns": ["Exact repository commit/release context", "Why the later specification card omits 57B-A14B"]
+    },
+    {
+      "id": "KU-07", "title": "Visible four-column specification card", "importance": "core",
+      "statement": "A later Qwen2 specification card uses a different, four-column scope: 0.5B, 1.5B, 7B, and 72B. It says training used data in 29 languages and shows 32K context for 0.5B/1.5B and 128K for 7B/72B. This card does not display the 57B-A14B model that appears in the earlier five-size family listing.",
+      "provenance": "visual_observation", "timeRange": {"start": 22.033, "end": 27.633},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Shows the family-size and context-length card."}, {"refType": "ocr", "ref": "OCR-00243", "supports": "Checked OCR line lists 0.5B, 1.5B, 7B, 72B."}, {"refType": "ocr", "ref": "OCR-00245", "supports": "Checked OCR line states 7B and 72B extended to 128K."}, {"refType": "ocr", "ref": "OCR-00269", "supports": "Checked 32K table value."}, {"refType": "ocr", "ref": "OCR-00271", "supports": "Checked 128K table value."}],
+      "confidence": "high", "unknowns": ["Why 57B-A14B is outside this four-column card", "Whether every visible specification applies to base, instruct, or both in all contexts"]
+    },
+    {
+      "id": "KU-08", "title": "Narrated 72B/128K emphasis", "importance": "supporting",
+      "statement": "The narration singles out the 72B version's 128K context ability as '学霸级'; it omits that the visible card also assigns 128K to 7B.",
+      "provenance": "author_claim", "timeRange": {"start": 22, "end": 27.6},
+      "evidence": [{"refType": "cue", "ref": "CUE-008", "supports": "Narrates 72B/128K."}, {"refType": "cue", "ref": "CUE-009", "supports": "Adds the '学霸级' evaluation."}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Visible table provides the broader 7B/72B context boundary."}],
+      "confidence": "high", "unknowns": []
+    },
+    {
+      "id": "KU-09", "title": "Claimed capability areas", "importance": "core",
+      "statement": "The presenter claims strength in multimodal processing, multilingual understanding, logical reasoning, and code generation.",
+      "provenance": "author_claim", "timeRange": {"start": 27.6, "end": 32},
+      "evidence": [{"refType": "cue", "ref": "CUE-010", "supports": "Claims multimodal and multilingual abilities despite ASR error in '多摩泰'."}, {"refType": "cue", "ref": "CUE-011", "supports": "Names logical reasoning."}, {"refType": "cue", "ref": "CUE-012", "supports": "Names code generation."}, {"refType": "ocr", "ref": "OCR-00492", "supports": "Checked burned caption reads '它还在多模态处理'."}],
+      "confidence": "high", "argument": {"claim": "Qwen2 is strong across several capability classes.", "evidenceUnitIds": ["KU-10", "KU-21", "KU-23"], "conditions": ["Selected benchmark/image/UI montage"], "counterexamples": ["No identified multimodal input/output demonstration is shown"], "actions": [], "limits": ["Capability breadth is asserted more broadly than the visible tasks prove"]}, "unknowns": ["Which exact Qwen2 checkpoint supports the multimodal claim"]
+    },
+    {
+      "id": "KU-10", "title": "Two distinct visible benchmark tables", "importance": "core",
+      "statement": "The video shows two separate comparison tables that must not be merged. The 72B table columns are Qwen2-72B-Instruct, Llama3-70B-Instruct, and Qwen1.5-72B-Chat. The small-model table columns are Qwen2-7B-Instruct, Llama3-8B-Instruct, and GLM4-9B-Chat. Rows include AlignBench, MT-Bench, MMLU, GSM8K, MATH, HumanEval, MBPP and others; GPT-4 is not a visible column in either table.",
+      "provenance": "visual_observation", "timeRange": {"start": 27.633, "end": 34.667},
+      "evidence": [{"refType": "source", "ref": "SRC-BENCH-72B-CROP", "supports": "Clearly separates Qwen2-72B-Instruct, Llama3-70B-Instruct, and Qwen1.5-72B-Chat."}, {"refType": "source", "ref": "SRC-BENCH-7B-CROP", "supports": "Clearly separates the lower Qwen2-7B/Llama3-8B/GLM4-9B table from the upper 72B table."}, {"refType": "targeted_frame", "ref": "TARGET-0106", "supports": "Source-context frame spans the 72B and beginning of the 7B table."}, {"refType": "targeted_frame", "ref": "TARGET-0107", "supports": "Source-context frame shows remaining rows and the separate 7B table."}, {"refType": "ocr", "ref": "OCR-01922", "supports": "Checked OCR identifies Qwen2-7B-Instruct in the small table."}, {"refType": "ocr", "ref": "OCR-02009", "supports": "Checked OCR identifies the small-table HumanEval row."}],
+      "confidence": "high", "unknowns": ["Benchmark source/methodology/date/hardware/prompts/statistical uncertainty", "Whether all visual values come from one comparable evaluation setup"]
+    },
+    {
+      "id": "KU-11", "title": "Broad Llama 3 superiority claim", "importance": "core",
+      "statement": "The presenter says Qwen2 comprehensively crushes Meta's open model Llama 3 in the named areas.",
+      "provenance": "author_claim", "timeRange": {"start": 32, "end": 34.52},
+      "evidence": [{"refType": "cue", "ref": "CUE-013", "supports": "Verbatim SRT carries the superiority claim with ASR errors."}, {"refType": "targeted_frame", "ref": "TARGET-0024", "supports": "Burned caption and comparison graphics visually accompany the claim."}, {"refType": "ocr", "ref": "OCR-00829", "supports": "Checked burned-caption OCR reads '全面碾压meta的'."}],
+      "confidence": "high", "argument": {"claim": "Qwen2 comprehensively outperforms Meta Llama 3.", "evidenceUnitIds": ["KU-10"], "conditions": ["Selected visible benchmark rows and edited graphics", "72B and 7B tables use different model identities"], "counterexamples": ["In the 72B table, Llama3-70B-Instruct beats Qwen2-72B-Instruct on MBPP 82.3 to 80.2", "In the 72B table, Llama3-70B-Instruct beats Qwen2-72B-Instruct on GSM8K 93.0 to 91.1", "No GPT-4 column", "No multimodal test", "No matched real-world task suite"], "actions": [], "limits": ["Methodology and universal scope are not established"]}, "unknowns": []
+    },
+    {
+      "id": "KU-12", "title": "Visible direct counterexamples to '全面碾压'", "importance": "core",
+      "statement": "The 72B table itself contains two direct Llama 3 wins: MBPP is Qwen2-72B-Instruct 80.2 versus Llama3-70B-Instruct 82.3, and GSM8K is 91.1 versus 93.0. Therefore the visible evidence directly contradicts—not merely fails to prove—the universal '全面碾压' wording. Separately, the small-model HumanEval row reads 79.9/62.2/71.8 for Qwen2-7B/Llama3-8B/GLM4-9B; 82.3 belongs to the 72B MBPP row and is not a HumanEval Llama value.",
+      "provenance": "visual_observation", "timeRange": {"start": 30.3, "end": 31.3},
+      "evidence": [{"refType": "source", "ref": "SRC-BENCH-72B-CROP", "supports": "Clearly shows MBPP 80.2/82.3/71.9 and GSM8K 91.1/93.0/82.7 in the 72B table."}, {"refType": "source", "ref": "SRC-BENCH-7B-CROP", "supports": "Clearly shows small-table HumanEval 79.9/62.2/71.8 and keeps it separate from 72B MBPP."}, {"refType": "ocr", "ref": "OCR-01889", "supports": "Checked OCR reads Qwen2's 80.2 MBPP value."}, {"refType": "ocr", "ref": "OCR-01890", "supports": "Checked OCR proposes 82.3 for the adjacent Llama MBPP value; verified against SRC-BENCH-72B-CROP."}, {"refType": "ocr", "ref": "OCR-01964", "supports": "Checked OCR reads Qwen2's 91.1 GSM8K value."}, {"refType": "ocr", "ref": "OCR-02010", "supports": "Checked OCR reads 79.9 on small-table HumanEval."}, {"refType": "ocr", "ref": "OCR-02011", "supports": "Checked OCR reads 62.2—not 82.2—for Llama3-8B HumanEval."}, {"refType": "ocr", "ref": "OCR-02012", "supports": "Checked OCR reads 71.8 for GLM4-9B HumanEval."}],
+      "confidence": "high", "unknowns": ["Benchmark methodology and external validity"]
+    },
+    {
+      "id": "KU-13", "title": "Visible license qualifier", "importance": "core",
+      "statement": "A brief visible qualifier says that, except for Qwen2 72B (instruct and base), the models receive Apache 2.0 licensing, while the Qwen2 72B model still uses the original Qianwen License. This materially qualifies the blanket 'open/free' framing around the emphasized 72B model.",
+      "provenance": "visual_observation", "timeRange": {"start": 32.4, "end": 34.667},
+      "evidence": [{"refType": "source", "ref": "SRC-LICENSE-CROP", "supports": "Magnified visible license qualifier at 34.5 seconds."}, {"refType": "targeted_frame", "ref": "TARGET-0026", "supports": "Shows the qualifier in source context."}, {"refType": "ocr", "ref": "OCR-00877", "supports": "Checked Chinese OCR states the Apache 2.0 exception."}, {"refType": "ocr", "ref": "OCR-00878", "supports": "Checked English OCR states the original Qianwen License remains for 72B."}],
+      "confidence": "high", "unknowns": ["Exact legal permissions/obligations of the Qianwen License", "Whether the video reflects current license status outside its publication time"]
+    },
+    {
+      "id": "KU-14", "title": "Selected expert/leaderboard post", "importance": "supporting",
+      "statement": "An inserted post visibly attributed to 'clem @ClementDelangue' announces a new open LLM leaderboard, says 300 H100s were used to rerun evaluations such as MMLU-Pro, and says 'Qwen 72B is the king' while also warning that old evaluations are too easy, builders may over-focus on main evaluations, and bigger is not always smarter.",
+      "provenance": "visual_observation", "timeRange": {"start": 34.8, "end": 36.3},
+      "evidence": [{"refType": "source", "ref": "SRC-SOCIAL-CROP", "supports": "Magnifies the inserted post and its caveats."}, {"refType": "ocr", "ref": "OCR-00924", "supports": "Checked line begins the leaderboard announcement."}, {"refType": "ocr", "ref": "OCR-00925", "supports": "Checked line states 300 H100 reruns and MMLU-Pro."}, {"refType": "ocr", "ref": "OCR-00928", "supports": "Checked line says Qwen 72B is king."}, {"refType": "ocr", "ref": "OCR-00931", "supports": "Checked caveat about builders focusing on main evaluations."}, {"refType": "ocr", "ref": "OCR-00934", "supports": "Checked caveat 'Bigger is not always smarter'."}],
+      "confidence": "high", "unknowns": ["Authenticity/provenance of the screenshot", "Date/context beyond visible post", "Whether this person represents the whole industry"]
+    },
+    {
+      "id": "KU-15", "title": "Expert praise and overseas adoption claims", "importance": "supporting",
+      "statement": "The presenter claims top industry authorities sincerely praise Qwen2 and overseas developers use it to build AI applications; the montage illustrates these claims with posts, developer interfaces, and an image, but does not establish adoption scale or a live generation chain.",
+      "provenance": "author_claim", "timeRange": {"start": 34.52, "end": 42.48},
+      "evidence": [{"refType": "cue", "ref": "CUE-014", "supports": "Introduces top industry authorities."}, {"refType": "cue", "ref": "CUE-015", "supports": "Claims strong praise."}, {"refType": "cue", "ref": "CUE-016", "supports": "Claims overseas developer adoption."}, {"refType": "shot", "ref": "SHOT-008", "supports": "Contains developer/application montage."}],
+      "confidence": "high", "argument": {"claim": "Qwen2 has elite endorsement and overseas developer adoption.", "evidenceUnitIds": ["KU-14"], "conditions": ["A few selected screenshots and montage elements"], "counterexamples": ["No adoption count, production deployment evidence, or provenance chain"], "actions": [], "limits": ["Montage illustrates but does not establish scale"]}, "unknowns": ["Full identities/credentials of every shown source", "Adoption count and production status"]
+    },
+    {
+      "id": "KU-16", "title": "OpenAI value judgment", "importance": "core",
+      "statement": "The presenter characterizes OpenAI as not open, arrogant, and expensive.",
+      "provenance": "author_claim", "timeRange": {"start": 42.48, "end": 46.28},
+      "evidence": [{"refType": "cue", "ref": "CUE-017", "supports": "Says OpenAI is not open."}, {"refType": "cue", "ref": "CUE-018", "supports": "Calls it arrogant and expensive."}, {"refType": "frame", "ref": "FRAME-SHOT-009", "supports": "Presenter delivers the judgment directly to camera."}],
+      "confidence": "high", "unknowns": ["Which OpenAI product/plan/price is meant"]
+    },
+    {
+      "id": "KU-17", "title": "Former GPT-4 recommendation", "importance": "core",
+      "statement": "The presenter says that roughly half a year earlier, when asked which AI to use, she recommended GPT-4.",
+      "provenance": "author_claim", "timeRange": {"start": 46.28, "end": 50.76},
+      "evidence": [{"refType": "cue", "ref": "CUE-019", "supports": "Establishes the approximate prior time."}, {"refType": "cue", "ref": "CUE-020", "supports": "Frames the user question."}, {"refType": "cue", "ref": "CUE-021", "supports": "Names GPT-4 as the former recommendation."}],
+      "confidence": "high", "unknowns": ["GPT-4 version, date, plan, and task context"]
+    },
+    {
+      "id": "KU-18", "title": "Current replacement recommendation", "importance": "core",
+      "statement": "The presenter now advises viewers not to waste money and to use a free domestic open model, framing Qwen2 as the current replacement recommendation.",
+      "provenance": "author_claim", "timeRange": {"start": 50.76, "end": 55.64},
+      "evidence": [{"refType": "cue", "ref": "CUE-022", "supports": "Advises not to spend unnecessary money."}, {"refType": "cue", "ref": "CUE-023", "supports": "Recommends a free domestic open model."}, {"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "Shows the Qwen demo and burned caption '错不了'."}],
+      "confidence": "high", "argument": {"claim": "Viewers should use Qwen2/free domestic open models instead of paying for GPT-4.", "evidenceUnitIds": ["KU-07", "KU-10", "KU-19", "KU-21", "KU-23"], "conditions": ["Persuasive personal recommendation", "Edited benchmark/demo evidence"], "counterexamples": ["Qwen2-72B license qualifier", "No compute/deployment cost", "No matched GPT-4 baseline"], "actions": ["Use the free domestic open alternative"], "limits": ["No task-specific decision rule or TCO comparison"]}, "unknowns": ["Actual run cost and hardware", "Which checkpoint is recommended to which user"]
+    },
+    {
+      "id": "KU-19", "title": "Visible Hugging Face demo identity", "importance": "core",
+      "statement": "The white chat interface is visibly a Hugging Face Spaces page labeled 'Xenova/webgpu-chat-qwen2' and shown in a Running state; this identifies the demo page, not necessarily the exact underlying official Alibaba checkpoint or its generation settings.",
+      "provenance": "visual_observation", "timeRange": {"start": 50.7, "end": 55.6},
+      "evidence": [{"refType": "source", "ref": "SRC-FIB-CROP", "supports": "Magnified header shows Spaces, Xenova/webgpu-chat-qwen2, and Running."}, {"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "Shows the demo in source composition."}],
+      "confidence": "high", "unknowns": ["Underlying checkpoint revision/quantization", "Generation parameters", "Hardware/browser environment"]
+    },
+    {
+      "id": "KU-20", "title": "Visible joke task/result", "importance": "supporting",
+      "statement": "In the visible demo history, the user asks 'Tell me a joke' and the response gives a tomato/salad-dressing joke, followed by an offer to help further.",
+      "provenance": "visual_observation", "timeRange": {"start": 50.7, "end": 55.6},
+      "evidence": [{"refType": "source", "ref": "SRC-FIB-CROP", "supports": "Shows both the joke prompt and visible reply."}, {"refType": "targeted_frame", "ref": "TARGET-0049", "supports": "Shows the same demo state before the second task."}],
+      "confidence": "high", "unknowns": ["Whether response was live-generated in this recording", "Any evaluation of humor quality"]
+    },
+    {
+      "id": "KU-21", "title": "Visible Fibonacci code task/result", "importance": "core",
+      "statement": "The user prompt reads 'Write python code for fib(n) to compute the nth Fibonacci number.' The UI then streams a recursive Python function named fibonacci(n), including the n <= 1 base case and recursive fibonacci(n-1) + fibonacci(n-2), followed by a 'Test cases' heading in the later state.",
+      "provenance": "visual_observation", "timeRange": {"start": 51.5, "end": 55.4},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0050", "supports": "Before/during frame shows the submitted Fibonacci prompt and loading state."}, {"refType": "targeted_frame", "ref": "TARGET-0052", "supports": "During frame shows initial response/code streaming."}, {"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "After frame shows the recursive function and 'Test cases' heading."}, {"refType": "source", "ref": "SRC-FIB-CROP", "supports": "Magnifies the prompt and visible code text."}],
+      "confidence": "high",
+      "procedural": {"input": "Prompt: Write python code for fib(n) to compute the nth Fibonacci number.", "actions": ["Prompt appears submitted in the Xenova/webgpu-chat-qwen2 Space", "UI shows a loading/streaming state", "A recursive Python code response becomes visible"], "parameters": [], "output": "Text containing a recursive fibonacci(n) function and a later Test cases heading", "beforeFrames": ["TARGET-0050"], "duringFrames": ["TARGET-0051", "TARGET-0052", "TARGET-0053"], "afterFrames": ["TARGET-0055"], "unknowns": ["Submit/click action not shown continuously", "Exact checkpoint/settings", "Whether code was executed or test cases completed"]},
+      "unknowns": ["Execution correctness beyond visual reading", "Runtime/complexity discussion", "Whether the response fully finished within the edit"]
+    },
+    {
+      "id": "KU-22", "title": "Fibonacci execution status unknown", "importance": "core",
+      "statement": "The video does not show the generated Fibonacci code being run, a console/output result, unit-test outcomes, or a matched GPT-4 result; it therefore demonstrates text generation only, not verified program execution or superiority.",
+      "provenance": "unknown", "timeRange": {"start": 50.7, "end": 55.6},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0049", "supports": "Beginning of the fully inspected demo window shows chat history only."}, {"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "End of the fully inspected demo window still shows code text without execution output."}, {"refType": "source", "ref": "SRC-CONTACT", "supports": "Full-timeline sweep finds no later execution screen or GPT-4 code baseline."}],
+      "confidence": "high", "reasoning": "The bounded 50.7–55.6 demo window and full 0–86.567 timeline were inspected for execution/GPT-4 output; none was observed.", "unknowns": ["Whether execution occurred off-screen"]
+    },
+    {
+      "id": "KU-23", "title": "Visible options-explanation comparison", "importance": "core",
+      "statement": "A dark comparison screen labels two model columns 'llama3:70b' and 'qwen2:72b' and shows the shared prompt 'Explain options trading in simple terms if I'm familiar with buying and selling stocks.' Both columns display explanatory answers: Llama 3 begins with a contract/right-not-obligation explanation and concert-ticket analogy, while Qwen2 begins with a future-price/betting analogy and call/put explanation.",
+      "provenance": "visual_observation", "timeRange": {"start": 55.6, "end": 60.333},
+      "evidence": [{"refType": "source", "ref": "SRC-OPT-CROP", "supports": "Magnifies model labels, shared prompt, and visible answer openings."}, {"refType": "targeted_frame", "ref": "TARGET-0056", "supports": "Shows the same side-by-side result state in source composition."}],
+      "confidence": "high", "unknowns": ["Application identity", "Prompt history/system prompts", "Quantization/checkpoint revisions", "Complete responses beyond visible portions"]
+    },
+    {
+      "id": "KU-24", "title": "Options comparison has no shown winner", "importance": "core",
+      "statement": "The options screen shows two answers but no explicit score, evaluator, correctness check, latency, cost, or winner, and neither column is GPT-4. It cannot establish the video's GPT-4 replacement claim.",
+      "provenance": "unknown", "timeRange": {"start": 55.6, "end": 60.333},
+      "evidence": [{"refType": "source", "ref": "SRC-OPT-CROP", "supports": "Fully visible comparison header/result contains llama3:70b and qwen2:72b without scoring controls."}, {"refType": "targeted_frame", "ref": "TARGET-0062", "supports": "End of the inspected comparison interval still shows answer text without a verdict."}],
+      "confidence": "high", "reasoning": "Across the complete 55.6–60.333 comparison interval, only side-by-side outputs are visible; the full timeline contains no later score or GPT-4 counterpart.", "unknowns": ["Which answer the editor preferred", "Whether either answer was generated live", "External correctness"]
+    },
+    {
+      "id": "KU-25", "title": "Future open-model optimism", "importance": "supporting",
+      "statement": "The presenter predicts that as the open-source route deepens, viewers will be able to use stronger models for free.",
+      "provenance": "author_claim", "timeRange": {"start": 55.64, "end": 60.44},
+      "evidence": [{"refType": "cue", "ref": "CUE-024", "supports": "Names deeper open-source development."}, {"refType": "cue", "ref": "CUE-025", "supports": "Predicts free access to stronger models."}, {"refType": "targeted_frame", "ref": "TARGET-0061", "supports": "Burned caption reads '白嫖更强大的模型'."}],
+      "confidence": "high", "unknowns": ["Timeline, products, access/compute cost, and conditions"]
+    },
+    {
+      "id": "KU-26", "title": "Comment CTA for a packaged Qwen2", "importance": "core",
+      "statement": "The presenter's final action is: Qwen2 has already been packaged, and interested viewers should comment to have it arranged.",
+      "provenance": "author_claim", "timeRange": {"start": 60.44, "end": 63.68},
+      "evidence": [{"refType": "cue", "ref": "CUE-026", "supports": "Verbatim SRT carries the package claim with ASR '打爆'."}, {"refType": "cue", "ref": "CUE-027", "supports": "Requests comments."}, {"refType": "ocr", "ref": "OCR-01225", "supports": "Checked burned caption reads 'Qwen2我已经打包好了'."}, {"refType": "ocr", "ref": "OCR-01234", "supports": "Checked burned caption reads '评论区安排！'."}],
+      "confidence": "high", "argument": {"claim": "The presenter can provide a packaged Qwen2 resource.", "evidenceUnitIds": [], "conditions": ["Viewer comments"], "counterexamples": [], "actions": ["Comment to request arrangement"], "limits": ["No package manifest or delivery mechanism shown"]}, "unknowns": ["Meaning of '打包' and what will be delivered"]
+    },
+    {
+      "id": "KU-27", "title": "Package/access boundaries remain unknown", "importance": "core",
+      "statement": "Across the complete 60.333–63.667 CTA window and the rest of the video, no package contents, official download link, host, license notice for the package, security/provenance statement, system requirements, model size selection, account requirement, region condition, price, or support owner is shown.",
+      "provenance": "unknown", "timeRange": {"start": 60.333, "end": 86.567},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0063", "supports": "CTA begins with direct-to-camera package claim and no access controls."}, {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "CTA ends with comment request and no package details."}, {"refType": "source", "ref": "SRC-CONTACT", "supports": "Full-timeline sweep shows no later access/license/security screen."}],
+      "confidence": "high", "reasoning": "All plausible CTA, closing-card, and UI opportunities were inspected over 0–86.567 seconds; these fields were not observed.", "unknowns": ["All listed package/access fields"]
+    },
+    {
+      "id": "KU-28", "title": "Consequential SRT/caption conflicts", "importance": "supporting",
+      "statement": "The supplied verbatim SRT contains consequential ASR forms including '黃仁熊', 'La Ma 3', '全面黏壓', '幸福口服', '花園望前', '擺飄', and '打爆'; checked burned captions/context support the intended readings 黄仁勋, Llama 3, 全面碾压, 心服口服, 花冤枉钱, 白嫖, and 打包. The raw SRT is preserved unchanged in the transcript layer.",
+      "provenance": "system_inference", "timeRange": {"start": 0, "end": 63.68},
+      "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "Preserves raw '黃仁熊'."}, {"refType": "cue", "ref": "CUE-013", "supports": "Preserves raw '黏壓' and 'La Ma 3'."}, {"refType": "cue", "ref": "CUE-022", "supports": "Preserves raw '花園望前'."}, {"refType": "cue", "ref": "CUE-025", "supports": "Preserves raw '擺飄'."}, {"refType": "cue", "ref": "CUE-026", "supports": "Preserves raw '打爆'."}, {"refType": "ocr", "ref": "OCR-01225", "supports": "Checked burned caption establishes '打包'."}, {"refType": "ocr", "ref": "OCR-00829", "supports": "Checked burned caption establishes '全面碾压'."}],
+      "confidence": "high", "reasoning": "The conflict ledger compares raw SRT text with visually checked burned-caption/UI wording; it does not alter the transcript contract.", "unknowns": ["Exact audible phonemes where no independent speech transcription was performed"]
+    },
+    {
+      "id": "KU-29", "title": "Black visual tail and late Qwen2 card", "importance": "supporting",
+      "statement": "After the spoken CTA, visuals remain mostly black until a late centered Qwen2 specification card appears around 77.467 seconds and reiterates the four-column model-card information; the technical shot boundary does not prove why the padding/card was edited this way.",
+      "provenance": "visual_observation", "timeRange": {"start": 63.667, "end": 86.567},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0069", "supports": "Shows black visual state in the tail."}, {"refType": "targeted_frame", "ref": "TARGET-0074", "supports": "Shows transition into the late card interval."}, {"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "Shows the centered Qwen2 card."}, {"refType": "shot", "ref": "SHOT-014", "supports": "Technical observation segment covers the late card."}],
+      "confidence": "high", "unknowns": ["Intent behind long black interval", "Whether subtitle credit is visibly present within source duration"]
+    },
+    {
+      "id": "KU-30", "title": "Evidence-bounded viewer action", "importance": "core",
+      "statement": "The evidence supports treating Qwen2 as a candidate to test, not as a proven universal GPT-4 replacement: before adopting or downloading anything, identify the exact checkpoint, read the applicable license (especially the 72B qualifier), estimate hardware/inference cost, use an official source, and run matched prompts/tests against the viewer's actual GPT-4 alternative.",
+      "provenance": "system_inference", "timeRange": {"start": 0, "end": 86.567},
+      "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Shows multiple Qwen2 sizes and context configurations."}, {"refType": "source", "ref": "SRC-LICENSE-CROP", "supports": "Shows a material 72B license qualifier."}, {"refType": "source", "ref": "SRC-OPT-CROP", "supports": "Shows only a Llama3/Qwen2 comparison without scoring."}, {"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "CTA offers a package without visible provenance or requirements."}, {"refType": "source", "ref": "SRC-CONTACT", "supports": "Full-timeline inspection establishes the absence of a matched GPT-4 test."}],
+      "confidence": "high", "reasoning": "This action follows directly from the visible family/version/license distinctions, internal benchmark counterexamples, and missing matched baseline, compute/TCO, execution proof, and package boundaries.", "unknowns": ["Which checkpoint and deployment path is appropriate for a particular viewer"]
+    },
+    {
+      "id": "KU-31", "title": "Five-size catalog versus four-column card", "importance": "core",
+      "statement": "The video presents two visible product-scope口径 without explaining their relationship: a five-size family catalog includes 57B-A14B, while the later specification card contains only 0.5B, 1.5B, 7B, and 72B. The reconstruction therefore preserves both rather than rewriting the family as only four sizes or assuming 57B-A14B shares the later card's specifications.",
+      "provenance": "system_inference", "timeRange": {"start": 16.4, "end": 27.633},
+      "evidence": [{"refType": "source", "ref": "SRC-FIVE-SIZES-CROP", "supports": "Shows the explicit five-size catalog including 57B-A14B."}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Shows the separate four-column card without 57B-A14B."}],
+      "confidence": "high", "reasoning": "The two pages visibly use different scopes; the video supplies no bridge authorizing one to overwrite the other.", "unknowns": ["Why 57B-A14B is omitted from the four-column card", "57B-A14B context length and other specifications in this video"]
+    },
+    {
+      "id": "KU-32", "title": "Bounded non-speech audio role", "importance": "supporting",
+      "statement": "Bounded machine semantic listening finds music as a top-two label in every contiguous window from 0 to 63.7 seconds, supporting a recurrent background-music bed beneath narration. A ding-like accent is localized to 22–24 seconds around the specification transition. From about 63.689 seconds through the tail, silence dominates and matches the amplitude detector. Low or unstable camera, gunshot, and chopping labels are rejected rather than treated literally.",
+      "provenance": "system_inference", "timeRange": {"start": 0, "end": 86.567},
+      "evidence": [{"refType": "source", "ref": "SRC-AUDIO-SEMANTIC", "supports": "Records all bounded AudioSet windows, accepted observations, rejected labels, and limitations."}, {"refType": "source", "ref": "SRC-AUDIO-SILENCE", "supports": "Independently localizes the long silent tail from 63.689 seconds."}],
+      "confidence": "medium", "reasoning": "Only stable repeated or time-localized machine-audio labels were accepted, and the tail classification was cross-checked against amplitude evidence.", "unknowns": ["Exact music genre, track identity, ownership, and mix provenance", "Exact source of the 22–24-second ding-like accent", "Human auditory confirmation"]
+    }
+  ],
+  "relations": [
+    {"from": "KU-02", "to": "KU-18", "relation": "hook_paid_off_by_personal_recommendation_change", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "Opening invokes GPT-4 replacement."}, {"refType": "cue", "ref": "CUE-023", "supports": "Later recommends free domestic open model."}]},
+    {"from": "KU-06", "to": "KU-08", "relation": "family_narrowed_to_claimed_flagship", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0105", "supports": "Five-size family listing includes 72B and 72B-Instruct entries."}, {"refType": "cue", "ref": "CUE-008", "supports": "Narration singles out 72B."}]},
+    {"from": "KU-10", "to": "KU-11", "relation": "selected_benchmarks_used_to_support_broad_claim", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0023", "supports": "Visible benchmark table."}, {"refType": "cue", "ref": "CUE-013", "supports": "Broad superiority claim."}]},
+    {"from": "KU-12", "to": "KU-11", "relation": "direct_counterexample_to_comprehensive_superiority", "evidence": [{"refType": "source", "ref": "SRC-BENCH-72B-CROP", "supports": "MBPP and GSM8K rows visibly favor Llama3-70B-Instruct over Qwen2-72B-Instruct."}]},
+    {"from": "KU-14", "to": "KU-15", "relation": "illustrates_without_establishing_scale", "evidence": [{"refType": "source", "ref": "SRC-SOCIAL-CROP", "supports": "One selected post with both praise and caveats."}, {"refType": "cue", "ref": "CUE-016", "supports": "Narration broadens to overseas developers."}]},
+    {"from": "KU-17", "to": "KU-18", "relation": "replaced_by_without_matched_baseline", "evidence": [{"refType": "cue", "ref": "CUE-021", "supports": "Former GPT-4 recommendation."}, {"refType": "cue", "ref": "CUE-023", "supports": "Current domestic-open recommendation."}, {"refType": "source", "ref": "SRC-CONTACT", "supports": "No matched GPT-4 output appears in the full timeline."}]},
+    {"from": "KU-19", "to": "KU-18", "relation": "example_used_to_support_action", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0054", "supports": "Qwen demo plays behind recommendation."}]},
+    {"from": "KU-21", "to": "KU-22", "relation": "text_generation_not_execution_proof", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0055", "supports": "Shows generated code without runtime output."}]},
+    {"from": "KU-23", "to": "KU-24", "relation": "side_by_side_outputs_without_verdict", "evidence": [{"refType": "source", "ref": "SRC-OPT-CROP", "supports": "Shows two outputs and no score/winner."}]},
+    {"from": "KU-18", "to": "KU-26", "relation": "operationalized_as_request_for_presenter_package", "evidence": [{"refType": "cue", "ref": "CUE-023", "supports": "Recommendation."}, {"refType": "cue", "ref": "CUE-027", "supports": "Comment CTA."}]},
+    {"from": "KU-26", "to": "KU-27", "relation": "action_limited_by_unshown_package_boundaries", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "CTA window ends without package details."}]},
+    {"from": "KU-07", "to": "KU-29", "relation": "visually_reiterated_by_late_card", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Earlier specification card."}, {"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "Late repeated Qwen2 card."}]},
+    {"from": "KU-13", "to": "KU-18", "relation": "visible_qualifier_limits_free_open_framing", "evidence": [{"refType": "source", "ref": "SRC-LICENSE-CROP", "supports": "72B uses original Qianwen License."}, {"refType": "cue", "ref": "CUE-023", "supports": "Blanket free/open recommendation."}]},
+    {"from": "KU-12", "to": "KU-30", "relation": "claim_limit_informs_action", "evidence": [{"refType": "source", "ref": "SRC-CONTACT", "supports": "Full timeline lacks matched GPT-4 baseline."}]},
+    {"from": "KU-27", "to": "KU-30", "relation": "access_unknowns_inform_action", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0067", "supports": "Only comment CTA is visible."}]},
+    {"from": "KU-28", "to": "KU-26", "relation": "carrier_conflict_resolved_without_rewriting_transcript", "evidence": [{"refType": "cue", "ref": "CUE-026", "supports": "Raw SRT says 打爆."}, {"refType": "ocr", "ref": "OCR-01225", "supports": "Checked caption says 打包."}]},
+    {"from": "KU-29", "to": "KU-07", "relation": "edited_tail_repeats_earlier_product_scope", "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0080", "supports": "Late card after silence."}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Earlier card with same family structure."}]},
+    {"from": "KU-06", "to": "KU-31", "relation": "five_size_listing_differs_from_four_column_spec_card", "evidence": [{"refType": "source", "ref": "SRC-FIVE-SIZES-CROP", "supports": "Five-size catalog includes 57B-A14B."}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Later four-column card omits 57B-A14B."}]},
+    {"from": "KU-31", "to": "KU-07", "relation": "requires_scope_separation", "evidence": [{"refType": "source", "ref": "SRC-FIVE-SIZES-CROP", "supports": "Earlier catalog scope."}, {"refType": "targeted_frame", "ref": "TARGET-0016", "supports": "Later specification scope."}]},
+    {"from": "KU-32", "to": "KU-29", "relation": "music_bed_ends_before_silent_visual_tail", "evidence": [{"refType": "source", "ref": "SRC-AUDIO-SEMANTIC", "supports": "Music recurs through 63.7 seconds and silence dominates the tail."}, {"refType": "source", "ref": "SRC-AUDIO-SILENCE", "supports": "Amplitude boundary begins at 63.689 seconds."}]}
+  ],
+  "coverageMatrix": {
+    "channels": [
+      {"id": "CAR-01", "available": true, "inspected": true},
+      {"id": "CAR-02", "available": true, "inspected": true},
+      {"id": "CAR-03", "available": true, "inspected": true},
+      {"id": "CAR-04", "available": true, "inspected": true},
+      {"id": "CAR-05", "available": true, "inspected": true},
+      {"id": "CAR-06", "available": true, "inspected": true},
+      {"id": "CAR-07", "available": true, "inspected": true},
+      {"id": "CAR-08", "available": true, "inspected": true}
+    ],
+    "meaningChanges": [
+      {"id": "MC-01", "captured": true, "unitIds": ["KU-02", "KU-03"]},
+      {"id": "MC-02", "captured": true, "unitIds": ["KU-04", "KU-05", "KU-06"]},
+      {"id": "MC-03", "captured": true, "unitIds": ["KU-06", "KU-07", "KU-08", "KU-31"]},
+      {"id": "MC-04", "captured": true, "unitIds": ["KU-09", "KU-10", "KU-11", "KU-12", "KU-13"]},
+      {"id": "MC-05", "captured": true, "unitIds": ["KU-14", "KU-15"]},
+      {"id": "MC-06", "captured": true, "unitIds": ["KU-16", "KU-17", "KU-18", "KU-19", "KU-20", "KU-21", "KU-22"]},
+      {"id": "MC-07", "captured": true, "unitIds": ["KU-23", "KU-24", "KU-25"]},
+      {"id": "MC-08", "captured": true, "unitIds": ["KU-26", "KU-27"]},
+      {"id": "MC-09", "captured": true, "unitIds": ["KU-29", "KU-32"]}
+    ],
+    "relationships": [
+      {"id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-021", "CUE-023"]},
+      {"id": "REL-02", "evidenced": true, "evidenceRefs": ["SRC-FIVE-SIZES-CROP", "TARGET-0105", "CUE-008", "TARGET-0016"]},
+      {"id": "REL-03", "evidenced": true, "evidenceRefs": ["SRC-BENCH-72B-CROP", "TARGET-0023"]},
+      {"id": "REL-04", "evidenced": true, "evidenceRefs": ["SRC-BENCH-72B-CROP", "CUE-013", "TARGET-0024"]},
+      {"id": "REL-05", "evidenced": true, "evidenceRefs": ["SRC-SOCIAL-CROP", "CUE-014", "CUE-015", "CUE-016"]},
+      {"id": "REL-06", "evidenced": true, "evidenceRefs": ["SRC-FIB-CROP", "TARGET-0054", "CUE-022", "CUE-023"]},
+      {"id": "REL-07", "evidenced": true, "evidenceRefs": ["CUE-021", "CUE-023", "SRC-CONTACT"]},
+      {"id": "REL-08", "evidenced": true, "evidenceRefs": ["CUE-023", "CUE-026", "CUE-027", "TARGET-0067"]},
+      {"id": "REL-09", "evidenced": true, "evidenceRefs": ["TARGET-0080", "CUE-007", "CUE-008", "TARGET-0016"]},
+      {"id": "REL-10", "evidenced": true, "evidenceRefs": ["SHOT-001", "SHOT-014", "DENSE-0001", "DENSE-0059"]},
+      {"id": "REL-11", "evidenced": true, "evidenceRefs": ["SRC-FIVE-SIZES-CROP", "TARGET-0105", "TARGET-0016"]}
+    ],
+    "criticalQuestions": [
+      {"id": "CQ-01", "status": "answered", "unitIds": ["KU-02", "KU-10", "KU-11", "KU-12", "KU-17", "KU-18", "KU-24"], "evidenceRefs": ["CUE-001", "CUE-013", "CUE-021", "CUE-023", "SRC-OPT-CROP"]},
+      {"id": "CQ-02", "status": "answered", "unitIds": ["KU-05", "KU-06", "KU-07", "KU-10", "KU-19", "KU-23", "KU-31"], "evidenceRefs": ["TARGET-0105", "TARGET-0016", "SRC-BENCH-72B-CROP", "SRC-BENCH-7B-CROP", "SRC-FIB-CROP", "SRC-OPT-CROP"]},
+      {"id": "CQ-03", "status": "answered", "unitIds": ["KU-06", "KU-07", "KU-08", "KU-31"], "evidenceRefs": ["CUE-008", "TARGET-0105", "TARGET-0016", "OCR-01823", "OCR-00245"]},
+      {"id": "CQ-04", "status": "answered", "unitIds": ["KU-09", "KU-10", "KU-11", "KU-12"], "evidenceRefs": ["CUE-010", "CUE-013", "SRC-BENCH-72B-CROP", "SRC-BENCH-7B-CROP", "TARGET-0106", "TARGET-0107"]},
+      {"id": "CQ-05", "status": "answered", "unitIds": ["KU-20", "KU-21", "KU-23"], "evidenceRefs": ["SRC-FIB-CROP", "SRC-OPT-CROP"]},
+      {"id": "CQ-06", "status": "unknown", "unitIds": ["KU-22", "KU-24"], "evidenceRefs": ["TARGET-0049", "TARGET-0055", "SRC-CONTACT", "SRC-OPT-CROP"]},
+      {"id": "CQ-07", "status": "answered", "unitIds": ["KU-14", "KU-15"], "evidenceRefs": ["SRC-SOCIAL-CROP", "CUE-016"]},
+      {"id": "CQ-08", "status": "unknown", "unitIds": ["KU-16", "KU-17", "KU-18", "KU-24"], "evidenceRefs": ["CUE-017", "CUE-018", "CUE-021", "SRC-CONTACT"]},
+      {"id": "CQ-09", "status": "unknown", "unitIds": ["KU-26", "KU-27"], "evidenceRefs": ["CUE-026", "CUE-027", "TARGET-0067", "SRC-CONTACT"]},
+      {"id": "CQ-10", "status": "answered", "unitIds": ["KU-02", "KU-26", "KU-29"], "evidenceRefs": ["TARGET-0001", "TARGET-0067", "TARGET-0080"]},
+      {"id": "CQ-11", "status": "answered", "unitIds": ["KU-28"], "evidenceRefs": ["CUE-001", "CUE-013", "CUE-026", "OCR-01225"]},
+      {"id": "CQ-12", "status": "unknown", "unitIds": ["KU-13", "KU-18", "KU-27", "KU-30"], "evidenceRefs": ["SRC-LICENSE-CROP", "CUE-023", "TARGET-0067", "SRC-CONTACT"]},
+      {"id": "CQ-13", "status": "answered", "unitIds": ["KU-10", "KU-11", "KU-12"], "evidenceRefs": ["SRC-BENCH-72B-CROP", "SRC-BENCH-7B-CROP", "OCR-01889", "OCR-01890", "OCR-01964", "OCR-02011"]},
+      {"id": "CQ-14", "status": "answered", "unitIds": ["KU-29", "KU-32"], "evidenceRefs": ["SRC-AUDIO-SEMANTIC", "SRC-AUDIO-SILENCE"]}
+    ],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-02", "KU-03", "KU-28"], "rationale": "Opening authority attribution and GPT-4 hook."},
+      {"cueId": "CUE-002", "disposition": "context", "unitIds": ["KU-04", "KU-28"], "rationale": "States the belief being rejected; raw ASR wording is conflict-prone."},
+      {"cueId": "CUE-003", "disposition": "context", "unitIds": ["KU-04", "KU-28"], "rationale": "Rhetorical rejection/reversal into the main thesis."},
+      {"cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-04"], "rationale": "Claims end of US-exclusive dominance."},
+      {"cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-04"], "rationale": "Names Qwen2 as globally hot/open."},
+      {"cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-05"], "rationale": "Provider/product identity."},
+      {"cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-06", "KU-07"], "rationale": "Family size range."},
+      {"cueId": "CUE-008", "disposition": "knowledge", "unitIds": ["KU-07", "KU-08"], "rationale": "72B/128K emphasis."},
+      {"cueId": "CUE-009", "disposition": "context", "unitIds": ["KU-08"], "rationale": "Evaluative '学霸级' framing."},
+      {"cueId": "CUE-010", "disposition": "knowledge", "unitIds": ["KU-09", "KU-28"], "rationale": "Multimodal/multilingual claim and ASR conflict."},
+      {"cueId": "CUE-011", "disposition": "knowledge", "unitIds": ["KU-09"], "rationale": "Logical reasoning capability claim."},
+      {"cueId": "CUE-012", "disposition": "knowledge", "unitIds": ["KU-09"], "rationale": "Code generation capability claim."},
+      {"cueId": "CUE-013", "disposition": "knowledge", "unitIds": ["KU-10", "KU-11", "KU-12", "KU-28"], "rationale": "Broad Llama 3 superiority claim and ASR conflicts."},
+      {"cueId": "CUE-014", "disposition": "knowledge", "unitIds": ["KU-14", "KU-15"], "rationale": "Introduces expert-authority evidence."},
+      {"cueId": "CUE-015", "disposition": "knowledge", "unitIds": ["KU-15", "KU-28"], "rationale": "Praise claim and ASR conflict."},
+      {"cueId": "CUE-016", "disposition": "knowledge", "unitIds": ["KU-15"], "rationale": "Overseas developer adoption claim."},
+      {"cueId": "CUE-017", "disposition": "knowledge", "unitIds": ["KU-16"], "rationale": "OpenAI openness judgment."},
+      {"cueId": "CUE-018", "disposition": "knowledge", "unitIds": ["KU-16"], "rationale": "OpenAI arrogance/expense judgment."},
+      {"cueId": "CUE-019", "disposition": "context", "unitIds": ["KU-17"], "rationale": "Approximate prior recommendation time."},
+      {"cueId": "CUE-020", "disposition": "context", "unitIds": ["KU-17"], "rationale": "Frames the prior user question."},
+      {"cueId": "CUE-021", "disposition": "knowledge", "unitIds": ["KU-17"], "rationale": "Former GPT-4 recommendation."},
+      {"cueId": "CUE-022", "disposition": "knowledge", "unitIds": ["KU-18", "KU-28"], "rationale": "Current anti-spending advice and ASR conflict."},
+      {"cueId": "CUE-023", "disposition": "knowledge", "unitIds": ["KU-18"], "rationale": "Current free/domestic/open recommendation."},
+      {"cueId": "CUE-024", "disposition": "knowledge", "unitIds": ["KU-25"], "rationale": "Open-source route future framing."},
+      {"cueId": "CUE-025", "disposition": "knowledge", "unitIds": ["KU-25", "KU-28"], "rationale": "Future free-use claim and ASR conflict."},
+      {"cueId": "CUE-026", "disposition": "knowledge", "unitIds": ["KU-26", "KU-28"], "rationale": "Package claim; burned caption resolves 打爆→打包."},
+      {"cueId": "CUE-027", "disposition": "knowledge", "unitIds": ["KU-26", "KU-27"], "rationale": "Comment CTA and missing delivery details."},
+      {"cueId": "CUE-028", "disposition": "context", "unitIds": ["KU-29"], "rationale": "Subtitle-credit cue overlaps the source boundary and does not add product knowledge."}
+    ],
+    "coreEvidence": {"covered": 22, "total": 22},
+    "unknowns": [
+      "No matched GPT-4 baseline/version/plan/price/latency/output",
+      "No benchmark methodology, hardware, prompts, or statistical uncertainty",
+      "No demonstrated multimodal task",
+      "Exact checkpoints, quantization, and generation settings for UI examples",
+      "No visible execution/test result for generated Fibonacci code",
+      "No score/winner for the llama3:70b versus qwen2:72b options answer",
+      "No verified adoption scale or screenshot provenance",
+      "Qwen2 72B license legal implications beyond visible qualifier",
+      "No compute/TCO comparison for 'free' usage",
+      "No package manifest, official route, security, license, or system requirements",
+      "Exact genre, track identity, ownership, and edit provenance of the recurrent background music; exact source of the 22–24-second ding-like accent",
+      "Intent behind the black tail/late card and source-boundary subtitle credit"
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "Internal coverage state is aligned to the read-only evaluation-v2 independent metaAudit: no available carrier, material meaning change, or audited relationship remains unguarded; uncheckedChannels, overlookedMeaningChanges, and overlookedRelationships are empty. This records the independently closed audit state without changing any substantive content judgment."
+  }
+}

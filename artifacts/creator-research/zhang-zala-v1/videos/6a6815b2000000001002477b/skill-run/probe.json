@@ -1,0 +1,497 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "/Users/hhh0x/self-media/artifacts/creator-research/zhang-zala-v1/videos/6a6815b2000000001002477b/evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能认为口播顺畅靠临场表达天赋，或认为剪辑效率要靠更快的软件技巧。",
+    "after": "观众获得一条可直接执行的生产流程：先自由口述生成自己的原料，AI 只清理逻辑与废话，再用提词器录第二遍；剪辑效率来自前端表达可剪，而不是后端硬剪。",
+    "intendedChanges": [
+      "从临场硬说转向两遍录制",
+      "从让 AI 代写转向只清理自己的语言",
+      "从优化剪辑速度转向优化录制素材"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {
+        "start": 0,
+        "end": 14.04
+      },
+      "cognitiveQuestion": "开场承诺的结果和真正问题是什么？",
+      "observedSignals": [
+        "作者称口播视频约 20–30 分钟",
+        "观众问为什么顺、简洁、有逻辑、少废话",
+        "提出只需说两遍"
+      ],
+      "checkedAlternatives": [
+        "是否所有视频都可 20–30 分钟",
+        "顺畅是否只由这套方法造成"
+      ],
+      "remainingUnknowns": [
+        "视频时长",
+        "选题准备时间",
+        "重录次数"
+      ],
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {
+        "start": 14.04,
+        "end": 35.64
+      },
+      "cognitiveQuestion": "第一遍如何保留作者自己的语言？",
+      "observedSignals": [
+        "使用语音输入法自由口述",
+        "不要求逻辑和简洁",
+        "AI 清理逻辑、废话和口头禅",
+        "明确不要让 AI 重写"
+      ],
+      "checkedAlternatives": [
+        "清理是否可能改变观点",
+        "自由口述是否需要提纲"
+      ],
+      "remainingUnknowns": [
+        "清理提示词",
+        "事实校验",
+        "是否保留所有重要限定"
+      ],
+      "evidenceHints": [
+        "CUE-005",
+        "CUE-014"
+      ]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {
+        "start": 35.64,
+        "end": 57.72
+      },
+      "cognitiveQuestion": "第二遍在手机和电脑上如何执行？",
+      "observedSignals": [
+        "手机使用剪映自带提词器",
+        "电脑录人和屏幕时使用 Screen Studio",
+        "边念稿边展示屏幕",
+        "强调语言仍属于作者"
+      ],
+      "checkedAlternatives": [
+        "Screen Studio 当前是否含提词器",
+        "念稿是否影响眼神和自然度"
+      ],
+      "remainingUnknowns": [
+        "工具当前版本和价格",
+        "眼神自然度",
+        "录屏性能"
+      ],
+      "evidenceHints": [
+        "CUE-015",
+        "CUE-016"
+      ]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {
+        "start": 57.72,
+        "end": 71.32
+      },
+      "cognitiveQuestion": "为什么作者说剪辑只需约五分钟？",
+      "observedSignals": [
+        "AI 没替写，只清理",
+        "录完后基本无需剪",
+        "仅删卡壳处",
+        "五分钟剪辑自述",
+        "好剪的方法说话"
+      ],
+      "checkedAlternatives": [
+        "是否包含字幕、B-roll、包装和审校",
+        "长视频是否同样适用"
+      ],
+      "remainingUnknowns": [
+        "完整制作时间",
+        "字幕和包装成本",
+        "不同题材适用性"
+      ],
+      "evidenceHints": [
+        "CUE-017",
+        "CUE-018"
+      ]
+    }
+  ],
+  "informationCarriers": [
+    {
+      "id": "CAR-01",
+      "name": "完整机器转写口播",
+      "modalityKeys": [
+        "audio.speech",
+        "transcript.machine"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "提供叙事主线、步骤、论点与行动建议"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 71.367
+        }
+      ],
+      "omissionImpact": "会丢失作者真正提出的方法、条件和结论。"
+    },
+    {
+      "id": "CAR-02",
+      "name": "烧录字幕与画面文字",
+      "modalityKeys": [
+        "visual.caption",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "校正专有名词",
+        "锚定章节、数字、按钮和引语"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 71.367
+        }
+      ],
+      "omissionImpact": "会把机器转写误识别静默升级为原话，并漏掉只在画面出现的信息。"
+    },
+    {
+      "id": "CAR-03",
+      "name": "全程 talking-head 与烧录字幕",
+      "modalityKeys": [
+        "visual.person",
+        "visual.caption"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "以真人顺畅口播证明结果感",
+        "通过字幕快速推进步骤"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 14.04
+        },
+        {
+          "start": 14.04,
+          "end": 35.64
+        },
+        {
+          "start": 35.64,
+          "end": 57.72
+        },
+        {
+          "start": 57.72,
+          "end": 71.32
+        }
+      ],
+      "omissionImpact": "会漏掉‘成品本身就是方法效果展示’的结构。"
+    },
+    {
+      "id": "CAR-04",
+      "name": "手机/电脑录制工具插卡",
+      "modalityKeys": [
+        "visual.tool_card",
+        "ocr"
+      ],
+      "discoveredIn": [
+        "SWEEP-03"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "区分手机剪映提词器与电脑 Screen Studio"
+      ],
+      "intervals": [
+        {
+          "start": 35.64,
+          "end": 57.72
+        }
+      ],
+      "omissionImpact": "会漏掉设备分支或误写工具能力。"
+    },
+    {
+      "id": "CAR-05",
+      "name": "非语音音频机器语义检查",
+      "modalityKeys": [
+        "audio.non_speech"
+      ],
+      "discoveredIn": [
+        "SWEEP-01",
+        "SWEEP-02",
+        "SWEEP-03",
+        "SWEEP-04"
+      ],
+      "available": true,
+      "inspected": true,
+      "roles": [
+        "检查配乐或音效是否承担独立叙事/操作证明"
+      ],
+      "intervals": [
+        {
+          "start": 0,
+          "end": 71.367
+        }
+      ],
+      "omissionImpact": "会凭音频存在臆测配乐、点击或生成成功音。"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "id": "MC-01",
+      "range": {
+        "start": 0,
+        "end": 14.04
+      },
+      "description": "把剪辑效率问题重定义为录制前表达结构问题。",
+      "trigger": "时间结果、观众疑问和两遍法",
+      "evidenceHints": [
+        "CUE-001",
+        "CUE-004"
+      ]
+    },
+    {
+      "id": "MC-02",
+      "range": {
+        "start": 14.04,
+        "end": 35.64
+      },
+      "description": "从 AI 代写转向 AI 编辑作者自己的原始表达。",
+      "trigger": "口喷原料与‘不要让它重写’",
+      "evidenceHints": [
+        "CUE-005",
+        "CUE-014"
+      ]
+    },
+    {
+      "id": "MC-03",
+      "range": {
+        "start": 35.64,
+        "end": 57.72
+      },
+      "description": "把整理后的作者语言转成低卡顿、低剪辑素材。",
+      "trigger": "手机/电脑工具分支与念稿录制",
+      "evidenceHints": [
+        "CUE-015",
+        "CUE-016"
+      ]
+    },
+    {
+      "id": "MC-04",
+      "range": {
+        "start": 57.72,
+        "end": 71.32
+      },
+      "description": "从后期技巧转向前端素材工程。",
+      "trigger": "五分钟剪辑与收尾金句",
+      "evidenceHints": [
+        "CUE-017",
+        "CUE-018"
+      ]
+    }
+  ],
+  "relationshipHypotheses": [
+    {
+      "id": "REL-01",
+      "from": "MC-01",
+      "to": "MC-02",
+      "relation": "两遍法的第一遍产生自己的语言素材",
+      "evidenceHints": [
+        "CUE-004",
+        "CUE-005"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "from": "MC-02",
+      "to": "MC-03",
+      "relation": "第一遍生成提词稿，第二遍将其录成可剪素材",
+      "evidenceHints": [
+        "CUE-014",
+        "CUE-015"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "from": "MC-03",
+      "to": "MC-04",
+      "relation": "两遍录制的结果被转化为低剪辑成本",
+      "evidenceHints": [
+        "CUE-016",
+        "CUE-017"
+      ]
+    }
+  ],
+  "omissionRisks": [
+    {
+      "id": "RISK-01",
+      "risk": "把作者自述时间写成普遍效率基准。",
+      "why": "没有视频长度、选题准备和多次样本。",
+      "where": [
+        {
+          "start": 0,
+          "end": 14.04
+        }
+      ],
+      "requiredFollowup": "捕捉时间承诺和两遍法总纲，声明计时边界。"
+    },
+    {
+      "id": "RISK-02",
+      "risk": "把 AI 清理写成不会改变含义或不需人工核对。",
+      "why": "任何改写都可能删掉限定或事实。",
+      "where": [
+        {
+          "start": 14.04,
+          "end": 35.64
+        }
+      ],
+      "requiredFollowup": "恢复输入、提示约束与人工核对边界。"
+    },
+    {
+      "id": "RISK-03",
+      "risk": "把工具插卡写成所有平台和版本都支持同一功能。",
+      "why": "片内没有版本、价格、平台和完整操作演示。",
+      "where": [
+        {
+          "start": 35.64,
+          "end": 57.72
+        }
+      ],
+      "requiredFollowup": "捕捉工具卡和设备分支，把当前功能状态保持未知。"
+    },
+    {
+      "id": "RISK-04",
+      "risk": "把‘基本不需要剪’扩大到所有制作环节。",
+      "why": "片内只谈口播卡顿剪除，未计字幕、包装、审校和发布。",
+      "where": [
+        {
+          "start": 57.72,
+          "end": 71.32
+        }
+      ],
+      "requiredFollowup": "限定剪辑指删除卡壳，并列出未计成本。"
+    },
+    {
+      "id": "RISK-05",
+      "risk": "把机器转写、烧录字幕或 UI 中的专有名词冲突静默改写。",
+      "why": "专有名词误识别会改变工具身份、案例身份或方法含义。",
+      "where": [
+        {
+          "start": 0,
+          "end": 71.367
+        }
+      ],
+      "requiredFollowup": "保留原始 cue，并用 OCR/画面建立规范化建议和 unresolved。"
+    },
+    {
+      "id": "RISK-06",
+      "risk": "把非语音音频机器候选升级为具体声音事实或因果证明。",
+      "why": "混合音轨分类只能提供候选，不能确认声源、版权或 UI 动作。",
+      "where": [
+        {
+          "start": 0,
+          "end": 71.367
+        }
+      ],
+      "requiredFollowup": "注册完整音频账本，并把精确声源与权利保持未知。"
+    }
+  ],
+  "criticalQuestions": [
+    {
+      "id": "CQ-01",
+      "question": "开场承诺的结果和真正问题是什么？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-01",
+        "RISK-01"
+      ]
+    },
+    {
+      "id": "CQ-02",
+      "question": "第一遍如何保留作者自己的语言？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-02",
+        "RISK-02"
+      ]
+    },
+    {
+      "id": "CQ-03",
+      "question": "第二遍在手机和电脑上如何执行？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "RISK-03"
+      ]
+    },
+    {
+      "id": "CQ-04",
+      "question": "为什么作者说剪辑只需约五分钟？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-04",
+        "RISK-04"
+      ]
+    },
+    {
+      "id": "CQ-05",
+      "question": "哪些专有名词、界面身份或数字存在转写/画面冲突？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "CAR-02",
+        "RISK-05"
+      ]
+    },
+    {
+      "id": "CQ-06",
+      "question": "平台可用性、费用、账号地区、隐私、素材和结果权利有哪些仍未知？",
+      "criticality": "critical",
+      "evidenceHints": [
+        "SWEEP-03",
+        "SWEEP-04"
+      ]
+    },
+    {
+      "id": "CQ-07",
+      "question": "非语音音频是否承载独立知识或操作证明？",
+      "criticality": "supporting",
+      "evidenceHints": [
+        "CAR-05"
+      ]
+    }
+  ],
+  "unresolved": [
+    "20–30 分钟与 5 分钟的计时口径",
+    "不同长度/难度视频的适用性",
+    "提词自然度和观众感知",
+    "AI 清理提示词与事实校验",
+    "各工具当前价格、版本和地区可用性",
+    "非语音音频的精确内容、来源、授权与编辑意图"
+  ]
+}
