@@ -1,0 +1,1 @@
+我会在 X 上按关键词和语义检索近 6 个月、高互动的吐槽帖，优先找 Claude Code / Codex / Cursor 把简单任务做成大工程的真实帖子。已有几条对口帖，互动还不够。我改用高互动筛选，再搜 over-engineering、unnecessary tests、enterprise architecture 这类说法。已锁定几条高互动原帖。继续补搜「简单改动被做成大工程」「加一堆测试/CI」这类更贴题的吐槽。再补搜几条更经典的高热度原帖，尤其是 “asked for X got enterprise” 和 Cursor 相关吐槽。
