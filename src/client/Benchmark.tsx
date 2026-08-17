@@ -34,6 +34,9 @@ export default function BenchmarkPage() {
               <h2>{data.metric}</h2>
               <p className="benchmark-note">{data.metricNote}</p>
               <div className="benchmark-table">
+                <div className="benchmark-scale">
+                  <span>0</span><span>{`${(maxRatio * 0.25).toFixed(1)}`}</span><span>{`${(maxRatio * 0.5).toFixed(1)}`}</span><span>{`${(maxRatio * 0.75).toFixed(1)}`}</span><span>{maxRatio.toFixed(1)}</span>
+                </div>
                 <div className="benchmark-row benchmark-row--head">
                   <span>#</span><span>账号</span><span>收藏/点赞（共享轴 0–{maxRatio.toFixed(1)}）</span><span>值</span><span>互动中位</span><span>样本</span>
                 </div>
@@ -53,7 +56,7 @@ export default function BenchmarkPage() {
             </section>
             <section className="benchmark-findings">
               <h2>规律可信度分层</h2>
-              <div className="finding-grid">
+              <div className="finding-grid" style={{ gridTemplateColumns: `repeat(${data.findings.length}, minmax(0, 1fr))` }}>
                 {data.findings.map((finding) => <article key={finding.text.slice(0, 24)} className={`finding finding--${finding.kind}`}>
                   <span className="finding__kind">{kindLabels[finding.kind]}</span>
                   <p>{finding.text}</p>

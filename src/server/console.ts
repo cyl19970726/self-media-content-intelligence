@@ -327,18 +327,16 @@ export function loadBenchmark(): Benchmark {
   ];
 
   const strong = ips.filter((ip) => ip.aggregateCollectionToLike >= 0.5);
-  const findings: Benchmark["findings"] = [];
-  if (strong.length >= 2) {
-    findings.push({
-      kind: "track",
-      text: `收藏/点赞比 ≥0.5 在 ${strong.length}/3 个账号成立（${strong.map((ip) => ip.name).join("、")}）——保存型内容（可复用、值得收藏）是 AI 赛道的跨账号规律，不是单个 IP 的能力。`
-    });
-  }
   const weak = ips.filter((ip) => ip.aggregateCollectionToLike < 0.5);
-  for (const ip of weak) {
-    findings.push({ kind: "ip", text: `${ip.name} 整体收藏/点赞比 ${ip.aggregateCollectionToLike}——该账号的传播结构不依赖收藏，高赞可能来自分享/评论驱动，规律迁移时要按引擎拆开看。` });
-  }
-  findings.push({ kind: "gap", text: "当前对比集仅 2-3 个 IP，规律标注为初步观察；每新增一个同赛道 IP，可信度判据自动更新。" });
+  const findings: Benchmark["findings"] = [
+    strong.length >= 2
+      ? { kind: "track", text: `收藏/点赞比 ≥0.5 在 ${strong.length}/${ips.length} 个账号成立（${strong.map((ip) => ip.name).join("、")}）——保存型内容（可复用、值得收藏）是 AI 赛道的跨账号规律，不是单个 IP 的能力。` }
+      : { kind: "track", text: `尚未在多个账号发现重复成立的规律：对比集仅 ${ips.length} 个 IP，样本不足以区分赛道规律与 IP 能力。` },
+    weak.length > 0
+      ? { kind: "ip", text: `${weak.map((ip) => `${ip.name}（${ip.aggregateCollectionToLike}）`).join("、")} 的收藏/点赞比 <0.5——传播结构不依赖收藏，规律迁移时要按引擎拆开看。` }
+      : { kind: "ip", text: "当前所有账号收藏/点赞比均 ≥0.5：没有发现「仅单账号成立」的规律。这本身是信号——保存型内容在 AI 赛道一致性很高，但对比集只有 3 个 IP，仍属初步观察。" },
+    { kind: "gap", text: "当前对比集仅 2-3 个 IP，规律标注为初步观察；每新增一个同赛道 IP，可信度判据自动更新。" }
+  ];
 
   return {
     metric: "聚合收藏/点赞比（保存型内容信号）",

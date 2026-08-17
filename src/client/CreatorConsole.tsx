@@ -45,7 +45,7 @@ function TierSection({ data }: { data: CreatorConsoleData }) {
           <p>{tier.conclusion}</p>
         </header>
         {tier.videos.length > 0 && <ul className="tier-videos">
-          {tier.videos.map((video) => <li key={video.id} className={video.selected ? "is-selected" : ""}>
+          {tier.videos.slice(0, 3).map((video) => <li key={video.id} className={video.selected ? "is-selected" : ""}>
             <Link to={`/creators/${data.meta.id}/videos/${video.id}`} className="tier-video">
               <span className="tier-video__likes">{video.likes.toLocaleString()}</span>
               <span className="tier-video__title">{video.title}</span>
@@ -53,6 +53,21 @@ function TierSection({ data }: { data: CreatorConsoleData }) {
               <ArrowRight size={14}/>
             </Link>
           </li>)}
+          {tier.videos.length > 3 && <li>
+            <details className="tier-more">
+              <summary>查看全部 {tier.videos.length} 条</summary>
+              <ul className="tier-videos tier-videos--nested">
+                {tier.videos.slice(3).map((video) => <li key={video.id} className={video.selected ? "is-selected" : ""}>
+                  <Link to={`/creators/${data.meta.id}/videos/${video.id}`} className="tier-video">
+                    <span className="tier-video__likes">{video.likes.toLocaleString()}</span>
+                    <span className="tier-video__title">{video.title}</span>
+                    <span className="tier-video__meta">{video.archetype ?? video.publishedLabel ?? ""}{video.selected ? " · 证据级还原" : ""}</span>
+                    <ArrowRight size={14}/>
+                  </Link>
+                </li>)}
+              </ul>
+            </details>
+          </li>}
         </ul>}
       </article>)}
     </div>}
@@ -78,35 +93,43 @@ function ContentMap({ data }: { data: CreatorConsoleData }) {
 
 function Rhythm({ data }: { data: CreatorConsoleData }) {
   if (!data.rhythm) {
-    return <section id="rhythm" className="console-section">
+    return <details id="rhythm" className="console-section">
+      <summary>
+        <header className="console-section__head">
+          <span className="console-section__index">"06"</span>
+          <div><h2>发布节奏与画面</h2></div>
+        </header>
+      </summary>
+      <div className="console-section__inner">
+        <Missing reason={data.rhythmHealth?.reason ?? "发布节奏数据缺失"}/>
+      </div>
+    </details>;
+  }
+  return <details id="rhythm" className="console-section">
+    <summary>
       <header className="console-section__head">
         <span className="console-section__index">"06"</span>
         <div><h2>发布节奏与画面</h2></div>
       </header>
-      <Missing reason={data.rhythmHealth?.reason ?? "发布节奏数据缺失"}/>
-    </section>;
-  }
-  return <section id="rhythm" className="console-section">
-    <header className="console-section__head">
-      <span className="console-section__index">"06"</span>
-      <div><h2>发布节奏与画面</h2></div>
-    </header>
-    <p className="console-lead">{data.rhythm?.conclusion}</p>
-    {data.rhythm && <div className="rhythm-grid">
-      <div className="rhythm-column">
-        <h3>星期</h3>
-        {data.rhythm.weekdays.map((day) => <div key={day.name} className="rhythm-row">
-          <span>{day.name}</span><b>{day.count}</b><small>中位 {day.medianLikes?.toLocaleString() ?? "—"}</small>
-        </div>)}
-      </div>
-      <div className="rhythm-column">
-        <h3>时段</h3>
-        {data.rhythm.dayparts.map((part) => <div key={part.name} className="rhythm-row">
-          <span>{part.name}</span><b>{part.count}</b><small>中位 {part.medianLikes?.toLocaleString() ?? "—"}</small>
-        </div>)}
-      </div>
-    </div>}
-  </section>;
+    </summary>
+    <div className="console-section__inner">
+      <p className="console-lead">{data.rhythm?.conclusion}</p>
+      {data.rhythm && <div className="rhythm-grid">
+        <div className="rhythm-column">
+          <h3>星期</h3>
+          {data.rhythm.weekdays.map((day) => <div key={day.name} className="rhythm-row">
+            <span>{day.name}</span><b>{day.count}</b><small>中位 {day.medianLikes?.toLocaleString() ?? "—"}</small>
+          </div>)}
+        </div>
+        <div className="rhythm-column">
+          <h3>时段</h3>
+          {data.rhythm.dayparts.map((part) => <div key={part.name} className="rhythm-row">
+            <span>{part.name}</span><b>{part.count}</b><small>中位 {part.medianLikes?.toLocaleString() ?? "—"}</small>
+          </div>)}
+        </div>
+      </div>}
+    </div>
+  </details>;
 }
 
 function Launch({ data }: { data: CreatorConsoleData }) {
@@ -207,42 +230,54 @@ export default function CreatorConsolePage() {
               <Missing reason={data.baselineHealth?.reason ?? "基本盘数据缺失"}/>
             </section>}
             <TierSection data={data}/>
-            <section id="evidence" className="console-section">
-              <header className="console-section__head">
-                <span className="console-section__index">"03"</span>
-                <div><h2>为什么好：证据级还原</h2><p>深度分析是价值引擎——每条"为什么好"都能下钻到真实帧、文字稿与时间码。</p></div>
-              </header>
-              <div className="evidence-links">
-                {data.evidenceLinks.map((link) => <a key={link.href} className="console-link-card" href={link.href}>
-                  <span>{link.label}</span><b>{link.count} 条</b><ArrowRight size={15}/>
-                </a>)}
+            <details id="evidence" className="console-section">
+              <summary>
+                <header className="console-section__head">
+                  <span className="console-section__index">"03"</span>
+                  <div><h2>为什么好：证据级还原</h2><p>深度分析是价值引擎——每条"为什么好"都能下钻到真实帧、文字稿与时间码。</p></div>
+                </header>
+              </summary>
+              <div className="console-section__inner">
+                <div className="evidence-links">
+                  {data.evidenceLinks.map((link) => <a key={link.href} className="console-link-card" href={link.href}>
+                    <span>{link.label}</span><b>{link.count} 条</b><ArrowRight size={15}/>
+                  </a>)}
+                </div>
               </div>
-            </section>
+            </details>
             <ContentMap data={data}/>
-            <section id="library" className="console-section">
-              <header className="console-section__head">
-                <span className="console-section__index">"05"</span>
-                <div><h2>内容库</h2><p>全部样本按档排列；点击任一条进入视频证据页。</p></div>
-              </header>
-              <div className="library-list">
-                {data.tiers.flatMap((tier) => tier.videos).map((video) => <Link key={video.id} to={`/creators/${data.meta.id}/videos/${video.id}`} className="library-row">
-                  <span className="library-row__likes">{video.likes.toLocaleString()}</span>
-                  <span className="library-row__title">{video.title}</span>
-                  <span className="library-row__meta">{video.archetype ?? video.publishedLabel ?? ""}</span>
-                  <ArrowRight size={13}/>
-                </Link>)}
+            <details id="library" className="console-section">
+              <summary>
+                <header className="console-section__head">
+                  <span className="console-section__index">"05"</span>
+                  <div><h2>内容库</h2><p>全部样本按档排列；点击任一条进入视频证据页。</p></div>
+                </header>
+              </summary>
+              <div className="console-section__inner">
+                <div className="library-list">
+                  {data.tiers.flatMap((tier) => tier.videos).map((video) => <Link key={video.id} to={`/creators/${data.meta.id}/videos/${video.id}`} className="library-row">
+                    <span className="library-row__likes">{video.likes.toLocaleString()}</span>
+                    <span className="library-row__title">{video.title}</span>
+                    <span className="library-row__meta">{video.archetype ?? video.publishedLabel ?? ""}</span>
+                    <ArrowRight size={13}/>
+                  </Link>)}
+                </div>
               </div>
-            </section>
+            </details>
             <Rhythm data={data}/>
-            <section id="position" className="console-section">
-              <header className="console-section__head">
-                <span className="console-section__index">"07"</span>
-                <div><h2>赛道位置</h2><p>单 IP 只能看到"他这么做有效"；跨 IP 对比才能知道"这么做在 AI 赛道有效"。</p></div>
-              </header>
-              <Link className="console-link-card console-link-card--action" to="/benchmark">
-                <span>进入跨 IP 对比台</span><b>规律可信度：赛道规律 / IP 能力 / 定位空缺</b><ArrowRight size={15}/>
-              </Link>
-            </section>
+            <details id="position" className="console-section">
+              <summary>
+                <header className="console-section__head">
+                  <span className="console-section__index">"07"</span>
+                  <div><h2>赛道位置</h2><p>单 IP 只能看到"他这么做有效"；跨 IP 对比才能知道"这么做在 AI 赛道有效"。</p></div>
+                </header>
+              </summary>
+              <div className="console-section__inner">
+                <Link className="console-link-card console-link-card--action" to="/benchmark">
+                  <span>进入跨 IP 对比台</span><b>规律可信度：赛道规律 / IP 能力 / 定位空缺</b><ArrowRight size={15}/>
+                </Link>
+              </div>
+            </details>
             <Launch data={data}/>
             <section id="limits" className="console-section">
               <header className="console-section__head">
