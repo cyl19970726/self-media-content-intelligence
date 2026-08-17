@@ -8,7 +8,8 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": "http://127.0.0.1:4310",
-      "/artifacts": "http://127.0.0.1:4310"
+      "/artifacts": "http://127.0.0.1:4310",
+      "/research": "http://127.0.0.1:4310"
     }
   },
   build: {

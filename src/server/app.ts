@@ -5,6 +5,7 @@ import { z } from "zod";
 import { AnalysisService } from "../core/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
 import { createRunInputSchema } from "../shared/schema.js";
+import { loadCreatorSummaries } from "./creators.js";
 
 export function createApp(service = new AnalysisService()) {
   const app = express();
@@ -16,8 +17,14 @@ export function createApp(service = new AnalysisService()) {
     maxAge: "1h"
   }));
 
+  app.use("/research", express.static(path.join(projectRoot, "artifacts", "creator-research")));
+
   app.get("/api/health", (_request, response) => {
     response.json({ ok: true });
+  });
+
+  app.get("/api/creators", (_request, response) => {
+    response.json({ creators: loadCreatorSummaries() });
   });
 
   app.get("/api/runs", (request, response) => {

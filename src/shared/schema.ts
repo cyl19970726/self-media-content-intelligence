@@ -463,3 +463,17 @@ export const parsedSourceSchema = z.object({
   fixture: z.boolean()
 });
 export type ParsedSource = z.infer<typeof parsedSourceSchema>;
+
+export const creatorSummarySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  followers: z.string(),
+  likesAndCollections: z.string(),
+  profileUrl: z.string(),
+  positioning: z.string(),
+  summary: z.string(),
+  tags: z.array(z.string()),
+  stats: z.array(z.object({ label: z.string(), value: z.string() })),
+  entries: z.array(z.object({ label: z.string(), href: z.string(), note: z.string().optional() }))
+});
+export type CreatorSummary = z.infer<typeof creatorSummarySchema>;

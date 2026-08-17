@@ -5,9 +5,16 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", "dist-server", ".runtime", "node_modules"] },
+  { ignores: ["dist", "dist-server", ".runtime", "node_modules", "artifacts", "skills"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    files: ["**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: 2023,
+      globals: { ...globals.node }
+    }
+  },
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {

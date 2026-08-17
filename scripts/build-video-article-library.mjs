@@ -1,6 +1,6 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, dirname, join, relative, resolve } from "node:path";
+import { join, resolve } from "node:path";
 
 const workspace = resolve(process.cwd());
 const creatorRoot = join(workspace, "artifacts/creator-research/ai-red-witch");

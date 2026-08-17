@@ -37,6 +37,8 @@ npm run dev
 
 生产构建可使用 `npm run build && npm start`，随后打开 `http://127.0.0.1:4310`。详情页地址为 `http://127.0.0.1:4310/runs/<run-id>`。
 
+**博主研究总览**：`http://127.0.0.1:4310/creators` —— AI 赛道已分析博主的组合入口页，每张卡片（定位、增长引擎/内容支柱标签、覆盖度、研究档案链接）从各分析产物自动汇总（`/api/creators` + `src/server/creators.ts`），档案静态文件经 `/research/*` 提供。新增一个博主的分析产物后，在 `creators.ts` 注册一个 loader 即出现在总览。
+
 ## CLI
 
 ```bash
