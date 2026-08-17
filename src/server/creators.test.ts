@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { loadCreatorSummaries } from "./creators.js";
 
 describe("loadCreatorSummaries", () => {
-  it("loads the three analyzed creators from repo artifacts", () => {
+  it("loads the two active creators from repo artifacts", () => {
     const summaries = loadCreatorSummaries();
-    expect(summaries.map((summary) => summary.id)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);
+    expect(summaries.map((summary) => summary.id)).toEqual(["ai-red-witch", "human-director"]);
   });
 
   it("every summary satisfies the card contract", () => {
@@ -19,11 +19,5 @@ describe("loadCreatorSummaries", () => {
         expect(entry.href).toMatch(/^\/research\//);
       }
     }
-  });
-
-  it("zhang-zala numbers are formatted in ten-thousands", () => {
-    const zhang = loadCreatorSummaries().find((summary) => summary.id === "zhang-zala");
-    expect(zhang?.followers).toBe("35.4万");
-    expect(zhang?.likesAndCollections).toBe("176.5万");
   });
 });

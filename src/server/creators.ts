@@ -62,41 +62,10 @@ function redWitch(): CreatorSummary | null {
   };
 }
 
-function zhangZala(): CreatorSummary | null {
-  const data = readJson("zhang-zala-v1/dashboard/dashboard-data.json");
-  if (!data) return null;
-  const creator = asRecord(data.creator);
-  const stats = asRecord(creator.publicStats);
-  const positioning = asRecord(data.positioning);
-  const overview = asRecord(data.overview);
-  const pillars = Array.isArray(data.contentPillars) ? data.contentPillars as Record<string, unknown>[] : [];
-  const pillarTags = pillars
-    .map((pillar) => {
-      const name = asString(pillar.name);
-      const count = asNumber(pillar.portfolioCount);
-      return count === null ? name : `${name} · ${count}`;
-    })
-    .filter((tag) => tag.length > 0);
-  const sentence = asString(positioning.sentence);
-  return {
-    id: "zhang-zala",
-    name: asString(creator.name, "张咋啦"),
-    followers: formatCount(asNumber(stats.followers)),
-    likesAndCollections: formatCount(asNumber(stats.likesAndCollections)),
-    profileUrl: asString(creator.profileUrl),
-    positioning: asString(positioning.name, "非技术 AI Builder 的公开建造与翻译系统"),
-    summary: sentence,
-    tags: pillarTags,
-    stats: [
-      { label: "作品基本盘", value: formatCount(asNumber(overview.postCount)) },
-      { label: "深度研究", value: String(Array.isArray(data.deepDives) ? data.deepDives.length : 0) },
-      { label: "互动中位数", value: formatCount(asNumber(overview.medianLikes)) }
-    ],
-    entries: [
-      { label: "62 条基本盘 · 四档研究", href: "/research/zhang-zala-v1/dashboard/index.html" }
-    ]
-  };
-}
+// zhang-zala loader removed from the overview on 2026-08-17 (Owner decision):
+// deep-dive frames under videos/<id>/skill-run fail to render in the browser.
+// Research artifacts remain untouched at artifacts/creator-research/zhang-zala-v1.
+// The previous loader is recoverable from git history (commit 4bbe6e2e).
 
 function humanDirector(): CreatorSummary | null {
   const analysis = readJson("human-director/analysis.json");
@@ -130,7 +99,6 @@ function humanDirector(): CreatorSummary | null {
 
 const loaders: Record<string, () => CreatorSummary | null> = {
   "ai-red-witch": redWitch,
-  "zhang-zala": zhangZala,
   "human-director": humanDirector
 };
 
