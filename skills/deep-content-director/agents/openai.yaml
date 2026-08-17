@@ -1,0 +1,4 @@
+interface:
+  display_name: "深度内容编导"
+  short_description: "用证据、脚本、镜头、发布实验和复盘闭环指导小红书内容创作"
+  default_prompt: "请把我的账号目标或选题转成可执行的小红书编导方案，并给出证据边界、镜头计划、发布实验和复盘标准。"

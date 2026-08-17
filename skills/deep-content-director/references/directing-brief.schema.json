@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/deep-content-director/directing-brief.schema.json",
+  "title": "Deep Content Director Brief 2.0",
+  "type": "object",
+  "required": ["schemaVersion", "artifactStatus", "draftSlots", "mode", "format", "decision", "accountContext", "responsibility", "commercialBoundary", "offerArchitecture", "carrierEvidence", "assets", "claims", "safety", "unknowns"],
+  "properties": {
+    "schemaVersion": {"const": "2.0"},
+    "artifactStatus": {"enum": ["draft", "complete"]},
+    "draftSlots": {"type": "array", "items": {"$ref": "#/$defs/draftSlot"}},
+    "mode": {"enum": ["account", "single", "series", "research", "review"]},
+    "format": {"enum": ["video", "carousel", "text_image", "live_clip", "other"]},
+    "decision": {"$ref": "#/$defs/stateValue"},
+    "accountContext": {
+      "type": "object",
+      "required": ["identityPromise", "stage", "contentRole"],
+      "properties": {
+        "identityPromise": {"$ref": "#/$defs/stateValue"},
+        "stage": {"$ref": "#/$defs/stateValue"},
+        "contentRole": {"$ref": "#/$defs/stateValue"}
+      },
+      "additionalProperties": false
+    },
+    "responsibility": {
+      "type": "object",
+      "required": ["humanDecision", "aiContribution", "factVerification", "publishOwner"],
+      "properties": {
+        "humanDecision": {"$ref": "#/$defs/stateValue"},
+        "aiContribution": {"$ref": "#/$defs/stateValue"},
+        "factVerification": {"$ref": "#/$defs/stateValue"},
+        "publishOwner": {"$ref": "#/$defs/stateValue"}
+      },
+      "additionalProperties": false
+    },
+    "commercialBoundary": {
+      "type": "object",
+      "required": ["freeScope", "paidScope", "collaboration"],
+      "properties": {
+        "freeScope": {"$ref": "#/$defs/stateValue"},
+        "paidScope": {"$ref": "#/$defs/stateValue"},
+        "collaboration": {
+          "oneOf": [
+            {"$ref": "#/$defs/notApplicable"},
+            {"$ref": "#/$defs/boundedUnknown"},
+            {
+              "type": "object",
+              "required": ["status", "accountOwnership", "ipOwnership", "revenueShare", "exitTerms", "dataAccess", "adTransparency"],
+              "properties": {
+                "status": {"const": "known"},
+                "accountOwnership": {"$ref": "#/$defs/nonBlank"},
+                "ipOwnership": {"$ref": "#/$defs/nonBlank"},
+                "revenueShare": {"$ref": "#/$defs/nonBlank"},
+                "exitTerms": {"$ref": "#/$defs/nonBlank"},
+                "dataAccess": {"$ref": "#/$defs/nonBlank"},
+                "adTransparency": {"$ref": "#/$defs/nonBlank"}
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "offerArchitecture": {
+      "oneOf": [
+        {"$ref": "#/$defs/notApplicable"},
+        {"$ref": "#/$defs/boundedUnknown"},
+        {"type": "object", "required": ["status", "buyer", "demand", "productOrDeliverable", "productType", "contentForm", "conversionAction", "supportBoundary"], "properties": {"status": {"const": "known"}, "buyer": {"$ref": "#/$defs/nonBlank"}, "demand": {"$ref": "#/$defs/stateValue"}, "productOrDeliverable": {"$ref": "#/$defs/nonBlank"}, "productType": {"enum": ["service", "resource", "tool", "hybrid"]}, "contentForm": {"$ref": "#/$defs/nonBlank"}, "conversionAction": {"$ref": "#/$defs/nonBlank"}, "supportBoundary": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}
+      ]
+    },
+    "carrierEvidence": {"$ref": "#/$defs/carrierEvidence"},
+    "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "safety": {
+      "type": "object",
+      "required": ["privacyChecks", "platformChecks", "disclosure"],
+      "properties": {
+        "privacyChecks": {"type": "array", "items": {"$ref": "#/$defs/safetyCheck"}},
+        "platformChecks": {"type": "array", "items": {"$ref": "#/$defs/safetyCheck"}},
+        "disclosure": {"$ref": "#/$defs/stateValue"}
+      },
+      "additionalProperties": false
+    },
+    "unknowns": {"type": "array", "items": {"$ref": "#/$defs/boundedUnknown"}},
+    "accountPlan": {"$ref": "#/$defs/accountPlan"},
+    "singlePlan": {"$ref": "#/$defs/singlePlan"},
+    "seriesPlan": {"$ref": "#/$defs/seriesPlan"},
+    "researchPlan": {"$ref": "#/$defs/researchPlan"},
+    "reviewPlan": {"$ref": "#/$defs/reviewPlan"}
+  },
+  "oneOf": [
+    {"properties": {"mode": {"const": "account"}}, "required": ["accountPlan"], "not": {"anyOf": [{"required": ["singlePlan"]}, {"required": ["seriesPlan"]}, {"required": ["researchPlan"]}, {"required": ["reviewPlan"]}]}},
+    {"properties": {"mode": {"const": "single"}}, "required": ["singlePlan"], "not": {"anyOf": [{"required": ["accountPlan"]}, {"required": ["seriesPlan"]}, {"required": ["researchPlan"]}, {"required": ["reviewPlan"]}]}},
+    {"properties": {"mode": {"const": "series"}}, "required": ["seriesPlan"], "not": {"anyOf": [{"required": ["accountPlan"]}, {"required": ["singlePlan"]}, {"required": ["researchPlan"]}, {"required": ["reviewPlan"]}]}},
+    {"properties": {"mode": {"const": "research"}}, "required": ["researchPlan"], "not": {"anyOf": [{"required": ["accountPlan"]}, {"required": ["singlePlan"]}, {"required": ["seriesPlan"]}, {"required": ["reviewPlan"]}]}},
+    {"properties": {"mode": {"const": "review"}}, "required": ["reviewPlan"], "not": {"anyOf": [{"required": ["accountPlan"]}, {"required": ["singlePlan"]}, {"required": ["seriesPlan"]}, {"required": ["researchPlan"]}]}}
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "single"}, "format": {"const": "video"}}, "required": ["mode", "format"]},
+      "then": {"properties": {"singlePlan": {"required": ["beats", "shots"], "not": {"anyOf": [{"required": ["panels"]}, {"required": ["customCarrierPlan"]}]}, "properties": {"packaging": {"properties": {"opening": {"properties": {"kind": {"const": "first_frame"}}}}}}}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "single"}, "format": {"const": "live_clip"}}, "required": ["mode", "format"]},
+      "then": {"properties": {"singlePlan": {"required": ["beats", "shots"], "not": {"anyOf": [{"required": ["panels"]}, {"required": ["customCarrierPlan"]}]}, "properties": {"packaging": {"properties": {"opening": {"properties": {"kind": {"const": "live_opening"}}}}}}}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "single"}, "format": {"const": "carousel"}}, "required": ["mode", "format"]},
+      "then": {"properties": {"singlePlan": {"required": ["panels"], "not": {"anyOf": [{"required": ["beats"]}, {"required": ["shots"]}, {"required": ["customCarrierPlan"]}]}, "properties": {"panels": {"minItems": 2}, "packaging": {"properties": {"opening": {"properties": {"kind": {"const": "first_panel"}}}}}}}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "single"}, "format": {"const": "text_image"}}, "required": ["mode", "format"]},
+      "then": {"properties": {"singlePlan": {"required": ["panels"], "not": {"anyOf": [{"required": ["beats"]}, {"required": ["shots"]}, {"required": ["customCarrierPlan"]}]}, "properties": {"panels": {"minItems": 1}, "packaging": {"properties": {"opening": {"properties": {"kind": {"const": "lead_image"}}}}}}}}}
+    },
+    {
+      "if": {"properties": {"mode": {"const": "single"}, "format": {"const": "other"}}, "required": ["mode", "format"]},
+      "then": {"properties": {"singlePlan": {"required": ["customCarrierPlan"], "not": {"anyOf": [{"required": ["beats"]}, {"required": ["shots"]}, {"required": ["panels"]}]}, "properties": {"packaging": {"properties": {"opening": {"properties": {"kind": {"const": "custom"}}}}}}}}}
+    }
+  ],
+  "unevaluatedProperties": false,
+  "$defs": {
+    "nonBlank": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "identifier": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"},
+    "notApplicable": {
+      "type": "object", "required": ["status", "reason"],
+      "properties": {"status": {"const": "not_applicable"}, "reason": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false
+    },
+    "boundedUnknown": {
+      "type": "object", "required": ["status", "reason", "owner", "resolution"],
+      "properties": {
+        "status": {"const": "unknown"}, "reason": {"$ref": "#/$defs/nonBlank"},
+        "owner": {"$ref": "#/$defs/nonBlank"}, "resolution": {"$ref": "#/$defs/nonBlank"}
+      }, "additionalProperties": false
+    },
+    "draftSlot": {
+      "type": "object", "required": ["path", "reason", "owner", "resolution"],
+      "properties": {"path": {"type": "string", "pattern": "^/"}, "reason": {"$ref": "#/$defs/nonBlank"}, "owner": {"$ref": "#/$defs/nonBlank"}, "resolution": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false
+    },
+    "stateValue": {
+      "oneOf": [
+        {"type": "object", "required": ["status", "value"], "properties": {"status": {"const": "known"}, "value": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        {"$ref": "#/$defs/boundedUnknown"},
+        {"$ref": "#/$defs/notApplicable"}
+      ]
+    },
+    "asset": {
+      "type": "object", "required": ["id", "kind", "owner", "rightsStatus"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"}, "kind": {"enum": ["footage", "image", "audio", "music", "font", "screen_recording", "private_screenshot", "person_likeness", "other"]},
+        "owner": {"$ref": "#/$defs/stateValue"}, "rightsStatus": {"oneOf": [{"enum": ["owned", "licensed", "consented", "public_domain", "blocked"]}, {"$ref": "#/$defs/boundedUnknown"}]},
+        "evidenceLocator": {"$ref": "#/$defs/nonBlank"}, "fallbackAssetId": {"$ref": "#/$defs/identifier"}
+      }, "additionalProperties": false,
+      "allOf": [
+        {"if": {"properties": {"rightsStatus": {"enum": ["licensed", "consented"]}}, "required": ["rightsStatus"]}, "then": {"required": ["evidenceLocator"]}},
+        {"if": {"properties": {"rightsStatus": {"const": "blocked"}}, "required": ["rightsStatus"]}, "then": {"required": ["fallbackAssetId"]}}
+      ]
+    },
+    "sourceLocator": {
+      "type": "object", "required": ["sourceId", "locator", "observedAt"],
+      "properties": {"sourceId": {"$ref": "#/$defs/nonBlank"}, "locator": {"$ref": "#/$defs/nonBlank"}, "observedAt": {"type": "string", "format": "date-time"}},
+      "additionalProperties": false
+    },
+    "experimentMetadata": {
+      "type": "object", "required": ["variant", "baselineOrControl", "window", "denominator", "confounds"],
+      "properties": {
+        "variant": {"$ref": "#/$defs/nonBlank"}, "baselineOrControl": {"$ref": "#/$defs/nonBlank"}, "window": {"$ref": "#/$defs/nonBlank"},
+        "denominator": {"type": "number", "exclusiveMinimum": 0}, "confounds": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}
+      }, "additionalProperties": false
+    },
+    "claim": {
+      "type": "object", "required": ["id", "text", "claimClass", "risk", "verificationStatus", "scope", "cannotSupport", "beatRefs", "shotRefs", "panelRefs", "customUnitRefs", "assetRefs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"}, "text": {"$ref": "#/$defs/nonBlank"},
+        "claimClass": {"enum": ["verified_observation", "user_claim", "source_author_claim", "system_inference", "platform_hypothesis", "experiment_result", "unknown"]},
+        "risk": {"enum": ["low", "moderate", "high"]}, "verificationStatus": {"enum": ["verified", "not_verified", "hypothesis"]},
+        "scope": {"$ref": "#/$defs/nonBlank"}, "cannotSupport": {"$ref": "#/$defs/nonBlank"},
+        "sourceLocator": {"$ref": "#/$defs/sourceLocator"}, "officialPrimarySource": {"$ref": "#/$defs/sourceLocator"},
+        "experimentMetadata": {"$ref": "#/$defs/experimentMetadata"},
+        "beatRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true},
+        "shotRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true},
+        "panelRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true},
+        "customUnitRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true},
+        "assetRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}
+      }, "additionalProperties": false,
+      "allOf": [
+        {"if": {"properties": {"claimClass": {"const": "verified_observation"}}, "required": ["claimClass"]}, "then": {"required": ["sourceLocator"], "properties": {"verificationStatus": {"const": "verified"}}}},
+        {"if": {"properties": {"claimClass": {"const": "experiment_result"}}, "required": ["claimClass"]}, "then": {"required": ["sourceLocator", "experimentMetadata"], "properties": {"verificationStatus": {"const": "verified"}}}},
+        {"if": {"properties": {"claimClass": {"enum": ["user_claim", "source_author_claim", "unknown"]}}, "required": ["claimClass"]}, "then": {"properties": {"verificationStatus": {"const": "not_verified"}}}},
+        {"if": {"properties": {"claimClass": {"enum": ["system_inference", "platform_hypothesis"]}}, "required": ["claimClass"]}, "then": {"properties": {"verificationStatus": {"const": "hypothesis"}}}},
+        {"if": {"properties": {"risk": {"const": "high"}, "verificationStatus": {"const": "verified"}}, "required": ["risk", "verificationStatus"]}, "then": {"required": ["officialPrimarySource"]}}
+      ]
+    },
+    "safetyCheck": {
+      "type": "object", "required": ["id", "subjectRef", "status", "note"],
+      "properties": {"id": {"$ref": "#/$defs/identifier"}, "subjectRef": {"$ref": "#/$defs/identifier"}, "status": {"enum": ["clear", "blocked", "not_applicable"]}, "note": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false
+    },
+    "timeRange": {"type": "object", "required": ["startSeconds", "endSeconds"], "properties": {"startSeconds": {"type": "number", "minimum": 0}, "endSeconds": {"type": "number", "exclusiveMinimum": 0}}, "additionalProperties": false},
+    "carrierLocator": {"oneOf": [
+      {"type": "object", "required": ["kind", "timeRange"], "properties": {"kind": {"const": "time_range"}, "timeRange": {"$ref": "#/$defs/timeRange"}}, "additionalProperties": false},
+      {"type": "object", "required": ["kind", "panelRef"], "properties": {"kind": {"const": "panel"}, "panelRef": {"$ref": "#/$defs/identifier"}}, "additionalProperties": false},
+      {"type": "object", "required": ["kind", "customUnitRef"], "properties": {"kind": {"const": "custom_unit"}, "customUnitRef": {"$ref": "#/$defs/identifier"}}, "additionalProperties": false},
+      {"type": "object", "required": ["kind", "externalLocator"], "properties": {"kind": {"const": "external"}, "externalLocator": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}
+    ]},
+    "carrierEvidence": {
+      "type": "object", "required": ["nonSpeechAudio", "referentLedger", "absenceClaims"],
+      "properties": {
+        "nonSpeechAudio": {"oneOf": [
+          {"$ref": "#/$defs/notApplicable"}, {"$ref": "#/$defs/boundedUnknown"},
+          {"type": "object", "required": ["status", "entries", "assessmentMethod", "toolBoundary"], "properties": {"status": {"const": "observed"}, "entries": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "kind", "locator", "assetRef", "referentRefs", "function"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "kind": {"enum": ["music", "sound_effect", "silence", "ambience"]}, "locator": {"$ref": "#/$defs/carrierLocator"}, "assetRef": {"oneOf": [{"$ref": "#/$defs/identifier"}, {"$ref": "#/$defs/notApplicable"}]}, "referentRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}, "function": {"$ref": "#/$defs/stateValue"}}, "additionalProperties": false}}, "assessmentMethod": {"$ref": "#/$defs/nonBlank"}, "toolBoundary": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}
+        ]},
+        "referentLedger": {"type": "array", "items": {"type": "object", "required": ["id", "referent", "locator", "source", "ownership", "contentScope"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "referent": {"$ref": "#/$defs/nonBlank"}, "parentReferentId": {"$ref": "#/$defs/identifier"}, "locator": {"$ref": "#/$defs/carrierLocator"}, "source": {"$ref": "#/$defs/stateValue"}, "ownership": {"$ref": "#/$defs/stateValue"}, "contentScope": {"enum": ["current_content", "analyzed_case", "unknown"]}}, "additionalProperties": false}},
+        "absenceClaims": {"type": "array", "items": {"type": "object", "required": ["id", "carrier", "statement", "locator", "method", "limitation"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "carrier": {"enum": ["transcript", "visual", "audio", "full_timeline"]}, "statement": {"$ref": "#/$defs/nonBlank"}, "locator": {"$ref": "#/$defs/carrierLocator"}, "method": {"$ref": "#/$defs/nonBlank"}, "limitation": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}
+      }, "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object", "required": ["id", "name", "audience", "tension", "promise", "proof", "accountFit", "productionCost", "followReason", "risk"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"}, "name": {"$ref": "#/$defs/nonBlank"}, "audience": {"$ref": "#/$defs/nonBlank"}, "tension": {"$ref": "#/$defs/nonBlank"},
+        "promise": {"$ref": "#/$defs/nonBlank"}, "proof": {"$ref": "#/$defs/nonBlank"}, "accountFit": {"$ref": "#/$defs/nonBlank"},
+        "productionCost": {"$ref": "#/$defs/nonBlank"}, "followReason": {"$ref": "#/$defs/nonBlank"}, "risk": {"$ref": "#/$defs/nonBlank"}
+      }, "additionalProperties": false
+    },
+    "mechanism": {
+      "type": "object", "required": ["hypothesis", "mechanism", "conditions", "counterexample", "failureBoundary"],
+      "properties": {"hypothesis": {"$ref": "#/$defs/nonBlank"}, "mechanism": {"$ref": "#/$defs/nonBlank"}, "conditions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonBlank"}}, "counterexample": {"$ref": "#/$defs/nonBlank"}, "failureBoundary": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false
+    },
+    "metric": {
+      "type": "object", "required": ["id", "name", "availability", "definition"],
+      "properties": {"id": {"$ref": "#/$defs/identifier"}, "name": {"$ref": "#/$defs/nonBlank"}, "availability": {"enum": ["available", "not_available", "unknown"]}, "definition": {"$ref": "#/$defs/nonBlank"}, "source": {"$ref": "#/$defs/nonBlank"}, "proxy": {"$ref": "#/$defs/nonBlank"}, "limitation": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false,
+      "allOf": [
+        {"if": {"properties": {"availability": {"const": "available"}}, "required": ["availability"]}, "then": {"required": ["source"]}},
+        {"if": {"properties": {"availability": {"enum": ["not_available", "unknown"]}}, "required": ["availability"]}, "then": {"required": ["proxy", "limitation"]}}
+      ]
+    },
+    "experiment": {
+      "type": "object", "required": ["primaryVariable", "lockedElements", "mainMetric", "guardrailMetrics", "window", "minimumEvidence", "confounds", "stopChangeRule"],
+      "properties": {
+        "primaryVariable": {"enum": ["topic", "audience", "promise", "title", "cover", "opening", "proof", "carrier", "cta", "cadence", "other"]},
+        "lockedElements": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonBlank"}, "uniqueItems": true},
+        "mainMetric": {"$ref": "#/$defs/metric"}, "guardrailMetrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+        "window": {"$ref": "#/$defs/stateValue"}, "minimumEvidence": {"$ref": "#/$defs/stateValue"}, "confounds": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "stopChangeRule": {"$ref": "#/$defs/stateValue"}
+      }, "additionalProperties": false
+    },
+    "originality": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {
+      "type": "object", "required": ["sourceInspirations", "changedDimensions", "exceptionReason", "notCopied"],
+      "properties": {
+        "sourceInspirations": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}},
+        "changedDimensions": {"type": "array", "items": {"enum": ["audience", "promise", "proof", "situation"]}, "uniqueItems": true},
+        "exceptionReason": {"oneOf": [{"$ref": "#/$defs/notApplicable"}, {"type": "object", "required": ["status", "reason"], "properties": {"status": {"const": "one_dimension_approved"}, "reason": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}]},
+        "notCopied": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}
+      }, "additionalProperties": false
+    }]},
+    "beat": {
+      "type": "object", "required": ["id", "cognitiveJob", "speech", "visual", "onScreenText", "audio"],
+      "properties": {"id": {"$ref": "#/$defs/identifier"}, "cognitiveJob": {"enum": ["orient", "create_tension", "define", "explain", "prove", "contrast", "relieve_load", "summarize", "transfer", "convert"]}, "speech": {"$ref": "#/$defs/stateValue"}, "visual": {"$ref": "#/$defs/nonBlank"}, "onScreenText": {"$ref": "#/$defs/stateValue"}, "audio": {"$ref": "#/$defs/stateValue"}},
+      "additionalProperties": false
+    },
+    "shot": {
+      "type": "object", "required": ["id", "beatId", "targetDurationSeconds", "content", "function", "evidenceResponsibility", "assetRefs", "transition", "editDecision"],
+      "properties": {"id": {"$ref": "#/$defs/identifier"}, "beatId": {"$ref": "#/$defs/identifier"}, "targetDurationSeconds": {"type": "number", "exclusiveMinimum": 0}, "content": {"$ref": "#/$defs/nonBlank"}, "function": {"$ref": "#/$defs/nonBlank"}, "evidenceResponsibility": {"$ref": "#/$defs/nonBlank"}, "assetRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}, "transition": {"$ref": "#/$defs/stateValue"}, "editDecision": {"enum": ["keep", "compress", "remove", "add"]}},
+      "additionalProperties": false
+    },
+    "panel": {
+      "type": "object", "required": ["id", "order", "cognitiveJob", "copy", "visual", "assetRefs"],
+      "properties": {"id": {"$ref": "#/$defs/identifier"}, "order": {"type": "integer", "minimum": 1}, "cognitiveJob": {"enum": ["orient", "create_tension", "define", "explain", "prove", "contrast", "relieve_load", "summarize", "transfer", "convert"]}, "copy": {"$ref": "#/$defs/nonBlank"}, "visual": {"$ref": "#/$defs/nonBlank"}, "assetRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}},
+      "additionalProperties": false
+    },
+    "packaging": {
+      "type": "object", "required": ["title", "cover", "opening", "searchIntent", "cta", "commentCoding"],
+      "properties": {"title": {"$ref": "#/$defs/nonBlank"}, "cover": {"$ref": "#/$defs/nonBlank"}, "opening": {"type": "object", "required": ["kind", "content"], "properties": {"kind": {"enum": ["first_frame", "first_panel", "lead_image", "live_opening", "custom"]}, "content": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}, "searchIntent": {"type": "object", "required": ["route", "query"], "properties": {"route": {"enum": ["search", "feed", "hybrid"]}, "query": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}, "cta": {"$ref": "#/$defs/nonBlank"}, "commentCoding": {"$ref": "#/$defs/stateValue"}},
+      "additionalProperties": false
+    },
+    "production": {
+      "type": "object", "required": ["people", "locations", "assetRefs", "tools", "deadline", "owner", "fallback"],
+      "properties": {"people": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "locations": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "assetRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}, "tools": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "deadline": {"$ref": "#/$defs/stateValue"}, "owner": {"$ref": "#/$defs/stateValue"}, "fallback": {"$ref": "#/$defs/nonBlank"}},
+      "additionalProperties": false
+    },
+    "singlePlan": {
+      "type": "object", "required": ["workingTitle", "primaryJob", "guardrailJob", "audience", "demandEvidence", "contentMechanism", "candidates", "selection", "contracts", "evidencePlan", "packaging", "production", "originality", "experiment"],
+      "properties": {
+        "workingTitle": {"$ref": "#/$defs/nonBlank"}, "primaryJob": {"$ref": "#/$defs/nonBlank"}, "guardrailJob": {"$ref": "#/$defs/stateValue"},
+        "audience": {"type": "object", "required": ["person", "stage", "situation", "currentBelief"], "properties": {"person": {"$ref": "#/$defs/nonBlank"}, "stage": {"$ref": "#/$defs/nonBlank"}, "situation": {"$ref": "#/$defs/nonBlank"}, "currentBelief": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        "demandEvidence": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true},
+        "contentMechanism": {"$ref": "#/$defs/mechanism"}, "candidates": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/candidate"}},
+        "selection": {"type": "object", "required": ["selectedId", "comparison"], "properties": {"selectedId": {"$ref": "#/$defs/identifier"}, "comparison": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        "contracts": {"type": "object", "required": ["click", "delivery", "follow", "action", "promiseClosure"], "properties": {"click": {"$ref": "#/$defs/nonBlank"}, "delivery": {"$ref": "#/$defs/nonBlank"}, "follow": {"$ref": "#/$defs/nonBlank"}, "action": {"$ref": "#/$defs/nonBlank"}, "promiseClosure": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        "evidencePlan": {"oneOf": [{"type": "object", "required": ["status", "claimRefs"], "properties": {"status": {"const": "applicable"}, "claimRefs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}}, "additionalProperties": false}, {"$ref": "#/$defs/notApplicable"}, {"$ref": "#/$defs/boundedUnknown"}]},
+        "beats": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/beat"}}, "shots": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/shot"}},
+        "panels": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/panel"}},
+        "customCarrierPlan": {"type": "object", "required": ["carrier", "units", "editingLogic"], "properties": {"carrier": {"$ref": "#/$defs/nonBlank"}, "units": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "function", "content", "assetRefs"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "function": {"$ref": "#/$defs/nonBlank"}, "content": {"$ref": "#/$defs/nonBlank"}, "assetRefs": {"type": "array", "items": {"$ref": "#/$defs/identifier"}, "uniqueItems": true}}, "additionalProperties": false}}, "editingLogic": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        "packaging": {"$ref": "#/$defs/packaging"}, "production": {"$ref": "#/$defs/production"}, "originality": {"$ref": "#/$defs/originality"}, "experiment": {"$ref": "#/$defs/experiment"}
+      }, "additionalProperties": false
+    },
+    "accountPlan": {
+      "type": "object", "required": ["identitySystem", "enterprisePrimaryGoal", "assetAudit", "contentPortfolio", "deliberateOmissions", "shareSemantics", "seriesContracts", "commercialBoundaryDecision", "experiment"],
+      "properties": {
+        "identitySystem": {"type": "object", "required": ["identityWord", "attitude", "repeatableSymbols", "audience", "problem", "proof", "repeatedValue", "personaBoundary"], "properties": {"identityWord": {"$ref": "#/$defs/stateValue"}, "attitude": {"$ref": "#/$defs/stateValue"}, "repeatableSymbols": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["kind", "symbol"], "properties": {"kind": {"enum": ["visual", "verbal", "behavioral"]}, "symbol": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]}, "audience": {"$ref": "#/$defs/stateValue"}, "problem": {"$ref": "#/$defs/stateValue"}, "proof": {"$ref": "#/$defs/stateValue"}, "repeatedValue": {"$ref": "#/$defs/stateValue"}, "personaBoundary": {"$ref": "#/$defs/stateValue"}}, "additionalProperties": false},
+        "enterprisePrimaryGoal": {"oneOf": [{"$ref": "#/$defs/notApplicable"}, {"$ref": "#/$defs/boundedUnknown"}, {"type": "object", "required": ["status", "goal", "decisionReason"], "properties": {"status": {"const": "known"}, "goal": {"enum": ["brand_influence", "direct_conversion", "recruiting_relationship", "other"]}, "decisionReason": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}]},
+        "assetAudit": {"oneOf": [
+          {"$ref": "#/$defs/boundedUnknown"},
+          {"type": "object", "required": ["status", "domainAssets", "mediaAssets", "constraints"], "properties": {"status": {"const": "completed"}, "domainAssets": {"type": "array", "items": {"type": "object", "required": ["domain", "value", "strategicUse"], "properties": {"domain": {"enum": ["expertise", "access", "lived_experience", "production_capacity", "distribution"]}, "value": {"$ref": "#/$defs/stateValue"}, "strategicUse": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}, "mediaAssets": {"type": "array", "items": {"type": "object", "required": ["assetRef", "strategicUse"], "properties": {"assetRef": {"$ref": "#/$defs/identifier"}, "strategicUse": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}, "constraints": {"type": "array", "items": {"type": "object", "required": ["constraint", "impact"], "properties": {"constraint": {"$ref": "#/$defs/nonBlank"}, "impact": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}}, "additionalProperties": false}
+        ]},
+        "contentPortfolio": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["role", "share", "successSignal"], "properties": {"role": {"enum": ["reach", "search_save", "follow", "trust", "proof", "conversion", "commercial_carrier", "expression_taste"]}, "share": {"type": "number", "minimum": 0, "maximum": 1}, "successSignal": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]},
+        "deliberateOmissions": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "items": {"type": "object", "required": ["role", "reason"], "properties": {"role": {"enum": ["reach", "search_save", "follow", "trust", "proof", "conversion", "commercial_carrier", "expression_taste"]}, "reason": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]},
+        "shareSemantics": {"const": "quota_sum_1"},
+        "seriesContracts": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["name", "audience", "repeatableTransformation", "futureValue", "cadence", "endRenewRule"], "properties": {"name": {"$ref": "#/$defs/nonBlank"}, "audience": {"$ref": "#/$defs/nonBlank"}, "repeatableTransformation": {"$ref": "#/$defs/nonBlank"}, "futureValue": {"$ref": "#/$defs/nonBlank"}, "cadence": {"$ref": "#/$defs/nonBlank"}, "endRenewRule": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]},
+        "commercialBoundaryDecision": {"$ref": "#/$defs/stateValue"}, "experiment": {"$ref": "#/$defs/experiment"}
+      }, "additionalProperties": false
+    },
+    "seriesPlan": {
+      "type": "object", "required": ["durableAudience", "durableProblem", "recognizableFormat", "cadence", "futureValue", "episodes", "entryAndCatchUp", "proofAccumulation", "directoryAndCrossLink", "decisionRules", "experiment"],
+      "properties": {
+        "durableAudience": {"$ref": "#/$defs/nonBlank"}, "durableProblem": {"$ref": "#/$defs/nonBlank"}, "recognizableFormat": {"$ref": "#/$defs/nonBlank"}, "cadence": {"$ref": "#/$defs/stateValue"},
+        "futureValue": {"$ref": "#/$defs/nonBlank"},
+        "episodes": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 2, "items": {"type": "object", "required": ["id", "format", "role", "promise", "proof", "nextEpisodeHandoff"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "format": {"enum": ["video", "carousel", "text_image", "live_clip", "other"]}, "role": {"enum": ["entry", "foundation", "proof", "objection", "application", "conversion"]}, "promise": {"$ref": "#/$defs/nonBlank"}, "proof": {"$ref": "#/$defs/nonBlank"}, "nextEpisodeHandoff": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]},
+        "entryAndCatchUp": {"$ref": "#/$defs/nonBlank"}, "proofAccumulation": {"$ref": "#/$defs/nonBlank"}, "directoryAndCrossLink": {"$ref": "#/$defs/nonBlank"},
+        "decisionRules": {"type": "object", "required": ["renew", "pivot", "stop"], "properties": {"renew": {"$ref": "#/$defs/nonBlank"}, "pivot": {"$ref": "#/$defs/nonBlank"}, "stop": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false},
+        "experiment": {"$ref": "#/$defs/experiment"}
+      }, "additionalProperties": false
+    },
+    "researchPlan": {
+      "type": "object", "required": ["scope", "observations", "crossSourceContrast", "workingModel", "applications", "modelUpdateRule"],
+      "properties": {
+        "scope": {"$ref": "#/$defs/nonBlank"},
+        "observations": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["sourceLocator", "o1Observe", "o2Model", "o3AskBack", "o4Contrast", "o5Apply", "o6Review"], "properties": {"sourceLocator": {"$ref": "#/$defs/sourceLocator"}, "o1Observe": {"$ref": "#/$defs/nonBlank"}, "o2Model": {"type": "object", "required": ["mechanism", "dependencies"], "properties": {"mechanism": {"$ref": "#/$defs/nonBlank"}, "dependencies": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}}, "additionalProperties": false}, "o3AskBack": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonBlank"}}, "o4Contrast": {"$ref": "#/$defs/nonBlank"}, "o5Apply": {"$ref": "#/$defs/nonBlank"}, "o6Review": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}}]},
+        "crossSourceContrast": {"$ref": "#/$defs/nonBlank"}, "workingModel": {"$ref": "#/$defs/stateValue"}, "applications": {"oneOf": [{"$ref": "#/$defs/boundedUnknown"}, {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "deliverableType", "originalChange", "executableNextStep", "owner"], "properties": {"id": {"$ref": "#/$defs/identifier"}, "deliverableType": {"enum": ["brief", "script", "carrier", "experiment"]}, "originalChange": {"$ref": "#/$defs/nonBlank"}, "executableNextStep": {"$ref": "#/$defs/nonBlank"}, "owner": {"$ref": "#/$defs/stateValue"}}, "additionalProperties": false}}]}, "modelUpdateRule": {"$ref": "#/$defs/nonBlank"}
+      }, "additionalProperties": false
+    },
+    "reviewPlan": {
+      "type": "object", "required": ["reviewTarget", "funnelDiagnosis", "executionCompliance", "directionSupport", "editDecisions", "primaryChange", "remainingUnknowable", "dataNeeds"],
+      "properties": {
+        "reviewTarget": {"$ref": "#/$defs/nonBlank"},
+        "funnelDiagnosis": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["layer", "observation", "evidenceRef", "inferenceBoundary"], "properties": {"layer": {"enum": ["distribution", "entry", "early_retention", "delivery", "proof_trust", "follow_handoff", "target_action", "negative_safety"]}, "observation": {"$ref": "#/$defs/nonBlank"}, "evidenceRef": {"$ref": "#/$defs/nonBlank"}, "inferenceBoundary": {"$ref": "#/$defs/nonBlank"}}, "additionalProperties": false}},
+        "executionCompliance": {"$ref": "#/$defs/nonBlank"}, "directionSupport": {"$ref": "#/$defs/nonBlank"},
+        "editDecisions": {"type": "object", "required": ["keep", "compress", "remove", "add"], "properties": {"keep": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "compress": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "remove": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}, "add": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}}, "additionalProperties": false},
+        "primaryChange": {"$ref": "#/$defs/nonBlank"}, "remainingUnknowable": {"type": "array", "items": {"$ref": "#/$defs/boundedUnknown"}}, "dataNeeds": {"type": "array", "items": {"$ref": "#/$defs/nonBlank"}}
+      }, "additionalProperties": false
+    }
+  }
+}

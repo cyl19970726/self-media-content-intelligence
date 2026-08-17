@@ -10,7 +10,11 @@
 - 完整文字稿、字幕 cue、代表帧、重叠镜头、OCR、知识单元与未知边界；
 - `analyze-creator-videos` 与 `video-content-reconstruction` 流程产物、PRD、数据模型、线框和评测记录。
 
-两个正式 Skill 已镜像在 `skills/`，包含指令、数据契约、可复用脚本、Dashboard 模板、fixtures 与验证器。
+三个正式 Skill 已镜像在 `skills/`，包含指令、数据契约、可复用脚本、Dashboard 模板、fixtures 与验证器：
+
+- `analyze-creator-videos`：全量作品基本盘、分层选样、跨档比较与博主研究 Dashboard；
+- `video-content-reconstruction`：两轮探针、动态捕捉协议、逐字稿/画面/OCR/流程/论证还原与硬闸评测；
+- `deep-content-director`：把证据化研究转成选题、脚本、镜头、交付、实验与发布复盘指令。
 
 Report v2 不把“高点赞”直接写成成功原因，而是拆成六层：
 

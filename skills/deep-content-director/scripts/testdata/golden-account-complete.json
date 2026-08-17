@@ -1,0 +1,20 @@
+{
+  "schemaVersion":"2.0","artifactStatus":"complete","draftSlots":[],"mode":"account","format":"other",
+  "decision":{"status":"known","value":"批准 AI 内容实验室账号未来六周的冷启动组合"},
+  "accountContext":{"identityPromise":{"status":"known","value":"为个体创作者提供可验证的 AI 内容决策"},"stage":{"status":"known","value":"冷启动"},"contentRole":{"status":"known","value":"用公开实验建立信任并筛选需求"}},
+  "responsibility":{"humanDecision":{"status":"known","value":"林主理人批准定位、预算和发布"},"aiContribution":{"status":"known","value":"整理候选与实验记录，不替代事实核验"},"factVerification":{"status":"known","value":"周研究员核对工具版本和数据口径"},"publishOwner":{"status":"known","value":"林主理人"}},
+  "commercialBoundary":{"freeScope":{"status":"known","value":"公开判断框架和实验结果"},"paidScope":{"status":"known","value":"仅对定制实施与团队培训收费"},"collaboration":{"status":"not_applicable","reason":"六周实验没有合作方"}},
+  "offerArchitecture":{"status":"not_applicable","reason":"冷启动六周不承载商业 offer"},
+  "carrierEvidence":{"nonSpeechAudio":{"status":"not_applicable","reason":"账号层定位不含具体音轨"},"referentLedger":[],"absenceClaims":[]},
+  "assets":[],"claims":[],"safety":{"privacyChecks":[],"platformChecks":[],"disclosure":{"status":"not_applicable","reason":"没有赞助或返佣"}},"unknowns":[],
+  "accountPlan":{
+    "identitySystem":{"identityWord":{"status":"known","value":"AI 内容实验员"},"attitude":{"status":"known","value":"先验证再下结论"},"repeatableSymbols":[{"kind":"visual","symbol":"黑白实验记录卡"},{"kind":"verbal","symbol":"这能证明什么、不能证明什么"}],"audience":{"status":"known","value":"有专业经验但没有内容闭环的个体创作者"},"problem":{"status":"known","value":"工具很多却无法稳定从选题走到复盘"},"proof":{"status":"known","value":"只使用本账号真实输入、过程、输出和失败记录"},"repeatedValue":{"status":"known","value":"每周交付一个可执行、可复盘的内容决策"},"personaBoundary":{"status":"known","value":"不借虚构头衔，不承诺流量和收入"}},
+    "enterprisePrimaryGoal":{"status":"not_applicable","reason":"个人账号"},
+    "assetAudit":{"status":"completed","domainAssets":[{"domain":"expertise","value":{"status":"known","value":"三年 AI 工作流实施经验"},"strategicUse":"提供实操问题与边界"},{"domain":"production_capacity","value":{"status":"known","value":"每周可完成两次屏幕实验"},"strategicUse":"约束发布频率"}],"mediaAssets":[],"constraints":[{"constraint":"没有历史公开视频素材","impact":"全部证明载体从自有新实验开始"}]},
+    "contentPortfolio":[{"role":"reach","share":0.4,"successSignal":"目标用户完成有效主页访问"},{"role":"trust","share":0.6,"successSignal":"出现描述具体场景的收藏、提问或复做反馈"}],
+    "deliberateOmissions":[{"role":"search_save","reason":"先验证人群与问题"},{"role":"follow","reason":"由 reach/trust 内容共同观察，不单独配额"},{"role":"proof","reason":"证明责任嵌入 trust 内容"},{"role":"conversion","reason":"六周内不做转化"},{"role":"commercial_carrier","reason":"六周内不承载商业内容"},{"role":"expression_taste","reason":"先稳定价值承诺再单独测试表达"}],"shareSemantics":"quota_sum_1",
+    "seriesContracts":[{"name":"AI 内容实验室","audience":"正在搭建内容闭环的个体创作者","repeatableTransformation":"把一个模糊内容判断变成有证据的下一步实验","futureValue":"每期解决一个新决策并公开结果","cadence":"每周二、周五","endRenewRule":"六周十二期后，若有重复目标需求则续订；否则结束并重审人群问题"}],
+    "commercialBoundaryDecision":{"status":"known","value":"六周只验证公开教育价值，不混入付费转化"},
+    "experiment":{"primaryVariable":"proof","lockedElements":["目标人群","身份词","系列名称","发布频率"],"mainMetric":{"id":"metric_account_action","name":"合格目标反馈数","availability":"available","definition":"描述自身场景并复做或提问的人数","source":"人工编码评论与私信"},"guardrailMetrics":[],"window":{"status":"known","value":"连续六周"},"minimumEvidence":{"status":"known","value":"完成十二条同承诺内容"},"confounds":["工具重大版本变化"],"stopChangeRule":{"status":"known","value":"先换证明载体；两轮仍无目标反馈则重审人群问题"}}
+  }
+}
