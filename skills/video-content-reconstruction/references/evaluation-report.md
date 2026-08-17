@@ -76,4 +76,3 @@ Both normal-summary baselines failed hard gates. The 3D baseline upgraded a side
 ## Remaining limitations
 
 See [known-limitations.md](known-limitations.md). Readiness means the reconstruction contract and evaluation gates passed; it does not verify the video's external product, medical, commercial, platform, or causal claims.
-

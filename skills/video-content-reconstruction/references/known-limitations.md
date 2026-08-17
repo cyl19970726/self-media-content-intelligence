@@ -11,4 +11,3 @@
 - Negative evidence is scope-bound. “Not observed in the inspected timeline” is valid; universal nonexistence is not.
 - The method reduces omission risk but cannot prove metaphysical completeness. The meta-gate asks whether an entire carrier, meaning change, or relationship escaped inspection and must be independently audited.
 - Human-readable articles remain compressions. Downstream editors should use `reconstruction.json`, evidence references, and unresolved items when precision matters.
-
