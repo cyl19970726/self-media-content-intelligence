@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "tiers-backfill-1.0",
+  "generatedAt": "2026-08-17T09:37:21.187060+00:00",
+  "creator": {
+    "id": "6962d77e000000003702ae22",
+    "name": "人类最强编导（9.4-9.6深圳线下课",
+    "xiaohongshuId": "v_Canufindoutme",
+    "followersLabel": "9.7万",
+    "likesAndCollectionsLabel": "30.9万",
+    "profileUrl": "https://www.xiaohongshu.com/user/profile/6962d77e000000003702ae22"
+  },
+  "sourceNote": "19 条全量互动数据来自 inventory.json（任务描述的 analysis.json 只有 8 条深度样本）；archetype 由 selection.json 按 id join（仅 8 条具备）。",
+  "method": {
+    "sample": "19 条公开笔记，likes 为主排序字段",
+    "baselineMedian": 1821,
+    "baselineMean": 9167,
+    "bandwidth": 0.25,
+    "bandwidthOf": "arithmetic_mean",
+    "bandLow": 6875,
+    "bandHigh": 11458,
+    "rule": {
+      "high": "likes > 11458（明显超基线）",
+      "average": "6875 <= likes <= 11458（均值±25%）",
+      "median": "1821 <= likes < 6875（基线附近上）",
+      "low": "likes < 1821（明显低于基线）"
+    },
+    "note": "带宽 25% 对齐张咋啦 averageDiagnostic 的 'within 25% of the arithmetic mean' 口径；分档为连续互斥覆盖全部样本的确定性规则。"
+  },
+  "baseline": {
+    "aggregateCollectionToLike": 0.7692,
+    "meanCollectionToLike": 0.568
+  },
+  "tiers": [
+    {
+      "tier": "high",
+      "label": "高表现",
+      "sampleSize": 3,
+      "medianLikes": 32000,
+      "meanLikes": 42333,
+      "minLikes": 19000,
+      "maxLikes": 76000,
+      "aggregateCollectionToLike": 0.8189,
+      "meanCollectionToLike": 0.7911,
+      "conclusion": "该档样本共 3 条（点赞中位数 32000、均值 42333、区间 19000–76000），聚合收藏/点赞比 0.8189，接近整体基线（整体基线 0.7692）。",
+      "videos": [
+        {
+          "id": "6a2fcd940000000007021a9f",
+          "title": "人类最强编导 一条视频起号1.4w",
+          "likes": 76000,
+          "collections": 65000,
+          "comments": 414,
+          "shares": 6573,
+          "pillar": "成绩证明",
+          "archetype": "成绩证明 / 起号总纲"
+        },
+        {
+          "id": "6a2e823100000000210217e8",
+          "title": "全国比我收入高的编导不超过三个",
+          "likes": 32000,
+          "collections": 25000,
+          "comments": 346,
+          "shares": 2660,
+          "pillar": "权威趋势",
+          "archetype": "权威声明 / 平台趋势"
+        },
+        {
+          "id": "6a3139ab00000000220171b1",
+          "title": "全中国比我收入高的编导不超过三个",
+          "likes": 19000,
+          "collections": 14000,
+          "comments": 337,
+          "shares": 2591,
+          "pillar": "垂直教程",
+          "archetype": "系列迭代 / Vlog垂直教程"
+        }
+      ]
+    },
+    {
+      "tier": "average",
+      "label": "平均值附近",
+      "sampleSize": 2,
+      "medianLikes": 10412,
+      "meanLikes": 10412,
+      "minLikes": 9825,
+      "maxLikes": 11000,
+      "aggregateCollectionToLike": 0.7622,
+      "meanCollectionToLike": 0.7731,
+      "conclusion": "该档样本共 2 条（点赞中位数 10412、均值 10412、区间 9825–11000），聚合收藏/点赞比 0.7622，接近整体基线（整体基线 0.7692）。",
+      "videos": [
+        {
+          "id": "6a3632b4000000000803f2c5",
+          "title": "我不要卖课割韭菜 我要桃李满天下",
+          "likes": 11000,
+          "collections": 6386,
+          "comments": 231,
+          "shares": 579,
+          "pillar": "价值观",
+          "archetype": "价值观 / 信任转粉"
+        },
+        {
+          "id": "6a69d19c00000000090357d0",
+          "title": "人类都能看懂的爆款制作流程（看不懂来骂",
+          "likes": 9825,
+          "collections": 9487,
+          "comments": 115,
+          "shares": 986,
+          "pillar": "爆款框架",
+          "archetype": "高收藏爆款框架"
+        }
+      ]
+    },
+    {
+      "tier": "median",
+      "label": "中位数附近",
+      "sampleSize": 5,
+      "medianLikes": 3379,
+      "meanLikes": 3013,
+      "minLikes": 1821,
+      "maxLikes": 4133,
+      "aggregateCollectionToLike": 0.5837,
+      "meanCollectionToLike": 0.5769,
+      "conclusion": "该档样本共 5 条（点赞中位数 3379、均值 3013、区间 1821–4133），聚合收藏/点赞比 0.5837，明显低于整体基线（整体基线 0.7692）。",
+      "videos": [
+        {
+          "id": "6a3ba6950000000007027cc5",
+          "title": "同行别割了 自媒体没有捷径",
+          "likes": 4133,
+          "collections": 2051,
+          "comments": 113,
+          "shares": 248,
+          "pillar": "反常识立场",
+          "archetype": "反AI / 反同行立场"
+        },
+        {
+          "id": "6a4f70470000000021020657",
+          "title": "我直白说了拆解爆款就是假努力😂",
+          "likes": 3625,
+          "collections": 2263,
+          "comments": 53,
+          "shares": 240,
+          "pillar": "反常识立场",
+          "archetype": "反拆解 / 编导能力模型"
+        },
+        {
+          "id": "6a3d085300000000060239b0",
+          "title": "5条视频五万粉 暴力起号最全攻略",
+          "likes": 3379,
+          "collections": 2352,
+          "comments": 82,
+          "shares": 379,
+          "pillar": "起号SOP",
+          "archetype": "长教程 / 低表现对照"
+        },
+        {
+          "id": "6a37cd9300000000070278d1",
+          "title": "3分钟解读：小红书官方创作指南",
+          "likes": 2109,
+          "collections": 1352,
+          "comments": 71,
+          "shares": 184,
+          "pillar": "平台解读",
+          "archetype": null
+        },
+        {
+          "id": "6a32842e000000000702e153",
+          "title": "全国比我收入高的编导不超过三个",
+          "likes": 1821,
+          "collections": 777,
+          "comments": 61,
+          "shares": 192,
+          "pillar": "IP方法",
+          "archetype": null
+        }
+      ]
+    },
+    {
+      "tier": "low",
+      "label": "低表现",
+      "sampleSize": 9,
+      "medianLikes": 1314,
+      "meanLikes": 1253,
+      "minLikes": 753,
+      "maxLikes": 1733,
+      "aggregateCollectionToLike": 0.4696,
+      "meanCollectionToLike": 0.4432,
+      "conclusion": "该档样本共 9 条（点赞中位数 1314、均值 1253、区间 753–1733），聚合收藏/点赞比 0.4696，明显低于整体基线（整体基线 0.7692）。",
+      "videos": [
+        {
+          "id": "6a4a1cab0000000021020230",
+          "title": "人类最强编导 十条视频7.3w粉",
+          "likes": 1733,
+          "collections": 1009,
+          "comments": 53,
+          "shares": 182,
+          "pillar": "涨粉机制",
+          "archetype": null
+        },
+        {
+          "id": "6a438b7100000000070124b6",
+          "title": "爆款的本质不是做好数据 而是共同情感记忆",
+          "likes": 1707,
+          "collections": 747,
+          "comments": 75,
+          "shares": 118,
+          "pillar": "内容哲学",
+          "archetype": null
+        },
+        {
+          "id": "6a39118d000000002200a5e9",
+          "title": "创始人IP 如何用爆款故事暴力起号",
+          "likes": 1573,
+          "collections": 1012,
+          "comments": 59,
+          "shares": 223,
+          "pillar": "企业IP",
+          "archetype": null
+        },
+        {
+          "id": "6a5772cc00000000060365dc",
+          "title": "普通人不要妄想用简单的方法获取流量",
+          "likes": 1372,
+          "collections": 568,
+          "comments": 40,
+          "shares": 73,
+          "pillar": "反常识立场",
+          "archetype": null
+        },
+        {
+          "id": "6a5a069a00000000090344af",
+          "title": "十天涨粉八万的十大建议：玻璃心勿看",
+          "likes": 1314,
+          "collections": 576,
+          "comments": 84,
+          "shares": 133,
+          "pillar": "毒舌清单",
+          "archetype": null
+        },
+        {
+          "id": "6a3a5c6800000000080243f0",
+          "title": "五天暴力起号5w粉 开源我的底层逻辑和sop",
+          "likes": 1269,
+          "collections": 619,
+          "comments": 49,
+          "shares": 111,
+          "pillar": "幕后SOP",
+          "archetype": null
+        },
+        {
+          "id": "6a745fc2000000002501784c",
+          "title": "90分以上可以拿到自媒体大结果了",
+          "likes": 798,
+          "collections": 369,
+          "comments": 31,
+          "shares": 63,
+          "pillar": "知识测验",
+          "archetype": null
+        },
+        {
+          "id": "6a79b3b5000000003301dd19",
+          "title": "错过风口 为什么你的财富匹配不上认知",
+          "likes": 758,
+          "collections": 360,
+          "comments": 18,
+          "shares": 57,
+          "pillar": "商业认知",
+          "archetype": null
+        },
+        {
+          "id": "6a709ba1000000003300c6ed",
+          "title": "真的不需要我吗 我和我的爆款",
+          "likes": 753,
+          "collections": 36,
+          "comments": 36,
+          "shares": 4,
+          "pillar": "作品展示",
+          "archetype": null
+        }
+      ]
+    }
+  ],
+  "missing": {
+    "publishedAt": true,
+    "publishedAtDetail": "inventory.json / analysis.json 的 19 条均无 publishedAt/publishedLabel 字段，发布节奏（星期/时段）无法计算。",
+    "archetypeMissingCount": 11,
+    "archetypeMissingIds": [
+      "6a37cd9300000000070278d1",
+      "6a32842e000000000702e153",
+      "6a4a1cab0000000021020230",
+      "6a438b7100000000070124b6",
+      "6a39118d000000002200a5e9",
+      "6a5772cc00000000060365dc",
+      "6a5a069a00000000090344af",
+      "6a3a5c6800000000080243f0",
+      "6a745fc2000000002501784c",
+      "6a79b3b5000000003301dd19",
+      "6a709ba1000000003300c6ed"
+    ],
+    "analysisVideosCount": 8
+  }
+}

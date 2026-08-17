@@ -24,6 +24,8 @@ export function createApp(service = new AnalysisService()) {
     }
   }));
 
+  app.use("/designs", express.static(path.join(projectRoot, "specs", "creator-product-frontend", "designs")));
+
   app.get("/api/health", (_request, response) => {
     response.json({ ok: true });
   });

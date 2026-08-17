@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "backfill-baseline-1.0",
+  "generatedAt": "2026-08-17T09:36:00.499481+00:00",
+  "creator": {
+    "id": "6166b66a0000000002027a1d",
+    "name": "AI红发魔女",
+    "profile": "https://www.xiaohongshu.com/user/profile/6166b66a0000000002027a1d",
+    "followers": "11.7万",
+    "likesAndCollections": "143.6万"
+  },
+  "sampleNote": "overview/publishing/averageDiagnostic 由 library.json 的 21 条分层深度样本真实计算（sampleSize=21）；publicCorpusAggregate 为 331 条公开盘面的既有聚合摘要（来源 creator-overview.json），未逐条重算。",
+  "overview": {
+    "postCount": 21,
+    "videoCount": 21,
+    "medianLikes": 320,
+    "meanLikes": 13307,
+    "maxLikes": 63000,
+    "distribution": [
+      {
+        "label": "<100",
+        "count": 7,
+        "share": 33.3
+      },
+      {
+        "label": "100–499",
+        "count": 7,
+        "share": 33.3
+      },
+      {
+        "label": "500–999",
+        "count": 0,
+        "share": 0.0
+      },
+      {
+        "label": "1k–4,999",
+        "count": 0,
+        "share": 0.0
+      },
+      {
+        "label": "5k–9,999",
+        "count": 0,
+        "share": 0.0
+      },
+      {
+        "label": "≥10k",
+        "count": 7,
+        "share": 33.3
+      }
+    ]
+  },
+  "averageDiagnostic": {
+    "status": "mean_gap",
+    "mean": 13307,
+    "band": 0.25,
+    "bandLow": 9980,
+    "bandHigh": 16634,
+    "nearestDistance": 10693,
+    "nearestRelativeDistance": 0.804,
+    "lowerNeighbor": {
+      "id": "6832e96a000000002100405d",
+      "title": "AI替代带货主播？你可能已经被数字人骗了",
+      "likes": 355,
+      "tier": "median",
+      "publishedAt": "2025-05-25T13:24:57.000Z"
+    },
+    "upperNeighbor": {
+      "id": "69d65879000000001d01e3fa",
+      "title": "笑疯了，人类给claudecode做了条鞭子..",
+      "likes": 24000,
+      "tier": "high",
+      "publishedAt": "2026-04-08T13:30:33.000Z"
+    },
+    "interpretation": "平均值落在断层中：21 条样本为分层对比样本（7 high / 7 median / 7 low），均值 13307 被高端尾部拉高，±25% 带宽区间 [9980–16634] 内没有自然样本，不伪造“典型平均内容”，改看下边界与上边界。"
+  },
+  "publishing": {
+    "conclusion": "21 条深度样本全部具备精确发布时间（publishedAt + publishedLabel 均无缺失）。样本中星期分布最多为周三（5 条）；时段分布最多为早间（9 条）。注意：这 21 条是 7/7/7 分层对比样本，不是 331 条公开盘面的随机样本，星期/时段分布反映的是选样结构而非账号真实发布节奏，不能据此推出“某天/某时段发会火”。",
+    "weekdays": [
+      {
+        "count": 2,
+        "measuredCount": 2,
+        "medianLikes": 187,
+        "meanLikes": 187,
+        "maxLikes": 355,
+        "hits10k": 0,
+        "name": "周日"
+      },
+      {
+        "count": 3,
+        "measuredCount": 3,
+        "medianLikes": 29,
+        "meanLikes": 126,
+        "maxLikes": 323,
+        "hits10k": 0,
+        "name": "周一"
+      },
+      {
+        "count": 1,
+        "measuredCount": 1,
+        "medianLikes": 56000,
+        "meanLikes": 56000,
+        "maxLikes": 56000,
+        "hits10k": 1,
+        "name": "周二"
+      },
+      {
+        "count": 5,
+        "measuredCount": 5,
+        "medianLikes": 28000,
+        "meanLikes": 26862,
+        "maxLikes": 51000,
+        "hits10k": 4,
+        "name": "周三"
+      },
+      {
+        "count": 3,
+        "measuredCount": 3,
+        "medianLikes": 320,
+        "meanLikes": 8211,
+        "maxLikes": 24000,
+        "hits10k": 1,
+        "name": "周四"
+      },
+      {
+        "count": 4,
+        "measuredCount": 4,
+        "medianLikes": 176,
+        "meanLikes": 15842,
+        "maxLikes": 63000,
+        "hits10k": 1,
+        "name": "周五"
+      },
+      {
+        "count": 3,
+        "measuredCount": 3,
+        "medianLikes": 39,
+        "meanLikes": 125,
+        "maxLikes": 307,
+        "hits10k": 0,
+        "name": "周六"
+      }
+    ],
+    "dayparts": [
+      {
+        "count": 0,
+        "measuredCount": 0,
+        "medianLikes": null,
+        "meanLikes": null,
+        "maxLikes": null,
+        "hits10k": 0,
+        "name": "凌晨"
+      },
+      {
+        "count": 9,
+        "measuredCount": 9,
+        "medianLikes": 323,
+        "meanLikes": 19442,
+        "maxLikes": 63000,
+        "hits10k": 4,
+        "name": "早间"
+      },
+      {
+        "count": 6,
+        "measuredCount": 6,
+        "medianLikes": 176,
+        "meanLikes": 8623,
+        "maxLikes": 51000,
+        "hits10k": 1,
+        "name": "午后"
+      },
+      {
+        "count": 6,
+        "measuredCount": 6,
+        "medianLikes": 338,
+        "meanLikes": 8788,
+        "maxLikes": 28000,
+        "hits10k": 2,
+        "name": "晚间"
+      }
+    ],
+    "experimentRule": null,
+    "note": "experimentRule 为分析师结论，本补算脚本不生成；口径与张咋啦 publishing 一致（北京时间归位）。"
+  },
+  "publicCorpusAggregate": {
+    "source": "ai-red-witch/video-library/creator-overview.json#publicCorpus",
+    "notes": 331,
+    "videos": 318,
+    "nonVideoNotes": 13,
+    "videoLikeStats": {
+      "mean": 1993,
+      "median": 324,
+      "p75": 1158,
+      "p90": 3257,
+      "p95": 6517,
+      "max": 63000,
+      "gte1000": 88,
+      "gte10000": 13,
+      "lte100": 69
+    },
+    "distribution": [
+      {
+        "label": "<100",
+        "count": 78,
+        "share": 23.6
+      },
+      {
+        "label": "100–499",
+        "count": 124,
+        "share": 37.5
+      },
+      {
+        "label": "500–999",
+        "count": 40,
+        "share": 12.1
+      },
+      {
+        "label": "1k–4,999",
+        "count": 69,
+        "share": 20.8
+      },
+      {
+        "label": "5k–9,999",
+        "count": 7,
+        "share": 2.1
+      },
+      {
+        "label": "≥10k",
+        "count": 13,
+        "share": 3.9
+      }
+    ],
+    "topHits": [
+      {
+        "title": "DeepSeek导入Word排版",
+        "likes": 63000,
+        "published": "周五 11:01"
+      },
+      {
+        "title": "通用AI能力地图",
+        "likes": 56000,
+        "published": "周二 09:42"
+      },
+      {
+        "title": "健康搭子",
+        "likes": 51000,
+        "published": "周三 14:22"
+      },
+      {
+        "title": "设计AI地图",
+        "likes": 31000,
+        "published": "周三 11:45"
+      },
+      {
+        "title": "SkyReels V2",
+        "likes": 28000,
+        "published": "周三 21:12"
+      }
+    ]
+  },
+  "missing": {
+    "publishedAt": 0,
+    "publishedLabel": 0,
+    "likes": 0,
+    "fullCorpusRows": true,
+    "fullCorpusRowsDetail": "任务描述的 331 条公开盘面逐条原始行不在 library.json（仅 21 条分层样本）；331 条只以聚合摘要存在于 creator-overview.json#publicCorpus，已原样搬到 publicCorpusAggregate。"
+  }
+}
