@@ -56,19 +56,27 @@ const external = {
   "6928316c000000001e0397ba": {
     evidence: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-workflow/evidence-v2/evidence-pack.json"),
     reconstruction: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-workflow/skill-run-v2/reconstruction.json"),
-    report: "/artifacts/video-content-reconstruction-eval/dev-workflow/skill-run-v2/article.md",
+    report: "../../../video-content-reconstruction-eval/dev-workflow/skill-run-v2/article.md",
     gate: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-workflow/evaluation-skill-v2/gate-report.json"),
   },
   "66011c23000000000d00ed40": {
     evidence: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-argument/evidence-v2/evidence-pack.json"),
     reconstruction: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-argument/skill-run-v2/reconstruction.json"),
-    report: "/artifacts/video-content-reconstruction-eval/dev-argument/skill-run-v2/article.md",
+    report: "../../../video-content-reconstruction-eval/dev-argument/skill-run-v2/article.md",
     gate: path.resolve(workspace, "artifacts/video-content-reconstruction-eval/dev-argument/evaluation-skill-v2/gate-report.json"),
   },
 };
 
 const firstExisting = (files) => files.find((file) => fs.existsSync(file));
 const workspaceUrl = (file) => file.replace(workspace, "");
+const toPageRelative = (url) => {
+  if (typeof url !== "string") return url;
+  if (url.startsWith("/artifacts/creator-research/ai-red-witch/")) {
+    return "../" + url.slice("/artifacts/creator-research/ai-red-witch/".length);
+  }
+  if (url.startsWith("/artifacts/")) return "../../../" + url.slice("/artifacts/".length);
+  return url;
+};
 const normalizeUnknown = (value) => {
   if (typeof value === "string") return value;
   if (!value || typeof value !== "object") return String(value);
@@ -98,7 +106,7 @@ const videos = selection.map(({ id, typeId, mechanism, reason }) => {
     path.resolve(localRoot, "skill-run/article.md"),
     path.resolve(localRoot, "skill-run/reconstruction-report.md"),
   ]);
-  const reportPath = external[id]?.report ?? (reportFile ? workspaceUrl(reportFile) : null);
+  const reportPath = toPageRelative(external[id]?.report) ?? (reportFile ? toPageRelative(workspaceUrl(reportFile)) : null);
   const coreUnits = reconstruction.knowledgeUnits.filter((unit) => unit.importance === "core");
   const provenanceCounts = coreUnits.reduce((counts, unit) => {
     counts[unit.provenance] = (counts[unit.provenance] ?? 0) + 1;
@@ -111,9 +119,9 @@ const videos = selection.map(({ id, typeId, mechanism, reason }) => {
     end: cue.end,
     text: cue.text,
     overlappingShots: cue.overlappingShots ?? [],
-    frame: cue.representativeFrame ? workspaceUrl(path.resolve(evidenceRoot, cue.representativeFrame)) : null,
+    frame: cue.representativeFrame ? toPageRelative(workspaceUrl(path.resolve(evidenceRoot, cue.representativeFrame))) : null,
   }));
-  const frameUrl = (frame) => `/artifacts/creator-research/ai-red-witch/video-library/reports/${id}/${frame.src}`;
+  const frameUrl = (frame) => `../video-library/reports/${id}/${frame.src}`;
 
   return {
     id,
@@ -128,7 +136,7 @@ const videos = selection.map(({ id, typeId, mechanism, reason }) => {
     duration: video.duration,
     engagement: video.engagement,
     sourceUrl: video.sourceUrl,
-    reportUrl: `/artifacts/creator-research/ai-red-witch/video-library/${video.reportUrl}`,
+    reportUrl: `../video-library/${video.reportUrl}`,
     reconstructionReportUrl: reportPath,
     coreClaim: video.coreClaim,
     articleLead: video.articleLead,
@@ -153,8 +161,8 @@ const videos = selection.map(({ id, typeId, mechanism, reason }) => {
     transcript: cues,
     sparseFrames: video.frames.sparse.map((frame, index) => ({ id: `S${index + 1}`, time: frame.time, src: frameUrl(frame) })),
     denseFrames: video.frames.dense.map((frame, index) => ({ id: `D${index + 1}`, time: frame.time, src: frameUrl(frame) })),
-    sparseSheet: `/artifacts/creator-research/ai-red-witch/video-library/reports/${id}/${video.frames.sparseSheet}`,
-    denseSheet: `/artifacts/creator-research/ai-red-witch/video-library/reports/${id}/${video.frames.denseSheet}`,
+    sparseSheet: `../video-library/reports/${id}/${video.frames.sparseSheet}`,
+    denseSheet: `../video-library/reports/${id}/${video.frames.denseSheet}`,
   };
 });
 
@@ -185,8 +193,8 @@ const output = {
           analysis: video.articleLead,
           boundary: video.boundary,
           keyPoints: video.keyPoints,
-          cover: `/artifacts/creator-research/ai-red-witch/video-library/reports/${id}/${video.frames.sparse[0].src}`,
-          reportUrl: `/artifacts/creator-research/ai-red-witch/video-library/${video.reportUrl}`,
+          cover: `../video-library/reports/${id}/${video.frames.sparse[0].src}`,
+          reportUrl: `../video-library/${video.reportUrl}`,
         };
       }),
     })),

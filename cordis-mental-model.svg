@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 920" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrowV" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowB" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <rect width="1180" height="920" fill="#ffffff"/>
+  <text x="20" y="36" font-size="24" font-weight="bold" fill="#0f172a">Cordis 心智模型</text>
+  <text x="1160" y="32" font-size="12" fill="#64748b" text-anchor="end">vendored 自 Koishi 生态 · vendor/cordis/src 共约 2,700 行 · 五个概念 + 一次走查</text>
+
+  <!-- ① Context -->
+  <rect x="20" y="60" width="545" height="270" rx="8" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.5"/>
+  <path d="M20,68 a8,8 0 0 1 8,-8 h529 a8,8 0 0 1 8,8 v26 h-545 z" fill="#1d4ed8"/>
+  <text x="36" y="79" font-size="14" font-weight="bold" fill="#ffffff">① Context = 被代理的容器(魔法的所在)</text>
+  <text x="36" y="116" font-size="12.5" fill="#0f172a">ctx 的每个属性读写都被 Proxy 拦截(ReflectService.handler)</text>
+  <text x="36" y="135" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#1e40af">读: ctx.tools</text>
+  <text x="36" y="154" font-size="12.5" fill="#0f172a">　　get trap → internal/get waterfall(可被插件拦截)</text>
+  <text x="36" y="173" font-size="12.5" fill="#0f172a">　　→ isolate 表查 label → fiber.store 取 Impl 值</text>
+  <text x="36" y="192" font-size="12.5" fill="#0f172a">　　→ 没有?沿父 fiber 链上溯,直到 root</text>
+  <text x="36" y="211" font-size="12.5" fill="#0f172a">　　→ 仍未找到 → throw "cannot get ... without inject"</text>
+  <text x="36" y="230" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#1e40af">写: ctx.tools = x</text>
+  <text x="36" y="249" font-size="12.5" fill="#0f172a">　　set trap → internal/set waterfall</text>
+  <text x="36" y="268" font-size="12.5" fill="#0f172a">　　→ 只有提供该服务的 fiber 可写,否则 throw</text>
+  <text x="36" y="287" font-size="12.5" fill="#0f172a">extend / isolate / intercept = 原型链派生子上下文</text>
+
+  <!-- ③ Reflect -->
+  <rect x="600" y="60" width="560" height="270" rx="8" fill="#f8fafc" stroke="#6ee7b7" stroke-width="1.5"/>
+  <path d="M600,68 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#047857"/>
+  <text x="616" y="79" font-size="14" font-weight="bold" fill="#ffffff">③ Reflect = 服务存储 + 依赖唤醒</text>
+  <text x="616" y="116" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#065f46">store: { isolate label → Impl { name, fiber, value, check? } }</text>
+  <text x="616" y="135" font-size="12.5" fill="#0f172a">provide(name, v): 注册即 effect;同 label 重复注册 → throw</text>
+  <text x="616" y="154" font-size="12.5" fill="#0f172a">set(): 仅提供方 fiber 可改;卸载 → delete store + notify 依赖</text>
+  <text x="616" y="173" font-size="12.5" fill="#0f172a">isolate(name, label?): 同名服务 → 不同 symbol label → 多实现并存</text>
+  <text x="616" y="192" font-size="12.5" fill="#0f172a">check 谓词: 决定服务对依赖方是否"可用"</text>
+  <text x="616" y="211" font-size="12.5" fill="#0f172a">notify(names): 遍历所有 runtime/fiber → 依赖命中 → _checkImpl</text>
+  <text x="616" y="230" font-size="12.5" fill="#0f172a">　→ _refresh(): epoch = 各 inject 项的 impl.fiber.uid 串联</text>
+  <text x="616" y="249" font-size="12.5" fill="#0f172a">　→ epoch 变化 → unload / reload → 依赖驱动,没有启动顺序</text>
+
+  <!-- connector ①→③ -->
+  <line x1="565" y1="195" x2="596" y2="195" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+
+  <!-- ② Fiber -->
+  <rect x="20" y="345" width="545" height="270" rx="8" fill="#f8fafc" stroke="#c4b5fd" stroke-width="1.5"/>
+  <path d="M20,353 a8,8 0 0 1 8,-8 h529 a8,8 0 0 1 8,8 v26 h-545 z" fill="#6d28d9"/>
+  <text x="36" y="374" font-size="14" font-weight="bold" fill="#ffffff">② Fiber = 插件的一次激活(生命周期状态机)</text>
+
+  <rect x="40" y="410" width="90" height="34" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="85" y="431" text-anchor="middle" font-size="13" fill="#4c1d95">PENDING</text>
+  <rect x="190" y="410" width="90" height="34" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="235" y="431" text-anchor="middle" font-size="13" fill="#4c1d95">LOADING</text>
+  <rect x="340" y="410" width="90" height="34" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="385" y="431" text-anchor="middle" font-size="13" fill="#4c1d95">ACTIVE</text>
+  <rect x="460" y="410" width="90" height="34" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="505" y="431" text-anchor="middle" font-size="13" fill="#4c1d95">UNLOADING</text>
+
+  <line x1="130" y1="427" x2="186" y2="427" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <line x1="280" y1="427" x2="336" y2="427" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <line x1="430" y1="427" x2="456" y2="427" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <text x="443" y="417" font-size="11" fill="#6d28d9">变化</text>
+  <path d="M 470 410 C 470 382, 235 382, 235 410" fill="none" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <text x="352" y="375" text-anchor="middle" font-size="11" fill="#6d28d9">重载</text>
+
+  <rect x="190" y="470" width="90" height="34" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="235" y="491" text-anchor="middle" font-size="13" fill="#7f1d1d">FAILED</text>
+  <rect x="460" y="470" width="90" height="34" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="505" y="491" text-anchor="middle" font-size="13" fill="#7f1d1d">DISPOSED</text>
+  <line x1="235" y1="444" x2="235" y2="466" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <text x="295" y="460" font-size="11" fill="#6d28d9">apply 抛错</text>
+  <line x1="505" y1="444" x2="505" y2="466" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowV)"/>
+  <text x="382" y="460" font-size="11" fill="#6d28d9">dispose()</text>
+
+  <text x="36" y="528" font-size="12" fill="#334155">PENDING 等依赖;全就绪 → LOADING: internal/config waterfall → Config 校验 → apply(ctx, config)</text>
+  <text x="36" y="549" font-size="12" fill="#334155">ACTIVE 提供服务、注册 effect;依赖/配置变化 → UNLOADING → 重载回 LOADING</text>
+  <text x="36" y="570" font-size="12" fill="#334155">FAILED 可被 update 救活;DISPOSED 不可重启;uid: root=0,插件自增,disposed 后 null</text>
+
+  <!-- ⑤ Effect -->
+  <rect x="600" y="345" width="560" height="175" rx="8" fill="#f8fafc" stroke="#fca5a5" stroke-width="1.5"/>
+  <path d="M600,353 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#b91c1c"/>
+  <text x="616" y="374" font-size="14" font-weight="bold" fill="#ffffff">⑤ Effect = 可逆副作用(注册即撤销)</text>
+  <text x="616" y="408" font-size="12.5" fill="#0f172a">ctx.effect(execute, label): execute 立即执行,disposer 入栈</text>
+  <text x="616" y="427" font-size="12.5" fill="#0f172a">ctx.on / provide / accessor / mixin / plugin = 全部是 effect</text>
+  <text x="616" y="446" font-size="12.5" fill="#0f172a">卸载: 逆序运行 disposer,async 逐个 await</text>
+  <text x="616" y="465" font-size="12.5" fill="#0f172a">生成器 effect: 逐个 yield disposer;getEffects() 出诊断树</text>
+  <text x="616" y="484" font-size="12.5" fill="#0f172a">已 dispose 的 fiber 上注册 → CordisError(INACTIVE_EFFECT)</text>
+
+  <!-- ④ Events -->
+  <rect x="20" y="630" width="545" height="200" rx="8" fill="#f8fafc" stroke="#fcd34d" stroke-width="1.5"/>
+  <path d="M20,638 a8,8 0 0 1 8,-8 h529 a8,8 0 0 1 8,8 v26 h-545 z" fill="#b45309"/>
+  <text x="36" y="659" font-size="14" font-weight="bold" fill="#ffffff">④ Events = 类型化事件总线:五种分发</text>
+  <text x="36" y="695" font-size="12.5" fill="#0f172a">emit　　　同步扇出,不 await,丢弃返回值</text>
+  <text x="36" y="714" font-size="12.5" fill="#0f172a">parallel　并发执行,await 全部;错误聚合为 AggregateError</text>
+  <text x="36" y="733" font-size="12.5" fill="#0f172a">serial　　按序 await,直到返回非 null/false/undefined 即 bail</text>
+  <text x="36" y="752" font-size="12.5" fill="#0f172a">bail　　　同步按序,直到 bail(值非 null/false/undefined)</text>
+  <text x="36" y="771" font-size="12.5" fill="#0f172a">waterfall 洋葱中间件:末参 next();不调 next() = 短路/否决</text>
+  <text x="36" y="790" font-size="12.5" fill="#0f172a">internal/get·set·config·update·listener → 核心机制本身可拦截</text>
+  <text x="36" y="809" font-size="12.5" fill="#0f172a">监听器注册 = effect;fiber 卸载自动摘除;prepend 可插队</text>
+
+  <!-- ⑥ walkthrough -->
+  <rect x="600" y="535" width="560" height="295" rx="8" fill="#f8fafc" stroke="#67e8f9" stroke-width="1.5"/>
+  <path d="M600,543 a8,8 0 0 1 8,-8 h544 a8,8 0 0 1 8,8 v26 h-560 z" fill="#0e7490"/>
+  <text x="616" y="564" font-size="14" font-weight="bold" fill="#ffffff">⑥ 一次激活走查(把 ①-⑤ 串起来)</text>
+  <text x="616" y="598" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">ctx.plugin(P, config)</text>
+  <text x="616" y="617" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　├─ Registry.resolve(P) → callback(函数 或 P.apply)</text>
+  <text x="616" y="636" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　├─ Runtime { callback 为键, fibers[], Config schema }</text>
+  <text x="616" y="655" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　└─ new Fiber(...) → PENDING;子 ctx = parent.extend({ fiber })</text>
+  <text x="616" y="674" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">注入检查: inject 全部就绪?</text>
+  <text x="616" y="693" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　✗ 停在 PENDING,等 internal/service 事件唤醒</text>
+  <text x="616" y="712" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　✓ LOADING: config = internal/config waterfall → Config 校验</text>
+  <text x="616" y="731" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">　　　→ apply(ctx, config) 注册 effects → ACTIVE</text>
+  <text x="616" y="750" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">变更: 依赖变化 / fiber.update(config) → UNLOADING(逆序 disposer) → 重载</text>
+  <text x="616" y="769" font-size="12" font-family="SF Mono, Menlo, Consolas, monospace" fill="#164e63">销毁: fiber.dispose() → UNLOADING → DISPOSED</text>
+
+  <!-- takeaway strip -->
+  <rect x="20" y="845" width="1140" height="56" rx="8" fill="#0f172a"/>
+  <text x="590" y="870" text-anchor="middle" font-size="14" fill="#e2e8f0">一句话: 一切皆插件 — 一次激活一个 Fiber,一次注册一个 Effect,一次通信一个类型化事件;</text>
+  <text x="590" y="890" text-anchor="middle" font-size="12" fill="#94a3b8">依赖就绪即激活(没有启动顺序);没有特权内核 — 连 ctx 的属性读写都是可拦截的事件。</text>
+</svg>
