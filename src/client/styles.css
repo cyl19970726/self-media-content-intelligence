@@ -398,7 +398,12 @@ a { color: inherit; text-decoration: none; }
 .evidence-engagement { display: grid; grid-template-columns: repeat(4, minmax(72px, 1fr)); border: 1px solid var(--line); background: #f8f5ed; }
 .evidence-engagement > div { padding: 12px; border-right: 1px solid var(--line); text-align: center; } .evidence-engagement > div:last-child { border-right: 0; }
 .evidence-engagement b { display: block; font-size: 18px; } .evidence-engagement span { color: #66706c; font: 400 9px "IBM Plex Mono"; }
-.evidence-body { padding: 26px 0; display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; }
+.evidence-body { padding: 26px 0; display: grid; grid-template-columns: 1.2fr 1.2fr 1fr; gap: 26px; }
+.cue-list { max-height: 560px; overflow-y: auto; border: 1px solid var(--line); background: #f8f5ed; }
+.cue-row { padding: 9px 12px; display: grid; grid-template-columns: 42px 1fr; gap: 10px; border-bottom: 1px solid var(--line); }
+.cue-row:last-child { border-bottom: 0; }
+.cue-row time { color: var(--teal); font: 400 10px "IBM Plex Mono"; padding-top: 2px; }
+.cue-row p { margin: 0; color: var(--coal); font-size: 12.5px; line-height: 1.55; }
 .evidence-column h2 { margin: 0 0 14px; font-size: 17px; }
 .frame-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .frame-card { margin: 0; border: 1px solid var(--line); background: #fff; }

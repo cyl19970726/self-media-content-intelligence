@@ -49,6 +49,17 @@ export default function VideoEvidencePage() {
                 </div>}
             </section>
             <section className="evidence-column">
+              <h2>逐字稿与逐句画面</h2>
+              {data.cues.length === 0
+                ? <p className="console-note"><CircleAlert size={14}/>字幕未获取。</p>
+                : <div className="cue-list">
+                  {data.cues.map((cue) => <div key={cue.id} className="cue-row">
+                    <time>{cue.start !== null ? `${Math.floor(cue.start / 60)}:${String(Math.floor(cue.start % 60)).padStart(2, "0")}` : "—"}</time>
+                    <p>{cue.text}</p>
+                  </div>)}
+                </div>}
+            </section>
+            <section className="evidence-column">
               <h2>知识单元</h2>
               {data.knowledgeUnits.length === 0
                 ? <p className="console-note"><CircleAlert size={14}/>知识单元未结构化。</p>

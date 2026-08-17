@@ -57,6 +57,29 @@ function median(values: number[]): number {
   return sorted.length % 2 === 1 ? upper : (lower + upper) / 2;
 }
 
+function parseSrt(filePath: string): { id: string; start: number | null; text: string; frame: string | null }[] {
+  let content: string;
+  try {
+    content = fs.readFileSync(filePath, "utf-8");
+  } catch {
+    return [];
+  }
+  const cues: { id: string; start: number | null; text: string; frame: string | null }[] = [];
+  const blocks = content.split(/\r?\n\r?\n/);
+  for (const block of blocks) {
+    const lines = block.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    if (lines.length < 2) continue;
+    const timeMatch = lines[1]?.match(/(\d+):(\d+):(\d+)[,.](\d+)\s*-->/);
+    if (!timeMatch) continue;
+    const hours = Number(timeMatch[1]), minutes = Number(timeMatch[2]);
+    const seconds = Number(timeMatch[3]), millis = Number(timeMatch[4]);
+    const start = hours * 3600 + minutes * 60 + seconds + millis / 1000;
+    const text = lines.slice(2).join(" ");
+    cues.push({ id: `C${cues.length + 1}`, start: Math.round(start * 10) / 10, text, frame: null });
+  }
+  return cues;
+}
+
 function mean(values: number[]): number {
   return values.length === 0 ? 0 : values.reduce((sum, value) => sum + value, 0) / values.length;
 }
@@ -335,6 +358,7 @@ export function loadVideoEvidence(creatorId: string, videoId: string): VideoEvid
         }
       }
     }
+    const srtPath = path.join(researchDir, "ai-red-witch", "selected-high-like", "media", `${videoId}.srt`);
     return {
       id: videoId,
       creatorId,
@@ -348,10 +372,10 @@ export function loadVideoEvidence(creatorId: string, videoId: string): VideoEvid
         shares: asNumber(engagement.shares) ?? 0
       },
       frames,
-      cues: [],
+      cues: parseSrt(srtPath),
       knowledgeUnits: keyPoints.map((point, index) => ({ id: `K${index + 1}`, title: point, statement: point })),
       unknowns: [asString(report.boundary)].filter(Boolean),
-      sourceLabel: "video-library 报告（稀疏帧）",
+      sourceLabel: "video-library 报告（稀疏帧 + 官方字幕）",
       reportHref: `/research/ai-red-witch/video-library/reports/${videoId}/report.html`
     };
   }
@@ -362,6 +386,7 @@ export function loadVideoEvidence(creatorId: string, videoId: string): VideoEvid
     if (!video) return null;
     const engagement = asRecord(video.engagement);
     const transcript = asRecord(video.transcript);
+    const srtPath = path.join(researchDir, "human-director", "media", `${videoId}.srt`);
     return {
       id: videoId,
       creatorId,
@@ -375,7 +400,7 @@ export function loadVideoEvidence(creatorId: string, videoId: string): VideoEvid
         shares: asNumber(engagement.shares) ?? 0
       },
       frames: [],
-      cues: [],
+      cues: parseSrt(srtPath),
       knowledgeUnits: [],
       unknowns: ["逐帧画面未落盘为独立证据页；完整拉片见原报告 breakdowns 节。"],
       sourceLabel: "公开数据 + 官方字幕（无逐帧证据页）",

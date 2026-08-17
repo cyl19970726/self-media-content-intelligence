@@ -54,6 +54,8 @@ describe("loadVideoEvidence", () => {
     expect(evidence?.engagement?.likes).toBe(63000);
     expect(evidence?.frames.length).toBeGreaterThan(0);
     expect(evidence?.knowledgeUnits.length).toBeGreaterThan(0);
+    expect(evidence?.cues.length).toBeGreaterThan(0);
+    expect(evidence?.cues[0]?.start).toBe(0);
   });
 
   it("loads human-director transcript-level evidence", () => {
@@ -61,6 +63,7 @@ describe("loadVideoEvidence", () => {
     expect(evidence).not.toBeNull();
     expect(evidence?.title).toContain("起号");
     expect(evidence?.frames).toEqual([]);
+    expect(evidence?.cues.length).toBeGreaterThan(0);
   });
 
   it("returns null for unknown video", () => {
