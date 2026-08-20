@@ -40,6 +40,7 @@ An earlier broad anchor scan returned 91 IDs, but included hidden/internal links
 - mobile emulation at 390×844: H1 and all 21 records present; List becomes labeled stacked records and page horizontal overflow is false;
 - `/comparisons` renders the honest empty/project state without the deleted raw-like legacy leaderboard; `/benchmark` redirects to it;
 - screenshots are local QA artifacts under `.runtime/qa/` and are not committed.
+- private main and the public-safe snapshot were both updated; the public repository tree was verified byte-for-byte equal to the current tracked tree, while ignored runtime media, cookies, signed URLs, and local QA screenshots remained excluded.
 
 ## Read-model and route convergence
 

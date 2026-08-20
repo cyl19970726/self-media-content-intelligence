@@ -65,4 +65,4 @@
 - [x] E2. Run repository tests and production build.
 - [x] E3. Validate V1 read schemas and legacy-adapter parity.
 - [x] E4. Verify desktop and mobile routes in the built-in browser.
-- [ ] E5. Commit and push the converged implementation to the public repository.
+- [x] E5. Commit and push the converged implementation to the public repository.
