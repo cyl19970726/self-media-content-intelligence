@@ -1,4 +1,5 @@
 import path from "node:path";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 
 const moduleDir = path.dirname(fileURLToPath(import.meta.url));
@@ -27,8 +28,7 @@ export function webBaseUrl(): string {
 }
 
 export const externalSkills = {
-  xhsCli: "/Users/hhh0x/.codex/skills/xiaohongshu-skills/scripts/cli.py",
-  twitterEnv: "/Users/hhh0x/Documents/ai/skills/twitter-mcp/.env",
-  mediaTranscribe: "/Users/hhh0x/.agents/skills/media-use/scripts/transcribe.mjs"
+  xhsCli: process.env.SELF_MEDIA_XHS_CLI ?? path.join(os.homedir(), ".codex", "skills", "xiaohongshu-skills", "scripts", "cli.py"),
+  twitterEnv: process.env.SELF_MEDIA_TWITTER_ENV ?? path.join(os.homedir(), "Documents", "ai", "skills", "twitter-mcp", ".env"),
+  mediaTranscribe: process.env.SELF_MEDIA_TRANSCRIBE_SCRIPT ?? path.join(os.homedir(), ".agents", "skills", "media-use", "scripts", "transcribe.mjs")
 } as const;
-

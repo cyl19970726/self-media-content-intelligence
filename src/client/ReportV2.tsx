@@ -1,6 +1,6 @@
 import {
   AlertTriangle, ArrowRight, AudioLines, BarChart3, CheckCircle2, ChevronDown, CircleHelp,
-  Database, FlaskConical, Layers3, LockKeyhole, MessageSquareText, ScanSearch, Split, Target, Users
+  Database, Layers3, LockKeyhole, MessageSquareText, ScanSearch, Split, Target, Users
 } from "lucide-react";
 import { useState } from "react";
 import type { ReportEnvelope } from "../shared/schema";
@@ -87,7 +87,7 @@ function TrafficQualityWorkbench({ report }: { report: ReportEnvelope }) {
           <article className={`quality-node quality-node--${item?.status ?? "unknown"}`}>
             <span>{String(index + 1).padStart(2, "0")}</span><small>{item?.label ?? id}</small>
             <strong>{qualityLabels[item?.status ?? "unknown"]}</strong><p>{item?.summary ?? "缺少数据"}</p>
-          </article>{index < chain.length - 1 && <ArrowRight size={18}/>} 
+          </article>{index < chain.length - 1 && <ArrowRight size={18}/>}
         </div>;
       })}
     </div>
@@ -198,7 +198,7 @@ function CausalMap({ report }: { report: ReportEnvelope }) {
             <div className="causal-alternatives"><strong>替代解释</strong>{node.alternativeExplanations.map((item) => <span key={item}>{item}</span>)}</div>
           </details>
         </article>
-        {index < report.causalModel.length - 1 && <ArrowRight className="causal-arrow" size={19}/>} 
+        {index < report.causalModel.length - 1 && <ArrowRight className="causal-arrow" size={19}/>}
       </div>)}
     </div>
   </section>;
@@ -251,29 +251,8 @@ function AudienceVoice({ report }: { report: ReportEnvelope }) {
         <div className="theme-bar"><i style={{ width: `${theme.share}%` }}/></div>
         <p className="theme-example">“{theme.examples[0]}”</p>
       </article>)}</div>
-      <div className="audience-columns"><div><h3>下一条内容只回答这些需求</h3>{Array.from(new Set(report.audienceAnalysis.nextContentDemand)).slice(0, 4).map((item) => <p key={item}>{item}</p>)}</div>
+      <div className="audience-columns"><div><h3>评论中出现的后续问题</h3>{Array.from(new Set(report.audienceAnalysis.nextContentDemand)).slice(0, 4).map((item) => <p key={item}>{item}</p>)}</div>
         <div><h3>不能忽略的边界</h3>{Array.from(new Set(report.audienceAnalysis.objections)).slice(0, 4).map((item) => <p key={item}>{item}</p>)}</div></div>
-    </div>
-  </section>;
-}
-
-function ActionLab({ report }: { report: ReportEnvelope }) {
-  return <section className="report-section action-lab">
-    <SectionHeading index="06" title="复用与验证" english="REPLICATION / EXPERIMENTS"/>
-    <div>
-      <div className="replication-grid">
-        <div><h3><Target size={17}/> 保留的不变量</h3>{report.replication.invariants.map((item) => <p key={item}>{item}</p>)}</div>
-        <div><h3><Split size={17}/> 主动测试的变量</h3>{report.replication.variables.map((item) => <p key={item}>{item}</p>)}</div>
-        <div><h3><CircleHelp size={17}/> 不能复制的依赖</h3>{report.replication.accountDependencies.map((item) => <p key={item}>{item}</p>)}</div>
-        <div><h3><AlertTriangle size={17}/> 复刻失败风险</h3>{report.replication.risks.map((item) => <p key={item}>{item}</p>)}</div>
-      </div>
-      <div className="experiment-list">{report.experiments.map((experiment, index) => <article key={experiment.id}>
-        <header><span>EXP 0{index + 1}</span><h3>{experiment.hypothesis}</h3><b className={`experiment-state experiment-state--${experiment.measurementStatus}`}>{experiment.measurementStatus === "ready" ? "可验收" : "数据阻塞"}</b></header>
-        <div className="variants"><p><b>A</b>{experiment.variantA}</p><p><b>B</b>{experiment.variantB}</p></div>
-        {experiment.missingMetrics.length > 0 && <p className="experiment-missing"><LockKeyhole size={14}/> 先导入：{experiment.missingMetrics.join("、")}</p>}
-        <dl><div><dt>主指标</dt><dd>{experiment.primaryMetric}</dd></div><div><dt>护栏</dt><dd>{experiment.guardrails.join("、")}</dd></div><div><dt>最低次数</dt><dd>{experiment.minimumRuns} 轮配对</dd></div><div><dt>判定</dt><dd>{experiment.successCriteria}</dd></div></dl>
-      </article>)}</div>
-      <div className="cross-platform"><h3><FlaskConical size={18}/> 跨平台转译</h3>{report.replication.crossPlatform.map((item) => <article key={item.platform}><strong>{item.platform}</strong><p>{item.adaptation}</p></article>)}</div>
     </div>
   </section>;
 }
@@ -287,7 +266,6 @@ export function ReportV2({ report }: { report: ReportEnvelope }) {
     <ReportDrawer label="机制假设与因果证据" english="CAUSAL HYPOTHESES"><CausalMap report={report}/></ReportDrawer>
     <ReportDrawer label="创意与脚本拆解" english="CREATIVE X-RAY"><CreativeXray report={report}/></ReportDrawer>
     <ReportDrawer label="评论样本与受众信号" english="AUDIENCE SAMPLE"><AudienceVoice report={report}/></ReportDrawer>
-    <ReportDrawer label="复用方案与可验收实验" english="ACTION LAB"><ActionLab report={report}/></ReportDrawer>
     <details className="limitations"><summary>查看全部证据缺口与判断边界</summary>{report.limitations.map((item) => <p key={item}>{item}</p>)}</details>
   </>;
 }

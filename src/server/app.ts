@@ -3,12 +3,18 @@ import express from "express";
 import path from "node:path";
 import { z } from "zod";
 import { AnalysisService } from "../core/service.js";
+import { CreatorResearchService } from "../core/creator-research-service.js";
+import { ComparisonProjectService } from "../modules/comparison/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
-import { createRunInputSchema } from "../shared/schema.js";
+import { createCreatorResearchRunInputSchema, createRunInputSchema } from "../shared/schema.js";
 import { loadCreatorSummaries } from "./creators.js";
 import { loadBenchmark, loadCreatorConsole, loadVideoEvidence } from "./console.js";
 
-export function createApp(service = new AnalysisService()) {
+export function createApp(
+  service = new AnalysisService(),
+  creatorResearchService = new CreatorResearchService(),
+  comparisonProjectService = new ComparisonProjectService(creatorResearchService)
+) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
   app.use(express.json({ limit: "1mb" }));
@@ -34,6 +40,110 @@ export function createApp(service = new AnalysisService()) {
   app.get("/api/creators", (_request, response) => {
     response.json({ creators: loadCreatorSummaries() });
   });
+
+  app.get("/api/creator-runs", (request, response) => {
+    const limit = Math.min(100, Math.max(1, Number(request.query.limit ?? 50)));
+    response.json({ runs: creatorResearchService.list(limit) });
+  });
+
+  app.get("/api/creator-runs/:id", (request, response) => {
+    const run = creatorResearchService.get(request.params.id);
+    if (!run) return response.status(404).json({ error: "博主分析任务不存在" });
+    return response.json(run);
+  });
+
+  app.get("/api/creator-runs/:id/events", (request, response) => {
+    const run = creatorResearchService.get(request.params.id);
+    if (!run) return response.status(404).json({ error: "博主分析任务不存在" });
+    const after = Math.max(0, Number(request.query.after ?? 0));
+    return response.json({ events: creatorResearchService.events(run.id, Number.isFinite(after) ? after : 0) });
+  });
+
+  app.get("/api/creator-runs/:id/events/stream", (request, response) => {
+    const run = creatorResearchService.get(request.params.id);
+    if (!run) return response.status(404).json({ error: "博主分析任务不存在" });
+    response.setHeader("Content-Type", "text/event-stream");
+    response.setHeader("Cache-Control", "no-cache, no-transform");
+    response.setHeader("Connection", "keep-alive");
+    response.flushHeaders();
+    const existing = creatorResearchService.events(run.id, 0);
+    let cursor = request.query.after === undefined
+      ? existing.at(-1)?.sequence ?? 0
+      : Math.max(0, Number(request.query.after));
+    if (!Number.isFinite(cursor)) cursor = 0;
+    const emit = () => {
+      for (const event of creatorResearchService.events(run.id, cursor)) {
+        cursor = event.sequence;
+        response.write(`id: ${event.sequence}\n`);
+        response.write("event: creator-research-event\n");
+        response.write(`data: ${JSON.stringify(event)}\n\n`);
+      }
+      response.write(": keepalive\n\n");
+    };
+    emit();
+    const timer = setInterval(emit, 1_500);
+    request.once("close", () => clearInterval(timer));
+    return undefined;
+  });
+
+  app.get("/api/creator-runs/:id/portfolio", (request, response) => {
+    const portfolio = creatorResearchService.portfolio(request.params.id);
+    if (!portfolio) return response.status(404).json({ error: "博主分析任务不存在" });
+    return response.json(portfolio);
+  });
+
+  app.post("/api/creator-runs", (request, response) => {
+    try {
+      const input = createCreatorResearchRunInputSchema.parse(request.body);
+      return response.status(202).json(creatorResearchService.create(input.profileUrl));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "输入无效"
+        : error instanceof Error ? error.message : "无法创建博主分析";
+      return response.status(400).json({ error: message });
+    }
+  });
+
+  app.post("/api/creator-runs/:id/resume", (request, response) => {
+    try {
+      return response.status(202).json(creatorResearchService.resume(request.params.id));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法恢复博主分析";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
+  const listComparisons: express.RequestHandler = (request, response) => {
+    const limit = Math.min(100, Math.max(1, Number(request.query.limit ?? 50)));
+    response.json({ projects: comparisonProjectService.list(limit) });
+  };
+
+  const getComparison: express.RequestHandler = (request, response) => {
+    const rawId = request.params.id;
+    const id = Array.isArray(rawId) ? rawId[0] : rawId;
+    if (!id) return response.status(400).json({ error: "多博主比较项目 ID 无效" });
+    const project = comparisonProjectService.get(id);
+    if (!project) return response.status(404).json({ error: "多博主比较项目不存在" });
+    return response.json(project);
+  };
+
+  const createComparison: express.RequestHandler = (request, response) => {
+    try {
+      return response.status(202).json(comparisonProjectService.create(request.body));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "输入无效"
+        : error instanceof Error ? error.message : "无法创建多博主比较";
+      return response.status(400).json({ error: message });
+    }
+  };
+
+  app.get("/api/comparison-projects", listComparisons);
+  app.get("/api/comparison-projects/:id", getComparison);
+  app.post("/api/comparison-projects", createComparison);
+  app.get("/api/v1/comparisons", listComparisons);
+  app.get("/api/v1/comparisons/:id", getComparison);
+  app.post("/api/v1/comparisons", createComparison);
 
   app.get("/api/creators/:id", (request, response) => {
     const consoleData = loadCreatorConsole(request.params.id);

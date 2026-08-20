@@ -11,13 +11,13 @@ describe("loadCreatorConsole", () => {
     expect(consoleData?.baselineHealth?.reason).toContain("21 条分层样本");
     expect(consoleData?.baseline?.distribution.length).toBe(6);
     expect(consoleData?.baseline?.averageNote).toContain("断层");
-    expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "median", "low"]);
+    expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "base", "low"]);
     expect(consoleData?.tiers.flatMap((tier) => tier.videos).length).toBe(21);
     expect(consoleData?.contentMap.slotName).toBe("增长引擎");
     expect(consoleData?.contentMap.items.length).toBe(3);
     expect(consoleData?.rhythm).not.toBeNull();
-    expect(consoleData?.launch).not.toBeNull();
-    expect(consoleData?.launch?.steps.length).toBeGreaterThan(0);
+    expect(consoleData?.launch).toBeNull();
+    expect(consoleData?.launchLink).toBeNull();
   });
 
   it("builds the human-director console with honest gaps", () => {
@@ -25,12 +25,12 @@ describe("loadCreatorConsole", () => {
     expect(consoleData).not.toBeNull();
     expect(consoleData?.baseline?.postCount).toBe(19);
     expect(consoleData?.baselineHealth?.status).toBe("full");
-    expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "average", "median", "low"]);
+    expect(consoleData?.tiers.map((tier) => tier.id)).toEqual(["high", "base", "low"]);
     expect(consoleData?.rhythm).toBeNull();
     expect(consoleData?.rhythmHealth?.status).toBe("missing");
     expect(consoleData?.rhythmHealth?.reason).toContain("发布时间");
     expect(consoleData?.launch).toBeNull();
-    expect(consoleData?.launchLink?.href).toContain("/research/human-director/");
+    expect(consoleData?.launchLink).toBeNull();
   });
 
   it("returns null for unknown creator", () => {

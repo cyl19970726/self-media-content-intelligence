@@ -1,0 +1,242 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
+import { CreatorResearchService } from "./creator-research-service.js";
+import { CreatorResearchStore } from "./creator-research-store.js";
+import type { CreatorBrowserExecutor } from "../modules/orchestration/contracts.js";
+import type { CreatorArtifactStore } from "../modules/creator-research/artifact-store.js";
+import type { DeepMediaResolver } from "../modules/media-resolution/contracts.js";
+import type { VideoReconstructionExecutor } from "../modules/video-analysis/contracts.js";
+import type { CreatorSynthesisExecutor } from "../modules/creator-synthesis/contracts.js";
+
+const temporaryDirectories: string[] = [];
+
+function serviceForTest(options: { values?: Map<string, unknown> } = {}): CreatorResearchService {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
+  temporaryDirectories.push(directory);
+  const values = options.values ?? new Map<string, unknown>();
+  const artifacts: CreatorArtifactStore = {
+    write(runId, filename, value) {
+      const reference = `/artifacts/${runId}/${filename}`;
+      values.set(reference, structuredClone(value));
+      return reference;
+    },
+    read(reference) {
+      const value = values.get(reference);
+      if (value === undefined) throw new Error(`missing artifact ${reference}`);
+      return structuredClone(value);
+    }
+  };
+  const mediaResolver: DeepMediaResolver = {
+    async resolve(input) {
+      return {
+        schemaVersion: "1.0.0", runId: input.runId, generatedAt: "2026-08-20T01:01:00.000Z",
+        requestedPosts: input.posts.filter((post) => post.downloadVideo).length,
+        readyPosts: input.posts.filter((post) => post.downloadVideo && post.videoCandidateUrl).length,
+        requestedCovers: input.posts.length, readyCovers: input.posts.filter((post) => post.coverCandidateUrl).length,
+        items: input.posts.map((post) => ({ externalId: post.externalId,
+          videoRequested: post.downloadVideo,
+          state: !post.downloadVideo ? "not_requested" as const : post.videoCandidateUrl ? "verified_complete" as const : "missing" as const,
+          coverState: post.coverCandidateUrl ? "ready" as const : "missing" as const,
+          coverMessage: post.coverCandidateUrl ? "ok" : "missing",
+          videoArtifactRef: post.downloadVideo && post.videoCandidateUrl ? `/artifacts/${input.runId}/deep-media/${post.externalId}/source-video.mp4` : null,
+          coverArtifactRef: post.coverCandidateUrl ? `/artifacts/${input.runId}/deep-media/${post.externalId}/cover.webp` : null,
+          sha256: post.downloadVideo && post.videoCandidateUrl ? "a".repeat(64) : null,
+          bytes: post.downloadVideo && post.videoCandidateUrl ? 100 : null, durationSeconds: post.downloadVideo && post.videoCandidateUrl ? 5 : null,
+          width: post.downloadVideo && post.videoCandidateUrl ? 1080 : null, height: post.downloadVideo && post.videoCandidateUrl ? 1920 : null,
+          hasAudio: post.downloadVideo && post.videoCandidateUrl ? true : null, message: post.videoCandidateUrl ? "ok" : "missing" })),
+        unknowns: []
+      };
+    }
+  };
+  const videoReconstructor: VideoReconstructionExecutor = {
+    async reconstruct(request) {
+      const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
+      return { state: "ready", reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22, failedGateIds: [] };
+    }
+  };
+  const synthesisExecutor: CreatorSynthesisExecutor = {
+    async synthesize(request) {
+      return { state: "ready", synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
+        gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json` };
+    }
+  };
+  return new CreatorResearchService(
+    new CreatorResearchStore(path.join(directory, "test.sqlite")),
+    artifacts,
+    mediaResolver,
+    videoReconstructor,
+    synthesisExecutor
+  );
+}
+
+afterEach(() => {
+  for (const directory of temporaryDirectories.splice(0)) fs.rmSync(directory, { recursive: true, force: true });
+});
+
+describe("CreatorResearchService", () => {
+  it("creates and persists a transparent queued run", () => {
+    const service = serviceForTest();
+    const run = service.create("https://www.xiaohongshu.com/user/profile/creator-123");
+
+    expect(run.status).toBe("queued");
+    expect(run.currentStage).toBe("preflight");
+    expect(run.collectionPolicy.browserProfile).toBe("hhh-01");
+    expect(run.collectionPolicy.bypassChallenges).toBe(false);
+    expect(run.worker.state).toBe("queued");
+    expect(run.blockers).toEqual([]);
+    expect(service.get(run.id)).toEqual(run);
+    expect(service.list()).toEqual([run]);
+    expect(service.events(run.id).map((event) => event.type)).toEqual(["run.created", "job.queued"]);
+    service.close();
+  });
+
+  it("accepts a Xiaohongshu profile share link", () => {
+    const service = serviceForTest();
+    expect(service.create("https://xhslink.cn/m/example").platform).toBe("xiaohongshu");
+    service.close();
+  });
+
+  it("rejects search pages and unsupported hosts", () => {
+    const service = serviceForTest();
+    expect(() => service.create("https://www.xiaohongshu.com/search_result?keyword=ai")).toThrow(/博主主页/);
+    expect(() => service.create("https://example.com/user/profile/creator-123")).toThrow(/博主主页/);
+    service.close();
+  });
+
+  it("leases a queued job and persists a reviewable inventory result", async () => {
+    const service = serviceForTest();
+    const run = service.create("https://www.xiaohongshu.com/user/profile/creator-ready");
+    const executor: CreatorBrowserExecutor = {
+      async acquire() {
+        return {
+          state: "ready",
+          finalUrl: "https://www.xiaohongshu.com/user/profile/creator-ready",
+          creatorId: "creator-ready",
+          creatorName: "测试博主",
+          taskSpaceId: 18,
+          stopReason: "zero_growth",
+          posts: [{
+            externalId: "post-1",
+            url: "https://www.xiaohongshu.com/explore/post-1",
+            title: "第一条内容",
+            visibleText: "第一条内容\n123",
+            mediaType: "video",
+            likesLabel: "123",
+            likes: 123
+          }],
+          warnings: []
+        };
+      },
+      async enrich(input) {
+        return {
+          state: "ready",
+          taskSpaceId: 19,
+          posts: input.posts.map((post) => ({
+            externalId: post.externalId,
+            finalUrl: post.url,
+            title: "第一条内容",
+            description: "正文",
+            publishedLabel: "2026-08-20",
+            mediaType: "video" as const,
+            videoCandidateUrl: "https://sns-video.example.xhscdn.com/example.mp4?sign=private",
+            coverCandidateUrl: "https://sns-webpic.example.xhscdn.com/example.webp?sign=private",
+            inspectedAt: "2026-08-20T01:00:00.000Z",
+            warnings: []
+          })),
+          warnings: []
+        };
+      }
+    };
+
+    expect(await service.processNext("test-worker", executor)).toBe(true);
+    const updated = service.get(run.id);
+    expect(updated?.status).toBe("collecting");
+    expect(updated?.creatorName).toBe("测试博主");
+    expect(updated?.coverage.discoveredPosts).toBe(1);
+    expect(updated?.inventoryArtifactRef).toMatch(/creator-inventory\.json$/);
+    expect(updated?.stages.find((entry) => entry.id === "inventory")?.status).toBe("complete");
+    expect(service.events(run.id).at(-1)?.type).toBe("job.queued");
+
+    expect(await service.processNext("test-worker", executor)).toBe(true);
+    const portfolio = service.get(run.id);
+    expect(portfolio?.status).toBe("collecting");
+    expect(portfolio?.portfolioArtifactRef).toMatch(/corpus-analysis\.json$/);
+    expect(portfolio?.selectionArtifactRef).toMatch(/creator-selection\.json$/);
+    expect(portfolio?.coverage.comparisonPosts).toBe(1);
+    expect(portfolio?.stages.find((entry) => entry.id === "tiering")?.status).toBe("complete");
+    expect(service.events(run.id).at(-1)?.type).toBe("job.queued");
+
+    expect(await service.processNext("test-worker", executor)).toBe(true);
+    const detailed = service.get(run.id);
+    expect(detailed?.status).toBe("collecting");
+    expect(detailed?.detailArtifactRef).toMatch(/creator-details\.json$/);
+    expect(detailed?.mediaManifestArtifactRef).toMatch(/deep-media-manifest\.json$/);
+    expect(detailed?.coverage.enrichedPosts).toBe(1);
+    expect(await service.processNext("test-worker", executor)).toBe(true);
+    const reconstructed = service.get(run.id);
+    expect(reconstructed?.status).toBe("collecting");
+    expect(reconstructed?.coverage.reconstructedPosts).toBe(1);
+    expect(reconstructed?.currentStage).toBe("synthesis");
+    expect(await service.processNext("test-worker", executor)).toBe(true);
+    const synthesized = service.get(run.id);
+    expect(synthesized?.status).toBe("ready");
+    expect(synthesized?.synthesisArtifactRef).toMatch(/creator-analysis\.json$/);
+    service.close();
+  });
+
+  it("never persists transient signed media URLs in public JSON artifacts", async () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
+    const run = service.create("https://www.xiaohongshu.com/user/profile/creator-private-url");
+    const secret = "super-secret-signature";
+    const executor: CreatorBrowserExecutor = {
+      async acquire() {
+        return { state: "ready", finalUrl: run.profileUrl, creatorId: "creator-private-url", creatorName: "测试",
+          taskSpaceId: 22, stopReason: "zero_growth", warnings: [], posts: [{ externalId: "post-1",
+            url: "https://www.xiaohongshu.com/explore/post-1", title: "测试", visibleText: "测试\\n1",
+            mediaType: "video", likesLabel: "1", likes: 1 }] };
+      },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 22, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: "测试", description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: `https://sns-video.example.xhscdn.com/a.mp4?sign=${secret}`,
+          coverCandidateUrl: `https://sns-webpic.example.xhscdn.com/a.webp?sign=${secret}`,
+          inspectedAt: "2026-08-20T01:00:00.000Z", warnings: [] })) };
+      }
+    };
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    expect(JSON.stringify([...values.values()])).not.toContain(secret);
+    service.close();
+  });
+
+  it("stops for human handoff and resumes the same durable job", async () => {
+    const service = serviceForTest();
+    const run = service.create("https://www.xiaohongshu.com/user/profile/creator-login");
+    const executor: CreatorBrowserExecutor = {
+      async acquire() {
+        return {
+          state: "needs_user",
+          finalUrl: "https://www.xiaohongshu.com/user/profile/creator-login",
+          taskSpaceId: 21,
+          code: "login_required",
+          message: "需要登录"
+        };
+      },
+      async enrich() { throw new Error("not reached"); }
+    };
+
+    await service.processNext("test-worker", executor);
+    expect(service.get(run.id)?.status).toBe("needs_user");
+    expect(service.get(run.id)?.browserTaskSpaceId).toBe(21);
+    const resumed = service.resume(run.id);
+    expect(resumed.status).toBe("queued");
+    expect(resumed.worker.jobId).toBe(run.worker.jobId);
+    expect(service.events(run.id).at(-1)?.type).toBe("run.resumed");
+    service.close();
+  });
+});

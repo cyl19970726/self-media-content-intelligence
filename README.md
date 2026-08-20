@@ -1,6 +1,6 @@
 # Signal Room — Self-Media Intelligence
 
-一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → 代表集 → 视频内容还原 → 跨档诊断 → 起号策略”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。
+一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策属于未来独立工作区，不混入客观研究页面。
 
 当前仓库同时包含：
 
@@ -24,7 +24,7 @@ Report v2 不把“高点赞”直接写成成功原因，而是拆成六层：
 - **创意 X 光**：分析标题承诺、受众、冲突、脚本功能段、论点/证据密度、镜头边界与语速。
 - **受众声音**：把评论聚为追更、质疑、执行反馈、提问和认可，并保留代表原话。
 - **因果审计**：每个“为什么火”结论同时列出证据、反证、替代解释和置信度。
-- **复刻与实验**：区分可迁移骨架、可变元素、账号依赖和风险，给出有判定标准的 A/B 实验。
+- **研究边界**：研究页只说明原内容、表现与证据，不生成“我们复制什么”或“下一条怎么发”；这些属于独立的 Creation Workspace。
 
 ## 启动
 
@@ -37,7 +37,25 @@ npm run dev
 
 生产构建可使用 `npm run build && npm start`，随后打开 `http://127.0.0.1:4310`。详情页地址为 `http://127.0.0.1:4310/runs/<run-id>`。
 
-**博主研究总览**：`http://127.0.0.1:4310/creators` —— AI 赛道已分析博主的组合入口页，每张卡片（定位、增长引擎/内容支柱标签、覆盖度、研究档案链接）从各分析产物自动汇总（`/api/creators` + `src/server/creators.ts`），档案静态文件经 `/research/*` 提供。新增一个博主的分析产物后，在 `creators.ts` 注册一个 loader 即出现在总览。
+**博主研究总览**：`http://127.0.0.1:4310/creators` —— 可直接粘贴小红书博主主页。服务器会把任务写入持久队列，由后台 ego-browser Worker 完成登录预检和公开作品清单采集；遇到登录或验证码时，任务停在 `needs_user` 并从同一页面恢复。现有已完成档案继续从 `/research/*` 只读提供，迁移期间不会被覆盖。
+
+当前自动闭环覆盖“创建任务 → Worker 租约/心跳 → ego-browser 采集 → 冻结清单 → 全量统计 → High / Base / Low 统一 21 条 → 21 条详情与本地封面 → 9 条媒体校验 → 视频候选重建 → 独立评审与定向修复 → 博主综合 → 同一 Dashboard 的 List/Gallery 投影”。任一深度视频未通过硬闸时，博主综合不会发布。多博主比较使用独立持久 Worker，并在创建项目时固定每位博主的 Portfolio 与选择集 revision。运行只会在证据实际到位的阶段标为 `reviewable` 或 `ready`。
+
+代码边界：
+
+- `src/modules/orchestration/`：任务、租约、事件和执行器合同；
+- `src/modules/creator-research/`：博主研究状态机和 Worker；
+- `src/modules/portfolio/`：可复算的全量统计、平均/中位锚点与 21 条选择合同；
+- `src/modules/video-analysis/`：对接 `video-content-reconstruction` 的输入、阻塞与硬闸结果合同；
+- `src/modules/media-resolution/`：临时媒体地址消费、本地完整性校验与无签名清单；
+- `src/modules/creator-synthesis/`：21 条与 9 条硬闸后的研究归纳合同；
+- `src/modules/comparison/`：固定 revision 的比较项目、后台 Worker 与账号内部归一化分析；
+- `src/platform/database/`：SQLite 持久账本；
+- `src/platform/artifacts/`：可替换的本地 Artifact Store；
+- `src/platform/browser/`：ego-browser 适配器；
+- `src/platform/media/`、`video/`、`synthesis/`：媒体、重建/独立评审、账号归纳适配器；
+- `src/platform/network/`：只读取当前系统代理并传给子进程，不改变系统设置；
+- `src/core/creator-research-*`：迁移期兼容入口。
 
 ## CLI
 

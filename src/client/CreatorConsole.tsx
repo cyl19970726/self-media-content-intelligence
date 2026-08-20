@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, CircleAlert, ExternalLink, LoaderCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleAlert, ExternalLink, LoaderCircle } from "lucide-react";
 import { getCreatorConsole } from "./api";
 import type { CreatorConsole as CreatorConsoleData } from "../shared/schema";
 
@@ -12,8 +12,7 @@ const sections = [
   { id: "library", index: "05", label: "内容库" },
   { id: "rhythm", index: "06", label: "发布节奏" },
   { id: "position", index: "07", label: "赛道位置" },
-  { id: "decision", index: "08", label: "我的内容决策" },
-  { id: "limits", index: "09", label: "方法边界" }
+  { id: "limits", index: "08", label: "方法边界" }
 ];
 
 function Missing({ reason }: { reason: string }) {
@@ -78,14 +77,13 @@ function ContentMap({ data }: { data: CreatorConsoleData }) {
   return <section id="map" className="console-section">
     <header className="console-section__head">
       <span className="console-section__index">"04"</span>
-      <div><h2>内容地图 · {data.contentMap.slotName}</h2><p>分类打标签是循环的第 ② 步：每一类读出的规律，就是可复制/该避开的清单。</p></div>
+      <div><h2>内容地图 · {data.contentMap.slotName}</h2><p>开放标签用于看清主题、形式、受众价值与表现结构，不把观察直接升级成创作建议。</p></div>
     </header>
     <div className="map-grid">
       {data.contentMap.items.map((item) => <article key={item.name} className="map-card">
         <h3>{item.name}</h3>
         {item.signal && <p className="map-card__signal">{item.signal}</p>}
         {item.mechanism && <p className="map-card__text">{item.mechanism}</p>}
-        {item.decision && <p className="map-card__decision"><Check size={13}/>{item.decision}</p>}
       </article>)}
     </div>
   </section>;
@@ -130,43 +128,6 @@ function Rhythm({ data }: { data: CreatorConsoleData }) {
       </div>}
     </div>
   </details>;
-}
-
-function Launch({ data }: { data: CreatorConsoleData }) {
-  if (!data.launch) {
-    return <section id="decision" className="console-section">
-      <header className="console-section__head">
-        <span className="console-section__index">"08"</span>
-        <div><h2>我的内容决策</h2></div>
-      </header>
-      {data.launchLink
-        ? <a className="console-link-card" href={data.launchLink.href}><ExternalLink size={15}/>{data.launchLink.label}</a>
-        : <Missing reason="起号方案未生成。"/>}
-    </section>;
-  }
-  return <section id="decision" className="console-section console-section--dark">
-    <header className="console-section__head">
-      <span className="console-section__index">"08"</span>
-      <div><h2>我的内容决策 · 我们明天怎么开始</h2></div>
-    </header>
-    <p className="console-lead">{data.launch.summary}</p>
-    <div className="launch-grid">
-      <div className="launch-column">
-        <h3>引擎取舍</h3>
-        {data.launch.engines.map((engine) => <div key={engine.name} className="launch-row">
-          <b>{engine.name}</b><span>{engine.decision}</span>
-        </div>)}
-      </div>
-      <div className="launch-column">
-        <h3>可复制系统</h3>
-        {data.launch.steps.map((step, index) => <div key={step.name} className="launch-step">
-          <span className="step-no">{String(index + 1).padStart(2, "0")}</span>
-          <div><b>{step.name}</b><p>{step.rule}</p></div>
-        </div>)}
-      </div>
-    </div>
-    <Link to="/benchmark" className="launch-cta">制定我的内容组合 <ArrowRight size={15}/></Link>
-  </section>;
 }
 
 export default function CreatorConsolePage() {
@@ -278,10 +239,9 @@ export default function CreatorConsolePage() {
                 </Link>
               </div>
             </details>
-            <Launch data={data}/>
             <section id="limits" className="console-section">
               <header className="console-section__head">
-                <span className="console-section__index">"09"</span>
+                <span className="console-section__index">"08"</span>
                 <div><h2>方法边界</h2><p>知道什么、推断什么、不知道什么，必须分开写。</p></div>
               </header>
               <div className="boundary-list">

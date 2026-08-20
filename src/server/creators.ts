@@ -9,7 +9,6 @@ function redWitch(): CreatorSummary | null {
   const coverage = asRecord(analysis.coverage);
   const engines = Array.isArray(strategy?.engines) ? strategy.engines as Record<string, unknown>[] : [];
   const engineTags = engines.map((engine) => asString(engine.name)).filter(Boolean);
-  const conclusion = asString(strategy?.executiveConclusion);
   return {
     id: "ai-red-witch",
     name: asString(creator.name, "AI红发魔女"),
@@ -17,7 +16,7 @@ function redWitch(): CreatorSummary | null {
     likesAndCollections: asString(creator.likesAndCollections),
     profileUrl: asString(creator.profile) || asString(creator.profileUrl),
     positioning: positioningOf["ai-red-witch"],
-    summary: conclusion || "高赞由三台增长引擎驱动：可保存的解决方案、可转发的社交梗、商业叙事。",
+    summary: "当前公开样本呈现三类主要表现结构：任务解决方案、社交传播型内容与商业案例叙事；各类的证据强度和表现分布不同。",
     tags: engineTags.length > 0 ? engineTags : ["保存引擎", "传播引擎", "商业引擎"],
     stats: [
       { label: "公开笔记", value: formatCount(asNumber(coverage.capturedNotes)) },

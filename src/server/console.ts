@@ -63,9 +63,10 @@ function redWitchTiers(): CreatorConsole["tiers"] {
   const focus = readJson("ai-red-witch/selected-high-like/focus-reconstruction.json");
   if (!focus) return [];
   const taxonomy = asRecord(focus.taxonomy);
-  const names = { high: "高表现", median: "中位表现", low: "低表现" } as const;
-  return (["high", "median", "low"] as const).map((tier) => {
-    const group = asRecord(taxonomy[tier]);
+  const names = { high: "高表现", base: "基本盘", low: "低表现" } as const;
+  return (["high", "base", "low"] as const).map((tier) => {
+    const sourceTier = tier === "base" ? "median" : tier;
+    const group = asRecord(taxonomy[sourceTier]);
     const types = Array.isArray(group.types) ? group.types as Record<string, unknown>[] : [];
     const videos = types.flatMap((type) => {
       const list = Array.isArray(type.videos) ? type.videos as Record<string, unknown>[] : [];
@@ -112,7 +113,6 @@ function redWitchConsole(): CreatorConsole | null {
   } : null;
 
   const engines = Array.isArray(strategy?.engines) ? strategy.engines as Record<string, unknown>[] : [];
-  const steps = Array.isArray(strategy?.repeatableSystem) ? strategy.repeatableSystem as Record<string, unknown>[] : [];
   const weekdays = Array.isArray(publishing.weekdays) ? publishing.weekdays as Record<string, unknown>[] : [];
   const dayparts = Array.isArray(publishing.dayparts) ? publishing.dayparts as Record<string, unknown>[] : [];
 
@@ -139,7 +139,7 @@ function redWitchConsole(): CreatorConsole | null {
         name: asString(engine.name),
         signal: asStringOrNull(engine.signal),
         mechanism: asStringOrNull(engine.mechanism),
-        decision: asStringOrNull(engine.decision)
+        decision: null
       }))
     },
     rhythm: backfill ? {
@@ -152,11 +152,7 @@ function redWitchConsole(): CreatorConsole | null {
       reason: "21 条分层样本的发布节奏，反映选样结构而非账号真实节奏。",
       capturedAt: asStringOrNull(coverage.capturedAt)
     } : { status: "missing" as const, reason: "发布节奏数据缺失", capturedAt: null },
-    launch: strategy ? {
-      summary: asString(strategy.executiveConclusion),
-      engines: engines.map((engine) => ({ name: asString(engine.name), decision: asString(engine.decision) })),
-      steps: steps.map((step) => ({ name: asString(step.name), rule: asString(step.rule) }))
-    } : null,
+    launch: null,
     launchLink: null,
     boundaries: [
       asString(strategy?.evidenceBoundary, "公开数据边界未记录"),
@@ -202,14 +198,12 @@ function humanDirectorConsole(): CreatorConsole | null {
   }
 
   const backfillMissing = asRecord(backfill?.missing);
-  const tierNames: Record<string, string> = { high: "高表现", average: "平均值附近", median: "中位表现", low: "低表现" };
-  const tiers = (Array.isArray(backfill?.tiers) ? backfill.tiers as Record<string, unknown>[] : [])
-    .map((tier) => {
-      const tierId = asString(tier.tier);
+  const sourceTiers = Array.isArray(backfill?.tiers) ? backfill.tiers as Record<string, unknown>[] : [];
+  const sourceConclusion = (id: string) => asString(sourceTiers.find((tier) => asString(tier.tier) === id)?.conclusion);
+  const tiers: CreatorConsole["tiers"] = (["high", "base", "low"] as const).map((tierId) => {
       const tierRows = rows.filter((row) => {
         if (tierId === "high") return row.likes > avg * 1.25;
-        if (tierId === "average") return Math.abs(row.likes - avg) <= avg * 0.25;
-        if (tierId === "median") return row.likes >= med && row.likes < avg * 0.75;
+        if (tierId === "base") return Math.abs(row.likes - avg) <= avg * 0.25 || (row.likes >= med && row.likes < avg * 0.75);
         return row.likes < med;
       }).map((row) => ({
         id: row.id, title: row.title, likes: row.likes, collections: row.collections,
@@ -217,8 +211,10 @@ function humanDirectorConsole(): CreatorConsole | null {
       }));
       return {
         id: tierId,
-        name: tierNames[tierId] ?? asString(tier.label, tierId),
-        conclusion: asString(tier.conclusion),
+        name: tierId === "high" ? "高表现" : tierId === "base" ? "基本盘" : "低表现",
+        conclusion: tierId === "base"
+          ? [sourceConclusion("median"), sourceConclusion("average")].filter(Boolean).join("；")
+          : sourceConclusion(tierId),
         videos: tierRows
       };
     });
@@ -246,7 +242,7 @@ function humanDirectorConsole(): CreatorConsole | null {
     rhythmHealth: { status: "missing" as const, reason: backfillMissing.publishedAt === true
       ? "19 条均无发布时间字段，发布节奏（星期/时段）无法计算。" : "发布节奏数据缺失", capturedAt: null },
     launch: null,
-    launchLink: { label: "起号方案（原报告第 6 节）", href: "/research/human-director/report.html" },
+    launchLink: null,
     boundaries: [
       asString(analysis.selectionLogic),
       backfillMissing.archetypeMissingCount === 11 ? "19 条中 11 条无内容样本类型标签（archetype），内容地图只覆盖 8 条深样本。" : ""

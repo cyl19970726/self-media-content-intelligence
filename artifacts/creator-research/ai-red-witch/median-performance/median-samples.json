@@ -19,12 +19,17 @@
       "durationMs": 26775,
       "width": 1080,
       "height": 1920,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/97/01e7af10154b3d83010370019505bf6673_97.mp4?sign=f2db238cc7473cd0e8e42c4d53eca4ae&t=6a853379",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/97/01e7af10154b3d83010370019505bf6673_97.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/97/01e7af10154b3d83010370019505bf6673_97.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e7af10154b3d8301037003979af63d05_1.srt?sign=8d7342c9c2c56bab91731748c1b9de01&t=6A853379",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e7af10154b3d8301037003979af63d05_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/67af1032000000001902d33d",
-      "commentSignals": ["价格", "入口", "免费额度", "关键帧能力限制"]
+      "commentSignals": [
+        "价格",
+        "入口",
+        "免费额度",
+        "关键帧能力限制"
+      ]
     },
     {
       "id": "682a792f0000000021001039",
@@ -37,12 +42,16 @@
       "durationMs": 33787,
       "width": 1440,
       "height": 2560,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/108/01e82a78b749cc020103700196e5eff756_108.mp4?sign=18debc590681d5706830d69f471378f1&t=6a853382",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/108/01e82a78b749cc020103700196e5eff756_108.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/108/01e82a78b749cc020103700196e5eff756_108.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e82a78b749cc020103700397a41896b6_1.srt?sign=8f523483174208c013bce0af4d10e2b4&t=6A853382",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e82a78b749cc020103700397a41896b6_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/682a792f0000000021001039",
-      "commentSignals": ["工具名识别", "入口", "链接"]
+      "commentSignals": [
+        "工具名识别",
+        "入口",
+        "链接"
+      ]
     },
     {
       "id": "6928316c000000001e0397ba",
@@ -55,12 +64,16 @@
       "durationMs": 111062,
       "width": 1080,
       "height": 1920,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/115/01e9284e931b25bd010370019ac575a0f8_115.mp4?sign=baedfee762c667bfcf1f7447bf602fe0&t=6a85338f",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/115/01e9284e931b25bd010370019ac575a0f8_115.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/115/01e9284e931b25bd010370019ac575a0f8_115.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e9284e931b25bd010370039ac57395a6_1.srt?sign=4e20733f29470cb268c4535d86f189f3&t=6A85338F",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e9284e931b25bd010370039ac57395a6_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/6928316c000000001e0397ba",
-      "commentSignals": ["提示词", "电脑要求", "资源领取"]
+      "commentSignals": [
+        "提示词",
+        "电脑要求",
+        "资源领取"
+      ]
     },
     {
       "id": "68663c61000000000b01dca6",
@@ -73,12 +86,14 @@
       "durationMs": 93577,
       "width": 2160,
       "height": 3840,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/77/01e8663c10172a5e0103700197cf5dded7_77.mp4?sign=c76738e993194c97c055471c87b3c902&t=6a8533a9",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/77/01e8663c10172a5e0103700197cf5dded7_77.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/77/01e8663c10172a5e0103700197cf5dded7_77.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e8663c10172a5e0103700397cf5c03f7_1.srt?sign=a397f562eb11d557d8b79e84db6b42fe&t=6A8533A9",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e8663c10172a5e0103700397cf5c03f7_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/68663c61000000000b01dca6",
-      "commentSignals": ["前置人工录入成本"]
+      "commentSignals": [
+        "前置人工录入成本"
+      ]
     },
     {
       "id": "688445a10000000020019210",
@@ -91,12 +106,17 @@
       "durationMs": 47578,
       "width": 1080,
       "height": 1920,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/130/01e884405b70098a010370019845355a90_130.mp4?sign=ab8815cf6a95e988fb4d6c295256dd2d&t=6a8533b3",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/130/01e884405b70098a010370019845355a90_130.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/130/01e884405b70098a010370019845355a90_130.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e884405b70098a010370039844b01624_1.srt?sign=17fe374cfdd0a0c0eee03cb2a0d6706f&t=6A8533B3",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e884405b70098a010370039844b01624_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/688445a10000000020019210",
-      "commentSignals": ["免费与否", "缺教程", "缺直达链接", "多人合成能力"]
+      "commentSignals": [
+        "免费与否",
+        "缺教程",
+        "缺直达链接",
+        "多人合成能力"
+      ]
     },
     {
       "id": "6832e96a000000002100405d",
@@ -109,12 +129,17 @@
       "durationMs": 83199,
       "width": 1440,
       "height": 2560,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/108/01e835ba43492eda010370019711ec8e4e_108.mp4?sign=46af1511cc462b8c64e76411553a0880&t=6a8533bc",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/1/110/108/01e835ba43492eda010370019711ec8e4e_108.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/1/110/108/01e835ba43492eda010370019711ec8e4e_108.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e835ba43492eda0103700397a9a3b3df_1.srt?sign=775679461643a5e22c26ce13f66c6617&t=6A8533BC",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e835ba43492eda0103700397a9a3b3df_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/6832e96a000000002100405d",
-      "commentSignals": ["信任缺口", "无法回答问题", "虚拟试穿失真", "就业焦虑"]
+      "commentSignals": [
+        "信任缺口",
+        "无法回答问题",
+        "虚拟试穿失真",
+        "就业焦虑"
+      ]
     },
     {
       "id": "663ac5da000000001e03437a",
@@ -127,12 +152,16 @@
       "durationMs": 17601,
       "width": 720,
       "height": 1280,
-      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/110/259/01e63ac5da0478d0010370038f55952eb7_259.mp4?sign=f291d23f7f6ccf95884a6c95281ff7ad&t=6a8533d1",
+      "mediaUrl": "https://sns-video-zl.xhscdn.com/stream/110/259/01e63ac5da0478d0010370038f55952eb7_259.mp4",
       "backupUrl": "https://sns-bak-v8.xhscdn.com/stream/110/259/01e63ac5da0478d0010370038f55952eb7_259.mp4",
-      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e63ac5da0478d00103700397a627532b_1.srt?sign=3baf271a8d33a4193d49dfaaf805034c&t=6A8533D1",
+      "subtitleUrl": "https://sns-subtitle-s10.xhscdn.com/subtitle/1/110/1/01e63ac5da0478d00103700397a627532b_1.srt",
       "subtitleOrigin": "小红书官方 zh-CN 字幕",
       "sourceUrl": "https://www.xiaohongshu.com/explore/663ac5da000000001e03437a",
-      "commentSignals": ["软件名", "教程", "功能是否存在"]
+      "commentSignals": [
+        "软件名",
+        "教程",
+        "功能是否存在"
+      ]
     }
   ]
 }

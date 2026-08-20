@@ -10,6 +10,7 @@ import CreatorsOverview from "./Creators";
 import CreatorConsolePage from "./CreatorConsole";
 import BenchmarkPage from "./Benchmark";
 import VideoEvidencePage from "./VideoEvidence";
+import CreatorRunConsolePage from "./CreatorRunConsole";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -34,7 +35,7 @@ function Shell({ children }: { children: React.ReactNode }) {
     </header>
     <nav className="section-nav" aria-label="主导航">
       <Link className={location.pathname === "/" ? "active" : ""} to="/"><Search size={16}/> 链接分析</Link>
-      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/benchmark") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
+      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") || location.pathname.startsWith("/benchmark") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
       <Link className={location.pathname.startsWith("/benchmark") ? "active" : ""} to="/benchmark"><BarChart3 size={16}/> 对比台</Link>
       <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
@@ -142,7 +143,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
       <CircleAlert size={28}/><div><span>LEGACY REPORT / 数据迁移保护</span><h2>这份旧档案不能直接套用新版报告。</h2>
       <p>新版字段在旧数据中不存在。系统不会把缺失值显示成 0，也不会继续展示无法审计的旧版“为什么有效”结论。</p>
       <button className="primary-button" onClick={onRetry}><RefreshCw size={16}/> 重新采集并升级报告</button></div>
-    </section> : <ReportV2 report={report}/>} 
+    </section> : <ReportV2 report={report}/>}
   </article>;
 }
 
@@ -177,6 +178,7 @@ export default function App() {
     <Route path="/creators" element={<Shell><CreatorsOverview/></Shell>}/>
     <Route path="/creators/:id" element={<Shell><CreatorConsolePage/></Shell>}/>
     <Route path="/creators/:id/videos/:videoId" element={<Shell><VideoEvidencePage/></Shell>}/>
+    <Route path="/creator-runs/:id" element={<Shell><CreatorRunConsolePage/></Shell>}/>
     <Route path="/benchmark" element={<Shell><BenchmarkPage/></Shell>}/>
     <Route path="/runs/:id" element={<Detail/>}/>
     <Route path="*" element={<Home/>}/>

@@ -464,6 +464,155 @@ export const parsedSourceSchema = z.object({
 });
 export type ParsedSource = z.infer<typeof parsedSourceSchema>;
 
+export const creatorResearchStatusSchema = z.enum([
+  "queued",
+  "preflight",
+  "collecting",
+  "needs_user",
+  "backoff",
+  "reviewable",
+  "ready",
+  "failed",
+  "stale"
+]);
+export type CreatorResearchStatus = z.infer<typeof creatorResearchStatusSchema>;
+
+export const creatorResearchStageIdSchema = z.enum([
+  "preflight",
+  "inventory",
+  "tiering",
+  "deep_capture",
+  "synthesis",
+  "dashboard"
+]);
+
+export const creatorResearchStageSchema = z.object({
+  id: creatorResearchStageIdSchema,
+  label: z.string(),
+  status: z.enum(["pending", "running", "complete", "blocked", "failed", "skipped"]),
+  message: z.string().nullable()
+});
+
+export const creatorResearchWorkerStateSchema = z.enum([
+  "queued",
+  "leased",
+  "running",
+  "needs_user",
+  "backoff",
+  "succeeded",
+  "failed"
+]);
+
+const creatorResearchWorkerSchema = z.object({
+  state: creatorResearchWorkerStateSchema,
+  attempt: z.number().int().nonnegative(),
+  jobId: z.string().uuid().nullable(),
+  workerId: z.string().nullable(),
+  lastHeartbeatAt: z.string().nullable()
+});
+
+export const creatorResearchRunSchema = z.object({
+  schemaVersion: z.enum(["1.0.0", "1.1.0"]),
+  id: z.string().uuid(),
+  platform: z.literal("xiaohongshu"),
+  profileUrl: z.string().url(),
+  status: creatorResearchStatusSchema,
+  currentStage: creatorResearchStageIdSchema,
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  creatorId: z.string().nullable(),
+  creatorName: z.string().nullable(),
+  dashboardPath: z.string().nullable(),
+  stages: z.array(creatorResearchStageSchema),
+  coverage: z.object({
+    discoveredPosts: z.number().int().nonnegative(),
+    enrichedPosts: z.number().int().nonnegative(),
+    comparisonPosts: z.number().int().nonnegative(),
+    reconstructedPosts: z.number().int().nonnegative()
+  }),
+  collectionPolicy: z.object({
+    adapter: z.literal("ego-browser"),
+    browserProfile: z.literal("hhh-01"),
+    readOnly: z.literal(true),
+    incremental: z.literal(true),
+    bypassChallenges: z.literal(false),
+    cacheTtlHours: z.number().int().positive(),
+    budgets: z.object({
+      maxScrollRounds: z.number().int().positive(),
+      maxDetailOpens: z.number().int().positive(),
+      maxMediaDownloads: z.number().int().nonnegative()
+    })
+  }),
+  blockers: z.array(z.object({
+    code: z.string(),
+    message: z.string(),
+    userActionRequired: z.boolean()
+  })),
+  nextAction: z.string(),
+  lastSnapshotAt: z.string().nullable(),
+  worker: creatorResearchWorkerSchema.default({
+    state: "queued",
+    attempt: 0,
+    jobId: null,
+    workerId: null,
+    lastHeartbeatAt: null
+  }),
+  inventoryArtifactRef: z.string().nullable().default(null),
+  portfolioArtifactRef: z.string().nullable().default(null),
+  selectionArtifactRef: z.string().nullable().default(null),
+  detailArtifactRef: z.string().nullable().default(null),
+  mediaManifestArtifactRef: z.string().nullable().default(null),
+  reconstructionBatchArtifactRef: z.string().nullable().default(null),
+  synthesisArtifactRef: z.string().nullable().default(null),
+  synthesisGateArtifactRef: z.string().nullable().default(null),
+  browserTaskSpaceId: z.number().int().positive().nullable().default(null)
+});
+export type CreatorResearchRun = z.infer<typeof creatorResearchRunSchema>;
+
+export const creatorResearchEventSchema = z.object({
+  sequence: z.number().int().positive(),
+  runId: z.string().uuid(),
+  jobId: z.string().uuid().nullable(),
+  type: z.enum([
+    "run.created",
+    "job.queued",
+    "job.leased",
+    "node.started",
+    "node.progress",
+    "handoff.required",
+    "artifact.produced",
+    "node.completed",
+    "run.reviewable",
+    "run.failed",
+    "run.resumed"
+  ]),
+  createdAt: z.string(),
+  message: z.string(),
+  payload: z.record(z.unknown())
+});
+export type CreatorResearchEvent = z.infer<typeof creatorResearchEventSchema>;
+
+function isSupportedCreatorUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:") return false;
+    if (url.hostname === "xhslink.cn") return url.pathname.length > 1;
+    if (url.hostname === "xiaohongshu.com" || url.hostname.endsWith(".xiaohongshu.com")) {
+      return url.pathname.startsWith("/user/profile/");
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+export const createCreatorResearchRunInputSchema = z.object({
+  profileUrl: z.string().trim().min(1, "请粘贴小红书博主主页链接").refine(
+    isSupportedCreatorUrl,
+    "请使用小红书博主主页链接，或 xhslink.cn 的主页分享链接"
+  )
+});
+
 export const creatorSummarySchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -491,7 +640,7 @@ export const tierVideoSchema = z.object({
 export type TierVideo = z.infer<typeof tierVideoSchema>;
 
 export const tierSchema = z.object({
-  id: z.string(),
+  id: z.enum(["high", "base", "low"]),
   name: z.string(),
   conclusion: z.string(),
   videos: z.array(tierVideoSchema)
