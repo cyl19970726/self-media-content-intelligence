@@ -12,6 +12,8 @@ Creator Analysis OS turns public creator and video evidence into a structured, a
 
 The product answers what the content is, how it is constructed, how it performs, what mechanisms may explain the observed performance, what evidence supports each conclusion, and what remains unknown.
 
+The authoritative analytical philosophy is defined in [research-methodology.md](research-methodology.md). Its executable contracts are [three-lens-video-contract.md](three-lens-video-contract.md), [creator-depth-parity.md](creator-depth-parity.md), and [research-learning-model.md](research-learning-model.md). Page structure and schema compliance do not substitute for those contracts.
+
 It does **not** decide what we should copy or publish. That belongs to a separate future Creation Workspace.
 
 ## 2. Shared principles
@@ -24,6 +26,9 @@ It does **not** decide what we should copy or publish. That belongs to a separat
 - Mean, median, maximum, distribution, and within-creator percentile have different meanings and must not be collapsed.
 - List and Gallery are two projections of the same canonical records.
 - Taxonomies are open-ended and derived from actual content rather than imposed in advance.
+- Every deep video is analyzed through three non-substitutable lenses: content restoration, directing logic, and visual/editing logic.
+- Every creator conclusion must be derived from full-corpus context plus High/Base/Low variance, not from profile copy or winners alone.
+- Each completed creator must feed newly observed mechanisms and failure modes back into versioned, reusable research infrastructure.
 
 ## 3. Single-video analysis
 
@@ -41,6 +46,14 @@ A user who does not play the original video can still understand all key informa
 6. **Content-type-specific relationships** — procedure dependencies for tutorials; claim/evidence/condition/counterexample/action relationships for argument or strategy videos; corresponding open structures for other forms.
 7. **Performance context** — public engagement and, when available, position relative to creator and topic baselines. Without a baseline, mechanism explanations remain hypotheses.
 8. **Evidence boundary** — coverage matrix, checked and unchecked carriers, conflicts, unsupported claims, and explicit unknowns.
+
+### 3.2 Three-lens completeness
+
+- **Content restoration** must preserve the complete meaning, not merely a short summary.
+- **Directing logic** must explain the designed sequence of viewer questions, promises, proof, cognitive changes, comprehension load, and payoff.
+- **Visual/editing logic** must explain how composition, presenter, UI, text, shots, cuts, examples, and sound carry or weaken meaning.
+
+A video with only one or two lenses is partial even if its transcript and metrics exist.
 
 ### 3.3 Explicit exclusions
 
@@ -115,7 +128,11 @@ Every comparison record includes tier, topic, format, publication time, duration
 - business path and lifecycle;
 - boundaries and unknowns.
 
-### 4.7 Explicit exclusions
+### 4.7 Knowledge-building requirement
+
+The system shall preserve newly discovered content mechanisms, directing devices, visual grammars, proof modes, and failure modes as open, evidence-linked research concepts. A new creator may confirm, qualify, contradict, or invalidate earlier conclusions; prior conclusions must not remain silently unchanged.
+
+### 4.8 Explicit exclusions
 
 - what we can directly copy, adapt, or cannot copy;
 - our positioning difference;
@@ -183,3 +200,21 @@ The analysis may describe under-covered values, topics, or formats in the select
 - WHEN an aggregate multi-creator conclusion is shown, THE SYSTEM SHALL provide drill-down evidence and SHALL identify it as track-wide, creator-specific, conditional, anomalous, or unknown.
 - WHILE the user is in any research surface, THE SYSTEM SHALL NOT present copying advice, our next-post recommendations, rewritten scripts, or publishing experiments.
 - WHEN data is stale, partial, blocked, or missing, THE SYSTEM SHALL preserve the last valid read-only view and visibly state the limitation.
+- WHEN a deep video is presented, THE SYSTEM SHALL expose content restoration, directing logic, and visual/editing logic as distinct sections and SHALL mark any missing lens as incomplete.
+- WHEN a creator conclusion is presented, THE SYSTEM SHALL identify whether it comes from full-corpus data, tier comparison, deep reconstruction, or inference and SHALL NOT use profile copy alone as analysis.
+- WHEN a unified projection replaces a historical report, THE SYSTEM SHALL run depth-parity checks and SHALL NOT treat schema-valid placeholders as equivalent to populated source evidence.
+
+### 7.1 Quantitative research gates
+
+- **VID-LENS-01** — WHEN a deep video is evaluated, THE SYSTEM SHALL compute separate coverage numerators, denominators, unchecked carriers, conflicts, and gate results for `content_restoration`, `directing_logic`, and `visual_editing_logic`; THE SYSTEM SHALL mark the video ready only when all three ratios equal `1.0` and every lens gate passes.
+- **VID-CONTENT-02** — WHEN content restoration is projected, THE SYSTEM SHALL expose at least 3 knowledge units, at least 5 ordered transcript cues (or an explicit no-speech substitution protocol), a substantive article of at least 160 Chinese characters or 100 words, and resolvable evidence for every core unit.
+- **VID-DIRECTING-03** — WHEN directing logic is projected, THE SYSTEM SHALL expose distinct viewer-before/viewer-after states and at least 2 ordered, non-zero-duration stages, each with a function, cognitive change, and evidence reference.
+- **VID-VISUAL-04** — WHEN visual/editing logic is projected, THE SYSTEM SHALL expose at least 3 sparse and 5 dense timecoded frames, shot/analyzed-duration denominators, and evidence roles for every consequential visual claim; THE SYSTEM SHALL keep unchecked non-speech audio visible.
+- **VID-ORDER-05** — WHEN the single-video page renders, THE SYSTEM SHALL order source health → content restoration → directing logic → visual/editing logic → evidence explorer → conflicts/unknowns/gates and SHALL NOT merge the three lenses into one generic section.
+- **PARITY-AIWITCH-01** — WHEN AI红发魔女 is migrated, THE SYSTEM SHALL retain a 331-post corpus with 318 known-like records, exactly 21 unique comparison records split 7/7/7 across High/Base/Low, and exactly 9 canonical deep markers split 3/3/3.
+- **PARITY-ZHANG-02** — WHEN 张咋啦 is migrated, THE SYSTEM SHALL retain 62 corpus posts, exactly 21 unique canonical comparison records with both `median_near` and `mean_near`, register all 12 populated source deep packages, and mark exactly 9 canonical deep records without deleting or orphaning the other 3.
+- **PARITY-DIRECTOR-03** — WHEN 人类最强编导 is migrated, THE SYSTEM SHALL retain 19 unique browseable posts and exactly 8 deep markers, and SHALL project every populated archetype into a numeric format cluster rather than a prose-only list.
+- **PARITY-MAP-04** — WHEN any of the three parity projections publishes, THE SYSTEM SHALL produce a manifest mapping every populated source pointer to a canonical pointer or an explained exception and SHALL block publication on any count mismatch, unresolved evidence reference, placeholder substitution, or unexplained omission.
+- **LEARN-OBS-01** — WHEN an analysis produces a reusable mechanism, device, grammar, proof mode, value mode, or failure mode, THE SYSTEM SHALL store a versioned ResearchConcept plus eligible `confirm|qualify|contradict` observations pinned to passed analysis revisions and SHALL NOT use hidden prompt memory as research evidence.
+- **LEARN-PROMOTE-02** — WHEN a concept is promoted from video-specific to creator-specific, THE SYSTEM SHALL require at least 3 distinct videos, at least 1 deep reconstruction, and either 2 performance tiers or an explicit tier condition; WHEN promoted to track-wide, THE SYSTEM SHALL require at least 3 comparable creators, 3 videos and 1 deep reconstruction per creator, at least 9 videos total, and at most 20% contradictions inside the claimed condition.
+- **LEARN-INVALIDATE-03** — WHEN a source, mapping, lens gate, analysis revision, or comparability decision becomes invalid, THE SYSTEM SHALL create an immutable demotion/invalidation revision and SHALL mark dependent creator/comparison conclusions stale before another current revision can publish.

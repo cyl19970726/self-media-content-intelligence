@@ -6,6 +6,7 @@ import { ComparisonProjectService } from "../modules/comparison/service.js";
 import { ComparisonProjectWorker } from "../modules/comparison/worker.js";
 import { EgoBrowserCreatorExecutor } from "../platform/browser/ego-browser-creator-executor.js";
 import { createApp } from "./app.js";
+import { createDurableResearchLearningService } from "./research-learning.js";
 
 const port = apiPort();
 const analysisService = new AnalysisService();
@@ -13,7 +14,8 @@ const creatorResearchService = new CreatorResearchService();
 const creatorWorker = new CreatorResearchWorker(creatorResearchService, new EgoBrowserCreatorExecutor());
 const comparisonProjectService = new ComparisonProjectService(creatorResearchService);
 const comparisonWorker = new ComparisonProjectWorker(comparisonProjectService);
-const app = createApp(analysisService, creatorResearchService, comparisonProjectService);
+const researchLearningService = createDurableResearchLearningService();
+const app = createApp(analysisService, creatorResearchService, comparisonProjectService, researchLearningService);
 creatorWorker.start();
 comparisonWorker.start();
 
@@ -38,6 +40,7 @@ function shutdown(): void {
     analysisService.close();
     creatorResearchService.close();
     comparisonProjectService.close();
+    researchLearningService.close();
   });
 }
 

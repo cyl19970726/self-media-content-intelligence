@@ -9,6 +9,19 @@ export const researchStatementSchema = z.object({
   caveat: z.string().nullable()
 });
 
+export const portfolioClusterSchema = z.object({
+  name: z.string(),
+  count: z.number().int().nonnegative(),
+  share: z.number().min(0).max(1).nullable(),
+  measuredCount: z.number().int().nonnegative(),
+  medianLikes: z.number().nonnegative().nullable(),
+  meanLikes: z.number().nonnegative().nullable(),
+  maxLikes: z.number().nonnegative().nullable(),
+  highCount: z.number().int().nonnegative().nullable(),
+  interpretation: z.string().nullable(),
+  evidenceRefs: z.array(z.string())
+});
+
 export const creatorDossierItemSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -21,6 +34,9 @@ export const creatorDossierItemSchema = z.object({
   deepSample: z.boolean(),
   likes: z.number().nonnegative().nullable(),
   collections: z.number().nonnegative().nullable(),
+  comments: z.number().nonnegative().nullable(),
+  shares: z.number().nonnegative().nullable(),
+  percentileRank: z.number().min(0).max(100).nullable(),
   publishedLabel: z.string().nullable(),
   durationSeconds: z.number().nonnegative().nullable(),
   topic: z.string().nullable(),
@@ -60,10 +76,16 @@ export const creatorDossierSchema = z.object({
     medianLikes: z.number().nonnegative().nullable(),
     meanLikes: z.number().nonnegative().nullable(),
     maxLikes: z.number().nonnegative().nullable(),
+    videoCount: z.number().int().nonnegative().nullable(),
+    highCount: z.number().int().nonnegative().nullable(),
+    percentiles: z.object({ p10: z.number().nullable(), p25: z.number().nullable(), p75: z.number().nullable(), p90: z.number().nullable() }),
     distribution: z.array(z.object({ label: z.string(), count: z.number().int().nonnegative(), share: z.number() })),
+    notes: z.array(z.string()),
     health: dataHealthSchema
   }),
   contentSystem: z.object({
+    topicClusters: z.array(portfolioClusterSchema),
+    formatClusters: z.array(portfolioClusterSchema),
     topics: z.array(researchStatementSchema),
     formats: z.array(researchStatementSchema),
     visualLanguage: z.array(researchStatementSchema),
@@ -74,6 +96,9 @@ export const creatorDossierSchema = z.object({
     id: z.enum(["high", "base", "low"]),
     label: z.string(),
     conclusion: z.array(researchStatementSchema),
+    mechanisms: z.array(researchStatementSchema),
+    failurePatterns: z.array(researchStatementSchema),
+    metrics: z.object({ medianLikes: z.number().nullable(), meanLikes: z.number().nullable(), minLikes: z.number().nullable(), maxLikes: z.number().nullable() }),
     count: z.number().int().nonnegative()
   })).length(3),
   portfolio: z.object({

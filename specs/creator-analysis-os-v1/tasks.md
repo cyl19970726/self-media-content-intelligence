@@ -66,3 +66,43 @@
 - [x] E3. Validate V1 read schemas and legacy-adapter parity.
 - [x] E4. Verify desktop and mobile routes in the built-in browser.
 - [x] E5. Commit and push the converged implementation to the public repository.
+
+## Phase F — analytical depth restoration
+
+The earlier mechanical convergence passed route/schema/build checks but failed Owner review because populated historical evidence was flattened into placeholders and generic statements. Mechanical success is not product acceptance.
+
+- [x] F1. Confirm the three-lens research methodology and the cross-analysis learning loop.
+  - _Requirements: §2, §3.2, §4.7; Decisions D-11–D-14_
+- [x] F2. Add depth-parity fixtures for AI红发魔女, 张咋啦, and 人类最强编导.
+  - Assert populated corpus, topic/format, tier, portfolio, reconstruction, frame, transcript, OCR/audio, and gate fields survive projection.
+  - Emit and validate the source→canonical parity manifests in [creator-depth-parity.md](creator-depth-parity.md), including AI红发魔女 331/318/21/9, 张咋啦 62/21/12-registered/9-canonical, and 人类最强编导 19/8 assertions.
+  - _Requirements: §4, PARITY-AIWITCH-01–PARITY-MAP-04; Decisions D-13, D-16_
+- [x] F3. Restore rich single-creator projections for the three reference creators.
+  - Preserve full-corpus health, topic/format statistics, tier mechanisms, and per-record depth.
+  - _Requirements: §4_
+- [x] F4. Restore real single-video evidence projections.
+  - Expose content restoration, directing logic, and visual/editing logic separately.
+  - Implement the three independent coverage objects, CR/DL/VE gates, AND-ready gate, evidence resolution, and fixed page order from [three-lens-video-contract.md](three-lens-video-contract.md).
+  - _Requirements: §3, §3.2, VID-LENS-01–VID-ORDER-05; Decision D-15_
+- [x] F5. Rebuild the accepted Dashboard information flow without creating another parallel Dashboard.
+  - Keep the accepted visual language and the same canonical URLs.
+  - _Requirements: §6; Frontend layout contract_
+- [x] F6. Run depth, browser, responsive, and operator-value acceptance.
+  - A page that renders but cannot support a substantive content judgment fails.
+  - _Requirements: §7_
+- [x] F7. Publish the corrected implementation only after Owner-visible parity evidence is available.
+
+## Phase G — versioned research learning
+
+- [x] G1. Add ResearchConcept, Observation, Revision, and included/excluded observation schemas plus immutable persistence.
+  - _Requirements: §4.7, LEARN-OBS-01; Decision D-17_
+- [x] G2. Emit eligible `confirm|qualify|contradict` observations from passed video and creator revisions; quarantine observations when their source gate is not ready.
+  - _Requirements: LEARN-OBS-01, LEARN-INVALIDATE-03_
+- [x] G3. Implement deterministic video→creator→conditional→track-wide promotion and contradiction thresholds from [research-learning-model.md](research-learning-model.md).
+  - _Requirements: LEARN-PROMOTE-02; Decision D-17_
+- [x] G4. Implement re-evaluation, demotion/invalidation revisions, and stale cascades when evidence, mappings, gates, or comparability change.
+  - _Requirements: LEARN-INVALIDATE-03_
+- [ ] G5. Add concept drawers to video, creator, and comparison surfaces with definition, conditions, denominators, counterexamples, revision history, and evidence drill-down.
+  - _Requirements: §3–§6, LEARN-OBS-01–LEARN-INVALIDATE-03_
+- [x] G6. Add fixtures proving promotion thresholds, duplicate-video vote suppression, qualification, contradiction disclosure, invalidation cascade, and restoration history.
+  - _Requirements: LEARN-PROMOTE-02, LEARN-INVALIDATE-03_

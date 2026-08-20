@@ -37,6 +37,8 @@ The current industrial-editorial visual language remains the default direction. 
 
 Detailed layout and wireframes: [frontend-layout.md](frontend-layout.md).
 
+The analytical operating model that every projection must preserve is defined in [research-methodology.md](research-methodology.md). In particular, single-video pages must expose content restoration, directing logic, and visual/editing logic separately; creator pages must synthesize full-corpus context with High/Base/Low variance.
+
 ## Page boundary
 
 - Single-video pages restore and evidence one video's content.
@@ -56,6 +58,8 @@ The active research UI now follows the confirmed boundaries:
 - research pages contain no copying, next-post, script, CTA, or experiment recommendations.
 
 Historical static artifacts remain readable only through server-side compatibility adapters. They do not define routes, schemas, or a second Dashboard.
+
+Compatibility adapters are migration layers, not lossy summaries. They must preserve every populated source field needed by the current product contract and pass depth-parity fixtures against the historical artifacts. A schema-valid projection containing placeholders where source evidence exists is a failed migration.
 
 ## Confirmed architecture
 

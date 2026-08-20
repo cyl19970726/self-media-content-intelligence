@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { loadCreatorSummaries } from "./creators.js";
 
 describe("loadCreatorSummaries", () => {
-  it("loads the two active creators from repo artifacts", () => {
+  it("loads the three active creators from repo artifacts", () => {
     const summaries = loadCreatorSummaries();
-    expect(summaries.map((summary) => summary.id)).toEqual(["ai-red-witch", "human-director"]);
+    expect(summaries.map((summary) => summary.id)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);
   });
 
   it("every summary satisfies the card contract", () => {

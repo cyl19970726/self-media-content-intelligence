@@ -30,10 +30,30 @@ function redWitch(): CreatorSummary | null {
   };
 }
 
-// zhang-zala loader removed from the overview on 2026-08-17 (Owner decision):
-// deep-dive frames under videos/<id>/skill-run fail to render in the browser.
-// Research artifacts remain untouched at artifacts/creator-research/zhang-zala-v1.
-// The previous loader is recoverable from git history (commit 4bbe6e2e).
+function zhangZala(): CreatorSummary | null {
+  const dashboard = readJson("zhang-zala-v1/dashboard-data.json");
+  if (!dashboard) return null;
+  const creator = asRecord(dashboard.creator);
+  const overview = asRecord(dashboard.overview);
+  const positioning = asRecord(dashboard.positioning);
+  const topics = Array.isArray(dashboard.topicClusters) ? dashboard.topicClusters as Record<string, unknown>[] : [];
+  return {
+    id: "zhang-zala",
+    name: asString(creator.name, "张咋啦"),
+    followers: formatCount(asNumber(asRecord(creator.publicStats).followers)),
+    likesAndCollections: formatCount(asNumber(asRecord(creator.publicStats).likesAndCollections)),
+    profileUrl: asString(creator.profileUrl),
+    positioning: asString(positioning.sentence),
+    summary: "62 条作品基本盘、High/Base/Low 统一 21 条比较集，以及高、中位、平均值附近和低表现的 12 条既有深度内容资产。",
+    tags: topics.slice(0, 4).map((topic) => asString(topic.name)).filter(Boolean),
+    stats: [
+      { label: "全量作品", value: formatCount(asNumber(overview.postCount)) },
+      { label: "点赞中位", value: formatCount(asNumber(overview.medianLikes)) },
+      { label: "深度内容", value: formatCount(Array.isArray(dashboard.deepDives) ? dashboard.deepDives.length : 0) }
+    ],
+    entries: [{ label: "62 条基本盘 · 21 条比较 · 深度证据", href: "/research/zhang-zala-v1/dashboard/index.html" }]
+  };
+}
 
 function humanDirector(): CreatorSummary | null {
   const analysis = readJson("human-director/analysis.json");
@@ -67,6 +87,7 @@ function humanDirector(): CreatorSummary | null {
 
 const loaders: Record<string, () => CreatorSummary | null> = {
   "ai-red-witch": redWitch,
+  "zhang-zala": zhangZala,
   "human-director": humanDirector
 };
 

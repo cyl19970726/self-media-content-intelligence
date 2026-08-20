@@ -3,6 +3,7 @@ import type { CreatorSynthesis } from "../modules/creator-synthesis/contracts.js
 import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
 import { loadCreatorConsole } from "./console.js";
+import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 
@@ -37,6 +38,9 @@ export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorD
     deepSample: video.selected,
     likes: video.likes,
     collections: video.collections,
+    comments: null,
+    shares: null,
+    percentileRank: null,
     publishedLabel: video.publishedLabel,
     durationSeconds: null,
     topic: video.archetype,
@@ -74,17 +78,24 @@ export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorD
       medianLikes: data.baseline?.medianLikes ?? null,
       meanLikes: data.baseline?.meanLikes ?? null,
       maxLikes: data.baseline?.maxLikes ?? null,
+      videoCount: data.baseline?.postCount ?? null,
+      highCount: null,
+      percentiles: { p10: null, p25: null, p75: null, p90: null },
       distribution: data.baseline?.distribution ?? [],
+      notes: [data.baseline?.averageNote].filter((value): value is string => Boolean(value)),
       health: data.baselineHealth ?? health("missing", "基本盘未覆盖。", data.meta.capturedAt)
     },
     contentSystem: {
+      topicClusters: [],
+      formatClusters: [],
       topics: data.contentMap.slotName.includes("内容") ? mapped : [],
       formats: [],
       visualLanguage: [],
       recurringStructures: data.contentMap.slotName.includes("内容") ? [] : mapped,
       health: health(mapped.length ? "partial" : "missing", `${data.contentMap.slotName}来自兼容 Artifact，尚未统一主题与形式标注。`, data.meta.capturedAt)
     },
-    tiers: data.tiers.map((tier) => ({ id: tier.id, label: tierLabels[tier.id], conclusion: [observed(tier.conclusion, ref)], count: tier.videos.length })),
+    tiers: data.tiers.map((tier) => ({ id: tier.id, label: tierLabels[tier.id], conclusion: [observed(tier.conclusion, ref)], mechanisms: [], failurePatterns: [],
+      metrics: { medianLikes: null, meanLikes: null, minLikes: null, maxLikes: null }, count: tier.videos.length })),
     portfolio: { items, deepCount: items.filter((item) => item.deepSample).length,
       health: health(items.length === 21 ? "full" : "partial", `兼容数据集包含 ${items.length} 条。`, data.meta.capturedAt) },
     rhythm: { statements: data.rhythm ? [observed(data.rhythm.conclusion, ref)] : [],
@@ -135,6 +146,9 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       deepSample: item.deepCandidate,
       likes: item.likes,
       collections: null,
+      comments: null,
+      shares: null,
+      percentileRank: null,
       publishedLabel: detail?.publishedLabel ?? null,
       durationSeconds: mediaItem?.durationSeconds ?? null,
       topic: analyzed?.contentRole ?? null,
@@ -187,18 +201,25 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       medianLikes: analysis?.likes.median ?? null,
       meanLikes: analysis?.likes.mean ?? null,
       maxLikes: analysis?.likes.max ?? null,
+      videoCount: null,
+      highCount: null,
+      percentiles: { p10: null, p25: null, p75: null, p90: null },
       distribution: [],
+      notes: [analysis?.interpretationBoundary].filter((value): value is string => Boolean(value)),
       health: health(analysis ? analysis.metricCoverage.rate >= 0.8 ? "full" : "partial" : "missing",
         analysis ? `公开点赞覆盖 ${Math.round(analysis.metricCoverage.rate * 100)}%。` : "全量基本盘尚未生成。", capturedAt)
     },
     contentSystem: {
+      topicClusters: [],
+      formatClusters: [],
       topics: synthesis?.contentSystem.topicClusters.map(claim) ?? [],
       formats: synthesis?.contentSystem.formatClusters.map(claim) ?? [],
       visualLanguage: synthesis?.contentSystem.visualLanguage.map(claim) ?? [],
       recurringStructures: synthesis?.contentSystem.recurringStructure.map(claim) ?? [],
       health: health(synthesis ? "full" : "missing", synthesis ? "内容系统来自通过验证的博主综合。" : "等待博主综合硬闸。", capturedAt)
     },
-    tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tierLabels[tier], conclusion: tierClaims(tier),
+    tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tierLabels[tier], conclusion: tierClaims(tier), mechanisms: [], failurePatterns: [],
+      metrics: { medianLikes: null, meanLikes: null, minLikes: null, maxLikes: null },
       count: selection?.items.filter((item) => item.tier === tier).length ?? 0 })),
     portfolio: { items, deepCount: items.filter((item) => item.deepSample).length,
       health: health(items.length === 21 ? "full" : items.length ? "partial" : "missing", `${items.length}/21 条 canonical 记录可读。`, capturedAt) },
@@ -217,6 +238,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
   if (runProjection) return runProjection;
+  const deepLegacy = loadLegacyDeepDossier(id);
+  if (deepLegacy) return deepLegacy;
   const legacy = loadCreatorConsole(id);
   return legacy ? projectLegacyDossier(id, legacy) : null;
 }

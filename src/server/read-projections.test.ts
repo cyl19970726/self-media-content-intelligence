@@ -21,15 +21,19 @@ describe("Creator Analysis OS V1 read projections", () => {
     expect(dossier.tiers.map((tier) => tier.id)).toEqual(["high", "base", "low"]);
   });
 
-  it("projects legacy video evidence into the unified video research contract", () => {
+  it("projects the deepest available legacy video evidence into the unified video research contract", () => {
     const video = loadVideoResearch(emptyCreatorService, "ai-red-witch", "6801c0750000000007037156");
     expect(video).not.toBeNull();
     expect(video?.creatorId).toBe("ai-red-witch");
     expect(video?.transcript.length).toBeGreaterThan(0);
     expect(video?.knowledgeUnits.length).toBeGreaterThan(0);
     expect(video?.frames.sparse.length).toBeGreaterThan(0);
-    expect(video?.gate.ready).toBe(false);
-    expect(video?.gate.failedGateIds).toContain("legacy_evidence_projection");
+    expect(video?.gate.ready).toBe(true);
+    expect(video?.lensCoverage.contentRestoration.state).toBe("ready");
+    expect(video?.lensCoverage.directingLogic.state).toBe("ready");
+    expect(video?.lensCoverage.visualEditingLogic.state).toBe("ready");
+    expect(video?.knowledgeUnits.length).toBeGreaterThan(10);
+    expect(video?.directingLogic.stages.length).toBeGreaterThan(0);
   });
 
   it("does not invent a record for an unknown video", () => {

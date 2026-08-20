@@ -34,6 +34,18 @@ function StatementList({ values, empty }: { values: ResearchStatement[]; empty: 
   </article>)}</div>;
 }
 
+function ClusterTable({ title, values }: { title: string; values: CreatorDossier["contentSystem"]["topicClusters"] }) {
+  return <article className="cluster-panel"><header><h3>{title}</h3><span>{values.length} 个开放标签 · 可重叠</span></header>
+    {values.length === 0 ? <p className="dossier-empty">当前没有可复算的聚类统计。</p> : <div className="cluster-table">
+      <div className="cluster-table__head"><span>方向</span><span>数量 / 占比</span><span>中位</span><span>平均</span><span>最高</span><span>≥1万</span></div>
+      {values.map((value) => <div className="cluster-table__row" key={value.name}>
+        <strong>{value.name}</strong><span>{value.count} · {value.share === null ? "—" : `${Math.round(value.share * 100)}%`}</span><b>{metric(value.medianLikes)}</b><b>{metric(value.meanLikes)}</b><b>{metric(value.maxLikes)}</b><span>{value.highCount ?? "—"}</span>
+        {value.interpretation && <small>{value.interpretation}</small>}
+      </div>)}
+    </div>}
+  </article>;
+}
+
 function DossierSection({ id, index, title, note, health, children }: {
   id: string; index: string; title: string; note: string; health?: CreatorDossier["corpus"]["health"]; children: React.ReactNode;
 }) {
@@ -68,7 +80,14 @@ export default function CreatorDossierPage() {
 
   const view = search.get("view") === "gallery" ? "gallery" : "list";
   const tier = ["high", "base", "low"].includes(search.get("tier") ?? "") ? search.get("tier") : "all";
-  const items = useMemo(() => data?.portfolio.items.filter((item) => tier === "all" || item.tier === tier) ?? [], [data, tier]);
+  const topic = search.get("topic") ?? "all";
+  const format = search.get("format") ?? "all";
+  const evidence = search.get("evidence") ?? "all";
+  const topicOptions = useMemo(() => [...new Set(data?.portfolio.items.map((item) => item.topic).filter((value): value is string => Boolean(value)) ?? [])], [data]);
+  const formatOptions = useMemo(() => [...new Set(data?.portfolio.items.map((item) => item.format).filter((value): value is string => Boolean(value)) ?? [])], [data]);
+  const items = useMemo(() => data?.portfolio.items.filter((item) => (tier === "all" || item.tier === tier)
+    && (topic === "all" || item.topic === topic) && (format === "all" || item.format === format)
+    && (evidence === "all" || (evidence === "deep" ? item.deepSample : item.evidenceStatus === evidence))) ?? [], [data, tier, topic, format, evidence]);
   const setOption = (key: string, value: string) => {
     const next = new URLSearchParams(search);
     if (value === "all") next.delete(key);
@@ -107,26 +126,30 @@ export default function CreatorDossierPage() {
       </div>
 
       <DossierSection id="corpus" index="02" title="数据健康与全量基本盘" note="中位代表常态，平均揭示头部拉动，最高值只表示公开上限。" health={data.corpus.health}>
-        <div className="metric-band"><div><b>{data.corpus.postCount}</b><span>可见作品</span></div><div><b>{metric(data.corpus.medianLikes)}</b><span>点赞中位</span></div><div><b>{metric(data.corpus.meanLikes)}</b><span>平均点赞</span></div><div><b>{metric(data.corpus.maxLikes)}</b><span>最高点赞</span></div><div><b>{Math.round(data.corpus.coverageRate * 100)}%</b><span>指标覆盖</span></div></div>
+        <div className="metric-band"><div><b>{data.corpus.postCount}</b><span>可见作品</span></div><div><b>{metric(data.corpus.medianLikes)}</b><span>点赞中位</span></div><div><b>{metric(data.corpus.meanLikes)}</b><span>平均点赞</span></div><div><b>{metric(data.corpus.maxLikes)}</b><span>最高点赞</span></div><div><b>{data.corpus.highCount ?? "—"}</b><span>≥1 万作品</span></div><div><b>{Math.round(data.corpus.coverageRate * 100)}%</b><span>指标覆盖</span></div></div>
+        <div className="percentile-strip"><span>P10 <b>{metric(data.corpus.percentiles.p10)}</b></span><span>P25 <b>{metric(data.corpus.percentiles.p25)}</b></span><span>P75 <b>{metric(data.corpus.percentiles.p75)}</b></span><span>P90 <b>{metric(data.corpus.percentiles.p90)}</b></span><span>视频 <b>{data.corpus.videoCount ?? "—"}</b></span><span>已知点赞 <b>{data.corpus.likesKnown}</b></span></div>
         <p className="console-note"><AlertTriangle size={14}/>{data.corpus.health.reason}</p>
+        <div className="corpus-notes">{data.corpus.notes.map((note) => <p key={note}>{note}</p>)}</div>
+        <div className="distribution-view"><header><b>公开点赞分布</b><span>不同区间的作品数量与占比</span></header>{data.corpus.distribution.map((bucket) => <div key={bucket.label}><span>{bucket.label}</span><i><em style={{ width: `${Math.max(2, bucket.share)}%` }}/></i><b>{bucket.count}</b><small>{bucket.share}%</small></div>)}</div>
       </DossierSection>
 
       <DossierSection id="system" index="03" title="主题与内容形式组合" note="分开看他讲什么、怎么讲、画面如何组织以及哪些结构反复出现。" health={data.contentSystem.health}>
+        <div className="cluster-grid"><ClusterTable title="主题基本盘" values={data.contentSystem.topicClusters}/><ClusterTable title="内容形式基本盘" values={data.contentSystem.formatClusters}/></div>
         <div className="dossier-two-column"><article><h3>主题组合</h3><StatementList values={data.contentSystem.topics} empty="主题标签尚未结构化。"/></article><article><h3>形式组合</h3><StatementList values={data.contentSystem.formats} empty="内容形式尚未结构化。"/></article><article><h3>画面语言</h3><StatementList values={data.contentSystem.visualLanguage} empty="画面语言尚未结构化。"/></article><article><h3>重复结构</h3><StatementList values={data.contentSystem.recurringStructures} empty="重复结构尚未结构化。"/></article></div>
       </DossierSection>
 
       <DossierSection id="tiers" index="04" title="High / Base / Low 表现解释" note="先解释账号基本盘，再看爆发与失效；相关性和因果证据分开。">
-        <div className="tier-rule-strip">{data.tiers.map((item) => <article key={item.id}><span>{item.label}</span><b>{item.count} 条</b><StatementList values={item.conclusion} empty="当前没有可用结论。"/></article>)}</div>
+        <div className="tier-rule-strip">{data.tiers.map((item) => <article key={item.id}><span>{item.label}</span><b>{item.count} 条</b><div className="tier-metrics"><small>中位 {metric(item.metrics.medianLikes)}</small><small>平均 {metric(item.metrics.meanLikes)}</small><small>最高 {metric(item.metrics.maxLikes)}</small></div><StatementList values={item.conclusion} empty="当前没有可用结论。"/>{item.mechanisms.length > 0 && <details><summary>展开机制 · {item.mechanisms.length}</summary><StatementList values={item.mechanisms} empty=""/></details>}{item.failurePatterns.length > 0 && <details><summary>失效条件 · {item.failurePatterns.length}</summary><StatementList values={item.failurePatterns} empty=""/></details>}</article>)}</div>
       </DossierSection>
 
       <DossierSection id="portfolio" index="05" title="统一 21 条内容库" note="List 与 Gallery 是同一组记录；9 条深度样本只作为证据等级标记。" health={data.portfolio.health}>
-        <div className="portfolio-toolbar"><div>{["all", "high", "base", "low"].map((value) => <button key={value} className={tier === value ? "active" : ""} onClick={() => setOption("tier", value)}>{value === "all" ? "全部" : tierLabels[value as "high" | "base" | "low"]}</button>)}</div><div className="view-switch"><button className={view === "list" ? "active" : ""} onClick={() => setOption("view", "list")}><List size={14}/>List</button><button className={view === "gallery" ? "active" : ""} onClick={() => setOption("view", "gallery")}><Grid2X2 size={14}/>Gallery</button></div></div>
+        <div className="portfolio-toolbar"><div className="tier-filter">{["all", "high", "base", "low"].map((value) => <button key={value} className={tier === value ? "active" : ""} onClick={() => setOption("tier", value)}>{value === "all" ? "全部" : tierLabels[value as "high" | "base" | "low"]}</button>)}</div><div className="portfolio-selects"><label>主题<select value={topic} onChange={(event) => setOption("topic", event.target.value)}><option value="all">全部</option>{topicOptions.map((value) => <option key={value} value={value}>{value}</option>)}</select></label><label>形式<select value={format} onChange={(event) => setOption("format", event.target.value)}><option value="all">全部</option>{formatOptions.map((value) => <option key={value} value={value}>{value}</option>)}</select></label><label>证据<select value={evidence} onChange={(event) => setOption("evidence", event.target.value)}><option value="all">全部</option><option value="deep">深度样本</option><option value="deep_validated">三镜头硬闸通过</option><option value="deep_pending">三镜头待审</option><option value="surface_only">作品级</option></select></label></div><div className="view-switch"><button className={view === "list" ? "active" : ""} onClick={() => setOption("view", "list")}><List size={14}/>List</button><button className={view === "gallery" ? "active" : ""} onClick={() => setOption("view", "gallery")}><Grid2X2 size={14}/>Gallery</button></div></div>
         {view === "list" ? <div className="portfolio-list portfolio-list--v1"><div className="portfolio-list__head"><span>层级</span><span>内容</span><span>主题 / 形式</span><span>发布 / 时长</span><span>点赞 / 中位倍数</span><span>核心内容</span><span>内容架构</span><span>机制假设</span><span>证据</span></div>{items.map((item) => { const multiple = item.likes !== null && data.corpus.medianLikes ? item.likes / data.corpus.medianLikes : null; return <Link to={item.evidenceHref ?? item.sourceHref} target={item.evidenceHref ? undefined : "_blank"} rel={item.evidenceHref ? undefined : "noreferrer"} className="portfolio-list__row" key={item.id}><span data-label="层级" className={`tier-label tier-label--${item.tier}`}>{tierLabels[item.tier]}</span><strong data-label="内容">{item.title}</strong><span data-label="主题 / 形式">{[item.topic, item.format].filter(Boolean).join(" · ") || "未标注"}</span><span data-label="发布 / 时长">{item.publishedLabel ?? "时间未知"} · {duration(item.durationSeconds)}</span><b data-label="点赞 / 中位倍数">{metric(item.likes)} · {multiple === null ? "—" : `${multiple.toFixed(2)}×`}</b><small data-label="核心内容">{item.coreContent ?? "待深度还原"}</small><small data-label="内容架构">{item.contentArchitecture.join(" → ") || "待深度还原"}</small><small data-label="机制假设">{item.mechanismHypothesis ?? item.selectionReason}</small><em data-label="证据">{item.evidenceStatus}</em></Link>; })}</div>
           : <div className="portfolio-gallery">{items.map((item) => { const multiple = item.likes !== null && data.corpus.medianLikes ? item.likes / data.corpus.medianLikes : null; return <Link to={item.evidenceHref ?? item.sourceHref} target={item.evidenceHref ? undefined : "_blank"} rel={item.evidenceHref ? undefined : "noreferrer"} className={`portfolio-tile portfolio-tile--${item.tier}`} key={item.id}><div className="portfolio-tile__media">{item.coverHref && <img src={item.coverHref} alt="" loading="lazy"/>}<span>{String(item.tierRank).padStart(2, "0")}</span><em>{item.coverHref ? "真实贴片" : "贴片未取得"}</em></div><div><span>{tierLabels[item.tier]} · {[item.topic, item.format].filter(Boolean).join(" · ") || "形式未标注"}</span><h3>{item.title}</h3><b>{metric(item.likes)} 赞 · {multiple === null ? "—" : `${multiple.toFixed(2)}×中位`}</b><small>{item.publishedLabel ?? "时间未知"} · {duration(item.durationSeconds)} · {item.evidenceStatus}</small><p><strong>内容：</strong>{item.coreContent ?? "待深度还原"}</p><p><strong>架构：</strong>{item.contentArchitecture.join(" → ") || "待深度还原"}</p><p><strong>机制：</strong>{item.mechanismHypothesis ?? item.selectionReason}</p></div></Link>; })}</div>}
       </DossierSection>
 
       <DossierSection id="deep" index="06" title="深度证据覆盖" note="深度样本仍属于上面的同一组 21 条；这里只汇总覆盖，不再复制一份 9 条展示。">
-        <div className="deep-coverage-strip">{(["high", "base", "low"] as const).map((value) => { const tierItems = deepItems.filter((item) => item.tier === value); return <article key={value}><span>{tierLabels[value]}</span><b>{tierItems.filter((item) => item.evidenceStatus === "deep_validated").length}/{tierItems.length}</b><small>已通过 / 已选择</small></article>; })}<p>请在 21 条 List 或 Gallery 中按“证据”标记进入单视频还原；记录 ID、层级和筛选状态保持不变。</p></div>
+        <div className="deep-coverage-strip">{(["high", "base", "low"] as const).map((value) => { const tierItems = deepItems.filter((item) => item.tier === value); return <article key={value}><span>{tierLabels[value]}</span><b>{tierItems.filter((item) => item.evidenceStatus === "deep_validated").length}/{tierItems.length}</b><small>三镜头通过 / 已选择</small></article>; })}<p>请在 {data.portfolio.items.length} 条统一 List 或 Gallery 中按“证据”标记进入单视频还原；记录 ID、层级和筛选状态保持不变。</p></div>
       </DossierSection>
 
       <DossierSection id="rhythm" index="07" title="发布节奏与内容演化" note="时间字段缺失时保持未知，不用选样分布冒充全量节奏。" health={data.rhythm.health}><StatementList values={data.rhythm.statements} empty={data.rhythm.health.reason}/></DossierSection>

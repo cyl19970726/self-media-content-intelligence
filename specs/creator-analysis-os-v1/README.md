@@ -1,7 +1,7 @@
 # Creator Analysis OS V1
 
 Status: **product, frontend, and architecture confirmed**
-Last updated: 2026-08-20
+Last updated: 2026-08-21
 
 This specification records the confirmed research product, frontend contract, and technical architecture.
 
@@ -9,6 +9,10 @@ This specification records the confirmed research product, frontend contract, an
 
 - [requirements.md](requirements.md) — product scope, three analysis levels, non-goals, acceptance criteria.
 - [product-contract.md](product-contract.md) — confirmed decisions, journeys, surface boundaries, and honest-data rules.
+- [research-methodology.md](research-methodology.md) — governing analytical philosophy and High/Base/Low reasoning.
+- [three-lens-video-contract.md](three-lens-video-contract.md) — field, evidence, independent coverage/gate, and page-order contract for every deep video.
+- [creator-depth-parity.md](creator-depth-parity.md) — source-to-canonical-to-UI non-loss contract for the three reference creators.
+- [research-learning-model.md](research-learning-model.md) — versioned concept, observation, revision, promotion, contradiction, and invalidation model.
 - [frontend-layout.md](frontend-layout.md) — information architecture, text wireframes, responsive behavior, and UI states.
 - [design.md](design.md) — current frontend product design and the transition into architecture.
 - [architecture.md](architecture.md) — bounded contexts, storage, runtime and deployment profiles.

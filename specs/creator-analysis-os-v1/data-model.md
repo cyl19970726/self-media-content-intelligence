@@ -140,6 +140,11 @@ Metrics are nullable. `0` means a visible verified zero; `null` means unavailabl
 | `selection_items` | canonical 21 records and deep flags | selection set, post, tier, anchors, rank, reason, deep flag |
 | `conclusions` | indexed claims from an analysis revision | scope class, provenance, confidence, text, reasoning |
 | `conclusion_evidence` | typed evidence links for conclusions | conclusion, evidence reference |
+| `research_concepts` | stable open-taxonomy identity | slug, kind, current revision, current scope/status |
+| `research_concept_revisions` | immutable definition/scope decision | concept, parent, definition, exclusions, change type, scope before/after |
+| `research_observations` | evidence-backed concept occurrence/counterexample | concept revision, subject, relation, condition, analysis revision, confidence, gate state |
+| `concept_revision_observations` | included/excluded decision ledger | revision, observation, inclusion, exclusion reason |
+| `parity_manifests` | source-to-canonical migration proof | creator revision, contract version, source hashes/counts, mapping artifact, gate result |
 
 ### Multi-creator comparison
 
@@ -187,6 +192,16 @@ gate report
 readable article
 ```
 
+The reconstruction projection must expose three independently auditable analytical views:
+
+- `content_restoration`: thesis, article, knowledge units, transcript, claims, examples, limits, and relationships;
+- `directing_logic`: viewer questions, cognitive changes, promise/proof/payoff order, information load, transitions, and credibility design;
+- `visual_editing_logic`: composition, carriers, shots, cut rhythm, sparse/dense frames, UI/OCR, before/during/after states, and non-speech audio.
+
+Presence is not completeness. Each view records coverage, evidence references, conflicts, unknowns, and evaluation state.
+
+The exact fields, structural minima, four independent gates, and page projection order are normative in [three-lens-video-contract.md](three-lens-video-contract.md). The three coverage objects never collapse into one averaged score.
+
 ### Creator artifact family
 
 ```text
@@ -198,6 +213,16 @@ canonical selection set
 creator analysis
 creator read projection
 ```
+
+The creator read projection must retain, rather than flatten:
+
+- corpus percentiles, distribution, head count/concentration, coverage and data-health notes;
+- structured topic and format clusters with count/share/median/mean/maximum/high share;
+- High/Base/Low tier metrics, patterns, mechanisms, failure conditions, and confounds;
+- per-record public metrics, relative position, core content, content architecture, mechanism, anchors, and evidence state;
+- provenance scope distinguishing full corpus, 21-record comparison, and 9-video reconstruction evidence.
+
+The three reference migrations additionally emit the immutable manifest and count assertions in [creator-depth-parity.md](creator-depth-parity.md). `registeredDeep` and `canonicalDeep` are separate counts so a source evidence package outside the canonical nine remains retained and addressable.
 
 ### Comparison artifact family
 
@@ -304,3 +329,19 @@ Visibility classes:
 - `public_safe` — redacted projection/export safe for a public repository.
 
 Garbage collection may remove unreferenced transient artifacts after TTL. Immutable evidence referenced by a published revision is retained until the revision is explicitly retired.
+
+## 12. Research-learning model
+
+`research_concepts.kind` is one of:
+
+- `content_mechanism`;
+- `directing_device`;
+- `visual_grammar`;
+- `proof_mode`;
+- `failure_mode`;
+- `value_mode`;
+- `condition`.
+
+`research_observations.relation` is exactly `confirm | qualify | contradict`; `gate_state` is `eligible | quarantined | invalid`. An eligible observation pins one subject, one analysis revision, a machine-readable condition, and at least one resolvable evidence reference. One video supplies at most one independent vote to one concept revision.
+
+Concept definition, exclusions, scope, status, and evidence membership change only through an immutable revision. Promotion and invalidation rules are defined in [research-learning-model.md](research-learning-model.md); implementations must reproduce their creator and cross-creator thresholds from stored observations rather than a generated summary.

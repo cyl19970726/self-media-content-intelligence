@@ -1,5 +1,7 @@
 # Creator Analysis OS V1 — Product Contract
 
+The analytical decisions below are implemented by [three-lens-video-contract.md](three-lens-video-contract.md), [creator-depth-parity.md](creator-depth-parity.md), and [research-learning-model.md](research-learning-model.md).
+
 ## 1. Confirmed decisions
 
 | ID | Decision | Status |
@@ -14,6 +16,13 @@
 | D-08 | Research surfaces contain no copying or next-post advice. | Confirmed |
 | D-09 | Creation Workspace is a future independent module that may reference creators or posts. | Deferred |
 | D-10 | Use the architecture defined by `architecture.md`, `data-model.md`, `pipeline-and-gates.md`, and `api-contract.md` as the confirmed implementation contract. | Confirmed |
+| D-11 | Deep video analysis has three required lenses: content restoration, directing logic, and visual/editing logic. | Confirmed |
+| D-12 | Creator positioning and value are derived from full-corpus context plus High/Base/Low variance and deep evidence, not profile copy alone. | Confirmed |
+| D-13 | AI红发魔女's existing research depth is the minimum migration parity reference; unified information architecture may not silently discard populated evidence. | Confirmed |
+| D-14 | Cross-analysis learning must be versioned into open taxonomies, mechanisms, failure modes, evaluation cases, and evidence queries. | Confirmed |
+| D-15 | The three video lenses have separate canonical fields, coverage denominators, and hard gates; overall readiness is their logical AND, not an averaged score. | Confirmed |
+| D-16 | The three historical creator studies are migration fixtures with explicit source→canonical→UI mappings and cannot lose populated evidence; 张咋啦 retains 12 registered deep assets even though V1 marks 9 canonical deep records. | Confirmed |
+| D-17 | Research learning uses versioned ResearchConcept, Observation, and Revision objects with quantitative promotion, contradiction disclosure, demotion, and invalidation cascade. | Confirmed |
 
 ## 2. Capability and user
 
@@ -43,7 +52,7 @@ A content operator, researcher, editor, or product owner studying public creator
 
 ### Journey A — single video
 
-Open a video record → read thesis and restored article → understand architecture and form → inspect performance context → expand transcript/frames/relationships → inspect conflicts and unknowns → return to the parent creator with context preserved.
+Open a video record → verify source/evidence health → read content restoration → inspect directing logic → inspect visual/editing logic → expand cue/frame/shot evidence → inspect conflicts, unknowns, unchecked carriers and independent lens gates → return to the parent creator with context preserved.
 
 ### Journey B — single creator
 
@@ -86,6 +95,8 @@ If collection is stale, partial, throttled, challenged, or failed, show last-goo
 - A conclusion and its evidence boundary remain adjacent; methodology is not hidden in a distant appendix.
 - Keyboard focus is visible; interactive rows support Enter/Space; drawers restore focus on close.
 - Copy tone is factual and quiet: no “爆款密码”, “必抄”, “稳赢”, or unsupported certainty.
+- Single-video pages keep the fixed three-lens order in [three-lens-video-contract.md](three-lens-video-contract.md); a partial lens remains visible with its failed gate IDs.
+- Creator and comparison concept drawers show current revision, scope, conditions, support/contradiction denominators, and revision history from [research-learning-model.md](research-learning-model.md).
 
 ## 7. Research/creation boundary
 

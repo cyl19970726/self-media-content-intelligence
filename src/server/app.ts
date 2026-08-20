@@ -9,13 +9,16 @@ import { projectRoot, runtimeDir } from "../core/config.js";
 import { createCreatorResearchRunInputSchema, createRunInputSchema } from "../shared/schema.js";
 import { loadCreatorSummaries } from "./creators.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
+import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
 import { loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
+import { createDurableResearchLearningService } from "./research-learning.js";
 
 export function createApp(
   service = new AnalysisService(),
   creatorResearchService = new CreatorResearchService(),
-  comparisonProjectService = new ComparisonProjectService(creatorResearchService)
+  comparisonProjectService = new ComparisonProjectService(creatorResearchService),
+  researchLearningService = createDurableResearchLearningService()
 ) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
@@ -156,11 +159,32 @@ export function createApp(
     return response.json(dossier);
   });
 
+  app.get("/api/v1/creators/:id/depth-parity", (request, response) => {
+    if (!["ai-red-witch", "zhang-zala", "human-director"].includes(request.params.id)) {
+      return response.status(404).json({ error: "该博主尚未登记深度迁移合同" });
+    }
+    try {
+      return response.json(buildCreatorDepthParityManifest(request.params.id as "ai-red-witch" | "zhang-zala" | "human-director"));
+    } catch (error) {
+      return response.status(500).json({ error: error instanceof Error ? error.message : "深度迁移清单生成失败" });
+    }
+  });
+
   app.get("/api/v1/creators/:id/videos/:videoId", (request, response) => {
     const requestedRunId = typeof request.query.run === "string" ? request.query.run : undefined;
     const evidence = loadVideoResearch(creatorResearchService, request.params.id, request.params.videoId, requestedRunId);
     if (!evidence) return response.status(404).json({ error: "视频研究证据不存在" });
     return response.json(evidence);
+  });
+
+  app.get("/api/v1/research-concepts", (_request, response) => {
+    return response.json({ concepts: researchLearningService.list() });
+  });
+
+  app.get("/api/v1/research-concepts/:id", (request, response) => {
+    const concept = researchLearningService.get(request.params.id);
+    if (!concept) return response.status(404).json({ error: "研究概念不存在" });
+    return response.json(concept);
   });
 
   app.get("/api/runs", (request, response) => {
