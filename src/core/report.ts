@@ -477,8 +477,8 @@ function buildCreatorAnalysis(context: ContextSnapshot): ReportEnvelope["creator
   };
 }
 
-type AnalysisOutput = Pick<ReportEnvelope, "derivedMetrics" | "executiveSummary" | "findings" | "limitations" | "actions" |
-  "evidenceCoverage" | "context" | "benchmark" | "dataAnalysis" | "packaging" | "scriptAnalysis" | "audienceAnalysis" | "causalModel" | "trafficQuality" | "creatorAnalysis" | "replication" | "experiments">;
+type AnalysisOutput = Pick<ReportEnvelope, "derivedMetrics" | "executiveSummary" | "findings" | "limitations" |
+  "evidenceCoverage" | "context" | "benchmark" | "dataAnalysis" | "packaging" | "scriptAnalysis" | "audienceAnalysis" | "causalModel" | "trafficQuality" | "creatorAnalysis">;
 
 export function buildAnalysis(source: SourceSnapshot, media: MediaBreakdown | null, context: ContextSnapshot): AnalysisOutput {
   const derivedMetrics = deriveMetrics(source.metrics);
@@ -499,40 +499,9 @@ export function buildAnalysis(source: SourceSnapshot, media: MediaBreakdown | nu
     grade: node.status === "supported" ? "fact" : node.status === "plausible" ? "observation" : "inference",
     confidence: node.confidence, evidenceRefs: node.evidenceRefs
   }));
-  const replication = {
-    invariants: [`保留“${packaging.titlePattern}”的进入逻辑，而不是照抄原句。`, `保留 ${scriptAnalysis.informationUnits} 个左右的信息单元，并让每一段只有一个功能。`,
-      audienceAnalysis.nextContentDemand[0] ? `下一条优先回答真实追问：“${audienceAnalysis.nextContentDemand[0]}”` : "用真实评论问题决定下一条内容，而不是凭感觉续题。"],
-    variables: ["案例、行业和目标人群必须替换为自己的真实经验。", "标题问题式与结果式可作为实验变量。", "视频时长和剪辑密度需随平台调整。"],
-    accountDependencies: ["作者已有认知与粉丝基础不可复制。", "历史内容形成的选题预期可能影响点击。", "后台流量与转粉数据缺失，无法判断账号权重贡献。"],
-    risks: ["只复制数字标题会制造承诺但不增加证明。", "若没有真实案例，结构越清楚越容易暴露内容空洞。", "跨平台直接搬运会忽略消费场景与篇幅差异。"],
-    crossPlatform: [
-      { platform: "小红书", adaptation: "封面先呈现结果或冲突；正文强化收藏型清单，并用评论承接下一期。" },
-      { platform: "X", adaptation: "首条给出可引用判断，后续串文展示推理链与证据，结尾提出可回复的问题。" },
-      { platform: "抖音／视频号", adaptation: "前 3 秒口播结论，10 秒内交付第一个证据，减少背景铺垫。" },
-      { platform: "YouTube", adaptation: "开场先交付路线图，再扩展案例、反例和章节化证明。" }
-    ]
-  };
-  const experiments = [
-    { id: "title-promise", hypothesis: "数字化交付边界比纯问题标题更能提升高意图互动。",
-      variantA: `问题式：${source.title.replace(/\d+\s*(层|步|个|条)/, "关键方法")}`, variantB: `数字式：${source.title}`,
-      primaryMetric: source.platform === "xiaohongshu" ? "收藏/点赞比" : "书签+转发/浏览量", guardrails: ["评论问题率", "负面承诺落差评论"],
-      successCriteria: "至少 4 次同题材配对发布，B 的主指标中位数高出 A 20% 以上。", minimumRuns: 4,
-      measurementStatus: "ready" as const, missingMetrics: [] },
-    { id: "proof-density", hypothesis: "在机制段加入真实案例会提升分享与方法追问。",
-      variantA: "只讲三层框架。", variantB: "同框架 + 一个失败案例 + 一个成功前后对比。", primaryMetric: "分享率或分享/点赞比",
-      guardrails: ["完播率", "平均观看时长"], successCriteria: "至少 3 组配对内容，B 的分享指标连续 2 组领先。", minimumRuns: 3,
-      measurementStatus: "blocked" as const, missingMetrics: ["完播率", "平均观看时长"] },
-    { id: "comment-loop", hypothesis: "用高赞追问做开场能提升评论质量与系列关注。",
-      variantA: "创作者自拟开场。", variantB: `展示评论开场：${audienceAnalysis.nextContentDemand[0] ?? audienceAnalysis.unansweredQuestions[0] ?? "如何把框架用于真实案例？"}`,
-      primaryMetric: "每千次曝光的高意图评论数", guardrails: ["关注转化", "隐藏/负反馈"], successCriteria: "3 次实验后，B 的高意图评论密度中位数提升 25%。", minimumRuns: 3,
-      measurementStatus: "blocked" as const, missingMetrics: ["曝光量", "关注转化", "隐藏/负反馈"] }
-  ];
   const limitations = [...evidenceCoverage.missing.map((item) => `缺失：${item}`), ...evidenceCoverage.warnings];
   return {
     derivedMetrics, executiveSummary, findings, limitations, context, evidenceCoverage, benchmark, dataAnalysis, packaging, scriptAnalysis, trafficQuality, creatorAnalysis,
-    audienceAnalysis, causalModel, replication, experiments,
-    actions: { reusablePatterns: replication.invariants, avoidCopying: replication.risks,
-      hookRewrites: [experiments[0]?.variantA ?? source.title, experiments[0]?.variantB ?? source.title, experiments[2]?.variantB ?? source.title],
-      nextExperiments: experiments.map((experiment) => `${experiment.hypothesis}｜${experiment.successCriteria}`) }
+    audienceAnalysis, causalModel
   };
 }

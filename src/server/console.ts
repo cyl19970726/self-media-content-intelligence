@@ -138,8 +138,7 @@ function redWitchConsole(): CreatorConsole | null {
       items: engines.map((engine) => ({
         name: asString(engine.name),
         signal: asStringOrNull(engine.signal),
-        mechanism: asStringOrNull(engine.mechanism),
-        decision: null
+        mechanism: asStringOrNull(engine.mechanism)
       }))
     },
     rhythm: backfill ? {
@@ -152,8 +151,6 @@ function redWitchConsole(): CreatorConsole | null {
       reason: "21 条分层样本的发布节奏，反映选样结构而非账号真实节奏。",
       capturedAt: asStringOrNull(coverage.capturedAt)
     } : { status: "missing" as const, reason: "发布节奏数据缺失", capturedAt: null },
-    launch: null,
-    launchLink: null,
     boundaries: [
       asString(strategy?.evidenceBoundary, "公开数据边界未记录"),
       missing.fullCorpusRows === true ? "331 条全量公开盘面只保留了聚合摘要，逐条原始行未落盘（需重新采集）。" : ""
@@ -235,14 +232,12 @@ function humanDirectorConsole(): CreatorConsole | null {
     contentMap: {
       slotName: "内容样本类型",
       items: [...archetypes.values()].map((item) => ({
-        name: item.name, signal: null, mechanism: item.examples.join(" / "), decision: null
+        name: item.name, signal: null, mechanism: item.examples.join(" / ")
       }))
     },
     rhythm: null,
     rhythmHealth: { status: "missing" as const, reason: backfillMissing.publishedAt === true
       ? "19 条均无发布时间字段，发布节奏（星期/时段）无法计算。" : "发布节奏数据缺失", capturedAt: null },
-    launch: null,
-    launchLink: null,
     boundaries: [
       asString(analysis.selectionLogic),
       backfillMissing.archetypeMissingCount === 11 ? "19 条中 11 条无内容样本类型标签（archetype），内容地图只覆盖 8 条深样本。" : ""

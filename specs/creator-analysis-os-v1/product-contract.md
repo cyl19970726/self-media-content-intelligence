@@ -13,7 +13,7 @@
 | D-07 | Multi-creator analysis uses aligned windows and creator-relative normalization, not raw-like ranking alone. | Confirmed |
 | D-08 | Research surfaces contain no copying or next-post advice. | Confirmed |
 | D-09 | Creation Workspace is a future independent module that may reference creators or posts. | Deferred |
-| D-10 | Ideal backend and worker architecture is specified after product/front-end confirmation. | Proposed for confirmation |
+| D-10 | Use the architecture defined by `architecture.md`, `data-model.md`, `pipeline-and-gates.md`, and `api-contract.md` as the confirmed implementation contract. | Confirmed |
 
 ## 2. Capability and user
 

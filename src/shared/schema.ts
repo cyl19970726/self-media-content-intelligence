@@ -287,19 +287,6 @@ const causalNodeSchema = z.object({
   alternativeExplanations: z.array(z.string())
 });
 
-const experimentSchema = z.object({
-  id: z.string(),
-  hypothesis: z.string(),
-  variantA: z.string(),
-  variantB: z.string(),
-  primaryMetric: z.string(),
-  guardrails: z.array(z.string()),
-  successCriteria: z.string(),
-  minimumRuns: z.number().int().positive(),
-  measurementStatus: z.enum(["ready", "blocked"]).default("blocked"),
-  missingMetrics: z.array(z.string()).default([])
-});
-
 const qualityStatusSchema = z.enum(["strong", "mixed", "weak", "unknown"]);
 const qualityDimensionIdSchema = z.enum([
   "source", "scale", "retention", "depth", "fit", "conversion", "durability", "negative"
@@ -363,15 +350,7 @@ const reportV2Schema = z.object({
   audienceAnalysis: audienceAnalysisSchema,
   causalModel: z.array(causalNodeSchema),
   trafficQuality: trafficQualitySchema,
-  creatorAnalysis: creatorAnalysisSchema,
-  replication: z.object({
-    invariants: z.array(z.string()),
-    variables: z.array(z.string()),
-    accountDependencies: z.array(z.string()),
-    risks: z.array(z.string()),
-    crossPlatform: z.array(z.object({ platform: z.string(), adaptation: z.string() }))
-  }),
-  experiments: z.array(experimentSchema)
+  creatorAnalysis: creatorAnalysisSchema
 });
 export type ReportV2 = z.infer<typeof reportV2Schema>;
 
@@ -403,9 +382,7 @@ export function emptyReportV2(): ReportV2 {
     },
     creatorAnalysis: { status: "unavailable", sampleSize: 0, medianInteractions: null, topTwentySharePercent: null,
       hitRatePercent: null, medianCadenceDays: null, stability: "unknown", pillars: [], repeatableSignals: [], outliers: [],
-      verdict: "尚未取得博主主页样本。", limitations: ["需要作者主页与至少 5 条公开笔记。"] },
-    replication: { invariants: [], variables: [], accountDependencies: [], risks: [], crossPlatform: [] },
-    experiments: []
+      verdict: "尚未取得博主主页样本。", limitations: ["需要作者主页与至少 5 条公开笔记。"] }
   };
 }
 
@@ -425,13 +402,7 @@ export const reportEnvelopeSchema = z.object({
   derivedMetrics: derivedMetricsSchema,
   executiveSummary: z.string(),
   findings: z.array(findingSchema),
-  limitations: z.array(z.string()),
-  actions: z.object({
-    reusablePatterns: z.array(z.string()),
-    avoidCopying: z.array(z.string()),
-    hookRewrites: z.array(z.string()),
-    nextExperiments: z.array(z.string())
-  })
+  limitations: z.array(z.string())
 }).and(reportV2Schema.partial()).transform((report) => ({ ...emptyReportV2(), ...report }));
 export type ReportEnvelope = z.infer<typeof reportEnvelopeSchema>;
 
@@ -651,8 +622,7 @@ export const distributionBucketSchema = z.object({ label: z.string(), count: z.n
 export const contentMapItemSchema = z.object({
   name: z.string(),
   signal: z.string().nullable(),
-  mechanism: z.string().nullable(),
-  decision: z.string().nullable()
+  mechanism: z.string().nullable()
 });
 
 export const dataHealthSchema = z.object({
@@ -661,12 +631,6 @@ export const dataHealthSchema = z.object({
   capturedAt: z.string().nullable()
 });
 export type DataHealth = z.infer<typeof dataHealthSchema>;
-
-export const launchSchema = z.object({
-  summary: z.string(),
-  engines: z.array(z.object({ name: z.string(), decision: z.string() })),
-  steps: z.array(z.object({ name: z.string(), rule: z.string() }))
-});
 
 export const creatorConsoleSchema = z.object({
   meta: z.object({
@@ -695,8 +659,6 @@ export const creatorConsoleSchema = z.object({
     dayparts: z.array(z.object({ name: z.string(), count: z.number(), medianLikes: z.number().nullable() }))
   }).nullable(),
   rhythmHealth: dataHealthSchema.nullable(),
-  launch: launchSchema.nullable(),
-  launchLink: z.object({ label: z.string(), href: z.string() }).nullable(),
   boundaries: z.array(z.string()),
   evidenceLinks: z.array(z.object({ label: z.string(), href: z.string(), count: z.number() }))
 });

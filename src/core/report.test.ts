@@ -50,9 +50,6 @@ describe("deriveMetrics", () => {
     expect(report.trafficQuality.dimensions.find((dimension) => dimension.id === "depth")?.status).toBe("strong");
     expect(report.trafficQuality.dimensions.find((dimension) => dimension.id === "conversion")?.status).toBe("unknown");
     expect(report.trafficQuality.objectiveProfiles.find((profile) => profile.id === "authority")?.verdict).toContain("不能闭环");
-    expect(report.experiments.map((experiment) => experiment.measurementStatus)).toEqual(["ready", "blocked", "blocked"]);
-    expect(report.experiments[1]?.missingMetrics).toContain("完播率");
-    expect(report.experiments).toHaveLength(3);
     expect(report.creatorAnalysis).toMatchObject({ sampleSize: 8, status: "ready", stability: "mixed", hitRatePercent: 25 });
     expect(report.creatorAnalysis.topTwentySharePercent).toBeCloseTo(42.9, 1);
     expect(report.creatorAnalysis.repeatableSignals[0]).toContain("组合分布相对均衡");

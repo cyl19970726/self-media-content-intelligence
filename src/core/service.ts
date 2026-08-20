@@ -28,8 +28,7 @@ function initialReport(parsed: ParsedSource): ReportEnvelope {
     ],
     source: null, mediaBreakdown: null,
     derivedMetrics: { engagementRate: null, deepValueRate: null, conversationRate: null, amplificationRate: null },
-    executiveSummary: "等待采集与分析。", findings: [], limitations: [],
-    actions: { reusablePatterns: [], avoidCopying: [], hookRewrites: [], nextExperiments: [] }
+    executiveSummary: "等待采集与分析。", findings: [], limitations: []
   };
 }
 

@@ -55,13 +55,13 @@ The existing implementation predates the confirmed contract and must be treated 
 
 These discrepancies are named requirements, not permission to hide them with placeholder UI.
 
-## Proposed architecture
+## Confirmed architecture
 
-The product objects and page contract are frozen. The next-stage architecture proposal is now documented and still awaits final Owner confirmation:
+The product objects, page contract, and implementation architecture are confirmed together:
 
 - [architecture.md](architecture.md) — modular-monolith control plane, isolated workers, a relational ledger, and content-addressed evidence storage;
 - [data-model.md](data-model.md) — Entity / Snapshot / Artifact / Revision / Run as distinct layers;
 - [pipeline-and-gates.md](pipeline-and-gates.md) — durable DAGs, login handoff, invalidation, and research readiness;
 - [api-contract.md](api-contract.md) — stable read models for single video, single creator, multiple creators, and the shared evidence drawer.
 
-These documents do not authorize a backend rewrite until the Owner confirms the architecture.
+Implementation must remain consistent with these documents. A conflicting implementation does not redefine the product or architecture contract.

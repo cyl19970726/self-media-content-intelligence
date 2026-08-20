@@ -214,7 +214,7 @@ function CreativeXray({ report }: { report: ReportEnvelope }) {
         <article><span>TENSION</span><h3>冲突</h3><p>{report.packaging.tension}</p></article>
         <article><span>AUDIENCE</span><h3>受众</h3><p>{report.packaging.audience}</p></article>
       </div>
-      <div className="signal-line"><strong>标题公式</strong><span>{report.packaging.titlePattern}</span>{report.packaging.specificitySignals.map((item) => <i key={item}>{item}</i>)}</div>
+      <div className="signal-line"><strong>标题结构</strong><span>{report.packaging.titlePattern}</span>{report.packaging.specificitySignals.map((item) => <i key={item}>{item}</i>)}</div>
       <div className="script-diagnosis"><Split size={21}/><div><span>{report.scriptAnalysis.source.toUpperCase()} SOURCE</span><h3>{report.scriptAnalysis.diagnosis}</h3><p>{report.scriptAnalysis.wordCount} 字词 · {report.scriptAnalysis.informationUnits} 信息单元 · 判断/证明 {report.scriptAnalysis.claimCount}/{report.scriptAnalysis.proofCount}</p></div></div>
       <div className="script-map">
         {report.scriptAnalysis.segments.map((segment, index) => <article key={segment.id}>

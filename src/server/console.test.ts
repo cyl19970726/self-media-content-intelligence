@@ -16,8 +16,6 @@ describe("loadCreatorConsole", () => {
     expect(consoleData?.contentMap.slotName).toBe("增长引擎");
     expect(consoleData?.contentMap.items.length).toBe(3);
     expect(consoleData?.rhythm).not.toBeNull();
-    expect(consoleData?.launch).toBeNull();
-    expect(consoleData?.launchLink).toBeNull();
   });
 
   it("builds the human-director console with honest gaps", () => {
@@ -29,8 +27,6 @@ describe("loadCreatorConsole", () => {
     expect(consoleData?.rhythm).toBeNull();
     expect(consoleData?.rhythmHealth?.status).toBe("missing");
     expect(consoleData?.rhythmHealth?.reason).toContain("发布时间");
-    expect(consoleData?.launch).toBeNull();
-    expect(consoleData?.launchLink).toBeNull();
   });
 
   it("returns null for unknown creator", () => {
