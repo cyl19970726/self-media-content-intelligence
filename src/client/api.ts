@@ -1,4 +1,4 @@
-import { benchmarkSchema, creatorConsoleSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, videoEvidenceSchema, type Benchmark, type CreatorConsole, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary, type VideoEvidence } from "../shared/schema";
+import { creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../shared/schema";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../modules/portfolio/contracts";
 import { creatorDetailCollectionSchema, type CreatorDetailCollection } from "../modules/creator-detail/contracts";
 import { deepMediaManifestSchema, type DeepMediaManifest } from "../modules/media-resolution/contracts";
@@ -6,6 +6,9 @@ import { videoReconstructionBatchSchema, type VideoReconstructionBatch } from ".
 import { creatorSynthesisGateSchema, creatorSynthesisSchema, type CreatorSynthesis, type CreatorSynthesisGate } from "../modules/creator-synthesis/contracts";
 import { comparisonProjectSchema, type ComparisonProject } from "../modules/comparison/project-contracts";
 import { creatorComparisonSchema, type CreatorComparison } from "../modules/comparison/contracts";
+import { creatorDossierSchema, type CreatorDossier } from "../shared/creator-dossier";
+import { videoResearchSchema, type VideoResearch } from "../shared/video-research";
+import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -106,16 +109,15 @@ export async function getCreatorResearchPortfolio(id: string): Promise<CreatorRe
   });
 }
 
-export async function getCreatorConsole(id: string): Promise<CreatorConsole> {
-  return json(await fetch(`/api/creators/${id}`, { cache: "no-store" }), (value) => creatorConsoleSchema.parse(value));
+export async function getCreatorDossier(id: string): Promise<CreatorDossier> {
+  return json(await fetch(`/api/v1/creators/${encodeURIComponent(id)}`, { cache: "no-store" }),
+    (value) => creatorDossierSchema.parse(value));
 }
 
-export async function getVideoEvidence(creatorId: string, videoId: string): Promise<VideoEvidence> {
-  return json(await fetch(`/api/creators/${creatorId}/videos/${videoId}`, { cache: "no-store" }), (value) => videoEvidenceSchema.parse(value));
-}
-
-export async function getBenchmark(): Promise<Benchmark> {
-  return json(await fetch("/api/benchmark", { cache: "no-store" }), (value) => benchmarkSchema.parse(value));
+export async function getVideoResearch(creatorId: string, videoId: string, runId?: string): Promise<VideoResearch> {
+  const query = runId ? `?run=${encodeURIComponent(runId)}` : "";
+  return json(await fetch(`/api/v1/creators/${encodeURIComponent(creatorId)}/videos/${encodeURIComponent(videoId)}${query}`, { cache: "no-store" }),
+    (value) => videoResearchSchema.parse(value));
 }
 
 export async function listComparisonProjects(): Promise<ComparisonProject[]> {
@@ -138,4 +140,9 @@ export async function getComparisonProject(id: string): Promise<{ project: Compa
     return { project: comparisonProjectSchema.parse(candidate.project),
       comparison: candidate.comparison === null ? null : creatorComparisonSchema.parse(candidate.comparison) };
   });
+}
+
+export async function getComparisonDossier(id: string): Promise<ComparisonDossier> {
+  return json(await fetch(`/api/v1/comparisons/${encodeURIComponent(id)}/dossier`, { cache: "no-store" }),
+    (value) => comparisonDossierSchema.parse(value));
 }

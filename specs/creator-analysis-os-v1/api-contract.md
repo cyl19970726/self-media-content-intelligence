@@ -1,6 +1,6 @@
 # Creator Analysis OS — API 与页面读模型合同
 
-状态：**Proposed，等待 Owner 确认**
+状态：**Confirmed；V1 read projections 已实现，command envelope 仍按迁移阶段兼容旧路径**
 适用范围：单视频研究、单博主研究、多博主比较。发帖与复刻工作区不在本合同内。
 
 ## 1. 目标
@@ -149,7 +149,9 @@ API 不把文件夹结构直接暴露给前端，而是提供稳定的研究对�
 
 ### 5.2 单视频
 
-`GET /api/v1/videos/{videoId}`
+`GET /api/v1/creators/{creatorId}/videos/{videoId}?run={creatorRunId}`
+
+视频属于博主研究上下文，URL 保留返回博主的稳定路径；`run` 只用于固定历史重建版本。
 
 核心 read model：
 
@@ -243,7 +245,7 @@ type PortfolioItem = {
 
 ### 5.5 多博主比较
 
-`GET /api/v1/comparisons/{comparisonId}`
+`GET /api/v1/comparisons/{comparisonId}/dossier`
 
 ```ts
 type ComparisonView = {
@@ -259,6 +261,8 @@ type ComparisonView = {
 ```
 
 比较页只能比较有共同定义的数据。样本窗口、指标时间和采集完整度不兼容时，必须显示 `not_comparable`，不能强行排名。
+
+`GET /api/v1/comparisons/{comparisonId}` 保留项目状态与底层不可变比较 artifact；前端研究页只读取 `/dossier` 投影。
 
 ### 5.6 证据与来源
 
@@ -315,6 +319,16 @@ SSE 事件：`run.started`、`node.started`、`node.progress`、`node.blocked`�
 - 统计口径、High/Base/Low 分档、median/mean anchor、深度样本身份在 revision 内冻结；
 - 导出的静态 HTML 也从同一 projection 生成，明确显示 revision 和生成时间；
 - 静态导出是快照，不是新的事实来源，也不回流覆盖 canonical 数据。
+
+## 8.1 当前 V1 路由收敛
+
+| 研究层级 | 唯一页面 | 唯一 read projection |
+| --- | --- | --- |
+| 单视频 | `/creators/:creatorId/videos/:videoId` | `/api/v1/creators/:creatorId/videos/:videoId` |
+| 单博主 | `/creators/:creatorId` | `/api/v1/creators/:creatorId` |
+| 多博主 | `/comparisons/:comparisonId` | `/api/v1/comparisons/:comparisonId/dossier` |
+
+`/creator-runs/:id` 与 `/benchmark` 仅做页面重定向，不再拥有独立 read model。旧静态 Artifact 只在服务端兼容适配器内转换为同一 V1 schema；旧 `/api/creators/:id`、旧视频 API 和旧 benchmark API 已移除，避免平行真相。
 
 ## 9. 暂不进入 V1 的接口
 

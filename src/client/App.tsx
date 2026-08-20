@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
-import { Link, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ArrowRight, BarChart3, Check, CircleAlert, Clipboard, ExternalLink,
   LoaderCircle, Play, RefreshCw, Search, Users
@@ -7,10 +7,9 @@ import {
 import { createRun, getRun, listRuns, retryRun } from "./api";
 import { ReportV2 } from "./ReportV2";
 import CreatorsOverview from "./Creators";
-import CreatorConsolePage from "./CreatorConsole";
+import CreatorDossierPage from "./CreatorDossier";
 import BenchmarkPage from "./Benchmark";
 import VideoEvidencePage from "./VideoEvidence";
-import CreatorRunConsolePage from "./CreatorRunConsole";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -35,8 +34,8 @@ function Shell({ children }: { children: React.ReactNode }) {
     </header>
     <nav className="section-nav" aria-label="主导航">
       <Link className={location.pathname === "/" ? "active" : ""} to="/"><Search size={16}/> 链接分析</Link>
-      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") || location.pathname.startsWith("/benchmark") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
-      <Link className={location.pathname.startsWith("/benchmark") ? "active" : ""} to="/benchmark"><BarChart3 size={16}/> 对比台</Link>
+      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
+      <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
       <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
     {children}
@@ -172,14 +171,21 @@ function Detail() {
         }}/>}</main></Shell>;
 }
 
+function LegacyCreatorRunRedirect() {
+  const { id = "" } = useParams();
+  return <Navigate replace to={`/creators/${encodeURIComponent(id)}`}/>;
+}
+
 export default function App() {
   return <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/creators" element={<Shell><CreatorsOverview/></Shell>}/>
-    <Route path="/creators/:id" element={<Shell><CreatorConsolePage/></Shell>}/>
+    <Route path="/creators/:id" element={<Shell><CreatorDossierPage/></Shell>}/>
     <Route path="/creators/:id/videos/:videoId" element={<Shell><VideoEvidencePage/></Shell>}/>
-    <Route path="/creator-runs/:id" element={<Shell><CreatorRunConsolePage/></Shell>}/>
-    <Route path="/benchmark" element={<Shell><BenchmarkPage/></Shell>}/>
+    <Route path="/creator-runs/:id" element={<LegacyCreatorRunRedirect/>}/>
+    <Route path="/comparisons" element={<Shell><BenchmarkPage/></Shell>}/>
+    <Route path="/comparisons/:comparisonId" element={<Shell><BenchmarkPage/></Shell>}/>
+    <Route path="/benchmark" element={<Navigate replace to="/comparisons"/>}/>
     <Route path="/runs/:id" element={<Detail/>}/>
     <Route path="*" element={<Home/>}/>
   </Routes>;

@@ -1,12 +1,12 @@
 # Creator Analysis OS — Implementation validation
 
-Date: 2026-08-20
+Date: 2026-08-21
 
 ## Mechanical checks
 
 - `npm run typecheck`: pass.
 - `npm run lint`: pass.
-- `npm test`: 28/28 pass.
+- `npm test`: 37/37 pass across 11 test files.
 - `npm run build`: pass.
 
 ## Live Xiaohongshu vertical slice
@@ -31,12 +31,25 @@ An earlier broad anchor scan returned 91 IDs, but included hidden/internal links
 
 ## Browser checks
 
-- desktop live research projection: 21 List records, 21 Gallery records, 9 deep-candidate labels;
-- desktop horizontal overflow: false;
-- mobile emulation at 390×844: H1 and all 21 List records present; horizontal overflow false;
-- metric cards show observed posts, median, mean and maximum likes;
-- the page states that grid metrics establish distribution but cannot yet establish causal content mechanisms.
+- `/creators/ai-red-witch` is the only creator research page; the old run URL redirects into it.
+- desktop creator projection: 21 List records, 21 Gallery records, the same record IDs, and 9 deep-validated markers;
+- the deep section no longer duplicates the nine records; it reports High/Base/Low coverage as 3/3, 3/3, 3/3 and directs users back to the canonical 21;
+- List exposes tier, title, topic/form, publish time/duration, likes/median multiple, core content, architecture, mechanism hypothesis, and evidence state; Gallery shows the same research fields over the same items;
+- single-video route rendered content restoration, evidence health, knowledge units, sparse/dense frames, complete cue table, conflicts, unknowns, and gate state without opening a parallel report system;
+- desktop horizontal overflow: false at 1280 px;
+- mobile emulation at 390×844: H1 and all 21 records present; List becomes labeled stacked records and page horizontal overflow is false;
+- `/comparisons` renders the honest empty/project state without the deleted raw-like legacy leaderboard; `/benchmark` redirects to it;
+- screenshots are local QA artifacts under `.runtime/qa/` and are not committed.
+
+## Read-model and route convergence
+
+- creator: `GET /api/v1/creators/:creatorId` → `/creators/:creatorId`;
+- video: `GET /api/v1/creators/:creatorId/videos/:videoId` → `/creators/:creatorId/videos/:videoId`;
+- comparison: `GET /api/v1/comparisons/:comparisonId/dossier` → `/comparisons/:comparisonId`;
+- legacy creator/video artifacts are parsed only through compatibility projectors into the same V1 schemas;
+- duplicate Creator Console and Creator Run Console React implementations were removed;
+- old creator, video, and benchmark HTTP read APIs were removed rather than left as parallel truth.
 
 ## Remaining hard boundary
 
-Actual locally stored cover stickers and causal mechanism summaries require media resolution and validated video-reconstruction nodes. The UI currently labels those assets and mechanisms pending instead of fabricating them.
+Older imported creator artifacts do not contain every normalized identity, topic, format, comment, duration, and architecture field. The compatibility projection leaves those cells unknown or pending. New versioned runs can fill them only through the confirmed acquisition, reconstruction, evaluation, and synthesis gates.

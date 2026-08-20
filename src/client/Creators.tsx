@@ -18,7 +18,6 @@ const statusLabels: Record<CreatorResearchStatus, string> = {
 
 function CreatorCard({ creator, index }: { creator: CreatorSummary; index: number }) {
   const consoleHref = `/creators/${creator.id}`;
-  const evidenceHref = creator.entries[0]?.href;
   return <article className="creator-card">
     <header className="creator-card__head">
       <span className="creator-card__number">{String(index + 1).padStart(2, "0")}</span>
@@ -40,8 +39,7 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
       {creator.tags.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}
     </div>
     <nav className="creator-card__entries">
-      <Link to={consoleHref}><span>进入研究台</span><small>定位 · 基本盘 · 爆发 · 失效</small><ArrowRight size={15}/></Link>
-      {evidenceHref && <a href={evidenceHref}><span>查看内容证据</span><small>{creator.entries[0]?.label}</small><ArrowRight size={15}/></a>}
+      <Link to={consoleHref}><span>进入唯一研究页</span><small>定位 · 基本盘 · 21 条 · 深度证据</small><ArrowRight size={15}/></Link>
     </nav>
   </article>;
 }
@@ -77,11 +75,7 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
         <button type="button" className="creator-run__resume" onClick={() => void onResume(run.id)}>
           <RefreshCw size={12}/>{run.status === "needs_user" ? "我已完成，继续" : "重新排队"}
         </button>}
-      {run.dashboardPath && <Link to={run.dashboardPath}>打开研究台<ArrowRight size={13}/></Link>}
-      {!run.dashboardPath && run.portfolioArtifactRef && <Link to={`/creator-runs/${run.id}`}>打开研究台<ArrowRight size={13}/></Link>}
-      {!run.dashboardPath && run.inventoryArtifactRef && <a href={run.inventoryArtifactRef}>作品清单<ArrowRight size={13}/></a>}
-      {!run.dashboardPath && run.portfolioArtifactRef && <a href={run.portfolioArtifactRef}>基本盘统计<ArrowRight size={13}/></a>}
-      {!run.dashboardPath && run.selectionArtifactRef && <a href={run.selectionArtifactRef}>21 条选择<ArrowRight size={13}/></a>}
+      <Link to={`/creators/${encodeURIComponent(run.creatorId ?? run.id)}`}>打开同一研究页<ArrowRight size={13}/></Link>
     </footer>
   </article>;
 }
@@ -195,7 +189,7 @@ export default function CreatorsOverview() {
           </div>}
       </section>
 
-      {creators && creators.length > 0 && <Link to="/benchmark" className="benchmark-banner">
+      {creators && creators.length > 0 && <Link to="/comparisons" className="benchmark-banner">
         <span>进入跨 IP 对比台</span>
         <b>规律可信度：赛道规律 / IP 能力 / 定位空缺</b>
         <ArrowRight size={16}/>

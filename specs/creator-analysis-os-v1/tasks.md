@@ -35,7 +35,7 @@
 - [x] D1. Retain the accepted industrial-editorial visual direction instead of creating a parallel Dashboard.
 - [x] D2. Owner confirms the existing Dashboard as the visual baseline.
 - [x] D3. Freeze the intake/progress extension in the current visual specification.
-- [ ] D4. Implement against the confirmed architecture and visual specification.
+- [x] D4. Implement against the confirmed architecture and visual specification.
   - [x] D4.1 Create `modules/`, `platform/`, and compatibility facade boundaries.
   - [x] D4.2 Add persistent creator research jobs and events with leases and retries.
   - [x] D4.3 Add the ego-browser acquisition executor and human-handoff states.
@@ -49,6 +49,20 @@
   - [x] D4.9 Publish creator synthesis only from validated detail/reconstruction evidence.
     - The synthesis validator requires the exact canonical 21, all nine deep gates, direct reconstruction evidence, research/creation separation, and explicit backend-metric unknowns.
   - [x] D4.10 Pin creator revisions into the multi-creator comparison worker.
+  - [x] D4.11 Converge the three research levels onto versioned V1 read projections.
+  - [x] D4.12 Make `/creators/:creatorId` the only creator dossier and preserve last-good content during refresh.
+  - [x] D4.13 Make List and Gallery projections use the same canonical 21 IDs with deep markers inside the set.
+  - [x] D4.14 Replace the mixed legacy benchmark with `/comparisons/:comparisonId` normalized research dossiers.
+  - [x] D4.15 Add a unified video evidence page with article, knowledge relations, sparse/dense frames, cue/frame/shot mapping, conflicts, unknowns and gates.
+  - [x] D4.16 Remove duplicate Creator Console / Run Console implementations and their parallel HTTP read APIs.
 - [x] D5. Run mechanical, browser, responsive, and evidence-boundary validation.
   - 2026-08-20: typecheck/lint/test/build passed; ego-browser verified 1440px and 390px layouts with no horizontal overflow; one real signed-media smoke proved local media verification and no signed URL persistence.
 - [ ] D6. Owner performs final visual acceptance on rendered screenshots.
+
+## Phase E — contract convergence verification
+
+- [x] E1. Typecheck and lint the unified projections and routes.
+- [x] E2. Run repository tests and production build.
+- [x] E3. Validate V1 read schemas and legacy-adapter parity.
+- [x] E4. Verify desktop and mobile routes in the built-in browser.
+- [ ] E5. Commit and push the converged implementation to the public repository.

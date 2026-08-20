@@ -8,7 +8,9 @@ import { ComparisonProjectService } from "../modules/comparison/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
 import { createCreatorResearchRunInputSchema, createRunInputSchema } from "../shared/schema.js";
 import { loadCreatorSummaries } from "./creators.js";
-import { loadBenchmark, loadCreatorConsole, loadVideoEvidence } from "./console.js";
+import { loadCreatorDossier } from "./creator-dossier.js";
+import { loadVideoResearch } from "./video-research.js";
+import { loadComparisonDossier } from "./comparison-dossier.js";
 
 export function createApp(
   service = new AnalysisService(),
@@ -141,22 +143,24 @@ export function createApp(
   app.post("/api/comparison-projects", createComparison);
   app.get("/api/v1/comparisons", listComparisons);
   app.get("/api/v1/comparisons/:id", getComparison);
+  app.get("/api/v1/comparisons/:id/dossier", (request, response) => {
+    const dossier = loadComparisonDossier(comparisonProjectService, creatorResearchService, request.params.id);
+    if (!dossier) return response.status(404).json({ error: "多博主研究项目不存在" });
+    return response.json(dossier);
+  });
   app.post("/api/v1/comparisons", createComparison);
 
-  app.get("/api/creators/:id", (request, response) => {
-    const consoleData = loadCreatorConsole(request.params.id);
-    if (!consoleData) return response.status(404).json({ error: "博主研究台不存在" });
-    return response.json(consoleData);
+  app.get("/api/v1/creators/:id", (request, response) => {
+    const dossier = loadCreatorDossier(creatorResearchService, request.params.id);
+    if (!dossier) return response.status(404).json({ error: "博主研究档案不存在" });
+    return response.json(dossier);
   });
 
-  app.get("/api/creators/:id/videos/:videoId", (request, response) => {
-    const evidence = loadVideoEvidence(request.params.id, request.params.videoId);
-    if (!evidence) return response.status(404).json({ error: "视频证据不存在" });
+  app.get("/api/v1/creators/:id/videos/:videoId", (request, response) => {
+    const requestedRunId = typeof request.query.run === "string" ? request.query.run : undefined;
+    const evidence = loadVideoResearch(creatorResearchService, request.params.id, request.params.videoId, requestedRunId);
+    if (!evidence) return response.status(404).json({ error: "视频研究证据不存在" });
     return response.json(evidence);
-  });
-
-  app.get("/api/benchmark", (_request, response) => {
-    response.json(loadBenchmark());
   });
 
   app.get("/api/runs", (request, response) => {
