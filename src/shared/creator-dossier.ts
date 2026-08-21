@@ -51,7 +51,7 @@ export const creatorDossierItemSchema = z.object({
 export const creatorDossierSchema = z.object({
   schemaVersion: z.literal("1.0.0"),
   canonicalId: z.string(),
-  source: z.enum(["versioned_run", "legacy_adapter"]),
+  source: z.enum(["versioned_run", "legacy_adapter", "inventory_snapshot"]),
   generatedAt: z.string(),
   run: creatorResearchRunSchema.nullable(),
   lastGood: z.object({

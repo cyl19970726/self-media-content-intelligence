@@ -8,6 +8,9 @@ export function compareCreatorPortfolios(inputs: unknown[], generatedAt: string)
   const members: ComparisonMemberInput[] = inputs.map((input) => comparisonMemberInputSchema.parse(input));
   const rows = members.map((member) => ({
     creatorRunId: member.creatorRunId,
+    creatorId: member.creatorId,
+    sourceRunId: member.sourceRunId,
+    revision: member.revision,
     creatorName: member.creatorName,
     portfolioRevision: member.portfolioRevision,
     discoveredPosts: member.analysis.metricCoverage.known + member.analysis.metricCoverage.missing,

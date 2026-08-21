@@ -5,6 +5,9 @@ function member(id: string, name: string, median: number, mean: number, max: num
   const runId = `${id.repeat(8)}-${id.repeat(4)}-4${id.repeat(3)}-8${id.repeat(3)}-${id.repeat(12)}`;
   return {
     creatorRunId: runId,
+    creatorId: `creator-${id}`,
+    sourceRunId: runId,
+    revision: "fixture-r1",
     creatorName: name,
     portfolioRevision: "portfolio-v1",
     analysis: {

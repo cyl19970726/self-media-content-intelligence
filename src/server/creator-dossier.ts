@@ -4,6 +4,7 @@ import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
 import { loadCreatorConsole } from "./console.js";
 import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
+import { loadNextWaveDossier } from "./next-wave-dossier.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 
@@ -238,6 +239,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
   if (runProjection) return runProjection;
+  const nextWave = loadNextWaveDossier(id);
+  if (nextWave) return nextWave;
   const deepLegacy = loadLegacyDeepDossier(id);
   if (deepLegacy) return deepLegacy;
   const legacy = loadCreatorConsole(id);

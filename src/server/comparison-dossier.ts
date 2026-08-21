@@ -14,7 +14,10 @@ export function loadComparisonDossier(
 ): ComparisonDossier | null {
   const stored = comparisons.get(id);
   if (!stored) return null;
-  const dossiers = stored.project.members.map((member) => ({ member, dossier: loadCreatorDossier(creators, member.creatorRunId) })).filter((item) => item.dossier !== null);
+  // member.creatorRunId is an internal comparison key.  Legacy dossiers have
+  // no Creator Run, so the canonical creator ID is the only safe route back to
+  // the published evidence page.
+  const dossiers = stored.project.members.map((member) => ({ member, dossier: loadCreatorDossier(creators, member.creatorId) })).filter((item) => item.dossier !== null);
   const creatorIdsByRun = new Map(dossiers.map(({ member, dossier }) => [member.creatorRunId, dossier!.canonicalId]));
   const cells = (select: (dossier: NonNullable<(typeof dossiers)[number]["dossier"]>) => NonNullable<(typeof dossiers)[number]["dossier"]>["identity"]["valuesProvided"]) =>
     dossiers.map(({ dossier }) => ({ creatorId: dossier!.canonicalId, creatorName: dossier!.identity.name, statements: select(dossier!) }));

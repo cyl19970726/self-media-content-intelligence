@@ -12,7 +12,7 @@ Creator Analysis OS turns public creator and video evidence into a structured, a
 
 The product answers what the content is, how it is constructed, how it performs, what mechanisms may explain the observed performance, what evidence supports each conclusion, and what remains unknown.
 
-The authoritative analytical philosophy is defined in [research-methodology.md](research-methodology.md). Its executable contracts are [three-lens-video-contract.md](three-lens-video-contract.md), [creator-depth-parity.md](creator-depth-parity.md), and [research-learning-model.md](research-learning-model.md). Page structure and schema compliance do not substitute for those contracts.
+The authoritative analytical philosophy is defined in [research-methodology.md](research-methodology.md). Its executable contracts are [three-lens-video-contract.md](three-lens-video-contract.md), [creator-depth-parity.md](creator-depth-parity.md), [research-learning-model.md](research-learning-model.md), and [learning-loop-contract.md](learning-loop-contract.md). Page structure and schema compliance do not substitute for those contracts.
 
 It does **not** decide what we should copy or publish. That belongs to a separate future Creation Workspace.
 
@@ -29,6 +29,7 @@ It does **not** decide what we should copy or publish. That belongs to a separat
 - Every deep video is analyzed through three non-substitutable lenses: content restoration, directing logic, and visual/editing logic.
 - Every creator conclusion must be derived from full-corpus context plus High/Base/Low variance, not from profile copy or winners alone.
 - Each completed creator must feed newly observed mechanisms and failure modes back into versioned, reusable research infrastructure.
+- Learning-loop completion and promotion are separate: a bounded, valid evaluation may finish `completed_no_promotion`; candidate discovery remains distinct from verified creator/post identity.
 
 ## 3. Single-video analysis
 
@@ -218,3 +219,6 @@ The analysis may describe under-covered values, topics, or formats in the select
 - **LEARN-OBS-01** — WHEN an analysis produces a reusable mechanism, device, grammar, proof mode, value mode, or failure mode, THE SYSTEM SHALL store a versioned ResearchConcept plus eligible `confirm|qualify|contradict` observations pinned to passed analysis revisions and SHALL NOT use hidden prompt memory as research evidence.
 - **LEARN-PROMOTE-02** — WHEN a concept is promoted from video-specific to creator-specific, THE SYSTEM SHALL require at least 3 distinct videos, at least 1 deep reconstruction, and either 2 performance tiers or an explicit tier condition; WHEN promoted to track-wide, THE SYSTEM SHALL require at least 3 comparable creators, 3 videos and 1 deep reconstruction per creator, at least 9 videos total, and at most 20% contradictions inside the claimed condition.
 - **LEARN-INVALIDATE-03** — WHEN a source, mapping, lens gate, analysis revision, or comparability decision becomes invalid, THE SYSTEM SHALL create an immutable demotion/invalidation revision and SHALL mark dependent creator/comparison conclusions stale before another current revision can publish.
+- **LOOP-LINEAGE-04** — WHEN a learning-loop agent consumes or produces an artifact, THE SYSTEM SHALL persist its SHA-256 and `allowedInputArtifactIds`, SHALL reject non-allowlisted or hash-mismatched inputs, and SHALL NOT use prompt memory as evidence.
+- **LOOP-EVAL-05** — WHEN a learning loop reaches blind evaluation, THE SYSTEM SHALL keep candidate producer, product blind user, concept holdout blind agent, and independent judge roles separated; the product blind user MAY see the published Dashboard including creator identity and public performance, while the concept holdout blind agent SHALL see only a sanitized evaluation bundle and SHALL test only understanding, evidence traceability, and unknowns. Neither blind role SHALL output creative or publishing advice.
+- **LOOP-META-06** — WHEN a learning loop terminates, THE SYSTEM SHALL record old-three fixture, new-sample, and untouched-holdout regression results plus stop/failure reasons; THE SYSTEM SHALL promote only through the meta-gate and SHALL use `completed_no_promotion` for valid closure without justified scope promotion.

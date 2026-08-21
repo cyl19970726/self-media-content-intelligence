@@ -4,31 +4,7 @@ import type { CreatorArtifactStore } from "../creator-research/artifact-store.js
 import type { ComparisonProject } from "./project-contracts.js";
 import type { ComparisonProjectRepository } from "./repository.js";
 import { ComparisonProjectService } from "./service.js";
-
-const ids = ["11111111-1111-4111-8111-111111111111", "22222222-2222-4222-8222-222222222222"];
-
-function portfolio(runId: string, name: string, median: number) {
-  const selection = {
-    schemaVersion: "1.0.0" as const, runId, generatedAt: "2026-08-20T00:00:00Z",
-    sourceCorpusArtifactRef: `/artifacts/${runId}/corpus.json`, ruleVersion: "ranked-7x3-v1" as const,
-    rules: { targetPerTier: 7 as const, deepCandidatesPerTier: 3 as const, high: "h", base: "b", low: "l", unknownMetricPolicy: "exclude_from_metric_tiering" as const },
-    denominator: { discoveredPosts: 21, eligiblePosts: 21, selectedPosts: 21, excludedMissingLikes: 0 },
-    anchors: { median, mean: median * 2, medianNearPostId: "m", meanNearPostId: "a", meanGap: false, meanGapReason: null },
-    tierCounts: { high: 7, base: 7, low: 7 }, items: [], limitations: []
-  };
-  const analysis = {
-    schemaVersion: "1.0.0" as const, runId, generatedAt: "2026-08-20T00:00:00Z",
-    corpusArtifactRef: `/artifacts/${runId}/corpus.json`, selectionArtifactRef: `/artifacts/${runId}/selection.json`,
-    metricCoverage: { known: 21, missing: 0, rate: 1 },
-    likes: { min: 1, p25: 10, median, mean: median * 2, p75: median * 3, max: median * 20 },
-    tierCounts: { high: 7, base: 7, low: 7 }, anchors: selection.anchors,
-    interpretationBoundary: "只解释公开分布", unknowns: []
-  };
-  return {
-    run: { id: runId, creatorName: name, portfolioArtifactRef: `/artifacts/${runId}/portfolio.json`, selectionArtifactRef: `/artifacts/${runId}/selection.json` },
-    analysis, selection
-  };
-}
+import { loadCreatorDossier } from "../../server/creator-dossier.js";
 
 class MemoryRepository implements ComparisonProjectRepository {
   values = new Map<string, ComparisonProject>();
@@ -48,12 +24,8 @@ class MemoryRepository implements ComparisonProjectRepository {
 }
 
 describe("ComparisonProjectService", () => {
-  it("pins exact creator revisions before the background comparison runs", () => {
-    const snapshots = new Map([
-      [ids[0]!, portfolio(ids[0]!, "甲", 100)],
-      [ids[1]!, portfolio(ids[1]!, "乙", 200)]
-    ]);
-    const creators = { portfolio: (id: string) => snapshots.get(id) ?? null } as unknown as CreatorResearchService;
+  it("pins existing Creator Dossier projections with an auditable source and revision", () => {
+    const creators = { list: () => [], get: () => null, portfolio: () => null } as unknown as CreatorResearchService;
     const values = new Map<string, unknown>();
     const artifacts: CreatorArtifactStore = {
       write(runId, filename, value) { const ref = `/artifacts/${runId}/${filename}`; values.set(ref, structuredClone(value)); return ref; },
@@ -61,12 +33,20 @@ describe("ComparisonProjectService", () => {
     };
     const repository = new MemoryRepository();
     const service = new ComparisonProjectService(creators, repository, artifacts);
-    const project = service.create({ name: "AI 博主对照", creatorRunIds: ids });
+    const sources = ["ai-red-witch", "zhang-zala"].map((creatorId) => {
+      const dossier = loadCreatorDossier(creators, creatorId);
+      expect(dossier).not.toBeNull();
+      return { creatorId, sourceRunId: `legacy:${creatorId}`, revision: dossier!.lastGood.revisionLabel ?? dossier!.generatedAt };
+    });
+    const project = service.create({ name: "AI 博主对照", creatorSources: sources });
 
     expect(project.status).toBe("queued");
-    expect(project.members.map((member) => member.portfolioArtifactRef)).toEqual([
-      `/artifacts/${ids[0]}/portfolio.json`, `/artifacts/${ids[1]}/portfolio.json`
-    ]);
+    expect(project.members.map((member) => member.sourceRunId)).toEqual(["legacy:ai-red-witch", "legacy:zhang-zala"]);
+    expect(project.members.map((member) => member.revision)).toEqual(sources.map((source) => source.revision));
+    expect(project.members.every((member) => member.portfolioArtifactRef === member.selectionArtifactRef)).toBe(true);
+    expect(() => service.create({ name: "过期版本", creatorSources: [
+      { ...sources[0]!, revision: "stale-revision" }, sources[1]!
+    ] })).toThrow(/已更新/);
     expect(service.processNext("comparison-test")).toBe(true);
     const completed = service.get(project.id);
     expect(completed?.project.status).toBe("ready");

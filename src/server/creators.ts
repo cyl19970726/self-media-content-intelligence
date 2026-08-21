@@ -1,5 +1,6 @@
 import { asNumber, asRecord, asString, formatCount, positioningOf, readJson, videoEvidenceCount } from "./creator-meta.js";
 import type { CreatorSummary } from "../shared/schema.js";
+import { loadNextWaveCreatorSummaries } from "./next-wave-creators.js";
 
 function redWitch(): CreatorSummary | null {
   const analysis = readJson("ai-red-witch/selected-high-like/analysis.json");
@@ -19,7 +20,7 @@ function redWitch(): CreatorSummary | null {
     summary: "当前公开样本呈现三类主要表现结构：任务解决方案、社交传播型内容与商业案例叙事；各类的证据强度和表现分布不同。",
     tags: engineTags.length > 0 ? engineTags : ["保存引擎", "传播引擎", "商业引擎"],
     stats: [
-      { label: "公开笔记", value: formatCount(asNumber(coverage.capturedNotes)) },
+      { label: "采集卡片", value: formatCount(asNumber(coverage.capturedNotes)) },
       { label: "高赞拆解", value: formatCount(asNumber(coverage.selectedVideos)) },
       { label: "逐条还原", value: String(videoEvidenceCount("ai-red-witch")) }
     ],
@@ -92,7 +93,10 @@ const loaders: Record<string, () => CreatorSummary | null> = {
 };
 
 export function loadCreatorSummaries(): CreatorSummary[] {
-  return Object.values(loaders)
+  const legacy = Object.values(loaders)
     .map((load) => load())
     .filter((summary): summary is CreatorSummary => summary !== null);
+  const existingIds = new Set(legacy.map((summary) => summary.id));
+  const dynamic = loadNextWaveCreatorSummaries().filter((summary) => !existingIds.has(summary.id));
+  return [...legacy, ...dynamic];
 }

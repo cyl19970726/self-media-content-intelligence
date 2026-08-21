@@ -2,7 +2,10 @@ import { z } from "zod";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
 
 export const comparisonMemberInputSchema = z.object({
-  creatorRunId: z.string().uuid(),
+  creatorRunId: z.string().min(1),
+  creatorId: z.string().min(1),
+  sourceRunId: z.string().min(1),
+  revision: z.string().min(1),
   creatorName: z.string(),
   portfolioRevision: z.string(),
   analysis: creatorPortfolioAnalysisSchema,
@@ -15,7 +18,10 @@ export const creatorComparisonSchema = z.object({
   generatedAt: z.string(),
   readiness: z.enum(["portfolio_only", "content_validated"]),
   members: z.array(z.object({
-    creatorRunId: z.string().uuid(),
+    creatorRunId: z.string().min(1),
+    creatorId: z.string().min(1),
+    sourceRunId: z.string().min(1),
+    revision: z.string().min(1),
     creatorName: z.string(),
     portfolioRevision: z.string(),
     discoveredPosts: z.number().int(),
@@ -30,7 +36,7 @@ export const creatorComparisonSchema = z.object({
   observations: z.array(z.object({
     classification: z.enum(["track_wide", "creator_specific", "conditional", "anomaly", "unknown"]),
     text: z.string(),
-    evidenceCreatorRunIds: z.array(z.string().uuid()),
+    evidenceCreatorRunIds: z.array(z.string().min(1)),
     boundary: z.string()
   })),
   limitations: z.array(z.string())

@@ -1,5 +1,22 @@
 import { z } from "zod";
 
+export type CreatorCrawlDiagnostic = {
+  round: number;
+  globalCountBefore: number;
+  globalCountAfter: number;
+  newGlobalIds: string[];
+  heightBefore: number;
+  heightAfter: number;
+  heightDelta: number;
+  scrollTopBefore: number;
+  scrollTopAfter: number;
+  scrollDelta: number;
+  atBottom: boolean;
+  waitElapsedMs: number;
+  waitReason: string;
+  action: "advance" | "bottom_observe" | "bounded_retrigger" | "stop";
+};
+
 export const researchJobStatusSchema = z.enum([
   "queued",
   "leased",
@@ -49,9 +66,10 @@ export type CreatorAcquisitionResult =
       creatorId: string | null;
       creatorName: string | null;
       taskSpaceId: number;
-      stopReason: "explicit_end" | "zero_growth" | "budget_reached";
+      stopReason: "explicit_end" | "quiescent_incomplete" | "budget_reached";
       posts: CreatorAcquisitionPost[];
       warnings: string[];
+      diagnostics?: CreatorCrawlDiagnostic[];
     }
   | {
       state: "needs_user";

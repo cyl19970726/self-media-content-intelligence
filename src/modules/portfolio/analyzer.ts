@@ -91,7 +91,7 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
       likesMissing: inventory.posts.length - known.length,
       likesCoverage: inventory.posts.length === 0 ? 0 : known.length / inventory.posts.length,
       stopReason: inventory.stopReason,
-      corpusCompleteness: inventory.stopReason === "budget_reached" ? "bounded_partial" : "observed_converged"
+      corpusCompleteness: inventory.stopReason === "explicit_end" ? "observed_converged" : "bounded_partial"
     },
     likes: {
       min: likes[0] ?? null,
@@ -106,7 +106,9 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
     unknowns: [
       ...(inventory.posts.some((post) => post.likes === null) ? ["部分作品没有可见或可解析的点赞数，未按 0 计入统计。"] : []),
       "主页网格不提供播放、完播、主页访问、转粉、投流和成交数据。",
-      "zero_growth 只表示本次网页会话已收敛，不等同于平台声明的账号历史作品总数。",
+      ...(inventory.stopReason === "quiescent_incomplete"
+        ? ["页面经过迟加载观察与一次有界重触发后仍无新增作品；这是静默不完整状态，不等同于平台声明的历史作品总数。"]
+        : []),
       "当前轻量清单尚未逐条核验发布时间、收藏、评论、封面与视频正文。"
     ]
   });

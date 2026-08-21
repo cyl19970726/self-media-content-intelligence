@@ -7,6 +7,7 @@ import { ComparisonProjectWorker } from "../modules/comparison/worker.js";
 import { EgoBrowserCreatorExecutor } from "../platform/browser/ego-browser-creator-executor.js";
 import { createApp } from "./app.js";
 import { createDurableResearchLearningService } from "./research-learning.js";
+import { createDurableLearningLoopControlPlane, seedInitialProductBlindAudit, seedProductBlindRegressionV2 } from "./learning-loop.js";
 
 const port = apiPort();
 const analysisService = new AnalysisService();
@@ -15,7 +16,10 @@ const creatorWorker = new CreatorResearchWorker(creatorResearchService, new EgoB
 const comparisonProjectService = new ComparisonProjectService(creatorResearchService);
 const comparisonWorker = new ComparisonProjectWorker(comparisonProjectService);
 const researchLearningService = createDurableResearchLearningService();
-const app = createApp(analysisService, creatorResearchService, comparisonProjectService, researchLearningService);
+const learningLoopControlPlane = createDurableLearningLoopControlPlane();
+seedInitialProductBlindAudit(learningLoopControlPlane);
+seedProductBlindRegressionV2(learningLoopControlPlane);
+const app = createApp(analysisService, creatorResearchService, comparisonProjectService, researchLearningService, learningLoopControlPlane);
 creatorWorker.start();
 comparisonWorker.start();
 
@@ -41,6 +45,7 @@ function shutdown(): void {
     creatorResearchService.close();
     comparisonProjectService.close();
     researchLearningService.close();
+    learningLoopControlPlane.close();
   });
 }
 

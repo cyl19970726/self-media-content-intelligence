@@ -4,11 +4,13 @@ import { creatorDetailCollectionSchema, type CreatorDetailCollection } from "../
 import { deepMediaManifestSchema, type DeepMediaManifest } from "../modules/media-resolution/contracts";
 import { videoReconstructionBatchSchema, type VideoReconstructionBatch } from "../modules/video-analysis/batch-contracts";
 import { creatorSynthesisGateSchema, creatorSynthesisSchema, type CreatorSynthesis, type CreatorSynthesisGate } from "../modules/creator-synthesis/contracts";
-import { comparisonProjectSchema, type ComparisonProject } from "../modules/comparison/project-contracts";
+import { comparisonProjectSchema, type ComparisonCreatorSource, type ComparisonProject } from "../modules/comparison/project-contracts";
 import { creatorComparisonSchema, type CreatorComparison } from "../modules/comparison/contracts";
 import { creatorDossierSchema, type CreatorDossier } from "../shared/creator-dossier";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research";
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";
+import { z } from "zod";
+import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -127,9 +129,9 @@ export async function listComparisonProjects(): Promise<ComparisonProject[]> {
   });
 }
 
-export async function createComparisonProject(name: string, creatorRunIds: string[]): Promise<ComparisonProject> {
+export async function createComparisonProject(name: string, creatorSources: ComparisonCreatorSource[]): Promise<ComparisonProject> {
   return json(await fetch("/api/v1/comparisons", { method: "POST", cache: "no-store",
-    headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, creatorRunIds }) }),
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, creatorSources }) }),
   (value) => comparisonProjectSchema.parse(value));
 }
 
@@ -145,4 +147,54 @@ export async function getComparisonProject(id: string): Promise<{ project: Compa
 export async function getComparisonDossier(id: string): Promise<ComparisonDossier> {
   return json(await fetch(`/api/v1/comparisons/${encodeURIComponent(id)}/dossier`, { cache: "no-store" }),
     (value) => comparisonDossierSchema.parse(value));
+}
+
+export type LearningLoopEventView = {
+  sequence: number;
+  runId: string;
+  operationKey: string;
+  fromStatus: string | null;
+  toStatus: string;
+  revision: number;
+  createdAt: string;
+};
+
+export type LearningLoopLineageView = {
+  runId: string;
+  nodes: Array<{ id: string; caseId: string | null; kind: string; uri: string; sha256: string; createdAt: string }>;
+  edges: Array<{ from: string; to: string }>;
+};
+
+const learningLoopEventViewSchema = z.object({
+  sequence: z.number().int().positive(), runId: z.string(), operationKey: z.string(),
+  fromStatus: z.string().nullable(), toStatus: z.string(), revision: z.number().int().nonnegative(), createdAt: z.string()
+});
+const learningLoopLineageViewSchema = z.object({
+  runId: z.string(),
+  nodes: z.array(z.object({ id: z.string(), caseId: z.string().nullable(), kind: z.string(), uri: z.string(), sha256: z.string(), createdAt: z.string() })),
+  edges: z.array(z.object({ from: z.string(), to: z.string() }))
+});
+
+export async function listLearningLoops(): Promise<LearningLoopRun[]> {
+  return json(await fetch("/api/v1/learning-loops", { cache: "no-store" }), (value) => {
+    const runs = value && typeof value === "object" && "runs" in value ? value.runs : [];
+    return learningLoopRunSchema.array().parse(runs);
+  });
+}
+
+export async function getLearningLoop(id: string): Promise<LearningLoopRun> {
+  return json(await fetch(`/api/v1/learning-loops/${encodeURIComponent(id)}`, { cache: "no-store" }),
+    (value) => learningLoopRunSchema.parse(value));
+}
+
+export async function getLearningLoopEvents(id: string): Promise<LearningLoopEventView[]> {
+  return json(await fetch(`/api/v1/learning-loops/${encodeURIComponent(id)}/events`, { cache: "no-store" }), (value) => {
+    const events = value && typeof value === "object" && "events" in value ? value.events : [];
+    return learningLoopEventViewSchema.array().parse(events);
+  });
+}
+
+export async function getLearningLoopLineage(id: string): Promise<LearningLoopLineageView> {
+  return json(await fetch(`/api/v1/learning-loops/${encodeURIComponent(id)}/lineage`, { cache: "no-store" }),
+    (value) => learningLoopLineageViewSchema.parse(value));
 }

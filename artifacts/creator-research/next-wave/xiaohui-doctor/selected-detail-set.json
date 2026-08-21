@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+  "snapshotAt": "2026-08-21T06:10:54.354Z",
+  "creatorId": "5ede282b00000000010014bf",
+  "creatorName": "晓辉博士",
+  "selectionBasis": {
+    "visibleCorpus": 240,
+    "displayedCount": 251,
+    "metric": "public_likes",
+    "tiers": [
+      "high",
+      "mean-near",
+      "low"
+    ],
+    "warning": "公开点赞为累计快照，不等于曝光、完播或转粉；11篇展示差异未解决。"
+  },
+  "detailRun": {
+    "route": "ego-browser hhh-01 read_only",
+    "status": "blocked",
+    "stopSignal": {
+      "code": "300031",
+      "label": "安全限制：当前笔记暂时无法浏览",
+      "encounteredOnPostId": "69aeeb590000000015031558"
+    },
+    "policyResponse": "立即停止后续详情，不刷新、不换身份、不绕过。"
+  },
+  "items": [
+    {
+      "id": "69aeeb590000000015031558",
+      "tier": "high",
+      "title": "OpenClaw相关的政策真的有必要吗",
+      "selectionReason": "已采集240条中的公开点赞最高项，作为爆发端候选。",
+      "publicMetrics": {
+        "likes": 13000,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/69aeeb590000000015031558",
+      "mediaType": "unknown",
+      "detailState": "blocked_security_restriction_300031",
+      "mediaAcquisitionState": "blocked_before_resolution"
+    },
+    {
+      "id": "691b1ddf000000000d03a5f0",
+      "tier": "mean-near",
+      "title": "AI已经可以帮我们高效考证了",
+      "selectionReason": "986赞，距离清单算术均值970.07约1.64%，代表均值附近而非典型中位数。",
+      "publicMetrics": {
+        "likes": 986,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/691b1ddf000000000d03a5f0",
+      "mediaType": "unknown",
+      "detailState": "not_attempted_after_platform_stop",
+      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+    },
+    {
+      "id": "6908aacf0000000003036221",
+      "tier": "low",
+      "title": "你有什么不开倍速看的东西吗？",
+      "selectionReason": "已采集清单公开点赞最低项（66赞），作为失效端候选；不代表内容质量低。",
+      "publicMetrics": {
+        "likes": 66,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/6908aacf0000000003036221",
+      "mediaType": "unknown",
+      "detailState": "not_attempted_after_platform_stop",
+      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+    }
+  ],
+  "readiness": "BLOCKED_DETAIL",
+  "unknowns": [
+    "发布时间",
+    "视频/图文类型",
+    "收藏、评论、分享",
+    "媒体候选与字幕状态"
+  ]
+}

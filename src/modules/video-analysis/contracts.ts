@@ -18,6 +18,9 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
     articleArtifactRef: z.string(),
     evaluationArtifactRef: z.string(),
     gateReportArtifactRef: z.string(),
+    threeLensEvaluationArtifactRef: z.string(),
+    threeLensGateReportArtifactRef: z.string(),
+    threeLensGateCount: z.literal(19),
     gateCount: z.number().int().positive(),
     failedGateIds: z.array(z.string()).length(0)
   }),
@@ -25,6 +28,9 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
     state: z.literal("not_ready"),
     reconstructionArtifactRef: z.string().nullable(),
     evaluationArtifactRef: z.string().nullable(),
+    gateReportArtifactRef: z.string().nullable(),
+    threeLensEvaluationArtifactRef: z.string().nullable(),
+    threeLensGateReportArtifactRef: z.string().nullable(),
     failedGateIds: z.array(z.string()).min(1),
     message: z.string()
   }),

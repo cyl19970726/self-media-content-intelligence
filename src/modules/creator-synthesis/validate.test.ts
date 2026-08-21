@@ -66,6 +66,8 @@ function batch(): VideoReconstructionBatch {
       articleArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/article.md`,
       evaluationArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/evaluation.json`,
       gateReportArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/gate-report.json`,
+      threeLensEvaluationArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/runtime-three-lens-evaluation.json`,
+      threeLensGateReportArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/runtime-three-lens-gate-report.json`,
       failedGateIds: [],
       message: "硬闸通过",
       updatedAt: checkedAt

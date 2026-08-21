@@ -302,6 +302,7 @@ export class CreatorResearchService {
       creatorId: result.creatorId,
       creatorName: result.creatorName,
       stopReason: result.stopReason,
+      crawlDiagnostics: result.diagnostics ?? [],
       posts: result.posts,
       warnings: result.warnings
     });
@@ -539,6 +540,7 @@ export class CreatorResearchService {
           return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
             state: verified ? "queued" : "blocked", sourceMediaArtifactRef: media?.videoArtifactRef ?? null,
             reconstructionArtifactRef: null, articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,
+            threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
             failedGateIds: verified ? [] : ["media_verification"],
             message: verified ? "等待独立视频重建 Worker。" : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
         }),
@@ -651,11 +653,27 @@ export class CreatorResearchService {
       const latestBatch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
       const latestItem = latestBatch.items.find((candidate) => candidate.postExternalId === postExternalId);
       if (!latestItem) throw new Error("视频批次在执行期间丢失对应记录");
-      if (outcome.state === "ready") Object.assign(latestItem, { state: "ready", reconstructionArtifactRef: outcome.reconstructionArtifactRef,
+      const runtimeThreeLensComplete = outcome.state === "ready" && Boolean(
+        outcome.threeLensEvaluationArtifactRef && outcome.threeLensGateReportArtifactRef && outcome.threeLensGateCount === 19
+      );
+      if (outcome.state === "ready" && runtimeThreeLensComplete) Object.assign(latestItem, { state: "ready", reconstructionArtifactRef: outcome.reconstructionArtifactRef,
         articleArtifactRef: outcome.articleArtifactRef, evaluationArtifactRef: outcome.evaluationArtifactRef,
-        gateReportArtifactRef: outcome.gateReportArtifactRef, failedGateIds: [], message: `全部 ${outcome.gateCount} 个硬闸通过。`, updatedAt: completedAt });
+        gateReportArtifactRef: outcome.gateReportArtifactRef,
+        threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
+        threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef ?? null,
+        failedGateIds: [], message: `通用 ${outcome.gateCount} 项与三镜头 ${outcome.threeLensGateCount ?? 0} 项硬闸通过。`, updatedAt: completedAt });
+      else if (outcome.state === "ready") Object.assign(latestItem, { state: "not_ready",
+        reconstructionArtifactRef: outcome.reconstructionArtifactRef, articleArtifactRef: outcome.articleArtifactRef,
+        evaluationArtifactRef: outcome.evaluationArtifactRef, gateReportArtifactRef: outcome.gateReportArtifactRef,
+        threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
+        threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef ?? null,
+        failedGateIds: ["runtime_three_lens_artifacts_missing"],
+        message: "通用视频评测已通过，但运行时三镜头评测 artifact 不完整；该视频保持未就绪。", updatedAt: completedAt });
       else if (outcome.state === "not_ready") Object.assign(latestItem, { state: "not_ready",
         reconstructionArtifactRef: outcome.reconstructionArtifactRef, evaluationArtifactRef: outcome.evaluationArtifactRef,
+        gateReportArtifactRef: outcome.gateReportArtifactRef ?? null,
+        threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
+        threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef ?? null,
         failedGateIds: outcome.failedGateIds, message: outcome.message, updatedAt: completedAt });
       else Object.assign(latestItem, { state: "blocked", failedGateIds: [outcome.code], message: outcome.message, updatedAt: completedAt });
       latestBatch.revision += 1;

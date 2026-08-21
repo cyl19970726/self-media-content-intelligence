@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-21T05:58:58.547Z",
+  "snapshotId": "xiaohui-doctor-2026-08-21",
+  "creator": {
+    "id": "5ede282b00000000010014bf",
+    "name": "晓辉博士",
+    "identityStatus": "confirmed",
+    "displayedPostCount": 251
+  },
+  "route": {
+    "adapter": "ego-browser",
+    "mode": "read_only",
+    "serverLabel": "hhh-01",
+    "taskSpaceId": 40,
+    "ownership": "agent_control"
+  },
+  "crawl": {
+    "rounds": 47,
+    "zeroGrowthRounds": 3,
+    "zeroGrowthRoundsRequired": 3,
+    "completed": true,
+    "stopReason": "converged",
+    "declaredLimit": null,
+    "duplicateIds": [],
+    "lastScrollY": 21504.5,
+    "lastPageHeight": 22584,
+    "displayedCountDiscrepancy": {
+      "profileSearchCount": 251,
+      "uniqueCollected": 240,
+      "gap": 11
+    }
+  },
+  "counts": {
+    "items": 240,
+    "videos": 0,
+    "images": 0,
+    "articles": 0,
+    "unknownMediaType": 240,
+    "detailReady": 0,
+    "selectedForDeep": 0
+  },
+  "missingness": {
+    "likes": 0,
+    "collections": 240,
+    "comments": 240,
+    "shares": 240,
+    "publishedAt": 240,
+    "mediaType": 240
+  },
+  "media": {
+    "reusedOrDownloaded": 0,
+    "verified": 0,
+    "failed": 0
+  },
+  "subtitles": {
+    "available": 0,
+    "absent": 0,
+    "failed": 0,
+    "unchecked": 240
+  },
+  "readiness": "partial",
+  "detailEnrichmentStatus": {
+    "state": "blocked",
+    "code": "300031",
+    "selected": 3,
+    "resolved": 0
+  },
+  "gates": [
+    {
+      "id": "creator_identity",
+      "pass": true,
+      "detail": "3 anchors"
+    },
+    {
+      "id": "crawl_stop_reason",
+      "pass": true,
+      "detail": "3 consecutive zero-growth rounds"
+    },
+    {
+      "id": "unique_ids",
+      "pass": true,
+      "detail": "240 unique rows"
+    },
+    {
+      "id": "displayed_count_reconciled",
+      "pass": false,
+      "detail": "251 displayed vs 240 collected"
+    },
+    {
+      "id": "detail_enrichment",
+      "pass": false,
+      "detail": "inventory first; detail not started"
+    }
+  ],
+  "blockers": [
+    "displayed_count_reconciled:251 vs 240; hidden/down/unexposed posts remain unknown",
+    "detail_enrichment:media type, publish time, and non-like metrics not collected",
+    "platform_security_restriction:300031"
+  ],
+  "selectionCandidates": {
+    "high": [
+      {
+        "id": "69aeeb590000000015031558",
+        "title": "OpenClaw相关的政策真的有必要吗",
+        "likes": 13000
+      },
+      {
+        "id": "69b2e8220000000015039673",
+        "title": "鹅厂几款龙虾产品背后的故事",
+        "likes": 8970
+      },
+      {
+        "id": "6a60412f000000000503b19c",
+        "title": "AI应用扩散正在加速",
+        "likes": 7360
+      },
+      {
+        "id": "6a1ef16e000000003601e46b",
+        "title": "AI真正的大爆发，还没有开始",
+        "likes": 7275
+      },
+      {
+        "id": "69bd67f4000000002200280b",
+        "title": "如何让AI指导Multi-agent做研究",
+        "likes": 6462
+      }
+    ],
+    "median": [
+      {
+        "id": "6929c127000000000d03aea4",
+        "title": "AI会让我们的大脑萎缩吗？",
+        "likes": 509
+      },
+      {
+        "id": "69ef71590000000038020bc5",
+        "title": "AI泛滥，什么样的文章值得阅读？",
+        "likes": 506
+      },
+      {
+        "id": "6980c6c8000000002203b6af",
+        "title": "自主性的授权是让AI升级为Agent的钥匙",
+        "likes": 505
+      },
+      {
+        "id": "6a05a8dc000000003700c470",
+        "title": "什么才是一个好的叙事？",
+        "likes": 504
+      },
+      {
+        "id": "6915dd91000000000d00dd78",
+        "title": "最近跟AI协作的一些心得",
+        "likes": 504
+      }
+    ],
+    "meanNear": [
+      {
+        "id": "691b1ddf000000000d03a5f0",
+        "title": "AI已经可以帮我们高效考证了",
+        "likes": 986,
+        "relativeDistance": 0.0164
+      },
+      {
+        "id": "68a893fb000000001d0217ff",
+        "title": "MIT的AI落地应用报告解读",
+        "likes": 991,
+        "relativeDistance": 0.0216
+      },
+      {
+        "id": "6953f4720000000022009018",
+        "title": "Manus CEO肖弘讲给我们的一个故事",
+        "likes": 993,
+        "relativeDistance": 0.0236
+      },
+      {
+        "id": "693ef49e000000001b0331ca",
+        "title": "手把手教你把AI改造成备考教练",
+        "likes": 931,
+        "relativeDistance": 0.0403
+      },
+      {
+        "id": "6a2add810000000016027aa7",
+        "title": "Fable5发布后想到的商业机会",
+        "likes": 929,
+        "relativeDistance": 0.0423
+      }
+    ],
+    "low": [
+      {
+        "id": "6908aacf0000000003036221",
+        "title": "你有什么不开倍速看的东西吗？",
+        "likes": 66
+      },
+      {
+        "id": "68d1f2890000000013035cc4",
+        "title": "昨天Cursor Online RL讲解的AI总结版",
+        "likes": 69
+      },
+      {
+        "id": "688b750500000000030257d2",
+        "title": "欢迎你也来彩云之南",
+        "likes": 80
+      },
+      {
+        "id": "68d7bff5000000001301b6b3",
+        "title": "昨天视频中提到的David访谈PPT",
+        "likes": 85
+      },
+      {
+        "id": "6977905b0000000022022b4f",
+        "title": "采访下大会的总导演窦窦",
+        "likes": 88
+      }
+    ]
+  },
+  "nextActions": [
+    "Do not download full media.",
+    "Enrich only comparison/deep-set candidates after parent prioritization.",
+    "Keep causal conclusions blocked until video reconstruction passes."
+  ]
+}

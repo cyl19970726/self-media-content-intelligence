@@ -4,6 +4,7 @@ import type {
   CreatorBrowserExecutor,
   CreatorDetailResult
 } from "../../modules/orchestration/contracts.js";
+import { advanceCreatorCrawl } from "./creator-crawl-policy.js";
 
 const resultMarker = "__SELF_MEDIA_CREATOR_RESULT__";
 
@@ -45,6 +46,16 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
+function isCrawlDiagnostic(value: unknown): value is NonNullable<Extract<CreatorAcquisitionResult, { state: "ready" }>["diagnostics"]>[number] {
+  if (!isRecord(value)) return false;
+  const numeric = ["round", "globalCountBefore", "globalCountAfter", "heightBefore", "heightAfter", "heightDelta",
+    "scrollTopBefore", "scrollTopAfter", "scrollDelta", "waitElapsedMs"];
+  return numeric.every((key) => typeof value[key] === "number") &&
+    Array.isArray(value.newGlobalIds) && value.newGlobalIds.every((id) => typeof id === "string") &&
+    typeof value.atBottom === "boolean" && typeof value.waitReason === "string" &&
+    ["advance", "bottom_observe", "bounded_retrigger", "stop"].includes(String(value.action));
+}
+
 function normalizeResult(value: unknown): CreatorAcquisitionResult {
   if (!isRecord(value) || typeof value.state !== "string") throw new Error("采集结果结构无效");
   if (value.state === "needs_user") {
@@ -72,7 +83,7 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
     (value.creatorId !== null && typeof value.creatorId !== "string") ||
     (value.creatorName !== null && typeof value.creatorName !== "string") ||
     typeof value.taskSpaceId !== "number" ||
-    !["explicit_end", "zero_growth", "budget_reached"].includes(String(value.stopReason)) ||
+    !["explicit_end", "quiescent_incomplete", "budget_reached"].includes(String(value.stopReason)) ||
     !Array.isArray(value.posts) || !Array.isArray(value.warnings)) {
     throw new Error("采集完成结果结构无效");
   }
@@ -95,19 +106,23 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
       likes: post.likes
     };
   });
+  const diagnostics = Array.isArray(value.diagnostics)
+    ? value.diagnostics.filter(isCrawlDiagnostic)
+    : [];
   return {
     state: "ready",
     finalUrl: value.finalUrl,
     creatorId: value.creatorId,
     creatorName: value.creatorName,
     taskSpaceId: value.taskSpaceId,
-    stopReason: value.stopReason as "explicit_end" | "zero_growth" | "budget_reached",
+    stopReason: value.stopReason as "explicit_end" | "quiescent_incomplete" | "budget_reached",
     posts,
-    warnings: value.warnings.filter((warning): warning is string => typeof warning === "string")
+    warnings: value.warnings.filter((warning): warning is string => typeof warning === "string"),
+    diagnostics
   };
 }
 
-function acquisitionScript(input: {
+export function buildAcquisitionScript(input: {
   runId: string;
   profileUrl: string;
   maxScrollRounds: number;
@@ -116,10 +131,13 @@ function acquisitionScript(input: {
   const taskExpression = input.taskSpaceId === null
     ? `await useOrCreateTaskSpace(${JSON.stringify(`creator-research-${input.runId.slice(0, 8)}`)})`
     : `(await takeOverTaskSpace(${input.taskSpaceId}), { id: ${input.taskSpaceId} })`;
+  const transitionSource = advanceCreatorCrawl.toString();
   return `
 const task = ${taskExpression}
 const sourceUrl = ${JSON.stringify(input.profileUrl)}
 const maxRounds = ${Math.min(30, Math.max(1, input.maxScrollRounds))}
+const transition = ${transitionSource}
+const cacheKey = ${JSON.stringify(`self-media:creator-crawl:${input.runId}`)}
 await openOrReuseTab(sourceUrl, { wait: true, timeout: 30 })
 await wait(1.5)
 
@@ -162,12 +180,16 @@ const inspect = async () => await js(String.raw\`(() => {
     textSample: text.slice(0, 5000),
     creatorName: titleCandidates[0] || null,
     posts,
-    explicitEnd: /没有更多|到底了|暂时没有更多/.test(text)
+    explicitEnd: /没有更多|到底了|暂时没有更多/.test(text),
+    scrollTop: Number((document.querySelector('.tab-content-item') || document.scrollingElement)?.scrollTop || 0),
+    documentHeight: Number((document.querySelector('.tab-content-item') || document.scrollingElement)?.scrollHeight || 0),
+    viewportHeight: Number((document.querySelector('.tab-content-item') || document.scrollingElement)?.clientHeight || innerHeight || 0),
+    observedAtMs: Date.now()
   }
 })()\`)
 
   let observation = await inspect()
-const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险/
+const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险|300031|安全限制/
 const login = /登录后查看更多|扫码登录|手机号登录/
 if (challenge.test(observation.textSample) || login.test(observation.textSample)) {
   const code = challenge.test(observation.textSample) ? 'captcha_required' : 'login_required'
@@ -177,21 +199,52 @@ if (challenge.test(observation.textSample) || login.test(observation.textSample)
     message: code === 'captcha_required' ? '小红书要求安全验证，任务已停下并把页面交给你。' : '小红书登录状态不可用，任务已停下并把页面交给你。'
   }))
 } else {
-  const collected = new Map()
-  let zeroGrowth = 0
+  let cached = null
+  try { cached = JSON.parse(await js('sessionStorage.getItem(' + JSON.stringify(cacheKey) + ')')) } catch {}
+  const cachedPosts = Array.isArray(cached?.posts) ? cached.posts : []
+  const collected = new Map(cachedPosts.filter(post => post?.externalId).map(post => [post.externalId, post]))
+  let crawlState = {
+    globalIds: [...collected.keys()], rounds: 0, quiescenceStartedAtMs: null, boundedRetriggerUsed: false,
+    lastScrollTop: Number(cached?.cursor?.scrollTop || 0), lastDocumentHeight: Number(cached?.cursor?.documentHeight || 0)
+  }
+  const diagnostics = []
+  let handoff = null
   let stopReason = 'budget_reached'
-  for (let round = 0; round < maxRounds; round += 1) {
-    const before = collected.size
+  while (crawlState.rounds < maxRounds) {
     for (const post of observation.posts) collected.set(post.externalId, post)
-    zeroGrowth = collected.size === before ? zeroGrowth + 1 : 0
-    if (observation.explicitEnd) { stopReason = 'explicit_end'; break }
-    if (zeroGrowth >= 3) { stopReason = 'zero_growth'; break }
-    await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
-    await wait(1.2)
+    const decision = transition(crawlState, {
+      ids: observation.posts.map(post => post.externalId), explicitEnd: observation.explicitEnd,
+      scrollTop: observation.scrollTop, documentHeight: observation.documentHeight,
+      viewportHeight: observation.viewportHeight, observedAtMs: observation.observedAtMs
+    }, { maxRounds, lateLoadWindowMs: 20000, postRetriggerWindowMs: 5000 })
+    crawlState = decision.state
+    diagnostics.push(decision.diagnostic)
+    await js('sessionStorage.setItem(' + JSON.stringify(cacheKey) + ', ' + JSON.stringify(JSON.stringify({
+      posts: [...collected.values()], cursor: { scrollTop: crawlState.lastScrollTop, documentHeight: crawlState.lastDocumentHeight }, savedAt: new Date().toISOString()
+    })) + ')')
+    if (decision.action === 'stop') { stopReason = decision.stopReason || 'budget_reached'; break }
+    if (decision.action === 'advance') {
+      await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; const step = Math.max(900, Number(scroller?.clientHeight || innerHeight || 900) * 0.85); scroller?.scrollBy({ top: step, behavior: "auto" }); return true })()')
+      await wait(1.4)
+    } else if (decision.action === 'bottom_observe') {
+      await wait(2)
+    } else if (decision.action === 'bounded_retrigger') {
+      await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; if (!scroller) return false; scroller.scrollBy({ top: -360, behavior: "auto" }); requestAnimationFrame(() => scroller.scrollTo({ top: scroller.scrollHeight, behavior: "auto" })); return true })()')
+      await wait(2.5)
+    }
     observation = await inspect()
+    if (challenge.test(observation.textSample) || login.test(observation.textSample)) {
+      const code = challenge.test(observation.textSample) ? 'captcha_required' : 'login_required'
+      handoff = { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
+        message: code === 'captcha_required' ? '采集遇到安全验证，已立即停止且不会自动重试。' : '采集登录状态失效，已立即停止且不会自动重试。' }
+      break
+    }
   }
   const creatorMatch = observation.href.match(/\\/user\\/profile\\/([^/?#]+)/)
-  if (!creatorMatch) {
+  if (handoff) {
+    await handOffTaskSpace(task.id)
+    cliLog(${JSON.stringify(resultMarker)} + JSON.stringify(handoff))
+  } else if (!creatorMatch) {
     cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
       state: 'blocked', finalUrl: observation.href, taskSpaceId: task.id,
       code: 'identity_ambiguous', message: '最终页面不是可确认的小红书博主主页。', retryable: false
@@ -200,7 +253,12 @@ if (challenge.test(observation.textSample) || login.test(observation.textSample)
     cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
       state: 'ready', finalUrl: observation.href, creatorId: creatorMatch[1],
       creatorName: observation.creatorName, taskSpaceId: task.id, stopReason,
-      posts: [...collected.values()], warnings: collected.size === 0 ? ['主页未提取到可识别的公开作品链接。'] : []
+      posts: [...collected.values()], diagnostics,
+      warnings: [
+        ...(collected.size === 0 ? ['主页未提取到可识别的公开作品链接。'] : []),
+        ...(stopReason === 'quiescent_incomplete' ? ['页面静默后停止，清单按 partial 处理；未宣称全量完成。'] : []),
+        ...(cachedPosts.length > 0 ? ['已从同一 run 的浏览器会话断点恢复。'] : [])
+      ]
     }))
   }
 }
@@ -256,7 +314,7 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
   };
 }
 
-function detailScript(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
+export function buildDetailScript(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
   const taskExpression = input.taskSpaceId === null
     ? `await useOrCreateTaskSpace(${JSON.stringify(`creator-detail-${input.runId.slice(0, 8)}`)})`
     : `await useOrCreateTaskSpace(${input.taskSpaceId})`;
@@ -264,40 +322,56 @@ function detailScript(input: { runId: string; profileUrl: string; posts: Array<{
 const task = ${taskExpression}
 const requested = ${JSON.stringify(input.posts.slice(0, 21))}
 const profileUrl = ${JSON.stringify(input.profileUrl)}
-const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险/
+const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险|300031|安全限制/
 const login = /登录后查看更多|扫码登录|手机号登录/
 const output = []
 let handoff = null
 let navigatedCount = 0
-await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
-await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
-await wait(2)
-const profileLinks = new Map()
-const profileObservedIds = new Set()
-let profileZeroGrowth = 0
-let profilePreviousCount = 0
-for (let round = 0; round < 30; round += 1) {
-  const loadedCards = await js(String.raw\`(() => [...document.querySelectorAll('section[data-note-id]')].map(item => {
-    const link = item.querySelector('a.cover')
-    const image = link?.querySelector('img')
-    return { id: item.getAttribute('data-note-id'), href: link?.href || null, cover: image?.currentSrc || image?.src || null }
-  }))()\`)
-  for (const card of loadedCards) {
-    if (card.id) profileObservedIds.add(card.id)
-    if (card.id && card.href && requested.some(item => item.externalId === card.id)) profileLinks.set(card.id, { href: card.href, cover: card.cover })
+const securityStop = observation => {
+  const security = challenge.test(observation.textSample) || /300031|安全限制|当前笔记暂时无法浏览/.test(observation.textSample + observation.pageTitle)
+  if (!security && !login.test(observation.textSample)) return null
+  const code = security ? 'captcha_required' : 'login_required'
+  return { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
+    message: security ? '详情采集触发安全限制，已立即停止且不会自动重试。' : '详情采集需要重新登录，已立即停止且不会自动重试。' }
+}
+const locateFromProfile = async request => {
+  await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
+  await wait(1.5)
+  const initial = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
+  const stop = securityStop(initial)
+  if (stop) { handoff = stop; return null }
+  await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
+  for (let round = 0; round < 12; round += 1) {
+    const card = await js(String.raw\`(() => {
+      const item = document.querySelector('section[data-note-id="' + ${JSON.stringify("PLACEHOLDER")} + '"]')
+      return item ? { href: item.querySelector('a.cover')?.href || null, cover: item.querySelector('img')?.currentSrc || item.querySelector('img')?.src || null } : null
+    })()\`.replace(${JSON.stringify("PLACEHOLDER")}, request.externalId))
+    if (card?.href) return card
+    await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; if (!scroller) return false; if (' + String(round === 8) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
+    await wait(round >= 8 ? 1.8 : 1.1)
+    const status = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
+    const profileStop = securityStop(status)
+    if (profileStop) { handoff = profileStop; return null }
   }
-  if (requested.every(item => profileLinks.has(item.externalId))) break
-  profileZeroGrowth = profileObservedIds.size === profilePreviousCount ? profileZeroGrowth + 1 : 0
-  if (profileZeroGrowth >= 3) break
-  profilePreviousCount = profileObservedIds.size
-  await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
-  await wait(1)
+  return null
 }
 for (let index = 0; index < requested.length; index += 1) {
   const request = requested[index]
-  const navigation = profileLinks.get(request.externalId)
-  if (!navigation) continue
-  await gotoAndWait(navigation.href, { timeout: 20, settle: 1.5 })
+  let navigation = { href: request.url, cover: null, source: 'canonical' }
+  let fallbackUsed = false
+  while (navigation) {
+  try { await gotoAndWait(navigation.href, { timeout: 20, settle: 1.5 }) }
+  catch {
+    if (fallbackUsed) break
+    const fallback = await locateFromProfile(request)
+    if (handoff || !fallback) break
+    navigation = { ...fallback, source: 'profile_fallback' }
+    fallbackUsed = true
+    continue
+  }
+  const navigationStatus = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
+  const navigationStop = securityStop(navigationStatus)
+  if (navigationStop) { handoff = navigationStop; break }
   if (request.resolveMedia) {
     for (let mediaAttempt = 0; mediaAttempt < 20; mediaAttempt += 1) {
       const mediaReady = await js(String.raw\`(() => performance.getEntriesByType('resource').some(entry => {
@@ -337,15 +411,18 @@ for (let index = 0; index < requested.length; index += 1) {
     const videoCandidateUrl = resourceVideos[0]?.name || htmlVideoCandidate
     return { href: location.href, pageTitle: document.title, textSample: text.slice(0, 10000), metaTitle, description, published, mediaType, videoCandidateUrl, coverCandidateUrl }
   })()\`)
-  if (challenge.test(observation.textSample) || login.test(observation.textSample)) {
-    const code = challenge.test(observation.textSample) ? 'captcha_required' : 'login_required'
-    handoff = { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
-      message: code === 'captcha_required' ? '详情采集遇到安全验证，已停下并交给你。' : '详情采集需要重新登录，已停下并交给你。' }
-    break
-  }
+  const stop = securityStop(observation)
+  if (stop) { handoff = stop; break }
   const finalUrl = new URL(observation.href)
   const finalMatch = finalUrl.pathname.match(/\\/(?:explore|discovery\\/item)\\/([^/?#]+)/) || finalUrl.pathname.match(/\\/user\\/profile\\/[^/]+\\/([^/?#]+)/)
-  if (finalMatch?.[1] !== request.externalId || /页面不见了|暂时无法浏览/.test(observation.pageTitle + observation.textSample)) continue
+  if (finalMatch?.[1] !== request.externalId || /页面不见了/.test(observation.pageTitle + observation.textSample)) {
+    if (fallbackUsed) break
+    const fallback = await locateFromProfile(request)
+    if (handoff || !fallback) break
+    navigation = { ...fallback, source: 'profile_fallback' }
+    fallbackUsed = true
+    continue
+  }
   navigatedCount += 1
   const sanitizedUrl = new URL(observation.href)
   sanitizedUrl.search = ''
@@ -366,8 +443,11 @@ for (let index = 0; index < requested.length; index += 1) {
     inspectedAt: new Date().toISOString(),
     warnings: [request.resolveMedia
       ? (observation.videoCandidateUrl ? 'video_candidate_present' : 'video_candidate_missing_after_bounded_wait')
-      : 'video_candidate_not_requested']
+      : 'video_candidate_not_requested', 'detail_navigation_' + navigation.source]
   })
+  break
+  }
+  if (handoff) break
 }
 if (handoff) {
   await handOffTaskSpace(task.id)
@@ -375,7 +455,7 @@ if (handoff) {
 } else if (requested.length > 0 && output.length / requested.length < 0.8) {
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
     state: 'blocked', finalUrl: null, taskSpaceId: task.id, code: 'page_shape_unknown',
-    message: '少于 80% 的选择集详情能确认作品身份；未发布伪详情。目标链接 ' + profileLinks.size + '/' + requested.length + '，身份匹配 ' + navigatedCount + '/' + requested.length + '。', retryable: true
+    message: '少于 80% 的选择集详情能确认作品身份；未发布伪详情。canonical 直达优先、有限主页回退后，身份匹配 ' + navigatedCount + '/' + requested.length + '。', retryable: true
   }))
 } else {
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
@@ -400,7 +480,7 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
   }): Promise<CreatorAcquisitionResult> {
     let processResult: ProcessResult;
     try {
-      processResult = await runEgoScript(this.binary, acquisitionScript(input), this.timeoutMs);
+      processResult = await runEgoScript(this.binary, buildAcquisitionScript(input), this.timeoutMs);
     } catch (error) {
       const message = error instanceof Error ? error.message : "ego-browser 无法启动";
       if (/ENOENT|not found|spawn/.test(message)) {
@@ -428,7 +508,7 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
   async enrich(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): Promise<CreatorDetailResult> {
     let processResult: ProcessResult;
     try {
-      processResult = await runEgoScript(this.binary, detailScript(input), this.timeoutMs);
+      processResult = await runEgoScript(this.binary, buildDetailScript(input), this.timeoutMs);
     } catch (error) {
       const message = error instanceof Error ? error.message : "ego-browser 无法启动";
       if (/ENOENT|not found|spawn/.test(message)) return {

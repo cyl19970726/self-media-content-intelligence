@@ -18,7 +18,17 @@ export const creatorInventorySchema = z.object({
   finalUrl: z.string().url(),
   creatorId: z.string().nullable(),
   creatorName: z.string().nullable(),
-  stopReason: z.enum(["explicit_end", "zero_growth", "budget_reached"]),
+  stopReason: z.enum(["explicit_end", "quiescent_incomplete", "budget_reached"]),
+  crawlDiagnostics: z.array(z.object({
+    round: z.number().int().positive(),
+    globalCountBefore: z.number().int().nonnegative(),
+    globalCountAfter: z.number().int().nonnegative(),
+    newGlobalIds: z.array(z.string()),
+    heightBefore: z.number(), heightAfter: z.number(), heightDelta: z.number(),
+    scrollTopBefore: z.number(), scrollTopAfter: z.number(), scrollDelta: z.number(),
+    atBottom: z.boolean(), waitElapsedMs: z.number().nonnegative(), waitReason: z.string(),
+    action: z.enum(["advance", "bottom_observe", "bounded_retrigger", "stop"])
+  })).optional(),
   posts: z.array(creatorInventoryPostSchema),
   warnings: z.array(z.string())
 });
@@ -44,7 +54,7 @@ export const creatorCorpusSchema = z.object({
     likesKnown: z.number().int().nonnegative(),
     likesMissing: z.number().int().nonnegative(),
     likesCoverage: z.number().min(0).max(1),
-    stopReason: z.enum(["explicit_end", "zero_growth", "budget_reached"]),
+    stopReason: z.enum(["explicit_end", "quiescent_incomplete", "budget_reached"]),
     corpusCompleteness: z.enum(["observed_converged", "bounded_partial"])
   }),
   likes: numericSummarySchema,

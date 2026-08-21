@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "snapshotAt": "2026-08-21T06:10:54.354Z",
+  "creatorId": "6559c8bf0000000008000b2a",
+  "creatorName": "赛博鸭AIGC",
+  "selectionBasis": {
+    "visibleCorpus": 319,
+    "displayedCount": 334,
+    "metric": "public_likes",
+    "tiers": [
+      "high",
+      "mean-near",
+      "low"
+    ],
+    "warning": "公开点赞为累计快照，不等于曝光、完播或转粉；15篇展示差异未解决。"
+  },
+  "detailRun": {
+    "route": "ego-browser hhh-01 read_only",
+    "status": "not_started_due_prior_platform_stop",
+    "stopSignal": {
+      "code": "300031",
+      "label": "同一顺序采集任务在晓辉博士首条详情遇到安全限制"
+    },
+    "policyResponse": "保持单线程并停止详情队列，不尝试通过第二账号页面规避限制。"
+  },
+  "items": [
+    {
+      "id": "67b012c40000000017038a99",
+      "tier": "high",
+      "title": "用Deepseek学英语太好学了~！",
+      "selectionReason": "已采集319条中的公开点赞最高项（6.5万），作为爆发端候选。",
+      "publicMetrics": {
+        "likes": 65000,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/67b012c40000000017038a99",
+      "mediaType": "unknown",
+      "detailState": "not_attempted_after_platform_stop",
+      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+    },
+    {
+      "id": "658bfdde000000001000fcea",
+      "tier": "mean-near",
+      "title": "1分钟本地部署Gemini，免费使用GPT4模型",
+      "selectionReason": "1289赞，距离清单算术均值1278.37约0.83%，代表均值附近。",
+      "publicMetrics": {
+        "likes": 1289,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/658bfdde000000001000fcea",
+      "mediaType": "unknown",
+      "detailState": "not_attempted_after_platform_stop",
+      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+    },
+    {
+      "id": "6659ca17000000001500aa50",
+      "tier": "low",
+      "title": "达摩院的达，原来是使命必达的达！",
+      "selectionReason": "已采集清单公开点赞最低项（5赞），作为失效端候选；不代表内容质量低。",
+      "publicMetrics": {
+        "likes": 5,
+        "collections": null,
+        "comments": null,
+        "shares": null
+      },
+      "publishedAt": null,
+      "publishedLabel": null,
+      "stableUrl": "https://www.xiaohongshu.com/explore/6659ca17000000001500aa50",
+      "mediaType": "unknown",
+      "detailState": "not_attempted_after_platform_stop",
+      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+    }
+  ],
+  "readiness": "BLOCKED_DETAIL",
+  "unknowns": [
+    "发布时间",
+    "视频/图文类型",
+    "收藏、评论、分享",
+    "媒体候选与字幕状态"
+  ]
+}

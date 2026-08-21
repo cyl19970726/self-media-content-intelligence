@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ArrowRight, BarChart3, Check, CircleAlert, Clipboard, ExternalLink,
-  LoaderCircle, Play, RefreshCw, Search, Users
+  GitBranch, LoaderCircle, Play, RefreshCw, Search, Users
 } from "lucide-react";
 import { createRun, getRun, listRuns, retryRun } from "./api";
 import { ReportV2 } from "./ReportV2";
@@ -10,6 +10,7 @@ import CreatorsOverview from "./Creators";
 import CreatorDossierPage from "./CreatorDossier";
 import BenchmarkPage from "./Benchmark";
 import VideoEvidencePage from "./VideoEvidence";
+import LearningLoopsPage from "./LearningLoops";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -36,6 +37,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <Link className={location.pathname === "/" ? "active" : ""} to="/"><Search size={16}/> 链接分析</Link>
       <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
       <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
+      <Link className={location.pathname.startsWith("/learning-loop") ? "active" : ""} to="/learning-loop"><GitBranch size={16}/> 迭代验证</Link>
       <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
     {children}
@@ -185,6 +187,8 @@ export default function App() {
     <Route path="/creator-runs/:id" element={<LegacyCreatorRunRedirect/>}/>
     <Route path="/comparisons" element={<Shell><BenchmarkPage/></Shell>}/>
     <Route path="/comparisons/:comparisonId" element={<Shell><BenchmarkPage/></Shell>}/>
+    <Route path="/learning-loop" element={<Shell><LearningLoopsPage/></Shell>}/>
+    <Route path="/learning-loop/:runId" element={<Shell><LearningLoopsPage/></Shell>}/>
     <Route path="/benchmark" element={<Navigate replace to="/comparisons"/>}/>
     <Route path="/runs/:id" element={<Detail/>}/>
     <Route path="*" element={<Home/>}/>

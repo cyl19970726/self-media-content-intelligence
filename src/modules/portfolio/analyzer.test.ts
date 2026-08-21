@@ -10,7 +10,7 @@ function inventory(likes: Array<number | null>) {
     finalUrl: "https://www.xiaohongshu.com/user/profile/test",
     creatorId: "test",
     creatorName: "测试博主",
-    stopReason: "zero_growth",
+    stopReason: "quiescent_incomplete",
     posts: likes.map((value, index) => ({
       externalId: `post-${String(index + 1).padStart(2, "0")}`,
       url: `https://www.xiaohongshu.com/explore/post-${index + 1}`,

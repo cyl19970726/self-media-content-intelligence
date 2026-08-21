@@ -106,3 +106,14 @@ The earlier mechanical convergence passed route/schema/build checks but failed O
   - _Requirements: §3–§6, LEARN-OBS-01–LEARN-INVALIDATE-03_
 - [x] G6. Add fixtures proving promotion thresholds, duplicate-video vote suppression, qualification, contradiction disclosure, invalidation cascade, and restoration history.
   - _Requirements: LEARN-PROMOTE-02, LEARN-INVALIDATE-03_
+
+## Phase H — learning-loop runtime contract
+
+- [ ] H1. Persist the `draft → sampling → creator_running → video_evaluating → blind_testing → diagnosing` learning-loop states, repair/regression/adjudication branches, bounded expansion plans, terminal reasons, and `completed_no_promotion` outcomes.
+  - _Requirements: LOOP-META-06; [learning-loop-contract.md](learning-loop-contract.md) §2, §7_
+- [ ] H2. Enforce hash-pinned artifact DAG allowlists and role-specific read/write capabilities for every learning-loop node.
+  - _Requirements: LOOP-LINEAGE-04; [learning-loop-contract.md](learning-loop-contract.md) §3–§4_
+- [ ] H3. Add published-Dashboard product blind testing plus sanitized concept-holdout blind and judge evaluation, including the ban on creative recommendations from both blind roles.
+  - _Requirements: LOOP-EVAL-05; [learning-loop-contract.md](learning-loop-contract.md) §4, §6_
+- [ ] H4. Add regression fixtures for the old three, newly sampled cases, and sealed untouched holdouts; test promotion, no-promotion, failure classification, and holdout sealing.
+  - _Requirements: LOOP-META-06; [learning-loop-contract.md](learning-loop-contract.md) §8–§9_

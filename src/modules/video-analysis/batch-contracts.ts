@@ -10,6 +10,8 @@ export const videoBatchItemSchema = z.object({
   articleArtifactRef: z.string().nullable(),
   evaluationArtifactRef: z.string().nullable(),
   gateReportArtifactRef: z.string().nullable(),
+  threeLensEvaluationArtifactRef: z.string().nullable(),
+  threeLensGateReportArtifactRef: z.string().nullable(),
   failedGateIds: z.array(z.string()),
   message: z.string(),
   updatedAt: z.string()

@@ -54,7 +54,9 @@ function serviceForTest(options: { values?: Map<string, unknown> } = {}): Creato
     async reconstruct(request) {
       const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
       return { state: "ready", reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
-        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22, failedGateIds: [] };
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
+        threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19, failedGateIds: [] };
     }
   };
   const synthesisExecutor: CreatorSynthesisExecutor = {
@@ -107,7 +109,8 @@ describe("CreatorResearchService", () => {
   });
 
   it("leases a queued job and persists a reviewable inventory result", async () => {
-    const service = serviceForTest();
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
     const run = service.create("https://www.xiaohongshu.com/user/profile/creator-ready");
     const executor: CreatorBrowserExecutor = {
       async acquire() {
@@ -117,7 +120,10 @@ describe("CreatorResearchService", () => {
           creatorId: "creator-ready",
           creatorName: "测试博主",
           taskSpaceId: 18,
-          stopReason: "zero_growth",
+          stopReason: "quiescent_incomplete",
+          diagnostics: [{ round: 1, globalCountBefore: 0, globalCountAfter: 1, newGlobalIds: ["post-1"],
+            heightBefore: 0, heightAfter: 1000, heightDelta: 1000, scrollTopBefore: 0, scrollTopAfter: 0,
+            scrollDelta: 0, atBottom: true, waitElapsedMs: 0, waitReason: "new_global_ids", action: "advance" as const }],
           posts: [{
             externalId: "post-1",
             url: "https://www.xiaohongshu.com/explore/post-1",
@@ -157,6 +163,7 @@ describe("CreatorResearchService", () => {
     expect(updated?.creatorName).toBe("测试博主");
     expect(updated?.coverage.discoveredPosts).toBe(1);
     expect(updated?.inventoryArtifactRef).toMatch(/creator-inventory\.json$/);
+    expect((values.get(updated!.inventoryArtifactRef!) as { crawlDiagnostics?: unknown[] }).crawlDiagnostics).toHaveLength(1);
     expect(updated?.stages.find((entry) => entry.id === "inventory")?.status).toBe("complete");
     expect(service.events(run.id).at(-1)?.type).toBe("job.queued");
 
@@ -195,7 +202,7 @@ describe("CreatorResearchService", () => {
     const executor: CreatorBrowserExecutor = {
       async acquire() {
         return { state: "ready", finalUrl: run.profileUrl, creatorId: "creator-private-url", creatorName: "测试",
-          taskSpaceId: 22, stopReason: "zero_growth", warnings: [], posts: [{ externalId: "post-1",
+          taskSpaceId: 22, stopReason: "quiescent_incomplete", warnings: [], posts: [{ externalId: "post-1",
             url: "https://www.xiaohongshu.com/explore/post-1", title: "测试", visibleText: "测试\\n1",
             mediaType: "video", likesLabel: "1", likes: 1 }] };
       },

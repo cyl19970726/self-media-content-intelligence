@@ -45,8 +45,8 @@ describe("Creator Analysis OS V1 read projections", () => {
       project: {
         id: "comparison-fixture", name: "Fixture comparison", status: "ready", updatedAt: "2026-08-20T00:00:00Z",
         members: [
-          { creatorRunId: "ai-red-witch", creatorName: "AI红发魔女" },
-          { creatorRunId: "human-director", creatorName: "人类最强编导" }
+          { creatorRunId: "legacy-member-red", creatorId: "ai-red-witch", creatorName: "AI红发魔女" },
+          { creatorRunId: "legacy-member-director", creatorId: "human-director", creatorName: "人类最强编导" }
         ], error: null
       },
       comparison: { observations: [], limitations: ["fixture boundary"] }

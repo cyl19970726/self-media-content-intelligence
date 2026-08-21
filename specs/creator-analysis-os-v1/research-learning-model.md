@@ -4,6 +4,8 @@ Status: **normative for schema, synthesis, revision, and promotion gates**
 
 The workbench must learn from completed analyses without converting one persuasive example into a universal rule. Learning is represented by three versioned objects: `ResearchConcept`, `Observation`, and `Revision`.
 
+The runtime that produces and evaluates these objects is governed by [learning-loop-contract.md](learning-loop-contract.md). In particular, candidate discovery is not verified identity, all agent inputs are explicit hash-pinned artifacts, and a valid bounded loop may end `completed_no_promotion` without weakening the rules below.
+
 ## 1. ResearchConcept
 
 A concept is an open, reusable analytical distinction, not a free-text tag.
@@ -183,3 +185,5 @@ Research synthesis may cite only `eligible` observations pinned to the current c
 | `LEARN-INVALIDATION-CASCADE` | Invalid source/revision makes all dependent conclusions stale or invalid before a new revision can publish. |
 
 A creator analysis is not “learning-complete” until new observations are either linked to an existing concept revision or explicitly recorded as reviewed/no-new-concept. A multi-creator conclusion cannot publish from unversioned labels.
+
+Promotion additionally requires the role separation, three-lens runtime gate, dual blind evaluation (published-Dashboard product blind test plus sanitized concept-holdout blind test), meta-gate, and old-three/new/untouched-holdout regression record in [learning-loop-contract.md](learning-loop-contract.md). These runtime controls do not lower or replace the quantitative thresholds in §5.

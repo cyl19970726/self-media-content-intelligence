@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "next-wave-cyber-duck-aigc-2026-08-21",
+  "creatorId": "6559c8bf0000000008000b2a",
+  "createdAt": "2026-08-21T06:07:54.517Z",
+  "updatedAt": "2026-08-21T06:07:54.517Z",
+  "artifacts": {
+    "analysisContract": "artifacts/creator-research/next-wave/cyber-duck-aigc/analysis-contract.json",
+    "runManifest": "artifacts/creator-research/next-wave/cyber-duck-aigc/run-manifest.json",
+    "collectionInventory": "artifacts/creator-research/next-wave/cyber-duck-aigc/collection-inventory.json",
+    "crawlLedger": "artifacts/creator-research/next-wave/cyber-duck-aigc/crawl-ledger.jsonl",
+    "collectionStatus": "artifacts/creator-research/next-wave/cyber-duck-aigc/collection-status.json",
+    "creatorCorpus": "artifacts/creator-research/next-wave/cyber-duck-aigc/creator-corpus.json",
+    "selectedDetailSet": "artifacts/creator-research/next-wave/cyber-duck-aigc/selected-detail-set.json",
+    "dashboard": null
+  },
+  "stages": {
+    "collection": {
+      "status": "complete",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": "319 unique public grid items; 15-item displayed-count discrepancy retained"
+    },
+    "portfolio": {
+      "status": "pending",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": null
+    },
+    "selection": {
+      "status": "complete",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": "high/mean-near/low selected; detail queue stopped after prior platform security restriction"
+    },
+    "reconstruction": {
+      "status": "blocked",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": "selected detail and media resolution were not attempted after platform stop signal"
+    },
+    "synthesis": {
+      "status": "pending",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": null
+    },
+    "dashboard": {
+      "status": "pending",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": null
+    },
+    "validation": {
+      "status": "pending",
+      "updatedAt": "2026-08-21T06:07:54.517Z",
+      "reason": null
+    }
+  },
+  "invalidation": {
+    "sourceRevision": "cyber-duck-aigc-2026-08-21",
+    "invalidatedStages": []
+  },
+  "readiness": "PARTIAL_INVENTORY",
+  "knownLimitations": [
+    "displayed_count_reconciled:334 vs 319; hidden/down/unexposed posts remain unknown",
+    "detail_enrichment:media type, publish time, and non-like metrics not collected"
+  ]
+}

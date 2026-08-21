@@ -144,6 +144,10 @@ Metrics are nullable. `0` means a visible verified zero; `null` means unavailabl
 | `research_concept_revisions` | immutable definition/scope decision | concept, parent, definition, exclusions, change type, scope before/after |
 | `research_observations` | evidence-backed concept occurrence/counterexample | concept revision, subject, relation, condition, analysis revision, confidence, gate state |
 | `concept_revision_observations` | included/excluded decision ledger | revision, observation, inclusion, exclusion reason |
+| `learning_loop_runs` | persisted runtime attempt around a concept decision | pinned subject/revision, state, terminal outcome, stop reason, input/allowlist fingerprint |
+| `learning_loop_nodes` | immutable-DAG node ledger | run, role, node state, allowed input artifact IDs, input fingerprint, output artifact ID |
+| `learning_evaluations` | independent judge/blind/meta results | run, evaluator role, verdict, failure class, artifact ID, gate result |
+| `learning_regression_cases` | pinned old-three/new/holdout evaluation membership | run, cohort, subject/revision, sealed-at, result, artifact ID |
 | `parity_manifests` | source-to-canonical migration proof | creator revision, contract version, source hashes/counts, mapping artifact, gate result |
 
 ### Multi-creator comparison
@@ -289,6 +293,8 @@ sha256(
 
 The same fingerprint reuses the prior successful output. A failed/retry job can run again, but cannot create competing authoritative outputs for the same fingerprint.
 
+Learning-loop nodes additionally persist an `allowed_input_artifact_ids` allowlist. Every actual input must be a member, resolve to its registered SHA-256, and be included in the node fingerprint. The data model and terminal semantics for this loop are normative in [learning-loop-contract.md](learning-loop-contract.md); no agent conversation or unregistered discovery result is a valid artifact input.
+
 ## 9. High / Base / Low model
 
 `selection_items.tier` is exactly `high | base | low`.
@@ -345,3 +351,5 @@ Garbage collection may remove unreferenced transient artifacts after TTL. Immuta
 `research_observations.relation` is exactly `confirm | qualify | contradict`; `gate_state` is `eligible | quarantined | invalid`. An eligible observation pins one subject, one analysis revision, a machine-readable condition, and at least one resolvable evidence reference. One video supplies at most one independent vote to one concept revision.
 
 Concept definition, exclusions, scope, status, and evidence membership change only through an immutable revision. Promotion and invalidation rules are defined in [research-learning-model.md](research-learning-model.md); implementations must reproduce their creator and cross-creator thresholds from stored observations rather than a generated summary.
+
+`learning_loop_runs.state` is `draft | sampling | creator_running | video_evaluating | blind_testing | diagnosing | repair_queued | regression_testing | observation_adjudicating | promoted | completed_no_promotion | blocked | failed | stale`. `terminal_outcome` is `promoted | completed_no_promotion | blocked | failed | stale`; `rejected` is a `failure_reason`, never a state. `completed_no_promotion` means evidence collection and independent evaluation completed under the declared bounded plan but did not justify a higher-scope promotion; it is neither a job failure nor permission to silently reuse the same holdout for tuning.

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AlertTriangle, ArrowRight, Database, ExternalLink, Link2, LoaderCircle, RefreshCw, ShieldCheck, UserRound } from "lucide-react";
 import { createCreatorResearchRun, listCreatorResearchRuns, listCreators, resumeCreatorResearchRun } from "./api";
 import type { CreatorResearchRun, CreatorResearchStatus, CreatorSummary } from "../shared/schema";
+import { completionNotice, failureReason, findExistingCreatorRun, taskEstimateLabel, taskPhases, validateCreatorProfileUrl } from "./creator-task-state";
 
 const statusLabels: Record<CreatorResearchStatus, string> = {
   queued: "等待接管",
@@ -39,7 +40,7 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
       {creator.tags.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}
     </div>
     <nav className="creator-card__entries">
-      <Link to={consoleHref}><span>进入唯一研究页</span><small>定位 · 基本盘 · 21 条 · 深度证据</small><ArrowRight size={15}/></Link>
+      <Link to={consoleHref}><span>进入唯一研究页</span><small>定位 · 基本盘 · 统一选择集 · 深度证据</small><ArrowRight size={15}/></Link>
     </nav>
   </article>;
 }
@@ -47,6 +48,10 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
 function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id: string) => Promise<void> }) {
   const current = run.stages.find((stage) => stage.id === run.currentStage);
   const blocker = run.blockers[0];
+  const phases = taskPhases(run);
+  const diagnostic = blocker ? null : failureReason(run);
+  const completion = completionNotice(run);
+  const detailHref = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
   return <article className={`creator-run creator-run--${run.status}`}>
     <div className="creator-run__status">
       <span className={`status status--${run.status}`}><i/>{statusLabels[run.status]}</span>
@@ -56,6 +61,7 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       <strong>{run.creatorName ?? "待识别博主"}</strong>
       <a href={run.profileUrl} target="_blank" rel="noreferrer">{run.profileUrl}<ExternalLink size={12}/></a>
       <p><b>{current?.label ?? "等待预检"}</b> · {run.nextAction}</p>
+      <small className="creator-run__estimate">{taskEstimateLabel()}</small>
     </div>
     <div className="creator-run__coverage" aria-label="采集覆盖">
       <span><b>{run.coverage.discoveredPosts}</b>发现</span>
@@ -63,7 +69,7 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       <span><b>{run.coverage.reconstructedPosts}</b>还原</span>
     </div>
     <div className="creator-run__pipeline" aria-label="分析阶段">
-      {run.stages.map((stage) => <span className={`creator-run__stage creator-run__stage--${stage.status}`} key={stage.id} title={stage.label}/>) }
+      {phases.map((phase) => <span className={`creator-run__stage creator-run__stage--${phase.state}`} key={phase.id} title={`${phase.label}：${phase.detail}`}><b>{phase.label}</b></span>) }
     </div>
     <footer>
       <span><ShieldCheck size={13}/>hhh-01 · 只读 · 增量 · 不绕过验证</span>
@@ -71,11 +77,14 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       {blocker && <span className={blocker.userActionRequired ? "creator-run__blocker creator-run__blocker--user" : "creator-run__blocker"}>
         <AlertTriangle size={13}/>{blocker.message}
       </span>}
+      {run.status === "needs_user" && <span className="creator-run__handoff"><AlertTriangle size={13}/>验证接管：请在已交接的 ego-browser 页面完成验证；此处不伪造浏览器跳转。</span>}
+      {diagnostic && <span className="creator-run__diagnostic"><AlertTriangle size={13}/>原因：{diagnostic}</span>}
+      {completion && <span className="creator-run__completion"><ShieldCheck size={13}/>{completion}</span>}
       {(["needs_user", "backoff", "failed"] as CreatorResearchStatus[]).includes(run.status) &&
         <button type="button" className="creator-run__resume" onClick={() => void onResume(run.id)}>
           <RefreshCw size={12}/>{run.status === "needs_user" ? "我已完成，继续" : "重新排队"}
         </button>}
-      <Link to={`/creators/${encodeURIComponent(run.creatorId ?? run.id)}`}>打开同一研究页<ArrowRight size={13}/></Link>
+      <Link to={detailHref}>{run.status === "ready" ? "查看完成研究" : "查看任务详情"}<ArrowRight size={13}/></Link>
     </footer>
   </article>;
 }
@@ -87,6 +96,8 @@ export default function CreatorsOverview() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [createdMessage, setCreatedMessage] = useState<string | null>(null);
+  const existingRun = findExistingCreatorRun(runs, profileUrl);
+  const intakeValidation = profileUrl ? validateCreatorProfileUrl(profileUrl) : null;
 
   const loadOverview = useCallback(async () => {
     try {
@@ -118,6 +129,18 @@ export default function CreatorsOverview() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const validation = validateCreatorProfileUrl(profileUrl);
+    if (!validation.valid) {
+      setError(validation.message);
+      setCreatedMessage(null);
+      return;
+    }
+    const duplicate = findExistingCreatorRun(runs, profileUrl);
+    if (duplicate) {
+      setCreatedMessage(`这条主页链接已有任务（${statusLabels[duplicate.status]}），已保留原任务与证据，不再重复创建。`);
+      setError(null);
+      return;
+    }
     setSubmitting(true);
     setError(null);
     setCreatedMessage(null);
@@ -149,12 +172,12 @@ export default function CreatorsOverview() {
         </ol>
       </header>
 
-      <form className="creator-intake" onSubmit={submit}>
+      <form className="creator-intake" onSubmit={submit} noValidate>
         <label htmlFor="creator-profile-url"><Link2 size={14}/>小红书博主主页链接</label>
         <div className="input-row">
           <input id="creator-profile-url" type="url" value={profileUrl} onChange={(event) => setProfileUrl(event.target.value)}
             placeholder="https://www.xiaohongshu.com/user/profile/..." autoComplete="url" required/>
-          <button className="primary-button" type="submit" disabled={submitting}>
+          <button className="primary-button" type="submit" disabled={submitting || Boolean(profileUrl && intakeValidation && !intakeValidation.valid)}>
             {submitting ? <LoaderCircle className="spin" size={16}/> : <ArrowRight size={16}/>}
             {submitting ? "正在建立任务" : "开始分析博主"}
           </button>
@@ -163,6 +186,8 @@ export default function CreatorsOverview() {
           <span><ShieldCheck size={13}/>使用 hhh-01 登录态；遇验证立即停下请你接管</span>
           <span><Database size={13}/>优先缓存与增量刷新，避免重复访问</span>
         </div>
+        {profileUrl && intakeValidation && !intakeValidation.valid && <p className="form-error" role="alert"><AlertTriangle size={14}/>{intakeValidation.message}</p>}
+        {existingRun && <p className="creator-intake__existing"><Database size={14}/>这个已提交链接已有任务：<b>{statusLabels[existingRun.status]}</b><Link to={`/creators/${encodeURIComponent(existingRun.creatorId ?? existingRun.id)}`}>查看原任务</Link></p>}
         {createdMessage && <p className="form-success" aria-live="polite">{createdMessage}</p>}
         {error && <p className="form-error" role="alert"><AlertTriangle size={14}/>{error}</p>}
       </form>
