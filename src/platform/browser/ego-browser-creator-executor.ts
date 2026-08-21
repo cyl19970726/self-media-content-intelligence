@@ -169,7 +169,9 @@ const inspect = async () => await js(String.raw\`(() => {
       return Math.round(base * (match[2] ? 10000 : 1))
     }
     const mediaType = /视频|播放/.test(visibleText) || Boolean(container?.querySelector('video,[class*="play"]')) ? 'video' : cover?.querySelector('img') ? 'image' : 'unknown'
-    const url = new URL('/explore/' + externalId, location.origin)
+    const url = cover?.href ? new URL(cover.href, location.origin) : new URL('/explore/' + externalId, location.origin)
+    url.search = ''
+    url.hash = ''
     return {
       externalId, url: url.toString(), title: title?.slice(0, 180) || null,
       visibleText: visibleText || null, mediaType, likesLabel, likes: parseCount(likesLabel)
@@ -343,8 +345,17 @@ const locateFromProfile = async request => {
   await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
   for (let round = 0; round < 12; round += 1) {
     const card = await js(String.raw\`(() => {
-      const item = document.querySelector('section[data-note-id="' + ${JSON.stringify("PLACEHOLDER")} + '"]')
-      return item ? { href: item.querySelector('a.cover')?.href || null, cover: item.querySelector('img')?.currentSrc || item.querySelector('img')?.src || null } : null
+      const externalId = ${JSON.stringify("PLACEHOLDER")}
+      const item = document.querySelector('section[data-note-id="' + externalId + '"]')
+      const liveAnchor = [...document.querySelectorAll('a[href]')].find(anchor => {
+        try { return new URL(anchor.href, location.href).pathname.endsWith('/' + externalId) }
+        catch { return false }
+      })
+      const container = item || liveAnchor?.closest('section') || liveAnchor?.parentElement?.parentElement
+      return liveAnchor || item ? {
+        href: liveAnchor?.href || item?.querySelector('a.cover')?.href || null,
+        cover: container?.querySelector('img')?.currentSrc || container?.querySelector('img')?.src || null
+      } : null
     })()\`.replace(${JSON.stringify("PLACEHOLDER")}, request.externalId))
     if (card?.href) return card
     await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; if (!scroller) return false; if (' + String(round === 8) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
@@ -357,8 +368,12 @@ const locateFromProfile = async request => {
 }
 for (let index = 0; index < requested.length; index += 1) {
   const request = requested[index]
-  let navigation = { href: request.url, cover: null, source: 'canonical' }
-  let fallbackUsed = false
+  const requestedUrl = new URL(request.url)
+  const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname)
+  let fallbackUsed = isBareExploreUrl
+  let navigation = isBareExploreUrl ? await locateFromProfile(request) : { href: request.url, cover: null, source: 'canonical' }
+  if (navigation && isBareExploreUrl) navigation = { ...navigation, source: 'profile_live_card' }
+  if (handoff) break
   while (navigation) {
   try { await gotoAndWait(navigation.href, { timeout: 20, settle: 1.5 }) }
   catch {

@@ -121,18 +121,25 @@ function distribution(values: number[]) {
   });
 }
 
-function candidateItem(corpus: Corpus, candidate: Candidate, tier: "high" | "base" | "low", tierRank: number, anchor: "median_near" | "mean_near" | null) {
+function candidateItem(creatorSlug: string, corpus: Corpus, candidate: Candidate, tier: "high" | "base" | "low", tierRank: number, anchor: "median_near" | "mean_near" | null) {
   const post = corpus.posts.find((item) => item.id === candidate.id);
+  const deepRoot = path.join(nextWaveRoot, creatorSlug, "deep-samples", candidate.id);
+  const gate = readTrustedJson(deepRoot, "evaluation/gate-report.json") as Record<string, unknown> | null;
+  const lensEvaluation = readTrustedJson(deepRoot, "evaluation-lenses-v2/evaluation.json") as Record<string, unknown> | null;
+  const reconstruction = readTrustedJson(deepRoot, "reconstruction.json") as Record<string, unknown> | null;
+  const viewerChange = reconstruction && typeof reconstruction.viewerChange === "object" && reconstruction.viewerChange ? reconstruction.viewerChange as Record<string, unknown> : {};
+  const lensOverall = lensEvaluation && typeof lensEvaluation.overall === "object" && lensEvaluation.overall ? lensEvaluation.overall as Record<string, unknown> : {};
+  const deepReady = gate?.ready === true && lensOverall.ready === true && Boolean(reconstruction);
   return {
     id: candidate.id,
     title: post?.title ?? candidate.title,
     sourceHref: post?.sourceUrl ?? `https://www.xiaohongshu.com/explore/${candidate.id}`,
-    evidenceHref: null,
-    coverHref: null,
+    evidenceHref: deepReady ? `/creators/${creatorSlug}/videos/${candidate.id}` : null,
+    coverHref: deepReady ? `/research/next-wave/${creatorSlug}/deep-samples/${candidate.id}/targeted-evidence/highres/HR-01-5.0.jpg` : null,
     tier,
     tierRank,
     anchors: anchor ? [anchor] : [],
-    deepSample: false,
+    deepSample: deepReady,
     likes: candidate.likes,
     collections: post?.metrics.collections ?? null,
     comments: post?.metrics.comments ?? null,
@@ -142,13 +149,13 @@ function candidateItem(corpus: Corpus, candidate: Candidate, tier: "high" | "bas
     durationSeconds: post?.durationSec ?? null,
     topic: null,
     format: null,
-    coreContent: null,
-    contentArchitecture: [],
-    mechanismHypothesis: null,
-    selectionReason: tier === "high" ? "主页可见点赞高位候选；尚未读取详情，不能解释爆发原因。"
+    coreContent: deepReady && typeof viewerChange.after === "string" ? viewerChange.after : null,
+    contentArchitecture: deepReady ? ["结果先行", "输入与提示词", "交互证明", "多能力蒙太奇", "人群收束"] : [],
+    mechanismHypothesis: deepReady ? "先展示可感知结果，再补输入和提示词；用悬停交互及多种练习页扩大工具价值。传播原因仍需与中位、均值附近和低表现样本做同维对照。" : null,
+    selectionReason: deepReady ? "账号最高赞样本；已完成完整内容还原与 22/22 内容硬闸，编导及画面 lens 等待独立评测。" : tier === "high" ? "主页可见点赞高位候选；尚未读取详情，不能解释爆发原因。"
       : tier === "low" ? "主页可见点赞低位候选；尚未读取详情，不能解释失效原因。"
         : anchor === "mean_near" ? "最接近可见作品点赞均值的候选。" : "最接近可见作品点赞中位数的候选。",
-    evidenceStatus: "surface_only" as const
+    evidenceStatus: deepReady ? "deep_validated" as const : "surface_only" as const
   };
 }
 
@@ -159,10 +166,10 @@ export function projectNextWaveDossier(id: string, corpus: Corpus, rawStatus: un
   const likes = corpus.posts.flatMap((post) => post.metrics.likes === null ? [] : [post.metrics.likes]);
   const gap = status.crawl.displayedCountDiscrepancy.gap;
   const fieldCoverage = (missing: number) => `${Math.round(((status.counts.items - missing) / Math.max(status.counts.items, 1)) * 100)}%`;
-  const high = corpus.selectionCandidates.high.map((item, index) => candidateItem(corpus, item, "high", index + 1, null));
-  const median = corpus.selectionCandidates.median.map((item, index) => candidateItem(corpus, item, "base", index + 1, "median_near"));
-  const meanNear = corpus.selectionCandidates.meanNear.map((item, index) => candidateItem(corpus, item, "base", median.length + index + 1, "mean_near"));
-  const low = corpus.selectionCandidates.low.map((item, index) => candidateItem(corpus, item, "low", index + 1, null));
+  const high = corpus.selectionCandidates.high.map((item, index) => candidateItem(id, corpus, item, "high", index + 1, null));
+  const median = corpus.selectionCandidates.median.map((item, index) => candidateItem(id, corpus, item, "base", index + 1, "median_near"));
+  const meanNear = corpus.selectionCandidates.meanNear.map((item, index) => candidateItem(id, corpus, item, "base", median.length + index + 1, "mean_near"));
+  const low = corpus.selectionCandidates.low.map((item, index) => candidateItem(id, corpus, item, "low", index + 1, null));
   const items = [...high, ...median, ...meanNear, ...low];
   const corpusReason = `已观察 ${status.counts.items} 条；主页显示 ${status.creator.displayedPostCount} 条，缺口 ${gap} 条。点赞覆盖 ${fieldCoverage(status.missingness.likes)}；发布时间 ${fieldCoverage(status.missingness.publishedAt)}；媒体类型 ${fieldCoverage(status.missingness.mediaType)}；收藏/评论/分享分别为 ${fieldCoverage(status.missingness.collections)}/${fieldCoverage(status.missingness.comments)}/${fieldCoverage(status.missingness.shares)}。`;
   const blocked = "详情与视频重建尚未开始：不能判断内容机制、编导逻辑、画面剪辑、发布时间规律或因果。";
@@ -208,7 +215,7 @@ export function projectNextWaveDossier(id: string, corpus: Corpus, rawStatus: un
       { id: "base", label: "中位数 / 平均值附近候选", conclusion: [unknown("基本盘候选分别锚定中位数与均值附近；内容形式尚未读取。")], mechanisms: [], failurePatterns: [], metrics: { medianLikes: corpus.statistics.medianLikes, meanLikes: corpus.statistics.meanLikes, minLikes: null, maxLikes: null }, count: median.length + meanNear.length },
       { id: "low", label: "低表现候选", conclusion: [unknown("低表现候选已按可见点赞选出，但失效原因尚未证实。")], mechanisms: [], failurePatterns: [], metrics: { medianLikes: null, meanLikes: null, minLikes: low[0]?.likes ?? null, maxLikes: low.at(-1)?.likes ?? null }, count: low.length }
     ],
-    portfolio: { items, deepCount: 0, health: { status: "partial", reason: `${items.length} 条真实候选可读（高 ${high.length}、中位 ${median.length}、均值附近 ${meanNear.length}、低 ${low.length}）；0 条完成详情或视频重建。`, capturedAt: corpus.snapshotAt } },
+    portfolio: { items, deepCount: items.filter((item) => item.deepSample).length, health: { status: "partial", reason: `${items.length} 条真实候选可读（高 ${high.length}、中位 ${median.length}、均值附近 ${meanNear.length}、低 ${low.length}）；${items.filter((item) => item.deepSample).length} 条完成内容重建硬闸。`, capturedAt: corpus.snapshotAt } },
     rhythm: { statements: [], weekdays: [], dayparts: [], health: { status: "missing", reason: `发布时间覆盖 ${fieldCoverage(status.missingness.publishedAt)}，不能分析发布节奏。`, capturedAt: corpus.snapshotAt } },
     audienceDemand: { statements: [], health: { status: "missing", reason: `评论覆盖 ${fieldCoverage(status.missingness.comments)}，不能归纳用户需求。`, capturedAt: corpus.snapshotAt } },
     growthEngines: { statements: [], health: { status: "missing", reason: blocked, capturedAt: corpus.snapshotAt } },

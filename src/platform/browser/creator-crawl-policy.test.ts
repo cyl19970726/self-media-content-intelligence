@@ -82,14 +82,22 @@ describe("ego-browser scripts", () => {
     expect(() => new Function(`return async function generatedAcquisition(){${script}}`)).not.toThrow();
   });
 
-  it("tries persisted canonical post URLs before the bounded profile fallback", () => {
+  it("uses a live profile-card route before a bare explore URL", () => {
     const canonical = "https://www.xiaohongshu.com/explore/post-1";
     const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: canonical, resolveMedia: false }], taskSpaceId: 2 });
-    const directAt = script.indexOf("let navigation = { href: request.url");
-    expect(directAt).toBeGreaterThan(-1);
-    expect(directAt).toBeLessThan(script.indexOf("const fallback = await locateFromProfile", directAt));
+    expect(script).toContain("isBareExploreUrl");
+    expect(script).toContain("profile_live_card");
+    expect(script).toContain("document.querySelectorAll('a[href]')");
     expect(script).toContain(canonical);
     expect(script).toContain("profile_fallback");
+    expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
+  });
+
+  it("keeps a non-bare canonical detail URL as the direct first attempt", () => {
+    const canonical = "https://www.xiaohongshu.com/user/profile/a/post-1";
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: canonical, resolveMedia: false }], taskSpaceId: 2 });
+    expect(script).toContain("{ href: request.url, cover: null, source: 'canonical' }");
+    expect(script).toContain(canonical);
     expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
   });
 

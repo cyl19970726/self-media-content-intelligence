@@ -37,7 +37,12 @@ describe("next-wave inventory dossier", () => {
     expect(dossier?.portfolio.items.filter((item) => item.tier === "high")).toHaveLength(5);
     expect(dossier?.portfolio.items.filter((item) => item.tier === "base")).toHaveLength(10);
     expect(dossier?.portfolio.items.filter((item) => item.tier === "low")).toHaveLength(5);
-    expect(dossier?.portfolio.items.find((item) => item.id === "67b012c40000000017038a99")?.likes).toBe(65_000);
+    const high = dossier?.portfolio.items.find((item) => item.id === "67b012c40000000017038a99");
+    expect(high?.likes).toBe(65_000);
+    expect(high?.deepSample).toBe(true);
+    expect(high?.evidenceStatus).toBe("deep_validated");
+    expect(high?.evidenceHref).toBe("/creators/cyber-duck-aigc/videos/67b012c40000000017038a99");
+    expect(dossier?.portfolio.deepCount).toBe(1);
   });
 
   it("returns null for an unknown inventory instead of fabricating a dossier", () => {

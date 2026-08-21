@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {
+      "numerator": 13,
+      "denominator": 13,
+      "examples": [
+        {
+          "result": "answered",
+          "items": ["CQ-03", "CQ-04", "CQ-05", "CQ-09", "CQ-11"],
+          "note": "The candidate recovers the readable prompt, hover behavior, additional exercise states, consequential SRT conflicts, and opening-to-closing semantic relation."
+        },
+        {
+          "result": "correctly_unknown",
+          "items": ["CQ-01", "CQ-02", "CQ-06", "CQ-07", "CQ-08", "CQ-10", "CQ-12", "CQ-13"],
+          "note": "Unknown labels preserve missing execution steps, product boundaries, TTS playback, retention evidence, cartoon causality, access conditions, and semantic-scene count."
+        }
+      ]
+    },
+    "evidenceCoverage": {
+      "numerator": 20,
+      "denominator": 20,
+      "examples": [
+        {
+          "units": ["KU-05", "KU-06", "KU-08", "KU-10", "KU-11", "KU-14", "KU-17"],
+          "note": "High-resolution pixels resolve the quiz title/options, hover result, prompt/attachment, cloze page, analysis state, listening qualifier, and mnemonic response."
+        },
+        {
+          "units": ["KU-15", "KU-20", "KU-23"],
+          "note": "Core negative/unknown units use bounded opportunity windows for missing TTS playback, cartoon provenance, and operational bridges."
+        },
+        {
+          "units": ["KU-21", "KU-22"],
+          "note": "The raw SRT is retained cue-for-cue while caption-supported alternatives remain a separate evidence layer."
+        }
+      ]
+    },
+    "unsupportedInference": {
+      "errors": 0,
+      "total": 22,
+      "examples": [
+        {
+          "checked_claim": "The pointer-hover state reveals the green Alaska's weather note.",
+          "result": "supported by before/during/after samples and HR-01/HR-02; scope is limited to option A."
+        },
+        {
+          "checked_claim": "The edited pages form a montage rather than a proven end-to-end run.",
+          "result": "supported by observed chronology and explicit abstention on hidden upload/send/copy/save/open steps."
+        },
+        {
+          "checked_claim": "The classroom cartoon is not attributed to DeepSeek.",
+          "result": "correctly framed as juxtaposition with generation causality unknown."
+        }
+      ]
+    },
+    "timestampAccuracy": {
+      "numerator": 98,
+      "denominator": 98,
+      "examples": [
+        {
+          "window": "4.48-7.78",
+          "refs": ["TARGET-0013", "TARGET-0018", "TARGET-0019", "ocr-highres.json#OCR-00030"],
+          "note": "Quiz and hover references fall in the asserted interval."
+        },
+        {
+          "window": "19.76-21.82",
+          "refs": ["CUE-013", "TARGET-0062", "TARGET-0069", "ocr-highres.json#OCR-00181"],
+          "note": "TTS claim and listening-page evidence are correctly localized."
+        },
+        {
+          "window": "26.6-29.8",
+          "refs": ["TARGET-0088", "TARGET-0090", "TARGET-0099"],
+          "note": "The cartoon transition and closing interval are correctly bounded."
+        }
+      ]
+    },
+    "processDependencyCompleteness": {
+      "applicable": true,
+      "numerator": 12,
+      "denominator": 12,
+      "rationale": "The candidate covers the photographed input, first upload, first send, generation/run, code copy, save/export/download, browser-open, analysis-state transition, second-image upload, second prompt send, TTS generation/playback, and cartoon generation/export/open dependency classes. Narrated or visible endpoints are separated from every unshown bridge."
+    },
+    "unknownDiscipline": {
+      "numerator": 15,
+      "denominator": 15,
+      "examples": [
+        {
+          "boundary": "product and access",
+          "items": ["URL/browser identity", "model responsibility", "account/workspace", "access route", "price", "region", "support/owner"],
+          "result": "all bounded as not established rather than guessed."
+        },
+        {
+          "boundary": "execution and attribution",
+          "items": ["input ownership", "file identity", "hidden workflow execution", "complete executable HTML", "universal hover behavior", "TTS playback/settings", "retention efficacy", "cartoon source/causality"],
+          "result": "all correctly unknown or narrowly scoped."
+        }
+      ]
+    },
+    "uncheckedChannels": []
+  },
+  "judges": {
+    "readability": 4,
+    "knowledgePrioritization": 5,
+    "evidenceUsefulness": 5,
+    "executionValue": 4,
+    "compressionWithoutLoss": 4
+  },
+  "metaAudit": {
+    "pass": true,
+    "unguardedCarriers": [],
+    "unguardedMeaningChanges": [],
+    "unguardedRelationships": [],
+    "rationale": "Independent raw/high-resolution review found no available carrier, meaning change, or material relation omitted by the protocol. Speech, exact raw SRT, burned captions, UI/OCR, pointer state, filmed-monitor context, editing order, non-speech audio, visible identity/model strings, qualifiers, counts, and bounded absences are guarded. The protocol explicitly challenges identity inversion, literal result signatures, opening/closing scope, edited chronology, TTS playback, hidden operational bridges, scoped negative evidence, technical segmentation, and cartoon causality. Bare OCR aliases resolve to the standard OCR artifact; overlapping high-resolution OCR IDs are explicitly namespaced as ocr-highres.json#OCR-xxxxx."
+  },
+  "examples": [
+    {
+      "type": "raw_srt_exactness",
+      "result": "pass",
+      "detail": "All 17 reconstruction transcript cue texts exactly match source/transcript.srt, including CT單詞, 數標選題幾個顯示答案, 提示此, 捕權選擇題, 玩新天空, 負增, 聽立題, and 深層."
+    },
+    {
+      "type": "ocr_alias_resolvability",
+      "result": "pass",
+      "detail": "All cited OCR identifiers resolve in the declared standard or namespaced high-resolution OCR source; all cited CUE, SHOT, DENSE, TARGET, and source aliases resolve."
+    },
+    {
+      "type": "hard_gate_summary",
+      "result": "pass",
+      "detail": "Every hard threshold passes; JUDGE scoring was therefore run."
+    }
+  ]
+}

@@ -40,6 +40,24 @@ describe("Creator Analysis OS V1 read projections", () => {
     expect(loadVideoResearch(emptyCreatorService, "ai-red-witch", "missing-video")).toBeNull();
   });
 
+  it("projects a gate-passed next-wave reconstruction into the same video page", () => {
+    const video = loadVideoResearch(emptyCreatorService, "cyber-duck-aigc", "67b012c40000000017038a99");
+    expect(video).not.toBeNull();
+    expect(video?.creatorName).toBe("赛博鸭AIGC");
+    expect(video?.engagement.likes).toBe(65_000);
+    expect(video?.engagement.collections).toBe(62_000);
+    expect(video?.knowledgeUnits.length).toBeGreaterThan(20);
+    expect(video?.transcript).toHaveLength(17);
+    expect(video?.frames.sparse).toHaveLength(12);
+    expect(video?.frames.dense).toHaveLength(174);
+    expect(video?.lensCoverage.contentRestoration.state).toBe("ready");
+    expect(video?.lensCoverage.directingLogic.state).toBe("ready");
+    expect(video?.lensCoverage.directingLogic.rules).toHaveLength(6);
+    expect(video?.lensCoverage.visualEditingLogic.state).toBe("ready");
+    expect(video?.lensCoverage.visualEditingLogic.rules).toHaveLength(7);
+    expect(video?.gate.ready).toBe(true);
+  });
+
   it("projects pinned comparison members without reviving the legacy benchmark", () => {
     const comparisonService = { get: () => ({
       project: {
