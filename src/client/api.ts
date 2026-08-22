@@ -11,6 +11,7 @@ import { videoResearchSchema, type VideoResearch } from "../shared/video-researc
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";
 import { z } from "zod";
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
+import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -85,6 +86,7 @@ export async function listCreatorResearchEvents(id: string, after = 0): Promise<
 
 export type CreatorResearchPortfolio = {
   run: CreatorResearchRun;
+  pipeline: CreatorResearchPipeline;
   analysis: CreatorPortfolioAnalysis | null;
   selection: CreatorSelection | null;
   details: CreatorDetailCollection | null;
@@ -100,6 +102,7 @@ export async function getCreatorResearchPortfolio(id: string): Promise<CreatorRe
     const candidate = value as Record<string, unknown>;
     return {
       run: creatorResearchRunSchema.parse(candidate.run),
+      pipeline: creatorResearchPipelineSchema.parse(candidate.pipeline),
       analysis: candidate.analysis === null ? null : creatorPortfolioAnalysisSchema.parse(candidate.analysis),
       selection: candidate.selection === null ? null : creatorSelectionSchema.parse(candidate.selection),
       details: candidate.details === null ? null : creatorDetailCollectionSchema.parse(candidate.details),

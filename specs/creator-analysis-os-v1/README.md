@@ -15,6 +15,7 @@ This specification records the confirmed research product, frontend contract, an
 - [research-learning-model.md](research-learning-model.md) — versioned concept, observation, revision, promotion, contradiction, and invalidation model.
 - [learning-loop-contract.md](learning-loop-contract.md) — runtime state machine, role boundaries, artifact allowlists, independent evaluation, regression, and terminal no-promotion semantics for that model.
 - [skill-system.md](skill-system.md) — canonical user-facing and internal Skill graph, ownership boundaries, orchestration flow, and completion contract.
+- [runtime-skill-pipeline.md](runtime-skill-pipeline.md) — the executable 13-stage Skill → Worker → Artifact → Evaluator → Dashboard contract and fail-closed readiness rule.
 - [frontend-layout.md](frontend-layout.md) — information architecture, text wireframes, responsive behavior, and UI states.
 - [design.md](design.md) — current frontend product design and the transition into architecture.
 - [architecture.md](architecture.md) — bounded contexts, storage, runtime and deployment profiles.

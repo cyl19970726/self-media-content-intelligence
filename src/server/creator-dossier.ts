@@ -5,6 +5,7 @@ import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } fro
 import { loadCreatorConsole } from "./console.js";
 import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
 import { loadNextWaveDossier } from "./next-wave-dossier.js";
+import { buildCreatorResearchPipeline } from "../modules/creator-research/pipeline.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 
@@ -238,11 +239,13 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
-  if (runProjection) return runProjection;
+  if (runProjection) return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection) });
   const nextWave = loadNextWaveDossier(id);
-  if (nextWave) return nextWave;
+  if (nextWave) return creatorDossierSchema.parse({ ...nextWave, pipeline: buildCreatorResearchPipeline(null, nextWave) });
   const deepLegacy = loadLegacyDeepDossier(id);
-  if (deepLegacy) return deepLegacy;
+  if (deepLegacy) return creatorDossierSchema.parse({ ...deepLegacy, pipeline: buildCreatorResearchPipeline(null, deepLegacy) });
   const legacy = loadCreatorConsole(id);
-  return legacy ? projectLegacyDossier(id, legacy) : null;
+  if (!legacy) return null;
+  const projection = projectLegacyDossier(id, legacy);
+  return creatorDossierSchema.parse({ ...projection, pipeline: buildCreatorResearchPipeline(null, projection) });
 }

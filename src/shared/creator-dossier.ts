@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { creatorResearchRunSchema, dataHealthSchema } from "./schema.js";
+import { creatorResearchPipelineSchema } from "./creator-pipeline.js";
 
 export const researchStatementSchema = z.object({
   statement: z.string(),
@@ -54,6 +55,7 @@ export const creatorDossierSchema = z.object({
   source: z.enum(["versioned_run", "legacy_adapter", "inventory_snapshot"]),
   generatedAt: z.string(),
   run: creatorResearchRunSchema.nullable(),
+  pipeline: creatorResearchPipelineSchema.optional(),
   lastGood: z.object({
     active: z.boolean(),
     reason: z.string().nullable(),

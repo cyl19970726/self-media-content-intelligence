@@ -26,6 +26,7 @@ import { CodexCreatorSynthesisExecutor } from "../../platform/synthesis/codex-cr
 import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
 import { runArtifactDir } from "../../core/config.js";
+import { buildCreatorResearchPipeline } from "./pipeline.js";
 
 const stages: CreatorResearchRun["stages"] = [
   { id: "preflight", label: "身份与登录预检", status: "pending", message: null },
@@ -144,10 +145,11 @@ export class CreatorResearchService {
   portfolio(id: string) {
     const run = this.repository.get(id);
     if (!run) return null;
-    if (!run.portfolioArtifactRef || !run.selectionArtifactRef) return { run, analysis: null, selection: null, details: null,
+    if (!run.portfolioArtifactRef || !run.selectionArtifactRef) return { run, pipeline: buildCreatorResearchPipeline(run), analysis: null, selection: null, details: null,
       mediaManifest: null, reconstructionBatch: null, synthesis: null, synthesisGate: null };
     return {
       run,
+      pipeline: buildCreatorResearchPipeline(run),
       analysis: creatorPortfolioAnalysisSchema.parse(this.artifacts.read(run.portfolioArtifactRef)),
       selection: creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef)),
       details: run.detailArtifactRef ? creatorDetailCollectionSchema.parse(this.artifacts.read(run.detailArtifactRef)) : null,
@@ -773,6 +775,7 @@ export class CreatorResearchService {
         run.worker = { state: "succeeded", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: completedAt };
         run.blockers = [];
         run.nextAction = "单博主研究已发布到同一个 Dashboard；创作建议仍属于独立工作区。";
+        run.dashboardPath = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
         stage(run, "synthesis").status = "complete";
         stage(run, "synthesis").message = "21 条逐条分析与账号级归纳通过研究硬闸。";
         stage(run, "dashboard").status = "complete";
