@@ -1,0 +1,4 @@
+interface:
+  display_name: "博主研究独立评测"
+  short_description: "独立检查采集、选样、三镜头、综合与页面证据保真"
+  default_prompt: "Use $creator-research-evaluator to independently gate this creator research run and report exact failures."

@@ -1,11 +1,22 @@
 ---
 name: analyze-creator-videos
-description: Analyze a creator's complete public video portfolio and build an evidence-backed operating Dashboard. Use when Codex must collect or resume a creator inventory; verify downloaded media; study one creator or blogger across all visible posts; compare high, median, arithmetic-mean-near, and low performers; explain positioning, audiences, topics, formats, visual language, publishing patterns, success and failure mechanisms; select representative videos for deep reconstruction; turn findings into launch or account-growth decisions; or update the reusable List + Gallery creator intelligence Dashboard. Supports a creator profile URL, collected corpus JSON, or an existing local research directory. For Xiaohongshu acquisition, use ego-browser with the user's authenticated session; never substitute a Chrome/Google scraping route.
+description: Orchestrate a creator's complete public portfolio research from profile URL through acquisition, full-corpus annotation, high/median/mean-near/low selection, deep video reconstruction, independent evaluation, creator synthesis, and one evidence-backed Dashboard. Use for neutral creator research; keep the user's own copying or publishing strategy in content-strategy-workbench.
 ---
 
 # Analyze Creator Videos
 
 Build a creator operating system, not a decorative long report. Separate corpus facts, video-internal evidence, author claims, system inferences, external verification, and unknowns throughout.
+
+This is the creator-research orchestrator. Route work to the canonical capability Skills instead of duplicating their judgment:
+
+- `$xiaohongshu-creator-acquisition` for public identity, inventory, detail, comment, cover and media evidence;
+- `$creator-portfolio-annotation` for every-post portfolio annotation;
+- `$creator-sample-selection` for the shared comparison and deep set;
+- `$video-content-reconstruction` for every selected deep video;
+- `$creator-research-synthesis` for creator-level conclusions;
+- `$creator-research-evaluator` for independent fail-closed acceptance.
+
+Use `$compare-creators` for a separate multi-creator study and `$content-strategy-workbench` for the user's own creation plan. Neither belongs inside a neutral Creator Dossier.
 
 Read [session-derived-infrastructure.md](references/session-derived-infrastructure.md) before creating a new run or changing the pipeline. Its gates come from the real build history that produced the reference Dashboard.
 
@@ -149,19 +160,9 @@ Generate `creator-analysis.json` matching [creator-analysis.schema.json](schemas
 
 Separate observed portfolio facts, sample associations, mechanism hypotheses, optional external verification, and unknowns. Explain high vs median vs low through user value, content promise, proof strength, comprehension cost, information density, visual structure, novelty, audience fit, and CTA—not likes alone.
 
-### 8. Produce the launch system
+### 8. Independently evaluate the creator run
 
-Translate findings into the user's account:
-
-- positioning and audience wedge;
-- three content lanes serving save, share, and trust goals;
-- first 12 ideas;
-- reusable script skeletons;
-- proof checklist;
-- one-variable experiments;
-- dashboard metrics to add when backend data becomes available.
-
-Mark what is transferable, what depends on the original creator's identity or era, and what must be tested.
+Use `$creator-research-evaluator`. Keep producer and evaluator reasoning independent. Require explicit acquisition, corpus, annotation, selection, CR/DL/VE, synthesis, and projection gates. A partial section may remain visible with its blocker, but cannot be promoted to validated creator knowledge.
 
 ### 9. Build or update the Dashboard
 
@@ -193,7 +194,7 @@ Required surfaces:
 5. all-post List and Gallery views;
 6. selected-video evidence with transcript, frames, content architecture, and unknowns;
 7. publishing rhythm and video language;
-8. launch plan, experiments, and methodology.
+8. evidence boundaries, research method, and exact missing stages.
 
 ### 10. Validate
 

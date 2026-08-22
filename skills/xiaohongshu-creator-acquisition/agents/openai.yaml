@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书博主采集"
+  short_description: "可恢复地采集博主主页、作品、详情、评论与媒体证据"
+  default_prompt: "Use $xiaohongshu-creator-acquisition to collect this creator's public Xiaohongshu evidence with explicit coverage and safe handoff."

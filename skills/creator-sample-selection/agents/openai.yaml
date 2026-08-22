@@ -1,0 +1,4 @@
+interface:
+  display_name: "博主分层选样"
+  short_description: "可复算地选择高、中位、均值附近和低表现样本"
+  default_prompt: "Use $creator-sample-selection to build an auditable comparison and deep-reconstruction set for this creator."
