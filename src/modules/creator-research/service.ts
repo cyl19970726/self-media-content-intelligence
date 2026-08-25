@@ -331,6 +331,66 @@ export class CreatorResearchService {
     return run;
   }
 
+  retryFailedReconstructions(id: string): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
+    const previousBatchRef = run.reconstructionBatchArtifactRef;
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
+    if (batch.pendingPosts > 0 || batch.items.some((item) => ["queued", "running"].includes(item.state))) {
+      throw new Error("视频重建批次仍在运行，暂不能重试失败项");
+    }
+    const failedItems = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state));
+    if (failedItems.length === 0) throw new Error("当前批次没有可重试的失败视频");
+    const timestamp = now();
+    for (const item of failedItems) {
+      const outputDir = path.join(runArtifactDir(run.id), "video-reconstructions", item.postExternalId);
+      const historyDir = path.join(outputDir, "pipeline-retry-history", `revision-${batch.revision + 1}-${randomUUID()}`);
+      const evaluatorOwned = ["evaluation.json", "evaluation.md", "gate-report.json",
+        "runtime-three-lens-evaluation.json", "runtime-three-lens-gate-report.json"];
+      const present = evaluatorOwned.filter((filename) => fs.existsSync(path.join(outputDir, filename)));
+      if (present.length > 0) {
+        fs.mkdirSync(historyDir, { recursive: true });
+        for (const filename of present) fs.renameSync(path.join(outputDir, filename), path.join(historyDir, filename));
+      }
+      Object.assign(item, {
+        state: "queued", reconstructionArtifactRef: null, articleArtifactRef: null,
+        evaluationArtifactRef: null, gateReportArtifactRef: null,
+        threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+        failedGateIds: [], message: "基础设施或证据闭环修复后重新排队；保留原媒体、候选与历史评审。", updatedAt: timestamp
+      });
+    }
+    batch.revision += 1;
+    batch.generatedAt = timestamp;
+    batch.readyPosts = batch.items.filter((item) => item.state === "ready").length;
+    batch.pendingPosts = failedItems.length;
+    batch.failedPosts = 0;
+    const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, [previousBatchRef]);
+    run.reconstructionBatchArtifactRef = batchRef;
+    for (const item of failedItems) {
+      const job = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "video.reconstruct", status: "queued",
+        idempotencyKey: `${run.id}:video.reconstruct:retry:${batch.revision}:${item.postExternalId}:${item.sourceMediaArtifactRef}`,
+        attempts: 0, maxAttempts: 2, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+        payload: { postExternalId: item.postExternalId, sourceUrl: `https://www.xiaohongshu.com/explore/${item.postExternalId}`,
+          sourceMediaArtifactRef: item.sourceMediaArtifactRef }, lastError: null, createdAt: timestamp, updatedAt: timestamp });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
+        message: "未通过视频已保留证据并重新进入持久队列。", payload: { nodeKey: job.nodeKey, postExternalId: item.postExternalId } });
+    }
+    run.status = "collecting";
+    run.currentStage = "deep_capture";
+    run.updatedAt = timestamp;
+    run.coverage.reconstructedPosts = batch.readyPosts;
+    run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null };
+    run.blockers = [];
+    run.nextAction = `仅重试 ${failedItems.length} 条未通过视频；已通过 ${batch.readyPosts} 条不会重跑。`;
+    stage(run, "deep_capture").status = "running";
+    stage(run, "deep_capture").message = run.nextAction;
+    this.repository.save(run);
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "run.resumed", createdAt: timestamp,
+      message: "视频基础设施修复后，仅重新排队未通过项。", payload: { previousBatchRef, batchRef, retriedPosts: failedItems.map((item) => item.postExternalId) } });
+    return run;
+  }
+
   async processNext(workerId: string, executor: CreatorBrowserExecutor): Promise<boolean> {
     const leasedAt = now();
     const job = this.repository.claimNext(workerId, leasedAt, leaseUntil());

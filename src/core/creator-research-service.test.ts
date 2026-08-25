@@ -12,7 +12,7 @@ import type { CreatorSynthesisExecutor } from "../modules/creator-synthesis/cont
 
 const temporaryDirectories: string[] = [];
 
-function serviceForTest(options: { values?: Map<string, unknown> } = {}): CreatorResearchService {
+function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: VideoReconstructionExecutor["reconstruct"] } = {}): CreatorResearchService {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
   temporaryDirectories.push(directory);
   const values = options.values ?? new Map<string, unknown>();
@@ -52,6 +52,7 @@ function serviceForTest(options: { values?: Map<string, unknown> } = {}): Creato
   };
   const videoReconstructor: VideoReconstructionExecutor = {
     async reconstruct(request) {
+      if (options.reconstruct) return options.reconstruct(request);
       const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
       return { state: "ready", reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
         evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
@@ -272,6 +273,50 @@ describe("CreatorResearchService", () => {
     expect(resumed.status).toBe("queued");
     expect(resumed.worker.jobId).toBe(run.worker.jobId);
     expect(service.events(run.id).at(-1)?.type).toBe("run.resumed");
+    service.close();
+  });
+
+  it("requeues only failed video reconstructions without reacquiring the inventory", async () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values, reconstruct: async (request) => {
+      const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
+      return { state: "not_ready", reconstructionArtifactRef: `${root}/reconstruction.json`,
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`,
+        threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+        failedGateIds: ["unchecked_channels"], message: "OCR transient failure" };
+    } });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/retry-creator", creatorId: "retry-creator",
+      creatorName: "重试博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:retry"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 1, identityAnchors: [] },
+      posts: [{ externalId: "post-retry", url: "https://www.xiaohongshu.com/explore/post-retry", title: "重试",
+        visibleText: "重试\n1", mediaType: "video", likesLabel: "1", likes: 1 }]
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 4, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: "https://video.example/source.mp4",
+          coverCandidateUrl: "https://image.example/cover.webp", inspectedAt: "2026-08-25T00:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    const failed = service.get(run.id);
+    expect(failed?.blockers[0]?.code).toBe("video_reconstruction_incomplete");
+    const retried = service.retryFailedReconstructions(run.id);
+    expect(retried.status).toBe("collecting");
+    expect(retried.coverage.discoveredPosts).toBe(1);
+    expect(retried.nextAction).toContain("仅重试 1 条未通过视频");
+    const retryBatch = values.get(retried.reconstructionBatchArtifactRef!) as { pendingPosts: number; failedPosts: number; items: Array<{ state: string }> };
+    expect(retryBatch.pendingPosts).toBe(1);
+    expect(retryBatch.failedPosts).toBe(0);
+    expect(retryBatch.items[0]?.state).toBe("queued");
+    expect(service.events(run.id).filter((event) => event.type === "run.resumed").at(-1)?.message).toContain("仅重新排队未通过项");
     service.close();
   });
 });
