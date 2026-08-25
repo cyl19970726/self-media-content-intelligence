@@ -4,6 +4,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   archiveRuntimeReviewArtifacts,
+  decideReconstructionRepair,
   normalizeRuntimeLensEvidence,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
@@ -46,6 +47,24 @@ describe("runtime lens evidence normalization", () => {
 });
 
 describe("runtime lens repair history", () => {
+  it("keeps the runtime repair budget independent after generic repairs are exhausted", () => {
+    expect(decideReconstructionRepair({
+      genericReady: true,
+      genericRepairsUsed: 2,
+      runtimeReady: false,
+      runtimeRepairsUsed: 0
+    })).toBe("runtime_repair");
+  });
+
+  it("stops only after the runtime repair budget itself is exhausted", () => {
+    expect(decideReconstructionRepair({
+      genericReady: true,
+      genericRepairsUsed: 2,
+      runtimeReady: false,
+      runtimeRepairsUsed: 2
+    })).toBe("not_ready");
+  });
+
   it("archives every evaluator-owned artifact while preserving the candidate", () => {
     const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-lens-repair-"));
     try {

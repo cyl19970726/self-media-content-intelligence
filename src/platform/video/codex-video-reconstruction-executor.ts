@@ -32,6 +32,24 @@ type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean
 
 type RuntimeLensName = "content_restoration" | "directing_logic" | "visual_editing";
 
+const maxGenericRepairAttempts = 2;
+const maxRuntimeRepairAttempts = 2;
+
+export type ReconstructionRepairDecision = "ready" | "generic_repair" | "runtime_repair" | "not_ready";
+
+export function decideReconstructionRepair(input: {
+  genericReady: boolean;
+  genericRepairsUsed: number;
+  runtimeReady: boolean;
+  runtimeRepairsUsed: number;
+}): ReconstructionRepairDecision {
+  if (!input.genericReady) {
+    return input.genericRepairsUsed < maxGenericRepairAttempts ? "generic_repair" : "not_ready";
+  }
+  if (input.runtimeReady) return "ready";
+  return input.runtimeRepairsUsed < maxRuntimeRepairAttempts ? "runtime_repair" : "not_ready";
+}
+
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
 
 type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string }> };
@@ -385,9 +403,10 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       };
       let gate: GateReport | null = exists(gatePath) && exists(evaluationPath)
         ? JSON.parse(fs.readFileSync(gatePath, "utf8")) as GateReport : null;
-      for (let repairAttempt = 0; repairAttempt <= 2; repairAttempt += 1) {
+      let genericRepairsUsed = 0;
+      while (true) {
         if (!gate) {
-          await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${repairAttempt + 1}`);
+          await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${genericRepairsUsed + 1}`);
           if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
             evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
             threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
@@ -395,69 +414,106 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           gate = await validate(outputDir);
         }
         const failures = failedIds(gate);
-        if (gate.ready === true && failures.length === 0) {
-          let threeLensGate: RuntimeThreeLensGateReport;
-          try {
-            threeLensGate = await evaluateRuntimeThreeLens(
-              videoPath,
-              outputDir,
-              request.postExternalId,
-              refs.reconstructionArtifactRef,
-              refs.threeLensEvaluationArtifactRef
-            );
-          } catch (error) {
-            const runtimeEvaluationExists = exists(path.join(outputDir, "runtime-three-lens-evaluation.json"));
-            const runtimeGateExists = exists(path.join(outputDir, "runtime-three-lens-gate-report.json"));
-            return videoReconstructionOutcomeSchema.parse({
-              state: "not_ready",
-              reconstructionArtifactRef: refs.reconstructionArtifactRef,
-              evaluationArtifactRef: refs.evaluationArtifactRef,
-              gateReportArtifactRef: refs.gateReportArtifactRef,
-              threeLensEvaluationArtifactRef: runtimeEvaluationExists ? refs.threeLensEvaluationArtifactRef : null,
-              threeLensGateReportArtifactRef: runtimeGateExists ? refs.threeLensGateReportArtifactRef : null,
-              failedGateIds: [runtimeEvaluationExists ? "runtime_three_lens_artifact_invalid" : "runtime_three_lens_artifact_missing"],
-              message: `通用重建门已通过，但运行时三镜头独立评测未形成有效产物：${error instanceof Error ? error.message : "unknown"}`
-            });
-          }
-          if (threeLensGate.ready) return videoReconstructionOutcomeSchema.parse({
-            state: "ready", ...refs, gateCount: gate.gates?.length ?? 1, threeLensGateCount: 19, failedGateIds: []
-          });
-          if (repairAttempt < 2) {
-            const historyDir = archiveRuntimeReviewArtifacts(outputDir, repairAttempt + 1);
-            await runCodex(
-              runtimeLensRepairPrompt(videoPath, outputDir, historyDir, repairAttempt + 1),
-              outputDir,
-              `runtime-repair-${repairAttempt + 1}`
-            );
-            await refreshOcrEvidenceIfNeeded(outputDir);
-            gate = null;
-            continue;
-          }
+        if (gate.ready === true && failures.length === 0) break;
+        const decision = decideReconstructionRepair({
+          genericReady: false,
+          genericRepairsUsed,
+          runtimeReady: false,
+          runtimeRepairsUsed: 0
+        });
+        if (decision === "not_ready") return videoReconstructionOutcomeSchema.parse({ state: "not_ready",
+          reconstructionArtifactRef: refs.reconstructionArtifactRef, evaluationArtifactRef: refs.evaluationArtifactRef,
+          gateReportArtifactRef: refs.gateReportArtifactRef, threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null,
+          failedGateIds: failures.length > 0 ? failures : ["meta_gate"],
+          message: "两轮通用定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
+        genericRepairsUsed += 1;
+        const historyDir = archiveEvaluation(outputDir, genericRepairsUsed);
+        await runCodex(repairPrompt(videoPath, outputDir, historyDir, genericRepairsUsed), outputDir, `repair-${genericRepairsUsed}`);
+        await refreshOcrEvidenceIfNeeded(outputDir);
+        gate = null;
+      }
+
+      for (let runtimeRepairsUsed = 0; runtimeRepairsUsed <= maxRuntimeRepairAttempts; runtimeRepairsUsed += 1) {
+        let threeLensGate: RuntimeThreeLensGateReport;
+        try {
+          threeLensGate = await evaluateRuntimeThreeLens(
+            videoPath,
+            outputDir,
+            request.postExternalId,
+            refs.reconstructionArtifactRef,
+            refs.threeLensEvaluationArtifactRef
+          );
+        } catch (error) {
+          const runtimeEvaluationExists = exists(path.join(outputDir, "runtime-three-lens-evaluation.json"));
+          const runtimeGateExists = exists(path.join(outputDir, "runtime-three-lens-gate-report.json"));
           return videoReconstructionOutcomeSchema.parse({
             state: "not_ready",
             reconstructionArtifactRef: refs.reconstructionArtifactRef,
             evaluationArtifactRef: refs.evaluationArtifactRef,
             gateReportArtifactRef: refs.gateReportArtifactRef,
-            threeLensEvaluationArtifactRef: refs.threeLensEvaluationArtifactRef,
-            threeLensGateReportArtifactRef: refs.threeLensGateReportArtifactRef,
-            failedGateIds: threeLensGate.failedGateIds.length > 0
-              ? threeLensGate.failedGateIds
-              : threeLensGate.uncheckedGateIds,
-            message: threeLensGate.status === "partial"
-              ? "运行时三镜头评测存在未检查通道；该视频保持 partial，不进入博主机制归纳。"
-              : "运行时三镜头硬闸未通过；该视频不进入博主机制归纳。"
+            threeLensEvaluationArtifactRef: runtimeEvaluationExists ? refs.threeLensEvaluationArtifactRef : null,
+            threeLensGateReportArtifactRef: runtimeGateExists ? refs.threeLensGateReportArtifactRef : null,
+            failedGateIds: [runtimeEvaluationExists ? "runtime_three_lens_artifact_invalid" : "runtime_three_lens_artifact_missing"],
+            message: `通用重建门已通过，但运行时三镜头独立评测未形成有效产物：${error instanceof Error ? error.message : "unknown"}`
           });
         }
-        if (repairAttempt === 2) return videoReconstructionOutcomeSchema.parse({ state: "not_ready",
-          reconstructionArtifactRef: refs.reconstructionArtifactRef, evaluationArtifactRef: refs.evaluationArtifactRef,
-          gateReportArtifactRef: refs.gateReportArtifactRef, threeLensEvaluationArtifactRef: null,
-          threeLensGateReportArtifactRef: null,
-          failedGateIds: failures.length > 0 ? failures : ["meta_gate"],
-          message: "两轮定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
-        const historyDir = archiveEvaluation(outputDir, repairAttempt + 1);
-        await runCodex(repairPrompt(videoPath, outputDir, historyDir, repairAttempt + 1), outputDir, `repair-${repairAttempt + 1}`);
+        const decision = decideReconstructionRepair({
+          genericReady: true,
+          genericRepairsUsed,
+          runtimeReady: threeLensGate.ready,
+          runtimeRepairsUsed
+        });
+        if (decision === "ready") return videoReconstructionOutcomeSchema.parse({
+          state: "ready", ...refs, gateCount: gate.gates?.length ?? 1, threeLensGateCount: 19, failedGateIds: []
+        });
+        if (decision === "not_ready") return videoReconstructionOutcomeSchema.parse({
+          state: "not_ready",
+          reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: refs.evaluationArtifactRef,
+          gateReportArtifactRef: refs.gateReportArtifactRef,
+          threeLensEvaluationArtifactRef: refs.threeLensEvaluationArtifactRef,
+          threeLensGateReportArtifactRef: refs.threeLensGateReportArtifactRef,
+          failedGateIds: threeLensGate.failedGateIds.length > 0
+            ? threeLensGate.failedGateIds
+            : threeLensGate.uncheckedGateIds,
+          message: threeLensGate.status === "partial"
+            ? "两轮三镜头定向修复后仍有未检查通道；该视频保持 partial，不进入博主机制归纳。"
+            : "两轮三镜头定向修复后硬闸仍未通过；该视频不进入博主机制归纳。"
+        });
+
+        const runtimeAttempt = runtimeRepairsUsed + 1;
+        const historyDir = archiveRuntimeReviewArtifacts(outputDir, runtimeAttempt);
+        await runCodex(
+          runtimeLensRepairPrompt(videoPath, outputDir, historyDir, runtimeAttempt),
+          outputDir,
+          `runtime-repair-${runtimeAttempt}`
+        );
         await refreshOcrEvidenceIfNeeded(outputDir);
-        gate = null;
+
+        await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `runtime-recheck-${runtimeAttempt}`);
+        if (!exists(evaluationPath)) return videoReconstructionOutcomeSchema.parse({
+          state: "not_ready",
+          reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: null,
+          gateReportArtifactRef: null,
+          threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null,
+          failedGateIds: ["independent_evaluation_missing"],
+          message: "三镜头修复后的通用独立复评没有产生 evaluation.json。"
+        });
+        gate = await validate(outputDir);
+        const regressionFailures = failedIds(gate);
+        if (gate.ready !== true || regressionFailures.length > 0) return videoReconstructionOutcomeSchema.parse({
+          state: "not_ready",
+          reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: refs.evaluationArtifactRef,
+          gateReportArtifactRef: refs.gateReportArtifactRef,
+          threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null,
+          failedGateIds: regressionFailures.length > 0 ? regressionFailures : ["meta_gate"],
+          message: "三镜头定向修复破坏了通用硬闸；该视频保持 not_ready，等待下一次可恢复重试。"
+        });
       }
       throw new Error("RECONSTRUCTION_LOOP_INVALID");
     } catch (error) {
