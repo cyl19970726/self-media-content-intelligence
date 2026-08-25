@@ -17,11 +17,15 @@ import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portf
 import { creatorDetailCollectionSchema } from "../creator-detail/contracts.js";
 import type { DeepMediaResolver } from "../media-resolution/contracts.js";
 import { LocalDeepMediaResolver } from "../../platform/media/local-deep-media-resolver.js";
-import type { VideoReconstructionExecutor, VideoReconstructionOutcome } from "../video-analysis/contracts.js";
+import type {
+  VideoReconstructionExecutor,
+  VideoReconstructionLifecycleEvent,
+  VideoReconstructionOutcome
+} from "../video-analysis/contracts.js";
 import { videoReconstructionRequestSchema } from "../video-analysis/contracts.js";
 import { videoReconstructionBatchSchema } from "../video-analysis/batch-contracts.js";
 import { CodexVideoReconstructionExecutor } from "../../platform/video/codex-video-reconstruction-executor.js";
-import type { CreatorSynthesisExecutor } from "../creator-synthesis/contracts.js";
+import type { CreatorSynthesisExecutor, CreatorSynthesisLifecycleEvent } from "../creator-synthesis/contracts.js";
 import { CodexCreatorSynthesisExecutor } from "../../platform/synthesis/codex-creator-synthesis-executor.js";
 import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
@@ -49,6 +53,30 @@ function stage(run: CreatorResearchRun, id: CreatorResearchRun["stages"][number]
   if (!value) throw new Error(`missing creator stage ${id}`);
   return value;
 }
+
+const videoChildRoleLabel: Record<VideoReconstructionLifecycleEvent["role"], string> = {
+  candidate: "候选重建",
+  generic_evaluator: "通用独立评估",
+  generic_repair: "通用定向修复",
+  content_restoration_evaluator: "内容还原评估",
+  directing_logic_evaluator: "导演逻辑评估",
+  visual_editing_evaluator: "视觉剪辑评估",
+  runtime_repair: "三镜头定向修复",
+  generic_recheck: "修复后通用复评"
+};
+
+const videoChildStatusLabel: Record<VideoReconstructionLifecycleEvent["status"], string> = {
+  started: "已启动",
+  progress: "有新进展",
+  stale: "超过预期静默时长",
+  completed: "已完成",
+  failed: "已失败"
+};
+
+const synthesisChildRoleLabel: Record<CreatorSynthesisLifecycleEvent["role"], string> = {
+  creator_synthesis: "博主综合候选",
+  creator_synthesis_evaluator: "博主综合独立评估"
+};
 
 function externalCreatorId(finalUrl: string): string | null {
   try {
@@ -988,7 +1016,33 @@ export class CreatorResearchService {
       const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
         postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
         contractVersion: "video-content-reconstruction@1" });
-      const outcome: VideoReconstructionOutcome = await this.videoReconstructor.reconstruct(request);
+      const outcome: VideoReconstructionOutcome = await this.videoReconstructor.reconstruct(request, (event) => {
+        const eventType = `child.${event.status}` as CreatorResearchEvent["type"];
+        this.repository.appendEvent({
+          runId: run.id,
+          jobId: job.id,
+          type: eventType,
+          createdAt: event.lastProgressAt,
+          message: `${videoChildRoleLabel[event.role]}${videoChildStatusLabel[event.status]}。`,
+          payload: {
+            postExternalId,
+            childRunId: event.childRunId,
+            role: event.role,
+            status: event.status,
+            startedAt: event.startedAt,
+            lastProgressAt: event.lastProgressAt,
+            inputRevision: event.inputRevision,
+            outputArtifactRevisions: event.outputArtifactRevisions,
+            errorCode: event.errorCode
+          }
+        });
+        const latest = this.repository.get(run.id);
+        if (latest?.worker.jobId === job.id) {
+          latest.updatedAt = event.lastProgressAt;
+          stage(latest, "deep_capture").message = `${postExternalId} · ${videoChildRoleLabel[event.role]}${videoChildStatusLabel[event.status]} · 已通过 ${latest.coverage.reconstructedPosts}/${batch.requestedPosts}`;
+          this.repository.save(latest);
+        }
+      });
       const completedAt = now();
       const latestBatch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
       const latestItem = latestBatch.items.find((candidate) => candidate.postExternalId === postExternalId);
@@ -1108,7 +1162,32 @@ export class CreatorResearchService {
     try {
       const outcome = await this.synthesisExecutor.synthesize({ creatorRunId: run.id, creatorName: run.creatorName,
         portfolioArtifactRef: run.portfolioArtifactRef, selectionArtifactRef: run.selectionArtifactRef,
-        detailArtifactRef: run.detailArtifactRef, reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef });
+        detailArtifactRef: run.detailArtifactRef, reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef }, (event) => {
+        const eventType = `child.${event.status}` as CreatorResearchEvent["type"];
+        this.repository.appendEvent({
+          runId: run.id,
+          jobId: job.id,
+          type: eventType,
+          createdAt: event.lastProgressAt,
+          message: `${synthesisChildRoleLabel[event.role]}${videoChildStatusLabel[event.status]}。`,
+          payload: {
+            childRunId: event.childRunId,
+            role: event.role,
+            status: event.status,
+            startedAt: event.startedAt,
+            lastProgressAt: event.lastProgressAt,
+            inputRevision: event.inputRevision,
+            outputArtifactRevisions: event.outputArtifactRevisions,
+            errorCode: event.errorCode
+          }
+        });
+        const latest = this.repository.get(run.id);
+        if (latest?.worker.jobId === job.id) {
+          latest.updatedAt = event.lastProgressAt;
+          stage(latest, "synthesis").message = `${synthesisChildRoleLabel[event.role]}${videoChildStatusLabel[event.status]}。`;
+          this.repository.save(latest);
+        }
+      });
       const completedAt = now();
       run.updatedAt = completedAt;
       if (outcome.state === "ready") {

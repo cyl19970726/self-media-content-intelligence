@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
-import { validateCreatorSynthesis } from "./validate.js";
+import type { CreatorSynthesisIndependentEvaluation } from "./contracts.js";
+import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "./validate.js";
 
 const runId = "11111111-1111-4111-8111-111111111111";
 const checkedAt = "2026-08-20T02:00:00.000Z";
@@ -157,5 +158,67 @@ describe("validateCreatorSynthesis", () => {
     incomplete.failedPosts = 1;
     const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: incomplete, synthesis: synthesis(), checkedAt });
     expect(gate.failedGateIds).toContain("deep_9_ready");
+  });
+
+  it("requires the fresh independent evaluator as well as deterministic gates", () => {
+    const deterministicGate = validateCreatorSynthesis({
+      creatorRunId: runId, selection: selection(), batch: batch(), synthesis: synthesis(), checkedAt
+    });
+    const ids = deterministicGate.gates.map((gate) => gate.id) as CreatorSynthesisIndependentEvaluation["gates"][number]["id"][];
+    const independentEvaluation: CreatorSynthesisIndependentEvaluation = {
+      schemaVersion: "creator-synthesis-independent-evaluation@1",
+      creatorRunId: runId,
+      candidateRevisionFingerprint: "a".repeat(64),
+      evaluatorRunId: "22222222-2222-4222-8222-222222222222",
+      independentOfCandidate: true,
+      evaluatedAt: checkedAt,
+      gates: ids.map((id) => ({
+        id,
+        pass: id !== "research_creation_separation",
+        message: id === "research_creation_separation" ? "独立检查发现创作建议。" : "独立检查通过。",
+        evidenceRefs: [`/artifacts/${runId}/creator-synthesis/creator-analysis.json`]
+      })) as CreatorSynthesisIndependentEvaluation["gates"]
+    };
+
+    const gate = combineCreatorSynthesisGates({
+      deterministicGate,
+      independentEvaluation,
+      candidateRevisionFingerprint: "a".repeat(64),
+      independentEvaluationArtifactRef: `/artifacts/${runId}/creator-synthesis-evaluation.json`,
+      checkedAt
+    });
+
+    expect(deterministicGate.ready).toBe(true);
+    expect(gate.ready).toBe(false);
+    expect(gate.failedGateIds).toEqual(["research_creation_separation"]);
+    expect(gate.schemaVersion).toBe("1.1.0");
+    expect(gate.evaluator?.independentOfCandidate).toBe(true);
+  });
+
+  it("rejects an independent evaluation bound to a stale synthesis revision", () => {
+    const deterministicGate = validateCreatorSynthesis({
+      creatorRunId: runId, selection: selection(), batch: batch(), synthesis: synthesis(), checkedAt
+    });
+    const independentEvaluation = {
+      schemaVersion: "creator-synthesis-independent-evaluation@1" as const,
+      creatorRunId: runId,
+      candidateRevisionFingerprint: "b".repeat(64),
+      evaluatorRunId: "22222222-2222-4222-8222-222222222222",
+      independentOfCandidate: true as const,
+      evaluatedAt: checkedAt,
+      gates: deterministicGate.gates.map((gate) => ({
+        id: gate.id as CreatorSynthesisIndependentEvaluation["gates"][number]["id"],
+        pass: true,
+        message: "通过",
+        evidenceRefs: [`/artifacts/${runId}/creator-synthesis/creator-analysis.json`]
+      })) as CreatorSynthesisIndependentEvaluation["gates"]
+    };
+    expect(() => combineCreatorSynthesisGates({
+      deterministicGate,
+      independentEvaluation,
+      candidateRevisionFingerprint: "a".repeat(64),
+      independentEvaluationArtifactRef: `/artifacts/${runId}/creator-synthesis-evaluation.json`,
+      checkedAt
+    })).toThrow("independent_synthesis_revision_mismatch");
   });
 });

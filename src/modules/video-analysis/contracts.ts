@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  childWorkerLifecycleEventSchema,
+  type ChildWorkerLifecycleObserver
+} from "../orchestration/contracts.js";
 
 export const videoReconstructionRequestSchema = z.object({
   runId: z.string().uuid(),
@@ -43,6 +47,27 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
 ]);
 export type VideoReconstructionOutcome = z.infer<typeof videoReconstructionOutcomeSchema>;
 
+export const videoReconstructionChildRoleSchema = z.enum([
+  "candidate",
+  "generic_evaluator",
+  "generic_repair",
+  "content_restoration_evaluator",
+  "directing_logic_evaluator",
+  "visual_editing_evaluator",
+  "runtime_repair",
+  "generic_recheck"
+]);
+export type VideoReconstructionChildRole = z.infer<typeof videoReconstructionChildRoleSchema>;
+
+export const videoReconstructionLifecycleEventSchema = childWorkerLifecycleEventSchema.extend({
+  role: videoReconstructionChildRoleSchema,
+});
+export type VideoReconstructionLifecycleEvent = z.infer<typeof videoReconstructionLifecycleEventSchema>;
+export type VideoReconstructionLifecycleObserver = ChildWorkerLifecycleObserver<VideoReconstructionLifecycleEvent>;
+
 export interface VideoReconstructionExecutor {
-  reconstruct(request: VideoReconstructionRequest): Promise<VideoReconstructionOutcome>;
+  reconstruct(
+    request: VideoReconstructionRequest,
+    observeLifecycle?: VideoReconstructionLifecycleObserver
+  ): Promise<VideoReconstructionOutcome>;
 }

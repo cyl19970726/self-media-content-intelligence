@@ -49,6 +49,20 @@ export const researchJobSchema = z.object({
 export type ResearchJob = z.infer<typeof researchJobSchema>;
 export type ResearchJobStatus = z.infer<typeof researchJobStatusSchema>;
 
+export const childWorkerLifecycleStatusSchema = z.enum(["started", "progress", "stale", "completed", "failed"]);
+export const childWorkerLifecycleEventSchema = z.object({
+  childRunId: z.string().uuid(),
+  role: z.string().min(1),
+  status: childWorkerLifecycleStatusSchema,
+  startedAt: z.string(),
+  lastProgressAt: z.string(),
+  inputRevision: z.string().min(1),
+  outputArtifactRevisions: z.record(z.string()).default({}),
+  errorCode: z.string().nullable().default(null)
+});
+export type ChildWorkerLifecycleEvent = z.infer<typeof childWorkerLifecycleEventSchema>;
+export type ChildWorkerLifecycleObserver<T extends ChildWorkerLifecycleEvent = ChildWorkerLifecycleEvent> = (event: T) => void;
+
 export type CreatorAcquisitionPost = {
   externalId: string;
   url: string;

@@ -51,17 +51,39 @@ function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: 
     }
   };
   const videoReconstructor: VideoReconstructionExecutor = {
-    async reconstruct(request) {
-      if (options.reconstruct) return options.reconstruct(request);
+    async reconstruct(request, observeLifecycle) {
+      if (options.reconstruct) return options.reconstruct(request, observeLifecycle);
       const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
-      return { state: "ready", reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
+      const childRunId = "11111111-1111-4111-8111-111111111111";
+      const startedAt = "2026-08-20T01:02:00.000Z";
+      observeLifecycle?.({ childRunId, role: "candidate", status: "started", startedAt,
+        lastProgressAt: startedAt, inputRevision: request.sourceMediaArtifactRef,
+        outputArtifactRevisions: {}, errorCode: null });
+      const outcome = { state: "ready" as const, reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
         evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
         threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
-        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19, failedGateIds: [] };
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const, failedGateIds: [] };
+      observeLifecycle?.({ childRunId, role: "candidate", status: "completed", startedAt,
+        lastProgressAt: "2026-08-20T01:02:01.000Z", inputRevision: request.sourceMediaArtifactRef,
+        outputArtifactRevisions: { "reconstruction.json": "b".repeat(64) }, errorCode: null });
+      return outcome;
     }
   };
   const synthesisExecutor: CreatorSynthesisExecutor = {
-    async synthesize(request) {
+    async synthesize(request, observeLifecycle) {
+      const startedAt = "2026-08-20T01:03:00.000Z";
+      observeLifecycle?.({ childRunId: "33333333-3333-4333-8333-333333333333", role: "creator_synthesis",
+        status: "started", startedAt, lastProgressAt: startedAt, inputRevision: "c".repeat(64),
+        outputArtifactRevisions: {}, errorCode: null });
+      observeLifecycle?.({ childRunId: "33333333-3333-4333-8333-333333333333", role: "creator_synthesis",
+        status: "completed", startedAt, lastProgressAt: "2026-08-20T01:03:01.000Z", inputRevision: "c".repeat(64),
+        outputArtifactRevisions: { "creator-analysis.json": "d".repeat(64) }, errorCode: null });
+      observeLifecycle?.({ childRunId: "44444444-4444-4444-8444-444444444444", role: "creator_synthesis_evaluator",
+        status: "started", startedAt: "2026-08-20T01:03:02.000Z", lastProgressAt: "2026-08-20T01:03:02.000Z",
+        inputRevision: "d".repeat(64), outputArtifactRevisions: {}, errorCode: null });
+      observeLifecycle?.({ childRunId: "44444444-4444-4444-8444-444444444444", role: "creator_synthesis_evaluator",
+        status: "completed", startedAt: "2026-08-20T01:03:02.000Z", lastProgressAt: "2026-08-20T01:03:03.000Z",
+        inputRevision: "d".repeat(64), outputArtifactRevisions: { "creator-synthesis-evaluation.json": "e".repeat(64) }, errorCode: null });
       return { state: "ready", synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
         gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json` };
     }
@@ -216,10 +238,32 @@ describe("CreatorResearchService", () => {
     expect(reconstructed?.status).toBe("collecting");
     expect(reconstructed?.coverage.reconstructedPosts).toBe(1);
     expect(reconstructed?.currentStage).toBe("synthesis");
+    const childEvents = service.events(run.id).filter((event) => event.type.startsWith("child."));
+    expect(childEvents.map((event) => event.type)).toEqual(["child.started", "child.completed"]);
+    expect(childEvents[0]?.payload).toMatchObject({
+      postExternalId: "post-1",
+      childRunId: "11111111-1111-4111-8111-111111111111",
+      role: "candidate",
+      inputRevision: `/artifacts/${run.id}/deep-media/post-1/source-video.mp4`
+    });
+    expect(childEvents[1]?.payload).toMatchObject({
+      outputArtifactRevisions: { "reconstruction.json": "b".repeat(64) }
+    });
     expect(await service.processNext("test-worker", executor)).toBe(true);
     const synthesized = service.get(run.id);
     expect(synthesized?.status).toBe("ready");
     expect(synthesized?.synthesisArtifactRef).toMatch(/creator-analysis\.json$/);
+    const synthesisChildEvents = service.events(run.id).filter((event) =>
+      ["creator_synthesis", "creator_synthesis_evaluator"].includes(String(event.payload.role))
+    );
+    expect(synthesisChildEvents.map((event) => event.type)).toEqual([
+      "child.started", "child.completed", "child.started", "child.completed"
+    ]);
+    expect(synthesisChildEvents.at(-1)?.payload).toMatchObject({
+      role: "creator_synthesis_evaluator",
+      inputRevision: "d".repeat(64),
+      outputArtifactRevisions: { "creator-synthesis-evaluation.json": "e".repeat(64) }
+    });
     service.close();
   });
 

@@ -8,7 +8,10 @@ import { runFile, runFileInput } from "../../core/process.js";
 import {
   videoReconstructionOutcomeSchema,
   videoReconstructionRequestSchema,
+  videoReconstructionLifecycleEventSchema,
+  type VideoReconstructionChildRole,
   type VideoReconstructionExecutor,
+  type VideoReconstructionLifecycleObserver,
   type VideoReconstructionOutcome
 } from "../../modules/video-analysis/contracts.js";
 import {
@@ -119,19 +122,124 @@ function commandUnavailable(message: string): boolean {
   return /CODEX_RUNNER_UNAVAILABLE|ENOENT|not found|command not found|authentication|login required|unauthorized/i.test(message);
 }
 
-async function runCodex(prompt: string, cwd: string, label: string): Promise<void> {
+function childRole(label: string): VideoReconstructionChildRole {
+  if (label === "candidate") return "candidate";
+  if (label.startsWith("evaluator-")) return "generic_evaluator";
+  if (label.startsWith("repair-")) return "generic_repair";
+  if (label.startsWith("runtime-repair-")) return "runtime_repair";
+  if (label.startsWith("runtime-recheck-")) return "generic_recheck";
+  if (label === "runtime-content_restoration") return "content_restoration_evaluator";
+  if (label === "runtime-directing_logic") return "directing_logic_evaluator";
+  if (label === "runtime-visual_editing") return "visual_editing_evaluator";
+  throw new Error(`UNKNOWN_CHILD_ROLE:${label}`);
+}
+
+function childPolicy(role: VideoReconstructionChildRole): { staleAfterMs: number; timeoutMs: number } {
+  const defaults = role === "candidate"
+    ? { staleAfterMs: 15 * 60_000, timeoutMs: 90 * 60_000 }
+    : ["generic_repair", "runtime_repair"].includes(role)
+      ? { staleAfterMs: 10 * 60_000, timeoutMs: 45 * 60_000 }
+      : { staleAfterMs: 8 * 60_000, timeoutMs: 30 * 60_000 };
+  const staleOverride = Number(process.env.SELF_MEDIA_CHILD_STALE_MS);
+  const timeoutOverride = Number(process.env.SELF_MEDIA_CHILD_TIMEOUT_MS);
+  return {
+    staleAfterMs: Number.isFinite(staleOverride) && staleOverride > 0 ? staleOverride : defaults.staleAfterMs,
+    timeoutMs: Number.isFinite(timeoutOverride) && timeoutOverride > 0 ? timeoutOverride : defaults.timeoutMs
+  };
+}
+
+function outputArtifactRevisions(cwd: string, lastMessage: string): Record<string, string> {
+  const relativeFiles = [
+    "probe.json", "capture-protocol.json", "targeted-evidence/targeted-evidence.json",
+    "targeted-evidence/ocr-evidence.json", "reconstruction.json", "article.md", "run-notes.md",
+    "evaluation.json", "gate-report.json", "runtime-three-lens-evaluation.json",
+    "runtime-three-lens-gate-report.json", "runtime-three-lens/content-restoration.json",
+    "runtime-three-lens/directing-logic.json", "runtime-three-lens/visual-editing.json",
+    path.basename(lastMessage)
+  ];
+  return Object.fromEntries(relativeFiles.flatMap((relative) => {
+    const absolute = path.join(cwd, relative);
+    return exists(absolute) ? [[relative, sha256(absolute)]] : [];
+  }));
+}
+
+function observeSafely(
+  observer: VideoReconstructionLifecycleObserver | undefined,
+  event: Parameters<VideoReconstructionLifecycleObserver>[0]
+): void {
+  if (!observer) return;
+  try { observer(videoReconstructionLifecycleEventSchema.parse(event)); }
+  catch {
+    // Control-plane reporting must never corrupt the research worker itself.
+  }
+}
+
+export async function runCodex(
+  prompt: string,
+  cwd: string,
+  label: string,
+  inputRevision: string,
+  observer?: VideoReconstructionLifecycleObserver
+): Promise<void> {
   const binary = process.env.SELF_MEDIA_CODEX_BIN ?? "codex";
   const lastMessage = path.join(cwd, `${label}-last-message.txt`);
+  const role = childRole(label);
+  const policy = childPolicy(role);
+  const childRunId = crypto.randomUUID();
+  const startedAt = new Date().toISOString();
+  let lastProgressAt = startedAt;
+  let lastProgressEmittedAt = 0;
+  let staleEmitted = false;
+  const baseEvent = { childRunId, role, startedAt, inputRevision };
+  observeSafely(observer, {
+    ...baseEvent, status: "started", lastProgressAt, outputArtifactRevisions: {}, errorCode: null
+  });
+  const staleTimer = setInterval(() => {
+    if (staleEmitted || Date.now() - Date.parse(lastProgressAt) < policy.staleAfterMs) return;
+    staleEmitted = true;
+    observeSafely(observer, {
+      ...baseEvent, status: "stale", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+    });
+  }, Math.min(60_000, policy.staleAfterMs));
   const environment = await withSystemProxy({ ...process.env, SELF_MEDIA_CHILD_ROLE: label, SELF_MEDIA_CHILD_OUTPUT: cwd });
-  try { await runFileInput(binary, [
-    "exec", "-", "--skip-git-repo-check", "--ephemeral", "--color", "never",
-    "--approve-for-me", "-C", cwd, "-o", lastMessage
-  ], prompt, { cwd, timeout: 3 * 60 * 60_000, env: environment }); }
+  try {
+    await runFileInput(binary, [
+      "exec", "-", "--skip-git-repo-check", "--ephemeral", "--color", "never",
+      "--approve-for-me", "-C", cwd, "-o", lastMessage
+    ], prompt, {
+      cwd,
+      timeout: policy.timeoutMs,
+      env: environment,
+      onOutput: () => {
+        const at = Date.now();
+        lastProgressAt = new Date(at).toISOString();
+        staleEmitted = false;
+        if (at - lastProgressEmittedAt < 20_000) return;
+        lastProgressEmittedAt = at;
+        observeSafely(observer, {
+          ...baseEvent, status: "progress", lastProgressAt,
+          outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+        });
+      }
+    });
+    lastProgressAt = new Date().toISOString();
+    observeSafely(observer, {
+      ...baseEvent, status: "completed", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+    });
+  }
   catch (error) {
     const message = error instanceof Error ? error.message : "";
+    lastProgressAt = new Date().toISOString();
+    observeSafely(observer, {
+      ...baseEvent, status: "failed", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage),
+      errorCode: /process_timeout/.test(message) ? "process_timeout" : "runner_failed"
+    });
     if (commandUnavailable(message)) throw new Error("CODEX_RUNNER_UNAVAILABLE");
     throw new Error(`CODEX_RUNNER_FAILED:${label}`);
-  }
+  } finally { clearInterval(staleTimer); }
 }
 
 function candidatePrompt(videoPath: string, outputDir: string): string {
@@ -241,6 +349,12 @@ function sha256(file: string): string {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 }
 
+function combinedRevision(files: string[]): string {
+  const hash = crypto.createHash("sha256");
+  for (const file of files.filter(exists).sort()) hash.update(`${path.basename(file)}:${sha256(file)}\n`);
+  return hash.digest("hex");
+}
+
 function threeLensEvaluatorPrompt(
   videoPath: string,
   outputDir: string,
@@ -277,7 +391,8 @@ async function evaluateRuntimeThreeLens(
   outputDir: string,
   postExternalId: string,
   reconstructionArtifactRef: string,
-  evaluationArtifactRef: string
+  evaluationArtifactRef: string,
+  observer?: VideoReconstructionLifecycleObserver
 ): Promise<RuntimeThreeLensGateReport> {
   const reconstructionPath = path.join(outputDir, "reconstruction.json");
   const fingerprint = sha256(reconstructionPath);
@@ -315,7 +430,9 @@ async function evaluateRuntimeThreeLens(
     await runCodex(
       threeLensEvaluatorPrompt(videoPath, outputDir, definition.lens, fingerprint, evaluatorRunId),
       outputDir,
-      `runtime-${definition.lens}`
+      `runtime-${definition.lens}`,
+      fingerprint,
+      observer
     );
     const rulesPath = path.join(lensDir, definition.file);
     if (!exists(rulesPath)) throw new Error(`RUNTIME_THREE_LENS_MISSING:${definition.lens}`);
@@ -366,7 +483,10 @@ async function validate(outputDir: string): Promise<GateReport> {
 }
 
 export class CodexVideoReconstructionExecutor implements VideoReconstructionExecutor {
-  async reconstruct(rawRequest: unknown): Promise<VideoReconstructionOutcome> {
+  async reconstruct(
+    rawRequest: unknown,
+    observeLifecycle?: VideoReconstructionLifecycleObserver
+  ): Promise<VideoReconstructionOutcome> {
     const request = videoReconstructionRequestSchema.parse(rawRequest);
     let videoPath: string;
     try { videoPath = artifactPath(request.sourceMediaArtifactRef); }
@@ -383,7 +503,10 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       const requiredCandidate = ["evidence/evidence-pack.json", "probe.json", "capture-protocol.json", "reconstruction.json", "article.md"];
       let missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       if (missing.length > 0) {
-        await runCodex(candidatePrompt(videoPath, outputDir), outputDir, "candidate");
+        await runCodex(
+          candidatePrompt(videoPath, outputDir), outputDir, "candidate",
+          request.sourceMediaArtifactRef, observeLifecycle
+        );
         missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       }
       if (missing.length > 0) return { state: "not_ready", reconstructionArtifactRef: null, evaluationArtifactRef: null,
@@ -406,7 +529,10 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       let genericRepairsUsed = 0;
       while (true) {
         if (!gate) {
-          await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${genericRepairsUsed + 1}`);
+          await runCodex(
+            evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${genericRepairsUsed + 1}`,
+            sha256(path.join(outputDir, "reconstruction.json")), observeLifecycle
+          );
           if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
             evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
             threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
@@ -429,7 +555,12 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           message: "两轮通用定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
         genericRepairsUsed += 1;
         const historyDir = archiveEvaluation(outputDir, genericRepairsUsed);
-        await runCodex(repairPrompt(videoPath, outputDir, historyDir, genericRepairsUsed), outputDir, `repair-${genericRepairsUsed}`);
+        await runCodex(
+          repairPrompt(videoPath, outputDir, historyDir, genericRepairsUsed), outputDir, `repair-${genericRepairsUsed}`,
+          combinedRevision([
+            path.join(outputDir, "reconstruction.json"), path.join(historyDir, "evaluation.json"), path.join(historyDir, "gate-report.json")
+          ]), observeLifecycle
+        );
         await refreshOcrEvidenceIfNeeded(outputDir);
         gate = null;
       }
@@ -442,7 +573,8 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
             outputDir,
             request.postExternalId,
             refs.reconstructionArtifactRef,
-            refs.threeLensEvaluationArtifactRef
+            refs.threeLensEvaluationArtifactRef,
+            observeLifecycle
           );
         } catch (error) {
           const runtimeEvaluationExists = exists(path.join(outputDir, "runtime-three-lens-evaluation.json"));
@@ -487,11 +619,20 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         await runCodex(
           runtimeLensRepairPrompt(videoPath, outputDir, historyDir, runtimeAttempt),
           outputDir,
-          `runtime-repair-${runtimeAttempt}`
+          `runtime-repair-${runtimeAttempt}`,
+          combinedRevision([
+            path.join(outputDir, "reconstruction.json"),
+            path.join(historyDir, "runtime-three-lens-evaluation.json"),
+            path.join(historyDir, "runtime-three-lens-gate-report.json")
+          ]),
+          observeLifecycle
         );
         await refreshOcrEvidenceIfNeeded(outputDir);
 
-        await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `runtime-recheck-${runtimeAttempt}`);
+        await runCodex(
+          evaluatorPrompt(videoPath, outputDir), outputDir, `runtime-recheck-${runtimeAttempt}`,
+          sha256(path.join(outputDir, "reconstruction.json")), observeLifecycle
+        );
         if (!exists(evaluationPath)) return videoReconstructionOutcomeSchema.parse({
           state: "not_ready",
           reconstructionArtifactRef: refs.reconstructionArtifactRef,

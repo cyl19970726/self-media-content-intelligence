@@ -1,6 +1,11 @@
 import { creatorSelectionSchema } from "../portfolio/contracts.js";
 import { videoReconstructionBatchSchema } from "../video-analysis/batch-contracts.js";
-import { creatorSynthesisGateSchema, creatorSynthesisSchema, type CreatorSynthesisGate } from "./contracts.js";
+import {
+  creatorSynthesisGateSchema,
+  creatorSynthesisSchema,
+  type CreatorSynthesisGate,
+  type CreatorSynthesisIndependentEvaluation
+} from "./contracts.js";
 
 const advicePattern = /(我们(应该|可以|下一条|要发)|可直接复制|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议我们)/i;
 
@@ -43,4 +48,42 @@ export function validateCreatorSynthesis(input: {
   ];
   return creatorSynthesisGateSchema.parse({ schemaVersion: "1.0.0", creatorRunId: input.creatorRunId,
     ready: gates.every((gate) => gate.pass), gates, failedGateIds: gates.filter((gate) => !gate.pass).map((gate) => gate.id), checkedAt: input.checkedAt });
+}
+
+export function combineCreatorSynthesisGates(input: {
+  deterministicGate: CreatorSynthesisGate;
+  independentEvaluation: CreatorSynthesisIndependentEvaluation;
+  candidateRevisionFingerprint: string;
+  independentEvaluationArtifactRef: string;
+  checkedAt: string;
+}): CreatorSynthesisGate {
+  if (input.independentEvaluation.candidateRevisionFingerprint !== input.candidateRevisionFingerprint) {
+    throw new Error("independent_synthesis_revision_mismatch");
+  }
+  const independentById = new Map<string, CreatorSynthesisIndependentEvaluation["gates"][number]>(
+    input.independentEvaluation.gates.map((gate) => [gate.id, gate])
+  );
+  const gates = input.deterministicGate.gates.map((gate) => {
+    const independent = independentById.get(gate.id);
+    return {
+      id: gate.id,
+      pass: gate.pass && independent?.pass === true,
+      message: `${gate.message} 独立评估：${independent?.message ?? "缺失"}`
+    };
+  });
+  return creatorSynthesisGateSchema.parse({
+    schemaVersion: "1.1.0",
+    creatorRunId: input.deterministicGate.creatorRunId,
+    ready: gates.every((gate) => gate.pass),
+    gates,
+    failedGateIds: gates.filter((gate) => !gate.pass).map((gate) => gate.id),
+    checkedAt: input.checkedAt,
+    candidateRevisionFingerprint: input.candidateRevisionFingerprint,
+    independentEvaluationArtifactRef: input.independentEvaluationArtifactRef,
+    evaluator: {
+      evaluatorRunId: input.independentEvaluation.evaluatorRunId,
+      independentOfCandidate: true,
+      evaluatedAt: input.independentEvaluation.evaluatedAt
+    }
+  });
 }

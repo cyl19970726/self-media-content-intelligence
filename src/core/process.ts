@@ -21,7 +21,13 @@ export function runFileInput(
   file: string,
   args: string[],
   input: string,
-  options: { cwd?: string; timeout?: number; env?: NodeJS.ProcessEnv; maxBuffer?: number } = {}
+  options: {
+    cwd?: string;
+    timeout?: number;
+    env?: NodeJS.ProcessEnv;
+    maxBuffer?: number;
+    onOutput?: (stream: "stdout" | "stderr", chunk: string) => void;
+  } = {}
 ): Promise<{ stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
     const child = spawn(file, args, { cwd: options.cwd, env: options.env ?? process.env, stdio: ["pipe", "pipe", "pipe"] });
@@ -34,8 +40,14 @@ export function runFileInput(
       if (Buffer.byteLength(next) > maxBuffer) throw new Error("process_output_limit");
       return next;
     };
-    child.stdout.on("data", (chunk: Buffer) => { try { stdout = append(stdout, chunk); } catch (error) { child.kill("SIGTERM"); reject(error); } });
-    child.stderr.on("data", (chunk: Buffer) => { try { stderr = append(stderr, chunk); } catch (error) { child.kill("SIGTERM"); reject(error); } });
+    child.stdout.on("data", (chunk: Buffer) => { try {
+      stdout = append(stdout, chunk);
+      options.onOutput?.("stdout", chunk.toString("utf8"));
+    } catch (error) { child.kill("SIGTERM"); reject(error); } });
+    child.stderr.on("data", (chunk: Buffer) => { try {
+      stderr = append(stderr, chunk);
+      options.onOutput?.("stderr", chunk.toString("utf8"));
+    } catch (error) { child.kill("SIGTERM"); reject(error); } });
     child.on("error", (error) => { clearTimeout(timeout); reject(error); });
     child.on("close", (code) => {
       clearTimeout(timeout);

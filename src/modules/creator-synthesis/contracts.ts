@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  childWorkerLifecycleEventSchema,
+  type ChildWorkerLifecycleObserver
+} from "../orchestration/contracts.js";
 
 const evidenceClaimSchema = z.object({
   statement: z.string().min(1),
@@ -58,14 +62,54 @@ export const creatorSynthesisSchema = z.object({
 export type CreatorSynthesis = z.infer<typeof creatorSynthesisSchema>;
 
 export const creatorSynthesisGateSchema = z.object({
-  schemaVersion: z.literal("1.0.0"),
+  schemaVersion: z.enum(["1.0.0", "1.1.0"]),
   creatorRunId: z.string().uuid(),
   ready: z.boolean(),
   gates: z.array(z.object({ id: z.string(), pass: z.boolean(), message: z.string() })),
   failedGateIds: z.array(z.string()),
-  checkedAt: z.string()
+  checkedAt: z.string(),
+  candidateRevisionFingerprint: z.string().nullable().default(null),
+  independentEvaluationArtifactRef: z.string().nullable().default(null),
+  evaluator: z.object({
+    evaluatorRunId: z.string().uuid(),
+    independentOfCandidate: z.literal(true),
+    evaluatedAt: z.string()
+  }).nullable().default(null)
 });
 export type CreatorSynthesisGate = z.infer<typeof creatorSynthesisGateSchema>;
+
+export const creatorSynthesisIndependentEvaluationSchema = z.object({
+  schemaVersion: z.literal("creator-synthesis-independent-evaluation@1"),
+  creatorRunId: z.string().uuid(),
+  candidateRevisionFingerprint: z.string().length(64),
+  evaluatorRunId: z.string().uuid(),
+  independentOfCandidate: z.literal(true),
+  evaluatedAt: z.string(),
+  gates: z.array(z.object({
+    id: z.enum([
+      "canonical_21_coverage",
+      "deep_9_ready",
+      "deep_evidence_binding",
+      "three_tiers_present",
+      "evidence_classification",
+      "research_creation_separation",
+      "backend_metrics_unknown"
+    ]),
+    pass: z.boolean(),
+    message: z.string().min(1),
+    evidenceRefs: z.array(z.string()).min(1)
+  })).length(7)
+}).superRefine((value, context) => {
+  const ids = value.gates.map((gate) => gate.id);
+  if (new Set(ids).size !== 7) context.addIssue({ code: "custom", message: "独立综合评估必须逐项覆盖 7 个 gate。" });
+});
+export type CreatorSynthesisIndependentEvaluation = z.infer<typeof creatorSynthesisIndependentEvaluationSchema>;
+
+export const creatorSynthesisChildRoleSchema = z.enum(["creator_synthesis", "creator_synthesis_evaluator"]);
+export type CreatorSynthesisChildRole = z.infer<typeof creatorSynthesisChildRoleSchema>;
+export const creatorSynthesisLifecycleEventSchema = childWorkerLifecycleEventSchema.extend({ role: creatorSynthesisChildRoleSchema });
+export type CreatorSynthesisLifecycleEvent = z.infer<typeof creatorSynthesisLifecycleEventSchema>;
+export type CreatorSynthesisLifecycleObserver = ChildWorkerLifecycleObserver<CreatorSynthesisLifecycleEvent>;
 
 export type CreatorSynthesisRequest = {
   creatorRunId: string;
@@ -82,5 +126,8 @@ export type CreatorSynthesisOutcome =
   | { state: "blocked"; message: string; userActionRequired: boolean };
 
 export interface CreatorSynthesisExecutor {
-  synthesize(request: CreatorSynthesisRequest): Promise<CreatorSynthesisOutcome>;
+  synthesize(
+    request: CreatorSynthesisRequest,
+    observeLifecycle?: CreatorSynthesisLifecycleObserver
+  ): Promise<CreatorSynthesisOutcome>;
 }
