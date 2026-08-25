@@ -106,6 +106,7 @@ Input media: ${videoPath}
 Writable output root: ${outputDir}
 
 Execute the Skill's evidence-pack, first-round open probe, video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured reconstruction, coverage/meta-gate self-audit, schema validation, and a human-readable article generated from reconstruction. If the source has speech and no subtitle file is supplied, use the transcription capability documented at ${mediaSkillDir}/SKILL.md and mark it as machine transcription.
+For known Mandarin speech, always use a multilingual model (never an .en model). If the preferred small model cannot download, fall back to the installed local whisper CLI with explicit --model base --language Chinese --task transcribe; the cached base model is an acceptable lower-confidence proposal when checked against audible speech and visible captions. A preferred-model download timeout alone does not make the available speech carrier unchecked.
 
 Isolation and evidence rules:
 - Do not read any previous report, creator analysis, audit, evaluation, or sibling video directory.
@@ -143,6 +144,7 @@ Candidate root: ${outputDir}
 Independent failed evaluation and gate from the previous attempt: ${historyDir}/evaluation.json and ${historyDir}/gate-report.json
 
 Repair only the failed evidence closures. Independently inspect the source frames/timeline named by the evaluator; do not blindly copy evaluator prose. You may add video-specific capture actions, resample/crop frames, run real OCR/UI reading, correct time ranges and fact/unknown classifications, and update probe.json, capture-protocol.json, targeted-evidence manifests, reconstruction.json, article.md, and run-notes.md. Preserve valid prior work and all raw cue text. Do not read old reports, sibling videos, or any audit outside this candidate root. Do not create a new evaluation.json or gate-report.json; a fresh independent evaluator will do that.
+When speech was left unchecked only because a preferred ASR model download failed, retry with the installed local multilingual whisper CLI using explicit --model base --language Chinese --task transcribe. Register the machine transcript as a limited derived source and check it against audible speech and visible captions; never use an .en model for Mandarin.
 
 Before finishing, run canonical schema validation for the repaired candidate and explicitly check every failed gate from the archived report.
 `;
