@@ -168,6 +168,23 @@ Before finishing, run canonical schema validation for the repaired candidate and
 `;
 }
 
+function runtimeLensRepairPrompt(videoPath: string, outputDir: string, historyDir: string, attempt: number): string {
+  return `
+You are the candidate repair runner for runtime three-lens attempt ${attempt}. Read the complete canonical Skill at ${skillDir}/SKILL.md and its directly required references/schemas.
+
+Source video: ${videoPath}
+Candidate root: ${outputDir}
+Archived independent generic evaluation and gate: ${historyDir}/evaluation.json and ${historyDir}/gate-report.json
+Archived independent three-lens evaluation and gate: ${historyDir}/runtime-three-lens-evaluation.json and ${historyDir}/runtime-three-lens-gate-report.json
+
+Repair only the failed or unchecked CR/DL/VE evidence closures recorded in the archived three-lens gate. Independently inspect the cited source frames, timeline, transcript, OCR, UI states, and candidate claims; do not blindly copy evaluator prose and do not weaken the research boundary. Make the missing reasoning explicit in reconstruction.json and article.md when the source supports it. If the source does not support closure, preserve the item as unknown.
+
+You may add video-specific capture actions, resample/crop frames, run real OCR/UI reading, correct time ranges, add concrete viewer-comprehension consequences, and update probe.json, capture-protocol.json, targeted-evidence manifests, reconstruction.json, article.md, and run-notes.md. Preserve valid prior work and all raw cue text. Do not read sibling videos, old creator reports, or audits outside this candidate root and archived attempt. Do not create evaluation.json, gate-report.json, runtime-three-lens-evaluation.json, or runtime-three-lens-gate-report.json; fresh independent evaluators own those files.
+
+Before finishing, run canonical schema validation for the repaired candidate and explicitly self-check every failed or unchecked rule in the archived three-lens gate.
+`;
+}
+
 function archiveEvaluation(outputDir: string, attempt: number): string {
   const historyDir = path.join(outputDir, "evaluation-history", `attempt-${attempt}`);
   fs.mkdirSync(historyDir, { recursive: true });
@@ -175,6 +192,24 @@ function archiveEvaluation(outputDir: string, attempt: number): string {
     const source = path.join(outputDir, filename);
     if (exists(source)) fs.renameSync(source, path.join(historyDir, filename));
   }
+  return historyDir;
+}
+
+export function archiveRuntimeReviewArtifacts(outputDir: string, attempt: number): string {
+  const historyDir = path.join(outputDir, "runtime-repair-history", `attempt-${attempt}-${crypto.randomUUID()}`);
+  fs.mkdirSync(historyDir, { recursive: true });
+  const evaluatorFiles = new Set([
+    "evaluation.json", "evaluation.md", "gate-report.json",
+    "runtime-three-lens-evaluation.json", "runtime-three-lens-gate-report.json"
+  ]);
+  for (const filename of fs.readdirSync(outputDir)) {
+    if (evaluatorFiles.has(filename) || /^(?:evaluator-|runtime-).+-last-message\.txt$/.test(filename)) {
+      const source = path.join(outputDir, filename);
+      if (exists(source)) fs.renameSync(source, path.join(historyDir, filename));
+    }
+  }
+  const lensDir = path.join(outputDir, "runtime-three-lens");
+  if (fs.existsSync(lensDir)) fs.renameSync(lensDir, path.join(historyDir, "runtime-three-lens"));
   return historyDir;
 }
 
@@ -387,6 +422,17 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           if (threeLensGate.ready) return videoReconstructionOutcomeSchema.parse({
             state: "ready", ...refs, gateCount: gate.gates?.length ?? 1, threeLensGateCount: 19, failedGateIds: []
           });
+          if (repairAttempt < 2) {
+            const historyDir = archiveRuntimeReviewArtifacts(outputDir, repairAttempt + 1);
+            await runCodex(
+              runtimeLensRepairPrompt(videoPath, outputDir, historyDir, repairAttempt + 1),
+              outputDir,
+              `runtime-repair-${repairAttempt + 1}`
+            );
+            await refreshOcrEvidenceIfNeeded(outputDir);
+            gate = null;
+            continue;
+          }
           return videoReconstructionOutcomeSchema.parse({
             state: "not_ready",
             reconstructionArtifactRef: refs.reconstructionArtifactRef,
