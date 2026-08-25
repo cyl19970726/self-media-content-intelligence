@@ -121,6 +121,7 @@ export default function CreatorDossierPage() {
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>博主档案读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
   const deepItems = data.portfolio.items.filter((item) => item.deepSample);
+  const activeRunStage = data.run?.stages.find((stage) => stage.id === data.run?.currentStage);
 
   return <main className="console creator-dossier">
     <aside className="console-rail">
@@ -131,7 +132,9 @@ export default function CreatorDossierPage() {
     <article className="console-main dossier-main">
       <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><b>{data.identity.name}</b></nav>
       {data.run && <section className={`creator-run-progress creator-run-progress--${data.run.status}`}>
-        <div><span>PIPELINE · {data.run.id.slice(0, 8).toUpperCase()}</span><strong>{data.run.status === "ready" ? "研究闭环已通过" : data.run.nextAction}</strong></div>
+        <div><span>PIPELINE · {data.run.id.slice(0, 8).toUpperCase()}</span><strong>{data.run.status === "ready" ? "研究闭环已通过" : data.run.nextAction}</strong>
+          {data.run.status !== "ready" && activeRunStage?.message && <p className="creator-run-progress__current"><b>当前执行</b>{activeRunStage.message}</p>}
+        </div>
         <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.label}</span>)}</div>
         {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}
         {data.run.status === "needs_user" && <div className="creator-run-progress__actions">
