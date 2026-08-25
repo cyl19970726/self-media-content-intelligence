@@ -34,6 +34,51 @@ type RuntimeLensName = "content_restoration" | "directing_logic" | "visual_editi
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
 
+type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string }> };
+type TargetedEvidenceLike = { frames?: Array<{ id?: string }> };
+
+export function shouldRefreshOcrEvidence(
+  protocolInput: unknown,
+  targetedInput: unknown,
+  ocrInput: unknown
+): boolean {
+  const protocolRequestsOcr = /"(?:ocr_review|ui_state_review)"/.test(JSON.stringify(protocolInput));
+  const targetedFrames = (targetedInput as TargetedEvidenceLike | null)?.frames ?? [];
+  const ocrFrames = (ocrInput as OcrEvidenceLike | null)?.frames ?? [];
+  if (!protocolRequestsOcr && ocrFrames.length === 0) return false;
+  if (ocrFrames.length === 0) return targetedFrames.length > 0;
+  const coveredFrameIds = new Set(ocrFrames.map((frame) => frame.frameId).filter((id): id is string => Boolean(id)));
+  const missingTargetedFrame = targetedFrames.some((frame) => Boolean(frame.id) && !coveredFrameIds.has(frame.id as string));
+  const everyFrameFailed = ocrFrames.every((frame) => frame.status === "failed");
+  return missingTargetedFrame || everyFrameFailed;
+}
+
+function readJsonIfPresent(file: string): unknown {
+  if (!exists(file)) return null;
+  try { return JSON.parse(fs.readFileSync(file, "utf8")); }
+  catch { return null; }
+}
+
+async function refreshOcrEvidenceIfNeeded(outputDir: string): Promise<void> {
+  const protocolPath = path.join(outputDir, "capture-protocol.json");
+  const targetedPath = path.join(outputDir, "targeted-evidence/targeted-evidence.json");
+  const ocrPath = path.join(outputDir, "targeted-evidence/ocr-evidence.json");
+  if (!exists(protocolPath) || !exists(targetedPath)) return;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    if (!shouldRefreshOcrEvidence(
+      readJsonIfPresent(protocolPath),
+      readJsonIfPresent(targetedPath),
+      readJsonIfPresent(ocrPath)
+    )) return;
+    try {
+      await runFile("swift", [path.join(skillDir, "scripts/ocr-frames.swift"),
+        "--manifest", targetedPath, "--out", ocrPath], { cwd: outputDir, timeout: 10 * 60_000 });
+    } catch {
+      // The independent evaluator keeps the channel failed if both bounded attempts fail.
+    }
+  }
+}
+
 function commandUnavailable(message: string): boolean {
   return /CODEX_RUNNER_UNAVAILABLE|ENOENT|not found|command not found|authentication|login required|unauthorized/i.test(message);
 }
@@ -271,6 +316,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       if (missing.length > 0) return { state: "not_ready", reconstructionArtifactRef: null, evaluationArtifactRef: null,
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
+      await refreshOcrEvidenceIfNeeded(outputDir);
 
       const evaluationPath = path.join(outputDir, "evaluation.json");
       const gatePath = path.join(outputDir, "gate-report.json");
@@ -344,6 +390,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           message: "两轮定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
         const historyDir = archiveEvaluation(outputDir, repairAttempt + 1);
         await runCodex(repairPrompt(videoPath, outputDir, historyDir, repairAttempt + 1), outputDir, `repair-${repairAttempt + 1}`);
+        await refreshOcrEvidenceIfNeeded(outputDir);
         gate = null;
       }
       throw new Error("RECONSTRUCTION_LOOP_INVALID");
