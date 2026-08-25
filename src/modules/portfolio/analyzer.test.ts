@@ -94,6 +94,8 @@ describe("buildCreatorPortfolio", () => {
     const refined = refineDeepSelectionForVerifiedVideos(selection, mediaTypes, "2026-08-20T02:00:00.000Z");
     expect(refined.ruleVersion).toBe("four-groups-video-refined-v3");
     expect(refined.items.find((item) => item.externalId === formerLow!.externalId)?.deepCandidate).toBe(false);
+    expect(refined.items.find((item) => item.externalId === formerLow!.externalId)?.mediaType).toBe("image");
+    expect(refined.items.filter((item) => item.deepCandidate).every((item) => item.mediaType === "video")).toBe(true);
     expect(refined.items.filter((item) => item.deepGroups.includes("low"))).toHaveLength(3);
   });
 });

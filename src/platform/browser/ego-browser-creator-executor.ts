@@ -339,6 +339,11 @@ const securityStop = observation => {
   return { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
     message: security ? '详情采集触发安全限制，已立即停止且不会自动重试。' : '详情采集需要重新登录，已立即停止且不会自动重试。' }
 }
+const locateFromCurrent = async request => await js(String.raw\`(() => {
+  const externalId = ${JSON.stringify("CURRENT_ID")}
+  const match = location.pathname.match(/\\/(?:explore|discovery\\/item)\\/([^/?#]+)/) || location.pathname.match(/\\/user\\/profile\\/[^/]+\\/([^/?#]+)/)
+  return match?.[1] === externalId ? { href: location.href, cover: document.querySelector('meta[property="og:image"]')?.getAttribute('content') || null, source: 'current_detail' } : null
+})()\`.replace(${JSON.stringify("CURRENT_ID")}, request.externalId))
 const locateFromSearch = async request => {
   if (!request.title) return null
   await gotoAndWait('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(request.title), { timeout: 30, settle: 1.5 })
@@ -369,15 +374,16 @@ const locateFromProfile = async request => {
   const initial = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
   const stop = securityStop(initial)
   if (stop) { handoff = stop; return null }
-  await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
-  for (let round = 0; round < 12; round += 1) {
+  await js('(() => { const scroller = document.scrollingElement || document.documentElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
+  for (let round = 0; round < 60; round += 1) {
     const card = await js(String.raw\`(() => {
       const externalId = ${JSON.stringify("PLACEHOLDER")}
       const item = document.querySelector('section[data-note-id="' + externalId + '"]')
-      const liveAnchor = [...document.querySelectorAll('a[href]')].find(anchor => {
+      const liveAnchors = [...document.querySelectorAll('a[href]')].filter(anchor => {
         try { return new URL(anchor.href, location.href).pathname.endsWith('/' + externalId) }
         catch { return false }
       })
+      const liveAnchor = liveAnchors.find(anchor => anchor.href.includes('xsec_token=')) || liveAnchors[0]
       const container = item || liveAnchor?.closest('section') || liveAnchor?.parentElement?.parentElement
       return liveAnchor || item ? {
         href: liveAnchor?.href || item?.querySelector('a.cover')?.href || null,
@@ -385,8 +391,8 @@ const locateFromProfile = async request => {
       } : null
     })()\`.replace(${JSON.stringify("PLACEHOLDER")}, request.externalId))
     if (card?.href) return card
-    await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; if (!scroller) return false; if (' + String(round === 8) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
-    await wait(round >= 8 ? 1.8 : 1.1)
+    await js('(() => { const scroller = document.scrollingElement || document.documentElement; if (!scroller) return false; if (' + String(round > 0 && round % 12 === 0) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1400, behavior: "auto" }); return true })()')
+    await wait(round >= 12 ? 1.2 : 0.9)
     const status = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
     const profileStop = securityStop(status)
     if (profileStop) { handoff = profileStop; return null }
@@ -398,7 +404,9 @@ for (let index = 0; index < requested.length; index += 1) {
   const requestedUrl = new URL(request.url)
   const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname)
   let fallbackUsed = isBareExploreUrl
-  let navigation = isBareExploreUrl ? await locateFromSearch(request) || await locateFromProfile(request) : { href: request.url, cover: null, source: 'canonical' }
+  let navigation = await locateFromCurrent(request) || (isBareExploreUrl
+    ? await locateFromSearch(request) || await locateFromProfile(request)
+    : { href: request.url, cover: null, source: 'canonical' })
   if (navigation && isBareExploreUrl && navigation.source !== 'exact_title_search') navigation = { ...navigation, source: 'profile_live_card' }
   if (handoff) break
   while (navigation) {

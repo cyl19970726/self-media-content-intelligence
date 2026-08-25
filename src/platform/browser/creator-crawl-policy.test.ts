@@ -90,6 +90,10 @@ describe("ego-browser scripts", () => {
     expect(script).toContain("document.querySelectorAll('a[href]')");
     expect(script).toContain(canonical);
     expect(script).toContain("profile_fallback");
+    expect(script).toContain("current_detail");
+    expect(script).toContain("liveAnchors.find(anchor => anchor.href.includes('xsec_token='))");
+    expect(script).toContain("document.scrollingElement || document.documentElement");
+    expect(script).toContain("round < 60");
     expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
   });
 

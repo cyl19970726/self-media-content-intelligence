@@ -239,6 +239,7 @@ export function refineDeepSelectionForVerifiedVideos(
     ruleVersion: "four-groups-video-refined-v3",
     items: selection.items.map((item) => ({
       ...item,
+      mediaType: mediaTypes.get(item.externalId) ?? item.mediaType,
       deepCandidate: groups.has(item.externalId),
       deepGroups: groups.get(item.externalId) ?? []
     })),

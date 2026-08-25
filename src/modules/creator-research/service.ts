@@ -697,7 +697,13 @@ export class CreatorResearchService {
         ? deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef))
         : null;
       const resolvedIds = new Set(resolvedMedia.items.map((item) => item.externalId));
-      const mergedMediaItems = [...(previousMedia?.items.filter((item) => !resolvedIds.has(item.externalId)) ?? []), ...resolvedMedia.items];
+      const mergedMediaItems = [...(previousMedia?.items.filter((item) => !resolvedIds.has(item.externalId)) ?? []), ...resolvedMedia.items]
+        .map((item) => deepIds.has(item.externalId) ? item : {
+          ...item, videoRequested: false, state: "not_requested" as const, videoArtifactRef: null,
+          verificationArtifactRef: null, sha256: null, bytes: null, durationSeconds: null,
+          width: null, height: null, hasAudio: null,
+          message: "详情核验后未进入四组深度视频集；旧版本证据保留但不再参与当前投影。"
+        });
       const mediaManifest = deepMediaManifestSchema.parse({
         schemaVersion: "1.0.0", runId: run.id, generatedAt: completedAt,
         requestedPosts: mergedMediaItems.filter((item) => item.videoRequested).length,
