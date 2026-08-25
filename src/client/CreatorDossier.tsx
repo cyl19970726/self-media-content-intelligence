@@ -4,6 +4,7 @@ import { AlertTriangle, ArrowLeft, ArrowRight, ExternalLink, Grid2X2, List, Load
 import { getCreatorDossier, resumeCreatorResearchRun } from "./api";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier";
 import { comparisonSetLabel, comparisonSetNote, deepSetNote } from "./creator-sample-copy";
+import { creatorEvidenceHref } from "./creator-evidence-link";
 
 const sections = [
   ["identity", "01", "定位与价值"], ["corpus", "02", "全量基本盘"], ["system", "03", "主题与形式"],
@@ -108,7 +109,7 @@ export default function CreatorDossierPage() {
     setSearch(next, { replace: true });
   };
   const itemHref = (item: CreatorDossier["portfolio"]["items"][number]) => item.evidenceHref
-    ? `${item.evidenceHref}?returnTo=${encodeURIComponent(`${location.pathname}${location.search}#portfolio`)}`
+    ? creatorEvidenceHref(item.evidenceHref, `${location.pathname}${location.search}#portfolio`)
     : item.sourceHref;
   const resume = async () => {
     if (!data?.run || resuming) return;
