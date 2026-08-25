@@ -53,6 +53,24 @@ export function shouldRefreshOcrEvidence(
   return missingTargetedFrame || everyFrameFailed;
 }
 
+export function normalizeRuntimeLensEvidence(input: unknown): unknown {
+  if (!Array.isArray(input)) return input;
+  return input.map((rule) => {
+    if (!rule || typeof rule !== "object") return rule;
+    const value = rule as Record<string, unknown>;
+    if (!Array.isArray(value.evidenceRefs)) return rule;
+    return {
+      ...value,
+      evidenceRefs: value.evidenceRefs.map((reference) => {
+        if (!reference || typeof reference !== "object") return reference;
+        const normalized = { ...(reference as Record<string, unknown>) };
+        if (normalized.jsonPointer === "") delete normalized.jsonPointer;
+        return normalized;
+      })
+    };
+  });
+}
+
 function readJsonIfPresent(file: string): unknown {
   if (!exists(file)) return null;
   try { return JSON.parse(fs.readFileSync(file, "utf8")); }
@@ -248,7 +266,7 @@ async function evaluateRuntimeThreeLens(
     );
     const rulesPath = path.join(lensDir, definition.file);
     if (!exists(rulesPath)) throw new Error(`RUNTIME_THREE_LENS_MISSING:${definition.lens}`);
-    const rules = definition.schema.parse(JSON.parse(fs.readFileSync(rulesPath, "utf8")));
+    const rules = definition.schema.parse(normalizeRuntimeLensEvidence(JSON.parse(fs.readFileSync(rulesPath, "utf8"))));
     lenses[definition.key] = {
       evaluator: {
         evaluatorId: `runtime-${definition.lens}`,
