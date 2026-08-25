@@ -70,6 +70,7 @@ export const creatorSelectionItemSchema = creatorInventoryPostSchema.extend({
   anchors: z.array(z.enum(["median_near", "mean_near", "typical_form"])),
   selectionReason: z.string(),
   deepCandidate: z.boolean(),
+  deepGroups: z.array(z.enum(["high", "median", "mean", "low"])).default([]),
   deepState: z.literal("pending"),
   confounds: z.array(z.string())
 });
@@ -79,10 +80,12 @@ export const creatorSelectionSchema = z.object({
   runId: z.string().uuid(),
   generatedAt: z.string(),
   sourceCorpusArtifactRef: z.string(),
-  ruleVersion: z.literal("ranked-7x3-v1"),
+  ruleVersion: z.enum(["ranked-7x3-v1", "four-groups-3-each-v2", "four-groups-video-refined-v3"]),
   rules: z.object({
     targetPerTier: z.literal(7),
     deepCandidatesPerTier: z.literal(3),
+    deepCandidatesPerGroup: z.literal(3).optional(),
+    deepGroupContract: z.string().optional(),
     high: z.string(),
     base: z.string(),
     low: z.string(),

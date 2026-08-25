@@ -13,6 +13,7 @@ import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
 import { loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
 import { createDurableResearchLearningService } from "./research-learning.js";
+import { importNextWaveCreatorSnapshot } from "./next-wave-import.js";
 import {
   addLearningLoopArtifactInputSchema,
   addLearningLoopCasesInputSchema,
@@ -68,7 +69,7 @@ export function createApp(
   });
 
   app.get("/api/creators", (_request, response) => {
-    response.json({ creators: loadCreatorSummaries() });
+    response.json({ creators: loadCreatorSummaries(creatorResearchService) });
   });
 
   app.get("/api/creator-runs", (request, response) => {
@@ -134,11 +135,32 @@ export function createApp(
     }
   });
 
+  app.post("/api/creator-runs/import-next-wave/:slug", (request, response) => {
+    try {
+      const taskSpaceId = z.number().int().positive().parse(request.body?.taskSpaceId);
+      return response.status(202).json(importNextWaveCreatorSnapshot(creatorResearchService, request.params.slug, taskSpaceId));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "输入无效"
+        : error instanceof Error ? error.message : "无法导入已有快照";
+      return response.status(400).json({ error: message });
+    }
+  });
+
   app.post("/api/creator-runs/:id/resume", (request, response) => {
     try {
       return response.status(202).json(creatorResearchService.resume(request.params.id));
     } catch (error) {
       const message = error instanceof Error ? error.message : "无法恢复博主分析";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
+  app.post("/api/creator-runs/:id/rebuild-selection", (request, response) => {
+    try {
+      return response.status(202).json(creatorResearchService.rebuildSelection(request.params.id));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法重算博主选样";
       return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
     }
   });

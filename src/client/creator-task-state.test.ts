@@ -7,6 +7,8 @@ function run(overrides: Partial<CreatorResearchRun> = {}): CreatorResearchRun {
     schemaVersion: "1.1.0", id: "37f23a1b-60a3-4c8f-bb41-01c4a477e3e5", platform: "xiaohongshu",
     profileUrl: "https://www.xiaohongshu.com/user/profile/tester", status: "queued", currentStage: "preflight",
     createdAt: "2026-08-21T00:00:00.000Z", updatedAt: "2026-08-21T00:00:00.000Z", creatorId: null, creatorName: null, dashboardPath: null,
+    source: { kind: "live_collection", sourceRefs: [], importedAt: null },
+    publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: null, identityAnchors: [] },
     stages: [
       { id: "preflight", label: "身份与登录预检", status: "pending", message: null },
       { id: "inventory", label: "全量作品清单", status: "pending", message: null },

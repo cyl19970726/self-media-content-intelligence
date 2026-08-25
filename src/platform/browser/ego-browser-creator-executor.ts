@@ -60,7 +60,8 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
   if (!isRecord(value) || typeof value.state !== "string") throw new Error("采集结果结构无效");
   if (value.state === "needs_user") {
     if (typeof value.finalUrl !== "string" || typeof value.taskSpaceId !== "number" ||
-      (value.code !== "login_required" && value.code !== "captcha_required" && value.code !== "user_took_control") ||
+      (value.code !== "login_required" && value.code !== "captcha_required" && value.code !== "user_took_control" &&
+        value.code !== "detail_navigation_required") ||
       typeof value.message !== "string") throw new Error("用户接管结果结构无效");
     return { state: "needs_user", finalUrl: value.finalUrl, taskSpaceId: value.taskSpaceId,
       code: value.code, message: value.message };
@@ -316,7 +317,8 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
   };
 }
 
-export function buildDetailScript(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
+export function buildDetailScript(input: { runId: string; profileUrl: string; creatorName?: string | null;
+  posts: Array<{ externalId: string; url: string; title?: string | null; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
   const taskExpression = input.taskSpaceId === null
     ? `await useOrCreateTaskSpace(${JSON.stringify(`creator-detail-${input.runId.slice(0, 8)}`)})`
     : `await useOrCreateTaskSpace(${input.taskSpaceId})`;
@@ -324,6 +326,7 @@ export function buildDetailScript(input: { runId: string; profileUrl: string; po
 const task = ${taskExpression}
 const requested = ${JSON.stringify(input.posts.slice(0, 21))}
 const profileUrl = ${JSON.stringify(input.profileUrl)}
+const expectedCreatorName = ${JSON.stringify(input.creatorName ?? null)}
 const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险|300031|安全限制/
 const login = /登录后查看更多|扫码登录|手机号登录/
 const output = []
@@ -335,6 +338,30 @@ const securityStop = observation => {
   const code = security ? 'captcha_required' : 'login_required'
   return { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
     message: security ? '详情采集触发安全限制，已立即停止且不会自动重试。' : '详情采集需要重新登录，已立即停止且不会自动重试。' }
+}
+const locateFromSearch = async request => {
+  if (!request.title) return null
+  await gotoAndWait('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(request.title), { timeout: 30, settle: 1.5 })
+  await wait(1.2)
+  const status = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
+  const stop = securityStop(status)
+  if (stop) { handoff = stop; return null }
+  return await js(String.raw\`(() => {
+    const externalId = ${JSON.stringify("SEARCH_ID")}
+    const creatorName = ${JSON.stringify("SEARCH_CREATOR")}
+    const candidates = [...document.querySelectorAll('a[href]')].filter(anchor => {
+      try { return new URL(anchor.href, location.href).pathname.endsWith('/' + externalId) }
+      catch { return false }
+    })
+    for (const anchor of candidates) {
+      const container = anchor.closest('section,article,li,[class*="note"],[class*="card"]') || anchor.parentElement?.parentElement || anchor
+      const text = (container?.innerText || '').trim()
+      if (creatorName && !text.includes(creatorName)) continue
+      const signed = candidates.find(candidate => candidate.href.includes('xsec_token=')) || anchor
+      return { href: signed.href, cover: container?.querySelector('img')?.currentSrc || container?.querySelector('img')?.src || null, source: 'exact_title_search' }
+    }
+    return null
+  })()\`.replace(${JSON.stringify("SEARCH_ID")}, request.externalId).replace(${JSON.stringify("SEARCH_CREATOR")}, expectedCreatorName || ''))
 }
 const locateFromProfile = async request => {
   await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
@@ -371,14 +398,14 @@ for (let index = 0; index < requested.length; index += 1) {
   const requestedUrl = new URL(request.url)
   const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname)
   let fallbackUsed = isBareExploreUrl
-  let navigation = isBareExploreUrl ? await locateFromProfile(request) : { href: request.url, cover: null, source: 'canonical' }
-  if (navigation && isBareExploreUrl) navigation = { ...navigation, source: 'profile_live_card' }
+  let navigation = isBareExploreUrl ? await locateFromSearch(request) || await locateFromProfile(request) : { href: request.url, cover: null, source: 'canonical' }
+  if (navigation && isBareExploreUrl && navigation.source !== 'exact_title_search') navigation = { ...navigation, source: 'profile_live_card' }
   if (handoff) break
   while (navigation) {
   try { await gotoAndWait(navigation.href, { timeout: 20, settle: 1.5 }) }
   catch {
     if (fallbackUsed) break
-    const fallback = await locateFromProfile(request)
+    const fallback = await locateFromSearch(request) || await locateFromProfile(request)
     if (handoff || !fallback) break
     navigation = { ...fallback, source: 'profile_fallback' }
     fallbackUsed = true
@@ -432,7 +459,7 @@ for (let index = 0; index < requested.length; index += 1) {
   const finalMatch = finalUrl.pathname.match(/\\/(?:explore|discovery\\/item)\\/([^/?#]+)/) || finalUrl.pathname.match(/\\/user\\/profile\\/[^/]+\\/([^/?#]+)/)
   if (finalMatch?.[1] !== request.externalId || /页面不见了/.test(observation.pageTitle + observation.textSample)) {
     if (fallbackUsed) break
-    const fallback = await locateFromProfile(request)
+    const fallback = await locateFromSearch(request) || await locateFromProfile(request)
     if (handoff || !fallback) break
     navigation = { ...fallback, source: 'profile_fallback' }
     fallbackUsed = true
@@ -467,15 +494,18 @@ for (let index = 0; index < requested.length; index += 1) {
 if (handoff) {
   await handOffTaskSpace(task.id)
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify(handoff))
-} else if (requested.length > 0 && output.length / requested.length < 0.8) {
+} else if (requested.length > 0 && output.length === 0) {
+  await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
+  await handOffTaskSpace(task.id)
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
-    state: 'blocked', finalUrl: null, taskSpaceId: task.id, code: 'page_shape_unknown',
-    message: '少于 80% 的选择集详情能确认作品身份；未发布伪详情。canonical 直达优先、有限主页回退后，身份匹配 ' + navigatedCount + '/' + requested.length + '。', retryable: true
+    state: 'needs_user', finalUrl: profileUrl, taskSpaceId: task.id, code: 'detail_navigation_required',
+    message: '小红书把详情页重定向回发现页，身份匹配 ' + navigatedCount + '/' + requested.length + '。任务已停在博主主页；请手动打开目标帖子 ' + (requested.find(item => !output.some(done => done.externalId === item.externalId))?.externalId || requested[0]?.externalId) + ' 后点击继续。'
   }))
 } else {
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
     state: 'ready', taskSpaceId: task.id, posts: output,
-    warnings: output.length < requested.length ? ['详情采集未覆盖全部请求。'] : []
+    warnings: output.length < requested.length
+      ? ['本批已保存 ' + output.length + '/' + requested.length + ' 条；未匹配项将进入下一恢复批次。'] : []
   }))
 }
 `;
@@ -520,7 +550,9 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
     return result;
   }
 
-  async enrich(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): Promise<CreatorDetailResult> {
+  async enrich(input: { runId: string; profileUrl: string; creatorName?: string | null;
+    posts: Array<{ externalId: string; url: string; title?: string | null; resolveMedia: boolean }>;
+    taskSpaceId: number | null; closeWhenDone?: boolean }): Promise<CreatorDetailResult> {
     let processResult: ProcessResult;
     try {
       processResult = await runEgoScript(this.binary, buildDetailScript(input), this.timeoutMs);
@@ -530,11 +562,26 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
         state: "blocked", finalUrl: null, taskSpaceId: input.taskSpaceId,
         code: "browser_unavailable", message: "后台找不到 ego-browser 可执行程序。", retryable: true
       };
+      if (/超过\s*\d+\s*秒未返回/.test(message) && input.taskSpaceId !== null) {
+        const target = input.posts[0]?.externalId ?? "当前目标帖子";
+        const handoffScript = `const task = await useOrCreateTaskSpace(${input.taskSpaceId})\nawait openOrReuseTab(${JSON.stringify(input.profileUrl)}, { wait: true, timeout: 30 })\nconst result = await handOffTaskSpace(task.id)\ncliLog(JSON.stringify(result))\n`;
+        try { await runEgoScript(this.binary, handoffScript, 40_000); } catch { /* run state remains resumable */ }
+        return { state: "needs_user", finalUrl: input.profileUrl, taskSpaceId: input.taskSpaceId,
+          code: "detail_navigation_required",
+          message: `详情读取超过单批时间预算。任务已保留；请在博主主页手动打开目标帖子 ${target}，再点击继续。` };
+      }
       throw error;
     }
-    if (processResult.exitCode !== 0) throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
+    if (processResult.exitCode !== 0) {
+      const combined = `${processResult.stderr}\n${processResult.stdout}`;
+      if (/user is controlling|user-owned|inactive|not assigned/i.test(combined) && input.taskSpaceId !== null) {
+        return { state: "needs_user", finalUrl: input.profileUrl, taskSpaceId: input.taskSpaceId,
+          code: "user_took_control", message: "浏览会话当前处于交接状态；任务证据已保留，确认继续后会恢复同一详情批次。" };
+      }
+      throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
+    }
     const result = normalizeDetailResult(parseMarkedResult(`${processResult.stdout}\n${processResult.stderr}`));
-    if (result.state === "ready") {
+    if (result.state === "ready" && input.closeWhenDone !== false) {
       const closeScript = `const result = await completeTaskSpace(${result.taskSpaceId}, { keep: false })\ncliLog(JSON.stringify(result))\n`;
       const closed = await runEgoScript(this.binary, closeScript, 20_000);
       if (closed.exitCode !== 0) result.warnings.push("详情完成，但临时 TaskSpace 未能自动关闭。");

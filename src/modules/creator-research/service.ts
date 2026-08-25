@@ -12,7 +12,7 @@ import type { CreatorResearchRepository } from "./repository.js";
 import { SQLiteCreatorResearchRepository } from "../../platform/database/sqlite-creator-research-repository.js";
 import type { CreatorArtifactStore } from "./artifact-store.js";
 import { LocalCreatorArtifactStore } from "../../platform/artifacts/local-creator-artifact-store.js";
-import { buildCreatorPortfolio } from "../portfolio/analyzer.js";
+import { buildCreatorPortfolio, refineDeepSelectionForVerifiedVideos } from "../portfolio/analyzer.js";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
 import { creatorDetailCollectionSchema } from "../creator-detail/contracts.js";
 import type { DeepMediaResolver } from "../media-resolution/contracts.js";
@@ -27,6 +27,7 @@ import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
 import { runArtifactDir } from "../../core/config.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
+import { creatorInventoryPostSchema, type CreatorInventoryPost } from "../portfolio/contracts.js";
 
 const stages: CreatorResearchRun["stages"] = [
   { id: "preflight", label: "身份与登录预检", status: "pending", message: null },
@@ -57,6 +58,26 @@ function externalCreatorId(finalUrl: string): string | null {
     return null;
   }
 }
+
+export type ImportedCreatorSnapshot = {
+  profileUrl: string;
+  creatorId: string;
+  creatorName: string;
+  canonicalSlug?: string;
+  capturedAt: string;
+  taskSpaceId: number;
+  stopReason: "explicit_end" | "quiescent_incomplete" | "budget_reached";
+  posts: CreatorInventoryPost[];
+  warnings: string[];
+  sourceRefs: string[];
+  publicProfile: {
+    bio: string | null;
+    followers: number | null;
+    likesAndCollections: number | null;
+    displayedPostCount: number | null;
+    identityAnchors: Array<{ kind: string; value: string; source: string }>;
+  };
+};
 
 export class CreatorResearchService {
   constructor(
@@ -90,6 +111,8 @@ export class CreatorResearchService {
       updatedAt: timestamp,
       creatorId: null,
       creatorName: null,
+      source: { kind: "live_collection", sourceRefs: [], importedAt: null },
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: null, identityAnchors: [] },
       dashboardPath: null,
       stages: stages.map((entry) => ({ ...entry })),
       coverage: { discoveredPosts: 0, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 },
@@ -100,7 +123,7 @@ export class CreatorResearchService {
         incremental: true,
         bypassChallenges: false,
         cacheTtlHours: 24,
-        budgets: { maxScrollRounds: 30, maxDetailOpens: 24, maxMediaDownloads: 9 }
+        budgets: { maxScrollRounds: 30, maxDetailOpens: 24, maxMediaDownloads: 12 }
       },
       blockers: [],
       nextAction: "后台 Worker 已排队，将自动完成登录预检和公开作品清单采集。",
@@ -133,6 +156,80 @@ export class CreatorResearchService {
       runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
       message: "ego-browser 采集任务已进入持久队列。", payload: { nodeKey: job.nodeKey }
     });
+    return run;
+  }
+
+  importSnapshot(input: ImportedCreatorSnapshot): CreatorResearchRun {
+    const profileUrl = createCreatorResearchRunInputSchema.parse({ profileUrl: input.profileUrl }).profileUrl;
+    const posts = input.posts.map((post) => creatorInventoryPostSchema.parse(post));
+    const existing = this.repository.findLatestByProfileUrl(profileUrl);
+    if (existing?.inventoryArtifactRef) {
+      if (input.canonicalSlug && existing.canonicalSlug !== input.canonicalSlug) {
+        existing.canonicalSlug = input.canonicalSlug;
+        existing.updatedAt = now();
+        this.repository.save(existing);
+      }
+      return existing;
+    }
+
+    const timestamp = now();
+    const run = creatorResearchRunSchema.parse({
+      schemaVersion: "1.2.0",
+      id: randomUUID(),
+      platform: "xiaohongshu",
+      profileUrl,
+      status: "collecting",
+      currentStage: "tiering",
+      createdAt: timestamp,
+      updatedAt: timestamp,
+      creatorId: input.creatorId,
+      creatorName: input.creatorName,
+      canonicalSlug: input.canonicalSlug ?? null,
+      source: { kind: "legacy_import", sourceRefs: input.sourceRefs, importedAt: timestamp },
+      publicProfile: input.publicProfile,
+      dashboardPath: null,
+      stages: stages.map((entry) => ({ ...entry })),
+      coverage: { discoveredPosts: posts.length, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 },
+      collectionPolicy: {
+        adapter: "ego-browser", browserProfile: "hhh-01", readOnly: true, incremental: true,
+        bypassChallenges: false, cacheTtlHours: 24,
+        budgets: { maxScrollRounds: 30, maxDetailOpens: 24, maxMediaDownloads: 12 }
+      },
+      blockers: [],
+      nextAction: "既有公开快照已登记为版本化输入；Portfolio Worker 将从冻结清单继续，不重抓基本盘。",
+      lastSnapshotAt: input.capturedAt,
+      worker: { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null },
+      inventoryArtifactRef: null, portfolioArtifactRef: null, selectionArtifactRef: null, detailArtifactRef: null,
+      mediaManifestArtifactRef: null, reconstructionBatchArtifactRef: null, synthesisArtifactRef: null,
+      synthesisGateArtifactRef: null, browserTaskSpaceId: input.taskSpaceId
+    });
+    this.repository.save(run);
+    const inventoryRef = this.artifacts.write(run.id, "creator-inventory.json", {
+      schemaVersion: "1.1.0", runId: run.id, capturedAt: input.capturedAt, sourceUrl: profileUrl,
+      finalUrl: profileUrl, creatorId: input.creatorId, creatorName: input.creatorName,
+      stopReason: input.stopReason, crawlDiagnostics: [], posts, warnings: input.warnings
+    }, input.sourceRefs);
+    const job = this.repository.enqueue({
+      id: randomUUID(), runId: run.id, nodeKey: "creator.portfolio", status: "queued",
+      idempotencyKey: `${run.id}:creator.portfolio:ranked-7x3-v1`, attempts: 0, maxAttempts: 3,
+      availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+      payload: { inventoryArtifactRef: inventoryRef }, lastError: null, createdAt: timestamp, updatedAt: timestamp
+    });
+    run.inventoryArtifactRef = inventoryRef;
+    run.worker.jobId = job.id;
+    stage(run, "preflight").status = "complete";
+    stage(run, "preflight").message = "身份由已核验快照的多个公开锚点导入。";
+    stage(run, "inventory").status = "complete";
+    stage(run, "inventory").message = `导入 ${posts.length} 条公开作品；原始缺口与阻塞保持可见。`;
+    stage(run, "tiering").status = "pending";
+    stage(run, "tiering").message = "等待从版本化清单复算统计和选择集。";
+    this.repository.save(run);
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "run.created", createdAt: timestamp,
+      message: "既有赛博鸭公开快照已迁入正式运行控制面。", payload: { sourceRefs: input.sourceRefs } });
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "artifact.produced", createdAt: timestamp,
+      message: "版本化作品清单已登记。", payload: { artifactRef: inventoryRef, dependencies: input.sourceRefs, postCount: posts.length } });
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
+      message: "Portfolio 分析节点已进入持久队列。", payload: { nodeKey: job.nodeKey } });
     return run;
   }
 
@@ -189,6 +286,48 @@ export class CreatorResearchService {
       runId: run.id, jobId: job.id, type: "run.resumed", createdAt: timestamp,
       message: "用户已确认继续，任务重新进入队列。", payload: {}
     });
+    return run;
+  }
+
+  rebuildSelection(id: string): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    if (!run.inventoryArtifactRef) throw new Error("任务缺少可复算的版本化清单");
+    const timestamp = now();
+    const invalidated = [run.portfolioArtifactRef, run.selectionArtifactRef, run.detailArtifactRef,
+      run.mediaManifestArtifactRef, run.reconstructionBatchArtifactRef, run.synthesisArtifactRef,
+      run.synthesisGateArtifactRef].filter((ref): ref is string => Boolean(ref));
+    const job = this.repository.enqueue({
+      id: randomUUID(), runId: run.id, nodeKey: "creator.portfolio", status: "queued",
+      idempotencyKey: `${run.id}:creator.portfolio:four-groups-3-each-v2:${timestamp}`, attempts: 0, maxAttempts: 3,
+      availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+      payload: { inventoryArtifactRef: run.inventoryArtifactRef, invalidated }, lastError: null,
+      createdAt: timestamp, updatedAt: timestamp
+    });
+    run.status = "queued";
+    run.currentStage = "tiering";
+    run.updatedAt = timestamp;
+    run.coverage = { ...run.coverage, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 };
+    run.collectionPolicy.budgets.maxMediaDownloads = 12;
+    run.portfolioArtifactRef = null;
+    run.selectionArtifactRef = null;
+    run.detailArtifactRef = null;
+    run.mediaManifestArtifactRef = null;
+    run.reconstructionBatchArtifactRef = null;
+    run.synthesisArtifactRef = null;
+    run.synthesisGateArtifactRef = null;
+    run.worker = { state: "queued", attempt: 0, jobId: job.id, workerId: null, lastHeartbeatAt: null };
+    run.blockers = [];
+    run.nextAction = "选样合同已升级；从登记清单重算四组各 3 条深度候选，旧 Artifact 保留但不再投影。";
+    for (const stageId of ["tiering", "deep_capture", "synthesis", "dashboard"] as const) {
+      stage(run, stageId).status = "pending";
+      stage(run, stageId).message = stageId === "tiering" ? "等待四组深度选样 v2。" : null;
+    }
+    this.repository.save(run);
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "run.resumed", createdAt: timestamp,
+      message: "上游选样合同变化，已失效旧下游引用并从版本化清单重算。", payload: { invalidated, ruleVersion: "four-groups-3-each-v2" } });
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
+      message: "四组深度选样重算已进入持久队列。", payload: { nodeKey: job.nodeKey } });
     return run;
   }
 
@@ -307,7 +446,7 @@ export class CreatorResearchService {
       crawlDiagnostics: result.diagnostics ?? [],
       posts: result.posts,
       warnings: result.warnings
-    });
+    }, [`run:${run.id}`]);
     const portfolioJob = this.repository.enqueue({
       id: randomUUID(), runId: run.id, nodeKey: "creator.portfolio", status: "queued",
       idempotencyKey: `${run.id}:creator.portfolio:ranked-7x3-v1`, attempts: 0, maxAttempts: 3,
@@ -373,8 +512,9 @@ export class CreatorResearchService {
       if (!run.inventoryArtifactRef) throw new Error("Portfolio 节点缺少作品清单 artifact");
       const inventory = this.artifacts.read(run.inventoryArtifactRef);
       const { corpus, selection } = buildCreatorPortfolio(inventory, run.inventoryArtifactRef, timestamp);
-      const corpusRef = this.artifacts.write(run.id, "creator-corpus.json", corpus);
-      const selectionRef = this.artifacts.write(run.id, "creator-selection.json", selection);
+      const corpusRef = this.artifacts.write(run.id, "creator-corpus.json", corpus, [run.inventoryArtifactRef]);
+      selection.sourceCorpusArtifactRef = corpusRef;
+      const selectionRef = this.artifacts.write(run.id, "creator-selection.json", selection, [corpusRef]);
       const analysis = creatorPortfolioAnalysisSchema.parse({
         schemaVersion: "1.0.0",
         runId: run.id,
@@ -392,10 +532,10 @@ export class CreatorResearchService {
         interpretationBoundary: "本节点回答表现分布与样本结构；内容为何爆发或失效必须等待逐条详情与视频证据。",
         unknowns: corpus.unknowns
       });
-      const portfolioRef = this.artifacts.write(run.id, "corpus-analysis.json", analysis);
+      const portfolioRef = this.artifacts.write(run.id, "corpus-analysis.json", analysis, [corpusRef, selectionRef]);
       const detailJob = this.repository.enqueue({
         id: randomUUID(), runId: run.id, nodeKey: "creator.enrich", status: "queued",
-        idempotencyKey: `${run.id}:creator.enrich:selection-v1`, attempts: 0, maxAttempts: 3,
+        idempotencyKey: `${run.id}:creator.enrich:${selectionRef}:0`, attempts: 0, maxAttempts: 3,
         availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
         payload: { selectionArtifactRef: selectionRef }, lastError: null, createdAt: timestamp, updatedAt: timestamp
       });
@@ -462,12 +602,31 @@ export class CreatorResearchService {
     }, 20_000);
     try {
       if (!run.selectionArtifactRef) throw new Error("详情节点缺少选择集 artifact");
-      const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+      let selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+      const previousDetails = run.detailArtifactRef
+        ? creatorDetailCollectionSchema.parse(this.artifacts.read(run.detailArtifactRef))
+        : null;
+      const completedIds = new Set(previousDetails?.posts.map((item) => item.externalId) ?? []);
+      const pendingSelection = selection.items.filter((item) => !completedIds.has(item.externalId));
+      const requestedMediaIds = Array.isArray(job.payload.mediaIds)
+        ? job.payload.mediaIds.filter((value): value is string => typeof value === "string")
+        : [];
+      const remainingMediaIds = Array.isArray(job.payload.remainingMediaIds)
+        ? job.payload.remainingMediaIds.filter((value): value is string => typeof value === "string")
+        : [];
+      const mediaRefresh = job.payload.mode === "media_refresh";
+      const detailBatch = mediaRefresh
+        ? selection.items.filter((item) => requestedMediaIds.includes(item.externalId))
+        : pendingSelection.slice(0, 3);
+      if (detailBatch.length === 0) throw new Error("详情节点没有待处理作品但仍被重新排队");
       const result: CreatorDetailResult = await executor.enrich({
         runId: run.id,
         profileUrl: run.profileUrl,
-        posts: selection.items.map((item) => ({ externalId: item.externalId, url: item.url, resolveMedia: item.deepCandidate })),
-        taskSpaceId: run.browserTaskSpaceId
+        creatorName: run.creatorName,
+        posts: detailBatch.map((item) => ({ externalId: item.externalId, url: item.url, title: item.title,
+          resolveMedia: mediaRefresh || item.deepCandidate })),
+        taskSpaceId: run.browserTaskSpaceId,
+        closeWhenDone: mediaRefresh && remainingMediaIds.length === 0
       });
       const completedAt = now();
       if (result.state === "needs_user") {
@@ -476,7 +635,9 @@ export class CreatorResearchService {
         run.browserTaskSpaceId = result.taskSpaceId;
         run.worker = { state: "needs_user", attempt: job.attempts, jobId: job.id, workerId: null, lastHeartbeatAt: completedAt };
         run.blockers = [{ code: result.code, message: result.message, userActionRequired: true }];
-        run.nextAction = "请完成详情页面的登录或验证，然后回到任务台继续。";
+        run.nextAction = result.code === "detail_navigation_required"
+          ? result.message
+          : "请完成详情页面的登录或验证，然后回到任务台继续。";
         stage(run, "deep_capture").status = "blocked";
         stage(run, "deep_capture").message = result.message;
         this.repository.save(run);
@@ -489,37 +650,41 @@ export class CreatorResearchService {
         this.failRun(run, job, workerId, result.message, result.code);
         return;
       }
+      const newDetailPosts = result.posts.map((post) => {
+        const selected = selection.items.find((item) => item.externalId === post.externalId);
+        return {
+          externalId: post.externalId,
+          finalUrl: post.finalUrl,
+          title: post.title,
+          description: post.description,
+          publishedLabel: post.publishedLabel,
+          mediaType: selected?.mediaType !== "unknown" ? selected?.mediaType ?? post.mediaType : post.mediaType,
+          inspectedAt: post.inspectedAt,
+          warnings: selected && selected.mediaType !== "unknown" && selected.mediaType !== post.mediaType
+            ? [...post.warnings, `详情 DOM 判为 ${post.mediaType}，主页卡片判为 ${selected.mediaType}；暂以明确的主页播放标识为准。`]
+            : post.warnings
+        };
+      });
+      const newIds = new Set(newDetailPosts.map((item) => item.externalId));
+      const mergedDetailPosts = [...(previousDetails?.posts.filter((item) => !newIds.has(item.externalId)) ?? []), ...newDetailPosts];
       const details = creatorDetailCollectionSchema.parse({
         schemaVersion: "1.0.0",
         runId: run.id,
         generatedAt: completedAt,
         sourceSelectionArtifactRef: run.selectionArtifactRef,
         requestedPosts: selection.items.length,
-        inspectedPosts: result.posts.length,
-        posts: result.posts.map((post) => {
-          const selected = selection.items.find((item) => item.externalId === post.externalId);
-          return {
-            externalId: post.externalId,
-            finalUrl: post.finalUrl,
-            title: post.title,
-            description: post.description,
-            publishedLabel: post.publishedLabel,
-            mediaType: selected?.mediaType !== "unknown" ? selected?.mediaType ?? post.mediaType : post.mediaType,
-            inspectedAt: post.inspectedAt,
-            warnings: selected && selected.mediaType !== "unknown" && selected.mediaType !== post.mediaType
-              ? [...post.warnings, `详情 DOM 判为 ${post.mediaType}，主页卡片判为 ${selected.mediaType}；暂以明确的主页播放标识为准。`]
-              : post.warnings
-          };
-        }),
-        warnings: result.warnings,
+        inspectedPosts: mergedDetailPosts.length,
+        posts: mergedDetailPosts,
+        warnings: [...new Set([...(previousDetails?.warnings ?? []), ...result.warnings])],
         unknowns: [
           "公开视频详情仍不提供曝光、完播、转粉、投流和成交后台指标。",
           "封面本地证据与源视频仍需媒体解析节点单独获取和校验。"
         ]
       });
-      const detailRef = this.artifacts.write(run.id, "creator-details.json", details);
+      const detailRef = this.artifacts.write(run.id, "creator-details.json", details,
+        [run.selectionArtifactRef, run.detailArtifactRef].filter((ref): ref is string => Boolean(ref)));
       const deepIds = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
-      const mediaManifest = await this.mediaResolver.resolve({
+      const resolvedMedia = await this.mediaResolver.resolve({
         runId: run.id,
         posts: result.posts.map((post) => ({
           externalId: post.externalId,
@@ -528,7 +693,113 @@ export class CreatorResearchService {
           downloadVideo: deepIds.has(post.externalId)
         }))
       });
-      const mediaManifestRef = this.artifacts.write(run.id, "deep-media-manifest.json", mediaManifest);
+      const previousMedia = run.mediaManifestArtifactRef
+        ? deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef))
+        : null;
+      const resolvedIds = new Set(resolvedMedia.items.map((item) => item.externalId));
+      const mergedMediaItems = [...(previousMedia?.items.filter((item) => !resolvedIds.has(item.externalId)) ?? []), ...resolvedMedia.items];
+      const mediaManifest = deepMediaManifestSchema.parse({
+        schemaVersion: "1.0.0", runId: run.id, generatedAt: completedAt,
+        requestedPosts: mergedMediaItems.filter((item) => item.videoRequested).length,
+        readyPosts: mergedMediaItems.filter((item) => item.videoRequested && item.state === "verified_complete").length,
+        requestedCovers: mergedMediaItems.length,
+        readyCovers: mergedMediaItems.filter((item) => item.coverState === "ready").length,
+        items: mergedMediaItems,
+        unknowns: [...new Set([...(previousMedia?.unknowns ?? []), ...resolvedMedia.unknowns])]
+      });
+      const mediaManifestRef = this.artifacts.write(run.id, "deep-media-manifest.json", mediaManifest, [detailRef]);
+      if (!mediaRefresh && details.inspectedPosts < details.requestedPosts) {
+        const nextJob = this.repository.enqueue({
+          id: randomUUID(), runId: run.id, nodeKey: "creator.enrich", status: "queued",
+          idempotencyKey: `${run.id}:creator.enrich:${run.selectionArtifactRef}:${details.inspectedPosts}`, attempts: 0, maxAttempts: 3,
+          availableAt: completedAt, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+          payload: { selectionArtifactRef: run.selectionArtifactRef, completed: details.inspectedPosts }, lastError: null,
+          createdAt: completedAt, updatedAt: completedAt
+        });
+        run.status = "collecting";
+        run.updatedAt = completedAt;
+        run.browserTaskSpaceId = result.taskSpaceId;
+        run.detailArtifactRef = detailRef;
+        run.mediaManifestArtifactRef = mediaManifestRef;
+        run.coverage.enrichedPosts = details.inspectedPosts;
+        run.worker = { state: "queued", attempt: 0, jobId: nextJob.id, workerId: null, lastHeartbeatAt: completedAt };
+        run.blockers = [];
+        run.nextAction = `详情已分批保存 ${details.inspectedPosts}/${details.requestedPosts}；下一批从未完成作品继续。`;
+        stage(run, "deep_capture").status = "pending";
+        stage(run, "deep_capture").message = run.nextAction;
+        this.repository.save(run);
+        this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: completedAt });
+        this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
+          message: "详情批次与媒体证据已增量登记。", payload: { detailArtifactRef: detailRef, mediaManifestArtifactRef: mediaManifestRef, inspected: details.inspectedPosts } });
+        this.repository.appendEvent({ runId: run.id, jobId: nextJob.id, type: "job.queued", createdAt: completedAt,
+          message: "下一详情批次已进入持久队列。", payload: { nodeKey: nextJob.nodeKey, remaining: details.requestedPosts - details.inspectedPosts } });
+        return;
+      }
+      if (!mediaRefresh) {
+        const mediaTypes = new Map(details.posts.map((item) => [item.externalId, item.mediaType]));
+        const refined = refineDeepSelectionForVerifiedVideos(selection, mediaTypes, completedAt);
+        const refinedRef = this.artifacts.write(run.id, "creator-selection-video-refined.json", refined,
+          [run.selectionArtifactRef, detailRef]);
+        selection = refined;
+        run.selectionArtifactRef = refinedRef;
+        const currentMedia = new Map(mediaManifest.items.map((item) => [item.externalId, item]));
+        const mediaIds = selection.items.filter((item) => item.deepCandidate && currentMedia.get(item.externalId)?.state !== "verified_complete")
+          .map((item) => item.externalId);
+        if (mediaIds.length > 0) {
+          const [firstBatch, ...rest] = Array.from({ length: Math.ceil(mediaIds.length / 3) }, (_, index) => mediaIds.slice(index * 3, index * 3 + 3));
+          const nextJob = this.repository.enqueue({
+            id: randomUUID(), runId: run.id, nodeKey: "creator.enrich", status: "queued",
+            idempotencyKey: `${run.id}:creator.enrich:media-refresh:${refinedRef}:0`, attempts: 0, maxAttempts: 3,
+            availableAt: completedAt, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+            payload: { mode: "media_refresh", mediaIds: firstBatch ?? [], remainingMediaIds: rest.flat(), batchIndex: 0 },
+            lastError: null, createdAt: completedAt, updatedAt: completedAt
+          });
+          run.status = "collecting";
+          run.updatedAt = completedAt;
+          run.browserTaskSpaceId = result.taskSpaceId;
+          run.detailArtifactRef = detailRef;
+          run.mediaManifestArtifactRef = mediaManifestRef;
+          run.coverage.enrichedPosts = details.inspectedPosts;
+          run.worker = { state: "queued", attempt: 0, jobId: nextJob.id, workerId: null, lastHeartbeatAt: completedAt };
+          run.blockers = [];
+          run.nextAction = `媒体类型已核验并重算四组深样本；正在补取 ${mediaIds.length} 条视频媒体。`;
+          stage(run, "deep_capture").status = "pending";
+          stage(run, "deep_capture").message = run.nextAction;
+          this.repository.save(run);
+          this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: completedAt });
+          this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
+            message: "详情核验后的四组视频选样已登记。", payload: { artifactRef: refinedRef, deepCount: mediaIds.length } });
+          this.repository.appendEvent({ runId: run.id, jobId: nextJob.id, type: "job.queued", createdAt: completedAt,
+            message: "深度视频媒体补取已进入持久队列。", payload: { nodeKey: nextJob.nodeKey, remaining: mediaIds.length } });
+          return;
+        }
+      } else if (remainingMediaIds.length > 0) {
+        const nextIds = remainingMediaIds.slice(0, 3);
+        const rest = remainingMediaIds.slice(3);
+        const batchIndex = typeof job.payload.batchIndex === "number" ? job.payload.batchIndex + 1 : 1;
+        const nextJob = this.repository.enqueue({
+          id: randomUUID(), runId: run.id, nodeKey: "creator.enrich", status: "queued",
+          idempotencyKey: `${run.id}:creator.enrich:media-refresh:${run.selectionArtifactRef}:${batchIndex}`,
+          attempts: 0, maxAttempts: 3, availableAt: completedAt, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+          payload: { mode: "media_refresh", mediaIds: nextIds, remainingMediaIds: rest, batchIndex },
+          lastError: null, createdAt: completedAt, updatedAt: completedAt
+        });
+        run.status = "collecting";
+        run.updatedAt = completedAt;
+        run.browserTaskSpaceId = result.taskSpaceId;
+        run.detailArtifactRef = detailRef;
+        run.mediaManifestArtifactRef = mediaManifestRef;
+        run.worker = { state: "queued", attempt: 0, jobId: nextJob.id, workerId: null, lastHeartbeatAt: completedAt };
+        run.blockers = [];
+        run.nextAction = `深度媒体分批保存；剩余 ${remainingMediaIds.length} 条继续补取。`;
+        stage(run, "deep_capture").status = "pending";
+        stage(run, "deep_capture").message = run.nextAction;
+        this.repository.save(run);
+        this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: completedAt });
+        this.repository.appendEvent({ runId: run.id, jobId: nextJob.id, type: "job.queued", createdAt: completedAt,
+          message: "下一媒体补取批次已进入持久队列。", payload: { nodeKey: nextJob.nodeKey, remaining: remainingMediaIds.length } });
+        return;
+      }
       const mediaById = new Map(mediaManifest.items.map((item) => [item.externalId, item]));
       const deepItems = selection.items.filter((item) => item.deepCandidate);
       const batch = videoReconstructionBatchSchema.parse({
@@ -548,7 +819,8 @@ export class CreatorResearchService {
         }),
         limitations: ["只有通过独立评估和全部硬闸的视频才进入博主级机制归纳。"]
       });
-      const batchRef = this.artifacts.write(run.id, "video-reconstruction-batch-r0.json", batch);
+      const batchRef = this.artifacts.write(run.id, "video-reconstruction-batch-r0.json", batch,
+        [run.selectionArtifactRef, detailRef, mediaManifestRef]);
       const queuedJobs = batch.items.filter((item) => item.state === "queued").map((item) => {
         const selected = selection.items.find((candidate) => candidate.externalId === item.postExternalId);
         if (!selected || !item.sourceMediaArtifactRef) throw new Error(`视频任务 ${item.postExternalId} 缺少选择或媒体引用`);
@@ -683,7 +955,12 @@ export class CreatorResearchService {
       latestBatch.readyPosts = latestBatch.items.filter((candidate) => candidate.state === "ready").length;
       latestBatch.pendingPosts = latestBatch.items.filter((candidate) => ["queued", "running"].includes(candidate.state)).length;
       latestBatch.failedPosts = latestBatch.items.filter((candidate) => ["not_ready", "blocked"].includes(candidate.state)).length;
-      const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${latestBatch.revision}.json`, latestBatch);
+      const batchDependencies = [run.reconstructionBatchArtifactRef, ...latestBatch.items.flatMap((item) => [
+        item.reconstructionArtifactRef, item.evaluationArtifactRef, item.gateReportArtifactRef,
+        item.threeLensEvaluationArtifactRef, item.threeLensGateReportArtifactRef
+      ])].filter((ref): ref is string => Boolean(ref));
+      const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${latestBatch.revision}.json`, latestBatch,
+        batchDependencies);
       run.reconstructionBatchArtifactRef = batchRef;
       run.coverage.reconstructedPosts = latestBatch.readyPosts;
       run.updatedAt = completedAt;
@@ -713,11 +990,11 @@ export class CreatorResearchService {
           run.currentStage = "synthesis";
           run.worker = { state: "queued", attempt: 0, jobId: synthesisJob.id, workerId: null, lastHeartbeatAt: completedAt };
           run.blockers = [];
-          run.nextAction = "9 条深度内容均通过硬闸；博主级综合归纳已进入队列。";
+          run.nextAction = "四组深度内容均通过硬闸；博主级综合归纳已进入队列。";
           stage(run, "deep_capture").status = "complete";
           stage(run, "deep_capture").message = `${latestBatch.readyPosts}/${latestBatch.requestedPosts} 条全部通过独立硬闸。`;
           stage(run, "synthesis").status = "pending";
-          stage(run, "synthesis").message = "等待从规范 21 条与 9 条验证重建生成研究归纳。";
+          stage(run, "synthesis").message = "等待从规范比较集与四组验证重建生成研究归纳。";
           this.repository.appendEvent({ runId: run.id, jobId: synthesisJob.id, type: "job.queued", createdAt: completedAt,
             message: "博主级研究归纳已进入持久队列。", payload: { nodeKey: synthesisJob.nodeKey } });
         } else {

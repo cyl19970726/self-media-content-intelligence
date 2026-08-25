@@ -50,13 +50,13 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
   const evaluation = readJson(path.join(root, "evaluation", "evaluation.json"));
   const gate = readJson(path.join(root, "evaluation", "gate-report.json"));
   const lensEvaluation = readJson(path.join(root, "evaluation-lenses-v2", "evaluation.json"));
-  const detail = readJson(path.join(root, "detail-observation.json"));
+  const detail = readJson(path.join(root, "detail-observation.json")) ?? readJson(path.join(root, "detail", "detail-observation.json"));
   const corpus = readJson(path.join(researchDir, "next-wave", creatorId, "creator-corpus.json"));
   const article = readText(path.join(root, "article.md"));
-  if (!reconstruction || !probe || !evidence || !targeted || !highres || !evaluation || !gate || !detail || !article || gate.ready !== true) return null;
+  if (!reconstruction || !probe || !evidence || !targeted || !highres || !detail || !article) return null;
 
   const creator = row(detail.creator);
-  const post = row(detail.post);
+  const post = Object.keys(row(detail.post)).length ? row(detail.post) : detail;
   const metrics = row(post.publicMetrics);
   const media = row(evidence.media);
   const viewerChange = row(reconstruction.viewerChange);
@@ -68,6 +68,8 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
   const corpusPosts = rows(corpus?.posts);
   const knownLikes = corpusPosts.map((item) => number(row(item.metrics).likes)).filter((item): item is number => item !== null);
   const percentileRank = engagementLikes === null || !knownLikes.length ? null : Math.round(knownLikes.filter((item) => item <= engagementLikes).length / knownLikes.length * 1000) / 10;
+  const corpusPost = corpusPosts.find((item) => text(item.id) === videoId);
+  const sourceHref = text(detail.stableUrl) || text(corpusPost?.sourceUrl) || `https://www.xiaohongshu.com/explore/${videoId}`;
 
   const units = rows(reconstruction.knowledgeUnits).map((unit) => {
     const timeRange = row(unit.timeRange);
@@ -120,6 +122,39 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
     meaningChange: stages.find((stage) => stage.start !== null && stage.end !== null && number(shot.start)! < stage.end && number(shot.end)! > stage.start)?.function ?? "技术切段只表示显著画面变化，不自动等于独立语义场景。",
     evidenceRefs: [text(shot.id), text(shot.representativeFrame)].filter(Boolean) }));
 
+  if (!evaluation || !gate || gate.ready !== true) {
+    const checkedChannels = rows(coverage.channels);
+    const coreCovered = number(coreEvidence.covered) ?? units.filter((unit) => unit.importance === "core" && unit.evidenceRefs.length > 0).length;
+    const coreTotal = number(coreEvidence.total) ?? units.filter((unit) => unit.importance === "core").length;
+    const partialEvaluator = null;
+    const partialStages = stages.map((stage) => ({ ...stage, comprehensionLoad: null, payoff: null }));
+    const conflicts = units.filter((unit) => /conflict|SRT|字幕|误识别|模型身份/i.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
+    const unknowns = units.flatMap((unit) => unit.unknowns).filter((value, index, values) => values.indexOf(value) === index);
+    const missingReview = "独立内容评测尚未执行；现有结构只能作为待审重建，不能升级为已验证结论。";
+    return videoResearchSchema.parse({
+      schemaVersion: "1.0.0", id: videoId, creatorId, creatorName: text(creator.name, creatorId), title: text(post.title, videoId), sourceHref,
+      sourceLabel: "video-content-reconstruction · 三镜头待独立评测", thesis: text(viewerChange.after), article,
+      engagement: { likes: engagementLikes, collections: number(metrics.collections), comments: number(metrics.comments), shares: number(metrics.shares) },
+      evidenceHealth: { state: "partial", transcript: transcript.length > 0, frames: false, ocr: true, audio: checkedChannels.some((channel) => text(channel.id).includes("10") && channel.inspected === true), baseline: medianLikes !== null,
+        note: `${missingReview} 证据帧已用于内部还原，但在画面敏感信息复核完成前不在工作台展示。` },
+      knowledgeUnits: units, relations, transcript: transcript.map((cue) => ({ ...cue, representativeFrame: null })), frames: { sparse: [], dense: [] },
+      directingLogic: { viewerBefore: text(viewerChange.before) || null, viewerAfter: text(viewerChange.after) || null, activatedQuestion: null, promise: null, payoff: null, endingResolution: null,
+        stages: partialStages, informationDesign: [], proofDesign: [], loadAndPayoff: { compression: "等待独立编导评测", repetition: "等待独立编导评测", payoffDistance: "等待独立编导评测", comprehensionCosts: ["操作连续性、信息负荷和回报距离尚未独立评测。"] }, notes: [missingReview] },
+      visualEditing: { orientation: `${number(media.width)}×${number(media.height)}`, composition: null, shotCount: shots.length,
+        cutsPerMinute: shots.length > 1 && number(media.duration) ? Math.round(((shots.length - 1) * 60 / number(media.duration)!) * 10) / 10 : null,
+        resultFirstAt: null, carriers, analyzedDuration: number(media.duration), claims: [], shotSemantics, uiProcedureStates: [], audioRole: "非旁白音频已进入内容还原检查，但其编导作用等待独立画面与剪辑评测。", notes: ["证据帧暂不对外展示；不影响文字稿、知识单元与未知边界的内部审阅。"] },
+      performanceContext: { tier: "base", creatorMedianLikes: medianLikes, medianMultiple: engagementLikes !== null && medianLikes ? engagementLikes / medianLikes : null, percentileRank,
+        interpretation: "这是最接近账号可见作品平均点赞的样本；当前只能审阅内容重建，不能用它解释平均表现的因果。", confounds: ["公开互动不是曝光、留存或转粉。", "独立三镜头评测尚未完成。"] },
+      lensCoverage: {
+        contentRestoration: { state: "partial", covered: coreCovered, total: coreTotal, evidenceRefs: units.flatMap((unit) => unit.evidenceRefs), conflicts, uncheckedChannels: [], failedGateIds: ["independent_semantic_review_missing"], note: missingReview, evaluator: partialEvaluator, rules: [] },
+        directingLogic: { state: "partial", covered: partialStages.length, total: 6, evidenceRefs: partialStages.flatMap((stage) => stage.evidenceRefs), conflicts: [], uncheckedChannels: [], failedGateIds: ["DL-GATE-INDEPENDENT-EVALUATION-MISSING"], note: "认知变化骨架已恢复，但编导六项规则尚未独立评测。", evaluator: partialEvaluator, rules: [] },
+        visualEditingLogic: { state: "partial", covered: shotSemantics.length, total: 7, evidenceRefs: shotSemantics.flatMap((shot) => shot.evidenceRefs), conflicts: [], uncheckedChannels: [], failedGateIds: ["VE-GATE-INDEPENDENT-EVALUATION-MISSING"], note: "技术镜头和信息载体已恢复，但画面与剪辑七项规则尚未独立评测。", evaluator: partialEvaluator, rules: [] }
+      },
+      coverage: { coreCovered, coreTotal, uncheckedChannels: strings(coverage.uncheckedChannels) }, conflicts, unknowns,
+      gate: { ready: false, failedGateIds: ["independent_semantic_review_missing", "DL-GATE-INDEPENDENT-EVALUATION-MISSING", "VE-GATE-INDEPENDENT-EVALUATION-MISSING"] }
+    });
+  }
+
   const gateMetrics = row(evaluation.gates);
   const evaluator = { id: "video-content-reconstruction/independent-evaluator", version: "1.0.0", checkedAt: text(evaluation.generatedAt, text(detail.observedAt)) };
   const lensEvaluatorRow = row(lensEvaluation?.evaluator);
@@ -148,7 +183,6 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
   const veFailures = visualReady ? [] : strings(visualGate.failedGateIds).length ? strings(visualGate.failedGateIds) : ["VE-GATE-INDEPENDENT-EVALUATION-MISSING"];
   const conflicts = units.filter((unit) => /conflict|SRT|字幕|误识别/i.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
   const unknowns = rows(coverage.unknowns).map((item) => text(item.statement)).filter(Boolean);
-  const sourceHref = `${text(row(detail.route).profileUrl)}?xsec_source=pc_search`;
   const cutsPerMinute = shots.length > 1 && number(media.duration) ? Math.round(((shots.length - 1) * 60 / number(media.duration)!) * 10) / 10 : null;
 
   return videoResearchSchema.parse({

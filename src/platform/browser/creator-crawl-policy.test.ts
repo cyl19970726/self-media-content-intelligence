@@ -109,4 +109,14 @@ describe("ego-browser scripts", () => {
     expect(script).toMatch(/立即停止且不会自动重试/);
     expect(script).toContain("if (handoff) break");
   });
+
+  it("turns repeated detail redirects into a resumable user handoff", () => {
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", resolveMedia: true }], taskSpaceId: 4 });
+    expect(script).toContain("detail_navigation_required");
+    expect(script).toContain("await handOffTaskSpace(task.id)");
+    expect(script).toContain("任务已停在博主主页");
+    expect(script).toContain("output.length === 0");
+    expect(script).toContain("未匹配项将进入下一恢复批次");
+  });
 });

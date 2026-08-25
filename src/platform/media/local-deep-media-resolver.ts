@@ -2,12 +2,13 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { artifactRef } from "../../core/artifacts.js";
-import { runArtifactDir } from "../../core/config.js";
+import { projectRoot, runArtifactDir } from "../../core/config.js";
 import { runFile } from "../../core/process.js";
 import { deepMediaManifestSchema, type DeepMediaManifest, type DeepMediaResolver } from "../../modules/media-resolution/contracts.js";
 import { systemHttpsProxy } from "../network/system-proxy.js";
 
-type Probe = { format?: { duration?: string }; streams?: Array<{ codec_type?: string; width?: number; height?: number }> };
+type Verification = { status: string; transport: { sha256: string; bytes: number }; container: {
+  durationSec: number; streams: Array<{ codecType: string; width: number | null; height: number | null }> } };
 
 async function download(url: string, target: string, limit: number): Promise<Buffer> {
   const proxy = await systemHttpsProxy();
@@ -46,7 +47,7 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
       if (!post.downloadVideo) {
         items.push({ externalId: post.externalId, videoRequested: false, state: "not_requested", coverState, coverMessage,
           videoArtifactRef: null, coverArtifactRef, sha256: null, bytes: null, durationSeconds: null,
-          width: null, height: null, hasAudio: null, message: "封面按 21 条 Gallery 获取；该记录不在 9 条深度视频下载集。" });
+          width: null, height: null, hasAudio: null, message: "封面按统一比较集获取；该记录不在四组深度视频下载集。" });
         continue;
       }
       if (!post.videoCandidateUrl) {
@@ -68,16 +69,19 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
         continue;
       }
       try {
-        const probeResult = await runFile("ffprobe", ["-v", "quiet", "-print_format", "json", "-show_format", "-show_streams", videoPath], { timeout: 30_000 });
-        const probe = JSON.parse(probeResult.stdout) as Probe;
-        const stream = probe.streams?.find((entry) => entry.codec_type === "video");
-        const duration = Number(probe.format?.duration ?? 0);
-        if (!stream || !Number.isFinite(duration) || duration <= 0) throw new Error("ffprobe 未确认完整视频流");
+        const verificationPath = path.join(directory, "media-verification.json");
+        await runFile(process.execPath, [path.join(projectRoot, "scripts", "verify-media.mjs"), "--input", videoPath, "--out", verificationPath], { timeout: 15 * 60_000 });
+        const verification = JSON.parse(fs.readFileSync(verificationPath, "utf8")) as Verification;
+        if (verification.status !== "verified_complete") throw new Error(`媒体完整性硬闸未通过：${verification.status}`);
+        const stream = verification.container.streams.find((entry) => entry.codecType === "video");
+        if (!stream) throw new Error("媒体完整性报告未确认视频流");
         items.push({ externalId: post.externalId, videoRequested: true, state: "verified_complete", coverState, coverMessage,
           videoArtifactRef: artifactRef(input.runId, `deep-media/${post.externalId}/source-video.mp4`), coverArtifactRef,
-          sha256: createHash("sha256").update(video).digest("hex"), bytes: video.byteLength,
-          durationSeconds: duration, width: stream.width ?? null, height: stream.height ?? null,
-          hasAudio: Boolean(probe.streams?.some((entry) => entry.codec_type === "audio")), message: "下载、解码元数据与时长检查通过。" });
+          verificationArtifactRef: artifactRef(input.runId, `deep-media/${post.externalId}/media-verification.json`),
+          sha256: verification.transport.sha256, bytes: verification.transport.bytes,
+          durationSeconds: verification.container.durationSec, width: stream.width, height: stream.height,
+          hasAudio: verification.container.streams.some((entry) => entry.codecType === "audio"),
+          message: "下载、全流解码、时间轴抽帧与尾段连续性硬闸通过。" });
       } catch (error) {
         items.push({ externalId: post.externalId, videoRequested: true, state: "verification_failed", coverState, coverMessage,
           videoArtifactRef: null, coverArtifactRef,

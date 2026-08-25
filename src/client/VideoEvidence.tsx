@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ExternalLink, Grid2X2, LoaderCircle, Network, ScrollText } from "lucide-react";
 import { getVideoResearch } from "./api";
@@ -17,11 +17,14 @@ function timestamp(value: number | null) {
   return `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, "0")}`;
 }
 
+const EvidenceNavigationContext = createContext<{ ids: Set<string>; navigate: (ref: string) => void }>({ ids: new Set(), navigate: () => undefined });
+
 function EvidenceRefs({ refs }: { refs: string[] }) {
+  const navigation = useContext(EvidenceNavigationContext);
   if (!refs.length) return <small className="evidence-refs evidence-refs--empty">没有可解析引用</small>;
   return <details className="evidence-refs"><summary>{refs.length} 条证据</summary><div>{refs.map((ref) => {
-    const linkable = /^(CUE|TARGET|FRAME|SAMPLE)-/.test(ref);
-    return linkable ? <a key={ref} href={`#evidence-${ref}`}>{ref}</a> : <span key={ref}>{ref}</span>;
+    const linkable = navigation.ids.has(ref);
+    return linkable ? <a key={ref} href={`#evidence-${ref}`} onClick={(event) => { event.preventDefault(); navigation.navigate(ref); }}>{ref}</a> : <span key={ref}>{ref}</span>;
   })}</div></details>;
 }
 
@@ -57,6 +60,7 @@ export default function VideoEvidencePage() {
   const [search, setSearch] = useSearchParams();
   const [data, setData] = useState<VideoResearch | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [pendingEvidenceRef, setPendingEvidenceRef] = useState<string | null>(null);
   const frameMode = search.get("frames") === "dense" ? "dense" : "sparse";
   const runId = search.get("run") ?? undefined;
   useEffect(() => {
@@ -64,15 +68,38 @@ export default function VideoEvidencePage() {
       setError(cause instanceof Error ? cause.message : "无法读取视频证据");
     });
   }, [id, videoId, runId]);
-  const setFrameMode = (value: "sparse" | "dense") => {
+  const setFrameMode = useCallback((value: "sparse" | "dense") => {
     const next = new URLSearchParams(search); next.set("frames", value); setSearch(next, { replace: true });
-  };
+  }, [search, setSearch]);
+  useEffect(() => {
+    if (!pendingEvidenceRef) return;
+    const frame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(`evidence-${pendingEvidenceRef}`);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      setPendingEvidenceRef(null);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [data, frameMode, pendingEvidenceRef]);
+  const evidenceNavigation = useMemo(() => {
+    const cueIds = new Set(data?.transcript.map((cue) => cue.id) ?? []);
+    const sparseIds = new Set(data?.frames.sparse.map((frame) => frame.id) ?? []);
+    const denseIds = new Set(data?.frames.dense.map((frame) => frame.id) ?? []);
+    const ids = new Set([...cueIds, ...sparseIds, ...denseIds]);
+    return { ids, navigate: (ref: string) => {
+      setPendingEvidenceRef(ref);
+      if (denseIds.has(ref) && frameMode !== "dense") setFrameMode("dense");
+      else if (sparseIds.has(ref) && frameMode !== "sparse") setFrameMode("sparse");
+    } };
+  }, [data, frameMode, setFrameMode]);
+  const rawReturnTo = search.get("returnTo");
+  const returnTo = data && rawReturnTo?.startsWith(`/creators/${encodeURIComponent(data.creatorId)}`) ? rawReturnTo : data ? `/creators/${data.creatorId}#portfolio` : "/creators";
 
-  return <main className="console console--solo">
+  return <EvidenceNavigationContext.Provider value={evidenceNavigation}><main className="console console--solo">
     {error ? <div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div>
       : !data ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一视频研究投影</p></div>
         : <article className="evidence-page evidence-page--v1">
-          <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><Link to={`/creators/${data.creatorId}`}>{data.creatorName}</Link><span>/</span><b>{data.title.slice(0, 24)}</b></nav>
+          <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><Link to={returnTo}>{data.creatorName}</Link><span>/</span><b>{data.title.slice(0, 24)}</b></nav>
           <header className="evidence-head">
             <div><p className="eyebrow"><span>VIDEO RESEARCH</span><span>{data.sourceLabel}</span></p><h1>{data.title}</h1><p className="evidence-head__lead">{data.thesis}</p><a className="evidence-source" href={data.sourceHref} target="_blank" rel="noreferrer">查看原始内容<ExternalLink size={13}/></a></div>
             <div className="evidence-health-card"><span className={data.gate.ready ? "is-ready" : "is-partial"}>{data.gate.ready ? "三镜头硬闸通过" : "三镜头未闭环"}</span><b>{data.coverage.coreCovered}/{data.coverage.coreTotal}</b><small>核心知识覆盖</small><p>{data.evidenceHealth.note}</p></div>
@@ -134,7 +161,7 @@ export default function VideoEvidencePage() {
               {data.gate.failedGateIds.length > 0 && <div><span>尚未闭环</span>{data.gate.failedGateIds.map((value) => <p key={value}>{gateLabel(value)}</p>)}</div>}
             </aside>
           </div>
-          <footer className="evidence-foot"><Link className="evidence-back" to={`/creators/${data.creatorId}`}><ArrowLeft size={16}/>回到 {data.creatorName} 研究页</Link></footer>
+          <footer className="evidence-foot"><Link className="evidence-back" to={returnTo}><ArrowLeft size={16}/>回到 {data.creatorName} 研究页</Link></footer>
         </article>}
-  </main>;
+  </main></EvidenceNavigationContext.Provider>;
 }

@@ -112,7 +112,7 @@ export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorD
 }
 
 function chooseRun(service: CreatorResearchService, id: string): CreatorResearchRun | null {
-  return service.get(id) ?? service.list(100).find((run) => run.creatorId === id) ?? null;
+  return service.get(id) ?? service.list(100).find((run) => run.creatorId === id || run.canonicalSlug === id) ?? null;
 }
 
 export function projectRunDossier(service: CreatorResearchService, requestedId: string): CreatorDossier | null {
@@ -130,7 +130,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const reconstruction = new Map((data?.reconstructionBatch?.items ?? []).map((item) => [item.postExternalId, item]));
   const postAnalysis = new Map((synthesis?.postAnalyses ?? []).map((item) => [item.postExternalId, item]));
   const capturedAt = activeRun.lastSnapshotAt;
-  const canonicalId = activeRun.creatorId ?? activeRun.id;
+  const canonicalId = activeRun.canonicalSlug ?? activeRun.creatorId ?? activeRun.id;
   const items = (selection?.items ?? []).map((item) => {
     const detail = details.get(item.externalId);
     const mediaItem = media.get(item.externalId);
@@ -185,7 +185,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   };
   const tierClaims = (tier: "high" | "base" | "low") => {
     const values = tier === "high" ? synthesis?.performance.high : tier === "low" ? synthesis?.performance.low : synthesis?.performance.baseline;
-    return values?.map(claim) ?? [unknown(`${tierLabels[tier]}机制等待 9 条深度证据闭环。`)];
+    return values?.map(claim) ?? [unknown(`${tierLabels[tier]}机制等待高 / 中位 / 均值附近 / 低表现四组深度证据闭环。`)];
   };
   return creatorDossierSchema.parse({
     schemaVersion: "1.0.0",

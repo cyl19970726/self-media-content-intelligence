@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ArrowRight, ExternalLink, Grid2X2, List, LoaderCircle, RefreshCw } from "lucide-react";
-import { getCreatorDossier } from "./api";
+import { getCreatorDossier, resumeCreatorResearchRun } from "./api";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier";
 import { comparisonSetLabel, comparisonSetNote, deepSetNote } from "./creator-sample-copy";
 
@@ -72,6 +72,8 @@ export default function CreatorDossierPage() {
   const [search, setSearch] = useSearchParams();
   const [data, setData] = useState<CreatorDossier | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [resuming, setResuming] = useState(false);
+  const [resumeError, setResumeError] = useState<string | null>(null);
   const load = useCallback(async () => {
     try { setData(await getCreatorDossier(id)); setError(null); }
     catch (cause) { setError(cause instanceof Error ? cause.message : "无法读取博主档案"); }
@@ -108,6 +110,13 @@ export default function CreatorDossierPage() {
   const itemHref = (item: CreatorDossier["portfolio"]["items"][number]) => item.evidenceHref
     ? `${item.evidenceHref}?returnTo=${encodeURIComponent(`${location.pathname}${location.search}#portfolio`)}`
     : item.sourceHref;
+  const resume = async () => {
+    if (!data?.run || resuming) return;
+    setResuming(true);
+    try { await resumeCreatorResearchRun(data.run.id); await load(); setResumeError(null); }
+    catch (cause) { setResumeError(cause instanceof Error ? cause.message : "无法恢复博主研究"); }
+    finally { setResuming(false); }
+  };
 
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>博主档案读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
@@ -125,6 +134,13 @@ export default function CreatorDossierPage() {
         <div><span>PIPELINE · {data.run.id.slice(0, 8).toUpperCase()}</span><strong>{data.run.status === "ready" ? "研究闭环已通过" : data.run.nextAction}</strong></div>
         <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.label}</span>)}</div>
         {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}
+        {data.run.status === "needs_user" && <div className="creator-run-progress__actions">
+          <span>在已交接的小红书页面完成提示动作后，再从这里恢复同一任务。</span>
+          <button type="button" onClick={() => void resume()} disabled={resuming}>
+            {resuming ? <LoaderCircle className="spin" size={13}/> : <RefreshCw size={13}/>}{resuming ? "正在恢复" : "我已完成，继续"}
+          </button>
+        </div>}
+        {resumeError && <small role="alert">{resumeError}</small>}
       </section>}
       {data.pipeline && <details className={`research-pipeline research-pipeline--${data.pipeline.state}`} open={!data.pipeline.ready}>
         <summary>

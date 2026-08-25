@@ -51,7 +51,7 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
   const phases = taskPhases(run);
   const diagnostic = blocker ? null : failureReason(run);
   const completion = completionNotice(run);
-  const detailHref = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
+  const detailHref = `/creators/${encodeURIComponent(run.canonicalSlug ?? run.creatorId ?? run.id)}`;
   return <article className={`creator-run creator-run--${run.status}`}>
     <div className="creator-run__status">
       <span className={`status status--${run.status}`}><i/>{statusLabels[run.status]}</span>
@@ -77,7 +77,11 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       {blocker && <span className={blocker.userActionRequired ? "creator-run__blocker creator-run__blocker--user" : "creator-run__blocker"}>
         <AlertTriangle size={13}/>{blocker.message}
       </span>}
-      {run.status === "needs_user" && <span className="creator-run__handoff"><AlertTriangle size={13}/>验证接管：请在已交接的 ego-browser 页面完成验证；此处不伪造浏览器跳转。</span>}
+      {run.status === "needs_user" && <span className="creator-run__handoff"><AlertTriangle size={13}/>
+        {blocker?.code === "detail_navigation_required"
+          ? "详情页被平台重定向：浏览器已停在博主主页。请手动打开任一待采目标帖子，再点“我已完成，继续”。"
+          : "验证接管：请在已交接的 ego-browser 页面完成验证；此处不伪造浏览器跳转。"}
+      </span>}
       {diagnostic && <span className="creator-run__diagnostic"><AlertTriangle size={13}/>原因：{diagnostic}</span>}
       {completion && <span className="creator-run__completion"><ShieldCheck size={13}/>{completion}</span>}
       {(["needs_user", "backoff", "failed"] as CreatorResearchStatus[]).includes(run.status) &&
@@ -187,7 +191,7 @@ export default function CreatorsOverview() {
           <span><Database size={13}/>优先缓存与增量刷新，避免重复访问</span>
         </div>
         {profileUrl && intakeValidation && !intakeValidation.valid && <p className="form-error" role="alert"><AlertTriangle size={14}/>{intakeValidation.message}</p>}
-        {existingRun && <p className="creator-intake__existing"><Database size={14}/>这个已提交链接已有任务：<b>{statusLabels[existingRun.status]}</b><Link to={`/creators/${encodeURIComponent(existingRun.creatorId ?? existingRun.id)}`}>查看原任务</Link></p>}
+        {existingRun && <p className="creator-intake__existing"><Database size={14}/>这个已提交链接已有任务：<b>{statusLabels[existingRun.status]}</b><Link to={`/creators/${encodeURIComponent(existingRun.canonicalSlug ?? existingRun.creatorId ?? existingRun.id)}`}>查看原任务</Link></p>}
         {createdMessage && <p className="form-success" aria-live="polite">{createdMessage}</p>}
         {error && <p className="form-error" role="alert"><AlertTriangle size={14}/>{error}</p>}
       </form>

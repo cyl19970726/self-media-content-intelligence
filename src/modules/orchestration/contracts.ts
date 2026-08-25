@@ -75,7 +75,7 @@ export type CreatorAcquisitionResult =
       state: "needs_user";
       finalUrl: string;
       taskSpaceId: number;
-      code: "login_required" | "captcha_required" | "user_took_control";
+      code: "login_required" | "captcha_required" | "user_took_control" | "detail_navigation_required";
       message: string;
     }
   | {
@@ -96,7 +96,7 @@ export interface CreatorAcquisitionExecutor {
   }): Promise<CreatorAcquisitionResult>;
 }
 
-export type CreatorDetailInputPost = { externalId: string; url: string; resolveMedia: boolean };
+export type CreatorDetailInputPost = { externalId: string; url: string; title?: string | null; resolveMedia: boolean };
 
 export type CreatorDetailResult =
   | {
@@ -122,8 +122,10 @@ export interface CreatorDetailExecutor {
   enrich(input: {
     runId: string;
     profileUrl: string;
+    creatorName?: string | null;
     posts: CreatorDetailInputPost[];
     taskSpaceId: number | null;
+    closeWhenDone?: boolean;
   }): Promise<CreatorDetailResult>;
 }
 

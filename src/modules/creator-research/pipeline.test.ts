@@ -24,9 +24,9 @@ describe("creator research pipeline projection", () => {
     expect(pipeline?.state).toBe("partial");
     expect(pipeline?.stages.find((stage) => stage.id === "inventory_acquisition")?.state).toBe("partial");
     expect(pipeline?.stages.find((stage) => stage.id === "detail_enrichment")?.missingInputs.some((item) => /^发布时间：\d+\/319$/.test(item))).toBe(true);
-    expect(pipeline?.stages.find((stage) => stage.id === "sample_selection")?.missingInputs.some((item) => /^代表深度样本：\d+\/9$/.test(item))).toBe(true);
+    expect(pipeline?.stages.find((stage) => stage.id === "sample_selection")?.missingInputs.some((item) => /^代表深度样本：\d+\/12$/.test(item))).toBe(true);
     expect(pipeline?.stages.find((stage) => stage.id === "video_reconstruction")?.state).toBe("partial");
-    expect(pipeline?.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs.some((item) => /^独立三镜头硬闸：\d+\/9$/.test(item))).toBe(true);
+    expect(pipeline?.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs.some((item) => /^独立三镜头硬闸：\d+\/12$/.test(item))).toBe(true);
     expect(pipeline?.stages.find((stage) => stage.id === "creator_evaluation")?.state).toBe("pending");
     expect(pipeline?.stages.find((stage) => stage.id === "dashboard_projection")?.state).toBe("partial");
   });

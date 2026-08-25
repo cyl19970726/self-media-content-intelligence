@@ -1,6 +1,7 @@
 import { asNumber, asRecord, asString, formatCount, positioningOf, readJson, videoEvidenceCount } from "./creator-meta.js";
 import type { CreatorSummary } from "../shared/schema.js";
 import { loadNextWaveCreatorSummaries } from "./next-wave-creators.js";
+import type { CreatorResearchService } from "../modules/creator-research/service.js";
 
 function redWitch(): CreatorSummary | null {
   const analysis = readJson("ai-red-witch/selected-high-like/analysis.json");
@@ -92,11 +93,39 @@ const loaders: Record<string, () => CreatorSummary | null> = {
   "human-director": humanDirector
 };
 
-export function loadCreatorSummaries(): CreatorSummary[] {
+function versionedRunSummaries(service: CreatorResearchService): CreatorSummary[] {
+  const newestByCreator = new Map<string, ReturnType<CreatorResearchService["list"]>[number]>();
+  for (const run of service.list(100)) {
+    const id = run.creatorId;
+    if (!id || !run.creatorName || newestByCreator.has(id)) continue;
+    newestByCreator.set(id, run);
+  }
+  return [...newestByCreator.values()].map((run): CreatorSummary => ({
+    id: run.canonicalSlug ?? run.creatorId as string,
+    name: run.creatorName as string,
+    followers: formatCount(run.publicProfile.followers),
+    likesAndCollections: formatCount(run.publicProfile.likesAndCollections),
+    profileUrl: run.profileUrl,
+    positioning: run.status === "ready"
+      ? "版本化研究已通过博主级硬闸。"
+      : "公开基本盘已进入版本化任务；账号定位与内容机制等待深度证据闭环。",
+    summary: `${run.coverage.discoveredPosts} 条作品已登记；${run.coverage.comparisonPosts} 条进入比较；${run.coverage.reconstructedPosts} 条通过深度还原。当前状态：${run.status}。`,
+    tags: ["版本化 Run", "Artifact 已登记", run.status === "needs_user" ? "等待人工恢复" : "持续运行"],
+    stats: [
+      { label: "已登记作品", value: String(run.coverage.discoveredPosts) },
+      { label: "比较样本", value: String(run.coverage.comparisonPosts) },
+      { label: "深度通过", value: String(run.coverage.reconstructedPosts) }
+    ],
+    entries: [{ label: "进入版本化研究页", href: `/creators/${run.canonicalSlug ?? run.creatorId}`, note: run.nextAction }]
+  }));
+}
+
+export function loadCreatorSummaries(service?: CreatorResearchService): CreatorSummary[] {
   const legacy = Object.values(loaders)
     .map((load) => load())
     .filter((summary): summary is CreatorSummary => summary !== null);
   const existingIds = new Set(legacy.map((summary) => summary.id));
-  const dynamic = loadNextWaveCreatorSummaries().filter((summary) => !existingIds.has(summary.id));
+  const dynamic = (service ? versionedRunSummaries(service) : loadNextWaveCreatorSummaries())
+    .filter((summary) => !existingIds.has(summary.id));
   return [...legacy, ...dynamic];
 }

@@ -15,6 +15,7 @@ export const deepMediaManifestSchema = z.object({
     coverState: z.enum(["ready", "missing", "download_failed"]),
     coverMessage: z.string(),
     videoArtifactRef: z.string().nullable(),
+    verificationArtifactRef: z.string().nullable().optional(),
     coverArtifactRef: z.string().nullable(),
     sha256: z.string().nullable(),
     bytes: z.number().int().nonnegative().nullable(),

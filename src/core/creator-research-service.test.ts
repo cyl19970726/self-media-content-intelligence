@@ -101,6 +101,34 @@ describe("CreatorResearchService", () => {
     service.close();
   });
 
+  it("imports a frozen public snapshot into the durable queue without reacquiring inventory", () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/cyber-duck",
+      creatorId: "cyber-duck", creatorName: "赛博鸭AIGC", canonicalSlug: "cyber-duck-aigc",
+      capturedAt: "2026-08-21T06:07:54.517Z",
+      taskSpaceId: 4, stopReason: "quiescent_incomplete",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", title: "示例",
+        visibleText: "示例", mediaType: "unknown", likesLabel: "5", likes: 5 }],
+      warnings: ["displayed_count_gap:15"],
+      sourceRefs: ["legacy:next-wave/cyber-duck/creator-corpus.json#sha256=abc"],
+      publicProfile: { bio: "AI极客", followers: 92_000, likesAndCollections: 1_579_000, displayedPostCount: 334,
+        identityAnchors: [{ kind: "stable_id", value: "cyber-duck", source: "profile" },
+          { kind: "display_name", value: "赛博鸭AIGC", source: "profile" }] }
+    });
+
+    expect(run.source.kind).toBe("legacy_import");
+    expect(run.canonicalSlug).toBe("cyber-duck-aigc");
+    expect(run.inventoryArtifactRef).toMatch(/creator-inventory\.json$/);
+    expect(run.currentStage).toBe("tiering");
+    expect(run.coverage.discoveredPosts).toBe(1);
+    expect(run.browserTaskSpaceId).toBe(4);
+    expect(service.events(run.id).map((event) => event.type)).toEqual(["run.created", "artifact.produced", "job.queued"]);
+    expect(JSON.stringify(values.get(run.inventoryArtifactRef!))).toContain("displayed_count_gap:15");
+    service.close();
+  });
+
   it("rejects search pages and unsupported hosts", () => {
     const service = serviceForTest();
     expect(() => service.create("https://www.xiaohongshu.com/search_result?keyword=ai")).toThrow(/博主主页/);

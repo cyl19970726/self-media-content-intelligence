@@ -89,7 +89,7 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const allRefs = unique([...(dossier ? statementArtifactRefs(dossier) : []), ...runArtifactRefs(run)]);
   const postCount = dossier?.corpus.postCount ?? run?.coverage.discoveredPosts ?? 0;
   const deepItems = dossier?.portfolio.items.filter((item) => item.deepSample) ?? [];
-  const requiredDeepSamples = dossier ? Math.min(9, dossier.portfolio.items.length) : 9;
+  const requiredDeepSamples = dossier ? Math.min(12, dossier.portfolio.items.length) : 12;
   const validatedDeep = deepItems.filter((item) => item.evidenceStatus === "deep_validated");
   const pendingDeep = deepItems.filter((item) => item.evidenceStatus === "deep_pending");
   const datedItems = dossier?.portfolio.items.filter((item) => item.publishedLabel !== null).length ?? run?.coverage.enrichedPosts ?? 0;
