@@ -35,7 +35,7 @@ type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean
 
 type RuntimeLensName = "content_restoration" | "directing_logic" | "visual_editing";
 
-const maxGenericRepairAttempts = 2;
+const maxGenericRepairAttempts = 3;
 const maxRuntimeRepairAttempts = 2;
 
 export type ReconstructionRepairDecision = "ready" | "generic_repair" | "runtime_repair" | "not_ready";
@@ -552,7 +552,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           gateReportArtifactRef: refs.gateReportArtifactRef, threeLensEvaluationArtifactRef: null,
           threeLensGateReportArtifactRef: null,
           failedGateIds: failures.length > 0 ? failures : ["meta_gate"],
-          message: "两轮通用定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
+          message: "三轮通用定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
         genericRepairsUsed += 1;
         const historyDir = archiveEvaluation(outputDir, genericRepairsUsed);
         await runCodex(

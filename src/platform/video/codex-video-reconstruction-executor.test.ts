@@ -67,6 +67,21 @@ describe("runtime lens repair history", () => {
     })).toBe("not_ready");
   });
 
+  it("allows a third generic repair only for a newly localized gate failure", () => {
+    expect(decideReconstructionRepair({
+      genericReady: false,
+      genericRepairsUsed: 2,
+      runtimeReady: false,
+      runtimeRepairsUsed: 0
+    })).toBe("generic_repair");
+    expect(decideReconstructionRepair({
+      genericReady: false,
+      genericRepairsUsed: 3,
+      runtimeReady: false,
+      runtimeRepairsUsed: 0
+    })).toBe("not_ready");
+  });
+
   it("archives every evaluator-owned artifact while preserving the candidate", () => {
     const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-lens-repair-"));
     try {
