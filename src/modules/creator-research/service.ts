@@ -1045,6 +1045,9 @@ export class CreatorResearchService {
       });
       const completedAt = now();
       const latestBatch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+      for (const item of latestBatch.items) {
+        if (item.message.startsWith("已完成单轮还原与评估")) item.evaluationPolicy = "single_pass@37a03aae";
+      }
       const latestItem = latestBatch.items.find((candidate) => candidate.postExternalId === postExternalId);
       if (!latestItem) throw new Error("视频批次在执行期间丢失对应记录");
       const runtimeThreeLensComplete = outcome.state === "ready" && Boolean(
@@ -1055,7 +1058,7 @@ export class CreatorResearchService {
         gateReportArtifactRef: outcome.gateReportArtifactRef,
         threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
         threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef ?? null,
-        failedGateIds: outcome.qualityWarningGateIds,
+        evaluationPolicy: "single_pass@37a03aae", failedGateIds: outcome.qualityWarningGateIds,
         message: outcome.qualityWarningGateIds.length > 0
           ? `已完成单轮还原与评估；${outcome.qualityWarningGateIds.length} 项质量提醒保留在研究边界中。`
           : "已完成单轮还原与评估；未发现质量提醒。", updatedAt: completedAt });

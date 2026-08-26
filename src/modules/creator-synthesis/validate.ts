@@ -24,6 +24,12 @@ export function validateCreatorSynthesis(input: {
   const deep = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
   const readyDeep = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
   const deepRows = synthesis.postAnalyses.filter((item) => deep.has(item.postExternalId));
+  const policyGroups = new Map<string, number>();
+  for (const item of batch.items) policyGroups.set(item.evaluationPolicy, (policyGroups.get(item.evaluationPolicy) ?? 0) + 1);
+  const policyBoundary = synthesis.boundaries.join(" ");
+  const policyProvenanceReady = policyGroups.size < 2 || [...policyGroups.entries()].every(([policy, count]) =>
+    policyBoundary.includes(policy) && policyBoundary.includes(String(count))
+  );
   const requiredGroups = ["high", "median", "mean", "low"] as const;
   const groupCoverage = Object.fromEntries(requiredGroups.map((group) => [group,
     selection.items.filter((item) => item.deepGroups.includes(group)).length])) as Record<typeof requiredGroups[number], number>;
@@ -35,8 +41,8 @@ export function validateCreatorSynthesis(input: {
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
     { id: "deep_9_ready", pass: deepContractReady && readyDeep.size === deep.size && [...deep].every((id) => readyDeep.has(id)),
       message: "深度候选必须覆盖高表现、中位数附近、均值附近、低表现各 3 条，并全部完成单轮视频分析。" },
-    { id: "deep_evidence_binding", pass: deepRows.length === deep.size && deepRows.every((item) => item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))),
-      message: "深度结论必须绑定已验证重建，不得只引用标题或详情页。" },
+    { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) => item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))),
+      message: "深度结论必须绑定重建及 evaluator policy；混合策略时须注明各组数量且不得横向比较完成度。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),
       message: "High / Base / Low 三档必须同时存在。" },
     { id: "evidence_classification", pass: JSON.stringify(synthesis).includes("factClass") && synthesis.postAnalyses.every((item) => item.evidenceRefs.length > 0),

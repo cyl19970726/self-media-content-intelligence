@@ -62,6 +62,7 @@ function batch(): VideoReconstructionBatch {
       tier: item.tier,
       tierRank: item.tierRank,
       state: "ready" as const,
+      evaluationPolicy: "legacy_iterative_repair" as const,
       sourceMediaArtifactRef: `/artifacts/${runId}/deep-media/${item.externalId}/source-video.mp4`,
       reconstructionArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/reconstruction.json`,
       articleArtifactRef: `/artifacts/${runId}/video-reconstructions/${item.externalId}/article.md`,
@@ -158,6 +159,22 @@ describe("validateCreatorSynthesis", () => {
     incomplete.failedPosts = 1;
     const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: incomplete, synthesis: synthesis(), checkedAt });
     expect(gate.failedGateIds).toContain("deep_9_ready");
+  });
+
+  it("requires an explicit boundary when evaluator policies are mixed", () => {
+    const mixed = batch();
+    for (const item of mixed.items.slice(0, 4)) item.evaluationPolicy = "single_pass@37a03aae";
+    const missingBoundary = validateCreatorSynthesis({
+      creatorRunId: runId, selection: selection(), batch: mixed, synthesis: synthesis(), checkedAt
+    });
+    expect(missingBoundary.failedGateIds).toContain("deep_evidence_binding");
+
+    const documented = synthesis();
+    documented.boundaries.push("evaluator policy coverage：single_pass@37a03aae 4 条，legacy_iterative_repair 5 条；两组不比较通过率、warning 数或完成度。");
+    const gate = validateCreatorSynthesis({
+      creatorRunId: runId, selection: selection(), batch: mixed, synthesis: documented, checkedAt
+    });
+    expect(gate.failedGateIds).not.toContain("deep_evidence_binding");
   });
 
   it("requires the fresh independent evaluator as well as deterministic gates", () => {
