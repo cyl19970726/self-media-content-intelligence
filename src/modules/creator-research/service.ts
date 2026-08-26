@@ -386,6 +386,17 @@ export class CreatorResearchService {
     if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
     const previousBatchRef = run.reconstructionBatchArtifactRef;
     const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
+    const orphanedMediaItems = run.status === "failed"
+      ? batch.items.filter((item) => ["queued", "running"].includes(item.state) && !item.sourceMediaArtifactRef)
+      : [];
+    for (const item of orphanedMediaItems) Object.assign(item, {
+      state: "blocked", failedGateIds: ["media_verification"],
+      message: "旧版本曾把缺少媒体的项目错误排入视频队列；现转回定向媒体补取。"
+    });
+    if (orphanedMediaItems.length > 0) {
+      batch.pendingPosts = batch.items.filter((item) => ["queued", "running"].includes(item.state)).length;
+      batch.failedPosts = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state)).length;
+    }
     if (batch.pendingPosts > 0 || batch.items.some((item) => ["queued", "running"].includes(item.state))) {
       throw new Error("视频重建批次仍在运行，暂不能重试失败项");
     }
@@ -1067,8 +1078,17 @@ export class CreatorResearchService {
     const sourceUrl = typeof job.payload.sourceUrl === "string" ? job.payload.sourceUrl : null;
     const sourceMediaArtifactRef = typeof job.payload.sourceMediaArtifactRef === "string" ? job.payload.sourceMediaArtifactRef : null;
     const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
-    if (!postExternalId || !sourceUrl || !sourceMediaArtifactRef || !item) {
+    if (!postExternalId || !sourceUrl || !item) {
       return this.failRun(run, job, workerId, "视频节点 payload 与批次不一致");
+    }
+    if (!sourceMediaArtifactRef) {
+      if (item.sourceMediaArtifactRef) return this.failRun(run, job, workerId, "视频节点 payload 与批次不一致");
+      this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: startedAt,
+        lastError: "superseded_by_media_refresh" });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: startedAt,
+        message: "缺少媒体的旧视频任务已由定向媒体补取替代。",
+        payload: { postExternalId, state: "superseded", idempotent: true } });
+      return;
     }
     if (item.state === "ready") {
       run.videoWork = { ...run.videoWork,
