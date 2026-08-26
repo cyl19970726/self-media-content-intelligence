@@ -8,7 +8,7 @@ import {
   type CreatorResearchRun
 } from "../../shared/schema.js";
 import type { CreatorAcquisitionResult, CreatorBrowserExecutor, CreatorDetailResult, ResearchJob } from "../orchestration/contracts.js";
-import type { CreatorResearchRepository } from "./repository.js";
+import type { CreatorResearchRepository, ResearchJobLane } from "./repository.js";
 import { SQLiteCreatorResearchRepository } from "../../platform/database/sqlite-creator-research-repository.js";
 import type { CreatorArtifactStore } from "./artifact-store.js";
 import { LocalCreatorArtifactStore } from "../../platform/artifacts/local-creator-artifact-store.js";
@@ -29,7 +29,7 @@ import type { CreatorSynthesisExecutor, CreatorSynthesisLifecycleEvent } from ".
 import { CodexCreatorSynthesisExecutor } from "../../platform/synthesis/codex-creator-synthesis-executor.js";
 import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
-import { runArtifactDir } from "../../core/config.js";
+import { runArtifactDir, videoConcurrency } from "../../core/config.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import { creatorInventoryPostSchema, type CreatorInventoryPost } from "../portfolio/contracts.js";
 
@@ -408,6 +408,8 @@ export class CreatorResearchService {
     run.currentStage = "deep_capture";
     run.updatedAt = timestamp;
     run.coverage.reconstructedPosts = batch.readyPosts;
+    run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds: [], queuedPosts: failedItems.length,
+      analyzedPosts: batch.readyPosts, failedPosts: 0 };
     run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null };
     run.blockers = [];
     run.nextAction = `仅重试 ${failedItems.length} 条未通过视频；已通过 ${batch.readyPosts} 条不会重跑。`;
@@ -419,9 +421,9 @@ export class CreatorResearchService {
     return run;
   }
 
-  async processNext(workerId: string, executor: CreatorBrowserExecutor): Promise<boolean> {
+  async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane = "any"): Promise<boolean> {
     const leasedAt = now();
-    const job = this.repository.claimNext(workerId, leasedAt, leaseUntil());
+    const job = this.repository.claimNext(workerId, leasedAt, leaseUntil(), lane);
     if (!job) return false;
     const run = this.repository.get(job.runId);
     if (!run) {
@@ -911,7 +913,7 @@ export class CreatorResearchService {
             failedGateIds: verified ? [] : ["media_verification"],
             message: verified ? "等待独立视频重建 Worker。" : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
         }),
-        limitations: ["只有通过独立评估和全部硬闸的视频才进入博主级机制归纳。"]
+        limitations: ["每条视频只做一次独立评估；内容缺口保留为质量提醒，只有媒体或产物损坏才阻断。"]
       });
       const batchRef = this.artifacts.write(run.id, "video-reconstruction-batch-r0.json", batch,
         [run.selectionArtifactRef, detailRef, mediaManifestRef]);
@@ -933,6 +935,8 @@ export class CreatorResearchService {
       run.mediaManifestArtifactRef = mediaManifestRef;
       run.reconstructionBatchArtifactRef = batchRef;
       run.coverage.enrichedPosts = details.inspectedPosts;
+      run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds: [], queuedPosts: queuedJobs.length,
+        analyzedPosts: 0, failedPosts: batch.failedPosts };
       run.worker = queuedJobs.length > 0
         ? { state: "queued", attempt: 0, jobId: queuedJobs[0]?.id ?? null, workerId: null, lastHeartbeatAt: completedAt }
         : { state: "succeeded", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: completedAt };
@@ -966,6 +970,7 @@ export class CreatorResearchService {
 
   private async processVideoReconstruction(run: CreatorResearchRun, job: ResearchJob, workerId: string): Promise<void> {
     const startedAt = now();
+    run = this.repository.get(run.id) ?? run;
     if (!run.reconstructionBatchArtifactRef) return this.failRun(run, job, workerId, "视频节点缺少批次 artifact");
     const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
     const postExternalId = typeof job.payload.postExternalId === "string" ? job.payload.postExternalId : null;
@@ -974,6 +979,17 @@ export class CreatorResearchService {
     const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
     if (!postExternalId || !sourceUrl || !sourceMediaArtifactRef || !item) {
       return this.failRun(run, job, workerId, "视频节点 payload 与批次不一致");
+    }
+    if (item.state === "ready") {
+      run.videoWork = { ...run.videoWork,
+        activePostExternalIds: run.videoWork.activePostExternalIds.filter((id) => id !== postExternalId),
+        analyzedPosts: batch.readyPosts, failedPosts: batch.failedPosts,
+        queuedPosts: Math.max(0, batch.pendingPosts - run.videoWork.activePostExternalIds.filter((id) => id !== postExternalId).length) };
+      this.repository.save(run);
+      this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: startedAt });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: startedAt,
+        message: "视频结果已存在，跳过重复执行。", payload: { postExternalId, state: "ready", idempotent: true } });
+      return;
     }
     run.status = "collecting";
     run.currentStage = "deep_capture";
@@ -984,10 +1000,17 @@ export class CreatorResearchService {
     stage(run, "deep_capture").message = `已通过硬闸 ${batch.readyPosts}/${batch.requestedPosts}；正在处理 ${postExternalId}。`;
     item.state = "running";
     item.updatedAt = startedAt;
+    run.videoWork = {
+      concurrencyLimit: videoConcurrency(),
+      activePostExternalIds: [...new Set([...run.videoWork.activePostExternalIds, postExternalId])],
+      queuedPosts: Math.max(0, batch.pendingPosts - new Set([...run.videoWork.activePostExternalIds, postExternalId]).size),
+      analyzedPosts: batch.readyPosts,
+      failedPosts: batch.failedPosts
+    };
     this.repository.save(run);
     this.repository.updateJobStatus({ jobId: job.id, status: "running", updatedAt: startedAt });
     this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.started", createdAt: startedAt,
-      message: "开始两轮视频内容还原与独立评测。", payload: { postExternalId } });
+      message: "开始单轮视频内容还原与独立评测。", payload: { postExternalId } });
     let lastSubstage = "runner_start";
     const heartbeat = setInterval(() => {
       const at = now();
@@ -1044,7 +1067,11 @@ export class CreatorResearchService {
         }
       });
       const completedAt = now();
-      const latestBatch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+      const latestRun = this.repository.get(run.id);
+      if (!latestRun?.reconstructionBatchArtifactRef) throw new Error("视频批次在执行期间丢失注册指针");
+      run = latestRun;
+      const previousBatchRef = latestRun.reconstructionBatchArtifactRef;
+      const latestBatch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
       for (const item of latestBatch.items) {
         if (item.message.startsWith("已完成单轮还原与评估")) item.evaluationPolicy = "single_pass@37a03aae";
       }
@@ -1081,7 +1108,7 @@ export class CreatorResearchService {
       latestBatch.readyPosts = latestBatch.items.filter((candidate) => candidate.state === "ready").length;
       latestBatch.pendingPosts = latestBatch.items.filter((candidate) => ["queued", "running"].includes(candidate.state)).length;
       latestBatch.failedPosts = latestBatch.items.filter((candidate) => ["not_ready", "blocked"].includes(candidate.state)).length;
-      const batchDependencies = [run.reconstructionBatchArtifactRef, ...latestBatch.items.flatMap((item) => [
+      const batchDependencies = [previousBatchRef, ...latestBatch.items.flatMap((item) => [
         item.reconstructionArtifactRef, item.evaluationArtifactRef, item.gateReportArtifactRef,
         item.threeLensEvaluationArtifactRef, item.threeLensGateReportArtifactRef
       ])].filter((ref): ref is string => Boolean(ref));
@@ -1090,6 +1117,14 @@ export class CreatorResearchService {
       run.reconstructionBatchArtifactRef = batchRef;
       run.coverage.reconstructedPosts = latestBatch.readyPosts;
       run.updatedAt = completedAt;
+      const activePostExternalIds = run.videoWork.activePostExternalIds.filter((id) => id !== postExternalId);
+      run.videoWork = {
+        concurrencyLimit: videoConcurrency(),
+        activePostExternalIds,
+        queuedPosts: Math.max(0, latestBatch.pendingPosts - activePostExternalIds.length),
+        analyzedPosts: latestBatch.readyPosts,
+        failedPosts: latestBatch.failedPosts
+      };
       this.repository.updateJobStatus({ jobId: job.id, status: outcome.state === "blocked" && outcome.userActionRequired ? "needs_user" : "succeeded",
         updatedAt: completedAt, lastError: outcome.state === "ready" ? null : outcome.message });
       if (outcome.state === "blocked" && outcome.userActionRequired) {
@@ -1138,8 +1173,57 @@ export class CreatorResearchService {
         message: outcome.state === "ready" ? "视频已完成单轮还原与独立评估。" : "视频未进入下游机制归纳。",
         payload: { postExternalId, state: outcome.state } });
     } catch (error) {
-      this.failRun(run, job, workerId, error instanceof Error ? error.message : "视频重建节点失败");
+      this.recordVideoExecutionFailure(run.id, job, workerId, postExternalId,
+        error instanceof Error ? error.message : "视频重建节点失败");
     } finally { clearInterval(heartbeat); }
+  }
+
+  private recordVideoExecutionFailure(runId: string, job: ResearchJob, workerId: string, postExternalId: string, message: string): void {
+    const timestamp = now();
+    const run = this.repository.get(runId);
+    if (!run?.reconstructionBatchArtifactRef) return this.failRun(run ?? this.repository.get(job.runId)!, job, workerId, message);
+    const previousBatchRef = run.reconstructionBatchArtifactRef;
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
+    const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
+    if (!item) return this.failRun(run, job, workerId, message);
+    Object.assign(item, { state: "not_ready", failedGateIds: ["video_execution_failed"],
+      message: `视频执行基础设施失败：${message}`, updatedAt: timestamp });
+    batch.revision += 1;
+    batch.generatedAt = timestamp;
+    batch.readyPosts = batch.items.filter((candidate) => candidate.state === "ready").length;
+    batch.pendingPosts = batch.items.filter((candidate) => ["queued", "running"].includes(candidate.state)).length;
+    batch.failedPosts = batch.items.filter((candidate) => ["not_ready", "blocked"].includes(candidate.state)).length;
+    const dependencies = [previousBatchRef, ...batch.items.flatMap((candidate) => [
+      candidate.reconstructionArtifactRef, candidate.evaluationArtifactRef, candidate.gateReportArtifactRef,
+      candidate.threeLensEvaluationArtifactRef, candidate.threeLensGateReportArtifactRef
+    ])].filter((ref): ref is string => Boolean(ref));
+    const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, dependencies);
+    const activePostExternalIds = run.videoWork.activePostExternalIds.filter((id) => id !== postExternalId);
+    run.reconstructionBatchArtifactRef = batchRef;
+    run.coverage.reconstructedPosts = batch.readyPosts;
+    run.updatedAt = timestamp;
+    run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds,
+      queuedPosts: Math.max(0, batch.pendingPosts - activePostExternalIds.length), analyzedPosts: batch.readyPosts, failedPosts: batch.failedPosts };
+    run.blockers = [{ code: "video_reconstruction_incomplete",
+      message: `${batch.readyPosts}/${batch.requestedPosts} 条完成；${batch.failedPosts} 条基础设施失败。`, userActionRequired: false }];
+    if (batch.pendingPosts > 0) {
+      run.status = "collecting";
+      run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: timestamp };
+      run.nextAction = `${batch.readyPosts} 条完成，${batch.pendingPosts} 条继续执行；失败项稍后可单独重试。`;
+      stage(run, "deep_capture").status = "running";
+    } else {
+      run.status = "reviewable";
+      run.worker = { state: "failed", attempt: job.attempts, jobId: job.id, workerId: null, lastHeartbeatAt: timestamp };
+      run.nextAction = "仅重试失败视频；已完成视频不会重跑。";
+      stage(run, "deep_capture").status = "blocked";
+    }
+    stage(run, "deep_capture").message = run.blockers[0]?.message ?? message;
+    this.repository.save(run);
+    this.repository.updateJobStatus({ jobId: job.id, status: "failed", updatedAt: timestamp, lastError: message });
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: timestamp,
+      message: "视频失败状态已原子合并到新批次 revision。", payload: { artifactRef: batchRef, postExternalId, state: "not_ready" } });
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: timestamp,
+      message: "视频执行失败；其他视频继续，当前项可独立重试。", payload: { postExternalId, state: "not_ready" } });
   }
 
   private async processSynthesis(run: CreatorResearchRun, job: ResearchJob, workerId: string): Promise<void> {

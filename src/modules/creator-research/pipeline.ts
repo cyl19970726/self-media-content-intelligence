@@ -20,7 +20,7 @@ const stageSeeds: StageSeed[] = [
   { id: "sample_selection", label: "高 / 中位 / 均值附近 / 低表现选样", skillId: "creator-sample-selection", workerKind: "selection-worker", dashboardSections: ["tiers", "portfolio", "deep"] },
   { id: "media_verification", label: "代表视频媒体获取与核验", skillId: "xiaohongshu-creator-acquisition", workerKind: "media-worker", dashboardSections: ["portfolio", "deep"] },
   { id: "video_reconstruction", label: "单视频三镜头分析", skillId: "video-content-reconstruction", workerKind: "video-reconstruction-worker", dashboardSections: ["deep", "engines"] },
-  { id: "video_evaluation", label: "单视频独立硬闸", skillId: "creator-research-evaluator", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
+  { id: "video_evaluation", label: "单视频独立评估", skillId: "creator-research-evaluator", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
   { id: "creator_synthesis", label: "跨视频与跨层级博主综合", skillId: "creator-research-synthesis", workerKind: "creator-synthesis-worker", dashboardSections: ["identity", "system", "tiers", "rhythm", "audience", "engines", "business"] },
   { id: "creator_evaluation", label: "博主研究独立评测", skillId: "creator-research-evaluator", workerKind: "independent-creator-evaluator", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] },
   { id: "dashboard_projection", label: "Creator Dossier 投影", skillId: null, workerKind: "projection-worker", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] }
@@ -149,10 +149,10 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
           missingInputs: [`完成三镜头分析：${validatedDeep.length}/${requiredDeepSamples}`], message: `${validatedDeep.length} 条已验证，${pendingDeep.length} 条待审，其余尚未还原。`,
           nextAction: "由单视频重建 Skill 继续生成逐字稿、知识关系、编导逻辑和画面剪辑证据。" }),
     stage(seed("video_evaluation"), reconstructionComplete
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `全部 ${deepItems.length} 条深度样本通过 CR 6/6、DL 6/6、VE 7/7。` }
+      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `全部 ${deepItems.length} 条深度样本完成一次独立评估；质量提醒保留在研究证据中。` }
       : { state: validatedDeep.length > 0 ? "partial" : "pending", gateState: validatedDeep.length > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          missingInputs: [`独立三镜头硬闸：${validatedDeep.length}/${requiredDeepSamples}`], message: "未通过的视频不能进入博主级机制归纳。",
-          nextAction: "由独立 Evaluator 复核每条视频；生产重建过程不能自我宣布通过。" }),
+          missingInputs: [`单轮独立评估：${validatedDeep.length}/${requiredDeepSamples}`], message: "媒体不可读或产物损坏的视频不能进入博主级机制归纳。",
+          nextAction: "由独立 Evaluator 对每条视频做一次通用与三镜头检查；内容缺口不触发自动修复。" }),
     stage(seed("creator_synthesis"), synthesisReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.synthesisArtifactRef], message: "定位、人群、价值、内容系统与表现差异已写入博主综合 Artifact。" }
       : { state: dossier?.growthEngines.statements.length ? "partial" : "pending", gateState: "not_checked", artifactRefs: [run?.synthesisArtifactRef],

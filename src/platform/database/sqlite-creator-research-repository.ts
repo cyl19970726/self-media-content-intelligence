@@ -8,7 +8,7 @@ import {
   type CreatorResearchEvent,
   type CreatorResearchRun
 } from "../../shared/schema.js";
-import type { AppendEventInput, CreatorResearchRepository } from "../../modules/creator-research/repository.js";
+import type { AppendEventInput, CreatorResearchRepository, ResearchJobLane } from "../../modules/creator-research/repository.js";
 import {
   researchJobSchema,
   type ResearchJob,
@@ -211,14 +211,17 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
     return parseJob(updated);
   }
 
-  claimNext(workerId: string, now: string, leaseExpiresAt: string): ResearchJob | null {
+  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any"): ResearchJob | null {
     this.db.exec("BEGIN IMMEDIATE");
     try {
+      const laneClause = lane === "video" ? "AND node_key = 'video.reconstruct'"
+        : lane === "serial" ? "AND node_key != 'video.reconstruct'" : "";
       const row = this.db.prepare(`
         SELECT * FROM research_jobs
         WHERE ((status IN ('queued','backoff') AND available_at <= ?)
           OR (status IN ('leased','running') AND lease_expires_at IS NOT NULL AND lease_expires_at <= ?))
           AND run_id IN (SELECT id FROM creator_research_runs WHERE status NOT IN ('needs_user','failed'))
+          ${laneClause}
         ORDER BY available_at ASC, created_at ASC LIMIT 1
       `).get(now, now) as ResearchJobRow | undefined;
       if (!row) {

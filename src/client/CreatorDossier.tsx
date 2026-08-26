@@ -135,6 +135,8 @@ export default function CreatorDossierPage() {
       {data.run && <section className={`creator-run-progress creator-run-progress--${data.run.status}`}>
         <div><span>PIPELINE · {data.run.id.slice(0, 8).toUpperCase()}</span><strong>{data.run.status === "ready" ? "研究闭环已通过" : data.run.nextAction}</strong>
           {data.run.status !== "ready" && activeRunStage?.message && <p className="creator-run-progress__current"><b>当前执行</b>{activeRunStage.message}</p>}
+          {(data.run.videoWork.activePostExternalIds.length > 0 || data.run.videoWork.queuedPosts > 0 || data.run.videoWork.analyzedPosts > 0) &&
+            <p className="creator-run-progress__current"><b>视频并发</b>{data.run.videoWork.activePostExternalIds.length} 条执行 · {data.run.videoWork.queuedPosts} 条排队 · {data.run.videoWork.analyzedPosts} 条完成 · {data.run.videoWork.failedPosts} 条失败 · 上限 {data.run.videoWork.concurrencyLimit}</p>}
         </div>
         <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.label}</span>)}</div>
         {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}

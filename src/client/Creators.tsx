@@ -74,6 +74,8 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
     <footer>
       <span><ShieldCheck size={13}/>hhh-01 · 只读 · 增量 · 不绕过验证</span>
       <span>WORKER · {run.worker.state.toUpperCase()} · ATTEMPT {run.worker.attempt}</span>
+      {(run.videoWork.activePostExternalIds.length > 0 || run.videoWork.queuedPosts > 0 || run.videoWork.analyzedPosts > 0) &&
+        <span>VIDEO · {run.videoWork.activePostExternalIds.length} 执行 · {run.videoWork.queuedPosts} 排队 · {run.videoWork.analyzedPosts} 完成 · {run.videoWork.failedPosts} 失败 · 上限 {run.videoWork.concurrencyLimit}</span>}
       {blocker && <span className={blocker.userActionRequired ? "creator-run__blocker creator-run__blocker--user" : "creator-run__blocker"}>
         <AlertTriangle size={13}/>{blocker.message}
       </span>}

@@ -321,6 +321,72 @@ describe("CreatorResearchService", () => {
     service.close();
   });
 
+  it("atomically preserves video outcomes that complete out of lease order", async () => {
+    const values = new Map<string, unknown>();
+    const pending: Array<{ postExternalId: string; resolve: (value: Awaited<ReturnType<VideoReconstructionExecutor["reconstruct"]>>) => void }> = [];
+    const service = serviceForTest({ values, reconstruct: (request) => new Promise((resolve) => {
+      pending.push({ postExternalId: request.postExternalId, resolve });
+    }) });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/concurrent-creator", creatorId: "concurrent-creator",
+      creatorName: "并发博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:concurrent"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 12, identityAnchors: [] },
+      posts: Array.from({ length: 12 }, (_, index) => ({ externalId: `post-${index + 1}`,
+        url: `https://www.xiaohongshu.com/explore/post-${index + 1}`, title: `视频 ${index + 1}`,
+        visibleText: `视频 ${index + 1}\n${index + 1}`, mediaType: "video" as const,
+        likesLabel: String(index + 1), likes: index + 1 }))
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 4, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: `https://video.example/${post.externalId}.mp4`,
+          coverCandidateUrl: `https://image.example/${post.externalId}.webp`, inspectedAt: "2026-08-25T00:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+    for (let step = 0; step < 8 && !service.get(run.id)?.reconstructionBatchArtifactRef; step += 1) {
+      await service.processNext("serial", executor, "serial");
+    }
+    const initialRun = service.get(run.id)!;
+    expect(initialRun.reconstructionBatchArtifactRef, JSON.stringify(initialRun)).not.toBeNull();
+    const initialBatch = values.get(initialRun.reconstructionBatchArtifactRef!) as { pendingPosts: number };
+    expect(initialBatch.pendingPosts).toBeGreaterThanOrEqual(3);
+
+    const jobs = [1, 2, 3].map((slot) => service.processNext(`video-${slot}`, executor, "video"));
+    await Promise.resolve();
+    expect(pending).toHaveLength(3);
+    expect(service.get(run.id)?.videoWork.activePostExternalIds).toHaveLength(3);
+    const outcome = (postExternalId: string) => {
+      const root = `/artifacts/${run.id}/video-reconstructions/${postExternalId}`;
+      return { state: "ready" as const, reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
+        threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const,
+        failedGateIds: [], qualityWarningGateIds: [], evaluationMode: "single_pass" as const };
+    };
+    for (const index of [2, 0, 1]) {
+      const entry = pending[index]!;
+      entry.resolve(outcome(entry.postExternalId));
+      await jobs[index];
+    }
+
+    const completedRun = service.get(run.id)!;
+    const completedBatch = values.get(completedRun.reconstructionBatchArtifactRef!) as {
+      revision: number; readyPosts: number; pendingPosts: number; items: Array<{ state: string }>;
+    };
+    expect(completedBatch.revision).toBe(3);
+    expect(completedBatch.readyPosts).toBe(3);
+    expect(completedBatch.pendingPosts).toBe(initialBatch.pendingPosts - 3);
+    expect(completedBatch.items.filter((item) => item.state === "ready")).toHaveLength(3);
+    expect(completedRun.videoWork).toMatchObject({ activePostExternalIds: [], analyzedPosts: 3,
+      queuedPosts: initialBatch.pendingPosts - 3, failedPosts: 0 });
+    expect(service.events(run.id).filter((event) => event.message.includes("博主级研究归纳已进入持久队列"))).toHaveLength(0);
+    service.close();
+  });
+
   it("requeues only failed video reconstructions without reacquiring the inventory", async () => {
     const values = new Map<string, unknown>();
     const service = serviceForTest({ values, reconstruct: async (request) => {

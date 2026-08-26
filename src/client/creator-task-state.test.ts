@@ -23,6 +23,7 @@ function run(overrides: Partial<CreatorResearchRun> = {}): CreatorResearchRun {
     blockers: [], nextAction: "等待接管", lastSnapshotAt: null,
     worker: { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null },
     inventoryArtifactRef: null, portfolioArtifactRef: null, selectionArtifactRef: null, detailArtifactRef: null, mediaManifestArtifactRef: null,
+    videoWork: { concurrencyLimit: 3, activePostExternalIds: [], queuedPosts: 0, analyzedPosts: 0, failedPosts: 0 },
     reconstructionBatchArtifactRef: null, synthesisArtifactRef: null, synthesisGateArtifactRef: null, browserTaskSpaceId: null,
     ...overrides
   };

@@ -541,6 +541,19 @@ export const creatorResearchRunSchema = z.object({
     workerId: null,
     lastHeartbeatAt: null
   }),
+  videoWork: z.object({
+    concurrencyLimit: z.number().int().min(1).max(3),
+    activePostExternalIds: z.array(z.string()),
+    queuedPosts: z.number().int().nonnegative(),
+    analyzedPosts: z.number().int().nonnegative(),
+    failedPosts: z.number().int().nonnegative()
+  }).default({
+    concurrencyLimit: 3,
+    activePostExternalIds: [],
+    queuedPosts: 0,
+    analyzedPosts: 0,
+    failedPosts: 0
+  }),
   inventoryArtifactRef: z.string().nullable().default(null),
   portfolioArtifactRef: z.string().nullable().default(null),
   selectionArtifactRef: z.string().nullable().default(null),
