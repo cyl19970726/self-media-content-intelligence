@@ -308,7 +308,9 @@ export class CreatorResearchService {
   resume(id: string): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
-    if (!["needs_user", "backoff", "failed"].includes(run.status)) return run;
+    const retryableSynthesis = run.status === "reviewable"
+      && run.blockers.some((blocker) => blocker.code === "creator_synthesis_not_ready");
+    if (!["needs_user", "backoff", "failed"].includes(run.status) && !retryableSynthesis) return run;
     const timestamp = now();
     const job = this.repository.requeueRun(run.id, timestamp);
     if (!job) throw new Error("任务缺少可恢复的工作节点");

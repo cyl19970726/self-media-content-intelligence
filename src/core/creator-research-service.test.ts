@@ -12,7 +12,11 @@ import type { CreatorSynthesisExecutor } from "../modules/creator-synthesis/cont
 
 const temporaryDirectories: string[] = [];
 
-function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: VideoReconstructionExecutor["reconstruct"] } = {}): CreatorResearchService {
+function serviceForTest(options: {
+  values?: Map<string, unknown>;
+  reconstruct?: VideoReconstructionExecutor["reconstruct"];
+  synthesize?: CreatorSynthesisExecutor["synthesize"];
+} = {}): CreatorResearchService {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
   temporaryDirectories.push(directory);
   const values = options.values ?? new Map<string, unknown>();
@@ -72,6 +76,7 @@ function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: 
   };
   const synthesisExecutor: CreatorSynthesisExecutor = {
     async synthesize(request, observeLifecycle) {
+      if (options.synthesize) return options.synthesize(request, observeLifecycle);
       const startedAt = "2026-08-20T01:03:00.000Z";
       observeLifecycle?.({ childRunId: "33333333-3333-4333-8333-333333333333", role: "creator_synthesis",
         status: "started", startedAt, lastProgressAt: startedAt, inputRevision: "c".repeat(64),
@@ -318,6 +323,45 @@ describe("CreatorResearchService", () => {
     expect(resumed.status).toBe("queued");
     expect(resumed.worker.jobId).toBe(run.worker.jobId);
     expect(service.events(run.id).at(-1)?.type).toBe("run.resumed");
+    service.close();
+  });
+
+  it("requeues a reviewable creator synthesis after a policy-gate correction", async () => {
+    const service = serviceForTest({ synthesize: async (request) => ({
+      state: "not_ready",
+      synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
+      gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json`,
+      failedGateIds: ["deep_9_ready"],
+      message: "旧 evaluator 错把重叠样本要求成九条唯一视频。"
+    }) });
+    const run = service.create("https://www.xiaohongshu.com/user/profile/synthesis-retry");
+    const executor: CreatorBrowserExecutor = {
+      async acquire() {
+        return { state: "ready", finalUrl: run.profileUrl, creatorId: "synthesis-retry", creatorName: "综合重试博主",
+          taskSpaceId: 18, stopReason: "quiescent_incomplete", diagnostics: [], warnings: [], posts: [{
+            externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", title: "测试",
+            visibleText: "测试\n1", mediaType: "video", likesLabel: "1", likes: 1
+          }] };
+      },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 19, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: "https://video.example/source.mp4",
+          coverCandidateUrl: "https://image.example/cover.webp", inspectedAt: "2026-08-20T01:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+
+    for (let index = 0; index < 5; index += 1) expect(await service.processNext("worker", executor)).toBe(true);
+    const reviewable = service.get(run.id)!;
+    expect(reviewable.status).toBe("reviewable");
+    expect(reviewable.blockers[0]?.code).toBe("creator_synthesis_not_ready");
+
+    const resumed = service.resume(run.id);
+    expect(resumed.status).toBe("queued");
+    expect(resumed.currentStage).toBe("synthesis");
+    expect(resumed.blockers).toEqual([]);
+    expect(resumed.nextAction).toContain("重新生成博主归纳");
     service.close();
   });
 
