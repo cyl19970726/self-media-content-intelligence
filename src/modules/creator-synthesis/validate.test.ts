@@ -153,6 +153,14 @@ describe("validateCreatorSynthesis", () => {
     expect(gate.failedGateIds).toContain("research_creation_separation");
   });
 
+  it("does not mistake a creator offering copyable material for advice to the researcher", () => {
+    const candidate = synthesis();
+    candidate.postAnalyses[0]!.performanceInterpretation = "帖子提供可直接复制的完整提示词，但没有受控证据证明效果。";
+    const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: batch(),
+      synthesis: candidate, checkedAt });
+    expect(gate.failedGateIds).not.toContain("research_creation_separation");
+  });
+
   it("rejects synthesis when any deep sample has not passed reconstruction", () => {
     const incomplete = batch();
     incomplete.items[0]!.state = "not_ready";
