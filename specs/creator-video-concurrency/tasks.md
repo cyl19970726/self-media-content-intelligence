@@ -10,4 +10,4 @@
 - [x] Update single-pass pipeline language so warnings are not presented as iterative hard-gate repairs.
 - [x] Add reordered-completion, bounded-concurrency, and serial-compatibility tests.
 - [x] Run focused tests, full tests, typecheck/build, and lint.
-- [ ] Restart the service only after the current child is terminal, then verify the live Dashboard.
+- [x] Restart the service only after the current child is terminal, then verify the live Dashboard.

@@ -261,14 +261,14 @@ export class CreatorResearchService {
     return run;
   }
 
-  get(id: string): CreatorResearchRun | null { return this.repository.get(id); }
-  list(limit?: number): CreatorResearchRun[] { return this.repository.list(limit); }
+  get(id: string): CreatorResearchRun | null { return this.projectRun(this.repository.get(id)); }
+  list(limit?: number): CreatorResearchRun[] { return this.repository.list(limit).map((run) => this.projectRun(run)!); }
   events(id: string, afterSequence = 0): CreatorResearchEvent[] {
     return this.repository.listEvents(id, afterSequence);
   }
 
   portfolio(id: string) {
-    const run = this.repository.get(id);
+    const run = this.projectRun(this.repository.get(id));
     if (!run) return null;
     if (!run.portfolioArtifactRef || !run.selectionArtifactRef) return { run, pipeline: buildCreatorResearchPipeline(run), analysis: null, selection: null, details: null,
       mediaManifest: null, reconstructionBatch: null, synthesis: null, synthesisGate: null };
@@ -284,6 +284,21 @@ export class CreatorResearchService {
       synthesis: run.synthesisArtifactRef ? creatorSynthesisSchema.parse(this.artifacts.read(run.synthesisArtifactRef)) : null,
       synthesisGate: run.synthesisGateArtifactRef ? creatorSynthesisGateSchema.parse(this.artifacts.read(run.synthesisGateArtifactRef)) : null
     };
+  }
+
+  private projectRun(run: CreatorResearchRun | null): CreatorResearchRun | null {
+    if (!run) return null;
+    run.videoWork.concurrencyLimit = videoConcurrency();
+    if (!run.reconstructionBatchArtifactRef) return run;
+    try {
+      const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+      run.videoWork.analyzedPosts = batch.readyPosts;
+      run.videoWork.failedPosts = batch.failedPosts;
+      run.videoWork.queuedPosts = Math.max(0, batch.pendingPosts - run.videoWork.activePostExternalIds.length);
+    } catch {
+      // Keep the persisted projection when an old or externally removed artifact cannot be read.
+    }
+    return run;
   }
 
   resume(id: string): CreatorResearchRun {
