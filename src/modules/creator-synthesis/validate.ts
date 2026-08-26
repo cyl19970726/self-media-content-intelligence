@@ -7,7 +7,7 @@ import {
   type CreatorSynthesisIndependentEvaluation
 } from "./contracts.js";
 
-const advicePattern = /(我们(应该|可以|下一条|要发|.*可直接复制)|你可以直接复制|可直接复制(这个|以下)(标题|公式|模板)|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议(我们|你))/i;
+const advicePattern = /(我们(下一条|要发|.*可直接复制)|你可以直接复制|可直接复制(这个|以下)(标题|公式|模板)|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议(我们|你))/i;
 
 export function validateCreatorSynthesis(input: {
   creatorRunId: string;

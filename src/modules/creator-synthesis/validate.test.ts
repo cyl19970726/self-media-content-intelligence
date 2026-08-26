@@ -161,6 +161,14 @@ describe("validateCreatorSynthesis", () => {
     expect(gate.failedGateIds).not.toContain("research_creation_separation");
   });
 
+  it("does not mistake a quoted creator question for advice to the researcher", () => {
+    const candidate = synthesis();
+    candidate.postAnalyses[0]!.title = "AI时代，我们应该如何学习？";
+    const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: batch(),
+      synthesis: candidate, checkedAt });
+    expect(gate.failedGateIds).not.toContain("research_creation_separation");
+  });
+
   it("rejects synthesis when any deep sample has not passed reconstruction", () => {
     const incomplete = batch();
     incomplete.items[0]!.state = "not_ready";
