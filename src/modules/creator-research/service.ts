@@ -28,7 +28,12 @@ import { CodexVideoReconstructionExecutor } from "../../platform/video/codex-vid
 import type { CreatorSynthesisExecutor, CreatorSynthesisLifecycleEvent } from "../creator-synthesis/contracts.js";
 import { CodexCreatorSynthesisExecutor } from "../../platform/synthesis/codex-creator-synthesis-executor.js";
 import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
-import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
+import {
+  creatorSynthesisGateSchema,
+  creatorSynthesisIndependentEvaluationSchema,
+  creatorSynthesisSchema
+} from "../creator-synthesis/contracts.js";
+import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "../creator-synthesis/validate.js";
 import { runArtifactDir, videoConcurrency } from "../../core/config.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import { creatorInventoryPostSchema, type CreatorInventoryPost } from "../portfolio/contracts.js";
@@ -539,6 +544,61 @@ export class CreatorResearchService {
     this.repository.appendEvent({ runId: run.id, jobId: null, type: "run.resumed", createdAt: timestamp,
       message: "一次媒体补取仍不可得的样本已固化为未知边界；博主综合继续。",
       payload: { previousBatchRef, batchRef, unavailablePostExternalIds: unavailable.map((item) => item.postExternalId) } });
+    return run;
+  }
+
+  revalidateSynthesis(id: string): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    if (!run.portfolioArtifactRef || !run.selectionArtifactRef || !run.detailArtifactRef
+      || !run.reconstructionBatchArtifactRef || !run.synthesisArtifactRef || !run.synthesisGateArtifactRef) {
+      throw new Error("任务缺少可重验的博主综合 artifact");
+    }
+    const previousGate = creatorSynthesisGateSchema.parse(this.artifacts.read(run.synthesisGateArtifactRef));
+    if (!previousGate.candidateRevisionFingerprint || !previousGate.independentEvaluationArtifactRef) {
+      throw new Error("旧 gate 未绑定独立评估 revision，不能只做确定性重验");
+    }
+    const checkedAt = now();
+    const deterministicGate = validateCreatorSynthesis({ creatorRunId: run.id,
+      selection: this.artifacts.read(run.selectionArtifactRef),
+      batch: this.artifacts.read(run.reconstructionBatchArtifactRef),
+      synthesis: this.artifacts.read(run.synthesisArtifactRef), checkedAt });
+    const independentEvaluation = creatorSynthesisIndependentEvaluationSchema.parse(
+      this.artifacts.read(previousGate.independentEvaluationArtifactRef));
+    const gate = combineCreatorSynthesisGates({ deterministicGate, independentEvaluation,
+      candidateRevisionFingerprint: previousGate.candidateRevisionFingerprint,
+      independentEvaluationArtifactRef: previousGate.independentEvaluationArtifactRef, checkedAt });
+    const previousGateRef = run.synthesisGateArtifactRef;
+    const gateRef = this.artifacts.write(run.id, "creator-synthesis-gate.json", gate,
+      [run.synthesisArtifactRef, previousGate.independentEvaluationArtifactRef, previousGateRef]);
+    run.synthesisGateArtifactRef = gateRef;
+    run.updatedAt = checkedAt;
+    if (!gate.ready) {
+      run.status = "reviewable";
+      run.blockers = [{ code: "creator_synthesis_not_ready",
+        message: `博主归纳确定性重验仍未通过 (${gate.failedGateIds.join(", ")})`, userActionRequired: false }];
+      run.nextAction = "候选与独立评估均保留；只处理仍失败的具体 gate。";
+      stage(run, "synthesis").status = "failed";
+      stage(run, "synthesis").message = run.blockers[0]?.message ?? null;
+    } else {
+      run.status = "ready";
+      run.worker = { state: "succeeded", attempt: run.worker.attempt, jobId: null, workerId: null, lastHeartbeatAt: checkedAt };
+      run.blockers = [];
+      run.nextAction = "单博主研究已发布到同一个 Dashboard；创作建议仍属于独立工作区。";
+      run.dashboardPath = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
+      stage(run, "synthesis").status = "complete";
+      stage(run, "synthesis").message = "同一候选 revision 与独立评估已通过修正后的确定性边界。";
+      stage(run, "dashboard").status = "complete";
+      stage(run, "dashboard").message = "动态 Dashboard projection 已可读取。";
+    }
+    this.repository.save(run);
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "artifact.produced", createdAt: checkedAt,
+      message: "博主综合 gate 已在不重跑候选或 evaluator 的情况下重验。",
+      payload: { previousGateRef, gateRef, candidateRevisionFingerprint: previousGate.candidateRevisionFingerprint,
+        ready: gate.ready, failedGateIds: gate.failedGateIds } });
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "node.completed", createdAt: checkedAt,
+      message: gate.ready ? "博主级归纳通过修正后的确定性硬闸。" : "博主级归纳重验仍未发布。",
+      payload: { state: gate.ready ? "ready" : "not_ready", reusedIndependentEvaluation: true } });
     return run;
   }
 

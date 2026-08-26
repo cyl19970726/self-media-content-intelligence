@@ -183,6 +183,15 @@ export function createApp(
     }
   });
 
+  app.post("/api/creator-runs/:id/revalidate-synthesis", (request, response) => {
+    try {
+      return response.status(202).json(creatorResearchService.revalidateSynthesis(request.params.id));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法重验博主综合";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
   const listComparisons: express.RequestHandler = (request, response) => {
     const limit = Math.min(100, Math.max(1, Number(request.query.limit ?? 50)));
     response.json({ projects: comparisonProjectService.list(limit) });

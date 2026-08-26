@@ -7,7 +7,7 @@ import {
   type CreatorSynthesisIndependentEvaluation
 } from "./contracts.js";
 
-const advicePattern = /(我们(应该|可以|下一条|要发)|可直接复制|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议我们)/i;
+const advicePattern = /(我们(应该|可以|下一条|要发|.*可直接复制)|你可以直接复制|可直接复制(这个|以下)(标题|公式|模板)|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议(我们|你))/i;
 
 export function validateCreatorSynthesis(input: {
   creatorRunId: string;
@@ -56,7 +56,7 @@ export function validateCreatorSynthesis(input: {
       readyDeep.has(item.postExternalId)
         ? item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
         : unavailableDeep.has(item.postExternalId) && item.evidenceStatus === "surface_only"
-          && item.unknowns.some((unknown) => /媒体|视频.*不可|无法.*视频/.test(unknown))),
+          && item.unknowns.some((unknown) => /媒体|视频.*(不可|无法|未知)|无法.*视频/.test(unknown))),
       message: "可得视频必须绑定重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确视频内容未知。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),
       message: "High / Base / Low 三档必须同时存在。" },
