@@ -114,17 +114,27 @@ describe("ego-browser scripts", () => {
     expect(script).toMatch(/300031/);
     expect(script).toMatch(/安全限制/);
     expect(script).toMatch(/当前笔记暂时无法浏览/);
-    expect(script).toMatch(/立即停止且不会自动重试/);
+    expect(script).toMatch(/仍检测到明确安全验证，已停止/);
     expect(script).toContain("if (handoff) break");
   });
 
-  it("turns repeated detail redirects into a resumable user handoff", () => {
+  it("classifies repeated detail redirects as an internal bounded blocker", () => {
     const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a",
       posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", resolveMedia: true }], taskSpaceId: 4 });
-    expect(script).toContain("detail_navigation_required");
-    expect(script).toContain("await handOffTaskSpace(task.id)");
-    expect(script).toContain("任务已停在博主主页");
+    expect(script).toContain("failureClass: 'navigation_redirect'");
+    expect(script).toContain("code: 'page_shape_unknown', retryable: true");
+    expect(script).toContain("这是内部导航阻塞，不要求用户操作");
     expect(script).toContain("output.length === 0");
     expect(script).toContain("未匹配项将进入下一恢复批次");
+  });
+
+  it("binds a real challenge handoff to post, canonical URL, signal, phase, and fallback", () => {
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", resolveMedia: true }], taskSpaceId: 4 });
+    for (const field of ["postExternalId", "inputUrl", "canonicalUrl", "failureClass", "challengeType", "phase", "fallbackAttempted"]) {
+      expect(script).toContain(field);
+    }
+    expect(script).toContain("if (!fallbackUsed)");
+    expect(script).toContain("source: 'challenge_fallback'");
   });
 });

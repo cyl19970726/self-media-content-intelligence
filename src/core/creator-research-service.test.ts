@@ -389,6 +389,39 @@ describe("CreatorResearchService", () => {
     service.close();
   });
 
+  it("keeps a navigation redirect internal and allows only one task-level retry", async () => {
+    const service = serviceForTest();
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/redirect-creator", creatorId: "redirect-creator",
+      creatorName: "重定向博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:redirect"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 1, identityAnchors: [] },
+      posts: [{ externalId: "post-redirect", url: "https://www.xiaohongshu.com/user/profile/redirect-creator/post-redirect",
+        title: "重定向", visibleText: "重定向\n1", mediaType: "video", likesLabel: "1", likes: 1 }]
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich() {
+        return { state: "blocked", finalUrl: run.profileUrl, taskSpaceId: 4, code: "page_shape_unknown",
+          message: "canonical 与 fallback 均重定向", retryable: true,
+          navigationDiagnostic: { postExternalId: "post-redirect",
+            inputUrl: `${run.profileUrl}/post-redirect`, canonicalUrl: "https://www.xiaohongshu.com/explore/post-redirect",
+            failureClass: "navigation_redirect", challengeType: null, phase: "bounded_navigation_exhausted", fallbackAttempted: true } };
+      }
+    };
+    await service.processNext("worker", executor, "serial");
+    await service.processNext("worker", executor, "serial");
+    const backoff = service.get(run.id)!;
+    expect(backoff.status).toBe("backoff");
+    expect(backoff.blockers[0]).toMatchObject({ code: "page_shape_unknown", userActionRequired: false });
+    expect(service.events(run.id).at(-1)).toMatchObject({ type: "node.progress",
+      payload: { navigationDiagnostic: { failureClass: "navigation_redirect", postExternalId: "post-redirect" } } });
+
+    await service.processNext("worker", executor, "serial");
+    expect(service.get(run.id)?.status).toBe("failed");
+    service.close();
+  });
+
   it("requeues only failed video reconstructions without reacquiring the inventory", async () => {
     const values = new Map<string, unknown>();
     const service = serviceForTest({ values, reconstruct: async (request) => {

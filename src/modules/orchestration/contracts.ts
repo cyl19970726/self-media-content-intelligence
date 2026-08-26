@@ -73,6 +73,16 @@ export type CreatorAcquisitionPost = {
   likes: number | null;
 };
 
+export type CreatorNavigationDiagnostic = {
+  postExternalId: string | null;
+  inputUrl: string | null;
+  canonicalUrl: string | null;
+  failureClass: "platform_challenge" | "login_expired" | "navigation_redirect" | "user_control";
+  challengeType: string | null;
+  phase: string;
+  fallbackAttempted: boolean;
+};
+
 export type CreatorAcquisitionResult =
   | {
       state: "ready";
@@ -91,6 +101,7 @@ export type CreatorAcquisitionResult =
       taskSpaceId: number;
       code: "login_required" | "captcha_required" | "user_took_control" | "detail_navigation_required";
       message: string;
+      navigationDiagnostic?: CreatorNavigationDiagnostic;
     }
   | {
       state: "blocked";
@@ -99,6 +110,7 @@ export type CreatorAcquisitionResult =
       code: "identity_ambiguous" | "page_shape_unknown" | "browser_unavailable";
       message: string;
       retryable: boolean;
+      navigationDiagnostic?: CreatorNavigationDiagnostic;
     };
 
 export interface CreatorAcquisitionExecutor {

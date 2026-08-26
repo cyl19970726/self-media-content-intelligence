@@ -754,10 +754,26 @@ export class CreatorResearchService {
         this.repository.save(run);
         this.repository.updateJobStatus({ jobId: job.id, status: "needs_user", updatedAt: completedAt });
         this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "handoff.required", createdAt: completedAt,
-          message: result.message, payload: { code: result.code, taskSpaceId: result.taskSpaceId } });
+          message: result.message, payload: { code: result.code, taskSpaceId: result.taskSpaceId,
+            navigationDiagnostic: result.navigationDiagnostic ?? null } });
         return;
       }
       if (result.state === "blocked") {
+        if (result.retryable && job.attempts < 2) {
+          run.status = "backoff";
+          run.updatedAt = completedAt;
+          run.worker = { state: "backoff", attempt: job.attempts, jobId: job.id, workerId: null, lastHeartbeatAt: completedAt };
+          run.blockers = [{ code: result.code, message: result.message, userActionRequired: false }];
+          run.nextAction = "内部 canonical/fallback 导航将自动恢复一次；不要求用户接管，也不重抓基本盘。";
+          stage(run, "deep_capture").status = "pending";
+          stage(run, "deep_capture").message = result.message;
+          this.repository.save(run);
+          this.repository.updateJobStatus({ jobId: job.id, status: "backoff", updatedAt: completedAt, lastError: result.message });
+          this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.progress", createdAt: completedAt,
+            message: "详情导航归因为内部可恢复阻塞；将进行唯一一次任务级重试。",
+            payload: { code: result.code, retry: 1, navigationDiagnostic: result.navigationDiagnostic ?? null } });
+          return;
+        }
         this.failRun(run, job, workerId, result.message, result.code);
         return;
       }
