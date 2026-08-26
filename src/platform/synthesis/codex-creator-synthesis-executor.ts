@@ -165,7 +165,9 @@ Validated reconstruction batch: ${artifactPath(request.reconstructionBatchArtifa
 
 Independently verify exactly these seven hard gates without averaging:
 canonical_21_coverage, deep_9_ready, deep_evidence_binding, three_tiers_present, evidence_classification, research_creation_separation, backend_metrics_unknown.
-Inspect referenced ready reconstructions/evaluations/gates directly for deep claims. Surface-only rows may not borrow deep evidence. Public likes never prove exposure, completion rate, conversion, ads, or sales. Reject any advice about what we should copy, publish, title, cover, test, or launch.
+Interpret deep_9_ready as a historical identifier, not a requirement for nine unique videos: pass when high, median-near, mean-near, and low each have three registered group memberships, overlapping posts are analyzed once, and every unique registered deep candidate is batch-ready. Do not demand more unique videos than the frozen selection and batch contain.
+For deep_evidence_binding, inspect that every deep row cites its reconstruction and independent evaluation and preserves evaluationPolicy provenance. Under single_pass, failedGateIds on a batch-ready row are quality warnings and must remain explicit limitations; they do not make the row not ready. Fail this gate only for missing/unreadable/corrupt artifacts, missing deep-row bindings, or missing mixed-policy boundaries. Do not reapply legacy iterative hard gates to single-pass rows.
+Surface-only rows may not borrow deep evidence. Public likes never prove exposure, completion rate, conversion, ads, or sales. Reject any advice about what we should copy, publish, title, cover, test, or launch.
 
 Write only ${evaluationPath} as:
 {"schemaVersion":"creator-synthesis-independent-evaluation@1","creatorRunId":"${request.creatorRunId}","candidateRevisionFingerprint":"${candidateRevisionFingerprint}","evaluatorRunId":"${evaluatorRunId}","independentOfCandidate":true,"evaluatedAt":"ISO timestamp","gates":[{"id":"one required id","pass":true,"message":"specific finding","evidenceRefs":["resolvable artifact ref"]}]}
