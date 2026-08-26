@@ -730,7 +730,7 @@ export class CreatorResearchService {
         ? selection.items.filter((item) => requestedMediaIds.includes(item.externalId))
         : pendingSelection.slice(0, 3);
       if (detailBatch.length === 0) throw new Error("详情节点没有待处理作品但仍被重新排队");
-      const result: CreatorDetailResult = await executor.enrich({
+      let result: CreatorDetailResult = await executor.enrich({
         runId: run.id,
         profileUrl: run.profileUrl,
         creatorName: run.creatorName,
@@ -774,8 +774,29 @@ export class CreatorResearchService {
             payload: { code: result.code, retry: 1, navigationDiagnostic: result.navigationDiagnostic ?? null } });
           return;
         }
-        this.failRun(run, job, workerId, result.message, result.code);
-        return;
+        if (result.code === "page_shape_unknown" && result.navigationDiagnostic?.postExternalId && result.taskSpaceId !== null) {
+          const navigationDiagnostic = result.navigationDiagnostic;
+          const unavailable = detailBatch.find((item) => item.externalId === navigationDiagnostic.postExternalId) ?? detailBatch[0];
+          if (!unavailable) throw new Error("详情导航失败但缺少对应选择记录");
+          this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.progress", createdAt: completedAt,
+            message: "目标详情在 canonical 与唯一一次 fallback 后仍不可访问；记录为未知并继续后续帖子。",
+            payload: { code: result.code, navigationDiagnostic } });
+          result = {
+            state: "ready",
+            taskSpaceId: result.taskSpaceId,
+            posts: [{ externalId: unavailable.externalId, finalUrl: canonicalXhsPostUrl(unavailable.externalId),
+              title: unavailable.title, description: null, publishedLabel: null, mediaType: "unknown",
+              videoCandidateUrl: null, coverCandidateUrl: null, inspectedAt: completedAt,
+              warnings: ["detail_unavailable_after_canonical_and_single_fallback", `failure_phase:${navigationDiagnostic.phase}`] }],
+            warnings: ["一条详情在有界自动恢复后仍不可访问；字段保持未知，未要求用户接管。"]
+          };
+        } else {
+          this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.progress", createdAt: completedAt,
+            message: "详情阻塞已归因，诊断随失败事件保留。",
+            payload: { code: result.code, navigationDiagnostic: result.navigationDiagnostic ?? null } });
+          this.failRun(run, job, workerId, result.message, result.code);
+          return;
+        }
       }
       const newDetailPosts = result.posts.map((post) => {
         const selected = selection.items.find((item) => item.externalId === post.externalId);

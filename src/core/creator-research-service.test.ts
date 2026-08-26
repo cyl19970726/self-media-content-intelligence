@@ -418,7 +418,10 @@ describe("CreatorResearchService", () => {
       payload: { navigationDiagnostic: { failureClass: "navigation_redirect", postExternalId: "post-redirect" } } });
 
     await service.processNext("worker", executor, "serial");
-    expect(service.get(run.id)?.status).toBe("failed");
+    const degraded = service.get(run.id)!;
+    expect(degraded.status).not.toBe("failed");
+    expect(degraded.coverage.enrichedPosts).toBe(1);
+    expect(service.events(run.id).some((event) => event.message.includes("记录为未知并继续后续帖子"))).toBe(true);
     service.close();
   });
 
