@@ -96,4 +96,30 @@ describe("creator research pipeline projection", () => {
     expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成三镜头分析：1/7");
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：1/7");
   });
+
+  it("projects bounded media gaps as unavailable instead of passed or pending", () => {
+    const base = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc")!;
+    const items = base.portfolio.items.map((item, index) => ({
+      ...item,
+      deepSample: index < 6,
+      evidenceStatus: index < 4 ? "deep_validated" as const : "surface_only" as const
+    }));
+    const run = activeVideoRun();
+    run.status = "ready";
+    run.currentStage = "synthesis";
+    run.videoWork = { concurrencyLimit: 3, activePostExternalIds: [], queuedPosts: 0, analyzedPosts: 4, failedPosts: 2 };
+    run.synthesisArtifactRef = "/artifacts/synthesis.json";
+    run.synthesisGateArtifactRef = "/artifacts/synthesis-gate.json";
+    const projected = buildCreatorResearchPipeline(run, {
+      ...base,
+      boundaries: [...base.boundaries, "bounded_media_retry_once：2 条媒体不可得"],
+      portfolio: { ...base.portfolio, items, deepCount: 6 }
+    });
+
+    expect(projected.stages.find((stage) => stage.id === "media_verification")).toMatchObject({
+      state: "partial", gateState: "partial", message: "4/6 条媒体通过核验；2 条经一次定向补取仍不可得，视频内容保持未知。"
+    });
+    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.message).toContain("2 条媒体不可得");
+    expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.message).toContain("2 条媒体不可得且未评估视频内容");
+  });
 });
