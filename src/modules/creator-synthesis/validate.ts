@@ -24,8 +24,12 @@ export function validateCreatorSynthesis(input: {
   const deep = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
   const readyDeep = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
   const deepRows = synthesis.postAnalyses.filter((item) => deep.has(item.postExternalId));
+  const unavailableDeep = new Set(batch.items.filter((item) => item.state === "blocked"
+    && item.failedGateIds.includes("media_verification")).map((item) => item.postExternalId));
   const policyGroups = new Map<string, number>();
-  for (const item of batch.items) policyGroups.set(item.evaluationPolicy, (policyGroups.get(item.evaluationPolicy) ?? 0) + 1);
+  for (const item of batch.items.filter((candidate) => candidate.state === "ready")) {
+    policyGroups.set(item.evaluationPolicy, (policyGroups.get(item.evaluationPolicy) ?? 0) + 1);
+  }
   const policyBoundary = synthesis.boundaries.join(" ");
   const policyProvenanceReady = policyGroups.size < 2 || [...policyGroups.entries()].every(([policy, count]) =>
     policyBoundary.includes(policy) && policyBoundary.includes(String(count))
@@ -36,13 +40,24 @@ export function validateCreatorSynthesis(input: {
   const deepContractReady = selection.ruleVersion.startsWith("four-groups-")
     ? requiredGroups.every((group) => groupCoverage[group] >= 3)
     : deep.size === 9;
+  const boundedMediaGap = batch.limitations.some((item) => item.startsWith("bounded_media_retry_once:"))
+    && unavailableDeep.size > 0
+    && batch.items.filter((item) => item.state !== "ready").every((item) => unavailableDeep.has(item.postExternalId));
+  const readyGroupCoverage = Object.fromEntries(requiredGroups.map((group) => [group,
+    selection.items.filter((item) => item.deepGroups.includes(group) && readyDeep.has(item.externalId)).length
+  ])) as Record<typeof requiredGroups[number], number>;
+  const boundedCoverageReady = boundedMediaGap && requiredGroups.every((group) => readyGroupCoverage[group] >= 1);
   const gates = [
     { id: "canonical_21_coverage", pass: expected.size === 21 && actual.size === 21 && [...expected].every((id) => actual.has(id)),
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
-    { id: "deep_9_ready", pass: deepContractReady && readyDeep.size === deep.size && [...deep].every((id) => readyDeep.has(id)),
-      message: "历史 gate ID；实际要求高表现、中位数附近、均值附近、低表现各 3 个组成员，并允许重叠样本只分析一次；全部注册的唯一深度样本必须完成单轮视频分析。" },
-    { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) => item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))),
-      message: "深度结论必须绑定重建及 evaluator policy；混合策略时须注明各组数量且不得横向比较完成度。" },
+    { id: "deep_9_ready", pass: deepContractReady && ((readyDeep.size === deep.size && [...deep].every((id) => readyDeep.has(id))) || boundedCoverageReady),
+      message: "历史 gate ID；四组各保留 3 个注册成员并允许重叠。全部可得媒体须完成单轮分析；仅当一次定向补取后仍不可得、四组各至少有 1 条已验证视频且缺口显式保留时，才允许带边界通过。" },
+    { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
+      readyDeep.has(item.postExternalId)
+        ? item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
+        : unavailableDeep.has(item.postExternalId) && item.evidenceStatus === "surface_only"
+          && item.unknowns.some((unknown) => /媒体|视频.*不可|无法.*视频/.test(unknown))),
+      message: "可得视频必须绑定重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确视频内容未知。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),
       message: "High / Base / Low 三档必须同时存在。" },
     { id: "evidence_classification", pass: JSON.stringify(synthesis).includes("factClass") && synthesis.postAnalyses.every((item) => item.evidenceRefs.length > 0),

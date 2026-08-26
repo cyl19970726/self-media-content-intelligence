@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { creatorSelectionSchema } from "../portfolio/contracts.js";
 import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
 import type { CreatorSynthesisIndependentEvaluation } from "./contracts.js";
 import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "./validate.js";
@@ -159,6 +160,34 @@ describe("validateCreatorSynthesis", () => {
     incomplete.failedPosts = 1;
     const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: incomplete, synthesis: synthesis(), checkedAt });
     expect(gate.failedGateIds).toContain("deep_9_ready");
+  });
+
+  it("accepts an explicit bounded media gap when every performance group retains ready video evidence", () => {
+    const selected = creatorSelectionSchema.parse(selection());
+    selected.ruleVersion = "four-groups-video-refined-v3";
+    for (const item of selected.items) item.deepGroups = [];
+    for (const item of selected.items.filter((item) => item.tier === "high" && item.deepCandidate)) item.deepGroups = ["high"];
+    for (const item of selected.items.filter((item) => item.tier === "base" && item.deepCandidate)) item.deepGroups = ["median", "mean"];
+    for (const item of selected.items.filter((item) => item.tier === "low" && item.deepCandidate)) item.deepGroups = ["low"];
+    const bounded = batch();
+    const unavailable = bounded.items.at(-1)!;
+    Object.assign(unavailable, { state: "blocked", sourceMediaArtifactRef: null, reconstructionArtifactRef: null,
+      articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,
+      threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+      failedGateIds: ["media_verification"], message: "一次定向补取后媒体仍不可得" });
+    bounded.readyPosts = 8;
+    bounded.failedPosts = 1;
+    bounded.limitations.push(`bounded_media_retry_once:${unavailable.postExternalId}`);
+    const candidate = synthesis();
+    const row = candidate.postAnalyses.find((item) => item.postExternalId === unavailable.postExternalId)!;
+    row.evidenceStatus = "surface_only";
+    row.evidenceRefs = [`/artifacts/${runId}/details.json#${unavailable.postExternalId}`];
+    row.unknowns.push("视频媒体经一次补取仍不可得，视频内容未知");
+
+    const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selected, batch: bounded,
+      synthesis: candidate, checkedAt });
+    expect(gate.failedGateIds).not.toContain("deep_9_ready");
+    expect(gate.failedGateIds).not.toContain("deep_evidence_binding");
   });
 
   it("requires an explicit boundary when evaluator policies are mixed", () => {
