@@ -5,6 +5,7 @@ import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } fro
 import { loadCreatorConsole } from "./console.js";
 import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
 import { loadNextWaveDossier } from "./next-wave-dossier.js";
+import { buildCreatorResearchPipeline } from "../modules/creator-research/pipeline.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 
@@ -111,7 +112,7 @@ export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorD
 }
 
 function chooseRun(service: CreatorResearchService, id: string): CreatorResearchRun | null {
-  return service.get(id) ?? service.list(100).find((run) => run.creatorId === id) ?? null;
+  return service.get(id) ?? service.list(100).find((run) => run.creatorId === id || run.canonicalSlug === id) ?? null;
 }
 
 export function projectRunDossier(service: CreatorResearchService, requestedId: string): CreatorDossier | null {
@@ -129,7 +130,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const reconstruction = new Map((data?.reconstructionBatch?.items ?? []).map((item) => [item.postExternalId, item]));
   const postAnalysis = new Map((synthesis?.postAnalyses ?? []).map((item) => [item.postExternalId, item]));
   const capturedAt = activeRun.lastSnapshotAt;
-  const canonicalId = activeRun.creatorId ?? activeRun.id;
+  const canonicalId = activeRun.canonicalSlug ?? activeRun.creatorId ?? activeRun.id;
   const items = (selection?.items ?? []).map((item) => {
     const detail = details.get(item.externalId);
     const mediaItem = media.get(item.externalId);
@@ -184,7 +185,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   };
   const tierClaims = (tier: "high" | "base" | "low") => {
     const values = tier === "high" ? synthesis?.performance.high : tier === "low" ? synthesis?.performance.low : synthesis?.performance.baseline;
-    return values?.map(claim) ?? [unknown(`${tierLabels[tier]}机制等待 9 条深度证据闭环。`)];
+    return values?.map(claim) ?? [unknown(`${tierLabels[tier]}机制等待高 / 中位 / 均值附近 / 低表现四组深度证据闭环。`)];
   };
   return creatorDossierSchema.parse({
     schemaVersion: "1.0.0",
@@ -238,11 +239,13 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
-  if (runProjection) return runProjection;
+  if (runProjection) return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection) });
   const nextWave = loadNextWaveDossier(id);
-  if (nextWave) return nextWave;
+  if (nextWave) return creatorDossierSchema.parse({ ...nextWave, pipeline: buildCreatorResearchPipeline(null, nextWave) });
   const deepLegacy = loadLegacyDeepDossier(id);
-  if (deepLegacy) return deepLegacy;
+  if (deepLegacy) return creatorDossierSchema.parse({ ...deepLegacy, pipeline: buildCreatorResearchPipeline(null, deepLegacy) });
   const legacy = loadCreatorConsole(id);
-  return legacy ? projectLegacyDossier(id, legacy) : null;
+  if (!legacy) return null;
+  const projection = projectLegacyDossier(id, legacy);
+  return creatorDossierSchema.parse({ ...projection, pipeline: buildCreatorResearchPipeline(null, projection) });
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "多博主对比研究"
+  short_description: "基于已验收档案比较博主定位、机制与证据边界"
+  default_prompt: "Use $compare-creators to compare these accepted creator dossiers without manufacturing comparability."

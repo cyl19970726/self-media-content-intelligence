@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "creator-skill-system@1",
+  "entrySkills": [
+    "video-content-reconstruction",
+    "analyze-creator-videos",
+    "compare-creators",
+    "content-strategy-workbench"
+  ],
+  "internalCapabilities": [
+    "xiaohongshu-creator-acquisition",
+    "creator-portfolio-annotation",
+    "creator-sample-selection",
+    "video-content-reconstruction",
+    "creator-research-synthesis",
+    "creator-research-evaluator"
+  ],
+  "skills": [
+    {
+      "id": "xiaohongshu-creator-acquisition",
+      "dependencies": [],
+      "owns": ["collection-inventory", "collection-status", "detail-observations", "cover-manifest", "media-manifest", "comment-snapshots"]
+    },
+    {
+      "id": "creator-portfolio-annotation",
+      "dependencies": ["xiaohongshu-creator-acquisition"],
+      "owns": ["portfolio-annotations"]
+    },
+    {
+      "id": "creator-sample-selection",
+      "dependencies": ["creator-portfolio-annotation"],
+      "owns": ["selection"]
+    },
+    {
+      "id": "video-content-reconstruction",
+      "dependencies": [],
+      "owns": ["video-probe", "capture-protocol", "video-evidence", "video-reconstruction", "video-article"]
+    },
+    {
+      "id": "creator-research-synthesis",
+      "dependencies": ["creator-portfolio-annotation", "creator-sample-selection", "video-content-reconstruction"],
+      "owns": ["creator-analysis"]
+    },
+    {
+      "id": "creator-research-evaluator",
+      "dependencies": ["xiaohongshu-creator-acquisition", "creator-portfolio-annotation", "creator-sample-selection", "video-content-reconstruction", "creator-research-synthesis"],
+      "owns": ["creator-evaluation", "creator-gate-report"]
+    },
+    {
+      "id": "analyze-creator-videos",
+      "dependencies": ["xiaohongshu-creator-acquisition", "creator-portfolio-annotation", "creator-sample-selection", "video-content-reconstruction", "creator-research-synthesis", "creator-research-evaluator"],
+      "owns": ["creator-run-manifest", "creator-dashboard-projection", "creator-run-validation"]
+    },
+    {
+      "id": "compare-creators",
+      "dependencies": ["creator-research-evaluator"],
+      "owns": ["creator-comparison"]
+    },
+    {
+      "id": "content-strategy-workbench",
+      "dependencies": ["video-content-reconstruction", "compare-creators"],
+      "owns": ["content-strategy-brief"]
+    }
+  ]
+}

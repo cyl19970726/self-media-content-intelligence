@@ -48,6 +48,13 @@ export const videoResearchSchema = z.object({
       cognitiveChange: z.string().nullable(), comprehensionLoad: z.string().nullable(), payoff: z.string().nullable(), evidenceRefs: z.array(z.string())
     })),
     informationDesign: z.array(z.object({ kind: z.string().min(1), statement: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string()) })),
+    proofDesign: z.array(z.object({
+      proofType: z.enum(["visible_proof", "creator_claim", "system_inference"]),
+      statement: z.string(), boundary: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
+    })).default([]),
+    loadAndPayoff: z.object({
+      compression: z.string(), repetition: z.string(), payoffDistance: z.string(), comprehensionCosts: z.array(z.string())
+    }).default({ compression: "尚未分析", repetition: "尚未分析", payoffDistance: "尚未分析", comprehensionCosts: [] }),
     notes: z.array(z.string())
   }),
   visualEditing: z.object({
@@ -60,6 +67,10 @@ export const videoResearchSchema = z.object({
     analyzedDuration: z.number().nonnegative().nullable(),
     claims: z.array(z.object({ statement: z.string(), function: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string()) })),
     shotSemantics: z.array(z.object({ start: z.number().nullable(), end: z.number().nullable(), role: z.string(), carrier: z.string(), meaningChange: z.string(), evidenceRefs: z.array(z.string()) })),
+    uiProcedureStates: z.array(z.object({
+      label: z.string(), before: z.string(), during: z.string(), after: z.string(), input: z.string().nullable(),
+      parameters: z.array(z.string()), output: z.string().nullable(), continuity: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
+    })).default([]),
     audioRole: z.string().nullable(),
     notes: z.array(z.string())
   }),

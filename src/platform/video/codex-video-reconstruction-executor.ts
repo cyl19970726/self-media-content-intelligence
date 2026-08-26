@@ -3,12 +3,15 @@ import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { artifactPath, artifactRef } from "../../core/artifacts.js";
-import { runArtifactDir } from "../../core/config.js";
+import { projectRoot, runArtifactDir } from "../../core/config.js";
 import { runFile, runFileInput } from "../../core/process.js";
 import {
   videoReconstructionOutcomeSchema,
   videoReconstructionRequestSchema,
+  videoReconstructionLifecycleEventSchema,
+  type VideoReconstructionChildRole,
   type VideoReconstructionExecutor,
+  type VideoReconstructionLifecycleObserver,
   type VideoReconstructionOutcome
 } from "../../modules/video-analysis/contracts.js";
 import {
@@ -30,27 +33,193 @@ const mediaSkillDir = process.env.SELF_MEDIA_MEDIA_SKILL_DIR ??
 
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
-type RuntimeLensName = "content_restoration" | "directing_logic" | "visual_editing";
-
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
+
+type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string }> };
+type TargetedEvidenceLike = { frames?: Array<{ id?: string }> };
+
+export function shouldRefreshOcrEvidence(
+  protocolInput: unknown,
+  targetedInput: unknown,
+  ocrInput: unknown
+): boolean {
+  const protocolRequestsOcr = /"(?:ocr_review|ui_state_review)"/.test(JSON.stringify(protocolInput));
+  const targetedFrames = (targetedInput as TargetedEvidenceLike | null)?.frames ?? [];
+  const ocrFrames = (ocrInput as OcrEvidenceLike | null)?.frames ?? [];
+  if (!protocolRequestsOcr && ocrFrames.length === 0) return false;
+  if (ocrFrames.length === 0) return targetedFrames.length > 0;
+  const coveredFrameIds = new Set(ocrFrames.map((frame) => frame.frameId).filter((id): id is string => Boolean(id)));
+  const missingTargetedFrame = targetedFrames.some((frame) => Boolean(frame.id) && !coveredFrameIds.has(frame.id as string));
+  const everyFrameFailed = ocrFrames.every((frame) => frame.status === "failed");
+  return missingTargetedFrame || everyFrameFailed;
+}
+
+export function normalizeRuntimeLensEvidence(input: unknown): unknown {
+  if (!Array.isArray(input)) return input;
+  return input.map((rule) => {
+    if (!rule || typeof rule !== "object") return rule;
+    const value = rule as Record<string, unknown>;
+    if (!Array.isArray(value.evidenceRefs)) return rule;
+    return {
+      ...value,
+      evidenceRefs: value.evidenceRefs.map((reference) => {
+        if (!reference || typeof reference !== "object") return reference;
+        const normalized = { ...(reference as Record<string, unknown>) };
+        if (normalized.jsonPointer === "") delete normalized.jsonPointer;
+        return normalized;
+      })
+    };
+  });
+}
+
+function readJsonIfPresent(file: string): unknown {
+  if (!exists(file)) return null;
+  try { return JSON.parse(fs.readFileSync(file, "utf8")); }
+  catch { return null; }
+}
+
+async function refreshOcrEvidenceIfNeeded(outputDir: string): Promise<void> {
+  const protocolPath = path.join(outputDir, "capture-protocol.json");
+  const targetedPath = path.join(outputDir, "targeted-evidence/targeted-evidence.json");
+  const ocrPath = path.join(outputDir, "targeted-evidence/ocr-evidence.json");
+  if (!exists(protocolPath) || !exists(targetedPath)) return;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    if (!shouldRefreshOcrEvidence(
+      readJsonIfPresent(protocolPath),
+      readJsonIfPresent(targetedPath),
+      readJsonIfPresent(ocrPath)
+    )) return;
+    try {
+      await runFile("swift", [path.join(skillDir, "scripts/ocr-frames.swift"),
+        "--manifest", targetedPath, "--out", ocrPath], { cwd: outputDir, timeout: 10 * 60_000 });
+    } catch {
+      // The independent evaluator keeps the channel failed if both bounded attempts fail.
+    }
+  }
+}
 
 function commandUnavailable(message: string): boolean {
   return /CODEX_RUNNER_UNAVAILABLE|ENOENT|not found|command not found|authentication|login required|unauthorized/i.test(message);
 }
 
-async function runCodex(prompt: string, cwd: string, label: string): Promise<void> {
+function childRole(label: string): VideoReconstructionChildRole {
+  if (label === "candidate") return "candidate";
+  if (label.startsWith("evaluator-")) return "generic_evaluator";
+  if (label.startsWith("repair-")) return "generic_repair";
+  if (label.startsWith("runtime-repair-")) return "runtime_repair";
+  if (label.startsWith("runtime-recheck-")) return "generic_recheck";
+  if (label === "runtime-content_restoration") return "content_restoration_evaluator";
+  if (label === "runtime-directing_logic") return "directing_logic_evaluator";
+  if (label === "runtime-visual_editing") return "visual_editing_evaluator";
+  throw new Error(`UNKNOWN_CHILD_ROLE:${label}`);
+}
+
+function childPolicy(role: VideoReconstructionChildRole): { staleAfterMs: number; timeoutMs: number } {
+  const defaults = role === "candidate"
+    ? { staleAfterMs: 15 * 60_000, timeoutMs: 90 * 60_000 }
+    : ["generic_repair", "runtime_repair"].includes(role)
+      ? { staleAfterMs: 10 * 60_000, timeoutMs: 45 * 60_000 }
+      : { staleAfterMs: 8 * 60_000, timeoutMs: 30 * 60_000 };
+  const staleOverride = Number(process.env.SELF_MEDIA_CHILD_STALE_MS);
+  const timeoutOverride = Number(process.env.SELF_MEDIA_CHILD_TIMEOUT_MS);
+  return {
+    staleAfterMs: Number.isFinite(staleOverride) && staleOverride > 0 ? staleOverride : defaults.staleAfterMs,
+    timeoutMs: Number.isFinite(timeoutOverride) && timeoutOverride > 0 ? timeoutOverride : defaults.timeoutMs
+  };
+}
+
+function outputArtifactRevisions(cwd: string, lastMessage: string): Record<string, string> {
+  const relativeFiles = [
+    "probe.json", "capture-protocol.json", "targeted-evidence/targeted-evidence.json",
+    "targeted-evidence/ocr-evidence.json", "reconstruction.json", "article.md", "run-notes.md",
+    "evaluation.json", "gate-report.json", "runtime-three-lens-evaluation.json",
+    "runtime-three-lens-gate-report.json", "runtime-three-lens/content-restoration.json",
+    "runtime-three-lens/directing-logic.json", "runtime-three-lens/visual-editing.json",
+    path.basename(lastMessage)
+  ];
+  return Object.fromEntries(relativeFiles.flatMap((relative) => {
+    const absolute = path.join(cwd, relative);
+    return exists(absolute) ? [[relative, sha256(absolute)]] : [];
+  }));
+}
+
+function observeSafely(
+  observer: VideoReconstructionLifecycleObserver | undefined,
+  event: Parameters<VideoReconstructionLifecycleObserver>[0]
+): void {
+  if (!observer) return;
+  try { observer(videoReconstructionLifecycleEventSchema.parse(event)); }
+  catch {
+    // Control-plane reporting must never corrupt the research worker itself.
+  }
+}
+
+export async function runCodex(
+  prompt: string,
+  cwd: string,
+  label: string,
+  inputRevision: string,
+  observer?: VideoReconstructionLifecycleObserver
+): Promise<void> {
   const binary = process.env.SELF_MEDIA_CODEX_BIN ?? "codex";
   const lastMessage = path.join(cwd, `${label}-last-message.txt`);
+  const role = childRole(label);
+  const policy = childPolicy(role);
+  const childRunId = crypto.randomUUID();
+  const startedAt = new Date().toISOString();
+  let lastProgressAt = startedAt;
+  let lastProgressEmittedAt = 0;
+  let staleEmitted = false;
+  const baseEvent = { childRunId, role, startedAt, inputRevision };
+  observeSafely(observer, {
+    ...baseEvent, status: "started", lastProgressAt, outputArtifactRevisions: {}, errorCode: null
+  });
+  const staleTimer = setInterval(() => {
+    if (staleEmitted || Date.now() - Date.parse(lastProgressAt) < policy.staleAfterMs) return;
+    staleEmitted = true;
+    observeSafely(observer, {
+      ...baseEvent, status: "stale", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+    });
+  }, Math.min(60_000, policy.staleAfterMs));
   const environment = await withSystemProxy({ ...process.env, SELF_MEDIA_CHILD_ROLE: label, SELF_MEDIA_CHILD_OUTPUT: cwd });
-  try { await runFileInput(binary, [
-    "exec", "-", "--skip-git-repo-check", "--ephemeral", "--color", "never",
-    "--approve-for-me", "-C", cwd, "-o", lastMessage
-  ], prompt, { cwd, timeout: 3 * 60 * 60_000, env: environment }); }
+  try {
+    await runFileInput(binary, [
+      "exec", "-", "--skip-git-repo-check", "--ephemeral", "--color", "never",
+      "--approve-for-me", "-C", cwd, "-o", lastMessage
+    ], prompt, {
+      cwd,
+      timeout: policy.timeoutMs,
+      env: environment,
+      onOutput: () => {
+        const at = Date.now();
+        lastProgressAt = new Date(at).toISOString();
+        staleEmitted = false;
+        if (at - lastProgressEmittedAt < 20_000) return;
+        lastProgressEmittedAt = at;
+        observeSafely(observer, {
+          ...baseEvent, status: "progress", lastProgressAt,
+          outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+        });
+      }
+    });
+    lastProgressAt = new Date().toISOString();
+    observeSafely(observer, {
+      ...baseEvent, status: "completed", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage), errorCode: null
+    });
+  }
   catch (error) {
     const message = error instanceof Error ? error.message : "";
+    lastProgressAt = new Date().toISOString();
+    observeSafely(observer, {
+      ...baseEvent, status: "failed", lastProgressAt,
+      outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage),
+      errorCode: /process_timeout/.test(message) ? "process_timeout" : "runner_failed"
+    });
     if (commandUnavailable(message)) throw new Error("CODEX_RUNNER_UNAVAILABLE");
     throw new Error(`CODEX_RUNNER_FAILED:${label}`);
-  }
+  } finally { clearInterval(staleTimer); }
 }
 
 function candidatePrompt(videoPath: string, outputDir: string): string {
@@ -61,6 +230,7 @@ Input media: ${videoPath}
 Writable output root: ${outputDir}
 
 Execute the Skill's evidence-pack, first-round open probe, video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured reconstruction, coverage/meta-gate self-audit, schema validation, and a human-readable article generated from reconstruction. If the source has speech and no subtitle file is supplied, use the transcription capability documented at ${mediaSkillDir}/SKILL.md and mark it as machine transcription.
+For known Mandarin speech, always use a multilingual model (never an .en model). If the preferred small model cannot download, fall back to the installed local whisper CLI with explicit --model base --language Chinese --task transcribe; the cached base model is an acceptable lower-confidence proposal when checked against audible speech and visible captions. A preferred-model download timeout alone does not make the available speech carrier unchecked.
 
 Isolation and evidence rules:
 - Do not read any previous report, creator analysis, audit, evaluation, or sibling video directory.
@@ -85,32 +255,13 @@ Independently inspect the source video, evidence/evidence-pack.json, targeted-ev
 
 Evaluate GATE first: critical-question recall, core evidence coverage, unsupported positive inference, timestamp accuracy, applicable process dependencies, correct unknown discipline, unchecked channels, and the exact meta-gate. Only if every hard gate passes, run JUDGE for readability, knowledge prioritization, evidence usefulness, execution value, and compression without loss.
 
-Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies instead of giving benefit of doubt.
+Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
+- ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
+- ${outputDir}/runtime-three-lens/directing-logic.json with DL-01 through DL-06
+- ${outputDir}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
+
+Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "src/modules/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
 `;
-}
-
-function repairPrompt(videoPath: string, outputDir: string, historyDir: string, attempt: number): string {
-  return `
-You are the candidate repair runner for attempt ${attempt}. Read the complete canonical Skill at ${skillDir}/SKILL.md and its directly required references/schemas.
-
-Source video: ${videoPath}
-Candidate root: ${outputDir}
-Independent failed evaluation and gate from the previous attempt: ${historyDir}/evaluation.json and ${historyDir}/gate-report.json
-
-Repair only the failed evidence closures. Independently inspect the source frames/timeline named by the evaluator; do not blindly copy evaluator prose. You may add video-specific capture actions, resample/crop frames, run real OCR/UI reading, correct time ranges and fact/unknown classifications, and update probe.json, capture-protocol.json, targeted-evidence manifests, reconstruction.json, article.md, and run-notes.md. Preserve valid prior work and all raw cue text. Do not read old reports, sibling videos, or any audit outside this candidate root. Do not create a new evaluation.json or gate-report.json; a fresh independent evaluator will do that.
-
-Before finishing, run canonical schema validation for the repaired candidate and explicitly check every failed gate from the archived report.
-`;
-}
-
-function archiveEvaluation(outputDir: string, attempt: number): string {
-  const historyDir = path.join(outputDir, "evaluation-history", `attempt-${attempt}`);
-  fs.mkdirSync(historyDir, { recursive: true });
-  for (const filename of ["evaluation.json", "evaluation.md", "evaluator-last-message.txt", "gate-report.json"]) {
-    const source = path.join(outputDir, filename);
-    if (exists(source)) fs.renameSync(source, path.join(historyDir, filename));
-  }
-  return historyDir;
 }
 
 function failedIds(gate: GateReport): string[] {
@@ -123,39 +274,7 @@ function sha256(file: string): string {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 }
 
-function threeLensEvaluatorPrompt(
-  videoPath: string,
-  outputDir: string,
-  lens: RuntimeLensName,
-  fingerprint: string,
-  evaluatorRunId: string
-): string {
-  const lensContract = lens === "content_restoration"
-    ? `CR-01 thesis + viewer change are substantive and evidenced; CR-02 >=3 knowledge units and all core units have time/evidence; CR-03 complete ordered transcript or explicit carrier substitute; CR-04 standalone article preserves every core unit; CR-05 process/argument dependencies resolve; CR-06 conflicts and unknowns remain explicit.`
-    : lens === "directing_logic"
-      ? `DL-01 distinct evidenced viewer-before/after; DL-02 >=2 time-ranged stages with directing function and cognitive change; DL-03 every promise resolves/defers/remains explicitly unresolved; DL-04 visible proof vs author claim vs inference; DL-05 concrete comprehension cost; DL-06 stages coherently cover every consequential meaning change.`
-      : `VE-01 concrete orientation/composition; VE-02 >=3 sparse and >=5 dense timecoded frames; VE-03 consequential visual claims resolve to evidence and name their role; VE-04 core cues map to all overlapping shots or explicit absence; VE-05 editing metrics disclose duration/denominator; VE-06 applicable UI procedure has before/during/after and montage is not causality; VE-07 non-speech audio is analyzed or explicitly unchecked.`;
-  const filename = lens.replaceAll("_", "-");
-  return `
-You are an independent runtime evaluator for the ${lens} lens only. You are not the candidate runner and must not repair candidate files.
-
-Source video: ${videoPath}
-Candidate root: ${outputDir}
-Candidate revision fingerprint: ${fingerprint}
-Evaluator run id: ${evaluatorRunId}
-
-Inspect the source media and candidate evidence directly. Apply these gates without averaging or borrowing success from another lens:
-${lensContract}
-
-Write only a JSON array to ${outputDir}/runtime-three-lens/${filename}.json. It must contain exactly the required rule IDs for this lens, once each. Every item has:
-{"ruleId":"CR-01|DL-01|VE-01","status":"pass|fail|not_checked","finding":"specific finding","evidenceRefs":[{"kind":"subtitle_cue|shot|frame|ocr|ui_state|operation|parameter|input_output|claim|case|counterexample|limitation|unknown|artifact","refId":"stable id","artifactRef":"artifact path","jsonPointer":"/optional/pointer","startMs":0,"endMs":1}],"evaluatorNotes":"why this status follows"}
-
-A passing rule must cite resolvable evidence. Use not_checked when a carrier was not inspected; use fail when inspected evidence violates the contract. Never infer readiness from the generic evaluation.json or gate-report.json, and do not read static legacy three-lens fixtures or prior creator reports.
-`;
-}
-
 async function evaluateRuntimeThreeLens(
-  videoPath: string,
   outputDir: string,
   postExternalId: string,
   reconstructionArtifactRef: string,
@@ -194,14 +313,9 @@ async function evaluateRuntimeThreeLens(
   const lenses: Record<string, unknown> = {};
   for (const definition of definitions) {
     const evaluatorRunId = crypto.randomUUID();
-    await runCodex(
-      threeLensEvaluatorPrompt(videoPath, outputDir, definition.lens, fingerprint, evaluatorRunId),
-      outputDir,
-      `runtime-${definition.lens}`
-    );
     const rulesPath = path.join(lensDir, definition.file);
     if (!exists(rulesPath)) throw new Error(`RUNTIME_THREE_LENS_MISSING:${definition.lens}`);
-    const rules = definition.schema.parse(JSON.parse(fs.readFileSync(rulesPath, "utf8")));
+    const rules = definition.schema.parse(normalizeRuntimeLensEvidence(JSON.parse(fs.readFileSync(rulesPath, "utf8"))));
     lenses[definition.key] = {
       evaluator: {
         evaluatorId: `runtime-${definition.lens}`,
@@ -248,7 +362,10 @@ async function validate(outputDir: string): Promise<GateReport> {
 }
 
 export class CodexVideoReconstructionExecutor implements VideoReconstructionExecutor {
-  async reconstruct(rawRequest: unknown): Promise<VideoReconstructionOutcome> {
+  async reconstruct(
+    rawRequest: unknown,
+    observeLifecycle?: VideoReconstructionLifecycleObserver
+  ): Promise<VideoReconstructionOutcome> {
     const request = videoReconstructionRequestSchema.parse(rawRequest);
     let videoPath: string;
     try { videoPath = artifactPath(request.sourceMediaArtifactRef); }
@@ -265,12 +382,16 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       const requiredCandidate = ["evidence/evidence-pack.json", "probe.json", "capture-protocol.json", "reconstruction.json", "article.md"];
       let missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       if (missing.length > 0) {
-        await runCodex(candidatePrompt(videoPath, outputDir), outputDir, "candidate");
+        await runCodex(
+          candidatePrompt(videoPath, outputDir), outputDir, "candidate",
+          request.sourceMediaArtifactRef, observeLifecycle
+        );
         missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       }
       if (missing.length > 0) return { state: "not_ready", reconstructionArtifactRef: null, evaluationArtifactRef: null,
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
+      await refreshOcrEvidenceIfNeeded(outputDir);
 
       const evaluationPath = path.join(outputDir, "evaluation.json");
       const gatePath = path.join(outputDir, "gate-report.json");
@@ -284,69 +405,57 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       };
       let gate: GateReport | null = exists(gatePath) && exists(evaluationPath)
         ? JSON.parse(fs.readFileSync(gatePath, "utf8")) as GateReport : null;
-      for (let repairAttempt = 0; repairAttempt <= 2; repairAttempt += 1) {
-        if (!gate) {
-          await runCodex(evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${repairAttempt + 1}`);
-          if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
-            evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
-            threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
-            message: "独立评估没有产生 evaluation.json。" };
-          gate = await validate(outputDir);
-        }
-        const failures = failedIds(gate);
-        if (gate.ready === true && failures.length === 0) {
-          let threeLensGate: RuntimeThreeLensGateReport;
-          try {
-            threeLensGate = await evaluateRuntimeThreeLens(
-              videoPath,
-              outputDir,
-              request.postExternalId,
-              refs.reconstructionArtifactRef,
-              refs.threeLensEvaluationArtifactRef
-            );
-          } catch (error) {
-            const runtimeEvaluationExists = exists(path.join(outputDir, "runtime-three-lens-evaluation.json"));
-            const runtimeGateExists = exists(path.join(outputDir, "runtime-three-lens-gate-report.json"));
-            return videoReconstructionOutcomeSchema.parse({
-              state: "not_ready",
-              reconstructionArtifactRef: refs.reconstructionArtifactRef,
-              evaluationArtifactRef: refs.evaluationArtifactRef,
-              gateReportArtifactRef: refs.gateReportArtifactRef,
-              threeLensEvaluationArtifactRef: runtimeEvaluationExists ? refs.threeLensEvaluationArtifactRef : null,
-              threeLensGateReportArtifactRef: runtimeGateExists ? refs.threeLensGateReportArtifactRef : null,
-              failedGateIds: [runtimeEvaluationExists ? "runtime_three_lens_artifact_invalid" : "runtime_three_lens_artifact_missing"],
-              message: `通用重建门已通过，但运行时三镜头独立评测未形成有效产物：${error instanceof Error ? error.message : "unknown"}`
-            });
-          }
-          if (threeLensGate.ready) return videoReconstructionOutcomeSchema.parse({
-            state: "ready", ...refs, gateCount: gate.gates?.length ?? 1, threeLensGateCount: 19, failedGateIds: []
-          });
-          return videoReconstructionOutcomeSchema.parse({
-            state: "not_ready",
-            reconstructionArtifactRef: refs.reconstructionArtifactRef,
-            evaluationArtifactRef: refs.evaluationArtifactRef,
-            gateReportArtifactRef: refs.gateReportArtifactRef,
-            threeLensEvaluationArtifactRef: refs.threeLensEvaluationArtifactRef,
-            threeLensGateReportArtifactRef: refs.threeLensGateReportArtifactRef,
-            failedGateIds: threeLensGate.failedGateIds.length > 0
-              ? threeLensGate.failedGateIds
-              : threeLensGate.uncheckedGateIds,
-            message: threeLensGate.status === "partial"
-              ? "运行时三镜头评测存在未检查通道；该视频保持 partial，不进入博主机制归纳。"
-              : "运行时三镜头硬闸未通过；该视频不进入博主机制归纳。"
-          });
-        }
-        if (repairAttempt === 2) return videoReconstructionOutcomeSchema.parse({ state: "not_ready",
-          reconstructionArtifactRef: refs.reconstructionArtifactRef, evaluationArtifactRef: refs.evaluationArtifactRef,
-          gateReportArtifactRef: refs.gateReportArtifactRef, threeLensEvaluationArtifactRef: null,
-          threeLensGateReportArtifactRef: null,
-          failedGateIds: failures.length > 0 ? failures : ["meta_gate"],
-          message: "两轮定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
-        const historyDir = archiveEvaluation(outputDir, repairAttempt + 1);
-        await runCodex(repairPrompt(videoPath, outputDir, historyDir, repairAttempt + 1), outputDir, `repair-${repairAttempt + 1}`);
-        gate = null;
+      const singlePassLensFiles = [
+        "runtime-three-lens/content-restoration.json",
+        "runtime-three-lens/directing-logic.json",
+        "runtime-three-lens/visual-editing.json"
+      ];
+      if (!gate || singlePassLensFiles.some((relative) => !exists(path.join(outputDir, relative)))) {
+        await runCodex(
+          evaluatorPrompt(videoPath, outputDir), outputDir, "evaluator-1",
+          sha256(path.join(outputDir, "reconstruction.json")), observeLifecycle
+        );
+        if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
+          message: "单轮独立评估没有产生 evaluation.json。" };
+        gate = await validate(outputDir);
       }
-      throw new Error("RECONSTRUCTION_LOOP_INVALID");
+
+      let threeLensGate: RuntimeThreeLensGateReport;
+      try {
+        threeLensGate = await evaluateRuntimeThreeLens(
+          outputDir,
+          request.postExternalId,
+          refs.reconstructionArtifactRef,
+          refs.threeLensEvaluationArtifactRef
+        );
+      } catch (error) {
+        return videoReconstructionOutcomeSchema.parse({
+          state: "not_ready",
+          reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: refs.evaluationArtifactRef,
+          gateReportArtifactRef: refs.gateReportArtifactRef,
+          threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null,
+          failedGateIds: ["single_pass_evaluation_contract"],
+          message: `单轮评估产物不完整：${error instanceof Error ? error.message : "unknown"}`
+        });
+      }
+      const qualityWarningGateIds = [...new Set([
+        ...failedIds(gate),
+        ...threeLensGate.failedGateIds,
+        ...threeLensGate.uncheckedGateIds
+      ])];
+      return videoReconstructionOutcomeSchema.parse({
+        state: "ready",
+        ...refs,
+        gateCount: gate.gates?.length ?? 1,
+        threeLensGateCount: 19,
+        failedGateIds: [],
+        qualityWarningGateIds,
+        evaluationMode: "single_pass"
+      });
     } catch (error) {
       const message = error instanceof Error ? error.message : "视频重建执行失败";
       if (commandUnavailable(message)) return { state: "blocked", code: "runner_unavailable", message, userActionRequired: true };

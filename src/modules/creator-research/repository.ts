@@ -2,6 +2,7 @@ import type { CreatorResearchEvent, CreatorResearchRun } from "../../shared/sche
 import type { ResearchJob, ResearchJobStatus } from "../orchestration/contracts.js";
 
 export type AppendEventInput = Omit<CreatorResearchEvent, "sequence">;
+export type ResearchJobLane = "any" | "serial" | "video";
 
 export interface CreatorResearchRepository {
   save(run: CreatorResearchRun): void;
@@ -10,7 +11,7 @@ export interface CreatorResearchRepository {
   findLatestByProfileUrl(profileUrl: string): CreatorResearchRun | null;
   enqueue(job: ResearchJob): ResearchJob;
   requeueRun(runId: string, availableAt: string): ResearchJob | null;
-  claimNext(workerId: string, now: string, leaseExpiresAt: string): ResearchJob | null;
+  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane?: ResearchJobLane): ResearchJob | null;
   updateJobStatus(input: {
     jobId: string;
     status: ResearchJobStatus;

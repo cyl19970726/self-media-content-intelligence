@@ -5,6 +5,7 @@ import type { CreatorResearchService } from "../modules/creator-research/service
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { loadVideoEvidence } from "./console.js";
 import { loadLegacyDeepVideo } from "./legacy-deep-videos.js";
+import { loadNextWaveDeepVideo } from "./next-wave-deep-videos.js";
 
 function record(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
 function text(value: unknown, fallback = ""): string { return typeof value === "string" ? value : fallback; }
@@ -47,6 +48,8 @@ function readJson(reference: string): unknown { return JSON.parse(fs.readFileSyn
 
 export function loadVideoResearch(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
   if (!requestedRunId) {
+    const nextWaveDeep = loadNextWaveDeepVideo(creatorId, videoId);
+    if (nextWaveDeep) return nextWaveDeep;
     const deepLegacy = loadLegacyDeepVideo(creatorId, videoId);
     if (deepLegacy) return deepLegacy;
   }

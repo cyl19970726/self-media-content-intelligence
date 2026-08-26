@@ -5,6 +5,7 @@ export const videoBatchItemSchema = z.object({
   tier: z.enum(["high", "base", "low"]),
   tierRank: z.number().int().positive(),
   state: z.enum(["queued", "running", "ready", "not_ready", "blocked"]),
+  evaluationPolicy: z.enum(["legacy_iterative_repair", "single_pass@37a03aae"]).default("legacy_iterative_repair"),
   sourceMediaArtifactRef: z.string().nullable(),
   reconstructionArtifactRef: z.string().nullable(),
   articleArtifactRef: z.string().nullable(),

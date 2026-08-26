@@ -9,9 +9,9 @@ The analytical decisions below are implemented by [three-lens-video-contract.md]
 | D-01 | Research has three levels: single video, single creator, multiple creators. | Confirmed |
 | D-02 | Research and creation are separate areas. | Confirmed |
 | D-03 | Replace “why users follow” with “what values the creator provides.” | Confirmed |
-| D-04 | Single-creator performance uses High / Base / Low; Base includes median-near and mean-near. | Confirmed |
+| D-04 | Portfolio display uses High / Base / Low, while the deep-video contract separately requires High / median-near / arithmetic-mean-near / Low groups; median and mean may not be collapsed unless the selected posts actually overlap. | Confirmed |
 | D-05 | Use one canonical 21-record comparison dataset with List and Gallery projections. | Confirmed |
-| D-06 | Mark the 9 deep records inside the 21 rather than creating a duplicate showcase. | Confirmed |
+| D-06 | Mark 3 deep videos per High / median-near / mean-near / Low group inside the canonical comparison records; overlapping posts are downloaded and reconstructed once, so the unique count is normally 12 but may be lower only with explicit overlap evidence. | Confirmed |
 | D-07 | Multi-creator analysis uses aligned windows and creator-relative normalization, not raw-like ranking alone. | Confirmed |
 | D-08 | Research surfaces contain no copying or next-post advice. | Confirmed |
 | D-09 | Creation Workspace is a future independent module that may reference creators or posts. | Deferred |
@@ -21,7 +21,7 @@ The analytical decisions below are implemented by [three-lens-video-contract.md]
 | D-13 | AI红发魔女's existing research depth is the minimum migration parity reference; unified information architecture may not silently discard populated evidence. | Confirmed |
 | D-14 | Cross-analysis learning must be versioned into open taxonomies, mechanisms, failure modes, evaluation cases, and evidence queries. | Confirmed |
 | D-15 | The three video lenses have separate canonical fields, coverage denominators, and hard gates; overall readiness is their logical AND, not an averaged score. | Confirmed |
-| D-16 | The three historical creator studies are migration fixtures with explicit source→canonical→UI mappings and cannot lose populated evidence; 张咋啦 retains 12 registered deep assets even though V1 marks 9 canonical deep records. | Confirmed |
+| D-16 | The three historical creator studies are migration fixtures with explicit source→canonical→UI mappings and cannot lose populated evidence; legacy 9-record projections remain readable, but new or refreshed runs must use the four-group deep contract. | Confirmed |
 | D-17 | Research learning uses versioned ResearchConcept, Observation, and Revision objects with quantitative promotion, contradiction disclosure, demotion, and invalidation cascade. | Confirmed |
 
 ## 2. Capability and user
@@ -56,7 +56,7 @@ Open a video record → verify source/evidence health → read content restorati
 
 ### Journey B — single creator
 
-Open creator → see identity, user value, lifecycle, and data health → understand baseline → inspect topic/format portfolios → compare High/Base/Low → switch the same 21 records between List/Gallery → drill into deep evidence → inspect rhythm, audience demand, growth engines, business path, and unknowns.
+Open creator → see identity, user value, lifecycle, and data health → understand baseline → inspect topic/format portfolios → compare High/Base/Low → switch the canonical comparison records between List/Gallery → verify High/median/mean/Low deep coverage → drill into deep evidence → inspect rhythm, audience demand, growth engines, business path, and unknowns.
 
 ### Journey C — multiple creators
 

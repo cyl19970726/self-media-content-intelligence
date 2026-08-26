@@ -23,6 +23,12 @@ export function apiPort(): number {
   return Number.isFinite(value) ? value : 4310;
 }
 
+export function videoConcurrency(): number {
+  const configured = Number(process.env.SELF_MEDIA_VIDEO_CONCURRENCY ?? "3");
+  if (!Number.isFinite(configured)) return 3;
+  return Math.min(3, Math.max(1, Math.trunc(configured)));
+}
+
 export function webBaseUrl(): string {
   return process.env.SELF_MEDIA_WEB_URL ?? "http://127.0.0.1:5173";
 }

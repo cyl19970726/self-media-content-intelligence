@@ -77,7 +77,8 @@ full corpus
   → distribution and data health
   → High / Base / Low comparison
   → 21 canonical comparison records
-  → 9 deep reconstructions
+  → High / median-near / arithmetic-mean-near / Low × 3 deep videos
+  → media-type verification and unique reconstruction set (normally 12; overlaps deduplicated)
   → positioning, values, content system, breakout mechanisms, failure mechanisms
 ```
 
@@ -86,6 +87,8 @@ full corpus
 - **High** identifies multiple ways content breaks above the creator's own baseline.
 - **Base** establishes what the creator normally produces and what normally works; it must include median-near, mean-near, and typical-form anchors.
 - **Low** reveals delayed value, weak proof, format mismatch, excessive load, poor packaging, audience mismatch, or other failure conditions without equating low public likes with worthless content.
+
+The portfolio tiers and deep groups are related but not identical. Detail enrichment must confirm media type before the final deep set is frozen. Image/text posts remain valid comparison evidence but cannot satisfy a deep-video slot. Median-near and arithmetic-mean-near each require three candidates unless the same post genuinely belongs to both groups; an overlap is recorded, not assumed.
 
 The system must compare the same dimensions across tiers: user problem, promise, viewer change, proof, directing sequence, audiovisual form, comprehension cost, public signals, era, and confounds.
 

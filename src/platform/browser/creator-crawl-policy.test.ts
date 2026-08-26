@@ -79,17 +79,33 @@ describe("ego-browser scripts", () => {
     for (const field of ["globalCountBefore", "globalCountAfter", "newGlobalIds", "heightDelta", "scrollDelta", "atBottom", "waitElapsedMs", "waitReason", "action"]) {
       expect(script).toContain(field);
     }
+    expect(script).toContain("new URL('/explore/' + externalId, location.origin)");
+    expect(script).not.toContain("cover?.href ? new URL(cover.href");
     expect(() => new Function(`return async function generatedAcquisition(){${script}}`)).not.toThrow();
   });
 
-  it("tries persisted canonical post URLs before the bounded profile fallback", () => {
+  it("uses a live profile-card route before a bare explore URL", () => {
     const canonical = "https://www.xiaohongshu.com/explore/post-1";
     const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: canonical, resolveMedia: false }], taskSpaceId: 2 });
-    const directAt = script.indexOf("let navigation = { href: request.url");
-    expect(directAt).toBeGreaterThan(-1);
-    expect(directAt).toBeLessThan(script.indexOf("const fallback = await locateFromProfile", directAt));
+    expect(script).toContain("isBareExploreUrl");
+    expect(script).toContain("profile_live_card");
+    expect(script).toContain("document.querySelectorAll('a[href]')");
     expect(script).toContain(canonical);
     expect(script).toContain("profile_fallback");
+    expect(script).toContain("current_detail");
+    expect(script).toContain("liveAnchors.find(anchor => anchor.href.includes('xsec_token='))");
+    expect(script).toContain("takeOverTaskSpace(2)");
+    expect(script).toContain("document.scrollingElement || document.documentElement");
+    expect(script).toContain("round < 60");
+    expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
+  });
+
+  it("repairs a profile-card path that lost its required signed query", () => {
+    const malformed = "https://www.xiaohongshu.com/user/profile/a/post-1";
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: malformed, resolveMedia: false }], taskSpaceId: 2 });
+    expect(script).toContain("new RegExp('^/user/profile/[^/]+/' + request.externalId + '$')");
+    expect(script).toContain("await locateFromSearch(request) || await locateFromProfile(request)");
+    expect(script).toContain(malformed);
     expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
   });
 
@@ -98,7 +114,27 @@ describe("ego-browser scripts", () => {
     expect(script).toMatch(/300031/);
     expect(script).toMatch(/安全限制/);
     expect(script).toMatch(/当前笔记暂时无法浏览/);
-    expect(script).toMatch(/立即停止且不会自动重试/);
+    expect(script).toMatch(/仍检测到明确安全验证，已停止/);
     expect(script).toContain("if (handoff) break");
+  });
+
+  it("classifies repeated detail redirects as an internal bounded blocker", () => {
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", resolveMedia: true }], taskSpaceId: 4 });
+    expect(script).toContain("failureClass: 'navigation_redirect'");
+    expect(script).toContain("code: 'page_shape_unknown', retryable: true");
+    expect(script).toContain("这是内部导航阻塞，不要求用户操作");
+    expect(script).toContain("output.length === 0");
+    expect(script).toContain("未匹配项将进入下一恢复批次");
+  });
+
+  it("binds a real challenge handoff to post, canonical URL, signal, phase, and fallback", () => {
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", resolveMedia: true }], taskSpaceId: 4 });
+    for (const field of ["postExternalId", "inputUrl", "canonicalUrl", "failureClass", "challengeType", "phase", "fallbackAttempted"]) {
+      expect(script).toContain(field);
+    }
+    expect(script).toContain("if (!fallbackUsed)");
+    expect(script).toContain("source: 'challenge_fallback'");
   });
 });

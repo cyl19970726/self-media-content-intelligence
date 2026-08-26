@@ -1,0 +1,4 @@
+interface:
+  display_name: "博主全量内容标注"
+  short_description: "为全部可见作品建立有证据边界的主题、形式和价值标注"
+  default_prompt: "Use $creator-portfolio-annotation to annotate this creator corpus without upgrading surface clues into deep-video claims."

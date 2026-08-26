@@ -12,7 +12,7 @@ import type { CreatorSynthesisExecutor } from "../modules/creator-synthesis/cont
 
 const temporaryDirectories: string[] = [];
 
-function serviceForTest(options: { values?: Map<string, unknown> } = {}): CreatorResearchService {
+function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: VideoReconstructionExecutor["reconstruct"] } = {}): CreatorResearchService {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
   temporaryDirectories.push(directory);
   const values = options.values ?? new Map<string, unknown>();
@@ -51,16 +51,40 @@ function serviceForTest(options: { values?: Map<string, unknown> } = {}): Creato
     }
   };
   const videoReconstructor: VideoReconstructionExecutor = {
-    async reconstruct(request) {
+    async reconstruct(request, observeLifecycle) {
+      if (options.reconstruct) return options.reconstruct(request, observeLifecycle);
       const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
-      return { state: "ready", reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
+      const childRunId = "11111111-1111-4111-8111-111111111111";
+      const startedAt = "2026-08-20T01:02:00.000Z";
+      observeLifecycle?.({ childRunId, role: "candidate", status: "started", startedAt,
+        lastProgressAt: startedAt, inputRevision: request.sourceMediaArtifactRef,
+        outputArtifactRevisions: {}, errorCode: null });
+      const outcome = { state: "ready" as const, reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
         evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
         threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
-        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19, failedGateIds: [] };
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const, failedGateIds: [],
+        qualityWarningGateIds: [], evaluationMode: "single_pass" as const };
+      observeLifecycle?.({ childRunId, role: "candidate", status: "completed", startedAt,
+        lastProgressAt: "2026-08-20T01:02:01.000Z", inputRevision: request.sourceMediaArtifactRef,
+        outputArtifactRevisions: { "reconstruction.json": "b".repeat(64) }, errorCode: null });
+      return outcome;
     }
   };
   const synthesisExecutor: CreatorSynthesisExecutor = {
-    async synthesize(request) {
+    async synthesize(request, observeLifecycle) {
+      const startedAt = "2026-08-20T01:03:00.000Z";
+      observeLifecycle?.({ childRunId: "33333333-3333-4333-8333-333333333333", role: "creator_synthesis",
+        status: "started", startedAt, lastProgressAt: startedAt, inputRevision: "c".repeat(64),
+        outputArtifactRevisions: {}, errorCode: null });
+      observeLifecycle?.({ childRunId: "33333333-3333-4333-8333-333333333333", role: "creator_synthesis",
+        status: "completed", startedAt, lastProgressAt: "2026-08-20T01:03:01.000Z", inputRevision: "c".repeat(64),
+        outputArtifactRevisions: { "creator-analysis.json": "d".repeat(64) }, errorCode: null });
+      observeLifecycle?.({ childRunId: "44444444-4444-4444-8444-444444444444", role: "creator_synthesis_evaluator",
+        status: "started", startedAt: "2026-08-20T01:03:02.000Z", lastProgressAt: "2026-08-20T01:03:02.000Z",
+        inputRevision: "d".repeat(64), outputArtifactRevisions: {}, errorCode: null });
+      observeLifecycle?.({ childRunId: "44444444-4444-4444-8444-444444444444", role: "creator_synthesis_evaluator",
+        status: "completed", startedAt: "2026-08-20T01:03:02.000Z", lastProgressAt: "2026-08-20T01:03:03.000Z",
+        inputRevision: "d".repeat(64), outputArtifactRevisions: { "creator-synthesis-evaluation.json": "e".repeat(64) }, errorCode: null });
       return { state: "ready", synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
         gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json` };
     }
@@ -98,6 +122,34 @@ describe("CreatorResearchService", () => {
   it("accepts a Xiaohongshu profile share link", () => {
     const service = serviceForTest();
     expect(service.create("https://xhslink.cn/m/example").platform).toBe("xiaohongshu");
+    service.close();
+  });
+
+  it("imports a frozen public snapshot into the durable queue without reacquiring inventory", () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/cyber-duck",
+      creatorId: "cyber-duck", creatorName: "赛博鸭AIGC", canonicalSlug: "cyber-duck-aigc",
+      capturedAt: "2026-08-21T06:07:54.517Z",
+      taskSpaceId: 4, stopReason: "quiescent_incomplete",
+      posts: [{ externalId: "post-1", url: "https://www.xiaohongshu.com/explore/post-1", title: "示例",
+        visibleText: "示例", mediaType: "unknown", likesLabel: "5", likes: 5 }],
+      warnings: ["displayed_count_gap:15"],
+      sourceRefs: ["legacy:next-wave/cyber-duck/creator-corpus.json#sha256=abc"],
+      publicProfile: { bio: "AI极客", followers: 92_000, likesAndCollections: 1_579_000, displayedPostCount: 334,
+        identityAnchors: [{ kind: "stable_id", value: "cyber-duck", source: "profile" },
+          { kind: "display_name", value: "赛博鸭AIGC", source: "profile" }] }
+    });
+
+    expect(run.source.kind).toBe("legacy_import");
+    expect(run.canonicalSlug).toBe("cyber-duck-aigc");
+    expect(run.inventoryArtifactRef).toMatch(/creator-inventory\.json$/);
+    expect(run.currentStage).toBe("tiering");
+    expect(run.coverage.discoveredPosts).toBe(1);
+    expect(run.browserTaskSpaceId).toBe(4);
+    expect(service.events(run.id).map((event) => event.type)).toEqual(["run.created", "artifact.produced", "job.queued"]);
+    expect(JSON.stringify(values.get(run.inventoryArtifactRef!))).toContain("displayed_count_gap:15");
     service.close();
   });
 
@@ -187,10 +239,32 @@ describe("CreatorResearchService", () => {
     expect(reconstructed?.status).toBe("collecting");
     expect(reconstructed?.coverage.reconstructedPosts).toBe(1);
     expect(reconstructed?.currentStage).toBe("synthesis");
+    const childEvents = service.events(run.id).filter((event) => event.type.startsWith("child."));
+    expect(childEvents.map((event) => event.type)).toEqual(["child.started", "child.completed"]);
+    expect(childEvents[0]?.payload).toMatchObject({
+      postExternalId: "post-1",
+      childRunId: "11111111-1111-4111-8111-111111111111",
+      role: "candidate",
+      inputRevision: `/artifacts/${run.id}/deep-media/post-1/source-video.mp4`
+    });
+    expect(childEvents[1]?.payload).toMatchObject({
+      outputArtifactRevisions: { "reconstruction.json": "b".repeat(64) }
+    });
     expect(await service.processNext("test-worker", executor)).toBe(true);
     const synthesized = service.get(run.id);
     expect(synthesized?.status).toBe("ready");
     expect(synthesized?.synthesisArtifactRef).toMatch(/creator-analysis\.json$/);
+    const synthesisChildEvents = service.events(run.id).filter((event) =>
+      ["creator_synthesis", "creator_synthesis_evaluator"].includes(String(event.payload.role))
+    );
+    expect(synthesisChildEvents.map((event) => event.type)).toEqual([
+      "child.started", "child.completed", "child.started", "child.completed"
+    ]);
+    expect(synthesisChildEvents.at(-1)?.payload).toMatchObject({
+      role: "creator_synthesis_evaluator",
+      inputRevision: "d".repeat(64),
+      outputArtifactRevisions: { "creator-synthesis-evaluation.json": "e".repeat(64) }
+    });
     service.close();
   });
 
@@ -244,6 +318,154 @@ describe("CreatorResearchService", () => {
     expect(resumed.status).toBe("queued");
     expect(resumed.worker.jobId).toBe(run.worker.jobId);
     expect(service.events(run.id).at(-1)?.type).toBe("run.resumed");
+    service.close();
+  });
+
+  it("atomically preserves video outcomes that complete out of lease order", async () => {
+    const values = new Map<string, unknown>();
+    const pending: Array<{ postExternalId: string; resolve: (value: Awaited<ReturnType<VideoReconstructionExecutor["reconstruct"]>>) => void }> = [];
+    const service = serviceForTest({ values, reconstruct: (request) => new Promise((resolve) => {
+      pending.push({ postExternalId: request.postExternalId, resolve });
+    }) });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/concurrent-creator", creatorId: "concurrent-creator",
+      creatorName: "并发博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:concurrent"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 12, identityAnchors: [] },
+      posts: Array.from({ length: 12 }, (_, index) => ({ externalId: `post-${index + 1}`,
+        url: `https://www.xiaohongshu.com/user/profile/concurrent-creator/post-${index + 1}`, title: `视频 ${index + 1}`,
+        visibleText: `视频 ${index + 1}\n${index + 1}`, mediaType: "video" as const,
+        likesLabel: String(index + 1), likes: index + 1 }))
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 4, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: `https://video.example/${post.externalId}.mp4`,
+          coverCandidateUrl: `https://image.example/${post.externalId}.webp`, inspectedAt: "2026-08-25T00:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+    for (let step = 0; step < 8 && !service.get(run.id)?.reconstructionBatchArtifactRef; step += 1) {
+      await service.processNext("serial", executor, "serial");
+    }
+    const initialRun = service.get(run.id)!;
+    expect(initialRun.reconstructionBatchArtifactRef, JSON.stringify(initialRun)).not.toBeNull();
+    const normalizedSelection = values.get(initialRun.selectionArtifactRef!) as { items: Array<{ externalId: string; url: string }> };
+    expect(normalizedSelection.items.every((item) => item.url === `https://www.xiaohongshu.com/explore/${item.externalId}`)).toBe(true);
+    const initialBatch = values.get(initialRun.reconstructionBatchArtifactRef!) as { pendingPosts: number };
+    expect(initialBatch.pendingPosts).toBeGreaterThanOrEqual(3);
+
+    const jobs = [1, 2, 3].map((slot) => service.processNext(`video-${slot}`, executor, "video"));
+    await Promise.resolve();
+    expect(pending).toHaveLength(3);
+    expect(service.get(run.id)?.videoWork.activePostExternalIds).toHaveLength(3);
+    const outcome = (postExternalId: string) => {
+      const root = `/artifacts/${run.id}/video-reconstructions/${postExternalId}`;
+      return { state: "ready" as const, reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
+        threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const,
+        failedGateIds: [], qualityWarningGateIds: [], evaluationMode: "single_pass" as const };
+    };
+    for (const index of [2, 0, 1]) {
+      const entry = pending[index]!;
+      entry.resolve(outcome(entry.postExternalId));
+      await jobs[index];
+    }
+
+    const completedRun = service.get(run.id)!;
+    const completedBatch = values.get(completedRun.reconstructionBatchArtifactRef!) as {
+      revision: number; readyPosts: number; pendingPosts: number; items: Array<{ state: string }>;
+    };
+    expect(completedBatch.revision).toBe(3);
+    expect(completedBatch.readyPosts).toBe(3);
+    expect(completedBatch.pendingPosts).toBe(initialBatch.pendingPosts - 3);
+    expect(completedBatch.items.filter((item) => item.state === "ready")).toHaveLength(3);
+    expect(completedRun.videoWork).toMatchObject({ activePostExternalIds: [], analyzedPosts: 3,
+      queuedPosts: initialBatch.pendingPosts - 3, failedPosts: 0 });
+    expect(service.events(run.id).filter((event) => event.message.includes("博主级研究归纳已进入持久队列"))).toHaveLength(0);
+    service.close();
+  });
+
+  it("keeps a navigation redirect internal and allows only one task-level retry", async () => {
+    const service = serviceForTest();
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/redirect-creator", creatorId: "redirect-creator",
+      creatorName: "重定向博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:redirect"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 1, identityAnchors: [] },
+      posts: [{ externalId: "post-redirect", url: "https://www.xiaohongshu.com/user/profile/redirect-creator/post-redirect",
+        title: "重定向", visibleText: "重定向\n1", mediaType: "video", likesLabel: "1", likes: 1 }]
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich() {
+        return { state: "blocked", finalUrl: run.profileUrl, taskSpaceId: 4, code: "page_shape_unknown",
+          message: "canonical 与 fallback 均重定向", retryable: true,
+          navigationDiagnostic: { postExternalId: "post-redirect",
+            inputUrl: `${run.profileUrl}/post-redirect`, canonicalUrl: "https://www.xiaohongshu.com/explore/post-redirect",
+            failureClass: "navigation_redirect", challengeType: null, phase: "bounded_navigation_exhausted", fallbackAttempted: true } };
+      }
+    };
+    await service.processNext("worker", executor, "serial");
+    await service.processNext("worker", executor, "serial");
+    const backoff = service.get(run.id)!;
+    expect(backoff.status).toBe("backoff");
+    expect(backoff.blockers[0]).toMatchObject({ code: "page_shape_unknown", userActionRequired: false });
+    expect(service.events(run.id).at(-1)).toMatchObject({ type: "node.progress",
+      payload: { navigationDiagnostic: { failureClass: "navigation_redirect", postExternalId: "post-redirect" } } });
+
+    await service.processNext("worker", executor, "serial");
+    const degraded = service.get(run.id)!;
+    expect(degraded.status).not.toBe("failed");
+    expect(degraded.coverage.enrichedPosts).toBe(1);
+    expect(service.events(run.id).some((event) => event.message.includes("记录为未知并继续后续帖子"))).toBe(true);
+    service.close();
+  });
+
+  it("requeues only failed video reconstructions without reacquiring the inventory", async () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values, reconstruct: async (request) => {
+      const root = `/artifacts/${request.creatorRunId}/video-reconstructions/${request.postExternalId}`;
+      return { state: "not_ready", reconstructionArtifactRef: `${root}/reconstruction.json`,
+        evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`,
+        threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+        failedGateIds: ["unchecked_channels"], message: "OCR transient failure" };
+    } });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/retry-creator", creatorId: "retry-creator",
+      creatorName: "重试博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:retry"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 1, identityAnchors: [] },
+      posts: [{ externalId: "post-retry", url: "https://www.xiaohongshu.com/explore/post-retry", title: "重试",
+        visibleText: "重试\n1", mediaType: "video", likesLabel: "1", likes: 1 }]
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 4, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: "https://video.example/source.mp4",
+          coverCandidateUrl: "https://image.example/cover.webp", inspectedAt: "2026-08-25T00:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    const failed = service.get(run.id);
+    expect(failed?.blockers[0]?.code).toBe("video_reconstruction_incomplete");
+    const retried = service.retryFailedReconstructions(run.id);
+    expect(retried.status).toBe("collecting");
+    expect(retried.coverage.discoveredPosts).toBe(1);
+    expect(retried.nextAction).toContain("仅重试 1 条未通过视频");
+    const retryBatch = values.get(retried.reconstructionBatchArtifactRef!) as { pendingPosts: number; failedPosts: number; items: Array<{ state: string }> };
+    expect(retryBatch.pendingPosts).toBe(1);
+    expect(retryBatch.failedPosts).toBe(0);
+    expect(retryBatch.items[0]?.state).toBe("queued");
+    expect(service.events(run.id).filter((event) => event.type === "run.resumed").at(-1)?.message).toContain("仅重新排队未通过项");
     service.close();
   });
 });

@@ -49,6 +49,20 @@ export const researchJobSchema = z.object({
 export type ResearchJob = z.infer<typeof researchJobSchema>;
 export type ResearchJobStatus = z.infer<typeof researchJobStatusSchema>;
 
+export const childWorkerLifecycleStatusSchema = z.enum(["started", "progress", "stale", "completed", "failed"]);
+export const childWorkerLifecycleEventSchema = z.object({
+  childRunId: z.string().uuid(),
+  role: z.string().min(1),
+  status: childWorkerLifecycleStatusSchema,
+  startedAt: z.string(),
+  lastProgressAt: z.string(),
+  inputRevision: z.string().min(1),
+  outputArtifactRevisions: z.record(z.string()).default({}),
+  errorCode: z.string().nullable().default(null)
+});
+export type ChildWorkerLifecycleEvent = z.infer<typeof childWorkerLifecycleEventSchema>;
+export type ChildWorkerLifecycleObserver<T extends ChildWorkerLifecycleEvent = ChildWorkerLifecycleEvent> = (event: T) => void;
+
 export type CreatorAcquisitionPost = {
   externalId: string;
   url: string;
@@ -57,6 +71,16 @@ export type CreatorAcquisitionPost = {
   mediaType: "video" | "image" | "unknown";
   likesLabel: string | null;
   likes: number | null;
+};
+
+export type CreatorNavigationDiagnostic = {
+  postExternalId: string | null;
+  inputUrl: string | null;
+  canonicalUrl: string | null;
+  failureClass: "platform_challenge" | "login_expired" | "navigation_redirect" | "user_control";
+  challengeType: string | null;
+  phase: string;
+  fallbackAttempted: boolean;
 };
 
 export type CreatorAcquisitionResult =
@@ -75,8 +99,9 @@ export type CreatorAcquisitionResult =
       state: "needs_user";
       finalUrl: string;
       taskSpaceId: number;
-      code: "login_required" | "captcha_required" | "user_took_control";
+      code: "login_required" | "captcha_required" | "user_took_control" | "detail_navigation_required";
       message: string;
+      navigationDiagnostic?: CreatorNavigationDiagnostic;
     }
   | {
       state: "blocked";
@@ -85,6 +110,7 @@ export type CreatorAcquisitionResult =
       code: "identity_ambiguous" | "page_shape_unknown" | "browser_unavailable";
       message: string;
       retryable: boolean;
+      navigationDiagnostic?: CreatorNavigationDiagnostic;
     };
 
 export interface CreatorAcquisitionExecutor {
@@ -96,7 +122,7 @@ export interface CreatorAcquisitionExecutor {
   }): Promise<CreatorAcquisitionResult>;
 }
 
-export type CreatorDetailInputPost = { externalId: string; url: string; resolveMedia: boolean };
+export type CreatorDetailInputPost = { externalId: string; url: string; title?: string | null; resolveMedia: boolean };
 
 export type CreatorDetailResult =
   | {
@@ -122,8 +148,10 @@ export interface CreatorDetailExecutor {
   enrich(input: {
     runId: string;
     profileUrl: string;
+    creatorName?: string | null;
     posts: CreatorDetailInputPost[];
     taskSpaceId: number | null;
+    closeWhenDone?: boolean;
   }): Promise<CreatorDetailResult>;
 }
 

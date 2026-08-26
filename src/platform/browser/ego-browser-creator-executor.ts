@@ -46,6 +46,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
+function normalizeNavigationDiagnostic(value: unknown) {
+  if (!isRecord(value)) return undefined;
+  const failureClasses = ["platform_challenge", "login_expired", "navigation_redirect", "user_control"];
+  if ((value.postExternalId !== null && typeof value.postExternalId !== "string") ||
+    (value.inputUrl !== null && typeof value.inputUrl !== "string") ||
+    (value.canonicalUrl !== null && typeof value.canonicalUrl !== "string") ||
+    !failureClasses.includes(String(value.failureClass)) ||
+    (value.challengeType !== null && typeof value.challengeType !== "string") ||
+    typeof value.phase !== "string" || typeof value.fallbackAttempted !== "boolean") return undefined;
+  return value as NonNullable<Extract<CreatorAcquisitionResult, { state: "needs_user" }>["navigationDiagnostic"]>;
+}
+
 function isCrawlDiagnostic(value: unknown): value is NonNullable<Extract<CreatorAcquisitionResult, { state: "ready" }>["diagnostics"]>[number] {
   if (!isRecord(value)) return false;
   const numeric = ["round", "globalCountBefore", "globalCountAfter", "heightBefore", "heightAfter", "heightDelta",
@@ -60,10 +72,11 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
   if (!isRecord(value) || typeof value.state !== "string") throw new Error("采集结果结构无效");
   if (value.state === "needs_user") {
     if (typeof value.finalUrl !== "string" || typeof value.taskSpaceId !== "number" ||
-      (value.code !== "login_required" && value.code !== "captcha_required" && value.code !== "user_took_control") ||
+      (value.code !== "login_required" && value.code !== "captcha_required" && value.code !== "user_took_control" &&
+        value.code !== "detail_navigation_required") ||
       typeof value.message !== "string") throw new Error("用户接管结果结构无效");
     return { state: "needs_user", finalUrl: value.finalUrl, taskSpaceId: value.taskSpaceId,
-      code: value.code, message: value.message };
+      code: value.code, message: value.message, navigationDiagnostic: normalizeNavigationDiagnostic(value.navigationDiagnostic) };
   }
   if (value.state === "blocked") {
     const allowed = ["identity_ambiguous", "page_shape_unknown", "browser_unavailable"];
@@ -76,7 +89,8 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
     return {
       state: "blocked", finalUrl: value.finalUrl, taskSpaceId: value.taskSpaceId,
       code: value.code as "identity_ambiguous" | "page_shape_unknown" | "browser_unavailable",
-      message: value.message, retryable: value.retryable
+      message: value.message, retryable: value.retryable,
+      navigationDiagnostic: normalizeNavigationDiagnostic(value.navigationDiagnostic)
     };
   }
   if (value.state !== "ready" || typeof value.finalUrl !== "string" ||
@@ -314,64 +328,128 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
   };
 }
 
-export function buildDetailScript(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
+export function buildDetailScript(input: { runId: string; profileUrl: string; creatorName?: string | null;
+  posts: Array<{ externalId: string; url: string; title?: string | null; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
   const taskExpression = input.taskSpaceId === null
     ? `await useOrCreateTaskSpace(${JSON.stringify(`creator-detail-${input.runId.slice(0, 8)}`)})`
-    : `await useOrCreateTaskSpace(${input.taskSpaceId})`;
+    : `(await takeOverTaskSpace(${input.taskSpaceId}), { id: ${input.taskSpaceId} })`;
   return `
 const task = ${taskExpression}
 const requested = ${JSON.stringify(input.posts.slice(0, 21))}
 const profileUrl = ${JSON.stringify(input.profileUrl)}
+const expectedCreatorName = ${JSON.stringify(input.creatorName ?? null)}
 const challenge = /请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险|300031|安全限制/
 const login = /登录后查看更多|扫码登录|手机号登录/
 const output = []
 let handoff = null
 let navigatedCount = 0
-const securityStop = observation => {
+const securityStop = (observation, request = null, phase = 'page_check', fallbackAttempted = false) => {
   const security = challenge.test(observation.textSample) || /300031|安全限制|当前笔记暂时无法浏览/.test(observation.textSample + observation.pageTitle)
   if (!security && !login.test(observation.textSample)) return null
   const code = security ? 'captcha_required' : 'login_required'
+  const challengeType = security
+    ? ((observation.textSample + observation.pageTitle).match(/请完成验证|安全验证|验证码|访问过于频繁|网络环境存在风险|300031|安全限制|当前笔记暂时无法浏览/)?.[0] || 'platform_challenge')
+    : ((observation.textSample.match(/登录后查看更多|扫码登录|手机号登录/)?.[0]) || 'login_required')
   return { state: 'needs_user', finalUrl: observation.href, taskSpaceId: task.id, code,
-    message: security ? '详情采集触发安全限制，已立即停止且不会自动重试。' : '详情采集需要重新登录，已立即停止且不会自动重试。' }
+    message: security ? '详情采集在 canonical 与一次 fallback 后仍检测到明确安全验证，已停止。' : '详情采集在 canonical 与一次 fallback 后仍检测到明确登录失效，已停止。',
+    navigationDiagnostic: {
+      postExternalId: request?.externalId || null,
+      inputUrl: request?.url || null,
+      canonicalUrl: request ? 'https://www.xiaohongshu.com/explore/' + request.externalId : null,
+      failureClass: security ? 'platform_challenge' : 'login_expired', challengeType, phase, fallbackAttempted
+    } }
+}
+const locateFromCurrent = async request => await js(String.raw\`(() => {
+  const externalId = ${JSON.stringify("CURRENT_ID")}
+  const match = location.pathname.match(/\\/(?:explore|discovery\\/item)\\/([^/?#]+)/) || location.pathname.match(/\\/user\\/profile\\/[^/]+\\/([^/?#]+)/)
+  return match?.[1] === externalId ? { href: location.href, cover: document.querySelector('meta[property="og:image"]')?.getAttribute('content') || null, source: 'current_detail' } : null
+})()\`.replace(${JSON.stringify("CURRENT_ID")}, request.externalId))
+const locateFromSearch = async request => {
+  if (!request.title) return null
+  await gotoAndWait('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(request.title), { timeout: 30, settle: 1.5 })
+  await wait(1.2)
+  const status = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
+  const stop = securityStop(status, request, 'search_fallback', true)
+  if (stop) { handoff = stop; return null }
+  return await js(String.raw\`(() => {
+    const externalId = ${JSON.stringify("SEARCH_ID")}
+    const creatorName = ${JSON.stringify("SEARCH_CREATOR")}
+    const candidates = [...document.querySelectorAll('a[href]')].filter(anchor => {
+      try { return new URL(anchor.href, location.href).pathname.endsWith('/' + externalId) }
+      catch { return false }
+    })
+    for (const anchor of candidates) {
+      const container = anchor.closest('section,article,li,[class*="note"],[class*="card"]') || anchor.parentElement?.parentElement || anchor
+      const text = (container?.innerText || '').trim()
+      if (creatorName && !text.includes(creatorName)) continue
+      const signed = candidates.find(candidate => candidate.href.includes('xsec_token=')) || anchor
+      return { href: signed.href, cover: container?.querySelector('img')?.currentSrc || container?.querySelector('img')?.src || null, source: 'exact_title_search' }
+    }
+    return null
+  })()\`.replace(${JSON.stringify("SEARCH_ID")}, request.externalId).replace(${JSON.stringify("SEARCH_CREATOR")}, expectedCreatorName || ''))
 }
 const locateFromProfile = async request => {
   await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
   await wait(1.5)
   const initial = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
-  const stop = securityStop(initial)
+  const stop = securityStop(initial, request, 'profile_fallback_start', true)
   if (stop) { handoff = stop; return null }
-  await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
-  for (let round = 0; round < 12; round += 1) {
+  await js('(() => { const scroller = document.scrollingElement || document.documentElement; scroller?.scrollTo({ top: 0, behavior: "auto" }); return true })()')
+  for (let round = 0; round < 60; round += 1) {
     const card = await js(String.raw\`(() => {
-      const item = document.querySelector('section[data-note-id="' + ${JSON.stringify("PLACEHOLDER")} + '"]')
-      return item ? { href: item.querySelector('a.cover')?.href || null, cover: item.querySelector('img')?.currentSrc || item.querySelector('img')?.src || null } : null
+      const externalId = ${JSON.stringify("PLACEHOLDER")}
+      const item = document.querySelector('section[data-note-id="' + externalId + '"]')
+      const liveAnchors = [...document.querySelectorAll('a[href]')].filter(anchor => {
+        try { return new URL(anchor.href, location.href).pathname.endsWith('/' + externalId) }
+        catch { return false }
+      })
+      const liveAnchor = liveAnchors.find(anchor => anchor.href.includes('xsec_token=')) || liveAnchors[0]
+      const container = item || liveAnchor?.closest('section') || liveAnchor?.parentElement?.parentElement
+      return liveAnchor || item ? {
+        href: liveAnchor?.href || item?.querySelector('a.cover')?.href || null,
+        cover: container?.querySelector('img')?.currentSrc || container?.querySelector('img')?.src || null
+      } : null
     })()\`.replace(${JSON.stringify("PLACEHOLDER")}, request.externalId))
     if (card?.href) return card
-    await js('(() => { const scroller = document.querySelector(".tab-content-item") || document.scrollingElement; if (!scroller) return false; if (' + String(round === 8) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1000, behavior: "auto" }); return true })()')
-    await wait(round >= 8 ? 1.8 : 1.1)
+    await js('(() => { const scroller = document.scrollingElement || document.documentElement; if (!scroller) return false; if (' + String(round > 0 && round % 12 === 0) + ') scroller.scrollBy({ top: -360, behavior: "auto" }); scroller.scrollBy({ top: 1400, behavior: "auto" }); return true })()')
+    await wait(round >= 12 ? 1.2 : 0.9)
     const status = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
-    const profileStop = securityStop(status)
+    const profileStop = securityStop(status, request, 'profile_fallback_scroll', true)
     if (profileStop) { handoff = profileStop; return null }
   }
   return null
 }
 for (let index = 0; index < requested.length; index += 1) {
   const request = requested[index]
-  let navigation = { href: request.url, cover: null, source: 'canonical' }
-  let fallbackUsed = false
+  const requestedUrl = new URL(request.url)
+  const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname) ||
+    new RegExp('^/user/profile/[^/]+/' + request.externalId + '$').test(requestedUrl.pathname)
+  let fallbackUsed = isBareExploreUrl
+  let navigation = await locateFromCurrent(request) || (isBareExploreUrl
+    ? await locateFromSearch(request) || await locateFromProfile(request)
+    : { href: request.url, cover: null, source: 'canonical' })
+  if (navigation && isBareExploreUrl && navigation.source !== 'exact_title_search') navigation = { ...navigation, source: 'profile_live_card' }
+  if (handoff) break
   while (navigation) {
   try { await gotoAndWait(navigation.href, { timeout: 20, settle: 1.5 }) }
   catch {
     if (fallbackUsed) break
-    const fallback = await locateFromProfile(request)
+    const fallback = await locateFromSearch(request) || await locateFromProfile(request)
     if (handoff || !fallback) break
     navigation = { ...fallback, source: 'profile_fallback' }
     fallbackUsed = true
     continue
   }
   const navigationStatus = await js(String.raw\`(() => ({ href: location.href, pageTitle: document.title, textSample: (document.body?.innerText || '').slice(0, 10000) }))()\`)
-  const navigationStop = securityStop(navigationStatus)
-  if (navigationStop) { handoff = navigationStop; break }
+  const navigationStop = securityStop(navigationStatus, request, 'detail_navigation', fallbackUsed)
+  if (navigationStop) {
+    if (!fallbackUsed) {
+      const fallback = await locateFromSearch(request) || await locateFromProfile(request)
+      if (!handoff && fallback) { navigation = { ...fallback, source: 'challenge_fallback' }; fallbackUsed = true; continue }
+    }
+    handoff = handoff || navigationStop
+    break
+  }
   if (request.resolveMedia) {
     for (let mediaAttempt = 0; mediaAttempt < 20; mediaAttempt += 1) {
       const mediaReady = await js(String.raw\`(() => performance.getEntriesByType('resource').some(entry => {
@@ -411,13 +489,13 @@ for (let index = 0; index < requested.length; index += 1) {
     const videoCandidateUrl = resourceVideos[0]?.name || htmlVideoCandidate
     return { href: location.href, pageTitle: document.title, textSample: text.slice(0, 10000), metaTitle, description, published, mediaType, videoCandidateUrl, coverCandidateUrl }
   })()\`)
-  const stop = securityStop(observation)
+  const stop = securityStop(observation, request, 'detail_observation', fallbackUsed)
   if (stop) { handoff = stop; break }
   const finalUrl = new URL(observation.href)
   const finalMatch = finalUrl.pathname.match(/\\/(?:explore|discovery\\/item)\\/([^/?#]+)/) || finalUrl.pathname.match(/\\/user\\/profile\\/[^/]+\\/([^/?#]+)/)
   if (finalMatch?.[1] !== request.externalId || /页面不见了/.test(observation.pageTitle + observation.textSample)) {
     if (fallbackUsed) break
-    const fallback = await locateFromProfile(request)
+    const fallback = await locateFromSearch(request) || await locateFromProfile(request)
     if (handoff || !fallback) break
     navigation = { ...fallback, source: 'profile_fallback' }
     fallbackUsed = true
@@ -452,15 +530,21 @@ for (let index = 0; index < requested.length; index += 1) {
 if (handoff) {
   await handOffTaskSpace(task.id)
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify(handoff))
-} else if (requested.length > 0 && output.length / requested.length < 0.8) {
+} else if (requested.length > 0 && output.length === 0) {
+  await openOrReuseTab(profileUrl, { wait: true, timeout: 30 })
+  const failedRequest = requested.find(item => !output.some(done => done.externalId === item.externalId)) || requested[0]
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
-    state: 'blocked', finalUrl: null, taskSpaceId: task.id, code: 'page_shape_unknown',
-    message: '少于 80% 的选择集详情能确认作品身份；未发布伪详情。canonical 直达优先、有限主页回退后，身份匹配 ' + navigatedCount + '/' + requested.length + '。', retryable: true
+    state: 'blocked', finalUrl: profileUrl, taskSpaceId: task.id, code: 'page_shape_unknown', retryable: true,
+    message: 'canonical 页面与一次 live-card fallback 均未定位目标帖子；这是内部导航阻塞，不要求用户操作。',
+    navigationDiagnostic: { postExternalId: failedRequest?.externalId || null, inputUrl: failedRequest?.url || null,
+      canonicalUrl: failedRequest ? 'https://www.xiaohongshu.com/explore/' + failedRequest.externalId : null,
+      failureClass: 'navigation_redirect', challengeType: null, phase: 'bounded_navigation_exhausted', fallbackAttempted: true }
   }))
 } else {
   cliLog(${JSON.stringify(resultMarker)} + JSON.stringify({
     state: 'ready', taskSpaceId: task.id, posts: output,
-    warnings: output.length < requested.length ? ['详情采集未覆盖全部请求。'] : []
+    warnings: output.length < requested.length
+      ? ['本批已保存 ' + output.length + '/' + requested.length + ' 条；未匹配项将进入下一恢复批次。'] : []
   }))
 }
 `;
@@ -505,7 +589,9 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
     return result;
   }
 
-  async enrich(input: { runId: string; profileUrl: string; posts: Array<{ externalId: string; url: string; resolveMedia: boolean }>; taskSpaceId: number | null }): Promise<CreatorDetailResult> {
+  async enrich(input: { runId: string; profileUrl: string; creatorName?: string | null;
+    posts: Array<{ externalId: string; url: string; title?: string | null; resolveMedia: boolean }>;
+    taskSpaceId: number | null; closeWhenDone?: boolean }): Promise<CreatorDetailResult> {
     let processResult: ProcessResult;
     try {
       processResult = await runEgoScript(this.binary, buildDetailScript(input), this.timeoutMs);
@@ -515,11 +601,27 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
         state: "blocked", finalUrl: null, taskSpaceId: input.taskSpaceId,
         code: "browser_unavailable", message: "后台找不到 ego-browser 可执行程序。", retryable: true
       };
+      if (/超过\s*\d+\s*秒未返回/.test(message) && input.taskSpaceId !== null) {
+        const target = input.posts[0]?.externalId ?? "当前目标帖子";
+        return { state: "blocked", finalUrl: input.profileUrl, taskSpaceId: input.taskSpaceId,
+          code: "page_shape_unknown", retryable: true,
+          message: `详情读取超过单批时间预算；这是内部导航阻塞，将只自动恢复一次。`,
+          navigationDiagnostic: { postExternalId: target, inputUrl: input.posts[0]?.url ?? null,
+            canonicalUrl: input.posts[0] ? `https://www.xiaohongshu.com/explore/${input.posts[0].externalId}` : null,
+            failureClass: "navigation_redirect", challengeType: null, phase: "detail_timeout", fallbackAttempted: true } };
+      }
       throw error;
     }
-    if (processResult.exitCode !== 0) throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
+    if (processResult.exitCode !== 0) {
+      const combined = `${processResult.stderr}\n${processResult.stdout}`;
+      if (/user is controlling|user-owned|inactive|not assigned/i.test(combined) && input.taskSpaceId !== null) {
+        return { state: "needs_user", finalUrl: input.profileUrl, taskSpaceId: input.taskSpaceId,
+          code: "user_took_control", message: "浏览会话当前处于交接状态；任务证据已保留，确认继续后会恢复同一详情批次。" };
+      }
+      throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
+    }
     const result = normalizeDetailResult(parseMarkedResult(`${processResult.stdout}\n${processResult.stderr}`));
-    if (result.state === "ready") {
+    if (result.state === "ready" && input.closeWhenDone !== false) {
       const closeScript = `const result = await completeTaskSpace(${result.taskSpaceId}, { keep: false })\ncliLog(JSON.stringify(result))\n`;
       const closed = await runEgoScript(this.binary, closeScript, 20_000);
       if (closed.exitCode !== 0) result.warnings.push("详情完成，但临时 TaskSpace 未能自动关闭。");

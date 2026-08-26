@@ -483,7 +483,7 @@ const creatorResearchWorkerSchema = z.object({
 });
 
 export const creatorResearchRunSchema = z.object({
-  schemaVersion: z.enum(["1.0.0", "1.1.0"]),
+  schemaVersion: z.enum(["1.0.0", "1.1.0", "1.2.0"]),
   id: z.string().uuid(),
   platform: z.literal("xiaohongshu"),
   profileUrl: z.string().url(),
@@ -493,6 +493,19 @@ export const creatorResearchRunSchema = z.object({
   updatedAt: z.string(),
   creatorId: z.string().nullable(),
   creatorName: z.string().nullable(),
+  canonicalSlug: z.string().nullable().optional(),
+  source: z.object({
+    kind: z.enum(["live_collection", "legacy_import"]),
+    sourceRefs: z.array(z.string()),
+    importedAt: z.string().nullable()
+  }).default({ kind: "live_collection", sourceRefs: [], importedAt: null }),
+  publicProfile: z.object({
+    bio: z.string().nullable(),
+    followers: z.number().int().nonnegative().nullable(),
+    likesAndCollections: z.number().int().nonnegative().nullable(),
+    displayedPostCount: z.number().int().nonnegative().nullable(),
+    identityAnchors: z.array(z.object({ kind: z.string(), value: z.string(), source: z.string() }))
+  }).default({ bio: null, followers: null, likesAndCollections: null, displayedPostCount: null, identityAnchors: [] }),
   dashboardPath: z.string().nullable(),
   stages: z.array(creatorResearchStageSchema),
   coverage: z.object({
@@ -528,6 +541,19 @@ export const creatorResearchRunSchema = z.object({
     workerId: null,
     lastHeartbeatAt: null
   }),
+  videoWork: z.object({
+    concurrencyLimit: z.number().int().min(1).max(3),
+    activePostExternalIds: z.array(z.string()),
+    queuedPosts: z.number().int().nonnegative(),
+    analyzedPosts: z.number().int().nonnegative(),
+    failedPosts: z.number().int().nonnegative()
+  }).default({
+    concurrencyLimit: 3,
+    activePostExternalIds: [],
+    queuedPosts: 0,
+    analyzedPosts: 0,
+    failedPosts: 0
+  }),
   inventoryArtifactRef: z.string().nullable().default(null),
   portfolioArtifactRef: z.string().nullable().default(null),
   selectionArtifactRef: z.string().nullable().default(null),
@@ -550,6 +576,11 @@ export const creatorResearchEventSchema = z.object({
     "job.leased",
     "node.started",
     "node.progress",
+    "child.started",
+    "child.progress",
+    "child.stale",
+    "child.completed",
+    "child.failed",
     "handoff.required",
     "artifact.produced",
     "node.completed",

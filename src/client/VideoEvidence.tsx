@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ExternalLink, Grid2X2, LoaderCircle, Network, ScrollText } from "lucide-react";
 import { getVideoResearch } from "./api";
@@ -17,11 +17,14 @@ function timestamp(value: number | null) {
   return `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, "0")}`;
 }
 
+const EvidenceNavigationContext = createContext<{ ids: Set<string>; navigate: (ref: string) => void }>({ ids: new Set(), navigate: () => undefined });
+
 function EvidenceRefs({ refs }: { refs: string[] }) {
+  const navigation = useContext(EvidenceNavigationContext);
   if (!refs.length) return <small className="evidence-refs evidence-refs--empty">没有可解析引用</small>;
   return <details className="evidence-refs"><summary>{refs.length} 条证据</summary><div>{refs.map((ref) => {
-    const linkable = /^(CUE|TARGET|FRAME|SAMPLE)-/.test(ref);
-    return linkable ? <a key={ref} href={`#evidence-${ref}`}>{ref}</a> : <span key={ref}>{ref}</span>;
+    const linkable = navigation.ids.has(ref);
+    return linkable ? <a key={ref} href={`#evidence-${ref}`} onClick={(event) => { event.preventDefault(); navigation.navigate(ref); }}>{ref}</a> : <span key={ref}>{ref}</span>;
   })}</div></details>;
 }
 
@@ -57,6 +60,7 @@ export default function VideoEvidencePage() {
   const [search, setSearch] = useSearchParams();
   const [data, setData] = useState<VideoResearch | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [pendingEvidenceRef, setPendingEvidenceRef] = useState<string | null>(null);
   const frameMode = search.get("frames") === "dense" ? "dense" : "sparse";
   const runId = search.get("run") ?? undefined;
   useEffect(() => {
@@ -64,15 +68,38 @@ export default function VideoEvidencePage() {
       setError(cause instanceof Error ? cause.message : "无法读取视频证据");
     });
   }, [id, videoId, runId]);
-  const setFrameMode = (value: "sparse" | "dense") => {
+  const setFrameMode = useCallback((value: "sparse" | "dense") => {
     const next = new URLSearchParams(search); next.set("frames", value); setSearch(next, { replace: true });
-  };
+  }, [search, setSearch]);
+  useEffect(() => {
+    if (!pendingEvidenceRef) return;
+    const frame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(`evidence-${pendingEvidenceRef}`);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      setPendingEvidenceRef(null);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [data, frameMode, pendingEvidenceRef]);
+  const evidenceNavigation = useMemo(() => {
+    const cueIds = new Set(data?.transcript.map((cue) => cue.id) ?? []);
+    const sparseIds = new Set(data?.frames.sparse.map((frame) => frame.id) ?? []);
+    const denseIds = new Set(data?.frames.dense.map((frame) => frame.id) ?? []);
+    const ids = new Set([...cueIds, ...sparseIds, ...denseIds]);
+    return { ids, navigate: (ref: string) => {
+      setPendingEvidenceRef(ref);
+      if (denseIds.has(ref) && frameMode !== "dense") setFrameMode("dense");
+      else if (sparseIds.has(ref) && frameMode !== "sparse") setFrameMode("sparse");
+    } };
+  }, [data, frameMode, setFrameMode]);
+  const rawReturnTo = search.get("returnTo");
+  const returnTo = data && rawReturnTo?.startsWith(`/creators/${encodeURIComponent(data.creatorId)}`) ? rawReturnTo : data ? `/creators/${data.creatorId}#portfolio` : "/creators";
 
-  return <main className="console console--solo">
+  return <EvidenceNavigationContext.Provider value={evidenceNavigation}><main className="console console--solo">
     {error ? <div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div>
       : !data ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一视频研究投影</p></div>
         : <article className="evidence-page evidence-page--v1">
-          <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><Link to={`/creators/${data.creatorId}`}>{data.creatorName}</Link><span>/</span><b>{data.title.slice(0, 24)}</b></nav>
+          <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><Link to={returnTo}>{data.creatorName}</Link><span>/</span><b>{data.title.slice(0, 24)}</b></nav>
           <header className="evidence-head">
             <div><p className="eyebrow"><span>VIDEO RESEARCH</span><span>{data.sourceLabel}</span></p><h1>{data.title}</h1><p className="evidence-head__lead">{data.thesis}</p><a className="evidence-source" href={data.sourceHref} target="_blank" rel="noreferrer">查看原始内容<ExternalLink size={13}/></a></div>
             <div className="evidence-health-card"><span className={data.gate.ready ? "is-ready" : "is-partial"}>{data.gate.ready ? "三镜头硬闸通过" : "三镜头未闭环"}</span><b>{data.coverage.coreCovered}/{data.coverage.coreTotal}</b><small>核心知识覆盖</small><p>{data.evidenceHealth.note}</p></div>
@@ -103,6 +130,8 @@ export default function VideoEvidencePage() {
                 <div className="directing-ledger"><article><span>激活的问题</span><p>{data.directingLogic.activatedQuestion ?? "尚未独立恢复"}</p></article><article><span>内容承诺</span><p>{data.directingLogic.promise ?? "尚未独立恢复"}</p></article><article><span>回报</span><p>{data.directingLogic.payoff ?? "尚未独立恢复"}</p></article><article><span>结尾闭合</span><p>{data.directingLogic.endingResolution ?? "尚未独立恢复"}</p></article></div>
                 <div className="directing-stages">{data.directingLogic.stages.length ? data.directingLogic.stages.map((stage, index) => <article key={`${stage.label}-${index}`}><time>{timestamp(stage.start)}–{timestamp(stage.end)}</time><div><span>STAGE {String(index + 1).padStart(2, "0")}</span><h3>{stage.label}</h3>{stage.viewerQuestion && <b>观众问题：{stage.viewerQuestion}</b>}<p>{stage.function}</p>{stage.cognitiveChange && <p><strong>认知变化：</strong>{stage.cognitiveChange}</p>}{stage.comprehensionLoad && <small>理解负荷：{stage.comprehensionLoad}</small>}{stage.payoff && <small>本段回报：{stage.payoff}</small>}{stage.proof && <small>证明 / 触发：{stage.proof}</small>}<EvidenceRefs refs={stage.evidenceRefs}/></div></article>) : <p className="evidence-empty">尚未形成有证据的编导阶段。</p>}</div>
                 {data.directingLogic.informationDesign.length > 0 && <div className="information-design">{data.directingLogic.informationDesign.map((item, index) => <article key={`${item.kind}-${index}`}><span>{item.kind}</span><time>{timestamp(item.start)}–{timestamp(item.end)}</time><p>{item.statement}</p><EvidenceRefs refs={item.evidenceRefs}/></article>)}</div>}
+                {data.directingLogic.proofDesign.length > 0 && <div className="visual-claims">{data.directingLogic.proofDesign.map((item, index) => <article key={`${item.proofType}-${index}`}><time>{timestamp(item.start)}–{timestamp(item.end)}</time><h3>{item.proofType === "visible_proof" ? "画面证明" : item.proofType === "creator_claim" ? "作者主张" : "系统推断"}</h3><p>{item.statement}</p><small>边界：{item.boundary}</small><EvidenceRefs refs={item.evidenceRefs}/></article>)}</div>}
+                <div className="directing-ledger"><article><span>信息压缩</span><p>{data.directingLogic.loadAndPayoff.compression}</p></article><article><span>重复方式</span><p>{data.directingLogic.loadAndPayoff.repetition}</p></article><article><span>回报距离</span><p>{data.directingLogic.loadAndPayoff.payoffDistance}</p></article><article><span>理解与复现成本</span>{data.directingLogic.loadAndPayoff.comprehensionCosts.length ? data.directingLogic.loadAndPayoff.comprehensionCosts.map((cost) => <p key={cost}>{cost}</p>) : <p>未观察到明确成本。</p>}</article></div>
                 {data.directingLogic.notes.length > 0 && <div className="lens-notes">{data.directingLogic.notes.map((note) => <p key={note}>{note}</p>)}</div>}
               </section>
               <section className="video-evidence-section" id="visual-editing"><header><span>03</span><div><h2>画面与剪辑</h2><p>画面载体承担什么信息、何时变化、技术镜头密度和哪些桥接被剪掉，分别呈现。</p></div><div className="view-switch"><button className={frameMode === "sparse" ? "active" : ""} onClick={() => setFrameMode("sparse")}><ScrollText size={13}/>稀疏</button><button className={frameMode === "dense" ? "active" : ""} onClick={() => setFrameMode("dense")}><Grid2X2 size={13}/>密集</button></div></header>
@@ -111,6 +140,7 @@ export default function VideoEvidencePage() {
                 <div className="carrier-grid">{data.visualEditing.carriers.map((carrier) => <article key={`${carrier.name}-${carrier.start}`}><header><b>{carrier.name}</b><time>{timestamp(carrier.start)}–{timestamp(carrier.end)}</time></header>{carrier.roles.map((role) => <p key={role}>{role}</p>)}</article>)}</div>
                 {data.visualEditing.claims.length > 0 && <div className="visual-claims">{data.visualEditing.claims.map((claim, index) => <article key={`${claim.statement}-${index}`}><time>{timestamp(claim.start)}–{timestamp(claim.end)}</time><h3>{claim.statement}</h3><p>{claim.function}</p><EvidenceRefs refs={claim.evidenceRefs}/></article>)}</div>}
                 {data.visualEditing.shotSemantics.length > 0 && <div className="shot-semantics">{data.visualEditing.shotSemantics.map((shot, index) => <article key={`${shot.start}-${index}`}><time>{timestamp(shot.start)}–{timestamp(shot.end)}</time><div><b>{shot.role}</b><span>{shot.carrier}</span><p>{shot.meaningChange}</p><EvidenceRefs refs={shot.evidenceRefs}/></div></article>)}</div>}
+                {data.visualEditing.uiProcedureStates.length > 0 && <div className="visual-claims">{data.visualEditing.uiProcedureStates.map((state, index) => <article key={`${state.label}-${index}`}><time>{timestamp(state.start)}–{timestamp(state.end)}</time><h3>{state.label}</h3><p><strong>操作前：</strong>{state.before}</p><p><strong>操作中：</strong>{state.during}</p><p><strong>操作后：</strong>{state.after}</p>{state.input && <small>输入：{state.input}</small>}{state.output && <small>输出：{state.output}</small>}<small>连续性边界：{state.continuity}</small><EvidenceRefs refs={state.evidenceRefs}/></article>)}</div>}
                 {data.visualEditing.audioRole && <p className="composition-line">非旁白音频：{data.visualEditing.audioRole}</p>}
                 <div className={`frame-list frame-list--${frameMode}`}>{data.frames[frameMode].map((frame) => <figure id={`evidence-${frame.id}`} key={frame.id} className="frame-card"><img src={frame.src} loading="lazy" alt={frame.reason ?? frame.id}/><figcaption><b>{frame.id}</b><time>{timestamp(frame.time)}</time></figcaption>{frame.reason && <p>{frame.reason}</p>}</figure>)}</div>
                 {data.visualEditing.notes.length > 0 && <div className="lens-notes lens-notes--warning">{data.visualEditing.notes.map((note) => <p key={note}>{note}</p>)}</div>}
@@ -131,7 +161,7 @@ export default function VideoEvidencePage() {
               {data.gate.failedGateIds.length > 0 && <div><span>尚未闭环</span>{data.gate.failedGateIds.map((value) => <p key={value}>{gateLabel(value)}</p>)}</div>}
             </aside>
           </div>
-          <footer className="evidence-foot"><Link className="evidence-back" to={`/creators/${data.creatorId}`}><ArrowLeft size={16}/>回到 {data.creatorName} 研究页</Link></footer>
+          <footer className="evidence-foot"><Link className="evidence-back" to={returnTo}><ArrowLeft size={16}/>回到 {data.creatorName} 研究页</Link></footer>
         </article>}
-  </main>;
+  </main></EvidenceNavigationContext.Provider>;
 }

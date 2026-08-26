@@ -87,8 +87,9 @@ flowchart TD
     C6 --> C7[Collection gate: inventory_ready]
     C7 --> C8[Open-ended portfolio annotation]
     C8 --> C9[Full-corpus baseline]
-    C9 --> C10[Build canonical 21 selection]
-    C10 --> C11[Resolve/download/verify deep media]
+    C9 --> C10[Build canonical comparison selection]
+    C10 --> C10B[Refine High / median / mean / Low deep groups after media-type confirmation]
+    C10B --> C11[Resolve/download/verify deep media]
     C11 --> C12[Run deep video DAGs]
     C12 --> C13[Creator synthesis]
     C13 --> C14[Creator validation]
@@ -122,6 +123,8 @@ Mechanism synthesis may publish only when:
 - full-corpus statistics reproduce from the pinned corpus revision;
 - the canonical selection set records tier rules, anchors, reasons, confounds, and denominator;
 - Base contains explicit median/mean semantics or a declared mean gap;
+- final deep-video selection covers High / median-near / mean-near / Low with three videos per group, deduplicating only recorded overlaps;
+- image/text posts are never counted as completed deep-video slots;
 - deep records expose reconstruction/evaluation state;
 - claims that rely on deep content cite only validated reconstructions;
 - unknown backend metrics remain unknown;

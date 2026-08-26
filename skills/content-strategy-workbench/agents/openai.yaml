@@ -1,0 +1,4 @@
+interface:
+  display_name: "自媒体创作策略台"
+  short_description: "把选定研究证据转化成原创定位、内容组合和下一条方案"
+  default_prompt: "Use $content-strategy-workbench to design our original content plan from these explicitly selected research references."

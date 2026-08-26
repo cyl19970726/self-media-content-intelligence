@@ -1,0 +1,4 @@
+interface:
+  display_name: "博主研究综合"
+  short_description: "把全量基本盘与三镜头证据综合成可审计博主档案"
+  default_prompt: "Use $creator-research-synthesis to synthesize this creator dossier from corpus and validated deep evidence."

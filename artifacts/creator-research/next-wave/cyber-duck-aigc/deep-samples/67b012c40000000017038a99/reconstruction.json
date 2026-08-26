@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "evidence/evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "Reconstruction of video-internal speech, raw machine SRT, burned captions, visible filmed-monitor/UI states, pointer actions, editing order, non-speech audio findings, and bounded absences across 0.00-29.80 seconds. It does not externally verify product claims, identify the source of photographed materials or the cartoon, or infer hidden operations from montage adjacency.",
+  "viewerChange": {
+    "before": "The viewer may know DeepSeek as a general chat system without a concrete English-study workflow.",
+    "after": "The video asks the viewer to see a photographed vocabulary list plus prompt as a route to interactive HTML exercises, answer explanations, listening-style material, and mnemonic guidance, while the evidence leaves the complete execution chain, TTS playback, retention efficacy, and cartoon provenance unestablished.",
+    "intendedChanges": [
+      "Understand the author-proposed vocabulary-image to prompt to HTML-exercise pattern.",
+      "Observe one four-option page whose option A reveals a green answer hint on hover.",
+      "Recognize the additional visible cloze, answer-analysis, listening-comprehension, and mnemonic states as edited examples rather than a continuous proven run.",
+      "Receive the author's persuasive framing that the approach is interesting, memorable, and especially suitable for English learners."
+    ]
+  },
+  "derivedSources": [
+    {
+      "id": "SRC-TARGETED",
+      "path": "targeted-evidence/targeted-evidence.json",
+      "kind": "protocol-targeted frame manifest",
+      "producedBy": "capture-protocol-evidence.mjs from source/video.mp4 and capture-protocol.json",
+      "timeRange": { "start": 0, "end": 29.8 },
+      "limitations": ["Frames are sampled observations, not proof of unsampled actions or whole intervals.", "Repeated times may occur under different protocol actions."]
+    },
+    {
+      "id": "SRC-OCR",
+      "path": "targeted-evidence/ocr-evidence.json",
+      "kind": "macOS Vision OCR proposals for targeted frames",
+      "producedBy": "ocr-frames.swift over targeted-evidence/targeted-evidence.json",
+      "timeRange": { "start": 0, "end": 29.8 },
+      "limitations": ["OCR is machine-proposed and was accepted only where consistent with the inspected source frame.", "Small, angled, cropped, or stylized text remains error-prone."]
+    },
+    {
+      "id": "SRC-HIGHRES-MANIFEST",
+      "path": "targeted-evidence/highres-manifest.json",
+      "kind": "derived high-resolution frame manifest",
+      "producedBy": "high-resolution resampling of source/video.mp4 at twelve protocol-selected times",
+      "timeRange": { "start": 5, "end": 29.3 },
+      "limitations": ["Twelve still frames cannot establish continuous actions or audio playback.", "The manifest does not itself contain text recognition results."]
+    },
+    {
+      "id": "SRC-OCR-HIGHRES",
+      "path": "targeted-evidence/ocr-highres.json",
+      "kind": "high-resolution macOS Vision OCR evidence",
+      "producedBy": "ocr-frames.swift over targeted-evidence/highres-manifest.json",
+      "timeRange": { "start": 5, "end": 29.3 },
+      "limitations": ["High-resolution OCR is a derived proposal, not ground truth.", "Accepted lines were checked against their source frames; partial and low-confidence strings were not silently completed.", "OCR line identifiers overlap numerically with the standard OCR artifact, so references use the canonical derived-artifact alias ocr-highres.json#OCR-xxxxx."]
+    }
+  ],
+  "transcript": {
+    "origin": "machine_transcription",
+    "cues": [
+      { "id": "CUE-001", "start": 0, "end": 1.88, "text": "DeepSeek 讓你人生從此開掛", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001"] },
+      { "id": "CUE-002", "start": 1.88, "end": 3.76, "text": "比如拍一張你需要練習的CT單詞", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-001", "SHOT-002"] },
+      { "id": "CUE-003", "start": 3.76, "end": 4.46, "text": "然後交給它", "representativeFrame": "frames/cues/cue-003.jpg", "overlappingShots": ["SHOT-002"] },
+      { "id": "CUE-004", "start": 4.46, "end": 6.24, "text": "就會出一系列選擇提供你選擇", "representativeFrame": "frames/cues/cue-004.jpg", "overlappingShots": ["SHOT-002", "SHOT-003"] },
+      { "id": "CUE-005", "start": 6.24, "end": 7.68, "text": "數標選題幾個顯示答案", "representativeFrame": "frames/cues/cue-005.jpg", "overlappingShots": ["SHOT-003"] },
+      { "id": "CUE-006", "start": 7.68, "end": 9.02, "text": "一定要按照我的提示此來", "representativeFrame": "frames/cues/cue-006.jpg", "overlappingShots": ["SHOT-003", "SHOT-004"] },
+      { "id": "CUE-007", "start": 9.02, "end": 10.48, "text": "提取圖片中的英語單詞", "representativeFrame": "frames/cues/cue-007.jpg", "overlappingShots": ["SHOT-004"] },
+      { "id": "CUE-008", "start": 10.48, "end": 13.16, "text": "使用這些單詞做某某級別英語的捕權選擇題", "representativeFrame": "frames/cues/cue-008.jpg", "overlappingShots": ["SHOT-004"] },
+      { "id": "CUE-009", "start": 13.16, "end": 16.08, "text": "並輸出程可以直接通過網頁打開的HTML格式", "representativeFrame": "frames/cues/cue-009.jpg", "overlappingShots": ["SHOT-004"] },
+      { "id": "CUE-010", "start": 16.08, "end": 17.44, "text": "除此以外還能做其他題", "representativeFrame": "frames/cues/cue-010.jpg", "overlappingShots": ["SHOT-004", "SHOT-005"] },
+      { "id": "CUE-011", "start": 17.44, "end": 18.32, "text": "例如「玩新天空」", "representativeFrame": "frames/cues/cue-011.jpg", "overlappingShots": ["SHOT-005"] },
+      { "id": "CUE-012", "start": 18.32, "end": 19.76, "text": "負增中文答案詳細解析", "representativeFrame": "frames/cues/cue-012.jpg", "overlappingShots": ["SHOT-005", "SHOT-006"] },
+      { "id": "CUE-013", "start": 19.76, "end": 21.76, "text": "甚至能轉化成TTS變成聽立題", "representativeFrame": "frames/cues/cue-013.jpg", "overlappingShots": ["SHOT-006", "SHOT-007"] },
+      { "id": "CUE-014", "start": 21.76, "end": 23.2, "text": "你甚至可以丟一單元單詞", "representativeFrame": "frames/cues/cue-014.jpg", "overlappingShots": ["SHOT-007", "SHOT-008"] },
+      { "id": "CUE-015", "start": 23.2, "end": 24.52, "text": "讓它教你如何聯想記憶", "representativeFrame": "frames/cues/cue-015.jpg", "overlappingShots": ["SHOT-008"] },
+      { "id": "CUE-016", "start": 24.52, "end": 27.92, "text": "這下想忘得忘不了 只有趣味又能深層想要的題", "representativeFrame": "frames/cues/cue-016.jpg", "overlappingShots": ["SHOT-008"] },
+      { "id": "CUE-017", "start": 27.92, "end": 29.72, "text": "對學英語的人再適合都不過了", "representativeFrame": "frames/cues/cue-017.jpg", "overlappingShots": ["SHOT-008"] }
+    ]
+  },
+  "knowledgeUnits": [
+    {
+      "id": "KU-01", "title": "Opening promise", "importance": "core",
+      "statement": "The author opens with the broad claim that using DeepSeek will make the viewer's life '开挂' (dramatically easier or enhanced).",
+      "provenance": "author_claim", "timeRange": { "start": 0, "end": 1.88 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-001", "supports": "The raw subtitle records the opening DeepSeek promise verbatim." },
+        { "refType": "targeted_frame", "ref": "TARGET-0021", "supports": "The 0.94-second caption frame visibly carries the opening promise; OCR proposes the same wording with minor corruption." },
+        { "refType": "shot", "ref": "SHOT-001", "supports": "The opening interval pairs the claim with an already-open quiz page." }
+      ],
+      "confidence": "high",
+      "argument": { "claim": "DeepSeek can materially improve the viewer's life through the illustrated study use.", "evidenceUnitIds": ["KU-05"], "conditions": ["The viewer wants English-study material from vocabulary inputs."], "counterexamples": [], "actions": ["Consider using the shown prompt pattern."], "limits": ["The broad life-improvement scope is not demonstrated by the single edited example."] },
+      "unknowns": ["No general life outcome is measured or externally verified."]
+    },
+    {
+      "id": "KU-02", "title": "Filmed-monitor demonstration context", "importance": "supporting",
+      "statement": "Most of the video films a physical monitor and desk with keyboard, controllers, and decorative lighting; it is not presented as a clean direct screen recording.",
+      "provenance": "visual_observation", "timeRange": { "start": 0, "end": 29.8 },
+      "evidence": [
+        { "refType": "frame", "ref": "DENSE-0001", "supports": "Opening frame shows the monitor within a physical desk setup." },
+        { "refType": "frame", "ref": "DENSE-0056", "supports": "Late frame retains the recurring desk and monitor environment." },
+        { "refType": "shot", "ref": "SHOT-008", "supports": "The final technical segment continues the physical filming context around inserted content." }
+      ],
+      "confidence": "high", "unknowns": ["Hidden edits within or between technical segments remain possible."]
+    },
+    {
+      "id": "KU-03", "title": "First photographed vocabulary input", "importance": "core",
+      "statement": "The monitor shows a portrait-oriented photograph of an English vocabulary/reference sheet; later chat footage shows an attachment labeled 640.webp, WEBP 94.64KB.",
+      "provenance": "visual_observation", "timeRange": { "start": 1.88, "end": 16.12 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0007", "supports": "The early interval visibly shows the photographed vocabulary sheet." },
+        { "refType": "targeted_frame", "ref": "TARGET-0044", "supports": "The later chat state shows the attachment and prompt context." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00037", "supports": "Accepted high-resolution OCR reads the filename 640.webp at 12.8 seconds." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00038", "supports": "Accepted high-resolution OCR reads WEBP 94.64KB." }
+      ],
+      "confidence": "high", "unknowns": ["The source and ownership of the photographed sheet are not established.", "The video does not establish that the early photograph and later 640.webp attachment are exactly the same file."]
+    },
+    {
+      "id": "KU-04", "title": "Narrated handoff", "importance": "core",
+      "statement": "The author proposes photographing vocabulary to practice and giving the image to the system.",
+      "provenance": "author_claim", "timeRange": { "start": 1.88, "end": 4.46 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-002", "supports": "Raw SRT contains the photograph-and-vocabulary statement, including its ASR error." },
+        { "refType": "cue", "ref": "CUE-003", "supports": "Raw SRT records the narrated handoff." },
+        { "refType": "targeted_frame", "ref": "TARGET-0022", "supports": "The 2.82-second burned-caption frame supports 习题单词 rather than the raw SRT's CT单词." }
+      ],
+      "confidence": "high", "unknowns": ["The capture, upload, and send actions are not continuously shown."]
+    },
+    {
+      "id": "KU-05", "title": "Four-option HTML quiz state", "importance": "core",
+      "statement": "A white page labeled DeepSeek is titled '英语四选一练习题（悬停题目看翻译，悬停选项看提示）' and shows an Alaska northern-lights sentence with four radio-style choices: weather, ferry, cinema, and coach.",
+      "provenance": "visual_observation", "timeRange": { "start": 4.48, "end": 7.78 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0013", "supports": "Before-state frame shows the page title, question, and four choices." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00004", "supports": "Accepted high-resolution OCR reads the full quiz title and hover instructions." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00010", "supports": "OCR reads the Alaska northern-lights question stem." },
+        { "refType": "shot", "ref": "SHOT-003", "supports": "The quiz remains visible through the answer-reveal interval." }
+      ],
+      "confidence": "high", "unknowns": ["The total number of questions below the visible area is unknown.", "The video does not establish that every question or option behaves identically."]
+    },
+    {
+      "id": "KU-06", "title": "Hover-linked answer reveal", "importance": "core",
+      "statement": "As the pointer rests over option A, its row highlights and a green note appears reading '正确搭配：Alaska's weather'; no click is visible in the inspected sequence.",
+      "provenance": "visual_observation", "timeRange": { "start": 5, "end": 7.75 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0013", "supports": "Before frame shows option A without the green answer note." },
+        { "refType": "targeted_frame", "ref": "TARGET-0018", "supports": "During frame captures pointer movement toward the option row." },
+        { "refType": "targeted_frame", "ref": "TARGET-0019", "supports": "After frame shows the highlighted row and green answer note." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00030", "supports": "Accepted high-resolution OCR reads the revealed answer note." }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "The visible first four-option question in its unrevealed state.",
+        "actions": ["Move or rest the pointer over option A."],
+        "parameters": ["Interaction observed: hover; no click observed.", "Observed row: A. weather."],
+        "output": "Option A highlights and the green correctness hint becomes visible.",
+        "beforeFrames": ["TARGET-0013"], "duringFrames": ["TARGET-0018"], "afterFrames": ["TARGET-0019"],
+        "unknowns": ["Whether hover works for all other options and questions."]
+      },
+      "unknowns": ["A sampled sequence cannot prove the behavior of the entire page."]
+    },
+    {
+      "id": "KU-07", "title": "Prompt as claimed dependency", "importance": "core",
+      "statement": "The author says the viewer must follow the author's prompt wording to obtain the illustrated result.",
+      "provenance": "author_claim", "timeRange": { "start": 7.68, "end": 9.02 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-006", "supports": "Raw SRT preserves the dependency claim with the ASR form 提示此." },
+        { "refType": "targeted_frame", "ref": "TARGET-0026", "supports": "The 8.35-second burned-caption frame reads 一定要按照我的提示词来." },
+        { "refType": "shot", "ref": "SHOT-004", "supports": "The video cuts from the quiz toward the chat/prompt interval." }
+      ],
+      "confidence": "high", "unknowns": ["No externally copyable prompt or access path is supplied."]
+    },
+    {
+      "id": "KU-08", "title": "Readable prompt and claimed HTML output", "importance": "core",
+      "statement": "The visible prompt asks to extract English words from the image, use them to make English completion multiple-choice questions for primary-school sixth grade, and output HTML that can be opened directly in a browser.",
+      "provenance": "visual_observation", "timeRange": { "start": 9.1, "end": 16.12 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0044", "supports": "Chat frame displays the prompt, attachment, and response." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00036", "supports": "High-resolution OCR reads 提取图片中的英语单词." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00039", "supports": "High-resolution OCR reads the sixth-grade completion-choice requirement." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00040", "supports": "High-resolution OCR reads the HTML-format ending; the directly-openable qualifier is visible on the inspected frame across the wrapped prompt." }
+      ],
+      "confidence": "high",
+      "procedural": {
+        "input": "A photographed vocabulary/reference sheet, later represented by a visible 640.webp attachment.",
+        "actions": ["Ask the system to extract the image's English words.", "Ask for sixth-grade English completion multiple-choice questions.", "Request browser-openable HTML output."],
+        "parameters": ["Audience level: 小学六年级.", "Question type: 英语补全选择题.", "Output format: HTML directly openable in a browser."],
+        "output": "A long chat response is visible, and separate edited shots show HTML-like exercise pages.",
+        "beforeFrames": ["TARGET-0007"], "duringFrames": ["TARGET-0044"], "afterFrames": ["TARGET-0013"],
+        "unknowns": ["Upload and send are not shown.", "Whether the response contains complete executable HTML is not established.", "Copy, save/export, and browser-open actions are not shown.", "Edited order is not a continuous run and does not prove that this prompt produced the earlier page."]
+      },
+      "unknowns": ["The complete prompt may extend beyond the visible crop; only readable wording is reconstructed."]
+    },
+    {
+      "id": "KU-09", "title": "Visible software identity and model strings", "importance": "supporting",
+      "statement": "Generated-looking pages visibly say DeepSeek. The mnemonic chat later shows the strings 'deepseek-r1:32b' in a top selector and 'deepseek-r1:14b' beside a response, but the video does not establish which system/version produced the earlier quiz pages.",
+      "provenance": "visual_observation", "timeRange": { "start": 0, "end": 27.1 },
+      "evidence": [
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00001", "supports": "The quiz page label reads DeepSeek." },
+        { "refType": "targeted_frame", "ref": "TARGET-0076", "supports": "The mnemonic chat frame exposes model-selector and response labels." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00233", "supports": "High-resolution OCR reads deepseek-r1:32b." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00235", "supports": "High-resolution OCR reads deepseek-r1:14b." }
+      ],
+      "confidence": "high", "unknowns": ["Exact product URL, browser identity, account/login state, workspace, provider/host, and the model responsible for each earlier output remain unknown."]
+    },
+    {
+      "id": "KU-10", "title": "Cloze exercise variant", "importance": "core",
+      "statement": "A separate DeepSeek-labeled page titled '阿拉斯加冒险日记（完形填空）' shows an English passage with sixteen visibly numbered inline dropdown blanks; some dropdowns contain selected answers.",
+      "provenance": "visual_observation", "timeRange": { "start": 16.12, "end": 18.32 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0052", "supports": "The cloze page title and multiple inline selectors are visible." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00070", "supports": "High-resolution OCR proposes the literal cloze title." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00106", "supports": "OCR detects numbered blank 14; the inspected frame visibly extends through blank 16." },
+        { "refType": "shot", "ref": "SHOT-005", "supports": "The technical interval contains the cloze variant before the analysis state." }
+      ],
+      "confidence": "high", "unknowns": ["The interaction that selected answers is not shown.", "The page's generation from the same first prompt is not established."]
+    },
+    {
+      "id": "KU-11", "title": "Chinese translation and answer-analysis state", "importance": "core",
+      "statement": "A later DeepSeek-labeled state shows a section headed '完整翻译' and another headed '答案解析', with colored answer markings and Chinese rationales for selected numbered items.",
+      "provenance": "visual_observation", "timeRange": { "start": 18.32, "end": 19.76 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0057", "supports": "The translation and answer-analysis sections are visible together." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00137", "supports": "High-resolution OCR reads 完整翻译." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00155", "supports": "OCR records a visible item-specific answer rationale." },
+        { "refType": "targeted_frame", "ref": "TARGET-0032", "supports": "The 19.04-second burned-caption frame reads 附赠中文答案详细解析." }
+      ],
+      "confidence": "high", "unknowns": ["The video does not show the action that opens or produces this analysis state.", "Only the visible subset of explanations is established."]
+    },
+    {
+      "id": "KU-12", "title": "Claimed expansion to other exercise forms", "importance": "supporting",
+      "statement": "The author claims the method can make other question types, naming cloze questions and detailed Chinese answer explanations; the montage visually illustrates one cloze page and one analysis state.",
+      "provenance": "author_claim", "timeRange": { "start": 16.08, "end": 19.76 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-010", "supports": "Raw SRT records the expansion to other questions." },
+        { "refType": "cue", "ref": "CUE-011", "supports": "Raw SRT preserves a consequentially corrupted question-type name." },
+        { "refType": "cue", "ref": "CUE-012", "supports": "Raw SRT preserves the detailed-Chinese-analysis claim with ASR corruption." },
+        { "refType": "targeted_frame", "ref": "TARGET-0057", "supports": "A visible analysis page illustrates but does not generalize the claim." }
+      ],
+      "confidence": "high", "unknowns": ["One montage example per state does not establish general reliability or that all variants came from the same input."]
+    },
+    {
+      "id": "KU-13", "title": "TTS capability claim", "importance": "core",
+      "statement": "The author claims the material can be converted into TTS and turned into listening questions.",
+      "provenance": "author_claim", "timeRange": { "start": 19.76, "end": 21.76 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-013", "supports": "Raw SRT records the TTS claim while mistranscribing 听力题." },
+        { "refType": "targeted_frame", "ref": "TARGET-0033", "supports": "The 20.76-second burned-caption frame reads 甚至能转化成TTS变成听力题." },
+        { "refType": "shot", "ref": "SHOT-007", "supports": "The claim is paired with a listening-style page." }
+      ],
+      "confidence": "high", "unknowns": ["The claim is not equivalent to observed synthesis or playback."]
+    },
+    {
+      "id": "KU-14", "title": "Listening-comprehension page and qualifier", "importance": "core",
+      "statement": "A DeepSeek-labeled page titled '阿拉斯加冒险日记（听力理解）' contains a blue line reading '听力原文（请听老师朗读或点击播放）', an English fill-in passage, multiple-choice questions, and the qualifier '内容由 AI 生成，请仔细甄别'.",
+      "provenance": "visual_observation", "timeRange": { "start": 19.76, "end": 21.82 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0062", "supports": "The listening-page title, instruction, passage, and AI-content qualifier are visible." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00180", "supports": "High-resolution OCR reads the page title." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00181", "supports": "High-resolution OCR reads the teacher-reading or click-play instruction." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00191", "supports": "High-resolution OCR reads the AI-content caution." }
+      ],
+      "confidence": "high", "unknowns": ["The actual function and source of any playback control are not established by a still frame."]
+    },
+    {
+      "id": "KU-15", "title": "TTS generation and playback remain unshown", "importance": "core",
+      "statement": "The available 19.76-21.82 second visual and audio evidence does not establish that TTS audio was generated or played; no playback action, distinct English synthesized voice, voice setting, speed, or language setting is observed.",
+      "provenance": "unknown", "timeRange": { "start": 19.76, "end": 21.82 },
+      "evidence": [
+        { "refType": "shot", "ref": "SHOT-007", "supports": "Bounded listening-page interval inspected for playback evidence." },
+        { "refType": "targeted_frame", "ref": "TARGET-0062", "supports": "The page is visible without an observed playback action." },
+        { "refType": "targeted_frame", "ref": "TARGET-0069", "supports": "The end of the inspected listening interval still does not show a playback operation." },
+        { "refType": "source", "ref": "SRC-TARGETED", "supports": "Protocol action ACT-07 samples the full opportunity interval while probe audio inspection reports narration and music rather than distinct English TTS." }
+      ],
+      "confidence": "high", "unknowns": ["TTS may have been created or played outside the shown interval; the video does not establish it."]
+    },
+    {
+      "id": "KU-16", "title": "Second vocabulary-list input", "importance": "core",
+      "statement": "A close-up shows a vocabulary list with English words, pronunciations, Chinese glosses, and page references, including count to ten, country, crossing, deep, dictionary, and down.",
+      "provenance": "visual_observation", "timeRange": { "start": 21.82, "end": 23.2 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0071", "supports": "The vocabulary-list close-up is visible." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00207", "supports": "High-resolution OCR reads count to ten 数到十." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00221", "supports": "High-resolution OCR reads dictionary and its Chinese gloss." },
+        { "refType": "cue", "ref": "CUE-014", "supports": "Narration frames the input as a unit of vocabulary." }
+      ],
+      "confidence": "high", "unknowns": ["The complete list, source, ownership, and attachment identity are unknown.", "Its upload and send actions are not shown."]
+    },
+    {
+      "id": "KU-17", "title": "Mnemonic response example", "importance": "core",
+      "statement": "A chat response describes associative-memory imagery and groups guidance by words such as cat, dog, house, school, and book; later visible sections give 联想, 画面感, and 记忆点 for individual words.",
+      "provenance": "visual_observation", "timeRange": { "start": 23.2, "end": 27.1 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0076", "supports": "The response introduction and example word list are visible." },
+        { "refType": "targeted_frame", "ref": "TARGET-0081", "supports": "Grouped mnemonic sections are visible later in the response." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00238", "supports": "High-resolution OCR reads the associative-image method explanation." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00258", "supports": "High-resolution OCR reads a dog memory-point line." }
+      ],
+      "confidence": "high", "unknowns": ["The response visibly uses a generic five-word example; the exact dependency on the previously shown unit sheet is not established."]
+    },
+    {
+      "id": "KU-18", "title": "Memory and interest benefit claim", "importance": "supporting",
+      "statement": "The author claims associative guidance makes the words hard to forget and that the approach is interesting and can generate desired questions.",
+      "provenance": "author_claim", "timeRange": { "start": 24.52, "end": 27.92 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-016", "supports": "Raw SRT preserves the benefit claim with consequential ASR corruption." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00270", "supports": "High-resolution OCR proposes the burned caption 这下想忘都忘不了 with a final-character OCR error." },
+        { "refType": "ocr", "ref": "OCR-00299", "supports": "Burned-caption OCR reads 既有趣味 during the latter part of the claim." }
+      ],
+      "confidence": "medium",
+      "argument": { "claim": "Associative memory makes vocabulary difficult to forget and the workflow makes practice interesting.", "evidenceUnitIds": ["KU-17"], "conditions": ["The learner engages with the generated mnemonic scenarios."], "counterexamples": [], "actions": ["Give the system a unit vocabulary list and request associative-memory guidance."], "limits": ["No learner test, retention interval, or comparative outcome is shown."] },
+      "unknowns": ["Retention efficacy is not demonstrated."]
+    },
+    {
+      "id": "KU-19", "title": "Inserted classroom cartoon", "importance": "supporting",
+      "statement": "The closing insert shows a stylized female teacher and uniformed students before a classroom board; the English text progresses from 'John, please come to the' to 'John, please come to the black', and a stylized Chinese watermark-like mark is overlaid near the top.",
+      "provenance": "visual_observation", "timeRange": { "start": 27.82, "end": 29.8 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0095", "supports": "The classroom characters, partial English sentence, and watermark-like mark are visible." },
+        { "refType": "targeted_frame", "ref": "TARGET-0097", "supports": "A later frame visibly adds the word black." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00275", "supports": "High-resolution OCR reads the sentence prefix at 29.3 seconds." },
+        { "refType": "ocr", "ref": "ocr-highres.json#OCR-00276", "supports": "High-resolution OCR reads black." }
+      ],
+      "confidence": "high", "unknowns": ["The sentence may continue beyond the visible video crop/time.", "The exact watermark text, source, ownership, and authorization are not reliably established."]
+    },
+    {
+      "id": "KU-20", "title": "Cartoon generation causality unknown", "importance": "core",
+      "statement": "The edit places the classroom cartoon after the mnemonic output, but the video does not show any prompt, generation, upload, export, save, copy, or open action linking that cartoon to DeepSeek or to the preceding workflow.",
+      "provenance": "unknown", "timeRange": { "start": 26.6, "end": 29.8 },
+      "evidence": [
+        { "refType": "targeted_frame", "ref": "TARGET-0088", "supports": "The inspected transition opportunity begins while the chat/desk context remains visible." },
+        { "refType": "targeted_frame", "ref": "TARGET-0090", "supports": "The edit reaches the cartoon without showing a generation bridge." },
+        { "refType": "targeted_frame", "ref": "TARGET-0099", "supports": "The closing cartoon remains visible through the end of the inspected scope." },
+        { "refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-09 samples 26.6-29.68 seconds specifically to inspect the transition and source boundary." }
+      ],
+      "confidence": "high", "unknowns": ["The cartoon could be an output of another tool, pre-existing footage, or an output created outside the shown sequence; the video does not decide among these possibilities."]
+    },
+    {
+      "id": "KU-21", "title": "Verbatim SRT conflict ledger", "importance": "core",
+      "statement": "The raw SRT must remain exactly as supplied and contains consequential forms including CT單詞, 數標選題幾個顯示答案, 提示此, 捕權選擇題, 玩新天空, 負增, 聽立題, and 深層; these raw forms are evidence of the machine transcript, not corrected content facts.",
+      "provenance": "raw_fact", "timeRange": { "start": 1.88, "end": 27.92 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-002", "supports": "Raw cue contains CT單詞." },
+        { "refType": "cue", "ref": "CUE-005", "supports": "Raw cue contains 數標選題幾個顯示答案." },
+        { "refType": "cue", "ref": "CUE-008", "supports": "Raw cue contains 捕權選擇題." },
+        { "refType": "cue", "ref": "CUE-011", "supports": "Raw cue contains 玩新天空." },
+        { "refType": "cue", "ref": "CUE-013", "supports": "Raw cue contains 聽立題." },
+        { "refType": "cue", "ref": "CUE-016", "supports": "Raw cue contains 深層 within the final benefit sentence." }
+      ],
+      "confidence": "high", "unknowns": ["The raw transcript alone cannot resolve intended speech where it conflicts with captions and UI."]
+    },
+    {
+      "id": "KU-22", "title": "Caption-supported readings kept separate", "importance": "core",
+      "statement": "Inspected burned captions support the readings 习题单词, 鼠标悬停即可显示答案, 提示词, 补全选择题, 完形填空, 附赠中文答案详细解析, 听力题, and 既有趣味; the visible mnemonic response and context support 联想记忆 and 生成想要的题 as interpretations, while the original SRT remains unchanged.",
+      "provenance": "visual_observation", "timeRange": { "start": 1.88, "end": 27.92 },
+      "evidence": [
+        { "refType": "ocr", "ref": "OCR-00140", "supports": "Burned-caption OCR supports 习题单词." },
+        { "refType": "ocr", "ref": "OCR-00164", "supports": "Burned-caption OCR reads 鼠标悬停即可显示答案." },
+        { "refType": "ocr", "ref": "OCR-00178", "supports": "Burned-caption OCR reads 提示词." },
+        { "refType": "ocr", "ref": "OCR-00207", "supports": "Burned-caption OCR proposes 补全选择题 despite other OCR noise." },
+        { "refType": "ocr", "ref": "OCR-00249", "supports": "Burned-caption OCR reads 完形填空." },
+        { "refType": "ocr", "ref": "OCR-00252", "supports": "Burned-caption OCR reads 附赠中文答案详细解析." },
+        { "refType": "ocr", "ref": "OCR-00265", "supports": "Burned-caption OCR reads 听力题." },
+        { "refType": "ocr", "ref": "OCR-00299", "supports": "Burned-caption OCR reads 既有趣味." }
+      ],
+      "confidence": "medium", "unknowns": ["OCR corrupts some characters such as 他/它, 联/朕, 了/7, and final punctuation; those are not silently normalized in the transcript layer.", "The complete second half of CUE-016 is only partially legible at its midpoint and is interpreted with context rather than replaced verbatim."]
+    },
+    {
+      "id": "KU-23", "title": "Unshown operational bridges", "importance": "core",
+      "statement": "Across the fully inspected 0-29.8 second timeline, the video does not show a continuous capture/upload/send/generate chain, code copy, file save/export/download, browser-open step, analysis-state transition, second-image upload/send, or any equivalent handoff that would prove the edited inputs and visible outputs belong to one executed workflow.",
+      "provenance": "unknown", "timeRange": { "start": 0, "end": 29.8 },
+      "evidence": [
+        { "refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-11 samples the full timeline at 0.5-second density for the specified missing controls and bridges." },
+        { "refType": "shot", "ref": "SHOT-002", "supports": "Input-to-quiz opportunity interval is inspected without a continuous handoff." },
+        { "refType": "shot", "ref": "SHOT-004", "supports": "Chat response interval is inspected without copy/save/open actions." },
+        { "refType": "shot", "ref": "SHOT-008", "supports": "Mnemonic and cartoon interval is inspected without a second upload/send or cartoon-generation bridge." }
+      ],
+      "confidence": "high", "unknowns": ["These actions may have occurred off-camera or been removed in editing; the video does not establish them."]
+    },
+    {
+      "id": "KU-24", "title": "Decision-relevant product and access conditions remain unknown", "importance": "supporting",
+      "statement": "Across the inspected full timeline, no readable product URL, verified browser identity, account/login state, workspace, price, region condition, support/owner entity, or external access route is established; visible model strings in the mnemonic chat do not resolve the provenance of earlier pages.",
+      "provenance": "unknown", "timeRange": { "start": 0, "end": 29.8 },
+      "evidence": [
+        { "refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-11 defines and inspects the full 0-29.8 second negative-evidence scope." },
+        { "refType": "targeted_frame", "ref": "TARGET-0114", "supports": "Opening full-timeline sample offers no readable access conditions." },
+        { "refType": "targeted_frame", "ref": "TARGET-0156", "supports": "Listening interval sample offers no readable access conditions." },
+        { "refType": "targeted_frame", "ref": "TARGET-0174", "supports": "Closing full-timeline sample offers no readable access conditions." }
+      ],
+      "confidence": "high", "unknowns": ["Some details may be outside the camera crop or unreadable; the bounded claim is only that they are not established by the inspected source."]
+    },
+    {
+      "id": "KU-25", "title": "Closing audience claim", "importance": "core",
+      "statement": "The author closes by claiming the approach could hardly be more suitable for people learning English, narrowing the opening's broad life-enhancement promise to an English-learning audience.",
+      "provenance": "author_claim", "timeRange": { "start": 27.92, "end": 29.72 },
+      "evidence": [
+        { "refType": "cue", "ref": "CUE-017", "supports": "Raw SRT preserves the closing audience claim." },
+        { "refType": "ocr", "ref": "OCR-00303", "supports": "Burned-caption OCR supports 对学英语的人再适合不过了 with a final-character OCR error." },
+        { "refType": "shot", "ref": "SHOT-008", "supports": "The claim is paired with the classroom-cartoon payoff." }
+      ],
+      "confidence": "high", "unknowns": ["Suitability is asserted rather than evaluated against learner outcomes or alternatives."]
+    },
+    {
+      "id": "KU-26", "title": "Montage structure rather than proven pipeline", "importance": "core",
+      "statement": "The evidence supports an edited capability montage in a recurring filmed-monitor setting: result, input, result, prompt/response, variant pages, mnemonic input/output, and cartoon. Technical shot boundaries and adjacency do not establish eight semantic scenes, a complete procedure, or causal file handoffs.",
+      "provenance": "system_inference", "timeRange": { "start": 0, "end": 29.8 },
+      "evidence": [
+        { "refType": "shot", "ref": "SHOT-001", "supports": "The video begins on a result rather than the start of a procedure." },
+        { "refType": "shot", "ref": "SHOT-004", "supports": "The prompt appears after the first result in edited chronology." },
+        { "refType": "shot", "ref": "SHOT-008", "supports": "Mnemonic output and cartoon share the final technical segment without a shown causal bridge." },
+        { "refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-10 inspects both sides of technical boundaries and shows recurring physical setup across most boundaries." }
+      ],
+      "confidence": "high",
+      "reasoning": "The observed order places outputs before their purported prompt, preserves the same monitor/desk across multiple detector boundaries, and omits required file operations. Therefore montage is supported, but a continuous pipeline or semantic scene count is not.",
+      "unknowns": ["The exact edit count and hidden cuts are unknown."]
+    }
+  ],
+  "relations": [
+    { "from": "KU-03", "to": "KU-04", "relation": "input_to_claimed_workflow", "evidence": [{ "refType": "cue", "ref": "CUE-002", "supports": "Narration frames the photographed sheet as the workflow input." }, { "refType": "targeted_frame", "ref": "TARGET-0007", "supports": "The input sheet is visible." }] },
+    { "from": "KU-07", "to": "KU-08", "relation": "author_claimed_dependency", "evidence": [{ "refType": "cue", "ref": "CUE-006", "supports": "The author makes prompt wording necessary." }, { "refType": "targeted_frame", "ref": "TARGET-0044", "supports": "The requested prompt is later visible." }] },
+    { "from": "KU-05", "to": "KU-06", "relation": "observable_state_change", "evidence": [{ "refType": "targeted_frame", "ref": "TARGET-0013", "supports": "Before state." }, { "refType": "targeted_frame", "ref": "TARGET-0019", "supports": "Hover-revealed after state." }] },
+    { "from": "KU-05", "to": "KU-10", "relation": "expanded_by_capability_montage", "evidence": [{ "refType": "cue", "ref": "CUE-010", "supports": "Narration expands to other exercises." }, { "refType": "targeted_frame", "ref": "TARGET-0052", "supports": "Cloze example is visible." }] },
+    { "from": "KU-10", "to": "KU-11", "relation": "followed_in_montage_by_answer_analysis", "evidence": [{ "refType": "targeted_frame", "ref": "TARGET-0052", "supports": "Cloze page state." }, { "refType": "targeted_frame", "ref": "TARGET-0057", "supports": "Later analysis state." }] },
+    { "from": "KU-14", "to": "KU-13", "relation": "illustrates_but_does_not_audibly_prove", "evidence": [{ "refType": "cue", "ref": "CUE-013", "supports": "TTS is asserted." }, { "refType": "targeted_frame", "ref": "TARGET-0062", "supports": "A listening page illustrates the assertion." }, { "refType": "source", "ref": "SRC-TARGETED", "supports": "Bounded inspection does not establish playback." }] },
+    { "from": "KU-16", "to": "KU-17", "relation": "input_to_claimed_mnemonic_workflow", "evidence": [{ "refType": "cue", "ref": "CUE-014", "supports": "Narration proposes the unit list as input." }, { "refType": "targeted_frame", "ref": "TARGET-0081", "supports": "Mnemonic output is visible later." }] },
+    { "from": "KU-01", "to": "KU-25", "relation": "narrowed_and_paid_off_by", "evidence": [{ "refType": "cue", "ref": "CUE-001", "supports": "Broad opening promise." }, { "refType": "cue", "ref": "CUE-017", "supports": "English-learner closing claim." }] },
+    { "from": "KU-19", "to": "KU-20", "relation": "juxtaposed_as_fun_payoff_without_proven_generation_link", "evidence": [{ "refType": "targeted_frame", "ref": "TARGET-0090", "supports": "Cartoon appears after the chat montage." }, { "refType": "source", "ref": "SRC-TARGETED", "supports": "ACT-09 finds no visible generation bridge." }] },
+    { "from": "KU-21", "to": "KU-22", "relation": "carrier_conflict", "evidence": [{ "refType": "cue", "ref": "CUE-005", "supports": "Raw SRT wording differs consequentially." }, { "refType": "ocr", "ref": "OCR-00164", "supports": "Burned caption supplies the supported hover reading." }] },
+    { "from": "KU-26", "to": "KU-02", "relation": "segmentation_not_equivalent_to_semantic_scene_change", "evidence": [{ "refType": "shot", "ref": "SHOT-001", "supports": "First technical segment." }, { "refType": "shot", "ref": "SHOT-008", "supports": "Final technical segment." }, { "refType": "source", "ref": "SRC-TARGETED", "supports": "Boundary-adjacent ACT-10 frames preserve recurring setup while allowing hidden cuts." }] }
+  ],
+  "coverageMatrix": {
+    "channels": [
+      { "id": "CAR-01", "available": true, "inspected": true }, { "id": "CAR-02", "available": true, "inspected": true }, { "id": "CAR-03", "available": true, "inspected": true },
+      { "id": "CAR-04", "available": true, "inspected": true }, { "id": "CAR-05", "available": true, "inspected": true }, { "id": "CAR-06", "available": true, "inspected": true },
+      { "id": "CAR-07", "available": true, "inspected": true }, { "id": "CAR-08", "available": true, "inspected": true }, { "id": "CAR-09", "available": true, "inspected": true },
+      { "id": "CAR-10", "available": true, "inspected": true }, { "id": "CAR-11", "available": true, "inspected": true }, { "id": "CAR-12", "available": true, "inspected": true },
+      { "id": "CAR-13", "available": true, "inspected": true }
+    ],
+    "meaningChanges": [
+      { "id": "MC-01", "captured": true, "unitIds": ["KU-01", "KU-05"] },
+      { "id": "MC-02", "captured": true, "unitIds": ["KU-03", "KU-04"] },
+      { "id": "MC-03", "captured": true, "unitIds": ["KU-05", "KU-06"] },
+      { "id": "MC-04", "captured": true, "unitIds": ["KU-07"] },
+      { "id": "MC-05", "captured": true, "unitIds": ["KU-08", "KU-09", "KU-23"] },
+      { "id": "MC-06", "captured": true, "unitIds": ["KU-10", "KU-11", "KU-12"] },
+      { "id": "MC-07", "captured": true, "unitIds": ["KU-13", "KU-14", "KU-15"] },
+      { "id": "MC-08", "captured": true, "unitIds": ["KU-16", "KU-17"] },
+      { "id": "MC-09", "captured": true, "unitIds": ["KU-17", "KU-18"] },
+      { "id": "MC-10", "captured": true, "unitIds": ["KU-19", "KU-20", "KU-25"] }
+    ],
+    "relationships": [
+      { "id": "REL-01", "evidenced": true, "evidenceRefs": ["CUE-002", "CUE-003", "TARGET-0007", "TARGET-0044"] },
+      { "id": "REL-02", "evidenced": true, "evidenceRefs": ["CUE-006", "CUE-009", "TARGET-0044"] },
+      { "id": "REL-03", "evidenced": true, "evidenceRefs": ["TARGET-0013", "TARGET-0018", "TARGET-0019"] },
+      { "id": "REL-04", "evidenced": true, "evidenceRefs": ["CUE-010", "TARGET-0052", "TARGET-0057", "TARGET-0062"] },
+      { "id": "REL-05", "evidenced": true, "evidenceRefs": ["CUE-013", "TARGET-0062", "TARGET-0069", "SRC-TARGETED"] },
+      { "id": "REL-06", "evidenced": true, "evidenceRefs": ["CUE-014", "CUE-015", "TARGET-0071", "TARGET-0081"] },
+      { "id": "REL-07", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-017", "SHOT-001", "SHOT-008"] },
+      { "id": "REL-08", "evidenced": true, "evidenceRefs": ["TARGET-0088", "TARGET-0090", "TARGET-0099", "SRC-TARGETED"] },
+      { "id": "REL-09", "evidenced": true, "evidenceRefs": ["CUE-002", "CUE-005", "CUE-008", "CUE-011", "CUE-013", "CUE-016", "SRC-OCR"] },
+      { "id": "REL-10", "evidenced": true, "evidenceRefs": ["SHOT-001", "SHOT-002", "SHOT-003", "SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008", "SRC-TARGETED"] }
+    ],
+    "criticalQuestions": [
+      { "id": "CQ-01", "status": "unknown", "unitIds": ["KU-03", "KU-04", "KU-23"], "evidenceRefs": ["CUE-002", "CUE-003", "TARGET-0007", "TARGET-0044", "SRC-TARGETED"] },
+      { "id": "CQ-02", "status": "unknown", "unitIds": ["KU-09", "KU-24"], "evidenceRefs": ["TARGET-0013", "TARGET-0076", "SRC-OCR-HIGHRES", "SRC-TARGETED"] },
+      { "id": "CQ-03", "status": "answered", "unitIds": ["KU-07", "KU-08"], "evidenceRefs": ["CUE-006", "CUE-007", "CUE-008", "CUE-009", "TARGET-0044", "SRC-OCR-HIGHRES"] },
+      { "id": "CQ-04", "status": "answered", "unitIds": ["KU-05", "KU-06"], "evidenceRefs": ["TARGET-0013", "TARGET-0018", "TARGET-0019", "SRC-OCR-HIGHRES"] },
+      { "id": "CQ-05", "status": "answered", "unitIds": ["KU-10", "KU-11", "KU-14"], "evidenceRefs": ["TARGET-0052", "TARGET-0057", "TARGET-0062", "SRC-OCR-HIGHRES"] },
+      { "id": "CQ-06", "status": "unknown", "unitIds": ["KU-13", "KU-14", "KU-15"], "evidenceRefs": ["CUE-013", "TARGET-0062", "TARGET-0069", "SRC-TARGETED"] },
+      { "id": "CQ-07", "status": "unknown", "unitIds": ["KU-16", "KU-17", "KU-18"], "evidenceRefs": ["CUE-014", "CUE-015", "CUE-016", "TARGET-0071", "TARGET-0081", "SRC-OCR-HIGHRES"] },
+      { "id": "CQ-08", "status": "unknown", "unitIds": ["KU-19", "KU-20"], "evidenceRefs": ["TARGET-0090", "TARGET-0095", "TARGET-0099", "SRC-TARGETED"] },
+      { "id": "CQ-09", "status": "answered", "unitIds": ["KU-21", "KU-22"], "evidenceRefs": ["CUE-002", "CUE-005", "CUE-008", "CUE-011", "CUE-013", "CUE-016", "SRC-OCR"] },
+      { "id": "CQ-10", "status": "unknown", "unitIds": ["KU-15", "KU-20", "KU-23", "KU-26"], "evidenceRefs": ["SHOT-002", "SHOT-004", "SHOT-007", "SHOT-008", "SRC-TARGETED"] },
+      { "id": "CQ-11", "status": "answered", "unitIds": ["KU-01", "KU-25"], "evidenceRefs": ["CUE-001", "CUE-017", "SHOT-001", "SHOT-008"] },
+      { "id": "CQ-12", "status": "unknown", "unitIds": ["KU-24"], "evidenceRefs": ["TARGET-0114", "TARGET-0156", "TARGET-0174", "SRC-TARGETED"] },
+      { "id": "CQ-13", "status": "unknown", "unitIds": ["KU-02", "KU-26"], "evidenceRefs": ["SHOT-001", "SHOT-002", "SHOT-003", "SHOT-004", "SHOT-005", "SHOT-006", "SHOT-007", "SHOT-008", "SRC-TARGETED"] }
+    ],
+    "cueAccountability": [
+      { "cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-01", "KU-25"], "rationale": "Opening claim and opening-to-closing relation." },
+      { "cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-03", "KU-04", "KU-21", "KU-22"], "rationale": "First input claim plus CT/习题 carrier conflict." },
+      { "cueId": "CUE-003", "disposition": "knowledge", "unitIds": ["KU-04", "KU-23"], "rationale": "Narrated handoff, with execution left unknown." },
+      { "cueId": "CUE-004", "disposition": "knowledge", "unitIds": ["KU-05", "KU-21", "KU-22"], "rationale": "Quiz-output claim and caption-supported question wording." },
+      { "cueId": "CUE-005", "disposition": "knowledge", "unitIds": ["KU-06", "KU-21", "KU-22"], "rationale": "Hover reveal and consequential ASR conflict." },
+      { "cueId": "CUE-006", "disposition": "knowledge", "unitIds": ["KU-07", "KU-21", "KU-22"], "rationale": "Prompt dependency and 提示此/提示词 conflict." },
+      { "cueId": "CUE-007", "disposition": "knowledge", "unitIds": ["KU-08"], "rationale": "Visible prompt instruction to extract image words." },
+      { "cueId": "CUE-008", "disposition": "knowledge", "unitIds": ["KU-08", "KU-21", "KU-22"], "rationale": "Question-level requirement and 捕权/补全 conflict." },
+      { "cueId": "CUE-009", "disposition": "knowledge", "unitIds": ["KU-08", "KU-21", "KU-22", "KU-23"], "rationale": "HTML output requirement and missing save/open bridge." },
+      { "cueId": "CUE-010", "disposition": "knowledge", "unitIds": ["KU-12"], "rationale": "Expands the capability montage to other question types." },
+      { "cueId": "CUE-011", "disposition": "knowledge", "unitIds": ["KU-10", "KU-12", "KU-21", "KU-22"], "rationale": "Cloze example and 玩新天空/完形填空 conflict." },
+      { "cueId": "CUE-012", "disposition": "knowledge", "unitIds": ["KU-11", "KU-12", "KU-21", "KU-22"], "rationale": "Chinese answer-analysis claim and 負增/附赠 conflict." },
+      { "cueId": "CUE-013", "disposition": "knowledge", "unitIds": ["KU-13", "KU-14", "KU-15", "KU-21", "KU-22"], "rationale": "TTS claim, listening illustration, playback unknown, and 聽立/听力 conflict." },
+      { "cueId": "CUE-014", "disposition": "knowledge", "unitIds": ["KU-16"], "rationale": "Introduces the second vocabulary-list input." },
+      { "cueId": "CUE-015", "disposition": "knowledge", "unitIds": ["KU-17", "KU-22"], "rationale": "Associative-memory request and caption/OCR ambiguity." },
+      { "cueId": "CUE-016", "disposition": "knowledge", "unitIds": ["KU-17", "KU-18", "KU-21", "KU-22"], "rationale": "Mnemonic result and benefit claim, with raw/caption conflict preserved." },
+      { "cueId": "CUE-017", "disposition": "knowledge", "unitIds": ["KU-19", "KU-20", "KU-25"], "rationale": "Closing English-learner claim paired with an unlinked cartoon payoff." }
+    ],
+    "coreEvidence": { "covered": 20, "total": 20 },
+    "unknowns": [
+      { "id": "UNK-01", "unitIds": ["KU-23"], "scope": "0-29.8 seconds", "statement": "Upload, send, run/generate, copy, save/export/download, browser-open, and equivalent file handoffs are unshown.", "evidenceRefs": ["SHOT-002", "SHOT-004", "SHOT-008", "SRC-TARGETED"] },
+      { "id": "UNK-02", "unitIds": ["KU-15"], "scope": "19.76-21.82 seconds", "statement": "TTS generation and playback causality are unestablished.", "evidenceRefs": ["SHOT-007", "TARGET-0062", "TARGET-0069", "SRC-TARGETED"] },
+      { "id": "UNK-03", "unitIds": ["KU-20"], "scope": "26.6-29.8 seconds", "statement": "Cartoon source and generation causality are unestablished.", "evidenceRefs": ["TARGET-0088", "TARGET-0090", "TARGET-0099", "SRC-TARGETED"] },
+      { "id": "UNK-04", "unitIds": ["KU-24"], "scope": "0-29.8 seconds", "statement": "URL, account, access, price, region, support, and provider conditions are not established by the visible source.", "evidenceRefs": ["TARGET-0114", "TARGET-0174", "SRC-TARGETED"] },
+      { "id": "UNK-05", "unitIds": ["KU-18"], "scope": "24.52-27.92 seconds", "statement": "Retention efficacy is asserted but not demonstrated.", "evidenceRefs": ["CUE-016", "TARGET-0081"] },
+      { "id": "UNK-06", "unitIds": ["KU-26"], "scope": "0-29.8 seconds", "statement": "Technical shot boundaries do not determine semantic scene count or exact edit count.", "evidenceRefs": ["SHOT-001", "SHOT-008", "SRC-TARGETED"] }
+    ],
+    "uncheckedChannels": []
+  },
+  "metaGate": {
+    "question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？",
+    "pass": true,
+    "uncheckedChannels": [],
+    "overlookedMeaningChanges": [],
+    "overlookedRelationships": [],
+    "rationale": "All thirteen available probe carriers, ten meaning changes, ten relationship hypotheses, thirteen critical questions, and seventeen raw cues have explicit closure rows. High-resolution frames and OCR are registered as derived sources. Identity, boundary, referent, absence, carrier-conflict, segmentation, and closing audits preserve unresolved execution, TTS, and cartoon causality as unknown rather than filling them in."
+  }
+}

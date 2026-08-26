@@ -54,10 +54,11 @@ function distribute(posts: CreatorInventoryPost[]): { low: CreatorInventoryPost[
   };
 }
 
-function deepIds(posts: CreatorInventoryPost[], count = 3): Set<string> {
-  if (posts.length <= count) return new Set(posts.map((post) => post.externalId));
-  const positions = [0, Math.floor((posts.length - 1) / 2), posts.length - 1];
-  return new Set(positions.slice(0, count).map((position) => posts[position]?.externalId).filter(Boolean) as string[]);
+function closest(posts: CreatorInventoryPost[], target: number | null, count = 3): CreatorInventoryPost[] {
+  if (target === null) return [];
+  return posts.filter((post) => post.likes !== null)
+    .sort((left, right) => Math.abs((left.likes ?? 0) - target) - Math.abs((right.likes ?? 0) - target))
+    .slice(0, count);
 }
 
 export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string, generatedAt: string): {
@@ -126,10 +127,32 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
     if (replaceIndex >= 0) tiers.base.splice(replaceIndex, 1, candidate);
   }
   tiers.base.sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0));
+  const highDeep = [...known].sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 3);
+  const lowDeep = [...known].sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0)).slice(0, 3);
+  const medianDeep = closest(known, median);
+  const meanDeep = closest(known, mean);
+  const deepGroups = new Map<string, Array<"high" | "median" | "mean" | "low">>();
+  for (const [group, candidates] of [["high", highDeep], ["median", medianDeep], ["mean", meanDeep], ["low", lowDeep]] as const) {
+    for (const candidate of candidates) deepGroups.set(candidate.externalId, [...(deepGroups.get(candidate.externalId) ?? []), group]);
+  }
+  const tierFor = (post: CreatorInventoryPost): "low" | "base" | "high" => {
+    const index = sortedKnown.findIndex((item) => item.externalId === post.externalId);
+    return index < Math.floor(sortedKnown.length / 3) ? "low"
+      : index >= Math.ceil(sortedKnown.length * 2 / 3) ? "high" : "base";
+  };
+  for (const candidate of [...highDeep, ...medianDeep, ...meanDeep, ...lowDeep]) {
+    const tier = tierFor(candidate);
+    const bucket = tiers[tier];
+    if (bucket.some((post) => post.externalId === candidate.externalId)) continue;
+    const replaceIndex = bucket.findLastIndex((post) => !deepGroups.has(post.externalId));
+    if (replaceIndex >= 0) bucket.splice(replaceIndex, 1, candidate);
+  }
+  tiers.high.sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0));
+  tiers.base.sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0));
+  tiers.low.sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0));
   const selectedIds = new Set([...tiers.high, ...tiers.base, ...tiers.low].map((post) => post.externalId));
   const typicalMediaType = Object.entries(mediaTypes).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "unknown";
   const makeItems = (tier: "high" | "base" | "low", posts: CreatorInventoryPost[]) => {
-    const deep = deepIds(posts);
     return posts.map((post, index) => {
       const anchors: Array<"median_near" | "mean_near" | "typical_form"> = [];
       if (post.externalId === medianNear?.externalId) anchors.push("median_near");
@@ -142,7 +165,8 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
         tierRank: index + 1,
         anchors,
         selectionReason: `${comparison}；按全量已知点赞排序后分位抽样，保留区间内部差异。`,
-        deepCandidate: deep.has(post.externalId),
+        deepCandidate: deepGroups.has(post.externalId),
+        deepGroups: deepGroups.get(post.externalId) ?? [],
         deepState: "pending" as const,
         confounds: ["发布时间、选题热度、粉丝增长阶段和投流状态尚未控制。"]
       };
@@ -156,10 +180,12 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
       runId: inventory.runId,
       generatedAt,
       sourceCorpusArtifactRef: `/artifacts/${inventory.runId}/creator-corpus.json`,
-      ruleVersion: "ranked-7x3-v1",
+      ruleVersion: "four-groups-3-each-v2",
       rules: {
         targetPerTier: 7,
         deepCandidatesPerTier: 3,
+        deepCandidatesPerGroup: 3,
+        deepGroupContract: "高表现 / 中位数附近 / 算术均值附近 / 低表现各 3 条；重叠样本只下载和重建一次。",
         high: "已知点赞排序的上三分位中，最多取 7 条覆盖该区间。",
         base: "已知点赞排序的中三分位中，最多取 7 条，并显式标注中位数附近与平均值附近锚点。",
         low: "已知点赞排序的下三分位中，最多取 7 条覆盖该区间。",
@@ -182,10 +208,43 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
       tierCounts: { high: tiers.high.length, base: tiers.base.length, low: tiers.low.length },
       items,
       limitations: [
-        "这 21 条是同一份规范选择；9 条 deepCandidate 只是其中的深度还原候选，不代表已完成视频理解。",
+        "这 21 条是同一份规范选择；深度候选覆盖高表现、中位数附近、算术均值附近、低表现各 3 条，重叠样本只计一次。",
         "轻量网格数据只能建立表现层分层，不能单独解释内容为什么火或为什么失效。",
         ...(inventory.stopReason === "budget_reached" ? ["采集因预算停止，所有分层仅代表当前已观察清单。"] : [])
       ]
     })
   };
+}
+
+export function refineDeepSelectionForVerifiedVideos(
+  input: CreatorSelection,
+  mediaTypes: Map<string, "video" | "image" | "unknown">,
+  generatedAt: string
+): CreatorSelection {
+  const selection = creatorSelectionSchema.parse(input);
+  const videos = selection.items.filter((item) => mediaTypes.get(item.externalId) === "video" && item.likes !== null);
+  const high = [...videos].sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 3);
+  const low = [...videos].sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0)).slice(0, 3);
+  const median = closest(videos, selection.anchors.median);
+  const mean = closest(videos, selection.anchors.mean);
+  const groups = new Map<string, Array<"high" | "median" | "mean" | "low">>();
+  for (const [group, candidates] of [["high", high], ["median", median], ["mean", mean], ["low", low]] as const) {
+    for (const candidate of candidates) groups.set(candidate.externalId, [...(groups.get(candidate.externalId) ?? []), group]);
+  }
+  const missing = (["high", "median", "mean", "low"] as const)
+    .filter((group) => selection.items.filter((item) => groups.get(item.externalId)?.includes(group)).length < 3);
+  return creatorSelectionSchema.parse({
+    ...selection,
+    generatedAt,
+    ruleVersion: "four-groups-video-refined-v3",
+    items: selection.items.map((item) => ({
+      ...item,
+      mediaType: mediaTypes.get(item.externalId) ?? item.mediaType,
+      deepCandidate: groups.has(item.externalId),
+      deepGroups: groups.get(item.externalId) ?? []
+    })),
+    limitations: [...selection.limitations,
+      "深度候选已在详情采集后按已核验视频类型重算；图文仍保留在比较集，但不进入视频重建。",
+      ...(missing.length ? [`比较集中的已核验视频不足，未满足组别：${missing.join(" / ")}。`] : [])]
+  });
 }
