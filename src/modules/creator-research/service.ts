@@ -48,6 +48,10 @@ function leaseUntil(seconds = 90): string {
   return new Date(Date.now() + seconds * 1000).toISOString();
 }
 
+function canonicalXhsPostUrl(externalId: string): string {
+  return `https://www.xiaohongshu.com/explore/${encodeURIComponent(externalId)}`;
+}
+
 function stage(run: CreatorResearchRun, id: CreatorResearchRun["stages"][number]["id"]) {
   const value = run.stages.find((entry) => entry.id === id);
   if (!value) throw new Error(`missing creator stage ${id}`);
@@ -617,6 +621,8 @@ export class CreatorResearchService {
       if (!run.inventoryArtifactRef) throw new Error("Portfolio 节点缺少作品清单 artifact");
       const inventory = this.artifacts.read(run.inventoryArtifactRef);
       const { corpus, selection } = buildCreatorPortfolio(inventory, run.inventoryArtifactRef, timestamp);
+      for (const record of corpus.records) record.url = canonicalXhsPostUrl(record.externalId);
+      for (const item of selection.items) item.url = canonicalXhsPostUrl(item.externalId);
       const corpusRef = this.artifacts.write(run.id, "creator-corpus.json", corpus, [run.inventoryArtifactRef]);
       selection.sourceCorpusArtifactRef = corpusRef;
       const selectionRef = this.artifacts.write(run.id, "creator-selection.json", selection, [corpusRef]);
@@ -728,7 +734,7 @@ export class CreatorResearchService {
         runId: run.id,
         profileUrl: run.profileUrl,
         creatorName: run.creatorName,
-        posts: detailBatch.map((item) => ({ externalId: item.externalId, url: item.url, title: item.title,
+        posts: detailBatch.map((item) => ({ externalId: item.externalId, url: canonicalXhsPostUrl(item.externalId), title: item.title,
           resolveMedia: mediaRefresh || item.deepCandidate })),
         taskSpaceId: run.browserTaskSpaceId,
         closeWhenDone: mediaRefresh && remainingMediaIds.length === 0
@@ -939,7 +945,7 @@ export class CreatorResearchService {
           id: randomUUID(), runId: run.id, nodeKey: "video.reconstruct", status: "queued",
           idempotencyKey: `${run.id}:video.reconstruct:${item.postExternalId}:${item.sourceMediaArtifactRef}`,
           attempts: 0, maxAttempts: 2, availableAt: completedAt, leaseOwner: null, leaseExpiresAt: null,
-          heartbeatAt: null, payload: { postExternalId: item.postExternalId, sourceUrl: selected.url,
+          heartbeatAt: null, payload: { postExternalId: item.postExternalId, sourceUrl: canonicalXhsPostUrl(item.postExternalId),
             sourceMediaArtifactRef: item.sourceMediaArtifactRef }, lastError: null, createdAt: completedAt, updatedAt: completedAt
         });
       });

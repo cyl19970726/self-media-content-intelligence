@@ -170,9 +170,7 @@ const inspect = async () => await js(String.raw\`(() => {
       return Math.round(base * (match[2] ? 10000 : 1))
     }
     const mediaType = /视频|播放/.test(visibleText) || Boolean(container?.querySelector('video,[class*="play"]')) ? 'video' : cover?.querySelector('img') ? 'image' : 'unknown'
-    const url = cover?.href ? new URL(cover.href, location.origin) : new URL('/explore/' + externalId, location.origin)
-    url.search = ''
-    url.hash = ''
+    const url = new URL('/explore/' + externalId, location.origin)
     return {
       externalId, url: url.toString(), title: title?.slice(0, 180) || null,
       visibleText: visibleText || null, mediaType, likesLabel, likes: parseCount(likesLabel)
@@ -321,7 +319,7 @@ export function buildDetailScript(input: { runId: string; profileUrl: string; cr
   posts: Array<{ externalId: string; url: string; title?: string | null; resolveMedia: boolean }>; taskSpaceId: number | null }): string {
   const taskExpression = input.taskSpaceId === null
     ? `await useOrCreateTaskSpace(${JSON.stringify(`creator-detail-${input.runId.slice(0, 8)}`)})`
-    : `await useOrCreateTaskSpace(${input.taskSpaceId})`;
+    : `(await takeOverTaskSpace(${input.taskSpaceId}), { id: ${input.taskSpaceId} })`;
   return `
 const task = ${taskExpression}
 const requested = ${JSON.stringify(input.posts.slice(0, 21))}
@@ -402,7 +400,8 @@ const locateFromProfile = async request => {
 for (let index = 0; index < requested.length; index += 1) {
   const request = requested[index]
   const requestedUrl = new URL(request.url)
-  const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname)
+  const isBareExploreUrl = /^\\/explore\\/[^/]+$/.test(requestedUrl.pathname) ||
+    new RegExp('^/user/profile/[^/]+/' + request.externalId + '$').test(requestedUrl.pathname)
   let fallbackUsed = isBareExploreUrl
   let navigation = await locateFromCurrent(request) || (isBareExploreUrl
     ? await locateFromSearch(request) || await locateFromProfile(request)

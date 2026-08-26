@@ -333,7 +333,7 @@ describe("CreatorResearchService", () => {
       stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:concurrent"],
       publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 12, identityAnchors: [] },
       posts: Array.from({ length: 12 }, (_, index) => ({ externalId: `post-${index + 1}`,
-        url: `https://www.xiaohongshu.com/explore/post-${index + 1}`, title: `视频 ${index + 1}`,
+        url: `https://www.xiaohongshu.com/user/profile/concurrent-creator/post-${index + 1}`, title: `视频 ${index + 1}`,
         visibleText: `视频 ${index + 1}\n${index + 1}`, mediaType: "video" as const,
         likesLabel: String(index + 1), likes: index + 1 }))
     });
@@ -352,6 +352,8 @@ describe("CreatorResearchService", () => {
     }
     const initialRun = service.get(run.id)!;
     expect(initialRun.reconstructionBatchArtifactRef, JSON.stringify(initialRun)).not.toBeNull();
+    const normalizedSelection = values.get(initialRun.selectionArtifactRef!) as { items: Array<{ externalId: string; url: string }> };
+    expect(normalizedSelection.items.every((item) => item.url === `https://www.xiaohongshu.com/explore/${item.externalId}`)).toBe(true);
     const initialBatch = values.get(initialRun.reconstructionBatchArtifactRef!) as { pendingPosts: number };
     expect(initialBatch.pendingPosts).toBeGreaterThanOrEqual(3);
 

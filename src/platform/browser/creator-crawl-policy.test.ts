@@ -79,6 +79,8 @@ describe("ego-browser scripts", () => {
     for (const field of ["globalCountBefore", "globalCountAfter", "newGlobalIds", "heightDelta", "scrollDelta", "atBottom", "waitElapsedMs", "waitReason", "action"]) {
       expect(script).toContain(field);
     }
+    expect(script).toContain("new URL('/explore/' + externalId, location.origin)");
+    expect(script).not.toContain("cover?.href ? new URL(cover.href");
     expect(() => new Function(`return async function generatedAcquisition(){${script}}`)).not.toThrow();
   });
 
@@ -92,16 +94,18 @@ describe("ego-browser scripts", () => {
     expect(script).toContain("profile_fallback");
     expect(script).toContain("current_detail");
     expect(script).toContain("liveAnchors.find(anchor => anchor.href.includes('xsec_token='))");
+    expect(script).toContain("takeOverTaskSpace(2)");
     expect(script).toContain("document.scrollingElement || document.documentElement");
     expect(script).toContain("round < 60");
     expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
   });
 
-  it("keeps a non-bare canonical detail URL as the direct first attempt", () => {
-    const canonical = "https://www.xiaohongshu.com/user/profile/a/post-1";
-    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: canonical, resolveMedia: false }], taskSpaceId: 2 });
-    expect(script).toContain("{ href: request.url, cover: null, source: 'canonical' }");
-    expect(script).toContain(canonical);
+  it("repairs a profile-card path that lost its required signed query", () => {
+    const malformed = "https://www.xiaohongshu.com/user/profile/a/post-1";
+    const script = buildDetailScript({ runId: "run-1", profileUrl: "https://www.xiaohongshu.com/user/profile/a", posts: [{ externalId: "post-1", url: malformed, resolveMedia: false }], taskSpaceId: 2 });
+    expect(script).toContain("new RegExp('^/user/profile/[^/]+/' + request.externalId + '$')");
+    expect(script).toContain("await locateFromSearch(request) || await locateFromProfile(request)");
+    expect(script).toContain(malformed);
     expect(() => new Function(`return async function generatedDetail(){${script}}`)).not.toThrow();
   });
 
