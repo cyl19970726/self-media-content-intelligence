@@ -512,4 +512,57 @@ describe("CreatorResearchService", () => {
     expect(service.events(run.id).filter((event) => event.type === "run.resumed").at(-1)?.message).toContain("仅重新排队未通过项");
     service.close();
   });
+
+  it("refreshes missing media before retrying video reconstruction and preserves ready items", async () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
+    let mediaAvailable = false;
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/media-retry", creatorId: "media-retry",
+      creatorName: "媒体重试博主", capturedAt: "2026-08-21T06:07:54.517Z", taskSpaceId: 4,
+      stopReason: "quiescent_incomplete", warnings: [], sourceRefs: ["legacy:media-retry"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 1, identityAnchors: [] },
+      posts: [{ externalId: "post-media-retry", url: "https://www.xiaohongshu.com/explore/post-media-retry", title: "媒体重试",
+        visibleText: "媒体重试\n1", mediaType: "video", likesLabel: "1", likes: 1 }]
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        return { state: "ready", taskSpaceId: 4, warnings: [], posts: input.posts.map((post) => ({
+          externalId: post.externalId, finalUrl: post.url, title: post.title ?? null, description: "正文", publishedLabel: "08-20",
+          mediaType: "video" as const, videoCandidateUrl: mediaAvailable ? "https://video.example/source.mp4" : null,
+          coverCandidateUrl: "https://image.example/cover.webp", inspectedAt: "2026-08-25T00:00:00.000Z", warnings: []
+        })) };
+      }
+    };
+
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    await service.processNext("worker", executor);
+    expect(service.get(run.id)?.blockers[0]?.code).toBe("video_reconstruction_pending");
+
+    mediaAvailable = true;
+    const retried = service.retryFailedReconstructions(run.id);
+    expect(retried.status).toBe("collecting");
+    expect(service.events(run.id).filter((event) => event.type === "job.queued").at(-1)?.payload).toMatchObject({
+      nodeKey: "creator.enrich", postExternalIds: ["post-media-retry"]
+    });
+
+    await service.processNext("worker", executor, "serial");
+    const refreshed = service.get(run.id)!;
+    const refreshedBatch = values.get(refreshed.reconstructionBatchArtifactRef!) as {
+      revision: number; readyPosts: number; pendingPosts: number; failedPosts: number;
+      items: Array<{ state: string; sourceMediaArtifactRef: string | null }>;
+    };
+    expect(refreshedBatch.revision).toBeGreaterThan(1);
+    expect(refreshedBatch).toMatchObject({ readyPosts: 0, pendingPosts: 1, failedPosts: 0 });
+    expect(refreshedBatch.items[0]).toMatchObject({ state: "queued",
+      sourceMediaArtifactRef: `/artifacts/${run.id}/deep-media/post-media-retry/source-video.mp4` });
+
+    await service.processNext("worker", executor, "video");
+    expect(service.get(run.id)?.status).not.toBe("failed");
+    const completed = values.get(service.get(run.id)!.reconstructionBatchArtifactRef!) as { readyPosts: number; failedPosts: number };
+    expect(completed).toMatchObject({ readyPosts: 1, failedPosts: 0 });
+    service.close();
+  });
 });
