@@ -87,4 +87,13 @@ describe("creator research pipeline projection", () => {
     expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成三镜头分析：1/7");
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：1/7");
   });
+
+  it("uses the registered video batch counts in the run-only API projection", () => {
+    const projected = buildCreatorResearchPipeline(activeVideoRun());
+
+    expect(projected.currentStageId).toBe("video_reconstruction");
+    expect(projected.stages.find((stage) => stage.id === "media_verification")?.message).toBe("7/7 条深度样本已冻结到视频重建批次。");
+    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成三镜头分析：1/7");
+    expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：1/7");
+  });
 });
