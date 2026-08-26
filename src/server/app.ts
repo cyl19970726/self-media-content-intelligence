@@ -174,6 +174,15 @@ export function createApp(
     }
   });
 
+  app.post("/api/creator-runs/:id/continue-with-media-gaps", (request, response) => {
+    try {
+      return response.status(202).json(creatorResearchService.continueWithBoundedMediaGaps(request.params.id));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法在媒体缺口边界下继续研究";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
   const listComparisons: express.RequestHandler = (request, response) => {
     const limit = Math.min(100, Math.max(1, Number(request.query.limit ?? 50)));
     response.json({ projects: comparisonProjectService.list(limit) });
