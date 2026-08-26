@@ -74,7 +74,8 @@ function runFailureState(run: CreatorResearchRun | null, ids: CreatorResearchRun
   const blocked = matched.find((candidate) => candidate.status === "blocked");
   if (blocked) return { state: "blocked", gateState: "blocked", message: blocked.message ?? "等待人工接管。" };
   const running = matched.find((candidate) => candidate.status === "running");
-  if (running) return { state: "running", gateState: "running", message: running.message ?? run.nextAction };
+  const runIsActive = ["queued", "preflight", "collecting", "backoff"].includes(run.status);
+  if (running && runIsActive) return { state: "running", gateState: "running", message: running.message ?? run.nextAction };
   if (run.status === "stale") return { state: "stale", gateState: "not_checked", message: "上游 revision 已变化，当前阶段需要重新验证。" };
   return null;
 }
@@ -123,6 +124,10 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const validatedDeepCount = dossier ? validatedDeep.length : run?.videoWork.analyzedPosts ?? 0;
   const pendingDeepCount = dossier ? pendingDeep.length : Math.max(0,
     runDeepSampleCount - validatedDeepCount - (run?.videoWork.failedPosts ?? 0));
+  const boundedMediaGap = Boolean(dossier?.boundaries.some((item) => item.includes("bounded_media_retry_once")));
+  const unavailableDeepCount = boundedMediaGap ? run?.videoWork.failedPosts ?? Math.max(0,
+    deepSampleCount - validatedDeepCount - pendingDeepCount) : 0;
+  const verifiedMediaCount = boundedMediaGap ? Math.max(0, deepSampleCount - unavailableDeepCount) : deepSampleCount;
   const datedItems = dossier?.portfolio.items.filter((item) => item.publishedLabel !== null).length ?? run?.coverage.enrichedPosts ?? 0;
   const commentedItems = dossier?.portfolio.items.filter((item) => item.comments !== null).length ?? 0;
   const annotatedItems = dossier?.portfolio.items.filter((item) => item.topic !== null || item.format !== null).length ?? 0;
@@ -140,8 +145,8 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const detailHasAny = datedItems > 0 || commentedItems > 0 || Boolean(run?.detailArtifactRef);
   const annotationComplete = Boolean(dossier?.contentSystem.health.status === "full" && annotatedItems === dossier.portfolio.items.length);
   const annotationHasAny = annotatedItems > 0 || Boolean(run?.portfolioArtifactRef) || Boolean(dossier?.contentSystem.topicClusters.length || dossier?.contentSystem.formatClusters.length);
-  const mediaComplete = Boolean(run?.reconstructionBatchArtifactRef && deepSampleCount > 0)
-    || (deepItems.length >= requiredDeepSamples && mediaItems >= deepItems.length);
+  const mediaComplete = (Boolean(run?.reconstructionBatchArtifactRef && deepSampleCount > 0) && !boundedMediaGap)
+    || (!boundedMediaGap && deepItems.length >= requiredDeepSamples && mediaItems >= deepItems.length);
   const reconstructionComplete = deepSampleCount >= requiredDeepSamples && validatedDeepCount === deepSampleCount;
 
   const result: CreatorPipelineStage[] = [
@@ -173,19 +178,24 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
           missingInputs: [`代表深度样本：${deepSampleCount}/${requiredDeepSamples}`], message: "统一作品集已可读，但代表性深度样本尚未达到研究合同。", nextAction: "由分层选样 Skill 补齐高、基本盘和低表现代表样本，并保留稳定 ID。" }),
     stage(seed("media_verification"), mediaComplete
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.mediaManifestArtifactRef], message: `${deepSampleCount}/${deepSampleCount} 条深度样本已冻结到视频重建批次。` }
-      : { state: mediaItems > 0 ? "partial" : "pending", gateState: mediaItems > 0 ? "partial" : "not_checked", artifactRefs: [run?.mediaManifestArtifactRef],
-          missingInputs: [`可核验深度媒体：${Math.min(mediaItems, deepItems.length)}/${requiredDeepSamples}`], message: "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
-          nextAction: "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
+      : { state: verifiedMediaCount > 0 || mediaItems > 0 ? "partial" : "pending", gateState: verifiedMediaCount > 0 || mediaItems > 0 ? "partial" : "not_checked", artifactRefs: [run?.mediaManifestArtifactRef],
+          missingInputs: [`可核验深度媒体：${boundedMediaGap ? verifiedMediaCount : Math.min(mediaItems, deepItems.length)}/${requiredDeepSamples}`],
+          message: boundedMediaGap
+            ? `${verifiedMediaCount}/${deepSampleCount} 条媒体通过核验；${unavailableDeepCount} 条经一次定向补取仍不可得，视频内容保持未知。`
+            : "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
+          nextAction: boundedMediaGap ? "不再重试不可得媒体；综合只使用 surface_only 公开证据并保留未知。" : "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
     stage(seed("video_reconstruction"), reconstructionComplete
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `${validatedDeepCount}/${deepSampleCount} 条深度样本完成内容、编导和画面分析。` }
       : { state: validatedDeepCount + pendingDeepCount > 0 ? "partial" : "pending", gateState: validatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          missingInputs: [`完成三镜头分析：${validatedDeepCount}/${requiredDeepSamples}`], message: `${validatedDeepCount} 条已验证，${pendingDeepCount} 条待审，其余尚未还原。`,
-          nextAction: "由单视频重建 Skill 继续生成逐字稿、知识关系、编导逻辑和画面剪辑证据。" }),
+          missingInputs: [`完成三镜头分析：${validatedDeepCount}/${requiredDeepSamples}`],
+          message: boundedMediaGap ? `${validatedDeepCount} 条已验证；${unavailableDeepCount} 条媒体不可得，未生成视频内容结论。` : `${validatedDeepCount} 条已验证，${pendingDeepCount} 条待审，其余尚未还原。`,
+          nextAction: boundedMediaGap ? "不可得成员保持 surface_only；不得从可用视频借用机制。" : "由单视频重建 Skill 继续生成逐字稿、知识关系、编导逻辑和画面剪辑证据。" }),
     stage(seed("video_evaluation"), reconstructionComplete
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `全部 ${deepSampleCount} 条深度样本完成一次独立评估；质量提醒保留在研究证据中。` }
       : { state: validatedDeepCount > 0 ? "partial" : "pending", gateState: validatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          missingInputs: [`单轮独立评估：${validatedDeepCount}/${requiredDeepSamples}`], message: "媒体不可读或产物损坏的视频不能进入博主级机制归纳。",
-          nextAction: "由独立 Evaluator 对每条视频做一次通用与三镜头检查；内容缺口不触发自动修复。" }),
+          missingInputs: [`单轮独立评估：${validatedDeepCount}/${requiredDeepSamples}`],
+          message: boundedMediaGap ? `${validatedDeepCount}/${deepSampleCount} 条可用视频完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估视频内容。` : "媒体不可读或产物损坏的视频不能进入博主级机制归纳。",
+          nextAction: boundedMediaGap ? "不对不可得视频生成或补造 evaluator 结论。" : "由独立 Evaluator 对每条视频做一次通用与三镜头检查；内容缺口不触发自动修复。" }),
     stage(seed("creator_synthesis"), synthesisReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.synthesisArtifactRef], message: "定位、人群、价值、内容系统与表现差异已写入博主综合 Artifact。" }
       : { state: dossier?.growthEngines.statements.length ? "partial" : "pending", gateState: "not_checked", artifactRefs: [run?.synthesisArtifactRef],
