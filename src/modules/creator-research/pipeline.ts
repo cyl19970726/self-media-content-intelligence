@@ -79,6 +79,28 @@ function runFailureState(run: CreatorResearchRun | null, ids: CreatorResearchRun
   return null;
 }
 
+function coarseOverrideTargets(
+  run: CreatorResearchRun | null,
+  runIds: CreatorResearchRun["stages"][number]["id"][],
+  pipelineIds: CreatorPipelineStageId[]
+): CreatorPipelineStageId[] {
+  if (!run || !runIds.includes("deep_capture")) return pipelineIds;
+
+  const hasVideoWork = Boolean(
+    run.reconstructionBatchArtifactRef
+    || run.videoWork.activePostExternalIds.length
+    || run.videoWork.queuedPosts
+    || run.videoWork.analyzedPosts
+    || run.videoWork.failedPosts
+  );
+  if (hasVideoWork) return ["video_reconstruction", "video_evaluation"];
+
+  const detailTarget = Math.min(run.coverage.comparisonPosts, run.collectionPolicy.budgets.maxDetailOpens);
+  const detailsComplete = detailTarget > 0 && run.coverage.enrichedPosts >= detailTarget;
+  if (run.mediaManifestArtifactRef || detailsComplete) return ["media_verification"];
+  return ["detail_enrichment"];
+}
+
 export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dossier?: DossierInput): CreatorResearchPipeline {
   const seeds = new Map(stageSeeds.map((seed) => [seed.id, seed]));
   const seed = (id: CreatorPipelineStageId) => {
@@ -89,7 +111,10 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const allRefs = unique([...(dossier ? statementArtifactRefs(dossier) : []), ...runArtifactRefs(run)]);
   const postCount = dossier?.corpus.postCount ?? run?.coverage.discoveredPosts ?? 0;
   const deepItems = dossier?.portfolio.items.filter((item) => item.deepSample) ?? [];
-  const requiredDeepSamples = dossier ? Math.min(12, dossier.portfolio.items.length) : 12;
+  const registeredDeepSet = Boolean(run?.reconstructionBatchArtifactRef);
+  const requiredDeepSamples = dossier
+    ? registeredDeepSet && deepItems.length > 0 ? deepItems.length : Math.min(12, dossier.portfolio.items.length)
+    : 12;
   const validatedDeep = deepItems.filter((item) => item.evidenceStatus === "deep_validated");
   const pendingDeep = deepItems.filter((item) => item.evidenceStatus === "deep_pending");
   const datedItems = dossier?.portfolio.items.filter((item) => item.publishedLabel !== null).length ?? run?.coverage.enrichedPosts ?? 0;
@@ -109,6 +134,8 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const detailHasAny = datedItems > 0 || commentedItems > 0 || Boolean(run?.detailArtifactRef);
   const annotationComplete = Boolean(dossier?.contentSystem.health.status === "full" && annotatedItems === dossier.portfolio.items.length);
   const annotationHasAny = annotatedItems > 0 || Boolean(run?.portfolioArtifactRef) || Boolean(dossier?.contentSystem.topicClusters.length || dossier?.contentSystem.formatClusters.length);
+  const mediaComplete = Boolean(run?.reconstructionBatchArtifactRef)
+    || (deepItems.length >= requiredDeepSamples && mediaItems >= deepItems.length);
   const reconstructionComplete = deepItems.length >= requiredDeepSamples && validatedDeep.length === deepItems.length;
 
   const result: CreatorPipelineStage[] = [
@@ -138,8 +165,8 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.selectionArtifactRef], message: `${dossier?.portfolio.items.length ?? 0} 条记录共同驱动 List、Gallery 与深度覆盖。` }
       : { state: surfaceSelectionReady ? "partial" : "pending", gateState: surfaceSelectionReady ? "partial" : "not_checked", artifactRefs: [run?.selectionArtifactRef],
           missingInputs: [`代表深度样本：${deepItems.length}/${requiredDeepSamples}`], message: "统一作品集已可读，但代表性深度样本尚未达到研究合同。", nextAction: "由分层选样 Skill 补齐高、基本盘和低表现代表样本，并保留稳定 ID。" }),
-    stage(seed("media_verification"), deepItems.length >= requiredDeepSamples && mediaItems >= deepItems.length
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.mediaManifestArtifactRef], message: `${mediaItems}/${deepItems.length} 条深度样本已有可读媒体或证据页。` }
+    stage(seed("media_verification"), mediaComplete
+      ? { state: "complete", gateState: "passed", artifactRefs: [run?.mediaManifestArtifactRef], message: `${deepItems.length}/${deepItems.length} 条深度样本已冻结到视频重建批次。` }
       : { state: mediaItems > 0 ? "partial" : "pending", gateState: mediaItems > 0 ? "partial" : "not_checked", artifactRefs: [run?.mediaManifestArtifactRef],
           missingInputs: [`可核验深度媒体：${Math.min(mediaItems, deepItems.length)}/${requiredDeepSamples}`], message: "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
           nextAction: "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
@@ -184,7 +211,7 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   for (const [pipelineIds, runIds] of coarseMappings) {
     const override = runFailureState(run, runIds);
     if (!override) continue;
-    for (const id of pipelineIds) {
+    for (const id of coarseOverrideTargets(run, runIds, pipelineIds)) {
       const candidate = result.find((item) => item.id === id);
       if (candidate && candidate.state !== "complete") Object.assign(candidate, override, { nextAction: run?.nextAction ?? candidate.nextAction });
     }
