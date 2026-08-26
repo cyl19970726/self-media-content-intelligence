@@ -34,7 +34,7 @@ export function validateCreatorSynthesis(input: {
     { id: "canonical_21_coverage", pass: expected.size === 21 && actual.size === 21 && [...expected].every((id) => actual.has(id)),
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
     { id: "deep_9_ready", pass: deepContractReady && readyDeep.size === deep.size && [...deep].every((id) => readyDeep.has(id)),
-      message: "深度候选必须覆盖高表现、中位数附近、均值附近、低表现各 3 条，并全部通过视频硬闸。" },
+      message: "深度候选必须覆盖高表现、中位数附近、均值附近、低表现各 3 条，并全部完成单轮视频分析。" },
     { id: "deep_evidence_binding", pass: deepRows.length === deep.size && deepRows.every((item) => item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))),
       message: "深度结论必须绑定已验证重建，不得只引用标题或详情页。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),

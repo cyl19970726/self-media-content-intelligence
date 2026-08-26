@@ -109,12 +109,12 @@ function versionedRunSummaries(service: CreatorResearchService): CreatorSummary[
     positioning: run.status === "ready"
       ? "版本化研究已通过博主级硬闸。"
       : "公开基本盘已进入版本化任务；账号定位与内容机制等待深度证据闭环。",
-    summary: `${run.coverage.discoveredPosts} 条作品已登记；${run.coverage.comparisonPosts} 条进入比较；${run.coverage.reconstructedPosts} 条通过深度还原。当前状态：${run.status}。`,
+    summary: `${run.coverage.discoveredPosts} 条作品已登记；${run.coverage.comparisonPosts} 条进入比较；${run.coverage.reconstructedPosts} 条完成深度分析。当前状态：${run.status}。`,
     tags: ["版本化 Run", "Artifact 已登记", run.status === "needs_user" ? "等待人工恢复" : "持续运行"],
     stats: [
       { label: "已登记作品", value: String(run.coverage.discoveredPosts) },
       { label: "比较样本", value: String(run.coverage.comparisonPosts) },
-      { label: "深度通过", value: String(run.coverage.reconstructedPosts) }
+      { label: "深度分析", value: String(run.coverage.reconstructedPosts) }
     ],
     entries: [{ label: "进入版本化研究页", href: `/creators/${run.canonicalSlug ?? run.creatorId}`, note: run.nextAction }]
   }));

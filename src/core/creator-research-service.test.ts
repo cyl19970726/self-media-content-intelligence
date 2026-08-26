@@ -62,7 +62,8 @@ function serviceForTest(options: { values?: Map<string, unknown>; reconstruct?: 
       const outcome = { state: "ready" as const, reconstructionArtifactRef: `${root}/reconstruction.json`, articleArtifactRef: `${root}/article.md`,
         evaluationArtifactRef: `${root}/evaluation.json`, gateReportArtifactRef: `${root}/gate-report.json`, gateCount: 22,
         threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
-        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const, failedGateIds: [] };
+        threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`, threeLensGateCount: 19 as const, failedGateIds: [],
+        qualityWarningGateIds: [], evaluationMode: "single_pass" as const };
       observeLifecycle?.({ childRunId, role: "candidate", status: "completed", startedAt,
         lastProgressAt: "2026-08-20T01:02:01.000Z", inputRevision: request.sourceMediaArtifactRef,
         outputArtifactRevisions: { "reconstruction.json": "b".repeat(64) }, errorCode: null });

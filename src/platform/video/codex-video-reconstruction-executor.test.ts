@@ -3,12 +3,11 @@ import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
-  archiveRuntimeReviewArtifacts,
-  decideReconstructionRepair,
   normalizeRuntimeLensEvidence,
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
+import { videoReconstructionOutcomeSchema } from "../../modules/video-analysis/contracts.js";
 import type { VideoReconstructionLifecycleEvent } from "../../modules/video-analysis/contracts.js";
 
 const protocol = { captureActions: [{ mode: "ocr_review" }] };
@@ -48,62 +47,26 @@ describe("runtime lens evidence normalization", () => {
   });
 });
 
-describe("runtime lens repair history", () => {
-  it("keeps the runtime repair budget independent after generic repairs are exhausted", () => {
-    expect(decideReconstructionRepair({
-      genericReady: true,
-      genericRepairsUsed: 2,
-      runtimeReady: false,
-      runtimeRepairsUsed: 0
-    })).toBe("runtime_repair");
-  });
-
-  it("stops only after the runtime repair budget itself is exhausted", () => {
-    expect(decideReconstructionRepair({
-      genericReady: true,
-      genericRepairsUsed: 2,
-      runtimeReady: false,
-      runtimeRepairsUsed: 2
-    })).toBe("not_ready");
-  });
-
-  it("allows a third generic repair only for a newly localized gate failure", () => {
-    expect(decideReconstructionRepair({
-      genericReady: false,
-      genericRepairsUsed: 2,
-      runtimeReady: false,
-      runtimeRepairsUsed: 0
-    })).toBe("generic_repair");
-    expect(decideReconstructionRepair({
-      genericReady: false,
-      genericRepairsUsed: 3,
-      runtimeReady: false,
-      runtimeRepairsUsed: 0
-    })).toBe("not_ready");
-  });
-
-  it("archives every evaluator-owned artifact while preserving the candidate", () => {
-    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "runtime-lens-repair-"));
-    try {
-      fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "candidate");
-      for (const filename of [
-        "evaluation.json", "evaluation.md", "gate-report.json",
-        "runtime-three-lens-evaluation.json", "runtime-three-lens-gate-report.json",
-        "evaluator-1-last-message.txt", "runtime-directing_logic-last-message.txt"
-      ]) fs.writeFileSync(path.join(outputDir, filename), filename);
-      fs.mkdirSync(path.join(outputDir, "runtime-three-lens"));
-      fs.writeFileSync(path.join(outputDir, "runtime-three-lens/directing-logic.json"), "[]");
-
-      const historyDir = archiveRuntimeReviewArtifacts(outputDir, 1);
-
-      expect(fs.readFileSync(path.join(outputDir, "reconstruction.json"), "utf8")).toBe("candidate");
-      expect(fs.existsSync(path.join(outputDir, "evaluation.json"))).toBe(false);
-      expect(fs.existsSync(path.join(historyDir, "evaluation.json"))).toBe(true);
-      expect(fs.existsSync(path.join(historyDir, "runtime-three-lens/directing-logic.json"))).toBe(true);
-      expect(path.basename(historyDir)).toMatch(/^attempt-1-/);
-    } finally {
-      fs.rmSync(outputDir, { recursive: true, force: true });
-    }
+describe("single-pass evaluation policy", () => {
+  it("keeps evaluator gaps as warnings while marking the video analyzed", () => {
+    const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
+    const outcome = videoReconstructionOutcomeSchema.parse({
+      state: "ready",
+      reconstructionArtifactRef: `${root}/reconstruction.json`,
+      articleArtifactRef: `${root}/article.md`,
+      evaluationArtifactRef: `${root}/evaluation.json`,
+      gateReportArtifactRef: `${root}/gate-report.json`,
+      threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
+      threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`,
+      threeLensGateCount: 19,
+      gateCount: 22,
+      failedGateIds: [],
+      qualityWarningGateIds: ["eval_unchecked_channels"],
+      evaluationMode: "single_pass"
+    });
+    expect(outcome.state).toBe("ready");
+    if (outcome.state !== "ready") throw new Error("expected ready single-pass outcome");
+    expect(outcome.qualityWarningGateIds).toEqual(["eval_unchecked_channels"]);
   });
 });
 

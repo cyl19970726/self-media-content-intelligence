@@ -26,7 +26,9 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
     threeLensGateReportArtifactRef: z.string(),
     threeLensGateCount: z.literal(19),
     gateCount: z.number().int().positive(),
-    failedGateIds: z.array(z.string()).length(0)
+    failedGateIds: z.array(z.string()).length(0),
+    qualityWarningGateIds: z.array(z.string()),
+    evaluationMode: z.literal("single_pass")
   }),
   z.object({
     state: z.literal("not_ready"),

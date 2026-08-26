@@ -117,10 +117,10 @@ Pinned inputs (read all):
 - portfolio: ${artifactPath(request.portfolioArtifactRef)}
 - canonical 21 selection: ${artifactPath(request.selectionArtifactRef)}
 - public detail evidence: ${artifactPath(request.detailArtifactRef)}
-- validated reconstruction batch: ${artifactPath(request.reconstructionBatchArtifactRef)}
-- each ready reconstruction/article/evaluation/gate referenced by that batch
+- single-pass reconstruction batch: ${artifactPath(request.reconstructionBatchArtifactRef)}
+- each analyzed reconstruction/article/evaluation/gate referenced by that batch; failedGateIds on ready rows are quality warnings and must remain explicit limitations
 
-Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "src/modules/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for the marked 9 must cite validated video reconstruction artifacts. The remaining 12 must be explicitly surface_only and may use only title/copy/date/metric/form observations.
+Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "src/modules/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for the marked videos must cite their single-pass reconstruction artifacts and preserve evaluator warnings. The remaining surface rows must be explicitly surface_only and may use only title/copy/date/metric/form observations.
 
 User product boundary overrides any launch-plan instruction in the Skill: do not write what we should copy, what we should post next, titles/covers/CTA for us, launch plans, or experiments. This artifact explains the creator only. Keep visible observation, author claim, inference, and unknown distinct. Public likes do not prove exposure, retention, conversion, ads, or sales; preserve those as unknown. Do not read old static reports or prior creator analyses.
 `;

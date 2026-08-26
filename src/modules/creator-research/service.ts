@@ -1055,7 +1055,10 @@ export class CreatorResearchService {
         gateReportArtifactRef: outcome.gateReportArtifactRef,
         threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
         threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef ?? null,
-        failedGateIds: [], message: `通用 ${outcome.gateCount} 项与三镜头 ${outcome.threeLensGateCount ?? 0} 项硬闸通过。`, updatedAt: completedAt });
+        failedGateIds: outcome.qualityWarningGateIds,
+        message: outcome.qualityWarningGateIds.length > 0
+          ? `已完成单轮还原与评估；${outcome.qualityWarningGateIds.length} 项质量提醒保留在研究边界中。`
+          : "已完成单轮还原与评估；未发现质量提醒。", updatedAt: completedAt });
       else if (outcome.state === "ready") Object.assign(latestItem, { state: "not_ready",
         reconstructionArtifactRef: outcome.reconstructionArtifactRef, articleArtifactRef: outcome.articleArtifactRef,
         evaluationArtifactRef: outcome.evaluationArtifactRef, gateReportArtifactRef: outcome.gateReportArtifactRef,
@@ -1110,9 +1113,9 @@ export class CreatorResearchService {
           run.currentStage = "synthesis";
           run.worker = { state: "queued", attempt: 0, jobId: synthesisJob.id, workerId: null, lastHeartbeatAt: completedAt };
           run.blockers = [];
-          run.nextAction = "四组深度内容均通过硬闸；博主级综合归纳已进入队列。";
+          run.nextAction = "四组深度内容均完成单轮还原与独立评估；博主级综合归纳已进入队列。";
           stage(run, "deep_capture").status = "complete";
-          stage(run, "deep_capture").message = `${latestBatch.readyPosts}/${latestBatch.requestedPosts} 条全部通过独立硬闸。`;
+          stage(run, "deep_capture").message = `${latestBatch.readyPosts}/${latestBatch.requestedPosts} 条全部完成单轮分析；质量提醒继续保留。`;
           stage(run, "synthesis").status = "pending";
           stage(run, "synthesis").message = "等待从规范比较集与四组验证重建生成研究归纳。";
           this.repository.appendEvent({ runId: run.id, jobId: synthesisJob.id, type: "job.queued", createdAt: completedAt,
@@ -1129,7 +1132,7 @@ export class CreatorResearchService {
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
         message: "视频重建批次 revision 已更新。", payload: { artifactRef: batchRef, postExternalId, state: outcome.state } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
-        message: outcome.state === "ready" ? "视频通过独立评测与全部硬闸。" : "视频未进入下游机制归纳。",
+        message: outcome.state === "ready" ? "视频已完成单轮还原与独立评估。" : "视频未进入下游机制归纳。",
         payload: { postExternalId, state: outcome.state } });
     } catch (error) {
       this.failRun(run, job, workerId, error instanceof Error ? error.message : "视频重建节点失败");

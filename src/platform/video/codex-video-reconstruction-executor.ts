@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { artifactPath, artifactRef } from "../../core/artifacts.js";
-import { runArtifactDir } from "../../core/config.js";
+import { projectRoot, runArtifactDir } from "../../core/config.js";
 import { runFile, runFileInput } from "../../core/process.js";
 import {
   videoReconstructionOutcomeSchema,
@@ -32,26 +32,6 @@ const mediaSkillDir = process.env.SELF_MEDIA_MEDIA_SKILL_DIR ??
   path.join(os.homedir(), ".agents", "skills", "media-use");
 
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
-
-type RuntimeLensName = "content_restoration" | "directing_logic" | "visual_editing";
-
-const maxGenericRepairAttempts = 3;
-const maxRuntimeRepairAttempts = 2;
-
-export type ReconstructionRepairDecision = "ready" | "generic_repair" | "runtime_repair" | "not_ready";
-
-export function decideReconstructionRepair(input: {
-  genericReady: boolean;
-  genericRepairsUsed: number;
-  runtimeReady: boolean;
-  runtimeRepairsUsed: number;
-}): ReconstructionRepairDecision {
-  if (!input.genericReady) {
-    return input.genericRepairsUsed < maxGenericRepairAttempts ? "generic_repair" : "not_ready";
-  }
-  if (input.runtimeReady) return "ready";
-  return input.runtimeRepairsUsed < maxRuntimeRepairAttempts ? "runtime_repair" : "not_ready";
-}
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
 
@@ -275,68 +255,13 @@ Independently inspect the source video, evidence/evidence-pack.json, targeted-ev
 
 Evaluate GATE first: critical-question recall, core evidence coverage, unsupported positive inference, timestamp accuracy, applicable process dependencies, correct unknown discipline, unchecked channels, and the exact meta-gate. Only if every hard gate passes, run JUDGE for readability, knowledge prioritization, evidence usefulness, execution value, and compression without loss.
 
-Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies instead of giving benefit of doubt.
+Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
+- ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
+- ${outputDir}/runtime-three-lens/directing-logic.json with DL-01 through DL-06
+- ${outputDir}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
+
+Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "src/modules/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
 `;
-}
-
-function repairPrompt(videoPath: string, outputDir: string, historyDir: string, attempt: number): string {
-  return `
-You are the candidate repair runner for attempt ${attempt}. Read the complete canonical Skill at ${skillDir}/SKILL.md and its directly required references/schemas.
-
-Source video: ${videoPath}
-Candidate root: ${outputDir}
-Independent failed evaluation and gate from the previous attempt: ${historyDir}/evaluation.json and ${historyDir}/gate-report.json
-
-Repair only the failed evidence closures. Independently inspect the source frames/timeline named by the evaluator; do not blindly copy evaluator prose. You may add video-specific capture actions, resample/crop frames, run real OCR/UI reading, correct time ranges and fact/unknown classifications, and update probe.json, capture-protocol.json, targeted-evidence manifests, reconstruction.json, article.md, and run-notes.md. Preserve valid prior work and all raw cue text. Do not read old reports, sibling videos, or any audit outside this candidate root. Do not create a new evaluation.json or gate-report.json; a fresh independent evaluator will do that.
-When speech was left unchecked only because a preferred ASR model download failed, retry with the installed local multilingual whisper CLI using explicit --model base --language Chinese --task transcribe. Register the machine transcript as a limited derived source and check it against audible speech and visible captions; never use an .en model for Mandarin.
-
-Before finishing, run canonical schema validation for the repaired candidate and explicitly check every failed gate from the archived report.
-`;
-}
-
-function runtimeLensRepairPrompt(videoPath: string, outputDir: string, historyDir: string, attempt: number): string {
-  return `
-You are the candidate repair runner for runtime three-lens attempt ${attempt}. Read the complete canonical Skill at ${skillDir}/SKILL.md and its directly required references/schemas.
-
-Source video: ${videoPath}
-Candidate root: ${outputDir}
-Archived independent generic evaluation and gate: ${historyDir}/evaluation.json and ${historyDir}/gate-report.json
-Archived independent three-lens evaluation and gate: ${historyDir}/runtime-three-lens-evaluation.json and ${historyDir}/runtime-three-lens-gate-report.json
-
-Repair only the failed or unchecked CR/DL/VE evidence closures recorded in the archived three-lens gate. Independently inspect the cited source frames, timeline, transcript, OCR, UI states, and candidate claims; do not blindly copy evaluator prose and do not weaken the research boundary. Make the missing reasoning explicit in reconstruction.json and article.md when the source supports it. If the source does not support closure, preserve the item as unknown.
-
-You may add video-specific capture actions, resample/crop frames, run real OCR/UI reading, correct time ranges, add concrete viewer-comprehension consequences, and update probe.json, capture-protocol.json, targeted-evidence manifests, reconstruction.json, article.md, and run-notes.md. Preserve valid prior work and all raw cue text. Do not read sibling videos, old creator reports, or audits outside this candidate root and archived attempt. Do not create evaluation.json, gate-report.json, runtime-three-lens-evaluation.json, or runtime-three-lens-gate-report.json; fresh independent evaluators own those files.
-
-Before finishing, run canonical schema validation for the repaired candidate and explicitly self-check every failed or unchecked rule in the archived three-lens gate.
-`;
-}
-
-function archiveEvaluation(outputDir: string, attempt: number): string {
-  const historyDir = path.join(outputDir, "evaluation-history", `attempt-${attempt}`);
-  fs.mkdirSync(historyDir, { recursive: true });
-  for (const filename of ["evaluation.json", "evaluation.md", "evaluator-last-message.txt", "gate-report.json"]) {
-    const source = path.join(outputDir, filename);
-    if (exists(source)) fs.renameSync(source, path.join(historyDir, filename));
-  }
-  return historyDir;
-}
-
-export function archiveRuntimeReviewArtifacts(outputDir: string, attempt: number): string {
-  const historyDir = path.join(outputDir, "runtime-repair-history", `attempt-${attempt}-${crypto.randomUUID()}`);
-  fs.mkdirSync(historyDir, { recursive: true });
-  const evaluatorFiles = new Set([
-    "evaluation.json", "evaluation.md", "gate-report.json",
-    "runtime-three-lens-evaluation.json", "runtime-three-lens-gate-report.json"
-  ]);
-  for (const filename of fs.readdirSync(outputDir)) {
-    if (evaluatorFiles.has(filename) || /^(?:evaluator-|runtime-).+-last-message\.txt$/.test(filename)) {
-      const source = path.join(outputDir, filename);
-      if (exists(source)) fs.renameSync(source, path.join(historyDir, filename));
-    }
-  }
-  const lensDir = path.join(outputDir, "runtime-three-lens");
-  if (fs.existsSync(lensDir)) fs.renameSync(lensDir, path.join(historyDir, "runtime-three-lens"));
-  return historyDir;
 }
 
 function failedIds(gate: GateReport): string[] {
@@ -349,50 +274,11 @@ function sha256(file: string): string {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 }
 
-function combinedRevision(files: string[]): string {
-  const hash = crypto.createHash("sha256");
-  for (const file of files.filter(exists).sort()) hash.update(`${path.basename(file)}:${sha256(file)}\n`);
-  return hash.digest("hex");
-}
-
-function threeLensEvaluatorPrompt(
-  videoPath: string,
-  outputDir: string,
-  lens: RuntimeLensName,
-  fingerprint: string,
-  evaluatorRunId: string
-): string {
-  const lensContract = lens === "content_restoration"
-    ? `CR-01 thesis + viewer change are substantive and evidenced; CR-02 >=3 knowledge units and all core units have time/evidence; CR-03 complete ordered transcript or explicit carrier substitute; CR-04 standalone article preserves every core unit; CR-05 process/argument dependencies resolve; CR-06 conflicts and unknowns remain explicit.`
-    : lens === "directing_logic"
-      ? `DL-01 distinct evidenced viewer-before/after; DL-02 >=2 time-ranged stages with directing function and cognitive change; DL-03 every promise resolves/defers/remains explicitly unresolved; DL-04 visible proof vs author claim vs inference; DL-05 concrete comprehension cost; DL-06 stages coherently cover every consequential meaning change.`
-      : `VE-01 concrete orientation/composition; VE-02 >=3 sparse and >=5 dense timecoded frames; VE-03 consequential visual claims resolve to evidence and name their role; VE-04 core cues map to all overlapping shots or explicit absence; VE-05 editing metrics disclose duration/denominator; VE-06 applicable UI procedure has before/during/after and montage is not causality; VE-07 non-speech audio is analyzed or explicitly unchecked.`;
-  const filename = lens.replaceAll("_", "-");
-  return `
-You are an independent runtime evaluator for the ${lens} lens only. You are not the candidate runner and must not repair candidate files.
-
-Source video: ${videoPath}
-Candidate root: ${outputDir}
-Candidate revision fingerprint: ${fingerprint}
-Evaluator run id: ${evaluatorRunId}
-
-Inspect the source media and candidate evidence directly. Apply these gates without averaging or borrowing success from another lens:
-${lensContract}
-
-Write only a JSON array to ${outputDir}/runtime-three-lens/${filename}.json. It must contain exactly the required rule IDs for this lens, once each. Every item has:
-{"ruleId":"CR-01|DL-01|VE-01","status":"pass|fail|not_checked","finding":"specific finding","evidenceRefs":[{"kind":"subtitle_cue|shot|frame|ocr|ui_state|operation|parameter|input_output|claim|case|counterexample|limitation|unknown|artifact","refId":"stable id","artifactRef":"artifact path","jsonPointer":"/optional/pointer","startMs":0,"endMs":1}],"evaluatorNotes":"why this status follows"}
-
-A passing rule must cite resolvable evidence. Use not_checked when a carrier was not inspected; use fail when inspected evidence violates the contract. Never infer readiness from the generic evaluation.json or gate-report.json, and do not read static legacy three-lens fixtures or prior creator reports.
-`;
-}
-
 async function evaluateRuntimeThreeLens(
-  videoPath: string,
   outputDir: string,
   postExternalId: string,
   reconstructionArtifactRef: string,
-  evaluationArtifactRef: string,
-  observer?: VideoReconstructionLifecycleObserver
+  evaluationArtifactRef: string
 ): Promise<RuntimeThreeLensGateReport> {
   const reconstructionPath = path.join(outputDir, "reconstruction.json");
   const fingerprint = sha256(reconstructionPath);
@@ -427,13 +313,6 @@ async function evaluateRuntimeThreeLens(
   const lenses: Record<string, unknown> = {};
   for (const definition of definitions) {
     const evaluatorRunId = crypto.randomUUID();
-    await runCodex(
-      threeLensEvaluatorPrompt(videoPath, outputDir, definition.lens, fingerprint, evaluatorRunId),
-      outputDir,
-      `runtime-${definition.lens}`,
-      fingerprint,
-      observer
-    );
     const rulesPath = path.join(lensDir, definition.file);
     if (!exists(rulesPath)) throw new Error(`RUNTIME_THREE_LENS_MISSING:${definition.lens}`);
     const rules = definition.schema.parse(normalizeRuntimeLensEvidence(JSON.parse(fs.readFileSync(rulesPath, "utf8"))));
@@ -526,137 +405,57 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       };
       let gate: GateReport | null = exists(gatePath) && exists(evaluationPath)
         ? JSON.parse(fs.readFileSync(gatePath, "utf8")) as GateReport : null;
-      let genericRepairsUsed = 0;
-      while (true) {
-        if (!gate) {
-          await runCodex(
-            evaluatorPrompt(videoPath, outputDir), outputDir, `evaluator-${genericRepairsUsed + 1}`,
-            sha256(path.join(outputDir, "reconstruction.json")), observeLifecycle
-          );
-          if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
-            evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
-            threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
-            message: "独立评估没有产生 evaluation.json。" };
-          gate = await validate(outputDir);
-        }
-        const failures = failedIds(gate);
-        if (gate.ready === true && failures.length === 0) break;
-        const decision = decideReconstructionRepair({
-          genericReady: false,
-          genericRepairsUsed,
-          runtimeReady: false,
-          runtimeRepairsUsed: 0
-        });
-        if (decision === "not_ready") return videoReconstructionOutcomeSchema.parse({ state: "not_ready",
-          reconstructionArtifactRef: refs.reconstructionArtifactRef, evaluationArtifactRef: refs.evaluationArtifactRef,
-          gateReportArtifactRef: refs.gateReportArtifactRef, threeLensEvaluationArtifactRef: null,
-          threeLensGateReportArtifactRef: null,
-          failedGateIds: failures.length > 0 ? failures : ["meta_gate"],
-          message: "三轮通用定向修复后仍有硬闸未通过；该视频不进入博主机制归纳。" });
-        genericRepairsUsed += 1;
-        const historyDir = archiveEvaluation(outputDir, genericRepairsUsed);
+      const singlePassLensFiles = [
+        "runtime-three-lens/content-restoration.json",
+        "runtime-three-lens/directing-logic.json",
+        "runtime-three-lens/visual-editing.json"
+      ];
+      if (!gate || singlePassLensFiles.some((relative) => !exists(path.join(outputDir, relative)))) {
         await runCodex(
-          repairPrompt(videoPath, outputDir, historyDir, genericRepairsUsed), outputDir, `repair-${genericRepairsUsed}`,
-          combinedRevision([
-            path.join(outputDir, "reconstruction.json"), path.join(historyDir, "evaluation.json"), path.join(historyDir, "gate-report.json")
-          ]), observeLifecycle
-        );
-        await refreshOcrEvidenceIfNeeded(outputDir);
-        gate = null;
-      }
-
-      for (let runtimeRepairsUsed = 0; runtimeRepairsUsed <= maxRuntimeRepairAttempts; runtimeRepairsUsed += 1) {
-        let threeLensGate: RuntimeThreeLensGateReport;
-        try {
-          threeLensGate = await evaluateRuntimeThreeLens(
-            videoPath,
-            outputDir,
-            request.postExternalId,
-            refs.reconstructionArtifactRef,
-            refs.threeLensEvaluationArtifactRef,
-            observeLifecycle
-          );
-        } catch (error) {
-          const runtimeEvaluationExists = exists(path.join(outputDir, "runtime-three-lens-evaluation.json"));
-          const runtimeGateExists = exists(path.join(outputDir, "runtime-three-lens-gate-report.json"));
-          return videoReconstructionOutcomeSchema.parse({
-            state: "not_ready",
-            reconstructionArtifactRef: refs.reconstructionArtifactRef,
-            evaluationArtifactRef: refs.evaluationArtifactRef,
-            gateReportArtifactRef: refs.gateReportArtifactRef,
-            threeLensEvaluationArtifactRef: runtimeEvaluationExists ? refs.threeLensEvaluationArtifactRef : null,
-            threeLensGateReportArtifactRef: runtimeGateExists ? refs.threeLensGateReportArtifactRef : null,
-            failedGateIds: [runtimeEvaluationExists ? "runtime_three_lens_artifact_invalid" : "runtime_three_lens_artifact_missing"],
-            message: `通用重建门已通过，但运行时三镜头独立评测未形成有效产物：${error instanceof Error ? error.message : "unknown"}`
-          });
-        }
-        const decision = decideReconstructionRepair({
-          genericReady: true,
-          genericRepairsUsed,
-          runtimeReady: threeLensGate.ready,
-          runtimeRepairsUsed
-        });
-        if (decision === "ready") return videoReconstructionOutcomeSchema.parse({
-          state: "ready", ...refs, gateCount: gate.gates?.length ?? 1, threeLensGateCount: 19, failedGateIds: []
-        });
-        if (decision === "not_ready") return videoReconstructionOutcomeSchema.parse({
-          state: "not_ready",
-          reconstructionArtifactRef: refs.reconstructionArtifactRef,
-          evaluationArtifactRef: refs.evaluationArtifactRef,
-          gateReportArtifactRef: refs.gateReportArtifactRef,
-          threeLensEvaluationArtifactRef: refs.threeLensEvaluationArtifactRef,
-          threeLensGateReportArtifactRef: refs.threeLensGateReportArtifactRef,
-          failedGateIds: threeLensGate.failedGateIds.length > 0
-            ? threeLensGate.failedGateIds
-            : threeLensGate.uncheckedGateIds,
-          message: threeLensGate.status === "partial"
-            ? "两轮三镜头定向修复后仍有未检查通道；该视频保持 partial，不进入博主机制归纳。"
-            : "两轮三镜头定向修复后硬闸仍未通过；该视频不进入博主机制归纳。"
-        });
-
-        const runtimeAttempt = runtimeRepairsUsed + 1;
-        const historyDir = archiveRuntimeReviewArtifacts(outputDir, runtimeAttempt);
-        await runCodex(
-          runtimeLensRepairPrompt(videoPath, outputDir, historyDir, runtimeAttempt),
-          outputDir,
-          `runtime-repair-${runtimeAttempt}`,
-          combinedRevision([
-            path.join(outputDir, "reconstruction.json"),
-            path.join(historyDir, "runtime-three-lens-evaluation.json"),
-            path.join(historyDir, "runtime-three-lens-gate-report.json")
-          ]),
-          observeLifecycle
-        );
-        await refreshOcrEvidenceIfNeeded(outputDir);
-
-        await runCodex(
-          evaluatorPrompt(videoPath, outputDir), outputDir, `runtime-recheck-${runtimeAttempt}`,
+          evaluatorPrompt(videoPath, outputDir), outputDir, "evaluator-1",
           sha256(path.join(outputDir, "reconstruction.json")), observeLifecycle
         );
-        if (!exists(evaluationPath)) return videoReconstructionOutcomeSchema.parse({
-          state: "not_ready",
-          reconstructionArtifactRef: refs.reconstructionArtifactRef,
-          evaluationArtifactRef: null,
-          gateReportArtifactRef: null,
-          threeLensEvaluationArtifactRef: null,
-          threeLensGateReportArtifactRef: null,
-          failedGateIds: ["independent_evaluation_missing"],
-          message: "三镜头修复后的通用独立复评没有产生 evaluation.json。"
-        });
+        if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
+          threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
+          message: "单轮独立评估没有产生 evaluation.json。" };
         gate = await validate(outputDir);
-        const regressionFailures = failedIds(gate);
-        if (gate.ready !== true || regressionFailures.length > 0) return videoReconstructionOutcomeSchema.parse({
+      }
+
+      let threeLensGate: RuntimeThreeLensGateReport;
+      try {
+        threeLensGate = await evaluateRuntimeThreeLens(
+          outputDir,
+          request.postExternalId,
+          refs.reconstructionArtifactRef,
+          refs.threeLensEvaluationArtifactRef
+        );
+      } catch (error) {
+        return videoReconstructionOutcomeSchema.parse({
           state: "not_ready",
           reconstructionArtifactRef: refs.reconstructionArtifactRef,
           evaluationArtifactRef: refs.evaluationArtifactRef,
           gateReportArtifactRef: refs.gateReportArtifactRef,
           threeLensEvaluationArtifactRef: null,
           threeLensGateReportArtifactRef: null,
-          failedGateIds: regressionFailures.length > 0 ? regressionFailures : ["meta_gate"],
-          message: "三镜头定向修复破坏了通用硬闸；该视频保持 not_ready，等待下一次可恢复重试。"
+          failedGateIds: ["single_pass_evaluation_contract"],
+          message: `单轮评估产物不完整：${error instanceof Error ? error.message : "unknown"}`
         });
       }
-      throw new Error("RECONSTRUCTION_LOOP_INVALID");
+      const qualityWarningGateIds = [...new Set([
+        ...failedIds(gate),
+        ...threeLensGate.failedGateIds,
+        ...threeLensGate.uncheckedGateIds
+      ])];
+      return videoReconstructionOutcomeSchema.parse({
+        state: "ready",
+        ...refs,
+        gateCount: gate.gates?.length ?? 1,
+        threeLensGateCount: 19,
+        failedGateIds: [],
+        qualityWarningGateIds,
+        evaluationMode: "single_pass"
+      });
     } catch (error) {
       const message = error instanceof Error ? error.message : "视频重建执行失败";
       if (commandUnavailable(message)) return { state: "blocked", code: "runner_unavailable", message, userActionRequired: true };
