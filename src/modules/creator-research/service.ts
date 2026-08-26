@@ -391,6 +391,9 @@ export class CreatorResearchService {
     }
     const failedItems = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state));
     if (failedItems.length === 0) throw new Error("当前批次没有可重试的失败视频");
+    const mediaRefreshItems = failedItems.filter((item) =>
+      !item.sourceMediaArtifactRef || item.failedGateIds.includes("media_verification"));
+    const reconstructionRetryItems = failedItems.filter((item) => !mediaRefreshItems.includes(item));
     const timestamp = now();
     for (const item of failedItems) {
       const outputDir = path.join(runArtifactDir(run.id), "video-reconstructions", item.postExternalId);
@@ -402,21 +405,38 @@ export class CreatorResearchService {
         fs.mkdirSync(historyDir, { recursive: true });
         for (const filename of present) fs.renameSync(path.join(outputDir, filename), path.join(historyDir, filename));
       }
+      const needsMediaRefresh = mediaRefreshItems.includes(item);
       Object.assign(item, {
-        state: "queued", reconstructionArtifactRef: null, articleArtifactRef: null,
+        state: needsMediaRefresh ? "blocked" : "queued", reconstructionArtifactRef: null, articleArtifactRef: null,
         evaluationArtifactRef: null, gateReportArtifactRef: null,
         threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
-        failedGateIds: [], message: "基础设施或证据闭环修复后重新排队；保留原媒体、候选与历史评审。", updatedAt: timestamp
+        failedGateIds: needsMediaRefresh ? ["media_verification"] : [],
+        message: needsMediaRefresh
+          ? "媒体核验失败项已进入一次定向补取；不会重抓基本盘或重跑已通过视频。"
+          : "基础设施或证据闭环修复后重新排队；保留原媒体、候选与历史评审。",
+        updatedAt: timestamp
       });
     }
     batch.revision += 1;
     batch.generatedAt = timestamp;
     batch.readyPosts = batch.items.filter((item) => item.state === "ready").length;
-    batch.pendingPosts = failedItems.length;
-    batch.failedPosts = 0;
+    batch.pendingPosts = reconstructionRetryItems.length;
+    batch.failedPosts = mediaRefreshItems.length;
     const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, [previousBatchRef]);
     run.reconstructionBatchArtifactRef = batchRef;
-    for (const item of failedItems) {
+    if (mediaRefreshItems.length > 0) {
+      const mediaIds = mediaRefreshItems.map((item) => item.postExternalId);
+      const firstBatch = mediaIds.slice(0, 3);
+      const remainingMediaIds = mediaIds.slice(3);
+      const job = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.enrich", status: "queued",
+        idempotencyKey: `${run.id}:creator.enrich:media-refresh:retry:${batch.revision}:0`,
+        attempts: 0, maxAttempts: 3, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+        payload: { mode: "media_refresh", mediaIds: firstBatch, remainingMediaIds, batchIndex: 0 },
+        lastError: null, createdAt: timestamp, updatedAt: timestamp });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
+        message: "媒体核验失败项已进入一次定向补取。", payload: { nodeKey: job.nodeKey, postExternalIds: mediaIds } });
+    }
+    for (const item of reconstructionRetryItems) {
       const job = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "video.reconstruct", status: "queued",
         idempotencyKey: `${run.id}:video.reconstruct:retry:${batch.revision}:${item.postExternalId}:${item.sourceMediaArtifactRef}`,
         attempts: 0, maxAttempts: 2, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
@@ -429,11 +449,11 @@ export class CreatorResearchService {
     run.currentStage = "deep_capture";
     run.updatedAt = timestamp;
     run.coverage.reconstructedPosts = batch.readyPosts;
-    run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds: [], queuedPosts: failedItems.length,
-      analyzedPosts: batch.readyPosts, failedPosts: 0 };
+    run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds: [], queuedPosts: reconstructionRetryItems.length,
+      analyzedPosts: batch.readyPosts, failedPosts: mediaRefreshItems.length };
     run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null };
     run.blockers = [];
-    run.nextAction = `仅重试 ${failedItems.length} 条未通过视频；已通过 ${batch.readyPosts} 条不会重跑。`;
+    run.nextAction = `仅重试 ${failedItems.length} 条未通过视频（媒体补取 ${mediaRefreshItems.length}，视频重试 ${reconstructionRetryItems.length}）；已通过 ${batch.readyPosts} 条不会重跑。`;
     stage(run, "deep_capture").status = "running";
     stage(run, "deep_capture").message = run.nextAction;
     this.repository.save(run);
@@ -958,25 +978,35 @@ export class CreatorResearchService {
       }
       const mediaById = new Map(mediaManifest.items.map((item) => [item.externalId, item]));
       const deepItems = selection.items.filter((item) => item.deepCandidate);
+      const previousBatchRef = mediaRefresh ? run.reconstructionBatchArtifactRef : null;
+      const previousBatch = previousBatchRef
+        ? videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef))
+        : null;
+      const previousItems = new Map(previousBatch?.items.map((item) => [item.postExternalId, item]) ?? []);
+      const batchItems = deepItems.map((item) => {
+        const previous = previousItems.get(item.externalId);
+        if (previous?.state === "ready") return previous;
+        const media = mediaById.get(item.externalId);
+        const verified = media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
+        return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
+          state: verified ? "queued" as const : "blocked" as const, sourceMediaArtifactRef: media?.videoArtifactRef ?? null,
+          reconstructionArtifactRef: null, articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,
+          threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+          failedGateIds: verified ? [] : ["media_verification"],
+          message: verified ? "等待独立视频重建 Worker。" : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
+      });
+      const revision = previousBatch ? previousBatch.revision + 1 : 0;
       const batch = videoReconstructionBatchSchema.parse({
-        schemaVersion: "1.0.0", creatorRunId: run.id, revision: 0, generatedAt: completedAt,
-        requestedPosts: deepItems.length, readyPosts: 0,
-        pendingPosts: deepItems.filter((item) => mediaById.get(item.externalId)?.state === "verified_complete").length,
-        failedPosts: deepItems.filter((item) => mediaById.get(item.externalId)?.state !== "verified_complete").length,
-        items: deepItems.map((item) => {
-          const media = mediaById.get(item.externalId);
-          const verified = media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
-          return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
-            state: verified ? "queued" : "blocked", sourceMediaArtifactRef: media?.videoArtifactRef ?? null,
-            reconstructionArtifactRef: null, articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,
-            threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
-            failedGateIds: verified ? [] : ["media_verification"],
-            message: verified ? "等待独立视频重建 Worker。" : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
-        }),
+        schemaVersion: "1.0.0", creatorRunId: run.id, revision, generatedAt: completedAt,
+        requestedPosts: batchItems.length,
+        readyPosts: batchItems.filter((item) => item.state === "ready").length,
+        pendingPosts: batchItems.filter((item) => ["queued", "running"].includes(item.state)).length,
+        failedPosts: batchItems.filter((item) => ["not_ready", "blocked"].includes(item.state)).length,
+        items: batchItems,
         limitations: ["每条视频只做一次独立评估；内容缺口保留为质量提醒，只有媒体或产物损坏才阻断。"]
       });
-      const batchRef = this.artifacts.write(run.id, "video-reconstruction-batch-r0.json", batch,
-        [run.selectionArtifactRef, detailRef, mediaManifestRef]);
+      const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${revision}.json`, batch,
+        [run.selectionArtifactRef, detailRef, mediaManifestRef, previousBatchRef].filter((ref): ref is string => Boolean(ref)));
       const queuedJobs = batch.items.filter((item) => item.state === "queued").map((item) => {
         const selected = selection.items.find((candidate) => candidate.externalId === item.postExternalId);
         if (!selected || !item.sourceMediaArtifactRef) throw new Error(`视频任务 ${item.postExternalId} 缺少选择或媒体引用`);
@@ -996,7 +1026,7 @@ export class CreatorResearchService {
       run.reconstructionBatchArtifactRef = batchRef;
       run.coverage.enrichedPosts = details.inspectedPosts;
       run.videoWork = { concurrencyLimit: videoConcurrency(), activePostExternalIds: [], queuedPosts: queuedJobs.length,
-        analyzedPosts: 0, failedPosts: batch.failedPosts };
+        analyzedPosts: batch.readyPosts, failedPosts: batch.failedPosts };
       run.worker = queuedJobs.length > 0
         ? { state: "queued", attempt: 0, jobId: queuedJobs[0]?.id ?? null, workerId: null, lastHeartbeatAt: completedAt }
         : { state: "succeeded", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: completedAt };
