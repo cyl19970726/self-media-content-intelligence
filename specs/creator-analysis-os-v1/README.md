@@ -1,5 +1,7 @@
 # Creator Analysis OS V1
 
+The implemented runtime architecture and non-goals are summarized in [`../creator-research-architecture/design.md`](../creator-research-architecture/design.md). Observer/session-forensics concerns are intentionally outside that contract.
+
 Status: **product, frontend, and architecture confirmed**
 Last updated: 2026-08-21
 
