@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, ArrowRight, Database, ExternalLink, Link2, LoaderCircle, RefreshCw, ShieldCheck, UserRound } from "lucide-react";
-import { createCreatorResearchRun, listCreatorResearchRuns, listCreators, resumeCreatorResearchRun } from "./api";
-import type { CreatorResearchRun, CreatorResearchStatus, CreatorSummary } from "../shared/schema";
+import { AlertTriangle, ArrowRight, Database, ExternalLink, KeyRound, Link2, LoaderCircle, Plus, Radar, RefreshCw, Server, ShieldCheck, UserRound } from "lucide-react";
+import { createCreatorResearchRun, discoverAiCreators, listCreatorResearchRuns, listCreators, resumeCreatorResearchRun } from "./api";
+import type { CreatorAcquisitionAdapter, CreatorDiscoveryResult, CreatorResearchRun, CreatorResearchStatus, CreatorSummary } from "../shared/schema";
 import { completionNotice, failureReason, findExistingCreatorRun, taskEstimateLabel, taskPhases, validateCreatorProfileUrl } from "./creator-task-state";
 
 const statusLabels: Record<CreatorResearchStatus, string> = {
@@ -72,7 +72,7 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       {phases.map((phase) => <span className={`creator-run__stage creator-run__stage--${phase.state}`} key={phase.id} title={`${phase.label}：${phase.detail}`}><b>{phase.label}</b></span>) }
     </div>
     <footer>
-      <span><ShieldCheck size={13}/>hhh-01 · 只读 · 增量 · 不绕过验证</span>
+      <span><ShieldCheck size={13}/>{run.collectionPolicy.adapter === "redfox" ? "REDFOX · 公开 API · 按次计费" : "hhh-01 · 只读 · 增量 · 不绕过验证"}</span>
       <span>WORKER · {run.worker.state.toUpperCase()} · ATTEMPT {run.worker.attempt}</span>
       {(run.videoWork.activePostExternalIds.length > 0 || run.videoWork.queuedPosts > 0 || run.videoWork.analyzedPosts > 0) &&
         <span>VIDEO · {run.videoWork.activePostExternalIds.length} 执行 · {run.videoWork.queuedPosts} 排队 · {run.videoWork.analyzedPosts} 完成 · {run.videoWork.failedPosts} 失败 · 上限 {run.videoWork.concurrencyLimit}</span>}
@@ -99,10 +99,15 @@ export default function CreatorsOverview() {
   const [creators, setCreators] = useState<CreatorSummary[] | null>(null);
   const [runs, setRuns] = useState<CreatorResearchRun[] | null>(null);
   const [profileUrl, setProfileUrl] = useState("");
+  const [adapter, setAdapter] = useState<CreatorAcquisitionAdapter>("ego-browser");
+  const [discovery, setDiscovery] = useState<CreatorDiscoveryResult | null>(null);
+  const [discovering, setDiscovering] = useState(false);
+  const [discoveryError, setDiscoveryError] = useState<string | null>(null);
+  const [enqueueingId, setEnqueueingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [createdMessage, setCreatedMessage] = useState<string | null>(null);
-  const existingRun = findExistingCreatorRun(runs, profileUrl);
+  const existingRun = findExistingCreatorRun(runs, profileUrl, adapter);
   const intakeValidation = profileUrl ? validateCreatorProfileUrl(profileUrl) : null;
 
   const loadOverview = useCallback(async () => {
@@ -141,7 +146,7 @@ export default function CreatorsOverview() {
       setCreatedMessage(null);
       return;
     }
-    const duplicate = findExistingCreatorRun(runs, profileUrl);
+    const duplicate = findExistingCreatorRun(runs, profileUrl, adapter);
     if (duplicate) {
       setCreatedMessage(`这条主页链接已有任务（${statusLabels[duplicate.status]}），已保留原任务与证据，不再重复创建。`);
       setError(null);
@@ -151,7 +156,7 @@ export default function CreatorsOverview() {
     setError(null);
     setCreatedMessage(null);
     try {
-      const run = await createCreatorResearchRun(profileUrl);
+      const run = await createCreatorResearchRun(profileUrl, adapter);
       setRuns((current) => [run, ...(current ?? []).filter((item) => item.id !== run.id)]);
       setProfileUrl("");
       setCreatedMessage("分析任务已进入同一工作台。采集 Worker 接管后，这里会继续显示覆盖与阻塞状态。");
@@ -159,6 +164,37 @@ export default function CreatorsOverview() {
       setError(cause instanceof Error ? cause.message : "无法创建博主分析");
     } finally {
       setSubmitting(false);
+    }
+  }
+
+  async function runDiscovery() {
+    setDiscovering(true);
+    setDiscoveryError(null);
+    try {
+      setDiscovery(await discoverAiCreators());
+    } catch (cause) {
+      setDiscoveryError(cause instanceof Error ? cause.message : "无法发现 AI 博主");
+    } finally {
+      setDiscovering(false);
+    }
+  }
+
+  async function enqueueCandidate(candidate: CreatorDiscoveryResult["candidates"][number]) {
+    const duplicate = findExistingCreatorRun(runs, candidate.profileUrl, "redfox");
+    if (duplicate) {
+      setCreatedMessage(`${candidate.creatorName} 已有红狐研究任务，未重复创建。`);
+      return;
+    }
+    setEnqueueingId(candidate.creatorId);
+    setError(null);
+    try {
+      const run = await createCreatorResearchRun(candidate.profileUrl, "redfox");
+      setRuns((current) => [run, ...(current ?? []).filter((item) => item.id !== run.id)]);
+      setCreatedMessage(`${candidate.creatorName} 已加入红狐研究队列；后续仍进入同一证据与下载流水线。`);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "无法加入研究队列");
+    } finally {
+      setEnqueueingId(null);
     }
   }
 
@@ -180,6 +216,16 @@ export default function CreatorsOverview() {
 
       <form className="creator-intake" onSubmit={submit} noValidate>
         <label htmlFor="creator-profile-url"><Link2 size={14}/>小红书博主主页链接</label>
+        <div className="provider-rail" role="radiogroup" aria-label="采集 Provider">
+          <button type="button" role="radio" aria-checked={adapter === "ego-browser"}
+            className={adapter === "ego-browser" ? "is-active" : ""} onClick={() => setAdapter("ego-browser")}>
+            <KeyRound size={15}/><span><b>自己的账号</b><small>直接证据 · 可恢复登录态 · 遇验证停下</small></span>
+          </button>
+          <button type="button" role="radio" aria-checked={adapter === "redfox"}
+            className={adapter === "redfox" ? "is-active" : ""} onClick={() => setAdapter("redfox")}>
+            <Server size={15}/><span><b>红狐 API</b><small>公开数据 · 批量更快 · 实时接口按次计费</small></span>
+          </button>
+        </div>
         <div className="input-row">
           <input id="creator-profile-url" type="url" value={profileUrl} onChange={(event) => setProfileUrl(event.target.value)}
             placeholder="https://www.xiaohongshu.com/user/profile/..." autoComplete="url" required/>
@@ -189,7 +235,9 @@ export default function CreatorsOverview() {
           </button>
         </div>
         <div className="creator-intake__policy">
-          <span><ShieldCheck size={13}/>使用 hhh-01 登录态；遇验证立即停下请你接管</span>
+          <span><ShieldCheck size={13}/>{adapter === "ego-browser"
+            ? "使用 hhh-01 登录态；遇验证立即停下请你接管"
+            : "密钥仅留在服务端；不会回传浏览器或写入研究制品"}</span>
           <span><Database size={13}/>优先缓存与增量刷新，避免重复访问</span>
         </div>
         {profileUrl && intakeValidation && !intakeValidation.valid && <p className="form-error" role="alert"><AlertTriangle size={14}/>{intakeValidation.message}</p>}
@@ -197,6 +245,43 @@ export default function CreatorsOverview() {
         {createdMessage && <p className="form-success" aria-live="polite">{createdMessage}</p>}
         {error && <p className="form-error" role="alert"><AlertTriangle size={14}/>{error}</p>}
       </form>
+
+      <section className="creator-discovery" aria-labelledby="creator-discovery-title">
+        <header>
+          <div><span>REDFOX DISCOVERY RADAR</span><h2 id="creator-discovery-title">发现更多 AI 博主</h2>
+            <p>搜索只建立候选池；点击加入后才创建研究、选样和媒体下载任务。</p></div>
+          <button type="button" onClick={() => void runDiscovery()} disabled={discovering}>
+            {discovering ? <LoaderCircle className="spin" size={15}/> : <Radar size={15}/>}
+            {discovering ? "正在扫描" : discovery ? "重新扫描" : "扫描 AI 赛道"}
+          </button>
+        </header>
+        {discoveryError && <p className="form-error" role="alert"><AlertTriangle size={14}/>{discoveryError}</p>}
+        {discovery && <>
+          <div className="creator-discovery__ledger">
+            <span>{discovery.keywords.join(" / ")}</span>
+            <b>{discovery.requestsUsed} 次请求</b><b>估算 ¥{discovery.estimatedCostCny.toFixed(2)}</b>
+            <time>{new Date(discovery.capturedAt).toLocaleString("zh-CN")}</time>
+          </div>
+          <div className="creator-candidate-list">
+            {discovery.candidates.map((candidate, index) => {
+              const duplicate = findExistingCreatorRun(runs, candidate.profileUrl, "redfox");
+              return <article key={candidate.creatorId}>
+                <span className="creator-candidate__rank">{String(index + 1).padStart(2, "0")}</span>
+                <div><h3>{candidate.creatorName}</h3><p>{candidate.matchedKeywords.join(" · ")}</p>
+                  <small>{candidate.observedNotes} 篇搜索样本 · {candidate.videoNotes} 篇视频 · {candidate.observedLikes.toLocaleString("zh-CN")} 赞</small></div>
+                <strong>{candidate.score.toFixed(1)}<small>证据分</small></strong>
+                <nav><a href={candidate.profileUrl} target="_blank" rel="noreferrer"><ExternalLink size={13}/>主页</a>
+                  <button type="button" disabled={Boolean(duplicate) || enqueueingId === candidate.creatorId}
+                    onClick={() => void enqueueCandidate(candidate)}>
+                    {enqueueingId === candidate.creatorId ? <LoaderCircle className="spin" size={13}/> : duplicate ? <ShieldCheck size={13}/> : <Plus size={13}/>}
+                    {duplicate ? "已在队列" : "加入研究"}
+                  </button></nav>
+              </article>;
+            })}
+          </div>
+          <p className="creator-discovery__boundary"><AlertTriangle size={14}/>{discovery.limitations[0]}</p>
+        </>}
+      </section>
 
       <section className="research-queue" aria-labelledby="research-queue-title">
         <header>

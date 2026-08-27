@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-21T10:01:30.639Z",
+  "postId": "658bfdde000000001000fcea",
+  "videoStem": "video",
+  "status": "unavailable_on_page_snapshot",
+  "generatedSubtitle": null,
+  "evidence": {
+    "htmlTrackElements": 0,
+    "subtitleOrCaptionNetworkResources": 0,
+    "postSpecificSubtitleFieldInInitialState": false
+  },
+  "note": "页面快照未暴露官方字幕资源，因此没有生成 video.srt/video.vtt；不将未发现等同于作者从未提供字幕。",
+  "redaction": {
+    "signedUrlPersisted": false,
+    "tokenPersisted": false
+  }
+}

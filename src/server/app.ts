@@ -5,8 +5,14 @@ import { z } from "zod";
 import { AnalysisService } from "../core/service.js";
 import { CreatorResearchService } from "../core/creator-research-service.js";
 import { ComparisonProjectService } from "../modules/comparison/service.js";
+import { PublishingService } from "../modules/publishing/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
-import { createCreatorResearchRunInputSchema, createRunInputSchema } from "../shared/schema.js";
+import { createCreatorResearchRunInputSchema, createRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
+import { defaultAiCreatorKeywords, RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import {
+  approvePublicationInputSchema, createContentPackageInputSchema, createPublicationInputSchema,
+  variantInputSchema
+} from "../modules/publishing/contracts.js";
 import { loadCreatorSummaries } from "./creators.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
@@ -46,7 +52,9 @@ export function createApp(
   creatorResearchService = new CreatorResearchService(),
   comparisonProjectService = new ComparisonProjectService(creatorResearchService),
   researchLearningService = createDurableResearchLearningService(),
-  learningLoopControlPlane: LearningLoopControlPlane = createDurableLearningLoopControlPlane()
+  learningLoopControlPlane: LearningLoopControlPlane = createDurableLearningLoopControlPlane(),
+  publishingService = new PublishingService(),
+  creatorDiscoveryService = new RedFoxCreatorDiscoveryService()
 ) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
@@ -66,6 +74,86 @@ export function createApp(
 
   app.get("/api/health", (_request, response) => {
     response.json({ ok: true });
+  });
+
+  const publishingError = (response: express.Response, error: unknown): express.Response => {
+    const message = error instanceof z.ZodError
+      ? error.issues[0]?.message ?? "输入无效"
+      : error instanceof Error ? error.message : "发布操作失败";
+    const status = message.includes("不存在") ? 404
+      : message.includes("不能") || message.includes("不一致") || message.includes("变化") ? 409 : 400;
+    return response.status(status).json({ error: message });
+  };
+
+  app.get("/api/v1/content-packages", (request, response) => {
+    const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));
+    return response.json({ packages: publishingService.listPackages(limit) });
+  });
+
+  app.post("/api/v1/content-packages", (request, response) => {
+    try { return response.status(201).json(publishingService.createPackage(createContentPackageInputSchema.parse(request.body))); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.get("/api/v1/content-packages/:id", (request, response) => {
+    const value = publishingService.getPackage(request.params.id);
+    return value ? response.json(value) : response.status(404).json({ error: "内容包不存在" });
+  });
+
+  app.post("/api/v1/content-packages/:id/variants", (request, response) => {
+    try { return response.status(201).json(publishingService.createVariant(request.params.id, variantInputSchema.parse(request.body))); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.put("/api/v1/content-variants/:id", (request, response) => {
+    try { return response.json(publishingService.updateVariant(request.params.id, variantInputSchema.parse(request.body))); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.get("/api/v1/publications", (request, response) => {
+    const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));
+    return response.json({ publications: publishingService.listRuns(limit) });
+  });
+
+  app.post("/api/v1/publications", (request, response) => {
+    try {
+      const input = createPublicationInputSchema.parse(request.body);
+      return response.status(201).json(publishingService.createRun(input.variantId));
+    } catch (error) { return publishingError(response, error); }
+  });
+
+  app.get("/api/v1/publications/:id", (request, response) => {
+    const value = publishingService.getRun(request.params.id);
+    return value ? response.json(value) : response.status(404).json({ error: "发布任务不存在" });
+  });
+
+  app.get("/api/v1/publications/:id/events", (request, response) => {
+    const value = publishingService.getRun(request.params.id);
+    if (!value) return response.status(404).json({ error: "发布任务不存在" });
+    const after = Math.max(0, Number(request.query.after ?? 0));
+    return response.json({ events: publishingService.events(value.id, Number.isFinite(after) ? after : 0) });
+  });
+
+  app.post("/api/v1/publications/:id/prepare", (request, response) => {
+    try { return response.status(202).json(publishingService.prepare(request.params.id)); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.post("/api/v1/publications/:id/approve", (request, response) => {
+    try {
+      const input = approvePublicationInputSchema.parse(request.body);
+      return response.status(202).json(publishingService.approve(request.params.id, input.revision));
+    } catch (error) { return publishingError(response, error); }
+  });
+
+  app.post("/api/v1/publications/:id/cancel", (request, response) => {
+    try { return response.status(202).json(publishingService.cancel(request.params.id)); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.post("/api/v1/publications/:id/resume", (request, response) => {
+    try { return response.status(202).json(publishingService.resume(request.params.id)); }
+    catch (error) { return publishingError(response, error); }
   });
 
   app.get("/api/creators", (_request, response) => {
@@ -126,11 +214,24 @@ export function createApp(
   app.post("/api/creator-runs", (request, response) => {
     try {
       const input = createCreatorResearchRunInputSchema.parse(request.body);
-      return response.status(202).json(creatorResearchService.create(input.profileUrl));
+      return response.status(202).json(creatorResearchService.create(input.profileUrl, input.adapter));
     } catch (error) {
       const message = error instanceof z.ZodError
         ? error.issues[0]?.message ?? "输入无效"
         : error instanceof Error ? error.message : "无法创建博主分析";
+      return response.status(400).json({ error: message });
+    }
+  });
+
+  app.post("/api/creator-discovery/redfox", async (request, response) => {
+    try {
+      const input = discoverCreatorsInputSchema.parse(request.body ?? {});
+      const keywords = input.keywords ?? [...defaultAiCreatorKeywords];
+      return response.json(await creatorDiscoveryService.discover({ ...input, keywords }));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "发现参数无效"
+        : error instanceof Error ? error.message : "无法发现 AI 博主";
       return response.status(400).json({ error: message });
     }
   });

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "targeted-evidence-1.0",
+  "frames": [
+    {"id":"HR-001","actionId":"HIGHRES-OPENING","time":0.0,"frame":"highres/HR-001.jpg"},
+    {"id":"HR-002","actionId":"HIGHRES-OPENING","time":6.4,"frame":"highres/HR-002.jpg"},
+    {"id":"HR-003","actionId":"HIGHRES-API","time":8.0,"frame":"highres/HR-003.jpg"},
+    {"id":"HR-004","actionId":"HIGHRES-API","time":11.6,"frame":"highres/HR-004.jpg"},
+    {"id":"HR-005","actionId":"HIGHRES-ACCOUNT","time":13.5,"frame":"highres/HR-005.jpg"},
+    {"id":"HR-006","actionId":"HIGHRES-ACCOUNT","time":14.9,"frame":"highres/HR-006.jpg"},
+    {"id":"HR-007","actionId":"HIGHRES-REPOSITORY","time":16.45,"frame":"highres/HR-007.jpg"},
+    {"id":"HR-008","actionId":"HIGHRES-PREDEPLOY-RESULT","time":17.65,"frame":"highres/HR-008.jpg"},
+    {"id":"HR-009","actionId":"HIGHRES-REPOSITORY","time":18.25,"frame":"highres/HR-009.jpg"},
+    {"id":"HR-010","actionId":"HIGHRES-ENVIRONMENT","time":20.88,"frame":"highres/HR-010.jpg"},
+    {"id":"HR-011","actionId":"HIGHRES-SUCCESS","time":22.98,"frame":"highres/HR-011.jpg"},
+    {"id":"HR-012","actionId":"HIGHRES-RESULT","time":25.84,"frame":"highres/HR-012.jpg"},
+    {"id":"HR-013","actionId":"HIGHRES-CTA","time":29.64,"frame":"highres/HR-013.jpg"},
+    {"id":"HR-014","actionId":"HIGHRES-CLOSING","time":31.22,"frame":"highres/HR-014.jpg"},
+    {"id":"HR-015","actionId":"HIGHRES-CLOSING","time":34.62,"frame":"highres/HR-015.jpg"}
+  ]
+}

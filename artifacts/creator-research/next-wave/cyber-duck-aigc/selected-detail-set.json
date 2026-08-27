@@ -16,12 +16,14 @@
   },
   "detailRun": {
     "route": "ego-browser hhh-01 read_only",
-    "status": "not_started_due_prior_platform_stop",
+    "status": "partial",
     "stopSignal": {
       "code": "300031",
       "label": "同一顺序采集任务在晓辉博士首条详情遇到安全限制"
     },
-    "policyResponse": "保持单线程并停止详情队列，不尝试通过第二账号页面规避限制。"
+    "policyResponse": "在后续授权轮次中，仅通过站内实时搜索卡片恢复 mean-near 样本详情；high/low 仍未尝试。",
+    "resolvedItems": 1,
+    "selectedItems": 3
   },
   "items": [
     {
@@ -49,16 +51,20 @@
       "selectionReason": "1289赞，距离清单算术均值1278.37约0.83%，代表均值附近。",
       "publicMetrics": {
         "likes": 1289,
-        "collections": null,
-        "comments": null,
+        "collections": 2223,
+        "comments": 112,
         "shares": null
       },
-      "publishedAt": null,
-      "publishedLabel": null,
+      "publishedAt": "2023-12-27",
+      "publishedLabel": "2023-12-27",
       "stableUrl": "https://www.xiaohongshu.com/explore/658bfdde000000001000fcea",
-      "mediaType": "unknown",
-      "detailState": "not_attempted_after_platform_stop",
-      "mediaAcquisitionState": "not_attempted_after_platform_stop"
+      "mediaType": "video",
+      "detailState": "ready",
+      "mediaAcquisitionState": "downloaded_verified_complete",
+      "mediaPath": "deep-samples/658bfdde000000001000fcea/source/video.mp4",
+      "mediaSha256": "03100b82366cd9dcfe52d01ed99e5871a0253b13610a9d66f43a423cb901d020",
+      "detailArtifact": "deep-samples/658bfdde000000001000fcea/detail/detail-observation.json",
+      "sourceArtifact": "deep-samples/658bfdde000000001000fcea/source/source-observation.json"
     },
     {
       "id": "6659ca17000000001500aa50",
@@ -79,11 +85,10 @@
       "mediaAcquisitionState": "not_attempted_after_platform_stop"
     }
   ],
-  "readiness": "BLOCKED_DETAIL",
+  "readiness": "PARTIAL_DETAIL",
   "unknowns": [
-    "发布时间",
-    "视频/图文类型",
-    "收藏、评论、分享",
-    "媒体候选与字幕状态"
+    "high/low 样本的发布时间、媒体类型与非点赞指标",
+    "mean-near 样本的公开分享数与官方字幕状态",
+    "未下载媒体，因此未验证文件完整性"
   ]
 }

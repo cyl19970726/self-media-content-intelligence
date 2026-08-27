@@ -43,6 +43,14 @@ describe("creator task state contract", () => {
     expect(findExistingCreatorRun([existing], "https://xhslink.cn/m/different")).toBeNull();
   });
 
+  it("distinguishes provider-specific tasks for the same profile", () => {
+    const account = run();
+    const redfox = run({ id: "22222222-2222-4222-8222-222222222222",
+      collectionPolicy: { ...run().collectionPolicy, adapter: "redfox", browserProfile: null } });
+    expect(findExistingCreatorRun([account, redfox], account.profileUrl, "ego-browser")?.id).toBe(account.id);
+    expect(findExistingCreatorRun([account, redfox], account.profileUrl, "redfox")?.id).toBe(redfox.id);
+  });
+
   it("maps actual run stages to the six user-facing phases without invented estimates", () => {
     const phases = taskPhases(run({ status: "collecting", stages: run().stages.map((item) => item.id === "tiering" ? { ...item, status: "running" } : item.id === "preflight" || item.id === "inventory" ? { ...item, status: "complete" } : item) }));
     expect(phases.map((phase) => phase.label)).toEqual(["排队", "采集", "分层", "深度重建", "合成", "完成"]);

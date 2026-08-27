@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+export const creatorAcquisitionAdapterSchema = z.enum(["ego-browser", "redfox"]);
+export type CreatorAcquisitionAdapter = z.infer<typeof creatorAcquisitionAdapterSchema>;
+
 export type CreatorCrawlDiagnostic = {
   round: number;
   globalCountBefore: number;
@@ -86,14 +89,23 @@ export type CreatorNavigationDiagnostic = {
 export type CreatorAcquisitionResult =
   | {
       state: "ready";
+      provider?: CreatorAcquisitionAdapter;
       finalUrl: string;
       creatorId: string | null;
       creatorName: string | null;
-      taskSpaceId: number;
+      taskSpaceId: number | null;
       stopReason: "explicit_end" | "quiescent_incomplete" | "budget_reached";
       posts: CreatorAcquisitionPost[];
       warnings: string[];
       diagnostics?: CreatorCrawlDiagnostic[];
+      sourceRefs?: string[];
+      publicProfile?: {
+        bio: string | null;
+        followers: number | null;
+        likesAndCollections: number | null;
+        displayedPostCount: number | null;
+        identityAnchors: Array<{ kind: string; value: string; source: string }>;
+      };
     }
   | {
       state: "needs_user";
@@ -107,7 +119,8 @@ export type CreatorAcquisitionResult =
       state: "blocked";
       finalUrl: string | null;
       taskSpaceId: number | null;
-      code: "identity_ambiguous" | "page_shape_unknown" | "browser_unavailable";
+      code: "identity_ambiguous" | "page_shape_unknown" | "browser_unavailable"
+        | "provider_unavailable" | "provider_authentication_failed" | "provider_rate_limited" | "provider_response_invalid";
       message: string;
       retryable: boolean;
       navigationDiagnostic?: CreatorNavigationDiagnostic;
@@ -115,6 +128,7 @@ export type CreatorAcquisitionResult =
 
 export interface CreatorAcquisitionExecutor {
   acquire(input: {
+    adapter: CreatorAcquisitionAdapter;
     runId: string;
     profileUrl: string;
     maxScrollRounds: number;
@@ -127,7 +141,8 @@ export type CreatorDetailInputPost = { externalId: string; url: string; title?: 
 export type CreatorDetailResult =
   | {
       state: "ready";
-      taskSpaceId: number;
+      provider?: CreatorAcquisitionAdapter;
+      taskSpaceId: number | null;
       posts: Array<{
         externalId: string;
         finalUrl: string;
@@ -146,6 +161,7 @@ export type CreatorDetailResult =
 
 export interface CreatorDetailExecutor {
   enrich(input: {
+    adapter: CreatorAcquisitionAdapter;
     runId: string;
     profileUrl: string;
     creatorName?: string | null;

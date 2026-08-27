@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "capture-protocol-1.0",
+  "probe": "probe.json",
+  "protocolName": "多服务部署链与主张边界捕捉协议",
+  "rationale": "本视频的认知变化不只依赖旁白步骤，而依赖 API 密钥页、Vercel/GitHub 身份交接、仓库 Deploy 入口、环境变量、庆祝状态、最终聊天文本和评论区替代路径的剪辑串联。协议因此同时恢复可见操作链、编辑顺序、主张—证据边界、转写冲突和全时间线内未出现的决策条件。",
+  "knowledgeUnitFields": [
+    {"name":"promise_or_claim","required":true,"reason":"区分免费、GPT-4、小白、一分钟、无需特殊网络等作者主张与视频证明。","derivedFrom":["MC-01","MC-06","CQ-01","RISK-01"]},
+    {"name":"visible_service_or_document_identity","required":true,"reason":"通用旁白跨 Google/Gemini、Vercel、GitHub、仓库和聊天网页，需保留每段可见身份。","derivedFrom":["CAR-03","CAR-07","CQ-03","RISK-03"]},
+    {"name":"input_action_parameter_output","required":true,"reason":"核心认知是跨服务操作链，必须恢复输入、动作、参数和结果。","derivedFrom":["REL-02","REL-03","REL-04","CQ-02"]},
+    {"name":"observed_screen_chronology","required":true,"reason":"长镜头段内含多次网页跳转，不能把技术 SHOT 或剪辑邻接误作连续操作。","derivedFrom":["CAR-06","RISK-02","RISK-06"]},
+    {"name":"dependency_order_and_missing_bridges","required":true,"reason":"授权、复制/粘贴、提交、构建、打开结果等桥接可能被省略。","derivedFrom":["RISK-02","CQ-04"]},
+    {"name":"literal_ui_state_and_failure_or_success_signature","required":true,"reason":"庆祝彩纸和聊天输出用于证明成功，但需保留其字面状态及未证明部分。","derivedFrom":["MC-05","MC-06","REL-05"]},
+    {"name":"carrier_conflict","required":true,"reason":"机器转写在部署按钮、API key、作者名和口号处有 consequential 错词。","derivedFrom":["RISK-04","CQ-07"]},
+    {"name":"cta_and_access_boundary","required":true,"reason":"评论区索取部署版本是独立行动路径，访问、责任与安全边界未建立。","derivedFrom":["MC-07","CQ-06"]},
+    {"name":"referent_and_inserted_source","required":true,"reason":"开头品牌宣传素材、界面标识和作者水印承担可信度，但来源/授权/因果关系未知。","derivedFrom":["RISK-05","CQ-08"]},
+    {"name":"scoped_absence","required":true,"reason":"费用、额度、地区、网络、账户、仓库所有者、构建日志和失败条件改变复现决策。","derivedFrom":["CAR-10","RISK-07","CQ-05"]},
+    {"name":"non_speech_audio_role","required":true,"reason":"音轨机器审查持续提出音乐，结尾另有音效候选，必须独立于语音登记。","derivedFrom":["CAR-08","CQ-09"]}
+  ],
+  "captureActions": [
+    {"id":"ACT-01","range":{"start":0,"end":7.4},"carrier":"插入素材、Gemini 标识、烧录字幕、配乐","mode":"ocr_review","densitySeconds":0.4,"reason":"捕捉开头承诺、品牌蒙太奇与‘一分钟/小白/免费/二十美元’的完整措辞。","expectedObservation":"每张短卡/品牌画面的全部可读字幕、可见标识、素材切换和承诺范围。","derivedFrom":["MC-01","RISK-05","CQ-01","CQ-08"]},
+    {"id":"ACT-02","range":{"start":7.4,"end":12.5},"carrier":"API 页面、弹窗、光标、密钥状态、字幕","mode":"ui_state_review","densitySeconds":0.2,"reason":"第一步含短暂弹窗和可能的创建/复制状态，初始 1.5 秒采样无法证明完整动作。","expectedObservation":"页面/品牌身份、按钮文字、弹窗前中后、可见键值与是否真正执行复制；不可读字段标未知。","derivedFrom":["MC-02","RISK-02","RISK-03","CQ-02","CQ-03","CQ-04"]},
+    {"id":"ACT-03","range":{"start":12.5,"end":15.7},"carrier":"Vercel 账户页、Git 提供程序、GitHub 登录按钮、字幕","mode":"ui_state_review","densitySeconds":0.2,"reason":"恢复账户创建与身份授权的屏幕顺序和被省略的授权边界。","expectedObservation":"Vercel 可见身份、用途选项、用户名字段、GitHub 按钮、跳转前后状态以及未显示的授权范围。","derivedFrom":["MC-03","REL-03","RISK-02","CQ-02","CQ-03"]},
+    {"id":"ACT-04","range":{"start":15.7,"end":18.78},"carrier":"GitHub/仓库 README、滚动、Deploy 按钮、字幕","mode":"ui_state_review","densitySeconds":0.15,"reason":"确认从哪个文档位置触发部署，并分辨滚动、指向、点击和跳转。","expectedObservation":"仓库/页面可见身份、部署段落全文、按钮、滚动与点击前中后；所有者或目标不可读则未知。","derivedFrom":["MC-04","REL-03","REL-04","RISK-03","CQ-03","CQ-04"]},
+    {"id":"ACT-05","range":{"start":18.78,"end":24.24},"carrier":"Vercel 环境变量、键值、Deploy/进度/成功状态、字幕","mode":"ui_state_review","densitySeconds":0.15,"reason":"这是程序性核心，需要高密度恢复输入前、填写中、提交/等待和成功后状态，且不得从邻接帧补齐缺失动作。","expectedObservation":"可见变量键名/占位符和值、粘贴/点击是否出现、等待/构建状态、庆祝/成功字样及剪辑缺口；重建时从序列中明确选出 before/during/after。","derivedFrom":["MC-05","REL-02","REL-04","RISK-02","RISK-03","CQ-02","CQ-04"]},
+    {"id":"ACT-06","range":{"start":24.24,"end":30.62},"carrier":"部署结果页、聊天结果页、模型标签、CTA 字幕","mode":"ocr_review","densitySeconds":0.2,"reason":"检验成功状态是否证明 GPT-4/免费，并完整捕捉评论区替代路径。","expectedObservation":"庆祝页字样、聊天页可见 ChatGPT/Gemini 文本、是否有模型选择/价格/额度证据、评论留言与发送承诺。","derivedFrom":["MC-06","MC-07","REL-05","RISK-01","CQ-05","CQ-06"]},
+    {"id":"ACT-07","range":{"start":30.62,"end":35.067},"carrier":"作者自报、烧录字幕、背景模型比较文本、结尾强光和音效候选","mode":"ocr_review","densitySeconds":0.2,"reason":"解决机器转写作者名/口号冲突并恢复结尾是否强化开头。","expectedObservation":"烧录字幕精确可读文本、背景输出的产品标签、作者水印、结尾转场和仍未知的具体音效。","derivedFrom":["MC-08","REL-07","RISK-04","CQ-07","CQ-08","CQ-09"]},
+    {"id":"ACT-08","range":{"start":0,"end":35.067},"carrier":"全时间线可见/可听边界信息","mode":"interval_density","densitySeconds":0.5,"reason":"对费用、额度、地区、网络、账号、版本、仓库所有者、构建日志、失败条件、安全和支持实体进行有界负证据检查。","expectedObservation":"记录这些元素可能出现的标题、设置、表单、结果页、字幕和结尾窗口；结论只能是检查范围内观察到或未观察到。","derivedFrom":["CAR-10","RISK-07","CQ-05","CQ-06"]},
+    {"id":"ACT-09","range":{"start":0,"end":35.067},"carrier":"混合音轨的非语音部分","mode":"exact_times","times":[0.5,5,10,15,20,25,30,34.5],"reason":"机器音频分类在全部窗口提出 Music，末窗另提出 sound-effect 类候选，需要在知识模型中独立处理。","expectedObservation":"确认持续音乐性背景和结尾强调声的存在/不确定性；不推断曲目、许可、独立轨道或来源。","derivedFrom":["CAR-08","RISK-08","CQ-09"]},
+    {"id":"ACT-10","range":{"start":17.02,"end":34.58},"carrier":"机器转写、烧录字幕、可见 UI 上下文","mode":"ocr_review","times":[17.4,17.9,20.5,21,31.2,32.5,33.5,34.2],"reason":"保留并解释‘三角形/捡贴/塞伯亚/银行’等 consequential 冲突。","expectedObservation":"逐项记录机器原文、烧录字幕候选、UI/语义支持的读法及无法确认部分。","derivedFrom":["RISK-04","CQ-07"]}
+  ],
+  "requiredRelations": [
+    {"relation":"promise_then_first_dependency","derivedFrom":["REL-01"]},
+    {"relation":"api_key_claimed_as_input_to_environment_variable","derivedFrom":["REL-02"]},
+    {"relation":"account_identity_precedes_repository_deploy","derivedFrom":["REL-03"]},
+    {"relation":"deploy_entry_precedes_configuration_and_result","derivedFrom":["REL-04"]},
+    {"relation":"edited_success_state_used_to_support_capability_claim","derivedFrom":["REL-05"]},
+    {"relation":"difficulty_promise_payoff_by_alternative_cta","derivedFrom":["REL-06"]},
+    {"relation":"result_background_continues_under_creator_identity_close","derivedFrom":["REL-07"]},
+    {"relation":"visible_identity_may_narrow_or_conflict_with_generic_spoken_labels","derivedFrom":["REL-08"]}
+  ],
+  "stoppingRules": [
+    "CQ-01 至 CQ-09 均有证据回答或被明确标记为视频未建立。",
+    "MC-01 至 MC-08 每个意义变化均有目标帧和知识单元。",
+    "API、Vercel、GitHub、仓库 Deploy、环境变量、部署成功和聊天输出的可见身份/状态均已 OCR 或明确不可读。",
+    "操作链同时保留屏幕观察顺序、依赖顺序和未显示桥接，不用剪辑邻接补齐动作。",
+    "四处机器转写冲突保留原文、支持读法和未知，不静默修正。",
+    "免费/GPT-4/一分钟/无需特殊网络等主张没有被提升为视频外事实。",
+    "所有费用、额度、地区、账号、版本、仓库所有者、构建日志、失败条件、安全、责任缺失均为有界检查结论。",
+    "非语音音频载体已独立检查并保留机器分类限制。",
+    "没有把 6 个技术 SHOT 当成语义场景数或剪辑次数。",
+    "meta-gate 对信息载体、意义变化、关系和未知通道的检查结果为空遗漏。"
+  ],
+  "declaredUnknowns": [
+    "插入品牌素材来源、授权和与后续项目的直接因果关系。",
+    "API 页面精确产品名、账号/地区/计费/网络条件和密钥有效性。",
+    "Vercel 用户名、GitHub 授权范围、仓库名称/所有者和 Deploy 目标。",
+    "环境变量真实键名、值是否为此前 key、未显示的复制/粘贴/提交/构建/打开动作。",
+    "最终聊天页 URL、仓库/版本、后端模型、费用、额度、地区、账户和安全边界。",
+    "评论区交付方式、访问控制、维护与支持责任。",
+    "背景音乐/结尾音效的曲目、来源、许可和独立轨道身份。"
+  ]
+}

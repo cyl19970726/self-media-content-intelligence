@@ -12,6 +12,8 @@
     "collectionStatus": "artifacts/creator-research/next-wave/cyber-duck-aigc/collection-status.json",
     "creatorCorpus": "artifacts/creator-research/next-wave/cyber-duck-aigc/creator-corpus.json",
     "selectedDetailSet": "artifacts/creator-research/next-wave/cyber-duck-aigc/selected-detail-set.json",
+    "meanNearSourceVideo": "artifacts/creator-research/next-wave/cyber-duck-aigc/deep-samples/658bfdde000000001000fcea/source/video.mp4",
+    "meanNearMediaVerification": "artifacts/creator-research/next-wave/cyber-duck-aigc/deep-samples/658bfdde000000001000fcea/source/video.verification.json",
     "dashboard": null
   },
   "stages": {

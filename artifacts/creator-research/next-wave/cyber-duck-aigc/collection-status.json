@@ -49,22 +49,26 @@
     "mediaType": 319
   },
   "media": {
-    "reusedOrDownloaded": 0,
-    "verified": 0,
+    "reusedOrDownloaded": 1,
+    "verified": 1,
     "failed": 0
   },
   "subtitles": {
     "available": 0,
     "absent": 0,
     "failed": 0,
-    "unchecked": 319
+    "unchecked": 318,
+    "unavailableOnSelectedSnapshot": 1
   },
   "readiness": "partial",
   "detailEnrichmentStatus": {
-    "state": "not_started_due_prior_platform_stop",
+    "state": "partial",
     "code": "300031",
     "selected": 3,
-    "resolved": 0
+    "resolved": 1,
+    "resolvedIds": [
+      "658bfdde000000001000fcea"
+    ]
   },
   "gates": [
     {

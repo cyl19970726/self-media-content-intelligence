@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ExternalLink, Grid2X2, LoaderCircle, Network, ScrollText } from "lucide-react";
 import { getVideoResearch } from "./api";
 import type { VideoResearch } from "../shared/video-research";
+import { friendlyArticleHeading, withoutEmbeddedTranscript } from "./video-evidence-copy";
 
 const evidenceLabels = {
   raw_fact: "原始事实", visual_observation: "画面观察", author_claim: "作者主张", system_inference: "系统推断", unknown: "未知"
@@ -41,17 +42,17 @@ const failedGateCopy: Record<string, string> = {
 function gateLabel(value: string) { return failedGateCopy[value] ?? value; }
 
 function ArticleBody({ markdown }: { markdown: string }) {
-  const blocks = useMemo(() => markdown.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean), [markdown]);
+  const blocks = useMemo(() => withoutEmbeddedTranscript(markdown).split(/\n{2,}/).map((block) => block.trim()).filter(Boolean), [markdown]);
   return <div className="reconstruction-article">{blocks.map((block, index) => {
     const heading = block.match(/^(#{1,4})\s+(.+)$/s);
     if (heading) {
       const level = heading[1]?.length ?? 2;
-      const title = heading[2]?.replace(/\n+/g, " ") ?? "";
+      const title = friendlyArticleHeading(heading[2]?.replace(/\n+/g, " ") ?? "");
       return level <= 2 ? <h3 key={index}>{title}</h3> : <h4 key={index}>{title}</h4>;
     }
     const lines = block.split("\n");
     if (lines.every((line) => /^[-*]\s+/.test(line))) return <ul key={index}>{lines.map((line) => <li key={line}>{line.replace(/^[-*]\s+/, "")}</li>)}</ul>;
-    return <p key={index}>{block.replace(/\*\*/g, "")}</p>;
+    return <p key={index}>{block.replace(/^>\s?/, "").replace(/\*\*/g, "")}</p>;
   })}</div>;
 }
 
@@ -106,7 +107,7 @@ export default function VideoEvidencePage() {
           </header>
 
           <section className="video-metric-band">
-            <div><b>{metric(data.engagement.likes)}</b><span>公开点赞</span></div><div><b>{data.performanceContext.tier.toUpperCase()}</b><span>账号内部层级</span></div><div><b>{data.performanceContext.medianMultiple === null ? "—" : `${data.performanceContext.medianMultiple.toFixed(1)}×`}</b><span>相对账号中位</span></div><div><b>{data.transcript.length}</b><span>完整文字稿 CUES</span></div><div><b>{data.frames.dense.length}</b><span>密集 / 定向证据帧</span></div>
+            <div><b>{metric(data.engagement.likes)}</b><span>公开点赞</span></div><div><b>{data.performanceContext.tier.toUpperCase()}</b><span>账号内部层级</span></div><div><b>{data.performanceContext.medianMultiple === null ? "—" : `${data.performanceContext.medianMultiple.toFixed(1)}×`}</b><span>相对账号中位</span></div><div><b>{data.transcript.length}</b><span>逐句文字稿</span></div><div><b>{data.frames.dense.length}</b><span>关键证据画面</span></div>
           </section>
           <section className="lens-gate-band" aria-label="三镜头研究状态">
             {([
@@ -149,15 +150,15 @@ export default function VideoEvidencePage() {
                 <div className="relation-map">{data.relations.length ? data.relations.map((relation, index) => <article key={`${relation.from}-${relation.to}-${index}`}><Network size={14}/><b>{relation.from}</b><span>{relation.relation}</span><b>{relation.to}</b><small>{relation.evidenceRefs.length} 条证据</small></article>) : <p>当前证据未形成结构化关系。</p>}</div>
                 <div className="knowledge-grid">{data.knowledgeUnits.map((unit) => <article key={unit.id} className={`knowledge-unit knowledge-unit--${unit.evidenceClass}`}><header><span>{unit.id} · {evidenceLabels[unit.evidenceClass]}</span><time>{timestamp(unit.start)}–{timestamp(unit.end)}</time></header><h3>{unit.title}</h3><p>{unit.statement}</p><footer><span>置信度 {unit.confidence}</span><EvidenceRefs refs={unit.evidenceRefs}/></footer>{unit.unknowns.map((unknown) => <small key={unknown}>{unknown}</small>)}</article>)}</div>
               </section>
-              <section className="video-evidence-section" id="transcript"><header><span>05</span><div><h2>完整文字稿与镜头对应</h2><p>每条 cue 保留时间码、代表帧与全部重叠镜头，方便从文字回到原证据。</p></div></header>
-                <div className="transcript-table">{data.transcript.map((cue) => <article id={`evidence-${cue.id}`} key={cue.id}><time>{timestamp(cue.start)}–{timestamp(cue.end)}</time>{cue.representativeFrame ? <img src={cue.representativeFrame} loading="lazy" alt={cue.id}/> : <span className="transcript-no-frame">无帧</span>}<div><b>{cue.id}</b><p>{cue.text}</p><small>{cue.overlappingShots.length ? `重叠镜头：${cue.overlappingShots.join("、")}` : "重叠镜头未取得"}</small></div></article>)}</div>
+              <section className="video-evidence-section" id="transcript"><header><span>05</span><div><h2>逐句文字稿与对应画面</h2><p>按时间查看自动识别的每句话，并结合对应画面核对原视频。</p></div></header>
+                <details className="transcript-disclosure"><summary><span>展开完整逐句文字稿</span><small>{data.transcript.length} 句 · 自动识别文本</small></summary><div className="transcript-table">{data.transcript.map((cue, index) => <article id={`evidence-${cue.id}`} key={cue.id}><time>{timestamp(cue.start)}–{timestamp(cue.end)}</time>{cue.representativeFrame ? <img src={cue.representativeFrame} loading="lazy" alt={`第 ${index + 1} 句对应画面`}/> : <span className="transcript-no-frame">暂无画面</span>}<div><b>第 {index + 1} 句</b><p>{cue.text}</p><small>{cue.overlappingShots.length ? `对应镜头：${cue.overlappingShots.join("、")}` : "暂未取得对应镜头"}</small></div></article>)}</div></details>
               </section>
             </div>
             <aside className="video-research-aside">
-              <div><span>EVIDENCE HEALTH</span><p>{data.evidenceHealth.transcript ? "✓" : "—"} 文字稿</p><p>{data.evidenceHealth.frames ? "✓" : "—"} 视频帧</p><p>{data.evidenceHealth.ocr ? "✓" : "—"} OCR / UI</p><p>{data.evidenceHealth.audio ? "✓" : "—"} 非旁白音频</p><p>{data.evidenceHealth.baseline ? "✓" : "—"} 表现基线</p></div>
-              <div><span>PERFORMANCE CONTEXT</span><p>{data.performanceContext.interpretation}</p><p>账号中位：{metric(data.performanceContext.creatorMedianLikes)}</p><p>百分位：{data.performanceContext.percentileRank === null ? "—" : `P${data.performanceContext.percentileRank}`}</p>{data.performanceContext.confounds.map((value) => <p key={value}>边界：{value}</p>)}</div>
-              <div><span>CONFLICTS</span>{data.conflicts.length ? data.conflicts.map((value) => <p key={value}>{value}</p>) : <p>未登记载体冲突。</p>}</div>
-              <div><span>UNKNOWNS</span>{data.unknowns.length ? data.unknowns.map((value) => <p key={value}>{value}</p>) : <p>未登记未知项。</p>}</div>
+              <div><span>证据完整度</span><p>{data.evidenceHealth.transcript ? "✓" : "—"} 文字稿</p><p>{data.evidenceHealth.frames ? "✓" : "—"} 视频画面</p><p>{data.evidenceHealth.ocr ? "✓" : "—"} 画面文字 / 界面</p><p>{data.evidenceHealth.audio ? "✓" : "—"} 非旁白音频</p><p>{data.evidenceHealth.baseline ? "✓" : "—"} 表现参考</p></div>
+              <div><span>表现参考</span><p>{data.performanceContext.interpretation}</p><p>账号中位：{metric(data.performanceContext.creatorMedianLikes)}</p><p>百分位：{data.performanceContext.percentileRank === null ? "—" : `P${data.performanceContext.percentileRank}`}</p>{data.performanceContext.confounds.map((value) => <p key={value}>注意：{value}</p>)}</div>
+              <div><span>需要注意的差异</span>{data.conflicts.length ? data.conflicts.map((value) => <p key={value}>{value}</p>) : <p>未发现明显差异。</p>}</div>
+              <div><span>暂时无法确认</span>{data.unknowns.length ? data.unknowns.map((value) => <p key={value}>{value}</p>) : <p>暂无未确认项。</p>}</div>
               {data.gate.failedGateIds.length > 0 && <div><span>尚未闭环</span>{data.gate.failedGateIds.map((value) => <p key={value}>{gateLabel(value)}</p>)}</div>}
             </aside>
           </div>

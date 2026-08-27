@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "video-probe-1.0",
+  "evidencePack": "evidence/evidence-pack.json",
+  "viewerChange": {
+    "before": "观众可能认为获得 GPT-4 级能力需要付费订阅、网络条件或复杂部署，也不知道视频实际把哪些服务串联在一起。",
+    "after": "观众被引导相信可通过取得 Google 的 API key、用 GitHub 登录 Vercel、从一个仓库触发部署并填写环境变量，得到一个可对话的网页；同时应能区分视频确实展示的页面状态与作者声称的免费、GPT-4、无需特殊网络等结论。",
+    "intendedChanges": [
+      "从觉得部署困难转为觉得流程短且小白可做",
+      "记住 API key → Vercel/GitHub → 仓库部署 → 环境变量 → 部署结果的操作链",
+      "把最终聊天网页当作部署成功和模型可用的视觉证明",
+      "在不想自行操作时转向评论区索取作者已部署版本"
+    ]
+  },
+  "carrierSweep": [
+    {
+      "id": "SWEEP-01",
+      "range": {"start": 0, "end": 7.4},
+      "cognitiveQuestion": "开头承诺了什么，借哪些品牌素材和字幕降低难度/成本焦虑？",
+      "observedSignals": ["科技/品牌宣传式插入画面", "Gemini 标识", "烧录字幕承诺一分钟、小白、免费与不需二十美元"],
+      "checkedAlternatives": ["speech", "machine_transcript", "burned_caption", "inserted_footage", "logos", "editing_juxtaposition", "music"],
+      "remainingUnknowns": ["插入素材来源和授权", "‘魔法’具体指什么", "一分钟指视频时长还是实际部署耗时"],
+      "evidenceHints": ["CUE-001", "CUE-005", "DENSE-0001", "DENSE-0004", "DENSE-0005"]
+    },
+    {
+      "id": "SWEEP-02",
+      "range": {"start": 7.4, "end": 12.5},
+      "cognitiveQuestion": "第一步在哪个界面取得什么密钥，视频是否展示完整获取动作和边界条件？",
+      "observedSignals": ["深色 API 密钥页面", "创建/查看 API key 弹窗", "可复制的长字符串被打码/缩小", "烧录字幕‘第一步获取API密钥’"],
+      "checkedAlternatives": ["speech", "burned_caption", "ui_state", "visible_identity", "cursor_action", "ocr_candidate", "before_after_state"],
+      "remainingUnknowns": ["页面精确产品/域名", "创建密钥前置账号、地区、计费和网络条件", "密钥是否为演示专用及是否仍有效"],
+      "evidenceHints": ["CUE-006", "CUE-007", "CUE-008", "DENSE-0006", "DENSE-0008", "DENSE-0009"]
+    },
+    {
+      "id": "SWEEP-03",
+      "range": {"start": 12.5, "end": 15.7},
+      "cognitiveQuestion": "第二步创建/登录 Vercel 时实际展示了哪些身份与交接？",
+      "observedSignals": ["创建 Vercel 账户页面", "个人用途选项", "用户名输入", "连接 Git 提供程序页面", "GitHub 按钮"],
+      "checkedAlternatives": ["speech", "burned_caption", "ui_state", "visible_identity", "cursor_action", "ocr_candidate", "account_state"],
+      "remainingUnknowns": ["用户名内容是否为真实账户信息", "GitHub 授权范围", "是否已有登录态或隐藏步骤"],
+      "evidenceHints": ["CUE-009", "CUE-010", "DENSE-0010", "DENSE-0011"]
+    },
+    {
+      "id": "SWEEP-04",
+      "range": {"start": 15.7, "end": 18.78},
+      "cognitiveQuestion": "视频从哪个网页/仓库进入部署，点击动作是否可见？",
+      "observedSignals": ["GitHub 账户/授权后的列表状态", "仓库 README 的部署段落", "‘使用 Vercel 部署（推荐）’与 Deploy 按钮", "光标/页面滚动"],
+      "checkedAlternatives": ["speech", "burned_caption", "ui_state", "document_identity", "cursor_action", "scroll_motion", "ocr_candidate"],
+      "remainingUnknowns": ["仓库名称和所有者在初始帧中不可读", "Deploy 按钮的真实目标", "是否 fork/import 以及权限步骤"],
+      "evidenceHints": ["CUE-011", "CUE-012", "DENSE-0012", "DENSE-0013"]
+    },
+    {
+      "id": "SWEEP-05",
+      "range": {"start": 18.78, "end": 24.24},
+      "cognitiveQuestion": "部署页要求什么环境变量，视频展示了怎样的前—中—后状态？",
+      "observedSignals": ["Vercel 新项目/环境变量区域", "可见键名占位符 EXAMPLE_NAME", "值输入框内长字符串", "Deploy/部署按钮与等待状态", "随后出现庆祝彩纸"],
+      "checkedAlternatives": ["speech", "burned_caption", "ui_state", "parameter_value", "cursor_action", "before_during_after", "ocr_candidate", "progress_status"],
+      "remainingUnknowns": ["实际环境变量键名", "值是否就是先前 API key", "粘贴/提交动作是否连续展示", "部署耗时、构建日志与失败条件"],
+      "evidenceHints": ["CUE-013", "CUE-014", "CUE-015", "CUE-016", "DENSE-0014", "DENSE-0015", "DENSE-0016", "DENSE-0017"]
+    },
+    {
+      "id": "SWEEP-06",
+      "range": {"start": 24.24, "end": 30.62},
+      "cognitiveQuestion": "最终页面到底展示了什么能力，免费/GPT-4 的主张得到何种证明，CTA 如何改变行动？",
+      "observedSignals": ["部署庆祝页/项目页面", "随后是带 ChatGPT 与 Gemini 文本的聊天结果页面", "作者声称免费使用 GPT4", "评论区留言、作者发送已部署版本的 CTA"],
+      "checkedAlternatives": ["speech", "burned_caption", "ui_result_state", "visible_product_label", "text_output", "editing_chronology", "cta", "negative_evidence"],
+      "remainingUnknowns": ["聊天页面实际所调用模型", "网页 URL、版本、仓库、所有者", "是否真的免费及额度", "作者如何通过评论区发送以及访问风险"],
+      "evidenceHints": ["CUE-017", "CUE-018", "CUE-019", "DENSE-0018", "DENSE-0019", "DENSE-0020", "DENSE-0021"]
+    },
+    {
+      "id": "SWEEP-07",
+      "range": {"start": 30.62, "end": 35.067},
+      "cognitiveQuestion": "结尾如何建立作者身份并重申账号价值，转写与烧录字幕是否冲突？",
+      "observedSignals": ["作者自报身份", "ChatGPT/Gemini 对比文本继续作为背景", "强光/科技感收尾", "机器转写出现明显疑似错词"],
+      "checkedAlternatives": ["speech", "machine_transcript", "burned_caption", "ui_text", "creator_watermark", "closing_reframe", "music", "sound_effect"],
+      "remainingUnknowns": ["机器转写中的作者名与口号准确文本需由烧录字幕/OCR复核", "收尾强光是否带独立音效", "背景文本与部署结果的因果关系"],
+      "evidenceHints": ["CUE-020", "CUE-021", "DENSE-0022", "DENSE-0023", "DENSE-0024", "DENSE-0025"]
+    }
+  ],
+  "informationCarriers": [
+    {"id":"CAR-01","name":"机器转写的中文旁白","modalityKeys":["audio.speech","transcript.machine"],"discoveredIn":["SWEEP-01","SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["承诺","步骤叙述","价值主张","CTA","身份收尾"],"intervals":[{"start":0,"end":34.58}],"omissionImpact":"会丢失步骤、作者主张与CTA，但转写错误不能当作修正后的事实。"},
+    {"id":"CAR-02","name":"烧录字幕与步骤卡","modalityKeys":["visual.burned_caption","visual.overlay_text"],"discoveredIn":["SWEEP-01","SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["复述旁白","步骤编号","强调按钮/动作","纠正机器转写候选"],"intervals":[{"start":0,"end":34.58}],"omissionImpact":"会丢失精确措辞、步骤边界和机器转写冲突。"},
+    {"id":"CAR-03","name":"软件与网页界面状态","modalityKeys":["visual.ui","visual.document","visual.browser_state"],"discoveredIn":["SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["展示产品身份","展示账户/仓库/环境变量/部署/结果状态"],"intervals":[{"start":7.4,"end":34.58}],"omissionImpact":"会把一个有缺口的多服务流程误写成已完整执行。"},
+    {"id":"CAR-04","name":"光标、滚动与点击动作","modalityKeys":["visual.cursor","visual.scroll","visual.action"],"discoveredIn":["SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05"],"available":true,"inspected":true,"roles":["指向入口","暗示点击/滚动/输入"],"intervals":[{"start":7.4,"end":24.24}],"omissionImpact":"会把剪辑相邻状态误判为连续完成的动作。"},
+    {"id":"CAR-05","name":"参数、键值与输出文本","modalityKeys":["visual.parameter","visual.code_or_key","visual.output_text","ocr"],"discoveredIn":["SWEEP-02","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["API key 候选","环境变量","聊天输出","产品/模型标签"],"intervals":[{"start":7.4,"end":12.5},{"start":18.78,"end":34.58}],"omissionImpact":"会遗漏流程真正依赖的键名、可见模型标签和结果边界。"},
+    {"id":"CAR-06","name":"前后状态与剪辑顺序","modalityKeys":["visual.before_after","editing.order","editing.juxtaposition"],"discoveredIn":["SWEEP-01","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["从承诺到步骤到庆祝/聊天结果","构造因果感","收尾强化"],"intervals":[{"start":0,"end":35.067}],"omissionImpact":"会把编辑顺序错误提升为可重复的完整操作顺序或因果证明。"},
+    {"id":"CAR-07","name":"品牌、标识与水印","modalityKeys":["visual.logo","visual.watermark","visual.recognizable_symbol"],"discoveredIn":["SWEEP-01","SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["Gemini/Google/Vercel/GitHub/ChatGPT 的可见身份线索","作者账号水印"],"intervals":[{"start":0,"end":35.067}],"omissionImpact":"会把通用称呼覆盖更具体的可见服务，也可能误把相似标识当作已验证产品身份。"},
+    {"id":"CAR-08","name":"配乐与非语音音频","modalityKeys":["audio.non_speech","audio.music","audio.sound_effect"],"discoveredIn":["SWEEP-01","SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["持续快节奏/科技感推进","结尾可能含强调音效"],"intervals":[{"start":0,"end":35.067}],"omissionImpact":"会遗漏节奏与收尾强化；分类器无法证明具体曲目或每个音效来源。"},
+    {"id":"CAR-09","name":"布局、分组与可见计数","modalityKeys":["visual.layout","visual.grouping","visual.count"],"discoveredIn":["SWEEP-01","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["步骤页的单一入口","账户选项","部署区域","ChatGPT/Gemini 对比结果"],"intervals":[{"start":0,"end":35.067}],"omissionImpact":"会丢失并列而非流水线的内容结构，以及页面可见项数量。"},
+    {"id":"CAR-10","name":"范围内未观察到的决策信息","modalityKeys":["negative_evidence","absence.full_timeline"],"discoveredIn":["SWEEP-01","SWEEP-02","SWEEP-03","SWEEP-04","SWEEP-05","SWEEP-06","SWEEP-07"],"available":true,"inspected":true,"roles":["界定未显示的价格/额度/地区/版本/仓库所有者/构建日志/失败条件/安全说明"],"intervals":[{"start":0,"end":35.067}],"omissionImpact":"会把营销主张写成无条件可复现事实。"}
+  ],
+  "meaningChanges": [
+    {"id":"MC-01","range":{"start":0,"end":7.4},"description":"从高成本/高难度预期转为‘一分钟、小白、免费’的强承诺。","trigger":"旁白、烧录字幕、Gemini 品牌蒙太奇与二十美元对比。","evidenceHints":["CUE-001","CUE-005","DENSE-0004","DENSE-0005"]},
+    {"id":"MC-02","range":{"start":7.4,"end":12.5},"description":"承诺切换为第一步：取得 Google/Gemini 相关 API key。","trigger":"API 密钥页面和创建密钥弹窗。","evidenceHints":["CUE-006","CUE-008","DENSE-0006","DENSE-0009"]},
+    {"id":"MC-03","range":{"start":12.5,"end":15.7},"description":"流程转入 Vercel 账户和 GitHub 身份交接。","trigger":"创建 Vercel 账户与连接 Git 提供程序页面。","evidenceHints":["CUE-009","CUE-010","DENSE-0010","DENSE-0011"]},
+    {"id":"MC-04","range":{"start":15.7,"end":18.78},"description":"账户准备转为从仓库 README 触发 Vercel 部署。","trigger":"页面滚动到部署段落及 Deploy 按钮。","evidenceHints":["CUE-011","CUE-012","DENSE-0012","DENSE-0013"]},
+    {"id":"MC-05","range":{"start":18.78,"end":24.24},"description":"部署配置从环境变量输入转入等待，再以庆祝状态宣告成功。","trigger":"环境变量表单、部署等待、彩纸结果。","evidenceHints":["CUE-013","CUE-016","DENSE-0014","DENSE-0017"]},
+    {"id":"MC-06","range":{"start":24.24,"end":26.84},"description":"作者把部署成功进一步解释为可以免费使用 GPT4，并展示聊天结果。","trigger":"旁白主张与 ChatGPT/Gemini 输出页面。","evidenceHints":["CUE-017","DENSE-0018","DENSE-0019"]},
+    {"id":"MC-07","range":{"start":26.84,"end":30.62},"description":"教程转为评论区索取作者部署版本的替代路径。","trigger":"评论留言 CTA 与作者承诺发送。","evidenceHints":["CUE-018","CUE-019","DENSE-0020","DENSE-0021"]},
+    {"id":"MC-08","range":{"start":30.62,"end":35.067},"description":"作者身份和账号口号收束，背景仍保留模型对比文本。","trigger":"自我介绍、收尾口号、强光转场。","evidenceHints":["CUE-020","CUE-021","DENSE-0022","DENSE-0025"]}
+  ],
+  "relationshipHypotheses": [
+    {"id":"REL-01","from":"MC-01","to":"MC-02","relation":"promise_then_first_dependency","evidenceHints":["CUE-005","CUE-006"]},
+    {"id":"REL-02","from":"MC-02","to":"MC-05","relation":"api_key_claimed_as_input_to_environment_variable","evidenceHints":["CUE-006","CUE-014","DENSE-0008","DENSE-0015"]},
+    {"id":"REL-03","from":"MC-03","to":"MC-04","relation":"account_identity_precedes_repository_deploy","evidenceHints":["CUE-010","CUE-012","DENSE-0011","DENSE-0013"]},
+    {"id":"REL-04","from":"MC-04","to":"MC-05","relation":"deploy_entry_precedes_configuration_and_result","evidenceHints":["DENSE-0013","DENSE-0014","DENSE-0017"]},
+    {"id":"REL-05","from":"MC-05","to":"MC-06","relation":"edited_success_state_used_to_support_capability_claim","evidenceHints":["CUE-016","CUE-017","DENSE-0017","DENSE-0019"]},
+    {"id":"REL-06","from":"MC-01","to":"MC-07","relation":"difficulty_promise_payoff_by_alternative_cta","evidenceHints":["CUE-004","CUE-018","CUE-019"]},
+    {"id":"REL-07","from":"MC-06","to":"MC-08","relation":"result_background_continues_under_creator_identity_close","evidenceHints":["DENSE-0019","DENSE-0022","DENSE-0023"]},
+    {"id":"REL-08","from":"CAR-03","to":"CAR-01","relation":"visible_identity_may_narrow_or_conflict_with_generic_spoken_labels","evidenceHints":["CUE-017","DENSE-0019","DENSE-0023"]}
+  ],
+  "omissionRisks": [
+    {"id":"RISK-01","risk":"把‘免费使用GPT4’写成已证实事实。","why":"这是作者主张；最终界面仅显示 ChatGPT/Gemini 文本，未证明后端模型、计费与额度。","where":[{"start":24.24,"end":30.62}],"requiredFollowup":"高密度捕捉最终页面标签、输出与全时间线费用/模型证明缺失。"},
+    {"id":"RISK-02","risk":"把剪辑后的页面序列写成连续无缺口的真实部署操作。","why":"若干点击、授权、变量键名、粘贴、提交、构建日志和打开结果动作可能被剪掉。","where":[{"start":7.4,"end":26.84}],"requiredFollowup":"为每个操作节点捕捉前中后并建立观察顺序与依赖顺序双账本。"},
+    {"id":"RISK-03","risk":"丢失软件、仓库、文件或变量的可见具体身份。","why":"旁白使用通用名，界面小字且初始帧难读。","where":[{"start":7.4,"end":24.24}],"requiredFollowup":"OCR/UI 复核 API 页、Vercel、GitHub、README、环境变量与项目页。"},
+    {"id":"RISK-04","risk":"将机器转写错词静默修正后冒充原话。","why":"‘三角形’、‘API捡’、作者名和收尾口号与画面语义明显冲突。","where":[{"start":17.02,"end":21.88},{"start":30.62,"end":34.58}],"requiredFollowup":"捕捉烧录字幕并保留机器转写原文、支持读法和仍未知部分。"},
+    {"id":"RISK-05","risk":"忽略品牌插入素材与实际操作页面之间的来源/因果边界。","why":"开头 Gemini 品牌蒙太奇建立权威感，但来源和与随后项目的直接关系未建立。","where":[{"start":0,"end":7.4}],"requiredFollowup":"单独记录插入素材、可见标识与未知来源/授权。"},
+    {"id":"RISK-06","risk":"将技术场景切分数量当成语义场景或编辑次数。","why":"场景检测只得到 6 个技术段，长段内实际包含多个网页跳转。","where":[{"start":0,"end":35.067}],"requiredFollowup":"以页面状态与语义变化建单元，不用 SHOT 数声称剪辑次数。"},
+    {"id":"RISK-07","risk":"把未看到的价格、地区、账户、额度、安全与失败条件当作不存在。","why":"这些会改变是否可复现，但必须经过全时间线和可能出现窗口检查后才能作范围内缺失声明。","where":[{"start":0,"end":35.067}],"requiredFollowup":"执行全时间线负证据审查，表述为‘在检查范围内未观察到’。"},
+    {"id":"RISK-08","risk":"忽略背景音乐/收尾音效对节奏与强度的作用。","why":"音频分类器在所有窗口提出 Music，同时结尾提出 Sound effect/Camera 类候选，但机器标签不能直接定性。","where":[{"start":0,"end":35.067}],"requiredFollowup":"把非语音音频作为独立载体登记，保留具体曲目/音效身份未知。"}
+  ],
+  "criticalQuestions": [
+    {"id":"CQ-01","question":"视频承诺的结果和适用门槛是什么，哪些只是作者主张？","criticality":"critical","evidenceHints":["CUE-001","CUE-005","CUE-017"]},
+    {"id":"CQ-02","question":"视频实际展示的跨服务步骤、可见输入、动作与输出分别是什么？","criticality":"critical","evidenceHints":["CUE-006","CUE-009","CUE-012","CUE-014","CUE-016"]},
+    {"id":"CQ-03","question":"API 页面、Vercel、GitHub、仓库、环境变量和最终聊天页的可见身份是什么？","criticality":"critical","evidenceHints":["DENSE-0008","DENSE-0011","DENSE-0013","DENSE-0015","DENSE-0019"]},
+    {"id":"CQ-04","question":"哪些关键点击、授权、参数、粘贴、提交、构建或打开动作没有被视频建立？","criticality":"critical","evidenceHints":["DENSE-0006","DENSE-0017","RISK-02"]},
+    {"id":"CQ-05","question":"最终页面是否证明后端使用 GPT-4、免费、无额度/地区/网络限制？","criticality":"critical","evidenceHints":["CUE-017","DENSE-0019","RISK-01","RISK-07"]},
+    {"id":"CQ-06","question":"评论区替代路径具体承诺了什么，访问方式与责任边界是否建立？","criticality":"supporting","evidenceHints":["CUE-018","CUE-019"]},
+    {"id":"CQ-07","question":"机器转写与烧录字幕有哪些 consequential 冲突，支持的读法和未知是什么？","criticality":"critical","evidenceHints":["CUE-012","CUE-014","CUE-020","CUE-021"]},
+    {"id":"CQ-08","question":"开头品牌蒙太奇、教程结果和结尾账号身份如何构成整体意义关系？","criticality":"supporting","evidenceHints":["DENSE-0004","DENSE-0019","DENSE-0025"]},
+    {"id":"CQ-09","question":"非语音音频包含什么可确认作用，哪些具体身份仍未知？","criticality":"supporting","evidenceHints":["audio-evidence/non-speech-classification.json"]}
+  ],
+  "unresolved": [
+    "官方字幕不可用；逐字稿来自 Whisper turbo 机器转写并含明显错词。",
+    "API 页面精确产品名、仓库名称/所有者、环境变量键名和最终项目 URL 需目标 OCR/高密度帧复核。",
+    "最终聊天页后端模型、费用、额度、地区、网络、账户、安全和支持责任未被当前证据建立。",
+    "音频机器分类能确认应检查音乐/音效通道，不能识别曲目、所有权或独立音效来源。"
+  ]
+}

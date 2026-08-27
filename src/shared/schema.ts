@@ -482,8 +482,11 @@ const creatorResearchWorkerSchema = z.object({
   lastHeartbeatAt: z.string().nullable()
 });
 
+export const creatorAcquisitionAdapterSchema = z.enum(["ego-browser", "redfox"]);
+export type CreatorAcquisitionAdapter = z.infer<typeof creatorAcquisitionAdapterSchema>;
+
 export const creatorResearchRunSchema = z.object({
-  schemaVersion: z.enum(["1.0.0", "1.1.0", "1.2.0"]),
+  schemaVersion: z.enum(["1.0.0", "1.1.0", "1.2.0", "1.3.0"]),
   id: z.string().uuid(),
   platform: z.literal("xiaohongshu"),
   profileUrl: z.string().url(),
@@ -515,8 +518,8 @@ export const creatorResearchRunSchema = z.object({
     reconstructedPosts: z.number().int().nonnegative()
   }),
   collectionPolicy: z.object({
-    adapter: z.literal("ego-browser"),
-    browserProfile: z.literal("hhh-01"),
+    adapter: creatorAcquisitionAdapterSchema.default("ego-browser"),
+    browserProfile: z.literal("hhh-01").nullable().default("hhh-01"),
     readOnly: z.literal(true),
     incremental: z.literal(true),
     bypassChallenges: z.literal(false),
@@ -612,7 +615,48 @@ export const createCreatorResearchRunInputSchema = z.object({
   profileUrl: z.string().trim().min(1, "请粘贴小红书博主主页链接").refine(
     isSupportedCreatorUrl,
     "请使用小红书博主主页链接，或 xhslink.cn 的主页分享链接"
-  )
+  ),
+  adapter: creatorAcquisitionAdapterSchema.default("ego-browser")
+});
+
+export const creatorDiscoveryCandidateSchema = z.object({
+  creatorId: z.string().min(1),
+  creatorName: z.string().min(1),
+  profileUrl: z.string().url(),
+  avatarUrl: z.string().url().nullable(),
+  matchedKeywords: z.array(z.string()),
+  observedNotes: z.number().int().positive(),
+  observedLikes: z.number().int().nonnegative(),
+  observedCollections: z.number().int().nonnegative(),
+  observedComments: z.number().int().nonnegative(),
+  observedForwards: z.number().int().nonnegative(),
+  videoNotes: z.number().int().nonnegative(),
+  score: z.number().nonnegative(),
+  scoreExplanation: z.array(z.string()),
+  representativeNotes: z.array(z.object({
+    noteId: z.string(), title: z.string().nullable(), url: z.string().url(), keyword: z.string(),
+    likes: z.number().int().nonnegative(), collections: z.number().int().nonnegative(),
+    comments: z.number().int().nonnegative(), forwards: z.number().int().nonnegative(),
+    mediaType: z.enum(["video", "image", "unknown"])
+  })).max(3)
+});
+export type CreatorDiscoveryCandidate = z.infer<typeof creatorDiscoveryCandidateSchema>;
+
+export const creatorDiscoveryResultSchema = z.object({
+  provider: z.literal("redfox"),
+  capturedAt: z.string(),
+  keywords: z.array(z.string()),
+  requestsUsed: z.number().int().nonnegative(),
+  estimatedCostCny: z.number().nonnegative(),
+  candidates: z.array(creatorDiscoveryCandidateSchema),
+  limitations: z.array(z.string())
+});
+export type CreatorDiscoveryResult = z.infer<typeof creatorDiscoveryResultSchema>;
+
+export const discoverCreatorsInputSchema = z.object({
+  keywords: z.array(z.string().trim().min(1).max(30)).min(1).max(8).optional(),
+  pagesPerKeyword: z.number().int().min(1).max(2).default(1),
+  limit: z.number().int().min(1).max(30).default(12)
 });
 
 export const creatorSummarySchema = z.object({

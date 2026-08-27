@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAt": "2026-08-21T09:48:04.867Z",
+  "postId": "658bfdde000000001000fcea",
+  "creator": {
+    "id": "6559c8bf0000000008000b2a",
+    "name": "赛博鸭AIGC",
+    "identityMatched": true
+  },
+  "stableUrl": "https://www.xiaohongshu.com/explore/658bfdde000000001000fcea",
+  "title": "1分钟本地部署Gemini，免费使用GPT4模型",
+  "postCopy": "1分钟本地部署Gemini，免费使用GPT4模型#ai #Gemini #大模型 #gpt4 #设计 #Ai绘画",
+  "hashtags": [
+    "ai",
+    "Gemini",
+    "大模型",
+    "gpt4",
+    "设计",
+    "Ai绘画"
+  ],
+  "publishedAt": "2023-12-27",
+  "publishedLabel": "2023-12-27",
+  "publicMetrics": {
+    "likes": 1289,
+    "collections": 2223,
+    "comments": 112,
+    "shares": null
+  },
+  "media": {
+    "mediaType": "video",
+    "availability": "downloaded_verified_complete",
+    "videoElementPresent": true,
+    "currentSourceResolvedInBrowser": true,
+    "readyState": 4,
+    "durationSec": 35.087,
+    "width": 1280,
+    "height": 720,
+    "localPath": "source/video.mp4",
+    "subtitleState": "unavailable_on_page_snapshot",
+    "sha256": "03100b82366cd9dcfe52d01ed99e5871a0253b13610a9d66f43a423cb901d020",
+    "verificationPath": "source/video.verification.json"
+  },
+  "detailState": "ready",
+  "mediaAcquisitionState": "downloaded_verified_complete",
+  "provenance": [
+    {
+      "field": "title",
+      "source": "detail_visible_dom",
+      "status": "confirmed"
+    },
+    {
+      "field": "creator",
+      "source": "detail_author_profile_link",
+      "status": "confirmed"
+    },
+    {
+      "field": "publishedAt",
+      "source": "detail_visible_dom",
+      "status": "confirmed_with_live_card"
+    },
+    {
+      "field": "publicMetrics.likes",
+      "source": "detail_action_bar.like-wrapper",
+      "status": "confirmed_with_live_card"
+    },
+    {
+      "field": "publicMetrics.collections",
+      "source": "detail_action_bar.collect-wrapper",
+      "status": "single_source"
+    },
+    {
+      "field": "publicMetrics.comments",
+      "source": "detail_action_bar.chat-wrapper_and_comment_header",
+      "status": "confirmed"
+    },
+    {
+      "field": "media.mediaType",
+      "source": "html_video_element",
+      "status": "confirmed"
+    },
+    {
+      "field": "media.durationSec",
+      "source": "html_video_element.duration",
+      "status": "single_source"
+    },
+    {
+      "field": "media.dimensions",
+      "source": "html_video_element.videoWidth_videoHeight",
+      "status": "single_source"
+    },
+    {
+      "field": "media.availability",
+      "source": "html_video_element.readyState_and_currentSrc_boolean",
+      "status": "confirmed"
+    }
+  ],
+  "unknowns": [
+    "公开分享数",
+    "官方字幕状态",
+    "未执行逐帧冻结检测，仅通过容器、流与三个时间点解码",
+    "曝光、完播、转粉与转化"
+  ],
+  "redaction": {
+    "cookiesStored": false,
+    "headersStored": false,
+    "xsecTokenStored": false,
+    "signedMediaUrlStored": false,
+    "commentsCorpusStored": false
+  }
+}

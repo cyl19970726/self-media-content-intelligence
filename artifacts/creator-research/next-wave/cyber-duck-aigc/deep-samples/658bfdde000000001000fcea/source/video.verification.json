@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "verifiedAt": "2026-08-21T10:01:30.639Z",
+  "postId": "658bfdde000000001000fcea",
+  "file": "video.mp4",
+  "status": "verified_complete",
+  "transport": {
+    "adapter": "ego-browser",
+    "entry": "verified live search card",
+    "method": "ephemeral media resource fetched as binary ArrayBuffer in ego runtime",
+    "signedUrlPersisted": false,
+    "cookiesPersisted": false,
+    "headersPersisted": false,
+    "initialTextTransportRejected": true
+  },
+  "integrity": {
+    "bytes": 3306628,
+    "sha256": "03100b82366cd9dcfe52d01ed99e5871a0253b13610a9d66f43a423cb901d020",
+    "container": "mov,mp4,m4a,3gp,3g2,mj2"
+  },
+  "streams": [
+    {
+      "index": 0,
+      "type": "video",
+      "codec": "h264",
+      "width": 1280,
+      "height": 720,
+      "avgFrameRate": "30/1"
+    },
+    {
+      "index": 1,
+      "type": "audio",
+      "codec": "aac"
+    }
+  ],
+  "timeline": {
+    "durationSec": 35.086757,
+    "browserDurationSec": 35.087,
+    "absoluteDifferenceSec": 0.000243,
+    "decodeProbes": [
+      {
+        "timeSec": 0,
+        "pass": true
+      },
+      {
+        "timeSec": 17,
+        "pass": true
+      },
+      {
+        "timeSec": 34,
+        "pass": true
+      }
+    ]
+  },
+  "limitations": [
+    "未做完整逐帧冻结检测；当前仅容器、流、三个关键时间点解码通过。"
+  ]
+}
