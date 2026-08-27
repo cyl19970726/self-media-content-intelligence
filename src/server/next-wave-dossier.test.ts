@@ -51,8 +51,11 @@ describe("next-wave inventory dossier", () => {
     expect(high?.deepSample).toBe(true);
     expect(high?.evidenceStatus).toBe("deep_validated");
     expect(high?.evidenceHref).toBe("/creators/cyber-duck-aigc/videos/67b012c40000000017038a99");
-    expect(dossier?.portfolio.deepCount).toBe(1);
-    expect(dossier?.portfolio.items.filter((item) => item.coverHref !== null)).toHaveLength(1);
+    const meanNear = dossier?.portfolio.items.find((item) => item.id === "658bfdde000000001000fcea");
+    expect(meanNear?.deepSample).toBe(true);
+    expect(meanNear?.evidenceStatus).toBe("deep_pending");
+    expect(dossier?.portfolio.deepCount).toBe(2);
+    expect(dossier?.portfolio.items.filter((item) => item.coverHref !== null)).toHaveLength(20);
     expect(high?.coverHref).toContain("/research/next-wave/cyber-duck-aigc/");
     expect(high?.coverHref).toContain("67b012c40000000017038a99");
   });
