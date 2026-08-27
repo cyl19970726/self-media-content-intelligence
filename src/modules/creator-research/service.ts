@@ -37,6 +37,7 @@ import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "../creat
 import { runArtifactDir, videoConcurrency } from "../../core/config.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import { creatorInventoryPostSchema, type CreatorInventoryPost } from "../portfolio/contracts.js";
+import type { CreatorAcquisitionAdapter } from "../orchestration/contracts.js";
 
 const stages: CreatorResearchRun["stages"] = [
   { id: "preflight", label: "身份与登录预检", status: "pending", message: null },
@@ -143,9 +144,10 @@ export class CreatorResearchService {
     private readonly synthesisExecutor: CreatorSynthesisExecutor = new CodexCreatorSynthesisExecutor(artifacts)
   ) {}
 
-  create(profileUrl: string): CreatorResearchRun {
-    const input = createCreatorResearchRunInputSchema.parse({ profileUrl });
-    const existing = this.repository.findLatestByProfileUrl(input.profileUrl);
+  create(profileUrl: string, adapter: CreatorAcquisitionAdapter = "ego-browser"): CreatorResearchRun {
+    const input = createCreatorResearchRunInputSchema.parse({ profileUrl, adapter });
+    const existing = this.repository.list(200).find((candidate) => candidate.profileUrl === input.profileUrl
+      && candidate.collectionPolicy.adapter === input.adapter) ?? null;
     if (existing) {
       const active = ["queued", "preflight", "collecting", "needs_user", "backoff"].includes(existing.status);
       const snapshotTime = existing.lastSnapshotAt ? Date.parse(existing.lastSnapshotAt) : Number.NaN;
@@ -156,7 +158,7 @@ export class CreatorResearchService {
 
     const timestamp = now();
     const run = creatorResearchRunSchema.parse({
-      schemaVersion: "1.1.0",
+      schemaVersion: "1.3.0",
       id: randomUUID(),
       platform: "xiaohongshu",
       profileUrl: input.profileUrl,
@@ -172,16 +174,18 @@ export class CreatorResearchService {
       stages: stages.map((entry) => ({ ...entry })),
       coverage: { discoveredPosts: 0, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 },
       collectionPolicy: {
-        adapter: "ego-browser",
-        browserProfile: "hhh-01",
+        adapter: input.adapter,
+        browserProfile: input.adapter === "ego-browser" ? "hhh-01" : null,
         readOnly: true,
         incremental: true,
         bypassChallenges: false,
         cacheTtlHours: 24,
-        budgets: { maxScrollRounds: 30, maxDetailOpens: 24, maxMediaDownloads: 12 }
+        budgets: { maxScrollRounds: input.adapter === "redfox" ? 10 : 30, maxDetailOpens: 24, maxMediaDownloads: 12 }
       },
       blockers: [],
-      nextAction: "后台 Worker 已排队，将自动完成登录预检和公开作品清单采集。",
+      nextAction: input.adapter === "ego-browser"
+        ? "账号态 Worker 已排队，将自动完成登录预检和公开作品清单采集。"
+        : "红狐 Worker 已排队，将通过公开数据接口获取账号和作品清单。",
       lastSnapshotAt: null,
       worker: { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null },
       inventoryArtifactRef: null,
@@ -201,7 +205,7 @@ export class CreatorResearchService {
     });
     const job = this.repository.enqueue({
       id: randomUUID(), runId: run.id, nodeKey: "creator.acquire", status: "queued",
-      idempotencyKey: `${run.id}:creator.acquire:v1`, attempts: 0, maxAttempts: 3,
+      idempotencyKey: `${run.id}:creator.acquire:${input.adapter}:v2`, attempts: 0, maxAttempts: 3,
       availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
       payload: { profileUrl: run.profileUrl }, lastError: null, createdAt: timestamp, updatedAt: timestamp
     });
@@ -209,7 +213,7 @@ export class CreatorResearchService {
     this.repository.save(run);
     this.repository.appendEvent({
       runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
-      message: "ego-browser 采集任务已进入持久队列。", payload: { nodeKey: job.nodeKey }
+      message: `${input.adapter} 采集任务已进入持久队列。`, payload: { nodeKey: job.nodeKey, adapter: input.adapter }
     });
     return run;
   }
@@ -633,10 +637,14 @@ export class CreatorResearchService {
     run.currentStage = "preflight";
     run.updatedAt = leasedAt;
     run.blockers = [];
-    run.nextAction = "Worker 正在使用隔离的 ego-browser TaskSpace 验证登录和博主身份。";
+    run.nextAction = run.collectionPolicy.adapter === "ego-browser"
+      ? "Worker 正在使用隔离的 ego-browser TaskSpace 验证登录和博主身份。"
+      : "Worker 正在通过红狐公开数据接口验证博主身份与作品清单。";
     run.worker = { state: "running", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: leasedAt };
     stage(run, "preflight").status = "running";
-    stage(run, "preflight").message = "正在连接 hhh-01 登录态并验证主页。";
+    stage(run, "preflight").message = run.collectionPolicy.adapter === "ego-browser"
+      ? "正在连接 hhh-01 登录态并验证主页。"
+      : "正在调用红狐账号与作品接口；不会使用浏览器登录态。";
     this.repository.save(run);
     this.repository.updateJobStatus({ jobId: job.id, status: "running", updatedAt: leasedAt });
     this.repository.appendEvent({
@@ -661,6 +669,7 @@ export class CreatorResearchService {
 
     try {
       const result = await executor.acquire({
+        adapter: run.collectionPolicy.adapter,
         runId: run.id,
         profileUrl: run.profileUrl,
         maxScrollRounds: run.collectionPolicy.budgets.maxScrollRounds,
@@ -707,6 +716,7 @@ export class CreatorResearchService {
 
     const artifactRef = this.artifacts.write(run.id, "creator-inventory.json", {
       schemaVersion: "1.1.0",
+      provider: result.provider ?? run.collectionPolicy.adapter,
       runId: run.id,
       capturedAt: timestamp,
       sourceUrl: run.profileUrl,
@@ -717,7 +727,7 @@ export class CreatorResearchService {
       crawlDiagnostics: result.diagnostics ?? [],
       posts: result.posts,
       warnings: result.warnings
-    }, [`run:${run.id}`]);
+    }, [`run:${run.id}`, ...(result.sourceRefs ?? [])]);
     const portfolioJob = this.repository.enqueue({
       id: randomUUID(), runId: run.id, nodeKey: "creator.portfolio", status: "queued",
       idempotencyKey: `${run.id}:creator.portfolio:ranked-7x3-v1`, attempts: 0, maxAttempts: 3,
@@ -729,6 +739,7 @@ export class CreatorResearchService {
     run.updatedAt = timestamp;
     run.creatorId = result.creatorId ?? externalCreatorId(result.finalUrl);
     run.creatorName = result.creatorName;
+    if (result.publicProfile) run.publicProfile = result.publicProfile;
     run.coverage.discoveredPosts = result.posts.length;
     run.lastSnapshotAt = timestamp;
     run.inventoryArtifactRef = artifactRef;
@@ -737,7 +748,9 @@ export class CreatorResearchService {
     run.blockers = [];
     run.nextAction = "公开作品清单已冻结；Portfolio Worker 正在计算基本盘与 High / Base / Low 统一样本。";
     stage(run, "preflight").status = "complete";
-    stage(run, "preflight").message = "登录态与博主身份预检完成。";
+    stage(run, "preflight").message = (result.provider ?? run.collectionPolicy.adapter) === "ego-browser"
+      ? "登录态与博主身份预检完成。"
+      : "红狐公开账号与博主身份预检完成。";
     stage(run, "inventory").status = "complete";
     stage(run, "inventory").message = `发现 ${result.posts.length} 条公开作品；停止原因：${result.stopReason}。`;
     stage(run, "tiering").status = "pending";
@@ -893,6 +906,7 @@ export class CreatorResearchService {
         : pendingSelection.slice(0, 3);
       if (detailBatch.length === 0) throw new Error("详情节点没有待处理作品但仍被重新排队");
       let result: CreatorDetailResult = await executor.enrich({
+        adapter: run.collectionPolicy.adapter,
         runId: run.id,
         profileUrl: run.profileUrl,
         creatorName: run.creatorName,
@@ -945,6 +959,7 @@ export class CreatorResearchService {
             payload: { code: result.code, navigationDiagnostic } });
           result = {
             state: "ready",
+            provider: run.collectionPolicy.adapter,
             taskSpaceId: result.taskSpaceId,
             posts: [{ externalId: unavailable.externalId, finalUrl: canonicalXhsPostUrl(unavailable.externalId),
               title: unavailable.title, description: null, publishedLabel: null, mediaType: "unknown",

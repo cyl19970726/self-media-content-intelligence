@@ -115,12 +115,24 @@ describe("CreatorResearchService", () => {
     expect(run.status).toBe("queued");
     expect(run.currentStage).toBe("preflight");
     expect(run.collectionPolicy.browserProfile).toBe("hhh-01");
+    expect(run.collectionPolicy.adapter).toBe("ego-browser");
     expect(run.collectionPolicy.bypassChallenges).toBe(false);
     expect(run.worker.state).toBe("queued");
     expect(run.blockers).toEqual([]);
     expect(service.get(run.id)).toEqual(run);
     expect(service.list()).toEqual([run]);
     expect(service.events(run.id).map((event) => event.type)).toEqual(["run.created", "job.queued"]);
+    service.close();
+  });
+
+  it("freezes RedFox as a distinct provider for the same creator URL", () => {
+    const service = serviceForTest();
+    const profileUrl = "https://www.xiaohongshu.com/user/profile/provider-choice";
+    const accountRun = service.create(profileUrl, "ego-browser");
+    const redFoxRun = service.create(profileUrl, "redfox");
+    expect(redFoxRun.id).not.toBe(accountRun.id);
+    expect(redFoxRun.collectionPolicy).toMatchObject({ adapter: "redfox", browserProfile: null });
+    expect(service.create(profileUrl, "redfox").id).toBe(redFoxRun.id);
     service.close();
   });
 

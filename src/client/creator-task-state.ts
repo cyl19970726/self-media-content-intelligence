@@ -1,4 +1,4 @@
-import type { CreatorResearchRun, CreatorResearchStatus } from "../shared/schema";
+import type { CreatorAcquisitionAdapter, CreatorResearchRun, CreatorResearchStatus } from "../shared/schema";
 
 export type IntakeValidation =
   | { valid: true; normalizedUrl: string }
@@ -42,10 +42,15 @@ export function validateCreatorProfileUrl(value: string): IntakeValidation {
     : { valid: false, message: "请使用小红书博主主页链接，或 xhslink.cn 的主页分享链接。" };
 }
 
-export function findExistingCreatorRun(runs: CreatorResearchRun[] | null, profileUrl: string): CreatorResearchRun | null {
+export function findExistingCreatorRun(
+  runs: CreatorResearchRun[] | null,
+  profileUrl: string,
+  adapter?: CreatorAcquisitionAdapter
+): CreatorResearchRun | null {
   const validation = validateCreatorProfileUrl(profileUrl);
   if (!validation.valid) return null;
-  return runs?.find((run) => canonicalUrl(run.profileUrl) === validation.normalizedUrl) ?? null;
+  return runs?.find((run) => canonicalUrl(run.profileUrl) === validation.normalizedUrl
+    && (adapter === undefined || run.collectionPolicy.adapter === adapter)) ?? null;
 }
 
 function phaseState(run: CreatorResearchRun, stageIds: CreatorResearchRun["stages"][number]["id"][]): TaskPhaseState {

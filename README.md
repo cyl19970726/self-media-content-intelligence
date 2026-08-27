@@ -1,6 +1,6 @@
 # Signal Room — Self-Media Intelligence
 
-一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策属于未来独立工作区，不混入客观研究页面。
+一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策位于独立的 Creation Workspace，不混入客观研究页面。
 
 当前仓库同时包含：
 
@@ -50,11 +50,13 @@ npm run dev
 - `src/modules/media-resolution/`：临时媒体地址消费、本地完整性校验与无签名清单；
 - `src/modules/creator-synthesis/`：21 条与 9 条硬闸后的研究归纳合同；
 - `src/modules/comparison/`：固定 revision 的比较项目、后台 Worker 与账号内部归一化分析；
+- `src/modules/publishing/`：内容包、平台版本、发布状态机、审批闸门与持久 Worker；
 - `src/platform/database/`：SQLite 持久账本；
 - `src/platform/artifacts/`：可替换的本地 Artifact Store；
 - `src/platform/browser/`：ego-browser 适配器；
 - `src/platform/media/`、`video/`、`synthesis/`：媒体、重建/独立评审、账号归纳适配器；
 - `src/platform/network/`：只读取当前系统代理并传给子进程，不改变系统设置；
+- `src/platform/publishing/`：小红书、抖音、微信视频号、微信公众号与 B 站 Ego Browser 发布适配器；
 - `src/core/creator-research-*`：迁移期兼容入口。
 
 ## CLI
@@ -89,6 +91,12 @@ python3 -m http.server 4321
 - `artifacts/creator-research/zhang-zala-v1/dashboard/index.html`
 
 第一个入口已经把张咋啦作为“对标博主”模块合并进同一个 Dashboard。
+
+## 创作发布工作台
+
+打开 `http://127.0.0.1:5173/creation`。工作台支持内容包、小红书图文/视频、抖音视频、微信视频号视频、B 站视频和微信公众号一张图版本，以及稳定本地素材路径、发布任务和追加事件账本。所有平台统一使用 Ego Browser；公众号只保存带 `appmsgid` 验证的草稿，最终发表保持人工操作。
+
+发布采用安全的两段式流程：Worker 先在继承用户登录态的独立 ego-browser TaskSpace 中上传素材并填写表单，然后把页面交给用户检查；只有用户在工作台确认冻结的 revision 后，Worker 才会恢复同一 TaskSpace 并点击一次最终发布按钮。登录、验证码和平台提示进入 `needs_user`；提交后无法验证结果时进入 `submission_unknown`，系统不会自动重试。
 
 ## 真实平台说明
 

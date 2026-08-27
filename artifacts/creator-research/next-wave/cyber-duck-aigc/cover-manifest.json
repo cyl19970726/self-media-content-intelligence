@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "creator-cover-manifest@1",
+  "creatorId": "6559c8bf0000000008000b2a",
+  "capturedAt": "2026-08-22T09:04:22Z",
+  "source": "authenticated_profile_card_visible_image",
+  "privacy": {
+    "cookiesStored": false,
+    "headersStored": false,
+    "xsecTokenStored": false,
+    "signedImageUrlStored": false
+  },
+  "covers": [
+    { "postId": "658bfdde000000001000fcea", "path": "covers/658bfdde000000001000fcea.webp", "bytes": 20638, "sha256": "5ab21a24c51ea5ff02817850233f435463b23868f9e295776fbb9b9e434307a5" },
+    { "postId": "659bc7fd00000000120086b3", "path": "covers/659bc7fd00000000120086b3.webp", "bytes": 54626, "sha256": "49829744f614c94e988a79ea77031dcf094fa2ae8cc48869b1f86eac2a7a39e3" },
+    { "postId": "65bf94450000000011006d56", "path": "covers/65bf94450000000011006d56.webp", "bytes": 68584, "sha256": "542e9f0456a76c9f9c83b6fd1aa576929f0f4ab2d49b74304680d0a5a0161fb0" },
+    { "postId": "65c0763300000000020222f5", "path": "covers/65c0763300000000020222f5.webp", "bytes": 93768, "sha256": "0108ad7ea925949fb1d3d4f1db72802ae856d22e574f97663f8edf78d0970772" },
+    { "postId": "65dab69a000000000b0232ef", "path": "covers/65dab69a000000000b0232ef.webp", "bytes": 72026, "sha256": "3042f1588cdbe0b5b4cc683ba9158f84964053d6ff176b280d1ec036f32f3da6" },
+    { "postId": "660015e000000000120308a5", "path": "covers/660015e000000000120308a5.webp", "bytes": 21216, "sha256": "d8c9c758a71ff8e0e452f0101096753db28617ed4184fd7aec8dfadb228d88ea" },
+    { "postId": "6659ca17000000001500aa50", "path": "covers/6659ca17000000001500aa50.webp", "bytes": 10466, "sha256": "39cbad06ff28ca3a3e94e6d42a77212841c95c2d051dc4e23b306e102d0a6db6" },
+    { "postId": "666c5869000000001c028ac9", "path": "covers/666c5869000000001c028ac9.webp", "bytes": 10686, "sha256": "d74eba9aced30eae7059198f5931fd5d1deb2bebf8ed4a53fe66a0fdb36dfd9d" },
+    { "postId": "678cf8fc0000000019030f55", "path": "covers/678cf8fc0000000019030f55.webp", "bytes": 11824, "sha256": "7f076a4058d61deccdd1a8dc58a0732a22b16ecd367dc6559293f94ebea205fc" },
+    { "postId": "67b012c40000000017038a99", "path": "covers/67b012c40000000017038a99.webp", "bytes": 78292, "sha256": "33c8043dac3bec16f5fafcd2bc0e93b4b16aff06398eb53bf8ced1cf4d5705ae" },
+    { "postId": "688afb16000000002302b366", "path": "covers/688afb16000000002302b366.webp", "bytes": 97042, "sha256": "cb3dd84085f7c3a75b5d4c1e33fe158eb9de1b0f58af58c21bd4f7f292c531d6" },
+    { "postId": "68a400e5000000001d02e1f8", "path": "covers/68a400e5000000001d02e1f8.webp", "bytes": 78626, "sha256": "3768b8759287b5b43438d33a1db1681a57c88ce96d378f82101cf367bdc85393" },
+    { "postId": "68f75d2500000000040051dd", "path": "covers/68f75d2500000000040051dd.webp", "bytes": 22046, "sha256": "d2c28335f57a17161eb2033df6f9de05b83564bec3f0f486b4076819c8db22f6" },
+    { "postId": "691b10c600000000040118b9", "path": "covers/691b10c600000000040118b9.webp", "bytes": 17016, "sha256": "40aa27cc87ab262d320fa1ba270968a44004e5e0a571db5215b3b62642d85c8a" },
+    { "postId": "692c255a000000001e03aff6", "path": "covers/692c255a000000001e03aff6.webp", "bytes": 17094, "sha256": "56a981e1fb71a2663872608dfbc4843e102a89807cb421761b54aad73c573be7" },
+    { "postId": "69310058000000001f00d5ae", "path": "covers/69310058000000001f00d5ae.webp", "bytes": 19618, "sha256": "a4034503d54a8f487a1c31babf1eed30ab5b0ac57d8090a2f348514419a0349c" },
+    { "postId": "6943c26a000000001f005ed6", "path": "covers/6943c26a000000001f005ed6.webp", "bytes": 115904, "sha256": "77f403c3f98328172ef3f34558a0c43b7acbf0e45e15a426f809e478bce4e45e" },
+    { "postId": "698079a3000000000b0103e5", "path": "covers/698079a3000000000b0103e5.webp", "bytes": 86768, "sha256": "515542ba3f74b617f1c383b5c94091d7e9c946eb71b0dabdf8714396c348a791" },
+    { "postId": "69eb6d2700000000370354ed", "path": "covers/69eb6d2700000000370354ed.webp", "bytes": 80348, "sha256": "a25387b4c33d6c209b2c5b9db358fadc4f9d3c6f3cb9ffc3abe1a105a16857ee" },
+    { "postId": "6a2d293700000000350274ee", "path": "covers/6a2d293700000000350274ee.webp", "bytes": 104290, "sha256": "b903fd73d09fb365c23a70adb6c37cf7f636b37ed63b8aca082160698e5758b2" }
+  ]
+}

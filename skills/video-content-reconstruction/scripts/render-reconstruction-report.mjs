@@ -91,8 +91,8 @@ for (const relation of reconstruction.relations ?? []) {
 lines.push('', '## 明确不能从视频判断', '')
 for (const item of reconstruction.coverageMatrix?.unknowns ?? []) lines.push(`- ${item}`)
 
-lines.push('', '## 完整机器逐字稿与证据映射', '')
-lines.push('> 这是本地机器转写，不是官方字幕。原始文本不静默修正；每条 cue 均对应代表帧和全部 overlapping shots。')
+lines.push('', '## 逐句字幕与画面依据', '')
+lines.push('> 以下文字由本地工具自动识别，并非官方字幕。原始识别结果会保留；每句话都可结合时间、对应画面和所在镜头核对。')
 lines.push('')
 lines.push('| Cue | 时间 | 原始机器转写 | 代表帧 | Overlapping shots |')
 lines.push('|---|---:|---|---|---|')

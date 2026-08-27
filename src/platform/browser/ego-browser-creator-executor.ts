@@ -125,6 +125,7 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
     : [];
   return {
     state: "ready",
+    provider: "ego-browser",
     finalUrl: value.finalUrl,
     creatorId: value.creatorId,
     creatorName: value.creatorName,
@@ -322,6 +323,7 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
   });
   return {
     state: "ready",
+    provider: "ego-browser",
     taskSpaceId: value.taskSpaceId,
     posts,
     warnings: value.warnings.filter((warning): warning is string => typeof warning === "string")
@@ -586,7 +588,7 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
       throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
     }
     const result = normalizeResult(parseMarkedResult(`${processResult.stdout}\n${processResult.stderr}`));
-    return result;
+    return result.state === "ready" ? { ...result, provider: "ego-browser" } : result;
   }
 
   async enrich(input: { runId: string; profileUrl: string; creatorName?: string | null;
@@ -620,7 +622,10 @@ export class EgoBrowserCreatorExecutor implements CreatorBrowserExecutor {
       }
       throw new Error(processResult.stderr.trim() || `ego-browser 退出码 ${processResult.exitCode}`);
     }
-    const result = normalizeDetailResult(parseMarkedResult(`${processResult.stdout}\n${processResult.stderr}`));
+    const normalized = normalizeDetailResult(parseMarkedResult(`${processResult.stdout}\n${processResult.stderr}`));
+    const result: CreatorDetailResult = normalized.state === "ready"
+      ? { ...normalized, provider: "ego-browser" }
+      : normalized;
     if (result.state === "ready" && input.closeWhenDone !== false) {
       const closeScript = `const result = await completeTaskSpace(${result.taskSpaceId}, { keep: false })\ncliLog(JSON.stringify(result))\n`;
       const closed = await runEgoScript(this.binary, closeScript, 20_000);

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAt": "2026-08-21T09:48:04.867Z",
+  "platform": "xiaohongshu",
+  "adapter": "ego-browser",
+  "serverLabel": "hhh-01",
+  "taskSpaceId": 43,
+  "mode": "read_only",
+  "selection": {
+    "tier": "mean-near",
+    "corpusLikesMean": 1278.37,
+    "cardLikes": 1289,
+    "relativeDistanceFromMean": 0.0083
+  },
+  "liveCard": {
+    "postId": "658bfdde000000001000fcea",
+    "title": "1分钟本地部署Gemini，免费使用GPT4模型",
+    "authorName": "赛博鸭AIGC",
+    "authorStableId": "6559c8bf0000000008000b2a",
+    "publishedLabel": "2023-12-27",
+    "likesLabel": "1289",
+    "stableUrl": "https://www.xiaohongshu.com/explore/658bfdde000000001000fcea"
+  },
+  "navigation": {
+    "entry": "xiaohongshu_search_result_live_card",
+    "query": "1分钟本地部署Gemini，免费使用GPT4模型",
+    "authorIdentityMatched": true,
+    "usedBareExploreId": false,
+    "ephemeralRouteStored": false
+  },
+  "provenance": [
+    {
+      "field": "postId",
+      "source": "live_search_card_href",
+      "status": "confirmed"
+    },
+    {
+      "field": "title",
+      "source": "live_search_card_visible_dom",
+      "status": "confirmed"
+    },
+    {
+      "field": "authorStableId",
+      "source": "live_search_card_author_href",
+      "status": "confirmed"
+    },
+    {
+      "field": "publishedLabel",
+      "source": "live_search_card_visible_dom",
+      "status": "single_source"
+    },
+    {
+      "field": "likesLabel",
+      "source": "live_search_card_visible_dom",
+      "status": "single_source"
+    }
+  ],
+  "redaction": {
+    "cookiesStored": false,
+    "headersStored": false,
+    "xsecTokenStored": false,
+    "signedMediaUrlStored": false
+  }
+}

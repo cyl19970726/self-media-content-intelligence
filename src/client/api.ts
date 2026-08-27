@@ -1,4 +1,4 @@
-import { creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../shared/schema";
+import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../shared/schema";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../modules/portfolio/contracts";
 import { creatorDetailCollectionSchema, type CreatorDetailCollection } from "../modules/creator-detail/contracts";
 import { deepMediaManifestSchema, type DeepMediaManifest } from "../modules/media-resolution/contracts";
@@ -12,6 +12,11 @@ import { comparisonDossierSchema, type ComparisonDossier } from "../shared/compa
 import { z } from "zod";
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
+import {
+  contentPackageSchema, platformVariantSchema, publicationEventSchema, publicationRunSchema,
+  type ContentPackage, type PlatformVariant, type PublicationEvent, type PublicationRun,
+  type VariantInput
+} from "../modules/publishing/contracts";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -45,6 +50,74 @@ export async function retryRun(id: string): Promise<ReportEnvelope> {
   }), (value) => reportEnvelopeSchema.parse(value));
 }
 
+export async function listContentPackages(): Promise<ContentPackage[]> {
+  return json(await fetch("/api/v1/content-packages", { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "packages" in value ? value.packages : [];
+    return contentPackageSchema.array().parse(items);
+  });
+}
+
+export async function createContentPackage(input: { name: string; brief: string; sourceRefs: string[] }): Promise<ContentPackage> {
+  return json(await fetch("/api/v1/content-packages", { method: "POST", cache: "no-store",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }),
+  (value) => contentPackageSchema.parse(value));
+}
+
+export async function getContentPackage(id: string): Promise<{ package: ContentPackage; variants: PlatformVariant[] }> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(id)}`, { cache: "no-store" }), (value) => {
+    if (!value || typeof value !== "object" || !("package" in value) || !("variants" in value)) throw new Error("内容包结构无效");
+    return { package: contentPackageSchema.parse(value.package), variants: platformVariantSchema.array().parse(value.variants) };
+  });
+}
+
+export async function createPlatformVariant(packageId: string, input: VariantInput): Promise<PlatformVariant> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/variants`, { method: "POST", cache: "no-store",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }),
+  (value) => platformVariantSchema.parse(value));
+}
+
+export async function updatePlatformVariant(id: string, input: VariantInput): Promise<PlatformVariant> {
+  return json(await fetch(`/api/v1/content-variants/${encodeURIComponent(id)}`, { method: "PUT", cache: "no-store",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }),
+  (value) => platformVariantSchema.parse(value));
+}
+
+export async function listPublications(): Promise<PublicationRun[]> {
+  return json(await fetch("/api/v1/publications", { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "publications" in value ? value.publications : [];
+    return publicationRunSchema.array().parse(items);
+  });
+}
+
+export async function createPublication(variantId: string): Promise<PublicationRun> {
+  return json(await fetch("/api/v1/publications", { method: "POST", cache: "no-store",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify({ variantId }) }),
+  (value) => publicationRunSchema.parse(value));
+}
+
+export async function getPublication(id: string): Promise<PublicationRun> {
+  return json(await fetch(`/api/v1/publications/${encodeURIComponent(id)}`, { cache: "no-store" }),
+    (value) => publicationRunSchema.parse(value));
+}
+
+export async function getPublicationEvents(id: string): Promise<PublicationEvent[]> {
+  return json(await fetch(`/api/v1/publications/${encodeURIComponent(id)}/events`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "events" in value ? value.events : [];
+    return publicationEventSchema.array().parse(items);
+  });
+}
+
+async function publicationAction(id: string, action: "prepare" | "approve" | "cancel" | "resume", body: object = {}): Promise<PublicationRun> {
+  return json(await fetch(`/api/v1/publications/${encodeURIComponent(id)}/${action}`, { method: "POST", cache: "no-store",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+  (value) => publicationRunSchema.parse(value));
+}
+
+export const preparePublication = (id: string) => publicationAction(id, "prepare");
+export const approvePublication = (id: string, revision: number) => publicationAction(id, "approve", { revision });
+export const cancelPublication = (id: string) => publicationAction(id, "cancel");
+export const resumePublication = (id: string) => publicationAction(id, "resume");
+
 export async function listCreators(): Promise<CreatorSummary[]> {
   return json(await fetch("/api/creators", { cache: "no-store" }), (value) => {
     const creators = value && typeof value === "object" && "creators" in value ? value.creators : [];
@@ -59,13 +132,22 @@ export async function listCreatorResearchRuns(): Promise<CreatorResearchRun[]> {
   });
 }
 
-export async function createCreatorResearchRun(profileUrl: string): Promise<CreatorResearchRun> {
+export async function createCreatorResearchRun(
+  profileUrl: string,
+  adapter: CreatorAcquisitionAdapter = "ego-browser"
+): Promise<CreatorResearchRun> {
   return json(await fetch("/api/creator-runs", {
     method: "POST",
     cache: "no-store",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ profileUrl })
+    body: JSON.stringify({ profileUrl, adapter })
   }), (value) => creatorResearchRunSchema.parse(value));
+}
+
+export async function discoverAiCreators(): Promise<CreatorDiscoveryResult> {
+  return json(await fetch("/api/creator-discovery/redfox", {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: "{}"
+  }), (value) => creatorDiscoveryResultSchema.parse(value));
 }
 
 export async function resumeCreatorResearchRun(id: string): Promise<CreatorResearchRun> {
