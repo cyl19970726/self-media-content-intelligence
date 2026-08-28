@@ -8,6 +8,8 @@ owned by schemas and code.
 
 - [Product vision](vision/signal-room-llm-wiki-vision.md) — the long-term outcome
   and the role of the LLM Wiki.
+- [Current product](product/current-product.md) — shipped user surfaces,
+  invariants, and explicit non-guarantees.
 - [Repository package boundaries](architecture/package-boundaries.md) — current
   structural debt, target modular-monolith boundaries, dependency rules, and the
   incremental migration path.
@@ -30,30 +32,25 @@ They do not own unstable task status.
 - [ADR-0005: Incremental workspace modular monolith](adr/0005-workspace-modular-monolith.md)
 - [ADR-0006: Separate source code from large evidence](adr/0006-evidence-storage-boundary.md)
 
-The ADR directory remains at `docs/adr` during the incremental migration. Moving
-it to `docs/decisions` is a Phase 4 documentation change, not a second source of
-truth.
+`docs/adr` remains the canonical durable-decision directory. There is no parallel
+`docs/decisions` tree.
 
-## Current implementation initiatives
+## Initiatives and history
 
-The existing `specs` directory contains a mixture of completed implementation
-records, current contracts, and unfinished plans. Until Phase 4 classifies and
-migrates them, use each initiative README or task list to determine its status:
+- [Initiative maturity inventory](initiative-inventory.md) is the authoritative
+  classification of implementation maturity, lifecycle, and verification level.
+- [Active initiatives](initiatives/active/) contain unresolved acceptance items
+  and continuing research.
+- [Completed initiatives](initiatives/completed/) are frozen implementation
+  records, not competing product or architecture truth.
 
-- [Content knowledge system V1](../specs/content-knowledge-system-v1/requirements.md)
-- [Creation and publishing V1](../specs/creation-publishing-v1/requirements.md)
-- [Creator Analysis OS V1](../specs/creator-analysis-os-v1/README.md)
-- [Creator provider adapters](../specs/creator-provider-adapters/requirements.md)
-- [Creator research architecture](../specs/creator-research-architecture/requirements.md)
-- [Creator video concurrency](../specs/creator-video-concurrency/requirements.md)
-
-Do not interpret the presence of a design or task document as proof that its
-behavior is implemented. Code, tests, and current validation evidence own that
-claim.
+Do not interpret the presence of a design document as proof that its behavior is
+implemented. Code, tests, and current validation evidence own that claim.
 
 ## Executable truth
 
-- Runtime and validation behavior: `src/`
+- Runtime and validation behavior: `apps/`, `packages/`, and compatibility/read
+  projections in `src/`
 - Package commands: `package.json`
 - Reusable agent procedures: `skills/`
 - Small stable test evidence: currently colocated with tests and existing
@@ -77,7 +74,7 @@ Durable knowledge is routed by owner:
 | Skill | reusable procedure and judgment | complete product architecture |
 | Evidence/case | what happened in a bounded run | universal rules without promotion |
 
-Completed initiatives must promote still-valid product and architecture claims
-to their canonical homes, then move their implementation record to completed or
-superseded history. Phase 4 will perform this migration without deleting material
-whose ownership or consumers are still uncertain.
+Completed initiatives promote still-valid product and architecture claims to
+their canonical homes, then remain as frozen records under
+`docs/initiatives/completed`. Superseded materials retain a pointer to their
+replacement; deletion requires confirmed ownership and updated consumers.

@@ -118,7 +118,7 @@ Skill 路径：`/Users/hhh0x/.codex/skills/deep-content-director/`
 
 ## 8. 关键产物
 
-- 研究计划：`specs/human-director-director-skill/study-plan.md`
+- 研究计划：`docs/initiatives/active/human-director-director-skill/study-plan.md`
 - 14 条 observation：`artifacts/director-skill-study/observations/`
 - 冻结 V0：`artifacts/director-skill-study/v0-method.md`
 - 保留集增量：`artifacts/director-skill-study/holdout-delta.md`
@@ -126,4 +126,3 @@ Skill 路径：`/Users/hhh0x/.codex/skills/deep-content-director/`
 - 最终静态审查：`artifacts/director-skill-study/skill-review/static-review-v4.md`
 - 三份真实前向测试：`artifacts/director-skill-study/forward-tests/`
 - 账号与首集方案：`artifacts/director-skill-study/forward-tests/test-03/account-series.md`
-

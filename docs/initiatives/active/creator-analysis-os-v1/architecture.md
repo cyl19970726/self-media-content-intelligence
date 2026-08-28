@@ -1,7 +1,12 @@
 # Creator Analysis OS V1 — Ideal Architecture
 
-Status: **confirmed**
+Status: **superseded as repository topology; retained as initiative design**
 Scope: research system only; Creation Workspace remains a separate future bounded context.
+
+Current repository structure is owned by
+[`docs/architecture/package-boundaries.md`](../../../architecture/package-boundaries.md).
+The product and research invariants in this initiative remain active until its
+unchecked acceptance items are resolved.
 
 ## 1. Recommendation in one sentence
 

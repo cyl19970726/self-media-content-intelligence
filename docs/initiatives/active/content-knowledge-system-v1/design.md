@@ -83,28 +83,27 @@ Content Knowledge owns:
 
 It consumes pinned revisions from other contexts. It does not reach into their internal tables or infer truth from rendered reports.
 
-### 3.3 Target module boundaries
+### 3.3 Implemented package boundaries
 
 ```text
-src/modules/content-knowledge/
-  contracts.ts              Runtime schemas and public domain types
-  contribution-policy.ts    Deterministic eligibility and disposition
-  relationship-policy.ts    Semantic-edge validation
-  projection.ts             Read-model construction
-  service.ts                Domain orchestration through ports
+packages/knowledge/
+  contracts.ts              Browser-safe public contract entrypoint
+  src/contracts.ts          Runtime schemas and public domain types
+  src/ports.ts              Explicit research boundary
+  src/repository.ts         Persistence port
+  src/service.ts            Knowledge and validation orchestration
 
-src/modules/practice-validation/
-  contracts.ts              Frozen execution, signals and candidates
-  service.ts                Validation state machine and adjudication handoff
-
-src/platform/database/
-  sqlite-content-knowledge-repository.ts
+packages/adapters/
+  src/platform/database/sqlite-content-knowledge-repository.ts
 
 src/server/
   content-knowledge.ts      Composition and compatibility facade
 ```
 
-The existing `src/server/research-learning.ts` remains readable during migration. Its event replay becomes an adapter behind repository contracts, not a second domain implementation.
+`packages/research/src/research-learning.ts` owns event replay and research
+semantics. SQLite event persistence is implemented in `packages/adapters`; the
+thin `src/server/research-learning.ts` file is only a compatibility/composition
+facade, not a second domain implementation.
 
 ## 4. Canonical domain model
 
