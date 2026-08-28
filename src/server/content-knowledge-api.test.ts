@@ -29,6 +29,8 @@ async function fixtureServer() {
   directories.push(directory);
   const research = new ResearchLearningService();
   const knowledge = new ContentKnowledgeService(new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite")), research);
+  const mediaPath = path.join(directory, "video.mp4");
+  fs.writeFileSync(mediaPath, "fixture");
   const publishing = new PublishingService(
     new SQLitePublishingRepository(path.join(directory, "publishing.sqlite")),
     { exists: fs.existsSync }
@@ -51,12 +53,12 @@ async function fixtureServer() {
   await new Promise<void>((resolve) => server.once("listening", resolve));
   const address = server.address();
   if (!address || typeof address === "string") throw new Error("test server has no port");
-  return `http://127.0.0.1:${address.port}`;
+  return { base: `http://127.0.0.1:${address.port}`, mediaPath };
 }
 
 describe("content knowledge API", () => {
   it("compiles, lists, searches, and resolves lineage without duplicate ingestion", async () => {
-    const base = await fixtureServer();
+    const { base } = await fixtureServer();
     const body = {
       operationKey: "compile-api-1", compilerPolicyVersion: "v1", inputFingerprint: "sha256:api-1",
       analysis: {
@@ -82,5 +84,66 @@ describe("content knowledge API", () => {
     const lineage = await fetch(`${base}/api/v1/knowledge/${concept.research.concept.id}/lineage`);
     expect(lineage.status).toBe(200);
     expect(await lineage.json()).toMatchObject({ conceptId: concept.research.concept.id });
+  });
+
+  it("freezes package knowledge decisions into the variant and publication lineage", async () => {
+    const { base, mediaPath } = await fixtureServer();
+    const request = async (route: string, body: object) => {
+      const response = await fetch(`${base}${route}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      return { response, value: await response.json() as Record<string, unknown> };
+    };
+    await request("/api/v1/knowledge/compilations", {
+      operationKey: "compile-binding-api", compilerPolicyVersion: "v1", inputFingerprint: "sha256:binding-api",
+      analysis: { analysisRevisionId: "analysis-binding-api", subjectType: "video", subjectId: "video-binding-api",
+        creatorId: "creator-binding-api", videoId: "video-binding-api", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "binding-api", kind: "proof_mode", name: "绑定 API", definition: "固定知识版本。", exclusions: ["漂移引用。"] },
+          relation: "confirm", statement: "固定 revision。", evidenceRefs: ["frame:binding:1"], confidence: "high" }] }
+    });
+    const concepts = await fetch(`${base}/api/v1/knowledge`).then((response) => response.json()) as { concepts: unknown[] };
+    const concept = knowledgeConceptViewSchema.parse(concepts.concepts[0]);
+    const createdPackage = await request("/api/v1/content-packages", { name: "决策闭环", brief: "API", sourceRefs: ["legacy:kept"] });
+    const packageId = String(createdPackage.value.id);
+    const detail = await fetch(`${base}/api/v1/content-packages/${packageId}`).then((response) => response.json()) as { snapshots: Array<{ id: string; status: string }> };
+    const snapshotId = detail.snapshots[0]!.id;
+
+    const binding = await request(`/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/knowledge-bindings`, {
+      operationKey: "binding-api", targetType: "concept_revision", targetId: concept.research.currentRevision.id,
+      usage: "test", rationale: "验证这个知识是否适合我们的内容"
+    });
+    expect(binding.response.status).toBe(201);
+    const hypothesis = await request(`/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/hypotheses`, {
+      operationKey: "hypothesis-api", statement: "证据前置会提高收藏。", linkedBindingIds: [binding.value.id],
+      expectedSignals: ["saves"], unavailableSignals: ["impressions"], baselineDeclaration: "近十条收藏中位数", confounders: []
+    });
+    expect(hypothesis.response.status).toBe(201);
+
+    const variant = await request(`/api/v1/content-packages/${packageId}/variants`, {
+      contentPackageSnapshotId: snapshotId, platform: "douyin", title: "知识快照发布", body: "正文", contentType: "video",
+      media: [{ kind: "video", localPath: mediaPath, mimeType: "video/mp4" }], tags: [], visibility: "private", scheduledAt: null,
+      platformOptions: { douyin: { declaration: "self_made" } }
+    });
+    expect(variant.response.status).toBe(201);
+    expect(variant.value.contentPackageSnapshotId).toBe(snapshotId);
+    const frozen = await fetch(`${base}/api/v1/content-packages/${packageId}/snapshots`).then((response) => response.json()) as { snapshots: Array<{ id: string; status: string }> };
+    expect(frozen.snapshots[0]).toMatchObject({ id: snapshotId, status: "frozen" });
+
+    const frozenWrite = await request(`/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/knowledge-bindings`, {
+      operationKey: "binding-after-freeze", targetType: "concept_revision", targetId: concept.research.currentRevision.id,
+      usage: "adopt", rationale: "不应改写历史"
+    });
+    expect(frozenWrite.response.status).toBe(409);
+
+    const nextSnapshot = await request(`/api/v1/content-packages/${packageId}/snapshots`, {});
+    expect(nextSnapshot.value).toMatchObject({ sequence: 2, status: "working" });
+    const crossSnapshot = await request(`/api/v1/content-packages/${packageId}/snapshots/${nextSnapshot.value.id}/hypotheses`, {
+      operationKey: "cross-snapshot-api", statement: "不允许跨快照。", linkedBindingIds: [binding.value.id],
+      expectedSignals: ["saves"], unavailableSignals: [], baselineDeclaration: "基线", confounders: []
+    });
+    expect(crossSnapshot.response.status).toBe(400);
+
+    const run = await request("/api/v1/publications", { variantId: variant.value.id });
+    expect(run.response.status).toBe(201);
+    expect(run.value.contentPackageSnapshotId).toBe(snapshotId);
   });
 });

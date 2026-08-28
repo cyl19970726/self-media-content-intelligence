@@ -4,8 +4,8 @@ import { DatabaseSync } from "node:sqlite";
 import { databasePath } from "../../core/config.js";
 import type { PublishingRepository } from "../../../../creation/index.js";
 import {
-  contentPackageSchema, platformVariantSchema, publicationEventSchema, publicationJobSchema,
-  publicationRunSchema, type ContentPackage, type PlatformVariant, type PublicationEvent,
+  contentPackageSchema, contentPackageSnapshotSchema, platformVariantSchema, publicationEventSchema, publicationJobSchema,
+  publicationRunSchema, type ContentPackage, type ContentPackageSnapshot, type PlatformVariant, type PublicationEvent,
   type PublicationJob, type PublicationJobStatus, type PublicationRun
 } from "../../../../creation/index.js";
 
@@ -53,6 +53,19 @@ export class SQLitePublishingRepository implements PublishingRepository {
         value_json TEXT NOT NULL
       );
       CREATE INDEX IF NOT EXISTS idx_content_packages_updated_at ON content_packages(updated_at DESC);
+
+      CREATE TABLE IF NOT EXISTS content_package_snapshots (
+        id TEXT PRIMARY KEY,
+        package_id TEXT NOT NULL,
+        sequence INTEGER NOT NULL,
+        status TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        frozen_at TEXT,
+        value_json TEXT NOT NULL,
+        UNIQUE(package_id, sequence),
+        FOREIGN KEY(package_id) REFERENCES content_packages(id)
+      );
+      CREATE INDEX IF NOT EXISTS idx_content_package_snapshots_package ON content_package_snapshots(package_id, sequence DESC);
 
       CREATE TABLE IF NOT EXISTS content_variants (
         id TEXT PRIMARY KEY,
@@ -111,6 +124,18 @@ export class SQLitePublishingRepository implements PublishingRepository {
     `);
   }
 
+  transaction<T>(operation: () => T): T {
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      const result = operation();
+      this.db.exec("COMMIT");
+      return result;
+    } catch (error) {
+      this.db.exec("ROLLBACK");
+      throw error;
+    }
+  }
+
   savePackage(value: ContentPackage): void {
     const parsed = contentPackageSchema.parse(value);
     this.db.prepare(`INSERT INTO content_packages(id,name,created_at,updated_at,value_json) VALUES(?,?,?,?,?)
@@ -126,6 +151,23 @@ export class SQLitePublishingRepository implements PublishingRepository {
   listPackages(limit = 100): ContentPackage[] {
     const rows = this.db.prepare("SELECT value_json FROM content_packages ORDER BY updated_at DESC LIMIT ?").all(limit) as unknown as JsonRow[];
     return rows.map((row) => contentPackageSchema.parse(JSON.parse(row.value_json) as unknown));
+  }
+
+  savePackageSnapshot(value: ContentPackageSnapshot): void {
+    const parsed = contentPackageSnapshotSchema.parse(value);
+    this.db.prepare(`INSERT INTO content_package_snapshots(id,package_id,sequence,status,created_at,frozen_at,value_json) VALUES(?,?,?,?,?,?,?)
+      ON CONFLICT(id) DO UPDATE SET status=excluded.status,frozen_at=excluded.frozen_at,value_json=excluded.value_json`)
+      .run(parsed.id, parsed.contentPackageId, parsed.sequence, parsed.status, parsed.createdAt, parsed.frozenAt, JSON.stringify(parsed));
+  }
+
+  getPackageSnapshot(id: string): ContentPackageSnapshot | null {
+    const row = this.db.prepare("SELECT value_json FROM content_package_snapshots WHERE id=?").get(id) as JsonRow | undefined;
+    return row ? contentPackageSnapshotSchema.parse(JSON.parse(row.value_json) as unknown) : null;
+  }
+
+  listPackageSnapshots(packageId: string): ContentPackageSnapshot[] {
+    const rows = this.db.prepare("SELECT value_json FROM content_package_snapshots WHERE package_id=? ORDER BY sequence DESC").all(packageId) as unknown as JsonRow[];
+    return rows.map((row) => contentPackageSnapshotSchema.parse(JSON.parse(row.value_json) as unknown));
   }
 
   saveVariant(value: PlatformVariant): void {

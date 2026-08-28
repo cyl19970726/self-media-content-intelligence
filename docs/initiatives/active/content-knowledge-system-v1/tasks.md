@@ -81,13 +81,14 @@ The implementation must preserve existing research-learning and publishing data,
   - Add component/view tests and browser smoke checks on all three research surfaces.
   - _Requirements: R2, R3, R4, R11_
 
-- [ ] 9. Add content-package snapshots, knowledge bindings, and hypotheses
+- [x] 9. Add content-package snapshots, knowledge bindings, and hypotheses
   - Extend publishing storage additively with immutable package snapshots while preserving `sourceRefs[]`.
   - Add binding and hypothesis command/query APIs with revision existence and status checks.
   - Extend Creation Workspace to search knowledge, choose adopt/adapt/reject/test, record rationale, and declare expected/unavailable signals and baseline.
   - Freeze selected bindings and hypotheses with the package snapshot used by a platform variant/publication.
   - Add tests for revision pinning, stale impact, invalid targets, and legacy packages.
   - _Requirements: R7, R9, R11, R12_
+  - **Completed in Issue #27:** real working/frozen package snapshots replace client-generated timestamp IDs; variants and publication runs preserve snapshot lineage; nested commands enforce ownership, lifecycle, immutable target resolution and same-snapshot hypotheses; legacy packages remain readable and acquire a snapshot only when they next enter creation.
 
 - [ ] 10. Implement practice validation and independent adjudication
   - Create validation records only from resolvable publication runs and frozen variant/package revisions.

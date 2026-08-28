@@ -161,11 +161,22 @@ export class ContentKnowledgeService {
 
   createBinding(raw: unknown): KnowledgeBinding {
     const input = createKnowledgeBindingInputSchema.parse(raw);
+    let status: KnowledgeBinding["status"] = "current";
     if (input.targetType === "concept_revision") {
-      const exists = this.research.list().some((item) => item.revisions.some((revision) => revision.id === input.targetId));
-      if (!exists) throw new Error("concept revision not found");
+      const owner = this.research.list().find((item) => item.revisions.some((revision) => revision.id === input.targetId));
+      if (!owner) throw new Error("concept revision not found");
+      if (["invalidated", "retired"].includes(owner.concept.status)) throw new Error("concept revision cannot be bound because its concept is inactive");
+      status = owner.currentRevision.id === input.targetId ? "current" : "stale_available";
+    } else if (input.targetType === "analysis_revision") {
+      const exists = this.repository.listManifests().some((manifest) => manifest.analysisRevisionId === input.targetId && manifest.status !== "invalidated");
+      if (!exists) throw new Error("analysis revision not found or inactive");
+    } else {
+      const exists = this.repository.listManifests().some((manifest) =>
+        this.repository.listContributions(manifest.id).some((contribution) => contribution.evidenceRefs.includes(input.targetId))
+      );
+      if (!exists) throw new Error("evidence reference not found in accepted knowledge lineage");
     }
-    const binding: KnowledgeBinding = { ...input, id: this.makeId(), status: "current", createdAt: this.now() };
+    const binding: KnowledgeBinding = { ...input, id: this.makeId(), status, createdAt: this.now() };
     return this.repository.saveBinding(binding, input.operationKey, commandHash(input));
   }
 
@@ -175,8 +186,11 @@ export class ContentKnowledgeService {
 
   createHypothesis(raw: unknown): CreationHypothesis {
     const input = createHypothesisInputSchema.parse(raw);
-    const bindings = new Set(this.repository.listBindings(input.contentPackageId).map((item) => item.id));
+    const bindings = new Map(this.repository.listBindings(input.contentPackageId).map((item) => [item.id, item]));
     if (input.linkedBindingIds.some((id) => !bindings.has(id))) throw new Error("hypothesis contains unresolved binding");
+    if (input.linkedBindingIds.some((id) => bindings.get(id)?.contentPackageSnapshotId !== input.contentPackageSnapshotId)) {
+      throw new Error("hypothesis contains a binding from another content package snapshot");
+    }
     const hypothesis: CreationHypothesis = { ...input, id: this.makeId(), createdAt: this.now() };
     return this.repository.saveHypothesis(hypothesis, input.operationKey, commandHash(input));
   }

@@ -8,7 +8,7 @@ function knowledgeError(response: express.Response, error: unknown): express.Res
     ? error.issues[0]?.message ?? "知识请求无效"
     : error instanceof Error ? error.message : "知识操作失败";
   const status = message.includes("not found") || message.includes("不存在") ? 404
-    : message.includes("must") || message.includes("requires") || message.includes("cannot") || message.includes("forbidden") ? 409 : 400;
+    : message.includes("must") || message.includes("requires") || message.includes("cannot") || message.includes("forbidden") || message.includes("冻结") ? 409 : 400;
   return response.status(status).json({ error: message });
 }
 
@@ -69,10 +69,46 @@ export function registerKnowledgeRoutes(
     return response.json({ bindings: knowledge.listBindings(request.params.id), hypotheses: knowledge.listHypotheses(request.params.id) });
   });
 
+  const requireWorkingSnapshot = (packageId: string, snapshotId: string) => {
+    const snapshot = publishing.getPackageSnapshot(packageId, snapshotId);
+    if (!snapshot) throw new Error("内容包快照不存在");
+    if (snapshot.status !== "working") throw new Error("内容包快照已经冻结，请新建决策版本");
+    return snapshot;
+  };
+
+  app.get("/api/v1/content-packages/:id/snapshots/:snapshotId/knowledge-bindings", (request, response) => {
+    const snapshot = publishing.getPackageSnapshot(request.params.id, request.params.snapshotId);
+    if (!snapshot) return response.status(404).json({ error: "内容包快照不存在" });
+    return response.json({
+      snapshot,
+      bindings: knowledge.listBindings(request.params.id).filter((item) => item.contentPackageSnapshotId === snapshot.id),
+      hypotheses: knowledge.listHypotheses(request.params.id).filter((item) => item.contentPackageSnapshotId === snapshot.id)
+    });
+  });
+
+  app.post("/api/v1/content-packages/:id/snapshots/:snapshotId/knowledge-bindings", (request, response) => {
+    try {
+      const snapshot = requireWorkingSnapshot(request.params.id, request.params.snapshotId);
+      return response.status(201).json(knowledge.createBinding({
+        ...request.body, contentPackageId: snapshot.contentPackageId, contentPackageSnapshotId: snapshot.id
+      }));
+    } catch (error) { return knowledgeError(response, error); }
+  });
+
+  app.post("/api/v1/content-packages/:id/snapshots/:snapshotId/hypotheses", (request, response) => {
+    try {
+      const snapshot = requireWorkingSnapshot(request.params.id, request.params.snapshotId);
+      return response.status(201).json(knowledge.createHypothesis({
+        ...request.body, contentPackageId: snapshot.contentPackageId, contentPackageSnapshotId: snapshot.id
+      }));
+    } catch (error) { return knowledgeError(response, error); }
+  });
+
   app.post("/api/v1/content-packages/:id/knowledge-bindings", (request, response) => {
     try {
       const pkg = publishing.getPackage(request.params.id);
       if (!pkg) return response.status(404).json({ error: "内容包不存在" });
+      requireWorkingSnapshot(pkg.package.id, String(request.body.contentPackageSnapshotId ?? ""));
       return response.status(201).json(knowledge.createBinding({ ...request.body, contentPackageId: pkg.package.id }));
     } catch (error) { return knowledgeError(response, error); }
   });
@@ -81,6 +117,7 @@ export function registerKnowledgeRoutes(
     try {
       const pkg = publishing.getPackage(request.params.id);
       if (!pkg) return response.status(404).json({ error: "内容包不存在" });
+      requireWorkingSnapshot(pkg.package.id, String(request.body.contentPackageSnapshotId ?? ""));
       return response.status(201).json(knowledge.createHypothesis({ ...request.body, contentPackageId: pkg.package.id }));
     } catch (error) { return knowledgeError(response, error); }
   });
@@ -94,8 +131,10 @@ export function registerKnowledgeRoutes(
     try {
       const run = publishing.getRun(request.params.id);
       if (!run) return response.status(404).json({ error: "发布任务不存在" });
+      if (!run.contentPackageSnapshotId) return response.status(409).json({ error: "旧发布任务没有可解析的内容包快照" });
       return response.status(201).json(knowledge.createValidation({
-        ...request.body, publicationRunId: run.id, variantRevision: run.variantRevision
+        ...request.body, publicationRunId: run.id, contentPackageId: run.variant.packageId,
+        contentPackageSnapshotId: run.contentPackageSnapshotId, variantRevision: run.variantRevision
       }));
     } catch (error) { return knowledgeError(response, error); }
   });
