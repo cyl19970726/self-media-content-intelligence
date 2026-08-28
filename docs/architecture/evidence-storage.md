@@ -44,6 +44,12 @@ tracked artifacts before a verified destination exists.
 
 ## External evidence contract
 
+The normative entry schema and restore behavior are defined in the
+[Evidence Manifest and Restore Contract](../evidence/evidence-contract.md). The
+[artifact inventory](../evidence/artifact-inventory.json) records the migration
+baseline, and the [storage decision](../evidence/storage-options.md) records the
+remaining owner gate.
+
 Before Phase 5 moves data, each external evidence bundle must have a manifest that
 can establish:
 
@@ -74,3 +80,5 @@ Historical evidence may leave the code repository only after:
 
 Git history rewriting is not part of ordinary Evidence migration. It requires a
 separate owner approval, backup, collaborator migration plan, and recovery test.
+The current assessment is recorded in the
+[Git History and LFS Strategy](../evidence/history-strategy.md).

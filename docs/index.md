@@ -15,6 +15,12 @@ owned by schemas and code.
   incremental migration path.
 - [Evidence storage policy](architecture/evidence-storage.md) — what belongs in
   source control, runtime storage, fixtures, examples, and external evidence.
+- [Evidence Manifest and restore contract](evidence/evidence-contract.md) — the
+  integrity, availability, and recovery rules for external Evidence.
+- [Evidence migration inventory](evidence/artifact-inventory.json) — the
+  machine-checked source-tree baseline and known consumers.
+- [External storage options](evidence/storage-options.md) — recommended target
+  and the explicit owner confirmation gate.
 - [Development workflow](development/workflow.md) — branch, Worktree, validation,
   PR, merge, and initiative lifecycle.
 - [Repository overhaul tracking issue](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)

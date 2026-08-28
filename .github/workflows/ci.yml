@@ -36,6 +36,7 @@ jobs:
       - run: npm ci
       - run: npm run check:docs
       - run: npm run check:repo
+      - run: npm run check:artifacts
       - run: npm run typecheck
       - run: npm test
       - run: npm run lint
