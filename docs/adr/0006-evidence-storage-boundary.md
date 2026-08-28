@@ -1,6 +1,6 @@
 # ADR 0006 — Separate source code from large research evidence
 
-Status: Accepted direction; external store selection remains unresolved
+Status: Accepted and implemented
 
 Date: 2026-08-28
 
@@ -34,16 +34,18 @@ The code repository will retain source, schemas, documentation, manifests, small
 fixtures, and curated examples. Runtime state stays ignored. Evidence consumers
 must represent unavailable or failed evidence explicitly.
 
-The choice between a dedicated Evidence repository and object storage is deferred
-until inventory, access, cost, and restore requirements are known.
+The first implementation is a local content-addressed store outside the repository,
+selected through `SIGNAL_ROOM_EVIDENCE_ROOT`, with immutable SHA-256 objects and a
+hard-linked compatibility view. Shared S3-compatible storage remains a future
+mirror/primary option, not a prerequisite for the local-first workbench.
 
 ## Consequences and tradeoffs
 
 - Fresh code checkouts can eventually become small and fast.
 - Evidence retrieval becomes explicit and may require network or local cache.
 - Manifest and integrity tooling becomes a product responsibility.
-- Historical artifacts remain temporarily, so repository size does not improve in
-  Phase 1.
+- The current tree no longer contains historical Evidence; published Git history
+  still does because history rewriting was explicitly declined.
 - Git history rewriting is not authorized by this decision.
 
 ## Migration and validation

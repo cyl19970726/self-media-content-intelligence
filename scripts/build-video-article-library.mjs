@@ -3,13 +3,15 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const workspace = resolve(process.cwd());
-const creatorRoot = join(workspace, "artifacts/creator-research/ai-red-witch");
+const evidenceRoot = process.env.SIGNAL_ROOM_EVIDENCE_ROOT;
+if (!evidenceRoot) throw new Error("SIGNAL_ROOM_EVIDENCE_ROOT is required to read historical Evidence");
+const creatorRoot = join(resolve(evidenceRoot), "view/artifacts/creator-research/ai-red-witch");
 const highRoot = join(creatorRoot, "selected-high-like");
 const lowRoot = join(creatorRoot, "low-vs-high");
 const medianRoot = join(creatorRoot, "median-performance");
-const outRoot = join(creatorRoot, "video-library");
+const outRoot = join(workspace, ".runtime/evidence-builds/ai-red-witch/video-library");
 const reportRoot = join(outRoot, "reports");
-const notesPath = join(outRoot, "editorial-notes.json");
+const notesPath = join(creatorRoot, "video-library/editorial-notes.json");
 
 if (!existsSync(notesPath)) throw new Error(`Missing editorial notes: ${notesPath}`);
 mkdirSync(reportRoot, { recursive: true });

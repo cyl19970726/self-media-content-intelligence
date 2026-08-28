@@ -3,9 +3,11 @@ import type { CreatorResearchService } from "../../packages/research/index.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 import { loadNextWaveDossier } from "./next-wave-dossier.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 const emptyCreatorService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
-describe("next-wave inventory dossier", () => {
+describeWithExternalEvidence("next-wave inventory dossier", () => {
   it("projects Xiaohui's partial inventory without inventing deep analysis", () => {
     const dossier = loadNextWaveDossier("xiaohui-doctor");
     expect(dossier).not.toBeNull();

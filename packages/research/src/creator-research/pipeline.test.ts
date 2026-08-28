@@ -4,6 +4,8 @@ import type { CreatorResearchRun } from "../../../contracts/index.js";
 import { loadCreatorDossier } from "../../../../src/server/creator-dossier.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 const emptyCreatorService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
 function activeVideoRun(): CreatorResearchRun {
@@ -34,7 +36,7 @@ function activeVideoRun(): CreatorResearchRun {
   };
 }
 
-describe("creator research pipeline projection", () => {
+describeWithExternalEvidence("creator research pipeline projection", () => {
   it("exposes the complete 13-stage Skill and runtime ledger", () => {
     const dossier = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc");
     expect(dossier?.pipeline?.stages.map((stage) => stage.id)).toEqual([

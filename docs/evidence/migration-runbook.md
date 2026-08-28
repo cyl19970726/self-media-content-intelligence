@@ -1,10 +1,11 @@
 # Evidence Migration Runbook
 
-Status: **tooling implemented and dry-run verified; copy awaits confirmed target**
+Status: **completed on 2026-08-28; verified target: `/Users/hhh0x/self-media-evidence`**
 
 This runbook moves historical research Evidence into an independent,
-content-addressed store without deleting the repository originals. Source deletion
-is a later PR and is allowed only after every gate below passes.
+content-addressed store. The migration copied and verified every object before the
+repository originals were removed from the current tree. Git history was not
+rewritten, and the independent target remains the rollback source.
 
 ## Storage layout
 
@@ -30,9 +31,10 @@ Manifest and Evidence API.
 
    `npm run evidence:copy -- --target <confirmed-target> --execute`
 
-   This atomically writes `evidence/manifest.jsonl` only after all objects and
-   compatibility links are created. Re-running is idempotent and verifies any
-   pre-existing CAS object before reuse.
+   This atomically writes the indexed shards under `evidence/manifest/` only
+   after all objects and compatibility links are created. Every shard has its
+   own SHA-256 in `index.json`. Re-running the object copy is idempotent and
+   verifies any pre-existing CAS object before reuse.
 
 3. Verify a deterministic restore sample:
 
@@ -42,9 +44,17 @@ Manifest and Evidence API.
 
    `npm run evidence:verify -- --target <confirmed-target>`
 
+5. Run the hermetic suite without mounting Evidence:
+
+   `npm test`
+
+6. Run the full historical parity suite with the verified store mounted:
+
+   `SIGNAL_ROOM_EVIDENCE_ROOT=<confirmed-target> npm run test:evidence`
+
 ## Removal gates
 
-The removal PR may proceed only when all are true:
+The removal was allowed only after all were true:
 
 - copy reports 22,622 migrated research Evidence files and zero deletions;
 - Manifest entry count, original paths, byte totals, and hashes reconcile with

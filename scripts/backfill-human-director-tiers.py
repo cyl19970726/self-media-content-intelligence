@@ -24,17 +24,21 @@
 from __future__ import annotations
 
 import json
+import os
 import statistics
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ART = ROOT / "artifacts" / "creator-research" / "human-director"
+EVIDENCE_ROOT = os.environ.get("SIGNAL_ROOM_EVIDENCE_ROOT")
+if not EVIDENCE_ROOT:
+    raise RuntimeError("SIGNAL_ROOM_EVIDENCE_ROOT is required to read historical Evidence")
+ART = Path(EVIDENCE_ROOT).resolve() / "view" / "artifacts" / "creator-research" / "human-director"
 
 INVENTORY = ART / "inventory.json"
 SELECTION = ART / "selection.json"
 ANALYSIS = ART / "analysis.json"
-OUT = ART / "tiers-backfill.json"
+OUT = ROOT / ".runtime" / "backfills" / "human-director" / "tiers-backfill.json"
 
 TIER_LABELS = {
     "high": "高表现",

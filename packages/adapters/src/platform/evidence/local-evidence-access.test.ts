@@ -32,7 +32,7 @@ function fixture(availability: EvidenceAvailability = "available", stored = true
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, storedValue);
   }
-  return { access: new LocalEvidenceAccess({ manifestPath, storeRoot: path.join(root, "store"), now: () => new Date("2026-08-28T00:00:00.000Z") }), entry };
+  return { access: new LocalEvidenceAccess({ manifestPath, storeRoot: path.join(root, "store"), now: () => new Date("2026-08-28T00:00:00.000Z") }), entry, manifestPath };
 }
 
 describe("LocalEvidenceAccess", () => {
@@ -50,6 +50,15 @@ describe("LocalEvidenceAccess", () => {
   it("returns null for an ID that has no manifest entry", async () => {
     const { access } = fixture();
     await expect(access.resolve("unknown")).resolves.toBeNull();
+  });
+
+  it("reports a known object as pending retrieval when no Evidence store is configured", async () => {
+    const { manifestPath } = fixture();
+    const access = new LocalEvidenceAccess({ manifestPath, storeRoot: null, now: () => new Date("2026-08-28T00:00:00.000Z") });
+    await expect(access.resolve("creator/red-witch/frame-1")).resolves.toMatchObject({
+      availability: "pending_retrieval",
+      reason: "not_materialized"
+    });
   });
 
   it("rejects duplicate manifest ownership", () => {

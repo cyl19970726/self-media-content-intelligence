@@ -6,9 +6,11 @@ import { projectLegacyDossier } from "./creator-dossier.js";
 import { loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 const emptyCreatorService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
-describe("Creator Analysis OS V1 read projections", () => {
+describeWithExternalEvidence("Creator Analysis OS V1 read projections", () => {
   it("projects a legacy creator artifact into the canonical 21-record dossier", () => {
     const legacy = loadCreatorConsole("ai-red-witch");
     expect(legacy).not.toBeNull();

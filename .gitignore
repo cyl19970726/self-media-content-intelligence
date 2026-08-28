@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist-server/
 .runtime/
+/artifacts/
 .env
 .env.*
 !.env.example
@@ -17,7 +18,7 @@ dist-server/
 **/hf-cache/
 **/.cache/
 
-# Original media stays local; transcripts, OCR, frames and reports are tracked.
+# Original media stays local. Research Evidence lives in the external store.
 *.mp4
 *.mov
 *.m4v

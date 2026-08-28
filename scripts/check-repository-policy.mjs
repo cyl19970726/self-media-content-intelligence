@@ -40,10 +40,11 @@ for (const relative of addedFiles()) {
   if (rootGenerated.test(normalized)) {
     failures.push(`${relative}: generated captures and handoff files do not belong at repository root`);
   }
+  if (normalized.startsWith("artifacts/")) {
+    failures.push(`${relative}: artifacts/ is retired; use external Evidence, fixtures/, or examples/`);
+  }
   if (bytes > 5 * 1024 * 1024) {
     failures.push(`${relative}: ${(bytes / 1024 / 1024).toFixed(1)} MiB exceeds the 5 MiB repository limit`);
-  } else if (normalized.startsWith("artifacts/") && bytes > 1024 * 1024) {
-    failures.push(`${relative}: ${(bytes / 1024 / 1024).toFixed(1)} MiB exceeds the temporary 1 MiB artifacts limit`);
   }
 }
 

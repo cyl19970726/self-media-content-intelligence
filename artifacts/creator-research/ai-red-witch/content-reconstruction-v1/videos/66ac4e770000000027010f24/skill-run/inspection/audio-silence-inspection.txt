@@ -1,7 +1,0 @@
-Method: ffmpeg silencedetect, threshold -45 dB, minimum duration 0.5 s
-Source: /Users/hhh0x/self-media/artifacts/creator-research/ai-red-witch/low-vs-high/media/66ac4e770000000027010f24.mp4
-Audio stream: AAC HE-AAC, 44.1 kHz, stereo
-Detected silence_start: 63.689048 s
-Detected silence_end: 86.656871 s
-Detected silence_duration: 22.967823 s
-Limitations: This amplitude-based inspection establishes a long silent tail at the chosen threshold. It does not identify music, effects, speaker identity, or other semantic roles in the non-silent interval.

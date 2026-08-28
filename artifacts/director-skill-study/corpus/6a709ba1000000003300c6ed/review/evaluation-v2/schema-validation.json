@@ -1,5 +1,0 @@
-{
-  "pass": true,
-  "validated": ["probe", "protocol", "reconstruction", "evaluation", "ocr"],
-  "failures": []
-}
