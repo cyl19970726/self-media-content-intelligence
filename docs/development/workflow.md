@@ -50,6 +50,7 @@ npm run typecheck
 npm test
 npm run lint
 npm run build
+npm run smoke:entrypoints
 ```
 
 `check:repo` examines newly added files. In CI it compares the PR with its base;

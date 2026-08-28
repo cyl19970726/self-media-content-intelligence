@@ -1,9 +1,35 @@
+import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { fileURLToPath } from "node:url";
 
 const moduleDir = path.dirname(fileURLToPath(import.meta.url));
-export const projectRoot = path.resolve(moduleDir, "../..");
+
+function isProjectRoot(directory: string): boolean {
+  const manifestPath = path.join(directory, "package.json");
+  if (!fs.existsSync(manifestPath)) return false;
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8")) as { name?: string };
+    return manifest.name === "self-media-intelligence";
+  } catch {
+    return false;
+  }
+}
+
+function discoverProjectRoot(start: string): string {
+  let directory = path.resolve(start);
+  while (true) {
+    if (isProjectRoot(directory)) return directory;
+    const parent = path.dirname(directory);
+    if (parent === directory) break;
+    directory = parent;
+  }
+  throw new Error(`Unable to locate Signal Room project root from ${start}`);
+}
+
+export const projectRoot = process.env.SELF_MEDIA_PROJECT_ROOT
+  ? path.resolve(process.env.SELF_MEDIA_PROJECT_ROOT)
+  : discoverProjectRoot(moduleDir);
 
 export function runtimeDir(): string {
   const configured = process.env.SELF_MEDIA_RUNTIME_DIR;

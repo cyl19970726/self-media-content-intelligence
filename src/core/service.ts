@@ -39,7 +39,7 @@ function stage(report: ReportEnvelope, id: "collect" | "media" | "analyze") {
 }
 
 export class AnalysisService {
-  constructor(private readonly store = new RunStore()) {}
+  constructor(private readonly store: RunStore) {}
 
   create(inputUrl: string): ReportEnvelope {
     const report = initialReport(parseSourceUrl(inputUrl));

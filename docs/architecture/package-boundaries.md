@@ -1,7 +1,7 @@
 # Repository Package Boundaries
 
-Status: **target architecture approved for incremental migration; current code
-remains a single package**
+Status: **Apps workspace and Composition Root implemented; domain package
+extraction remains planned**
 
 Tracking: [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 
@@ -12,24 +12,26 @@ automation, background work, a Web UI, an API, and a CLI. This document defines
 where those responsibilities are moving and which dependency directions future
 work must preserve.
 
-This is not a claim that the target directories already exist. Current code
-continues to run from `src` until each vertical slice is moved and verified.
+The four executable Apps now exist. Domain implementations continue to run from
+`src` until each package slice is moved and verified.
 
 ## Current structural debt
 
-The repository is one npm package with four executable concerns under `src`:
+The repository now uses npm workspaces for four executable Apps:
 
-- `src/client` owns the React application;
-- `src/server` owns HTTP routes, read projections, durable service factories,
-  and part of the application composition;
-- `src/cli` owns command-line entry points;
+- `apps/web` owns the React entry point;
+- `apps/api` owns the HTTP process and compatibility embedded-Worker mode;
+- `apps/worker` owns the standalone background Worker process;
+- `apps/cli` owns the command-line entry point;
+- `src/server/composition-root.ts` is the transitional single assembly point;
+- `src/server/routes` owns domain-specific HTTP registration;
 - `src/modules`, `src/core`, and `src/platform` contain overlapping domain,
   workflow, compatibility, and infrastructure responsibilities.
 
-Several dependencies point against the intended layering. Domain services may
-construct SQLite repositories or browser/media executors, and some modules
-consume server read projections. These are confirmed migration inputs, not the
-desired architecture.
+Durable resources and platform implementations are now selected by the
+Composition Root, and Service constructors require their dependencies. Some
+modules still consume server read projections and domain code has not yet moved
+behind workspace public entry points. These are Phase 3 migration inputs.
 
 ## Target structure
 
@@ -50,7 +52,7 @@ packages/
   testkit/     in-memory ports, deterministic fixtures, and contract-test helpers
 ```
 
-The repository will use npm workspaces. Turbo, Nx, independent deployment, and
+The repository uses npm workspaces. Turbo, Nx, independent deployment, and
 microservices are outside the current migration scope.
 
 ## Dependency rules

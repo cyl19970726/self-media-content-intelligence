@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
   "engines": {
     "node": ">=22.5.0"
   },
   "scripts": {
     "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
-    "dev:api": "tsx watch src/server/index.ts",
+    "dev:api": "tsx watch apps/api/src/main.ts",
     "dev:web": "vite",
-    "selfmedia": "tsx src/cli/index.ts",
+    "dev:worker": "SELF_MEDIA_EMBED_WORKERS=false tsx watch apps/worker/src/main.ts",
+    "selfmedia": "tsx apps/cli/src/main.ts",
+    "worker": "tsx apps/worker/src/main.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run src",
@@ -18,9 +23,11 @@
     "check:repo": "node scripts/check-repository-policy.mjs",
     "test:skills": "node scripts/validate-creator-skill-system.mjs",
     "qa:report": "node scripts/render-report-preview.mjs",
+    "smoke:entrypoints": "node scripts/smoke-entrypoints.mjs",
     "build": "npm run typecheck && vite build && tsc -p tsconfig.server.json",
-    "verify": "npm run check:docs && npm run check:repo && npm run typecheck && npm test && npm run lint && npm run build",
-    "start": "SELF_MEDIA_WEB_URL=http://127.0.0.1:4310 NODE_ENV=production node dist-server/server/index.js"
+    "verify": "npm run check:docs && npm run check:repo && npm run typecheck && npm test && npm run lint && npm run build && npm run smoke:entrypoints",
+    "start": "SELF_MEDIA_WEB_URL=http://127.0.0.1:4310 NODE_ENV=production node dist-server/apps/api/src/main.js",
+    "start:worker": "NODE_ENV=production node dist-server/apps/worker/src/main.js"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.2.6",

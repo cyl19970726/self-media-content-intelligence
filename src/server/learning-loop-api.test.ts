@@ -10,6 +10,9 @@ import { learningLoopRunSchema } from "../shared/learning-loop.js";
 import { createApp } from "./app.js";
 import { createDurableLearningLoopControlPlane, seedInitialProductBlindAudit, seedProductBlindRegressionV2, type LearningLoopControlPlane } from "./learning-loop.js";
 import type { ResearchLearningService } from "./research-learning.js";
+import type { PublishingService } from "../modules/publishing/service.js";
+import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
 
 const tempDirectories: string[] = [];
 const servers: Server[] = [];
@@ -29,13 +32,16 @@ async function fixtureServer() {
   seedInitialProductBlindAudit(control);
   seedProductBlindRegressionV2(control);
   const unused = {} as unknown;
-  const app = createApp(
-    unused as AnalysisService,
-    unused as CreatorResearchService,
-    unused as ComparisonProjectService,
-    { list: () => [], get: () => null } as unknown as ResearchLearningService,
-    control
-  );
+  const app = createApp({
+    analysis: unused as AnalysisService,
+    creatorResearch: unused as CreatorResearchService,
+    comparisons: unused as ComparisonProjectService,
+    researchLearning: { list: () => [], get: () => null } as unknown as ResearchLearningService,
+    learningLoop: control,
+    publishing: unused as PublishingService,
+    creatorDiscovery: unused as RedFoxCreatorDiscoveryService,
+    contentKnowledge: unused as ContentKnowledgeService
+  });
   const server = app.listen(0, "127.0.0.1");
   servers.push(server);
   await new Promise<void>((resolve) => server.once("listening", resolve));

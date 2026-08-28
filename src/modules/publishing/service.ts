@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import { randomUUID } from "node:crypto";
-import { SQLitePublishingRepository } from "../../platform/database/sqlite-publishing-repository.js";
 import type { PublishingRepository } from "./repository.js";
 import {
   createContentPackageInputSchema, variantInputSchema, type BrowserPublisher,
@@ -23,7 +22,7 @@ export type PlatformPublishers = Record<PublishingPlatform, BrowserPublisher>;
 
 export class PublishingService {
   constructor(
-    private readonly repository: PublishingRepository = new SQLitePublishingRepository(),
+    private readonly repository: PublishingRepository,
     private readonly publishers: PlatformPublishers | null = null
   ) {}
 

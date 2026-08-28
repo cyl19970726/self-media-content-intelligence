@@ -9,14 +9,11 @@ import {
 } from "../../shared/schema.js";
 import type { CreatorAcquisitionResult, CreatorBrowserExecutor, CreatorDetailResult, ResearchJob } from "../orchestration/contracts.js";
 import type { CreatorResearchRepository, ResearchJobLane } from "./repository.js";
-import { SQLiteCreatorResearchRepository } from "../../platform/database/sqlite-creator-research-repository.js";
 import type { CreatorArtifactStore } from "./artifact-store.js";
-import { LocalCreatorArtifactStore } from "../../platform/artifacts/local-creator-artifact-store.js";
 import { buildCreatorPortfolio, refineDeepSelectionForVerifiedVideos } from "../portfolio/analyzer.js";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
 import { creatorDetailCollectionSchema } from "../creator-detail/contracts.js";
 import type { DeepMediaResolver } from "../media-resolution/contracts.js";
-import { LocalDeepMediaResolver } from "../../platform/media/local-deep-media-resolver.js";
 import type {
   VideoReconstructionExecutor,
   VideoReconstructionLifecycleEvent,
@@ -24,9 +21,7 @@ import type {
 } from "../video-analysis/contracts.js";
 import { videoReconstructionRequestSchema } from "../video-analysis/contracts.js";
 import { videoReconstructionBatchSchema } from "../video-analysis/batch-contracts.js";
-import { CodexVideoReconstructionExecutor } from "../../platform/video/codex-video-reconstruction-executor.js";
 import type { CreatorSynthesisExecutor, CreatorSynthesisLifecycleEvent } from "../creator-synthesis/contracts.js";
-import { CodexCreatorSynthesisExecutor } from "../../platform/synthesis/codex-creator-synthesis-executor.js";
 import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import {
   creatorSynthesisGateSchema,
@@ -137,11 +132,11 @@ export type ImportedCreatorSnapshot = {
 
 export class CreatorResearchService {
   constructor(
-    private readonly repository: CreatorResearchRepository = new SQLiteCreatorResearchRepository(),
-    private readonly artifacts: CreatorArtifactStore = new LocalCreatorArtifactStore(),
-    private readonly mediaResolver: DeepMediaResolver = new LocalDeepMediaResolver(),
-    private readonly videoReconstructor: VideoReconstructionExecutor = new CodexVideoReconstructionExecutor(),
-    private readonly synthesisExecutor: CreatorSynthesisExecutor = new CodexCreatorSynthesisExecutor(artifacts)
+    private readonly repository: CreatorResearchRepository,
+    private readonly artifacts: CreatorArtifactStore,
+    private readonly mediaResolver: DeepMediaResolver,
+    private readonly videoReconstructor: VideoReconstructionExecutor,
+    private readonly synthesisExecutor: CreatorSynthesisExecutor
   ) {}
 
   create(profileUrl: string, adapter: CreatorAcquisitionAdapter = "ego-browser"): CreatorResearchRun {
