@@ -1,5 +1,9 @@
 # Signal Room — Self-Media Intelligence
 
+> 文档入口：[Signal Room Documentation](docs/index.md)。仓库架构重构由
+> [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
+> 分阶段跟踪；目标目录不代表当前代码已经完成迁移。
+
 一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策位于独立的 Creation Workspace，不混入客观研究页面。
 
 当前仓库同时包含：

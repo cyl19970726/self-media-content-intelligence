@@ -14,9 +14,12 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run src",
+    "check:docs": "node scripts/check-doc-links.mjs",
+    "check:repo": "node scripts/check-repository-policy.mjs",
     "test:skills": "node scripts/validate-creator-skill-system.mjs",
     "qa:report": "node scripts/render-report-preview.mjs",
     "build": "npm run typecheck && vite build && tsc -p tsconfig.server.json",
+    "verify": "npm run check:docs && npm run check:repo && npm run typecheck && npm test && npm run lint && npm run build",
     "start": "SELF_MEDIA_WEB_URL=http://127.0.0.1:4310 NODE_ENV=production node dist-server/server/index.js"
   },
   "dependencies": {
