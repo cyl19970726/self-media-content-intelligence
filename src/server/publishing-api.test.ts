@@ -6,13 +6,12 @@ import { afterEach, describe, expect, it } from "vitest";
 import type { AnalysisService } from "../core/service.js";
 import type { CreatorResearchService } from "../modules/creator-research/service.js";
 import type { ComparisonProjectService } from "../modules/comparison/service.js";
-import { PublishingService } from "../modules/publishing/service.js";
-import { contentPackageSchema, platformVariantSchema, publicationRunSchema } from "../modules/publishing/contracts.js";
+import { PublishingService, contentPackageSchema, platformVariantSchema, publicationRunSchema } from "../../packages/creation/index.js";
 import { SQLitePublishingRepository } from "../platform/database/sqlite-publishing-repository.js";
 import type { ResearchLearningService } from "./research-learning.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
-import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
+import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 import { createApp } from "./app.js";
 
 const directories: string[] = [];
@@ -30,7 +29,10 @@ async function fixtureServer() {
   directories.push(directory);
   const mediaPath = path.join(directory, "video.mp4");
   fs.writeFileSync(mediaPath, "fixture");
-  const publishing = new PublishingService(new SQLitePublishingRepository(path.join(directory, "db.sqlite")));
+  const publishing = new PublishingService(
+    new SQLitePublishingRepository(path.join(directory, "db.sqlite")),
+    { exists: fs.existsSync }
+  );
   publishingServices.push(publishing);
   const unused = {} as unknown;
   const app = createApp({

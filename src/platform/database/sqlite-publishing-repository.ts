@@ -2,12 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { databasePath } from "../../core/config.js";
-import type { PublishingRepository } from "../../modules/publishing/repository.js";
+import type { PublishingRepository } from "../../../packages/creation/index.js";
 import {
   contentPackageSchema, platformVariantSchema, publicationEventSchema, publicationJobSchema,
   publicationRunSchema, type ContentPackage, type PlatformVariant, type PublicationEvent,
   type PublicationJob, type PublicationJobStatus, type PublicationRun
-} from "../../modules/publishing/contracts.js";
+} from "../../../packages/creation/index.js";
 
 type JsonRow = { value_json: string };
 type JobRow = {

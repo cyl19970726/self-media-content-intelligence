@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { PlatformVariant, PublishingPlatform } from "../../modules/publishing/contracts.js";
+import type { PlatformVariant, PublishingPlatform } from "../../../packages/creation/index.js";
 import { buildCancelScript, buildPrepareScript, buildSubmitScript } from "./ego-browser-publisher.js";
 
 function variant(platform: PublishingPlatform = "xiaohongshu"): PlatformVariant {

@@ -18,5 +18,5 @@
     "noUnusedParameters": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["apps", "src", "vite.config.ts", "eslint.config.js"]
+  "include": ["apps", "packages", "src", "vite.config.ts", "eslint.config.js"]
 }

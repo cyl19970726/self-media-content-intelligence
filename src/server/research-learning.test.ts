@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import type { IngestAnalysisRevision, ResearchCondition, ResearchObservation } from "../shared/research-learning.js";
+import type { IngestAnalysisRevision, ResearchCondition, ResearchObservation } from "../../packages/contracts/index.js";
 import {
   createDurableResearchLearningService,
   evaluateResearchPromotion,

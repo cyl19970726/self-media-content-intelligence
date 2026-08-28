@@ -7,8 +7,8 @@ import {
   knowledgeContributionSchema, practiceValidationSchema, semanticEdgeSchema,
   type CreationHypothesis, type KnowledgeBinding, type KnowledgeContribution,
   type KnowledgeContributionManifest, type PracticeValidation, type SemanticEdge
-} from "../../modules/content-knowledge/contracts.js";
-import type { ContentKnowledgeRepository } from "../../modules/content-knowledge/repository.js";
+} from "../../../packages/knowledge/index.js";
+import type { ContentKnowledgeRepository } from "../../../packages/knowledge/index.js";
 
 interface JsonRow { value_json: string }
 interface OperationRow { command_hash: string; result_json: string }

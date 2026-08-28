@@ -14,14 +14,14 @@ import {
   knowledgeConceptViewSchema, knowledgeGapSchema,
   creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema, knowledgeContributionSchema, practiceValidationSchema,
   type CreationHypothesis, type KnowledgeBinding, type KnowledgeConceptView, type KnowledgeGap, type PracticeValidation
-} from "../modules/content-knowledge/contracts";
+} from "../../packages/knowledge/contracts";
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
 import {
   contentPackageSchema, platformVariantSchema, publicationEventSchema, publicationRunSchema,
   type ContentPackage, type PlatformVariant, type PublicationEvent, type PublicationRun,
   type VariantInput
-} from "../modules/publishing/contracts";
+} from "../../packages/creation/contracts";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();

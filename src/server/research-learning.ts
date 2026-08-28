@@ -23,7 +23,7 @@ import {
   type ResearchCondition,
   type ResearchDependentConclusion,
   type ResearchObservation
-} from "../shared/research-learning.js";
+} from "../../packages/contracts/index.js";
 
 const emptyCondition: ResearchCondition = {
   tier: null,

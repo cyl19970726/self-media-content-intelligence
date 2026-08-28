@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ingestAnalysisRevisionSchema, researchConceptReadSchema } from "../../shared/research-learning.js";
+import { ingestAnalysisRevisionSchema, researchConceptReadSchema } from "../../contracts/index.js";
 
 export const knowledgeMaturitySchema = z.enum([
   "raw_fact", "single_post_observation", "creator_pattern", "conditional_pattern",

@@ -2,8 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { SQLiteContentKnowledgeRepository } from "../../platform/database/sqlite-content-knowledge-repository.js";
-import { ResearchLearningService } from "../../server/research-learning.js";
+import { SQLiteContentKnowledgeRepository } from "../../../src/platform/database/sqlite-content-knowledge-repository.js";
+import { ResearchLearningService } from "../../../src/server/research-learning.js";
 import { ContentKnowledgeService } from "./service.js";
 
 const directories: string[] = [];
