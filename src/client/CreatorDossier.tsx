@@ -5,6 +5,7 @@ import { getCreatorDossier, resumeCreatorResearchRun } from "./api";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier";
 import { comparisonSetLabel, comparisonSetNote, deepSetNote } from "./creator-sample-copy";
 import { creatorEvidenceHref } from "./creator-evidence-link";
+import { KnowledgeContributionBlock } from "./KnowledgeContributionBlock";
 
 const sections = [
   ["identity", "01", "定位与价值"], ["corpus", "02", "全量基本盘"], ["system", "03", "主题与形式"],
@@ -125,6 +126,7 @@ export default function CreatorDossierPage() {
   const activeRunStage = data.run?.stages.find((stage) => stage.id === data.run?.currentStage);
 
   return <main className="console creator-dossier">
+    <KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/>
     <aside className="console-rail">
       <div className="console-rail__head"><span>CREATOR DOSSIER</span><b>V1</b></div>
       <nav aria-label="博主研究目录">{sections.map(([sectionId, index, label]) => <a href={`#${sectionId}`} key={sectionId}><span>{index}</span>{sectionId === "portfolio" ? comparisonSetLabel(data.portfolio.items.length).replace("统一 ", "") : label}</a>)}</nav>

@@ -54,7 +54,7 @@ export const researchObservationSchema = z.object({
   id: z.string().min(1),
   conceptId: z.string().min(1),
   conceptRevisionId: z.string().min(1),
-  subjectType: z.enum(["video", "creator", "comparison"]),
+  subjectType: z.enum(["video", "creator", "comparison", "practice_validation"]),
   subjectId: z.string().min(1),
   creatorId: z.string().min(1).nullable(),
   videoId: z.string().min(1).nullable(),
@@ -67,6 +67,7 @@ export const researchObservationSchema = z.object({
   sourceGateState: researchSourceGateStateSchema,
   gateState: researchObservationGateStateSchema,
   deepReconstruction: z.boolean(),
+  origin: z.enum(["external_research", "first_party_practice"]).optional(),
   createdAt: z.string().datetime()
 }).superRefine((value, context) => {
   if (value.subjectType === "video" && (!value.creatorId || !value.videoId)) {

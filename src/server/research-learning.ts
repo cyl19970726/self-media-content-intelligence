@@ -44,7 +44,7 @@ export interface CreateResearchConceptInput {
 
 export interface RecordResearchObservationInput {
   conceptId: string;
-  subjectType: "video" | "creator" | "comparison";
+  subjectType: "video" | "creator" | "comparison" | "practice_validation";
   subjectId: string;
   creatorId?: string | null;
   videoId?: string | null;
@@ -56,6 +56,7 @@ export interface RecordResearchObservationInput {
   confidence: "low" | "medium" | "high";
   sourceGateState: "ready" | "partial" | "not_ready" | "stale" | "invalid";
   deepReconstruction?: boolean;
+  origin?: "external_research" | "first_party_practice";
 }
 
 export interface IngestAnalysisRevisionResult {
@@ -204,7 +205,7 @@ function relationPriority(value: ResearchObservation["relation"]): number {
 function deduplicateVideoVotes(observations: ResearchObservation[]): Vote[] {
   const votes = new Map<string, Vote>();
   for (const observation of observations) {
-    if (!observation.videoId || !observation.creatorId) continue;
+    if (observation.origin === "first_party_practice" || !observation.videoId || !observation.creatorId) continue;
     const key = `${observation.creatorId}:${observation.videoId}`;
     const existing = votes.get(key);
     if (!existing || relationPriority(observation.relation) > relationPriority(existing.relation)) {
@@ -378,6 +379,7 @@ export class ResearchLearningService {
       sourceGateState: input.sourceGateState,
       gateState,
       deepReconstruction: input.deepReconstruction ?? false,
+      origin: input.origin ?? "external_research",
       createdAt: this.now()
     });
     this.eventStore?.append({ type: "observation_recorded", observation });

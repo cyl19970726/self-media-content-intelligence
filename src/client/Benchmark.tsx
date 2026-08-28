@@ -5,6 +5,7 @@ import { createComparisonProject, getComparisonDossier, getCreatorDossier, listC
 import type { ComparisonCreatorSource, ComparisonProject } from "../modules/comparison/project-contracts";
 import type { ComparisonDossier } from "../shared/comparison-dossier";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier";
+import { KnowledgeContributionBlock } from "./KnowledgeContributionBlock";
 
 const classificationLabels = { track_wide: "赛道共性", creator_specific: "博主特有", conditional: "条件规律", anomaly: "孤立异常", unknown: "未知" } as const;
 const factLabels = { observed: "观察", author_claim: "作者主张", inference: "推断", unknown: "未知" } as const;
@@ -69,6 +70,7 @@ function ComparisonDetail({ id }: { id: string }) {
   if (error) return <div className="page-error"><AlertTriangle/><h1>比较项目读取失败</h1><p>{error}</p></div>;
   if (!data) return <div className="page-loader"><LoaderCircle className="spin"/><p>正在生成多博主研究投影</p></div>;
   return <article className="comparison-dossier">
+    <KnowledgeContributionBlock subjectType="comparison" subjectId={id}/>
     <nav className="breadcrumb"><Link to="/comparisons">多博主研究</Link><span>/</span><b>{data.name}</b></nav>
     <header className="comparison-hero"><div><p className="eyebrow"><span>MULTI-CREATOR RESEARCH</span><span>{data.status}</span></p><h1>{data.name}</h1><p>先核对比较范围和可比性，再看归一化基本盘、价值与内容矩阵，最后才读取结论台账。</p></div><span className={`comparison-state comparison-state--${data.scope.comparability}`}>{data.scope.comparability === "aligned" ? "可比" : data.scope.comparability === "partial" ? "部分可比" : "不可比较"}</span></header>
     <section className="comparison-scope"><div><span>平台</span><b>{data.scope.platform}</b></div><div><span>成员</span><b>{data.scope.memberCount}</b></div><div><span>时间窗</span><b>{data.scope.windowLabel}</b></div><div><span>生成时间</span><b>{new Date(data.generatedAt).toLocaleString("zh-CN")}</b></div>{data.scope.warnings.map((warning) => <p key={warning}><AlertTriangle size={13}/>{warning}</p>)}</section>

@@ -9,10 +9,12 @@ import { PublishingService } from "../modules/publishing/service.js";
 import { PublicationWorker } from "../modules/publishing/worker.js";
 import { EgoBrowserCreatorExecutor } from "../platform/browser/ego-browser-creator-executor.js";
 import { RedFoxCreatorExecutor } from "../platform/redfox/redfox-creator-executor.js";
+import { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
 import { CreatorProviderRouter } from "../platform/creator-provider/creator-provider-router.js";
 import { createEgoBrowserPublishers } from "../platform/publishing/ego-browser-publisher.js";
 import { createApp } from "./app.js";
 import { createDurableResearchLearningService } from "./research-learning.js";
+import { createDurableContentKnowledgeService } from "./content-knowledge.js";
 import { createDurableLearningLoopControlPlane, seedInitialProductBlindAudit, seedProductBlindRegressionV2 } from "./learning-loop.js";
 
 const port = apiPort();
@@ -27,10 +29,12 @@ const comparisonWorker = new ComparisonProjectWorker(comparisonProjectService);
 const researchLearningService = createDurableResearchLearningService();
 const learningLoopControlPlane = createDurableLearningLoopControlPlane();
 const publishingService = new PublishingService(undefined, createEgoBrowserPublishers());
+const contentKnowledgeService = createDurableContentKnowledgeService(researchLearningService);
 const publicationWorker = new PublicationWorker(publishingService);
 seedInitialProductBlindAudit(learningLoopControlPlane);
 seedProductBlindRegressionV2(learningLoopControlPlane);
-const app = createApp(analysisService, creatorResearchService, comparisonProjectService, researchLearningService, learningLoopControlPlane, publishingService);
+const app = createApp(analysisService, creatorResearchService, comparisonProjectService, researchLearningService, learningLoopControlPlane,
+  publishingService, new RedFoxCreatorDiscoveryService(), contentKnowledgeService);
 creatorWorker.start();
 comparisonWorker.start();
 publicationWorker.start();
@@ -61,6 +65,7 @@ function shutdown(): void {
     researchLearningService.close();
     learningLoopControlPlane.close();
     publishingService.close();
+    contentKnowledgeService.close();
   });
 }
 

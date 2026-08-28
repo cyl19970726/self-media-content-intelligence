@@ -10,6 +10,11 @@ import { creatorDossierSchema, type CreatorDossier } from "../shared/creator-dos
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research";
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";
 import { z } from "zod";
+import {
+  knowledgeConceptViewSchema, knowledgeGapSchema,
+  creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema, knowledgeContributionSchema, practiceValidationSchema,
+  type CreationHypothesis, type KnowledgeBinding, type KnowledgeConceptView, type KnowledgeGap, type PracticeValidation
+} from "../modules/content-knowledge/contracts";
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
 import {
@@ -32,6 +37,82 @@ export async function listRuns(): Promise<RunSummary[]> {
     const runs = value && typeof value === "object" && "runs" in value ? value.runs : [];
     return runSummarySchema.array().parse(runs);
   });
+}
+
+export async function listKnowledge(filters: { q?: string; scope?: string; status?: string } = {}): Promise<KnowledgeConceptView[]> {
+  const query = new URLSearchParams();
+  if (filters.q) query.set("q", filters.q);
+  if (filters.scope) query.set("scope", filters.scope);
+  if (filters.status) query.set("status", filters.status);
+  const suffix = query.size > 0 ? `?${query.toString()}` : "";
+  return json(await fetch(`/api/v1/knowledge${suffix}`, { cache: "no-store" }), (value) => {
+    const concepts = value && typeof value === "object" && "concepts" in value ? value.concepts : [];
+    return knowledgeConceptViewSchema.array().parse(concepts);
+  });
+}
+
+export async function getKnowledge(conceptId: string): Promise<KnowledgeConceptView> {
+  return json(await fetch(`/api/v1/knowledge/${encodeURIComponent(conceptId)}`, { cache: "no-store" }),
+    (value) => knowledgeConceptViewSchema.parse(value));
+}
+
+export async function listKnowledgeGaps(): Promise<KnowledgeGap[]> {
+  return json(await fetch("/api/v1/knowledge/gaps", { cache: "no-store" }), (value) => {
+    const gaps = value && typeof value === "object" && "gaps" in value ? value.gaps : [];
+    return knowledgeGapSchema.array().parse(gaps);
+  });
+}
+
+export async function listKnowledgeContributions(subjectType: "video" | "creator" | "comparison", subjectId: string) {
+  const query = new URLSearchParams({ subjectType, subjectId });
+  return json(await fetch(`/api/v1/knowledge/contributions?${query.toString()}`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "manifests" in value ? value.manifests : [];
+    return z.array(z.object({ manifest: knowledgeContributionManifestSchema, contributions: z.array(knowledgeContributionSchema) })).parse(items);
+  });
+}
+
+export async function getPackageKnowledge(packageId: string): Promise<{ bindings: KnowledgeBinding[]; hypotheses: CreationHypothesis[] }> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/knowledge-bindings`, { cache: "no-store" }), (value) => {
+    if (!value || typeof value !== "object" || !("bindings" in value) || !("hypotheses" in value)) throw new Error("创作知识上下文无效");
+    return { bindings: knowledgeBindingSchema.array().parse(value.bindings), hypotheses: creationHypothesisSchema.array().parse(value.hypotheses) };
+  });
+}
+
+export async function createKnowledgeBinding(packageId: string, input: Omit<KnowledgeBinding, "id" | "contentPackageId" | "status" | "createdAt"> & { operationKey: string }): Promise<KnowledgeBinding> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/knowledge-bindings`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
+  }), (value) => knowledgeBindingSchema.parse(value));
+}
+
+export async function createCreationHypothesis(packageId: string, input: Omit<CreationHypothesis, "id" | "contentPackageId" | "createdAt"> & { operationKey: string }): Promise<CreationHypothesis> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/hypotheses`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
+  }), (value) => creationHypothesisSchema.parse(value));
+}
+
+export async function listPracticeValidations(runId: string): Promise<PracticeValidation[]> {
+  return json(await fetch(`/api/v1/publications/${encodeURIComponent(runId)}/practice-validations`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "validations" in value ? value.validations : [];
+    return practiceValidationSchema.array().parse(items);
+  });
+}
+
+export async function createPracticeValidation(runId: string, input: object): Promise<PracticeValidation> {
+  return json(await fetch(`/api/v1/publications/${encodeURIComponent(runId)}/practice-validations`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
+  }), (value) => practiceValidationSchema.parse(value));
+}
+
+export async function submitPracticeValidation(id: string, input: object): Promise<PracticeValidation> {
+  return json(await fetch(`/api/v1/practice-validations/${encodeURIComponent(id)}/submit`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
+  }), (value) => practiceValidationSchema.parse(value));
+}
+
+export async function adjudicatePracticeValidation(id: string, input: object): Promise<PracticeValidation> {
+  return json(await fetch(`/api/v1/practice-validations/${encodeURIComponent(id)}/adjudicate`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
+  }), (value) => practiceValidationSchema.parse(value));
 }
 
 export async function getRun(id: string): Promise<ReportEnvelope> {
