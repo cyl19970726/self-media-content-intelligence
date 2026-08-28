@@ -21,14 +21,14 @@ The implementation must preserve existing research-learning and publishing data,
 
 ## Tasks
 
-- [ ] 1. Freeze shared contracts and compatibility rules
+- [x] 1. Freeze shared contracts and compatibility rules
   - Add schemas for maturity, contribution manifests, contributions, semantic edges, knowledge bindings, content-package snapshots, hypotheses, practice validations, and practice observations.
   - Extend research observations with `practice_validation` subject type and explicit origin without changing the meaning of existing records.
   - Preserve parsing of existing research-learning events and content packages through defaults or compatibility adapters.
   - Add schema tests for valid, invalid, and legacy inputs.
   - _Requirements: R1, R2, R6, R7, R8, R9, R12_
 
-- [ ] 2. Establish the content-knowledge domain service
+- [x] 2. Establish the content-knowledge domain service
   - Introduce repository ports and a service that owns manifest idempotency, contribution decisions, semantic-edge adjudication, bindings, hypotheses, and validation state transitions.
   - Ensure support/qualification/contradiction remain observation-backed and are not duplicated as canonical edge rows.
   - Add deterministic policies for evidence eligibility, origin-partitioned counts, and stale impact.
@@ -50,7 +50,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Add parity fixtures proving current counts, revisions, and dependent conclusions do not change unexpectedly.
   - _Requirements: R3, R4, R9, R12_
 
-- [ ] 5. Implement knowledge query and command APIs
+- [x] 5. Implement knowledge query and command APIs
   - Add list, search, detail, lineage, contribution, and gap routes under `/api/v1/knowledge`.
   - Add idempotent compilation and semantic-edge adjudication commands.
   - Return pinned IDs, decision status, explicit quarantine reasons, and structured errors.
@@ -65,7 +65,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Add integration tests for video, creator, comparison, no-new-knowledge, and insufficient-evidence paths.
   - _Requirements: R2, R3, R4, R9, R10_
 
-- [ ] 7. Build the Knowledge index and concept detail surfaces
+- [x] 7. Build the Knowledge index and concept detail surfaces
   - Add the top-level Knowledge navigation route and client API types.
   - Implement the asymmetric editorial index with state/maturity filters, compact health counts, concept register, gaps, and search.
   - Implement concept detail with current revision, conditions, exclusions, evidence lanes, denominators, semantic neighbours, downstream bindings, and history.
@@ -73,7 +73,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Add projection/view tests and browser validation for `/knowledge` and `/knowledge/:id`.
   - _Requirements: R1, R5, R6, R9, R11_
 
-- [ ] 8. Add contribution visibility to research surfaces
+- [x] 8. Add contribution visibility to research surfaces
   - Add a reusable contribution block to single-post, creator, and comparison reports.
   - Show created, confirmed, qualified, contradicted, quarantined, and reviewed-no-new-knowledge outcomes against the frozen analysis revision.
   - Link contribution → concept → evidence and preserve return navigation.

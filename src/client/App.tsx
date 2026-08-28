@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ArrowRight, BarChart3, Check, CircleAlert, Clipboard, ExternalLink,
-  GitBranch, LoaderCircle, Play, RefreshCw, Search, Send, Users
+  BookOpen, GitBranch, LoaderCircle, Play, RefreshCw, Search, Send, Users
 } from "lucide-react";
 import { createRun, getRun, listRuns, retryRun } from "./api";
 import { ReportV2 } from "./ReportV2";
@@ -12,6 +12,7 @@ import BenchmarkPage from "./Benchmark";
 import VideoEvidencePage from "./VideoEvidence";
 import LearningLoopsPage from "./LearningLoops";
 import CreationWorkspace from "./CreationWorkspace";
+import KnowledgeWorkspace from "./Knowledge";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -39,6 +40,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
       <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
       <Link className={location.pathname.startsWith("/learning-loop") ? "active" : ""} to="/learning-loop"><GitBranch size={16}/> 迭代验证</Link>
+      <Link className={location.pathname.startsWith("/knowledge") ? "active" : ""} to="/knowledge"><BookOpen size={16}/> 内容知识</Link>
       <Link className={location.pathname.startsWith("/creation") ? "active" : ""} to="/creation"><Send size={16}/> 创作发布</Link>
       <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
@@ -191,6 +193,8 @@ export default function App() {
     <Route path="/comparisons/:comparisonId" element={<Shell><BenchmarkPage/></Shell>}/>
     <Route path="/learning-loop" element={<Shell><LearningLoopsPage/></Shell>}/>
     <Route path="/learning-loop/:runId" element={<Shell><LearningLoopsPage/></Shell>}/>
+    <Route path="/knowledge" element={<Shell><KnowledgeWorkspace/></Shell>}/>
+    <Route path="/knowledge/:conceptId" element={<Shell><KnowledgeWorkspace/></Shell>}/>
     <Route path="/creation" element={<Shell><CreationWorkspace/></Shell>}/>
     <Route path="/benchmark" element={<Navigate replace to="/comparisons"/>}/>
     <Route path="/runs/:id" element={<Detail/>}/>

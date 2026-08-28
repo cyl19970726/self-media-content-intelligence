@@ -4,6 +4,7 @@ import { AlertTriangle, ArrowLeft, ExternalLink, Grid2X2, LoaderCircle, Network,
 import { getVideoResearch } from "./api";
 import type { VideoResearch } from "../shared/video-research";
 import { friendlyArticleHeading, withoutEmbeddedTranscript } from "./video-evidence-copy";
+import { KnowledgeContributionBlock } from "./KnowledgeContributionBlock";
 
 const evidenceLabels = {
   raw_fact: "原始事实", visual_observation: "画面观察", author_claim: "作者主张", system_inference: "系统推断", unknown: "未知"
@@ -97,6 +98,7 @@ export default function VideoEvidencePage() {
   const returnTo = data && rawReturnTo?.startsWith(`/creators/${encodeURIComponent(data.creatorId)}`) ? rawReturnTo : data ? `/creators/${data.creatorId}#portfolio` : "/creators";
 
   return <EvidenceNavigationContext.Provider value={evidenceNavigation}><main className="console console--solo">
+    <KnowledgeContributionBlock subjectType="video" subjectId={videoId}/>
     {error ? <div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div>
       : !data ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一视频研究投影</p></div>
         : <article className="evidence-page evidence-page--v1">
