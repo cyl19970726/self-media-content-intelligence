@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://signal-room.local/schemas/evidence-manifest-v1.json",
+  "title": "Signal Room Evidence Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "evidenceId", "classification", "content", "storage", "provenance"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "evidenceId": { "type": "string", "minLength": 1 },
+    "classification": { "enum": ["research_evidence", "fixture", "example"] },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "bytes", "mediaType"],
+      "properties": {
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "mediaType": { "type": "string", "minLength": 1 }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "availability"],
+      "properties": {
+        "uri": { "type": "string", "minLength": 1 },
+        "availability": { "enum": ["available", "pending_retrieval", "missing", "unauthorized", "integrity_failed"] }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["originalPath", "capturedAt", "producer"],
+      "properties": {
+        "originalPath": { "type": "string", "pattern": "^artifacts/" },
+        "capturedAt": { "type": ["string", "null"], "format": "date-time" },
+        "producer": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
