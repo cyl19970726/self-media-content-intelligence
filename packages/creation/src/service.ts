@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { randomUUID } from "node:crypto";
 import type { PublishingRepository } from "./repository.js";
 import {
@@ -20,9 +19,14 @@ function xhsTitleUnits(value: string): number {
 
 export type PlatformPublishers = Record<PublishingPlatform, BrowserPublisher>;
 
+export interface PublicationMediaAccess {
+  exists(localPath: string): boolean;
+}
+
 export class PublishingService {
   constructor(
     private readonly repository: PublishingRepository,
+    private readonly mediaAccess: PublicationMediaAccess,
     private readonly publishers: PlatformPublishers | null = null
   ) {}
 
@@ -335,11 +339,11 @@ export class PublishingService {
   }
 
   private assertMediaAvailable(variant: PlatformVariant): void {
-    const missing = variant.media.find((item) => !fs.existsSync(item.localPath));
+    const missing = variant.media.find((item) => !this.mediaAccess.exists(item.localPath));
     if (missing) throw new Error(`素材文件不存在：${missing.localPath}`);
     const options = variant.platformOptions[variant.platform];
     const coverPath = options && "coverPath" in options ? options.coverPath : null;
-    if (coverPath && !fs.existsSync(coverPath)) throw new Error(`封面文件不存在：${coverPath}`);
+    if (coverPath && !this.mediaAccess.exists(coverPath)) throw new Error(`封面文件不存在：${coverPath}`);
   }
 
   private enqueue(run: PublicationRun, nodeKey: PublicationJob["nodeKey"], suffix: string, maxAttempts: number): PublicationJob {

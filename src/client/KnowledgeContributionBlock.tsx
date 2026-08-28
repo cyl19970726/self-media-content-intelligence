@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, CircleAlert } from "lucide-react";
 import { listKnowledgeContributions } from "./api";
-import type { KnowledgeContribution, KnowledgeContributionManifest } from "../modules/content-knowledge/contracts";
+import type { KnowledgeContribution, KnowledgeContributionManifest } from "../../packages/knowledge/contracts";
 
 export function KnowledgeContributionBlock({ subjectType, subjectId }: { subjectType: "video" | "creator" | "comparison"; subjectId: string }) {
   const [rows, setRows] = useState<Array<{ manifest: KnowledgeContributionManifest; contributions: KnowledgeContribution[] }>>([]);

@@ -1,12 +1,12 @@
 import type express from "express";
 import { z } from "zod";
-import type { PublishingService } from "../../modules/publishing/service.js";
+import type { PublishingService } from "../../../packages/creation/index.js";
 import {
   approvePublicationInputSchema,
   createContentPackageInputSchema,
   createPublicationInputSchema,
   variantInputSchema
-} from "../../modules/publishing/contracts.js";
+} from "../../../packages/creation/index.js";
 
 function publishingError(response: express.Response, error: unknown): express.Response {
   const message = error instanceof z.ZodError

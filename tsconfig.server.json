@@ -11,6 +11,6 @@
     "sourceMap": true,
     "jsx": "react-jsx"
   },
-  "include": ["apps/api", "apps/worker", "apps/cli", "src/core", "src/server", "src/cli", "src/shared"],
+  "include": ["apps/api", "apps/worker", "apps/cli", "packages", "src/core", "src/server", "src/cli", "src/shared"],
   "exclude": ["src/**/*.test.ts"]
 }

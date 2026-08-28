@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import type {
   BrowserCancelResult, BrowserPrepareResult, BrowserPublicationInput, BrowserPublisher,
   BrowserSubmitResult, PlatformVariant, PublicationPreview, PublicationReceipt, PublishingPlatform
-} from "../../modules/publishing/contracts.js";
+} from "../../../packages/creation/index.js";
 
 const marker = "__SELF_MEDIA_PUBLICATION__";
 

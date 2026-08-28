@@ -4,8 +4,8 @@ import {
   adjudicatePracticeValidation, createCreationHypothesis, createKnowledgeBinding, createPracticeValidation, getPackageKnowledge,
   listKnowledge, listPracticeValidations, submitPracticeValidation
 } from "./api";
-import type { ContentPackage, PublicationRun } from "../modules/publishing/contracts";
-import type { CreationHypothesis, KnowledgeBinding, KnowledgeConceptView, PracticeValidation } from "../modules/content-knowledge/contracts";
+import type { ContentPackage, PublicationRun } from "../../packages/creation/contracts";
+import type { CreationHypothesis, KnowledgeBinding, KnowledgeConceptView, PracticeValidation } from "../../packages/knowledge/contracts";
 
 export function KnowledgeDecisionPanel({ contentPackage, publication }: { contentPackage: ContentPackage; publication: PublicationRun | null }) {
   const [concepts, setConcepts] = useState<KnowledgeConceptView[]>([]);

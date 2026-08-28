@@ -1,7 +1,7 @@
 # Repository Package Boundaries
 
-Status: **Apps workspace and Composition Root implemented; domain package
-extraction remains planned**
+Status: **Apps workspace, Composition Root, contracts, knowledge, and creation
+boundaries implemented; remaining package extraction is incremental**
 
 Tracking: [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 
@@ -12,8 +12,9 @@ automation, background work, a Web UI, an API, and a CLI. This document defines
 where those responsibilities are moving and which dependency directions future
 work must preserve.
 
-The four executable Apps now exist. Domain implementations continue to run from
-`src` until each package slice is moved and verified.
+The four executable Apps now exist. The first domain slices have moved behind
+public workspace entry points; research, runtime, adapters, and testkit remain in
+their transitional locations until their vertical slices are verified.
 
 ## Current structural debt
 
@@ -25,13 +26,16 @@ The repository now uses npm workspaces for four executable Apps:
 - `apps/cli` owns the command-line entry point;
 - `src/server/composition-root.ts` is the transitional single assembly point;
 - `src/server/routes` owns domain-specific HTTP registration;
-- `src/modules`, `src/core`, and `src/platform` contain overlapping domain,
+- `packages/contracts`, `packages/knowledge`, and `packages/creation` are real
+  workspaces with public `index.ts` entry points;
+- `src/modules`, `src/core`, and `src/platform` still contain overlapping domain,
   workflow, compatibility, and infrastructure responsibilities.
 
-Durable resources and platform implementations are now selected by the
-Composition Root, and Service constructors require their dependencies. Some
-modules still consume server read projections and domain code has not yet moved
-behind workspace public entry points. These are Phase 3 migration inputs.
+Durable resources and platform implementations are selected by the Composition
+Root, and Service constructors require their dependencies. Knowledge consumes an
+explicit research port instead of a server class, and creation consumes an
+explicit media-access port instead of the filesystem. Remaining modules that
+consume server projections are Phase 3 migration inputs.
 
 ## Target structure
 
@@ -128,9 +132,10 @@ in-memory test graph but must not silently open SQLite or start workers.
 
 1. Establish governance and CI without moving runtime code.
 2. Move executable entry points into Apps and centralize composition.
-3. Extract contracts and runtime primitives.
-4. Migrate knowledge, then creation, then research and adapters by vertical slice.
-5. Add an automated dependency rule only after each protected boundary is real.
+3. Extract contracts, knowledge, and creation; protect their public boundaries
+   with `scripts/check-package-boundaries.mjs`. **Implemented.**
+4. Extract runtime primitives, then research and adapters by vertical slice.
+5. Expand the automated dependency rules only after each new boundary is real.
 
 Every step must preserve current API, CLI, UI, and stored-data behavior or ship an
 explicit compatibility migration. The target tree is complete only when the

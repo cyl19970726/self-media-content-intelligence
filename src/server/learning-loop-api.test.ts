@@ -10,9 +10,9 @@ import { learningLoopRunSchema } from "../shared/learning-loop.js";
 import { createApp } from "./app.js";
 import { createDurableLearningLoopControlPlane, seedInitialProductBlindAudit, seedProductBlindRegressionV2, type LearningLoopControlPlane } from "./learning-loop.js";
 import type { ResearchLearningService } from "./research-learning.js";
-import type { PublishingService } from "../modules/publishing/service.js";
+import type { PublishingService } from "../../packages/creation/index.js";
 import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
-import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
+import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 
 const tempDirectories: string[] = [];
 const servers: Server[] = [];

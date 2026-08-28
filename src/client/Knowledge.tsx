@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, BookOpen, CircleAlert, GitBranch, LoaderCircle, Search } from "lucide-react";
 import { getKnowledge, listKnowledge, listKnowledgeGaps } from "./api";
-import type { KnowledgeConceptView, KnowledgeGap } from "../modules/content-knowledge/contracts";
+import type { KnowledgeConceptView, KnowledgeGap } from "../../packages/knowledge/contracts";
 
 const scopeLabels = {
   video_specific: "单帖观察", creator_specific: "博主模式", conditional: "条件规律", track_wide: "跨博主规律"

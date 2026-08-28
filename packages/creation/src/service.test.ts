@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { SQLitePublishingRepository } from "../../platform/database/sqlite-publishing-repository.js";
+import { SQLitePublishingRepository } from "../../../src/platform/database/sqlite-publishing-repository.js";
 import type {
   BrowserCancelResult, BrowserPrepareResult, BrowserPublicationInput,
   BrowserPublisher, BrowserSubmitResult, PlatformVariant
@@ -53,7 +53,7 @@ function fixture(): { service: PublishingService; repository: SQLitePublishingRe
     bilibili: publisher
   };
   const repository = new SQLitePublishingRepository(dbPath);
-  const service = new PublishingService(repository, publishers);
+  const service = new PublishingService(repository, { exists: fs.existsSync }, publishers);
   services.push(service);
   return { service, repository, publisher, mediaPath, dbPath };
 }
@@ -138,7 +138,7 @@ describe("PublishingService", () => {
     const run = service.createRun(createdVariant.id);
     service.close();
     services.splice(services.indexOf(service), 1);
-    const reopened = new PublishingService(new SQLitePublishingRepository(dbPath));
+    const reopened = new PublishingService(new SQLitePublishingRepository(dbPath), { exists: fs.existsSync });
     services.push(reopened);
     expect(reopened.listPackages()).toHaveLength(1);
     expect(reopened.getPackage(createdVariant.packageId)?.variants).toHaveLength(1);

@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from "node:crypto";
-import type { ResearchLearningService } from "../../server/research-learning.js";
+import type { KnowledgeResearchPort } from "./ports.js";
 import {
   adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
   createKnowledgeBindingInputSchema, createPracticeValidationInputSchema,
@@ -24,7 +24,7 @@ function maturityFor(scope: KnowledgeConceptView["research"]["concept"]["scope"]
 export class ContentKnowledgeService {
   constructor(
     private readonly repository: ContentKnowledgeRepository,
-    private readonly research: ResearchLearningService,
+    private readonly research: KnowledgeResearchPort,
     private readonly makeId: () => string = randomUUID,
     private readonly now: () => string = () => new Date().toISOString()
   ) {}

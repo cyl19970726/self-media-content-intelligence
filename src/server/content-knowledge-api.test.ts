@@ -7,9 +7,8 @@ import type { AnalysisService } from "../core/service.js";
 import type { CreatorResearchService } from "../modules/creator-research/service.js";
 import type { ComparisonProjectService } from "../modules/comparison/service.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
-import { PublishingService } from "../modules/publishing/service.js";
-import { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
-import { knowledgeConceptViewSchema, knowledgeContributionManifestSchema } from "../modules/content-knowledge/contracts.js";
+import { PublishingService } from "../../packages/creation/index.js";
+import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema } from "../../packages/knowledge/index.js";
 import { SQLiteContentKnowledgeRepository } from "../platform/database/sqlite-content-knowledge-repository.js";
 import { SQLitePublishingRepository } from "../platform/database/sqlite-publishing-repository.js";
 import { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
@@ -31,7 +30,10 @@ async function fixtureServer() {
   directories.push(directory);
   const research = new ResearchLearningService();
   const knowledge = new ContentKnowledgeService(new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite")), research);
-  const publishing = new PublishingService(new SQLitePublishingRepository(path.join(directory, "publishing.sqlite")));
+  const publishing = new PublishingService(
+    new SQLitePublishingRepository(path.join(directory, "publishing.sqlite")),
+    { exists: fs.existsSync }
+  );
   closeables.push(knowledge, publishing);
   const unused = {} as unknown;
   const app = createApp({

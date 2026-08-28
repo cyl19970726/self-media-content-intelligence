@@ -11,7 +11,7 @@ import {
 import type {
   ContentPackage, PlatformVariant, PublicationEvent, PublicationRun,
   PublishingPlatform, VariantInput
-} from "../modules/publishing/contracts";
+} from "../../packages/creation/contracts";
 import { KnowledgeDecisionPanel } from "./KnowledgeDecisionPanel";
 
 const platformLabels: Record<PublishingPlatform, string> = {

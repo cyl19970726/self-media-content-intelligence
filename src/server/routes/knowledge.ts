@@ -1,7 +1,7 @@
 import type express from "express";
 import { z } from "zod";
-import type { ContentKnowledgeService } from "../../modules/content-knowledge/service.js";
-import type { PublishingService } from "../../modules/publishing/service.js";
+import type { ContentKnowledgeService } from "../../../packages/knowledge/index.js";
+import type { PublishingService } from "../../../packages/creation/index.js";
 
 function knowledgeError(response: express.Response, error: unknown): express.Response {
   const message = error instanceof z.ZodError
