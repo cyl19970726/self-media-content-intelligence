@@ -9,7 +9,7 @@ import {
   type EvidenceAccessProjection,
   type EvidenceManifestEntry
 } from "../../../../contracts/index.js";
-import { projectRoot } from "../../core/config.js";
+import { evidenceStoreRoot, projectRoot } from "../../core/config.js";
 
 export interface LocalEvidenceAccessOptions {
   manifestPath?: string;
@@ -44,7 +44,7 @@ export class LocalEvidenceAccess implements EvidenceAccessPort {
 
   constructor(options: LocalEvidenceAccessOptions = {}) {
     this.entries = loadManifest(path.resolve(options.manifestPath ?? path.join(projectRoot, "evidence", "manifest.jsonl")));
-    const configuredRoot = options.storeRoot === undefined ? process.env.SIGNAL_ROOM_EVIDENCE_ROOT : options.storeRoot;
+    const configuredRoot = options.storeRoot === undefined ? evidenceStoreRoot() : options.storeRoot;
     this.storeRoot = configuredRoot ? path.resolve(configuredRoot) : null;
     this.now = options.now ?? (() => new Date());
   }

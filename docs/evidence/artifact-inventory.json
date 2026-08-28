@@ -53,6 +53,7 @@
     "docs/evidence/artifact-inventory.json",
     "docs/evidence/evidence-manifest.schema.json",
     "docs/evidence/history-strategy.md",
+    "docs/evidence/migration-runbook.md",
     "docs/index.md",
     "docs/initiatives/active/creator-analysis-os-v1/api-contract.md",
     "docs/initiatives/active/creator-analysis-os-v1/architecture.md",
@@ -69,6 +70,8 @@
     "scripts/build-video-article-library.mjs",
     "scripts/check-repository-policy.mjs",
     "scripts/inventory-artifacts.mjs",
+    "scripts/migrate-evidence.mjs",
+    "scripts/migrate-evidence.test.mjs",
     "scripts/render-report-preview.mjs"
   ],
   "largestFiles": [

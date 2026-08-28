@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { projectRoot } from "../../packages/adapters/index.js";
+import { evidenceResearchRoot } from "../../packages/adapters/index.js";
 
 /**
  * Shared artifact readers + per-creator metadata.
@@ -8,7 +8,7 @@ import { projectRoot } from "../../packages/adapters/index.js";
  * console) so positioning strings and derived counts live exactly once.
  */
 
-export const researchDir = path.join(projectRoot, "artifacts", "creator-research");
+export const researchDir = evidenceResearchRoot();
 
 export function readJson(relativePath: string): Record<string, unknown> | null {
   const file = path.join(researchDir, relativePath);

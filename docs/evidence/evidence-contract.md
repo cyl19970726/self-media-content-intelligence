@@ -58,6 +58,9 @@ Restore is idempotent. A representative restore sample must pass before reposito
 copies are removed, and the full migrated set must pass manifest/path/hash
 reconciliation.
 
+The executable, non-destructive procedure is documented in the
+[Evidence Migration Runbook](migration-runbook.md).
+
 ## What remains in Git
 
 - schemas, manifests, and migration reports;
