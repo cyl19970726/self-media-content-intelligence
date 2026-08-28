@@ -1,11 +1,11 @@
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { CreatorSynthesis } from "../../packages/research/index.js";
 import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
 import { loadCreatorConsole } from "./console.js";
 import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
 import { loadNextWaveDossier } from "./next-wave-dossier.js";
-import { buildCreatorResearchPipeline } from "../modules/creator-research/pipeline.js";
+import { buildCreatorResearchPipeline } from "../../packages/research/index.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 

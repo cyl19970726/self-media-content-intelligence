@@ -1,6 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { EgoBrowserCreatorExecutor } from "../src/platform/browser/ego-browser-creator-executor.js";
-import { LocalDeepMediaResolver } from "../src/platform/media/local-deep-media-resolver.js";
+import { EgoBrowserCreatorExecutor, LocalDeepMediaResolver } from "../packages/adapters/index.js";
 
 const [profileUrl, externalId, postUrl] = process.argv.slice(2);
 if (!profileUrl || !externalId || !postUrl) {

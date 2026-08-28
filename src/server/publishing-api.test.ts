@@ -4,13 +4,13 @@ import path from "node:path";
 import type { Server } from "node:http";
 import { afterEach, describe, expect, it } from "vitest";
 import type { AnalysisService } from "../core/service.js";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
-import type { ComparisonProjectService } from "../modules/comparison/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
+import type { ComparisonProjectService } from "../../packages/research/index.js";
 import { PublishingService, contentPackageSchema, platformVariantSchema, publicationRunSchema } from "../../packages/creation/index.js";
-import { SQLitePublishingRepository } from "../platform/database/sqlite-publishing-repository.js";
+import { SQLitePublishingRepository } from "../../packages/adapters/index.js";
 import type { ResearchLearningService } from "./research-learning.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
-import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import type { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 import { createApp } from "./app.js";
 

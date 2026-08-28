@@ -4,14 +4,14 @@ import path from "node:path";
 import type { Server } from "node:http";
 import { afterEach, describe, expect, it } from "vitest";
 import type { AnalysisService } from "../core/service.js";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
-import type { ComparisonProjectService } from "../modules/comparison/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
+import type { ComparisonProjectService } from "../../packages/research/index.js";
 import { learningLoopRunSchema } from "../shared/learning-loop.js";
 import { createApp } from "./app.js";
 import { createDurableLearningLoopControlPlane, seedInitialProductBlindAudit, seedProductBlindRegressionV2, type LearningLoopControlPlane } from "./learning-loop.js";
 import type { ResearchLearningService } from "./research-learning.js";
 import type { PublishingService } from "../../packages/creation/index.js";
-import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import type { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 
 const tempDirectories: string[] = [];

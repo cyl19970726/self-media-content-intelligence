@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { projectRoot } from "../core/config.js";
+import { projectRoot } from "../../packages/adapters/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { aiRedWitch6801ThreeLens } from "./three-lens-data/ai-red-witch-6801.js";
 import { humanDirector6a2fThreeLens } from "./three-lens-data/human-director-6a2f.js";

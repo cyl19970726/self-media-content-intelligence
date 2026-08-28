@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import dotenv from "dotenv";
-import { externalSkills } from "../config.js";
+import { externalSkills } from "../../../packages/adapters/index.js";
 import { emptyContext, type Comment, type ComparablePost, type MediaItem, type Metrics, type ParsedSource, type SourceSnapshot } from "../../shared/schema.js";
 import type { CollectionResult, PlatformAdapter } from "./types.js";
 

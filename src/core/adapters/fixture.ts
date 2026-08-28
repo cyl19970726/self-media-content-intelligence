@@ -1,8 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fixtureCollection } from "../fixtures.js";
-import { runArtifactDir } from "../config.js";
-import { runFile } from "../process.js";
+import { runArtifactDir, runFile } from "../../../packages/adapters/index.js";
 import type { PlatformAdapter } from "./types.js";
 
 async function ensureFixtureVideo(runId: string): Promise<string> {

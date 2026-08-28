@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
-import { databasePath } from "./config.js";
+import { databasePath } from "../../packages/adapters/index.js";
 import {
   reportEnvelopeSchema,
   type ReportEnvelope,
@@ -93,4 +93,3 @@ export class RunStore {
     this.db.close();
   }
 }
-

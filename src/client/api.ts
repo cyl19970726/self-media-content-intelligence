@@ -5,9 +5,8 @@ import {
   creatorSynthesisSchema, type CreatorPortfolioAnalysis, type CreatorSelection,
   type CreatorDetailCollection, type DeepMediaManifest, type VideoReconstructionBatch,
   type CreatorSynthesis, type CreatorSynthesisGate
-} from "../../packages/research/index";
-import { comparisonProjectSchema, type ComparisonCreatorSource, type ComparisonProject } from "../modules/comparison/project-contracts";
-import { creatorComparisonSchema, type CreatorComparison } from "../modules/comparison/contracts";
+} from "../../packages/research/contracts";
+import { comparisonProjectSchema, creatorComparisonSchema, type ComparisonCreatorSource, type ComparisonProject, type CreatorComparison } from "../../packages/research/contracts";
 import { creatorDossierSchema, type CreatorDossier } from "../shared/creator-dossier";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research";
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";

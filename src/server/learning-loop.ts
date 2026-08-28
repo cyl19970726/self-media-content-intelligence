@@ -1,10 +1,8 @@
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { z } from "zod";
-import { runtimeDir } from "../core/config.js";
-import { LearningLoopService } from "../modules/learning-loop/service.js";
-import type { LearningLoopEvent } from "../modules/learning-loop/repository.js";
-import { SQLiteLearningLoopRepository } from "../platform/database/sqlite-learning-loop-repository.js";
+import { runtimeDir, SQLiteLearningLoopRepository } from "../../packages/adapters/index.js";
+import { LearningLoopService, type LearningLoopEvent } from "../../packages/research/index.js";
 import {
   learningLoopArtifactSchema,
   learningLoopBlindTraceSchema,

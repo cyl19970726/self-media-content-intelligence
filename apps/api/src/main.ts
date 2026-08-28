@@ -1,6 +1,6 @@
 import "dotenv/config";
 import type { Server } from "node:http";
-import { apiPort } from "../../../src/core/config.js";
+import { apiPort } from "../../../packages/adapters/index.js";
 import { createSignalRoomComposition } from "../../../src/server/composition-root.js";
 
 const port = apiPort();

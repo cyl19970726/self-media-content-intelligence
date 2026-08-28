@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { artifactPath } from "../core/artifacts.js";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import { artifactPath } from "../../packages/adapters/index.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { loadVideoEvidence } from "./console.js";
 import { loadLegacyDeepVideo } from "./legacy-deep-videos.js";

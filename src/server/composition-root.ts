@@ -1,23 +1,24 @@
 import { AnalysisService } from "../core/service.js";
 import { RunStore } from "../core/store.js";
-import { CreatorResearchService } from "../modules/creator-research/service.js";
-import { CreatorResearchWorker } from "../modules/creator-research/worker.js";
-import { ComparisonProjectService } from "../modules/comparison/service.js";
-import { ComparisonProjectWorker } from "../modules/comparison/worker.js";
+import { CreatorResearchService, CreatorResearchWorker } from "../../packages/research/index.js";
+import { ComparisonProjectService, ComparisonProjectWorker } from "../../packages/research/index.js";
 import { PublishingService, PublicationWorker, type PlatformPublishers } from "../../packages/creation/index.js";
-import { EgoBrowserCreatorExecutor } from "../platform/browser/ego-browser-creator-executor.js";
-import { RedFoxCreatorExecutor } from "../platform/redfox/redfox-creator-executor.js";
-import { CreatorProviderRouter } from "../platform/creator-provider/creator-provider-router.js";
-import { createEgoBrowserPublishers } from "../platform/publishing/ego-browser-publisher.js";
-import { SQLitePublishingRepository } from "../platform/database/sqlite-publishing-repository.js";
-import { SQLiteCreatorResearchRepository } from "../platform/database/sqlite-creator-research-repository.js";
-import { SQLiteComparisonProjectRepository } from "../platform/database/sqlite-comparison-project-repository.js";
-import { LocalCreatorArtifactStore } from "../platform/artifacts/local-creator-artifact-store.js";
-import { LocalDeepMediaResolver } from "../platform/media/local-deep-media-resolver.js";
-import { LocalPublicationMediaAccess } from "../platform/media/local-publication-media-access.js";
-import { CodexVideoReconstructionExecutor } from "../platform/video/codex-video-reconstruction-executor.js";
-import { CodexCreatorSynthesisExecutor } from "../platform/synthesis/codex-creator-synthesis-executor.js";
-import { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import {
+  videoConcurrency,
+  EgoBrowserCreatorExecutor,
+  RedFoxCreatorExecutor,
+  CreatorProviderRouter,
+  createEgoBrowserPublishers,
+  SQLitePublishingRepository,
+  SQLiteCreatorResearchRepository,
+  SQLiteComparisonProjectRepository,
+  LocalCreatorArtifactStore,
+  LocalDeepMediaResolver,
+  LocalPublicationMediaAccess,
+  CodexVideoReconstructionExecutor,
+  CodexCreatorSynthesisExecutor
+} from "../../packages/adapters/index.js";
+import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { createApp } from "./app.js";
 import { createDurableResearchLearningService, type ResearchLearningService } from "./research-learning.js";
 import { createDurableContentKnowledgeService } from "./content-knowledge.js";
@@ -74,7 +75,8 @@ export function createSignalRoomComposition(
     artifacts,
     new LocalDeepMediaResolver(),
     new CodexVideoReconstructionExecutor(),
-    new CodexCreatorSynthesisExecutor(artifacts)
+    new CodexCreatorSynthesisExecutor(artifacts),
+    videoConcurrency()
   );
   const comparisons = new ComparisonProjectService(
     creatorResearch,
@@ -93,7 +95,7 @@ export function createSignalRoomComposition(
     redfox: new RedFoxCreatorExecutor()
   });
   const workers: ManagedWorker[] = [
-    new CreatorResearchWorker(creatorResearch, creatorExecutor),
+    new CreatorResearchWorker(creatorResearch, creatorExecutor, undefined, videoConcurrency()),
     new ComparisonProjectWorker(comparisons),
     new PublicationWorker(publishing)
   ];

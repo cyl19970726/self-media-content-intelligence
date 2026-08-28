@@ -2,8 +2,8 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
-import { projectRoot } from "../core/config.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
+import { projectRoot } from "../../packages/adapters/index.js";
 
 const safeSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const maxBytes = 5 * 1024 * 1024;

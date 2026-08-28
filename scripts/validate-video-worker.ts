@@ -1,4 +1,4 @@
-import { CodexVideoReconstructionExecutor } from "../src/platform/video/codex-video-reconstruction-executor.js";
+import { CodexVideoReconstructionExecutor } from "../packages/adapters/index.js";
 
 const [creatorRunId, postExternalId, sourceMediaArtifactRef, sourceUrl] = process.argv.slice(2);
 if (!creatorRunId || !postExternalId || !sourceMediaArtifactRef || !sourceUrl) {

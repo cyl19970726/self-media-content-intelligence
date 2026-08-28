@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { SQLitePublishingRepository } from "../../../src/platform/database/sqlite-publishing-repository.js";
+import { SQLitePublishingRepository } from "../../adapters/index.js";
 import type {
   BrowserCancelResult, BrowserPrepareResult, BrowserPublicationInput,
   BrowserPublisher, BrowserSubmitResult, PlatformVariant

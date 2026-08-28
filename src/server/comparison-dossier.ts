@@ -1,5 +1,5 @@
-import type { ComparisonProjectService } from "../modules/comparison/service.js";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import type { ComparisonProjectService } from "../../packages/research/index.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 
