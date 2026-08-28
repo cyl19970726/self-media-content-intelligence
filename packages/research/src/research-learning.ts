@@ -465,6 +465,17 @@ export class ResearchLearningService {
     this.eventStore?.close();
   }
 
+  reload(): void {
+    if (!this.eventStore) return;
+    this.concepts.clear();
+    this.revisions.clear();
+    this.observations.clear();
+    this.conclusions.clear();
+    this.promotionContexts.clear();
+    this.ingestions.clear();
+    for (const event of this.eventStore.load()) this.replay(event);
+  }
+
   get(id: string): ResearchConceptRead | null {
     const concept = this.concepts.get(id);
     if (!concept) return null;

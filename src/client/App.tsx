@@ -14,6 +14,7 @@ import LearningLoopsPage from "./LearningLoops";
 import CreationWorkspace from "./CreationWorkspace";
 import KnowledgeWorkspace from "./Knowledge";
 import EvidenceInspector from "./EvidenceInspector";
+import { KnowledgeContributionBlock } from "./KnowledgeContributionBlock";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../shared/schema";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
@@ -150,7 +151,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
       <CircleAlert size={28}/><div><span>LEGACY REPORT / 数据迁移保护</span><h2>这份旧档案不能直接套用新版报告。</h2>
       <p>新版字段在旧数据中不存在。系统不会把缺失值显示成 0，也不会继续展示无法审计的旧版“为什么有效”结论。</p>
       <button className="primary-button" onClick={onRetry}><RefreshCw size={16}/> 重新采集并升级报告</button></div>
-    </section> : <ReportV2 report={report}/>}
+    </section> : <><ReportV2 report={report}/><KnowledgeContributionBlock subjectType="video" subjectId={report.id}/></>}
   </article>;
 }
 

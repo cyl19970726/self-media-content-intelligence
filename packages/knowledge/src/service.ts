@@ -3,7 +3,7 @@ import type { KnowledgeResearchPort } from "./ports.js";
 import {
   adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
   createKnowledgeBindingInputSchema, createPracticeValidationInputSchema,
-  knowledgeConceptViewSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
+  knowledgeConceptViewSchema, legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
   type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding,
   type KnowledgeConceptView, type KnowledgeContribution, type KnowledgeContributionManifest,
   type KnowledgeGap, type PracticeValidation, type SemanticEdge
@@ -31,14 +31,18 @@ export class ContentKnowledgeService {
 
   listKnowledge(filters: { query?: string; scope?: string; status?: string } = {}): KnowledgeConceptView[] {
     const query = filters.query?.trim().toLocaleLowerCase();
-    return this.research.list().filter((item) =>
+    const concepts = this.research.list();
+    this.repository.syncConceptProjection(concepts);
+    const matches = query ? new Set(this.repository.searchConceptIds(query)) : null;
+    return concepts.filter((item) =>
       (!filters.scope || item.concept.scope === filters.scope)
       && (!filters.status || item.concept.status === filters.status)
-      && (!query || `${item.concept.name} ${item.currentRevision.definition} ${item.currentRevision.exclusions.join(" ")}`.toLocaleLowerCase().includes(query))
+      && (!matches || matches.has(item.concept.id))
     ).map((research) => knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
       edges: this.repository.listEdges(research.concept.id).map((edge) => this.resolveEdgeStatus(edge)),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding))
+      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding)),
+      contributions: this.contributionsForConcept(research.concept.id)
     }));
   }
 
@@ -47,7 +51,8 @@ export class ContentKnowledgeService {
     return research ? knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
       edges: this.repository.listEdges(conceptId).map((edge) => this.resolveEdgeStatus(edge)),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding))
+      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding)),
+      contributions: this.contributionsForConcept(conceptId)
     }) : null;
   }
 
@@ -55,13 +60,32 @@ export class ContentKnowledgeService {
     const input = compileKnowledgeInputSchema.parse(raw);
     const prior = this.repository.getManifestByAnalysis(input.analysis.analysisRevisionId, input.compilerPolicyVersion);
     if (prior) return { manifest: prior, contributions: this.repository.listContributions(prior.id), idempotent: true };
-    const ingested = this.research.ingestAnalysisRevision(input.analysis);
+    const unavailableEvidence = input.evidenceGate.filter((item) => item.availability !== "available");
+    const existingConcepts = this.research.list();
+    const novelObservations = input.analysis.observations.filter((candidate) => {
+      const target = candidate.conceptId
+        ? existingConcepts.find((item) => item.concept.id === candidate.conceptId)
+        : existingConcepts.find((item) => item.concept.slug === candidate.concept?.slug && item.concept.kind === candidate.concept?.kind);
+      return !target?.observations.some((item) => item.relation === candidate.relation && item.statement.trim() === candidate.statement.trim());
+    });
+    const evidenceInvalid = unavailableEvidence.some((item) => item.availability === "integrity_failed");
+    const analysis = {
+      ...input.analysis,
+      observations: novelObservations,
+      lensGates: unavailableEvidence.length === 0 ? input.analysis.lensGates : {
+        contentRestoration: evidenceInvalid ? "invalid" as const : "partial" as const,
+        directingLogic: evidenceInvalid ? "invalid" as const : "partial" as const,
+        visualEditingLogic: evidenceInvalid ? "invalid" as const : "partial" as const
+      }
+    };
+    try { return this.repository.transaction(() => {
+    const ingested = this.research.ingestAnalysisRevision(analysis);
     const manifestId = this.makeId();
     const contributions: KnowledgeContribution[] = ingested.observations.map((observation, index) => ({
       id: this.makeId(), manifestId,
       disposition: observation.gateState === "eligible" ? observation.relation : "quarantined",
       targetConceptId: observation.conceptId,
-      createdConceptId: index < input.analysis.observations.length && input.analysis.observations[index]?.concept ? observation.conceptId : null,
+      createdConceptId: index < analysis.observations.length && analysis.observations[index]?.concept ? observation.conceptId : null,
       observationId: observation.id,
       candidateStatement: observation.statement,
       evidenceRefs: observation.evidenceRefs,
@@ -79,18 +103,47 @@ export class ContentKnowledgeService {
       status: contributions.length === 0 ? "accepted_no_new_knowledge"
         : contributions.every((item) => item.disposition === "quarantined") ? "quarantined" : "accepted",
       contributionIds: contributions.map((item) => item.id),
-      quarantineReasons,
+      quarantineReasons: [...unavailableEvidence.map((item) => `evidence:${item.availability}:${item.ref}`), ...quarantineReasons],
       createdAt: this.now(),
       decidedAt: this.now()
     };
     const saved = this.repository.saveManifest(manifest, contributions, input.operationKey, commandHash(input));
+    this.repository.syncConceptProjection(this.research.list());
     return { manifest: saved, contributions, idempotent: ingested.idempotent };
+    }); } catch (error) {
+      this.research.reload?.();
+      throw error;
+    }
   }
+
+  rebuildProjections() {
+    const parity = this.repository.rebuildProjections();
+    this.repository.syncConceptProjection(this.research.list());
+    return parity;
+  }
+
+  projectionParity() { return this.repository.projectionParity(); }
+
+  syncProjection(): void { this.repository.syncConceptProjection(this.research.list()); }
 
   listContributions(subjectType?: string, subjectId?: string, analysisRevisionId?: string) {
     const manifests = this.repository.listManifests(subjectType, subjectId)
       .filter((item) => !analysisRevisionId || item.analysisRevisionId === analysisRevisionId);
     return manifests.map((manifest) => ({ manifest, contributions: this.repository.listContributions(manifest.id) }));
+  }
+
+  recordLegacyUnverified(raw: unknown): KnowledgeContributionManifest {
+    const input = legacyKnowledgeManifestInputSchema.parse(raw);
+    const prior = this.repository.getManifestByAnalysis(input.analysisRevisionId, "legacy-import-v1");
+    if (prior) return prior;
+    const timestamp = this.now();
+    const manifest: KnowledgeContributionManifest = {
+      id: this.makeId(), subjectType: input.subjectType, subjectId: input.subjectId,
+      analysisRevisionId: input.analysisRevisionId, compilerPolicyVersion: "legacy-import-v1",
+      inputFingerprint: input.inputFingerprint, status: "legacy_unverified", contributionIds: [],
+      quarantineReasons: [`legacy_unverified:${input.reason}`], createdAt: timestamp, decidedAt: timestamp
+    };
+    return this.repository.saveManifest(manifest, [], input.operationKey, commandHash(input));
   }
 
   adjudicateEdge(raw: unknown): SemanticEdge {
@@ -219,6 +272,12 @@ export class ContentKnowledgeService {
     if (!owner) return { ...binding, status: "invalidated" };
     if (["invalidated", "retired"].includes(owner.concept.status)) return { ...binding, status: "invalidated" };
     return owner.currentRevision.id === binding.targetId ? binding : { ...binding, status: "stale_available" };
+  }
+
+  private contributionsForConcept(conceptId: string) {
+    return this.repository.listManifests().flatMap((manifest) => this.repository.listContributions(manifest.id)
+      .filter((contribution) => contribution.targetConceptId === conceptId || contribution.createdConceptId === conceptId)
+      .map((contribution) => ({ manifest, contribution })));
   }
 
   private resolveEdgeStatus(edge: SemanticEdge): SemanticEdge {

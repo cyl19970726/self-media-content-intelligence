@@ -35,7 +35,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Add focused service tests for each state transition and prohibited shortcut.
   - _Requirements: R1, R2, R4, R6, R7, R8, R10_
 
-- [ ] 3. Add durable SQLite storage and rebuildable projections
+- [x] 3. Add durable SQLite storage and rebuildable projections
   - Implement additive SQLite tables/indexes and an append-only decision ledger compatible with the existing local runtime.
   - Make command writes and projection updates atomic.
   - Add concept, contribution, lineage, gap, binding, and validation read projections.
@@ -43,7 +43,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Verify reopen, replay, idempotency, and projection parity with repository tests.
   - _Requirements: R5, R6, R9, R12_
 
-- [ ] 4. Migrate existing Research Learning behind the new repository boundary
+- [x] 4. Migrate existing Research Learning behind the new repository boundary
   - Replay existing concept/revision/observation events into the new read model without rewriting historical decisions.
   - Keep current `/api/v1/research-concepts` reads working through a compatibility facade.
   - Mark resolvable historical analyses for backfill and isolate prose-only records as `legacy_unverified`.
@@ -64,6 +64,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Ensure retrying an unchanged analysis revision cannot duplicate observations.
   - Add integration tests for video, creator, comparison, no-new-knowledge, and insufficient-evidence paths.
   - _Requirements: R2, R3, R4, R9, R10_
+  - **Current slice:** the production single-post path, no-new-knowledge, Evidence quarantine, retry/idempotency and recovery tests are complete under Issue #24. Creator and comparison production triggers remain intentionally pending, so this broader V1 task stays unchecked.
 
 - [x] 7. Build the Knowledge index and concept detail surfaces
   - Add the top-level Knowledge navigation route and client API types.

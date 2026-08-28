@@ -69,6 +69,71 @@ describe("content knowledge compilation", () => {
     expect(result.manifest.status).toBe("accepted_no_new_knowledge");
     expect(result.contributions).toEqual([]);
   });
+
+  it("records no-new-knowledge for a later revision whose claim is already covered", () => {
+    const { knowledge } = fixture();
+    const observation = { concept: { slug: "covered", kind: "content_mechanism" as const, name: "已覆盖", definition: "相同判断不重复写入。", exclusions: ["语义不同的判断。"] }, relation: "confirm" as const, statement: "这个判断已经存在。", evidenceRefs: ["evidence:covered"], confidence: "high" as const };
+    const common = { compilerPolicyVersion: "v1", evidenceGate: [{ ref: "evidence:covered", availability: "available" as const }] };
+    knowledge.compile({ ...common, operationKey: "covered:1", inputFingerprint: "sha256:covered-1", analysis: { analysisRevisionId: "covered-1", subjectType: "video", subjectId: "video-1", creatorId: "creator-1", videoId: "video-1", deepReconstruction: true, lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" }, observations: [observation] } });
+    const result = knowledge.compile({ ...common, operationKey: "covered:2", inputFingerprint: "sha256:covered-2", analysis: { analysisRevisionId: "covered-2", subjectType: "video", subjectId: "video-2", creatorId: "creator-1", videoId: "video-2", deepReconstruction: true, lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" }, observations: [observation] } });
+    expect(result.manifest.status).toBe("accepted_no_new_knowledge");
+    expect(result.contributions).toEqual([]);
+  });
+
+  it("quarantines candidates with a structured missing Evidence reason", () => {
+    const { knowledge } = fixture();
+    const result = knowledge.compile({
+      operationKey: "missing-evidence", compilerPolicyVersion: "v1", inputFingerprint: "sha256:missing",
+      evidenceGate: [{ ref: "evidence:missing", availability: "missing" }],
+      analysis: { analysisRevisionId: "missing-evidence", subjectType: "video", subjectId: "video-missing", creatorId: "creator", videoId: "video-missing", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "missing-evidence", kind: "proof_mode", name: "缺失证据", definition: "缺失证据不得晋升。", exclusions: ["证据完整。"] }, relation: "confirm", statement: "不能接受。", evidenceRefs: ["evidence:missing"], confidence: "high" }] }
+    });
+    expect(result.manifest.status).toBe("quarantined");
+    expect(result.manifest.quarantineReasons).toContain("evidence:missing:evidence:missing");
+    expect(result.contributions[0]?.disposition).toBe("quarantined");
+  });
+
+  it("rebuilds every knowledge projection from the decision ledger without changing results", () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "content-knowledge-rebuild-"));
+    directories.push(directory);
+    const repository = new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite"));
+    const research = new ResearchLearningService(undefined, undefined, repository);
+    const knowledge = new ContentKnowledgeService(repository, research);
+    const result = knowledge.compile({
+      operationKey: "compile:rebuild", compilerPolicyVersion: "v1", inputFingerprint: "sha256:rebuild",
+      analysis: {
+        analysisRevisionId: "analysis-rebuild", subjectType: "video", subjectId: "video-rebuild",
+        creatorId: "creator-rebuild", videoId: "video-rebuild", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "rebuild-proof", kind: "proof_mode", name: "可重建证据", definition: "知识投影可从裁决账本恢复。", exclusions: ["仅存在于缓存中的状态。"] }, relation: "confirm", statement: "重建后贡献保持一致。", evidenceRefs: ["evidence:rebuild"], confidence: "high" }]
+      }
+    });
+    const before = knowledge.projectionParity();
+    const after = knowledge.rebuildProjections();
+    expect(after).toEqual(before);
+    expect(knowledge.listContributions("video", "video-rebuild")[0]?.manifest.id).toBe(result.manifest.id);
+    expect(knowledge.listKnowledge({ query: "可重建" })).toHaveLength(1);
+    knowledge.close();
+  });
+
+  it("rolls back research events and in-memory state when the manifest command conflicts", () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "content-knowledge-atomic-"));
+    directories.push(directory);
+    const repository = new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite"));
+    const research = new ResearchLearningService(undefined, undefined, repository);
+    const knowledge = new ContentKnowledgeService(repository, research);
+    const base = {
+      operationKey: "same-operation", compilerPolicyVersion: "v1", inputFingerprint: "sha256:first",
+      analysis: { analysisRevisionId: "atomic-1", subjectType: "video" as const, subjectId: "atomic-1", creatorId: "creator", videoId: "atomic-1", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready" as const, directingLogic: "ready" as const, visualEditingLogic: "ready" as const },
+        observations: [{ concept: { slug: "atomic-one", kind: "proof_mode" as const, name: "Atomic one", definition: "First", exclusions: ["none"] }, relation: "confirm" as const, statement: "First", evidenceRefs: ["evidence:first"], confidence: "high" as const }] }
+    };
+    knowledge.compile(base);
+    expect(() => knowledge.compile({ ...base, inputFingerprint: "sha256:second", analysis: { ...base.analysis, analysisRevisionId: "atomic-2", observations: [{ ...base.analysis.observations[0]!, concept: { ...base.analysis.observations[0]!.concept, slug: "atomic-two" } }] } })).toThrow(/idempotency conflict/u);
+    expect(research.list().map((item) => item.concept.slug)).toEqual(["atomic-one"]);
+    knowledge.close();
+  });
 });
 
 describe("creation and validation boundary", () => {

@@ -10,14 +10,14 @@ available. A design document is never implementation proof by itself.
 
 | Initiative | Implementation maturity | Lifecycle | Verification level | Canonical destination |
 | --- | --- | --- | --- | --- |
-| Content Knowledge System V1 | Partial; current vertical slice is operational, backfill/recovery/release acceptance remains | Active | Automated domain/API/UI tests; 5/13 original task groups checked | [Active record](initiatives/active/content-knowledge-system-v1/requirements.md) |
+| Content Knowledge System V1 | Partial; the single-post research → revisioned Knowledge slice is operational, while creator/comparison compilation and later creation/practice slices remain | Active | Atomic ledger/projection recovery, migration parity, compiler/API/UI tests; 7/13 task groups checked | [Active record](initiatives/active/content-knowledge-system-v1/requirements.md) |
 | Creator Analysis OS V1 | Partial product implementation; normative research and UI contracts remain active, six task groups unresolved | Active | Automated projections/gates plus recorded depth-parity evidence; 38/44 tasks checked | [Active record](initiatives/active/creator-analysis-os-v1/README.md) |
-| Human Director Skill Study | Research outputs exist; productization is not an accepted platform feature | Active research | Bounded study artifacts and holdout reports; no product release gate | [Active record](initiatives/active/human-director-director-skill/study-plan.md) |
+| Human Director Skill Study | Research study completed; productization remains governed separately | Completed | 19/19 reconstructions, 14 observation samples, five blind holdouts, static review and three forward tests | [Completed record](initiatives/completed/human-director-director-skill/study-plan.md) |
 | Creation and Publishing V1 | Implemented for the declared platform matrix and guarded publication flow | Completed | 7/7 tasks, domain/API/adapter tests, compiled Worker/API smoke | [Completed record](initiatives/completed/creation-publishing-v1/requirements.md) |
 | Creator Provider Adapters | Implemented for Ego Browser/RedFox routing and bounded discovery | Completed | 8/8 tasks, adapter tests, historical real-integration handoff | [Completed record](initiatives/completed/creator-provider-adapters/requirements.md) |
 | Creator Research Architecture | Implemented durable jobs, artifact policy, bounded reconstruction, and projections | Completed | 7/7 tasks and automated service/adapter/projection tests | [Completed record](initiatives/completed/creator-research-architecture/requirements.md) |
 | Creator Video Concurrency | Implemented bounded video lanes and idempotent aggregation | Completed | 11/11 tasks and reordered-completion/concurrency tests | [Completed record](initiatives/completed/creator-video-concurrency/requirements.md) |
-| Repository Architecture and Governance | Phase 1–3 implemented; documentation and Evidence separation tracked in Issue #13 | Active | PR CI, repository policy, dependency checks, 42 test files / 192 tests at Phase 3 close | [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13) |
+| Repository Architecture and Governance | Package boundaries, documentation convergence and external Evidence separation implemented | Completed | PR/main CI, repository policy, dependency checks, external Evidence parity and recovery records | [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13) |
 
 ## Promotion and supersession
 

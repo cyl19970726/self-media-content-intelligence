@@ -238,7 +238,13 @@ Promotion policy partitions evidence by origin. First-party practice can support
 
 ### 5.1 Canonical write model
 
-The content-knowledge context uses the append-only decision ledger already established by Research Learning. A domain command validates current state, appends a typed event, and updates relational read state in one SQLite transaction.
+The content-knowledge context uses one SQLite transaction boundary for the
+append-only Research Learning ledger, Knowledge decision ledger and their read
+projections. On first compatible startup, legacy `research-learning.sqlite`
+events are copied without changing payloads or IDs into
+`content-knowledge.sqlite`; the legacy file remains a rollback source. A domain
+command validates current state, appends typed events, and updates relational
+read state atomically.
 
 This is not a mandate to event-source the entire product. Publication jobs, acquisition runs, and other operational domains keep their existing models.
 
@@ -259,7 +265,9 @@ knowledge_projection_lineage
 knowledge_search_fts
 ```
 
-The event ledger and immutable research artifacts remain the authoritative history. Projection and FTS tables are rebuildable.
+The event ledgers and immutable research artifacts remain the authoritative
+history. Projection and FTS tables are rebuildable through the service/API entry
+documented in `docs/operations/knowledge-recovery.md`.
 
 ### 5.3 Projection strategy
 

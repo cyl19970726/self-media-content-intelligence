@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AlertTriangle, CheckCircle2, Database, LoaderCircle, Search } from "lucide-react";
 import type { EvidenceAccessProjection, EvidenceAvailability } from "../../packages/contracts/index";
 import { getEvidenceAccess } from "./api";
@@ -21,15 +22,15 @@ const reasonLabels: Record<EvidenceAccessProjection["reason"], string> = {
 };
 
 export default function EvidenceInspector() {
+  const [searchParams] = useSearchParams();
   const [evidenceId, setEvidenceId] = useState("");
   const [result, setResult] = useState<EvidenceAccessProjection | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const inspect = async (event: FormEvent) => {
-    event.preventDefault();
+  const inspectId = useCallback(async (id: string) => {
     setLoading(true);
     try {
-      setResult(await getEvidenceAccess(evidenceId.trim()));
+      setResult(await getEvidenceAccess(id));
       setError(null);
     } catch (cause) {
       setResult(null);
@@ -37,7 +38,14 @@ export default function EvidenceInspector() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+  useEffect(() => {
+    const requested = searchParams.get("evidenceId")?.trim();
+    if (!requested) return;
+    setEvidenceId(requested);
+    void inspectId(requested);
+  }, [inspectId, searchParams]);
+  const inspect = async (event: FormEvent) => { event.preventDefault(); await inspectId(evidenceId.trim()); };
 
   return <main className="evidence-inspector">
     <header><p className="eyebrow"><span>EVIDENCE ACCESS</span><span>MANIFEST → STORE → HASH</span></p>

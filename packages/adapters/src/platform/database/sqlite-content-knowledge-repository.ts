@@ -9,12 +9,23 @@ import {
   type KnowledgeContributionManifest, type PracticeValidation, type SemanticEdge
 } from "../../../../knowledge/index.js";
 import type { ContentKnowledgeRepository } from "../../../../knowledge/index.js";
+import type { KnowledgeProjectionParity } from "../../../../knowledge/index.js";
+import {
+  researchLearningEventSchema,
+  type ResearchLearningEvent,
+  type ResearchLearningEventStore
+} from "../../../../research/index.js";
+import type { ResearchConceptRead } from "../../../../contracts/index.js";
 
 interface JsonRow { value_json: string }
 interface OperationRow { command_hash: string; result_json: string }
+interface DecisionRow { event_type: string; snapshot_json: string }
+interface ResearchEventRow { event_json: string }
 
-export class SQLiteContentKnowledgeRepository implements ContentKnowledgeRepository {
+export class SQLiteContentKnowledgeRepository implements ContentKnowledgeRepository, ResearchLearningEventStore {
   private readonly db: DatabaseSync;
+  private transactionDepth = 0;
+  private closed = false;
 
   constructor(filePath: string) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -57,7 +68,53 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
         sequence INTEGER PRIMARY KEY AUTOINCREMENT, operation_key TEXT NOT NULL UNIQUE,
         event_type TEXT NOT NULL, entity_id TEXT NOT NULL, snapshot_json TEXT NOT NULL, created_at TEXT NOT NULL
       );
+      CREATE TABLE IF NOT EXISTS research_learning_events (
+        sequence INTEGER PRIMARY KEY AUTOINCREMENT,
+        event_type TEXT NOT NULL,
+        event_json TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      );
+      CREATE TABLE IF NOT EXISTS knowledge_concept_projection (
+        concept_id TEXT PRIMARY KEY, name TEXT NOT NULL, definition TEXT NOT NULL,
+        exclusions TEXT NOT NULL, value_json TEXT NOT NULL, updated_at TEXT NOT NULL
+      );
     `);
+    try {
+      this.db.exec(`CREATE VIRTUAL TABLE IF NOT EXISTS knowledge_concept_fts USING fts5(
+        concept_id UNINDEXED, name, definition, exclusions, tokenize='unicode61'
+      )`);
+    } catch (error) {
+      this.db.close();
+      const detail = error instanceof Error ? error.message : String(error);
+      throw new Error(`Knowledge search requires SQLite FTS5; database initialization stopped: ${detail}`);
+    }
+  }
+
+  transaction<T>(operation: () => T): T {
+    if (this.transactionDepth > 0) return operation();
+    this.db.exec("BEGIN IMMEDIATE");
+    this.transactionDepth += 1;
+    try {
+      const result = operation();
+      this.db.exec("COMMIT");
+      return result;
+    } catch (error) {
+      this.db.exec("ROLLBACK");
+      throw error;
+    } finally {
+      this.transactionDepth -= 1;
+    }
+  }
+
+  append(event: ResearchLearningEvent): void {
+    const parsed = researchLearningEventSchema.parse(event);
+    this.db.prepare("INSERT INTO research_learning_events (event_type, event_json, created_at) VALUES (?, ?, ?)")
+      .run(parsed.type, JSON.stringify(parsed), new Date().toISOString());
+  }
+
+  load(): ResearchLearningEvent[] {
+    const rows = this.db.prepare("SELECT event_json FROM research_learning_events ORDER BY sequence ASC").all() as unknown as ResearchEventRow[];
+    return rows.map((row) => researchLearningEventSchema.parse(JSON.parse(row.event_json) as unknown));
   }
 
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeContributionManifest | null {
@@ -162,18 +219,76 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
     return (rows as unknown as JsonRow[]).map((row) => practiceValidationSchema.parse(JSON.parse(row.value_json) as unknown));
   }
 
-  close(): void { this.db.close(); }
+  syncConceptProjection(concepts: ResearchConceptRead[]): void {
+    this.transaction(() => {
+      const upsert = this.db.prepare(`INSERT INTO knowledge_concept_projection
+        (concept_id, name, definition, exclusions, value_json, updated_at) VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(concept_id) DO UPDATE SET name=excluded.name, definition=excluded.definition,
+        exclusions=excluded.exclusions, value_json=excluded.value_json, updated_at=excluded.updated_at`);
+      const removeFts = this.db.prepare("DELETE FROM knowledge_concept_fts WHERE concept_id = ?");
+      const insertFts = this.db.prepare("INSERT INTO knowledge_concept_fts (concept_id, name, definition, exclusions) VALUES (?, ?, ?, ?)");
+      const ids = new Set(concepts.map((item) => item.concept.id));
+      for (const row of this.db.prepare("SELECT concept_id FROM knowledge_concept_projection").all() as unknown as Array<{ concept_id: string }>) {
+        if (!ids.has(row.concept_id)) {
+          this.db.prepare("DELETE FROM knowledge_concept_projection WHERE concept_id = ?").run(row.concept_id);
+          removeFts.run(row.concept_id);
+        }
+      }
+      for (const item of concepts) {
+        const exclusions = item.currentRevision.exclusions.join("\n");
+        upsert.run(item.concept.id, item.concept.name, item.currentRevision.definition, exclusions, JSON.stringify(item), new Date().toISOString());
+        removeFts.run(item.concept.id);
+        insertFts.run(item.concept.id, item.concept.name, item.currentRevision.definition, exclusions);
+      }
+    });
+  }
+
+  searchConceptIds(query: string): string[] {
+    const ftsQuery = query.trim().split(/\s+/u).filter(Boolean).map((term) => `"${term.replaceAll('"', '""')}"`).join(" AND ");
+    if (ftsQuery) {
+      const ranked = this.db.prepare(`SELECT concept_id FROM knowledge_concept_fts
+        WHERE knowledge_concept_fts MATCH ? ORDER BY bm25(knowledge_concept_fts), concept_id`).all(ftsQuery) as unknown as Array<{ concept_id: string }>;
+      if (ranked.length > 0) return ranked.map((row) => row.concept_id);
+    }
+    const escaped = `%${query.replaceAll("%", "\\%").replaceAll("_", "\\_")}%`;
+    const rows = this.db.prepare(`SELECT concept_id FROM knowledge_concept_projection
+      WHERE name LIKE ? ESCAPE '\\' OR definition LIKE ? ESCAPE '\\' OR exclusions LIKE ? ESCAPE '\\'
+      ORDER BY updated_at DESC`).all(escaped, escaped, escaped) as unknown as Array<{ concept_id: string }>;
+    return rows.map((row) => row.concept_id);
+  }
+
+  rebuildProjections(): KnowledgeProjectionParity {
+    return this.transaction(() => {
+      this.db.exec(`DELETE FROM knowledge_contributions; DELETE FROM knowledge_manifests;
+        DELETE FROM knowledge_edges; DELETE FROM knowledge_bindings;
+        DELETE FROM creation_hypotheses; DELETE FROM practice_validations;
+        DELETE FROM knowledge_concept_projection; DELETE FROM knowledge_concept_fts;`);
+      const rows = this.db.prepare("SELECT event_type, snapshot_json FROM knowledge_decision_events ORDER BY sequence ASC").all() as unknown as DecisionRow[];
+      for (const row of rows) this.replayDecision(row);
+      return this.projectionParity();
+    });
+  }
+
+  projectionParity(): KnowledgeProjectionParity {
+    const count = (table: string) => Number((this.db.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get() as { count: number }).count);
+    return {
+      eventCount: count("knowledge_decision_events"), manifestCount: count("knowledge_manifests"),
+      contributionCount: count("knowledge_contributions"), edgeCount: count("knowledge_edges"),
+      bindingCount: count("knowledge_bindings"), hypothesisCount: count("creation_hypotheses"),
+      validationCount: count("practice_validations")
+    };
+  }
+
+  close(): void { if (!this.closed) { this.closed = true; this.db.close(); } }
 
   private write<T>(operationKey: string, commandHash: string, eventType: string, entityId: string, value: T,
     persist: () => void, schema: z.ZodType<T>): T {
-    this.db.exec("BEGIN IMMEDIATE");
-    try {
+    return this.transaction(() => {
       const prior = this.db.prepare("SELECT command_hash, result_json FROM knowledge_operations WHERE operation_key = ?")
         .get(operationKey) as OperationRow | undefined;
       if (prior) {
         if (prior.command_hash !== commandHash) throw new Error(`idempotency conflict for operation ${operationKey}`);
         const result = schema.parse(JSON.parse(prior.result_json) as unknown);
-        this.db.exec("COMMIT");
         return result;
       }
       persist();
@@ -181,12 +296,45 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
       this.db.prepare("INSERT INTO knowledge_operations (operation_key, command_hash, result_json, created_at) VALUES (?, ?, ?, ?)")
         .run(operationKey, commandHash, JSON.stringify(value), now);
       this.db.prepare("INSERT INTO knowledge_decision_events (operation_key, event_type, entity_id, snapshot_json, created_at) VALUES (?, ?, ?, ?, ?)")
-        .run(operationKey, eventType, entityId, JSON.stringify(value), now);
-      this.db.exec("COMMIT");
+        .run(operationKey, eventType, entityId, JSON.stringify(eventType === "manifest_saved" ? { entity: value, contributions: this.listContributions(entityId) } : { entity: value }), now);
       return value;
-    } catch (error) {
-      this.db.exec("ROLLBACK");
-      throw error;
+    });
+  }
+
+  private replayDecision(row: DecisionRow): void {
+    const snapshot = JSON.parse(row.snapshot_json) as { entity?: unknown; contributions?: unknown[] } | unknown;
+    const wrapped = typeof snapshot === "object" && snapshot !== null && "entity" in snapshot;
+    const entity = wrapped ? (snapshot as { entity: unknown }).entity : snapshot;
+    if (row.event_type === "manifest_saved") {
+      const manifest = knowledgeContributionManifestSchema.parse(entity);
+      this.db.prepare(`INSERT INTO knowledge_manifests
+        (id, analysis_revision_id, compiler_policy_version, subject_type, subject_id, created_at, value_json)
+        VALUES (?, ?, ?, ?, ?, ?, ?)`)
+        .run(manifest.id, manifest.analysisRevisionId, manifest.compilerPolicyVersion, manifest.subjectType, manifest.subjectId, manifest.createdAt, JSON.stringify(manifest));
+      const contributions = wrapped ? ((snapshot as { contributions?: unknown[] }).contributions ?? []) : [];
+      for (const raw of contributions) {
+        const item = knowledgeContributionSchema.parse(raw);
+        this.db.prepare("INSERT INTO knowledge_contributions (id, manifest_id, value_json) VALUES (?, ?, ?)").run(item.id, manifest.id, JSON.stringify(item));
+      }
+      return;
+    }
+    if (row.event_type === "edge_saved") {
+      const item = semanticEdgeSchema.parse(entity);
+      this.db.prepare("INSERT INTO knowledge_edges (id, source_concept_id, target_concept_id, created_at, value_json) VALUES (?, ?, ?, ?, ?)")
+        .run(item.id, item.sourceConceptId, item.targetConceptId, item.createdAt, JSON.stringify(item));
+    } else if (row.event_type === "binding_saved") {
+      const item = knowledgeBindingSchema.parse(entity);
+      this.db.prepare("INSERT INTO knowledge_bindings (id, package_id, target_id, created_at, value_json) VALUES (?, ?, ?, ?, ?)")
+        .run(item.id, item.contentPackageId, item.targetId, item.createdAt, JSON.stringify(item));
+    } else if (row.event_type === "hypothesis_saved") {
+      const item = creationHypothesisSchema.parse(entity);
+      this.db.prepare("INSERT INTO creation_hypotheses (id, package_id, created_at, value_json) VALUES (?, ?, ?, ?)")
+        .run(item.id, item.contentPackageId, item.createdAt, JSON.stringify(item));
+    } else if (row.event_type === "validation_saved") {
+      const item = practiceValidationSchema.parse(entity);
+      this.db.prepare(`INSERT INTO practice_validations (id, publication_run_id, updated_at, value_json) VALUES (?, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET updated_at=excluded.updated_at, value_json=excluded.value_json`)
+        .run(item.id, item.publicationRunId, item.updatedAt, JSON.stringify(item));
     }
   }
 }

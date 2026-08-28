@@ -26,6 +26,11 @@ export function registerKnowledgeRoutes(
   app.get("/api/v1/knowledge", listKnowledge);
   app.get("/api/v1/knowledge/search", listKnowledge);
   app.get("/api/v1/knowledge/gaps", (_request, response) => response.json({ gaps: knowledge.gaps() }));
+  app.get("/api/v1/knowledge/projection-parity", (_request, response) => response.json(knowledge.projectionParity()));
+  app.post("/api/v1/knowledge/projections/rebuild", (_request, response) => {
+    try { return response.json(knowledge.rebuildProjections()); }
+    catch (error) { return knowledgeError(response, error); }
+  });
 
   app.get("/api/v1/knowledge/contributions", (request, response) => {
     const subjectType = typeof request.query.subjectType === "string" ? request.query.subjectType : undefined;
@@ -47,6 +52,10 @@ export function registerKnowledgeRoutes(
 
   app.post("/api/v1/knowledge/compilations", (request, response) => {
     try { return response.status(201).json(knowledge.compile(request.body)); }
+    catch (error) { return knowledgeError(response, error); }
+  });
+  app.post("/api/v1/knowledge/legacy-manifests", (request, response) => {
+    try { return response.status(201).json(knowledge.recordLegacyUnverified(request.body)); }
     catch (error) { return knowledgeError(response, error); }
   });
 

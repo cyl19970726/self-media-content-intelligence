@@ -23,10 +23,12 @@ owned by schemas and code.
   and the explicit owner confirmation gate.
 - [Evidence migration runbook](evidence/migration-runbook.md) — guarded copy,
   verification, compatibility-view, removal, and rollback gates.
+- [Knowledge recovery runbook](operations/knowledge-recovery.md) — database
+  backup, legacy Research Learning migration, projection parity and rollback.
 - [Development workflow](development/workflow.md) — branch, Worktree, validation,
   PR, merge, and initiative lifecycle.
-- [Repository overhaul tracking issue](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
-  — the authoritative execution checklist for the migration.
+- [Repository overhaul record](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
+  — the completed execution record for the repository migration.
 
 ## Durable decisions
 

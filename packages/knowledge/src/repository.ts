@@ -2,8 +2,20 @@ import type {
   CreationHypothesis, KnowledgeBinding, KnowledgeContribution, KnowledgeContributionManifest,
   PracticeValidation, SemanticEdge
 } from "./contracts.js";
+import type { ResearchConceptRead } from "../../contracts/index.js";
+
+export interface KnowledgeProjectionParity {
+  eventCount: number;
+  manifestCount: number;
+  contributionCount: number;
+  edgeCount: number;
+  bindingCount: number;
+  hypothesisCount: number;
+  validationCount: number;
+}
 
 export interface ContentKnowledgeRepository {
+  transaction<T>(operation: () => T): T;
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeContributionManifest | null;
   saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string): KnowledgeContributionManifest;
   listManifests(subjectType?: string, subjectId?: string): KnowledgeContributionManifest[];
@@ -18,5 +30,9 @@ export interface ContentKnowledgeRepository {
   saveValidation(validation: PracticeValidation, operationKey: string, commandHash: string): PracticeValidation;
   getValidation(id: string): PracticeValidation | null;
   listValidations(publicationRunId?: string): PracticeValidation[];
+  syncConceptProjection(concepts: ResearchConceptRead[]): void;
+  searchConceptIds(query: string): string[];
+  rebuildProjections(): KnowledgeProjectionParity;
+  projectionParity(): KnowledgeProjectionParity;
   close(): void;
 }

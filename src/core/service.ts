@@ -10,6 +10,10 @@ import { RunStore } from "./store.js";
 import { parseSourceUrl } from "./url-router.js";
 import { emptyReportV2, type ParsedSource, type ReportEnvelope } from "../shared/schema.js";
 
+export interface AnalysisCompletionPort {
+  publish(report: ReportEnvelope): void;
+}
+
 function now(): string {
   return new Date().toISOString();
 }
@@ -39,7 +43,7 @@ function stage(report: ReportEnvelope, id: "collect" | "media" | "analyze") {
 }
 
 export class AnalysisService {
-  constructor(private readonly store: RunStore) {}
+  constructor(private readonly store: RunStore, private readonly completion?: AnalysisCompletionPort) {}
 
   create(inputUrl: string): ReportEnvelope {
     const report = initialReport(parseSourceUrl(inputUrl));
@@ -127,6 +131,16 @@ export class AnalysisService {
       report.updatedAt = now();
       this.store.save(report);
       writeArtifact(id, "report.json", report);
+      try {
+        this.completion?.publish(report);
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : "未知错误";
+        analyzeStage.message = `报告完成；知识贡献写入失败：${reason}`;
+        report.limitations = [...report.limitations, `知识贡献未写入：${reason}`];
+        report.updatedAt = now();
+        this.store.save(report);
+        writeArtifact(id, "report.json", report);
+      }
       return report;
     } catch (error) {
       report.status = "failed";

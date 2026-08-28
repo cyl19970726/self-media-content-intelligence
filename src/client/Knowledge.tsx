@@ -9,6 +9,19 @@ const scopeLabels = {
 } as const;
 const relationLabels = { confirm: "支持", qualify: "限定", contradict: "反驳" } as const;
 
+function subjectHref(type: "video" | "creator" | "comparison" | "practice_validation", id: string): string | null {
+  if (type === "video") return `/runs/${id}`;
+  if (type === "creator") return `/creators/${id}`;
+  if (type === "comparison") return `/comparisons/${id}`;
+  return null;
+}
+
+function evidenceHref(reference: string): string | null {
+  const match = /^run:([^:]+):report\.json#/u.exec(reference);
+  if (match?.[1]) return `/artifacts/${encodeURIComponent(match[1])}/report.json`;
+  return reference.startsWith("evidence:") ? `/evidence?evidenceId=${encodeURIComponent(reference.slice("evidence:".length))}` : null;
+}
+
 export default function KnowledgeWorkspace() {
   const { conceptId } = useParams();
   const navigate = useNavigate();
@@ -64,8 +77,9 @@ export default function KnowledgeWorkspace() {
         {(["confirm", "qualify", "contradict"] as const).map((relation) => <div className={`evidence-lane evidence-lane--${relation}`} key={relation}>
           <h3>{relationLabels[relation]} <b>{detail.research.observations.filter((item) => item.relation === relation).length}</b></h3>
           <div>{detail.research.observations.filter((item) => item.relation === relation).map((item) => <article key={item.id}>
-            <span>{item.subjectType} / {item.subjectId}</span><p>{item.statement}</p>
-            <small>{item.confidence} · {item.gateState} · {item.analysisRevisionId}</small>
+            <span>{item.subjectType} / {subjectHref(item.subjectType, item.subjectId) ? <Link to={subjectHref(item.subjectType, item.subjectId)!}>{item.subjectId}</Link> : item.subjectId}</span><p>{item.statement}</p>
+            <small>{item.confidence} · {item.gateState} · concept revision {item.conceptRevisionId} · analysis {item.analysisRevisionId}</small>
+            <ul>{item.evidenceRefs.map((reference) => <li key={reference}>{evidenceHref(reference) ? <a href={evidenceHref(reference)!} target="_blank" rel="noreferrer">{reference}</a> : reference}</li>)}</ul>
           </article>)}</div>
         </div>)}
       </section>
@@ -73,6 +87,12 @@ export default function KnowledgeWorkspace() {
         <span>REVISION DECISIONS</span>
         {detail.research.revisions.slice().reverse().map((revision) => <article key={revision.id}>
           <b>R{revision.revision}</b><div><strong>{revision.changeType}</strong><p>{revision.decision}</p></div><small>{revision.createdAt.slice(0, 10)}</small>
+        </article>)}
+      </section>
+      <section className="knowledge-history">
+        <span>CONTRIBUTION LINEAGE</span>
+        {detail.contributions.map(({ manifest, contribution }) => <article key={contribution.id}>
+          <b>{contribution.disposition}</b><div><strong>{manifest.subjectType} / {manifest.subjectId}</strong><p>{contribution.decisionReason}</p></div><small>{manifest.compilerPolicyVersion}</small>
         </article>)}
       </section>
     </article>
