@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 import { loadVideoResearch } from "./video-research.js";
 
 const emptyService = { list: () => [], get: () => null } as unknown as CreatorResearchService;

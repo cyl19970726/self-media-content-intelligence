@@ -4,8 +4,7 @@ import type { Server } from "node:http";
 import { Command } from "commander";
 import { AnalysisService } from "../../../src/core/service.js";
 import { RunStore } from "../../../src/core/store.js";
-import { apiPort, webBaseUrl } from "../../../src/core/config.js";
-import { runFile } from "../../../src/core/process.js";
+import { apiPort, webBaseUrl, runFile } from "../../../packages/adapters/index.js";
 import { createSignalRoomComposition } from "../../../src/server/composition-root.js";
 
 const program = new Command();

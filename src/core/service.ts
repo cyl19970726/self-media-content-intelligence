@@ -3,7 +3,7 @@ import { fixtureAdapter } from "./adapters/fixture.js";
 import { xAdapter } from "./adapters/x.js";
 import { xiaohongshuAdapter } from "./adapters/xiaohongshu.js";
 import type { PlatformAdapter } from "./adapters/types.js";
-import { writeArtifact } from "./artifacts.js";
+import { writeArtifact } from "../../packages/adapters/index.js";
 import { analyzeMedia, resolveVideo } from "./media.js";
 import { buildAnalysis } from "./report.js";
 import { RunStore } from "./store.js";

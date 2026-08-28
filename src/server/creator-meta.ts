@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { projectRoot } from "../core/config.js";
+import { projectRoot } from "../../packages/adapters/index.js";
 
 /**
  * Shared artifact readers + per-creator metadata.

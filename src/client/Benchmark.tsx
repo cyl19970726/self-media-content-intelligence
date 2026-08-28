@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ArrowRight, LoaderCircle } from "lucide-react";
 import { createComparisonProject, getComparisonDossier, getCreatorDossier, listComparisonProjects, listCreators } from "./api";
-import type { ComparisonCreatorSource, ComparisonProject } from "../modules/comparison/project-contracts";
+import type { ComparisonCreatorSource, ComparisonProject } from "../../packages/research/contracts";
 import type { ComparisonDossier } from "../shared/comparison-dossier";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier";
 import { KnowledgeContributionBlock } from "./KnowledgeContributionBlock";

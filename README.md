@@ -53,20 +53,13 @@ npm run dev
   Worker 组装入口；
 - `src/server/routes/`：按 Publishing、Knowledge 和 Learning Loop 拆分的
   HTTP 路由注册；
-- `src/modules/orchestration/`：任务、租约、事件和执行器合同；
-- `src/modules/creator-research/`：博主研究状态机和 Worker；
-- `src/modules/portfolio/`：可复算的全量统计、平均/中位锚点与 21 条选择合同；
-- `src/modules/video-analysis/`：对接 `video-content-reconstruction` 的输入、阻塞与硬闸结果合同；
-- `src/modules/media-resolution/`：临时媒体地址消费、本地完整性校验与无签名清单；
-- `src/modules/creator-synthesis/`：21 条与 9 条硬闸后的研究归纳合同；
-- `src/modules/comparison/`：固定 revision 的比较项目、后台 Worker 与账号内部归一化分析；
-- `src/modules/publishing/`：内容包、平台版本、发布状态机、审批闸门与持久 Worker；
-- `src/platform/database/`：SQLite 持久账本；
-- `src/platform/artifacts/`：可替换的本地 Artifact Store；
-- `src/platform/browser/`：ego-browser 适配器；
-- `src/platform/media/`、`video/`、`synthesis/`：媒体、重建/独立评审、账号归纳适配器；
-- `src/platform/network/`：只读取当前系统代理并传给子进程，不改变系统设置；
-- `src/platform/publishing/`：小红书、抖音、微信视频号、微信公众号与 B 站 Ego Browser 发布适配器；
+- `packages/contracts/`：浏览器与服务端共享的 DTO、事件和 Zod schema；
+- `packages/research/`：博主研究、组合比较、知识学习、Learning Loop、选样与视频硬闸；
+- `packages/knowledge/`：知识贡献、概念关系、绑定、假设与实践验证；
+- `packages/creation/`：内容包、平台版本、发布状态机、审批闸门与 Worker；
+- `packages/runtime/`：Worker/Resource 生命周期与可靠关闭；
+- `packages/adapters/`：SQLite、Artifact、Ego Browser、RedFox、媒体、模型与进程适配；
+- `packages/testkit/`：内存 ports、确定性 Artifact Store 与合同测试工具；
 - `src/core/creator-research-*`：迁移期兼容入口。
 
 ## CLI

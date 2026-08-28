@@ -1,7 +1,7 @@
 import { asNumber, asRecord, asString, formatCount, positioningOf, readJson, videoEvidenceCount } from "./creator-meta.js";
 import type { CreatorSummary } from "../shared/schema.js";
 import { loadNextWaveCreatorSummaries } from "./next-wave-creators.js";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 
 function redWitch(): CreatorSummary | null {
   const analysis = readJson("ai-red-witch/selected-high-like/analysis.json");

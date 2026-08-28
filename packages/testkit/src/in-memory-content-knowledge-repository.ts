@@ -1,0 +1,39 @@
+import type {
+  ContentKnowledgeRepository, CreationHypothesis, KnowledgeBinding, KnowledgeContribution,
+  KnowledgeContributionManifest, PracticeValidation, SemanticEdge
+} from "../../knowledge/index.js";
+
+export class InMemoryContentKnowledgeRepository implements ContentKnowledgeRepository {
+  private manifests: KnowledgeContributionManifest[] = [];
+  private contributions: KnowledgeContribution[] = [];
+  private edges: SemanticEdge[] = [];
+  private bindings: KnowledgeBinding[] = [];
+  private hypotheses: CreationHypothesis[] = [];
+  private validations: PracticeValidation[] = [];
+  private operations = new Map<string, { commandHash: string; value: unknown }>();
+
+  getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string) { return this.manifests.find((item) => item.analysisRevisionId === analysisRevisionId && item.compilerPolicyVersion === compilerPolicyVersion) ?? null; }
+  saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, manifest, () => { this.manifests.push(manifest); this.contributions.push(...contributions); }); }
+  listManifests(subjectType?: string, subjectId?: string) { return this.manifests.filter((item) => (!subjectType || item.subjectType === subjectType) && (!subjectId || item.subjectId === subjectId)); }
+  listContributions(manifestId: string) { return this.contributions.filter((item) => item.manifestId === manifestId); }
+  saveEdge(edge: SemanticEdge, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, edge, () => this.edges.push(edge)); }
+  listEdges(conceptId?: string) { return this.edges.filter((item) => !conceptId || item.sourceConceptId === conceptId || item.targetConceptId === conceptId); }
+  saveBinding(binding: KnowledgeBinding, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, binding, () => this.bindings.push(binding)); }
+  listBindings(contentPackageId?: string, conceptRevisionId?: string) { return this.bindings.filter((item) => (!contentPackageId || item.contentPackageId === contentPackageId) && (!conceptRevisionId || item.targetId === conceptRevisionId)); }
+  saveHypothesis(hypothesis: CreationHypothesis, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, hypothesis, () => this.hypotheses.push(hypothesis)); }
+  getHypothesis(id: string) { return this.hypotheses.find((item) => item.id === id) ?? null; }
+  listHypotheses(contentPackageId: string) { return this.hypotheses.filter((item) => item.contentPackageId === contentPackageId); }
+  saveValidation(validation: PracticeValidation, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, validation, () => { const index = this.validations.findIndex((item) => item.id === validation.id); if (index === -1) this.validations.push(validation); else this.validations[index] = validation; }); }
+  getValidation(id: string) { return this.validations.find((item) => item.id === id) ?? null; }
+  listValidations(publicationRunId?: string) { return this.validations.filter((item) => !publicationRunId || item.publicationRunId === publicationRunId); }
+  close(): void { /* no resources */ }
+
+  private write<T>(operationKey: string, commandHash: string, value: T, persist: () => void): T {
+    const prior = this.operations.get(operationKey);
+    if (prior) {
+      if (prior.commandHash !== commandHash) throw new Error(`idempotency conflict for operation ${operationKey}`);
+      return prior.value as T;
+    }
+    persist(); this.operations.set(operationKey, { commandHash, value }); return value;
+  }
+}

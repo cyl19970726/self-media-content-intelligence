@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { CreatorResearchService } from "../modules/creator-research/service.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { CreatorDossier, ResearchStatement } from "../shared/creator-dossier.js";
 import type { VideoResearch } from "../shared/video-research.js";
 import { loadCreatorDossier } from "./creator-dossier.js";

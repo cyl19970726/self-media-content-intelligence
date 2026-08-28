@@ -1,8 +1,6 @@
 # Repository Package Boundaries
 
-Status: **Apps workspace, Composition Root, contracts, knowledge, creation,
-runtime lifecycle, and research policy boundaries implemented; service/adapters
-extraction remains incremental**
+Status: **Implemented and protected by CI**
 
 Tracking: [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 
@@ -13,10 +11,11 @@ automation, background work, a Web UI, an API, and a CLI. This document defines
 where those responsibilities are moving and which dependency directions future
 work must preserve.
 
-The four executable Apps now exist. The first domain slices and the browser-safe
-research contracts/policies have moved behind public workspace entry points.
-Research services, adapters, and testkit remain in their transitional locations
-until their vertical slices are verified.
+The four executable Apps and all seven target packages now exist. Research
+services depend on explicit repository, artifact, media, reconstruction, and
+synthesis ports. Concrete filesystem, SQLite, browser, provider, model, and
+process implementations live in `packages/adapters`; reusable in-memory ports
+live in `packages/testkit`.
 
 ## Current structural debt
 
@@ -29,16 +28,18 @@ The repository now uses npm workspaces for four executable Apps:
 - `src/server/composition-root.ts` is the transitional single assembly point;
 - `src/server/routes` owns domain-specific HTTP registration;
 - `packages/contracts`, `packages/knowledge`, `packages/creation`,
-  `packages/runtime`, and `packages/research` are real workspaces with public
-  `index.ts` entry points;
-- `src/modules`, `src/core`, and `src/platform` still contain overlapping domain,
-  workflow, compatibility, and infrastructure responsibilities.
+  `packages/runtime`, `packages/research`, `packages/adapters`, and
+  `packages/testkit` are real workspaces with public entry points;
+- `src/server` owns HTTP/read projections and the transitional composition root;
+- `src/core` retains the legacy single-post analysis slice and compatibility
+  facades, but no longer owns research or platform implementations.
 
 Durable resources and platform implementations are selected by the Composition
 Root, and Service constructors require their dependencies. Knowledge consumes an
-explicit research port instead of a server class, and creation consumes an
-explicit media-access port instead of the filesystem. Remaining modules that
-consume server projections are Phase 3 migration inputs.
+explicit research port instead of a server class; creation consumes an explicit
+media-access port; creator research delegates artifact filesystem behavior to its
+artifact port. Package boundary checks reject reverse dependencies, legacy paths,
+and cross-package internal imports.
 
 ## Target structure
 
@@ -137,9 +138,9 @@ in-memory test graph but must not silently open SQLite or start workers.
 2. Move executable entry points into Apps and centralize composition.
 3. Extract contracts, knowledge, and creation; protect their public boundaries
    with `scripts/check-package-boundaries.mjs`. **Implemented.**
-4. Extract runtime process lifecycle and research policies/contracts.
-   **Implemented.** Move research services and adapters by vertical slice.
-5. Expand the automated dependency rules only after each new boundary is real.
+4. Extract runtime lifecycle, research services/policies, adapters, and testkit.
+   **Implemented.**
+5. Protect every real boundary with automated dependency rules. **Implemented.**
 
 Every step must preserve current API, CLI, UI, and stored-data behavior or ship an
 explicit compatibility migration. The target tree is complete only when the

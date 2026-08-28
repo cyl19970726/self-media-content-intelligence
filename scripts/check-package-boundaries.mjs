@@ -37,6 +37,12 @@ for (const file of sourceFiles) {
       failures.push(`${file}: package internals are private; import its public index (${specifier})`);
     }
 
+    if ((file.startsWith("src/client/") || file.startsWith("apps/web/")) && resolved?.startsWith("packages/")) {
+      const browserSafe = /^packages\/contracts\/(?:index(?:\.js)?)?$/u.test(resolved)
+        || /^packages\/(?:research|knowledge|creation)\/contracts(?:\.js)?$/u.test(resolved);
+      if (!browserSafe) failures.push(`${file}: Web code may import only browser-safe contract entrypoints (${specifier})`);
+    }
+
     if (specifier.includes("modules/content-knowledge") || specifier.includes("modules/publishing")
       || specifier.includes("shared/research-learning")) {
       failures.push(`${file}: imports a removed compatibility path (${specifier})`);
@@ -44,7 +50,7 @@ for (const file of sourceFiles) {
   }
 }
 
-for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research"]) {
+for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research", "adapters", "testkit"]) {
   const packageRoot = path.join(root, "packages", packageName);
   if (!fs.existsSync(path.join(packageRoot, "package.json")) || !fs.existsSync(path.join(packageRoot, "index.ts"))) {
     failures.push(`packages/${packageName}: workspace requires package.json and public index.ts`);

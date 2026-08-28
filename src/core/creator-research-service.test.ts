@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { CreatorResearchService } from "./creator-research-service.js";
 import { CreatorResearchStore } from "./creator-research-store.js";
 import type { CreatorBrowserExecutor } from "../../packages/research/index.js";
-import type { CreatorArtifactStore } from "../modules/creator-research/artifact-store.js";
+import type { CreatorArtifactStore } from "../../packages/research/index.js";
 import type { DeepMediaResolver, VideoReconstructionExecutor, CreatorSynthesisExecutor } from "../../packages/research/index.js";
 
 const temporaryDirectories: string[] = [];
@@ -28,7 +28,9 @@ function serviceForTest(options: {
       const value = values.get(reference);
       if (value === undefined) throw new Error(`missing artifact ${reference}`);
       return structuredClone(value);
-    }
+    },
+    archiveReconstructionEvaluations() { /* in-memory fixture has no physical evaluations */ },
+    reconstructionProgress() { return "runner_start"; }
   };
   const mediaResolver: DeepMediaResolver = {
     async resolve(input) {
@@ -97,7 +99,8 @@ function serviceForTest(options: {
     artifacts,
     mediaResolver,
     videoReconstructor,
-    synthesisExecutor
+    synthesisExecutor,
+    3
   );
 }
 
