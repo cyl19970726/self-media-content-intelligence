@@ -30,7 +30,7 @@ function extension(filePath) {
 
 function knownConsumers() {
   try {
-    return command("rg", ["-l", "artifacts/", "apps", "packages", "src", "scripts", "docs", "skills", "README.md", "--glob", "!**/*.test.ts"])
+    return command("git", ["grep", "-l", "-e", "artifacts/", "--", "apps", "packages", "src", "scripts", "docs", "skills", "README.md", ":(exclude)**/*.test.ts"])
       .split("\n").filter(Boolean).sort();
   } catch (error) {
     if (error && typeof error === "object" && "status" in error && error.status === 1) return [];
