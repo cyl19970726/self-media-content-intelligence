@@ -11,6 +11,8 @@ import { contentPackageSchema, platformVariantSchema, publicationRunSchema } fro
 import { SQLitePublishingRepository } from "../platform/database/sqlite-publishing-repository.js";
 import type { ResearchLearningService } from "./research-learning.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
+import type { RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
+import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
 import { createApp } from "./app.js";
 
 const directories: string[] = [];
@@ -31,14 +33,16 @@ async function fixtureServer() {
   const publishing = new PublishingService(new SQLitePublishingRepository(path.join(directory, "db.sqlite")));
   publishingServices.push(publishing);
   const unused = {} as unknown;
-  const app = createApp(
-    unused as AnalysisService,
-    unused as CreatorResearchService,
-    unused as ComparisonProjectService,
-    { list: () => [], get: () => null } as unknown as ResearchLearningService,
-    unused as LearningLoopControlPlane,
-    publishing
-  );
+  const app = createApp({
+    analysis: unused as AnalysisService,
+    creatorResearch: unused as CreatorResearchService,
+    comparisons: unused as ComparisonProjectService,
+    researchLearning: { list: () => [], get: () => null } as unknown as ResearchLearningService,
+    learningLoop: unused as LearningLoopControlPlane,
+    publishing,
+    creatorDiscovery: unused as RedFoxCreatorDiscoveryService,
+    contentKnowledge: unused as ContentKnowledgeService
+  });
   const server = app.listen(0, "127.0.0.1");
   servers.push(server);
   await new Promise<void>((resolve) => server.once("listening", resolve));

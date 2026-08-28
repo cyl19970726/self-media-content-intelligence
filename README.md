@@ -47,6 +47,12 @@ npm run dev
 
 代码边界：
 
+- `apps/web/`、`api/`、`worker/`、`cli/`：四个可执行入口；API 默认内嵌
+  Worker 以保持现有启动行为，也可用 `npm run worker` 独立运行 Worker；
+- `src/server/composition-root.ts`：当前唯一的持久服务、平台 Adapter 与
+  Worker 组装入口；
+- `src/server/routes/`：按 Publishing、Knowledge 和 Learning Loop 拆分的
+  HTTP 路由注册；
 - `src/modules/orchestration/`：任务、租约、事件和执行器合同；
 - `src/modules/creator-research/`：博主研究状态机和 Worker；
 - `src/modules/portfolio/`：可复算的全量统计、平均/中位锚点与 21 条选择合同；

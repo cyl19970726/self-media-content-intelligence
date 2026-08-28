@@ -5,12 +5,12 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "dist-server",
-    "rootDir": "src",
+    "rootDir": ".",
     "noEmit": false,
     "declaration": false,
     "sourceMap": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/core", "src/server", "src/cli", "src/shared"],
+  "include": ["apps/api", "apps/worker", "apps/cli", "src/core", "src/server", "src/cli", "src/shared"],
   "exclude": ["src/**/*.test.ts"]
 }

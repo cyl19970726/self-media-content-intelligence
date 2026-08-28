@@ -34,10 +34,16 @@ async function fixtureServer() {
   const publishing = new PublishingService(new SQLitePublishingRepository(path.join(directory, "publishing.sqlite")));
   closeables.push(knowledge, publishing);
   const unused = {} as unknown;
-  const app = createApp(
-    unused as AnalysisService, unused as CreatorResearchService, unused as ComparisonProjectService,
-    research, unused as LearningLoopControlPlane, publishing, new RedFoxCreatorDiscoveryService(), knowledge
-  );
+  const app = createApp({
+    analysis: unused as AnalysisService,
+    creatorResearch: unused as CreatorResearchService,
+    comparisons: unused as ComparisonProjectService,
+    researchLearning: research,
+    learningLoop: unused as LearningLoopControlPlane,
+    publishing,
+    creatorDiscovery: new RedFoxCreatorDiscoveryService(),
+    contentKnowledge: knowledge
+  });
   const server = app.listen(0, "127.0.0.1");
   servers.push(server);
   await new Promise<void>((resolve) => server.once("listening", resolve));

@@ -9,56 +9,40 @@ import { PublishingService } from "../modules/publishing/service.js";
 import { projectRoot, runtimeDir } from "../core/config.js";
 import { createCreatorResearchRunInputSchema, createRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
 import { defaultAiCreatorKeywords, RedFoxCreatorDiscoveryService } from "../modules/creator-discovery/redfox-service.js";
-import {
-  approvePublicationInputSchema, createContentPackageInputSchema, createPublicationInputSchema,
-  variantInputSchema
-} from "../modules/publishing/contracts.js";
 import { loadCreatorSummaries } from "./creators.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
 import { loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
-import { createDurableResearchLearningService } from "./research-learning.js";
-import { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
-import { InMemoryContentKnowledgeRepository } from "../modules/content-knowledge/repository.js";
+import type { ResearchLearningService } from "./research-learning.js";
+import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
 import { importNextWaveCreatorSnapshot } from "./next-wave-import.js";
-import {
-  addLearningLoopArtifactInputSchema,
-  addLearningLoopCasesInputSchema,
-  adjudicateLearningLoopInputSchema,
-  beginLearningLoopRegressionInputSchema,
-  beginLearningLoopBlindInputSchema,
-  createDurableLearningLoopControlPlane,
-  createLearningLoopInputSchema,
-  moveLearningLoopInputSchema,
-  recordLearningLoopDiagnosisInputSchema,
-  recordLearningLoopLensGateInputSchema,
-  recordLearningLoopRegressionInputSchema,
-  recordLearningLoopBlindResultInputSchema,
-  stopLearningLoopInputSchema,
-  type LearningLoopControlPlane
-} from "./learning-loop.js";
+import type { LearningLoopControlPlane } from "./learning-loop.js";
+import { registerPublishingRoutes } from "./routes/publishing.js";
+import { registerKnowledgeRoutes } from "./routes/knowledge.js";
+import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
 
-function learningLoopError(response: express.Response, error: unknown): express.Response {
-  const message = error instanceof z.ZodError
-    ? error.issues[0]?.message ?? "输入无效"
-    : error instanceof Error ? error.message : "学习循环操作失败";
-  const status = message.includes("not found") || message.includes("不存在")
-    ? 404
-    : message.includes("cannot") || message.includes("required") || message.includes("missing") ? 409 : 400;
-  return response.status(status).json({ error: message });
+export interface AppDependencies {
+  analysis: AnalysisService;
+  creatorResearch: CreatorResearchService;
+  comparisons: ComparisonProjectService;
+  researchLearning: ResearchLearningService;
+  learningLoop: LearningLoopControlPlane;
+  publishing: PublishingService;
+  creatorDiscovery: RedFoxCreatorDiscoveryService;
+  contentKnowledge: ContentKnowledgeService;
 }
 
-export function createApp(
-  service = new AnalysisService(),
-  creatorResearchService = new CreatorResearchService(),
-  comparisonProjectService = new ComparisonProjectService(creatorResearchService),
-  researchLearningService = createDurableResearchLearningService(),
-  learningLoopControlPlane: LearningLoopControlPlane = createDurableLearningLoopControlPlane(),
-  publishingService = new PublishingService(),
-  creatorDiscoveryService = new RedFoxCreatorDiscoveryService(),
-  contentKnowledgeService: ContentKnowledgeService = new ContentKnowledgeService(new InMemoryContentKnowledgeRepository(), researchLearningService)
-) {
+export function createApp({
+  analysis: service,
+  creatorResearch: creatorResearchService,
+  comparisons: comparisonProjectService,
+  researchLearning: researchLearningService,
+  learningLoop: learningLoopControlPlane,
+  publishing: publishingService,
+  creatorDiscovery: creatorDiscoveryService,
+  contentKnowledge: contentKnowledgeService
+}: AppDependencies) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
   app.use(express.json({ limit: "1mb" }));
@@ -79,85 +63,7 @@ export function createApp(
     response.json({ ok: true });
   });
 
-  const publishingError = (response: express.Response, error: unknown): express.Response => {
-    const message = error instanceof z.ZodError
-      ? error.issues[0]?.message ?? "输入无效"
-      : error instanceof Error ? error.message : "发布操作失败";
-    const status = message.includes("不存在") ? 404
-      : message.includes("不能") || message.includes("不一致") || message.includes("变化") ? 409 : 400;
-    return response.status(status).json({ error: message });
-  };
-
-  app.get("/api/v1/content-packages", (request, response) => {
-    const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));
-    return response.json({ packages: publishingService.listPackages(limit) });
-  });
-
-  app.post("/api/v1/content-packages", (request, response) => {
-    try { return response.status(201).json(publishingService.createPackage(createContentPackageInputSchema.parse(request.body))); }
-    catch (error) { return publishingError(response, error); }
-  });
-
-  app.get("/api/v1/content-packages/:id", (request, response) => {
-    const value = publishingService.getPackage(request.params.id);
-    return value ? response.json(value) : response.status(404).json({ error: "内容包不存在" });
-  });
-
-  app.post("/api/v1/content-packages/:id/variants", (request, response) => {
-    try { return response.status(201).json(publishingService.createVariant(request.params.id, variantInputSchema.parse(request.body))); }
-    catch (error) { return publishingError(response, error); }
-  });
-
-  app.put("/api/v1/content-variants/:id", (request, response) => {
-    try { return response.json(publishingService.updateVariant(request.params.id, variantInputSchema.parse(request.body))); }
-    catch (error) { return publishingError(response, error); }
-  });
-
-  app.get("/api/v1/publications", (request, response) => {
-    const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));
-    return response.json({ publications: publishingService.listRuns(limit) });
-  });
-
-  app.post("/api/v1/publications", (request, response) => {
-    try {
-      const input = createPublicationInputSchema.parse(request.body);
-      return response.status(201).json(publishingService.createRun(input.variantId));
-    } catch (error) { return publishingError(response, error); }
-  });
-
-  app.get("/api/v1/publications/:id", (request, response) => {
-    const value = publishingService.getRun(request.params.id);
-    return value ? response.json(value) : response.status(404).json({ error: "发布任务不存在" });
-  });
-
-  app.get("/api/v1/publications/:id/events", (request, response) => {
-    const value = publishingService.getRun(request.params.id);
-    if (!value) return response.status(404).json({ error: "发布任务不存在" });
-    const after = Math.max(0, Number(request.query.after ?? 0));
-    return response.json({ events: publishingService.events(value.id, Number.isFinite(after) ? after : 0) });
-  });
-
-  app.post("/api/v1/publications/:id/prepare", (request, response) => {
-    try { return response.status(202).json(publishingService.prepare(request.params.id)); }
-    catch (error) { return publishingError(response, error); }
-  });
-
-  app.post("/api/v1/publications/:id/approve", (request, response) => {
-    try {
-      const input = approvePublicationInputSchema.parse(request.body);
-      return response.status(202).json(publishingService.approve(request.params.id, input.revision));
-    } catch (error) { return publishingError(response, error); }
-  });
-
-  app.post("/api/v1/publications/:id/cancel", (request, response) => {
-    try { return response.status(202).json(publishingService.cancel(request.params.id)); }
-    catch (error) { return publishingError(response, error); }
-  });
-
-  app.post("/api/v1/publications/:id/resume", (request, response) => {
-    try { return response.status(202).json(publishingService.resume(request.params.id)); }
-    catch (error) { return publishingError(response, error); }
-  });
+  registerPublishingRoutes(app, publishingService);
 
   app.get("/api/creators", (_request, response) => {
     response.json({ creators: loadCreatorSummaries(creatorResearchService) });
@@ -367,223 +273,9 @@ export function createApp(
     return response.json(concept);
   });
 
-  const knowledgeError = (response: express.Response, error: unknown): express.Response => {
-    const message = error instanceof z.ZodError
-      ? error.issues[0]?.message ?? "知识请求无效"
-      : error instanceof Error ? error.message : "知识操作失败";
-    const status = message.includes("not found") || message.includes("不存在") ? 404
-      : message.includes("must") || message.includes("requires") || message.includes("cannot") || message.includes("forbidden") ? 409 : 400;
-    return response.status(status).json({ error: message });
-  };
+  registerKnowledgeRoutes(app, contentKnowledgeService, publishingService);
 
-  app.get("/api/v1/knowledge", (request, response) => {
-    const query = typeof request.query.q === "string" ? request.query.q : undefined;
-    const scope = typeof request.query.scope === "string" ? request.query.scope : undefined;
-    const status = typeof request.query.status === "string" ? request.query.status : undefined;
-    return response.json({ concepts: contentKnowledgeService.listKnowledge({ query, scope, status }) });
-  });
-
-  app.get("/api/v1/knowledge/search", (request, response) => {
-    const query = typeof request.query.q === "string" ? request.query.q : undefined;
-    const scope = typeof request.query.scope === "string" ? request.query.scope : undefined;
-    const status = typeof request.query.status === "string" ? request.query.status : undefined;
-    return response.json({ concepts: contentKnowledgeService.listKnowledge({ query, scope, status }) });
-  });
-
-  app.get("/api/v1/knowledge/gaps", (_request, response) => response.json({ gaps: contentKnowledgeService.gaps() }));
-
-  app.get("/api/v1/knowledge/contributions", (request, response) => {
-    const subjectType = typeof request.query.subjectType === "string" ? request.query.subjectType : undefined;
-    const subjectId = typeof request.query.subjectId === "string" ? request.query.subjectId : undefined;
-    const analysisRevisionId = typeof request.query.analysisRevisionId === "string" ? request.query.analysisRevisionId : undefined;
-    return response.json({ manifests: contentKnowledgeService.listContributions(subjectType, subjectId, analysisRevisionId) });
-  });
-
-  app.get("/api/v1/knowledge/:conceptId", (request, response) => {
-    const value = contentKnowledgeService.getKnowledge(request.params.conceptId);
-    return value ? response.json(value) : response.status(404).json({ error: "知识概念不存在" });
-  });
-
-  app.get("/api/v1/knowledge/:conceptId/lineage", (request, response) => {
-    const value = contentKnowledgeService.getKnowledge(request.params.conceptId);
-    if (!value) return response.status(404).json({ error: "知识概念不存在" });
-    return response.json({ conceptId: request.params.conceptId, observations: value.research.observations, edges: value.edges, bindings: value.bindings });
-  });
-
-  app.post("/api/v1/knowledge/compilations", (request, response) => {
-    try { return response.status(201).json(contentKnowledgeService.compile(request.body)); }
-    catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.post("/api/v1/knowledge/edges/adjudications", (request, response) => {
-    try { return response.status(201).json(contentKnowledgeService.adjudicateEdge(request.body)); }
-    catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.get("/api/v1/content-packages/:id/knowledge-bindings", (request, response) => {
-    if (!publishingService.getPackage(request.params.id)) return response.status(404).json({ error: "内容包不存在" });
-    return response.json({ bindings: contentKnowledgeService.listBindings(request.params.id), hypotheses: contentKnowledgeService.listHypotheses(request.params.id) });
-  });
-
-  app.post("/api/v1/content-packages/:id/knowledge-bindings", (request, response) => {
-    try {
-      const pkg = publishingService.getPackage(request.params.id);
-      if (!pkg) return response.status(404).json({ error: "内容包不存在" });
-      return response.status(201).json(contentKnowledgeService.createBinding({ ...request.body, contentPackageId: pkg.package.id }));
-    } catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.post("/api/v1/content-packages/:id/hypotheses", (request, response) => {
-    try {
-      const pkg = publishingService.getPackage(request.params.id);
-      if (!pkg) return response.status(404).json({ error: "内容包不存在" });
-      return response.status(201).json(contentKnowledgeService.createHypothesis({ ...request.body, contentPackageId: pkg.package.id }));
-    } catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.get("/api/v1/practice-validations/:id", (request, response) => {
-    const value = contentKnowledgeService.getValidation(request.params.id);
-    return value ? response.json(value) : response.status(404).json({ error: "实践验证不存在" });
-  });
-
-  app.post("/api/v1/publications/:id/practice-validations", (request, response) => {
-    try {
-      const run = publishingService.getRun(request.params.id);
-      if (!run) return response.status(404).json({ error: "发布任务不存在" });
-      return response.status(201).json(contentKnowledgeService.createValidation({
-        ...request.body, publicationRunId: run.id, variantRevision: run.variantRevision
-      }));
-    } catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.get("/api/v1/publications/:id/practice-validations", (request, response) => {
-    if (!publishingService.getRun(request.params.id)) return response.status(404).json({ error: "发布任务不存在" });
-    return response.json({ validations: contentKnowledgeService.listValidations(request.params.id) });
-  });
-
-  app.post("/api/v1/practice-validations/:id/submit", (request, response) => {
-    try { return response.status(202).json(contentKnowledgeService.submitValidation(request.params.id, request.body)); }
-    catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.post("/api/v1/practice-validations/:id/adjudicate", (request, response) => {
-    try { return response.status(202).json(contentKnowledgeService.adjudicateValidation(request.params.id, request.body)); }
-    catch (error) { return knowledgeError(response, error); }
-  });
-
-  app.get("/api/v1/learning-loops", (request, response) => {
-    const rawLimit = Number(request.query.limit ?? 50);
-    const limit = Number.isFinite(rawLimit) ? Math.min(100, Math.max(1, Math.trunc(rawLimit))) : 50;
-    return response.json({ runs: learningLoopControlPlane.list(limit) });
-  });
-
-  app.get("/api/v1/learning-loops/:id", (request, response) => {
-    const run = learningLoopControlPlane.get(request.params.id);
-    if (!run) return response.status(404).json({ error: "学习循环不存在" });
-    return response.json(run);
-  });
-
-  app.get("/api/v1/learning-loops/:id/events", (request, response) => {
-    if (!learningLoopControlPlane.get(request.params.id)) return response.status(404).json({ error: "学习循环不存在" });
-    return response.json({ events: learningLoopControlPlane.events(request.params.id) });
-  });
-
-  app.get("/api/v1/learning-loops/:id/gates", (request, response) => {
-    const run = learningLoopControlPlane.get(request.params.id);
-    if (!run) return response.status(404).json({ error: "学习循环不存在" });
-    return response.json({ gates: run.gates });
-  });
-
-  app.get("/api/v1/learning-loops/:id/lineage", (request, response) => {
-    const lineage = learningLoopControlPlane.lineage(request.params.id);
-    if (!lineage) return response.status(404).json({ error: "学习循环不存在" });
-    return response.json(lineage);
-  });
-
-  const learningLoopMutation = <T,>(schema: z.ZodType<T>, action: (input: T) => unknown): express.RequestHandler =>
-    (request, response) => {
-      try {
-        return response.status(202).json(action(schema.parse(request.body)));
-      } catch (error) {
-        const message = error instanceof z.ZodError
-          ? error.issues[0]?.message ?? "输入无效"
-          : error instanceof Error ? error.message : "学习循环操作失败";
-        const status = message.includes("not found") || message.includes("不存在") ? 404 : message.includes("cannot") || message.includes("required") || message.includes("missing") ? 409 : 400;
-        return response.status(status).json({ error: message });
-      }
-    };
-
-  app.post("/api/v1/learning-loops", learningLoopMutation(createLearningLoopInputSchema,
-    (input) => learningLoopControlPlane.service.create(input)));
-
-  // These handlers intentionally expose only bounded orchestration commands. The Dashboard remains read-only.
-  app.post("/api/v1/learning-loops/:id/artifacts", (request, response) => {
-    try {
-      const input = addLearningLoopArtifactInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.addArtifact(request.params.id, input.operationKey, input.artifact));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/cases", (request, response) => {
-    try {
-      const input = addLearningLoopCasesInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.addCases(request.params.id, input.operationKey, input.cases));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/move", (request, response) => {
-    try {
-      const input = moveLearningLoopInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.move(request.params.id, input.operationKey, input.target));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/blind-traces", (request, response) => {
-    try {
-      const input = beginLearningLoopBlindInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.beginBlindTesting(request.params.id, input.operationKey, input.traces));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/lens-gates", (request, response) => {
-    try {
-      const input = recordLearningLoopLensGateInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.recordLensGate(request.params.id, input.operationKey, input.gate));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/blind-results", (request, response) => {
-    try {
-      const input = recordLearningLoopBlindResultInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.recordBlindResults(request.params.id, input.operationKey, input.updates));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/stop", (request, response) => {
-    try {
-      const input = stopLearningLoopInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.stop(request.params.id, input.operationKey, input.status, input.reason));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/diagnoses", (request, response) => {
-    try {
-      const input = recordLearningLoopDiagnosisInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.recordDiagnosis(request.params.id, input.operationKey, input.diagnosis));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/regression/begin", (request, response) => {
-    try {
-      const input = beginLearningLoopRegressionInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.beginRegression(request.params.id, input.operationKey));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/regressions", (request, response) => {
-    try {
-      const input = recordLearningLoopRegressionInputSchema.parse(request.body);
-      return response.status(202).json(learningLoopControlPlane.service.recordRegression(request.params.id, input.operationKey, input.regression, input.gates));
-    } catch (error) { return learningLoopError(response, error); }
-  });
-  app.post("/api/v1/learning-loops/:id/adjudications", (request, response) => {
-    try {
-      const input = adjudicateLearningLoopInputSchema.parse(request.body);
-      const decisions = input.decisions.map((decision) => ({ ...decision, eligible: decision.decision === "promote" }));
-      return response.status(202).json(learningLoopControlPlane.service.adjudicate(request.params.id, input.operationKey, decisions));
-    } catch (error) { return learningLoopError(response, error); }
-  });
+  registerLearningLoopRoutes(app, learningLoopControlPlane);
 
   app.get("/api/runs", (request, response) => {
     const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));

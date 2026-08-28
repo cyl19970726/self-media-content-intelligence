@@ -1,14 +1,11 @@
 import { randomUUID } from "node:crypto";
 import type { CreatorArtifactStore } from "../creator-research/artifact-store.js";
-import { LocalCreatorArtifactStore } from "../../platform/artifacts/local-creator-artifact-store.js";
-import { SQLiteComparisonProjectRepository } from "../../platform/database/sqlite-comparison-project-repository.js";
 import type { CreatorResearchService } from "../creator-research/service.js";
 import type { ComparisonProjectRepository } from "./repository.js";
 import { compareCreatorPortfolios } from "./analyzer.js";
 import { comparisonProjectSchema, createComparisonProjectInputSchema, type ComparisonCreatorSource, type ComparisonProject } from "./project-contracts.js";
 import { creatorComparisonSchema } from "./contracts.js";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../portfolio/contracts.js";
-import { loadCreatorDossier } from "../../server/creator-dossier.js";
 import type { CreatorDossier } from "../../shared/creator-dossier.js";
 
 function now(): string { return new Date().toISOString(); }
@@ -108,9 +105,9 @@ function legacySnapshot(dossier: CreatorDossier): ResolvedComparableSource {
 export class ComparisonProjectService {
   constructor(
     private readonly creators: CreatorResearchService,
-    private readonly repository: ComparisonProjectRepository = new SQLiteComparisonProjectRepository(),
-    private readonly artifacts: CreatorArtifactStore = new LocalCreatorArtifactStore(),
-    private readonly dossierLoader: DossierLoader = loadCreatorDossier
+    private readonly repository: ComparisonProjectRepository,
+    private readonly artifacts: CreatorArtifactStore,
+    private readonly dossierLoader: DossierLoader
   ) {}
 
   private resolve(source: ComparisonCreatorSource): ResolvedComparableSource {

@@ -32,7 +32,7 @@ describe("ComparisonProjectService", () => {
       read(reference) { const value = values.get(reference); if (!value) throw new Error("missing artifact"); return structuredClone(value); }
     };
     const repository = new MemoryRepository();
-    const service = new ComparisonProjectService(creators, repository, artifacts);
+    const service = new ComparisonProjectService(creators, repository, artifacts, loadCreatorDossier);
     const sources = ["ai-red-witch", "zhang-zala"].map((creatorId) => {
       const dossier = loadCreatorDossier(creators, creatorId);
       expect(dossier).not.toBeNull();
