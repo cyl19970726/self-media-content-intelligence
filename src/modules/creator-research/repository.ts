@@ -1,5 +1,5 @@
 import type { CreatorResearchEvent, CreatorResearchRun } from "../../shared/schema.js";
-import type { ResearchJob, ResearchJobStatus } from "../orchestration/contracts.js";
+import type { ResearchJob, ResearchJobStatus } from "../../../packages/research/index.js";
 
 export type AppendEventInput = Omit<CreatorResearchEvent, "sequence">;
 export type ResearchJobLane = "any" | "serial" | "video";

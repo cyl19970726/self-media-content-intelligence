@@ -3,7 +3,7 @@ import type {
   CreatorAcquisitionResult,
   CreatorBrowserExecutor,
   CreatorDetailResult
-} from "../../modules/orchestration/contracts.js";
+} from "../../../packages/research/index.js";
 import { advanceCreatorCrawl } from "./creator-crawl-policy.js";
 
 const resultMarker = "__SELF_MEDIA_CREATOR_RESULT__";

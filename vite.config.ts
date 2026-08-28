@@ -3,6 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  test: {
+    include: ["src/**/*.test.ts", "packages/**/*.test.ts"],
+    exclude: ["dist/**", "dist-server/**", "node_modules/**"]
+  },
   server: {
     host: "127.0.0.1",
     port: 5173,
@@ -16,4 +20,3 @@ export default defineConfig({
     outDir: "dist"
   }
 });
-

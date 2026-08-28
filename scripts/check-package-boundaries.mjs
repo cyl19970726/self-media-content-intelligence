@@ -44,7 +44,7 @@ for (const file of sourceFiles) {
   }
 }
 
-for (const packageName of ["contracts", "knowledge", "creation"]) {
+for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research"]) {
   const packageRoot = path.join(root, "packages", packageName);
   if (!fs.existsSync(path.join(packageRoot, "package.json")) || !fs.existsSync(path.join(packageRoot, "index.ts"))) {
     failures.push(`packages/${packageName}: workspace requires package.json and public index.ts`);

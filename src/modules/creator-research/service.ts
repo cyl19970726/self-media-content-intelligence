@@ -7,32 +7,38 @@ import {
   type CreatorResearchEvent,
   type CreatorResearchRun
 } from "../../shared/schema.js";
-import type { CreatorAcquisitionResult, CreatorBrowserExecutor, CreatorDetailResult, ResearchJob } from "../orchestration/contracts.js";
 import type { CreatorResearchRepository, ResearchJobLane } from "./repository.js";
 import type { CreatorArtifactStore } from "./artifact-store.js";
-import { buildCreatorPortfolio, refineDeepSelectionForVerifiedVideos } from "../portfolio/analyzer.js";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
-import { creatorDetailCollectionSchema } from "../creator-detail/contracts.js";
-import type { DeepMediaResolver } from "../media-resolution/contracts.js";
-import type {
-  VideoReconstructionExecutor,
-  VideoReconstructionLifecycleEvent,
-  VideoReconstructionOutcome
-} from "../video-analysis/contracts.js";
-import { videoReconstructionRequestSchema } from "../video-analysis/contracts.js";
-import { videoReconstructionBatchSchema } from "../video-analysis/batch-contracts.js";
-import type { CreatorSynthesisExecutor, CreatorSynthesisLifecycleEvent } from "../creator-synthesis/contracts.js";
-import { deepMediaManifestSchema } from "../media-resolution/contracts.js";
 import {
+  buildCreatorPortfolio,
+  refineDeepSelectionForVerifiedVideos,
+  creatorPortfolioAnalysisSchema,
+  creatorSelectionSchema,
+  creatorDetailCollectionSchema,
+  videoReconstructionRequestSchema,
+  videoReconstructionBatchSchema,
+  deepMediaManifestSchema,
   creatorSynthesisGateSchema,
   creatorSynthesisIndependentEvaluationSchema,
-  creatorSynthesisSchema
-} from "../creator-synthesis/contracts.js";
-import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "../creator-synthesis/validate.js";
+  creatorSynthesisSchema,
+  combineCreatorSynthesisGates,
+  validateCreatorSynthesis,
+  creatorInventoryPostSchema,
+  type CreatorAcquisitionResult,
+  type CreatorBrowserExecutor,
+  type CreatorDetailResult,
+  type ResearchJob,
+  type DeepMediaResolver,
+  type VideoReconstructionExecutor,
+  type VideoReconstructionLifecycleEvent,
+  type VideoReconstructionOutcome,
+  type CreatorSynthesisExecutor,
+  type CreatorSynthesisLifecycleEvent,
+  type CreatorInventoryPost,
+  type CreatorAcquisitionAdapter
+} from "../../../packages/research/index.js";
 import { runArtifactDir, videoConcurrency } from "../../core/config.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
-import { creatorInventoryPostSchema, type CreatorInventoryPost } from "../portfolio/contracts.js";
-import type { CreatorAcquisitionAdapter } from "../orchestration/contracts.js";
 
 const stages: CreatorResearchRun["stages"] = [
   { id: "preflight", label: "身份与登录预检", status: "pending", message: null },

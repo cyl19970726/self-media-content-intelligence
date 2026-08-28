@@ -1,5 +1,5 @@
 import type { CreatorResearchService } from "../modules/creator-research/service.js";
-import type { CreatorSynthesis } from "../modules/creator-synthesis/contracts.js";
+import type { CreatorSynthesis } from "../../packages/research/index.js";
 import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
 import { loadCreatorConsole } from "./console.js";

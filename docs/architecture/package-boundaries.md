@@ -1,7 +1,8 @@
 # Repository Package Boundaries
 
-Status: **Apps workspace, Composition Root, contracts, knowledge, and creation
-boundaries implemented; remaining package extraction is incremental**
+Status: **Apps workspace, Composition Root, contracts, knowledge, creation,
+runtime lifecycle, and research policy boundaries implemented; service/adapters
+extraction remains incremental**
 
 Tracking: [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 
@@ -12,9 +13,10 @@ automation, background work, a Web UI, an API, and a CLI. This document defines
 where those responsibilities are moving and which dependency directions future
 work must preserve.
 
-The four executable Apps now exist. The first domain slices have moved behind
-public workspace entry points; research, runtime, adapters, and testkit remain in
-their transitional locations until their vertical slices are verified.
+The four executable Apps now exist. The first domain slices and the browser-safe
+research contracts/policies have moved behind public workspace entry points.
+Research services, adapters, and testkit remain in their transitional locations
+until their vertical slices are verified.
 
 ## Current structural debt
 
@@ -26,8 +28,9 @@ The repository now uses npm workspaces for four executable Apps:
 - `apps/cli` owns the command-line entry point;
 - `src/server/composition-root.ts` is the transitional single assembly point;
 - `src/server/routes` owns domain-specific HTTP registration;
-- `packages/contracts`, `packages/knowledge`, and `packages/creation` are real
-  workspaces with public `index.ts` entry points;
+- `packages/contracts`, `packages/knowledge`, `packages/creation`,
+  `packages/runtime`, and `packages/research` are real workspaces with public
+  `index.ts` entry points;
 - `src/modules`, `src/core`, and `src/platform` still contain overlapping domain,
   workflow, compatibility, and infrastructure responsibilities.
 
@@ -134,7 +137,8 @@ in-memory test graph but must not silently open SQLite or start workers.
 2. Move executable entry points into Apps and centralize composition.
 3. Extract contracts, knowledge, and creation; protect their public boundaries
    with `scripts/check-package-boundaries.mjs`. **Implemented.**
-4. Extract runtime primitives, then research and adapters by vertical slice.
+4. Extract runtime process lifecycle and research policies/contracts.
+   **Implemented.** Move research services and adapters by vertical slice.
 5. Expand the automated dependency rules only after each new boundary is real.
 
 Every step must preserve current API, CLI, UI, and stored-data behavior or ship an

@@ -12,5 +12,5 @@
     "jsx": "react-jsx"
   },
   "include": ["apps/api", "apps/worker", "apps/cli", "packages", "src/core", "src/server", "src/cli", "src/shared"],
-  "exclude": ["src/**/*.test.ts"]
+  "exclude": ["src/**/*.test.ts", "packages/**/*.test.ts"]
 }

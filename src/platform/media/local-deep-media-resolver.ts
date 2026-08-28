@@ -4,7 +4,7 @@ import path from "node:path";
 import { artifactRef } from "../../core/artifacts.js";
 import { projectRoot, runArtifactDir } from "../../core/config.js";
 import { runFile } from "../../core/process.js";
-import { deepMediaManifestSchema, type DeepMediaManifest, type DeepMediaResolver } from "../../modules/media-resolution/contracts.js";
+import { deepMediaManifestSchema, type DeepMediaManifest, type DeepMediaResolver } from "../../../packages/research/index.js";
 import { systemHttpsProxy } from "../network/system-proxy.js";
 
 type Verification = { status: string; transport: { sha256: string; bytes: number }; container: {
