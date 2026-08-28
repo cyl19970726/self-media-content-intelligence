@@ -1,12 +1,15 @@
 # Issue #24 — LLM Wiki Minimum Closed-Loop Acceptance
 
-Status: **Implemented on `codex/llm-wiki-minimum-loop`; awaiting PR/main CI**
+Status: **Completed — Issue #24 closed by PR #25**
 
 Date: **2026-08-28**
 
 This record covers only the Issue #24 single-post vertical slice. It does not
 claim completion of creator/comparison compilers, Creation bindings or Practice
 Validation.
+
+PR #25 merged as `ac9e7ca7`; its required PR check and the post-merge `main` CI
+run both passed before this record was closed.
 
 ## Shipped behavior
 
