@@ -19,8 +19,8 @@ import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
 import { loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
 import { createDurableResearchLearningService } from "./research-learning.js";
-import { createDurableContentKnowledgeService } from "./content-knowledge.js";
-import type { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
+import { ContentKnowledgeService } from "../modules/content-knowledge/service.js";
+import { InMemoryContentKnowledgeRepository } from "../modules/content-knowledge/repository.js";
 import { importNextWaveCreatorSnapshot } from "./next-wave-import.js";
 import {
   addLearningLoopArtifactInputSchema,
@@ -57,7 +57,7 @@ export function createApp(
   learningLoopControlPlane: LearningLoopControlPlane = createDurableLearningLoopControlPlane(),
   publishingService = new PublishingService(),
   creatorDiscoveryService = new RedFoxCreatorDiscoveryService(),
-  contentKnowledgeService: ContentKnowledgeService = createDurableContentKnowledgeService(researchLearningService)
+  contentKnowledgeService: ContentKnowledgeService = new ContentKnowledgeService(new InMemoryContentKnowledgeRepository(), researchLearningService)
 ) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
