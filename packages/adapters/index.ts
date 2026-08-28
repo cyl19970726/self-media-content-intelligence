@@ -11,6 +11,7 @@ export * from "./src/platform/database/sqlite-creator-research-repository.js";
 export * from "./src/platform/database/sqlite-learning-loop-repository.js";
 export * from "./src/platform/database/sqlite-publishing-repository.js";
 export * from "./src/platform/database/sqlite-research-learning-event-store.js";
+export * from "./src/platform/evidence/local-evidence-access.js";
 export * from "./src/platform/media/local-deep-media-resolver.js";
 export * from "./src/platform/media/local-publication-media-access.js";
 export * from "./src/platform/network/system-proxy.js";

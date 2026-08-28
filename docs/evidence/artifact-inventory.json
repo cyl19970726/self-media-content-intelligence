@@ -61,6 +61,7 @@
     "packages/adapters/index.ts",
     "packages/adapters/src/core/artifacts.ts",
     "packages/adapters/src/platform/synthesis/codex-creator-synthesis-executor.ts",
+    "packages/contracts/src/evidence.ts",
     "packages/research/src/portfolio/analyzer.ts",
     "packages/testkit/src/memory-creator-artifact-store.ts",
     "scripts/backfill-human-director-tiers.py",

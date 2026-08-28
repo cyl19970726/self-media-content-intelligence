@@ -40,7 +40,8 @@ async function fixtureServer() {
     learningLoop: control,
     publishing: unused as PublishingService,
     creatorDiscovery: unused as RedFoxCreatorDiscoveryService,
-    contentKnowledge: unused as ContentKnowledgeService
+    contentKnowledge: unused as ContentKnowledgeService,
+    evidence: { resolve: async () => null }
   });
   const server = app.listen(0, "127.0.0.1");
   servers.push(server);
