@@ -1,5 +1,10 @@
 # ADR 0002 — Creator research control plane and package boundaries
 
+> Topology note (2026-08-28): the path layout in this historical decision was
+> superseded by [ADR-0005](0005-workspace-modular-monolith.md) and the current
+> [Package Boundaries](../architecture/package-boundaries.md). Its control-plane
+> invariants remain accepted.
+
 Status: Accepted for incremental implementation
 Date: 2026-08-20
 

@@ -1,6 +1,10 @@
 # Creator Analysis OS V1
 
-The implemented runtime architecture and non-goals are summarized in [`../creator-research-architecture/design.md`](../creator-research-architecture/design.md). Observer/session-forensics concerns are intentionally outside that contract.
+The completed runtime architecture initiative is archived in
+[`creator-research-architecture/design.md`](../../completed/creator-research-architecture/design.md).
+Current repository topology is owned by
+[`docs/architecture/package-boundaries.md`](../../../architecture/package-boundaries.md).
+Observer/session-forensics concerns are intentionally outside that contract.
 
 Status: **product, frontend, and architecture confirmed**
 Last updated: 2026-08-21

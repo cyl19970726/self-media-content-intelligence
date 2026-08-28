@@ -408,10 +408,10 @@ Signal Room 不直接采用“Markdown 文件即全部真相”的实现。
 
 本 Vision 定义长期产品方向，现有规范继续承担可执行约束：
 
-- `specs/creator-analysis-os-v1/research-methodology.md`：研究方法；
-- `specs/creator-analysis-os-v1/three-lens-video-contract.md`：单视频三镜头合同；
-- `specs/creator-analysis-os-v1/research-learning-model.md`：ResearchConcept / Observation / Revision 及晋升规则；
-- `specs/creator-analysis-os-v1/learning-loop-contract.md`：知识晋升运行时、角色和回归；
+- `docs/initiatives/active/creator-analysis-os-v1/research-methodology.md`：研究方法；
+- `docs/initiatives/active/creator-analysis-os-v1/three-lens-video-contract.md`：单视频三镜头合同；
+- `docs/initiatives/active/creator-analysis-os-v1/research-learning-model.md`：ResearchConcept / Observation / Revision 及晋升规则；
+- `docs/initiatives/active/creator-analysis-os-v1/learning-loop-contract.md`：知识晋升运行时、角色和回归；
 - `docs/adr/0001-canonical-report-envelope.md`：结构化报告与 SQLite 真相源；
 - `docs/adr/0002-creator-research-control-plane.md`：研究运行和 Artifact 边界。
 

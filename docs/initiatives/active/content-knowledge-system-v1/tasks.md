@@ -2,7 +2,7 @@
 
 Status: **Confirmed — Implementation Authorized**
 
-Design source: `specs/content-knowledge-system-v1/design.md`
+Design source: `docs/initiatives/active/content-knowledge-system-v1/design.md`
 
 ## Completion definition
 
