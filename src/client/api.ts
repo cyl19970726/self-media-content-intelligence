@@ -23,6 +23,7 @@ import {
   type ContentPackage, type PlatformVariant, type PublicationEvent, type PublicationRun,
   type VariantInput
 } from "../../packages/creation/contracts";
+import { evidenceAccessProjectionSchema, type EvidenceAccessProjection } from "../../packages/contracts/index";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -31,6 +32,11 @@ async function json<T>(response: Response, parse: (value: unknown) => T): Promis
     throw new Error(error);
   }
   return parse(value);
+}
+
+export async function getEvidenceAccess(evidenceId: string): Promise<EvidenceAccessProjection> {
+  return json(await fetch(`/api/v1/evidence/${encodeURIComponent(evidenceId)}`, { cache: "no-store" }),
+    (value) => evidenceAccessProjectionSchema.parse(value));
 }
 
 export async function listRuns(): Promise<RunSummary[]> {

@@ -21,6 +21,8 @@ import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { registerPublishingRoutes } from "./routes/publishing.js";
 import { registerKnowledgeRoutes } from "./routes/knowledge.js";
 import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
+import { registerEvidenceRoutes } from "./routes/evidence.js";
+import type { EvidenceAccessPort } from "../../packages/contracts/index.js";
 
 export interface AppDependencies {
   analysis: AnalysisService;
@@ -31,6 +33,7 @@ export interface AppDependencies {
   publishing: PublishingService;
   creatorDiscovery: RedFoxCreatorDiscoveryService;
   contentKnowledge: ContentKnowledgeService;
+  evidence: EvidenceAccessPort;
 }
 
 export function createApp({
@@ -41,7 +44,8 @@ export function createApp({
   learningLoop: learningLoopControlPlane,
   publishing: publishingService,
   creatorDiscovery: creatorDiscoveryService,
-  contentKnowledge: contentKnowledgeService
+  contentKnowledge: contentKnowledgeService,
+  evidence: evidenceAccess
 }: AppDependencies) {
   const app = express();
   const clientDirectory = path.join(projectRoot, "dist");
@@ -64,6 +68,7 @@ export function createApp({
   });
 
   registerPublishingRoutes(app, publishingService);
+  registerEvidenceRoutes(app, evidenceAccess);
 
   app.get("/api/creators", (_request, response) => {
     response.json({ creators: loadCreatorSummaries(creatorResearchService) });

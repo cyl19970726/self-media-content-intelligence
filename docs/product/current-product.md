@@ -26,6 +26,9 @@ content packages and guarded publication runs.
   treats an uncertain submission as non-retryable without human review.
 - **Learning Loop:** records cases, immutable artifacts, three-lens gates, blind
   evaluation traces, diagnosis, regression, and observation adjudication.
+- **Evidence access:** resolves a Manifest ID against the configured external
+  Evidence store, verifies byte size and SHA-256, and visibly distinguishes
+  available, pending, missing, unauthorized, and integrity-failed states.
 
 ## Product invariants
 
@@ -38,6 +41,8 @@ content packages and guarded publication runs.
 5. Publication requires an explicit preview and version-matched approval.
 6. Durable state can be resumed without repeating a potentially external side
    effect.
+7. Evidence is never reported as available until its current bytes pass the
+   Manifest size and SHA-256 checks.
 
 ## Explicit non-guarantees
 

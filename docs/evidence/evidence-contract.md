@@ -9,9 +9,10 @@ from, whether it is currently accessible, and whether its bytes still match.
 
 ## Manifest entry
 
-[`evidence-manifest.schema.json`](evidence-manifest.schema.json) is the executable
-schema for one immutable Evidence object. A migration manifest is newline-delimited
-JSON containing one schema-valid entry per moved file. Every entry carries:
+[`evidence-manifest.schema.json`](evidence-manifest.schema.json) documents the
+portable JSON shape, while `packages/contracts/src/evidence.ts` is the executable
+runtime contract. A migration manifest is newline-delimited JSON containing one
+schema-valid entry per moved file. Every entry carries:
 
 - a stable evidence ID derived from the original repository path;
 - classification (`research_evidence`, `fixture`, or `example`);
@@ -36,6 +37,11 @@ Evidence access is not a boolean and a missing object is not an empty result.
 
 API and UI projections must preserve these states. They may not silently replace
 them with an empty file list, successful analysis, or generic 404.
+
+The current workbench exposes `GET /api/v1/evidence/:evidenceId` and the
+**证据存储** inspector. An unknown Manifest ID is a 404; a known ID always returns
+one of the explicit states above. Local resolution reads `evidence/manifest.jsonl`
+and the content-addressed root configured by `SIGNAL_ROOM_EVIDENCE_ROOT`.
 
 ## Restore algorithm
 

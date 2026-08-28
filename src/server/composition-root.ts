@@ -18,6 +18,7 @@ import {
   CodexVideoReconstructionExecutor,
   CodexCreatorSynthesisExecutor
 } from "../../packages/adapters/index.js";
+import { LocalEvidenceAccess } from "../../packages/adapters/index.js";
 import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { createApp } from "./app.js";
 import { createDurableResearchLearningService, type ResearchLearningService } from "./research-learning.js";
@@ -41,6 +42,7 @@ export interface SignalRoomServices {
   publishing: PublishingService;
   creatorDiscovery: RedFoxCreatorDiscoveryService;
   contentKnowledge: ContentKnowledgeService;
+  evidence: LocalEvidenceAccess;
 }
 
 export interface SignalRoomCompositionOptions {
@@ -90,6 +92,7 @@ export function createSignalRoomComposition(
   const publishing = new PublishingService(new SQLitePublishingRepository(), new LocalPublicationMediaAccess(), publishers);
   const creatorDiscovery = new RedFoxCreatorDiscoveryService();
   const contentKnowledge = createDurableContentKnowledgeService(researchLearning);
+  const evidence = new LocalEvidenceAccess();
   const creatorExecutor = new CreatorProviderRouter({
     "ego-browser": new EgoBrowserCreatorExecutor(),
     redfox: new RedFoxCreatorExecutor()
@@ -104,7 +107,7 @@ export function createSignalRoomComposition(
   seedProductBlindRegressionV2(learningLoop);
 
   return new SignalRoomComposition(
-    { analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge },
+    { analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
     workers,
     [analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge]
   );
