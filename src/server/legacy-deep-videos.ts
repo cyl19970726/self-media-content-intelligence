@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { projectRoot } from "../../packages/adapters/index.js";
+import { evidenceArtifactsRoot } from "../../packages/adapters/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { aiRedWitch6801ThreeLens } from "./three-lens-data/ai-red-witch-6801.js";
 import { humanDirector6a2fThreeLens } from "./three-lens-data/human-director-6a2f.js";
@@ -10,8 +10,8 @@ import type { ThreeLensIndependentEvaluation } from "./three-lens-evaluations/ty
 
 type Row = Record<string, unknown>;
 
-const creatorResearchRoot = path.join(projectRoot, "artifacts", "creator-research");
-const directorStudyRoot = path.join(projectRoot, "artifacts", "director-skill-study", "corpus");
+const creatorResearchRoot = path.join(evidenceArtifactsRoot(), "creator-research");
+const directorStudyRoot = path.join(evidenceArtifactsRoot(), "director-skill-study", "corpus");
 
 function row(value: unknown): Row {
   return value && typeof value === "object" && !Array.isArray(value) ? value as Row : {};

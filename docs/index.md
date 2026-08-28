@@ -21,6 +21,8 @@ owned by schemas and code.
   machine-checked source-tree baseline and known consumers.
 - [External storage options](evidence/storage-options.md) — recommended target
   and the explicit owner confirmation gate.
+- [Evidence migration runbook](evidence/migration-runbook.md) — guarded copy,
+  verification, compatibility-view, removal, and rollback gates.
 - [Development workflow](development/workflow.md) — branch, Worktree, validation,
   PR, merge, and initiative lifecycle.
 - [Repository overhaul tracking issue](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)

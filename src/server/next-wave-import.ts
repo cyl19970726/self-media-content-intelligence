@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import type { CreatorResearchService } from "../../packages/research/index.js";
-import { projectRoot } from "../../packages/adapters/index.js";
+import { evidenceResearchRoot } from "../../packages/adapters/index.js";
 
 const safeSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const maxBytes = 5 * 1024 * 1024;
@@ -54,7 +54,7 @@ function readRegisteredJson(directory: string, filename: string): { value: unkno
 
 export function importNextWaveCreatorSnapshot(service: CreatorResearchService, slug: string, taskSpaceId: number) {
   if (!safeSlug.test(slug)) throw new Error("快照标识无效");
-  const directory = path.join(projectRoot, "artifacts", "creator-research", "next-wave", slug);
+  const directory = path.join(evidenceResearchRoot(), "next-wave", slug);
   const inventorySource = readRegisteredJson(directory, "collection-inventory.json");
   const corpusSource = readRegisteredJson(directory, "creator-corpus.json");
   const statusSource = readRegisteredJson(directory, "collection-status.json");

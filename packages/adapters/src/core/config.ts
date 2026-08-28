@@ -36,6 +36,20 @@ export function runtimeDir(): string {
   return configured ? path.resolve(configured) : path.join(projectRoot, ".runtime");
 }
 
+export function evidenceStoreRoot(): string | null {
+  const configured = process.env.SIGNAL_ROOM_EVIDENCE_ROOT?.trim();
+  return configured ? path.resolve(configured) : null;
+}
+
+export function evidenceArtifactsRoot(): string {
+  const store = evidenceStoreRoot();
+  return store ? path.join(store, "view", "artifacts") : path.join(projectRoot, "artifacts");
+}
+
+export function evidenceResearchRoot(): string {
+  return path.join(evidenceArtifactsRoot(), "creator-research");
+}
+
 export function databasePath(): string {
   return path.join(runtimeDir(), "self-media.sqlite");
 }
