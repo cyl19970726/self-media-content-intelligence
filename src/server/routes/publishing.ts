@@ -13,7 +13,7 @@ function publishingError(response: express.Response, error: unknown): express.Re
     ? error.issues[0]?.message ?? "输入无效"
     : error instanceof Error ? error.message : "发布操作失败";
   const status = message.includes("不存在") ? 404
-    : message.includes("不能") || message.includes("不一致") || message.includes("变化") ? 409 : 400;
+    : message.includes("不能") || message.includes("不一致") || message.includes("变化") || message.includes("冻结") ? 409 : 400;
   return response.status(status).json({ error: message });
 }
 
@@ -31,6 +31,16 @@ export function registerPublishingRoutes(app: express.Express, service: Publishi
   app.get("/api/v1/content-packages/:id", (request, response) => {
     const value = service.getPackage(request.params.id);
     return value ? response.json(value) : response.status(404).json({ error: "内容包不存在" });
+  });
+
+  app.get("/api/v1/content-packages/:id/snapshots", (request, response) => {
+    try { return response.json({ snapshots: service.listPackageSnapshots(request.params.id) }); }
+    catch (error) { return publishingError(response, error); }
+  });
+
+  app.post("/api/v1/content-packages/:id/snapshots", (request, response) => {
+    try { return response.status(201).json(service.createWorkingSnapshot(request.params.id)); }
+    catch (error) { return publishingError(response, error); }
   });
 
   app.post("/api/v1/content-packages/:id/variants", (request, response) => {

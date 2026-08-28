@@ -146,6 +146,77 @@ describe("PublishingService", () => {
     expect(reopened.events(run.id)).toHaveLength(1);
   });
 
+  it("freezes one immutable package snapshot through variant and publication lineage", () => {
+    const { service, mediaPath, dbPath } = fixture();
+    const contentPackage = service.createPackage({ name: "知识决策", brief: "固定创作依据", sourceRefs: ["legacy:source"] });
+    const working = service.listPackageSnapshots(contentPackage.id)[0]!;
+    expect(working).toMatchObject({ sequence: 1, status: "working", package: { sourceRefs: ["legacy:source"] } });
+
+    const createdVariant = service.createVariant(contentPackage.id, {
+      contentPackageSnapshotId: working.id,
+      platform: "douyin", title: "快照链路测试", body: "正文", contentType: "video",
+      media: [{ kind: "video", localPath: mediaPath, mimeType: "video/mp4" }], tags: [], visibility: "private", scheduledAt: null,
+      platformOptions: { douyin: { declaration: "self_made" } }
+    });
+    expect(createdVariant.contentPackageSnapshotId).toBe(working.id);
+    expect(service.getPackageSnapshot(contentPackage.id, working.id)?.status).toBe("frozen");
+    const run = service.createRun(createdVariant.id);
+    expect(run.contentPackageSnapshotId).toBe(working.id);
+
+    const next = service.createWorkingSnapshot(contentPackage.id);
+    expect(next).toMatchObject({ sequence: 2, status: "working" });
+    service.close(); services.splice(services.indexOf(service), 1);
+    const reopened = new PublishingService(new SQLitePublishingRepository(dbPath), { exists: fs.existsSync });
+    services.push(reopened);
+    expect(reopened.listPackageSnapshots(contentPackage.id).map((item) => [item.sequence, item.status])).toEqual([[2, "working"], [1, "frozen"]]);
+    expect(reopened.getRun(run.id)?.contentPackageSnapshotId).toBe(working.id);
+  });
+
+  it("creates a compatible snapshot when a legacy package first creates a variant", () => {
+    const { service, repository, mediaPath } = fixture();
+    const timestamp = "2026-08-20T00:00:00.000Z";
+    const legacy = { id: "d6c507b7-8c12-482e-9179-a30d75da3625", name: "旧内容包", brief: "仍然可读", sourceRefs: ["legacy:ref"], createdAt: timestamp, updatedAt: timestamp };
+    repository.savePackage(legacy);
+    expect(service.listPackageSnapshots(legacy.id)).toEqual([]);
+    const created = service.createVariant(legacy.id, {
+      platform: "douyin", title: "旧包继续创作", body: "", contentType: "video",
+      media: [{ kind: "video", localPath: mediaPath, mimeType: "video/mp4" }], tags: [], visibility: "private", scheduledAt: null,
+      platformOptions: { douyin: { declaration: "self_made" } }
+    });
+    const snapshot = service.getPackageSnapshot(legacy.id, created.contentPackageSnapshotId!);
+    expect(snapshot).toMatchObject({ status: "frozen", package: { name: "旧内容包", sourceRefs: ["legacy:ref"] } });
+  });
+
+  it("rejects a snapshot owned by another content package", () => {
+    const { service, mediaPath } = fixture();
+    const first = service.createPackage({ name: "A", brief: "", sourceRefs: [] });
+    const second = service.createPackage({ name: "B", brief: "", sourceRefs: [] });
+    const foreignSnapshot = service.listPackageSnapshots(first.id)[0]!;
+    expect(() => service.createVariant(second.id, {
+      contentPackageSnapshotId: foreignSnapshot.id,
+      platform: "douyin", title: "错误快照", body: "", contentType: "video",
+      media: [{ kind: "video", localPath: mediaPath, mimeType: "video/mp4" }], tags: [], visibility: "private", scheduledAt: null,
+      platformOptions: { douyin: { declaration: "self_made" } }
+    })).toThrow("内容包快照不存在或不属于当前内容包");
+  });
+
+  it("rolls back snapshot freezing when the platform variant write fails", () => {
+    const { service, repository, mediaPath } = fixture();
+    const contentPackage = service.createPackage({ name: "原子冻结", brief: "", sourceRefs: [] });
+    const snapshot = service.listPackageSnapshots(contentPackage.id)[0]!;
+    const saveVariant = repository.saveVariant.bind(repository);
+    repository.saveVariant = () => { throw new Error("simulated variant write failure"); };
+    expect(() => service.createVariant(contentPackage.id, {
+      contentPackageSnapshotId: snapshot.id,
+      platform: "douyin", title: "写入失败", body: "", contentType: "video",
+      media: [{ kind: "video", localPath: mediaPath, mimeType: "video/mp4" }], tags: [], visibility: "private", scheduledAt: null,
+      platformOptions: { douyin: { declaration: "self_made" } }
+    })).toThrow("simulated variant write failure");
+    repository.saveVariant = saveVariant;
+    expect(service.getPackageSnapshot(contentPackage.id, snapshot.id)?.status).toBe("working");
+    expect(service.getPackage(contentPackage.id)?.variants).toEqual([]);
+  });
+
   it("rejects unsupported media combinations and missing files", () => {
     const { service, mediaPath } = fixture();
     const contentPackage = service.createPackage({ name: "校验", brief: "", sourceRefs: [] });

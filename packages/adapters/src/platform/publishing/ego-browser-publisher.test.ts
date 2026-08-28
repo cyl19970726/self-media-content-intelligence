@@ -5,6 +5,7 @@ import { buildCancelScript, buildPrepareScript, buildSubmitScript } from "./ego-
 function variant(platform: PublishingPlatform = "xiaohongshu"): PlatformVariant {
   return {
     id: "d58ef38c-e174-44db-96db-4ea060b626bf", packageId: "e390ee09-2337-44b9-a4bb-ec8b9b068381",
+    contentPackageSnapshotId: null,
     platform, revision: 1, title: "标题", body: "正文", contentType: "video",
     media: [{ kind: "video", localPath: "/tmp/video.mp4", mimeType: "video/mp4" }], tags: ["测试"], visibility: "private",
     scheduledAt: null,

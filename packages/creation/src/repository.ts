@@ -1,12 +1,16 @@
 import type {
-  ContentPackage, PlatformVariant, PublicationEvent, PublicationJob,
+  ContentPackage, ContentPackageSnapshot, PlatformVariant, PublicationEvent, PublicationJob,
   PublicationJobStatus, PublicationRun
 } from "./contracts.js";
 
 export interface PublishingRepository {
+  transaction<T>(operation: () => T): T;
   savePackage(value: ContentPackage): void;
   getPackage(id: string): ContentPackage | null;
   listPackages(limit?: number): ContentPackage[];
+  savePackageSnapshot(value: ContentPackageSnapshot): void;
+  getPackageSnapshot(id: string): ContentPackageSnapshot | null;
+  listPackageSnapshots(packageId: string): ContentPackageSnapshot[];
   saveVariant(value: PlatformVariant): void;
   getVariant(id: string): PlatformVariant | null;
   listVariants(packageId: string): PlatformVariant[];

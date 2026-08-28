@@ -19,8 +19,8 @@ import {
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
 import {
-  contentPackageSchema, platformVariantSchema, publicationEventSchema, publicationRunSchema,
-  type ContentPackage, type PlatformVariant, type PublicationEvent, type PublicationRun,
+  contentPackageSchema, contentPackageSnapshotSchema, platformVariantSchema, publicationEventSchema, publicationRunSchema,
+  type ContentPackage, type ContentPackageSnapshot, type PlatformVariant, type PublicationEvent, type PublicationRun,
   type VariantInput
 } from "../../packages/creation/contracts";
 import { evidenceAccessProjectionSchema, type EvidenceAccessProjection } from "../../packages/contracts/index";
@@ -78,21 +78,24 @@ export async function listKnowledgeContributions(subjectType: "video" | "creator
   });
 }
 
-export async function getPackageKnowledge(packageId: string): Promise<{ bindings: KnowledgeBinding[]; hypotheses: CreationHypothesis[] }> {
-  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/knowledge-bindings`, { cache: "no-store" }), (value) => {
+export async function getPackageKnowledge(packageId: string, snapshotId?: string): Promise<{ bindings: KnowledgeBinding[]; hypotheses: CreationHypothesis[] }> {
+  const route = snapshotId
+    ? `/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots/${encodeURIComponent(snapshotId)}/knowledge-bindings`
+    : `/api/v1/content-packages/${encodeURIComponent(packageId)}/knowledge-bindings`;
+  return json(await fetch(route, { cache: "no-store" }), (value) => {
     if (!value || typeof value !== "object" || !("bindings" in value) || !("hypotheses" in value)) throw new Error("创作知识上下文无效");
     return { bindings: knowledgeBindingSchema.array().parse(value.bindings), hypotheses: creationHypothesisSchema.array().parse(value.hypotheses) };
   });
 }
 
 export async function createKnowledgeBinding(packageId: string, input: Omit<KnowledgeBinding, "id" | "contentPackageId" | "status" | "createdAt"> & { operationKey: string }): Promise<KnowledgeBinding> {
-  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/knowledge-bindings`, {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots/${encodeURIComponent(input.contentPackageSnapshotId)}/knowledge-bindings`, {
     method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
   }), (value) => knowledgeBindingSchema.parse(value));
 }
 
 export async function createCreationHypothesis(packageId: string, input: Omit<CreationHypothesis, "id" | "contentPackageId" | "createdAt"> & { operationKey: string }): Promise<CreationHypothesis> {
-  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/hypotheses`, {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots/${encodeURIComponent(input.contentPackageSnapshotId)}/hypotheses`, {
     method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
   }), (value) => creationHypothesisSchema.parse(value));
 }
@@ -151,11 +154,26 @@ export async function createContentPackage(input: { name: string; brief: string;
   (value) => contentPackageSchema.parse(value));
 }
 
-export async function getContentPackage(id: string): Promise<{ package: ContentPackage; variants: PlatformVariant[] }> {
+export async function getContentPackage(id: string): Promise<{ package: ContentPackage; variants: PlatformVariant[]; snapshots: ContentPackageSnapshot[] }> {
   return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(id)}`, { cache: "no-store" }), (value) => {
     if (!value || typeof value !== "object" || !("package" in value) || !("variants" in value)) throw new Error("内容包结构无效");
-    return { package: contentPackageSchema.parse(value.package), variants: platformVariantSchema.array().parse(value.variants) };
+    const snapshots = "snapshots" in value ? value.snapshots : [];
+    return { package: contentPackageSchema.parse(value.package), variants: platformVariantSchema.array().parse(value.variants),
+      snapshots: contentPackageSnapshotSchema.array().parse(snapshots) };
   });
+}
+
+export async function listContentPackageSnapshots(packageId: string): Promise<ContentPackageSnapshot[]> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "snapshots" in value ? value.snapshots : [];
+    return contentPackageSnapshotSchema.array().parse(items);
+  });
+}
+
+export async function createContentPackageSnapshot(packageId: string): Promise<ContentPackageSnapshot> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: "{}"
+  }), (value) => contentPackageSnapshotSchema.parse(value));
 }
 
 export async function createPlatformVariant(packageId: string, input: VariantInput): Promise<PlatformVariant> {

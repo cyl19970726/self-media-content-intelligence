@@ -195,6 +195,17 @@ Bindings always pin a revision or immutable evidence identifier. They never poin
 
 The current `sourceRefs[]` field remains readable for compatibility. New structured bindings are additive and become the preferred path.
 
+`ContentPackageSnapshot` is owned by Creation and carries an immutable copy of
+the package payload plus a monotonic package-local sequence. A snapshot begins
+as `working`, accepts bindings and hypotheses, and becomes `frozen` when the
+first platform variant cites it. Frozen snapshots reject later decision writes.
+The variant and every publication run created from it preserve that snapshot ID;
+updating a platform variant never silently switches its knowledge basis.
+
+Legacy packages, variants, and publication runs parse without a fabricated
+historical snapshot. When a legacy package next creates a variant, Creation
+creates and freezes its first real snapshot while retaining `sourceRefs[]`.
+
 ### 4.6 CreationHypothesis
 
 A hypothesis belongs to a frozen content-package snapshot and contains:
@@ -354,6 +365,8 @@ GET /api/v1/knowledge/:conceptId
 GET /api/v1/knowledge/:conceptId/lineage
 GET /api/v1/knowledge/contributions?subjectType=&subjectId=&analysisRevisionId=
 GET /api/v1/content-packages/:packageId/knowledge-bindings
+GET /api/v1/content-packages/:packageId/snapshots
+GET /api/v1/content-packages/:packageId/snapshots/:snapshotId/knowledge-bindings
 GET /api/v1/practice-validations/:validationId
 ```
 
@@ -362,6 +375,7 @@ GET /api/v1/practice-validations/:validationId
 ```text
 POST /api/v1/knowledge/compilations
 POST /api/v1/knowledge/edges/:edgeId/adjudications
+POST /api/v1/content-packages/:packageId/snapshots
 POST /api/v1/content-packages/:packageId/snapshots/:snapshotId/knowledge-bindings
 POST /api/v1/content-packages/:packageId/snapshots/:snapshotId/hypotheses
 POST /api/v1/publications/:runId/practice-validations

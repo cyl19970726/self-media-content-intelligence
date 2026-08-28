@@ -31,6 +31,20 @@ export const contentPackageSchema = z.object({
 });
 export type ContentPackage = z.infer<typeof contentPackageSchema>;
 
+export const contentPackageSnapshotStatusSchema = z.enum(["working", "frozen"]);
+export type ContentPackageSnapshotStatus = z.infer<typeof contentPackageSnapshotStatusSchema>;
+
+export const contentPackageSnapshotSchema = z.object({
+  id: z.string().uuid(),
+  contentPackageId: z.string().uuid(),
+  sequence: z.number().int().positive(),
+  package: contentPackageSchema,
+  status: contentPackageSnapshotStatusSchema,
+  createdAt: z.string(),
+  frozenAt: z.string().nullable()
+});
+export type ContentPackageSnapshot = z.infer<typeof contentPackageSnapshotSchema>;
+
 export const xiaohongshuOptionsSchema = z.object({
   location: z.string().max(120).nullable().default(null),
   allowDownload: z.boolean().default(true),
@@ -81,6 +95,7 @@ export type PlatformOptions = z.infer<typeof platformOptionsSchema>;
 export const platformVariantSchema = z.object({
   id: z.string().uuid(),
   packageId: z.string().uuid(),
+  contentPackageSnapshotId: z.string().uuid().nullable().default(null),
   platform: publishingPlatformSchema,
   revision: z.number().int().positive(),
   title: z.string().min(1).max(200),
@@ -136,6 +151,7 @@ export type PublicationReceipt = z.infer<typeof publicationReceiptSchema>;
 export const publicationRunSchema = z.object({
   id: z.string().uuid(),
   variantId: z.string().uuid(),
+  contentPackageSnapshotId: z.string().uuid().nullable().default(null),
   variantRevision: z.number().int().positive(),
   variant: platformVariantSchema,
   platform: publishingPlatformSchema,
@@ -191,6 +207,7 @@ export const createContentPackageInputSchema = z.object({
 export type CreateContentPackageInput = z.input<typeof createContentPackageInputSchema>;
 
 export const variantInputSchema = z.object({
+  contentPackageSnapshotId: z.string().uuid().nullable().default(null),
   platform: publishingPlatformSchema,
   title: z.string().trim().min(1).max(200),
   body: z.string().max(20_000).default(""),

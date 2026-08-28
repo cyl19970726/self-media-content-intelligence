@@ -137,6 +137,57 @@ describe("content knowledge compilation", () => {
 });
 
 describe("creation and validation boundary", () => {
+  it("rejects unresolved immutable targets and accepts analysis/evidence lineage from a manifest", () => {
+    const { knowledge } = fixture();
+    const packageId = "10000000-0000-4000-8000-000000000008";
+    expect(() => knowledge.createBinding({ operationKey: "missing-analysis", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot-1", targetType: "analysis_revision", targetId: "missing-analysis",
+      usage: "adopt", rationale: "不能引用不存在的分析" })).toThrow("analysis revision not found");
+    expect(() => knowledge.createBinding({ operationKey: "missing-evidence", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot-1", targetType: "evidence", targetId: "missing-evidence",
+      usage: "adopt", rationale: "不能引用不存在的证据" })).toThrow("evidence reference not found");
+
+    knowledge.compile({ operationKey: "compile-binding-targets", compilerPolicyVersion: "v1", inputFingerprint: "sha256:binding-targets",
+      analysis: { analysisRevisionId: "analysis-binding-targets", subjectType: "video", subjectId: "video-binding-targets",
+        creatorId: "creator-a", videoId: "video-binding-targets", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "binding-targets", kind: "proof_mode", name: "引用目标", definition: "测试不可变引用。", exclusions: ["未解析引用。"] },
+          relation: "confirm", statement: "目标存在。", evidenceRefs: ["evidence:binding-targets"], confidence: "high" }] }
+    });
+    expect(knowledge.createBinding({ operationKey: "bind-analysis", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot-1", targetType: "analysis_revision", targetId: "analysis-binding-targets",
+      usage: "adapt", rationale: "引用完整分析 revision" }).status).toBe("current");
+    expect(knowledge.createBinding({ operationKey: "bind-evidence", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot-1", targetType: "evidence", targetId: "evidence:binding-targets",
+      usage: "test", rationale: "引用确切 Evidence" }).status).toBe("current");
+  });
+
+  it("rejects cross-snapshot hypotheses and marks an old pinned revision stale", () => {
+    const { knowledge, research } = fixture();
+    const concept = research.createConcept({
+      slug: "revision-pinning", kind: "proof_mode", name: "固定 revision", definition: "固定当时采用的判断。", exclusions: ["跟随 latest 漂移。"]
+    });
+    const packageId = "10000000-0000-4000-8000-000000000009";
+    const binding = knowledge.createBinding({
+      operationKey: "pin-r1", contentPackageId: packageId, contentPackageSnapshotId: "snapshot-1",
+      targetType: "concept_revision", targetId: concept.currentRevision.id, usage: "adopt", rationale: "保留当时判断"
+    });
+    expect(() => knowledge.createHypothesis({
+      operationKey: "cross-snapshot", contentPackageId: packageId, contentPackageSnapshotId: "snapshot-2",
+      statement: "错误地跨版本引用。", linkedBindingIds: [binding.id], expectedSignals: ["saves"], unavailableSignals: [],
+      baselineDeclaration: "近十条中位数", confounders: []
+    })).toThrow("another content package snapshot");
+
+    for (const [index, videoId] of ["video-1", "video-2", "video-3"].entries()) {
+      research.recordObservation({ conceptId: concept.concept.id, subjectType: "video", subjectId: videoId,
+        creatorId: "creator-a", videoId, relation: "confirm", condition: { tier: index === 0 ? "high" : "base", format: "talking-head" },
+        statement: `${videoId} 支持判断。`, evidenceRefs: [`cue:${videoId}`], analysisRevisionId: `analysis:${videoId}`,
+        confidence: "high", sourceGateState: "ready", deepReconstruction: index === 0 });
+    }
+    research.promote(concept.concept.id, { targetScope: "creator_specific", creatorId: "creator-a", decision: "三条独立视频通过门槛。" });
+    expect(knowledge.listBindings(packageId)[0]).toMatchObject({ targetId: concept.currentRevision.id, status: "stale_available" });
+  });
+
   it("pins a concept revision and partitions adjudicated first-party evidence", () => {
     const { knowledge, research } = fixture();
     const concept = research.createConcept({

@@ -254,7 +254,8 @@ export default function CreationWorkspace() {
         <p>系统只会自动填好发布页。最终提交必须由你检查真实页面后，对冻结版本再次确认。</p></header>
       {error && <div className="creation-alert"><AlertTriangle size={18}/><span>{error}</span><button onClick={() => setError(null)}>关闭</button></div>}
       {!selectedPackageId ? <div className="creation-zero"><MonitorUp size={30}/><h2>创建第一个内容包</h2><p>内容包承载共同意图，平台标题、正文和素材分别保存在版本中。</p></div> : <>
-        {selectedPackage && <KnowledgeDecisionPanel contentPackage={selectedPackage} publication={selectedRun}/>}
+        {selectedPackage && <KnowledgeDecisionPanel key={`${selectedPackage.id}:${variants.map((item) => item.contentPackageSnapshotId).join(":")}`}
+          contentPackage={selectedPackage} publication={selectedRun}/>}
         <div className="variant-tabs">
           {variants.map((item) => <button key={item.id} className={selectedVariantId === item.id ? "active" : ""} onClick={() => setSelectedVariantId(item.id)}>
             {item.contentType === "video" ? <Film size={14}/> : <FileImage size={14}/>} {platformLabels[item.platform]} · r{item.revision}

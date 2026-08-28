@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { PublishingRepository } from "./repository.js";
 import {
   createContentPackageInputSchema, variantInputSchema, type BrowserPublisher,
-  type ContentPackage, type CreateContentPackageInput, type PlatformVariant,
+  type ContentPackage, type ContentPackageSnapshot, type CreateContentPackageInput, type PlatformVariant,
   type PublicationJob, type PublicationRun, type PublishingPlatform, type VariantInput
 } from "./contracts.js";
 
@@ -34,26 +34,79 @@ export class PublishingService {
     const parsed = createContentPackageInputSchema.parse(input);
     const timestamp = now();
     const value: ContentPackage = { id: randomUUID(), ...parsed, createdAt: timestamp, updatedAt: timestamp };
-    this.repository.savePackage(value);
+    const snapshot: ContentPackageSnapshot = {
+      id: randomUUID(), contentPackageId: value.id, sequence: 1, package: structuredClone(value),
+      status: "working", createdAt: timestamp, frozenAt: null
+    };
+    this.repository.transaction(() => {
+      this.repository.savePackage(value);
+      this.repository.savePackageSnapshot(snapshot);
+    });
     return value;
   }
 
   listPackages(limit = 100): ContentPackage[] { return this.repository.listPackages(limit); }
 
-  getPackage(id: string): { package: ContentPackage; variants: PlatformVariant[] } | null {
+  getPackage(id: string): { package: ContentPackage; variants: PlatformVariant[]; snapshots: ContentPackageSnapshot[] } | null {
     const contentPackage = this.repository.getPackage(id);
-    return contentPackage ? { package: contentPackage, variants: this.repository.listVariants(id) } : null;
+    return contentPackage ? {
+      package: contentPackage,
+      variants: this.repository.listVariants(id),
+      snapshots: this.repository.listPackageSnapshots(id)
+    } : null;
+  }
+
+  listPackageSnapshots(packageId: string): ContentPackageSnapshot[] {
+    if (!this.repository.getPackage(packageId)) throw new Error("内容包不存在");
+    return this.repository.listPackageSnapshots(packageId);
+  }
+
+  getPackageSnapshot(packageId: string, snapshotId: string): ContentPackageSnapshot | null {
+    const snapshot = this.repository.getPackageSnapshot(snapshotId);
+    return snapshot?.contentPackageId === packageId ? snapshot : null;
+  }
+
+  createWorkingSnapshot(packageId: string): ContentPackageSnapshot {
+    const contentPackage = this.repository.getPackage(packageId);
+    if (!contentPackage) throw new Error("内容包不存在");
+    const snapshots = this.repository.listPackageSnapshots(packageId);
+    const existing = snapshots.find((item) => item.status === "working");
+    if (existing) return existing;
+    const snapshot: ContentPackageSnapshot = {
+      id: randomUUID(), contentPackageId: packageId, sequence: (snapshots[0]?.sequence ?? 0) + 1,
+      package: structuredClone(contentPackage), status: "working", createdAt: now(), frozenAt: null
+    };
+    this.repository.savePackageSnapshot(snapshot);
+    return snapshot;
+  }
+
+  freezePackageSnapshot(packageId: string, snapshotId: string): ContentPackageSnapshot {
+    const snapshot = this.requireSnapshot(packageId, snapshotId);
+    if (snapshot.status === "frozen") return snapshot;
+    const frozen: ContentPackageSnapshot = { ...snapshot, status: "frozen", frozenAt: now() };
+    this.repository.savePackageSnapshot(frozen);
+    return frozen;
   }
 
   createVariant(packageId: string, input: VariantInput): PlatformVariant {
     if (!this.repository.getPackage(packageId)) throw new Error("内容包不存在");
     const parsed = variantInputSchema.parse(input);
     this.assertVariantShape(parsed);
+    const snapshots = this.repository.listPackageSnapshots(packageId);
+    const snapshot = parsed.contentPackageSnapshotId
+      ? this.requireSnapshot(packageId, parsed.contentPackageSnapshotId)
+      : snapshots.find((item) => item.status === "working") ?? snapshots[0] ?? this.createWorkingSnapshot(packageId);
     const timestamp = now();
+    const frozenSnapshot: ContentPackageSnapshot = snapshot.status === "frozen"
+      ? snapshot : { ...snapshot, status: "frozen", frozenAt: timestamp };
     const value: PlatformVariant = {
-      id: randomUUID(), packageId, revision: 1, ...parsed, createdAt: timestamp, updatedAt: timestamp
+      id: randomUUID(), packageId, revision: 1, ...parsed, contentPackageSnapshotId: snapshot.id,
+      createdAt: timestamp, updatedAt: timestamp
     };
-    this.repository.saveVariant(value);
+    this.repository.transaction(() => {
+      if (snapshot.status === "working") this.repository.savePackageSnapshot(frozenSnapshot);
+      this.repository.saveVariant(value);
+    });
     return value;
   }
 
@@ -63,7 +116,8 @@ export class PublishingService {
     const parsed = variantInputSchema.parse(input);
     this.assertVariantShape(parsed);
     const value: PlatformVariant = {
-      ...existing, ...parsed, revision: existing.revision + 1, updatedAt: now()
+      ...existing, ...parsed, contentPackageSnapshotId: existing.contentPackageSnapshotId,
+      revision: existing.revision + 1, updatedAt: now()
     };
     this.repository.saveVariant(value);
     for (const run of this.repository.listRunsByVariant(id)) {
@@ -86,6 +140,7 @@ export class PublishingService {
     const timestamp = now();
     const run: PublicationRun = {
       id: randomUUID(), variantId, variantRevision: variant.revision, variant: structuredClone(variant),
+      contentPackageSnapshotId: variant.contentPackageSnapshotId,
       platform: variant.platform, status: "draft", currentStage: "等待准备发布页",
       browserTaskSpaceId: null, preview: null, approvedRevision: null,
       blockerCode: null, blockerMessage: null, receipt: null, attempts: 0,
@@ -209,6 +264,12 @@ export class PublishingService {
   }
 
   close(): void { this.repository.close(); }
+
+  private requireSnapshot(packageId: string, snapshotId: string): ContentPackageSnapshot {
+    const snapshot = this.repository.getPackageSnapshot(snapshotId);
+    if (!snapshot || snapshot.contentPackageId !== packageId) throw new Error("内容包快照不存在或不属于当前内容包");
+    return snapshot;
+  }
 
   private async processPrepare(run: PublicationRun, job: PublicationJob): Promise<void> {
     run.status = "preparing"; run.currentStage = "正在填写平台发布页"; run.updatedAt = now(); this.repository.saveRun(run);
