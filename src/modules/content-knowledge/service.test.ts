@@ -105,5 +105,7 @@ describe("creation and validation boundary", () => {
     const read = research.get(concept.concept.id)!;
     expect(read.observations.at(-1)?.origin).toBe("first_party_practice");
     expect(read.counts.distinctEligibleVideos).toBe(0);
+    research.invalidateConcept(concept.concept.id, "upstream evidence withdrawn");
+    expect(knowledge.listBindings(packageId)[0]?.status).toBe("invalidated");
   });
 });

@@ -37,8 +37,8 @@ export class ContentKnowledgeService {
       && (!query || `${item.concept.name} ${item.currentRevision.definition} ${item.currentRevision.exclusions.join(" ")}`.toLocaleLowerCase().includes(query))
     ).map((research) => knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
-      edges: this.repository.listEdges(research.concept.id),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id)
+      edges: this.repository.listEdges(research.concept.id).map((edge) => this.resolveEdgeStatus(edge)),
+      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding))
     }));
   }
 
@@ -46,8 +46,8 @@ export class ContentKnowledgeService {
     const research = this.research.get(conceptId);
     return research ? knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
-      edges: this.repository.listEdges(conceptId),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id)
+      edges: this.repository.listEdges(conceptId).map((edge) => this.resolveEdgeStatus(edge)),
+      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding))
     }) : null;
   }
 
@@ -116,7 +116,9 @@ export class ContentKnowledgeService {
     return this.repository.saveBinding(binding, input.operationKey, commandHash(input));
   }
 
-  listBindings(packageId: string): KnowledgeBinding[] { return this.repository.listBindings(packageId); }
+  listBindings(packageId: string): KnowledgeBinding[] {
+    return this.repository.listBindings(packageId).map((binding) => this.resolveBindingStatus(binding));
+  }
 
   createHypothesis(raw: unknown): CreationHypothesis {
     const input = createHypothesisInputSchema.parse(raw);
@@ -199,7 +201,34 @@ export class ContentKnowledgeService {
       if (view.research.counts.contradict > 0 && view.research.concept.status === "active") gaps.push({ code: "unresolved-contradiction", severity: "attention", conceptId: view.research.concept.id, message: "活跃概念存在尚未解决的反例" });
       if (view.research.observations.length === 0) gaps.push({ code: "orphan-concept", severity: "info", conceptId: view.research.concept.id, message: "概念尚无观察证据" });
     }
+    for (const edge of this.repository.listEdges()) {
+      if (this.resolveEdgeStatus(edge).status === "invalidated" && edge.status !== "invalidated") {
+        gaps.push({ code: "obsolete-semantic-edge", severity: "attention", conceptId: edge.sourceConceptId, message: "语义关系固定在已过期的概念 revision，等待重新裁决" });
+      }
+    }
+    for (const binding of this.repository.listBindings()) {
+      const resolved = this.resolveBindingStatus(binding);
+      if (resolved.status !== "current") gaps.push({ code: "affected-creation-binding", severity: resolved.status === "invalidated" ? "blocked" : "attention", conceptId: null, message: `内容包 ${binding.contentPackageId} 的知识依据已${resolved.status === "invalidated" ? "失效" : "更新"}` });
+    }
     return gaps;
+  }
+
+  private resolveBindingStatus(binding: KnowledgeBinding): KnowledgeBinding {
+    if (binding.targetType !== "concept_revision") return binding;
+    const owner = this.research.list().find((item) => item.revisions.some((revision) => revision.id === binding.targetId));
+    if (!owner) return { ...binding, status: "invalidated" };
+    if (["invalidated", "retired"].includes(owner.concept.status)) return { ...binding, status: "invalidated" };
+    return owner.currentRevision.id === binding.targetId ? binding : { ...binding, status: "stale_available" };
+  }
+
+  private resolveEdgeStatus(edge: SemanticEdge): SemanticEdge {
+    const source = this.research.get(edge.sourceConceptId);
+    const target = this.research.get(edge.targetConceptId);
+    if (!source || !target || source.currentRevision.id !== edge.sourceRevisionId || target.currentRevision.id !== edge.targetRevisionId
+      || ["invalidated", "retired"].includes(source.concept.status) || ["invalidated", "retired"].includes(target.concept.status)) {
+      return { ...edge, status: "invalidated" };
+    }
+    return edge;
   }
 
   close(): void { this.repository.close(); }
