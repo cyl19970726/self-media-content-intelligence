@@ -1,6 +1,7 @@
 # Signal Room Vision：从内容分析工作台到持续进化的内容知识系统
 
-Status: **Vision Draft for Owner Confirmation**  
+Status: **Confirmed**
+
 Scope: **长期产品愿景；不绑定单一版本、页面或技术实现**  
 Date: **2026-08-27**
 

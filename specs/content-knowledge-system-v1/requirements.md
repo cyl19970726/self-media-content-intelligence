@@ -1,6 +1,7 @@
 # Content Knowledge System V1 — Product Requirements
 
-Status: **Draft for Owner Confirmation**  
+Status: **Confirmed**
+
 Depends on: `docs/vision/signal-room-llm-wiki-vision.md`
 
 ## 1. Problem
