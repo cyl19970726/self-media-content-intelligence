@@ -1,6 +1,6 @@
 # External Evidence Storage Decision
 
-Status: **target awaiting owner confirmation**
+Status: **local target confirmed and live on 2026-08-28**
 
 Phase 5 separates Evidence from source control; it does not merely move files to a
 different directory inside the repository. All options use the same Manifest,
@@ -14,10 +14,11 @@ SHA-256, availability, and restore contract.
 | S3-compatible object storage (R2/S3/MinIO) | team sharing, durability, CI retrieval | requires bucket, credentials, lifecycle and cost policy | preferred durable/shared target |
 | Git LFS | familiar Git pointer workflow | storage quota and clone coupling remain; historical blobs are not removed without rewrite | not the Evidence system |
 
-The recommended first target is an explicit directory outside every checkout,
-configured through `SIGNAL_ROOM_EVIDENCE_ROOT`. It provides a reversible landing
-zone without cloud credentials. An S3-compatible store can then become the primary
-or mirror without changing manifests or product contracts.
+The confirmed first target is `/Users/hhh0x/self-media-evidence`, configured
+through `SIGNAL_ROOM_EVIDENCE_ROOT`. It is an independent content-addressed store
+with a hard-linked compatibility view. An S3-compatible store can later become
+the primary or mirror without changing manifests or product contracts.
 
-No Evidence bytes will be copied to an external target, and no repository copies
-will be removed, until the owner confirms the target and its backup expectations.
+The owner confirmed this target and explicitly declined Git history rewriting.
+All 22,622 research Evidence entries were copied and fully verified before the
+current-tree copies were removed. The external CAS is the rollback copy.

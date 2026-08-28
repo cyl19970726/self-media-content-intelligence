@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "completedAt": "2026-08-28",
+  "source": {
+    "artifactTree": "230133c6971c2eefbac89431557a3e9da999ff5c",
+    "files": 22622,
+    "bytes": 849206883
+  },
+  "destination": {
+    "kind": "local_content_addressed_store",
+    "configuredBy": "SIGNAL_ROOM_EVIDENCE_ROOT",
+    "confirmedPath": "/Users/hhh0x/self-media-evidence",
+    "layout": "sha256/<prefix>/<hash>",
+    "compatibilityView": "view/artifacts/<original-path>"
+  },
+  "manifest": {
+    "directory": "evidence/manifest",
+    "entries": 22622,
+    "shards": 6,
+    "uniqueEvidenceIds": 22622,
+    "uniqueOriginalPaths": 22622
+  },
+  "verification": {
+    "copyVerified": 22622,
+    "sampleVerified": 100,
+    "fullVerified": 22622,
+    "manifestBytes": 849206883,
+    "sourceFilesDeletedDuringCopy": 0,
+    "liveApiState": "available_verified",
+    "liveResearchViewHttpStatus": 200,
+    "externalReaderTests": 34
+  },
+  "retention": {
+    "curatedExamplesMoved": 1,
+    "curatedExamplePath": "examples/content-concepts/creator-analysis-skill-v1/brief.md",
+    "externalRollbackManifest": "migration-manifest.single.jsonl"
+  },
+  "gitHistoryRewritten": false
+}

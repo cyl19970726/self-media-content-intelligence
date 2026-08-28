@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactTree": "230133c6971c2eefbac89431557a3e9da999ff5c",
+  "totals": {
+    "entries": 22622,
+    "evidenceBytes": 849206883
+  },
+  "shards": [
+    {
+      "file": "part-0001.jsonl",
+      "entries": 4000,
+      "evidenceBytes": 245875753,
+      "manifestBytes": 2824838,
+      "sha256": "55137dcb664ccdfe048c6e8ef2f14cf1970ba6ba786661c739b64780037a003a"
+    },
+    {
+      "file": "part-0002.jsonl",
+      "entries": 4000,
+      "evidenceBytes": 148668546,
+      "manifestBytes": 2646039,
+      "sha256": "4cfd615bf0108b2d65493cfd934d71212b5fd37a2873a822b3bd54b8a02a6bcd"
+    },
+    {
+      "file": "part-0003.jsonl",
+      "entries": 4000,
+      "evidenceBytes": 65055101,
+      "manifestBytes": 2546724,
+      "sha256": "f8bf47cf10dfb2c6a31c851e608aafdb52945ab18f94dcbb44f0ef5b59a5011a"
+    },
+    {
+      "file": "part-0004.jsonl",
+      "entries": 4000,
+      "evidenceBytes": 126313870,
+      "manifestBytes": 2512167,
+      "sha256": "7edbdac4c3d53205addb2f6daabe8b02cb516e26f7aa8837fa751b5923fca956"
+    },
+    {
+      "file": "part-0005.jsonl",
+      "entries": 4000,
+      "evidenceBytes": 138007516,
+      "manifestBytes": 2467215,
+      "sha256": "71fafd7e087f083c6a2cd54c23e562b54190a31d4bee1b510ecdf12e2fc2ec41"
+    },
+    {
+      "file": "part-0006.jsonl",
+      "entries": 2622,
+      "evidenceBytes": 125286097,
+      "manifestBytes": 1663372,
+      "sha256": "642ef48665b7a82a325a7fffcd7fa9a56b5ad9f1ad77559e808f5b549fa38440"
+    }
+  ]
+}

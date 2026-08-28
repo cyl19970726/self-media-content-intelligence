@@ -82,16 +82,17 @@ npm run qa:report -- <run-id>
 
 ## 博主研究 Dashboard
 
-在仓库根目录启动一个静态服务：
+配置外部 Evidence 并启动工作台：
 
 ```bash
-python3 -m http.server 4321
+SIGNAL_ROOM_EVIDENCE_ROOT=/absolute/path/to/self-media-evidence npm run dev
 ```
 
-主要入口：
+主要入口是 `http://127.0.0.1:5173/creators`。历史静态研究文件通过
+API 的只读 `/research/...` 兼容路径提供，例如：
 
-- `artifacts/creator-research/ai-red-witch/selected-high-like/report.html`
-- `artifacts/creator-research/zhang-zala-v1/dashboard/index.html`
+- `/research/ai-red-witch/selected-high-like/report.html`
+- `/research/zhang-zala-v1/dashboard/index.html`
 
 第一个入口已经把张咋啦作为“对标博主”模块合并进同一个 Dashboard。
 
@@ -113,4 +114,4 @@ python3 -m http.server 4321
 
 ## 仓库边界
 
-原始视频、音轨、平台临时签名、登录信息、模型权重与可重新安装的依赖不会提交。仓库保留源码、结构化数据、文字稿、OCR、关键帧、报告和可复现脚本。
+原始视频、音轨、文字稿、OCR、关键帧、研究报告、平台临时签名、登录信息和模型权重都不会进入代码仓库。仓库只保留源码、Manifest、尺寸受控的 Fixtures、精选 Examples 和可复现脚本；研究 Evidence 由 `SIGNAL_ROOM_EVIDENCE_ROOT` 指向的独立存储持有。

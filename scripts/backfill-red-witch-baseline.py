@@ -25,16 +25,20 @@
 from __future__ import annotations
 
 import json
+import os
 import statistics
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ART = ROOT / "artifacts" / "creator-research" / "ai-red-witch"
+EVIDENCE_ROOT = os.environ.get("SIGNAL_ROOM_EVIDENCE_ROOT")
+if not EVIDENCE_ROOT:
+    raise RuntimeError("SIGNAL_ROOM_EVIDENCE_ROOT is required to read historical Evidence")
+ART = Path(EVIDENCE_ROOT).resolve() / "view" / "artifacts" / "creator-research" / "ai-red-witch"
 
 LIBRARY = ART / "video-library" / "library.json"
 OVERVIEW = ART / "video-library" / "creator-overview.json"
-OUT = ART / "selected-high-like" / "baseline-backfill.json"
+OUT = ROOT / ".runtime" / "backfills" / "ai-red-witch" / "baseline-backfill.json"
 
 BEIJING = timezone(timedelta(hours=8))
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]  # python weekday() 0=Mon

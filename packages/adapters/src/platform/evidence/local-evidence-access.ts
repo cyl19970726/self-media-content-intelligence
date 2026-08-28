@@ -20,7 +20,22 @@ export interface LocalEvidenceAccessOptions {
 function loadManifest(manifestPath: string): Map<string, EvidenceManifestEntry> {
   if (!fs.existsSync(manifestPath)) return new Map();
   const entries = new Map<string, EvidenceManifestEntry>();
-  const lines = fs.readFileSync(manifestPath, "utf8").split(/\r?\n/u).filter((line) => line.trim().length > 0);
+  const files = fs.statSync(manifestPath).isDirectory()
+    ? (() => {
+      const index = JSON.parse(fs.readFileSync(path.join(manifestPath, "index.json"), "utf8")) as { shards?: Array<{ file?: unknown; sha256?: unknown }> };
+      if (!Array.isArray(index.shards)) throw new Error("Evidence Manifest index has no shards");
+      return index.shards.map((shard) => {
+        if (typeof shard.file !== "string" || path.basename(shard.file) !== shard.file || typeof shard.sha256 !== "string") {
+          throw new Error("Evidence Manifest index contains an invalid shard");
+        }
+        const filePath = path.join(manifestPath, shard.file);
+        const serialized = fs.readFileSync(filePath, "utf8");
+        if (createHash("sha256").update(serialized).digest("hex") !== shard.sha256) throw new Error(`Evidence Manifest shard hash mismatch: ${shard.file}`);
+        return serialized;
+      });
+    })()
+    : [fs.readFileSync(manifestPath, "utf8")];
+  const lines = files.flatMap((serialized) => serialized.split(/\r?\n/u).filter((line) => line.trim().length > 0));
   for (const [index, line] of lines.entries()) {
     const entry = evidenceManifestEntrySchema.parse(JSON.parse(line) as unknown);
     if (entries.has(entry.evidenceId)) throw new Error(`duplicate evidenceId at manifest line ${index + 1}: ${entry.evidenceId}`);
@@ -43,7 +58,7 @@ export class LocalEvidenceAccess implements EvidenceAccessPort {
   private readonly now: () => Date;
 
   constructor(options: LocalEvidenceAccessOptions = {}) {
-    this.entries = loadManifest(path.resolve(options.manifestPath ?? path.join(projectRoot, "evidence", "manifest.jsonl")));
+    this.entries = loadManifest(path.resolve(options.manifestPath ?? path.join(projectRoot, "evidence", "manifest")));
     const configuredRoot = options.storeRoot === undefined ? evidenceStoreRoot() : options.storeRoot;
     this.storeRoot = configuredRoot ? path.resolve(configuredRoot) : null;
     this.now = options.now ?? (() => new Date());

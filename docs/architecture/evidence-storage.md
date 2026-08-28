@@ -1,7 +1,6 @@
 # Evidence Storage Policy
 
-Status: **active policy for new files; historical artifacts are grandfathered
-until the external migration is verified**
+Status: **active; historical Evidence migrated and verified on 2026-08-28**
 
 Tracking: [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 
@@ -22,36 +21,32 @@ retention, access, and recovery requirements.
 | Example | `examples/` target | tracked and curated | small user-visible demonstrations |
 | Evidence | external evidence store | manifest only in code repo | frames, OCR, transcripts, full dossiers, run bundles |
 
-The current `artifacts/` tree contains all four non-source classes. It remains
-readable during migration; its location does not make every file a permanent
-source-code artifact.
+The repository `artifacts/` tree is retired. Historical Evidence is addressed by
+the versioned Manifest and read from the external CAS. One curated content concept
+was promoted to `examples/`; runtime files continue to live under `.runtime/`.
 
-## New-file policy during migration
+## New-file policy
 
 - Never add `.runtime`, build output, browser session state, or Playwright capture
   output to Git.
 - Do not add generated screenshots, YAML captures, or handoff files at repository
   root.
 - A newly added file larger than 5 MiB fails repository policy validation.
-- A newly added file under `artifacts/` larger than 1 MiB fails validation. Small
-  migration-compatible evidence may continue temporarily when its consumer and
-  provenance are reviewable.
+- Any tracked path under `artifacts/` fails validation, regardless of size.
 - Original video, audio, credentials, signed URLs, and provider session data remain
   prohibited regardless of size.
 
-These checks stop additional debt. They intentionally do not reject existing
-tracked artifacts before a verified destination exists.
+These checks prevent the retired mixed-purpose tree from being recreated.
 
 ## External evidence contract
 
 The normative entry schema and restore behavior are defined in the
 [Evidence Manifest and Restore Contract](../evidence/evidence-contract.md). The
-[artifact inventory](../evidence/artifact-inventory.json) records the migration
-baseline, and the [storage decision](../evidence/storage-options.md) records the
-remaining owner gate.
+[artifact inventory](../evidence/artifact-inventory.json) records the post-migration
+zero-artifact baseline, while the [migration report](../evidence/migration-report.json)
+records the original tree, copied bytes, verification, and rollback boundary.
 
-Before Phase 5 moves data, each external evidence bundle must have a manifest that
-can establish:
+Each external evidence entry has a Manifest record that can establish:
 
 - stable evidence ID and bundle version;
 - content hash and byte size;
@@ -67,9 +62,9 @@ The UI and API must distinguish `available`, `not_downloaded`, `missing`,
 `unauthorized`, and `integrity_failed`. Missing evidence must never be projected as
 an empty or successful analysis.
 
-## Migration and deletion gate
+## Migration and deletion result
 
-Historical evidence may leave the code repository only after:
+Historical Evidence left the current code tree only after:
 
 1. inventory and consumer discovery are complete;
 2. every moved bundle has a manifest and verified hash;

@@ -40,8 +40,9 @@ them with an empty file list, successful analysis, or generic 404.
 
 The current workbench exposes `GET /api/v1/evidence/:evidenceId` and the
 **证据存储** inspector. An unknown Manifest ID is a 404; a known ID always returns
-one of the explicit states above. Local resolution reads `evidence/manifest.jsonl`
-and the content-addressed root configured by `SIGNAL_ROOM_EVIDENCE_ROOT`.
+one of the explicit states above. Local resolution reads the hash-indexed shards
+under `evidence/manifest/` and the content-addressed root configured by
+`SIGNAL_ROOM_EVIDENCE_ROOT`.
 
 ## Restore algorithm
 

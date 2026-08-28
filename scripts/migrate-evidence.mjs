@@ -89,6 +89,39 @@ function manifestEntry(row, sha256) {
   };
 }
 
+export function writeManifestDirectory(directory, entries, metadata = {}) {
+  if (fs.existsSync(directory)) throw new Error(`Manifest directory already exists: ${directory}`);
+  const temporary = `${directory}.${randomUUID()}.tmp`;
+  fs.mkdirSync(temporary, { recursive: true });
+  const shards = [];
+  const chunkSize = metadata.chunkSize ?? 4000;
+  for (let offset = 0; offset < entries.length; offset += chunkSize) {
+    const chunk = entries.slice(offset, offset + chunkSize);
+    const file = `part-${String(shards.length + 1).padStart(4, "0")}.jsonl`;
+    const serialized = `${chunk.map((entry) => JSON.stringify(entry)).join("\n")}\n`;
+    fs.writeFileSync(path.join(temporary, file), serialized, { encoding: "utf8", flag: "wx" });
+    shards.push({
+      file,
+      entries: chunk.length,
+      evidenceBytes: chunk.reduce((sum, entry) => sum + entry.content.bytes, 0),
+      manifestBytes: Buffer.byteLength(serialized),
+      sha256: createHash("sha256").update(serialized).digest("hex")
+    });
+  }
+  const index = {
+    schemaVersion: "1.0.0",
+    artifactTree: metadata.artifactTree ?? null,
+    totals: {
+      entries: entries.length,
+      evidenceBytes: entries.reduce((sum, entry) => sum + entry.content.bytes, 0)
+    },
+    shards
+  };
+  fs.writeFileSync(path.join(temporary, "index.json"), `${JSON.stringify(index, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
+  fs.renameSync(temporary, directory);
+  return index;
+}
+
 export async function migrateOne(row, targetRoot, sourceRoot = projectRoot) {
   const source = path.join(sourceRoot, row.originalPath);
   const stat = fs.lstatSync(source);
@@ -148,8 +181,22 @@ function option(name) {
   return index === -1 ? null : process.argv[index + 1] ?? null;
 }
 
-function readManifest(manifestPath) {
-  return fs.readFileSync(manifestPath, "utf8").split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line));
+export function readManifest(manifestPath) {
+  if (!fs.statSync(manifestPath).isDirectory()) {
+    return fs.readFileSync(manifestPath, "utf8").split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line));
+  }
+  const index = JSON.parse(fs.readFileSync(path.join(manifestPath, "index.json"), "utf8"));
+  const entries = [];
+  for (const shard of index.shards) {
+    if (path.basename(shard.file) !== shard.file) throw new Error(`Unsafe Manifest shard path: ${shard.file}`);
+    const serialized = fs.readFileSync(path.join(manifestPath, shard.file), "utf8");
+    if (createHash("sha256").update(serialized).digest("hex") !== shard.sha256) throw new Error(`Manifest shard hash mismatch: ${shard.file}`);
+    const values = serialized.split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line));
+    if (values.length !== shard.entries) throw new Error(`Manifest shard entry count mismatch: ${shard.file}`);
+    entries.push(...values);
+  }
+  if (entries.length !== index.totals.entries) throw new Error("Manifest index entry count mismatch");
+  return entries;
 }
 
 function sample(entries, count) {
@@ -179,7 +226,7 @@ async function main() {
   const targetValue = option("--target") ?? process.env.SIGNAL_ROOM_EVIDENCE_ROOT ?? null;
   if (!targetValue) throw new Error("--target or SIGNAL_ROOM_EVIDENCE_ROOT is required");
   const target = assertSafeTarget(targetValue);
-  const manifest = path.resolve(option("--manifest") ?? path.join(projectRoot, "evidence", "manifest.jsonl"));
+  const manifest = path.resolve(option("--manifest") ?? path.join(projectRoot, "evidence", "manifest"));
 
   if (command === "copy") {
     if (!process.argv.includes("--execute")) throw new Error("copy requires explicit --execute after owner confirms the target");
@@ -189,9 +236,7 @@ async function main() {
       if ((index + 1) % 500 === 0 || index + 1 === migrate.length) console.error(`copied and verified ${index + 1}/${migrate.length}`);
     }
     fs.mkdirSync(path.dirname(manifest), { recursive: true });
-    const temporary = `${manifest}.${randomUUID()}.tmp`;
-    fs.writeFileSync(temporary, `${entries.map((entry) => JSON.stringify(entry)).join("\n")}\n`, { encoding: "utf8", flag: "wx" });
-    fs.renameSync(temporary, manifest);
+    writeManifestDirectory(manifest, entries, { artifactTree: rows.length > 0 ? git(["rev-parse", "HEAD:artifacts"]) : null });
     console.log(JSON.stringify({ copied: entries.length, manifest, target, sourceFilesDeleted: 0 }, null, 2));
     return;
   }

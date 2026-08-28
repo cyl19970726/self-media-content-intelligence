@@ -30,9 +30,10 @@ Manifest and Evidence API.
 
    `npm run evidence:copy -- --target <confirmed-target> --execute`
 
-   This atomically writes `evidence/manifest.jsonl` only after all objects and
-   compatibility links are created. Re-running is idempotent and verifies any
-   pre-existing CAS object before reuse.
+   This atomically writes the indexed shards under `evidence/manifest/` only
+   after all objects and compatibility links are created. Every shard has its
+   own SHA-256 in `index.json`. Re-running the object copy is idempotent and
+   verifies any pre-existing CAS object before reuse.
 
 3. Verify a deterministic restore sample:
 

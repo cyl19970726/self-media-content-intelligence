@@ -8,8 +8,18 @@ function command(commandName, args) {
   return execFileSync(commandName, args, { cwd: root, encoding: "utf8", maxBuffer: 16 * 1024 * 1024 }).trim();
 }
 
+function artifactTreeish() {
+  try {
+    execFileSync("git", ["diff", "--cached", "--quiet", "--", "artifacts"], { cwd: root, stdio: "ignore" });
+    return "HEAD";
+  } catch (error) {
+    if (error && typeof error === "object" && "status" in error && error.status === 1) return command("git", ["write-tree"]);
+    throw error;
+  }
+}
+
 function trackedArtifacts() {
-  const output = command("git", ["ls-tree", "-rl", "HEAD", "artifacts"]);
+  const output = command("git", ["ls-tree", "-rl", artifactTreeish(), "artifacts"]);
   if (!output) return [];
   return output.split("\n").map((line) => {
     const match = line.match(/^\d+\s+blob\s+([0-9a-f]+)\s+(\d+)\t(.+)$/u);
@@ -46,6 +56,7 @@ function addBucket(map, key, entry) {
 }
 
 const entries = trackedArtifacts();
+const treeish = artifactTreeish();
 const byCollection = new Map();
 const byClassification = new Map();
 const byExtension = new Map();
@@ -59,7 +70,7 @@ for (const entry of entries) {
 const sortedObject = (map) => Object.fromEntries([...map.entries()].sort(([left], [right]) => left.localeCompare(right)));
 const inventory = {
   schemaVersion: "1.0.0",
-  artifactTree: entries.length > 0 ? command("git", ["rev-parse", "HEAD:artifacts"]) : null,
+  artifactTree: entries.length > 0 ? command("git", ["rev-parse", `${treeish}:artifacts`]) : null,
   totals: {
     files: entries.length,
     bytes: entries.reduce((sum, entry) => sum + entry.bytes, 0),

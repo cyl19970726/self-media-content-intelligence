@@ -1,6 +1,0 @@
-{
-  "pass": true,
-  "validated": ["probe", "protocol", "reconstruction", "ocr"],
-  "validator": "/Users/hhh0x/.codex/skills/video-content-reconstruction/scripts/validate-schemas.py",
-  "failures": []
-}

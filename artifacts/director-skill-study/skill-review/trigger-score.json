@@ -1,8 +1,0 @@
-{
-  "total": 40,
-  "correct": 40,
-  "falsePositive": 0,
-  "falseNegative": 0,
-  "classifierInputIsolation": "Classifier read only SKILL.md frontmatter and trigger-prompts.json; expected labels were hidden.",
-  "resultFile": "artifacts/director-skill-study/skill-review/trigger-results.json"
-}

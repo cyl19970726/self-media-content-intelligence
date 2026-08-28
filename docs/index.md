@@ -61,11 +61,10 @@ implemented. Code, tests, and current validation evidence own that claim.
   projections in `src/`
 - Package commands: `package.json`
 - Reusable agent procedures: `skills/`
-- Small stable test evidence: currently colocated with tests and existing
-  artifact fixtures; this will converge on `fixtures/` during the migration.
+- Small stable test evidence: colocated with tests or owned by `fixtures/`.
 - Local runtime state: `.runtime/`, intentionally ignored by Git.
-- Historical research evidence: `artifacts/`, grandfathered until the external
-  evidence migration is complete.
+- Historical research Evidence: external CAS selected through
+  `SIGNAL_ROOM_EVIDENCE_ROOT`, indexed by `evidence/manifest/`.
 
 ## Documentation lifecycle
 

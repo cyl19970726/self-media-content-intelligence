@@ -225,4 +225,4 @@ deep-content-director/
 - `deep-content-director` V4 静态审查 READY，118 项自动化测试与 quick validation 通过。
 - 触发分类 40/40，false positive 0，false negative 0。
 - 三项 fresh-context 前向测试全部结构完成，并经独立语义 reviewer 通过 G0–G7；作者没有自评 ready。
-- 最终研究与起号建议见 `artifacts/director-skill-study/final-report.md`。
+- 最终研究与起号建议的 Manifest ID 为 `director-skill-study/final-report.md`。
