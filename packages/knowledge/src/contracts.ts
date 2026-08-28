@@ -40,7 +40,20 @@ export const compileKnowledgeInputSchema = z.object({
   operationKey: z.string().min(1),
   compilerPolicyVersion: z.string().min(1),
   inputFingerprint: z.string().min(1),
+  evidenceGate: z.array(z.object({
+    ref: z.string().min(1),
+    availability: z.enum(["available", "pending_retrieval", "missing", "unauthorized", "integrity_failed"])
+  })).default([]),
   analysis: ingestAnalysisRevisionSchema
+});
+
+export const legacyKnowledgeManifestInputSchema = z.object({
+  operationKey: z.string().min(1),
+  subjectType: z.enum(["video", "creator", "comparison"]),
+  subjectId: z.string().min(1),
+  analysisRevisionId: z.string().min(1),
+  inputFingerprint: z.string().min(1),
+  reason: z.string().min(1)
 });
 
 export const semanticEdgeSchema = z.object({
@@ -133,7 +146,11 @@ export const knowledgeConceptViewSchema = z.object({
   maturity: knowledgeMaturitySchema,
   research: researchConceptReadSchema,
   edges: z.array(semanticEdgeSchema),
-  bindings: z.array(knowledgeBindingSchema)
+  bindings: z.array(knowledgeBindingSchema),
+  contributions: z.array(z.object({
+    manifest: knowledgeContributionManifestSchema,
+    contribution: knowledgeContributionSchema
+  }))
 });
 
 export const knowledgeGapSchema = z.object({
@@ -142,7 +159,8 @@ export const knowledgeGapSchema = z.object({
 
 export type KnowledgeContribution = z.infer<typeof knowledgeContributionSchema>;
 export type KnowledgeContributionManifest = z.infer<typeof knowledgeContributionManifestSchema>;
-export type CompileKnowledgeInput = z.infer<typeof compileKnowledgeInputSchema>;
+export type CompileKnowledgeInput = z.input<typeof compileKnowledgeInputSchema>;
+export type LegacyKnowledgeManifestInput = z.infer<typeof legacyKnowledgeManifestInputSchema>;
 export type SemanticEdge = z.infer<typeof semanticEdgeSchema>;
 export type KnowledgeBinding = z.infer<typeof knowledgeBindingSchema>;
 export type CreationHypothesis = z.infer<typeof creationHypothesisSchema>;

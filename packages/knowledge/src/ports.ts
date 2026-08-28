@@ -3,6 +3,11 @@ import type {
   ResearchConceptRead,
   ResearchObservation
 } from "../../contracts/index.js";
+import type { CompileKnowledgeInput } from "./contracts.js";
+
+export interface KnowledgeCompilerPort<TFrozenAnalysis> {
+  propose(input: Readonly<TFrozenAnalysis>): CompileKnowledgeInput;
+}
 
 export interface KnowledgeResearchObservationInput {
   conceptId: string;
@@ -30,4 +35,5 @@ export interface KnowledgeResearchPort {
     observations: ResearchObservation[];
   };
   recordObservation(input: KnowledgeResearchObservationInput): ResearchObservation;
+  reload?(): void;
 }

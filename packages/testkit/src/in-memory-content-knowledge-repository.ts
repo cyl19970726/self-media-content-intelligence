@@ -11,6 +11,9 @@ export class InMemoryContentKnowledgeRepository implements ContentKnowledgeRepos
   private hypotheses: CreationHypothesis[] = [];
   private validations: PracticeValidation[] = [];
   private operations = new Map<string, { commandHash: string; value: unknown }>();
+  private conceptSearch = new Map<string, string>();
+
+  transaction<T>(operation: () => T): T { return operation(); }
 
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string) { return this.manifests.find((item) => item.analysisRevisionId === analysisRevisionId && item.compilerPolicyVersion === compilerPolicyVersion) ?? null; }
   saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, manifest, () => { this.manifests.push(manifest); this.contributions.push(...contributions); }); }
@@ -26,6 +29,10 @@ export class InMemoryContentKnowledgeRepository implements ContentKnowledgeRepos
   saveValidation(validation: PracticeValidation, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, validation, () => { const index = this.validations.findIndex((item) => item.id === validation.id); if (index === -1) this.validations.push(validation); else this.validations[index] = validation; }); }
   getValidation(id: string) { return this.validations.find((item) => item.id === id) ?? null; }
   listValidations(publicationRunId?: string) { return this.validations.filter((item) => !publicationRunId || item.publicationRunId === publicationRunId); }
+  syncConceptProjection(concepts: import("../../contracts/index.js").ResearchConceptRead[]) { this.conceptSearch = new Map(concepts.map((item) => [item.concept.id, `${item.concept.name} ${item.currentRevision.definition} ${item.currentRevision.exclusions.join(" ")}`.toLocaleLowerCase()])); }
+  searchConceptIds(query: string) { const needle = query.toLocaleLowerCase(); return [...this.conceptSearch].filter(([, value]) => value.includes(needle)).map(([id]) => id); }
+  rebuildProjections() { return this.projectionParity(); }
+  projectionParity() { return { eventCount: this.operations.size, manifestCount: this.manifests.length, contributionCount: this.contributions.length, edgeCount: this.edges.length, bindingCount: this.bindings.length, hypothesisCount: this.hypotheses.length, validationCount: this.validations.length }; }
   close(): void { /* no resources */ }
 
   private write<T>(operationKey: string, commandHash: string, value: T, persist: () => void): T {

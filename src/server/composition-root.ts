@@ -21,8 +21,8 @@ import {
 import { LocalEvidenceAccess } from "../../packages/adapters/index.js";
 import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { createApp } from "./app.js";
-import { createDurableResearchLearningService, type ResearchLearningService } from "./research-learning.js";
-import { createDurableContentKnowledgeService } from "./content-knowledge.js";
+import { type ResearchLearningService } from "./research-learning.js";
+import { createDurableKnowledgeSystem } from "./content-knowledge.js";
 import {
   createDurableLearningLoopControlPlane,
   seedInitialProductBlindAudit,
@@ -32,6 +32,7 @@ import {
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 import { ManagedRuntime, type ManagedResource, type ManagedWorker } from "../../packages/runtime/index.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
+import { SinglePostKnowledgeCompiler } from "./analysis-knowledge-compiler.js";
 
 export interface SignalRoomServices {
   analysis: AnalysisService;
@@ -71,7 +72,6 @@ export function createSignalRoomComposition(
   options: SignalRoomCompositionOptions = {}
 ): SignalRoomComposition {
   const artifacts = new LocalCreatorArtifactStore();
-  const analysis = new AnalysisService(new RunStore());
   const creatorResearch = new CreatorResearchService(
     new SQLiteCreatorResearchRepository(),
     artifacts,
@@ -86,12 +86,12 @@ export function createSignalRoomComposition(
     artifacts,
     loadCreatorDossier
   );
-  const researchLearning = createDurableResearchLearningService();
+  const { researchLearning, contentKnowledge } = createDurableKnowledgeSystem();
   const learningLoop = createDurableLearningLoopControlPlane();
   const publishers = options.publishers === undefined ? createEgoBrowserPublishers() : options.publishers;
   const publishing = new PublishingService(new SQLitePublishingRepository(), new LocalPublicationMediaAccess(), publishers);
   const creatorDiscovery = new RedFoxCreatorDiscoveryService();
-  const contentKnowledge = createDurableContentKnowledgeService(researchLearning);
+  const analysis = new AnalysisService(new RunStore(), new SinglePostKnowledgeCompiler(contentKnowledge));
   const evidence = new LocalEvidenceAccess();
   const creatorExecutor = new CreatorProviderRouter({
     "ego-browser": new EgoBrowserCreatorExecutor(),

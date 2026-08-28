@@ -34,7 +34,8 @@
     "scripts/inventory-artifacts.mjs",
     "scripts/migrate-evidence.mjs",
     "scripts/migrate-evidence.test.mjs",
-    "scripts/render-report-preview.mjs"
+    "scripts/render-report-preview.mjs",
+    "src/client/Knowledge.tsx"
   ],
   "largestFiles": []
 }
