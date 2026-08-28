@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { CreatorBrowserExecutor } from "../orchestration/contracts.js";
+import type { CreatorBrowserExecutor } from "../../../packages/research/index.js";
 import { videoConcurrency } from "../../core/config.js";
 import { CreatorResearchService } from "./service.js";
 import type { ResearchJobLane } from "./repository.js";

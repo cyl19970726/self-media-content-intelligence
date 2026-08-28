@@ -13,7 +13,7 @@ import {
   researchJobSchema,
   type ResearchJob,
   type ResearchJobStatus
-} from "../../modules/orchestration/contracts.js";
+} from "../../../packages/research/index.js";
 
 interface CreatorResearchRow { run_json: string }
 

@@ -3,7 +3,7 @@ import type {
   CreatorBrowserExecutor,
   CreatorDetailResult,
   CreatorNavigationDiagnostic
-} from "../../modules/orchestration/contracts.js";
+} from "../../../packages/research/index.js";
 import {
   RedFoxClient,
   RedFoxError,

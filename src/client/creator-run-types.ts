@@ -1,3 +1,3 @@
-import type { CreatorSelection } from "../modules/portfolio/contracts";
+import type { CreatorSelection } from "../../packages/research/index";
 
 export type CreatorSelectionItem = CreatorSelection["items"][number];

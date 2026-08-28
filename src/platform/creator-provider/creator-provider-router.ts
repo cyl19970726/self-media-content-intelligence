@@ -3,7 +3,7 @@ import type {
   CreatorAcquisitionResult,
   CreatorBrowserExecutor,
   CreatorDetailResult
-} from "../../modules/orchestration/contracts.js";
+} from "../../../packages/research/index.js";
 
 export class CreatorProviderRouter implements CreatorBrowserExecutor {
   constructor(private readonly providers: Record<CreatorAcquisitionAdapter, CreatorBrowserExecutor>) {}

@@ -7,8 +7,7 @@ import {
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
-import { videoReconstructionOutcomeSchema } from "../../modules/video-analysis/contracts.js";
-import type { VideoReconstructionLifecycleEvent } from "../../modules/video-analysis/contracts.js";
+import { videoReconstructionOutcomeSchema, type VideoReconstructionLifecycleEvent } from "../../../packages/research/index.js";
 
 const protocol = { captureActions: [{ mode: "ocr_review" }] };
 const targeted = { frames: [{ id: "FRAME-1" }, { id: "FRAME-2" }] };

@@ -5,7 +5,7 @@ import type { ComparisonProjectRepository } from "./repository.js";
 import { compareCreatorPortfolios } from "./analyzer.js";
 import { comparisonProjectSchema, createComparisonProjectInputSchema, type ComparisonCreatorSource, type ComparisonProject } from "./project-contracts.js";
 import { creatorComparisonSchema } from "./contracts.js";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../portfolio/contracts.js";
+import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../../../packages/research/index.js";
 import type { CreatorDossier } from "../../shared/creator-dossier.js";
 
 function now(): string { return new Date().toISOString(); }

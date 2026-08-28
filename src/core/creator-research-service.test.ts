@@ -4,11 +4,9 @@ import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { CreatorResearchService } from "./creator-research-service.js";
 import { CreatorResearchStore } from "./creator-research-store.js";
-import type { CreatorBrowserExecutor } from "../modules/orchestration/contracts.js";
+import type { CreatorBrowserExecutor } from "../../packages/research/index.js";
 import type { CreatorArtifactStore } from "../modules/creator-research/artifact-store.js";
-import type { DeepMediaResolver } from "../modules/media-resolution/contracts.js";
-import type { VideoReconstructionExecutor } from "../modules/video-analysis/contracts.js";
-import type { CreatorSynthesisExecutor } from "../modules/creator-synthesis/contracts.js";
+import type { DeepMediaResolver, VideoReconstructionExecutor, CreatorSynthesisExecutor } from "../../packages/research/index.js";
 
 const temporaryDirectories: string[] = [];
 

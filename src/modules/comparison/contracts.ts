@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
+import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../../../packages/research/index.js";
 
 export const comparisonMemberInputSchema = z.object({
   creatorRunId: z.string().min(1),

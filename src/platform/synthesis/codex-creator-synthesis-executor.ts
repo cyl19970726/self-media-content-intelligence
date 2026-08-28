@@ -15,8 +15,8 @@ import {
   type CreatorSynthesisExecutor,
   type CreatorSynthesisLifecycleObserver,
   type CreatorSynthesisRequest
-} from "../../modules/creator-synthesis/contracts.js";
-import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "../../modules/creator-synthesis/validate.js";
+} from "../../../packages/research/index.js";
+import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "../../../packages/research/index.js";
 import { withSystemProxy } from "../network/system-proxy.js";
 
 const creatorSkill = process.env.SELF_MEDIA_CREATOR_ANALYSIS_SKILL ??
@@ -120,7 +120,7 @@ Pinned inputs (read all):
 - single-pass reconstruction batch: ${artifactPath(request.reconstructionBatchArtifactRef)}
 - each analyzed reconstruction/article/evaluation/gate referenced by that batch; failedGateIds on ready rows are quality warnings and must remain explicit limitations
 
-Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "src/modules/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for batch-ready videos must cite their reconstruction artifacts and preserve evaluator warnings. A registered deep member that remains blocked only by media_verification after the batch's bounded media retry must instead be surface_only, cite only public detail/selection evidence, explicitly state that its video content is unknown, and never borrow a mechanism from ready videos. Other surface rows must also be explicitly surface_only and may use only title/copy/date/metric/form observations. Add a boundary naming the ready-video count and the media-unavailable post IDs whenever bounded_media_retry_once is present.
+Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "packages/research/src/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for batch-ready videos must cite their reconstruction artifacts and preserve evaluator warnings. A registered deep member that remains blocked only by media_verification after the batch's bounded media retry must instead be surface_only, cite only public detail/selection evidence, explicitly state that its video content is unknown, and never borrow a mechanism from ready videos. Other surface rows must also be explicitly surface_only and may use only title/copy/date/metric/form observations. Add a boundary naming the ready-video count and the media-unavailable post IDs whenever bounded_media_retry_once is present.
 
 The batch can contain both legacy_iterative_repair and single_pass@37a03aae rows. Add an explicit boundary naming both policy groups and their post counts. Content evidence may be synthesized together, but never compare pass rates, warning counts, repair counts, or completeness scores across policies. Do not rewrite old policy provenance.
 

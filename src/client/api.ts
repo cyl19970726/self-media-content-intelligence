@@ -1,9 +1,11 @@
 import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../shared/schema";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../modules/portfolio/contracts";
-import { creatorDetailCollectionSchema, type CreatorDetailCollection } from "../modules/creator-detail/contracts";
-import { deepMediaManifestSchema, type DeepMediaManifest } from "../modules/media-resolution/contracts";
-import { videoReconstructionBatchSchema, type VideoReconstructionBatch } from "../modules/video-analysis/batch-contracts";
-import { creatorSynthesisGateSchema, creatorSynthesisSchema, type CreatorSynthesis, type CreatorSynthesisGate } from "../modules/creator-synthesis/contracts";
+import {
+  creatorPortfolioAnalysisSchema, creatorSelectionSchema, creatorDetailCollectionSchema,
+  deepMediaManifestSchema, videoReconstructionBatchSchema, creatorSynthesisGateSchema,
+  creatorSynthesisSchema, type CreatorPortfolioAnalysis, type CreatorSelection,
+  type CreatorDetailCollection, type DeepMediaManifest, type VideoReconstructionBatch,
+  type CreatorSynthesis, type CreatorSynthesisGate
+} from "../../packages/research/index";
 import { comparisonProjectSchema, type ComparisonCreatorSource, type ComparisonProject } from "../modules/comparison/project-contracts";
 import { creatorComparisonSchema, type CreatorComparison } from "../modules/comparison/contracts";
 import { creatorDossierSchema, type CreatorDossier } from "../shared/creator-dossier";

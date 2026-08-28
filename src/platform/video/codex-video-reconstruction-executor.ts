@@ -13,7 +13,7 @@ import {
   type VideoReconstructionExecutor,
   type VideoReconstructionLifecycleObserver,
   type VideoReconstructionOutcome
-} from "../../modules/video-analysis/contracts.js";
+} from "../../../packages/research/index.js";
 import {
   contentRestorationRuleResultsSchema,
   deriveRuntimeThreeLensGateReport,
@@ -23,7 +23,7 @@ import {
   visualEditingRuleResultsSchema,
   type RuntimeThreeLensEvaluation,
   type RuntimeThreeLensGateReport
-} from "../../modules/video-analysis/runtime-three-lens-contracts.js";
+} from "../../../packages/research/index.js";
 import { withSystemProxy } from "../network/system-proxy.js";
 
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
@@ -260,7 +260,7 @@ Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}
 - ${outputDir}/runtime-three-lens/directing-logic.json with DL-01 through DL-06
 - ${outputDir}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
 
-Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "src/modules/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
+Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
 `;
 }
 

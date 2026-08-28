@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { CreatorBrowserExecutor } from "../orchestration/contracts.js";
+import type { CreatorBrowserExecutor } from "../../../packages/research/index.js";
 import type { ResearchJobLane } from "./repository.js";
 import type { CreatorResearchService } from "./service.js";
 import { CreatorResearchWorker } from "./worker.js";

@@ -28,7 +28,7 @@ import {
   type LearningLoopControlPlane
 } from "./learning-loop.js";
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
-import { ManagedRuntime, type ManagedResource, type ManagedWorker } from "./managed-runtime.js";
+import { ManagedRuntime, type ManagedResource, type ManagedWorker } from "../../packages/runtime/index.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 
 export interface SignalRoomServices {
