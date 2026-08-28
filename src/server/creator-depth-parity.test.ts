@@ -5,6 +5,8 @@ import type { VideoResearch } from "../shared/video-research.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 import { loadVideoResearch } from "./video-research.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 const emptyCreatorService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
 const placeholder = /(待识别|等待(?:证据化)?归纳|等待.*闭环|尚未(?:生成|恢复|迁移)|兼容(?:页面|投影|数据)|只投影|未进入当前|标题未识别|完整文章尚未生成|^unknown$|^未知$)/i;
@@ -104,7 +106,7 @@ function expectPortfolioDepth(value: CreatorDossier, expectedItems: number, expe
   });
 }
 
-describe("creator dossier depth parity with the existing research artifacts", () => {
+describeWithExternalEvidence("creator dossier depth parity with the existing research artifacts", () => {
   it("preserves AI红发魔女: 331 baseline / 21 comparison / 9 deep", () => {
     const value = dossier("ai-red-witch");
     expectIdentityDepth(value);
@@ -184,7 +186,7 @@ function expectVideoDepth(value: VideoResearch) {
   }
 }
 
-describe("representative single-video depth parity", () => {
+describeWithExternalEvidence("representative single-video depth parity", () => {
   it("restores content, directing, picture/editing and evidence for AI红发魔女", () => {
     expectVideoDepth(representativeVideo("ai-red-witch", "6801c0750000000007037156"));
   });

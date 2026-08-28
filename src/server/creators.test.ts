@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { loadCreatorSummaries } from "./creators.js";
 
-describe("loadCreatorSummaries", () => {
+const hasExternalEvidence = Boolean(process.env.SIGNAL_ROOM_EVIDENCE_ROOT);
+const describeWithExternalEvidence = hasExternalEvidence ? describe : describe.skip;
+const describeWithoutExternalEvidence = hasExternalEvidence ? describe.skip : describe;
+
+describeWithExternalEvidence("loadCreatorSummaries", () => {
   it("keeps the three established creators first and registers verified next-wave artifacts", () => {
     const summaries = loadCreatorSummaries();
     expect(summaries.slice(0, 3).map((summary) => summary.id)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);
@@ -19,5 +23,11 @@ describe("loadCreatorSummaries", () => {
       expect(summary.entries.length).toBeGreaterThan(0);
       for (const entry of summary.entries) expect(entry.href).toMatch(/^\/(research|creators)\//);
     }
+  });
+});
+
+describeWithoutExternalEvidence("loadCreatorSummaries without an external Evidence store", () => {
+  it("degrades to an empty creator catalog instead of inventing research projections", () => {
+    expect(loadCreatorSummaries()).toEqual([]);
   });
 });

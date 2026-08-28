@@ -7,13 +7,15 @@ import {
   type CreatorDepthParityManifest
 } from "./creator-depth-parity.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 function withoutGate(manifest: CreatorDepthParityManifest): Omit<CreatorDepthParityManifest, "gate"> {
   const { gate, ...value } = manifest;
   void gate;
   return value;
 }
 
-describe("creator depth parity manifests", () => {
+describeWithExternalEvidence("creator depth parity manifests", () => {
   it("binds the three source-of-truth research sets to their exact parity counts", () => {
     const manifests = buildAllCreatorDepthParityManifests();
     expect(manifests.map((manifest) => manifest.creatorId)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);

@@ -5,6 +5,8 @@ import type { ComparisonProjectRepository } from "./repository.js";
 import { ComparisonProjectService } from "./service.js";
 import { loadCreatorDossier } from "../../../../src/server/creator-dossier.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 class MemoryRepository implements ComparisonProjectRepository {
   values = new Map<string, ComparisonProject>();
   save(project: ComparisonProject) { this.values.set(project.id, structuredClone(project)); }
@@ -22,7 +24,7 @@ class MemoryRepository implements ComparisonProjectRepository {
   close() {}
 }
 
-describe("ComparisonProjectService", () => {
+describeWithExternalEvidence("ComparisonProjectService", () => {
   it("pins existing Creator Dossier projections with an auditable source and revision", () => {
     const creators = { list: () => [], get: () => null, portfolio: () => null } as unknown as CreatorResearchService;
     const values = new Map<string, unknown>();

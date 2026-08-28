@@ -2,9 +2,11 @@ import { describe, expect, it } from "vitest";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import { loadVideoResearch } from "./video-research.js";
 
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
 const emptyService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
-describe("legacy deep-video research projections", () => {
+describeWithExternalEvidence("legacy deep-video research projections", () => {
   it("restores the validated red-witch reconstruction instead of the shallow report adapter", () => {
     const video = loadVideoResearch(emptyService, "ai-red-witch", "6801c0750000000007037156");
     expect(video?.gate.ready).toBe(true);

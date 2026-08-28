@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { loadBenchmark, loadCreatorConsole, loadVideoEvidence } from "./console.js";
 
-describe("loadCreatorConsole", () => {
+const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
+
+describeWithExternalEvidence("loadCreatorConsole", () => {
   it("builds the red-witch console with the full loop", () => {
     const consoleData = loadCreatorConsole("ai-red-witch");
     expect(consoleData).not.toBeNull();
@@ -34,7 +36,7 @@ describe("loadCreatorConsole", () => {
   });
 });
 
-describe("loadBenchmark", () => {
+describeWithExternalEvidence("loadBenchmark", () => {
   it("computes collection-to-like across three ips", () => {
     const benchmark = loadBenchmark();
     expect(benchmark.ips.map((ip) => ip.id)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);
@@ -46,7 +48,7 @@ describe("loadBenchmark", () => {
   });
 });
 
-describe("loadVideoEvidence", () => {
+describeWithExternalEvidence("loadVideoEvidence", () => {
   it("loads red-witch video evidence from report.json", () => {
     const evidence = loadVideoEvidence("ai-red-witch", "6801c0750000000007037156");
     expect(evidence).not.toBeNull();

@@ -88,6 +88,10 @@ npm run qa:report -- <run-id>
 SIGNAL_ROOM_EVIDENCE_ROOT=/absolute/path/to/self-media-evidence npm run dev
 ```
 
+默认 `npm test` 不依赖本机语料，验证 Evidence 未挂载时的明确降级行为；
+挂载完整语料后运行 `SIGNAL_ROOM_EVIDENCE_ROOT=/absolute/path/to/self-media-evidence npm run test:evidence`，
+验证历史博主档案、单帖深度研究和比较投影的一致性。
+
 主要入口是 `http://127.0.0.1:5173/creators`。历史静态研究文件通过
 API 的只读 `/research/...` 兼容路径提供，例如：
 
