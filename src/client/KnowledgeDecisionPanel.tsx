@@ -1,18 +1,16 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { BookOpen, Check, FlaskConical, Link2, LockKeyhole, Plus } from "lucide-react";
 import {
-  adjudicatePracticeValidation, createContentPackageSnapshot, createCreationHypothesis, createKnowledgeBinding,
-  createPracticeValidation, getPackageKnowledge, listContentPackageSnapshots, listKnowledge, listPracticeValidations,
-  submitPracticeValidation
+  createContentPackageSnapshot, createCreationHypothesis, createKnowledgeBinding,
+  getPackageKnowledge, listContentPackageSnapshots, listKnowledge
 } from "./api";
-import type { ContentPackage, ContentPackageSnapshot, PublicationRun } from "../../packages/creation/contracts";
-import type { CreationHypothesis, KnowledgeBinding, KnowledgeConceptView, PracticeValidation } from "../../packages/knowledge/contracts";
+import type { ContentPackage, ContentPackageSnapshot } from "../../packages/creation/contracts";
+import type { CreationHypothesis, KnowledgeBinding, KnowledgeConceptView } from "../../packages/knowledge/contracts";
 
-export function KnowledgeDecisionPanel({ contentPackage, publication }: { contentPackage: ContentPackage; publication: PublicationRun | null }) {
+export function KnowledgeDecisionPanel({ contentPackage }: { contentPackage: ContentPackage }) {
   const [concepts, setConcepts] = useState<KnowledgeConceptView[]>([]);
   const [bindings, setBindings] = useState<KnowledgeBinding[]>([]);
   const [hypotheses, setHypotheses] = useState<CreationHypothesis[]>([]);
-  const [validations, setValidations] = useState<PracticeValidation[]>([]);
   const [snapshots, setSnapshots] = useState<ContentPackageSnapshot[]>([]);
   const [snapshot, setSnapshot] = useState<ContentPackageSnapshot | null>(null);
   const [selectedConceptId, setSelectedConceptId] = useState("");
@@ -21,7 +19,6 @@ export function KnowledgeDecisionPanel({ contentPackage, publication }: { conten
   const [hypothesisText, setHypothesisText] = useState("");
   const [baseline, setBaseline] = useState("");
   const [expectedSignals, setExpectedSignals] = useState("点赞, 收藏");
-  const [signal, setSignal] = useState({ name: "收藏", value: "", source: "manual-public" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,8 +30,7 @@ export function KnowledgeDecisionPanel({ contentPackage, publication }: { conten
     setSnapshots(nextSnapshots); setSnapshot(selectedSnapshot);
     setConcepts(nextConcepts); setBindings(context.bindings); setHypotheses(context.hypotheses);
     setSelectedConceptId((current) => current || nextConcepts[0]?.research.concept.id || "");
-    if (publication) setValidations(await listPracticeValidations(publication.id)); else setValidations([]);
-  }, [contentPackage.id, publication]);
+  }, [contentPackage.id]);
   useEffect(() => { void refresh().catch((cause) => setError(cause instanceof Error ? cause.message : "知识决策读取失败")); }, [refresh]);
 
   const selectedConcept = concepts.find((item) => item.research.concept.id === selectedConceptId) ?? null;
@@ -74,52 +70,6 @@ export function KnowledgeDecisionPanel({ contentPackage, publication }: { conten
     } catch (cause) { setError(cause instanceof Error ? cause.message : "假设声明失败"); } finally { setBusy(false); }
   };
 
-  const startValidation = async (hypothesis: CreationHypothesis) => {
-    if (!publication) return; setBusy(true); setError(null);
-    try {
-      await createPracticeValidation(publication.id, {
-        operationKey: `validation:${publication.id}:${hypothesis.id}`, contentPackageId: contentPackage.id,
-        contentPackageSnapshotId: hypothesis.contentPackageSnapshotId, hypothesisId: hypothesis.id,
-        observedSignals: signal.value ? [{ name: signal.name, value: Number(signal.value), unit: "count", source: signal.source, collectedAt: new Date().toISOString() }] : [],
-        executionDeviations: [], confounders: []
-      });
-      await refresh();
-    } catch (cause) { setError(cause instanceof Error ? cause.message : "实践验证创建失败"); } finally { setBusy(false); }
-  };
-
-  const submitSupport = async (validation: PracticeValidation) => {
-    const binding = currentBindings.find((item) => item.targetType === "concept_revision");
-    const concept = concepts.find((item) => item.research.revisions.some((revision) => revision.id === binding?.targetId));
-    if (!concept) { setError("当前快照没有可解析的概念 revision"); return; }
-    setBusy(true); setError(null);
-    try {
-      await submitPracticeValidation(validation.id, {
-        operationKey: `submit:${validation.id}`, proposedRelation: "confirm", targetConceptId: concept.research.concept.id,
-        decisionReason: "结果信号与预先声明的方向一致；因曝光等私有分母不可用，置信度保持中等。"
-      });
-      await refresh();
-    } catch (cause) { setError(cause instanceof Error ? cause.message : "验证提交失败"); } finally { setBusy(false); }
-  };
-
-  const adjudicate = async (validation: PracticeValidation, promote: boolean) => {
-    setBusy(true); setError(null);
-    try {
-      await adjudicatePracticeValidation(validation.id, {
-        operationKey: `adjudicate:${validation.id}:${promote}`, promote,
-        reason: promote ? "通过独立裁决，作为第一方实践观察写入；不计入外部样本分母。" : "证据不足以更新知识，保留复盘记录。"
-      });
-      await refresh();
-    } catch (cause) { setError(cause instanceof Error ? cause.message : "裁决失败"); } finally { setBusy(false); }
-  };
-
-  const markInconclusive = async (validation: PracticeValidation) => {
-    setBusy(true); setError(null);
-    try {
-      await submitPracticeValidation(validation.id, { operationKey: `submit:${validation.id}`, proposedRelation: "inconclusive", targetConceptId: null, decisionReason: "尚无可比较的结果信号，保留为不确定。" });
-      await refresh();
-    } catch (cause) { setError(cause instanceof Error ? cause.message : "验证提交失败"); } finally { setBusy(false); }
-  };
-
   return <section className="knowledge-decision-panel">
     <header><div><BookOpen size={17}/><span>KNOWLEDGE DECISION / {snapshot?.status === "frozen" ? "FROZEN" : "WORKING"}</span></div>
       <div className="snapshot-ledger"><p>{snapshot ? `S${snapshot.sequence} · ${snapshot.id.slice(0, 8)} · ${snapshot.status === "frozen" ? "已随平台版本冻结" : "等待平台版本锁定"}` : "这个旧内容包尚无决策版本"}</p>
@@ -148,16 +98,10 @@ export function KnowledgeDecisionPanel({ contentPackage, publication }: { conten
         <button disabled={busy || currentBindings.length === 0 || !writable}><FlaskConical size={14}/> 记录假设</button>
       </form>
       <div className="validation-register">
-        <span>03 / 发布后验证</span>
-        {publication && <div className="signal-input"><input value={signal.name} onChange={(event) => setSignal({ ...signal, name: event.target.value })} placeholder="结果信号"/><input type="number" value={signal.value} onChange={(event) => setSignal({ ...signal, value: event.target.value })} placeholder="数值"/><input value={signal.source} onChange={(event) => setSignal({ ...signal, source: event.target.value })} placeholder="来源"/></div>}
-        {hypotheses.map((item) => <article key={item.id}><strong>{item.statement}</strong><small>{item.baselineDeclaration}</small>
-          {publication?.contentPackageSnapshotId === item.contentPackageSnapshotId && !validations.some((validation) => validation.hypothesisId === item.id) && <button disabled={busy} onClick={() => void startValidation(item)}><Plus size={13}/> 创建复盘</button>}
-        </article>)}
-        {validations.map((item) => <article key={item.id}><strong>{item.status}</strong><small>{item.observedSignals.length} 个结果信号 · {item.executionDeviations.length} 个执行偏差</small>
-          {item.status === "evidence_ready" && <><button disabled={busy} onClick={() => void submitSupport(item)}>提交为支持候选</button><button disabled={busy} onClick={() => void markInconclusive(item)}>证据不足</button></>}
-          {item.status === "adjudication_pending" && <><button disabled={busy} onClick={() => void adjudicate(item, true)}>裁决并写入观察</button><button disabled={busy} onClick={() => void adjudicate(item, false)}>不晋升</button></>}
-        </article>)}
-        {!publication && <p>创建并执行发布任务后，才能把冻结版本带入实践验证。</p>}
+        <span>03 / 冻结并交给发布</span>
+        {hypotheses.map((item) => <article key={item.id}><strong>{item.statement}</strong><small>基线 · {item.baselineDeclaration}</small><small>预期 · {item.expectedSignals.join(" / ")}</small></article>)}
+        {hypotheses.length === 0 && <p>先声明可证伪的创作假设；平台版本冻结后，结果复盘会出现在对应发布任务的历史卷宗中。</p>}
+        {hypotheses.length > 0 && <p>这里仅负责发布前声明。实际结果、数据缺口与独立裁决只会写入对应的 Publication History。</p>}
       </div>
     </div>
   </section>;

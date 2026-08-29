@@ -111,35 +111,86 @@ export const observedSignalSchema = z.object({
   name: z.string().min(1), value: z.number(), unit: z.string().min(1), source: z.string().min(1), collectedAt: z.string().datetime()
 });
 
+export const unavailableMetricSchema = z.object({
+  name: z.string().min(1),
+  reason: z.string().min(1),
+  source: z.string().min(1),
+  recordedAt: z.string().datetime()
+});
+
+export const practiceHypothesisSnapshotSchema = z.object({
+  statement: z.string().min(1),
+  expectedSignals: z.array(z.string().min(1)),
+  unavailableSignals: z.array(z.string().min(1)),
+  baselineDeclaration: z.string().min(1),
+  confounders: z.array(z.string().min(1))
+});
+
+export const practiceExecutionSnapshotSchema = z.object({
+  status: z.enum(["published", "draft_saved", "legacy_unverified"]),
+  receipt: z.object({
+    externalId: z.string().nullable(), externalUrl: z.string().nullable(), platformState: z.string().min(1), verifiedAt: z.string().min(1)
+  }).nullable()
+});
+
 export const practiceValidationSchema = z.object({
   id: z.string().uuid(),
   publicationRunId: z.string().uuid(),
   contentPackageId: z.string().uuid(),
   contentPackageSnapshotId: z.string().min(1),
+  variantId: z.string().uuid().nullable().default(null),
   variantRevision: z.number().int().positive(),
   hypothesisId: z.string().uuid(),
+  hypothesisSnapshot: practiceHypothesisSnapshotSchema.nullable().default(null),
+  executionSnapshot: practiceExecutionSnapshotSchema.nullable().default(null),
   status: z.enum(["draft", "evidence_ready", "adjudication_pending", "completed_no_promotion", "promoted", "blocked", "invalidated"]),
   observedSignals: z.array(observedSignalSchema),
+  unavailableMetrics: z.array(unavailableMetricSchema).default([]),
   executionDeviations: z.array(z.string().min(1)),
   confounders: z.array(z.string().min(1)),
   proposedRelation: z.enum(["confirm", "qualify", "contradict", "inconclusive"]).nullable(),
   targetConceptId: z.string().nullable(),
+  targetConceptRevisionId: z.string().nullable().default(null),
   decisionReason: z.string().nullable(),
+  submittedBy: z.string().min(1).nullable().default(null),
+  submittedAt: z.string().datetime().nullable().default(null),
+  adjudicationDecision: z.enum(["promote", "complete_no_promotion", "block", "invalidate"]).nullable().default(null),
+  adjudicatedBy: z.string().min(1).nullable().default(null),
+  adjudicationReason: z.string().min(1).nullable().default(null),
+  adjudicatedAt: z.string().datetime().nullable().default(null),
   promotedObservationId: z.string().nullable(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime()
 });
 
 export const createPracticeValidationInputSchema = practiceValidationSchema.pick({
-  publicationRunId: true, contentPackageId: true, contentPackageSnapshotId: true, variantRevision: true,
-  hypothesisId: true, observedSignals: true, executionDeviations: true, confounders: true
+  publicationRunId: true, contentPackageId: true, contentPackageSnapshotId: true, variantId: true, variantRevision: true,
+  hypothesisId: true, executionSnapshot: true, observedSignals: true, unavailableMetrics: true,
+  executionDeviations: true, confounders: true
 }).extend({ operationKey: z.string().min(1) });
 
 export const submitPracticeValidationInputSchema = z.object({
   operationKey: z.string().min(1),
   proposedRelation: z.enum(["confirm", "qualify", "contradict", "inconclusive"]),
   targetConceptId: z.string().nullable(),
-  decisionReason: z.string().min(1)
+  decisionReason: z.string().min(1),
+  submittedBy: z.string().min(1)
+});
+
+export const adjudicatePracticeValidationInputSchema = z.object({
+  operationKey: z.string().min(1),
+  decision: z.enum(["promote", "complete_no_promotion", "block", "invalidate"]).optional(),
+  promote: z.boolean().optional(),
+  reason: z.string().min(1),
+  adjudicatorId: z.string().min(1)
+}).superRefine((value, context) => {
+  if (!value.decision && value.promote === undefined) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "adjudication decision is required" });
+  }
+  if (value.decision && value.promote !== undefined) {
+    const legacyDecision = value.promote ? "promote" : "complete_no_promotion";
+    if (value.decision !== legacyDecision) context.addIssue({ code: z.ZodIssueCode.custom, message: "adjudication decision conflicts with promote" });
+  }
 });
 
 export const knowledgeConceptViewSchema = z.object({

@@ -481,6 +481,7 @@ export class ResearchLearningService {
     if (!concept) return null;
     const observations = this.observations.get(id) ?? [];
     const eligibleVotes = deduplicateVideoVotes(observations.filter((item) => item.gateState === "eligible"));
+    const firstParty = observations.filter((item) => item.gateState === "eligible" && item.origin === "first_party_practice");
     return researchConceptReadSchema.parse({
       concept,
       currentRevision: this.currentRevision(id),
@@ -493,7 +494,19 @@ export class ResearchLearningService {
         quarantined: observations.filter((item) => item.gateState === "quarantined").length,
         invalid: observations.filter((item) => item.gateState === "invalid").length,
         distinctEligibleVideos: eligibleVotes.length,
-        distinctEligibleCreators: new Set(eligibleVotes.map((item) => item.observation.creatorId).filter(Boolean)).size
+        distinctEligibleCreators: new Set(eligibleVotes.map((item) => item.observation.creatorId).filter(Boolean)).size,
+        byOrigin: {
+          externalResearch: {
+            confirm: eligibleVotes.filter((item) => item.relation === "confirm").length,
+            qualify: eligibleVotes.filter((item) => item.relation === "qualify").length,
+            contradict: eligibleVotes.filter((item) => item.relation === "contradict").length
+          },
+          firstPartyPractice: {
+            confirm: firstParty.filter((item) => item.relation === "confirm").length,
+            qualify: firstParty.filter((item) => item.relation === "qualify").length,
+            contradict: firstParty.filter((item) => item.relation === "contradict").length
+          }
+        }
       },
       dependentConclusions: [...this.conclusions.values()].filter((item) => item.conceptIds.includes(id))
     });

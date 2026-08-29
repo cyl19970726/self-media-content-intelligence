@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import type { KnowledgeResearchPort } from "./ports.js";
 import {
-  adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
+  adjudicatePracticeValidationInputSchema, adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
   createKnowledgeBindingInputSchema, createPracticeValidationInputSchema,
   knowledgeConceptViewSchema, legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
   type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding,
@@ -201,10 +201,39 @@ export class ContentKnowledgeService {
     const input = createPracticeValidationInputSchema.parse(raw);
     const hypothesis = this.repository.getHypothesis(input.hypothesisId);
     if (!hypothesis || hypothesis.contentPackageId !== input.contentPackageId) throw new Error("hypothesis not found for package");
+    if (hypothesis.contentPackageSnapshotId !== input.contentPackageSnapshotId) {
+      throw new Error("hypothesis does not belong to publication content package snapshot");
+    }
+    if (!input.variantId || !input.executionSnapshot) throw new Error("practice validation requires a resolvable frozen publication execution");
+    if (input.executionSnapshot.status !== "published" && input.executionSnapshot.status !== "draft_saved") {
+      throw new Error("practice validation requires a published or verified draft execution");
+    }
+    if (!input.executionSnapshot.receipt) throw new Error("practice validation requires a verified publication receipt");
+    const prior = this.repository.listValidations(input.publicationRunId).find((item) => item.hypothesisId === input.hypothesisId);
+    if (prior) {
+      const priorFingerprint = commandHash({
+        publicationRunId: prior.publicationRunId, contentPackageId: prior.contentPackageId,
+        contentPackageSnapshotId: prior.contentPackageSnapshotId, variantId: prior.variantId,
+        variantRevision: prior.variantRevision, hypothesisId: prior.hypothesisId,
+        executionSnapshot: prior.executionSnapshot, observedSignals: prior.observedSignals,
+        unavailableMetrics: prior.unavailableMetrics, executionDeviations: prior.executionDeviations, confounders: prior.confounders
+      });
+      const inputFingerprint = commandHash({ ...input, operationKey: undefined });
+      if (priorFingerprint !== inputFingerprint) throw new Error("practice validation already exists for publication hypothesis with different evidence");
+      return prior;
+    }
     const timestamp = this.now();
     const validation = practiceValidationSchema.parse({
-      ...input, id: this.makeId(), status: input.observedSignals.length > 0 ? "evidence_ready" : "draft",
-      proposedRelation: null, targetConceptId: null, decisionReason: null, promotedObservationId: null,
+      ...input, id: this.makeId(),
+      hypothesisSnapshot: {
+        statement: hypothesis.statement, expectedSignals: hypothesis.expectedSignals,
+        unavailableSignals: hypothesis.unavailableSignals, baselineDeclaration: hypothesis.baselineDeclaration,
+        confounders: hypothesis.confounders
+      },
+      status: input.observedSignals.length > 0 || input.unavailableMetrics.length > 0 ? "evidence_ready" : "draft",
+      proposedRelation: null, targetConceptId: null, targetConceptRevisionId: null, decisionReason: null,
+      submittedBy: null, submittedAt: null, adjudicationDecision: null, adjudicatedBy: null,
+      adjudicationReason: null, adjudicatedAt: null, promotedObservationId: null,
       createdAt: timestamp, updatedAt: timestamp
     });
     return this.repository.saveValidation(validation, input.operationKey, commandHash(input));
@@ -214,26 +243,53 @@ export class ContentKnowledgeService {
     const input = submitPracticeValidationInputSchema.parse(raw);
     const current = this.repository.getValidation(id);
     if (!current) throw new Error("practice validation not found");
+    const submitHash = commandHash({ id, ...input });
+    if (current.status === "adjudication_pending" && current.proposedRelation === input.proposedRelation
+      && current.targetConceptId === input.targetConceptId && current.decisionReason === input.decisionReason
+      && current.submittedBy === input.submittedBy) {
+      return this.repository.saveValidation(current, input.operationKey, submitHash);
+    }
     if (current.status !== "evidence_ready") throw new Error("practice validation is not evidence ready");
     if (input.proposedRelation !== "inconclusive" && !input.targetConceptId) throw new Error("conclusive validation requires target concept");
-    if (input.targetConceptId && !this.research.get(input.targetConceptId)) throw new Error("target concept not found");
+    if (input.proposedRelation !== "inconclusive" && current.observedSignals.length === 0) {
+      throw new Error("conclusive validation requires an observed signal");
+    }
+    const target = input.targetConceptId ? this.research.get(input.targetConceptId) : null;
+    if (input.targetConceptId && !target) throw new Error("target concept not found");
     const next = practiceValidationSchema.parse({
       ...current, status: "adjudication_pending", proposedRelation: input.proposedRelation,
-      targetConceptId: input.targetConceptId, decisionReason: input.decisionReason, updatedAt: this.now()
+      targetConceptId: input.targetConceptId, targetConceptRevisionId: target?.currentRevision.id ?? null,
+      decisionReason: input.decisionReason, submittedBy: input.submittedBy, submittedAt: this.now(), updatedAt: this.now()
     });
-    return this.repository.saveValidation(next, input.operationKey, commandHash({ id, ...input }));
+    return this.repository.saveValidation(next, input.operationKey, submitHash);
   }
 
-  adjudicateValidation(id: string, raw: { operationKey: string; promote: boolean; reason: string }): PracticeValidation {
+  adjudicateValidation(id: string, raw: unknown): PracticeValidation {
+    const input = adjudicatePracticeValidationInputSchema.parse(raw);
+    const decision = input.decision ?? (input.promote ? "promote" : "complete_no_promotion");
+    const adjudicationHash = commandHash({ id, ...input, decision });
     const current = this.repository.getValidation(id);
     if (!current) throw new Error("practice validation not found");
-    if (current.status !== "adjudication_pending") throw new Error("practice validation is not pending adjudication");
+    if (current.adjudicationDecision === decision && current.adjudicatedBy === input.adjudicatorId
+      && current.adjudicationReason === input.reason) {
+      return this.repository.saveValidation(current, input.operationKey, adjudicationHash);
+    }
+    const invalidatable = new Set<PracticeValidation["status"]>(["adjudication_pending", "promoted", "completed_no_promotion", "blocked"]);
+    if (decision === "invalidate" ? !invalidatable.has(current.status) : current.status !== "adjudication_pending") {
+      throw new Error(decision === "invalidate" ? "practice validation cannot be invalidated from current state" : "practice validation is not pending adjudication");
+    }
+    if (!current.submittedBy) throw new Error("practice validation has no accountable submitter");
+    if (current.submittedBy === input.adjudicatorId) throw new Error("practice validation requires an independent adjudicator");
     let promotedObservationId: string | null = null;
-    if (raw.promote) {
+    if (decision === "promote") {
       if (!current.targetConceptId || !current.proposedRelation || current.proposedRelation === "inconclusive") {
         throw new Error("eligible first-party promotion requires a target concept and conclusive relation");
       }
       if (current.observedSignals.length === 0) throw new Error("eligible first-party promotion requires observed signals");
+      const target = this.research.get(current.targetConceptId);
+      if (!target || target.currentRevision.id !== current.targetConceptRevisionId) {
+        throw new Error("target concept revision changed after validation submission");
+      }
       const observation = this.research.recordObservation({
         conceptId: current.targetConceptId,
         subjectType: "practice_validation",
@@ -241,7 +297,7 @@ export class ContentKnowledgeService {
         creatorId: null,
         videoId: null,
         relation: current.proposedRelation,
-        statement: current.decisionReason ?? raw.reason,
+        statement: current.decisionReason ?? input.reason,
         evidenceRefs: current.observedSignals.map((signal) => `practice:${current.id}:${signal.name}:${signal.source}:${signal.collectedAt}`),
         analysisRevisionId: `practice-validation:${current.id}`,
         confidence: "medium",
@@ -250,12 +306,19 @@ export class ContentKnowledgeService {
         origin: "first_party_practice"
       });
       promotedObservationId = observation.id;
+    } else if (decision === "invalidate" && current.promotedObservationId) {
+      this.research.invalidateAnalysisRevision?.(`practice-validation:${current.id}`, input.reason);
     }
+    const nextStatus: PracticeValidation["status"] = decision === "promote" ? "promoted"
+      : decision === "complete_no_promotion" ? "completed_no_promotion"
+        : decision === "block" ? "blocked" : "invalidated";
     const next = practiceValidationSchema.parse({
-      ...current, status: raw.promote ? "promoted" : "completed_no_promotion", decisionReason: raw.reason,
-      promotedObservationId, updatedAt: this.now()
+      ...current, status: nextStatus, adjudicationDecision: decision, adjudicatedBy: input.adjudicatorId,
+      adjudicationReason: input.reason, adjudicatedAt: this.now(),
+      promotedObservationId: decision === "invalidate" ? current.promotedObservationId : promotedObservationId,
+      updatedAt: this.now()
     });
-    return this.repository.saveValidation(next, raw.operationKey, commandHash({ id, ...raw }));
+    return this.repository.saveValidation(next, input.operationKey, adjudicationHash);
   }
 
   getValidation(id: string): PracticeValidation | null { return this.repository.getValidation(id); }

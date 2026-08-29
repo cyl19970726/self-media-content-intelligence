@@ -132,9 +132,22 @@ export function registerKnowledgeRoutes(
       const run = publishing.getRun(request.params.id);
       if (!run) return response.status(404).json({ error: "发布任务不存在" });
       if (!run.contentPackageSnapshotId) return response.status(409).json({ error: "旧发布任务没有可解析的内容包快照" });
+      if (!["published", "draft_saved"].includes(run.status) || !run.receipt) {
+        return response.status(409).json({ error: "只有已发布或已验证保存的草稿才能进入实践验证" });
+      }
+      if (run.variant.id !== run.variantId || run.variant.revision !== run.variantRevision
+        || run.variant.contentPackageSnapshotId !== run.contentPackageSnapshotId) {
+        return response.status(409).json({ error: "发布任务的平台版本 lineage 无法解析" });
+      }
+      const snapshot = publishing.getPackageSnapshot(run.variant.packageId, run.contentPackageSnapshotId);
+      if (!snapshot || snapshot.status !== "frozen") {
+        return response.status(409).json({ error: "发布任务没有可解析的冻结内容包快照" });
+      }
       return response.status(201).json(knowledge.createValidation({
         ...request.body, publicationRunId: run.id, contentPackageId: run.variant.packageId,
-        contentPackageSnapshotId: run.contentPackageSnapshotId, variantRevision: run.variantRevision
+        contentPackageSnapshotId: run.contentPackageSnapshotId, variantId: run.variantId,
+        variantRevision: run.variantRevision,
+        executionSnapshot: { status: run.status, receipt: run.receipt }
       }));
     } catch (error) { return knowledgeError(response, error); }
   });

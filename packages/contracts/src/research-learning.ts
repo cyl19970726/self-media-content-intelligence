@@ -113,7 +113,18 @@ export const researchConceptReadSchema = z.object({
     quarantined: z.number().int().nonnegative(),
     invalid: z.number().int().nonnegative(),
     distinctEligibleVideos: z.number().int().nonnegative(),
-    distinctEligibleCreators: z.number().int().nonnegative()
+    distinctEligibleCreators: z.number().int().nonnegative(),
+    byOrigin: z.object({
+      externalResearch: z.object({
+        confirm: z.number().int().nonnegative(), qualify: z.number().int().nonnegative(), contradict: z.number().int().nonnegative()
+      }),
+      firstPartyPractice: z.object({
+        confirm: z.number().int().nonnegative(), qualify: z.number().int().nonnegative(), contradict: z.number().int().nonnegative()
+      })
+    }).default({
+      externalResearch: { confirm: 0, qualify: 0, contradict: 0 },
+      firstPartyPractice: { confirm: 0, qualify: 0, contradict: 0 }
+    })
   }),
   dependentConclusions: z.array(researchDependentConclusionSchema)
 });

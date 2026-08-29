@@ -282,7 +282,7 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
   close(): void { if (!this.closed) { this.closed = true; this.db.close(); } }
 
   private write<T>(operationKey: string, commandHash: string, eventType: string, entityId: string, value: T,
-    persist: () => void, schema: z.ZodType<T>): T {
+    persist: () => void, schema: z.ZodType<T, z.ZodTypeDef, unknown>): T {
     return this.transaction(() => {
       const prior = this.db.prepare("SELECT command_hash, result_json FROM knowledge_operations WHERE operation_key = ?")
         .get(operationKey) as OperationRow | undefined;

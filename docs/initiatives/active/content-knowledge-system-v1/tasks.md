@@ -90,7 +90,7 @@ The implementation must preserve existing research-learning and publishing data,
   - _Requirements: R7, R9, R11, R12_
   - **Completed in Issue #27:** real working/frozen package snapshots replace client-generated timestamp IDs; variants and publication runs preserve snapshot lineage; nested commands enforce ownership, lifecycle, immutable target resolution and same-snapshot hypotheses; legacy packages remain readable and acquire a snapshot only when they next enter creation.
 
-- [ ] 10. Implement practice validation and independent adjudication
+- [x] 10. Implement practice validation and independent adjudication
   - Create validation records only from resolvable publication runs and frozen variant/package revisions.
   - Capture observable signals, source, collection time, deviations, confounders, and unavailable metrics without inventing denominators.
   - Add submit/adjudicate APIs and enforce the validation state machine.
@@ -98,6 +98,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Add publication-history UI for hypothesis versus outcome and learning decision.
   - Add service, API, and integration tests for promoted, inconclusive, blocked, and invalidated outcomes.
   - _Requirements: R1, R8, R9, R10, R11_
+  - **Completed in Issue #29:** validation creation now requires a published or verified-draft run with matching frozen package/variant lineage; the validation freezes hypothesis, baseline, receipt, observable and unavailable metrics; submitter/adjudicator identity separation and explicit terminal decisions enforce the state machine; promoted results enter Research Learning only as partitioned `first_party_practice` observations; Publication History renders the planned/observed/decision case file without inventing unavailable denominators.
 
 - [ ] 11. Implement staleness, invalidation, lint, and gaps
   - Propagate hard provenance invalidation through observations, projections, semantic edges, and working bindings.
