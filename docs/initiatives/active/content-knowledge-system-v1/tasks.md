@@ -116,12 +116,13 @@ The implementation must preserve existing research-learning and publishing data,
   - _Requirements: R2, R9, R12_
   - **Completed in Issue #33:** the read-only-by-default backfill planner scans canonical run reports, verifies the matching report artifact and evidence-ref grammar, reuses the existing single-post compiler for resolvable history, records unsupported final reports as zero-contribution `legacy_unverified`, and skips non-final runs. Offline CLI tools now create SHA-256 manifests, guard WAL/SHM boundaries, preserve displaced databases during restore, and prove projection rebuild, FTS, close/reopen, and rollback against isolated runtime copies.
 
-- [ ] 13. Complete system verification and release evidence
+- [x] 13. Complete system verification and release evidence
   - Run targeted tests after every vertical slice, then the full test suite, typecheck, lint, client build, and server build.
   - Run browser flows for Knowledge index/detail, contribution navigation, Creation binding, and Practice Validation, plus adjacent research and publishing routes.
   - Audit palette, typography, icons, responsive behavior, accessibility semantics, and absence of forbidden direct LLM writes.
   - Update this checklist with actual completion status and record any externally blocked verification explicitly.
   - _Requirements: R1–R12_
+  - **Completed in Issue #35:** a path-guarded temporary fixture proves the single-post Knowledge → Creation → Practice lineage without touching the real runtime or an external publisher; desktop, true 390 px, empty, missing-record, contribution-navigation, accessibility, console, and adjacent-route browser checks passed after repairing per-validation form isolation, focus visibility, narrow overflow, and the favicon error. The full 189-test verification/build/entrypoint gate passed and a permanent Knowledge-authority check now prevents browser/model code from acquiring canonical write ownership. Full V1 release remains blocked by the explicitly unchecked creator/comparison compiler work in Task 6.
 
 ## Planned vertical slices
 

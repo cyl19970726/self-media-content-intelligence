@@ -7,6 +7,10 @@
 body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--paper); }
 button, input { font: inherit; } button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-decoration: none; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--orange) !important;
+  outline-offset: 3px;
+}
 .app-shell { min-height: 100vh; background-image: linear-gradient(rgba(23,28,27,.045) 1px, transparent 1px); background-size: 100% 36px; }
 .masthead { height: 76px; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--ink); background: rgba(242,239,231,.96); }
 .brand { display: flex; align-items: center; gap: 12px; }
@@ -805,6 +809,8 @@ details.console-section > .console-section__inner { padding: 22px 0; }
 }
 @media (max-width: 600px) {
   .section-nav { padding: 0 8px; overflow-x: auto; }.section-nav a { min-height: 45px; padding: 0 12px; flex: 0 0 auto; white-space: nowrap; }.section-nav a:first-child { padding-left: 8px; }
+  .knowledge-contribution-block > article { grid-template-columns: minmax(0, 1fr); }.knowledge-contribution-block article > *, .evidence-lane > * { min-width: 0; }.knowledge-contribution-block p, .knowledge-contribution-block small, .evidence-lane li, .evidence-lane a, .evidence-lane small { overflow-wrap: anywhere; }
+  .knowledge-evidence .evidence-lane { grid-template-columns: minmax(0, 1fr); }
   .section-nav__soon { display: none !important; } .intake h1 { font-size: 48px; } .eyebrow span:last-child { display: none; }
   .creators-page { padding-inline: 18px; }.creators-page h1 { font-size: 43px; }.creator-control-head ol { grid-template-columns: 1fr; }.creator-control-head li:nth-child(odd) { border-right: 0; }
   .creator-intake { padding: 15px; }.provider-rail { grid-template-columns: 1fr; }.provider-rail button { border-right: 0; border-bottom: 1px solid var(--line); }.provider-rail button:last-child { border-bottom: 0; }.creator-intake__policy { display: grid; }.research-queue, .creator-dossiers { margin-top: 42px; }.creator-dossiers > header { align-items: start; flex-direction: column; padding: 17px 0; }.creator-run { grid-template-columns: 1fr; }.creator-run__status, .creator-run__main { border-right: 0; border-bottom: 1px solid var(--line); }.creator-run__coverage { grid-column: auto; }.creator-run__pipeline { grid-template-columns: repeat(3, 1fr); }.creator-run footer { display: grid; }.creator-run footer a { margin-left: 0; }

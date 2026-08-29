@@ -2,7 +2,7 @@
 
 Status: **Canonical initiative classification**
 
-Last audited: **2026-08-28**
+Last audited: **2026-08-30**
 
 Implementation maturity describes shipped behavior, lifecycle describes whether
 work remains active, and verification describes the strongest evidence currently
@@ -10,7 +10,7 @@ available. A design document is never implementation proof by itself.
 
 | Initiative | Implementation maturity | Lifecycle | Verification level | Canonical destination |
 | --- | --- | --- | --- | --- |
-| Content Knowledge System V1 | Partial; the single-post research → revisioned Knowledge slice is operational, while creator/comparison compilation and later creation/practice slices remain | Active | Atomic ledger/projection recovery, migration parity, compiler/API/UI tests; 7/13 task groups checked | [Active record](initiatives/active/content-knowledge-system-v1/requirements.md) |
+| Content Knowledge System V1 | Partial; the single-post research → revisioned Knowledge → creation → practice loop is operational, while production creator/comparison compilation remains | Active | Full repository gate plus desktop/390 px/empty/error browser evidence; 12/13 task groups checked | [Active record](initiatives/active/content-knowledge-system-v1/requirements.md) |
 | Creator Analysis OS V1 | Partial product implementation; normative research and UI contracts remain active, six task groups unresolved | Active | Automated projections/gates plus recorded depth-parity evidence; 38/44 tasks checked | [Active record](initiatives/active/creator-analysis-os-v1/README.md) |
 | Human Director Skill Study | Research study completed; productization remains governed separately | Completed | 19/19 reconstructions, 14 observation samples, five blind holdouts, static review and three forward tests | [Completed record](initiatives/completed/human-director-director-skill/study-plan.md) |
 | Creation and Publishing V1 | Implemented for the declared platform matrix and guarded publication flow | Completed | 7/7 tasks, domain/API/adapter tests, compiled Worker/API smoke | [Completed record](initiatives/completed/creation-publishing-v1/requirements.md) |
