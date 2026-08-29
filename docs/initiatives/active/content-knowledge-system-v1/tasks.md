@@ -100,12 +100,13 @@ The implementation must preserve existing research-learning and publishing data,
   - _Requirements: R1, R8, R9, R10, R11_
   - **Completed in Issue #29:** validation creation now requires a published or verified-draft run with matching frozen package/variant lineage; the validation freezes hypothesis, baseline, receipt, observable and unavailable metrics; submitter/adjudicator identity separation and explicit terminal decisions enforce the state machine; promoted results enter Research Learning only as partitioned `first_party_practice` observations; Publication History renders the planned/observed/decision case file without inventing unavailable denominators.
 
-- [ ] 11. Implement staleness, invalidation, lint, and gaps
+- [x] 11. Implement staleness, invalidation, lint, and gaps
   - Propagate hard provenance invalidation through observations, projections, semantic edges, and working bindings.
   - Preserve historical packages and publication receipts while marking their knowledge basis accurately.
   - Surface unresolved contradictions, orphan concepts, missing conditions/exclusions, obsolete edges, affected bindings, and missing manifests.
   - Add regression tests for each cascade and ensure semantic changes still require adjudication.
   - _Requirements: R5, R6, R9, R10_
+  - **Completed in Issue #31:** explicit analysis/evidence invalidation records a stable impact result, invalidates manifests and Research Learning observations, persists obsolete semantic-edge state, and derives affected creation-binding status without rewriting frozen history. Deterministic lint now surfaces contradictions, unsupported concepts, missing conditions/exclusions, obsolete edges, affected bindings, and missing manifests. Knowledge Health and the concept Impact Ledger expose the causal chain and required human action.
 
 - [ ] 12. Backfill verified history and document operational recovery
   - Provide an idempotent backfill path for analyses with resolvable revision and evidence lineage.

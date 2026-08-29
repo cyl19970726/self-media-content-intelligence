@@ -141,6 +141,70 @@ describe("content knowledge compilation", () => {
     expect(research.list().map((item) => item.concept.slug)).toEqual(["atomic-one"]);
     knowledge.close();
   });
+
+  it("propagates a hard analysis invalidation without rewriting historical bindings", () => {
+    const { knowledge, research } = fixture();
+    const compiled = knowledge.compile({
+      operationKey: "compile:cascade", compilerPolicyVersion: "v1", inputFingerprint: "sha256:cascade",
+      analysis: { analysisRevisionId: "analysis-cascade", subjectType: "video", subjectId: "video-cascade",
+        creatorId: "creator-cascade", videoId: "video-cascade", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "cascade-source", kind: "proof_mode", name: "传播源", definition: "硬失效应传播。", exclusions: ["仍有独立支持。"] },
+          relation: "confirm", statement: "这条观察只有一个来源。", evidenceRefs: ["evidence:cascade"], confidence: "high" }] }
+    });
+    const source = knowledge.listKnowledge()[0]!;
+    const target = research.createConcept({ slug: "cascade-target", kind: "content_mechanism", name: "传播目标", definition: "等待人工语义判断。", exclusions: ["自动生成关系。"] });
+    const edge = knowledge.adjudicateEdge({ operationKey: "edge:cascade", sourceConceptId: source.research.concept.id,
+      sourceRevisionId: source.research.currentRevision.id, relation: "depends_on", targetConceptId: target.concept.id,
+      targetRevisionId: target.currentRevision.id, status: "active", provenanceRefs: ["evidence:cascade"],
+      policyVersion: "human-v1", decisionReason: "人工确认依赖。" });
+    const packageId = "10000000-0000-4000-8000-000000000099";
+    const analysisBinding = knowledge.createBinding({ operationKey: "bind:cascade-analysis", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot:frozen", targetType: "analysis_revision", targetId: "analysis-cascade",
+      usage: "adopt", rationale: "保留当时采用依据。" });
+    const conceptBinding = knowledge.createBinding({ operationKey: "bind:cascade-concept", contentPackageId: packageId,
+      contentPackageSnapshotId: "snapshot:frozen", targetType: "concept_revision", targetId: source.research.currentRevision.id,
+      usage: "adopt", rationale: "保留当时概念版本。" });
+
+    const record = knowledge.invalidate({ operationKey: "invalidate:cascade", targetType: "analysis_revision",
+      targetId: "analysis-cascade", reason: "原始素材完整性校验失败。", actorId: "reviewer-1" });
+    const repeated = knowledge.invalidate({ operationKey: "invalidate:cascade", targetType: "analysis_revision",
+      targetId: "analysis-cascade", reason: "原始素材完整性校验失败。", actorId: "reviewer-1" });
+    expect(() => knowledge.invalidate({ operationKey: "invalidate:cascade", targetType: "analysis_revision",
+      targetId: "analysis-cascade", reason: "同一 operation 不能改写原因。", actorId: "reviewer-1" })).toThrow("idempotency conflict");
+
+    expect(repeated.id).toBe(record.id);
+    expect(record.affectedManifestIds).toEqual([compiled.manifest.id]);
+    expect(record.affectedEdgeIds).toContain(edge.id);
+    expect(record.affectedBindingIds).toEqual(expect.arrayContaining([analysisBinding.id, conceptBinding.id]));
+    expect(knowledge.listContributions("video", "video-cascade")[0]?.manifest.status).toBe("invalidated");
+    expect(knowledge.getKnowledge(source.research.concept.id)?.edges[0]?.status).toBe("invalidated");
+    expect(knowledge.listBindings(packageId).map((item) => item.status)).toEqual(["invalidated", "invalidated"]);
+    expect(knowledge.lint().map((item) => item.code)).toEqual(expect.arrayContaining(["orphan-concept", "obsolete-semantic-edge", "affected-creation-binding"]));
+    expect(knowledge.projectionParity().invalidationCount).toBe(1);
+    expect(knowledge.rebuildProjections()).toEqual(knowledge.projectionParity());
+    expect(() => knowledge.adjudicateEdge({ operationKey: "edge:automatic-repair", sourceConceptId: source.research.concept.id,
+      sourceRevisionId: knowledge.getKnowledge(source.research.concept.id)!.research.currentRevision.id, relation: "depends_on",
+      targetConceptId: target.concept.id, targetRevisionId: target.currentRevision.id, status: "active",
+      provenanceRefs: ["evidence:replacement"], policyVersion: "automatic", decisionReason: "不得自动修复。" })).toThrow("inactive concept");
+  });
+
+  it("invalidates evidence across dependent analyses while retaining concepts with independent support", () => {
+    const { knowledge } = fixture();
+    const first = knowledge.compile({ operationKey: "compile:evidence-a", compilerPolicyVersion: "v1", inputFingerprint: "sha256:evidence-a",
+      analysis: { analysisRevisionId: "analysis-evidence-a", subjectType: "video", subjectId: "video-a", creatorId: "creator-a", videoId: "video-a", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" }, observations: [{ concept: { slug: "independent-support", kind: "proof_mode", name: "独立支持", definition: "多个独立来源共同支持。", exclusions: ["单一来源。"] }, relation: "confirm", statement: "来源 A 支持。", evidenceRefs: ["evidence:shared"], confidence: "high" }] } });
+    const conceptId = first.contributions[0]!.targetConceptId!;
+    knowledge.compile({ operationKey: "compile:evidence-b", compilerPolicyVersion: "v1", inputFingerprint: "sha256:evidence-b",
+      analysis: { analysisRevisionId: "analysis-evidence-b", subjectType: "video", subjectId: "video-b", creatorId: "creator-b", videoId: "video-b", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" }, observations: [{ conceptId, relation: "confirm", statement: "来源 B 独立支持。", evidenceRefs: ["evidence:independent"], confidence: "high" }] } });
+
+    const record = knowledge.invalidate({ operationKey: "invalidate:shared-evidence", targetType: "evidence",
+      targetId: "evidence:shared", reason: "证据文件校验失败。", actorId: "reviewer-2" });
+    expect(record.affectedAnalysisRevisionIds).toEqual(["analysis-evidence-a"]);
+    expect(knowledge.getKnowledge(conceptId)?.research.observations.some((item) => item.gateState === "eligible")).toBe(true);
+    expect(knowledge.getKnowledge(conceptId)?.research.concept.status).not.toBe("invalidated");
+  });
 });
 
 describe("creation and validation boundary", () => {

@@ -26,6 +26,15 @@ export function registerKnowledgeRoutes(
   app.get("/api/v1/knowledge", listKnowledge);
   app.get("/api/v1/knowledge/search", listKnowledge);
   app.get("/api/v1/knowledge/gaps", (_request, response) => response.json({ gaps: knowledge.gaps() }));
+  app.get("/api/v1/knowledge/lint", (_request, response) => response.json({ items: knowledge.lint() }));
+  app.get("/api/v1/knowledge/invalidations", (request, response) => {
+    const conceptId = typeof request.query.conceptId === "string" ? request.query.conceptId : undefined;
+    return response.json({ invalidations: knowledge.listInvalidations(conceptId) });
+  });
+  app.post("/api/v1/knowledge/invalidations", (request, response) => {
+    try { return response.status(202).json(knowledge.invalidate(request.body)); }
+    catch (error) { return knowledgeError(response, error); }
+  });
   app.get("/api/v1/knowledge/projection-parity", (_request, response) => response.json(knowledge.projectionParity()));
   app.post("/api/v1/knowledge/projections/rebuild", (_request, response) => {
     try { return response.json(knowledge.rebuildProjections()); }
