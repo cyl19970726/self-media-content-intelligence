@@ -1,5 +1,6 @@
 import type {
   IngestAnalysisRevision,
+  ResearchCondition,
   ResearchConceptRead,
   ResearchObservation
 } from "../../contracts/index.js";
@@ -35,6 +36,13 @@ export interface KnowledgeResearchPort {
     observations: ResearchObservation[];
   };
   recordObservation(input: KnowledgeResearchObservationInput): ResearchObservation;
+  promote(conceptId: string, input: {
+    targetScope: "creator_specific" | "conditional" | "track_wide";
+    creatorId?: string;
+    condition?: Partial<ResearchCondition>;
+    comparableCreatorIds?: string[];
+    decision: string;
+  }): ResearchConceptRead;
   invalidateAnalysisRevision?(analysisRevisionId: string, reason: string): ResearchConceptRead[];
   reload?(): void;
 }

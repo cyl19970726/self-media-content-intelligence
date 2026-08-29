@@ -81,6 +81,21 @@ export class ContentKnowledgeService {
     };
     try { return this.repository.transaction(() => {
     const ingested = this.research.ingestAnalysisRevision(analysis);
+    const promotionDecisions = input.promotionRequests.map((request) => {
+      const target = this.research.list().find((item) => item.concept.slug === request.conceptSlug) ?? null;
+      if (!target) return { conceptId: null, conceptSlug: request.conceptSlug, targetScope: request.targetScope,
+        status: "concept_missing" as const, reason: "Compiled concept slug did not resolve." };
+      if (target.concept.scope === request.targetScope) return { conceptId: target.concept.id, conceptSlug: request.conceptSlug,
+        targetScope: request.targetScope, status: "already_promoted" as const, reason: "Concept already has the requested governed scope." };
+      try {
+        this.research.promote(target.concept.id, request);
+        return { conceptId: target.concept.id, conceptSlug: request.conceptSlug, targetScope: request.targetScope,
+          status: "promoted" as const, reason: request.decision };
+      } catch (error) {
+        return { conceptId: target.concept.id, conceptSlug: request.conceptSlug, targetScope: request.targetScope,
+          status: "gate_failed" as const, reason: error instanceof Error ? error.message : String(error) };
+      }
+    });
     const manifestId = this.makeId();
     const contributions: KnowledgeContribution[] = ingested.observations.map((observation, index) => ({
       id: this.makeId(), manifestId,
@@ -105,6 +120,7 @@ export class ContentKnowledgeService {
         : contributions.every((item) => item.disposition === "quarantined") ? "quarantined" : "accepted",
       contributionIds: contributions.map((item) => item.id),
       quarantineReasons: [...unavailableEvidence.map((item) => `evidence:${item.availability}:${item.ref}`), ...quarantineReasons],
+      promotionDecisions,
       createdAt: this.now(),
       decidedAt: this.now()
     };
@@ -115,6 +131,17 @@ export class ContentKnowledgeService {
       this.research.reload?.();
       throw error;
     }
+  }
+
+  promote(conceptId: string, input: Parameters<KnowledgeResearchPort["promote"]>[1]): { concept: KnowledgeConceptView; idempotent: boolean } {
+    const current = this.research.get(conceptId);
+    if (!current) throw new Error("knowledge concept not found");
+    if (current.concept.scope === input.targetScope) {
+      return { concept: this.getKnowledge(conceptId)!, idempotent: true };
+    }
+    this.research.promote(conceptId, input);
+    this.repository.syncConceptProjection(this.research.list());
+    return { concept: this.getKnowledge(conceptId)!, idempotent: false };
   }
 
   rebuildProjections() {
@@ -142,7 +169,7 @@ export class ContentKnowledgeService {
       id: this.makeId(), subjectType: input.subjectType, subjectId: input.subjectId,
       analysisRevisionId: input.analysisRevisionId, compilerPolicyVersion: "legacy-import-v1",
       inputFingerprint: input.inputFingerprint, status: "legacy_unverified", contributionIds: [],
-      quarantineReasons: [`legacy_unverified:${input.reason}`], createdAt: timestamp, decidedAt: timestamp
+      quarantineReasons: [`legacy_unverified:${input.reason}`], promotionDecisions: [], createdAt: timestamp, decidedAt: timestamp
     };
     return this.repository.saveManifest(manifest, [], input.operationKey, commandHash(input));
   }

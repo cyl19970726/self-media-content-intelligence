@@ -57,14 +57,14 @@ The implementation must preserve existing research-learning and publishing data,
   - Add API tests for empty state, seeded state, filtering, lineage, idempotency, and invalid commands.
   - _Requirements: R2, R5, R6, R9, R10, R11_
 
-- [ ] 6. Connect analysis revisions to contribution manifests
+- [x] 6. Connect analysis revisions to contribution manifests
   - Add a bounded `KnowledgeCompiler` port and a deterministic/manual adapter suitable for tests and local operation.
   - Trigger contribution compilation only after existing video, creator, or comparison publication gates pass.
   - Resolve immutable evidence refs and write an explicit `accepted_no_new_knowledge` or quarantine result when appropriate.
   - Ensure retrying an unchanged analysis revision cannot duplicate observations.
   - Add integration tests for video, creator, comparison, no-new-knowledge, and insufficient-evidence paths.
   - _Requirements: R2, R3, R4, R9, R10_
-  - **Current slice:** the production single-post path, no-new-knowledge, Evidence quarantine, retry/idempotency and recovery tests are complete under Issue #24. Creator and comparison production triggers remain intentionally pending, so this broader V1 task stays unchecked.
+  - **Completed in Issue #38:** research-owned ready-only completion ports now publish immutable creator and comparison snapshots to reviewed server-side compilers. Creator roles retain per-post creator/video/tier/deep/evidence identity and can reach `creator_specific` only through Research Learning's deterministic gate. Versioned comparisons pin ready independent synthesis/gate artifacts, preserve portfolio-only legacy honesty, derive exact-normalized shared roles plus exceptions/gaps, and can reach `conditional` or `track_wide` only through the existing thresholds. Every run records promotion decisions, unchanged retries are idempotent, and an isolated three-creator fixture proves Knowledge → Creation → Practice without touching real runtime data or external Evidence.
 
 - [x] 7. Build the Knowledge index and concept detail surfaces
   - Add the top-level Knowledge navigation route and client API types.
@@ -122,7 +122,7 @@ The implementation must preserve existing research-learning and publishing data,
   - Audit palette, typography, icons, responsive behavior, accessibility semantics, and absence of forbidden direct LLM writes.
   - Update this checklist with actual completion status and record any externally blocked verification explicitly.
   - _Requirements: R1–R12_
-  - **Completed in Issue #35:** a path-guarded temporary fixture proves the single-post Knowledge → Creation → Practice lineage without touching the real runtime or an external publisher; desktop, true 390 px, empty, missing-record, contribution-navigation, accessibility, console, and adjacent-route browser checks passed after repairing per-validation form isolation, focus visibility, narrow overflow, and the favicon error. The full 189-test verification/build/entrypoint gate passed and a permanent Knowledge-authority check now prevents browser/model code from acquiring canonical write ownership. Full V1 release remains blocked by the explicitly unchecked creator/comparison compiler work in Task 6.
+  - **Completed in Issue #35 and closed for full V1 in Issue #38:** Issue #35 proved the single-post Knowledge → Creation → Practice lineage and established the permanent authority/browser release gate. Issue #38 adds production creator/comparison compilation, explicit deterministic promotion decisions, and the isolated three-creator closed-loop fixture; the final verification record is `issue-38-acceptance.md`.
 
 ## Planned vertical slices
 

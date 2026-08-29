@@ -19,6 +19,11 @@ export function KnowledgeContributionBlock({ subjectType, subjectId }: { subject
     {!loaded ? <p>正在核对贡献清单……</p> : error ? <div className="contribution-none"><CircleAlert size={16}/><p>{error}</p></div> : rows.length === 0 ? <div className="contribution-none"><CircleAlert size={16}/><p>尚无可解析的贡献清单。它不等于“没有学到东西”；历史报告需要固定 analysis revision 与 evidence refs 后才能回填。</p></div>
       : rows.map(({ manifest, contributions }) => <article key={manifest.id}><div><b>{manifest.status.replaceAll("_", " ")}</b><small>{manifest.analysisRevisionId} · {manifest.compilerPolicyVersion}</small></div>
         {manifest.quarantineReasons.length > 0 && <p>隔离原因：{manifest.quarantineReasons.join(" · ")}</p>}
+        {manifest.promotionDecisions.length > 0 && <ul>{manifest.promotionDecisions.map((decision) =>
+          <li key={`${decision.conceptSlug}:${decision.targetScope}`}><span>{decision.status}</span>
+            {decision.conceptId ? <Link to={`/knowledge/${decision.conceptId}`}>{decision.conceptSlug} → {decision.targetScope}</Link>
+              : `${decision.conceptSlug} → ${decision.targetScope}`}
+            <small>{decision.reason}</small></li>)}</ul>}
         {contributions.length === 0 ? <p>已审核，本 revision 没有形成可复用的新知识。</p> : <ul>{contributions.map((item) => <li key={item.id}><span>{item.disposition}</span>{item.targetConceptId ? <Link to={`/knowledge/${item.targetConceptId}`}>{item.candidateStatement}</Link> : item.candidateStatement}<small>{item.decisionReason} · {item.evidenceRefs.length} 条证据</small></li>)}</ul>}
       </article>)}
   </section>;

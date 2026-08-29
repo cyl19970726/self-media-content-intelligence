@@ -108,7 +108,9 @@ export default function KnowledgeWorkspace() {
       <section className="knowledge-history">
         <span>CONTRIBUTION LINEAGE</span>
         {detail.contributions.map(({ manifest, contribution }) => <article key={contribution.id}>
-          <b>{contribution.disposition}</b><div><strong>{manifest.subjectType} / {manifest.subjectId}</strong><p>{contribution.decisionReason}</p></div><small>{manifest.compilerPolicyVersion}</small>
+          <b>{contribution.disposition}</b><div><strong>{manifest.subjectType} / {manifest.subjectId}</strong><p>{contribution.decisionReason}</p>
+            {manifest.promotionDecisions.filter((decision) => decision.conceptId === detail.research.concept.id).map((decision) =>
+              <p key={`${decision.conceptSlug}:${decision.targetScope}`}>晋升判定：{decision.status} → {decision.targetScope} · {decision.reason}</p>)}</div><small>{manifest.compilerPolicyVersion}</small>
         </article>)}
       </section>
     </article>

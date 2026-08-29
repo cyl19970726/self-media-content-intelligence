@@ -2,6 +2,8 @@
 
 Status: **Task 13 accepted; full V1 release not ready**
 
+> Historical release record: the Task 6 blocker described here is resolved by Issue #38. See `issue-38-acceptance.md` for the full V1 decision.
+
 Issue: <https://github.com/cyl19970726/self-media-content-intelligence/issues/35>
 
 ## Release decision

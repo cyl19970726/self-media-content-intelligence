@@ -33,6 +33,7 @@ import type { ContentKnowledgeService } from "../../packages/knowledge/index.js"
 import { ManagedRuntime, type ManagedResource, type ManagedWorker } from "../../packages/runtime/index.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
 import { SinglePostKnowledgeCompiler } from "./analysis-knowledge-compiler.js";
+import { ComparisonKnowledgeCompiler, CreatorKnowledgeCompiler } from "./research-knowledge-compiler.js";
 
 export interface SignalRoomServices {
   analysis: AnalysisService;
@@ -72,21 +73,25 @@ export function createSignalRoomComposition(
   options: SignalRoomCompositionOptions = {}
 ): SignalRoomComposition {
   const artifacts = new LocalCreatorArtifactStore();
+  const { researchLearning, contentKnowledge } = createDurableKnowledgeSystem();
+  const creatorKnowledgeCompiler = new CreatorKnowledgeCompiler(contentKnowledge);
+  const comparisonKnowledgeCompiler = new ComparisonKnowledgeCompiler(contentKnowledge);
   const creatorResearch = new CreatorResearchService(
     new SQLiteCreatorResearchRepository(),
     artifacts,
     new LocalDeepMediaResolver(),
     new CodexVideoReconstructionExecutor(),
     new CodexCreatorSynthesisExecutor(artifacts),
-    videoConcurrency()
+    videoConcurrency(),
+    creatorKnowledgeCompiler
   );
   const comparisons = new ComparisonProjectService(
     creatorResearch,
     new SQLiteComparisonProjectRepository(),
     artifacts,
-    loadCreatorDossier
+    loadCreatorDossier,
+    comparisonKnowledgeCompiler
   );
-  const { researchLearning, contentKnowledge } = createDurableKnowledgeSystem();
   const learningLoop = createDurableLearningLoopControlPlane();
   const publishers = options.publishers === undefined ? createEgoBrowserPublishers() : options.publishers;
   const publishing = new PublishingService(new SQLitePublishingRepository(), new LocalPublicationMediaAccess(), publishers);

@@ -381,8 +381,8 @@ export class ResearchLearningService {
         conceptId,
         subjectType: input.subjectType,
         subjectId: input.subjectId,
-        creatorId: input.creatorId,
-        videoId: input.videoId,
+        creatorId: candidate.creatorId === undefined ? input.creatorId : candidate.creatorId,
+        videoId: candidate.videoId === undefined ? input.videoId : candidate.videoId,
         relation: candidate.relation,
         condition: candidate.condition,
         statement: candidate.statement,
@@ -390,7 +390,7 @@ export class ResearchLearningService {
         analysisRevisionId: input.analysisRevisionId,
         confidence: candidate.confidence,
         sourceGateState,
-        deepReconstruction: input.deepReconstruction
+        deepReconstruction: candidate.deepReconstruction ?? input.deepReconstruction
       }));
     }
     const ingestion = {

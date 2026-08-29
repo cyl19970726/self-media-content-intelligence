@@ -31,6 +31,7 @@
     "scripts/backfill-red-witch-baseline.py",
     "scripts/build-video-article-library.mjs",
     "scripts/check-repository-policy.mjs",
+    "scripts/content-knowledge-v1-fixture.ts",
     "scripts/inventory-artifacts.mjs",
     "scripts/migrate-evidence.mjs",
     "scripts/migrate-evidence.test.mjs",
