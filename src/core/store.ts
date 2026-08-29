@@ -22,9 +22,14 @@ interface RunRow {
 export class RunStore {
   private readonly db: DatabaseSync;
 
-  constructor(filePath = databasePath()) {
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    this.db = new DatabaseSync(filePath);
+  constructor(filePath = databasePath(), options: { readOnly?: boolean } = {}) {
+    if (!options.readOnly) fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    else if (!fs.existsSync(filePath)) throw new Error(`run database does not exist: ${filePath}`);
+    this.db = new DatabaseSync(filePath, { readOnly: options.readOnly ?? false });
+    if (options.readOnly) {
+      this.db.exec("PRAGMA query_only = ON");
+      return;
+    }
     this.db.exec("PRAGMA journal_mode = WAL");
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS runs (
@@ -87,6 +92,11 @@ export class RunStore {
         authorName: report.source?.author.name ?? "未知作者"
       };
     });
+  }
+
+  listReports(limit = 10_000): ReportEnvelope[] {
+    const rows = this.db.prepare("SELECT report_json FROM runs ORDER BY updated_at ASC, id ASC LIMIT ?").all(limit) as unknown as Array<{ report_json: string }>;
+    return rows.map((row) => reportEnvelopeSchema.parse(JSON.parse(row.report_json) as unknown));
   }
 
   close(): void {
