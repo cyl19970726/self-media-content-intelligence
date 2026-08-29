@@ -12,9 +12,9 @@ import { videoResearchSchema, type VideoResearch } from "../shared/video-researc
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier";
 import { z } from "zod";
 import {
-  knowledgeConceptViewSchema, knowledgeGapSchema,
+  knowledgeConceptViewSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema,
   creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema, knowledgeContributionSchema, practiceValidationSchema,
-  type CreationHypothesis, type KnowledgeBinding, type KnowledgeConceptView, type KnowledgeGap, type PracticeValidation
+  type CreationHypothesis, type KnowledgeBinding, type KnowledgeConceptView, type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation
 } from "../../packages/knowledge/contracts";
 import { learningLoopRunSchema, type LearningLoopRun } from "../shared/learning-loop";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../shared/creator-pipeline";
@@ -64,9 +64,17 @@ export async function getKnowledge(conceptId: string): Promise<KnowledgeConceptV
 }
 
 export async function listKnowledgeGaps(): Promise<KnowledgeGap[]> {
-  return json(await fetch("/api/v1/knowledge/gaps", { cache: "no-store" }), (value) => {
-    const gaps = value && typeof value === "object" && "gaps" in value ? value.gaps : [];
+  return json(await fetch("/api/v1/knowledge/lint", { cache: "no-store" }), (value) => {
+    const gaps = value && typeof value === "object" && "items" in value ? value.items : [];
     return knowledgeGapSchema.array().parse(gaps);
+  });
+}
+
+export async function listKnowledgeInvalidations(conceptId?: string): Promise<KnowledgeInvalidationRecord[]> {
+  const suffix = conceptId ? `?conceptId=${encodeURIComponent(conceptId)}` : "";
+  return json(await fetch(`/api/v1/knowledge/invalidations${suffix}`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "invalidations" in value ? value.invalidations : [];
+    return knowledgeInvalidationRecordSchema.array().parse(items);
   });
 }
 

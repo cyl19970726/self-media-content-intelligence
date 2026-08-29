@@ -1,6 +1,6 @@
 import type {
   CreationHypothesis, KnowledgeBinding, KnowledgeContribution, KnowledgeContributionManifest,
-  PracticeValidation, SemanticEdge
+  KnowledgeInvalidationRecord, PracticeValidation, SemanticEdge
 } from "./contracts.js";
 import type { ResearchConceptRead } from "../../contracts/index.js";
 
@@ -12,15 +12,18 @@ export interface KnowledgeProjectionParity {
   bindingCount: number;
   hypothesisCount: number;
   validationCount: number;
+  invalidationCount: number;
 }
 
 export interface ContentKnowledgeRepository {
   transaction<T>(operation: () => T): T;
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeContributionManifest | null;
   saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string): KnowledgeContributionManifest;
+  saveManifestState(manifest: KnowledgeContributionManifest, operationKey: string, commandHash: string): KnowledgeContributionManifest;
   listManifests(subjectType?: string, subjectId?: string): KnowledgeContributionManifest[];
   listContributions(manifestId: string): KnowledgeContribution[];
   saveEdge(edge: SemanticEdge, operationKey: string, commandHash: string): SemanticEdge;
+  saveEdgeState(edge: SemanticEdge, operationKey: string, commandHash: string): SemanticEdge;
   listEdges(conceptId?: string): SemanticEdge[];
   saveBinding(binding: KnowledgeBinding, operationKey: string, commandHash: string): KnowledgeBinding;
   listBindings(contentPackageId?: string, conceptRevisionId?: string): KnowledgeBinding[];
@@ -30,6 +33,9 @@ export interface ContentKnowledgeRepository {
   saveValidation(validation: PracticeValidation, operationKey: string, commandHash: string): PracticeValidation;
   getValidation(id: string): PracticeValidation | null;
   listValidations(publicationRunId?: string): PracticeValidation[];
+  saveInvalidation(record: KnowledgeInvalidationRecord, operationKey: string, commandHash: string): KnowledgeInvalidationRecord;
+  getInvalidationByOperationKey(operationKey: string): KnowledgeInvalidationRecord | null;
+  listInvalidations(): KnowledgeInvalidationRecord[];
   syncConceptProjection(concepts: ResearchConceptRead[]): void;
   searchConceptIds(query: string): string[];
   rebuildProjections(): KnowledgeProjectionParity;

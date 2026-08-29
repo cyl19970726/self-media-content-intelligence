@@ -8,7 +8,7 @@ import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { ComparisonProjectService } from "../../packages/research/index.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { PublishingService } from "../../packages/creation/index.js";
-import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema, practiceValidationSchema } from "../../packages/knowledge/index.js";
+import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema, practiceValidationSchema } from "../../packages/knowledge/index.js";
 import { SQLiteContentKnowledgeRepository, SQLitePublishingRepository } from "../../packages/adapters/index.js";
 import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { ResearchLearningService } from "./research-learning.js";
@@ -82,6 +82,20 @@ describe("content knowledge API", () => {
     const lineage = await fetch(`${base}/api/v1/knowledge/${concept.research.concept.id}/lineage`);
     expect(lineage.status).toBe(200);
     expect(await lineage.json()).toMatchObject({ conceptId: concept.research.concept.id });
+
+    const invalidationResponse = await fetch(`${base}/api/v1/knowledge/invalidations`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+        operationKey: "invalidate-api-1", targetType: "analysis_revision", targetId: "analysis-api-1",
+        reason: "API 测试发现来源完整性失败。", actorId: "api-reviewer"
+      })
+    });
+    expect(invalidationResponse.status).toBe(202);
+    const invalidation = knowledgeInvalidationRecordSchema.parse(await invalidationResponse.json());
+    expect(invalidation.affectedManifestIds).toContain(manifest.id);
+    const invalidations = await fetch(`${base}/api/v1/knowledge/invalidations?conceptId=${concept.research.concept.id}`).then((response) => response.json()) as { invalidations: unknown[] };
+    expect(knowledgeInvalidationRecordSchema.array().parse(invalidations.invalidations)).toHaveLength(1);
+    const lint = await fetch(`${base}/api/v1/knowledge/lint`).then((response) => response.json()) as { items: unknown[] };
+    expect(knowledgeGapSchema.array().parse(lint.items).some((item) => item.code === "orphan-concept")).toBe(true);
   });
 
   it("freezes package knowledge decisions into the variant and publication lineage", async () => {

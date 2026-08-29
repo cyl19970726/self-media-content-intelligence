@@ -3,10 +3,11 @@ import type { KnowledgeResearchPort } from "./ports.js";
 import {
   adjudicatePracticeValidationInputSchema, adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
   createKnowledgeBindingInputSchema, createPracticeValidationInputSchema,
-  knowledgeConceptViewSchema, legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
+  knowledgeConceptViewSchema, knowledgeInvalidationCommandSchema, knowledgeInvalidationRecordSchema,
+  legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
   type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding,
   type KnowledgeConceptView, type KnowledgeContribution, type KnowledgeContributionManifest,
-  type KnowledgeGap, type PracticeValidation, type SemanticEdge
+  type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
 } from "./contracts.js";
 import type { ContentKnowledgeRepository } from "./repository.js";
 
@@ -41,7 +42,7 @@ export class ContentKnowledgeService {
     ).map((research) => knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
       edges: this.repository.listEdges(research.concept.id).map((edge) => this.resolveEdgeStatus(edge)),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding)),
+      bindings: this.bindingsForConcept(research).map((binding) => this.resolveBindingStatus(binding)),
       contributions: this.contributionsForConcept(research.concept.id)
     }));
   }
@@ -51,7 +52,7 @@ export class ContentKnowledgeService {
     return research ? knowledgeConceptViewSchema.parse({
       maturity: maturityFor(research.concept.scope), research,
       edges: this.repository.listEdges(conceptId).map((edge) => this.resolveEdgeStatus(edge)),
-      bindings: this.repository.listBindings(undefined, research.currentRevision.id).map((binding) => this.resolveBindingStatus(binding)),
+      bindings: this.bindingsForConcept(research).map((binding) => this.resolveBindingStatus(binding)),
       contributions: this.contributionsForConcept(conceptId)
     }) : null;
   }
@@ -154,6 +155,9 @@ export class ContentKnowledgeService {
     if (source.currentRevision.id !== input.sourceRevisionId || target.currentRevision.id !== input.targetRevisionId) {
       throw new Error("semantic edge must pin current concept revisions");
     }
+    if ([source.concept.status, target.concept.status].some((status) => ["invalidated", "retired"].includes(status))) {
+      throw new Error("semantic edge cannot use an inactive concept revision");
+    }
     if (input.sourceConceptId === input.targetConceptId) throw new Error("semantic edge cannot be self-referential");
     const edge: SemanticEdge = { ...input, id: this.makeId(), createdAt: this.now() };
     return this.repository.saveEdge(edge, input.operationKey, commandHash(input));
@@ -171,7 +175,7 @@ export class ContentKnowledgeService {
       const exists = this.repository.listManifests().some((manifest) => manifest.analysisRevisionId === input.targetId && manifest.status !== "invalidated");
       if (!exists) throw new Error("analysis revision not found or inactive");
     } else {
-      const exists = this.repository.listManifests().some((manifest) =>
+      const exists = this.repository.listManifests().some((manifest) => manifest.status !== "invalidated" &&
         this.repository.listContributions(manifest.id).some((contribution) => contribution.evidenceRefs.includes(input.targetId))
       );
       if (!exists) throw new Error("evidence reference not found in accepted knowledge lineage");
@@ -324,37 +328,145 @@ export class ContentKnowledgeService {
   getValidation(id: string): PracticeValidation | null { return this.repository.getValidation(id); }
   listValidations(runId?: string): PracticeValidation[] { return this.repository.listValidations(runId); }
 
+  invalidate(raw: unknown): KnowledgeInvalidationRecord {
+    const input = knowledgeInvalidationCommandSchema.parse(raw);
+    const prior = this.repository.getInvalidationByOperationKey(input.operationKey);
+    if (prior) {
+      if (commandHash(knowledgeInvalidationCommandSchema.parse(prior)) !== commandHash(input)) {
+        throw new Error(`idempotency conflict for operation ${input.operationKey}`);
+      }
+      return prior;
+    }
+    const allManifests = this.repository.listManifests();
+    const analysisIds = input.targetType === "analysis_revision"
+      ? [input.targetId]
+      : allManifests.filter((manifest) => this.repository.listContributions(manifest.id)
+        .some((contribution) => contribution.evidenceRefs.includes(input.targetId)))
+        .map((manifest) => manifest.analysisRevisionId);
+    const affectedAnalysisRevisionIds = [...new Set(analysisIds)].sort();
+    if (affectedAnalysisRevisionIds.length === 0) throw new Error(`${input.targetType} not found in accepted knowledge lineage`);
+    const affectedManifests = allManifests.filter((manifest) => affectedAnalysisRevisionIds.includes(manifest.analysisRevisionId));
+    const observationsBefore = this.research.list().flatMap((view) => view.observations)
+      .filter((observation) => affectedAnalysisRevisionIds.includes(observation.analysisRevisionId));
+    const affectedObservationIds = [...new Set(observationsBefore.map((item) => item.id))].sort();
+    const affectedConceptIds = [...new Set(observationsBefore.map((item) => item.conceptId))].sort();
+    if (affectedManifests.length === 0 && affectedObservationIds.length === 0) throw new Error(`${input.targetType} not found in accepted knowledge lineage`);
+    const invalidateResearch = this.research.invalidateAnalysisRevision?.bind(this.research);
+    if (!invalidateResearch) throw new Error("research invalidation port is unavailable");
+    const recordId = this.makeId();
+    const timestamp = this.now();
+
+    try { return this.repository.transaction(() => {
+      for (const manifest of affectedManifests) {
+        if (manifest.status === "invalidated") continue;
+        const next = { ...manifest, status: "invalidated" as const,
+          quarantineReasons: [...new Set([...manifest.quarantineReasons, `hard-invalidation:${recordId}:${input.reason}`])], decidedAt: timestamp };
+        this.repository.saveManifestState(next, `${input.operationKey}:manifest:${manifest.id}`, commandHash(next));
+      }
+      for (const analysisRevisionId of affectedAnalysisRevisionIds) {
+        invalidateResearch(analysisRevisionId, input.reason);
+      }
+      this.repository.syncConceptProjection(this.research.list());
+      const affectedEdges = this.repository.listEdges().filter((edge) =>
+        (affectedConceptIds.includes(edge.sourceConceptId) || affectedConceptIds.includes(edge.targetConceptId)
+          || (input.targetType === "evidence" && edge.provenanceRefs.includes(input.targetId)))
+        && this.resolveEdgeStatus(edge).status === "invalidated");
+      for (const edge of affectedEdges) {
+        if (edge.status === "invalidated") continue;
+        const next = { ...edge, status: "invalidated" as const };
+        this.repository.saveEdgeState(next, `${input.operationKey}:edge:${edge.id}`, commandHash(next));
+      }
+      const affectedBindings = this.repository.listBindings().filter((binding) => {
+        const resolved = this.resolveBindingStatus(binding);
+        return resolved.status !== "current"
+          && (binding.targetType === "concept_revision"
+            ? affectedConceptIds.some((conceptId) => this.research.get(conceptId)?.revisions.some((revision) => revision.id === binding.targetId))
+            : binding.targetType === "analysis_revision"
+              ? affectedAnalysisRevisionIds.includes(binding.targetId)
+              : input.targetType === "evidence" && binding.targetId === input.targetId);
+      });
+      const record = knowledgeInvalidationRecordSchema.parse({
+        id: recordId, ...input, affectedAnalysisRevisionIds, affectedObservationIds, affectedConceptIds,
+        affectedManifestIds: affectedManifests.map((item) => item.id).sort(),
+        affectedEdgeIds: affectedEdges.map((item) => item.id).sort(),
+        affectedBindingIds: affectedBindings.map((item) => item.id).sort(), createdAt: timestamp
+      });
+      return this.repository.saveInvalidation(record, input.operationKey, commandHash(input));
+    }); } catch (error) {
+      this.research.reload?.();
+      throw error;
+    }
+  }
+
+  listInvalidations(conceptId?: string): KnowledgeInvalidationRecord[] {
+    return this.repository.listInvalidations().filter((item) => !conceptId || item.affectedConceptIds.includes(conceptId));
+  }
+
   gaps(): KnowledgeGap[] {
+    return this.lint();
+  }
+
+  lint(): KnowledgeGap[] {
     const gaps: KnowledgeGap[] = [];
+    const push = (item: Omit<KnowledgeGap, "id">) => gaps.push({ ...item, id: `${item.code}:${item.subjectType}:${item.subjectId}` });
     for (const view of this.listKnowledge()) {
-      if (view.research.currentRevision.exclusions.length === 0) gaps.push({ code: "missing-exclusions", severity: "attention", conceptId: view.research.concept.id, message: "概念缺少明确排除项" });
-      if (view.research.counts.contradict > 0 && view.research.concept.status === "active") gaps.push({ code: "unresolved-contradiction", severity: "attention", conceptId: view.research.concept.id, message: "活跃概念存在尚未解决的反例" });
-      if (view.research.observations.length === 0) gaps.push({ code: "orphan-concept", severity: "info", conceptId: view.research.concept.id, message: "概念尚无观察证据" });
+      const conceptId = view.research.concept.id;
+      if (view.research.currentRevision.exclusions.length === 0) push({ code: "missing-exclusions", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "概念缺少明确排除项", suggestedAction: "补充不适用边界并创建新的概念 revision。", lineageRefs: [view.research.currentRevision.id] });
+      if (view.research.concept.scope === "conditional" && Object.values(view.research.currentRevision.condition).every((value) => value === null)) {
+        push({ code: "missing-condition", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "条件规律尚未声明成立条件", suggestedAction: "补齐条件字段后提交人工裁决。", lineageRefs: [view.research.currentRevision.id] });
+      }
+      if (view.research.counts.contradict > 0 && !["invalidated", "retired"].includes(view.research.concept.status)) push({ code: "unresolved-contradiction", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "当前知识仍有尚未解决的反例", suggestedAction: "检查反例，选择限定、降级或失效该概念。", lineageRefs: view.research.observations.filter((item) => item.relation === "contradict" && item.gateState === "eligible").map((item) => item.id) });
+      if (!view.research.observations.some((item) => item.gateState === "eligible")) push({ code: "orphan-concept", severity: "blocked", subjectType: "concept", subjectId: conceptId, conceptId, message: "概念已经没有可用观察证据", suggestedAction: "补充有效证据，或人工失效/退役该概念。", lineageRefs: view.research.observations.map((item) => item.id) });
     }
     for (const edge of this.repository.listEdges()) {
-      if (this.resolveEdgeStatus(edge).status === "invalidated" && edge.status !== "invalidated") {
-        gaps.push({ code: "obsolete-semantic-edge", severity: "attention", conceptId: edge.sourceConceptId, message: "语义关系固定在已过期的概念 revision，等待重新裁决" });
+      if (this.resolveEdgeStatus(edge).status === "invalidated") {
+        push({ code: "obsolete-semantic-edge", severity: "attention", subjectType: "semantic_edge", subjectId: edge.id, conceptId: edge.sourceConceptId, message: "语义关系固定在已过期的概念 revision", suggestedAction: "基于当前两端 revision 重新进行人工语义裁决。", lineageRefs: [edge.sourceRevisionId, edge.targetRevisionId] });
       }
     }
     for (const binding of this.repository.listBindings()) {
       const resolved = this.resolveBindingStatus(binding);
-      if (resolved.status !== "current") gaps.push({ code: "affected-creation-binding", severity: resolved.status === "invalidated" ? "blocked" : "attention", conceptId: null, message: `内容包 ${binding.contentPackageId} 的知识依据已${resolved.status === "invalidated" ? "失效" : "更新"}` });
+      if (resolved.status !== "current") push({ code: "affected-creation-binding", severity: resolved.status === "invalidated" ? "blocked" : "attention", subjectType: "knowledge_binding", subjectId: binding.id, conceptId: null, message: `内容包 ${binding.contentPackageId} 的知识依据已${resolved.status === "invalidated" ? "失效" : "更新"}`, suggestedAction: "保留冻结历史；在 working snapshot 中复核或替换知识依据。", lineageRefs: [binding.targetId, binding.contentPackageSnapshotId] });
     }
-    return gaps;
+    const manifestAnalysisIds = new Set(this.repository.listManifests().map((item) => item.analysisRevisionId));
+    const observedAnalysisIds = new Set(this.research.list().flatMap((view) => view.observations)
+      .map((item) => item.analysisRevisionId).filter((id) => !id.startsWith("practice-validation:")));
+    for (const analysisRevisionId of [...observedAnalysisIds].filter((id) => !manifestAnalysisIds.has(id)).sort()) {
+      const conceptIds = this.research.list().filter((view) => view.observations.some((item) => item.analysisRevisionId === analysisRevisionId)).map((view) => view.concept.id);
+      push({ code: "missing-contribution-manifest", severity: "blocked", subjectType: "analysis_revision", subjectId: analysisRevisionId, conceptId: conceptIds[0] ?? null, message: "研究观察缺少对应的知识贡献清单", suggestedAction: "补跑编译器或登记 legacy_unverified manifest，禁止静默补造知识。", lineageRefs: conceptIds });
+    }
+    const order = { blocked: 0, attention: 1, info: 2 } as const;
+    return gaps.sort((left, right) => order[left.severity] - order[right.severity] || left.id.localeCompare(right.id));
   }
 
   private resolveBindingStatus(binding: KnowledgeBinding): KnowledgeBinding {
-    if (binding.targetType !== "concept_revision") return binding;
-    const owner = this.research.list().find((item) => item.revisions.some((revision) => revision.id === binding.targetId));
-    if (!owner) return { ...binding, status: "invalidated" };
-    if (["invalidated", "retired"].includes(owner.concept.status)) return { ...binding, status: "invalidated" };
-    return owner.currentRevision.id === binding.targetId ? binding : { ...binding, status: "stale_available" };
+    if (binding.targetType === "concept_revision") {
+      const owner = this.research.list().find((item) => item.revisions.some((revision) => revision.id === binding.targetId));
+      if (!owner || ["invalidated", "retired"].includes(owner.concept.status)) return { ...binding, status: "invalidated" };
+      return owner.currentRevision.id === binding.targetId ? { ...binding, status: "current" } : { ...binding, status: "stale_available" };
+    }
+    if (binding.targetType === "analysis_revision") {
+      const manifests = this.repository.listManifests().filter((item) => item.analysisRevisionId === binding.targetId);
+      return manifests.length > 0 && manifests.some((item) => item.status !== "invalidated") ? { ...binding, status: "current" } : { ...binding, status: "invalidated" };
+    }
+    const supportingManifests = this.repository.listManifests().filter((manifest) => this.repository.listContributions(manifest.id)
+      .some((contribution) => contribution.evidenceRefs.includes(binding.targetId)));
+    return supportingManifests.some((item) => item.status !== "invalidated") ? { ...binding, status: "current" } : { ...binding, status: "invalidated" };
   }
 
   private contributionsForConcept(conceptId: string) {
     return this.repository.listManifests().flatMap((manifest) => this.repository.listContributions(manifest.id)
       .filter((contribution) => contribution.targetConceptId === conceptId || contribution.createdConceptId === conceptId)
       .map((contribution) => ({ manifest, contribution })));
+  }
+
+  private bindingsForConcept(research: KnowledgeConceptView["research"]): KnowledgeBinding[] {
+    const revisionIds = new Set(research.revisions.map((item) => item.id));
+    const analysisIds = new Set(research.observations.map((item) => item.analysisRevisionId));
+    const evidenceRefs = new Set(research.observations.flatMap((item) => item.evidenceRefs));
+    return this.repository.listBindings().filter((binding) =>
+      binding.targetType === "concept_revision" ? revisionIds.has(binding.targetId)
+        : binding.targetType === "analysis_revision" ? analysisIds.has(binding.targetId)
+          : evidenceRefs.has(binding.targetId));
   }
 
   private resolveEdgeStatus(edge: SemanticEdge): SemanticEdge {

@@ -4,9 +4,9 @@ import { DatabaseSync } from "node:sqlite";
 import { z } from "zod";
 import {
   creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema,
-  knowledgeContributionSchema, practiceValidationSchema, semanticEdgeSchema,
+  knowledgeContributionSchema, knowledgeInvalidationRecordSchema, practiceValidationSchema, semanticEdgeSchema,
   type CreationHypothesis, type KnowledgeBinding, type KnowledgeContribution,
-  type KnowledgeContributionManifest, type PracticeValidation, type SemanticEdge
+  type KnowledgeContributionManifest, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
 } from "../../../../knowledge/index.js";
 import type { ContentKnowledgeRepository } from "../../../../knowledge/index.js";
 import type { KnowledgeProjectionParity } from "../../../../knowledge/index.js";
@@ -61,6 +61,9 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
         id TEXT PRIMARY KEY, publication_run_id TEXT NOT NULL, updated_at TEXT NOT NULL, value_json TEXT NOT NULL
       );
       CREATE INDEX IF NOT EXISTS idx_practice_validations_run ON practice_validations(publication_run_id, updated_at DESC);
+      CREATE TABLE IF NOT EXISTS knowledge_invalidations (
+        id TEXT PRIMARY KEY, operation_key TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL, value_json TEXT NOT NULL
+      );
       CREATE TABLE IF NOT EXISTS knowledge_operations (
         operation_key TEXT PRIMARY KEY, command_hash TEXT NOT NULL, result_json TEXT NOT NULL, created_at TEXT NOT NULL
       );
@@ -136,6 +139,13 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
     }, knowledgeContributionManifestSchema);
   }
 
+  saveManifestState(manifest: KnowledgeContributionManifest, operationKey: string, commandHash: string): KnowledgeContributionManifest {
+    const parsed = knowledgeContributionManifestSchema.parse(manifest);
+    return this.write(operationKey, commandHash, "manifest_state_saved", parsed.id, parsed, () => {
+      this.db.prepare("UPDATE knowledge_manifests SET value_json = ? WHERE id = ?").run(JSON.stringify(parsed), parsed.id);
+    }, knowledgeContributionManifestSchema);
+  }
+
   listManifests(subjectType?: string, subjectId?: string): KnowledgeContributionManifest[] {
     const rows = subjectType && subjectId
       ? this.db.prepare("SELECT value_json FROM knowledge_manifests WHERE subject_type = ? AND subject_id = ? ORDER BY created_at DESC").all(subjectType, subjectId)
@@ -153,6 +163,13 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
     return this.write(operationKey, commandHash, "edge_saved", parsed.id, parsed, () => {
       this.db.prepare("INSERT INTO knowledge_edges (id, source_concept_id, target_concept_id, created_at, value_json) VALUES (?, ?, ?, ?, ?)")
         .run(parsed.id, parsed.sourceConceptId, parsed.targetConceptId, parsed.createdAt, JSON.stringify(parsed));
+    }, semanticEdgeSchema);
+  }
+
+  saveEdgeState(edge: SemanticEdge, operationKey: string, commandHash: string): SemanticEdge {
+    const parsed = semanticEdgeSchema.parse(edge);
+    return this.write(operationKey, commandHash, "edge_state_saved", parsed.id, parsed, () => {
+      this.db.prepare("UPDATE knowledge_edges SET value_json = ? WHERE id = ?").run(JSON.stringify(parsed), parsed.id);
     }, semanticEdgeSchema);
   }
 
@@ -219,6 +236,24 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
     return (rows as unknown as JsonRow[]).map((row) => practiceValidationSchema.parse(JSON.parse(row.value_json) as unknown));
   }
 
+  saveInvalidation(record: KnowledgeInvalidationRecord, operationKey: string, commandHash: string): KnowledgeInvalidationRecord {
+    const parsed = knowledgeInvalidationRecordSchema.parse(record);
+    return this.write(operationKey, commandHash, "invalidation_recorded", parsed.id, parsed, () => {
+      this.db.prepare("INSERT INTO knowledge_invalidations (id, operation_key, created_at, value_json) VALUES (?, ?, ?, ?)")
+        .run(parsed.id, parsed.operationKey, parsed.createdAt, JSON.stringify(parsed));
+    }, knowledgeInvalidationRecordSchema);
+  }
+
+  getInvalidationByOperationKey(operationKey: string): KnowledgeInvalidationRecord | null {
+    const row = this.db.prepare("SELECT value_json FROM knowledge_invalidations WHERE operation_key = ?").get(operationKey) as JsonRow | undefined;
+    return row ? knowledgeInvalidationRecordSchema.parse(JSON.parse(row.value_json) as unknown) : null;
+  }
+
+  listInvalidations(): KnowledgeInvalidationRecord[] {
+    const rows = this.db.prepare("SELECT value_json FROM knowledge_invalidations ORDER BY created_at DESC, id DESC").all() as unknown as JsonRow[];
+    return rows.map((row) => knowledgeInvalidationRecordSchema.parse(JSON.parse(row.value_json) as unknown));
+  }
+
   syncConceptProjection(concepts: ResearchConceptRead[]): void {
     this.transaction(() => {
       const upsert = this.db.prepare(`INSERT INTO knowledge_concept_projection
@@ -262,6 +297,7 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
       this.db.exec(`DELETE FROM knowledge_contributions; DELETE FROM knowledge_manifests;
         DELETE FROM knowledge_edges; DELETE FROM knowledge_bindings;
         DELETE FROM creation_hypotheses; DELETE FROM practice_validations;
+        DELETE FROM knowledge_invalidations;
         DELETE FROM knowledge_concept_projection; DELETE FROM knowledge_concept_fts;`);
       const rows = this.db.prepare("SELECT event_type, snapshot_json FROM knowledge_decision_events ORDER BY sequence ASC").all() as unknown as DecisionRow[];
       for (const row of rows) this.replayDecision(row);
@@ -275,7 +311,7 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
       eventCount: count("knowledge_decision_events"), manifestCount: count("knowledge_manifests"),
       contributionCount: count("knowledge_contributions"), edgeCount: count("knowledge_edges"),
       bindingCount: count("knowledge_bindings"), hypothesisCount: count("creation_hypotheses"),
-      validationCount: count("practice_validations")
+      validationCount: count("practice_validations"), invalidationCount: count("knowledge_invalidations")
     };
   }
 
@@ -318,10 +354,16 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
       }
       return;
     }
-    if (row.event_type === "edge_saved") {
+    if (row.event_type === "manifest_state_saved") {
+      const item = knowledgeContributionManifestSchema.parse(entity);
+      this.db.prepare("UPDATE knowledge_manifests SET value_json = ? WHERE id = ?").run(JSON.stringify(item), item.id);
+    } else if (row.event_type === "edge_saved") {
       const item = semanticEdgeSchema.parse(entity);
       this.db.prepare("INSERT INTO knowledge_edges (id, source_concept_id, target_concept_id, created_at, value_json) VALUES (?, ?, ?, ?, ?)")
         .run(item.id, item.sourceConceptId, item.targetConceptId, item.createdAt, JSON.stringify(item));
+    } else if (row.event_type === "edge_state_saved") {
+      const item = semanticEdgeSchema.parse(entity);
+      this.db.prepare("UPDATE knowledge_edges SET value_json = ? WHERE id = ?").run(JSON.stringify(item), item.id);
     } else if (row.event_type === "binding_saved") {
       const item = knowledgeBindingSchema.parse(entity);
       this.db.prepare("INSERT INTO knowledge_bindings (id, package_id, target_id, created_at, value_json) VALUES (?, ?, ?, ?, ?)")
@@ -335,6 +377,10 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
       this.db.prepare(`INSERT INTO practice_validations (id, publication_run_id, updated_at, value_json) VALUES (?, ?, ?, ?)
         ON CONFLICT(id) DO UPDATE SET updated_at=excluded.updated_at, value_json=excluded.value_json`)
         .run(item.id, item.publicationRunId, item.updatedAt, JSON.stringify(item));
+    } else if (row.event_type === "invalidation_recorded") {
+      const item = knowledgeInvalidationRecordSchema.parse(entity);
+      this.db.prepare("INSERT INTO knowledge_invalidations (id, operation_key, created_at, value_json) VALUES (?, ?, ?, ?)")
+        .run(item.id, item.operationKey, item.createdAt, JSON.stringify(item));
     }
   }
 }

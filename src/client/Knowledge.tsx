@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { AlertTriangle, ArrowLeft, BookOpen, CircleAlert, GitBranch, LoaderCircle, Search } from "lucide-react";
-import { getKnowledge, listKnowledge, listKnowledgeGaps } from "./api";
-import type { KnowledgeConceptView, KnowledgeGap } from "../../packages/knowledge/contracts";
+import { AlertTriangle, ArrowLeft, BookOpen, CircleAlert, GitBranch, LoaderCircle, Search, ShieldAlert } from "lucide-react";
+import { getKnowledge, listKnowledge, listKnowledgeGaps, listKnowledgeInvalidations } from "./api";
+import type { KnowledgeConceptView, KnowledgeGap, KnowledgeInvalidationRecord } from "../../packages/knowledge/contracts";
 
 const scopeLabels = {
   video_specific: "单帖观察", creator_specific: "博主模式", conditional: "条件规律", track_wide: "跨博主规律"
@@ -28,6 +28,7 @@ export default function KnowledgeWorkspace() {
   const [concepts, setConcepts] = useState<KnowledgeConceptView[]>([]);
   const [detail, setDetail] = useState<KnowledgeConceptView | null>(null);
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
+  const [invalidations, setInvalidations] = useState<KnowledgeInvalidationRecord[]>([]);
   const [query, setQuery] = useState("");
   const [scope, setScope] = useState("");
   const [status, setStatus] = useState("");
@@ -44,7 +45,8 @@ export default function KnowledgeWorkspace() {
 
   useEffect(() => {
     if (!conceptId) { setDetail(null); return; }
-    void getKnowledge(conceptId).then(setDetail)
+    void Promise.all([getKnowledge(conceptId), listKnowledgeInvalidations(conceptId)])
+      .then(([nextDetail, nextInvalidations]) => { setDetail(nextDetail); setInvalidations(nextInvalidations); })
       .catch((cause) => setError(cause instanceof Error ? cause.message : "知识详情读取失败"));
   }, [conceptId]);
 
@@ -89,6 +91,20 @@ export default function KnowledgeWorkspace() {
           <b>R{revision.revision}</b><div><strong>{revision.changeType}</strong><p>{revision.decision}</p></div><small>{revision.createdAt.slice(0, 10)}</small>
         </article>)}
       </section>
+      <section className="knowledge-impact-ledger">
+        <header><span>IMPACT LEDGER / CURRENT BASIS</span><h2>哪些判断已经被这次变化触达</h2></header>
+        <div className="impact-chain">
+          <div><span>01 / SOURCE</span><strong>{invalidations.length}</strong><small>失效记录</small></div>
+          <div><span>02 / OBSERVATION</span><strong>{new Set(invalidations.flatMap((item) => item.affectedObservationIds)).size}</strong><small>受影响观察</small></div>
+          <div><span>03 / SEMANTIC</span><strong>{detail.edges.filter((item) => item.status === "invalidated").length}</strong><small>失效关系</small></div>
+          <div><span>04 / CREATION</span><strong>{detail.bindings.filter((item) => item.status !== "current").length}</strong><small>待复核绑定</small></div>
+        </div>
+        {invalidations.length === 0 ? <p className="impact-empty">当前概念没有硬失效记录。版本变化仍会通过绑定状态单独呈现。</p>
+          : invalidations.map((item) => <article key={item.id}>
+            <div><ShieldAlert size={15}/><strong>{item.targetType.replaceAll("_", " ")} / {item.targetId}</strong></div>
+            <p>{item.reason}</p><small>{item.actorId} · {item.createdAt.slice(0, 10)} · {item.affectedManifestIds.length} manifests · {item.affectedBindingIds.length} bindings</small>
+          </article>)}
+      </section>
       <section className="knowledge-history">
         <span>CONTRIBUTION LINEAGE</span>
         {detail.contributions.map(({ manifest, contribution }) => <article key={contribution.id}>
@@ -99,7 +115,8 @@ export default function KnowledgeWorkspace() {
     <aside className="knowledge-lineage">
       <span>LINEAGE / IMPACT</span>
       <dl><div><dt>支持视频</dt><dd>{detail.research.counts.distinctEligibleVideos}</dd></div><div><dt>不同博主</dt><dd>{detail.research.counts.distinctEligibleCreators}</dd></div><div><dt>下游绑定</dt><dd>{detail.bindings.length}</dd></div><div><dt>语义关系</dt><dd>{detail.edges.length}</dd></div></dl>
-      {detail.edges.map((edge) => <article key={edge.id}><GitBranch size={14}/><div><strong>{edge.relation.replaceAll("_", " ")}</strong><small>{edge.targetConceptId === conceptId ? edge.sourceConceptId : edge.targetConceptId}</small></div></article>)}
+      {detail.edges.map((edge) => <article className={`lineage-item lineage-item--${edge.status}`} key={edge.id}><GitBranch size={14}/><div><strong>{edge.relation.replaceAll("_", " ")} · {edge.status}</strong><small>{edge.targetConceptId === conceptId ? edge.sourceConceptId : edge.targetConceptId}</small></div></article>)}
+      {detail.bindings.filter((item) => item.status !== "current").map((binding) => <article className={`lineage-item lineage-item--${binding.status}`} key={binding.id}><ShieldAlert size={14}/><div><strong>{binding.status.replaceAll("_", " ")}</strong><small>{binding.contentPackageId}</small></div></article>)}
     </aside>
   </main>;
 
@@ -124,8 +141,11 @@ export default function KnowledgeWorkspace() {
               <div><b>{scopeLabels[item.research.concept.scope]}</b><strong>{item.research.counts.confirm}/{item.research.counts.qualify}/{item.research.counts.contradict}</strong><small>支持 / 限定 / 反驳</small></div>
             </button>)}</div>}
     </section>
-    <aside className="knowledge-gaps"><header><AlertTriangle size={16}/><span>RESEARCH GAPS</span><b>{gaps.length}</b></header>
-      {gaps.length === 0 ? <p>当前筛选范围没有待处理缺口。</p> : gaps.map((gap, index) => <article key={`${gap.code}-${index}`}><span>{gap.severity}</span><p>{gap.message}</p>{gap.conceptId && <Link to={`/knowledge/${gap.conceptId}`}>查看概念</Link>}</article>)}
+    <aside className="knowledge-gaps"><header><AlertTriangle size={16}/><span>KNOWLEDGE HEALTH / LINT</span><b>{gaps.length}</b></header>
+      {gaps.length === 0 ? <p>当前没有待处理的知识健康问题。</p> : gaps.map((gap) => <article className={`lint-item lint-item--${gap.severity}`} key={gap.id}>
+        <span>{gap.severity} / {gap.code.replaceAll("-", " ")}</span><small>{gap.subjectType.replaceAll("_", " ")} · {gap.subjectId}</small>
+        <p>{gap.message}</p><em>{gap.suggestedAction}</em>{gap.conceptId && <Link to={`/knowledge/${gap.conceptId}`}>查看影响链</Link>}
+      </article>)}
     </aside>
   </main>;
 }

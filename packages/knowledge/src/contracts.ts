@@ -205,7 +205,42 @@ export const knowledgeConceptViewSchema = z.object({
 });
 
 export const knowledgeGapSchema = z.object({
-  code: z.string(), severity: z.enum(["info", "attention", "blocked"]), conceptId: z.string().nullable(), message: z.string()
+  id: z.string().min(1),
+  code: z.enum([
+    "unresolved-contradiction", "orphan-concept", "missing-condition", "missing-exclusions",
+    "obsolete-semantic-edge", "affected-creation-binding", "missing-contribution-manifest"
+  ]),
+  severity: z.enum(["info", "attention", "blocked"]),
+  subjectType: z.enum(["concept", "analysis_revision", "semantic_edge", "knowledge_binding"]),
+  subjectId: z.string().min(1),
+  conceptId: z.string().nullable(),
+  message: z.string().min(1),
+  suggestedAction: z.string().min(1),
+  lineageRefs: z.array(z.string().min(1))
+});
+
+export const knowledgeInvalidationCommandSchema = z.object({
+  operationKey: z.string().min(1),
+  targetType: z.enum(["analysis_revision", "evidence"]),
+  targetId: z.string().min(1),
+  reason: z.string().min(1),
+  actorId: z.string().min(1)
+});
+
+export const knowledgeInvalidationRecordSchema = z.object({
+  id: z.string().uuid(),
+  operationKey: z.string().min(1),
+  targetType: z.enum(["analysis_revision", "evidence"]),
+  targetId: z.string().min(1),
+  reason: z.string().min(1),
+  actorId: z.string().min(1),
+  affectedAnalysisRevisionIds: z.array(z.string().min(1)),
+  affectedObservationIds: z.array(z.string().min(1)),
+  affectedConceptIds: z.array(z.string().min(1)),
+  affectedManifestIds: z.array(z.string().uuid()),
+  affectedEdgeIds: z.array(z.string().uuid()),
+  affectedBindingIds: z.array(z.string().uuid()),
+  createdAt: z.string().datetime()
 });
 
 export type KnowledgeContribution = z.infer<typeof knowledgeContributionSchema>;
@@ -218,3 +253,5 @@ export type CreationHypothesis = z.infer<typeof creationHypothesisSchema>;
 export type PracticeValidation = z.infer<typeof practiceValidationSchema>;
 export type KnowledgeConceptView = z.infer<typeof knowledgeConceptViewSchema>;
 export type KnowledgeGap = z.infer<typeof knowledgeGapSchema>;
+export type KnowledgeInvalidationCommand = z.infer<typeof knowledgeInvalidationCommandSchema>;
+export type KnowledgeInvalidationRecord = z.infer<typeof knowledgeInvalidationRecordSchema>;
