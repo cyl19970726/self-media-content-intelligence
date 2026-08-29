@@ -15,6 +15,20 @@ const statusCopy: Record<PracticeValidation["status"], string> = {
 
 const relationCopy = { confirm: "支持", qualify: "限定", contradict: "反驳", inconclusive: "无法判断" } as const;
 
+type ValidationDraft = {
+  relation: "confirm" | "qualify" | "contradict" | "inconclusive";
+  targetConceptId: string;
+  candidateReason: string;
+  submittedBy: string;
+  adjudicatorId: string;
+  adjudicationReason: string;
+};
+
+const emptyValidationDraft: ValidationDraft = {
+  relation: "inconclusive", targetConceptId: "", candidateReason: "", submittedBy: "content-reviewer",
+  adjudicatorId: "knowledge-adjudicator", adjudicationReason: ""
+};
+
 function splitLines(value: string): string[] {
   return value.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
 }
@@ -28,12 +42,7 @@ export function PracticeValidationHistory({ run }: { run: PublicationRun }) {
   const [unavailableReason, setUnavailableReason] = useState("平台未提供该私有指标");
   const [deviations, setDeviations] = useState("");
   const [confounders, setConfounders] = useState("");
-  const [relation, setRelation] = useState<"confirm" | "qualify" | "contradict" | "inconclusive">("inconclusive");
-  const [targetConceptId, setTargetConceptId] = useState("");
-  const [candidateReason, setCandidateReason] = useState("");
-  const [submittedBy, setSubmittedBy] = useState("content-reviewer");
-  const [adjudicatorId, setAdjudicatorId] = useState("knowledge-adjudicator");
-  const [adjudicationReason, setAdjudicationReason] = useState("");
+  const [validationDrafts, setValidationDrafts] = useState<Record<string, ValidationDraft>>({});
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,7 +56,6 @@ export function PracticeValidationHistory({ run }: { run: PublicationRun }) {
     setValidations(nextValidations); setConcepts(nextConcepts); setHypotheses(context.hypotheses);
     const available = context.hypotheses.filter((item) => !nextValidations.some((validation) => validation.hypothesisId === item.id));
     setHypothesisId((current) => available.some((item) => item.id === current) ? current : available[0]?.id || "");
-    setTargetConceptId((current) => current || nextConcepts[0]?.research.concept.id || "");
   }, [run.id, run.contentPackageSnapshotId, run.variant.packageId]);
 
   useEffect(() => { void refresh().catch((cause) => setError(cause instanceof Error ? cause.message : "实践验证读取失败")); }, [refresh]);
@@ -77,20 +85,33 @@ export function PracticeValidationHistory({ run }: { run: PublicationRun }) {
     }));
   };
 
-  const submit = (validation: PracticeValidation) => execute(() => submitPracticeValidation(validation.id, {
-    operationKey: `submit:${validation.id}`,
-    proposedRelation: relation,
-    targetConceptId: relation === "inconclusive" ? null : targetConceptId,
-    decisionReason: candidateReason,
-    submittedBy
+  const draftFor = (validationId: string): ValidationDraft => validationDrafts[validationId] ?? {
+    ...emptyValidationDraft, targetConceptId: concepts[0]?.research.concept.id ?? ""
+  };
+  const updateDraft = (validationId: string, patch: Partial<ValidationDraft>) => setValidationDrafts((current) => ({
+    ...current, [validationId]: { ...emptyValidationDraft, targetConceptId: concepts[0]?.research.concept.id ?? "", ...current[validationId], ...patch }
   }));
 
-  const adjudicate = (validation: PracticeValidation, decision: "promote" | "complete_no_promotion" | "block" | "invalidate") => execute(() =>
+  const submit = (validation: PracticeValidation) => {
+    const draft = draftFor(validation.id);
+    return execute(() => submitPracticeValidation(validation.id, {
+    operationKey: `submit:${validation.id}`,
+    proposedRelation: draft.relation,
+    targetConceptId: draft.relation === "inconclusive" ? null : draft.targetConceptId,
+    decisionReason: draft.candidateReason,
+    submittedBy: draft.submittedBy
+  }));
+  };
+
+  const adjudicate = (validation: PracticeValidation, decision: "promote" | "complete_no_promotion" | "block" | "invalidate") => {
+    const draft = draftFor(validation.id);
+    return execute(() =>
     adjudicatePracticeValidation(validation.id, {
       operationKey: `adjudicate:${validation.id}:${decision}:${Date.now()}`,
-      decision, reason: adjudicationReason, adjudicatorId
+      decision, reason: draft.adjudicationReason, adjudicatorId: draft.adjudicatorId
     })
-  );
+    );
+  };
 
   return <section className="practice-case-file">
     <header><div><FlaskConical size={15}/><span>PRACTICE VALIDATION / CASE FILE</span></div><code>S{run.contentPackageSnapshotId?.slice(0, 8) ?? "LEGACY"} · V{run.variantRevision}</code></header>
@@ -109,6 +130,7 @@ export function PracticeValidationHistory({ run }: { run: PublicationRun }) {
     {eligibleRun && hypotheses.length === 0 && <div className="practice-empty"><CircleSlash2 size={18}/><div><strong>这个冻结版本没有预先声明的假设</strong><p>系统不会在发布后倒推一个“看起来成功”的假设。</p></div></div>}
     <div className="practice-ledger">{validations.map((validation) => {
       const hypothesis = validation.hypothesisSnapshot ?? hypotheses.find((item) => item.id === validation.hypothesisId) ?? null;
+      const draft = draftFor(validation.id);
       return <article key={validation.id} className={`practice-record practice-record--${validation.status}`}>
         <div className="practice-record-head"><span>{statusCopy[validation.status]}</span><code>{validation.id.slice(0, 8)}</code></div>
         <div className="practice-triptych">
@@ -122,12 +144,12 @@ export function PracticeValidationHistory({ run }: { run: PublicationRun }) {
             {validation.submittedBy && <small>提交 · {validation.submittedBy}</small>}{validation.adjudicatedBy && <small>裁决 · {validation.adjudicatedBy}</small>}{validation.promotedObservationId && <code>OBS {validation.promotedObservationId.slice(0, 8)} · FIRST PARTY</code>}
           </section>
         </div>
-        {validation.status === "evidence_ready" && <div className="practice-actions"><label>候选关系<select value={relation} onChange={(event) => setRelation(event.target.value as typeof relation)}><option value="confirm">支持</option><option value="qualify">限定</option><option value="contradict">反驳</option><option value="inconclusive">无法判断</option></select></label>{relation !== "inconclusive" && <label>目标知识<select value={targetConceptId} onChange={(event) => setTargetConceptId(event.target.value)}>{concepts.map((item) => <option key={item.research.concept.id} value={item.research.concept.id}>{item.research.concept.name}</option>)}</select></label>}<label>提交者<input value={submittedBy} onChange={(event) => setSubmittedBy(event.target.value)}/></label><label className="wide">判断理由<input value={candidateReason} onChange={(event) => setCandidateReason(event.target.value)}/></label><button disabled={busy || !candidateReason || !submittedBy} onClick={() => void submit(validation)}><Scale size={13}/> 提交独立裁决</button></div>}
-        {validation.status === "adjudication_pending" && <div className="practice-actions"><label>独立裁决者<input value={adjudicatorId} onChange={(event) => setAdjudicatorId(event.target.value)}/></label><label className="wide">裁决理由<input value={adjudicationReason} onChange={(event) => setAdjudicationReason(event.target.value)}/></label>{validation.proposedRelation !== "inconclusive" && <button disabled={busy || !adjudicationReason || !adjudicatorId} onClick={() => void adjudicate(validation, "promote")}><Check size={13}/> 写入第一方观察</button>}<button disabled={busy || !adjudicationReason || !adjudicatorId} onClick={() => void adjudicate(validation, "complete_no_promotion")}>完成但不晋升</button><button disabled={busy || !adjudicationReason || !adjudicatorId} onClick={() => void adjudicate(validation, "block")}>标记阻塞</button><button disabled={busy || !adjudicationReason || !adjudicatorId} onClick={() => void adjudicate(validation, "invalidate")}>判定失效</button></div>}
+        {validation.status === "evidence_ready" && <div className="practice-actions"><label>候选关系<select value={draft.relation} onChange={(event) => updateDraft(validation.id, { relation: event.target.value as ValidationDraft["relation"] })}><option value="confirm">支持</option><option value="qualify">限定</option><option value="contradict">反驳</option><option value="inconclusive">无法判断</option></select></label>{draft.relation !== "inconclusive" && <label>目标知识<select value={draft.targetConceptId} onChange={(event) => updateDraft(validation.id, { targetConceptId: event.target.value })}>{concepts.map((item) => <option key={item.research.concept.id} value={item.research.concept.id}>{item.research.concept.name}</option>)}</select></label>}<label>提交者<input value={draft.submittedBy} onChange={(event) => updateDraft(validation.id, { submittedBy: event.target.value })}/></label><label className="wide">判断理由<input value={draft.candidateReason} onChange={(event) => updateDraft(validation.id, { candidateReason: event.target.value })}/></label><button disabled={busy || !draft.candidateReason || !draft.submittedBy} onClick={() => void submit(validation)}><Scale size={13}/> 提交独立裁决</button></div>}
+        {validation.status === "adjudication_pending" && <div className="practice-actions"><label>独立裁决者<input value={draft.adjudicatorId} onChange={(event) => updateDraft(validation.id, { adjudicatorId: event.target.value })}/></label><label className="wide">裁决理由<input value={draft.adjudicationReason} onChange={(event) => updateDraft(validation.id, { adjudicationReason: event.target.value })}/></label>{validation.proposedRelation !== "inconclusive" && <button disabled={busy || !draft.adjudicationReason || !draft.adjudicatorId} onClick={() => void adjudicate(validation, "promote")}><Check size={13}/> 写入第一方观察</button>}<button disabled={busy || !draft.adjudicationReason || !draft.adjudicatorId} onClick={() => void adjudicate(validation, "complete_no_promotion")}>完成但不晋升</button><button disabled={busy || !draft.adjudicationReason || !draft.adjudicatorId} onClick={() => void adjudicate(validation, "block")}>标记阻塞</button><button disabled={busy || !draft.adjudicationReason || !draft.adjudicatorId} onClick={() => void adjudicate(validation, "invalidate")}>判定失效</button></div>}
         {["promoted", "completed_no_promotion", "blocked"].includes(validation.status) && <div className="practice-invalidate">
-          <label>复核人<input value={adjudicatorId} onChange={(event) => setAdjudicatorId(event.target.value)}/></label>
-          <label>失效原因<input value={adjudicationReason} onChange={(event) => setAdjudicationReason(event.target.value)} placeholder="例如：指标来源撤回或回执 lineage 失效"/></label>
-          <button disabled={busy || !adjudicationReason || !adjudicatorId} onClick={() => void adjudicate(validation, "invalidate")}>来源失效时撤销该学习决定</button>
+          <label>复核人<input value={draft.adjudicatorId} onChange={(event) => updateDraft(validation.id, { adjudicatorId: event.target.value })}/></label>
+          <label>失效原因<input value={draft.adjudicationReason} onChange={(event) => updateDraft(validation.id, { adjudicationReason: event.target.value })} placeholder="例如：指标来源撤回或回执 lineage 失效"/></label>
+          <button disabled={busy || !draft.adjudicationReason || !draft.adjudicatorId} onClick={() => void adjudicate(validation, "invalidate")}>来源失效时撤销该学习决定</button>
         </div>}
       </article>;
     })}</div>
