@@ -8,7 +8,7 @@ import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { ComparisonProjectService } from "../../packages/research/index.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { PublishingService } from "../../packages/creation/index.js";
-import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema } from "../../packages/knowledge/index.js";
+import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema, practiceValidationSchema } from "../../packages/knowledge/index.js";
 import { SQLiteContentKnowledgeRepository, SQLitePublishingRepository } from "../../packages/adapters/index.js";
 import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { ResearchLearningService } from "./research-learning.js";
@@ -31,10 +31,8 @@ async function fixtureServer() {
   const knowledge = new ContentKnowledgeService(new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite")), research);
   const mediaPath = path.join(directory, "video.mp4");
   fs.writeFileSync(mediaPath, "fixture");
-  const publishing = new PublishingService(
-    new SQLitePublishingRepository(path.join(directory, "publishing.sqlite")),
-    { exists: fs.existsSync }
-  );
+  const publishingRepository = new SQLitePublishingRepository(path.join(directory, "publishing.sqlite"));
+  const publishing = new PublishingService(publishingRepository, { exists: fs.existsSync });
   closeables.push(knowledge, publishing);
   const unused = {} as unknown;
   const app = createApp({
@@ -53,7 +51,7 @@ async function fixtureServer() {
   await new Promise<void>((resolve) => server.once("listening", resolve));
   const address = server.address();
   if (!address || typeof address === "string") throw new Error("test server has no port");
-  return { base: `http://127.0.0.1:${address.port}`, mediaPath };
+  return { base: `http://127.0.0.1:${address.port}`, mediaPath, publishing, publishingRepository };
 }
 
 describe("content knowledge API", () => {
@@ -87,7 +85,7 @@ describe("content knowledge API", () => {
   });
 
   it("freezes package knowledge decisions into the variant and publication lineage", async () => {
-    const { base, mediaPath } = await fixtureServer();
+    const { base, mediaPath, publishing, publishingRepository } = await fixtureServer();
     const request = async (route: string, body: object) => {
       const response = await fetch(`${base}${route}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       return { response, value: await response.json() as Record<string, unknown> };
@@ -117,6 +115,11 @@ describe("content knowledge API", () => {
       expectedSignals: ["saves"], unavailableSignals: ["impressions"], baselineDeclaration: "近十条收藏中位数", confounders: []
     });
     expect(hypothesis.response.status).toBe(201);
+    const outcomeHypotheses = await Promise.all(["inconclusive", "blocked", "invalidated"].map((outcome) => request(`/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/hypotheses`, {
+      operationKey: `hypothesis-api-${outcome}`, statement: `${outcome} 结果假设。`, linkedBindingIds: [binding.value.id],
+      expectedSignals: ["saves"], unavailableSignals: outcome === "inconclusive" ? ["impressions"] : [], baselineDeclaration: "近十条中位数", confounders: []
+    })));
+    expect(outcomeHypotheses.every((item) => item.response.status === 201)).toBe(true);
 
     const variant = await request(`/api/v1/content-packages/${packageId}/variants`, {
       contentPackageSnapshotId: snapshotId, platform: "douyin", title: "知识快照发布", body: "正文", contentType: "video",
@@ -145,5 +148,60 @@ describe("content knowledge API", () => {
     const run = await request("/api/v1/publications", { variantId: variant.value.id });
     expect(run.response.status).toBe(201);
     expect(run.value.contentPackageSnapshotId).toBe(snapshotId);
+
+    const premature = await request(`/api/v1/publications/${run.value.id}/practice-validations`, {
+      operationKey: "validation-before-execution", hypothesisId: hypothesis.value.id, observedSignals: [], unavailableMetrics: [], executionDeviations: [], confounders: []
+    });
+    expect(premature.response.status).toBe(409);
+
+    const frozenRun = publishing.getRun(String(run.value.id))!;
+    publishingRepository.saveRun({ ...frozenRun, status: "published", currentStage: "平台已验证发布",
+      receipt: { externalId: "post-api-1", externalUrl: "https://example.com/post-api-1", platformState: "published", verifiedAt: "2026-08-28T00:00:00.000Z" },
+      updatedAt: "2026-08-28T00:00:00.000Z" });
+
+    const validationInputs = [
+      { key: "promoted", hypothesisId: hypothesis.value.id, observedSignals: [{ name: "saves", value: 42, unit: "count", source: "manual-public", collectedAt: "2026-08-28T00:00:00.000Z" }], unavailableMetrics: [] },
+      { key: "inconclusive", hypothesisId: outcomeHypotheses[0]!.value.id, observedSignals: [], unavailableMetrics: [{ name: "impressions", reason: "平台未开放私有分母", source: "declared-platform-gap", recordedAt: "2026-08-28T00:00:00.000Z" }] },
+      { key: "blocked", hypothesisId: outcomeHypotheses[1]!.value.id, observedSignals: [{ name: "saves", value: 8, unit: "count", source: "manual-public", collectedAt: "2026-08-28T00:00:00.000Z" }], unavailableMetrics: [] },
+      { key: "invalidated", hypothesisId: outcomeHypotheses[2]!.value.id, observedSignals: [{ name: "saves", value: 2, unit: "count", source: "manual-public", collectedAt: "2026-08-28T00:00:00.000Z" }], unavailableMetrics: [] }
+    ];
+    const validations = [];
+    for (const input of validationInputs) {
+      const created = await request(`/api/v1/publications/${run.value.id}/practice-validations`, {
+        operationKey: `validation-api-${input.key}`, hypothesisId: input.hypothesisId,
+        observedSignals: input.observedSignals, unavailableMetrics: input.unavailableMetrics,
+        executionDeviations: input.key === "blocked" ? ["临时更换封面"] : [], confounders: []
+      });
+      expect(created.response.status).toBe(201);
+      validations.push(practiceValidationSchema.parse(created.value));
+    }
+    expect(validations[1]?.unavailableMetrics[0]).toMatchObject({ name: "impressions", reason: "平台未开放私有分母" });
+
+    const submitCases = [
+      { relation: "confirm", target: concept.research.concept.id },
+      { relation: "inconclusive", target: null },
+      { relation: "qualify", target: concept.research.concept.id },
+      { relation: "contradict", target: concept.research.concept.id }
+    ] as const;
+    for (const [index, validation] of validations.entries()) {
+      const submitted = await request(`/api/v1/practice-validations/${validation.id}/submit`, {
+        operationKey: `submit-api-${validationInputs[index]!.key}`, proposedRelation: submitCases[index]!.relation,
+        targetConceptId: submitCases[index]!.target, decisionReason: "API 集成候选。", submittedBy: "content-reviewer"
+      });
+      expect(submitted.response.status).toBe(202);
+    }
+    const decisions = ["promote", "complete_no_promotion", "block", "invalidate"] as const;
+    for (const [index, validation] of validations.entries()) {
+      const adjudicated = await request(`/api/v1/practice-validations/${validation.id}/adjudicate`, {
+        operationKey: `adjudicate-api-${validationInputs[index]!.key}`, decision: decisions[index],
+        reason: "API 独立裁决。", adjudicatorId: "knowledge-adjudicator"
+      });
+      expect(adjudicated.response.status).toBe(202);
+      expect(practiceValidationSchema.parse(adjudicated.value).status).toBe(["promoted", "completed_no_promotion", "blocked", "invalidated"][index]);
+    }
+    const learned = await fetch(`${base}/api/v1/knowledge/${concept.research.concept.id}`).then((response) => response.json());
+    const learnedView = knowledgeConceptViewSchema.parse(learned);
+    expect(learnedView.research.counts.distinctEligibleVideos).toBe(1);
+    expect(learnedView.research.counts.byOrigin.firstPartyPractice.confirm).toBe(1);
   });
 });

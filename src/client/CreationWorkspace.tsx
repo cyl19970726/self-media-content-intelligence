@@ -13,6 +13,7 @@ import type {
   PublishingPlatform, VariantInput
 } from "../../packages/creation/contracts";
 import { KnowledgeDecisionPanel } from "./KnowledgeDecisionPanel";
+import { PracticeValidationHistory } from "./PracticeValidationHistory";
 
 const platformLabels: Record<PublishingPlatform, string> = {
   xiaohongshu: "小红书",
@@ -255,7 +256,7 @@ export default function CreationWorkspace() {
       {error && <div className="creation-alert"><AlertTriangle size={18}/><span>{error}</span><button onClick={() => setError(null)}>关闭</button></div>}
       {!selectedPackageId ? <div className="creation-zero"><MonitorUp size={30}/><h2>创建第一个内容包</h2><p>内容包承载共同意图，平台标题、正文和素材分别保存在版本中。</p></div> : <>
         {selectedPackage && <KnowledgeDecisionPanel key={`${selectedPackage.id}:${variants.map((item) => item.contentPackageSnapshotId).join(":")}`}
-          contentPackage={selectedPackage} publication={selectedRun}/>}
+          contentPackage={selectedPackage}/>}
         <div className="variant-tabs">
           {variants.map((item) => <button key={item.id} className={selectedVariantId === item.id ? "active" : ""} onClick={() => setSelectedVariantId(item.id)}>
             {item.contentType === "video" ? <Film size={14}/> : <FileImage size={14}/>} {platformLabels[item.platform]} · r{item.revision}
@@ -339,6 +340,7 @@ export default function CreationWorkspace() {
         {selectedRun.preview && <div className="preview-proof"><span>LIVE PREVIEW</span><dl><div><dt>页面</dt><dd>{selectedRun.preview.pageTitle || "平台发布页"}</dd></div><div><dt>素材</dt><dd>{selectedRun.preview.mediaCount} 个</dd></div><div><dt>TaskSpace</dt><dd>#{selectedRun.browserTaskSpaceId}</dd></div></dl>
           <a href={selectedRun.preview.url} target="_blank" rel="noreferrer"><ExternalLink size={14}/> 查看当前页面地址</a></div>}
         {selectedRun.receipt && <div className="receipt-proof"><Check size={18}/><div><strong>{selectedRun.receipt.platformState}</strong><small>{selectedRun.receipt.externalId ?? "平台未返回公开 ID"}</small>{selectedRun.receipt.externalUrl && <a href={selectedRun.receipt.externalUrl} target="_blank" rel="noreferrer">打开已发布内容</a>}</div></div>}
+        <PracticeValidationHistory key={selectedRun.id} run={selectedRun}/>
         <div className="gate-actions">
           {(["draft", "failed"] as PublicationRun["status"][]).includes(selectedRun.status) && <button className="primary-button" disabled={busy} onClick={() => void act(() => preparePublication(selectedRun.id))}><Play size={15}/> 填写平台发布页</button>}
           {selectedRun.status === "needs_user" && <button className="primary-button" disabled={busy} onClick={() => void act(() => resumePublication(selectedRun.id))}><RefreshCw size={15}/> 我已处理，恢复</button>}

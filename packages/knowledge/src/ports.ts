@@ -35,5 +35,6 @@ export interface KnowledgeResearchPort {
     observations: ResearchObservation[];
   };
   recordObservation(input: KnowledgeResearchObservationInput): ResearchObservation;
+  invalidateAnalysisRevision?(analysisRevisionId: string, reason: string): ResearchConceptRead[];
   reload?(): void;
 }

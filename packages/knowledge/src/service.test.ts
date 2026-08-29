@@ -7,6 +7,13 @@ import { ResearchLearningService } from "../../../src/server/research-learning.j
 import { ContentKnowledgeService } from "./service.js";
 
 const directories: string[] = [];
+const verifiedExecution = {
+  variantId: "30000000-0000-4000-8000-000000000001",
+  executionSnapshot: {
+    status: "published" as const,
+    receipt: { externalId: "post-1", externalUrl: "https://example.com/post-1", platformState: "published", verifiedAt: "2026-08-28T00:00:00.000Z" }
+  }
+};
 
 function fixture() {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "content-knowledge-"));
@@ -206,22 +213,92 @@ describe("creation and validation boundary", () => {
     const validation = knowledge.createValidation({
       operationKey: "validation-1", publicationRunId: "20000000-0000-4000-8000-000000000001",
       contentPackageId: packageId, contentPackageSnapshotId: "package:r1", variantRevision: 1, hypothesisId: hypothesis.id,
+      ...verifiedExecution,
       observedSignals: [{ name: "saves", value: 42, unit: "count", source: "manual-public", collectedAt: "2026-08-28T00:00:00.000Z" }],
+      unavailableMetrics: [{ name: "impressions", reason: "private metric unavailable", source: "declared-platform-gap", recordedAt: "2026-08-28T00:00:00.000Z" }],
       executionDeviations: [], confounders: []
     });
+    expect(validation.hypothesisSnapshot).toMatchObject({ statement: hypothesis.statement, unavailableSignals: ["impressions"] });
     const submitted = knowledge.submitValidation(validation.id, {
       operationKey: "validation-submit-1", proposedRelation: "confirm", targetConceptId: concept.concept.id,
-      decisionReason: "收藏高于声明基线，但曝光未知。"
+      decisionReason: "收藏高于声明基线，但曝光未知。", submittedBy: "content-reviewer"
     });
     expect(submitted.status).toBe("adjudication_pending");
     const adjudicated = knowledge.adjudicateValidation(validation.id, {
-      operationKey: "validation-adjudicate-1", promote: true, reason: "直接晋升"
+      operationKey: "validation-adjudicate-1", decision: "promote", reason: "作为第一方实践观察写入。", adjudicatorId: "knowledge-adjudicator"
     });
     expect(adjudicated.status).toBe("promoted");
     const read = research.get(concept.concept.id)!;
     expect(read.observations.at(-1)?.origin).toBe("first_party_practice");
     expect(read.counts.distinctEligibleVideos).toBe(0);
-    research.invalidateConcept(concept.concept.id, "upstream evidence withdrawn");
+    expect(read.counts.byOrigin).toEqual({
+      externalResearch: { confirm: 0, qualify: 0, contradict: 0 },
+      firstPartyPractice: { confirm: 1, qualify: 0, contradict: 0 }
+    });
+    expect(knowledge.adjudicateValidation(validation.id, {
+      operationKey: "validation-adjudicate-1", decision: "promote", reason: "作为第一方实践观察写入。", adjudicatorId: "knowledge-adjudicator"
+    }).id).toBe(adjudicated.id);
+    expect(research.get(concept.concept.id)?.observations).toHaveLength(1);
+    expect(knowledge.adjudicateValidation(validation.id, {
+      operationKey: "validation-invalidate-promoted", decision: "invalidate", reason: "结果来源已撤回。", adjudicatorId: "lineage-auditor"
+    }).status).toBe("invalidated");
+    expect(research.get(concept.concept.id)?.counts.byOrigin.firstPartyPractice.confirm).toBe(0);
+    expect(research.get(concept.concept.id)?.counts.invalid).toBe(1);
     expect(knowledge.listBindings(packageId)[0]?.status).toBe("invalidated");
+  });
+
+  it("keeps unavailable metrics inconclusive and enforces an independent adjudicator", () => {
+    const { knowledge, research } = fixture();
+    const packageId = "10000000-0000-4000-8000-000000000002";
+    const concept = research.createConcept({ slug: "private-completion", kind: "content_mechanism", name: "私有完播", definition: "测试不可见指标。", exclusions: ["公开可见指标。"] });
+    const binding = knowledge.createBinding({ operationKey: "binding-inconclusive", contentPackageId: packageId, contentPackageSnapshotId: "package:r1",
+      targetType: "concept_revision", targetId: concept.currentRevision.id, usage: "test", rationale: "显式测试不可见指标" });
+    const hypothesis = knowledge.createHypothesis({
+      operationKey: "hypothesis-inconclusive", contentPackageId: packageId, contentPackageSnapshotId: "package:r1",
+      statement: "完播率提高。", linkedBindingIds: [binding.id], expectedSignals: ["completion_rate"], unavailableSignals: ["completion_rate"],
+      baselineDeclaration: "同账号近十条完播率中位数", confounders: []
+    });
+    const validation = knowledge.createValidation({
+      operationKey: "validation-inconclusive", publicationRunId: "20000000-0000-4000-8000-000000000002",
+      contentPackageId: packageId, contentPackageSnapshotId: "package:r1", variantRevision: 1, hypothesisId: hypothesis.id,
+      ...verifiedExecution, observedSignals: [],
+      unavailableMetrics: [{ name: "completion_rate", reason: "平台未开放私有分母", source: "declared-platform-gap", recordedAt: "2026-08-28T00:00:00.000Z" }],
+      executionDeviations: [], confounders: []
+    });
+    expect(validation.status).toBe("evidence_ready");
+    const submitted = knowledge.submitValidation(validation.id, {
+      operationKey: "submit-inconclusive", proposedRelation: "inconclusive", targetConceptId: null,
+      decisionReason: "唯一可判断指标不可用。", submittedBy: "reviewer-a"
+    });
+    expect(() => knowledge.adjudicateValidation(submitted.id, {
+      operationKey: "same-person", decision: "complete_no_promotion", reason: "不晋升。", adjudicatorId: "reviewer-a"
+    })).toThrow("independent adjudicator");
+    expect(knowledge.adjudicateValidation(submitted.id, {
+      operationKey: "independent-person", decision: "complete_no_promotion", reason: "不可判断且不虚构分母。", adjudicatorId: "reviewer-b"
+    })).toMatchObject({ status: "completed_no_promotion", promotedObservationId: null });
+  });
+
+  it.each([
+    ["block", "blocked"],
+    ["invalidate", "invalidated"]
+  ] as const)("supports the %s adjudication outcome without emitting an observation", (decision, expectedStatus) => {
+    const { knowledge, research } = fixture();
+    const concept = research.createConcept({ slug: `outcome-${decision}`, kind: "proof_mode", name: `Outcome ${decision}`, definition: "测试终态。", exclusions: ["其他状态。"] });
+    const packageId = decision === "block" ? "10000000-0000-4000-8000-000000000003" : "10000000-0000-4000-8000-000000000004";
+    const binding = knowledge.createBinding({ operationKey: `binding-${decision}`, contentPackageId: packageId, contentPackageSnapshotId: "package:r1",
+      targetType: "concept_revision", targetId: concept.currentRevision.id, usage: "test", rationale: "测试裁决终态" });
+    const hypothesis = knowledge.createHypothesis({ operationKey: `hypothesis-${decision}`, contentPackageId: packageId, contentPackageSnapshotId: "package:r1",
+      statement: "可观察信号变化。", linkedBindingIds: [binding.id], expectedSignals: ["saves"], unavailableSignals: [], baselineDeclaration: "历史中位数", confounders: [] });
+    const validation = knowledge.createValidation({ operationKey: `validation-${decision}`,
+      publicationRunId: decision === "block" ? "20000000-0000-4000-8000-000000000003" : "20000000-0000-4000-8000-000000000004",
+      contentPackageId: packageId, contentPackageSnapshotId: "package:r1", variantRevision: 1, hypothesisId: hypothesis.id,
+      ...verifiedExecution, observedSignals: [{ name: "saves", value: 9, unit: "count", source: "manual-public", collectedAt: "2026-08-28T00:00:00.000Z" }],
+      unavailableMetrics: [], executionDeviations: decision === "block" ? ["发布时更换了封面"] : [], confounders: [] });
+    knowledge.submitValidation(validation.id, { operationKey: `submit-${decision}`, proposedRelation: "qualify", targetConceptId: concept.concept.id,
+      decisionReason: "结果存在，但需要独立处理。", submittedBy: "reviewer-a" });
+    const result = knowledge.adjudicateValidation(validation.id, { operationKey: `adjudicate-${decision}`, decision,
+      reason: decision === "block" ? "执行偏差尚未解释。" : "结果来源确认无效。", adjudicatorId: "reviewer-b" });
+    expect(result).toMatchObject({ status: expectedStatus, promotedObservationId: null });
+    expect(research.get(concept.concept.id)?.observations).toHaveLength(0);
   });
 });
