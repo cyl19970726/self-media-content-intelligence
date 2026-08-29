@@ -108,12 +108,13 @@ The implementation must preserve existing research-learning and publishing data,
   - _Requirements: R5, R6, R9, R10_
   - **Completed in Issue #31:** explicit analysis/evidence invalidation records a stable impact result, invalidates manifests and Research Learning observations, persists obsolete semantic-edge state, and derives affected creation-binding status without rewriting frozen history. Deterministic lint now surfaces contradictions, unsupported concepts, missing conditions/exclusions, obsolete edges, affected bindings, and missing manifests. Knowledge Health and the concept Impact Ledger expose the causal chain and required human action.
 
-- [ ] 12. Backfill verified history and document operational recovery
+- [x] 12. Backfill verified history and document operational recovery
   - Provide an idempotent backfill path for analyses with resolvable revision and evidence lineage.
   - Record `legacy_unverified` for unsupported prose-only reports instead of synthesizing facts.
   - Document projection rebuild, database backup, migration rollback, and compatibility-window procedures.
   - Test backfill reruns and rollback against an isolated runtime database.
   - _Requirements: R2, R9, R12_
+  - **Completed in Issue #33:** the read-only-by-default backfill planner scans canonical run reports, verifies the matching report artifact and evidence-ref grammar, reuses the existing single-post compiler for resolvable history, records unsupported final reports as zero-contribution `legacy_unverified`, and skips non-final runs. Offline CLI tools now create SHA-256 manifests, guard WAL/SHM boundaries, preserve displaced databases during restore, and prove projection rebuild, FTS, close/reopen, and rollback against isolated runtime copies.
 
 - [ ] 13. Complete system verification and release evidence
   - Run targeted tests after every vertical slice, then the full test suite, typecheck, lint, client build, and server build.
