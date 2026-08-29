@@ -1,6 +1,6 @@
 # Issue #38 — Content Knowledge System V1 Production Acceptance
 
-Status: **local implementation and release verification complete; PR/CI pending**
+Status: **release candidate accepted; merge pending**
 
 Issue: <https://github.com/cyl19970726/self-media-content-intelligence/issues/38>
 
@@ -84,7 +84,7 @@ Focused coverage includes:
 
 `npm run verify` passed locally on 2026-08-30 after the final projection regression: documentation, repository policy, package boundaries, Knowledge authority, artifact budget, typecheck, ESLint, Web/server builds, and compiled Web/API/Worker/CLI smoke checks all passed. Vitest reported 46 test files and 197 tests passed; 8 evidence/environment-gated files and 41 tests were intentionally skipped.
 
-PR and hosted CI evidence will be recorded here before Issue #38 closes.
+PR #39 is mergeable. Hosted CI `validate` passed in 1m40s on the release-candidate branch after the new fixture was registered as an explicit artifact consumer; the first run correctly rejected the stale inventory and was not bypassed.
 
 ## Non-claims
 
