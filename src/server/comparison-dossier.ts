@@ -39,14 +39,22 @@ export function loadComparisonDossier(
       positioning: dossier!.identity.positioning, values: dossier!.identity.valuesProvided, lifecycle: dossier!.identity.lifecycle
     };
   });
-  const ledger = stored.comparison?.observations.map((observation) => ({
+  const creatorHref = (creatorId: string) => `/creators/${encodeURIComponent(creatorId)}?comparison=${encodeURIComponent(id)}`;
+  const observationLedger = stored.comparison?.observations.map((observation) => ({
     classification: observation.classification, statement: observation.text, boundary: observation.boundary,
-    creatorHrefs: observation.evidenceCreatorRunIds.map((runId) => creatorIdsByRun.get(runId)).filter((value): value is string => Boolean(value)).map((creatorId) => `/creators/${encodeURIComponent(creatorId)}?comparison=${encodeURIComponent(id)}`)
+    creatorHrefs: observation.evidenceCreatorRunIds.map((runId) => creatorIdsByRun.get(runId)).filter((value): value is string => Boolean(value)).map(creatorHref)
   })) ?? [];
+  const patternLedger = stored.comparison?.contentPatterns.map((pattern) => ({ classification: pattern.classification,
+    statement: pattern.statement, boundary: pattern.boundary, creatorHrefs: pattern.creatorIds.map(creatorHref) })) ?? [];
+  const exceptionLedger = stored.comparison?.exceptions.map((exception) => ({ classification: "creator_specific" as const,
+    statement: `${exception.creatorId} / ${exception.role}：${exception.reason}`, boundary: "博主特有项不会自动外推。", creatorHrefs: [creatorHref(exception.creatorId)] })) ?? [];
+  const gapLedger = stored.comparison?.gaps.map((gap) => ({ classification: "unknown" as const, statement: gap,
+    boundary: "证据不足时保持未知。", creatorHrefs: [] })) ?? [];
+  const ledger = [...observationLedger, ...patternLedger, ...exceptionLedger, ...gapLedger];
   return comparisonDossierSchema.parse({
     schemaVersion: "1.0.0", id: stored.project.id, name: stored.project.name, status: stored.project.status, generatedAt: stored.project.updatedAt,
-    scope: { platform: "小红书", windowLabel: "固定任务快照；尚未对齐统一发布时间窗", memberCount: members.length,
-      comparability: members.length < 2 ? "blocked" : warnings.length > 2 ? "partial" : "aligned", warnings },
+    scope: { platform: "小红书", windowLabel: "固定任务快照；尚未对齐统一发布时间窗", memberCount: stored.project.members.length,
+      comparability: stored.project.members.length < 2 ? "blocked" : warnings.length > 2 ? "partial" : "aligned", warnings },
     members,
     matrices: { values: cells((dossier) => dossier.identity.valuesProvided), topics: cells((dossier) => dossier.contentSystem.topics), formats: cells((dossier) => dossier.contentSystem.formats) },
     tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tier === "high" ? "高表现" : tier === "base" ? "基本盘" : "低表现",

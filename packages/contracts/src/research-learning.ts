@@ -144,6 +144,9 @@ export const ingestAnalysisRevisionSchema = z.object({
     visualEditingLogic: analysisLensGateStateSchema
   }),
   observations: z.array(z.object({
+    creatorId: z.string().min(1).nullable().optional(),
+    videoId: z.string().min(1).nullable().optional(),
+    deepReconstruction: z.boolean().optional(),
     conceptId: z.string().min(1).optional(),
     concept: z.object({
       slug: z.string().min(1),

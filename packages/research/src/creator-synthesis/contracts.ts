@@ -131,3 +131,17 @@ export interface CreatorSynthesisExecutor {
     observeLifecycle?: CreatorSynthesisLifecycleObserver
   ): Promise<CreatorSynthesisOutcome>;
 }
+
+export type CreatorResearchCompletion = {
+  creatorRunId: string;
+  creatorId: string;
+  creatorName: string | null;
+  synthesisArtifactRef: string;
+  gateArtifactRef: string;
+  synthesis: CreatorSynthesis;
+  gate: CreatorSynthesisGate;
+};
+
+export interface CreatorResearchCompletionPort {
+  publish(completion: Readonly<CreatorResearchCompletion>): void | Promise<void>;
+}

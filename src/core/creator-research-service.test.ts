@@ -6,7 +6,7 @@ import { CreatorResearchService } from "./creator-research-service.js";
 import { CreatorResearchStore } from "./creator-research-store.js";
 import type { CreatorBrowserExecutor } from "../../packages/research/index.js";
 import type { CreatorArtifactStore } from "../../packages/research/index.js";
-import type { DeepMediaResolver, VideoReconstructionExecutor, CreatorSynthesisExecutor } from "../../packages/research/index.js";
+import type { DeepMediaResolver, VideoReconstructionExecutor, CreatorSynthesisExecutor, CreatorResearchCompletionPort } from "../../packages/research/index.js";
 
 const temporaryDirectories: string[] = [];
 
@@ -14,6 +14,7 @@ function serviceForTest(options: {
   values?: Map<string, unknown>;
   reconstruct?: VideoReconstructionExecutor["reconstruct"];
   synthesize?: CreatorSynthesisExecutor["synthesize"];
+  completion?: CreatorResearchCompletionPort;
 } = {}): CreatorResearchService {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
   temporaryDirectories.push(directory);
@@ -90,8 +91,23 @@ function serviceForTest(options: {
       observeLifecycle?.({ childRunId: "44444444-4444-4444-8444-444444444444", role: "creator_synthesis_evaluator",
         status: "completed", startedAt: "2026-08-20T01:03:02.000Z", lastProgressAt: "2026-08-20T01:03:03.000Z",
         inputRevision: "d".repeat(64), outputArtifactRevisions: { "creator-synthesis-evaluation.json": "e".repeat(64) }, errorCode: null });
-      return { state: "ready", synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
-        gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json` };
+      const synthesisArtifactRef = `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`;
+      const gateArtifactRef = `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json`;
+      const claim = { statement: "fixture", factClass: "observed", confidence: "high", evidenceRefs: ["evidence:fixture"], caveat: null };
+      values.set(synthesisArtifactRef, { schemaVersion: "1.0.0", creatorRunId: request.creatorRunId, generatedAt: startedAt,
+        inputs: { portfolioArtifactRef: request.portfolioArtifactRef, selectionArtifactRef: request.selectionArtifactRef,
+          detailArtifactRef: request.detailArtifactRef, reconstructionBatchArtifactRef: request.reconstructionBatchArtifactRef },
+        identity: { positioning: claim, audience: [claim], problemsAddressed: [claim], valueProvided: [claim], trustSources: [claim], lifecycleStage: claim, commercialPaths: [] },
+        contentSystem: { topicClusters: [claim], formatClusters: [claim], visualLanguage: [claim], publishingRhythm: [], recurringStructure: [claim] },
+        performance: { baseline: [claim], high: [claim], low: [claim], timing: [], confounds: ["fixture"] },
+        postAnalyses: Array.from({ length: 21 }, (_, index) => ({ postExternalId: `post-${index + 1}`, tier: index < 7 ? "high" : index < 14 ? "base" : "low",
+          tierRank: index % 7 + 1, title: null, evidenceStatus: index % 3 === 0 ? "deep_validated" : "surface_only",
+          contentRole: "fixture role", contentForm: ["video"], performanceInterpretation: "fixture only", evidenceRefs: [`evidence:${index}`], unknowns: [] })),
+        boundaries: ["fixture only"] });
+      values.set(gateArtifactRef, { schemaVersion: "1.1.0", creatorRunId: request.creatorRunId, ready: true, gates: [], failedGateIds: [], checkedAt: startedAt,
+        candidateRevisionFingerprint: "d".repeat(64), independentEvaluationArtifactRef: "artifact:evaluation",
+        evaluator: { evaluatorRunId: "44444444-4444-4444-8444-444444444444", independentOfCandidate: true, evaluatedAt: startedAt } });
+      return { state: "ready", synthesisArtifactRef, gateArtifactRef };
     }
   };
   return new CreatorResearchService(
@@ -100,7 +116,8 @@ function serviceForTest(options: {
     mediaResolver,
     videoReconstructor,
     synthesisExecutor,
-    3
+    3,
+    options.completion
   );
 }
 
@@ -180,7 +197,8 @@ describe("CreatorResearchService", () => {
 
   it("leases a queued job and persists a reviewable inventory result", async () => {
     const values = new Map<string, unknown>();
-    const service = serviceForTest({ values });
+    const completions: string[] = [];
+    const service = serviceForTest({ values, completion: { publish(value) { completions.push(value.creatorRunId); } } });
     const run = service.create("https://www.xiaohongshu.com/user/profile/creator-ready");
     const executor: CreatorBrowserExecutor = {
       async acquire() {
@@ -272,6 +290,7 @@ describe("CreatorResearchService", () => {
     const synthesized = service.get(run.id);
     expect(synthesized?.status).toBe("ready");
     expect(synthesized?.synthesisArtifactRef).toMatch(/creator-analysis\.json$/);
+    expect(completions).toEqual([run.id]);
     const synthesisChildEvents = service.events(run.id).filter((event) =>
       ["creator_synthesis", "creator_synthesis_evaluator"].includes(String(event.payload.role))
     );
@@ -340,7 +359,8 @@ describe("CreatorResearchService", () => {
   });
 
   it("requeues a reviewable creator synthesis after a policy-gate correction", async () => {
-    const service = serviceForTest({ synthesize: async (request) => ({
+    const completions: string[] = [];
+    const service = serviceForTest({ completion: { publish(value) { completions.push(value.creatorRunId); } }, synthesize: async (request) => ({
       state: "not_ready",
       synthesisArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis/creator-analysis.json`,
       gateArtifactRef: `/artifacts/${request.creatorRunId}/creator-synthesis-gate.json`,
@@ -369,6 +389,7 @@ describe("CreatorResearchService", () => {
     const reviewable = service.get(run.id)!;
     expect(reviewable.status).toBe("reviewable");
     expect(reviewable.blockers[0]?.code).toBe("creator_synthesis_not_ready");
+    expect(completions).toEqual([]);
 
     const resumed = service.resume(run.id);
     expect(resumed.status).toBe("queued");

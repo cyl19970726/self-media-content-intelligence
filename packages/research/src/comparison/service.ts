@@ -3,8 +3,9 @@ import type { CreatorArtifactStore, CreatorResearchService } from "../../index.j
 import type { ComparisonProjectRepository } from "./repository.js";
 import { compareCreatorPortfolios } from "./analyzer.js";
 import { comparisonProjectSchema, createComparisonProjectInputSchema, type ComparisonCreatorSource, type ComparisonProject } from "./project-contracts.js";
-import { creatorComparisonSchema } from "./contracts.js";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection } from "../../index.js";
+import { creatorComparisonSchema, type ComparisonResearchCompletionPort } from "./contracts.js";
+import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection,
+  type CreatorSynthesis, type CreatorSynthesisGate } from "../../index.js";
 import type { CreatorDossier } from "../../../contracts/index.js";
 
 function now(): string { return new Date().toISOString(); }
@@ -24,6 +25,10 @@ type ResolvedComparableSource = {
   creatorName: string;
   analysis: CreatorPortfolioAnalysis;
   selection: CreatorSelection;
+  synthesis: CreatorSynthesis | null;
+  synthesisGate: CreatorSynthesisGate | null;
+  synthesisArtifactRef: string | null;
+  synthesisGateArtifactRef: string | null;
   provenance: "versioned_run" | "legacy_dossier";
 };
 
@@ -98,7 +103,8 @@ function legacySnapshot(dossier: CreatorDossier): ResolvedComparableSource {
     interpretationBoundary: "来自已发布 legacy Creator Dossier 的固定投影；只比较其已记录公开指标。",
     unknowns: ["旧版投影未保留完整原始分位统计；缺失项保持 null。", ...dossier.boundaries]
   });
-  return { creatorRunId, creatorId: dossier.canonicalId, sourceRunId, revision, creatorName: dossier.identity.name, analysis, selection, provenance: "legacy_dossier" };
+  return { creatorRunId, creatorId: dossier.canonicalId, sourceRunId, revision, creatorName: dossier.identity.name, analysis, selection,
+    synthesis: null, synthesisGate: null, synthesisArtifactRef: null, synthesisGateArtifactRef: null, provenance: "legacy_dossier" };
 }
 
 export class ComparisonProjectService {
@@ -106,7 +112,8 @@ export class ComparisonProjectService {
     private readonly creators: CreatorResearchService,
     private readonly repository: ComparisonProjectRepository,
     private readonly artifacts: CreatorArtifactStore,
-    private readonly dossierLoader: DossierLoader
+    private readonly dossierLoader: DossierLoader,
+    private readonly completionPort?: ComparisonResearchCompletionPort
   ) {}
 
   private resolve(source: ComparisonCreatorSource): ResolvedComparableSource {
@@ -129,8 +136,14 @@ export class ComparisonProjectService {
     }
     const snapshot = this.creators.portfolio(run.id);
     if (!snapshot?.analysis || !snapshot.selection) throw new Error(`${dossier.identity.name} 的固定版本读取失败。`);
+    const contentReady = Boolean(snapshot.synthesis && snapshot.synthesisGate?.ready
+      && snapshot.synthesisGate.evaluator?.independentOfCandidate);
     return { creatorRunId: run.id, creatorId: dossier.canonicalId, sourceRunId: run.id, revision,
-      creatorName: dossier.identity.name, analysis: snapshot.analysis, selection: snapshot.selection, provenance: "versioned_run" };
+      creatorName: dossier.identity.name, analysis: snapshot.analysis, selection: snapshot.selection,
+      synthesis: contentReady ? snapshot.synthesis : null, synthesisGate: contentReady ? snapshot.synthesisGate : null,
+      synthesisArtifactRef: contentReady ? run.synthesisArtifactRef : null,
+      synthesisGateArtifactRef: contentReady ? run.synthesisGateArtifactRef : null,
+      provenance: "versioned_run" };
   }
 
   create(input: unknown): ComparisonProject {
@@ -142,7 +155,8 @@ export class ComparisonProjectService {
       const snapshotRef = this.artifacts.write(id, `comparison-source-${String(index + 1).padStart(2, "0")}-r1.json`, {
         schemaVersion: "1.0.0", comparisonProjectId: id, pinnedAt: timestamp,
         source: { creatorId: resolved.creatorId, sourceRunId: resolved.sourceRunId, revision: resolved.revision, provenance: resolved.provenance },
-        analysis: resolved.analysis, selection: resolved.selection
+        analysis: resolved.analysis, selection: resolved.selection,
+        synthesis: resolved.synthesis, synthesisGate: resolved.synthesisGate
       });
       return { ...resolved, portfolioArtifactRef: snapshotRef, selectionArtifactRef: snapshotRef, pinnedAt: timestamp };
     });
@@ -150,13 +164,17 @@ export class ComparisonProjectService {
       schemaVersion: "1.0.0", comparisonProjectId: id, generatedAt: timestamp,
       members: members.map((member) => ({ creatorRunId: member.creatorRunId, creatorId: member.creatorId,
         sourceRunId: member.sourceRunId, revision: member.revision, creatorName: member.creatorName,
-        portfolioRevision: member.revision, analysis: member.analysis, selection: member.selection }))
+        portfolioRevision: member.revision, analysis: member.analysis, selection: member.selection,
+        synthesis: member.synthesis, synthesisGate: member.synthesisGate }))
     });
     const project = comparisonProjectSchema.parse({
       schemaVersion: "1.0.0", id, name: request.name, status: "queued", createdAt: timestamp, updatedAt: timestamp,
-      members: members.map(({ creatorRunId, creatorId, sourceRunId, revision, creatorName, portfolioArtifactRef, selectionArtifactRef, pinnedAt }) =>
-        ({ creatorRunId, creatorId, sourceRunId, revision, creatorName, portfolioArtifactRef, selectionArtifactRef, pinnedAt })),
+      members: members.map(({ creatorRunId, creatorId, sourceRunId, revision, creatorName, portfolioArtifactRef, selectionArtifactRef,
+        synthesisArtifactRef, synthesisGateArtifactRef, pinnedAt }) =>
+        ({ creatorRunId, creatorId, sourceRunId, revision, creatorName, portfolioArtifactRef, selectionArtifactRef,
+          synthesisArtifactRef, synthesisGateArtifactRef, pinnedAt })),
       inputArtifactRef, comparisonArtifactRef: null,
+      knowledgeCompilation: null,
       job: { state: "queued", attempt: 0, leaseOwner: null, leaseExpiresAt: null, lastHeartbeatAt: null }, error: null
     });
     this.repository.save(project);
@@ -185,6 +203,17 @@ export class ComparisonProjectService {
       project.updatedAt = now();
       project.job = { ...project.job, state: "succeeded", leaseOwner: null, leaseExpiresAt: null, lastHeartbeatAt: project.updatedAt };
       project.error = null;
+      this.repository.save(project);
+      try {
+        this.completionPort?.publish({ comparisonProjectId: project.id,
+          comparisonArtifactRef: project.comparisonArtifactRef,
+          sourceArtifactRefs: project.members.flatMap((member) => [member.portfolioArtifactRef, member.synthesisArtifactRef, member.synthesisGateArtifactRef]
+            .filter((ref): ref is string => Boolean(ref))),
+          comparison });
+        if (this.completionPort) project.knowledgeCompilation = { status: "succeeded", message: "Comparison knowledge compilation completed." };
+      } catch (error) {
+        project.knowledgeCompilation = { status: "failed", message: error instanceof Error ? error.message : String(error) };
+      }
       this.repository.save(project);
     } catch (error) {
       project.status = "failed";

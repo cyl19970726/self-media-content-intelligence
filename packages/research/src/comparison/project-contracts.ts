@@ -41,6 +41,8 @@ const comparisonMemberSchema = z.preprocess((value) => {
   creatorName: z.string(),
   portfolioArtifactRef: z.string(),
   selectionArtifactRef: z.string(),
+  synthesisArtifactRef: z.string().nullable().default(null),
+  synthesisGateArtifactRef: z.string().nullable().default(null),
   pinnedAt: z.string()
 }));
 
@@ -54,6 +56,7 @@ export const comparisonProjectSchema = z.object({
   members: z.array(comparisonMemberSchema).min(2),
   inputArtifactRef: z.string(),
   comparisonArtifactRef: z.string().nullable(),
+  knowledgeCompilation: z.object({ status: z.enum(["succeeded", "failed"]), message: z.string().min(1) }).nullable().default(null),
   job: z.object({
     state: z.enum(["queued", "running", "succeeded", "failed"]),
     attempt: z.number().int().nonnegative(),

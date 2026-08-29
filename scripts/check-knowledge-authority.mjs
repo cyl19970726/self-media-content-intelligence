@@ -10,6 +10,7 @@ const files = execFileSync("git", ["ls-files", "apps/**/*.ts", "apps/**/*.tsx", 
 const failures = [];
 const privilegedImports = new Set([
   "src/server/analysis-knowledge-compiler.ts",
+  "src/server/research-knowledge-compiler.ts",
   "src/server/app.ts",
   "src/server/composition-root.ts",
   "src/server/content-knowledge.ts",

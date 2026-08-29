@@ -31,6 +31,7 @@ import {
   type VideoReconstructionLifecycleEvent,
   type VideoReconstructionOutcome,
   type CreatorSynthesisExecutor,
+  type CreatorResearchCompletionPort,
   type CreatorSynthesisLifecycleEvent,
   type CreatorInventoryPost,
   type CreatorAcquisitionAdapter
@@ -140,7 +141,8 @@ export class CreatorResearchService {
     private readonly mediaResolver: DeepMediaResolver,
     private readonly videoReconstructor: VideoReconstructionExecutor,
     private readonly synthesisExecutor: CreatorSynthesisExecutor,
-    private readonly videoConcurrencyLimit: number
+    private readonly videoConcurrencyLimit: number,
+    private readonly completionPort?: CreatorResearchCompletionPort
   ) {}
 
   create(profileUrl: string, adapter: CreatorAcquisitionAdapter = "ego-browser"): CreatorResearchRun {
@@ -1587,6 +1589,23 @@ export class CreatorResearchService {
         this.repository.updateJobStatus({ jobId: job.id, status: "failed", updatedAt: completedAt, lastError: message });
       }
       this.repository.save(run);
+      if (outcome.state === "ready" && run.creatorId) {
+        try {
+          await this.completionPort?.publish({
+            creatorRunId: run.id,
+            creatorId: run.creatorId,
+            creatorName: run.creatorName,
+            synthesisArtifactRef: outcome.synthesisArtifactRef,
+            gateArtifactRef: outcome.gateArtifactRef,
+            synthesis: creatorSynthesisSchema.parse(this.artifacts.read(outcome.synthesisArtifactRef)),
+            gate: creatorSynthesisGateSchema.parse(this.artifacts.read(outcome.gateArtifactRef))
+          });
+        } catch (error) {
+          this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "child.failed", createdAt: completedAt,
+            message: "知识编译失败；已发布的博主研究保持有效。",
+            payload: { role: "knowledge_compiler", error: error instanceof Error ? error.message : String(error) } });
+        }
+      }
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
         message: outcome.state === "ready" ? "博主级归纳通过硬闸。" : "博主级归纳未发布。", payload: { state: outcome.state } });
     } catch (error) {

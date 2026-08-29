@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ingestAnalysisRevisionSchema, researchConceptReadSchema } from "../../contracts/index.js";
+import { ingestAnalysisRevisionSchema, researchConceptReadSchema, researchConditionSchema } from "../../contracts/index.js";
 
 export const knowledgeMaturitySchema = z.enum([
   "raw_fact", "single_post_observation", "creator_pattern", "conditional_pattern",
@@ -32,6 +32,13 @@ export const knowledgeContributionManifestSchema = z.object({
   status: knowledgeManifestStatusSchema,
   contributionIds: z.array(z.string().uuid()),
   quarantineReasons: z.array(z.string().min(1)),
+  promotionDecisions: z.array(z.object({
+    conceptId: z.string().min(1).nullable(),
+    conceptSlug: z.string().min(1),
+    targetScope: z.enum(["creator_specific", "conditional", "track_wide"]),
+    status: z.enum(["promoted", "already_promoted", "gate_failed", "concept_missing"]),
+    reason: z.string().min(1)
+  })).default([]),
   createdAt: z.string().datetime(),
   decidedAt: z.string().datetime().nullable()
 });
@@ -43,6 +50,14 @@ export const compileKnowledgeInputSchema = z.object({
   evidenceGate: z.array(z.object({
     ref: z.string().min(1),
     availability: z.enum(["available", "pending_retrieval", "missing", "unauthorized", "integrity_failed"])
+  })).default([]),
+  promotionRequests: z.array(z.object({
+    conceptSlug: z.string().min(1),
+    targetScope: z.enum(["creator_specific", "conditional", "track_wide"]),
+    creatorId: z.string().min(1).optional(),
+    condition: researchConditionSchema.partial().optional(),
+    comparableCreatorIds: z.array(z.string().min(1)).optional(),
+    decision: z.string().min(1)
   })).default([]),
   analysis: ingestAnalysisRevisionSchema
 });
