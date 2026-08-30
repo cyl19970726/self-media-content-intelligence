@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { AlertTriangle, ArrowRight, Database, ExternalLink, KeyRound, Link2, LoaderCircle, Plus, Radar, RefreshCw, Server, ShieldCheck, UserRound } from "lucide-react";
-import { createCreatorResearchRun, discoverAiCreators, listCreatorResearchRuns, listCreators, resumeCreatorResearchRun } from "../../shared/api/client";
-import type { CreatorAcquisitionAdapter, CreatorDiscoveryResult, CreatorResearchRun, CreatorResearchStatus, CreatorSummary } from "../../shared/contracts/core";
+import { createCreatorResearchRun, discoverAiCreators, listCreatorResearchRuns, listCreatorRunOperations, listCreators, runCreatorOperation } from "../../shared/api/client";
+import type { CreatorAcquisitionAdapter, CreatorDiscoveryResult, CreatorResearchRun, CreatorResearchStatus, CreatorRunOperation, CreatorRunOperationAction, CreatorSummary } from "../../shared/contracts/core";
 import { completionNotice, failureReason, findExistingCreatorRun, taskEstimateLabel, taskPhases, validateCreatorProfileUrl } from "./model/creator-task-state";
 
 const statusLabels: Record<CreatorResearchStatus, string> = {
@@ -45,7 +45,12 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
   </article>;
 }
 
-function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id: string) => Promise<void> }) {
+function ResearchRun({ run, operation, busy, onOperate }: {
+  run: CreatorResearchRun;
+  operation?: CreatorRunOperation;
+  busy: boolean;
+  onOperate: (id: string, action: CreatorRunOperationAction) => Promise<void>;
+}) {
   const current = run.stages.find((stage) => stage.id === run.currentStage);
   const blocker = run.blockers[0];
   const phases = taskPhases(run);
@@ -64,9 +69,10 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       <small className="creator-run__estimate">{taskEstimateLabel()}</small>
     </div>
     <div className="creator-run__coverage" aria-label="采集覆盖">
-      <span><b>{run.coverage.discoveredPosts}</b>发现</span>
-      <span><b>{run.coverage.comparisonPosts}</b>对比</span>
-      <span><b>{run.coverage.reconstructedPosts}</b>还原</span>
+      <span><b>{operation?.coverage.discovered ?? run.coverage.discoveredPosts}{operation?.coverage.discoveredTarget ? `/${operation.coverage.discoveredTarget}` : ""}</b>发现</span>
+      <span><b>{operation ? `${operation.coverage.enriched}/${operation.coverage.enrichedTarget}` : run.coverage.enrichedPosts}</b>详情</span>
+      <span><b>{operation ? `${operation.coverage.compared}/${operation.coverage.comparedTarget}` : run.coverage.comparisonPosts}</b>对比</span>
+      <span><b>{operation ? `${operation.coverage.reconstructed}/${operation.coverage.reconstructedTarget}` : run.coverage.reconstructedPosts}</b>深度</span>
     </div>
     <div className="creator-run__pipeline" aria-label="分析阶段">
       {phases.map((phase) => <span className={`creator-run__stage creator-run__stage--${phase.state}`} key={phase.id} title={`${phase.label}：${phase.detail}`}><b>{phase.label}</b></span>) }
@@ -75,10 +81,14 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       <span><ShieldCheck size={13}/>{run.collectionPolicy.adapter === "redfox" ? "REDFOX · 公开 API · 按次计费" : "hhh-01 · 只读 · 增量 · 不绕过验证"}</span>
       <span>WORKER · {run.worker.state.toUpperCase()} · ATTEMPT {run.worker.attempt}</span>
       {(run.videoWork.activePostExternalIds.length > 0 || run.videoWork.queuedPosts > 0 || run.videoWork.analyzedPosts > 0) &&
-        <span>VIDEO · {run.videoWork.activePostExternalIds.length} 执行 · {run.videoWork.queuedPosts} 排队 · {run.videoWork.analyzedPosts} 完成 · {run.videoWork.failedPosts} 失败 · 上限 {run.videoWork.concurrencyLimit}</span>}
+        <span>VIDEO · {Math.min(run.videoWork.activePostExternalIds.length, run.videoWork.concurrencyLimit)} 执行 · {run.videoWork.queuedPosts} 排队 · {run.videoWork.analyzedPosts} 完成 · {run.videoWork.failedPosts} 失败 · 上限 {run.videoWork.concurrencyLimit}</span>}
       {blocker && <span className={blocker.userActionRequired ? "creator-run__blocker creator-run__blocker--user" : "creator-run__blocker"}>
         <AlertTriangle size={13}/>{blocker.message}
       </span>}
+      {operation && operation.failedGateIds.length > 0 && <span className="creator-run__gates">
+        GATE · {operation.failedGateIds.join(" · ")}
+      </span>}
+      {operation?.waitingReason && <span className="creator-run__waiting"><AlertTriangle size={13}/>{operation.waitingReason}</span>}
       {run.status === "needs_user" && <span className="creator-run__handoff"><AlertTriangle size={13}/>
         {blocker?.code === "detail_navigation_required"
           ? "详情页被平台重定向：浏览器已停在博主主页。请手动打开任一待采目标帖子，再点“我已完成，继续”。"
@@ -86,9 +96,9 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
       </span>}
       {diagnostic && <span className="creator-run__diagnostic"><AlertTriangle size={13}/>原因：{diagnostic}</span>}
       {completion && <span className="creator-run__completion"><ShieldCheck size={13}/>{completion}</span>}
-      {(["needs_user", "backoff", "failed"] as CreatorResearchStatus[]).includes(run.status) &&
-        <button type="button" className="creator-run__resume" onClick={() => void onResume(run.id)}>
-          <RefreshCw size={12}/>{run.status === "needs_user" ? "我已完成，继续" : "重新排队"}
+      {operation && operation.action !== "none" &&
+        <button type="button" className="creator-run__resume" disabled={busy} onClick={() => void onOperate(run.id, operation.action)}>
+          {busy ? <LoaderCircle className="spin" size={12}/> : <RefreshCw size={12}/>}{busy ? "正在提交" : operation.actionLabel}
         </button>}
       <Link to={detailHref}>{run.status === "ready" ? "查看完成研究" : "查看任务详情"}<ArrowRight size={13}/></Link>
     </footer>
@@ -98,6 +108,8 @@ function ResearchRun({ run, onResume }: { run: CreatorResearchRun; onResume: (id
 export default function CreatorsOverview() {
   const [creators, setCreators] = useState<CreatorSummary[] | null>(null);
   const [runs, setRuns] = useState<CreatorResearchRun[] | null>(null);
+  const [operations, setOperations] = useState<CreatorRunOperation[] | null>(null);
+  const [operatingId, setOperatingId] = useState<string | null>(null);
   const [profileUrl, setProfileUrl] = useState("");
   const [adapter, setAdapter] = useState<CreatorAcquisitionAdapter>("ego-browser");
   const [discovery, setDiscovery] = useState<CreatorDiscoveryResult | null>(null);
@@ -112,9 +124,10 @@ export default function CreatorsOverview() {
 
   const loadOverview = useCallback(async () => {
     try {
-      const [creatorData, runData] = await Promise.all([listCreators(), listCreatorResearchRuns()]);
+      const [creatorData, runData, operationData] = await Promise.all([listCreators(), listCreatorResearchRuns(), listCreatorRunOperations()]);
       setCreators(creatorData);
       setRuns(runData);
+      setOperations(operationData);
       setError(null);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "无法读取博主研究台");
@@ -127,14 +140,18 @@ export default function CreatorsOverview() {
     return () => window.clearInterval(timer);
   }, [loadOverview]);
 
-  async function resume(id: string) {
+  async function operate(id: string, action: CreatorRunOperationAction) {
+    setOperatingId(id);
     try {
-      const run = await resumeCreatorResearchRun(id);
+      const run = await runCreatorOperation(id, action);
       setRuns((current) => (current ?? []).map((item) => item.id === id ? run : item));
-      setCreatedMessage("任务已恢复，后台 Worker 会从持久队列继续处理。");
+      setCreatedMessage("恢复动作已进入持久队列；已通过证据保持不变，这里会继续更新状态。");
       setError(null);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "无法恢复博主分析");
+      setError(cause instanceof Error ? cause.message : "无法执行恢复动作");
+    } finally {
+      setOperatingId(null);
+      await loadOverview();
     }
   }
 
@@ -285,11 +302,19 @@ export default function CreatorsOverview() {
 
       <section className="research-queue" aria-labelledby="research-queue-title">
         <header>
-          <div><span>ACTIVE RESEARCH</span><h2 id="research-queue-title">分析任务</h2></div>
+          <div><span>ACTIVE RESEARCH</span><h2 id="research-queue-title">博主运营清单</h2></div>
           <button className="text-button" type="button" onClick={() => void loadOverview()}><RefreshCw size={13}/>刷新状态</button>
         </header>
+        {operations && <div className="creator-operations-summary" aria-label="博主任务状态汇总">
+          <div><b>{operations.length}</b><span>全部博主</span></div>
+          <div><b>{operations.filter((item) => item.status === "ready").length}</b><span>研究可用</span></div>
+          <div><b>{operations.filter((item) => ["queued", "preflight", "collecting", "backoff"].includes(item.status)).length}</b><span>正在处理</span></div>
+          <div><b>{operations.filter((item) => ["reviewable", "failed", "needs_user", "stale"].includes(item.status)).length}</b><span>明确阻塞</span></div>
+          <p><ShieldCheck size={14}/>每个任务只显示当前安全动作；恢复不会覆盖上一版可读档案。</p>
+        </div>}
         {runs === null ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在读取任务账本</p></div>
-          : runs.length > 0 ? <div className="creator-run-list">{runs.map((run) => <ResearchRun key={run.id} run={run} onResume={resume}/>)}</div>
+          : runs.length > 0 ? <div className="creator-run-list">{runs.map((run) => <ResearchRun key={run.id} run={run}
+            operation={operations?.find((item) => item.runId === run.id)} busy={operatingId === run.id} onOperate={operate}/>)}</div>
             : <div className="rail-empty"><Database size={20}/>粘贴第一个博主主页链接，任务状态会持续保留在这里。</div>}
       </section>
 

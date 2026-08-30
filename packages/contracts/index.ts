@@ -1,5 +1,6 @@
 export * from "./src/comparison-dossier.js";
 export * from "./src/creator-dossier.js";
+export * from "./src/creator-operations.js";
 export * from "./src/creator-pipeline.js";
 export * from "./src/evidence.js";
 export * from "./src/learning-loop.js";
