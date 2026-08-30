@@ -12,7 +12,7 @@ const bundlePath = path.join(projectRoot, ".runtime", "qa", "report-preview-bund
 const outputPath = path.join(projectRoot, ".runtime", "qa", `report-v2-${runId}.html`);
 fs.mkdirSync(path.dirname(bundlePath), { recursive: true });
 await build({
-  entryPoints: [path.join(projectRoot, "src", "client", "report-preview-entry.tsx")],
+  entryPoints: [path.join(projectRoot, "apps", "web", "src", "features", "single-post", "report-preview-entry.tsx")],
   outfile: bundlePath,
   bundle: true,
   packages: "external",
@@ -33,7 +33,7 @@ if (report.mediaBreakdown) {
   report.mediaBreakdown.contactSheetRef = inlineArtifact(report.mediaBreakdown.contactSheetRef);
   for (const shot of report.mediaBreakdown.shots ?? []) shot.frameRef = inlineArtifact(shot.frameRef);
 }
-const css = fs.readFileSync(path.join(projectRoot, "src", "client", "styles.css"), "utf8");
+const css = fs.readFileSync(path.join(projectRoot, "apps", "web", "src", "shared", "styles", "global.css"), "utf8");
 const body = renderReportPreview(report);
 fs.writeFileSync(outputPath, `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Report v2 QA</title><style>${css}</style></head><body>${body}</body></html>`);
 console.log(outputPath);

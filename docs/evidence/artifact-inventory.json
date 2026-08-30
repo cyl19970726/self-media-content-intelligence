@@ -11,6 +11,7 @@
   "byClassification": {},
   "byExtension": {},
   "knownConsumers": [
+    "apps/web/src/features/knowledge/KnowledgePage.tsx",
     "docs/adr/0002-creator-research-control-plane.md",
     "docs/adr/0006-evidence-storage-boundary.md",
     "docs/architecture/evidence-storage.md",
@@ -35,8 +36,7 @@
     "scripts/inventory-artifacts.mjs",
     "scripts/migrate-evidence.mjs",
     "scripts/migrate-evidence.test.mjs",
-    "scripts/render-report-preview.mjs",
-    "src/client/Knowledge.tsx"
+    "scripts/render-report-preview.mjs"
   ],
   "largestFiles": []
 }

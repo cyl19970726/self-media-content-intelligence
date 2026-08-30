@@ -37,6 +37,8 @@ truth rather than restating a competing system model.
   process lifecycle.
 - Do not mix content-production artifacts with a product-code PR.
 - Do not move or delete historical evidence without the Evidence migration gate.
+- Keep every frontend source file under 1000 physical lines; split by ownership
+  before `npm run check:frontend-lines` fails.
 
 ## Required validation
 

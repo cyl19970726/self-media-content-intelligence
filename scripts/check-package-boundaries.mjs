@@ -3,10 +3,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const sourceFiles = execFileSync("git", ["ls-files", "*.ts", "*.tsx"], {
+const sourceFiles = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], {
   cwd: root,
   encoding: "utf8"
-}).split("\n").filter(Boolean);
+}).split("\n").filter((file) => /\.(?:ts|tsx)$/u.test(file) && fs.existsSync(path.join(root, file)));
 const failures = [];
 const importPattern = /(?:from\s+|import\s*\()(["'])([^"']+)\1/gu;
 

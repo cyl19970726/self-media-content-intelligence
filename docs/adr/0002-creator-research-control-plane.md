@@ -34,7 +34,7 @@ src/platform/database/      SQLite repository implementation
 src/platform/artifacts/     Artifact persistence and reference resolution
 src/platform/browser/       ego-browser process adapter
 src/server/                 HTTP transport and worker composition root
-src/client/                 Existing research UI and progress surface
+apps/web/src/features/creator-research/  Research UI and progress surface
 src/core/                   Legacy compatibility facades during migration
 ```
 
