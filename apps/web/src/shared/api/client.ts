@@ -1,4 +1,4 @@
-import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../contracts/core";
+import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorRunOperationSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorRunOperation, type CreatorRunOperationAction, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../contracts/core";
 import {
   creatorPortfolioAnalysisSchema, creatorSelectionSchema, creatorDetailCollectionSchema,
   deepMediaManifestSchema, videoReconstructionBatchSchema, creatorSynthesisGateSchema,
@@ -261,6 +261,26 @@ export async function listCreatorResearchRuns(): Promise<CreatorResearchRun[]> {
     const runs = value && typeof value === "object" && "runs" in value ? value.runs : [];
     return creatorResearchRunSchema.array().parse(runs);
   });
+}
+
+export async function listCreatorRunOperations(): Promise<CreatorRunOperation[]> {
+  return json(await fetch("/api/creator-run-operations", { cache: "no-store" }), (value) => {
+    const operations = value && typeof value === "object" && "operations" in value ? value.operations : [];
+    return creatorRunOperationSchema.array().parse(operations);
+  });
+}
+
+export async function runCreatorOperation(id: string, action: CreatorRunOperationAction): Promise<CreatorResearchRun> {
+  const paths: Record<Exclude<CreatorRunOperationAction, "none">, string> = {
+    resume: "resume",
+    retry_failed_videos: "retry-failed-videos",
+    continue_with_media_gaps: "continue-with-media-gaps",
+    revalidate_synthesis: "revalidate-synthesis"
+  };
+  if (action === "none") throw new Error("当前任务没有可执行的恢复动作");
+  return json(await fetch(`/api/creator-runs/${id}/${paths[action]}`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: "{}"
+  }), (value) => creatorResearchRunSchema.parse(value));
 }
 
 export async function createCreatorResearchRun(
