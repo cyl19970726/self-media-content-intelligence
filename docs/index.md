@@ -13,6 +13,8 @@ owned by schemas and code.
 - [Repository package boundaries](architecture/package-boundaries.md) — current
   structural debt, target modular-monolith boundaries, dependency rules, and the
   incremental migration path.
+- [Frontend architecture](architecture/frontend.md) — current Web stack,
+  dependency direction, target folders, and the enforced source-file limit.
 - [Evidence storage policy](architecture/evidence-storage.md) — what belongs in
   source control, runtime storage, fixtures, examples, and external evidence.
 - [Evidence Manifest and restore contract](evidence/evidence-contract.md) — the
@@ -41,6 +43,7 @@ They do not own unstable task status.
 - [ADR-0004: Research, creation, and feedback boundary](adr/0004-research-creation-feedback-boundary.md)
 - [ADR-0005: Incremental workspace modular monolith](adr/0005-workspace-modular-monolith.md)
 - [ADR-0006: Separate source code from large evidence](adr/0006-evidence-storage-boundary.md)
+- [ADR-0007: Feature-modular Web frontend](adr/0007-feature-modular-web-frontend.md)
 
 `docs/adr` remains the canonical durable-decision directory. There is no parallel
 `docs/decisions` tree.

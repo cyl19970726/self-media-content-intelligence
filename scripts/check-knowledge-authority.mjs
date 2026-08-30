@@ -3,9 +3,12 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const root = process.cwd();
-const files = execFileSync("git", ["ls-files", "apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "packages/**/*.tsx", "src/**/*.ts", "src/**/*.tsx"], {
+const files = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], {
   cwd: root, encoding: "utf8"
-}).split("\n").filter((file) => file && !/\.(?:test|spec)\.[cm]?[jt]sx?$/u.test(file));
+}).split("\n").filter((file) => /\.(?:ts|tsx)$/u.test(file)
+  && /^(?:apps|packages|src)\//u.test(file)
+  && fs.existsSync(path.join(root, file))
+  && !/\.(?:test|spec)\.[cm]?[jt]sx?$/u.test(file));
 
 const failures = [];
 const privilegedImports = new Set([

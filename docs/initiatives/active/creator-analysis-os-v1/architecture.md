@@ -171,7 +171,7 @@ src/
     artifacts/
     network/
   server/                    # HTTP commands and read projections
-  client/                    # existing Dashboard + live task/progress views
+  apps/web/src/features/creator-research/ # Dashboard + live task/progress views
   shared/                    # cross-boundary runtime schemas
 ```
 
