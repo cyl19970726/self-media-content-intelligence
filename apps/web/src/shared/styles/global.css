@@ -20,7 +20,7 @@ a { color: inherit; text-decoration: none; }
 .masthead__meta { display: flex; gap: 22px; font: 400 10px "IBM Plex Mono"; }
 .live-dot::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: var(--teal); }
 .section-nav { min-height: 45px; padding: 0 30px; display: flex; align-items: stretch; border-bottom: 1px solid var(--line); background: var(--paper); }
-.section-nav a, .section-nav > span { padding: 0 22px; display: flex; gap: 8px; align-items: center; border-left: 1px solid var(--line); color: #66706c; font-size: 13px; letter-spacing: .03em; }
+.section-nav a, .section-nav > span { padding: 0 22px; display: flex; gap: 8px; align-items: center; border-left: 1px solid var(--line); color: #626864; font-size: 13px; letter-spacing: .03em; }
 .section-nav a:first-child { padding-left: 0; border: 0; }
 .section-nav a.active { color: var(--ink); font-weight: 600; }
 .section-nav__soon { margin-left: auto; border-right: 1px solid var(--line); font: 400 9px "IBM Plex Mono" !important; }

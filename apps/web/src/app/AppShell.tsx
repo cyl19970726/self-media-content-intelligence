@@ -6,7 +6,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();
   return <div className="app-shell">
     <header className="masthead">
-      <Link to="/" className="brand" aria-label="返回分析台首页">
+      <Link to="/" className="brand">
         <span className="brand__index">01</span>
         <span><strong>SIGNAL ROOM</strong><small>SELF-MEDIA INTELLIGENCE</small></span>
       </Link>
