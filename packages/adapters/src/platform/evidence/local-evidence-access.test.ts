@@ -52,6 +52,13 @@ describe("LocalEvidenceAccess", () => {
     await expect(access.resolve("unknown")).resolves.toBeNull();
   });
 
+  it("publishes catalog health and supports bounded search", () => {
+    const { access } = fixture();
+    expect(access.summary()).toMatchObject({ manifestEntries: 1, storeConfigured: true, storeReadable: true });
+    expect(access.list({ query: "red-witch", limit: 10 })).toMatchObject({ total: 1, offset: 0, limit: 10 });
+    expect(access.list({ query: "not-present" }).entries).toEqual([]);
+  });
+
   it("reports a known object as pending retrieval when no Evidence store is configured", async () => {
     const { manifestPath } = fixture();
     const access = new LocalEvidenceAccess({ manifestPath, storeRoot: null, now: () => new Date("2026-08-28T00:00:00.000Z") });

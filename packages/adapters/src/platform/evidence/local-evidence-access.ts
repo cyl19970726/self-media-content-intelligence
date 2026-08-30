@@ -4,9 +4,14 @@ import path from "node:path";
 import { finished } from "node:stream/promises";
 import {
   evidenceAccessProjectionSchema,
+  evidenceCatalogPageSchema,
+  evidenceCatalogSummarySchema,
   evidenceManifestEntrySchema,
   type EvidenceAccessPort,
   type EvidenceAccessProjection,
+  type EvidenceCatalogPage,
+  type EvidenceCatalogQuery,
+  type EvidenceCatalogSummary,
   type EvidenceManifestEntry
 } from "../../../../contracts/index.js";
 import { evidenceStoreRoot, projectRoot } from "../../core/config.js";
@@ -54,14 +59,53 @@ async function sha256(filePath: string): Promise<string> {
 
 export class LocalEvidenceAccess implements EvidenceAccessPort {
   private readonly entries: Map<string, EvidenceManifestEntry>;
+  private readonly catalogEntries: EvidenceManifestEntry[];
   private readonly storeRoot: string | null;
   private readonly now: () => Date;
 
   constructor(options: LocalEvidenceAccessOptions = {}) {
     this.entries = loadManifest(path.resolve(options.manifestPath ?? path.join(projectRoot, "evidence", "manifest")));
+    this.catalogEntries = [...this.entries.values()].sort((left, right) => left.evidenceId.localeCompare(right.evidenceId));
     const configuredRoot = options.storeRoot === undefined ? evidenceStoreRoot() : options.storeRoot;
     this.storeRoot = configuredRoot ? path.resolve(configuredRoot) : null;
     this.now = options.now ?? (() => new Date());
+  }
+
+  summary(): EvidenceCatalogSummary {
+    const countBy = (select: (entry: EvidenceManifestEntry) => string) => this.catalogEntries.reduce<Record<string, number>>((counts, entry) => {
+      const key = select(entry);
+      counts[key] = (counts[key] ?? 0) + 1;
+      return counts;
+    }, {});
+    let storeReadable = false;
+    if (this.storeRoot) {
+      try {
+        fs.accessSync(path.join(this.storeRoot, "sha256"), fs.constants.R_OK);
+        storeReadable = true;
+      } catch { storeReadable = false; }
+    }
+    return evidenceCatalogSummarySchema.parse({
+      manifestEntries: this.catalogEntries.length,
+      storeConfigured: this.storeRoot !== null,
+      storeReadable,
+      classifications: countBy((entry) => entry.classification),
+      declaredAvailability: countBy((entry) => entry.storage.availability)
+    });
+  }
+
+  list(query: EvidenceCatalogQuery = {}): EvidenceCatalogPage {
+    const needle = query.query?.trim().toLocaleLowerCase() ?? "";
+    const offset = Math.max(0, Math.trunc(query.offset ?? 0));
+    const limit = Math.min(100, Math.max(1, Math.trunc(query.limit ?? 30)));
+    const matches = this.catalogEntries.filter((entry) => {
+      if (query.classification && entry.classification !== query.classification) return false;
+      if (!needle) return true;
+      return [entry.evidenceId, entry.provenance.originalPath, entry.content.mediaType]
+        .some((value) => value.toLocaleLowerCase().includes(needle));
+    });
+    return evidenceCatalogPageSchema.parse({
+      entries: matches.slice(offset, offset + limit), total: matches.length, offset, limit, summary: this.summary()
+    });
   }
 
   async resolve(evidenceId: string): Promise<EvidenceAccessProjection | null> {

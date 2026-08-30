@@ -137,7 +137,7 @@ export default function KnowledgeWorkspace() {
       <div className="knowledge-health">{Object.entries(health).map(([key, value]) => <div key={key}><span>{key}</span><strong>{String(value).padStart(2, "0")}</strong></div>)}</div>
       {loading ? <div className="knowledge-empty"><LoaderCircle className="spin"/><p>正在重建知识索引</p></div>
         : error ? <div className="knowledge-empty"><CircleAlert/><p>{error}</p></div>
-          : concepts.length === 0 ? <div className="knowledge-empty"><BookOpen/><h2>知识真相源尚为空</h2><p>通过研究闸门的分析会在这里留下贡献清单；系统不会用旧报告文案补造规律。</p></div>
+          : concepts.length === 0 ? <div className="knowledge-empty"><BookOpen/><h2>知识真相源尚为空</h2><p>通过研究闸门的分析会在这里留下贡献清单；系统不会用旧报告文案补造规律。</p><Link to="/creators">查看可贡献的 Ready 研究</Link></div>
             : <div className="concept-register">{concepts.map((item, index) => <button key={item.research.concept.id} onClick={() => navigate(`/knowledge/${item.research.concept.id}`)}>
               <span>{String(index + 1).padStart(2, "0")}</span><div><small>{item.research.concept.kind.replaceAll("_", " ")}</small><h2>{item.research.concept.name}</h2><p>{item.research.currentRevision.definition}</p></div>
               <div><b>{scopeLabels[item.research.concept.scope]}</b><strong>{item.research.counts.confirm}/{item.research.counts.qualify}/{item.research.counts.contradict}</strong><small>支持 / 限定 / 反驳</small></div>

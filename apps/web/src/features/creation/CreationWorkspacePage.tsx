@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import {
   AlertTriangle, Check, CircleStop, ExternalLink, FileImage, Film, FolderPlus,
   LoaderCircle, MonitorUp, Play, Plus, RefreshCw, Save, Send, ShieldCheck
@@ -254,7 +255,7 @@ export default function CreationWorkspace() {
       <header className="creation-heading"><div><span>CREATION WORKSPACE / LOCAL</span><h1>从内容版本到发布回执</h1></div>
         <p>系统只会自动填好发布页。最终提交必须由你检查真实页面后，对冻结版本再次确认。</p></header>
       {error && <div className="creation-alert"><AlertTriangle size={18}/><span>{error}</span><button onClick={() => setError(null)}>关闭</button></div>}
-      {!selectedPackageId ? <div className="creation-zero"><MonitorUp size={30}/><h2>创建第一个内容包</h2><p>内容包承载共同意图，平台标题、正文和素材分别保存在版本中。</p></div> : <>
+      {!selectedPackageId ? <div className="creation-zero"><MonitorUp size={30}/><h2>创建第一个内容包</h2><p>内容包承载共同意图，平台标题、正文和素材分别保存在版本中。当前可以独立创建；如果要形成可追踪闭环，请先确认 Knowledge 中存在可引用的真实 revision。</p><div><Link to="/knowledge">检查 Knowledge</Link><button onClick={() => setShowPackageForm(true)}>开始创建内容包</button></div></div> : <>
         {selectedPackage && <KnowledgeDecisionPanel key={`${selectedPackage.id}:${variants.map((item) => item.contentPackageSnapshotId).join(":")}`}
           contentPackage={selectedPackage}/>}
         <div className="variant-tabs">

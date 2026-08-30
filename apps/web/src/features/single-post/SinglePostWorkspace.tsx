@@ -92,7 +92,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
   const copyPage = async () => navigator.clipboard.writeText(window.location.href);
   return <article className="dossier">
     <div className="dossier-topline">
-      <Link to="/" className="text-button"><ArrowLeft size={16}/> 新分析</Link>
+      <Link to="/analyze" className="text-button"><ArrowLeft size={16}/> 新分析</Link>
       <div><StatusMark status={report.status}/><span className="run-code">RUN {report.id.slice(0, 8).toUpperCase()}</span></div>
     </div>
     <header className="report-header">

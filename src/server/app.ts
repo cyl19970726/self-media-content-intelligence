@@ -22,6 +22,7 @@ import { registerPublishingRoutes } from "./routes/publishing.js";
 import { registerKnowledgeRoutes } from "./routes/knowledge.js";
 import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
 import { registerEvidenceRoutes } from "./routes/evidence.js";
+import { registerWorkspaceRoutes } from "./routes/workspace.js";
 import type { EvidenceAccessPort } from "../../packages/contracts/index.js";
 
 export interface AppDependencies {
@@ -69,6 +70,11 @@ export function createApp({
 
   registerPublishingRoutes(app, publishingService);
   registerEvidenceRoutes(app, evidenceAccess);
+  registerWorkspaceRoutes(app, {
+    analysis: service, creators: creatorResearchService, comparisons: comparisonProjectService,
+    learningLoop: learningLoopControlPlane, knowledgeConcepts: () => contentKnowledgeService.listKnowledge(),
+    publishing: publishingService, evidence: evidenceAccess
+  });
 
   app.get("/api/creators", (_request, response) => {
     response.json({ creators: loadCreatorSummaries(creatorResearchService) });
