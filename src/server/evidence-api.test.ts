@@ -13,6 +13,8 @@ afterEach(async () => {
 async function fixtureServer() {
   const app = express();
   registerEvidenceRoutes(app, {
+    summary: () => ({ manifestEntries: 1, storeConfigured: true, storeReadable: true, classifications: { research_evidence: 1 }, declaredAvailability: { available: 1 } }),
+    list: () => ({ entries: [], total: 1, offset: 0, limit: 30, summary: { manifestEntries: 1, storeConfigured: true, storeReadable: true, classifications: { research_evidence: 1 }, declaredAvailability: { available: 1 } } }),
     resolve: async (evidenceId) => evidenceId === "known/id" ? evidenceAccessProjectionSchema.parse({
       evidenceId,
       classification: "research_evidence",

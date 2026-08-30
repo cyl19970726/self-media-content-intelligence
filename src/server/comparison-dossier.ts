@@ -40,15 +40,15 @@ export function loadComparisonDossier(
     };
   });
   const creatorHref = (creatorId: string) => `/creators/${encodeURIComponent(creatorId)}?comparison=${encodeURIComponent(id)}`;
-  const observationLedger = stored.comparison?.observations.map((observation) => ({
+  const observationLedger = stored.comparison?.observations?.map((observation) => ({
     classification: observation.classification, statement: observation.text, boundary: observation.boundary,
     creatorHrefs: observation.evidenceCreatorRunIds.map((runId) => creatorIdsByRun.get(runId)).filter((value): value is string => Boolean(value)).map(creatorHref)
   })) ?? [];
-  const patternLedger = stored.comparison?.contentPatterns.map((pattern) => ({ classification: pattern.classification,
+  const patternLedger = stored.comparison?.contentPatterns?.map((pattern) => ({ classification: pattern.classification,
     statement: pattern.statement, boundary: pattern.boundary, creatorHrefs: pattern.creatorIds.map(creatorHref) })) ?? [];
-  const exceptionLedger = stored.comparison?.exceptions.map((exception) => ({ classification: "creator_specific" as const,
+  const exceptionLedger = stored.comparison?.exceptions?.map((exception) => ({ classification: "creator_specific" as const,
     statement: `${exception.creatorId} / ${exception.role}：${exception.reason}`, boundary: "博主特有项不会自动外推。", creatorHrefs: [creatorHref(exception.creatorId)] })) ?? [];
-  const gapLedger = stored.comparison?.gaps.map((gap) => ({ classification: "unknown" as const, statement: gap,
+  const gapLedger = stored.comparison?.gaps?.map((gap) => ({ classification: "unknown" as const, statement: gap,
     boundary: "证据不足时保持未知。", creatorHrefs: [] })) ?? [];
   const ledger = [...observationLedger, ...patternLedger, ...exceptionLedger, ...gapLedger];
   return comparisonDossierSchema.parse({

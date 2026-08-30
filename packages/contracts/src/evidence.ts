@@ -50,6 +50,33 @@ export type EvidenceAvailability = z.infer<typeof evidenceAvailabilitySchema>;
 export type EvidenceManifestEntry = z.infer<typeof evidenceManifestEntrySchema>;
 export type EvidenceAccessProjection = z.infer<typeof evidenceAccessProjectionSchema>;
 
+export const evidenceCatalogSummarySchema = z.object({
+  manifestEntries: z.number().int().nonnegative(),
+  storeConfigured: z.boolean(),
+  storeReadable: z.boolean(),
+  classifications: z.record(z.string(), z.number().int().nonnegative()),
+  declaredAvailability: z.record(z.string(), z.number().int().nonnegative())
+}).strict();
+
+export const evidenceCatalogPageSchema = z.object({
+  entries: z.array(evidenceManifestEntrySchema),
+  total: z.number().int().nonnegative(),
+  offset: z.number().int().nonnegative(),
+  limit: z.number().int().positive(),
+  summary: evidenceCatalogSummarySchema
+}).strict();
+
+export type EvidenceCatalogSummary = z.infer<typeof evidenceCatalogSummarySchema>;
+export type EvidenceCatalogPage = z.infer<typeof evidenceCatalogPageSchema>;
+export type EvidenceCatalogQuery = {
+  query?: string;
+  classification?: EvidenceManifestEntry["classification"];
+  offset?: number;
+  limit?: number;
+};
+
 export interface EvidenceAccessPort {
   resolve(evidenceId: string): Promise<EvidenceAccessProjection | null>;
+  list(query?: EvidenceCatalogQuery): EvidenceCatalogPage;
+  summary(): EvidenceCatalogSummary;
 }

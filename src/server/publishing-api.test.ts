@@ -44,7 +44,7 @@ async function fixtureServer() {
     publishing,
     creatorDiscovery: unused as RedFoxCreatorDiscoveryService,
     contentKnowledge: unused as ContentKnowledgeService,
-    evidence: { resolve: async () => null }
+    evidence: { resolve: async () => null, list: () => ({ entries: [], total: 0, offset: 0, limit: 30, summary: { manifestEntries: 0, storeConfigured: false, storeReadable: false, classifications: {}, declaredAvailability: {} } }), summary: () => ({ manifestEntries: 0, storeConfigured: false, storeReadable: false, classifications: {}, declaredAvailability: {} }) }
   });
   const server = app.listen(0, "127.0.0.1");
   servers.push(server);

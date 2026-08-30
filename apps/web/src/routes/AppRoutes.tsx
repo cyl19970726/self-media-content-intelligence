@@ -10,6 +10,7 @@ const VideoEvidencePage = lazy(() => import("../features/creator-research/VideoE
 const EvidenceInspector = lazy(() => import("../features/evidence/EvidenceInspectorPage"));
 const KnowledgeWorkspace = lazy(() => import("../features/knowledge/KnowledgePage"));
 const LearningLoopsPage = lazy(() => import("../features/learning-loop/LearningLoopsPage"));
+const WorkspaceOverviewPage = lazy(() => import("../features/workspace-overview/WorkspaceOverviewPage"));
 const SinglePostHome = lazy(() => import("../features/single-post/SinglePostWorkspace")
   .then((module) => ({ default: module.SinglePostHome })));
 const SinglePostDetail = lazy(() => import("../features/single-post/SinglePostWorkspace")
@@ -22,7 +23,8 @@ function LegacyCreatorRunRedirect() {
 
 export function AppRoutes() {
   return <Suspense fallback={<div className="page-loader"><LoaderCircle className="spin"/><p>正在加载工作区</p></div>}><Routes>
-    <Route path="/" element={<SinglePostHome/>}/>
+    <Route path="/" element={<WorkspaceOverviewPage/>}/>
+    <Route path="/analyze" element={<SinglePostHome/>}/>
     <Route path="/creators" element={<CreatorsOverview/>}/>
     <Route path="/creators/:id" element={<CreatorDossierPage/>}/>
     <Route path="/creators/:id/videos/:videoId" element={<VideoEvidencePage/>}/>
@@ -37,6 +39,6 @@ export function AppRoutes() {
     <Route path="/creation" element={<CreationWorkspace/>}/>
     <Route path="/benchmark" element={<Navigate replace to="/comparisons"/>}/>
     <Route path="/runs/:id" element={<SinglePostDetail/>}/>
-    <Route path="*" element={<SinglePostHome/>}/>
+    <Route path="*" element={<WorkspaceOverviewPage/>}/>
   </Routes></Suspense>;
 }

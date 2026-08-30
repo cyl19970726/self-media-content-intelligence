@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BarChart3, BookOpen, Database, GitBranch, Search, Send, Users } from "lucide-react";
+import { BarChart3, BookOpen, Database, GitBranch, LayoutDashboard, Search, Send, Users } from "lucide-react";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();
@@ -13,7 +13,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="masthead__meta"><span>PRIVATE WORKSPACE</span><span className="live-dot">LOCAL</span></div>
     </header>
     <nav className="section-nav" aria-label="主导航">
-      <Link className={location.pathname === "/" ? "active" : ""} to="/"><Search size={16}/> 链接分析</Link>
+      <Link className={location.pathname === "/" ? "active" : ""} to="/"><LayoutDashboard size={16}/> 工作总览</Link>
+      <Link className={location.pathname.startsWith("/analyze") || location.pathname.startsWith("/runs") ? "active" : ""} to="/analyze"><Search size={16}/> 链接分析</Link>
       <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
       <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
       <Link className={location.pathname.startsWith("/learning-loop") ? "active" : ""} to="/learning-loop"><GitBranch size={16}/> 迭代验证</Link>
