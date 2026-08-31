@@ -1,4 +1,29 @@
-import type { CreatorAcquisitionAdapter, CreatorResearchRun, CreatorResearchStatus } from "../../../shared/contracts/core";
+import type { CreatorAcquisitionAdapter, CreatorResearchBatchItemProjection, CreatorResearchRun, CreatorResearchStatus } from "../../../shared/contracts/core";
+
+export const creatorStatusLabels: Record<CreatorResearchStatus, string> = {
+  queued: "等待接管", preflight: "登录预检", collecting: "正在采集", needs_user: "需要你接管", backoff: "已退避",
+  reviewable: "可复核", ready: "分析完成", failed: "任务失败", stale: "等待刷新"
+};
+
+const batchSignalLabels: Record<string, string> = {
+  video_reconstruction_pending: "视频重建正在排队或执行",
+  creator_synthesis_not_ready: "等待视频重建达到综合条件",
+  video_reconstruction_incomplete: "部分视频重建未完成",
+  synthesis_runner_unavailable: "综合分析服务暂不可用",
+  provider_unavailable: "采集服务暂不可用"
+};
+
+export function batchItemSignal(item: Pick<CreatorResearchBatchItemProjection, "status" | "blockerCodes">):
+  { kind: "progress" | "review" | "retry" | "blocker"; label: string; messages: string[] } | null {
+  if (item.blockerCodes.length === 0) return null;
+  const messages = item.blockerCodes.map((code) => batchSignalLabels[code] ?? code);
+  if (["queued", "preflight", "collecting"].includes(item.status)) {
+    return { kind: "progress", label: "流水线等待", messages };
+  }
+  if (item.status === "reviewable") return { kind: "review", label: "等待复核", messages };
+  if (item.status === "backoff") return { kind: "retry", label: "自动退避", messages };
+  return { kind: "blocker", label: "阻塞", messages };
+}
 
 export type IntakeValidation =
   | { valid: true; normalizedUrl: string }

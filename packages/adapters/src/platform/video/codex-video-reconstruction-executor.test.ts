@@ -3,6 +3,12 @@ import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  assertCandidateArtifactsUnchanged,
+  candidatePrompt,
+  candidateArtifactFingerprints,
+  codexInvocationArgs,
+  evaluatorPrompt,
+  hardEvaluationGateFailures,
   normalizeRuntimeLensEvidence,
   runCodex,
   shouldRefreshOcrEvidence
@@ -13,10 +19,10 @@ const protocol = { captureActions: [{ mode: "ocr_review" }] };
 const targeted = { frames: [{ id: "FRAME-1" }, { id: "FRAME-2" }] };
 
 describe("video reconstruction OCR recovery", () => {
-  it("retries a requested OCR pass when every frame failed", () => {
+  it("keeps a complete failed OCR pass as checked evidence", () => {
     expect(shouldRefreshOcrEvidence(protocol, targeted, {
       frames: [{ frameId: "FRAME-1", status: "failed" }, { frameId: "FRAME-2", status: "failed" }]
-    })).toBe(true);
+    })).toBe(false);
   });
 
   it("refreshes OCR when a repair adds targeted frames", () => {
@@ -47,6 +53,19 @@ describe("runtime lens evidence normalization", () => {
 });
 
 describe("single-pass evaluation policy", () => {
+  it("keeps a validated Builder result explicitly unevaluated", () => {
+    const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
+    const outcome = videoReconstructionOutcomeSchema.parse({
+      state: "built_unevaluated",
+      reconstructionArtifactRef: `${root}/reconstruction.json`,
+      articleArtifactRef: null,
+      builderValidationArtifactRef: `${root}/builder-validation.json`,
+      evaluationMode: "skipped"
+    });
+    expect(outcome.state).toBe("built_unevaluated");
+    expect("evaluationArtifactRef" in outcome).toBe(false);
+  });
+
   it("keeps evaluator gaps as warnings while marking the video analyzed", () => {
     const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
     const outcome = videoReconstructionOutcomeSchema.parse({
@@ -66,6 +85,84 @@ describe("single-pass evaluation policy", () => {
     expect(outcome.state).toBe("ready");
     if (outcome.state !== "ready") throw new Error("expected ready single-pass outcome");
     expect(outcome.qualityWarningGateIds).toEqual(["eval_unchecked_channels"]);
+  });
+});
+
+describe("Builder model contract", () => {
+  it("freezes existing artifacts and tells a resumed Builder to create only missing outputs", () => {
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-builder-resume-"));
+    try {
+      fs.mkdirSync(path.join(outputDir, "evidence"), { recursive: true });
+      fs.writeFileSync(path.join(outputDir, "source-video.srt"), "1\n00:00:00,000 --> 00:00:01,000\n字幕\n");
+      fs.writeFileSync(path.join(outputDir, "evidence/evidence-pack.json"), "{}");
+      const prompt = candidatePrompt("/tmp/source.mp4", outputDir, ["reconstruction.json"]);
+      expect(prompt).toContain('Missing artifacts that this resume run is allowed to create: ["reconstruction.json"]');
+      expect(prompt).toContain("evidence/evidence-pack.json");
+      expect(prompt).toContain(path.join(outputDir, "media-preparation.json"));
+      expect(prompt).toContain("Never run whisper, whisper-cli, ffprobe, direct ffmpeg extraction");
+      expect(prompt).toContain("builder-operator.md");
+      expect(prompt).toContain("do NOT read SKILL.md");
+      expect(prompt).toContain("execute OCR at most once");
+      expect(prompt).toContain("ocr references use the recognized line's OCR-* ID");
+      expect(prompt).toContain("Never use afplay");
+    } finally {
+      fs.rmSync(outputDir, { recursive: true, force: true });
+    }
+  });
+
+  it("passes Terra medium explicitly and keeps ordinary sessions ephemeral", () => {
+    const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/run/last.txt", {});
+    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain('model_reasoning_effort="medium"');
+    expect(args).toContain("--ephemeral");
+  });
+
+  it("can retain a bounded diagnostic session without changing the model", () => {
+    const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/run/last.txt", {
+      SELF_MEDIA_CODEX_EPHEMERAL: "false"
+    });
+    expect(args).not.toContain("--ephemeral");
+    expect(args).toContain("gpt-5.6-terra");
+  });
+});
+
+describe("Evaluator role contract", () => {
+  it("never promotes a deterministic or three-lens hard failure to VERIFIED", () => {
+    expect(hardEvaluationGateFailures(
+      { ready: false, failedGateIds: ["core_evidence_references"] },
+      { ready: true, failedGateIds: [], uncheckedGateIds: [] }
+    )).toEqual(["core_evidence_references"]);
+    expect(hardEvaluationGateFailures(
+      { ready: true, failedGateIds: [] },
+      { ready: false, failedGateIds: ["VE-03"], uncheckedGateIds: ["DL-04"] }
+    )).toEqual(["VE-03", "DL-04"]);
+    expect(hardEvaluationGateFailures(
+      { ready: true, failedGateIds: [] },
+      { ready: true, failedGateIds: [], uncheckedGateIds: [] }
+    )).toEqual([]);
+  });
+
+  it("binds one fresh evaluator process to an immutable candidate revision", () => {
+    const prompt = evaluatorPrompt("/tmp/source.mp4", "/tmp/candidate", "a".repeat(64), {
+      "reconstruction.json": "b".repeat(64)
+    });
+    expect(prompt).toContain("evaluator-operator.md");
+    expect(prompt).toContain("This single Evaluator process owns all three lenses");
+    expect(prompt).toContain("Frozen candidate revision");
+    expect(prompt).toContain("reconstruction.json");
+    expect(prompt).toContain("Do not modify candidate files");
+  });
+
+  it("fails when an evaluator mutates a frozen Builder artifact", () => {
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-evaluator-freeze-"));
+    try {
+      fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "revision-1");
+      const before = candidateArtifactFingerprints(outputDir);
+      fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "revision-2");
+      expect(() => assertCandidateArtifactsUnchanged(before, outputDir)).toThrow("EVALUATOR_MUTATED_CANDIDATE");
+    } finally {
+      fs.rmSync(outputDir, { recursive: true, force: true });
+    }
   });
 });
 

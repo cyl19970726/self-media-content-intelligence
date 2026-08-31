@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "reconstruction-evaluation-1.0",
+  "independent": true,
+  "gates": {
+    "criticalQuestionRecall": {"numerator": 2, "denominator": 2, "examples": []},
+    "evidenceCoverage": {"numerator": 2, "denominator": 2, "examples": []},
+    "unsupportedInference": {"errors": 0, "total": 2, "examples": []},
+    "timestampAccuracy": {"numerator": 5, "denominator": 5, "examples": []},
+    "processDependencyCompleteness": {"applicable": true, "numerator": 3, "denominator": 3, "rationale": "One state transition."},
+    "unknownDiscipline": {"numerator": 1, "denominator": 1, "examples": []},
+    "uncheckedChannels": []
+  },
+  "judges": {"readability": 4, "knowledgePrioritization": 4, "evidenceUsefulness": 5, "executionValue": 4, "compressionWithoutLoss": 4},
+  "metaAudit": {"pass": true, "unguardedCarriers": [], "unguardedMeaningChanges": [], "unguardedRelationships": [], "rationale": "No unguarded closure found."},
+  "examples": []
+}

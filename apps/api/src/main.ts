@@ -20,7 +20,12 @@ function closeServer(value: Server): Promise<void> {
 
 function shutdown(): Promise<void> {
   if (shutdownPromise) return shutdownPromise;
-  shutdownPromise = closeServer(server).finally(() => composition.close());
+  // Stop leasing work immediately while the HTTP listener drains existing keep-alive connections.
+  // Waiting for the listener first lets a long-lived browser connection keep Workers replenishing forever.
+  shutdownPromise = Promise.allSettled([closeServer(server), composition.close()]).then((results) => {
+    const errors = results.flatMap((result) => result.status === "rejected" ? [result.reason] : []);
+    if (errors.length > 0) throw new AggregateError(errors, "Signal Room shutdown failed");
+  });
   return shutdownPromise;
 }
 

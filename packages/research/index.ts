@@ -1,5 +1,7 @@
 export * from "./src/creator-detail/contracts.js";
 export * from "./src/creator-research/artifact-store.js";
+export * from "./src/creator-research/batch-repository.js";
+export * from "./src/creator-research/batch-service.js";
 export * from "./src/creator-research/pipeline.js";
 export * from "./src/creator-research/repository.js";
 export * from "./src/creator-research/service.js";

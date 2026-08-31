@@ -63,10 +63,32 @@ export function apiPort(): number {
   return Number.isFinite(value) ? value : 4310;
 }
 
+export type CreatorWorkerConcurrencyConfig = {
+  redfox: number;
+  "ego-browser": number;
+  portfolio: number;
+  video: number;
+  synthesis: number;
+};
+
+function concurrency(name: string, fallback: number, maximum: number): number {
+  const configured = Number(process.env[name] ?? String(fallback));
+  if (!Number.isFinite(configured)) return fallback;
+  return Math.min(maximum, Math.max(1, Math.trunc(configured)));
+}
+
+export function creatorWorkerConcurrency(): CreatorWorkerConcurrencyConfig {
+  return {
+    redfox: concurrency("SELF_MEDIA_REDFOX_CONCURRENCY", 4, 8),
+    "ego-browser": concurrency("SELF_MEDIA_EGO_BROWSER_CONCURRENCY", 1, 2),
+    portfolio: concurrency("SELF_MEDIA_PORTFOLIO_CONCURRENCY", 1, 4),
+    video: concurrency("SELF_MEDIA_VIDEO_CONCURRENCY", 3, 3),
+    synthesis: concurrency("SELF_MEDIA_SYNTHESIS_CONCURRENCY", 2, 4)
+  };
+}
+
 export function videoConcurrency(): number {
-  const configured = Number(process.env.SELF_MEDIA_VIDEO_CONCURRENCY ?? "3");
-  if (!Number.isFinite(configured)) return 3;
-  return Math.min(3, Math.max(1, Math.trunc(configured)));
+  return creatorWorkerConcurrency().video;
 }
 
 export function webBaseUrl(): string {

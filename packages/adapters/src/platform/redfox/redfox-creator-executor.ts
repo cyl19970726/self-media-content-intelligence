@@ -76,7 +76,7 @@ function errorResult(error: unknown, profileUrl: string, noteId: string | null =
   const navigationDiagnostic: CreatorNavigationDiagnostic | undefined = noteId ? {
     postExternalId: noteId, inputUrl: `https://www.xiaohongshu.com/explore/${noteId}`,
     canonicalUrl: `https://www.xiaohongshu.com/explore/${noteId}`,
-    failureClass: "navigation_redirect", challengeType: null, phase: "redfox_detail", fallbackAttempted: false
+    failureClass: "provider_network", challengeType: null, phase: "redfox_detail", fallbackAttempted: false
   } : undefined;
   return { state: "blocked", finalUrl: profileUrl, taskSpaceId: null, code,
     message: providerError.message, retryable: !["authentication", "configuration", "invalid_response"].includes(providerError.kind),
@@ -194,7 +194,17 @@ export class RedFoxCreatorExecutor implements CreatorBrowserExecutor {
       }
       return { state: "ready", provider: "redfox", taskSpaceId: null, posts: output, warnings: [] };
     } catch (error) {
-      return errorResult(error, input.profileUrl, input.posts[output.length]?.externalId ?? null);
+      const blocked = errorResult(error, input.profileUrl, input.posts[output.length]?.externalId ?? null);
+      return output.length > 0
+        ? {
+            ...blocked,
+            partialPosts: output,
+            partialWarnings: [
+              `redfox_partial_checkpoint:${output.length}/${input.posts.length}`,
+              "红狐详情批次中已成功的条目已保留；恢复时只请求未完成条目。"
+            ]
+          }
+        : blocked;
     }
   }
 }

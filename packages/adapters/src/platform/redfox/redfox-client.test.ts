@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { RedFoxClient, RedFoxError } from "./redfox-client.js";
+import { RedFoxClient, RedFoxError, resolveRedFoxProxyUrl } from "./redfox-client.js";
 
 describe("RedFoxClient", () => {
   it("keeps the credential in the server request header and counts successful requests", async () => {
@@ -17,5 +17,13 @@ describe("RedFoxClient", () => {
     const client = new RedFoxClient({ apiKey: "bad", fetchImpl: async () => new Response("private upstream body", { status: 403 }) });
     await expect(client.post("/endpoint", {})).rejects.toMatchObject({ kind: "authentication", status: 403 } satisfies Partial<RedFoxError>);
     await expect(client.post("/endpoint", {})).rejects.not.toThrow(/private upstream body/);
+  });
+
+  it("uses only standard proxy environment variables", () => {
+    expect(resolveRedFoxProxyUrl({
+      REDFOX_PROXY_URL: "http://127.0.0.1:7890",
+      HTTPS_PROXY: "http://127.0.0.1:7897"
+    })).toBe("http://127.0.0.1:7897");
+    expect(resolveRedFoxProxyUrl({})).toBeNull();
   });
 });

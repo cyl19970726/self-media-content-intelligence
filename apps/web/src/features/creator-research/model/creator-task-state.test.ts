@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { completionNotice, failureReason, findExistingCreatorRun, taskEstimateLabel, taskPhases, validateCreatorProfileUrl } from "./creator-task-state";
+import { batchItemSignal, completionNotice, failureReason, findExistingCreatorRun, taskEstimateLabel, taskPhases, validateCreatorProfileUrl } from "./creator-task-state";
 import type { CreatorResearchRun } from "../../../shared/contracts/core";
 
 function run(overrides: Partial<CreatorResearchRun> = {}): CreatorResearchRun {
@@ -63,5 +63,14 @@ describe("creator task state contract", () => {
     const published = run({ status: "ready", stages: run().stages.map((item) => ({ ...item, status: "complete" })) });
     expect(completionNotice(published)).toBe("研究已完成并发布到同一工作台。");
     expect(completionNotice(run({ status: "reviewable" }))).toContain("尚未宣称");
+  });
+
+  it("does not present active video queue gates as failures", () => {
+    expect(batchItemSignal({ status: "collecting", blockerCodes: ["video_reconstruction_pending"] })).toEqual({
+      kind: "progress", label: "流水线等待", messages: ["视频重建正在排队或执行"]
+    });
+    expect(batchItemSignal({ status: "failed", blockerCodes: ["provider_unavailable"] })).toEqual({
+      kind: "blocker", label: "阻塞", messages: ["采集服务暂不可用"]
+    });
   });
 });

@@ -55,6 +55,8 @@ function batch(): VideoReconstructionBatch {
     revision: 1,
     generatedAt: checkedAt,
     requestedPosts: 9,
+    builtPosts: 9,
+    verifiedPosts: 9,
     readyPosts: 9,
     pendingPosts: 0,
     failedPosts: 0,

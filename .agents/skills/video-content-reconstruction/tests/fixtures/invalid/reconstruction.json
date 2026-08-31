@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "Claims complete understanding.",
+  "viewerChange": {},
+  "transcript": {"origin": "fixture", "cues": []},
+  "knowledgeUnits": [{"id": "KU-X", "title": "Invented parameter", "importance": "core", "statement": "The hidden parameter equals 42.", "provenance": "system_inference", "timeRange": {"start": 20, "end": 25}, "evidence": [], "confidence": "high", "unknowns": []}],
+  "relations": [],
+  "coverageMatrix": {"channels": [{"id": "CAR-SPEECH", "available": true, "inspected": true}], "meaningChanges": [], "relationships": [], "criticalQuestions": [], "coreEvidence": {"covered": 0, "total": 1}, "unknowns": [], "uncheckedChannels": ["CAR-UI"]},
+  "metaGate": {"question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？", "pass": false, "uncheckedChannels": ["CAR-UI"], "overlookedMeaningChanges": ["MC-002"], "overlookedRelationships": [], "rationale": "UI was skipped."},
+  "overallCompleteness": "100%"
+}

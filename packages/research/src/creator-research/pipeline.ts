@@ -19,8 +19,8 @@ const stageSeeds: StageSeed[] = [
   { id: "corpus_statistics", label: "全量统计与数据健康", skillId: null, workerKind: "statistics-worker", dashboardSections: ["corpus", "tiers", "rhythm"] },
   { id: "sample_selection", label: "高 / 中位 / 均值附近 / 低表现选样", skillId: "creator-sample-selection", workerKind: "selection-worker", dashboardSections: ["tiers", "portfolio", "deep"] },
   { id: "media_verification", label: "代表视频媒体获取与核验", skillId: "xiaohongshu-creator-acquisition", workerKind: "media-worker", dashboardSections: ["portfolio", "deep"] },
-  { id: "video_reconstruction", label: "单视频三镜头分析", skillId: "video-content-reconstruction", workerKind: "video-reconstruction-worker", dashboardSections: ["deep", "engines"] },
-  { id: "video_evaluation", label: "单视频独立评估", skillId: "creator-research-evaluator", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
+  { id: "video_reconstruction", label: "单视频 Builder 重建", skillId: "video-content-reconstruction", workerKind: "video-reconstruction-worker", dashboardSections: ["deep", "engines"] },
+  { id: "video_evaluation", label: "可选单视频独立评估", skillId: "video-content-reconstruction", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
   { id: "creator_synthesis", label: "跨视频与跨层级博主综合", skillId: "creator-research-synthesis", workerKind: "creator-synthesis-worker", dashboardSections: ["identity", "system", "tiers", "rhythm", "audience", "engines", "business"] },
   { id: "creator_evaluation", label: "博主研究独立评测", skillId: "creator-research-evaluator", workerKind: "independent-creator-evaluator", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] },
   { id: "dashboard_projection", label: "Creator Dossier 投影", skillId: null, workerKind: "projection-worker", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] }

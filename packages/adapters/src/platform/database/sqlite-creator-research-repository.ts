@@ -1,10 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
-import { databasePath } from "../../core/config.js";
+import { creatorWorkerConcurrency, databasePath } from "../../core/config.js";
 import {
   creatorResearchEventSchema,
   creatorResearchRunSchema,
+  type CreatorAcquisitionAdapter,
   type CreatorResearchEvent,
   type CreatorResearchRun
 } from "../../../../contracts/index.js";
@@ -77,6 +78,17 @@ function parseEvent(row: ResearchEventRow): CreatorResearchEvent {
   });
 }
 
+function lanePredicate(lane: ResearchJobLane, jobAlias: string, runAlias: string): string {
+  if (lane === "redfox" || lane === "ego-browser") {
+    return `${jobAlias}.node_key IN ('creator.acquire','creator.enrich')
+      AND json_extract(${runAlias}.run_json, '$.collectionPolicy.adapter') = '${lane}'`;
+  }
+  if (lane === "portfolio") return `${jobAlias}.node_key = 'creator.portfolio'`;
+  if (lane === "video") return `${jobAlias}.node_key = 'video.reconstruct'`;
+  if (lane === "synthesis") return `${jobAlias}.node_key = 'creator.synthesize'`;
+  return "1 = 1";
+}
+
 export class SQLiteCreatorResearchRepository implements CreatorResearchRepository {
   private readonly db: DatabaseSync;
 
@@ -100,6 +112,8 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
         ON creator_research_runs(updated_at DESC);
       CREATE INDEX IF NOT EXISTS idx_creator_research_runs_profile_url
         ON creator_research_runs(profile_url, updated_at DESC);
+      CREATE INDEX IF NOT EXISTS idx_creator_research_runs_profile_adapter
+        ON creator_research_runs(profile_url, json_extract(run_json, '$.collectionPolicy.adapter'), updated_at DESC);
 
       CREATE TABLE IF NOT EXISTS research_jobs (
         id TEXT PRIMARY KEY,
@@ -177,6 +191,16 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
     return row ? creatorResearchRunSchema.parse(JSON.parse(row.run_json) as unknown) : null;
   }
 
+  findLatestByProfileUrlAndAdapter(profileUrl: string, adapter: CreatorAcquisitionAdapter): CreatorResearchRun | null {
+    const row = this.db.prepare(`
+      SELECT run_json FROM creator_research_runs
+      WHERE profile_url = ?
+        AND json_extract(run_json, '$.collectionPolicy.adapter') = ?
+      ORDER BY updated_at DESC LIMIT 1
+    `).get(profileUrl, adapter) as CreatorResearchRow | undefined;
+    return row ? creatorResearchRunSchema.parse(JSON.parse(row.run_json) as unknown) : null;
+  }
+
   enqueue(job: ResearchJob): ResearchJob {
     const parsed = researchJobSchema.parse(job);
     this.db.prepare(`
@@ -214,16 +238,39 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
   claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any"): ResearchJob | null {
     this.db.exec("BEGIN IMMEDIATE");
     try {
-      const laneClause = lane === "video" ? "AND node_key = 'video.reconstruct'"
-        : lane === "serial" ? "AND node_key != 'video.reconstruct'" : "";
+      if (lane !== "any") {
+        const limits = creatorWorkerConcurrency();
+        const active = this.db.prepare(`
+          SELECT COUNT(*) AS count
+          FROM research_jobs active
+          JOIN creator_research_runs active_run ON active_run.id = active.run_id
+          WHERE active.status IN ('leased','running')
+            AND COALESCE(active.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
+            AND ${lanePredicate(lane, "active", "active_run")}
+        `).get(now) as { count: number };
+        if (active.count >= limits[lane]) {
+          this.db.exec("COMMIT");
+          return null;
+        }
+      }
       const row = this.db.prepare(`
-        SELECT * FROM research_jobs
-        WHERE ((status IN ('queued','backoff') AND available_at <= ?)
-          OR (status IN ('leased','running') AND lease_expires_at IS NOT NULL AND lease_expires_at <= ?))
-          AND run_id IN (SELECT id FROM creator_research_runs WHERE status NOT IN ('needs_user','failed'))
-          ${laneClause}
-        ORDER BY available_at ASC, created_at ASC LIMIT 1
-      `).get(now, now) as ResearchJobRow | undefined;
+        SELECT candidate.* FROM research_jobs candidate
+        JOIN creator_research_runs candidate_run ON candidate_run.id = candidate.run_id
+        WHERE ((candidate.status IN ('queued','backoff') AND candidate.available_at <= ?)
+          OR (candidate.status IN ('leased','running') AND candidate.lease_expires_at IS NOT NULL
+            AND candidate.lease_expires_at <= ?))
+          AND candidate_run.status IN ('queued','preflight','collecting','backoff','reviewable')
+          AND ${lanePredicate(lane, "candidate", "candidate_run")}
+          AND NOT EXISTS (
+            SELECT 1 FROM research_jobs active_job
+            WHERE active_job.run_id = candidate.run_id
+              AND active_job.id != candidate.id
+              AND active_job.status IN ('leased','running')
+              AND COALESCE(active_job.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
+              AND (candidate.node_key != 'video.reconstruct' OR active_job.node_key != 'video.reconstruct')
+          )
+        ORDER BY candidate.available_at ASC, candidate.created_at ASC LIMIT 1
+      `).get(now, now, now) as ResearchJobRow | undefined;
       if (!row) {
         this.db.exec("COMMIT");
         return null;

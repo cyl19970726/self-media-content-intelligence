@@ -43,4 +43,31 @@ describe("RedFoxCreatorExecutor", () => {
       profileUrl: "https://www.xiaohongshu.com/user/profile/creator-2", maxScrollRounds: 1, taskSpaceId: null });
     expect(result).toMatchObject({ state: "blocked", code: "provider_authentication_failed", retryable: false });
   });
+
+  it("checkpoints successful detail items when a later RedFox request fails", async () => {
+    let request = 0;
+    const client = new RedFoxClient({ apiKey: "test", fetchImpl: async () => {
+      request += 1;
+      if (request === 2) throw new Error("provider connection interrupted");
+      return json([{ noteId: "note-1", noteTitle: "已完成详情", noteType: "normal", contentDesc: "正文" }]);
+    }});
+    const result = await new RedFoxCreatorExecutor(client).enrich({
+      adapter: "redfox",
+      runId: "run-partial",
+      profileUrl: "https://www.xiaohongshu.com/user/profile/creator-partial",
+      posts: [
+        { externalId: "note-1", url: "https://www.xiaohongshu.com/explore/note-1", resolveMedia: false },
+        { externalId: "note-2", url: "https://www.xiaohongshu.com/explore/note-2", resolveMedia: false }
+      ],
+      taskSpaceId: null
+    });
+
+    expect(result).toMatchObject({
+      state: "blocked",
+      code: "provider_unavailable",
+      partialPosts: [{ externalId: "note-1", description: "正文" }]
+    });
+    if (result.state !== "blocked") throw new Error("expected partial blocked result");
+    expect(result.partialWarnings).toContain("redfox_partial_checkpoint:1/2");
+  });
 });

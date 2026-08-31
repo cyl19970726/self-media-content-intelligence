@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "video-reconstruction-1.0",
+  "evidencePack": "evidence-pack.json",
+  "probe": "probe.json",
+  "protocol": "capture-protocol.json",
+  "scopeStatement": "Reconstruct the demonstrated UI state transition without adding unstated settings.",
+  "viewerChange": {"before": "不知道操作路径", "after": "能复述设置到结果的状态变化"},
+  "derivedSources": [],
+  "transcript": {
+    "origin": "fixture",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 5, "text": "先打开设置", "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001"]},
+      {"id": "CUE-002", "start": 5, "end": 10, "text": "然后得到结果", "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002"]}
+    ]
+  },
+  "knowledgeUnits": [
+    {"id": "KU-001", "title": "打开设置", "importance": "core", "statement": "作者先要求打开设置。", "provenance": "author_claim", "timeRange": {"start": 0, "end": 5}, "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "spoken action"}], "confidence": "high", "unknowns": []},
+    {"id": "KU-002", "title": "界面从设置进入结果", "importance": "core", "statement": "画面展示设置操作后出现结果状态。", "provenance": "visual_observation", "timeRange": {"start": 0, "end": 10}, "evidence": [{"refType": "targeted_frame", "ref": "TARGET-0001", "supports": "before"}, {"refType": "targeted_frame", "ref": "TARGET-0002", "supports": "during"}, {"refType": "targeted_frame", "ref": "TARGET-0004", "supports": "after"}], "confidence": "high", "procedural": {"input": "initial UI", "actions": ["open settings"], "parameters": [], "output": "result state", "beforeFrames": ["TARGET-0001"], "duringFrames": ["TARGET-0002"], "afterFrames": ["TARGET-0004"], "unknowns": ["specific hidden settings are not shown"]}, "unknowns": ["specific hidden settings are not shown"]}
+  ],
+  "relations": [{"from": "KU-001", "to": "KU-002", "relation": "precedes", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "action order"}, {"refType": "cue", "ref": "CUE-002", "supports": "result order"}]}],
+  "coverageMatrix": {
+    "channels": [{"id": "CAR-SPEECH", "available": true, "inspected": true}, {"id": "CAR-UI", "available": true, "inspected": true}],
+    "meaningChanges": [{"id": "MC-001", "captured": true, "unitIds": ["KU-001", "KU-002"]}, {"id": "MC-002", "captured": true, "unitIds": ["KU-002"]}],
+    "relationships": [{"id": "REL-001", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002"]}],
+    "criticalQuestions": [{"id": "Q-001", "status": "answered", "unitIds": ["KU-001"], "evidenceRefs": ["CUE-001"]}, {"id": "Q-002", "status": "answered", "unitIds": ["KU-002"], "evidenceRefs": ["CUE-002", "TARGET-0004"]}],
+    "cueAccountability": [
+      {"cueId": "CUE-001", "disposition": "knowledge", "unitIds": ["KU-001", "KU-002"], "rationale": "Introduces the action."},
+      {"cueId": "CUE-002", "disposition": "knowledge", "unitIds": ["KU-002"], "rationale": "Names the result."}
+    ],
+    "coreEvidence": {"covered": 2, "total": 2},
+    "unknowns": ["specific hidden settings are not shown"],
+    "uncheckedChannels": []
+  },
+  "metaGate": {"question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？", "pass": true, "uncheckedChannels": [], "overlookedMeaningChanges": [], "overlookedRelationships": [], "rationale": "Speech and the only visible UI transition were independently inspected."}
+}
