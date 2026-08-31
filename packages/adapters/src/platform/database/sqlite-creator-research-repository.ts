@@ -269,7 +269,11 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
               AND COALESCE(active_job.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
               AND (candidate.node_key != 'video.reconstruct' OR active_job.node_key != 'video.reconstruct')
           )
-        ORDER BY candidate.available_at ASC, candidate.created_at ASC LIMIT 1
+        ORDER BY
+          CASE WHEN candidate.status IN ('leased','running') THEN 0 ELSE 1 END ASC,
+          candidate.available_at ASC,
+          candidate.created_at ASC
+        LIMIT 1
       `).get(now, now, now) as ResearchJobRow | undefined;
       if (!row) {
         this.db.exec("COMMIT");

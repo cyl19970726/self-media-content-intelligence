@@ -142,6 +142,29 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     expect(repository.claimNext("video-2", timestamp(), timestamp(90_000), "video")).toBeNull();
   });
 
+  it("resumes expired video leases before starting untouched queued videos", () => {
+    const staleRun = createRun("redfox", "expired-video");
+    completeAcquisition(staleRun.id, "redfox");
+    const stale = enqueue(staleRun.id, "video.reconstruct");
+    const leasedAt = timestamp();
+    expect(repository.claimNext("old-video-worker", leasedAt, timestamp(1_000), "video")?.id).toBe(stale.id);
+    repository.updateJobStatus({ jobId: stale.id, status: "running", updatedAt: leasedAt });
+
+    const queuedRun = createRun("redfox", "untouched-video");
+    completeAcquisition(queuedRun.id, "redfox");
+    const oldAvailableAt = new Date(Date.now() - 86_400_000).toISOString();
+    repository.enqueue({
+      id: randomUUID(), runId: queuedRun.id, nodeKey: "video.reconstruct", status: "queued",
+      idempotencyKey: `${queuedRun.id}:video.reconstruct:older-queue`, attempts: 0, maxAttempts: 3,
+      availableAt: oldAvailableAt, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+      payload: {}, lastError: null, createdAt: timestamp(), updatedAt: timestamp()
+    });
+
+    const recovered = repository.claimNext("new-video-worker", timestamp(2_000), timestamp(92_000), "video");
+    expect(recovered?.id).toBe(stale.id);
+    expect(recovered?.attempts).toBe(2);
+  });
+
   it("advances a twenty-creator RedFox queue four at a time without head-of-line blocking", () => {
     process.env.SELF_MEDIA_REDFOX_CONCURRENCY = "4";
     const runs = Array.from({ length: 20 }, (_, index) => createRun("redfox", `batch-20-${index + 1}`));
