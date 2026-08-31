@@ -300,6 +300,7 @@ Isolation and evidence rules:
 - When every OCR frame failed there is no valid OCR line ID: cite targeted_frame evidence and preserve text as unknown; never invent an OCR-* placeholder.
 - Never use afplay, a GUI player, or system speakers as proof that the model heard audio. Inspect only model-readable audio evidence and non-speech transcript labels; when only technical audio presence is available, preserve music/sound semantics as unknown.
 - For every carrier, write inspectionStatus and inspectionRationale while retaining compatible available/inspected booleans. Technical audio presence without model-readable semantics is available:true, inspected:true, inspectionStatus:"checked_unreadable"; it must remain an explicit unknown and must not support semantic audio claims.
+- informationCarriers[].discoveredIn contains only carrierSweep IDs. Put media/evidence file provenance in inspectionRationale or evidenceHints. An absent carrier is available:false and may be inspected:true when frozen host evidence was checked to establish absence.
 - Write metaGate.questionId as "uncovered_information_audit". The display question may be localized and is not an identity key.
 - Signed URLs, cookies, login data, and private browser state must never enter any output.
 

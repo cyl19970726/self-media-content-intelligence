@@ -3,6 +3,16 @@ import fs from "node:fs";
 import path from "node:path";
 
 type EvidenceRef = { refType?: string; ref?: string };
+type Carrier = {
+  id?: string;
+  name?: string;
+  modalityKeys?: string[];
+  discoveredIn?: string[];
+  available?: boolean;
+  inspected?: boolean;
+  inspectionStatus?: "absent" | "unchecked" | "checked_readable" | "checked_unreadable";
+  inspectionRationale?: string;
+};
 type ReconstructionLike = {
   transcript?: { cues?: Array<Record<string, unknown>> };
   knowledgeUnits?: Array<{
@@ -14,13 +24,7 @@ type ReconstructionLike = {
   relations?: Array<{ from?: string; to?: string; evidence?: EvidenceRef[] }>;
   derivedSources?: Array<{ path?: string }>;
   coverageMatrix?: {
-    channels?: Array<{
-      id?: string;
-      available?: boolean;
-      inspected?: boolean;
-      inspectionStatus?: "absent" | "unchecked" | "checked_readable" | "checked_unreadable";
-      inspectionRationale?: string;
-    }>;
+    channels?: Carrier[];
     cueAccountability?: Array<{ cueId?: string; unitIds?: string[] }>;
     criticalQuestions?: Array<{ unitIds?: string[] }>;
     uncheckedChannels?: string[];
@@ -34,10 +38,14 @@ type ReconstructionLike = {
 };
 
 type EvidencePackLike = {
-  media?: { duration?: number };
+  media?: { duration?: number; hasAudio?: boolean };
   shots?: Array<{ id?: string }>;
   frameIndex?: Array<{ id?: string; time?: number }>;
   transcript?: { cues?: Array<Record<string, unknown>> };
+};
+type ProbeLike = {
+  carrierSweep?: Array<{ id?: string }>;
+  informationCarriers?: Carrier[];
 };
 
 function exists(file: string): boolean {
@@ -60,8 +68,6 @@ function ids(values: Array<{ id?: string }> | undefined): Set<string> {
   return new Set((values ?? []).map((item) => item.id).filter((id): id is string => Boolean(id)));
 }
 
-type Carrier = NonNullable<NonNullable<ReconstructionLike["coverageMatrix"]>["channels"]>[number];
-
 export function carrierInspectionStatus(carrier: Carrier): "absent" | "unchecked" | "checked_readable" | "checked_unreadable" {
   return carrier.inspectionStatus ?? (!carrier.available ? "absent" : carrier.inspected ? "checked_readable" : "unchecked");
 }
@@ -69,7 +75,7 @@ export function carrierInspectionStatus(carrier: Carrier): "absent" | "unchecked
 function validateCarrierInspectionContract(carrier: Carrier): void {
   if (!carrier.inspectionStatus) return;
   const expected = carrier.inspectionStatus === "absent"
-    ? { available: false, inspected: false }
+    ? { available: false, inspected: carrier.inspected }
     : carrier.inspectionStatus === "unchecked"
       ? { available: true, inspected: false }
       : { available: true, inspected: true };
@@ -111,11 +117,26 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }
 
   const pack = readJson<EvidencePackLike>(evidencePath);
+  const probe = readJson<ProbeLike>(path.join(outputDir, "probe.json"));
   const targeted = readJson<{ frames?: Array<{ id?: string; time?: number }> }>(targetedPath);
   const ocr = exists(ocrPath) ? readJson<{
     frames?: Array<{ frameId?: string; time?: number; lines?: Array<{ id?: string }> }>
   }>(ocrPath) : null;
   const reconstruction = readJson<ReconstructionLike>(reconstructionPath);
+  const sweepIds = ids(probe.carrierSweep);
+  for (const carrier of probe.informationCarriers ?? []) {
+    if (!carrier.discoveredIn?.length || carrier.discoveredIn.some((id) => !sweepIds.has(id))) {
+      fail("PROBE_CARRIER_SWEEP_TRACE", carrier.id);
+    }
+  }
+  if (pack.media?.hasAudio === true) {
+    const audioCarrier = (probe.informationCarriers ?? []).find((carrier) => /non[._ -]?speech|music|sound[._ -]?effect/i.test(
+      [carrier.id, carrier.name, ...(carrier.modalityKeys ?? [])].join(" ")
+    ));
+    if (!audioCarrier || !["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(audioCarrier))) {
+      fail("PROBE_AUDIO_CLOSURE", audioCarrier?.id);
+    }
+  }
   const sourceCues = pack.transcript?.cues ?? [];
   const outputCues = reconstruction.transcript?.cues ?? [];
   if (sourceCues.length !== outputCues.length) fail("CUE_COUNT", `${outputCues.length}/${sourceCues.length}`);

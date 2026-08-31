@@ -31,6 +31,7 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 - OCR 全帧失败时不存在可引用的 OCR 行 ID。此时引用对应 `targeted_frame` 并把文字内容留作 unknown；绝不发明 `OCR-*` 占位 ID。
 - 不得用 `afplay`、GUI 播放器或系统扬声器假装模型已经听见音频。只使用模型可读取的音频证据、字幕中的非语音标签和 evidence pack；若只有技术上的 audio-present 而没有可语义读取的音频证据，明确把音乐/音效语义留作 unknown。
 - 每个载体同时保留兼容字段 `available/inspected`，并写入 `inspectionStatus`：`absent`、`unchecked`、`checked_readable` 或 `checked_unreadable`，以及非空 `inspectionRationale`。只有技术 audio-present、但没有模型可读语义证据时，使用 `available:true`、`inspected:true`、`inspectionStatus:"checked_unreadable"`，并把音乐/音效语义列入 unknown；这表示检查闭环，不表示获得了音频语义证据。
+- `informationCarriers[].discoveredIn` 只能引用当前 `carrierSweep[].id`；媒体文件或 evidence pack 来源写入 `inspectionRationale/evidenceHints`，不能冒充 sweep ID。`absent` 必须是 `available:false`，但 `inspected` 可以为 true，表示宿主证据已被检查并确认载体不存在。
 - 一张中点截图不能证明整个区间；连续操作、隐藏点击、网络调用和剪辑顺序不得脑补。
 - Targeted capture 默认每 action 60 张、全协议 180 张唯一帧。同一时刻与字节完全相同的帧跨 action 复用。预算不是覆盖率上限：若关键语义变化、小字可读性或 before/during/after 关系确需更多帧，先在 protocol 写出理由，再显式提高；否则细化范围而不是全段 0.25–0.75 秒扫图。
 - 负面结论必须写清被完整检查的时间范围与载体。

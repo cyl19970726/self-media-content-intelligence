@@ -49,7 +49,7 @@ const carrierIsClosed = (carrier) => ["checked_readable", "checked_unreadable"].
 const carrierContractProblems = (carriers, scope) => carriers.flatMap((carrier) => {
   if (!carrier.inspectionStatus) return [];
   const expected = carrier.inspectionStatus === "absent"
-    ? { available: false, inspected: false }
+    ? { available: false, inspected: carrier.inspected }
     : carrier.inspectionStatus === "unchecked"
       ? { available: true, inspected: false }
       : { available: true, inspected: true };
@@ -93,7 +93,11 @@ for (const cue of packCues) {
 gate("verbatim_transcript_and_overlap", transcriptProblems.length === 0, transcriptProblems.length ? "Transcript contract failed" : "Every cue, representative frame, and overlapping shot is preserved", transcriptProblems.slice(0, 20));
 
 const availableCarriers = (probe.informationCarriers || []).filter((item) => item.available);
-const uncheckedProbeCarriers = availableCarriers.filter((item) => !carrierIsClosed(item)).map((item) => item.id);
+const channelRows = reconstruction.coverageMatrix?.channels || [];
+const finalClosedChannelIds = new Set(channelRows.filter(carrierIsClosed).map((item) => item.id));
+const routedCarrierIds = new Set((protocol.captureActions || []).map((item) => item.carrier));
+const uncheckedProbeCarriers = availableCarriers.filter((item) => !carrierIsClosed(item)
+  && !(routedCarrierIds.has(item.id) && finalClosedChannelIds.has(item.id))).map((item) => item.id);
 gate("probe_inspects_available_carriers", uncheckedProbeCarriers.length === 0, uncheckedProbeCarriers.length ? "Probe left available carriers unchecked" : "All available carriers inspected", uncheckedProbeCarriers);
 
 const sweep = [...(probe.carrierSweep || [])].sort((a, b) => (a.range?.start || 0) - (b.range?.start || 0));
@@ -112,7 +116,9 @@ for (const carrier of probe.informationCarriers || []) {
   if (!carrier.modalityKeys?.length || !carrier.discoveredIn?.length || carrier.discoveredIn.some((id) => !sweepIds.has(id))) sweepProblems.push(`${carrier.id}:missing_sweep_trace`);
 }
 if (evidence.media?.hasAudio === true) {
-  const audioCarrier = (probe.informationCarriers || []).find((item) => item.modalityKeys?.some((key) => /(^|[._-])non[._-]?speech($|[._-])|non[._-]?speech[._-]?audio|audio[._-]?non[._-]?speech/i.test(key)));
+  const audioCarrier = (probe.informationCarriers || []).find((item) => /non[._ -]?speech|music|sound[._ -]?effect/i.test(
+    [item.id, item.name, ...(item.modalityKeys || [])].join(" ")
+  ));
   if (!audioCarrier || !carrierIsClosed(audioCarrier)) sweepProblems.push("non_speech_audio:not_explicitly_inspected");
 }
 gate("full_timeline_carrier_sweep", sweepProblems.length === 0, sweepProblems.length ? "Carrier discovery did not close the full timeline or audio channel" : "Carrier sweep covers the source and traces every discovered carrier", sweepProblems);
@@ -213,7 +219,6 @@ for (const unit of proceduralUnits) {
 }
 gate("internal_process_dependencies", procedureProblems.length === 0, proceduralUnits.length ? (procedureProblems.length ? "Procedural dependencies incomplete" : `Validated ${proceduralUnits.length} procedural units`) : "Not applicable: no procedural units declared", procedureProblems);
 
-const channelRows = reconstruction.coverageMatrix?.channels || [];
 const carrierInspectionProblems = [
   ...carrierContractProblems(probe.informationCarriers || [], "probe"),
   ...carrierContractProblems(channelRows, "reconstruction")

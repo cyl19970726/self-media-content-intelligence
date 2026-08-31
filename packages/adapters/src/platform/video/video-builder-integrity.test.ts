@@ -19,6 +19,7 @@ function createFixture() {
   fs.mkdirSync(path.join(root, "targeted-evidence"), { recursive: true });
   fs.copyFileSync(path.join(fixtureRoot, "evidence-pack.json"), path.join(root, "evidence/evidence-pack.json"));
   fs.copyFileSync(path.join(fixtureRoot, "targeted-evidence.json"), path.join(root, "targeted-evidence/targeted-evidence.json"));
+  fs.copyFileSync(path.join(fixtureRoot, "probe.json"), path.join(root, "probe.json"));
   fs.copyFileSync(path.join(fixtureRoot, "reconstruction.json"), path.join(root, "reconstruction.json"));
   const evidencePath = path.join(root, "evidence/evidence-pack.json");
   fs.writeFileSync(path.join(root, "media-preparation.json"), JSON.stringify({
@@ -109,6 +110,20 @@ describe("Builder deterministic integrity gate", () => {
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath))
         .toThrow("BUILDER_INTEGRITY_CARRIER_STATUS:CAR-AUDIO");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects a probe carrier that is not traced to the gap-free carrier sweep", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "probe.json");
+      const probe = JSON.parse(fs.readFileSync(file, "utf8"));
+      probe.informationCarriers[0].discoveredIn = ["media-preparation.json"];
+      fs.writeFileSync(file, JSON.stringify(probe));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_PROBE_CARRIER_SWEEP_TRACE:CAR-SPEECH");
     } finally {
       fs.rmSync(item.root, { recursive: true, force: true });
     }
