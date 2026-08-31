@@ -238,6 +238,11 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
   claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any"): ResearchJob | null {
     this.db.exec("BEGIN IMMEDIATE");
     try {
+      this.db.prepare(`
+        UPDATE research_jobs SET status = 'backoff', available_at = ?, lease_owner = NULL,
+          lease_expires_at = NULL, heartbeat_at = NULL, last_error = 'lease_expired', updated_at = ?
+        WHERE status IN ('leased','running') AND lease_expires_at IS NOT NULL AND lease_expires_at <= ?
+      `).run(now, now, now);
       if (lane !== "any") {
         const limits = creatorWorkerConcurrency();
         const active = this.db.prepare(`
@@ -271,6 +276,7 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
           )
         ORDER BY
           CASE WHEN candidate.status IN ('leased','running') THEN 0 ELSE 1 END ASC,
+          CASE WHEN candidate.status = 'backoff' AND candidate.last_error = 'lease_expired' THEN 0 ELSE 1 END ASC,
           candidate.available_at ASC,
           candidate.created_at ASC
         LIMIT 1

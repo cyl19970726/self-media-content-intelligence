@@ -2,6 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { DatabaseSync } from "node:sqlite";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   CreatorResearchService,
@@ -15,6 +16,7 @@ import {
 import { SQLiteCreatorResearchRepository } from "./sqlite-creator-research-repository.js";
 
 let directory: string;
+let databaseFile: string;
 let repository: SQLiteCreatorResearchRepository;
 let service: CreatorResearchService;
 
@@ -43,7 +45,8 @@ function completeAcquisition(runId: string, lane: "redfox" | "ego-browser"): voi
 
 beforeEach(() => {
   directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-lanes-"));
-  repository = new SQLiteCreatorResearchRepository(path.join(directory, "test.sqlite"));
+  databaseFile = path.join(directory, "test.sqlite");
+  repository = new SQLiteCreatorResearchRepository(databaseFile);
   service = new CreatorResearchService(
     repository as CreatorResearchRepository,
     {} as CreatorArtifactStore,
@@ -163,6 +166,32 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     const recovered = repository.claimNext("new-video-worker", timestamp(2_000), timestamp(92_000), "video");
     expect(recovered?.id).toBe(stale.id);
     expect(recovered?.attempts).toBe(2);
+  });
+
+  it("normalizes every expired lease before filling the available worker slots", () => {
+    const runs = [createRun("redfox", "expired-many-1"), createRun("redfox", "expired-many-2")];
+    for (const run of runs) completeAcquisition(run.id, "redfox");
+    const jobs = runs.map((run) => enqueue(run.id, "video.reconstruct"));
+    const leasedAt = timestamp();
+    for (let index = 0; index < jobs.length; index += 1) {
+      const claimed = repository.claimNext(`old-video-${index}`, leasedAt, timestamp(1_000), "video");
+      expect(claimed?.id).toBe(jobs[index]?.id);
+      repository.updateJobStatus({ jobId: claimed!.id, status: "running", updatedAt: leasedAt });
+    }
+
+    const recovered = repository.claimNext("new-video", timestamp(2_000), timestamp(92_000), "video");
+    expect(jobs.map((job) => job.id)).toContain(recovered?.id);
+    const waitingId = jobs.find((job) => job.id !== recovered?.id)!.id;
+    const inspection = new DatabaseSync(databaseFile, { readOnly: true });
+    const waiting = inspection.prepare(`
+      SELECT status, lease_owner, lease_expires_at, heartbeat_at, last_error
+      FROM research_jobs WHERE id = ?
+    `).get(waitingId) as Record<string, unknown>;
+    inspection.close();
+    expect(waiting).toMatchObject({
+      status: "backoff", lease_owner: null, lease_expires_at: null,
+      heartbeat_at: null, last_error: "lease_expired"
+    });
   });
 
   it("advances a twenty-creator RedFox queue four at a time without head-of-line blocking", () => {
