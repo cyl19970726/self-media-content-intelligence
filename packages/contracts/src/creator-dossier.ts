@@ -46,7 +46,7 @@ export const creatorDossierItemSchema = z.object({
   contentArchitecture: z.array(z.string()),
   mechanismHypothesis: z.string().nullable(),
   selectionReason: z.string(),
-  evidenceStatus: z.enum(["deep_validated", "deep_pending", "surface_only", "missing"])
+  evidenceStatus: z.enum(["deep_validated", "deep_built", "deep_pending", "surface_only", "missing"])
 });
 
 export const creatorDossierSchema = z.object({

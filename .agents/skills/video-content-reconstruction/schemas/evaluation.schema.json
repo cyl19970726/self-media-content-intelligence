@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-content-reconstruction/evaluation.schema.json",
+  "title": "Independent reconstruction evaluation",
+  "type": "object",
+  "required": ["schemaVersion", "independent", "gates", "judges", "metaAudit", "examples"],
+  "properties": {
+    "schemaVersion": {"const": "reconstruction-evaluation-1.0"},
+    "independent": {"const": true},
+    "gates": {
+      "type": "object",
+      "required": ["criticalQuestionRecall", "evidenceCoverage", "unsupportedInference", "timestampAccuracy", "processDependencyCompleteness", "unknownDiscipline", "uncheckedChannels"],
+      "properties": {
+        "criticalQuestionRecall": {"$ref": "#/$defs/count"},
+        "evidenceCoverage": {"$ref": "#/$defs/count"},
+        "unsupportedInference": {"$ref": "#/$defs/errorCount"},
+        "timestampAccuracy": {"$ref": "#/$defs/count"},
+        "processDependencyCompleteness": {"$ref": "#/$defs/applicableCount"},
+        "unknownDiscipline": {"$ref": "#/$defs/count"},
+        "uncheckedChannels": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "judges": {"type": "object", "required": ["readability", "knowledgePrioritization", "evidenceUsefulness", "executionValue", "compressionWithoutLoss"], "additionalProperties": {"type": "number", "minimum": 1, "maximum": 5}},
+    "metaAudit": {"type": "object", "required": ["pass", "unguardedCarriers", "unguardedMeaningChanges", "unguardedRelationships", "rationale"]},
+    "examples": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "count": {"type": "object", "required": ["numerator", "denominator", "examples"], "properties": {"numerator": {"type": "integer", "minimum": 0}, "denominator": {"type": "integer", "minimum": 1}, "examples": {"type": "array"}}},
+    "errorCount": {"type": "object", "required": ["errors", "total", "examples"], "properties": {"errors": {"type": "integer", "minimum": 0}, "total": {"type": "integer", "minimum": 1}, "examples": {"type": "array"}}},
+    "applicableCount": {"type": "object", "required": ["applicable", "numerator", "denominator", "rationale"], "properties": {"applicable": {"type": "boolean"}, "numerator": {"type": "integer", "minimum": 0}, "denominator": {"type": "integer", "minimum": 0}, "rationale": {"type": "string"}}}
+  }
+}

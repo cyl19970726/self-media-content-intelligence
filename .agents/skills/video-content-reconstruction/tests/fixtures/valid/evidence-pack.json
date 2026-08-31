@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "video-evidence-pack-1.0",
+  "source": {"video": "/tmp/example.mp4", "videoName": "example.mp4", "subtitles": "/tmp/example.srt", "subtitleOrigin": "fixture"},
+  "media": {"duration": 10, "width": 1080, "height": 1920, "hasAudio": false, "audioCodec": null},
+  "shots": [
+    {"id": "SHOT-001", "start": 0, "end": 5, "representativeTime": 2.5, "representativeFrame": "frames/shots/shot-001.jpg"},
+    {"id": "SHOT-002", "start": 5, "end": 10, "representativeTime": 7.5, "representativeFrame": "frames/shots/shot-002.jpg"}
+  ],
+  "transcript": {
+    "origin": "fixture",
+    "cueCount": 2,
+    "fullText": "先打开设置 然后得到结果",
+    "cues": [
+      {"id": "CUE-001", "start": 0, "end": 5, "text": "先打开设置", "representativeTime": 2.5, "representativeFrame": "frames/cues/cue-001.jpg", "overlappingShots": ["SHOT-001"]},
+      {"id": "CUE-002", "start": 5, "end": 10, "text": "然后得到结果", "representativeTime": 7.5, "representativeFrame": "frames/cues/cue-002.jpg", "overlappingShots": ["SHOT-002"]}
+    ]
+  },
+  "frameIndex": [
+    {"id": "FRAME-CUE-001", "time": 2.5, "frame": "frames/cues/cue-001.jpg", "purpose": "cue_representative"},
+    {"id": "FRAME-CUE-002", "time": 7.5, "frame": "frames/cues/cue-002.jpg", "purpose": "cue_representative"}
+  ]
+}

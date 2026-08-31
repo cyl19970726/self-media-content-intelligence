@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Content Reconstruction"
+  short_description: "Probe video meaning, then rebuild it with traceable evidence."
+  default_prompt: "Use $video-content-reconstruction to reconstruct this video with an adaptive evidence-backed capture protocol."

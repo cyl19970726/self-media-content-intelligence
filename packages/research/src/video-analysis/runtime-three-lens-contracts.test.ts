@@ -29,11 +29,11 @@ function rules(ids: readonly string[], status: "pass" | "fail" | "not_checked" =
   }));
 }
 
-function evaluator(lens: string, suffix: string) {
+function evaluator(lens: string) {
   return {
     evaluatorId: `runtime-${lens}`,
     evaluatorVersion: "three-lens-v1",
-    evaluatorRunId: `00000000-0000-4000-8000-00000000000${suffix}`,
+    evaluatorRunId: "00000000-0000-4000-8000-000000000001",
     lens,
     evaluatedAt: "2026-08-21T06:00:00.000Z",
     independentOfCandidate: true,
@@ -43,7 +43,7 @@ function evaluator(lens: string, suffix: string) {
 
 function candidate(overrides: { dlStatus?: "pass" | "fail" | "not_checked" } = {}) {
   return {
-    schemaVersion: "runtime-three-lens-evaluation@1",
+    schemaVersion: "runtime-three-lens-evaluation@2",
     postExternalId: "post-1",
     candidateRevision: {
       algorithm: "sha256",
@@ -51,15 +51,15 @@ function candidate(overrides: { dlStatus?: "pass" | "fail" | "not_checked" } = {
       reconstructionArtifactRef: "/artifacts/run/reconstruction.json"
     },
     lenses: {
-      contentRestoration: { evaluator: evaluator("content_restoration", "1"), rules: rules(contentRestorationRuleIds) },
-      directingLogic: { evaluator: evaluator("directing_logic", "2"), rules: rules(directingLogicRuleIds, overrides.dlStatus) },
-      visualEditing: { evaluator: evaluator("visual_editing", "3"), rules: rules(visualEditingRuleIds) }
+      contentRestoration: { evaluator: evaluator("content_restoration"), rules: rules(contentRestorationRuleIds) },
+      directingLogic: { evaluator: evaluator("directing_logic"), rules: rules(directingLogicRuleIds, overrides.dlStatus) },
+      visualEditing: { evaluator: evaluator("visual_editing"), rules: rules(visualEditingRuleIds) }
     }
   };
 }
 
 describe("runtime three-lens contract", () => {
-  it("is ready only when all 19 independently evaluated rules pass", () => {
+  it("is ready only when one independent evaluator process checks all 19 rules", () => {
     const evaluation = runtimeThreeLensEvaluationSchema.parse(candidate());
     const report = deriveRuntimeThreeLensGateReport(evaluation, "/artifacts/run/runtime-three-lens-evaluation.json");
     expect(report).toMatchObject({ status: "ready", ready: true, gateCount: 19 });
@@ -84,7 +84,7 @@ describe("runtime three-lens contract", () => {
     expect(report.failedGateIds).toEqual(directingLogicRuleIds);
   });
 
-  it("rejects missing gates, evidence-free passes, revision drift, and shared evaluator runs", () => {
+  it("rejects missing gates, evidence-free passes, revision drift, and split evaluator processes", () => {
     const missing = candidate();
     missing.lenses.contentRestoration.rules.pop();
     expect(runtimeThreeLensEvaluationSchema.safeParse(missing).success).toBe(false);
@@ -97,9 +97,9 @@ describe("runtime three-lens contract", () => {
     drifted.lenses.directingLogic.evaluator.candidateRevisionFingerprint = "b".repeat(64);
     expect(runtimeThreeLensEvaluationSchema.safeParse(drifted).success).toBe(false);
 
-    const sharedRun = candidate();
-    sharedRun.lenses.visualEditing.evaluator.evaluatorRunId = sharedRun.lenses.directingLogic.evaluator.evaluatorRunId;
-    expect(runtimeThreeLensEvaluationSchema.safeParse(sharedRun).success).toBe(false);
+    const splitRun = candidate();
+    splitRun.lenses.visualEditing.evaluator.evaluatorRunId = "00000000-0000-4000-8000-000000000002";
+    expect(runtimeThreeLensEvaluationSchema.safeParse(splitRun).success).toBe(false);
   });
 
   it("rejects a report that claims ready without the complete partition", () => {

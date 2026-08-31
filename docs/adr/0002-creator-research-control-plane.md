@@ -3,7 +3,10 @@
 > Topology note (2026-08-28): the path layout in this historical decision was
 > superseded by [ADR-0005](0005-workspace-modular-monolith.md) and the current
 > [Package Boundaries](../architecture/package-boundaries.md). Its control-plane
-> invariants remain accepted.
+> invariants remain accepted. Its single-serial-lane scheduling model is
+> superseded by [ADR-0008](0008-capability-partitioned-creator-research-batches.md),
+> which adds durable 1–20 batches and capability-partitioned worker pools without
+> replacing the creator-run source of truth.
 
 Status: Accepted for incremental implementation
 Date: 2026-08-20

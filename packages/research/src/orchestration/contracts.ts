@@ -80,10 +80,23 @@ export type CreatorNavigationDiagnostic = {
   postExternalId: string | null;
   inputUrl: string | null;
   canonicalUrl: string | null;
-  failureClass: "platform_challenge" | "login_expired" | "navigation_redirect" | "user_control";
+  failureClass: "platform_challenge" | "login_expired" | "navigation_redirect" | "provider_network" | "user_control";
   challengeType: string | null;
   phase: string;
   fallbackAttempted: boolean;
+};
+
+export type CreatorDetailOutputPost = {
+  externalId: string;
+  finalUrl: string;
+  title: string | null;
+  description: string | null;
+  publishedLabel: string | null;
+  mediaType: "video" | "image" | "unknown";
+  videoCandidateUrl: string | null;
+  coverCandidateUrl: string | null;
+  inspectedAt: string;
+  warnings: string[];
 };
 
 export type CreatorAcquisitionResult =
@@ -124,6 +137,8 @@ export type CreatorAcquisitionResult =
       message: string;
       retryable: boolean;
       navigationDiagnostic?: CreatorNavigationDiagnostic;
+      partialPosts?: CreatorDetailOutputPost[];
+      partialWarnings?: string[];
     };
 
 export interface CreatorAcquisitionExecutor {
@@ -143,18 +158,7 @@ export type CreatorDetailResult =
       state: "ready";
       provider?: CreatorAcquisitionAdapter;
       taskSpaceId: number | null;
-      posts: Array<{
-        externalId: string;
-        finalUrl: string;
-        title: string | null;
-        description: string | null;
-        publishedLabel: string | null;
-        mediaType: "video" | "image" | "unknown";
-        videoCandidateUrl: string | null;
-        coverCandidateUrl: string | null;
-        inspectedAt: string;
-        warnings: string[];
-      }>;
+      posts: CreatorDetailOutputPost[];
       warnings: string[];
     }
   | Extract<CreatorAcquisitionResult, { state: "needs_user" | "blocked" }>;

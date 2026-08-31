@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-content-reconstruction/probe.schema.json",
+  "title": "Adaptive video probe",
+  "type": "object",
+  "required": ["schemaVersion", "evidencePack", "viewerChange", "carrierSweep", "informationCarriers", "meaningChanges", "relationshipHypotheses", "omissionRisks", "criticalQuestions", "unresolved"],
+  "properties": {
+    "schemaVersion": {"const": "video-probe-1.0"},
+    "evidencePack": {"type": "string", "minLength": 1},
+    "viewerChange": {
+      "type": "object",
+      "required": ["before", "after", "intendedChanges"],
+      "properties": {
+        "before": {"type": "string", "minLength": 1},
+        "after": {"type": "string", "minLength": 1},
+        "intendedChanges": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "carrierSweep": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "range", "cognitiveQuestion", "observedSignals", "checkedAlternatives", "remainingUnknowns", "evidenceHints"],
+        "properties": {
+          "id": {"type": "string"},
+          "range": {"$ref": "#/$defs/range"},
+          "cognitiveQuestion": {"type": "string", "minLength": 1},
+          "observedSignals": {"type": "array", "items": {"type": "string"}},
+          "checkedAlternatives": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "remainingUnknowns": {"type": "array", "items": {"type": "string"}},
+          "evidenceHints": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        }
+      }
+    },
+    "informationCarriers": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["id", "name", "modalityKeys", "discoveredIn", "available", "inspected", "roles", "intervals", "omissionImpact"],
+        "properties": {
+          "id": {"type": "string"}, "name": {"type": "string"},
+          "modalityKeys": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "discoveredIn": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "available": {"type": "boolean"}, "inspected": {"type": "boolean"},
+          "roles": {"type": "array", "items": {"type": "string"}},
+          "intervals": {"type": "array", "items": {"$ref": "#/$defs/range"}},
+          "omissionImpact": {"type": "string"}
+        }
+      }
+    },
+    "meaningChanges": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/finding"}},
+    "relationshipHypotheses": {"type": "array", "items": {"$ref": "#/$defs/relation"}},
+    "omissionRisks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/risk"}},
+    "criticalQuestions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/question"}},
+    "unresolved": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "range": {"type": "object", "required": ["start", "end"], "properties": {"start": {"type": "number", "minimum": 0}, "end": {"type": "number", "minimum": 0}}},
+    "finding": {"type": "object", "required": ["id", "range", "description", "trigger", "evidenceHints"], "properties": {"id": {"type": "string"}, "range": {"$ref": "#/$defs/range"}, "description": {"type": "string"}, "trigger": {"type": "string"}, "evidenceHints": {"type": "array", "minItems": 1, "items": {"type": "string"}}}},
+    "relation": {"type": "object", "required": ["id", "from", "to", "relation", "evidenceHints"], "properties": {"id": {"type": "string"}, "from": {"type": "string"}, "to": {"type": "string"}, "relation": {"type": "string"}, "evidenceHints": {"type": "array", "items": {"type": "string"}}}},
+    "risk": {"type": "object", "required": ["id", "risk", "why", "where", "requiredFollowup"], "properties": {"id": {"type": "string"}, "risk": {"type": "string"}, "why": {"type": "string"}, "where": {"type": "array", "items": {"$ref": "#/$defs/range"}}, "requiredFollowup": {"type": "string"}}},
+    "question": {"type": "object", "required": ["id", "question", "criticality", "evidenceHints"], "properties": {"id": {"type": "string"}, "question": {"type": "string"}, "criticality": {"enum": ["critical", "supporting"]}, "evidenceHints": {"type": "array", "items": {"type": "string"}}}}
+  }
+}

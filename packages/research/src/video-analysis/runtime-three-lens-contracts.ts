@@ -90,7 +90,7 @@ const revisionSchema = z.object({
 });
 
 export const runtimeThreeLensEvaluationSchema = z.object({
-  schemaVersion: z.literal("runtime-three-lens-evaluation@1"),
+  schemaVersion: z.literal("runtime-three-lens-evaluation@2"),
   postExternalId: z.string().min(1),
   candidateRevision: revisionSchema,
   lenses: z.object({
@@ -123,8 +123,8 @@ export const runtimeThreeLensEvaluationSchema = z.object({
     }
     runIds.add(evaluator.evaluatorRunId);
   }
-  if (runIds.size !== 3) {
-    context.addIssue({ code: "custom", message: "each lens must be evaluated by an independent evaluator run" });
+  if (runIds.size !== 1) {
+    context.addIssue({ code: "custom", message: "all three lenses must belong to the same independent evaluator process" });
   }
 });
 export type RuntimeThreeLensEvaluation = z.infer<typeof runtimeThreeLensEvaluationSchema>;

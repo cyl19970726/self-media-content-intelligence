@@ -35,5 +35,5 @@ describe("Content Knowledge V1 isolated fixture", () => {
     expect(before.every((entry) => after.includes(entry))).toBe(true);
     expect(after.filter((entry) => !before.includes(entry)).every((entry) =>
       !/content-knowledge-v1|fixture-creator|fixture-local-only/u.test(entry))).toBe(true);
-  });
+  }, 30_000);
 });

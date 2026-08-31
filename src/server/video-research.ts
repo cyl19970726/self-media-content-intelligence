@@ -119,7 +119,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     thesis: text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")), article,
     engagement: { likes: selection?.likes ?? null, collections: null, comments: null, shares: null },
-    evidenceHealth: { state: batchItem.state === "ready" ? "ready" : "partial", transcript: cues.length > 0, frames: denseFrames.length > 0,
+    evidenceHealth: { state: ["verified", "ready"].includes(batchItem.state) ? "ready" : "partial", transcript: cues.length > 0, frames: denseFrames.length > 0,
       ocr: fs.existsSync(path.join(rootPath, "targeted-evidence", "ocr-evidence.json")), audio: strings(coverage.uncheckedChannels).length === 0,
       baseline: selection?.likes != null, note: text(reconstruction.scopeStatement, batchItem.message) },
     knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: denseFrames },

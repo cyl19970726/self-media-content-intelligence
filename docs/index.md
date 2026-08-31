@@ -15,6 +15,8 @@ owned by schemas and code.
   incremental migration path.
 - [Frontend architecture](architecture/frontend.md) — current Web stack,
   dependency direction, target folders, and the enforced source-file limit.
+- [博主研究与视频重建架构](architecture/creator-research-pipeline.md) — 中文说明从博主名单、
+  Worker、Skill 和证据硬闸，到前端工作台与 LLM Wiki 的完整链路，并明确区分现状与目标调度。
 - [Evidence storage policy](architecture/evidence-storage.md) — what belongs in
   source control, runtime storage, fixtures, examples, and external evidence.
 - [Evidence Manifest and restore contract](evidence/evidence-contract.md) — the
@@ -44,6 +46,7 @@ They do not own unstable task status.
 - [ADR-0005: Incremental workspace modular monolith](adr/0005-workspace-modular-monolith.md)
 - [ADR-0006: Separate source code from large evidence](adr/0006-evidence-storage-boundary.md)
 - [ADR-0007: Feature-modular Web frontend](adr/0007-feature-modular-web-frontend.md)
+- [ADR-0008: Capability-partitioned creator research batches](adr/0008-capability-partitioned-creator-research-batches.md)
 
 `docs/adr` remains the canonical durable-decision directory. There is no parallel
 `docs/decisions` tree.
@@ -54,6 +57,9 @@ They do not own unstable task status.
   classification of implementation maturity, lifecycle, and verification level.
 - [Active initiatives](initiatives/active/) contain unresolved acceptance items
   and continuing research.
+- [Creator Batch Pipeline V2](initiatives/active/creator-batch-pipeline-v2/README.md)
+  owns the 1–20 manual cohort, five worker pools, batch workbench, and staged
+  paid-live 2-before-20 release gate.
 - [Completed initiatives](initiatives/completed/) are frozen implementation
   records, not competing product or architecture truth.
 

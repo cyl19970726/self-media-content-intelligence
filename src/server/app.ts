@@ -4,7 +4,7 @@ import path from "node:path";
 import { z } from "zod";
 import { AnalysisService } from "../core/service.js";
 import { CreatorResearchService } from "../core/creator-research-service.js";
-import { ComparisonProjectService } from "../../packages/research/index.js";
+import { ComparisonProjectService, type CreatorResearchBatchService } from "../../packages/research/index.js";
 import { PublishingService } from "../../packages/creation/index.js";
 import { evidenceResearchRoot, projectRoot, runtimeDir } from "../../packages/adapters/index.js";
 import { createCreatorResearchRunInputSchema, createRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
@@ -23,12 +23,14 @@ import { registerKnowledgeRoutes } from "./routes/knowledge.js";
 import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
 import { registerEvidenceRoutes } from "./routes/evidence.js";
 import { registerWorkspaceRoutes } from "./routes/workspace.js";
+import { registerCreatorResearchBatchRoutes } from "./routes/creator-research-batches.js";
 import type { EvidenceAccessPort } from "../../packages/contracts/index.js";
 import { buildCreatorRunOperation } from "./creator-operations.js";
 
 export interface AppDependencies {
   analysis: AnalysisService;
   creatorResearch: CreatorResearchService;
+  creatorResearchBatches?: CreatorResearchBatchService;
   comparisons: ComparisonProjectService;
   researchLearning: ResearchLearningService;
   learningLoop: LearningLoopControlPlane;
@@ -41,6 +43,7 @@ export interface AppDependencies {
 export function createApp({
   analysis: service,
   creatorResearch: creatorResearchService,
+  creatorResearchBatches: creatorResearchBatchService,
   comparisons: comparisonProjectService,
   researchLearning: researchLearningService,
   learningLoop: learningLoopControlPlane,
@@ -71,6 +74,7 @@ export function createApp({
 
   registerPublishingRoutes(app, publishingService);
   registerEvidenceRoutes(app, evidenceAccess);
+  if (creatorResearchBatchService) registerCreatorResearchBatchRoutes(app, creatorResearchBatchService);
   registerWorkspaceRoutes(app, {
     analysis: service, creators: creatorResearchService, comparisons: comparisonProjectService,
     learningLoop: learningLoopControlPlane, knowledgeConcepts: () => contentKnowledgeService.listKnowledge(),

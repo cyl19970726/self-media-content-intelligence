@@ -11,15 +11,39 @@ export const videoReconstructionRequestSchema = z.object({
   sourceUrl: z.string().url(),
   sourceMediaArtifactRef: z.string(),
   evidencePackArtifactRef: z.string().nullable(),
+  evaluationPolicy: z.enum(["skip", "single_pass"]).default("skip"),
   contractVersion: z.literal("video-content-reconstruction@1")
 });
 export type VideoReconstructionRequest = z.infer<typeof videoReconstructionRequestSchema>;
 
 export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
   z.object({
+    state: z.literal("built_unevaluated"),
+    reconstructionArtifactRef: z.string(),
+    articleArtifactRef: z.string().nullable(),
+    builderValidationArtifactRef: z.string(),
+    evaluationMode: z.literal("skipped")
+  }),
+  z.object({
+    state: z.literal("verified"),
+    reconstructionArtifactRef: z.string(),
+    articleArtifactRef: z.string().nullable(),
+    builderValidationArtifactRef: z.string(),
+    evaluationArtifactRef: z.string(),
+    gateReportArtifactRef: z.string(),
+    threeLensEvaluationArtifactRef: z.string(),
+    threeLensGateReportArtifactRef: z.string(),
+    threeLensGateCount: z.literal(19),
+    gateCount: z.number().int().positive(),
+    failedGateIds: z.array(z.string()).length(0),
+    qualityWarningGateIds: z.array(z.string()),
+    evaluationMode: z.literal("single_pass")
+  }),
+  z.object({
     state: z.literal("ready"),
     reconstructionArtifactRef: z.string(),
     articleArtifactRef: z.string(),
+    builderValidationArtifactRef: z.string().optional(),
     evaluationArtifactRef: z.string(),
     gateReportArtifactRef: z.string(),
     threeLensEvaluationArtifactRef: z.string(),

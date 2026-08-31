@@ -140,7 +140,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       id: item.externalId,
       title: detail?.title ?? item.title ?? "标题未识别",
       sourceHref: detail?.finalUrl ?? item.url,
-      evidenceHref: reconstructed?.state === "ready" ? `/creators/${canonicalId}/videos/${item.externalId}?run=${sourceRun.id}` : null,
+      evidenceHref: reconstructed && ["built_unevaluated", "verified", "ready"].includes(reconstructed.state)
+        ? `/creators/${canonicalId}/videos/${item.externalId}?run=${sourceRun.id}` : null,
       coverHref: mediaItem?.coverArtifactRef ?? null,
       tier: item.tier,
       tierRank: item.tierRank,
@@ -159,7 +160,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       contentArchitecture: [],
       mechanismHypothesis: analyzed?.performanceInterpretation ?? null,
       selectionReason: item.selectionReason,
-      evidenceStatus: reconstructed?.state === "ready" ? "deep_validated" as const
+      evidenceStatus: reconstructed && ["verified", "ready"].includes(reconstructed.state) ? "deep_validated" as const
+        : reconstructed?.state === "built_unevaluated" ? "deep_built" as const
         : item.deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const
     };
   });

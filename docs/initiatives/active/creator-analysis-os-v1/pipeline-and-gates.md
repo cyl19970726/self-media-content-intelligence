@@ -48,13 +48,16 @@ flowchart LR
     V3 --> V4[Derive capture protocol]
     V4 --> V5[Targeted capture + OCR/audio review]
     V5 --> V6[Structured reconstruction]
-    V6 --> V7[Schema + deterministic validation]
-    V7 --> V8[Independent evaluation]
-    V8 --> V9[Gate report]
-    V9 -->|pass| V10[Publish video analysis revision]
-    V9 -->|fail| VF[Return to failed closure]
+    V6 --> V7[Fresh independent evaluation]
+    V7 --> V8[Schema + deterministic evidence gate]
+    V8 -->|pass| V10[Publish video analysis revision]
+    V8 -->|fail| VF[Return to failed closure]
     V10 --> V11[Build single-video projection]
 ```
+
+The evaluator runs in a fresh process and re-opens the original video and allowed evidence. The
+deterministic validator then binds candidate and evaluation artifact hashes, validates the schema, and
+publishes the final gate report. The candidate process cannot approve itself.
 
 ### Video readiness
 

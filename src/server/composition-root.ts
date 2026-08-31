@@ -1,9 +1,10 @@
 import { AnalysisService } from "../core/service.js";
 import { RunStore } from "../core/store.js";
-import { CreatorResearchService, CreatorResearchWorker } from "../../packages/research/index.js";
+import { CreatorResearchBatchService, CreatorResearchService, CreatorResearchWorker } from "../../packages/research/index.js";
 import { ComparisonProjectService, ComparisonProjectWorker } from "../../packages/research/index.js";
 import { PublishingService, PublicationWorker, type PlatformPublishers } from "../../packages/creation/index.js";
 import {
+  creatorWorkerConcurrency,
   videoConcurrency,
   EgoBrowserCreatorExecutor,
   RedFoxCreatorExecutor,
@@ -11,6 +12,7 @@ import {
   createEgoBrowserPublishers,
   SQLitePublishingRepository,
   SQLiteCreatorResearchRepository,
+  SQLiteCreatorResearchBatchRepository,
   SQLiteComparisonProjectRepository,
   LocalCreatorArtifactStore,
   LocalDeepMediaResolver,
@@ -38,6 +40,7 @@ import { ComparisonKnowledgeCompiler, CreatorKnowledgeCompiler } from "./researc
 export interface SignalRoomServices {
   analysis: AnalysisService;
   creatorResearch: CreatorResearchService;
+  creatorResearchBatches: CreatorResearchBatchService;
   comparisons: ComparisonProjectService;
   researchLearning: ResearchLearningService;
   learningLoop: LearningLoopControlPlane;
@@ -76,14 +79,21 @@ export function createSignalRoomComposition(
   const { researchLearning, contentKnowledge } = createDurableKnowledgeSystem();
   const creatorKnowledgeCompiler = new CreatorKnowledgeCompiler(contentKnowledge);
   const comparisonKnowledgeCompiler = new ComparisonKnowledgeCompiler(contentKnowledge);
+  const creatorResearchRepository = new SQLiteCreatorResearchRepository();
   const creatorResearch = new CreatorResearchService(
-    new SQLiteCreatorResearchRepository(),
+    creatorResearchRepository,
     artifacts,
     new LocalDeepMediaResolver(),
     new CodexVideoReconstructionExecutor(),
     new CodexCreatorSynthesisExecutor(artifacts),
     videoConcurrency(),
     creatorKnowledgeCompiler
+  );
+  const creatorResearchBatchRepository = new SQLiteCreatorResearchBatchRepository();
+  const creatorResearchBatches = new CreatorResearchBatchService(
+    creatorResearchBatchRepository,
+    creatorResearch,
+    creatorResearch
   );
   const comparisons = new ComparisonProjectService(
     creatorResearch,
@@ -103,7 +113,7 @@ export function createSignalRoomComposition(
     redfox: new RedFoxCreatorExecutor()
   });
   const workers: ManagedWorker[] = [
-    new CreatorResearchWorker(creatorResearch, creatorExecutor, undefined, videoConcurrency()),
+    new CreatorResearchWorker(creatorResearch, creatorExecutor, undefined, creatorWorkerConcurrency()),
     new ComparisonProjectWorker(comparisons),
     new PublicationWorker(publishing)
   ];
@@ -112,8 +122,8 @@ export function createSignalRoomComposition(
   seedProductBlindRegressionV2(learningLoop);
 
   return new SignalRoomComposition(
-    { analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
+    { analysis, creatorResearch, creatorResearchBatches, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
     workers,
-    [analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge]
+    [analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge, creatorResearchBatchRepository]
   );
 }

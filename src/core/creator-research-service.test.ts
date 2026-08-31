@@ -460,7 +460,7 @@ describe("CreatorResearchService", () => {
     expect(completedBatch.revision).toBe(3);
     expect(completedBatch.readyPosts).toBe(3);
     expect(completedBatch.pendingPosts).toBe(initialBatch.pendingPosts - 3);
-    expect(completedBatch.items.filter((item) => item.state === "ready")).toHaveLength(3);
+    expect(completedBatch.items.filter((item) => item.state === "verified")).toHaveLength(3);
     expect(completedRun.videoWork).toMatchObject({ activePostExternalIds: [], analyzedPosts: 3,
       queuedPosts: initialBatch.pendingPosts - 3, failedPosts: 0 });
     expect(service.events(run.id).filter((event) => event.message.includes("博主级研究归纳已进入持久队列"))).toHaveLength(0);
@@ -500,6 +500,49 @@ describe("CreatorResearchService", () => {
     expect(degraded.status).not.toBe("failed");
     expect(degraded.coverage.enrichedPosts).toBe(1);
     expect(service.events(run.id).some((event) => event.message.includes("记录为未知并继续后续帖子"))).toBe(true);
+    service.close();
+  });
+
+  it("persists RedFox partial detail checkpoints before retrying the unfinished item", async () => {
+    const values = new Map<string, unknown>();
+    const service = serviceForTest({ values });
+    const run = service.importSnapshot({
+      profileUrl: "https://www.xiaohongshu.com/user/profile/redfox-partial", creatorId: "redfox-partial",
+      creatorName: "部分完成博主", capturedAt: "2026-08-31T00:00:00.000Z", taskSpaceId: 4,
+      stopReason: "explicit_end", warnings: [], sourceRefs: ["redfox:fixture"],
+      publicProfile: { bio: null, followers: null, likesAndCollections: null, displayedPostCount: 2, identityAnchors: [] },
+      posts: [1, 2].map((index) => ({ externalId: `partial-${index}`,
+        url: `https://www.xiaohongshu.com/explore/partial-${index}`, title: `帖子 ${index}`,
+        visibleText: `帖子 ${index}\n${index}`, mediaType: "image" as const, likesLabel: String(index), likes: index }))
+    });
+    const executor: CreatorBrowserExecutor = {
+      async acquire() { throw new Error("inventory must not be reacquired"); },
+      async enrich(input) {
+        const completed = input.posts[0]!;
+        return {
+          state: "blocked" as const,
+          finalUrl: run.profileUrl,
+          taskSpaceId: null,
+          code: "provider_unavailable" as const,
+          message: "红狐连接中断",
+          retryable: true,
+          partialPosts: [{ externalId: completed.externalId, finalUrl: completed.url, title: completed.title ?? null,
+            description: "已保存正文", publishedLabel: "2026-08-30", mediaType: "image" as const,
+            videoCandidateUrl: null, coverCandidateUrl: null, inspectedAt: "2026-08-31T00:01:00.000Z", warnings: [] }],
+          partialWarnings: ["redfox_partial_checkpoint:1/2"]
+        };
+      }
+    };
+
+    await service.processNext("portfolio", executor, "portfolio");
+    await service.processNext("redfox", executor, "any");
+
+    const checkpointed = service.get(run.id)!;
+    expect(checkpointed.status).toBe("collecting");
+    expect(checkpointed.coverage.enrichedPosts).toBe(1);
+    const details = values.get(checkpointed.detailArtifactRef!) as { posts: Array<{ externalId: string }> };
+    expect(details.posts.map((post) => post.externalId)).toEqual(["partial-1"]);
+    expect(service.events(run.id).some((event) => event.message.includes("成功条目先写入证据仓"))).toBe(true);
     service.close();
   });
 

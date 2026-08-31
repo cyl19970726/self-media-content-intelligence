@@ -16,8 +16,15 @@ export type RedFoxClientOptions = {
   baseUrl?: string;
   timeoutMs?: number;
   fetchImpl?: RedFoxFetch;
-  proxyUrl?: string | null;
 };
+
+export function resolveRedFoxProxyUrl(environment: NodeJS.ProcessEnv = process.env): string | null {
+  return environment.HTTPS_PROXY
+    ?? environment.https_proxy
+    ?? environment.HTTP_PROXY
+    ?? environment.http_proxy
+    ?? null;
+}
 
 export class RedFoxClient {
   private readonly apiKey: string;
@@ -32,9 +39,7 @@ export class RedFoxClient {
     this.baseUrl = (options.baseUrl ?? process.env.REDFOX_BASE_URL ?? "https://redfox.hk").replace(/\/+$/, "");
     const configuredTimeout = options.timeoutMs ?? Number(process.env.REDFOX_REQUEST_TIMEOUT_MS ?? "60000");
     this.timeoutMs = Number.isFinite(configuredTimeout) ? Math.max(1_000, Math.trunc(configuredTimeout)) : 60_000;
-    const proxyUrl = options.proxyUrl === undefined
-      ? process.env.REDFOX_PROXY_URL ?? process.env.HTTPS_PROXY ?? process.env.HTTP_PROXY ?? null
-      : options.proxyUrl;
+    const proxyUrl = resolveRedFoxProxyUrl();
     this.proxyAgent = proxyUrl ? new ProxyAgent(proxyUrl) : null;
     this.fetchImpl = options.fetchImpl ?? (async (input, init) => {
       const requestInit = {
