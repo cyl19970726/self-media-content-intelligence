@@ -15,7 +15,6 @@ for (const key of ['reconstruction', 'title', 'out']) {
 
 const reconstructionPath = path.resolve(args.reconstruction)
 const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, 'utf8'))
-const evidencePack = JSON.parse(fs.readFileSync(reconstruction.evidencePack, 'utf8'))
 const targetedPath = args.targeted ? path.resolve(args.targeted) : null
 const targeted = targetedPath ? JSON.parse(fs.readFileSync(targetedPath, 'utf8')) : { frames: [] }
 const targetedRoot = targetedPath ? path.dirname(targetedPath) : null
@@ -56,7 +55,7 @@ for (const group of [
   for (const unit of units) {
     lines.push(`### ${unit.title}`)
     lines.push('')
-    lines.push(`时间：${fmt(unit.timeRange.start)}–${fmt(unit.timeRange.end)}　层级：${provenance[unit.provenance] ?? unit.provenance}　置信度：${unit.confidence}`)
+    lines.push(`时间：${fmt(unit.timeRange.start)}–${fmt(unit.timeRange.end)} · 层级：${provenance[unit.provenance] ?? unit.provenance} · 置信度：${unit.confidence}`)
     lines.push('')
     lines.push(unit.statement)
     const image = unitImage(unit)

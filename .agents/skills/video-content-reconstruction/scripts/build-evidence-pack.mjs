@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { basename, join, relative } from "node:path";
+import { basename, join } from "node:path";
 import { mkdirSync, readFileSync } from "node:fs";
 import {
   detectSceneCuts, ensureInputFile, extractFrame, overlap, parseArgs, parseSrt,

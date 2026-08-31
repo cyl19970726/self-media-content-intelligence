@@ -20,7 +20,7 @@ const protocolPath = path.resolve(args.protocol)
 const draftPath = path.resolve(args.draft)
 const evidencePack = read(evidencePath)
 const probe = read(probePath)
-const protocol = read(protocolPath)
+read(protocolPath)
 const draft = read(draftPath)
 const cues = evidencePack.transcript?.cues ?? []
 const cueIndex = new Map(cues.map((cue, index) => [cue.id, index]))
@@ -36,7 +36,10 @@ const expandCueSelector = (selector) => {
 const units = (draft.knowledgeUnits ?? []).map((unit) => {
   const cueIds = [...new Set((unit.cueSelectors ?? []).flatMap(expandCueSelector))]
   const cueEvidence = cueIds.map((id) => ({ refType: 'cue', ref: id, supports: '对应时间段的机器转写原文；专有名词以画面/OCR冲突账本另行限定。' }))
-  const { cueSelectors, evidence: extraEvidence = [], ...rest } = unit
+  const rest = { ...unit }
+  const extraEvidence = rest.evidence ?? []
+  delete rest.cueSelectors
+  delete rest.evidence
   return { ...rest, evidence: [...cueEvidence, ...extraEvidence] }
 })
 const unitMap = new Map(units.map((unit) => [unit.id, unit]))
