@@ -1,6 +1,6 @@
 # Video Builder Fast Path V1 — 需求
 
-状态：**底层算子改造已实现，正在进行真实视频 Builder / Evaluator 基准**
+状态：**完成优先语义待确认；真实视频基准证明现有硬闸仍会阻断全部工作台结果**
 
 ## 问题
 
@@ -14,7 +14,7 @@
 
 ## 产品目标
 
-建立一条“先形成高质量候选知识，再按需独立评估”的快速通道：Builder 是必选角色，Evaluator 是可选角色，确定性校验永远必选。工作台可以立即使用 Builder 结果做预览和暂定综合，但只有 Evaluator 通过的结果才能进入正式 Wiki。
+建立一条“先稳定形成可用候选知识，再按需独立评估”的快速通道：Builder 是必选角色，Evaluator 是可选角色，确定性校验永远必选。工作台必须能够使用所有成功构建的候选；Evaluator 决定候选能否进入正式 Wiki，但不得让已经形成的候选从工作台消失。
 
 ## 需求与验收条件
 
@@ -22,9 +22,18 @@
 
 - 当 Builder 完成且确定性校验通过、但没有运行 Evaluator 时，系统必须记录 `built_unevaluated`，不得记录为 `ready` 或 `verified`。
 - 当可选 Evaluator 完成并通过正式证据闸门时，系统才记录 `verified`；现有 `ready` 只可作为兼容投影，不可掩盖评估状态。
-- Evaluator 写完文件不等于通过：只要 deterministic gate 或 19 项三镜头 gate 任一 `ready=false`，系统必须保留候选并返回 `not_ready`，不得用 `qualityWarning` 包装成 `verified`。
-- 当 Builder 产物缺失、Schema 不合法、引用失效或媒体指纹不匹配时，系统必须记录 `not_ready`。
+- 当 Evaluator 发现问题时，系统必须保留候选并记录 `evaluated_with_findings`（当前 API 可暂时投影为带 `qualityWarningGateIds` 的 `ready`），不得记录为 `verified`，也不得退回成没有可用结果的 `not_ready`。
+- 只有 Builder 无法形成最小语义结果、Host 无法组装合法 Artifact、核心引用无法解析、媒体缺失或指纹冲突时，系统才记录 `not_ready`。
 - Builder-only 结果可以进入工作台和暂定博主综合，但不得晋升到正式 Wiki 知识。
+- `built_unevaluated`、`evaluated_with_findings` 和 `verified` 都必须在工作台可见；三者差异是可信度与晋升资格，不是“有没有结果”。
+
+### R1A — Host 拥有机械事实，Builder 只拥有语义增量
+
+- Host 必须从冻结 evidence pack 注入 transcript cue、时间、代表帧和 overlapping shots；Builder 不得通过复制这些字段来承担一致性责任。
+- Host 必须根据实际媒体、定向取帧和 OCR 执行结果派生载体的机械状态；Builder 只描述载体角色、语义发现、限制和 unknown。
+- Host 必须生成稳定的 Meta Gate ID、Artifact 路径、媒体/候选指纹和兼容状态字段。
+- 当 Builder 返回可解析的知识单元、关系、逐 cue 归责和 unknown 时，Host 必须通过确定性组装生成最终 reconstruction；不得因为可确定修正的路径别名、布尔组合或本地化文本让整条构建失败。
+- Host 组装不得补写 Builder 没有提出的语义事实，也不得把 unknown 变成正向结论。
 
 ### R2 — 快速通道默认策略
 
@@ -61,11 +70,13 @@
 ### R6 — 发布闸门
 
 - 自动化测试必须覆盖 skip/single-pass 两种策略、状态迁移、重启恢复和重复领取保护。
-- 先用 2 个视频做真实运行对比，验证时间、证据完整性和前端投影，再恢复 3 个 Builder 槽位处理队列。
+- 先用 3 个有代表性的新视频做真实运行对比；只要媒体可读且 Builder 形成最小语义结果，3/3 都必须进入工作台，其中 Evaluator 发现的问题必须以 findings 展示而不是阻断结果。
+- 三视频验收中至少保留一个真实 `evaluated_with_findings` 样本，证明系统没有通过放松为 `verified` 来伪造完成率。
 - 扩展前记录 Builder 的 P50/P95、每分钟证据帧数、缓存命中和失败类别，不以“进程仍在输出”代替完成度。
 
 ## 非目标
 
 - 本阶段不删除 Evaluator；它仍是正式 Wiki 晋升与高风险内容复核的独立角色。
+- 本阶段不实现自动 Repairer；Evaluator findings 先记录和展示，不自动修改候选或循环重跑。
 - 本阶段不把 Luna 设为完整 Builder 默认模型；只有基准证明质量门不下降后，才可用于简单视频或派生产物。
 - 本阶段不改写已有 Git 历史，也不清除现有运行 Artifact。

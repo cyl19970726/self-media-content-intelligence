@@ -7,6 +7,7 @@ import {
   candidatePrompt,
   candidateArtifactFingerprints,
   codexInvocationArgs,
+  evaluatorContractRevision,
   evaluatorPrompt,
   hardEvaluationGateFailures,
   normalizeRuntimeLensEvidence,
@@ -80,6 +81,22 @@ describe("single-pass evaluation policy", () => {
     expect("evaluationArtifactRef" in outcome).toBe(false);
   });
 
+  it("keeps a validated Builder result usable when the optional evaluator fails", () => {
+    const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
+    const outcome = videoReconstructionOutcomeSchema.parse({
+      state: "built_unevaluated",
+      reconstructionArtifactRef: `${root}/reconstruction.json`,
+      articleArtifactRef: null,
+      builderValidationArtifactRef: `${root}/builder-validation.json`,
+      evaluationMode: "failed",
+      qualityWarningGateIds: ["runner_execution"],
+      message: "Builder 结果已保留。"
+    });
+    expect(outcome.state).toBe("built_unevaluated");
+    if (outcome.state !== "built_unevaluated") throw new Error("expected built outcome");
+    expect(outcome.evaluationMode).toBe("failed");
+  });
+
   it("keeps evaluator gaps as warnings while marking the video analyzed", () => {
     const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
     const outcome = videoReconstructionOutcomeSchema.parse({
@@ -99,6 +116,26 @@ describe("single-pass evaluation policy", () => {
     expect(outcome.state).toBe("ready");
     if (outcome.state !== "ready") throw new Error("expected ready single-pass outcome");
     expect(outcome.qualityWarningGateIds).toEqual(["eval_unchecked_channels"]);
+  });
+
+  it("keeps an evaluated candidate usable without promoting it to verified", () => {
+    const root = "/artifacts/00000000-0000-4000-8000-000000000000/video-reconstructions/post";
+    const outcome = videoReconstructionOutcomeSchema.parse({
+      state: "evaluated_with_findings",
+      reconstructionArtifactRef: `${root}/reconstruction.json`,
+      articleArtifactRef: null,
+      builderValidationArtifactRef: `${root}/builder-validation.json`,
+      evaluationArtifactRef: `${root}/evaluation.json`,
+      gateReportArtifactRef: `${root}/gate-report.json`,
+      threeLensEvaluationArtifactRef: `${root}/runtime-three-lens-evaluation.json`,
+      threeLensGateReportArtifactRef: `${root}/runtime-three-lens-gate-report.json`,
+      threeLensGateCount: 19,
+      gateCount: 23,
+      failedGateIds: [],
+      qualityWarningGateIds: ["CR-01"],
+      evaluationMode: "single_pass"
+    });
+    expect(outcome.state).toBe("evaluated_with_findings");
   });
 });
 
@@ -141,6 +178,10 @@ describe("Builder model contract", () => {
 });
 
 describe("Evaluator role contract", () => {
+  it("fingerprints the evaluator prompt, skill, schema, and lens contract for cache invalidation", () => {
+    expect(evaluatorContractRevision()).toMatch(/^[a-f0-9]{64}$/);
+  });
+
   it("never promotes a deterministic or three-lens hard failure to VERIFIED", () => {
     expect(hardEvaluationGateFailures(
       { ready: false, failedGateIds: ["core_evidence_references"] },
@@ -165,6 +206,9 @@ describe("Evaluator role contract", () => {
     expect(prompt).toContain("Frozen candidate revision");
     expect(prompt).toContain("reconstruction.json");
     expect(prompt).toContain("Do not modify candidate files");
+    expect(prompt).toContain("Inspect overviews/contact sheets at high detail, never original detail");
+    expect(prompt).toContain("critical-question plus scene/carrier coverage");
+    expect(prompt).toContain("do not search the repository for alternate rule definitions");
   });
 
   it("fails when an evaluator mutates a frozen Builder artifact", () => {
@@ -174,6 +218,19 @@ describe("Evaluator role contract", () => {
       const before = candidateArtifactFingerprints(outputDir);
       fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "revision-2");
       expect(() => assertCandidateArtifactsUnchanged(before, outputDir)).toThrow("EVALUATOR_MUTATED_CANDIDATE");
+    } finally {
+      fs.rmSync(outputDir, { recursive: true, force: true });
+    }
+  });
+
+  it("does not treat a regenerated Builder validation receipt as a semantic candidate mutation", () => {
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-evaluator-receipt-"));
+    try {
+      fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "semantic-revision");
+      fs.writeFileSync(path.join(outputDir, "builder-validation.json"), "receipt-1");
+      const before = candidateArtifactFingerprints(outputDir);
+      fs.writeFileSync(path.join(outputDir, "builder-validation.json"), "receipt-2");
+      expect(candidateArtifactFingerprints(outputDir)).toEqual(before);
     } finally {
       fs.rmSync(outputDir, { recursive: true, force: true });
     }

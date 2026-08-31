@@ -26,9 +26,14 @@ import {
 import { withSystemProxy } from "../network/system-proxy.js";
 import { prepareBuilderInputs } from "./video-reconstruction-media-preparer.js";
 import { validateBuilderIntegrity } from "./video-builder-integrity.js";
+import {
+  assembleHostOwnedReconstruction,
+  type HostAssemblyReport
+} from "./video-reconstruction-host-assembler.js";
 
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
   path.join(projectRoot, ".agents", "skills", "video-content-reconstruction");
+const evaluatorPromptVersion = "single-pass-v2-evidence-budget";
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
@@ -316,6 +321,7 @@ export function evaluatorPrompt(
 ): string {
   return `
 You are the optional Evaluator in a fresh process, independent from the Builder. Read ${skillDir}/references/evaluator-operator.md and ${skillDir}/schemas/evaluation.schema.json completely. Do not modify candidate files.
+Read ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")} completely as the authoritative CR/DL/VE rule contract; do not search the repository for alternate rule definitions.
 
 Source video: ${videoPath}
 Candidate root: ${outputDir}
@@ -329,6 +335,11 @@ Evaluate GATE first: critical-question recall, core evidence coverage, unsupport
 Carrier and OCR rules:
 - Accept checked_unreadable as a closed carrier only when its rationale names the completed check and the candidate preserves the unavailable semantics as unknown without making claims from it. Do not convert checked_unreadable back to unchecked merely because semantic extraction was unavailable.
 - OCR frame statuses processed and failed both prove one recognition execution for that immutable frame revision. Failed OCR supplies no text evidence; independently inspect consequential visibly legible text and fail genuine omissions.
+
+Evidence-view budget:
+- Build at most one source-wide overview when no suitable overview exists. Inspect overviews/contact sheets at high detail, never original detail.
+- Open original frames only for consequential exact text or visual state that remains unresolved after the overview. Normally inspect no more than 8 originals total.
+- The lower bound is complete critical-question plus scene/carrier coverage. Exceed 8 originals only when that coverage remains unresolved, and record the reason in evaluator notes; never reduce evidence merely to satisfy the budget.
 
 Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
 - ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
@@ -369,8 +380,7 @@ const frozenCandidateFiles = [
   "capture-protocol.json",
   "targeted-evidence/targeted-evidence.json",
   "targeted-evidence/ocr-evidence.json",
-  "reconstruction.json",
-  "builder-validation.json"
+  "reconstruction.json"
 ] as const;
 
 export function candidateArtifactFingerprints(outputDir: string): Record<string, string> {
@@ -380,12 +390,23 @@ export function candidateArtifactFingerprints(outputDir: string): Record<string,
   }));
 }
 
+export function evaluatorContractRevision(): string {
+  const contractFiles = [
+    path.join(skillDir, "references/evaluator-operator.md"),
+    path.join(skillDir, "schemas/evaluation.schema.json"),
+    path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")
+  ];
+  const hash = crypto.createHash("sha256").update(evaluatorPromptVersion);
+  for (const file of contractFiles) hash.update(fs.readFileSync(file));
+  return hash.digest("hex");
+}
+
 export function assertCandidateArtifactsUnchanged(before: Record<string, string>, outputDir: string): void {
   const after = candidateArtifactFingerprints(outputDir);
   if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error("EVALUATOR_MUTATED_CANDIDATE");
 }
 
-async function validateBuilder(outputDir: string, videoPath: string): Promise<void> {
+async function validateBuilder(outputDir: string, videoPath: string, hostAssembly: HostAssemblyReport): Promise<void> {
   const args = [
     path.join(skillDir, "scripts/validate-schemas.py"),
     "--probe", path.join(outputDir, "probe.json"),
@@ -415,6 +436,7 @@ async function validateBuilder(outputDir: string, videoPath: string): Promise<vo
     validatedAt: new Date().toISOString(),
     sourceMedia: { algorithm: "sha256", fingerprint: sha256(videoPath) },
     schemaValidation,
+    hostAssembly,
     integrityValidation,
     artifactFingerprints
   }, null, 2)}\n`, "utf8");
@@ -527,6 +549,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
     const relativeRoot = `video-reconstructions/${request.postExternalId}`;
     const outputDir = path.join(runArtifactDir(request.creatorRunId), relativeRoot);
     fs.mkdirSync(outputDir, { recursive: true });
+    let builderAccepted = false;
     try {
       await prepareBuilderInputs({
         videoPath,
@@ -549,7 +572,9 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
       await refreshOcrEvidenceIfNeeded(outputDir);
-      await validateBuilder(outputDir, videoPath);
+      const hostAssembly = assembleHostOwnedReconstruction(outputDir);
+      await validateBuilder(outputDir, videoPath, hostAssembly);
+      builderAccepted = true;
 
       const evaluationPath = path.join(outputDir, "evaluation.json");
       const gatePath = path.join(outputDir, "gate-report.json");
@@ -575,15 +600,26 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       }
       let gate: GateReport | null = exists(gatePath) && exists(evaluationPath)
         ? JSON.parse(fs.readFileSync(gatePath, "utf8")) as GateReport : null;
+      const currentFingerprints = candidateArtifactFingerprints(outputDir);
+      const currentCandidateRevision = sha256(path.join(outputDir, "reconstruction.json"));
+      const currentEvaluatorContractRevision = evaluatorContractRevision();
+      const priorEvaluatorRun = readJsonIfPresent(path.join(outputDir, "evaluator-run.json")) as {
+        candidateRevision?: string;
+        candidateFingerprints?: Record<string, string>;
+        evaluatorContractRevision?: string;
+      } | null;
+      const evaluatorMatchesCandidate = priorEvaluatorRun?.candidateRevision === currentCandidateRevision
+        && JSON.stringify(priorEvaluatorRun.candidateFingerprints) === JSON.stringify(currentFingerprints)
+        && priorEvaluatorRun.evaluatorContractRevision === currentEvaluatorContractRevision;
       const singlePassLensFiles = [
         "runtime-three-lens/content-restoration.json",
         "runtime-three-lens/directing-logic.json",
         "runtime-three-lens/visual-editing.json"
       ];
-      if (!gate || !exists(path.join(outputDir, "evaluator-run.json")) ||
+      if (!gate || !evaluatorMatchesCandidate ||
           singlePassLensFiles.some((relative) => !exists(path.join(outputDir, relative)))) {
-        const frozenFingerprints = candidateArtifactFingerprints(outputDir);
-        const candidateRevision = sha256(path.join(outputDir, "reconstruction.json"));
+        const frozenFingerprints = currentFingerprints;
+        const candidateRevision = currentCandidateRevision;
         const evaluatorReceipt = await runCodex(
           evaluatorPrompt(videoPath, outputDir, candidateRevision, frozenFingerprints), outputDir, "evaluator-1",
           candidateRevision, observeLifecycle
@@ -598,10 +634,14 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           schemaVersion: "video-evaluator-run@1",
           evaluatorRunId: evaluatorReceipt.childRunId,
           modelRole: evaluatorReceipt.role,
+          model: process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-terra",
+          reasoningEffort: process.env.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium",
+          sessionMode: process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
           startedAt: evaluatorReceipt.startedAt,
           completedAt: evaluatorReceipt.completedAt,
           candidateRevision,
-          candidateFingerprints: frozenFingerprints
+          candidateFingerprints: frozenFingerprints,
+          evaluatorContractRevision: currentEvaluatorContractRevision
         }, null, 2)}\n`, "utf8");
       }
 
@@ -632,14 +672,19 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       const hardGateFailures = hardEvaluationGateFailures(gate, threeLensGate);
       if (hardGateFailures.length > 0) {
         return videoReconstructionOutcomeSchema.parse({
-          state: "not_ready",
+          state: "evaluated_with_findings",
           reconstructionArtifactRef: refs.reconstructionArtifactRef,
+          articleArtifactRef: refs.articleArtifactRef,
+          builderValidationArtifactRef: refs.builderValidationArtifactRef,
           evaluationArtifactRef: refs.evaluationArtifactRef,
           gateReportArtifactRef: refs.gateReportArtifactRef,
           threeLensEvaluationArtifactRef: refs.threeLensEvaluationArtifactRef,
           threeLensGateReportArtifactRef: refs.threeLensGateReportArtifactRef,
-          failedGateIds: hardGateFailures,
-          message: "独立评估发现质量硬闸未通过；Builder 产物已保留，但不能晋升为 VERIFIED。"
+          threeLensGateCount: 19,
+          gateCount: gate.gates?.length ?? 1,
+          failedGateIds: [],
+          qualityWarningGateIds: hardGateFailures,
+          evaluationMode: "single_pass"
         });
       }
       return videoReconstructionOutcomeSchema.parse({
@@ -653,7 +698,6 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       });
     } catch (error) {
       const message = error instanceof Error ? error.message : "视频重建执行失败";
-      if (commandUnavailable(message)) return { state: "blocked", code: "runner_unavailable", message, userActionRequired: true };
       const reconstructionArtifactRef = exists(path.join(outputDir, "reconstruction.json"))
         ? artifactRef(request.creatorRunId, `${relativeRoot}/reconstruction.json`) : null;
       const evaluationArtifactRef = exists(path.join(outputDir, "evaluation.json"))
@@ -661,6 +705,20 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       const gateReportArtifactRef = exists(path.join(outputDir, "gate-report.json"))
         ? artifactRef(request.creatorRunId, `${relativeRoot}/gate-report.json`) : null;
       const failedGateId = reconstructionFailureGateId(message);
+      if (builderAccepted && reconstructionArtifactRef) {
+        return videoReconstructionOutcomeSchema.parse({
+          state: "built_unevaluated",
+          reconstructionArtifactRef,
+          articleArtifactRef: exists(path.join(outputDir, "article.md"))
+            ? artifactRef(request.creatorRunId, `${relativeRoot}/article.md`)
+            : null,
+          builderValidationArtifactRef: artifactRef(request.creatorRunId, `${relativeRoot}/builder-validation.json`),
+          evaluationMode: "failed",
+          qualityWarningGateIds: [failedGateId],
+          message: "Builder 结果已保留；本次独立评估未形成可接受结论，可稍后单独重试。"
+        });
+      }
+      if (commandUnavailable(message)) return { state: "blocked", code: "runner_unavailable", message, userActionRequired: true };
       const publicMessage = /DETERMINISTIC_VALIDATOR_FAILED/.test(message)
         ? "确定性验证器没有产生 gate report。"
         : failedGateId.startsWith("builder_integrity_")

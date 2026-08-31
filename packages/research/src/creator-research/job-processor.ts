@@ -634,7 +634,7 @@ export class CreatorResearchJobProcessor {
       const previousItems = new Map(previousBatch?.items.map((item) => [item.postExternalId, item]) ?? []);
       const batchItems = deepItems.map((item) => {
         const previous = previousItems.get(item.externalId);
-        if (previous && ["built_unevaluated", "verified", "ready"].includes(previous.state)) return previous;
+        if (previous && ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(previous.state)) return previous;
         const media = mediaById.get(item.externalId);
         const verified = media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
         return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
@@ -649,7 +649,7 @@ export class CreatorResearchJobProcessor {
       const batch = videoReconstructionBatchSchema.parse({
         schemaVersion: "1.0.0", creatorRunId: run.id, revision, generatedAt: completedAt,
         requestedPosts: batchItems.length,
-        builtPosts: batchItems.filter((item) => ["built_unevaluated", "verified", "ready"].includes(item.state)).length,
+        builtPosts: batchItems.filter((item) => ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length,
         verifiedPosts: batchItems.filter((item) => ["verified", "ready"].includes(item.state)).length,
         readyPosts: batchItems.filter((item) => ["verified", "ready"].includes(item.state)).length,
         pendingPosts: batchItems.filter((item) => ["queued", "running"].includes(item.state)).length,

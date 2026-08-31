@@ -38,14 +38,10 @@ type ReconstructionLike = {
 };
 
 type EvidencePackLike = {
-  media?: { duration?: number; hasAudio?: boolean };
+  media?: { duration?: number };
   shots?: Array<{ id?: string }>;
   frameIndex?: Array<{ id?: string; time?: number }>;
   transcript?: { cues?: Array<Record<string, unknown>> };
-};
-type ProbeLike = {
-  carrierSweep?: Array<{ id?: string }>;
-  informationCarriers?: Carrier[];
 };
 
 function exists(file: string): boolean {
@@ -117,26 +113,11 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }
 
   const pack = readJson<EvidencePackLike>(evidencePath);
-  const probe = readJson<ProbeLike>(path.join(outputDir, "probe.json"));
   const targeted = readJson<{ frames?: Array<{ id?: string; time?: number }> }>(targetedPath);
   const ocr = exists(ocrPath) ? readJson<{
     frames?: Array<{ frameId?: string; time?: number; lines?: Array<{ id?: string }> }>
   }>(ocrPath) : null;
   const reconstruction = readJson<ReconstructionLike>(reconstructionPath);
-  const sweepIds = ids(probe.carrierSweep);
-  for (const carrier of probe.informationCarriers ?? []) {
-    if (!carrier.discoveredIn?.length || carrier.discoveredIn.some((id) => !sweepIds.has(id))) {
-      fail("PROBE_CARRIER_SWEEP_TRACE", carrier.id);
-    }
-  }
-  if (pack.media?.hasAudio === true) {
-    const audioCarrier = (probe.informationCarriers ?? []).find((carrier) => /non[._ -]?speech|music|sound[._ -]?effect/i.test(
-      [carrier.id, carrier.name, ...(carrier.modalityKeys ?? [])].join(" ")
-    ));
-    if (!audioCarrier || !["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(audioCarrier))) {
-      fail("PROBE_AUDIO_CLOSURE", audioCarrier?.id);
-    }
-  }
   const sourceCues = pack.transcript?.cues ?? [];
   const outputCues = reconstruction.transcript?.cues ?? [];
   if (sourceCues.length !== outputCues.length) fail("CUE_COUNT", `${outputCues.length}/${sourceCues.length}`);

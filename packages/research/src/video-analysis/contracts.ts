@@ -22,7 +22,24 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
     reconstructionArtifactRef: z.string(),
     articleArtifactRef: z.string().nullable(),
     builderValidationArtifactRef: z.string(),
-    evaluationMode: z.literal("skipped")
+    evaluationMode: z.enum(["skipped", "failed"]),
+    qualityWarningGateIds: z.array(z.string()).optional(),
+    message: z.string().optional()
+  }),
+  z.object({
+    state: z.literal("evaluated_with_findings"),
+    reconstructionArtifactRef: z.string(),
+    articleArtifactRef: z.string().nullable(),
+    builderValidationArtifactRef: z.string(),
+    evaluationArtifactRef: z.string(),
+    gateReportArtifactRef: z.string(),
+    threeLensEvaluationArtifactRef: z.string(),
+    threeLensGateReportArtifactRef: z.string(),
+    threeLensGateCount: z.literal(19),
+    gateCount: z.number().int().positive(),
+    failedGateIds: z.array(z.string()).length(0),
+    qualityWarningGateIds: z.array(z.string()).min(1),
+    evaluationMode: z.literal("single_pass")
   }),
   z.object({
     state: z.literal("verified"),
@@ -42,7 +59,7 @@ export const videoReconstructionOutcomeSchema = z.discriminatedUnion("state", [
   z.object({
     state: z.literal("ready"),
     reconstructionArtifactRef: z.string(),
-    articleArtifactRef: z.string(),
+    articleArtifactRef: z.string().nullable(),
     builderValidationArtifactRef: z.string().optional(),
     evaluationArtifactRef: z.string(),
     gateReportArtifactRef: z.string(),

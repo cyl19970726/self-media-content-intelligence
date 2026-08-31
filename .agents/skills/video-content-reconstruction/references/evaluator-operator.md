@@ -1,6 +1,6 @@
 # Evaluator operator contract
 
-Evaluator 是可选的独立验收算子。它必须运行在 Builder 之外的新进程中，只读冻结候选，并判断该候选能否从 `BUILT_UNEVALUATED` 晋升为 `VERIFIED`。
+Evaluator 是可选的独立验收算子。它必须运行在 Builder 之外的新进程中，只读冻结候选，并判断该候选能否从 `BUILT_UNEVALUATED` 晋升为 `VERIFIED`；不通过时保留为 `EVALUATED_WITH_FINDINGS`，不得让候选从工作台消失。
 
 ## 输入与独立性
 
@@ -26,6 +26,7 @@ Evaluator 是可选的独立验收算子。它必须运行在 Builder 之外的�
 4. 将普通质量缺口保留为 warning；本模式不自动触发修复循环。
 5. `checked_unreadable` 是已执行但语义不可读的闭环状态：只有候选给出检查依据、明确 unknown，且没有借此声称音乐/音效语义时才可接受。不得仅因语义不可读而判为 unchecked；若候选实际遗漏了可读载体，仍应失败。
 6. OCR 帧的 `processed` 与 `failed` 都证明该 revision 执行过一次识别；`failed` 不证明文字不存在，也不能支持文字主张。对核心且肉眼可读的画面文字，仍须独立检查是否被 Builder 遗漏。
+7. 先用 high detail 检查总览/contact sheet；仅在关键文字或视觉状态仍不确定时打开原图，通常不超过 8 张。原图数量下限由关键问题与场景/载体覆盖决定；若覆盖仍未闭合，可以超过预算，但必须在 notes 说明原因。
 
 ## 唯一可写输出
 
@@ -38,4 +39,4 @@ Evaluator 是可选的独立验收算子。它必须运行在 Builder 之外的�
 
 ## 状态
 
-只有独立评估产物、候选未变证明和确定性 gate 都通过，才可标记 `VERIFIED`。缺产物、候选被修改、revision 漂移或合同不完整都返回 `NOT_READY`。Evaluator 被跳过时，状态必须保持 `BUILT_UNEVALUATED`。
+只有独立评估产物、候选未变证明和确定性 gate 都通过，才可标记 `VERIFIED`。语义或质量 gate 不通过时标记 `EVALUATED_WITH_FINDINGS`。缺产物、候选被修改、revision 漂移、Runner 失败或评估合同不完整时，本次评估记为失败，但 Builder 候选仍以 `BUILT_UNEVALUATED` 保留。Evaluator 被主动跳过时同样保持 `BUILT_UNEVALUATED`，二者由 `evaluationMode` 区分。

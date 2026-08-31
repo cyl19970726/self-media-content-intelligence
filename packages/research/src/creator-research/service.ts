@@ -71,7 +71,7 @@ export function recoveredVideoWorkProjection(
   concurrencyLimit: number
 ): CreatorResearchRun["videoWork"] {
   const items = batch?.items ?? [];
-  const derivedBuiltPosts = items.filter((item) => ["built_unevaluated", "verified", "ready"].includes(item.state)).length;
+  const derivedBuiltPosts = items.filter((item) => ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length;
   return {
     concurrencyLimit,
     activePostExternalIds: [],
@@ -339,7 +339,7 @@ export class CreatorResearchService {
       const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
       run.videoWork.analyzedPosts = Math.max(
         batch.builtPosts,
-        batch.items.filter((item) => ["built_unevaluated", "verified", "ready"].includes(item.state)).length
+        batch.items.filter((item) => ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length
       );
       run.videoWork.failedPosts = batch.failedPosts;
       run.videoWork.queuedPosts = Math.max(0, batch.pendingPosts - run.videoWork.activePostExternalIds.length);

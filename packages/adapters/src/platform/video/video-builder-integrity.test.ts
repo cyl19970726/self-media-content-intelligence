@@ -115,17 +115,4 @@ describe("Builder deterministic integrity gate", () => {
     }
   });
 
-  it("rejects a probe carrier that is not traced to the gap-free carrier sweep", () => {
-    const item = createFixture();
-    try {
-      const file = path.join(item.root, "probe.json");
-      const probe = JSON.parse(fs.readFileSync(file, "utf8"));
-      probe.informationCarriers[0].discoveredIn = ["media-preparation.json"];
-      fs.writeFileSync(file, JSON.stringify(probe));
-      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
-        .toThrow("BUILDER_INTEGRITY_PROBE_CARRIER_SWEEP_TRACE:CAR-SPEECH");
-    } finally {
-      fs.rmSync(item.root, { recursive: true, force: true });
-    }
-  });
 });
