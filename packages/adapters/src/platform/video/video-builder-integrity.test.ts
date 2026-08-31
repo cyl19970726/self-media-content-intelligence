@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { validateBuilderIntegrity } from "./video-builder-integrity.js";
+import { carrierInspectionStatus, validateBuilderIntegrity } from "./video-builder-integrity.js";
 
 const fixtureRoot = path.join(process.cwd(), ".agents", "skills", "video-content-reconstruction", "tests", "fixtures", "valid");
 
@@ -30,6 +30,13 @@ function createFixture() {
 }
 
 describe("Builder deterministic integrity gate", () => {
+  it("treats checked_unreadable as closed without claiming semantic readability", () => {
+    expect(carrierInspectionStatus({
+      id: "CAR-AUDIO", available: true, inspected: true,
+      inspectionStatus: "checked_unreadable", inspectionRationale: "Only technical stream presence is model-readable."
+    })).toBe("checked_unreadable");
+  });
+
   it("binds every transcript cue, unit relation, evidence reference, channel, and media revision", () => {
     const item = createFixture();
     try {
@@ -85,6 +92,23 @@ describe("Builder deterministic integrity gate", () => {
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath))
         .toThrow("BUILDER_INTEGRITY_EVIDENCE_TIME_RANGE:KU-001:TARGET-0004");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects an inspection status that contradicts compatibility booleans", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.coverageMatrix.channels.push({
+        id: "CAR-AUDIO", available: true, inspected: false,
+        inspectionStatus: "checked_unreadable", inspectionRationale: "technical stream only"
+      });
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_CARRIER_STATUS:CAR-AUDIO");
     } finally {
       fs.rmSync(item.root, { recursive: true, force: true });
     }

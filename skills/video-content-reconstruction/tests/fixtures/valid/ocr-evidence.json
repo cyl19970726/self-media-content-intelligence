@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "ocr-evidence-1.0",
+  "generatedAt": "2026-08-31T00:00:00.000Z",
+  "manifest": "targeted-evidence.json",
+  "recognitionLanguages": ["zh-Hans"],
+  "frames": [
+    {"frameId": "TARGET-0004", "actionId": "CAP-002", "time": 7.5, "sourceFrame": "frames/4.jpg", "status": "failed", "lines": [], "error": "terminal recognition failure"}
+  ]
+}

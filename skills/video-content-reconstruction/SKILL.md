@@ -119,11 +119,11 @@ Also reconcile speech labels with visible UI identity, literal failure signature
 
 Build a coverage matrix by channel, meaning change, relationship, critical question, and unresolved item. Use scoped numerators and denominators; never emit a single “completeness 100%.”
 
-Answer the meta-gate exactly:
+Answer the meta-gate using stable ID `uncovered_information_audit`; the human-readable question may be localized:
 
 > 原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？
 
-If any available channel remains unchecked, the reconstruction fails.
+If any available channel remains unchecked, the reconstruction fails. A carrier that was checked but cannot be read semantically is `checked_unreadable`, not unchecked; it closes coverage only when the limitation and resulting unknown are explicit and no semantic claim is made from it.
 
 ## Step 7 — Validate and evaluate
 

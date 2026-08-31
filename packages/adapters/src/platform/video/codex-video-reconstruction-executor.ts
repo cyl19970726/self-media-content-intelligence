@@ -99,6 +99,17 @@ function commandUnavailable(message: string): boolean {
   return /CODEX_RUNNER_UNAVAILABLE|ENOENT|not found|command not found|authentication|login required|unauthorized/i.test(message);
 }
 
+export function reconstructionFailureGateId(message: string): string {
+  const builderIntegrity = message.match(/BUILDER_INTEGRITY_([A-Z0-9_]+)/)?.[1];
+  if (builderIntegrity) return `builder_integrity_${builderIntegrity.toLowerCase()}`;
+  if (message.includes("MEDIA_PREPARATION")) return "media_preparation";
+  if (message.includes("EVALUATOR_MUTATED_CANDIDATE")) return "evaluator_candidate_mutation";
+  if (message.includes("EVALUATOR_RUN_PROVENANCE")) return "evaluator_provenance";
+  if (message.includes("BUILDER_SCHEMA_VALIDATION_FAILED")) return "builder_schema_validation";
+  if (message.includes("BUILDER_OUTPUT_CONTRACT")) return "builder_output_contract";
+  return "runner_execution";
+}
+
 function childRole(label: string): VideoReconstructionChildRole {
   if (label === "candidate") return "candidate";
   if (label.startsWith("evaluator-")) return "generic_evaluator";
@@ -288,6 +299,8 @@ Isolation and evidence rules:
 - Targeted capture produces targeted-evidence/contact-sheet.jpg. Inspect that overview first, then open at most 4 originals per unresolved question and normally no more than 12 originals total; never load dozens of full-resolution frames at once.
 - When every OCR frame failed there is no valid OCR line ID: cite targeted_frame evidence and preserve text as unknown; never invent an OCR-* placeholder.
 - Never use afplay, a GUI player, or system speakers as proof that the model heard audio. Inspect only model-readable audio evidence and non-speech transcript labels; when only technical audio presence is available, preserve music/sound semantics as unknown.
+- For every carrier, write inspectionStatus and inspectionRationale while retaining compatible available/inspected booleans. Technical audio presence without model-readable semantics is available:true, inspected:true, inspectionStatus:"checked_unreadable"; it must remain an explicit unknown and must not support semantic audio claims.
+- Write metaGate.questionId as "uncovered_information_audit". The display question may be localized and is not an identity key.
 - Signed URLs, cookies, login data, and private browser state must never enter any output.
 
 Write candidate outputs only under ${outputDir}: evidence/, probe.json, capture-protocol.json, targeted-evidence/, and reconstruction.json. Do not generate article.md or verbose run-notes.md on the synchronous fast path. Do NOT create evaluation.json or gate-report.json; an independent process owns those. Before finishing, run the canonical schema validator for probe/protocol/reconstruction and OCR when applicable. If evidence cannot establish something, preserve it as unknown rather than inventing it.
@@ -311,6 +324,10 @@ Frozen candidate artifact fingerprints: ${JSON.stringify(candidateFingerprints)}
 Independently inspect the source video, media-preparation.json, evidence/evidence-pack.json, targeted-evidence manifests and frames, OCR when present, probe.json, capture-protocol.json, reconstruction.json, and article.md only when it exists. You did not see the Builder's hidden context and must not read any prior report/audit/evaluation outside this directory.
 
 Evaluate GATE first: critical-question recall, core evidence coverage, unsupported positive inference, timestamp accuracy, applicable process dependencies, correct unknown discipline, unchecked channels, and the exact meta-gate. Only if every hard gate passes, run JUDGE for readability, knowledge prioritization, evidence usefulness, execution value, and compression without loss.
+
+Carrier and OCR rules:
+- Accept checked_unreadable as a closed carrier only when its rationale names the completed check and the candidate preserves the unavailable semantics as unknown without making claims from it. Do not convert checked_unreadable back to unchecked merely because semantic extraction was unavailable.
+- OCR frame statuses processed and failed both prove one recognition execution for that immutable frame revision. Failed OCR supplies no text evidence; independently inspect consequential visibly legible text and fail genuine omissions.
 
 Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
 - ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
@@ -642,15 +659,11 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         ? artifactRef(request.creatorRunId, `${relativeRoot}/evaluation.json`) : null;
       const gateReportArtifactRef = exists(path.join(outputDir, "gate-report.json"))
         ? artifactRef(request.creatorRunId, `${relativeRoot}/gate-report.json`) : null;
-      const failedGateId = message.includes("MEDIA_PREPARATION")
-        ? "media_preparation"
-        : message.includes("EVALUATOR_MUTATED_CANDIDATE")
-          ? "evaluator_candidate_mutation"
-          : message.includes("EVALUATOR_RUN_PROVENANCE")
-            ? "evaluator_provenance"
-            : "runner_execution";
+      const failedGateId = reconstructionFailureGateId(message);
       const publicMessage = /DETERMINISTIC_VALIDATOR_FAILED/.test(message)
         ? "确定性验证器没有产生 gate report。"
+        : failedGateId.startsWith("builder_integrity_")
+          ? `Builder 确定性完整性检查未通过：${failedGateId}。候选产物已保留。`
         : failedGateId === "media_preparation"
           ? "宿主媒体准备失败；Builder 未被启动。"
           : failedGateId === "evaluator_candidate_mutation"

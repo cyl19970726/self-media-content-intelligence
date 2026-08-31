@@ -43,6 +43,20 @@ const ocr = {
 };
 const gates = [];
 const gate = (id, pass, detail, examples = []) => gates.push({ id, pass: Boolean(pass), detail, examples });
+const inspectionStatus = (carrier) => carrier.inspectionStatus
+  || (!carrier.available ? "absent" : carrier.inspected ? "checked_readable" : "unchecked");
+const carrierIsClosed = (carrier) => ["checked_readable", "checked_unreadable"].includes(inspectionStatus(carrier));
+const carrierContractProblems = (carriers, scope) => carriers.flatMap((carrier) => {
+  if (!carrier.inspectionStatus) return [];
+  const expected = carrier.inspectionStatus === "absent"
+    ? { available: false, inspected: false }
+    : carrier.inspectionStatus === "unchecked"
+      ? { available: true, inspected: false }
+      : { available: true, inspected: true };
+  const inconsistent = carrier.available !== expected.available || carrier.inspected !== expected.inspected;
+  const missingRationale = typeof carrier.inspectionRationale !== "string" || carrier.inspectionRationale.trim().length === 0;
+  return inconsistent || missingRationale ? [`${scope}:${carrier.id}:${carrier.inspectionStatus}`] : [];
+});
 
 const banned = [];
 const scan = (value, path = "$") => {
@@ -79,7 +93,7 @@ for (const cue of packCues) {
 gate("verbatim_transcript_and_overlap", transcriptProblems.length === 0, transcriptProblems.length ? "Transcript contract failed" : "Every cue, representative frame, and overlapping shot is preserved", transcriptProblems.slice(0, 20));
 
 const availableCarriers = (probe.informationCarriers || []).filter((item) => item.available);
-const uncheckedProbeCarriers = availableCarriers.filter((item) => !item.inspected).map((item) => item.id);
+const uncheckedProbeCarriers = availableCarriers.filter((item) => !carrierIsClosed(item)).map((item) => item.id);
 gate("probe_inspects_available_carriers", uncheckedProbeCarriers.length === 0, uncheckedProbeCarriers.length ? "Probe left available carriers unchecked" : "All available carriers inspected", uncheckedProbeCarriers);
 
 const sweep = [...(probe.carrierSweep || [])].sort((a, b) => (a.range?.start || 0) - (b.range?.start || 0));
@@ -99,7 +113,7 @@ for (const carrier of probe.informationCarriers || []) {
 }
 if (evidence.media?.hasAudio === true) {
   const audioCarrier = (probe.informationCarriers || []).find((item) => item.modalityKeys?.some((key) => /(^|[._-])non[._-]?speech($|[._-])|non[._-]?speech[._-]?audio|audio[._-]?non[._-]?speech/i.test(key)));
-  if (!audioCarrier || !audioCarrier.inspected) sweepProblems.push("non_speech_audio:not_explicitly_inspected");
+  if (!audioCarrier || !carrierIsClosed(audioCarrier)) sweepProblems.push("non_speech_audio:not_explicitly_inspected");
 }
 gate("full_timeline_carrier_sweep", sweepProblems.length === 0, sweepProblems.length ? "Carrier discovery did not close the full timeline or audio channel" : "Carrier sweep covers the source and traces every discovered carrier", sweepProblems);
 
@@ -157,10 +171,10 @@ for (const actionId of ocrActionIds) {
   const frameIds = targetedActionMap.get(actionId) || [];
   for (const frameId of frameIds) {
     const record = ocrFrameMap.get(frameId);
-    if (!record || record.status !== "processed") ocrExecutionProblems.push(`${actionId}:${frameId}:ocr_not_processed`);
+    if (!record || !["processed", "failed"].includes(record.status)) ocrExecutionProblems.push(`${actionId}:${frameId}:ocr_not_executed`);
   }
 }
-gate("ocr_and_ui_evidence_execution", ocrExecutionProblems.length === 0, ocrExecutionProblems.length ? "OCR/UI actions have frames without an executed recognition pass" : (ocrActionIds.size ? "Every OCR/UI frame was processed" : "Not applicable: protocol requested no OCR/UI action"), ocrExecutionProblems);
+gate("ocr_and_ui_evidence_execution", ocrExecutionProblems.length === 0, ocrExecutionProblems.length ? "OCR/UI actions have frames without an executed recognition pass" : (ocrActionIds.size ? "Every OCR/UI frame has a terminal recognition result" : "Not applicable: protocol requested no OCR/UI action"), ocrExecutionProblems);
 const units = reconstruction.knowledgeUnits || [];
 const evidenceProblems = [];
 const unsupportedProblems = [];
@@ -200,7 +214,14 @@ for (const unit of proceduralUnits) {
 gate("internal_process_dependencies", procedureProblems.length === 0, proceduralUnits.length ? (procedureProblems.length ? "Procedural dependencies incomplete" : `Validated ${proceduralUnits.length} procedural units`) : "Not applicable: no procedural units declared", procedureProblems);
 
 const channelRows = reconstruction.coverageMatrix?.channels || [];
-const coveredChannelIds = new Set(channelRows.filter((item) => item.inspected).map((item) => item.id));
+const carrierInspectionProblems = [
+  ...carrierContractProblems(probe.informationCarriers || [], "probe"),
+  ...carrierContractProblems(channelRows, "reconstruction")
+];
+gate("carrier_inspection_contract", carrierInspectionProblems.length === 0,
+  carrierInspectionProblems.length ? "Carrier inspection status conflicts with compatibility fields or lacks rationale" : "Carrier inspection statuses are coherent",
+  carrierInspectionProblems);
+const coveredChannelIds = new Set(channelRows.filter(carrierIsClosed).map((item) => item.id));
 const uncoveredChannels = availableCarriers.map((item) => item.id).filter((id) => !coveredChannelIds.has(id));
 const meaningRows = reconstruction.coverageMatrix?.meaningChanges || [];
 const capturedMeaningIds = new Set(meaningRows.filter((item) => item.captured).map((item) => item.id));
@@ -253,8 +274,9 @@ const coverageProblems = [
 gate("coverage_matrix", coverageProblems.length === 0, coverageProblems.length ? "Coverage matrix has gaps" : "Channels, meaning changes, relationships, critical questions, and core evidence are accounted for", coverageProblems);
 
 const meta = reconstruction.metaGate || {};
-const requiredMetaQuestion = "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？";
-const metaPass = meta.question === requiredMetaQuestion && meta.pass === true && !(meta.uncheckedChannels || []).length && !(meta.overlookedMeaningChanges || []).length && !(meta.overlookedRelationships || []).length;
+const metaQuestionMatches = meta.questionId === "uncovered_information_audit"
+  || (typeof meta.question === "string" && meta.question.trim().length > 0);
+const metaPass = metaQuestionMatches && meta.pass === true && !(meta.uncheckedChannels || []).length && !(meta.overlookedMeaningChanges || []).length && !(meta.overlookedRelationships || []).length;
 gate("internal_meta_gate", metaPass, metaPass ? "Internal meta-gate found no unchecked closure" : "Internal meta-gate failed", [...(meta.uncheckedChannels || []), ...(meta.overlookedMeaningChanges || []), ...(meta.overlookedRelationships || [])]);
 
 const eg = evaluation.gates || {};

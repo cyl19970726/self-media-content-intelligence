@@ -24,6 +24,8 @@ Evaluator 是可选的独立验收算子。它必须运行在 Builder 之外的�
 2. 先 GATE 后 JUDGE。任何硬闸失败，易读性或“感觉有用”都不能补偿。
 3. 对不可检查项用 `not_checked`，不得用空泛 pass 填满。
 4. 将普通质量缺口保留为 warning；本模式不自动触发修复循环。
+5. `checked_unreadable` 是已执行但语义不可读的闭环状态：只有候选给出检查依据、明确 unknown，且没有借此声称音乐/音效语义时才可接受。不得仅因语义不可读而判为 unchecked；若候选实际遗漏了可读载体，仍应失败。
+6. OCR 帧的 `processed` 与 `failed` 都证明该 revision 执行过一次识别；`failed` 不证明文字不存在，也不能支持文字主张。对核心且肉眼可读的画面文字，仍须独立检查是否被 Builder 遗漏。
 
 ## 唯一可写输出
 

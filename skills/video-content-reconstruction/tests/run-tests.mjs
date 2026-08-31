@@ -21,14 +21,16 @@ const common = [
   "--targeted", join(valid, "targeted-evidence.json"),
   "--probe", join(valid, "probe.json"),
   "--protocol", join(valid, "capture-protocol.json"),
-  "--evaluation", join(valid, "evaluation.json")
+  "--evaluation", join(valid, "evaluation.json"),
+  "--ocr", join(valid, "ocr-evidence.json")
 ];
 
 const validSchemaRun = spawnSync("python3", [schemaValidator,
   "--probe", join(valid, "probe.json"),
   "--protocol", join(valid, "capture-protocol.json"),
   "--reconstruction", join(valid, "reconstruction.json"),
-  "--evaluation", join(valid, "evaluation.json")
+  "--evaluation", join(valid, "evaluation.json"),
+  "--ocr", join(valid, "ocr-evidence.json")
 ], { encoding: "utf8" });
 if (validSchemaRun.status !== 0) throw new Error(`valid schema fixture failed\n${validSchemaRun.stdout}\n${validSchemaRun.stderr}`);
 

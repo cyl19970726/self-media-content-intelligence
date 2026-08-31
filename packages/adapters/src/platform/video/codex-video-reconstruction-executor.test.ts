@@ -10,6 +10,7 @@ import {
   evaluatorPrompt,
   hardEvaluationGateFailures,
   normalizeRuntimeLensEvidence,
+  reconstructionFailureGateId,
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
@@ -39,6 +40,19 @@ describe("video reconstruction OCR recovery", () => {
 
   it("does not invent an OCR requirement for a visual-only protocol", () => {
     expect(shouldRefreshOcrEvidence({ captureActions: [{ mode: "exact_times" }] }, targeted, null)).toBe(false);
+  });
+});
+
+describe("video reconstruction failure diagnostics", () => {
+  it("preserves the exact Builder integrity failure instead of collapsing it into runner_execution", () => {
+    expect(reconstructionFailureGateId("BUILDER_INTEGRITY_UNCHECKED_AVAILABLE_CHANNEL"))
+      .toBe("builder_integrity_unchecked_available_channel");
+    expect(reconstructionFailureGateId("BUILDER_INTEGRITY_CARRIER_STATUS:CAR-AUDIO"))
+      .toBe("builder_integrity_carrier_status");
+  });
+
+  it("keeps unknown process failures generic", () => {
+    expect(reconstructionFailureGateId("unexpected child failure")).toBe("runner_execution");
   });
 });
 

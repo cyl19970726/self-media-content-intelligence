@@ -9,7 +9,7 @@
   ],
   "captureActions": [
     {"id": "CAP-001", "range": {"start": 0, "end": 5}, "carrier": "interface state", "mode": "before_during_after", "times": [0.5, 2.5, 4.5], "reason": "capture operation state transition", "expectedObservation": "closed, action, opened", "derivedFrom": ["CAR-UI", "MC-001", "RISK-001"]},
-    {"id": "CAP-002", "range": {"start": 5, "end": 10}, "carrier": "interface state", "mode": "exact_times", "times": [7.5], "reason": "capture result", "expectedObservation": "visible result", "derivedFrom": ["CAR-UI", "MC-002"]}
+    {"id": "CAP-002", "range": {"start": 5, "end": 10}, "carrier": "interface state", "mode": "ocr_review", "times": [7.5], "reason": "capture result", "expectedObservation": "visible result", "derivedFrom": ["CAR-UI", "MC-002"]}
   ],
   "requiredRelations": [{"relation": "precedes", "derivedFrom": ["REL-001"]}],
   "stoppingRules": ["Both critical questions are evidenced", "Both UI meaning changes are captured", "No available carrier remains unchecked"],
