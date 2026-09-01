@@ -110,7 +110,7 @@ For every core knowledge unit:
 - include claim/evidence/condition/counterexample/action relations when argumentative or strategic;
 - list what the video does not establish.
 
-Include the full verbatim transcript with each cue's representative frame and every overlapping shot.
+Account for the full verbatim transcript. The Host restores each cue's exact text, representative frame, and overlapping shots from the frozen evidence pack; Builder owns semantic cue accountability, not mechanical copying accuracy.
 Account for every cue in `coverageMatrix.cueAccountability`; a cue may be knowledge, context, nonsemantic, or uncertain, but it may not silently disappear from the knowledge model. Recheck the opening and closing cues, all short on-screen cards, observable likeness/symbols, counted result groups, claim scope, and global cross-segment relationships before writing the article.
 
 Also reconcile speech labels with visible UI identity, literal failure signatures with result states, edited chronology with the claimed or inferred procedure, every visible qualifier/disclaimer, avatar or setting referents, and decision-relevant absences. A statement that something is absent requires a documented full-scope inspection; silence or a missed sample is not negative evidence.
@@ -119,11 +119,11 @@ Also reconcile speech labels with visible UI identity, literal failure signature
 
 Build a coverage matrix by channel, meaning change, relationship, critical question, and unresolved item. Use scoped numerators and denominators; never emit a single “completeness 100%.”
 
-Answer the meta-gate exactly:
+Answer the meta-gate using stable ID `uncovered_information_audit`; the human-readable question may be localized:
 
 > 原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？
 
-If any available channel remains unchecked, the reconstruction fails.
+If any available channel remains unchecked, the reconstruction fails. A carrier that was checked but cannot be read semantically is `checked_unreadable`, not unchecked; it closes coverage only when the limitation and resulting unknown are explicit and no semantic claim is made from it.
 
 ## Step 7 — Validate and evaluate
 

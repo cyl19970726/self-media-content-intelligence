@@ -3,6 +3,16 @@ import fs from "node:fs";
 import path from "node:path";
 
 type EvidenceRef = { refType?: string; ref?: string };
+type Carrier = {
+  id?: string;
+  name?: string;
+  modalityKeys?: string[];
+  discoveredIn?: string[];
+  available?: boolean;
+  inspected?: boolean;
+  inspectionStatus?: "absent" | "unchecked" | "checked_readable" | "checked_unreadable";
+  inspectionRationale?: string;
+};
 type ReconstructionLike = {
   transcript?: { cues?: Array<Record<string, unknown>> };
   knowledgeUnits?: Array<{
@@ -14,7 +24,7 @@ type ReconstructionLike = {
   relations?: Array<{ from?: string; to?: string; evidence?: EvidenceRef[] }>;
   derivedSources?: Array<{ path?: string }>;
   coverageMatrix?: {
-    channels?: Array<{ id?: string; available?: boolean; inspected?: boolean }>;
+    channels?: Carrier[];
     cueAccountability?: Array<{ cueId?: string; unitIds?: string[] }>;
     criticalQuestions?: Array<{ unitIds?: string[] }>;
     uncheckedChannels?: string[];
@@ -52,6 +62,21 @@ function fail(code: string, detail?: string): never {
 
 function ids(values: Array<{ id?: string }> | undefined): Set<string> {
   return new Set((values ?? []).map((item) => item.id).filter((id): id is string => Boolean(id)));
+}
+
+export function carrierInspectionStatus(carrier: Carrier): "absent" | "unchecked" | "checked_readable" | "checked_unreadable" {
+  return carrier.inspectionStatus ?? (!carrier.available ? "absent" : carrier.inspected ? "checked_readable" : "unchecked");
+}
+
+function validateCarrierInspectionContract(carrier: Carrier): void {
+  if (!carrier.inspectionStatus) return;
+  const expected = carrier.inspectionStatus === "absent"
+    ? { available: false, inspected: carrier.inspected }
+    : carrier.inspectionStatus === "unchecked"
+      ? { available: true, inspected: false }
+      : { available: true, inspected: true };
+  if (carrier.available !== expected.available || carrier.inspected !== expected.inspected ||
+      !carrier.inspectionRationale?.trim()) fail("CARRIER_STATUS", carrier.id);
 }
 
 function cueContract(cue: Record<string, unknown>): Record<string, unknown> {
@@ -170,8 +195,11 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }
 
   const channels = reconstruction.coverageMatrix?.channels ?? [];
+  channels.forEach(validateCarrierInspectionContract);
   const availableChannels = channels.filter((channel) => channel.available);
-  if (availableChannels.some((channel) => !channel.inspected)) fail("UNCHECKED_AVAILABLE_CHANNEL");
+  if (availableChannels.some((channel) => !["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel)))) {
+    fail("UNCHECKED_AVAILABLE_CHANNEL");
+  }
   if ((reconstruction.coverageMatrix?.uncheckedChannels ?? []).length > 0) fail("UNCHECKED_CHANNELS");
   const meta = reconstruction.metaGate;
   if (meta?.pass !== true || (meta.uncheckedChannels ?? []).length > 0 ||
@@ -186,6 +214,6 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     coreUnits: units.filter((unit) => unit.importance === "core").length,
     evidenceReferences: references.length,
     availableChannels: availableChannels.length,
-    inspectedChannels: availableChannels.filter((channel) => channel.inspected).length
+    inspectedChannels: availableChannels.filter((channel) => ["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel))).length
   };
 }

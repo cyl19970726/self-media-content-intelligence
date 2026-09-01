@@ -67,7 +67,8 @@
       "type": "object",
       "required": ["question", "pass", "uncheckedChannels", "overlookedMeaningChanges", "overlookedRelationships", "rationale"],
       "properties": {
-        "question": { "type": "string" },
+        "questionId": { "const": "uncovered_information_audit" },
+        "question": { "type": "string", "minLength": 1 },
         "pass": { "type": "boolean" },
         "uncheckedChannels": { "type": "array", "items": { "type": "string" } },
         "overlookedMeaningChanges": { "type": "array", "items": { "type": "string" } },
@@ -116,7 +117,7 @@
       "type": "object",
       "required": ["channels", "meaningChanges", "relationships", "criticalQuestions", "cueAccountability", "coreEvidence", "unknowns", "uncheckedChannels"],
       "properties": {
-        "channels": { "type": "array", "items": { "type": "object", "required": ["id", "available", "inspected"], "properties": { "id": { "type": "string" }, "available": { "type": "boolean" }, "inspected": { "type": "boolean" } } } },
+        "channels": { "type": "array", "items": { "type": "object", "required": ["id", "available", "inspected"], "properties": { "id": { "type": "string" }, "available": { "type": "boolean" }, "inspected": { "type": "boolean" }, "inspectionStatus": { "enum": ["absent", "unchecked", "checked_readable", "checked_unreadable"] }, "inspectionRationale": { "type": "string", "minLength": 1 } } } },
         "meaningChanges": { "type": "array", "items": { "type": "object", "required": ["id", "captured", "unitIds"], "properties": { "id": { "type": "string" }, "captured": { "type": "boolean" }, "unitIds": { "type": "array", "items": { "type": "string" } } } } },
         "relationships": { "type": "array", "items": { "type": "object", "required": ["id", "evidenced", "evidenceRefs"], "properties": { "id": { "type": "string" }, "evidenced": { "type": "boolean" }, "evidenceRefs": { "type": "array", "items": { "type": "string" } } } } },
         "criticalQuestions": { "type": "array", "items": { "type": "object", "required": ["id", "status", "unitIds", "evidenceRefs"], "properties": { "id": { "type": "string" }, "status": { "enum": ["answered", "unknown"] }, "unitIds": { "type": "array", "items": { "type": "string" } }, "evidenceRefs": { "type": "array", "items": { "type": "string" } } } } },

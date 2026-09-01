@@ -10,13 +10,14 @@ flowchart LR
     P --> C[(按媒体 SHA 缓存)]
     C --> B[Builder\nTerra medium]
     B --> D{确定性 Builder 校验}
-    D -->|失败| N[NOT_READY]
+    D -->|无法组装最小语义结果| N[NOT_READY]
     D -->|通过| U[BUILT_UNEVALUATED]
     U --> W[工作台 / 暂定博主综合]
     U -. 按需 .-> E[独立 Evaluator]
     E --> G{证据硬闸}
     G -->|通过| V[VERIFIED]
-    G -->|失败| N
+    G -->|有问题| F[EVALUATED_WITH_FINDINGS]
+    F --> W
     V --> K[正式 Wiki 晋升]
 
     classDef media fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e
@@ -27,6 +28,7 @@ flowchart LR
     class M,P,C media
     class B,D build
     class U,W provisional
+    class F provisional
     class E,G,V,K verified
     class N failed
 ```
@@ -63,14 +65,15 @@ worker.video_slots = 3（通过 2-video gate 后）
 
 ```text
 buildState: queued | running | built | failed | blocked
-evaluationState: skipped | queued | running | verified | rejected
+evaluationState: skipped | queued | running | verified | findings
 ```
 
 面向当前 API 的兼容聚合状态：
 
 - `built_unevaluated`：Builder 与确定性校验通过，Evaluator 未运行；
+- `evaluated_with_findings`：Builder 结果可用，Evaluator 已记录问题但未批准 Wiki 晋升；当前 API 暂时投影为 `ready + qualityWarningGateIds`；
 - `verified`：Evaluator 与正式 gate 通过；
-- `not_ready`：候选或评估失败；
+- `not_ready`：Host 无法从 Builder 语义增量组装出最小合法候选；
 - `blocked`：媒体、Runner 或用户授权阻塞。
 
 批任务新增 `builtPosts`、`verifiedPosts`、`pendingPosts`、`failedPosts`。旧 `readyPosts` 暂时映射 `verifiedPosts`，避免旧消费者把候选结果当正式结果。
@@ -85,13 +88,16 @@ Builder 的同步关键路径为：
 4. 根据语义变化生成 capture protocol；
 5. 通过确定性脚本定向抽帧、OCR/UI 状态识别；
 6. 精确去重、生成全局联系表并记录共享代表帧；
-7. 生成 `reconstruction.json` 并完成内部 coverage/meta-gate；
-8. Host 运行 Schema、引用、媒体 SHA 与 Artifact 指纹校验；
-9. 原子注册 `built_unevaluated` Artifact。
+7. Builder 生成知识单元、关系、逐 cue 归责、语义 coverage 与 unknown；
+8. Host 从冻结 evidence pack 注入逐字 transcript、代表帧、overlapping shots、稳定路径与指纹，并根据真实 OCR/取帧执行记录规范化机械状态；
+9. Host 组装 `reconstruction.json`，运行 Schema、引用、媒体 SHA 与 Artifact 指纹校验；
+10. 原子注册 `built_unevaluated` Artifact。
 
 Evaluator 只有一个可选的新进程。它同时完成通用 GATE 和内容还原、编导逻辑、视觉剪辑三个 lens；宿主记录这一个真实 process run ID，并在前后比较全部冻结候选指纹。三 lens 是评估视角，不是三次伪造的独立执行。
 
-质量晋升采用双硬闸：Builder validator 先检查所有引用可解析、每个帧/OCR 时间落在知识单元范围、逐 cue 归责和指纹；Evaluator 再做独立语义反证。两层任一失败都只能得到 `not_ready`，不能晋升为 `verified`。
+质量晋升采用双层语义：Builder validator 决定“有没有可用候选”，Evaluator 决定“能否晋升 VERIFIED”。Evaluator 失败只能得到 `evaluated_with_findings`，不能晋升为 `verified`，但也不能删除或隐藏 Builder 候选。
+
+Host 规范化是确定性组装而非 Repairer：它可以恢复冻结 transcript、统一机械布尔字段、注入稳定 Meta Gate ID 和派生 OCR 执行状态；它不得补写知识单元、改写语义陈述、消除 unknown 或代替 Evaluator 判断内容是否完整。
 
 不是所有字幕 cue 都需要独占一张图片；多个 cue 可以引用同一个代表帧。但任何语义变化、UI 参数、前后对比或关键问题都不能因为去重被抹掉。
 

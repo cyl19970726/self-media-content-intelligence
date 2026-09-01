@@ -10,6 +10,12 @@ const evidenceLabels = {
   raw_fact: "原始事实", visual_observation: "画面观察", author_claim: "作者主张", system_inference: "系统推断", unknown: "未知"
 } as const;
 
+const qualityCopy = {
+  build: { missing: "未构建", built: "Builder 已完成", failed: "构建失败", blocked: "构建阻塞" },
+  evaluation: { skipped: "Evaluator 已跳过", failed: "评估失败", findings: "评估有 findings", verified: "Evaluator 已验证" },
+  promotion: { provisional: "仅供临时研究", wiki_eligible: "可进入正式 Wiki", ineligible: "不可晋级" }
+} as const;
+
 function metric(value: number | null) {
   return value === null ? "—" : new Intl.NumberFormat("zh-CN", { notation: "compact", maximumFractionDigits: 1 }).format(value);
 }
@@ -87,7 +93,8 @@ export default function VideoEvidencePage() {
     const cueIds = new Set(data?.transcript.map((cue) => cue.id) ?? []);
     const sparseIds = new Set(data?.frames.sparse.map((frame) => frame.id) ?? []);
     const denseIds = new Set(data?.frames.dense.map((frame) => frame.id) ?? []);
-    const ids = new Set([...cueIds, ...sparseIds, ...denseIds]);
+    const indexedIds = data?.evidenceIndex.filter((entry) => entry.anchorId).map((entry) => entry.id) ?? [];
+    const ids = new Set([...cueIds, ...sparseIds, ...denseIds, ...indexedIds]);
     return { ids, navigate: (ref: string) => {
       setPendingEvidenceRef(ref);
       if (denseIds.has(ref) && frameMode !== "dense") setFrameMode("dense");
@@ -108,6 +115,12 @@ export default function VideoEvidencePage() {
             <div className="evidence-health-card"><span className={data.gate.ready ? "is-ready" : "is-partial"}>{data.gate.ready ? "三镜头硬闸通过" : "三镜头未闭环"}</span><b>{data.coverage.coreCovered}/{data.coverage.coreTotal}</b><small>核心知识覆盖</small><p>{data.evidenceHealth.note}</p></div>
           </header>
 
+          <section className="post-truth-strip" aria-label="帖子知识版本状态">
+            <article className={`post-truth post-truth--${data.quality.buildState}`}><span>BUILD</span><b>{qualityCopy.build[data.quality.buildState]}</b><small>是否已有可读、可引用的 Builder 产物</small></article>
+            <article className={`post-truth post-truth--${data.quality.evaluationState}`}><span>EVALUATION</span><b>{qualityCopy.evaluation[data.quality.evaluationState]}</b><small>独立评估是否执行，以及留下什么结论</small></article>
+            <article className={`post-truth post-truth--${data.quality.promotionState}`}><span>PROMOTION</span><b>{qualityCopy.promotion[data.quality.promotionState]}</b><small>当前版本是否有资格进入正式知识库</small></article>
+          </section>
+
           <section className="video-metric-band">
             <div><b>{metric(data.engagement.likes)}</b><span>公开点赞</span></div><div><b>{data.performanceContext.tier.toUpperCase()}</b><span>账号内部层级</span></div><div><b>{data.performanceContext.medianMultiple === null ? "—" : `${data.performanceContext.medianMultiple.toFixed(1)}×`}</b><span>相对账号中位</span></div><div><b>{data.transcript.length}</b><span>逐句文字稿</span></div><div><b>{data.frames.dense.length}</b><span>关键证据画面</span></div>
           </section>
@@ -127,7 +140,8 @@ export default function VideoEvidencePage() {
 
           <div className="video-research-layout">
             <div className="video-research-main">
-              <section className="video-evidence-section" id="article"><header><span>01</span><div><h2>视频内容还原</h2><p>把视频转换为可独立阅读的文章；主张、观察与未知仍在证据层分开。</p></div></header><ArticleBody markdown={data.article}/></section>
+              {data.quality.findings.length > 0 && <section className="quality-findings" aria-label="评估发现"><header><div><span>EVALUATOR FINDINGS</span><h2>本版本需要保留的质量边界</h2></div><b>{data.quality.findings.length}</b></header><div>{data.quality.findings.map((finding) => <article key={finding.id}><span>{finding.id}</span><p>{finding.message === finding.id ? gateLabel(finding.id) : finding.message}</p><EvidenceRefs refs={finding.evidenceRefs}/></article>)}</div></section>}
+              {data.article && <section className="video-evidence-section" id="article"><header><span>01</span><div><h2>视频内容还原</h2><p>把视频转换为可独立阅读的文章；主张、观察与未知仍在证据层分开。</p></div></header><ArticleBody markdown={data.article}/></section>}
               <section className="video-evidence-section" id="directing"><header><span>02</span><div><h2>编导逻辑</h2><p>沿观众认知变化恢复每一阶段的任务、观众问题和证明动作；意义段落不冒充技术切镜。</p></div></header>
                 <div className="viewer-change"><article><span>观看前</span><p>{data.directingLogic.viewerBefore ?? "现有证据未登记"}</p></article><article><span>观看后</span><p>{data.directingLogic.viewerAfter ?? "现有证据未登记"}</p></article></div>
                 <div className="directing-ledger"><article><span>激活的问题</span><p>{data.directingLogic.activatedQuestion ?? "尚未独立恢复"}</p></article><article><span>内容承诺</span><p>{data.directingLogic.promise ?? "尚未独立恢复"}</p></article><article><span>回报</span><p>{data.directingLogic.payoff ?? "尚未独立恢复"}</p></article><article><span>结尾闭合</span><p>{data.directingLogic.endingResolution ?? "尚未独立恢复"}</p></article></div>
@@ -150,7 +164,7 @@ export default function VideoEvidencePage() {
               </section>
               <section className="video-evidence-section" id="architecture"><header><span>04</span><div><h2>知识单元与关系</h2><p>恢复内容中的因果、条件、步骤与反例，并把作者主张、画面观察、推断和未知分开。</p></div></header>
                 <div className="relation-map">{data.relations.length ? data.relations.map((relation, index) => <article key={`${relation.from}-${relation.to}-${index}`}><Network size={14}/><b>{relation.from}</b><span>{relation.relation}</span><b>{relation.to}</b><small>{relation.evidenceRefs.length} 条证据</small></article>) : <p>当前证据未形成结构化关系。</p>}</div>
-                <div className="knowledge-grid">{data.knowledgeUnits.map((unit) => <article key={unit.id} className={`knowledge-unit knowledge-unit--${unit.evidenceClass}`}><header><span>{unit.id} · {evidenceLabels[unit.evidenceClass]}</span><time>{timestamp(unit.start)}–{timestamp(unit.end)}</time></header><h3>{unit.title}</h3><p>{unit.statement}</p><footer><span>置信度 {unit.confidence}</span><EvidenceRefs refs={unit.evidenceRefs}/></footer>{unit.unknowns.map((unknown) => <small key={unknown}>{unknown}</small>)}</article>)}</div>
+                <div className="knowledge-grid">{data.knowledgeUnits.map((unit) => <article id={`evidence-${unit.id}`} key={unit.id} className={`knowledge-unit knowledge-unit--${unit.evidenceClass}`}><header><span>{unit.id} · {evidenceLabels[unit.evidenceClass]}</span><time>{timestamp(unit.start)}–{timestamp(unit.end)}</time></header><h3>{unit.title}</h3><p>{unit.statement}</p><footer><span>置信度 {unit.confidence}</span><EvidenceRefs refs={unit.evidenceRefs}/></footer>{unit.unknowns.map((unknown) => <small key={unknown}>{unknown}</small>)}</article>)}</div>
               </section>
               <section className="video-evidence-section" id="transcript"><header><span>05</span><div><h2>逐句文字稿与对应画面</h2><p>按时间查看自动识别的每句话，并结合对应画面核对原视频。</p></div></header>
                 <details className="transcript-disclosure"><summary><span>展开完整逐句文字稿</span><small>{data.transcript.length} 句 · 自动识别文本</small></summary><div className="transcript-table">{data.transcript.map((cue, index) => <article id={`evidence-${cue.id}`} key={cue.id}><time>{timestamp(cue.start)}–{timestamp(cue.end)}</time>{cue.representativeFrame ? <img src={cue.representativeFrame} loading="lazy" alt={`第 ${index + 1} 句对应画面`}/> : <span className="transcript-no-frame">暂无画面</span>}<div><b>第 {index + 1} 句</b><p>{cue.text}</p><small>{cue.overlappingShots.length ? `对应镜头：${cue.overlappingShots.join("、")}` : "暂未取得对应镜头"}</small></div></article>)}</div></details>

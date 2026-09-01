@@ -1,6 +1,6 @@
 {
   "schemaVersion": "reconstruction-gate-report-1.0",
-  "generatedAt": "2026-08-17T06:58:44.618Z",
+  "generatedAt": "2026-08-31T15:42:50.185Z",
   "ready": false,
   "gates": [
     {
@@ -54,7 +54,7 @@
     {
       "id": "ocr_and_ui_evidence_execution",
       "pass": true,
-      "detail": "Not applicable: protocol requested no OCR/UI action",
+      "detail": "Every OCR/UI frame has a terminal recognition result",
       "examples": []
     },
     {
@@ -85,6 +85,12 @@
       "id": "internal_process_dependencies",
       "pass": true,
       "detail": "Not applicable: no procedural units declared",
+      "examples": []
+    },
+    {
+      "id": "carrier_inspection_contract",
+      "pass": true,
+      "detail": "Carrier inspection statuses are coherent",
       "examples": []
     },
     {

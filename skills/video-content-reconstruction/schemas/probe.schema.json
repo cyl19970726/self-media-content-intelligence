@@ -42,6 +42,8 @@
           "modalityKeys": {"type": "array", "minItems": 1, "items": {"type": "string"}},
           "discoveredIn": {"type": "array", "minItems": 1, "items": {"type": "string"}},
           "available": {"type": "boolean"}, "inspected": {"type": "boolean"},
+          "inspectionStatus": {"enum": ["absent", "unchecked", "checked_readable", "checked_unreadable"]},
+          "inspectionRationale": {"type": "string", "minLength": 1},
           "roles": {"type": "array", "items": {"type": "string"}},
           "intervals": {"type": "array", "items": {"$ref": "#/$defs/range"}},
           "omissionImpact": {"type": "string"}

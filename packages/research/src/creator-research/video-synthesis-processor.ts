@@ -19,6 +19,7 @@ import {
   type CreatorResearchCompletionPort,
   type CreatorSynthesisLifecycleEvent
 } from "../../index.js";
+import { creatorSynthesisCoverage } from "./synthesis-coverage.js";
 function now(): string { return new Date().toISOString(); }
 
 function leaseUntil(seconds = 90): string {
@@ -36,7 +37,7 @@ function isVerifiedVideoState(state: string): boolean {
 }
 
 function isBuiltVideoState(state: string): boolean {
-  return state === "built_unevaluated" || isVerifiedVideoState(state);
+  return state === "built_unevaluated" || state === "evaluated_with_findings" || isVerifiedVideoState(state);
 }
 
 function refreshBatchCounts(batch: ReturnType<typeof videoReconstructionBatchSchema.parse>): void {
@@ -45,24 +46,6 @@ function refreshBatchCounts(batch: ReturnType<typeof videoReconstructionBatchSch
   batch.readyPosts = batch.verifiedPosts;
   batch.pendingPosts = batch.items.filter((item) => ["queued", "running"].includes(item.state)).length;
   batch.failedPosts = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state)).length;
-}
-
-function synthesisCoverage(
-  selection: ReturnType<typeof creatorSelectionSchema.parse>,
-  batch: ReturnType<typeof videoReconstructionBatchSchema.parse>
-): { allowed: boolean; boundedMediaGap: boolean } {
-  if (batch.readyPosts === batch.requestedPosts) return { allowed: true, boundedMediaGap: false };
-  const boundedMediaGap = batch.limitations.some((item) => item.startsWith("bounded_media_retry_once:"));
-  const unavailable = batch.items.filter((item) => item.state !== "ready");
-  if (!boundedMediaGap || unavailable.length === 0 || unavailable.some((item) =>
-    item.state !== "blocked" || !item.failedGateIds.includes("media_verification"))) {
-    return { allowed: false, boundedMediaGap: false };
-  }
-  const readyIds = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
-  const requiredGroups = ["high", "median", "mean", "low"] as const;
-  const hasMinimumCoverage = requiredGroups.every((group) => selection.items.some((item) =>
-    item.deepCandidate && item.deepGroups.includes(group) && readyIds.has(item.externalId)));
-  return { allowed: hasMinimumCoverage, boundedMediaGap: hasMinimumCoverage };
 }
 
 const videoChildRoleLabel: Record<VideoReconstructionLifecycleEvent["role"], string> = {
@@ -105,7 +88,7 @@ export class CreatorResearchVideoSynthesisProcessor {
     selection: ReturnType<typeof creatorSelectionSchema.parse>,
     queuedAt: string
   ): boolean {
-    const coverage = synthesisCoverage(selection, batch);
+    const coverage = creatorSynthesisCoverage(selection, batch);
     if (!coverage.allowed) return false;
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
       idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
@@ -244,7 +227,8 @@ export class CreatorResearchVideoSynthesisProcessor {
       const latestItem = latestBatch.items.find((candidate) => candidate.postExternalId === postExternalId);
       if (!latestItem) throw new Error("视频批次在执行期间丢失对应记录");
       const verifiedOutcome = outcome.state === "verified" || outcome.state === "ready";
-      const runtimeThreeLensComplete = verifiedOutcome && Boolean(
+      const evaluatedOutcome = verifiedOutcome || outcome.state === "evaluated_with_findings";
+      const runtimeThreeLensComplete = evaluatedOutcome && Boolean(
         outcome.threeLensEvaluationArtifactRef && outcome.threeLensGateReportArtifactRef && outcome.threeLensGateCount === 19
       );
       if (outcome.state === "built_unevaluated") Object.assign(latestItem, {
@@ -261,6 +245,17 @@ export class CreatorResearchVideoSynthesisProcessor {
         message: "Builder 与确定性校验已完成；独立 Evaluator 已跳过，结果仅作暂定分析。",
         updatedAt: completedAt
       });
+      else if (outcome.state === "evaluated_with_findings" && runtimeThreeLensComplete) Object.assign(latestItem, {
+        state: "evaluated_with_findings", reconstructionArtifactRef: outcome.reconstructionArtifactRef,
+        articleArtifactRef: outcome.articleArtifactRef, evaluationArtifactRef: outcome.evaluationArtifactRef,
+        builderValidationArtifactRef: outcome.builderValidationArtifactRef,
+        gateReportArtifactRef: outcome.gateReportArtifactRef,
+        threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef,
+        threeLensGateReportArtifactRef: outcome.threeLensGateReportArtifactRef,
+        evaluationPolicy: "single_pass@37a03aae", failedGateIds: outcome.qualityWarningGateIds,
+        message: `Builder 结果可用；独立评估保留 ${outcome.qualityWarningGateIds.length} 项 findings，未晋升正式 Wiki。`,
+        updatedAt: completedAt
+      });
       else if (verifiedOutcome && runtimeThreeLensComplete) Object.assign(latestItem, { state: "verified", reconstructionArtifactRef: outcome.reconstructionArtifactRef,
         articleArtifactRef: outcome.articleArtifactRef, evaluationArtifactRef: outcome.evaluationArtifactRef,
         builderValidationArtifactRef: outcome.builderValidationArtifactRef ?? null,
@@ -271,7 +266,7 @@ export class CreatorResearchVideoSynthesisProcessor {
         message: outcome.qualityWarningGateIds.length > 0
           ? `已完成单轮还原与评估；${outcome.qualityWarningGateIds.length} 项质量提醒保留在研究边界中。`
           : "已完成单轮还原与评估；未发现质量提醒。", updatedAt: completedAt });
-      else if (verifiedOutcome) Object.assign(latestItem, { state: "not_ready",
+      else if (evaluatedOutcome) Object.assign(latestItem, { state: "not_ready",
         reconstructionArtifactRef: outcome.reconstructionArtifactRef, articleArtifactRef: outcome.articleArtifactRef,
         evaluationArtifactRef: outcome.evaluationArtifactRef, gateReportArtifactRef: outcome.gateReportArtifactRef,
         threeLensEvaluationArtifactRef: outcome.threeLensEvaluationArtifactRef ?? null,
@@ -341,7 +336,7 @@ export class CreatorResearchVideoSynthesisProcessor {
         message: "视频重建批次 revision 已更新。", payload: { artifactRef: batchRef, postExternalId, state: outcome.state } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
         message: outcome.state === "built_unevaluated" ? "视频 Builder 已完成，独立 Evaluator 已跳过。"
-          : verifiedOutcome ? "视频已完成还原与独立评估。" : "视频未进入下游机制归纳。",
+          : evaluatedOutcome ? "视频已形成可用还原并完成独立评估。" : "视频未进入下游机制归纳。",
         payload: { postExternalId, state: outcome.state } });
     } catch (error) {
       this.recordVideoExecutionFailure(run.id, job, workerId, postExternalId,

@@ -5,6 +5,7 @@ export * from "./src/creator-research/batch-service.js";
 export * from "./src/creator-research/pipeline.js";
 export * from "./src/creator-research/repository.js";
 export * from "./src/creator-research/service.js";
+export * from "./src/creator-research/synthesis-coverage.js";
 export * from "./src/creator-research/worker.js";
 export * from "./src/creator-synthesis/contracts.js";
 export * from "./src/creator-synthesis/validate.js";

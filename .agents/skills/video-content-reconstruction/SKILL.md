@@ -25,7 +25,7 @@ This Skill owns both single-video roles:
 
 Runtime agents enter through the concise role contracts: [builder-operator.md](references/builder-operator.md) and [evaluator-operator.md](references/evaluator-operator.md). The host prepares and fingerprints media inputs before Builder starts. Builder does not own ASR/OCR provider discovery or transcription process lifecycle; Evaluator is one fresh independent process that performs the general gate and all three content/directing/visual lenses without pretending they were three processes.
 
-Deterministic schema and reference validation is required in both modes. The default fast path may stop after Builder validation and return `BUILT_UNEVALUATED`. This is useful for workbench preview and provisional creator synthesis, but it is not `VERIFIED` and must not enter the formal Wiki. Run the optional Evaluator to reach `VERIFIED`; return `NOT_READY` when either selected stage fails its hard contract.
+Deterministic schema and reference validation is required in both modes. The Host owns immutable transcript/frame mappings and mechanical execution state, and assembles them with the Builder's semantic output before validation. The default fast path may stop after Builder validation and return `BUILT_UNEVALUATED`. Run the optional Evaluator to reach `VERIFIED`; when evaluation finds quality problems, preserve the usable candidate as `EVALUATED_WITH_FINDINGS`. Use `NOT_READY` only when the Host cannot assemble a minimum valid candidate.
 
 Use `media-use` as the media capability dependency. Resolve the available transcription/OCR/media providers once at host or Worker startup; do not rediscover a known-unavailable provider inside every video run.
 
@@ -123,7 +123,7 @@ For every core knowledge unit:
 - include claim/evidence/condition/counterexample/action relations when argumentative or strategic;
 - list what the video does not establish.
 
-Include the full verbatim transcript with each cue's representative frame and every overlapping shot.
+Account for the full verbatim transcript. The Host restores each cue's exact text, representative frame, and overlapping shots from the frozen evidence pack; Builder owns semantic cue accountability, not mechanical copying accuracy.
 Account for every cue in `coverageMatrix.cueAccountability`; a cue may be knowledge, context, nonsemantic, or uncertain, but it may not silently disappear from the knowledge model. Recheck the opening and closing cues, all short on-screen cards, observable likeness/symbols, counted result groups, claim scope, and global cross-segment relationships before writing the article.
 
 Also reconcile speech labels with visible UI identity, literal failure signatures with result states, edited chronology with the claimed or inferred procedure, every visible qualifier/disclaimer, avatar or setting referents, and decision-relevant absences. A statement that something is absent requires a documented full-scope inspection; silence or a missed sample is not negative evidence.
@@ -132,11 +132,11 @@ Also reconcile speech labels with visible UI identity, literal failure signature
 
 Build a coverage matrix by channel, meaning change, relationship, critical question, and unresolved item. Use scoped numerators and denominators; never emit a single “completeness 100%.”
 
-Answer the meta-gate exactly:
+Answer the meta-gate using stable ID `uncovered_information_audit`; the human-readable question may be localized:
 
 > 原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？
 
-If any available channel remains unchecked, the reconstruction fails.
+If any available channel remains unchecked, the reconstruction fails. A carrier that was checked but cannot be read semantically is `checked_unreadable`, not unchecked; it closes coverage only when the limitation and resulting unknown are explicit and no semantic claim is made from it.
 
 ## Step 7 — Validate Builder, then optionally evaluate
 
@@ -201,7 +201,7 @@ Verified mode additionally delivers:
 
 A human-readable article or report is a deferred renderer output generated only from the fixed reconstruction; it is not required on the synchronous Builder fast path.
 
-Use `BUILT_UNEVALUATED` only after Builder validation passes. Use `VERIFIED` only when the optional independent evaluation and its gate pass. Otherwise use `NOT_READY` and report failed gates.
+Use `BUILT_UNEVALUATED` after Builder validation passes without evaluation or when the optional Evaluator itself fails; distinguish the two with `evaluationMode`. Use `EVALUATED_WITH_FINDINGS` when evaluation completes with quality findings, and `VERIFIED` only when its gate passes. Both non-verified states remain visible in the workbench but cannot enter the formal Wiki. Use `NOT_READY` only when no minimum valid candidate can be assembled.
 
 ## Boundaries
 

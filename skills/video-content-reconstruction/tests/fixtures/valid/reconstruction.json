@@ -19,7 +19,7 @@
   ],
   "relations": [{"from": "KU-001", "to": "KU-002", "relation": "precedes", "evidence": [{"refType": "cue", "ref": "CUE-001", "supports": "action order"}, {"refType": "cue", "ref": "CUE-002", "supports": "result order"}]}],
   "coverageMatrix": {
-    "channels": [{"id": "CAR-SPEECH", "available": true, "inspected": true}, {"id": "CAR-UI", "available": true, "inspected": true}],
+    "channels": [{"id": "CAR-SPEECH", "available": true, "inspected": true, "inspectionStatus": "checked_readable", "inspectionRationale": "Transcript and cue timing were inspected."}, {"id": "CAR-UI", "available": true, "inspected": true, "inspectionStatus": "checked_readable", "inspectionRationale": "Before, during, and after UI frames were inspected."}],
     "meaningChanges": [{"id": "MC-001", "captured": true, "unitIds": ["KU-001", "KU-002"]}, {"id": "MC-002", "captured": true, "unitIds": ["KU-002"]}],
     "relationships": [{"id": "REL-001", "evidenced": true, "evidenceRefs": ["CUE-001", "CUE-002"]}],
     "criticalQuestions": [{"id": "Q-001", "status": "answered", "unitIds": ["KU-001"], "evidenceRefs": ["CUE-001"]}, {"id": "Q-002", "status": "answered", "unitIds": ["KU-002"], "evidenceRefs": ["CUE-002", "TARGET-0004"]}],
@@ -31,5 +31,5 @@
     "unknowns": ["specific hidden settings are not shown"],
     "uncheckedChannels": []
   },
-  "metaGate": {"question": "原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？", "pass": true, "uncheckedChannels": [], "overlookedMeaningChanges": [], "overlookedRelationships": [], "rationale": "Speech and the only visible UI transition were independently inspected."}
+  "metaGate": {"questionId": "uncovered_information_audit", "question": "Which carrier, meaning change, or knowledge relation did the protocol fail to inspect?", "pass": true, "uncheckedChannels": [], "overlookedMeaningChanges": [], "overlookedRelationships": [], "rationale": "Speech and the only visible UI transition were independently inspected."}
 }

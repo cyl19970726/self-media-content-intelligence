@@ -20,6 +20,7 @@ import {
   type CreatorResearchCompletionPort
 } from "../../index.js";
 import { CreatorResearchVideoSynthesisProcessor } from "./video-synthesis-processor.js";
+import { creatorSynthesisCoverage } from "./synthesis-coverage.js";
 
 function now(): string { return new Date().toISOString(); }
 
@@ -29,24 +30,6 @@ function leaseUntil(seconds = 90): string {
 
 function canonicalXhsPostUrl(externalId: string): string {
   return `https://www.xiaohongshu.com/explore/${encodeURIComponent(externalId)}`;
-}
-
-function synthesisCoverage(
-  selection: ReturnType<typeof creatorSelectionSchema.parse>,
-  batch: ReturnType<typeof videoReconstructionBatchSchema.parse>
-): { allowed: boolean; boundedMediaGap: boolean } {
-  if (batch.readyPosts === batch.requestedPosts) return { allowed: true, boundedMediaGap: false };
-  const boundedMediaGap = batch.limitations.some((item) => item.startsWith("bounded_media_retry_once:"));
-  const unavailable = batch.items.filter((item) => item.state !== "ready");
-  if (!boundedMediaGap || unavailable.length === 0 || unavailable.some((item) =>
-    item.state !== "blocked" || !item.failedGateIds.includes("media_verification"))) {
-    return { allowed: false, boundedMediaGap: false };
-  }
-  const readyIds = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
-  const requiredGroups = ["high", "median", "mean", "low"] as const;
-  const hasMinimumCoverage = requiredGroups.every((group) => selection.items.some((item) =>
-    item.deepCandidate && item.deepGroups.includes(group) && readyIds.has(item.externalId)));
-  return { allowed: hasMinimumCoverage, boundedMediaGap: hasMinimumCoverage };
 }
 
 function stage(run: CreatorResearchRun, id: CreatorResearchRun["stages"][number]["id"]) {
@@ -634,7 +617,7 @@ export class CreatorResearchJobProcessor {
       const previousItems = new Map(previousBatch?.items.map((item) => [item.postExternalId, item]) ?? []);
       const batchItems = deepItems.map((item) => {
         const previous = previousItems.get(item.externalId);
-        if (previous && ["built_unevaluated", "verified", "ready"].includes(previous.state)) return previous;
+        if (previous && ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(previous.state)) return previous;
         const media = mediaById.get(item.externalId);
         const verified = media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
         return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
@@ -649,7 +632,7 @@ export class CreatorResearchJobProcessor {
       const batch = videoReconstructionBatchSchema.parse({
         schemaVersion: "1.0.0", creatorRunId: run.id, revision, generatedAt: completedAt,
         requestedPosts: batchItems.length,
-        builtPosts: batchItems.filter((item) => ["built_unevaluated", "verified", "ready"].includes(item.state)).length,
+        builtPosts: batchItems.filter((item) => ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length,
         verifiedPosts: batchItems.filter((item) => ["verified", "ready"].includes(item.state)).length,
         readyPosts: batchItems.filter((item) => ["verified", "ready"].includes(item.state)).length,
         pendingPosts: batchItems.filter((item) => ["queued", "running"].includes(item.state)).length,
@@ -723,7 +706,7 @@ export class CreatorResearchJobProcessor {
     selection: ReturnType<typeof creatorSelectionSchema.parse>,
     queuedAt: string
   ): boolean {
-    const coverage = synthesisCoverage(selection, batch);
+    const coverage = creatorSynthesisCoverage(selection, batch);
     if (!coverage.allowed) return false;
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
       idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,

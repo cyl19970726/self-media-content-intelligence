@@ -10,7 +10,7 @@ describeWithExternalEvidence("legacy deep-video research projections", () => {
   it("restores the validated red-witch reconstruction instead of the shallow report adapter", () => {
     const video = loadVideoResearch(emptyService, "ai-red-witch", "6801c0750000000007037156");
     expect(video?.gate.ready).toBe(true);
-    expect(video?.article.length).toBeGreaterThan(2_000);
+    expect(video?.article?.length).toBeGreaterThan(2_000);
     expect(video?.knowledgeUnits).toHaveLength(20);
     expect(video?.relations).toHaveLength(12);
     expect(video?.directingLogic.stages).toHaveLength(7);
@@ -35,7 +35,7 @@ describeWithExternalEvidence("legacy deep-video research projections", () => {
     const video = loadVideoResearch(emptyService, "zhang-zala", "69fe6f3a000000001a036be4");
     expect(video?.gate.ready).toBe(true);
     expect(video?.gate.failedGateIds).toEqual([]);
-    expect(video?.article.length).toBeGreaterThan(10_000);
+    expect(video?.article?.length).toBeGreaterThan(10_000);
     expect(video?.knowledgeUnits).toHaveLength(10);
     expect(video?.relations).toHaveLength(5);
     expect(video?.directingLogic.stages).toHaveLength(6);
@@ -59,7 +59,7 @@ describeWithExternalEvidence("legacy deep-video research projections", () => {
     expect(video?.lensCoverage.contentRestoration.state).toBe("ready");
     expect(video?.lensCoverage.directingLogic.state).toBe("ready");
     expect(video?.lensCoverage.visualEditingLogic.state).toBe("ready");
-    expect(video?.article.length).toBeGreaterThan(2_000);
+    expect(video?.article?.length).toBeGreaterThan(2_000);
     expect(video?.knowledgeUnits).toHaveLength(21);
     expect(video?.relations).toHaveLength(30);
     expect(video?.directingLogic.stages).toHaveLength(10);

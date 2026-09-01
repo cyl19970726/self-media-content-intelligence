@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { validateBuilderIntegrity } from "./video-builder-integrity.js";
+import { carrierInspectionStatus, validateBuilderIntegrity } from "./video-builder-integrity.js";
 
 const fixtureRoot = path.join(process.cwd(), ".agents", "skills", "video-content-reconstruction", "tests", "fixtures", "valid");
 
@@ -19,6 +19,7 @@ function createFixture() {
   fs.mkdirSync(path.join(root, "targeted-evidence"), { recursive: true });
   fs.copyFileSync(path.join(fixtureRoot, "evidence-pack.json"), path.join(root, "evidence/evidence-pack.json"));
   fs.copyFileSync(path.join(fixtureRoot, "targeted-evidence.json"), path.join(root, "targeted-evidence/targeted-evidence.json"));
+  fs.copyFileSync(path.join(fixtureRoot, "probe.json"), path.join(root, "probe.json"));
   fs.copyFileSync(path.join(fixtureRoot, "reconstruction.json"), path.join(root, "reconstruction.json"));
   const evidencePath = path.join(root, "evidence/evidence-pack.json");
   fs.writeFileSync(path.join(root, "media-preparation.json"), JSON.stringify({
@@ -30,6 +31,13 @@ function createFixture() {
 }
 
 describe("Builder deterministic integrity gate", () => {
+  it("treats checked_unreadable as closed without claiming semantic readability", () => {
+    expect(carrierInspectionStatus({
+      id: "CAR-AUDIO", available: true, inspected: true,
+      inspectionStatus: "checked_unreadable", inspectionRationale: "Only technical stream presence is model-readable."
+    })).toBe("checked_unreadable");
+  });
+
   it("binds every transcript cue, unit relation, evidence reference, channel, and media revision", () => {
     const item = createFixture();
     try {
@@ -89,4 +97,22 @@ describe("Builder deterministic integrity gate", () => {
       fs.rmSync(item.root, { recursive: true, force: true });
     }
   });
+
+  it("rejects an inspection status that contradicts compatibility booleans", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.coverageMatrix.channels.push({
+        id: "CAR-AUDIO", available: true, inspected: false,
+        inspectionStatus: "checked_unreadable", inspectionRationale: "technical stream only"
+      });
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_CARRIER_STATUS:CAR-AUDIO");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
 });

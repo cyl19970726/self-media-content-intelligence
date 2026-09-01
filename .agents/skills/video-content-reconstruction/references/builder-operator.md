@@ -19,7 +19,7 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 4. 先复用 evidence pack 的 gap-free dense/shot/cue frames，只让 capture protocol 补尚未回答的关键问题；不得把整段 dense sweep 再包装成 targeted action。只通过 `capture-protocol-evidence.mjs` 执行定向采集。命令路径从当前冻结根目录推导，不要反复手抄长 run ID。
 5. 需要 OCR/UI 时，对同一份 targeted manifest 最多运行一次 `node scripts/run-ocr.mjs` 并人工核对提案；不得直接调用 Swift 实现。wrapper 把编译缓存放在可写的临时目录，避免把宿主权限问题误判成 OCR 能力失败。完整 OCR artifact 对该 revision 是终态：成功不得重跑；逐帧失败也保留为“已检查但不可用”，不得用同输入重试。
 6. 写 reconstruction：保留全部 cue、cue↔frame↔shot 映射、知识单元、关系、未知项、逐 cue 归责与分范围 coverage。
-7. 回答 meta-gate：原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？
+7. 回答 meta-gate：写入稳定标识 `questionId: "uncovered_information_audit"`，并回答“原视频还有哪种信息载体、意义变化或知识关系根本没被协议检查？”。展示文本可以使用任意语言，宿主不做逐字匹配。
 8. 运行 Schema 校验。宿主随后独立检查必需文件、引用、媒体指纹和 Artifact 指纹并生成 `builder-validation.json`。
 
 ## 证据纪律
@@ -30,6 +30,8 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 - 定向采集会生成 `targeted-evidence/contact-sheet.jpg`。先用它做全局覆盖核对，再按未决问题查看原图；每批最多 4 张、通常总计不超过 12 张。不得一次把几十张高分辨率图片灌入上下文。
 - OCR 全帧失败时不存在可引用的 OCR 行 ID。此时引用对应 `targeted_frame` 并把文字内容留作 unknown；绝不发明 `OCR-*` 占位 ID。
 - 不得用 `afplay`、GUI 播放器或系统扬声器假装模型已经听见音频。只使用模型可读取的音频证据、字幕中的非语音标签和 evidence pack；若只有技术上的 audio-present 而没有可语义读取的音频证据，明确把音乐/音效语义留作 unknown。
+- 每个载体同时保留兼容字段 `available/inspected`，并写入 `inspectionStatus`：`absent`、`unchecked`、`checked_readable` 或 `checked_unreadable`，以及非空 `inspectionRationale`。只有技术 audio-present、但没有模型可读语义证据时，使用 `available:true`、`inspected:true`、`inspectionStatus:"checked_unreadable"`，并把音乐/音效语义列入 unknown；这表示检查闭环，不表示获得了音频语义证据。
+- `informationCarriers[].discoveredIn` 只能引用当前 `carrierSweep[].id`；媒体文件或 evidence pack 来源写入 `inspectionRationale/evidenceHints`，不能冒充 sweep ID。`absent` 必须是 `available:false`，但 `inspected` 可以为 true，表示宿主证据已被检查并确认载体不存在。
 - 一张中点截图不能证明整个区间；连续操作、隐藏点击、网络调用和剪辑顺序不得脑补。
 - Targeted capture 默认每 action 60 张、全协议 180 张唯一帧。同一时刻与字节完全相同的帧跨 action 复用。预算不是覆盖率上限：若关键语义变化、小字可读性或 before/during/after 关系确需更多帧，先在 protocol 写出理由，再显式提高；否则细化范围而不是全段 0.25–0.75 秒扫图。
 - 负面结论必须写清被完整检查的时间范围与载体。

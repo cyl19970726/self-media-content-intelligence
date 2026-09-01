@@ -69,6 +69,9 @@ const mapping = (draft.coverage ?? {})
 const questionMap = mapping.criticalQuestions ?? {}
 const meaningMap = mapping.meaningChanges ?? {}
 const relationshipMap = mapping.relationships ?? {}
+const carrierIsClosed = (carrier) => ["checked_readable", "checked_unreadable"].includes(
+  carrier.inspectionStatus ?? (!carrier.available ? "absent" : carrier.inspected ? "checked_readable" : "unchecked")
+)
 
 const output = {
   schemaVersion: 'video-reconstruction-1.0',
@@ -85,7 +88,9 @@ const output = {
   knowledgeUnits: units,
   relations,
   coverageMatrix: {
-    channels: probe.informationCarriers.map(({ id, available, inspected }) => ({ id, available, inspected })),
+    channels: probe.informationCarriers.map(({ id, available, inspected, inspectionStatus, inspectionRationale }) => ({
+      id, available, inspected, inspectionStatus, inspectionRationale
+    })),
     meaningChanges: probe.meaningChanges.map((item) => ({ id: item.id, captured: Boolean(meaningMap[item.id]?.length), unitIds: meaningMap[item.id] ?? [] })),
     relationships: probe.relationshipHypotheses.map((item) => ({ id: item.id, evidenced: Boolean(relationshipMap[item.id]?.length), evidenceRefs: relationshipMap[item.id] ?? [] })),
     criticalQuestions: probe.criticalQuestions.map((item) => ({
@@ -97,9 +102,9 @@ const output = {
     cueAccountability: cues.map((cue) => cueAssignments.get(cue.id)),
     coreEvidence: { covered: coveredCore, total: core.length },
     unknowns: draft.unknowns ?? probe.unresolved ?? [],
-    uncheckedChannels: probe.informationCarriers.filter((carrier) => carrier.available && !carrier.inspected).map((carrier) => carrier.id)
+    uncheckedChannels: probe.informationCarriers.filter((carrier) => carrier.available && !carrierIsClosed(carrier)).map((carrier) => carrier.id)
   },
-  metaGate: draft.metaGate
+  metaGate: { questionId: 'uncovered_information_audit', ...draft.metaGate }
 }
 
 const outputPath = path.resolve(args.out)
