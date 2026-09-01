@@ -3,6 +3,8 @@
 状态：**当前架构说明 + 明确标注的目标改造**  
 更新日期：2026-08-31
 
+第一次阅读请先看更短的[核心心智模型](../vision/signal-room-core-mental-model.md)；本文只负责展开工程执行、Worker、Skill 与证据硬闸。
+
 这份文档回答五个问题：
 
 1. 输入一批博主后，系统最终产出什么？
@@ -373,4 +375,3 @@ flowchart LR
 - [任务、工作流与证据闸门](../initiatives/active/creator-analysis-os-v1/pipeline-and-gates.md)
 - [三镜头视频分析合同](../initiatives/active/creator-analysis-os-v1/three-lens-video-contract.md)
 - [Creator Batch Pipeline V2](../initiatives/active/creator-batch-pipeline-v2/README.md)
-
