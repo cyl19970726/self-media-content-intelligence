@@ -19,6 +19,7 @@ import {
   type CreatorResearchCompletionPort,
   type CreatorSynthesisLifecycleEvent
 } from "../../index.js";
+import { creatorSynthesisCoverage } from "./synthesis-coverage.js";
 function now(): string { return new Date().toISOString(); }
 
 function leaseUntil(seconds = 90): string {
@@ -45,24 +46,6 @@ function refreshBatchCounts(batch: ReturnType<typeof videoReconstructionBatchSch
   batch.readyPosts = batch.verifiedPosts;
   batch.pendingPosts = batch.items.filter((item) => ["queued", "running"].includes(item.state)).length;
   batch.failedPosts = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state)).length;
-}
-
-function synthesisCoverage(
-  selection: ReturnType<typeof creatorSelectionSchema.parse>,
-  batch: ReturnType<typeof videoReconstructionBatchSchema.parse>
-): { allowed: boolean; boundedMediaGap: boolean } {
-  if (batch.readyPosts === batch.requestedPosts) return { allowed: true, boundedMediaGap: false };
-  const boundedMediaGap = batch.limitations.some((item) => item.startsWith("bounded_media_retry_once:"));
-  const unavailable = batch.items.filter((item) => item.state !== "ready");
-  if (!boundedMediaGap || unavailable.length === 0 || unavailable.some((item) =>
-    item.state !== "blocked" || !item.failedGateIds.includes("media_verification"))) {
-    return { allowed: false, boundedMediaGap: false };
-  }
-  const readyIds = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
-  const requiredGroups = ["high", "median", "mean", "low"] as const;
-  const hasMinimumCoverage = requiredGroups.every((group) => selection.items.some((item) =>
-    item.deepCandidate && item.deepGroups.includes(group) && readyIds.has(item.externalId)));
-  return { allowed: hasMinimumCoverage, boundedMediaGap: hasMinimumCoverage };
 }
 
 const videoChildRoleLabel: Record<VideoReconstructionLifecycleEvent["role"], string> = {
@@ -105,7 +88,7 @@ export class CreatorResearchVideoSynthesisProcessor {
     selection: ReturnType<typeof creatorSelectionSchema.parse>,
     queuedAt: string
   ): boolean {
-    const coverage = synthesisCoverage(selection, batch);
+    const coverage = creatorSynthesisCoverage(selection, batch);
     if (!coverage.allowed) return false;
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
       idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,

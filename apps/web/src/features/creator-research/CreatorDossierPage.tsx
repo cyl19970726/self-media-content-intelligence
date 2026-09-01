@@ -202,7 +202,7 @@ export default function CreatorDossierPage() {
       </DossierSection>
 
       <DossierSection id="deep" index="06" title="深度证据覆盖" note={deepSetNote(data.portfolio.items.length, deepItems.length)}>
-        <div className="deep-coverage-strip">{(["high", "base", "low"] as const).map((value) => { const tierItems = deepItems.filter((item) => item.tier === value); return <article key={value}><span>{tierLabels[value]}</span><b>{tierItems.filter((item) => item.evidenceStatus === "deep_validated").length}/{tierItems.length}</b><small>三镜头通过 / 已选择</small></article>; })}<p>{deepSetNote(data.portfolio.items.length, deepItems.length)} 请在 {data.portfolio.items.length} 条统一 List 或 Gallery 中按“证据”标记进入单视频还原；记录 ID、层级和筛选状态保持不变。</p></div>
+        <div className="deep-coverage-strip">{(["high", "base", "low"] as const).map((value) => { const tierItems = deepItems.filter((item) => item.tier === value); return <article key={value}><span>{tierLabels[value]}</span><b>{tierItems.filter((item) => item.evidenceStatus === "deep_validated").length}/{tierItems.length}</b><small>正式验证 / 已选择</small></article>; })}<p>{deepSetNote(data.portfolio.items.length, deepItems.length)} 当前有 {deepItems.filter((item) => ["deep_built", "deep_validated"].includes(item.evidenceStatus)).length} 条 Builder 产物可用于临时比较，{deepItems.filter((item) => item.evidenceStatus === "deep_validated").length} 条可进入正式综合；临时结论不会写入 Wiki。</p></div>
       </DossierSection>
 
       <DossierSection id="rhythm" index="07" title="发布节奏与内容演化" note="时间字段缺失时保持未知，不用选样分布冒充全量节奏。" health={data.rhythm.health}><StatementList values={data.rhythm.statements} empty={data.rhythm.health.reason}/></DossierSection>

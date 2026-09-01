@@ -14,6 +14,45 @@ const lensCoverageSchema = z.object({
   rules: z.array(z.object({ id: z.string(), pass: z.boolean(), note: z.string(), evidenceRefs: z.array(z.string()), failedReason: z.string().nullable() }))
 });
 
+const postQualitySchema = z.object({
+  buildState: z.enum(["missing", "built", "failed", "blocked"]),
+  evaluationState: z.enum(["skipped", "failed", "findings", "verified"]),
+  promotionState: z.enum(["provisional", "wiki_eligible", "ineligible"]),
+  aggregateState: z.string(),
+  findings: z.array(z.object({
+    id: z.string(),
+    source: z.enum(["builder", "generic_evaluator", "content_restoration", "directing_logic", "visual_editing", "projection"]),
+    message: z.string(),
+    evidenceRefs: z.array(z.string())
+  })),
+  lineage: z.object({
+    reconstructionArtifactRef: z.string().nullable(),
+    builderValidationArtifactRef: z.string().nullable(),
+    evaluationArtifactRef: z.string().nullable(),
+    gateReportArtifactRef: z.string().nullable(),
+    threeLensEvaluationArtifactRef: z.string().nullable(),
+    threeLensGateReportArtifactRef: z.string().nullable(),
+    candidateRevisionFingerprint: z.string().nullable()
+  })
+});
+
+const legacyQuality = {
+  buildState: "missing" as const,
+  evaluationState: "skipped" as const,
+  promotionState: "ineligible" as const,
+  aggregateState: "legacy_projection",
+  findings: [],
+  lineage: {
+    reconstructionArtifactRef: null,
+    builderValidationArtifactRef: null,
+    evaluationArtifactRef: null,
+    gateReportArtifactRef: null,
+    threeLensEvaluationArtifactRef: null,
+    threeLensGateReportArtifactRef: null,
+    candidateRevisionFingerprint: null
+  }
+};
+
 export const videoResearchSchema = z.object({
   schemaVersion: z.literal("1.0.0"),
   id: z.string(),
@@ -23,7 +62,15 @@ export const videoResearchSchema = z.object({
   sourceHref: z.string(),
   sourceLabel: z.string(),
   thesis: z.string(),
-  article: z.string(),
+  article: z.string().nullable(),
+  quality: postQualitySchema.default(legacyQuality),
+  evidenceIndex: z.array(z.object({
+    id: z.string(),
+    kind: z.string(),
+    label: z.string(),
+    anchorId: z.string().nullable(),
+    artifactRef: z.string().nullable()
+  })).default([]),
   engagement: z.object({ likes: z.number().nullable(), collections: z.number().nullable(), comments: z.number().nullable(), shares: z.number().nullable() }),
   evidenceHealth: z.object({
     state: z.enum(["ready", "partial", "missing"]),

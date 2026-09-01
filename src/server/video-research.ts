@@ -1,7 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { artifactPath } from "../../packages/adapters/index.js";
-import type { CreatorResearchService } from "../../packages/research/index.js";
+import {
+  runtimeThreeLensEvaluationSchema,
+  runtimeThreeLensGateReportSchema,
+  type CreatorResearchService,
+  type RuntimeThreeLensEvaluation,
+  type RuntimeThreeLensGateReport
+} from "../../packages/research/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { loadVideoEvidence } from "./console.js";
 import { loadLegacyDeepVideo } from "./legacy-deep-videos.js";
@@ -12,6 +18,50 @@ function text(value: unknown, fallback = ""): string { return typeof value === "
 function number(value: unknown): number | null { return typeof value === "number" && Number.isFinite(value) ? value : null; }
 function list(value: unknown): unknown[] { return Array.isArray(value) ? value : []; }
 function strings(value: unknown): string[] { return list(value).filter((item): item is string => typeof item === "string"); }
+
+type LensKey = keyof RuntimeThreeLensEvaluation["lenses"];
+
+export function projectPostQualityStates(state: string, hasEvaluation: boolean) {
+  const buildState = ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(state)
+    ? "built" as const : state === "blocked" ? "blocked" as const : state === "not_ready" ? "failed" as const : "missing" as const;
+  const evaluationState = ["verified", "ready"].includes(state) && hasEvaluation ? "verified" as const
+    : state === "evaluated_with_findings" ? "findings" as const
+      : ["verified", "ready"].includes(state) ? "failed" as const : hasEvaluation ? "failed" as const : "skipped" as const;
+  const promotionState = evaluationState === "verified" ? "wiki_eligible" as const
+    : buildState === "built" ? "provisional" as const : "ineligible" as const;
+  return { buildState, evaluationState, promotionState };
+}
+
+function projectLens(
+  evaluation: RuntimeThreeLensEvaluation,
+  report: RuntimeThreeLensGateReport,
+  key: LensKey,
+  uncheckedChannels: string[]
+) {
+  const lens = evaluation.lenses[key];
+  const passed = lens.rules.filter((rule) => rule.status === "pass");
+  const failedGateIds = lens.rules.filter((rule) => rule.status !== "pass").map((rule) => rule.ruleId);
+  const evidenceRefs = [...new Set(lens.rules.flatMap((rule) => rule.evidenceRefs.map((reference) => reference.refId)))];
+  const state = failedGateIds.length === 0 ? "ready" as const : passed.length > 0 ? "partial" as const : "missing" as const;
+  return {
+    state, covered: passed.length, total: lens.rules.length, evidenceRefs, conflicts: [], uncheckedChannels,
+    failedGateIds,
+    note: report.ready ? "该镜头的独立评估规则已全部通过。" : `${failedGateIds.length} 条独立评估规则仍有 findings 或未检查。`,
+    evaluator: { id: lens.evaluator.evaluatorId, version: lens.evaluator.evaluatorVersion, checkedAt: lens.evaluator.evaluatedAt },
+    rules: lens.rules.map((rule) => ({ id: rule.ruleId, pass: rule.status === "pass", note: rule.finding,
+      evidenceRefs: rule.evidenceRefs.map((reference) => reference.refId), failedReason: rule.status === "pass" ? null : rule.evaluatorNotes }))
+  };
+}
+
+function safeThreeLens(batchItem: { threeLensEvaluationArtifactRef: string | null; threeLensGateReportArtifactRef: string | null }) {
+  if (!batchItem.threeLensEvaluationArtifactRef || !batchItem.threeLensGateReportArtifactRef) return null;
+  try {
+    const evaluation = runtimeThreeLensEvaluationSchema.parse(readJson(batchItem.threeLensEvaluationArtifactRef));
+    const report = runtimeThreeLensGateReportSchema.parse(readJson(batchItem.threeLensGateReportArtifactRef));
+    if (evaluation.postExternalId !== report.postExternalId || evaluation.candidateRevision.fingerprint !== report.candidateRevision.fingerprint) return null;
+    return { evaluation, report };
+  } catch { return null; }
+}
 
 function legacyVideo(creatorId: string, videoId: string): VideoResearch | null {
   const data = loadVideoEvidence(creatorId, videoId);
@@ -67,7 +117,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const rootRef = batchItem.reconstructionArtifactRef.replace(/reconstruction\.json$/, "");
   const rootPath = path.dirname(artifactPath(batchItem.reconstructionArtifactRef));
   const articlePath = batchItem.articleArtifactRef ? artifactPath(batchItem.articleArtifactRef) : path.join(rootPath, "article.md");
-  const article = fs.existsSync(articlePath) ? fs.readFileSync(articlePath, "utf8") : "完整文章尚未生成。";
+  const article = fs.existsSync(articlePath) ? fs.readFileSync(articlePath, "utf8") : null;
   const targetedPath = path.join(rootPath, "targeted-evidence", "targeted-evidence.json");
   const targeted = fs.existsSync(targetedPath) ? record(JSON.parse(fs.readFileSync(targetedPath, "utf8")) as unknown) : {};
   const probePath = path.join(rootPath, "probe.json");
@@ -102,24 +152,53 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const coreEvidence = record(coverage.coreEvidence);
   const metaGate = record(reconstruction.metaGate);
   const gate = batchItem.gateReportArtifactRef ? record(readJson(batchItem.gateReportArtifactRef)) : {};
+  const threeLens = safeThreeLens(batchItem);
   const allUnknowns = [...strings(coverage.unknowns), ...units.flatMap((unit) => unit.unknowns)];
   const conflicts = units.filter((unit) => /冲突|误识别|不一致/.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
-  const contentReady = gate.ready === true && metaGate.pass === true;
+  const contentReady = threeLens ? threeLens.evaluation.lenses.contentRestoration.rules.every((rule) => rule.status === "pass") : gate.ready === true && metaGate.pass === true;
   const stageRows = list(probe.meaningChanges);
   const directingReady = contentReady && stageRows.length >= 2 && text(viewerChange.before).length > 0 && text(viewerChange.after).length > 0;
-  const visualReady = false;
+  const visualReady = threeLens ? threeLens.evaluation.lenses.visualEditing.rules.every((rule) => rule.status === "pass") : false;
   const projectionGateFailures = [...new Set([
-    ...strings(gate.failedGateIds),
+    ...(threeLens ? [] : strings(gate.failedGateIds)),
     ...(directingReady ? [] : ["directing_logic_projection_incomplete"]),
-    ...(visualReady ? [] : ["visual_editing_projection_incomplete"])
+    ...(visualReady ? [] : ["visual_editing_projection_incomplete"]),
+    ...(threeLens?.report.failedGateIds ?? []),
+    ...(threeLens?.report.uncheckedGateIds ?? [])
   ])];
+  const qualityStates = projectPostQualityStates(batchItem.state, Boolean(threeLens));
+  const lensFindings = threeLens ? (Object.entries(threeLens.evaluation.lenses) as Array<[LensKey, RuntimeThreeLensEvaluation["lenses"][LensKey]]>)
+    .flatMap(([key, lens]) => lens.rules.filter((rule) => rule.status !== "pass").map((rule) => ({
+      id: rule.ruleId,
+      source: key === "contentRestoration" ? "content_restoration" as const : key === "directingLogic" ? "directing_logic" as const : "visual_editing" as const,
+      message: `${rule.finding} ${rule.evaluatorNotes}`.trim(),
+      evidenceRefs: rule.evidenceRefs.map((reference) => reference.refId)
+    }))) : [];
+  const genericFindings = strings(batchItem.failedGateIds).filter((id) => !lensFindings.some((finding) => finding.id === id)).map((id) => ({
+    id, source: "generic_evaluator" as const, message: id, evidenceRefs: [] as string[]
+  }));
+  const anchorIds = new Set([...cues.map((cue) => cue.id), ...denseFrames.map((frame) => frame.id), ...units.map((unit) => unit.id)]);
+  const referencedEvidence = threeLens ? Object.values(threeLens.evaluation.lenses).flatMap((lens) => lens.rules.flatMap((rule) => rule.evidenceRefs)) : [];
+  const evidenceIndex = [...new Map<string, VideoResearch["evidenceIndex"][number]>([
+    ...cues.map((cue) => [cue.id, { id: cue.id, kind: "subtitle_cue", label: cue.text.slice(0, 80), anchorId: cue.id, artifactRef: null }] as const),
+    ...denseFrames.map((frame) => [frame.id, { id: frame.id, kind: "frame", label: frame.reason ?? frame.id, anchorId: frame.id, artifactRef: frame.src }] as const),
+    ...units.map((unit) => [unit.id, { id: unit.id, kind: "claim", label: unit.title, anchorId: unit.id, artifactRef: batchItem.reconstructionArtifactRef }] as const),
+    ...referencedEvidence.map((reference) => [reference.refId, { id: reference.refId, kind: reference.kind, label: reference.refId,
+      anchorId: anchorIds.has(reference.refId) ? reference.refId : null, artifactRef: reference.artifactRef }] as const)
+  ]).values()];
   return videoResearchSchema.parse({
     schemaVersion: "1.0.0", id: videoId, creatorId: run.creatorId ?? creatorId, creatorName: run.creatorName ?? "待识别博主",
     title: detail?.title ?? selection?.title ?? synthesis?.title ?? "标题未识别", sourceHref: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     thesis: text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")), article,
+    quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
+      lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef, builderValidationArtifactRef: batchItem.builderValidationArtifactRef ?? null,
+        evaluationArtifactRef: batchItem.evaluationArtifactRef, gateReportArtifactRef: batchItem.gateReportArtifactRef,
+        threeLensEvaluationArtifactRef: batchItem.threeLensEvaluationArtifactRef, threeLensGateReportArtifactRef: batchItem.threeLensGateReportArtifactRef,
+        candidateRevisionFingerprint: threeLens?.evaluation.candidateRevision.fingerprint ?? null } },
+    evidenceIndex,
     engagement: { likes: selection?.likes ?? null, collections: null, comments: null, shares: null },
-    evidenceHealth: { state: ["verified", "ready"].includes(batchItem.state) ? "ready" : "partial", transcript: cues.length > 0, frames: denseFrames.length > 0,
+    evidenceHealth: { state: qualityStates.promotionState === "wiki_eligible" ? "ready" : qualityStates.buildState === "built" ? "partial" : "missing", transcript: cues.length > 0, frames: denseFrames.length > 0,
       ocr: fs.existsSync(path.join(rootPath, "targeted-evidence", "ocr-evidence.json")), audio: strings(coverage.uncheckedChannels).length === 0,
       baseline: selection?.likes != null, note: text(reconstruction.scopeStatement, batchItem.message) },
     knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: denseFrames },
@@ -134,13 +213,17 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     performanceContext: { tier: selection?.tier ?? "unknown", creatorMedianLikes: analysis?.likes.median ?? null,
       medianMultiple: selection?.likes != null && analysis?.likes.median ? selection.likes / analysis.likes.median : null, percentileRank: null,
       interpretation: synthesis?.performanceInterpretation ?? "公开表现只按账号内部基线解释。", confounds: [analysis?.interpretationBoundary ?? "公开互动不等于播放、留存、涨粉或成交。"] },
-    lensCoverage: {
+    lensCoverage: threeLens ? {
+      contentRestoration: projectLens(threeLens.evaluation, threeLens.report, "contentRestoration", strings(coverage.uncheckedChannels)),
+      directingLogic: projectLens(threeLens.evaluation, threeLens.report, "directingLogic", []),
+      visualEditingLogic: projectLens(threeLens.evaluation, threeLens.report, "visualEditing", strings(coverage.uncheckedChannels))
+    } : {
       contentRestoration: { state: contentReady ? "ready" : "partial", covered: number(coreEvidence.covered) ?? 0, total: number(coreEvidence.total) ?? 0,
-        evidenceRefs: units.flatMap((unit) => unit.evidenceRefs), conflicts, uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: contentReady ? [] : strings(gate.failedGateIds), note: "由当前 reconstruction 与内容 gate 投影。" },
+        evidenceRefs: units.flatMap((unit) => unit.evidenceRefs), conflicts, uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: contentReady ? [] : strings(gate.failedGateIds), note: "由当前 reconstruction 与内容 gate 投影。", evaluator: null, rules: [] },
       directingLogic: { state: directingReady ? "ready" : "partial", covered: stageRows.length, total: stageRows.length, evidenceRefs: units.flatMap((unit) => unit.evidenceRefs).slice(0, 24),
-        conflicts: [], uncheckedChannels: [], failedGateIds: directingReady ? [] : ["directing_logic_projection_incomplete"], note: "已恢复认知阶段；仅在内容 gate 与阶段证据同时闭环时通过。" },
+        conflicts: [], uncheckedChannels: [], failedGateIds: directingReady ? [] : ["directing_logic_projection_incomplete"], note: "已恢复认知阶段；仅在内容 gate 与阶段证据同时闭环时通过。", evaluator: null, rules: [] },
       visualEditingLogic: { state: "partial", covered: denseFrames.length, total: denseFrames.length, evidenceRefs: denseFrames.slice(0, 24).map((frame) => frame.id),
-        conflicts: [], uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: ["visual_editing_projection_incomplete"], note: "真实帧已保留，结构化画面/剪辑评测尚未进入 versioned run。" }
+        conflicts: [], uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: ["visual_editing_projection_incomplete"], note: "真实帧已保留，结构化画面/剪辑评测尚未进入 versioned run。", evaluator: null, rules: [] }
     },
     coverage: { coreCovered: number(coreEvidence.covered) ?? 0, coreTotal: number(coreEvidence.total) ?? 0,
       uncheckedChannels: strings(coverage.uncheckedChannels) },
