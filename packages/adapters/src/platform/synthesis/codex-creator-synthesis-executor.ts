@@ -2,7 +2,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
-import { artifactPath, artifactRef } from "../../core/artifacts.js";
+import { artifactPath } from "../../core/artifacts.js";
 import { projectRoot, runArtifactDir } from "../../core/config.js";
 import { runFileInput } from "../../core/process.js";
 import type { CreatorArtifactStore } from "../../../../research/index.js";
@@ -76,10 +76,19 @@ async function runSynthesisChild(input: {
   }, Math.min(60_000, staleAfterMs));
   try {
     const environment = await withSystemProxy();
-    await runFileInput(process.env.SELF_MEDIA_CODEX_BIN ?? "codex", [
-      "exec", "-", "--skip-git-repo-check", "--ephemeral", "--color", "never",
-      "--approve-for-me", "-C", input.outputDir, "-o", lastMessagePath
-    ], input.prompt, {
+    const model = input.role === "creator_synthesis"
+      ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-5.6-terra"
+      : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL ?? "gpt-5.6-terra";
+    const reasoningEffort = input.role === "creator_synthesis"
+      ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_REASONING_EFFORT ?? "medium"
+      : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_REASONING_EFFORT ?? "medium";
+    const args = [
+      "exec", "-", "--skip-git-repo-check", "--color", "never", "--approve-for-me",
+      "-m", model, "-c", `model_reasoning_effort=${JSON.stringify(reasoningEffort)}`,
+      "-C", input.outputDir, "-o", lastMessagePath
+    ];
+    if (environment.SELF_MEDIA_CODEX_EPHEMERAL !== "false") args.splice(2, 0, "--ephemeral");
+    await runFileInput(process.env.SELF_MEDIA_CODEX_BIN ?? "codex", args, input.prompt, {
       cwd: input.outputDir,
       timeout: timeoutMs,
       env: environment,
@@ -113,18 +122,23 @@ export class CodexCreatorSynthesisExecutor implements CreatorSynthesisExecutor {
     const prompt = `
 Read the complete creator-analysis Skill at ${creatorSkill}. Then build a research-only single-creator synthesis for ${request.creatorName ?? "the creator"}.
 
+Report maturity: ${request.mode === "formal" ? "WIKI_READY candidate (formal)" : "DOSSIER_READY candidate (provisional)"}.
+
 Pinned inputs (read all):
 - portfolio: ${artifactPath(request.portfolioArtifactRef)}
+- every-post surface annotations: ${request.portfolioAnnotationsArtifactRef ? artifactPath(request.portfolioAnnotationsArtifactRef) : "not available (must remain an explicit report limitation)"}
 - canonical 21 selection: ${artifactPath(request.selectionArtifactRef)}
 - public detail evidence: ${artifactPath(request.detailArtifactRef)}
 - single-pass reconstruction batch: ${artifactPath(request.reconstructionBatchArtifactRef)}
 - each analyzed reconstruction/article/evaluation/gate referenced by that batch; failedGateIds on ready rows are quality warnings and must remain explicit limitations
 
-Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "packages/research/src/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for batch-ready videos must cite their reconstruction artifacts and preserve evaluator warnings. A registered deep member that remains blocked only by media_verification after the batch's bounded media retry must instead be surface_only, cite only public detail/selection evidence, explicitly state that its video content is unknown, and never borrow a mechanism from ready videos. Other surface rows must also be explicitly surface_only and may use only title/copy/date/metric/form observations. Add a boundary naming the ready-video count and the media-unavailable post IDs whenever bounded_media_retry_once is present.
+Write only ${synthesisPath}. It must validate against ${path.join(projectRoot, "packages/research/src/creator-synthesis/contracts.ts")} and contain exactly the same 21 selected posts. Set inputs.portfolioAnnotationsArtifactRef to the pinned annotation ref or null. Use the every-post annotation artifact for corpus-level topic, problem, promise, format and value distributions; keep its title-only proof and visual unknowns explicit. Analyze account positioning, audience, problems, value provided, trust sources, lifecycle and possible commercial paths; content topics, formats, visual language, recurring structures and publishing rhythm; baseline/high/low performance patterns and confounds; and a per-record interpretation for every one of the 21 posts. Deep claims for formally verified videos must use deep_validated, cite their reconstruction artifacts, and preserve evaluator warnings. Builder-complete videos that are not formally verified must use deep_provisional, cite their reconstruction artifacts, name their evaluation state/findings as a boundary, and must not be described as verified knowledge. A registered deep member that remains blocked only by media_verification after the batch's bounded media retry must instead be surface_only, cite only public detail/selection evidence, explicitly state that its video content is unknown, and never borrow a mechanism from built videos. Other surface rows must also be explicitly surface_only and may use only title/copy/date/metric/form observations. Add a boundary naming the built-video count, verified-video count, the every-post annotation denominator, and the media-unavailable post IDs whenever bounded_media_retry_once is present.
 
 The batch can contain both legacy_iterative_repair and single_pass@37a03aae rows. Add an explicit boundary naming both policy groups and their post counts. Content evidence may be synthesized together, but never compare pass rates, warning counts, repair counts, or completeness scores across policies. Do not rewrite old policy provenance.
 
 User product boundary overrides any launch-plan instruction in the Skill: do not write what we should copy, what we should post next, titles/covers/CTA for us, launch plans, or experiments. This artifact explains the creator only. Keep visible observation, author claim, inference, and unknown distinct. Public likes do not prove exposure, retention, conversion, ads, or sales; preserve those as unknown. Do not read old static reports or prior creator analyses.
+
+All human-readable JSON values must be concise, natural Chinese that a content researcher can understand. Keep schema keys, IDs, enum values and artifact refs unchanged in English.
 `;
     try {
       try {
@@ -135,6 +149,7 @@ User product boundary overrides any launch-plan instruction in the Skill: do not
           role: "creator_synthesis",
           inputRevision: crypto.createHash("sha256").update([
             request.portfolioArtifactRef,
+            request.portfolioAnnotationsArtifactRef ?? "annotations:missing",
             request.selectionArtifactRef,
             request.detailArtifactRef,
             request.reconstructionBatchArtifactRef
@@ -150,8 +165,22 @@ User product boundary overrides any launch-plan instruction in the Skill: do not
       if (!fs.existsSync(synthesisPath)) return { state: "not_ready" as const, synthesisArtifactRef: null, gateArtifactRef: null,
         failedGateIds: ["synthesis_output_missing"], message: "博主归纳没有生成结构化产物。" };
       const synthesis = creatorSynthesisSchema.parse(JSON.parse(fs.readFileSync(synthesisPath, "utf8")) as unknown);
-      const synthesisRef = artifactRef(request.creatorRunId, "creator-synthesis/creator-analysis.json");
+      const synthesisRef = this.artifacts.write(
+        request.creatorRunId,
+        "creator-analysis.json",
+        synthesis,
+        [request.portfolioArtifactRef, ...(request.portfolioAnnotationsArtifactRef ? [request.portfolioAnnotationsArtifactRef] : []), request.selectionArtifactRef,
+          request.detailArtifactRef, request.reconstructionBatchArtifactRef]
+      );
       const candidateRevisionFingerprint = fileSha256(synthesisPath);
+      if (request.mode === "provisional") {
+        const gate = validateCreatorSynthesis({ creatorRunId: request.creatorRunId,
+          selection: this.artifacts.read(request.selectionArtifactRef), batch: this.artifacts.read(request.reconstructionBatchArtifactRef),
+          synthesis, checkedAt: new Date().toISOString() });
+        const gateRef = this.artifacts.write(request.creatorRunId, "creator-synthesis-gate.json", gate, [synthesisRef]);
+        return { state: "provisional" as const, synthesisArtifactRef: synthesisRef, gateArtifactRef: gateRef,
+          failedGateIds: gate.failedGateIds };
+      }
       const evaluatorRunId = crypto.randomUUID();
       const evaluatorPrompt = `
 You are a fresh independent evaluator for a creator research synthesis. You did not create the candidate and must not modify it.
@@ -159,6 +188,7 @@ You are a fresh independent evaluator for a creator research synthesis. You did 
 Pinned candidate revision: ${candidateRevisionFingerprint}
 Candidate: ${synthesisPath}
 Portfolio: ${artifactPath(request.portfolioArtifactRef)}
+Every-post surface annotations: ${request.portfolioAnnotationsArtifactRef ? artifactPath(request.portfolioAnnotationsArtifactRef) : "not available"}
 Canonical selection: ${artifactPath(request.selectionArtifactRef)}
 Public details: ${artifactPath(request.detailArtifactRef)}
 Validated reconstruction batch: ${artifactPath(request.reconstructionBatchArtifactRef)}
@@ -168,6 +198,7 @@ canonical_21_coverage, deep_9_ready, deep_evidence_binding, three_tiers_present,
 Interpret deep_9_ready as a historical identifier, not a requirement for nine unique videos: high, median-near, mean-near, and low must each retain three registered group memberships and overlapping posts are analyzed once. Normally every unique registered deep candidate must be batch-ready. The only bounded exception is when the batch explicitly contains bounded_media_retry_once, every non-ready item is blocked solely by media_verification, and each of the four groups still has at least one batch-ready video; then pass with the exact unavailable IDs and coverage caveat, without inventing their video contents.
 For deep_evidence_binding, inspect that every batch-ready deep row cites its reconstruction and independent evaluation and preserves evaluationPolicy provenance. A bounded media-unavailable deep row must be surface_only, cite only public detail/selection evidence, and explicitly state that video content is unknown. Under single_pass, failedGateIds on a batch-ready row are quality warnings and must remain explicit limitations; they do not make the row not ready. Fail for missing/unreadable/corrupt ready artifacts, missing deep-row bindings, invented claims for unavailable media, or missing mixed-policy/bounded-media boundaries. Do not reapply legacy iterative hard gates to single-pass rows.
 Surface-only rows may not borrow deep evidence. Public likes never prove exposure, completion rate, conversion, ads, or sales. Reject any advice about what we should copy, publish, title, cover, test, or launch.
+Write every human-readable message in concise, natural Chinese. Keep gate IDs, schema values and artifact refs unchanged in English.
 
 Write only ${evaluationPath} as:
 {"schemaVersion":"creator-synthesis-independent-evaluation@1","creatorRunId":"${request.creatorRunId}","candidateRevisionFingerprint":"${candidateRevisionFingerprint}","evaluatorRunId":"${evaluatorRunId}","independentOfCandidate":true,"evaluatedAt":"ISO timestamp","gates":[{"id":"one required id","pass":true,"message":"specific finding","evidenceRefs":["resolvable artifact ref"]}]}

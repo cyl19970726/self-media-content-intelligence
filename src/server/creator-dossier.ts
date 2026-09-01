@@ -123,11 +123,12 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const candidates = [...new Map([activeRun, ...sameCreator].map((run) => [run.id, run])).values()];
   const sourceRun = explicitRunRequest
     ? candidates.find((run) => run.id === activeRun.id && run.portfolioArtifactRef && run.selectionArtifactRef) ?? activeRun
-    : candidates.find((run) => run.status === "ready" && run.synthesisArtifactRef && run.portfolioArtifactRef && run.selectionArtifactRef)
+    : candidates.find((run) => ["ready", "reviewable"].includes(run.status) && run.synthesisArtifactRef && run.portfolioArtifactRef && run.selectionArtifactRef)
       ?? candidates.find((run) => Boolean(run.portfolioArtifactRef && run.selectionArtifactRef)) ?? activeRun;
   const data = service.portfolio(sourceRun.id);
   const synthesis = data?.synthesis ?? null;
   const analysis = data?.analysis ?? null;
+  const annotations = data?.annotations ?? null;
   const selection = data?.selection ?? null;
   const details = new Map((data?.details?.posts ?? []).map((item) => [item.externalId, item]));
   const media = new Map((data?.mediaManifest?.items ?? []).map((item) => [item.externalId, item]));
@@ -214,6 +215,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       percentiles: { p10: null, p25: null, p75: null, p90: null },
       distribution: [],
       notes: [analysis?.interpretationBoundary].filter((value): value is string => Boolean(value)),
+      annotationCoverage: annotations ? { ...annotations.denominator, artifactRef: sourceRun.portfolioAnnotationsArtifactRef! } : null,
       health: health(analysis ? analysis.metricCoverage.rate >= 0.8 ? "full" : "partial" : "missing",
         analysis ? `公开点赞覆盖 ${Math.round(analysis.metricCoverage.rate * 100)}%。` : "全量基本盘尚未生成。", capturedAt)
     },
@@ -245,7 +247,10 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
-  if (runProjection) return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection) });
+  if (runProjection) {
+    const batch = runProjection.run ? service.portfolio(runProjection.run.id)?.reconstructionBatch ?? null : null;
+    return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection, batch) });
+  }
   const nextWave = loadNextWaveDossier(id);
   if (nextWave) return creatorDossierSchema.parse({ ...nextWave, pipeline: buildCreatorResearchPipeline(null, nextWave) });
   const deepLegacy = loadLegacyDeepDossier(id);

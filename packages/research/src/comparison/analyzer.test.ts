@@ -67,6 +67,9 @@ describe("compareCreatorPortfolios", () => {
     expect(result.contentPatterns).toHaveLength(1);
     expect(result.contentPatterns[0]).toMatchObject({ role: "先展示结果", classification: "conditional", condition: { format: "口播" } });
     expect(result.contentPatterns[0]?.support).toHaveLength(6);
-    expect(result.exceptions.length).toBeGreaterThan(0);
+    expect(result.creatorProfiles.map((profile) => profile.creatorName)).toEqual(["甲", "乙"]);
+    expect(result.comparability.members).toEqual(expect.arrayContaining([expect.objectContaining({ selectedPosts: 21, formalSynthesis: true })]));
+    expect(result.exceptions).toHaveLength(6);
+    expect(result.gaps.join(" ")).toMatch(/仅展示 3 个代表例.*语义聚类/);
   });
 });

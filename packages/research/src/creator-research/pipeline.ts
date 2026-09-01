@@ -6,6 +6,7 @@ import {
   type CreatorResearchPipeline
 } from "../../../contracts/index.js";
 import type { CreatorResearchRun } from "../../../contracts/index.js";
+import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
 
 type DossierInput = Omit<CreatorDossier, "pipeline">;
 type StageSeed = Omit<CreatorPipelineStage, "state" | "gateState" | "artifactRefs" | "missingInputs" | "message" | "nextAction">;
@@ -85,6 +86,7 @@ function coarseOverrideTargets(
   runIds: CreatorResearchRun["stages"][number]["id"][],
   pipelineIds: CreatorPipelineStageId[]
 ): CreatorPipelineStageId[] {
+  if (run && runIds.includes("synthesis")) return ["creator_synthesis"];
   if (!run || !runIds.includes("deep_capture")) return pipelineIds;
 
   const hasVideoWork = Boolean(
@@ -102,7 +104,7 @@ function coarseOverrideTargets(
   return ["detail_enrichment"];
 }
 
-export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dossier?: DossierInput): CreatorResearchPipeline {
+export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dossier?: DossierInput, batch?: VideoReconstructionBatch | null): CreatorResearchPipeline {
   const seeds = new Map(stageSeeds.map((seed) => [seed.id, seed]));
   const seed = (id: CreatorPipelineStageId) => {
     const value = seeds.get(id);
@@ -122,6 +124,10 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const validatedDeep = deepItems.filter((item) => item.evidenceStatus === "deep_validated");
   const pendingDeep = deepItems.filter((item) => item.evidenceStatus === "deep_pending");
   const validatedDeepCount = dossier ? validatedDeep.length : run?.videoWork.analyzedPosts ?? 0;
+  const builtDeepCount = run?.videoWork.analyzedPosts ?? validatedDeepCount;
+  const evaluatedDeepCount = batch?.items.filter((item) => Boolean(item.evaluationArtifactRef)
+    || ["evaluated_with_findings", "verified", "ready"].includes(item.state)).length ?? validatedDeepCount;
+  const evaluatedWithFindingsCount = batch?.items.filter((item) => item.state === "evaluated_with_findings").length ?? 0;
   const pendingDeepCount = dossier ? pendingDeep.length : Math.max(0,
     runDeepSampleCount - validatedDeepCount - (run?.videoWork.failedPosts ?? 0));
   const boundedMediaGap = Boolean(dossier?.boundaries.some((item) => item.includes("bounded_media_retry_once")));
@@ -143,11 +149,14 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const inventoryGate = postCount === 0 ? "not_checked" : dossier?.corpus.health.status === "full" ? "passed" : "partial";
   const detailComplete = postCount > 0 && datedItems === postCount && commentedItems === postCount;
   const detailHasAny = datedItems > 0 || commentedItems > 0 || Boolean(run?.detailArtifactRef);
-  const annotationComplete = Boolean(dossier?.contentSystem.health.status === "full" && annotatedItems === dossier.portfolio.items.length);
-  const annotationHasAny = annotatedItems > 0 || Boolean(run?.portfolioArtifactRef) || Boolean(dossier?.contentSystem.topicClusters.length || dossier?.contentSystem.formatClusters.length);
+  const fullAnnotation = dossier?.corpus.annotationCoverage ?? null;
+  const annotationComplete = Boolean(fullAnnotation && fullAnnotation.observedPosts > 0
+    && fullAnnotation.annotatedPosts === fullAnnotation.observedPosts);
+  const annotationHasAny = Boolean(fullAnnotation?.annotatedPosts) || annotatedItems > 0
+    || Boolean(run?.portfolioAnnotationsArtifactRef) || Boolean(dossier?.contentSystem.topicClusters.length || dossier?.contentSystem.formatClusters.length);
   const mediaComplete = (Boolean(run?.reconstructionBatchArtifactRef && deepSampleCount > 0) && !boundedMediaGap)
     || (!boundedMediaGap && deepItems.length >= requiredDeepSamples && mediaItems >= deepItems.length);
-  const reconstructionComplete = deepSampleCount >= requiredDeepSamples && validatedDeepCount === deepSampleCount;
+  const reconstructionComplete = deepSampleCount >= requiredDeepSamples && builtDeepCount === deepSampleCount;
 
   const result: CreatorPipelineStage[] = [
     stage(seed("run_contract"), { state: "complete", gateState: "passed", artifactRefs: [contractRef], message: "研究目标、运行版本和职责边界已建立。" }),
@@ -165,9 +174,9 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
           message: `发布时间 ${datedItems}/${postCount || "—"}；评论 ${commentedItems}/${postCount || "—"}。`,
           nextAction: "由详情与评论 Worker 补齐公开日期、指标、评论和作者回复；缺失字段保持未知。" }),
     stage(seed("portfolio_annotation"), annotationComplete
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.portfolioArtifactRef], message: "全部统一选择记录已完成证据分层标注。" }
-      : { state: annotationHasAny ? "partial" : "pending", gateState: annotationHasAny ? "partial" : "not_checked", artifactRefs: [run?.portfolioArtifactRef],
-          missingInputs: [`结构化主题/形式标注：${annotatedItems}/${dossier?.portfolio.items.length ?? 0}`], message: "当前只允许把标题和封面作为作品级线索。",
+      ? { state: "complete", gateState: "passed", artifactRefs: [run?.portfolioAnnotationsArtifactRef], message: `全部 ${fullAnnotation?.annotatedPosts ?? 0} 条可见作品均有一行证据分层表层标注。` }
+      : { state: annotationHasAny ? "partial" : "pending", gateState: annotationHasAny ? "partial" : "not_checked", artifactRefs: [run?.portfolioAnnotationsArtifactRef],
+          missingInputs: [`全量表层标注：${fullAnnotation?.annotatedPosts ?? 0}/${fullAnnotation?.observedPosts ?? postCount}`], message: "当前只允许把标题和封面作为作品级线索。",
           nextAction: "由全量内容标注 Skill 补齐主题、形式、价值、承诺、证明方式和证据范围。" }),
     stage(seed("corpus_statistics"), hasStatistics
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.portfolioArtifactRef, ...allRefs], message: `已从 ${dossier?.corpus.likesKnown ?? 0} 条已知点赞记录计算中位、均值、最高值和分布。` }
@@ -185,16 +194,17 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
             : "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
           nextAction: boundedMediaGap ? "不再重试不可得媒体；综合只使用 surface_only 公开证据并保留未知。" : "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
     stage(seed("video_reconstruction"), reconstructionComplete
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `${validatedDeepCount}/${deepSampleCount} 条深度样本完成内容、编导和画面分析。` }
-      : { state: validatedDeepCount + pendingDeepCount > 0 ? "partial" : "pending", gateState: validatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          missingInputs: [`完成三镜头分析：${validatedDeepCount}/${requiredDeepSamples}`],
-          message: boundedMediaGap ? `${validatedDeepCount} 条已验证；${unavailableDeepCount} 条媒体不可得，未生成视频内容结论。` : `${validatedDeepCount} 条已验证，${pendingDeepCount} 条待审，其余尚未还原。`,
+      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `${builtDeepCount}/${deepSampleCount} 条深度样本完成 Builder 内容、编导和画面分析；${validatedDeepCount} 条已正式验证。` }
+      : { state: builtDeepCount + pendingDeepCount > 0 ? "partial" : "pending", gateState: builtDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
+          missingInputs: [`完成 Builder 三镜头分析：${builtDeepCount}/${requiredDeepSamples}`],
+          message: boundedMediaGap ? `${builtDeepCount} 条已构建；${unavailableDeepCount} 条媒体不可得，未生成视频内容结论。` : `${builtDeepCount} 条已构建，${validatedDeepCount} 条已正式验证，其余尚未还原。`,
           nextAction: boundedMediaGap ? "不可得成员保持 surface_only；不得从可用视频借用机制。" : "由单视频重建 Skill 继续生成逐字稿、知识关系、编导逻辑和画面剪辑证据。" }),
-    stage(seed("video_evaluation"), reconstructionComplete
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `全部 ${deepSampleCount} 条深度样本完成一次独立评估；质量提醒保留在研究证据中。` }
-      : { state: validatedDeepCount > 0 ? "partial" : "pending", gateState: validatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          missingInputs: [`单轮独立评估：${validatedDeepCount}/${requiredDeepSamples}`],
-          message: boundedMediaGap ? `${validatedDeepCount}/${deepSampleCount} 条可用视频完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估视频内容。` : "媒体不可读或产物损坏的视频不能进入博主级机制归纳。",
+    stage(seed("video_evaluation"), evaluatedDeepCount >= verifiedMediaCount && verifiedMediaCount > 0
+      ? { state: "complete", gateState: evaluatedWithFindingsCount ? "partial" : "passed", artifactRefs: [run?.reconstructionBatchArtifactRef],
+          message: `${evaluatedDeepCount}/${deepSampleCount} 条可用深度样本完成一次独立评估；${evaluatedWithFindingsCount} 条保留 findings。` }
+      : { state: evaluatedDeepCount > 0 ? "partial" : "pending", gateState: evaluatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
+          missingInputs: [`单轮独立评估：${evaluatedDeepCount}/${requiredDeepSamples}`],
+          message: boundedMediaGap ? `${evaluatedDeepCount}/${deepSampleCount} 条可用视频完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估视频内容。` : `${evaluatedDeepCount}/${deepSampleCount} 条完成独立评估；Evaluator 可跳过，未评估结果保持 provisional。`,
           nextAction: boundedMediaGap ? "不对不可得视频生成或补造 evaluator 结论。" : "由独立 Evaluator 对每条视频做一次通用与三镜头检查；内容缺口不触发自动修复。" }),
     stage(seed("creator_synthesis"), synthesisReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.synthesisArtifactRef], message: "定位、人群、价值、内容系统与表现差异已写入博主综合 Artifact。" }

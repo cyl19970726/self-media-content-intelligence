@@ -14,6 +14,7 @@ export * from "./src/learning-loop/repository.js";
 export * from "./src/learning-loop/service.js";
 export * from "./src/orchestration/contracts.js";
 export * from "./src/portfolio/analyzer.js";
+export * from "./src/portfolio/annotations.js";
 export * from "./src/portfolio/contracts.js";
 export * from "./src/research-learning.js";
 export * from "./src/video-analysis/batch-contracts.js";

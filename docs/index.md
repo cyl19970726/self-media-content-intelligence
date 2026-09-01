@@ -19,6 +19,10 @@ owned by schemas and code.
   dependency direction, target folders, and the enforced source-file limit.
 - [博主研究与视频重建架构](architecture/creator-research-pipeline.md) — 中文说明从博主名单、
   Worker、Skill 和证据硬闸，到前端工作台与 LLM Wiki 的完整链路，并明确区分现状与目标调度。
+- [单博主与多博主 Agent Loop](architecture/creator-agent-loops.md) — 用说人话的方式定义生产循环、
+  Trace 驱动的优化循环、角色边界、停止条件，以及从 1 个黄金博主放量到 20 个博主的顺序。
+- [Issue #55 验收记录](initiatives/active/creator-research-cognitive-loop-v1/issue-55-acceptance.md) — 记录
+  201 条全量标注、单博主报告、多博主报告、holdout 和认知候选的真实证据。
 - [Evidence storage policy](architecture/evidence-storage.md) — what belongs in
   source control, runtime storage, fixtures, examples, and external evidence.
 - [Evidence Manifest and restore contract](evidence/evidence-contract.md) — the

@@ -24,7 +24,7 @@ import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
 import { registerEvidenceRoutes } from "./routes/evidence.js";
 import { registerWorkspaceRoutes } from "./routes/workspace.js";
 import { registerCreatorResearchBatchRoutes } from "./routes/creator-research-batches.js";
-import type { EvidenceAccessPort } from "../../packages/contracts/index.js";
+import { ingestAnalysisRevisionSchema, type EvidenceAccessPort } from "../../packages/contracts/index.js";
 import { buildCreatorRunOperations } from "./creator-operations.js";
 
 export interface AppDependencies {
@@ -214,6 +214,18 @@ export function createApp({
     }
   });
 
+  app.post("/api/creator-runs/:id/evaluate-videos", (request, response) => {
+    try {
+      const postExternalIds = z.array(z.string().min(1)).min(1).max(12).parse(request.body?.postExternalIds);
+      return response.status(202).json(creatorResearchService.evaluateBuiltVideos(request.params.id, postExternalIds));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "输入无效"
+        : error instanceof Error ? error.message : "无法补做独立视频评估";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
   app.post("/api/creator-runs/:id/continue-with-media-gaps", (request, response) => {
     try {
       return response.status(202).json(creatorResearchService.continueWithBoundedMediaGaps(request.params.id));
@@ -228,6 +240,16 @@ export function createApp({
       return response.status(202).json(creatorResearchService.revalidateSynthesis(request.params.id));
     } catch (error) {
       const message = error instanceof Error ? error.message : "无法重验博主综合";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
+  app.post("/api/creator-runs/:id/portfolio-annotations/rebuild", (request, response) => {
+    try {
+      const resynthesize = request.body?.resynthesize !== false;
+      return response.status(202).json(creatorResearchService.annotatePortfolio(request.params.id, resynthesize));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法生成全量作品表层标注";
       return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
     }
   });
@@ -295,6 +317,18 @@ export function createApp({
 
   app.get("/api/v1/research-concepts", (_request, response) => {
     return response.json({ concepts: researchLearningService.list() });
+  });
+
+  app.post("/api/v1/research-analysis-revisions", (request, response) => {
+    try {
+      const input = ingestAnalysisRevisionSchema.parse(request.body);
+      return response.status(201).json(researchLearningService.ingestAnalysisRevision(input));
+    } catch (error) {
+      const message = error instanceof z.ZodError
+        ? error.issues[0]?.message ?? "认知观察输入无效"
+        : error instanceof Error ? error.message : "无法沉淀认知观察";
+      return response.status(400).json({ error: message });
+    }
   });
 
   app.get("/api/v1/research-concepts/:id", (request, response) => {

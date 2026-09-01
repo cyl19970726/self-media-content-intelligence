@@ -118,6 +118,8 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const rootPath = path.dirname(artifactPath(batchItem.reconstructionArtifactRef));
   const articlePath = batchItem.articleArtifactRef ? artifactPath(batchItem.articleArtifactRef) : path.join(rootPath, "article.md");
   const article = fs.existsSync(articlePath) ? fs.readFileSync(articlePath, "utf8") : null;
+  const evaluatorReportPath = path.join(rootPath, "evaluation.md");
+  const evaluatorReport = fs.existsSync(evaluatorReportPath) ? fs.readFileSync(evaluatorReportPath, "utf8") : null;
   const targetedPath = path.join(rootPath, "targeted-evidence", "targeted-evidence.json");
   const targeted = fs.existsSync(targetedPath) ? record(JSON.parse(fs.readFileSync(targetedPath, "utf8")) as unknown) : {};
   const probePath = path.join(rootPath, "probe.json");
@@ -191,9 +193,14 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     title: detail?.title ?? selection?.title ?? synthesis?.title ?? "标题未识别", sourceHref: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     thesis: text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")), article,
+    reports: { builder: article, evaluator: evaluatorReport },
     quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
-      lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef, builderValidationArtifactRef: batchItem.builderValidationArtifactRef ?? null,
-        evaluationArtifactRef: batchItem.evaluationArtifactRef, gateReportArtifactRef: batchItem.gateReportArtifactRef,
+      lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef,
+        builderReportArtifactRef: article ? `${rootRef}article.md` : null,
+        builderValidationArtifactRef: batchItem.builderValidationArtifactRef ?? null,
+        evaluationArtifactRef: batchItem.evaluationArtifactRef,
+        evaluatorReportArtifactRef: evaluatorReport ? `${rootRef}evaluation.md` : null,
+        gateReportArtifactRef: batchItem.gateReportArtifactRef,
         threeLensEvaluationArtifactRef: batchItem.threeLensEvaluationArtifactRef, threeLensGateReportArtifactRef: batchItem.threeLensGateReportArtifactRef,
         candidateRevisionFingerprint: threeLens?.evaluation.candidateRevision.fingerprint ?? null } },
     evidenceIndex,

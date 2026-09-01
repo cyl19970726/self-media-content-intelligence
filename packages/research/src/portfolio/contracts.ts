@@ -64,6 +64,60 @@ export const creatorCorpusSchema = z.object({
 });
 export type CreatorCorpus = z.infer<typeof creatorCorpusSchema>;
 
+const portfolioAnnotationFieldSchema = z.object({
+  value: z.string().min(1),
+  evidenceRefs: z.array(z.string().min(1)).min(1)
+});
+
+export const creatorPortfolioAnnotationRowSchema = z.object({
+  postExternalId: z.string().min(1),
+  sourceUrl: z.string().url(),
+  title: z.string().nullable(),
+  mediaType: z.enum(["video", "image", "unknown"]),
+  likes: z.number().int().nonnegative().nullable(),
+  classification: z.enum(["classified", "unclassified"]),
+  confidence: z.enum(["medium", "low"]),
+  evidenceScope: z.array(z.enum(["title", "visible_text", "public_metric", "media_type"])).min(1),
+  topics: z.array(portfolioAnnotationFieldSchema),
+  formats: z.array(portfolioAnnotationFieldSchema),
+  audienceProblems: z.array(portfolioAnnotationFieldSchema),
+  promises: z.array(portfolioAnnotationFieldSchema),
+  values: z.array(portfolioAnnotationFieldSchema),
+  proofModes: z.array(portfolioAnnotationFieldSchema),
+  visualSignals: z.array(portfolioAnnotationFieldSchema),
+  contentArchitectureSignals: z.array(portfolioAnnotationFieldSchema),
+  conflicts: z.array(z.string()),
+  unknowns: z.array(z.string()).min(1)
+});
+export type CreatorPortfolioAnnotationRow = z.infer<typeof creatorPortfolioAnnotationRowSchema>;
+
+export const creatorPortfolioAnnotationsSchema = z.object({
+  schemaVersion: z.literal("portfolio-annotations@1"),
+  runId: z.string().uuid(),
+  annotationRevision: z.string().min(1),
+  generatedAt: z.string(),
+  sourceCorpusArtifactRef: z.string().min(1),
+  denominator: z.object({
+    observedPosts: z.number().int().nonnegative(),
+    annotatedPosts: z.number().int().nonnegative(),
+    classifiedPosts: z.number().int().nonnegative(),
+    unclassifiedPosts: z.number().int().nonnegative(),
+    parity: z.boolean()
+  }),
+  rows: z.array(creatorPortfolioAnnotationRowSchema),
+  boundaries: z.array(z.string()).min(1)
+}).superRefine((value, context) => {
+  const ids = value.rows.map((row) => row.postExternalId);
+  if (new Set(ids).size !== ids.length) context.addIssue({ code: "custom", message: "每个作品 ID 只能有一条表层标注。" });
+  if (value.denominator.observedPosts !== value.rows.length
+    || value.denominator.annotatedPosts !== value.rows.length
+    || value.denominator.classifiedPosts + value.denominator.unclassifiedPosts !== value.rows.length
+    || !value.denominator.parity) {
+    context.addIssue({ code: "custom", message: "表层标注 denominator 必须与逐帖行严格一致。" });
+  }
+});
+export type CreatorPortfolioAnnotations = z.infer<typeof creatorPortfolioAnnotationsSchema>;
+
 export const creatorSelectionItemSchema = creatorInventoryPostSchema.extend({
   tier: z.enum(["high", "base", "low"]),
   tierRank: z.number().int().positive(),

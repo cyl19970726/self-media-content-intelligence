@@ -15,11 +15,14 @@ for (const key of ['reconstruction', 'title', 'out']) {
 
 const reconstructionPath = path.resolve(args.reconstruction)
 const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, 'utf8'))
+const evidencePackPath = path.isAbsolute(reconstruction.evidencePack)
+  ? reconstruction.evidencePack
+  : path.resolve(path.dirname(reconstructionPath), reconstruction.evidencePack)
 const targetedPath = args.targeted ? path.resolve(args.targeted) : null
 const targeted = targetedPath ? JSON.parse(fs.readFileSync(targetedPath, 'utf8')) : { frames: [] }
 const targetedRoot = targetedPath ? path.dirname(targetedPath) : null
 const targetedMap = new Map((targeted.frames ?? []).map((frame) => [frame.id, frame]))
-const evidenceRoot = path.dirname(reconstruction.evidencePack)
+const evidenceRoot = path.dirname(evidencePackPath)
 const fmt = (seconds) => {
   const value = Math.max(0, Number(seconds) || 0)
   const minutes = Math.floor(value / 60)
@@ -90,14 +93,18 @@ for (const relation of reconstruction.relations ?? []) {
 lines.push('', '## 明确不能从视频判断', '')
 for (const item of reconstruction.coverageMatrix?.unknowns ?? []) lines.push(`- ${item}`)
 
-lines.push('', '## 完整机器逐字稿与证据映射', '')
-lines.push('> 这是本地机器转写，不是官方字幕。原始文本不静默修正；每条 cue 均对应代表帧和全部 overlapping shots。')
-lines.push('')
-lines.push('| Cue | 时间 | 原始机器转写 | 代表帧 | Overlapping shots |')
-lines.push('|---|---:|---|---|---|')
-for (const cue of reconstruction.transcript.cues) {
-  const frame = path.resolve(evidenceRoot, cue.representativeFrame)
-  lines.push(`| ${cue.id} | ${fmt(cue.start)}–${fmt(cue.end)} | ${esc(cue.text)} | [查看帧](${frame}) | ${cue.overlappingShots.join(', ')} |`)
+lines.push('', '## 语音、字幕与画面依据', '')
+if (reconstruction.transcript.cues.length === 0) {
+  lines.push('> 当前证据包没有可用的语音转写或字幕 cue。本报告不据此推断音频语义，内容还原仅使用已登记的画面与其他证据。')
+} else {
+  lines.push('> 以下文字来自证据包中的机器转写，并非官方字幕。原始识别结果会保留；每句话都可结合时间、对应画面和所在镜头核对。')
+  lines.push('')
+  lines.push('| Cue | 时间 | 原始机器转写 | 代表帧 | Overlapping shots |')
+  lines.push('|---|---:|---|---|---|')
+  for (const cue of reconstruction.transcript.cues) {
+    const frame = path.resolve(evidenceRoot, cue.representativeFrame)
+    lines.push(`| ${cue.id} | ${fmt(cue.start)}–${fmt(cue.end)} | ${esc(cue.text)} | [查看帧](${frame}) | ${cue.overlappingShots.join(', ')} |`)
+  }
 }
 
 lines.push('', '## 完整性自检', '')

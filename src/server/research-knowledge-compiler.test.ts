@@ -76,7 +76,7 @@ describe("production research knowledge compilers", () => {
       comparisonProjectId: "33333333-3333-4333-8333-333333333333", comparisonArtifactRef: "artifact:comparison",
       sourceArtifactRefs: ["artifact:a", "artifact:b", "artifact:c"],
       comparison: { schemaVersion: "1.0.0", generatedAt: "2026-08-30T00:00:00Z", readiness: "content_validated",
-        members: [], observations: [], limitations: [], exceptions: [], gaps: [],
+        members: [], comparability: { platform: "小红书", metricBasis: "公开点赞", timeWindowAligned: false, members: [], warnings: [] }, creatorProfiles: [], observations: [], limitations: [], exceptions: [], gaps: [],
         contentPatterns: [{ role: "先展示结果", classification: "track_wide", statement: "三个博主固定样本均出现该角色。",
           boundary: "不声明因果。", creatorIds: ["creator-a", "creator-b", "creator-c"], condition: { format: null }, support }] }
     } as ComparisonResearchCompletion;
@@ -100,7 +100,7 @@ describe("production research knowledge compilers", () => {
     })));
     const completion = { comparisonProjectId: "55555555-5555-4555-8555-555555555555", comparisonArtifactRef: "artifact:conditional",
       sourceArtifactRefs: ["artifact:a", "artifact:b"], comparison: { schemaVersion: "1.0.0", generatedAt: "2026-08-30T00:00:00Z",
-        readiness: "content_validated", members: [], observations: [], limitations: [], exceptions: [], gaps: [],
+        readiness: "content_validated", members: [], comparability: { platform: "小红书", metricBasis: "公开点赞", timeWindowAligned: false, members: [], warnings: [] }, creatorProfiles: [], observations: [], limitations: [], exceptions: [], gaps: [],
         contentPatterns: [{ role: "条件角色", classification: "conditional", statement: "两个博主在口播条件下出现共同角色。",
           boundary: "只适用于口播固定样本。", creatorIds: ["creator-a", "creator-b"], condition: { format: "口播" }, support }] } } as ComparisonResearchCompletion;
     new ComparisonKnowledgeCompiler(knowledge).publish(completion);

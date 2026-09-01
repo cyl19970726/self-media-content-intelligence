@@ -558,6 +558,7 @@ export const creatorResearchRunSchema = z.object({
     failedPosts: 0
   }),
   inventoryArtifactRef: z.string().nullable().default(null),
+  portfolioAnnotationsArtifactRef: z.string().nullable().optional(),
   portfolioArtifactRef: z.string().nullable().default(null),
   selectionArtifactRef: z.string().nullable().default(null),
   detailArtifactRef: z.string().nullable().default(null),

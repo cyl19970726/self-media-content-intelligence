@@ -27,8 +27,10 @@ const postQualitySchema = z.object({
   })),
   lineage: z.object({
     reconstructionArtifactRef: z.string().nullable(),
+    builderReportArtifactRef: z.string().nullable(),
     builderValidationArtifactRef: z.string().nullable(),
     evaluationArtifactRef: z.string().nullable(),
+    evaluatorReportArtifactRef: z.string().nullable(),
     gateReportArtifactRef: z.string().nullable(),
     threeLensEvaluationArtifactRef: z.string().nullable(),
     threeLensGateReportArtifactRef: z.string().nullable(),
@@ -44,8 +46,10 @@ const legacyQuality = {
   findings: [],
   lineage: {
     reconstructionArtifactRef: null,
+    builderReportArtifactRef: null,
     builderValidationArtifactRef: null,
     evaluationArtifactRef: null,
+    evaluatorReportArtifactRef: null,
     gateReportArtifactRef: null,
     threeLensEvaluationArtifactRef: null,
     threeLensGateReportArtifactRef: null,
@@ -63,6 +67,10 @@ export const videoResearchSchema = z.object({
   sourceLabel: z.string(),
   thesis: z.string(),
   article: z.string().nullable(),
+  reports: z.object({
+    builder: z.string().nullable(),
+    evaluator: z.string().nullable()
+  }).default({ builder: null, evaluator: null }),
   quality: postQualitySchema.default(legacyQuality),
   evidenceIndex: z.array(z.object({
     id: z.string(),

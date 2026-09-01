@@ -12,6 +12,7 @@ import {
   hardEvaluationGateFailures,
   normalizeRuntimeLensEvidence,
   reconstructionFailureGateId,
+  runtimeThreeLensBoundToEvaluator,
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
@@ -64,6 +65,13 @@ describe("runtime lens evidence normalization", () => {
     ] }])).toEqual([{ ruleId: "CR-01", evidenceRefs: [
       { refId: "artifact" }, { refId: "unit", jsonPointer: "/knowledgeUnits/0" }
     ] }]);
+  });
+
+  it("invalidates an aggregate that belongs to an older evaluator run", () => {
+    const lenses = Object.fromEntries(["contentRestoration", "directingLogic", "visualEditing"]
+      .map((key) => [key, { evaluator: { evaluatorRunId: "old-run" } }]));
+    expect(runtimeThreeLensBoundToEvaluator({ lenses }, "old-run")).toBe(true);
+    expect(runtimeThreeLensBoundToEvaluator({ lenses }, "new-run")).toBe(false);
   });
 });
 
@@ -217,6 +225,20 @@ describe("Evaluator role contract", () => {
       fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "revision-1");
       const before = candidateArtifactFingerprints(outputDir);
       fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "revision-2");
+      expect(() => assertCandidateArtifactsUnchanged(before, outputDir)).toThrow("EVALUATOR_MUTATED_CANDIDATE");
+    } finally {
+      fs.rmSync(outputDir, { recursive: true, force: true });
+    }
+  });
+
+  it("binds the deterministic Builder report when the evaluator can read it", () => {
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-evaluator-builder-report-"));
+    try {
+      fs.writeFileSync(path.join(outputDir, "reconstruction.json"), "semantic-revision");
+      fs.writeFileSync(path.join(outputDir, "article.md"), "builder-report-v1");
+      const before = candidateArtifactFingerprints(outputDir);
+      expect(before["article.md"]).toMatch(/^[a-f0-9]{64}$/);
+      fs.writeFileSync(path.join(outputDir, "article.md"), "builder-report-v2");
       expect(() => assertCandidateArtifactsUnchanged(before, outputDir)).toThrow("EVALUATOR_MUTATED_CANDIDATE");
     } finally {
       fs.rmSync(outputDir, { recursive: true, force: true });
