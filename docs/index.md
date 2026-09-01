@@ -6,6 +6,8 @@ owned by schemas and code.
 
 ## Start here
 
+- [Core mental model](vision/signal-room-core-mental-model.md) — 用小图先理解
+  Signal Room 的大目标、单帖证据、单博主局部模型与知识晋升边界。
 - [Product vision](vision/signal-room-llm-wiki-vision.md) — the long-term outcome
   and the role of the LLM Wiki.
 - [Current product](product/current-product.md) — shipped user surfaces,
