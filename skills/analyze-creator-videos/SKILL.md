@@ -1,6 +1,6 @@
 ---
 name: analyze-creator-videos
-description: Orchestrate a creator's complete public portfolio research from profile URL through acquisition, full-corpus annotation, high/median/mean-near/low selection, deep video reconstruction, independent evaluation, creator synthesis, and one evidence-backed Dashboard. Use for neutral creator research; keep the user's own copying or publishing strategy in content-strategy-workbench.
+description: Orchestrate a creator's complete public portfolio research from profile URL through acquisition, full-corpus annotation, high/median/mean-near/low selection, deep video reconstruction, creator synthesis, optional independent evaluation, and one evidence-backed Dashboard. Use for neutral creator research; keep the user's own copying or publishing strategy in content-strategy-workbench.
 ---
 
 # Analyze Creator Videos
@@ -14,11 +14,31 @@ This is the creator-research orchestrator. Route work to the canonical capabilit
 - `$creator-sample-selection` for the shared comparison and deep set;
 - `$video-content-reconstruction` for every selected deep video;
 - `$creator-research-synthesis` for creator-level conclusions;
-- `$creator-research-evaluator` for independent fail-closed acceptance.
+- `$creator-research-evaluator` for optional independent acceptance before formal Wiki promotion.
 
 Use `$compare-creators` for a separate multi-creator study and `$content-strategy-workbench` for the user's own creation plan. Neither belongs inside a neutral Creator Dossier.
 
 Read [session-derived-infrastructure.md](references/session-derived-infrastructure.md) before creating a new run or changing the pipeline. Its gates come from the real build history that produced the reference Dashboard.
+
+## Agent-loop boundary
+
+The normal production loop advances immutable stages and resumes only missing work. It must not change
+its own Prompt, Skill, Schema, or quality threshold while a creator run is active. A retry of the same
+revision is allowed only for a classified transient failure; a quality retry requires a changed input,
+contract, evidence, or code fingerprint.
+
+Use two completion levels:
+
+- `DOSSIER_READY`: full-corpus surface coverage is explicit, the registered deep set has usable Builder
+  artifacts or explicit blockers, creator synthesis passes deterministic integrity checks, and the
+  Dashboard exposes provisional conclusions and unknowns. Independent evaluation may be skipped.
+- `WIKI_READY`: the current creator synthesis revision also passes independent evaluation and formal
+  knowledge gates. Only this level may be promoted as verified Wiki knowledge.
+
+Evaluator findings do not delete a usable Builder or Dossier result and do not trigger automatic repair.
+Use `$session-forensics` only in a separate optimization loop for retained representative traces when the
+runtime is slow, repetitive, drifting, or falsely passing; it audits the process and must not solve or
+modify the creator analysis itself.
 
 ## Core model
 
@@ -112,6 +132,9 @@ Read [data-contract.md](references/data-contract.md). For every post, add open-e
 - uncertainty and annotation evidence.
 
 Do not force posts into a closed taxonomy. Add new labels when the corpus demands them. Keep `unclassified` when evidence is insufficient.
+Write a versioned `portfolio-annotations.json`. Every observed corpus ID must appear exactly once. A field-level
+unknown is a valid annotation; silently omitting a post is not. This full-corpus artifact feeds creator synthesis,
+while the canonical 21 selection remains the smaller comparison and deep-research index.
 
 ### 4. Compute the full-corpus baseline
 
@@ -139,7 +162,9 @@ If the corpus is small, shrink tiers and disclose the denominator. Never label a
 
 ### 6. Reconstruct selected videos
 
-Use `$video-content-reconstruction` for each deep-set video. Require its hard gates to pass before using a reconstruction as evidence.
+Use `$video-content-reconstruction` for each deep-set video. Require Builder integrity before using a
+reconstruction in a provisional Dossier; require independent evaluation before treating it as verified
+Wiki evidence. Preserve the distinction in every downstream claim.
 
 For every selected video preserve:
 
@@ -160,9 +185,13 @@ Generate `creator-analysis.json` matching [creator-analysis.schema.json](schemas
 
 Separate observed portfolio facts, sample associations, mechanism hypotheses, optional external verification, and unknowns. Explain high vs median vs low through user value, content promise, proof strength, comprehension cost, information density, visual structure, novelty, audience fit, and CTA—not likes alone.
 
-### 8. Independently evaluate the creator run
+### 8. Optionally evaluate the creator run for formal promotion
 
-Use `$creator-research-evaluator`. Keep producer and evaluator reasoning independent. Require explicit acquisition, corpus, annotation, selection, CR/DL/VE, synthesis, and projection gates. A partial section may remain visible with its blocker, but cannot be promoted to validated creator knowledge.
+Use `$creator-research-evaluator` when formal Wiki promotion or an explicit quality audit is requested.
+Keep producer and evaluator reasoning independent. Require explicit acquisition, corpus, annotation,
+selection, CR/DL/VE, synthesis, and projection gates. A partial section may remain visible with its blocker,
+but cannot be promoted to validated creator knowledge. Findings remain attached to the current revision;
+do not automatically repair or repeatedly rerun the candidate.
 
 ### 9. Build or update the Dashboard
 
@@ -238,18 +267,21 @@ Browser-smoke the final Dashboard on desktop and mobile. Check console errors, n
 
 ## Completion gate
 
-Do not announce completion unless:
+Do not announce `DOSSIER_READY` unless:
 
 - corpus coverage and collection failures are explicit;
 - full-corpus statistics are reproducible from `creator-corpus.json`;
+- `portfolio-annotations.json` has exact ID parity with `creator-corpus.json` and preserves surface-only boundaries;
 - all selected videos have selection reasons;
 - every mechanism claim points to comparison or reconstruction evidence;
-- no failed reconstruction is presented as validated;
+- no Builder-only or failed reconstruction is presented as independently validated;
 - unknown backend metrics remain unknown;
 - Dashboard List and Gallery both work;
 - validation and browser smoke pass.
 
-If any condition fails, report `NOT_READY` with the failed closure. Otherwise report `READY_FOR_CREATOR_ANALYSIS` and provide the canonical run path and Dashboard URL.
+If any condition fails, report `NOT_READY` with the failed closure. Otherwise report `DOSSIER_READY` and
+provide the canonical run path and Dashboard URL. Report `WIKI_READY` only when the current creator
+synthesis revision also passes independent evaluation and the formal promotion gate.
 
 ## Output contract
 

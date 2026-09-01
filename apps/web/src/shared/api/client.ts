@@ -310,6 +310,15 @@ export async function resumeCreatorResearchRun(id: string): Promise<CreatorResea
   }), (value) => creatorResearchRunSchema.parse(value));
 }
 
+export async function evaluateCreatorVideos(id: string, postExternalIds: string[]): Promise<CreatorResearchRun> {
+  return json(await fetch(`/api/creator-runs/${id}/evaluate-videos`, {
+    method: "POST",
+    cache: "no-store",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ postExternalIds })
+  }), (value) => creatorResearchRunSchema.parse(value));
+}
+
 export async function listCreatorResearchEvents(id: string, after = 0): Promise<CreatorResearchEvent[]> {
   return json(await fetch(`/api/creator-runs/${id}/events?after=${after}`, { cache: "no-store" }), (value) => {
     const events = value && typeof value === "object" && "events" in value ? value.events : [];

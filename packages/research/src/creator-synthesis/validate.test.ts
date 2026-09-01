@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { creatorSelectionSchema } from "../portfolio/contracts.js";
 import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
-import type { CreatorSynthesisIndependentEvaluation } from "./contracts.js";
+import type { CreatorSynthesis, CreatorSynthesisIndependentEvaluation } from "./contracts.js";
 import { combineCreatorSynthesisGates, validateCreatorSynthesis } from "./validate.js";
 
 const runId = "11111111-1111-4111-8111-111111111111";
@@ -86,7 +86,7 @@ function claim(statement: string) {
     evidenceRefs: [`/artifacts/${runId}/corpus.json`], caveat: "仅基于公开样本" };
 }
 
-function synthesis() {
+function synthesis(): CreatorSynthesis {
   const selected = selection();
   const deepIds = new Set(selected.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
   return {
@@ -178,6 +178,22 @@ describe("validateCreatorSynthesis", () => {
     incomplete.failedPosts = 1;
     const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: incomplete, synthesis: synthesis(), checkedAt });
     expect(gate.failedGateIds).toContain("deep_9_ready");
+  });
+
+  it("keeps Builder-complete evidence usable for a provisional dossier without passing the formal gate", () => {
+    const provisionalBatch = batch();
+    for (const item of provisionalBatch.items) item.state = "built_unevaluated";
+    provisionalBatch.verifiedPosts = 0;
+    provisionalBatch.readyPosts = 0;
+    const candidate = synthesis();
+    for (const row of candidate.postAnalyses.filter((item) => item.evidenceStatus === "deep_validated")) {
+      row.evidenceStatus = "deep_provisional";
+    }
+    const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: provisionalBatch,
+      synthesis: candidate, checkedAt });
+    expect(gate.ready).toBe(false);
+    expect(gate.failedGateIds).toContain("deep_9_ready");
+    expect(gate.failedGateIds).not.toContain("deep_evidence_binding");
   });
 
   it("accepts an explicit bounded media gap when every performance group retains ready video evidence", () => {

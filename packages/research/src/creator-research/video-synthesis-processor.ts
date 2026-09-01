@@ -89,27 +89,33 @@ export class CreatorResearchVideoSynthesisProcessor {
     queuedAt: string
   ): boolean {
     const coverage = creatorSynthesisCoverage(selection, batch);
-    if (!coverage.allowed) return false;
+    if (!coverage.provisionalAllowed && !coverage.formalAllowed) return false;
+    const mode = coverage.formalAllowed ? "formal" : "provisional";
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
-      idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
-      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef },
+      idempotencyKey: `${run.id}:creator.synthesize:${mode}:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
+      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef, mode },
       lastError: null, createdAt: queuedAt, updatedAt: queuedAt });
     run.status = "collecting";
     run.currentStage = "synthesis";
     run.worker = { state: "queued", attempt: 0, jobId: synthesisJob.id, workerId: null, lastHeartbeatAt: queuedAt };
     run.blockers = [];
-    run.nextAction = coverage.boundedMediaGap
+    run.nextAction = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已完成 Builder；先生成可审阅的单博主完整报告，未验证结论保持 provisional。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条公开媒体完成单轮分析；其余媒体经一次定向补取仍不可得，作为未知证据进入综合。`
       : "四组深度内容均完成单轮还原与独立评估；博主级综合归纳已进入队列。";
     stage(run, "deep_capture").status = "complete";
-    stage(run, "deep_capture").message = coverage.boundedMediaGap
+    stage(run, "deep_capture").message = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已构建，${batch.verifiedPosts} 条已正式验证。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条完成；${batch.failedPosts} 条媒体不可得，禁止据此推断视频内容。`
       : `${batch.readyPosts}/${batch.requestedPosts} 条全部完成单轮分析；质量提醒继续保留。`;
     stage(run, "synthesis").status = "pending";
     stage(run, "synthesis").message = "等待从规范比较集、可用视频与显式未知边界生成研究归纳。";
     this.repository.appendEvent({ runId: run.id, jobId: synthesisJob.id, type: "job.queued", createdAt: queuedAt,
-      message: coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
-      payload: { nodeKey: synthesisJob.nodeKey, boundedMediaGap: coverage.boundedMediaGap,
+      message: mode === "provisional" ? "DOSSIER_READY 单博主报告已进入持久队列。"
+        : coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
+      payload: { nodeKey: synthesisJob.nodeKey, mode, boundedMediaGap: coverage.boundedMediaGap,
         readyPosts: batch.readyPosts, requestedPosts: batch.requestedPosts } });
     return true;
   }
@@ -123,6 +129,8 @@ export class CreatorResearchVideoSynthesisProcessor {
     const postExternalId = typeof job.payload.postExternalId === "string" ? job.payload.postExternalId : null;
     const sourceUrl = typeof job.payload.sourceUrl === "string" ? job.payload.sourceUrl : null;
     const sourceMediaArtifactRef = typeof job.payload.sourceMediaArtifactRef === "string" ? job.payload.sourceMediaArtifactRef : null;
+    const evaluationOnly = job.payload.evaluationOnly === true;
+    const evaluationPolicy = job.payload.evaluationPolicy === "single_pass" ? "single_pass" : "skip";
     const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
     if (!postExternalId || !sourceUrl || !item) {
       return this.failRun(run, job, workerId, "视频节点 payload 与批次不一致");
@@ -136,7 +144,7 @@ export class CreatorResearchVideoSynthesisProcessor {
         payload: { postExternalId, state: "superseded", idempotent: true } });
       return;
     }
-    if (isBuiltVideoState(item.state)) {
+    if (isBuiltVideoState(item.state) && !evaluationOnly) {
       run.videoWork = { ...run.videoWork,
         activePostExternalIds: run.videoWork.activePostExternalIds.filter((id) => id !== postExternalId),
         analyzedPosts: batch.builtPosts, failedPosts: batch.failedPosts,
@@ -151,7 +159,9 @@ export class CreatorResearchVideoSynthesisProcessor {
     run.currentStage = "deep_capture";
     run.updatedAt = startedAt;
     run.worker = { state: "running", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: startedAt };
-    run.nextAction = `正在运行深度视频 Builder ${postExternalId}；独立 Evaluator 当前为可选阶段。`;
+    run.nextAction = evaluationOnly
+      ? `正在复用 Builder 结果，为 ${postExternalId} 补做独立 Evaluator。`
+      : `正在运行深度视频 Builder ${postExternalId}；独立 Evaluator 当前为可选阶段。`;
     stage(run, "deep_capture").status = "running";
     stage(run, "deep_capture").message = `已构建 ${batch.builtPosts}/${batch.requestedPosts}；正在处理 ${postExternalId}。`;
     item.state = "running";
@@ -187,6 +197,7 @@ export class CreatorResearchVideoSynthesisProcessor {
     try {
       const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
         postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
+        evaluationPolicy,
         contractVersion: "video-content-reconstruction@1" });
       const outcome: VideoReconstructionOutcome = await this.videoReconstructor.reconstruct(request, (event) => {
         const eventType = `child.${event.status}` as CreatorResearchEvent["type"];
@@ -392,7 +403,8 @@ export class CreatorResearchVideoSynthesisProcessor {
 
   async processSynthesis(run: CreatorResearchRun, job: ResearchJob, workerId: string): Promise<void> {
     const startedAt = now();
-    if (!run.portfolioArtifactRef || !run.selectionArtifactRef || !run.detailArtifactRef || !run.reconstructionBatchArtifactRef) {
+    if (!run.portfolioArtifactRef || !run.portfolioAnnotationsArtifactRef || !run.selectionArtifactRef
+      || !run.detailArtifactRef || !run.reconstructionBatchArtifactRef) {
       return this.failRun(run, job, workerId, "博主归纳缺少固定输入 artifact");
     }
     run.status = "collecting";
@@ -414,9 +426,12 @@ export class CreatorResearchVideoSynthesisProcessor {
       if (latest?.worker.jobId === job.id) { latest.worker.lastHeartbeatAt = at; latest.updatedAt = at; this.repository.save(latest); }
     }, 20_000);
     try {
+      const mode = job.payload.mode === "formal" ? "formal" : "provisional";
       const outcome = await this.synthesisExecutor.synthesize({ creatorRunId: run.id, creatorName: run.creatorName,
         portfolioArtifactRef: run.portfolioArtifactRef, selectionArtifactRef: run.selectionArtifactRef,
-        detailArtifactRef: run.detailArtifactRef, reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef }, (event) => {
+        portfolioAnnotationsArtifactRef: run.portfolioAnnotationsArtifactRef,
+        detailArtifactRef: run.detailArtifactRef, reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef,
+        mode }, (event) => {
         const eventType = `child.${event.status}` as CreatorResearchEvent["type"];
         this.repository.appendEvent({
           runId: run.id,
@@ -444,7 +459,26 @@ export class CreatorResearchVideoSynthesisProcessor {
       });
       const completedAt = now();
       run.updatedAt = completedAt;
-      if (outcome.state === "ready") {
+      if (outcome.state === "provisional") {
+        run.status = "reviewable";
+        run.synthesisArtifactRef = outcome.synthesisArtifactRef;
+        run.synthesisGateArtifactRef = outcome.gateArtifactRef;
+        run.worker = { state: "succeeded", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: completedAt };
+        run.blockers = [];
+        run.nextAction = "DOSSIER_READY：单博主完整报告可审阅；正式进入 Wiki 和跨博主结论前仍需补齐 Evaluator。";
+        run.dashboardPath = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
+        stage(run, "synthesis").status = "complete";
+        stage(run, "synthesis").message = "单博主报告已生成；未验证的深度结论均标为 provisional。";
+        stage(run, "dashboard").status = "complete";
+        stage(run, "dashboard").message = "Dashboard 已可读取 DOSSIER_READY 报告。";
+        this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: completedAt });
+        this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
+          message: "DOSSIER_READY 单博主报告与正式性 gate 已写入证据仓。",
+          payload: { synthesisArtifactRef: outcome.synthesisArtifactRef, gateArtifactRef: outcome.gateArtifactRef,
+            failedFormalGateIds: outcome.failedGateIds } });
+        this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "run.reviewable", createdAt: completedAt,
+          message: "单博主完整报告可审阅，但尚未进入正式 Wiki。", payload: {} });
+      } else if (outcome.state === "ready") {
         run.status = "ready";
         run.synthesisArtifactRef = outcome.synthesisArtifactRef;
         run.synthesisGateArtifactRef = outcome.gateArtifactRef;
@@ -503,7 +537,9 @@ export class CreatorResearchVideoSynthesisProcessor {
         }
       }
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
-        message: outcome.state === "ready" ? "博主级归纳通过硬闸。" : "博主级归纳未发布。", payload: { state: outcome.state } });
+        message: outcome.state === "ready" ? "博主级归纳通过硬闸。"
+          : outcome.state === "provisional" ? "单博主报告已生成，正式 Wiki gate 保持未通过。" : "博主级归纳未发布。",
+        payload: { state: outcome.state } });
     } catch (error) {
       this.failRun(run, job, workerId, error instanceof Error ? error.message : "博主归纳节点失败");
     } finally { clearInterval(heartbeat); }

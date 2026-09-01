@@ -1,11 +1,8 @@
-import type { ComparisonProjectService } from "../../packages/research/index.js";
+import type { ComparisonProjectService, CreatorComparison } from "../../packages/research/index.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import { comparisonDossierSchema, type ComparisonDossier } from "../shared/comparison-dossier.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
-
-function multiple(value: number | null, median: number | null): number | null {
-  return value !== null && median !== null && median > 0 ? value / median : null;
-}
+import type { ResearchStatement } from "../../packages/contracts/index.js";
 
 export function loadComparisonDossier(
   comparisons: ComparisonProjectService,
@@ -14,29 +11,41 @@ export function loadComparisonDossier(
 ): ComparisonDossier | null {
   const stored = comparisons.get(id);
   if (!stored) return null;
-  // member.creatorRunId is an internal comparison key.  Legacy dossiers have
-  // no Creator Run, so the canonical creator ID is the only safe route back to
-  // the published evidence page.
-  const dossiers = stored.project.members.map((member) => ({ member, dossier: loadCreatorDossier(creators, member.creatorId) })).filter((item) => item.dossier !== null);
-  const creatorIdsByRun = new Map(dossiers.map(({ member, dossier }) => [member.creatorRunId, dossier!.canonicalId]));
-  const cells = (select: (dossier: NonNullable<(typeof dossiers)[number]["dossier"]>) => NonNullable<(typeof dossiers)[number]["dossier"]>["identity"]["valuesProvided"]) =>
-    dossiers.map(({ dossier }) => ({ creatorId: dossier!.canonicalId, creatorName: dossier!.identity.name, statements: select(dossier!) }));
+  const pinnedInputArtifactRef = stored.project.inputArtifactRef;
+  const dossiers = stored.project.members.map((member) => ({ member, dossier: loadCreatorDossier(creators, member.creatorId) }));
+  const creatorIdsByRun = new Map(stored.project.members.map((member) => [member.creatorRunId, member.creatorId]));
+  const rowsByRun = new Map(stored.comparison?.members.map((row) => [row.creatorRunId, row]) ?? []);
+  const profilesByRun = new Map(stored.comparison?.creatorProfiles.map((profile) => [profile.creatorRunId, profile]) ?? []);
+  const unknown = (statement: string): ResearchStatement => ({ statement, factClass: "unknown", confidence: "low", evidenceRefs: [pinnedInputArtifactRef], caveat: "固定比较输入未包含这一维度。" });
+  const cells = (
+    selectProfile: (profile: CreatorComparison["creatorProfiles"][number]) => ResearchStatement[],
+    selectDossier: (dossier: NonNullable<(typeof dossiers)[number]["dossier"]>) => ResearchStatement[]
+  ) => stored.project.members.map((member) => {
+    const profile = profilesByRun.get(member.creatorRunId);
+    const dossier = dossiers.find((item) => item.member.creatorRunId === member.creatorRunId)?.dossier;
+    return { creatorId: member.creatorId, creatorName: member.creatorName,
+      statements: profile ? selectProfile(profile) : dossier ? selectDossier(dossier) : [unknown("当前固定版本未记录这一维度。")] };
+  });
   const warnings = [
     "比较使用各博主自身中位数与档位，不以原始点赞直接排名。",
     "当前项目固定成员版本；账号年龄、粉丝规模、投流和商业内容差异仍可能混杂。",
-    ...dossiers.filter(({ dossier }) => dossier!.corpus.health.status !== "full").map(({ dossier }) => `${dossier!.identity.name} 的全量基本盘为${dossier!.corpus.health.status === "partial" ? "部分覆盖" : "未覆盖"}。`)
+    ...(stored.comparison?.comparability.warnings ?? []),
+    ...dossiers.filter(({ dossier }) => dossier && dossier.corpus.health.status !== "full").map(({ dossier }) => `${dossier!.identity.name} 的全量基本盘为${dossier!.corpus.health.status === "partial" ? "部分覆盖" : "未覆盖"}。`)
   ];
-  const members = dossiers.map(({ member, dossier }) => {
-    const selectedCounts = { high: 0, base: 0, low: 0 };
-    dossier!.portfolio.items.forEach((item) => { selectedCounts[item.tier] += 1; });
+  const members = stored.project.members.map((member) => {
+    const dossier = dossiers.find((item) => item.member.creatorRunId === member.creatorRunId)?.dossier;
+    const row = rowsByRun.get(member.creatorRunId);
+    const profile = profilesByRun.get(member.creatorRunId);
+    const selectedCounts = row?.selectedCounts ?? { high: 0, base: 0, low: 0 };
     return {
-      creatorId: dossier!.canonicalId, creatorRunId: member.creatorRunId, name: dossier!.identity.name,
-      href: `/creators/${encodeURIComponent(dossier!.canonicalId)}?comparison=${encodeURIComponent(id)}`,
-      postCount: dossier!.corpus.postCount, coverageRate: dossier!.corpus.coverageRate,
-      medianLikes: dossier!.corpus.medianLikes, meanLikes: dossier!.corpus.meanLikes, maxLikes: dossier!.corpus.maxLikes,
-      meanMedianMultiple: multiple(dossier!.corpus.meanLikes, dossier!.corpus.medianLikes),
-      maxMedianMultiple: multiple(dossier!.corpus.maxLikes, dossier!.corpus.medianLikes), selectedCounts,
-      positioning: dossier!.identity.positioning, values: dossier!.identity.valuesProvided, lifecycle: dossier!.identity.lifecycle
+      creatorId: member.creatorId, creatorRunId: member.creatorRunId, name: member.creatorName,
+      href: `/creators/${encodeURIComponent(member.creatorId)}?comparison=${encodeURIComponent(id)}`,
+      postCount: row?.discoveredPosts ?? dossier?.corpus.postCount ?? 0, coverageRate: row?.likesCoverage ?? dossier?.corpus.coverageRate ?? 0,
+      medianLikes: row?.medianLikes ?? null, meanLikes: row?.meanLikes ?? null, maxLikes: row?.maxLikes ?? null,
+      meanMedianMultiple: row?.meanToMedianRatio ?? null, maxMedianMultiple: row?.headToMedianRatio ?? null, selectedCounts,
+      positioning: profile?.positioning ?? dossier?.identity.positioning ?? unknown("当前固定版本没有定位结论。"),
+      values: profile?.values ?? dossier?.identity.valuesProvided ?? [unknown("当前固定版本没有价值结论。")],
+      lifecycle: profile?.lifecycle ?? dossier?.identity.lifecycle ?? unknown("当前固定版本没有生命周期结论。")
     };
   });
   const creatorHref = (creatorId: string) => `/creators/${encodeURIComponent(creatorId)}?comparison=${encodeURIComponent(id)}`;
@@ -53,16 +62,21 @@ export function loadComparisonDossier(
   const ledger = [...observationLedger, ...patternLedger, ...exceptionLedger, ...gapLedger];
   return comparisonDossierSchema.parse({
     schemaVersion: "1.0.0", id: stored.project.id, name: stored.project.name, status: stored.project.status, generatedAt: stored.project.updatedAt,
-    scope: { platform: "小红书", windowLabel: "固定任务快照；尚未对齐统一发布时间窗", memberCount: stored.project.members.length,
+    scope: { platform: stored.comparison?.comparability.platform ?? "小红书", windowLabel: stored.comparison?.comparability.timeWindowAligned ? "固定任务快照；发布时间窗已对齐" : "固定任务快照；尚未对齐统一发布时间窗", memberCount: stored.project.members.length,
       comparability: stored.project.members.length < 2 ? "blocked" : warnings.length > 2 ? "partial" : "aligned", warnings },
     members,
-    matrices: { values: cells((dossier) => dossier.identity.valuesProvided), topics: cells((dossier) => dossier.contentSystem.topics), formats: cells((dossier) => dossier.contentSystem.formats) },
+    matrices: {
+      values: cells((profile) => profile.values, (dossier) => dossier.identity.valuesProvided),
+      topics: cells((profile) => profile.topics, (dossier) => dossier.contentSystem.topics),
+      formats: cells((profile) => profile.formats, (dossier) => dossier.contentSystem.formats)
+    },
     tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tier === "high" ? "高表现" : tier === "base" ? "基本盘" : "低表现",
-      cells: dossiers.map(({ dossier }) => ({ creatorId: dossier!.canonicalId, creatorName: dossier!.identity.name,
-        statements: dossier!.tiers.find((item) => item.id === tier)?.conclusion ?? [] })) })),
+      cells: cells((profile) => profile[tier === "base" ? "baseline" : tier], (dossier) => dossier.tiers.find((item) => item.id === tier)?.conclusion ?? []) })),
     dimensions: {
-      structure: cells((dossier) => [...dossier.contentSystem.visualLanguage, ...dossier.contentSystem.recurringStructures]),
-      audience: cells((dossier) => dossier.audienceDemand.statements), rhythm: cells((dossier) => dossier.rhythm.statements), business: cells((dossier) => dossier.businessPath.statements)
+      structure: cells((profile) => [...profile.visualLanguage, ...profile.recurringStructures], (dossier) => [...dossier.contentSystem.visualLanguage, ...dossier.contentSystem.recurringStructures]),
+      audience: cells((profile) => profile.audience, (dossier) => dossier.audienceDemand.statements),
+      rhythm: cells(() => [unknown("固定综合未形成可跨账号比较的发布节奏结论。")], (dossier) => dossier.rhythm.statements),
+      business: cells((profile) => profile.commercialPaths, (dossier) => dossier.businessPath.statements)
     },
     ledger,
     limitations: [...(stored.comparison?.limitations ?? []), ...warnings, ...(stored.project.error ? [stored.project.error] : [])]

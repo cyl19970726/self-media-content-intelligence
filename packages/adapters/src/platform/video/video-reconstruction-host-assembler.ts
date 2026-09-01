@@ -38,6 +38,7 @@ type Reconstruction = {
 export type HostAssemblyReport = {
   transcriptCuesRestored: number;
   carriersNormalized: number;
+  carrierRationalesSynchronized: number;
   probeWarnings: string[];
 };
 
@@ -68,8 +69,23 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
   const probe = readJson<Probe>(probePath);
   const reconstruction = readJson<Reconstruction>(reconstructionPath);
   const frozenCues = evidence.transcript?.cues ?? [];
-  const probeCarriers = (probe.informationCarriers ?? []).map(normalizeCarrier);
   const reconstructionCarriers = (reconstruction.coverageMatrix?.channels ?? []).map(normalizeCarrier);
+  const reconstructionCarriersById = new Map(reconstructionCarriers
+    .filter((carrier): carrier is Carrier & { id: string } => Boolean(carrier.id))
+    .map((carrier) => [carrier.id, carrier]));
+  let carrierRationalesSynchronized = 0;
+  const probeCarriers = (probe.informationCarriers ?? []).map(normalizeCarrier).map((carrier) => {
+    const reconstructionCarrier = carrier.id ? reconstructionCarriersById.get(carrier.id) : undefined;
+    if (carrier.inspectionRationale?.trim() || !reconstructionCarrier?.inspectionRationale?.trim()) return carrier;
+    carrierRationalesSynchronized += 1;
+    return {
+      ...carrier,
+      inspectionStatus: reconstructionCarrier.inspectionStatus,
+      available: reconstructionCarrier.available,
+      inspected: reconstructionCarrier.inspected,
+      inspectionRationale: reconstructionCarrier.inspectionRationale
+    };
+  });
   const uncheckedChannels = reconstructionCarriers
     .filter((carrier) => carrier.available && !isClosed(carrier))
     .map((carrier) => carrier.id)
@@ -114,6 +130,7 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
   return {
     transcriptCuesRestored: frozenCues.length,
     carriersNormalized: probeCarriers.length + reconstructionCarriers.length,
+    carrierRationalesSynchronized,
     probeWarnings
   };
 }

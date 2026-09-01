@@ -22,7 +22,7 @@ type ReconstructionLike = {
     evidence?: EvidenceRef[];
   }>;
   relations?: Array<{ from?: string; to?: string; evidence?: EvidenceRef[] }>;
-  derivedSources?: Array<{ path?: string }>;
+  derivedSources?: Array<{ id?: string; path?: string }>;
   coverageMatrix?: {
     channels?: Carrier[];
     cueAccountability?: Array<{ cueId?: string; unitIds?: string[] }>;
@@ -43,6 +43,8 @@ type EvidencePackLike = {
   frameIndex?: Array<{ id?: string; time?: number }>;
   transcript?: { cues?: Array<Record<string, unknown>> };
 };
+
+type ProbeLike = { informationCarriers?: Carrier[] };
 
 function exists(file: string): boolean {
   return fs.existsSync(file) && fs.statSync(file).isFile();
@@ -68,15 +70,15 @@ export function carrierInspectionStatus(carrier: Carrier): "absent" | "unchecked
   return carrier.inspectionStatus ?? (!carrier.available ? "absent" : carrier.inspected ? "checked_readable" : "unchecked");
 }
 
-function validateCarrierInspectionContract(carrier: Carrier): void {
-  if (!carrier.inspectionStatus) return;
+function invalidCarrierInspectionContract(carrier: Carrier): boolean {
+  if (!carrier.inspectionStatus) return false;
   const expected = carrier.inspectionStatus === "absent"
     ? { available: false, inspected: carrier.inspected }
     : carrier.inspectionStatus === "unchecked"
       ? { available: true, inspected: false }
       : { available: true, inspected: true };
-  if (carrier.available !== expected.available || carrier.inspected !== expected.inspected ||
-      !carrier.inspectionRationale?.trim()) fail("CARRIER_STATUS", carrier.id);
+  return carrier.available !== expected.available || carrier.inspected !== expected.inspected ||
+    !carrier.inspectionRationale?.trim();
 }
 
 function cueContract(cue: Record<string, unknown>): Record<string, unknown> {
@@ -104,6 +106,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   const targetedPath = path.join(outputDir, "targeted-evidence/targeted-evidence.json");
   const ocrPath = path.join(outputDir, "targeted-evidence/ocr-evidence.json");
   const reconstructionPath = path.join(outputDir, "reconstruction.json");
+  const probePath = path.join(outputDir, "probe.json");
   if (manifest.sourceMedia?.fingerprint !== sha256(videoPath)) fail("MEDIA_FINGERPRINT");
   if (manifest.evidencePack?.path !== evidencePath || manifest.evidencePack.fingerprint !== sha256(evidencePath)) {
     fail("EVIDENCE_FINGERPRINT");
@@ -118,6 +121,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     frames?: Array<{ frameId?: string; time?: number; lines?: Array<{ id?: string }> }>
   }>(ocrPath) : null;
   const reconstruction = readJson<ReconstructionLike>(reconstructionPath);
+  const probe = readJson<ProbeLike>(probePath);
   const sourceCues = pack.transcript?.cues ?? [];
   const outputCues = reconstruction.transcript?.cues ?? [];
   if (sourceCues.length !== outputCues.length) fail("CUE_COUNT", `${outputCues.length}/${sourceCues.length}`);
@@ -143,6 +147,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   const targetedIds = ids(targeted.frames);
   const ocrIds = new Set((ocr?.frames ?? []).flatMap((item) => item.lines ?? [])
     .map((item) => item.id).filter((id): id is string => Boolean(id)));
+  const sourceIds = ids(reconstruction.derivedSources);
   const frameTimes = new Map<string, number>();
   for (const frame of pack.frameIndex ?? []) if (frame.id && Number.isFinite(frame.time)) frameTimes.set(frame.id, Number(frame.time));
   for (const frame of targeted.frames ?? []) if (frame.id && Number.isFinite(frame.time)) frameTimes.set(frame.id, Number(frame.time));
@@ -161,7 +166,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
         : reference.refType === "frame" ? frameIds.has(ref)
           : reference.refType === "targeted_frame" ? targetedIds.has(ref)
             : reference.refType === "ocr" ? ocrIds.has(ref)
-              : reference.refType === "source";
+              : reference.refType === "source" ? sourceIds.has(ref) : false;
     if (!valid) fail("DANGLING_REFERENCE", `${reference.refType}:${ref}`);
   }
   for (const relation of reconstruction.relations ?? []) {
@@ -195,7 +200,13 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }
 
   const channels = reconstruction.coverageMatrix?.channels ?? [];
-  channels.forEach(validateCarrierInspectionContract);
+  const invalidCarrierIds = [
+    ...(probe.informationCarriers ?? []).filter(invalidCarrierInspectionContract)
+      .map((carrier) => `probe:${carrier.id ?? "unknown"}`),
+    ...channels.filter(invalidCarrierInspectionContract)
+      .map((carrier) => `reconstruction:${carrier.id ?? "unknown"}`)
+  ];
+  if (invalidCarrierIds.length > 0) fail("CARRIER_STATUS", invalidCarrierIds.join(","));
   const availableChannels = channels.filter((channel) => channel.available);
   if (availableChannels.some((channel) => !["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel)))) {
     fail("UNCHECKED_AVAILABLE_CHANNEL");

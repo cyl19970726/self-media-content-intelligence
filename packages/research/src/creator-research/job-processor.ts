@@ -4,6 +4,7 @@ import type { CreatorResearchRepository, ResearchJobLane } from "./repository.js
 import type { CreatorArtifactStore } from "./artifact-store.js";
 import {
   buildCreatorPortfolio,
+  buildCreatorPortfolioAnnotations,
   refineDeepSelectionForVerifiedVideos,
   creatorPortfolioAnalysisSchema,
   creatorSelectionSchema,
@@ -261,6 +262,8 @@ export class CreatorResearchJobProcessor {
       for (const record of corpus.records) record.url = canonicalXhsPostUrl(record.externalId);
       for (const item of selection.items) item.url = canonicalXhsPostUrl(item.externalId);
       const corpusRef = this.artifacts.write(run.id, "creator-corpus.json", corpus, [run.inventoryArtifactRef]);
+      const annotations = buildCreatorPortfolioAnnotations(corpus, corpusRef, timestamp);
+      const annotationsRef = this.artifacts.write(run.id, "portfolio-annotations.json", annotations, [corpusRef]);
       selection.sourceCorpusArtifactRef = corpusRef;
       const selectionRef = this.artifacts.write(run.id, "creator-selection.json", selection, [corpusRef]);
       const analysis = creatorPortfolioAnalysisSchema.parse({
@@ -292,6 +295,7 @@ export class CreatorResearchJobProcessor {
       run.updatedAt = timestamp;
       run.coverage.comparisonPosts = selection.denominator.selectedPosts;
       run.portfolioArtifactRef = portfolioRef;
+      run.portfolioAnnotationsArtifactRef = annotationsRef;
       run.selectionArtifactRef = selectionRef;
       run.dashboardPath = `/creator-runs/${run.id}`;
       run.worker = { state: "queued", attempt: 0, jobId: detailJob.id, workerId: null, lastHeartbeatAt: timestamp };
@@ -303,7 +307,7 @@ export class CreatorResearchJobProcessor {
       stage(run, "deep_capture").message = `${selection.items.filter((item) => item.deepCandidate).length} 条深度候选等待内容还原。`;
       this.repository.save(run);
       this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: timestamp });
-      for (const [kind, artifactRef] of [["creator.corpus", corpusRef], ["creator.selection", selectionRef], ["creator.portfolio", portfolioRef]]) {
+      for (const [kind, artifactRef] of [["creator.corpus", corpusRef], ["creator.portfolio_annotations", annotationsRef], ["creator.selection", selectionRef], ["creator.portfolio", portfolioRef]]) {
         this.repository.appendEvent({
           runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: timestamp,
           message: `${kind} artifact 已写入证据仓。`, payload: { kind, artifactRef }
@@ -311,7 +315,8 @@ export class CreatorResearchJobProcessor {
       }
       this.repository.appendEvent({
         runId: run.id, jobId: job.id, type: "node.completed", createdAt: timestamp,
-        message: "全量统计与 High / Base / Low 规范选择完成。", payload: { selected: selection.denominator.selectedPosts }
+        message: "全量表层标注、统计与 High / Base / Low 规范选择完成。",
+        payload: { annotated: annotations.denominator.annotatedPosts, selected: selection.denominator.selectedPosts }
       });
       this.repository.appendEvent({
         runId: run.id, jobId: detailJob.id, type: "job.queued", createdAt: timestamp,
@@ -707,27 +712,33 @@ export class CreatorResearchJobProcessor {
     queuedAt: string
   ): boolean {
     const coverage = creatorSynthesisCoverage(selection, batch);
-    if (!coverage.allowed) return false;
+    if (!coverage.provisionalAllowed && !coverage.formalAllowed) return false;
+    const mode = coverage.formalAllowed ? "formal" : "provisional";
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
-      idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
-      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef },
+      idempotencyKey: `${run.id}:creator.synthesize:${mode}:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
+      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef, mode },
       lastError: null, createdAt: queuedAt, updatedAt: queuedAt });
     run.status = "collecting";
     run.currentStage = "synthesis";
     run.worker = { state: "queued", attempt: 0, jobId: synthesisJob.id, workerId: null, lastHeartbeatAt: queuedAt };
     run.blockers = [];
-    run.nextAction = coverage.boundedMediaGap
+    run.nextAction = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已完成 Builder；先生成可审阅的单博主完整报告，未验证结论保持 provisional。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条公开媒体完成单轮分析；其余媒体经一次定向补取仍不可得，作为未知证据进入综合。`
       : "四组深度内容均完成单轮还原与独立评估；博主级综合归纳已进入队列。";
     stage(run, "deep_capture").status = "complete";
-    stage(run, "deep_capture").message = coverage.boundedMediaGap
+    stage(run, "deep_capture").message = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已构建，${batch.verifiedPosts} 条已正式验证。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条完成；${batch.failedPosts} 条媒体不可得，禁止据此推断视频内容。`
       : `${batch.readyPosts}/${batch.requestedPosts} 条全部完成单轮分析；质量提醒继续保留。`;
     stage(run, "synthesis").status = "pending";
     stage(run, "synthesis").message = "等待从规范比较集、可用视频与显式未知边界生成研究归纳。";
     this.repository.appendEvent({ runId: run.id, jobId: synthesisJob.id, type: "job.queued", createdAt: queuedAt,
-      message: coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
-      payload: { nodeKey: synthesisJob.nodeKey, boundedMediaGap: coverage.boundedMediaGap,
+      message: mode === "provisional" ? "DOSSIER_READY 单博主报告已进入持久队列。"
+        : coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
+      payload: { nodeKey: synthesisJob.nodeKey, mode, boundedMediaGap: coverage.boundedMediaGap,
         readyPosts: batch.readyPosts, requestedPosts: batch.requestedPosts } });
     return true;
   }

@@ -38,4 +38,8 @@ Use multi-label, open-ended concepts. Create a new label when the corpus demands
 
 Produce `portfolio-annotations.json` keyed by stable post ID, with annotation revision, source revision, evidence scope, confidence, conflicts, unknowns, and per-field evidence references. Every observed corpus ID must have exactly one row, including explicitly unclassified rows.
 
+The artifact is a pinned input to creator synthesis. It describes the full visible denominator; it does not replace
+the canonical 21 comparison set or the representative deep-video set. Deterministic title/media heuristics may create
+the first conservative pass, but must keep proof, visual sequence and body structure unknown until stronger evidence exists.
+
 Return `ANNOTATION_READY` only when ID parity, evidence references, and unknown handling validate.

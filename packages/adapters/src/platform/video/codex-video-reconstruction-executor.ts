@@ -76,6 +76,13 @@ export function normalizeRuntimeLensEvidence(input: unknown): unknown {
   });
 }
 
+export function runtimeThreeLensBoundToEvaluator(value: unknown, evaluatorRunId: string): boolean {
+  if (!value || typeof value !== "object" || !("lenses" in value)) return false;
+  const lenses = (value as { lenses?: Record<string, { evaluator?: { evaluatorRunId?: string } }> }).lenses ?? {};
+  return Object.values(lenses).length === 3 &&
+    Object.values(lenses).every((lens) => lens.evaluator?.evaluatorRunId === evaluatorRunId);
+}
+
 function readJsonIfPresent(file: string): unknown {
   if (!exists(file)) return null;
   try { return JSON.parse(fs.readFileSync(file, "utf8")); }
@@ -292,6 +299,7 @@ Resume contract:
 - When probe, protocol, or targeted evidence already exists, treat it as frozen input and inspect it directly.
 
 Execute only the missing Builder closures: first-round open probe, video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured reconstruction, coverage/meta-gate self-audit, and schema validation. Preserve the transcript provenance recorded in media-preparation.json. Machine transcription remains a lower-confidence proposal and must be checked against audible speech and visible captions when consequential.
+Every evidence item with refType "source" must use the exact ID of a matching top-level derivedSources entry, never a file path or JSON pointer. If media-preparation.json supports a technical fact, register it in derivedSources first and cite that registered ID.
 
 Isolation and evidence rules:
 - Do not read any previous report, creator analysis, audit, evaluation, or sibling video directory.
@@ -308,6 +316,7 @@ Isolation and evidence rules:
 - informationCarriers[].discoveredIn contains only carrierSweep IDs. Put media/evidence file provenance in inspectionRationale or evidenceHints. An absent carrier is available:false and may be inspected:true when frozen host evidence was checked to establish absence.
 - Write metaGate.questionId as "uncovered_information_audit". The display question may be localized and is not an identity key.
 - Signed URLs, cookies, login data, and private browser state must never enter any output.
+- Write all human-readable artifact values in concise, natural Chinese. Keep schema keys, IDs, enum values, file paths, and evidence refs unchanged in English.
 
 Write candidate outputs only under ${outputDir}: evidence/, probe.json, capture-protocol.json, targeted-evidence/, and reconstruction.json. Do not generate article.md or verbose run-notes.md on the synchronous fast path. Do NOT create evaluation.json or gate-report.json; an independent process owns those. Before finishing, run the canonical schema validator for probe/protocol/reconstruction and OCR when applicable. If evidence cannot establish something, preserve it as unknown rather than inventing it.
 `;
@@ -347,6 +356,25 @@ Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}
 - ${outputDir}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
 
 This single Evaluator process owns all three lenses; do not claim three independent processes. Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
+Write evaluation.md and every human-readable JSON finding, note, and message in concise, natural Chinese. Keep schema keys, IDs, enum values, paths, and evidence refs unchanged in English.
+`;
+}
+
+function builderIntegrityRepairPrompt(videoPath: string, outputDir: string, failure: string): string {
+  return `
+You are the Builder contract-repair role. Read ${skillDir}/SKILL.md and ${skillDir}/references/builder-operator.md completely.
+
+Source video: ${videoPath}
+Candidate root: ${outputDir}
+Deterministic integrity failure: ${failure}
+
+The evidence collection is frozen. Do not modify media-preparation.json, evidence/, probe.json, capture-protocol.json,
+targeted-evidence/, article.md, or any evaluator artifact. Inspect the existing evidence and repair only reconstruction.json.
+Correct the stated integrity violation without deleting supported knowledge merely to make validation pass. Preserve unknowns,
+all transcript cues, evidence identity, and source boundaries. For carrier-state failures, make availability, inspection status,
+and rationale mutually consistent with evidence already present. For evidence-time failures, bind the evidence to the correct
+knowledge unit or correct that unit's truthful time range; never fabricate timestamps. Run the canonical schema validator once
+before finishing. Do not create an evaluation or report.
 `;
 }
 
@@ -380,8 +408,36 @@ const frozenCandidateFiles = [
   "capture-protocol.json",
   "targeted-evidence/targeted-evidence.json",
   "targeted-evidence/ocr-evidence.json",
-  "reconstruction.json"
+  "reconstruction.json",
+  "article.md"
 ] as const;
+
+async function renderBuilderReport(outputDir: string, title: string): Promise<void> {
+  const receiptPath = path.join(outputDir, "builder-report-render.json");
+  const reportPath = path.join(outputDir, "article.md");
+  try {
+    await runFile(process.execPath, [
+      path.join(skillDir, "scripts/render-reconstruction-report.mjs"),
+      "--reconstruction", path.join(outputDir, "reconstruction.json"),
+      "--targeted", path.join(outputDir, "targeted-evidence/targeted-evidence.json"),
+      "--title", title,
+      "--out", reportPath
+    ], { cwd: outputDir, timeout: 60_000 });
+    fs.writeFileSync(receiptPath, `${JSON.stringify({
+      schemaVersion: "builder-report-render@1",
+      state: "ready",
+      generatedAt: new Date().toISOString(),
+      reportSha256: sha256(reportPath)
+    }, null, 2)}\n`, "utf8");
+  } catch (error) {
+    fs.writeFileSync(receiptPath, `${JSON.stringify({
+      schemaVersion: "builder-report-render@1",
+      state: "failed",
+      generatedAt: new Date().toISOString(),
+      reason: error instanceof Error ? error.message : "unknown"
+    }, null, 2)}\n`, "utf8");
+  }
+}
 
 export function candidateArtifactFingerprints(outputDir: string): Record<string, string> {
   return Object.fromEntries(frozenCandidateFiles.flatMap((relative) => {
@@ -456,12 +512,14 @@ async function evaluateRuntimeThreeLens(
 
   if (exists(evaluationPath) && exists(gatePath)) {
     try {
+      const previousEvaluation = JSON.parse(fs.readFileSync(evaluationPath, "utf8")) as unknown;
+      const boundToCurrentEvaluator = runtimeThreeLensBoundToEvaluator(previousEvaluation, evaluatorRunId);
       const inspection = inspectRuntimeThreeLensArtifacts(
-        JSON.parse(fs.readFileSync(evaluationPath, "utf8")),
+        previousEvaluation,
         JSON.parse(fs.readFileSync(gatePath, "utf8")),
         fingerprint
       );
-      if (inspection.gateReport && (
+      if (boundToCurrentEvaluator && inspection.gateReport && (
         inspection.state === "ready" ||
         ("reason" in inspection && ["runtime_three_lens_unchecked", "runtime_three_lens_failed"].includes(inspection.reason))
       )) {
@@ -572,8 +630,24 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
       await refreshOcrEvidenceIfNeeded(outputDir);
-      const hostAssembly = assembleHostOwnedReconstruction(outputDir);
-      await validateBuilder(outputDir, videoPath, hostAssembly);
+      let hostAssembly = assembleHostOwnedReconstruction(outputDir);
+      let integrityRepairAttempts = 0;
+      while (true) {
+        try {
+          await validateBuilder(outputDir, videoPath, hostAssembly);
+          break;
+        } catch (error) {
+          const failure = error instanceof Error ? error.message : "unknown builder integrity failure";
+          if (!failure.startsWith("BUILDER_INTEGRITY_") || integrityRepairAttempts >= 2) throw error;
+          integrityRepairAttempts += 1;
+          await runCodex(
+            builderIntegrityRepairPrompt(videoPath, outputDir, failure), outputDir, "candidate",
+            request.sourceMediaArtifactRef, observeLifecycle
+          );
+          hostAssembly = assembleHostOwnedReconstruction(outputDir);
+        }
+      }
+      await renderBuilderReport(outputDir, `Builder 内容还原｜${request.postExternalId}`);
       builderAccepted = true;
 
       const evaluationPath = path.join(outputDir, "evaluation.json");

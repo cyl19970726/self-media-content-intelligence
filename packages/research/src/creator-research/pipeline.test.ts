@@ -3,6 +3,7 @@ import type { CreatorResearchService } from "./service.js";
 import type { CreatorResearchRun } from "../../../contracts/index.js";
 import { loadCreatorDossier } from "../../../../src/server/creator-dossier.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
+import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
 
 const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
 
@@ -35,6 +36,24 @@ function activeVideoRun(): CreatorResearchRun {
     videoWork: { concurrencyLimit: 3, activePostExternalIds: ["video-2", "video-3", "video-4"], queuedPosts: 3, analyzedPosts: 1, failedPosts: 0 }
   };
 }
+
+describe("creator research pipeline evaluation truth", () => {
+  it("does not call Builder-only videos independently evaluated", () => {
+    const run = activeVideoRun();
+    run.status = "reviewable";
+    run.videoWork = { concurrencyLimit: 3, activePostExternalIds: [], queuedPosts: 0, analyzedPosts: 12, failedPosts: 0 };
+    const batch = { items: Array.from({ length: 12 }, (_, index) => ({
+      state: index < 2 ? "verified" : index === 2 ? "evaluated_with_findings" : "built_unevaluated",
+      evaluationArtifactRef: index < 3 ? `artifact:evaluation:${index}` : null
+    })) } as unknown as VideoReconstructionBatch;
+
+    const projected = buildCreatorResearchPipeline(run, undefined, batch);
+    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.state).toBe("complete");
+    expect(projected.stages.find((stage) => stage.id === "video_evaluation")).toMatchObject({
+      state: "partial", gateState: "partial", missingInputs: ["单轮独立评估：3/12"]
+    });
+  });
+});
 
 describeWithExternalEvidence("creator research pipeline projection", () => {
   it("exposes the complete 13-stage Skill and runtime ledger", () => {
@@ -86,7 +105,7 @@ describeWithExternalEvidence("creator research pipeline projection", () => {
     expect(projected.stages.find((stage) => stage.id === "detail_enrichment")?.state).not.toBe("running");
     expect(projected.stages.find((stage) => stage.id === "media_verification")?.state).toBe("complete");
     expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.state).toBe("running");
-    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成三镜头分析：1/7");
+    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成 Builder 三镜头分析：1/7");
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：1/7");
   });
 
@@ -95,7 +114,7 @@ describeWithExternalEvidence("creator research pipeline projection", () => {
 
     expect(projected.currentStageId).toBe("video_reconstruction");
     expect(projected.stages.find((stage) => stage.id === "media_verification")?.message).toBe("7/7 条深度样本已冻结到视频重建批次。");
-    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成三镜头分析：1/7");
+    expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.missingInputs).toContain("完成 Builder 三镜头分析：1/7");
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：1/7");
   });
 

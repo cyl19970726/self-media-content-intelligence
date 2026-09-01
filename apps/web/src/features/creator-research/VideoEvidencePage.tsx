@@ -141,7 +141,10 @@ export default function VideoEvidencePage() {
           <div className="video-research-layout">
             <div className="video-research-main">
               {data.quality.findings.length > 0 && <section className="quality-findings" aria-label="评估发现"><header><div><span>EVALUATOR FINDINGS</span><h2>本版本需要保留的质量边界</h2></div><b>{data.quality.findings.length}</b></header><div>{data.quality.findings.map((finding) => <article key={finding.id}><span>{finding.id}</span><p>{finding.message === finding.id ? gateLabel(finding.id) : finding.message}</p><EvidenceRefs refs={finding.evidenceRefs}/></article>)}</div></section>}
-              {data.article && <section className="video-evidence-section" id="article"><header><span>01</span><div><h2>视频内容还原</h2><p>把视频转换为可独立阅读的文章；主张、观察与未知仍在证据层分开。</p></div></header><ArticleBody markdown={data.article}/></section>}
+              {(data.reports.builder || data.reports.evaluator) && <section className="video-evidence-section" id="reports"><header><span>01</span><div><h2>Builder 与 Evaluator 报告</h2><p>先看 Builder 如何还原，再看独立 Evaluator 发现了什么；两份报告不互相覆盖。</p></div></header>
+                {data.reports.builder ? <details open><summary>Builder 内容还原报告</summary><ArticleBody markdown={data.reports.builder}/></details> : <p className="evidence-empty">当前版本尚未生成可读 Builder 报告。</p>}
+                {data.reports.evaluator ? <details><summary>Evaluator 独立评估报告</summary><ArticleBody markdown={data.reports.evaluator}/></details> : <p className="evidence-empty">当前版本未运行 Evaluator，或尚未生成可读评估报告。</p>}
+              </section>}
               <section className="video-evidence-section" id="directing"><header><span>02</span><div><h2>编导逻辑</h2><p>沿观众认知变化恢复每一阶段的任务、观众问题和证明动作；意义段落不冒充技术切镜。</p></div></header>
                 <div className="viewer-change"><article><span>观看前</span><p>{data.directingLogic.viewerBefore ?? "现有证据未登记"}</p></article><article><span>观看后</span><p>{data.directingLogic.viewerAfter ?? "现有证据未登记"}</p></article></div>
                 <div className="directing-ledger"><article><span>激活的问题</span><p>{data.directingLogic.activatedQuestion ?? "尚未独立恢复"}</p></article><article><span>内容承诺</span><p>{data.directingLogic.promise ?? "尚未独立恢复"}</p></article><article><span>回报</span><p>{data.directingLogic.payoff ?? "尚未独立恢复"}</p></article><article><span>结尾闭合</span><p>{data.directingLogic.endingResolution ?? "尚未独立恢复"}</p></article></div>

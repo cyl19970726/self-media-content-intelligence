@@ -4,7 +4,7 @@ import {
   type ChildWorkerLifecycleObserver
 } from "../orchestration/contracts.js";
 
-const evidenceClaimSchema = z.object({
+export const evidenceClaimSchema = z.object({
   statement: z.string().min(1),
   factClass: z.enum(["observed", "author_claim", "inference", "unknown"]),
   confidence: z.enum(["high", "medium", "low"]),
@@ -18,6 +18,7 @@ export const creatorSynthesisSchema = z.object({
   generatedAt: z.string(),
   inputs: z.object({
     portfolioArtifactRef: z.string(),
+    portfolioAnnotationsArtifactRef: z.string().nullable().optional(),
     selectionArtifactRef: z.string(),
     detailArtifactRef: z.string(),
     reconstructionBatchArtifactRef: z.string()
@@ -50,7 +51,7 @@ export const creatorSynthesisSchema = z.object({
     tier: z.enum(["high", "base", "low"]),
     tierRank: z.number().int().positive(),
     title: z.string().nullable(),
-    evidenceStatus: z.enum(["deep_validated", "surface_only"]),
+    evidenceStatus: z.enum(["deep_validated", "deep_provisional", "surface_only"]),
     contentRole: z.string().min(1),
     contentForm: z.array(z.string()).min(1),
     performanceInterpretation: z.string().min(1),
@@ -115,13 +116,16 @@ export type CreatorSynthesisRequest = {
   creatorRunId: string;
   creatorName: string | null;
   portfolioArtifactRef: string;
+  portfolioAnnotationsArtifactRef?: string | null;
   selectionArtifactRef: string;
   detailArtifactRef: string;
   reconstructionBatchArtifactRef: string;
+  mode: "provisional" | "formal";
 };
 
 export type CreatorSynthesisOutcome =
   | { state: "ready"; synthesisArtifactRef: string; gateArtifactRef: string }
+  | { state: "provisional"; synthesisArtifactRef: string; gateArtifactRef: string; failedGateIds: string[] }
   | { state: "not_ready"; synthesisArtifactRef: string | null; gateArtifactRef: string | null; failedGateIds: string[]; message: string }
   | { state: "blocked"; message: string; userActionRequired: boolean };
 

@@ -23,7 +23,7 @@ When `procedural` is present, use the canonical fields exactly: `input`, ordered
 
 When `argument` is present, use the canonical fields exactly: `claim`, `evidenceUnitIds`, `conditions`, `counterexamples`, `actions`, and `limits`. An empty list means the video supplies none; it does not mean none exist in reality.
 
-Register every locally derived artifact used as `refType: "source"` in top-level `derivedSources` with an ID, path, kind, producing method, time range, and limitations. Raw video/subtitle paths come from the evidence pack; unregistered labels are not evidence.
+Register every locally derived artifact used as `refType: "source"` in top-level `derivedSources` with an ID, path, kind, producing method, time range, and limitations. The evidence `ref` must equal that registered ID exactly; a path such as `media-preparation.json#audio` is not a valid source ref. Raw video/subtitle paths come from the evidence pack; unregistered labels are not evidence.
 
 ## Scope, identity, counts, and global structure
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { creatorPortfolioAnalysisSchema, creatorSelectionSchema } from "../portfolio/contracts.js";
-import { creatorSynthesisGateSchema, creatorSynthesisSchema } from "../creator-synthesis/contracts.js";
+import { creatorSynthesisGateSchema, creatorSynthesisSchema, evidenceClaimSchema } from "../creator-synthesis/contracts.js";
 
 export const comparisonMemberInputSchema = z.object({
   creatorRunId: z.string().min(1),
@@ -36,6 +36,26 @@ export const creatorComparisonSchema = z.object({
     meanToMedianRatio: z.number().nullable(),
     selectedCounts: z.object({ high: z.number().int(), base: z.number().int(), low: z.number().int() })
   })),
+  comparability: z.object({
+    platform: z.string().min(1),
+    metricBasis: z.string().min(1),
+    timeWindowAligned: z.boolean(),
+    members: z.array(z.object({
+      creatorId: z.string().min(1), creatorRunId: z.string().min(1),
+      selectedPosts: z.number().int().nonnegative(), deepValidatedPosts: z.number().int().nonnegative(),
+      likesCoverage: z.number(), formalSynthesis: z.boolean()
+    })),
+    warnings: z.array(z.string().min(1))
+  }).default({ platform: "小红书", metricBasis: "公开点赞；按账号自身分布归一化", timeWindowAligned: false, members: [], warnings: ["旧报告未记录可比性矩阵。"] }),
+  creatorProfiles: z.array(z.object({
+    creatorId: z.string().min(1), creatorRunId: z.string().min(1), creatorName: z.string(),
+    positioning: evidenceClaimSchema,
+    audience: z.array(evidenceClaimSchema), values: z.array(evidenceClaimSchema), trustSources: z.array(evidenceClaimSchema),
+    lifecycle: evidenceClaimSchema, commercialPaths: z.array(evidenceClaimSchema),
+    topics: z.array(evidenceClaimSchema), formats: z.array(evidenceClaimSchema), visualLanguage: z.array(evidenceClaimSchema),
+    recurringStructures: z.array(evidenceClaimSchema),
+    high: z.array(evidenceClaimSchema), baseline: z.array(evidenceClaimSchema), low: z.array(evidenceClaimSchema)
+  })).default([]),
   observations: z.array(z.object({
     classification: z.enum(["track_wide", "creator_specific", "conditional", "anomaly", "unknown"]),
     text: z.string(),

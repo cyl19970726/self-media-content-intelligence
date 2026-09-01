@@ -83,7 +83,14 @@ export const creatorDossierSchema = z.object({
     percentiles: z.object({ p10: z.number().nullable(), p25: z.number().nullable(), p75: z.number().nullable(), p90: z.number().nullable() }),
     distribution: z.array(z.object({ label: z.string(), count: z.number().int().nonnegative(), share: z.number() })),
     notes: z.array(z.string()),
-    health: dataHealthSchema
+    health: dataHealthSchema,
+    annotationCoverage: z.object({
+      observedPosts: z.number().int().nonnegative(),
+      annotatedPosts: z.number().int().nonnegative(),
+      classifiedPosts: z.number().int().nonnegative(),
+      unclassifiedPosts: z.number().int().nonnegative(),
+      artifactRef: z.string()
+    }).nullable().default(null)
   }),
   contentSystem: z.object({
     topicClusters: z.array(portfolioClusterSchema),

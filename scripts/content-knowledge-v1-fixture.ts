@@ -77,7 +77,9 @@ export async function seedContentKnowledgeV1Fixture(runtimeInput: string): Promi
     const creators = [0, 1, 2].map(creatorCompletion);
     const creatorCompiler = new CreatorKnowledgeCompiler(knowledge);
     for (const creator of creators) { creatorCompiler.publish(creator); creatorCompiler.publish(creator); }
-    const support = creators.flatMap((creator) => [0, 7, 14].map((postIndex) => creator.synthesis.postAnalyses[postIndex]!).map((post) => ({
+    const support = creators.flatMap((creator) => [0, 7, 14].map((postIndex) => creator.synthesis.postAnalyses[postIndex]!)
+      .filter((post): post is typeof post & { evidenceStatus: "deep_validated" | "surface_only" } =>
+        post.evidenceStatus !== "deep_provisional").map((post) => ({
       creatorRunId: creator.creatorRunId, creatorId: creator.creatorId, creatorName: creator.creatorName!,
       postExternalId: post.postExternalId, tier: post.tier, evidenceStatus: post.evidenceStatus,
       contentForm: post.contentForm, evidenceRefs: post.evidenceRefs
@@ -91,6 +93,8 @@ export async function seedContentKnowledgeV1Fixture(runtimeInput: string): Promi
           revision: `${creator.synthesisArtifactRef}|${creator.gateArtifactRef}`, creatorName: creator.creatorName ?? creator.creatorId,
           portfolioRevision: "fixture-portfolio-r1", discoveredPosts: 21, likesCoverage: 1, medianLikes: 10, meanLikes: 20, maxLikes: 100,
           headToMedianRatio: 10, meanToMedianRatio: 2, selectedCounts: { high: 7, base: 7, low: 7 } })),
+        comparability: { platform: "小红书", metricBasis: "fixture 公开点赞", timeWindowAligned: false, members: [], warnings: ["fixture"] },
+        creatorProfiles: [],
         observations: [], exceptions: [], gaps: [], limitations: ["隔离 fixture 不声明真实规律。"],
         contentPatterns: [{ role: "先展示可核验结果", classification: "track_wide",
           statement: "三个独立门控的冻结博主样本都出现该内容角色。", boundary: "只验证链路，不声明因果。",

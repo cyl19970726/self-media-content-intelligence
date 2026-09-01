@@ -42,22 +42,51 @@ export function compareCreatorPortfolios(inputs: unknown[], generatedAt: string)
   }
   const contentValidated = members.every((member) => member.synthesis && member.synthesisGate?.ready
     && member.synthesisGate.evaluator?.independentOfCandidate);
+  const comparability: CreatorComparison["comparability"] = {
+    platform: "小红书",
+    metricBasis: "公开点赞；只比较各账号相对自身中位数的分布，不做原始点赞排行榜。",
+    timeWindowAligned: false,
+    members: members.map((member) => ({
+      creatorId: member.creatorId, creatorRunId: member.creatorRunId,
+      selectedPosts: member.selection.denominator.selectedPosts,
+      deepValidatedPosts: member.synthesis?.postAnalyses.filter((post) => post.evidenceStatus === "deep_validated").length ?? 0,
+      likesCoverage: member.analysis.metricCoverage.rate,
+      formalSynthesis: Boolean(member.synthesis && member.synthesisGate?.ready && member.synthesisGate.evaluator?.independentOfCandidate)
+    })),
+    warnings: [
+      "各账号的发布时间窗尚未统一，不能把差异直接解释为内容机制。",
+      "粉丝规模、账号年龄、投流、商业合作和后台曝光均未对齐。"
+    ]
+  };
+  const creatorProfiles: CreatorComparison["creatorProfiles"] = members.flatMap((member) => member.synthesis ? [{
+    creatorId: member.creatorId, creatorRunId: member.creatorRunId, creatorName: member.creatorName,
+    positioning: member.synthesis.identity.positioning,
+    audience: member.synthesis.identity.audience, values: member.synthesis.identity.valueProvided,
+    trustSources: member.synthesis.identity.trustSources, lifecycle: member.synthesis.identity.lifecycleStage,
+    commercialPaths: member.synthesis.identity.commercialPaths,
+    topics: member.synthesis.contentSystem.topicClusters, formats: member.synthesis.contentSystem.formatClusters,
+    visualLanguage: member.synthesis.contentSystem.visualLanguage, recurringStructures: member.synthesis.contentSystem.recurringStructure,
+    high: member.synthesis.performance.high, baseline: member.synthesis.performance.baseline, low: member.synthesis.performance.low
+  }] : []);
   const contentPatterns: CreatorComparison["contentPatterns"] = [];
   const exceptions: CreatorComparison["exceptions"] = [];
   const gaps: string[] = [];
   if (contentValidated) {
     const roles = new Map<string, Array<{ member: ComparisonMemberInput; post: NonNullable<ComparisonMemberInput["synthesis"]>["postAnalyses"][number] }>>();
     for (const member of members) for (const post of member.synthesis!.postAnalyses) {
+      if (post.evidenceStatus === "deep_provisional") continue;
       const key = post.contentRole.normalize("NFKC").trim().toLocaleLowerCase();
       roles.set(key, [...(roles.get(key) ?? []), { member, post }]);
     }
+    const uniqueRoles = new Map<string, Array<{ role: string; creatorId: string }>>();
     for (const [, supportRows] of [...roles.entries()].sort(([a], [b]) => a.localeCompare(b))) {
       const byCreator = new Map<string, typeof supportRows>();
       for (const row of supportRows) byCreator.set(row.member.creatorId, [...(byCreator.get(row.member.creatorId) ?? []), row]);
       const creatorIds = [...byCreator.keys()];
       const role = supportRows[0]!.post.contentRole;
       if (creatorIds.length < 2) {
-        exceptions.push({ creatorId: creatorIds[0]!, role, reason: "该角色只出现在一个已固定博主综合中。" });
+        const creatorId = creatorIds[0]!;
+        uniqueRoles.set(creatorId, [...(uniqueRoles.get(creatorId) ?? []), { creatorId, role }]);
         continue;
       }
       const qualified = creatorIds.every((creatorId) => {
@@ -79,8 +108,14 @@ export function compareCreatorPortfolios(inputs: unknown[], generatedAt: string)
         condition: { format: commonFormats[0] ?? null },
         support: supportRows.map(({ member, post }) => ({ creatorRunId: member.creatorRunId, creatorId: member.creatorId,
           creatorName: member.creatorName, postExternalId: post.postExternalId, tier: post.tier,
-          evidenceStatus: post.evidenceStatus, contentForm: post.contentForm, evidenceRefs: post.evidenceRefs }))
+          evidenceStatus: post.evidenceStatus === "deep_validated" ? "deep_validated" as const : "surface_only" as const,
+          contentForm: post.contentForm, evidenceRefs: post.evidenceRefs }))
       });
+    }
+    for (const member of members) {
+      const unique = uniqueRoles.get(member.creatorId) ?? [];
+      for (const item of unique.slice(0, 3)) exceptions.push({ creatorId: item.creatorId, role: item.role, reason: "该描述只出现在一个固定博主综合中；它是代表例，不等同于已验证的博主特有机制。" });
+      if (unique.length > 0) gaps.push(`${member.creatorName} 有 ${unique.length} 个只出现一次或只出现在本账号的原始内容角色描述；V1 仅展示 3 个代表例，未完成跨账号语义聚类，因此不把它们外推为特有机制。`);
     }
   } else {
     gaps.push("至少一个比较成员缺少已独立评估且 ready 的博主综合；内容机制保持未知。");
@@ -90,6 +125,8 @@ export function compareCreatorPortfolios(inputs: unknown[], generatedAt: string)
     generatedAt,
     readiness: contentValidated ? "content_validated" : "portfolio_only",
     members: rows,
+    comparability,
+    creatorProfiles,
     observations,
     contentPatterns,
     exceptions,

@@ -22,12 +22,16 @@ export function validateCreatorSynthesis(input: {
   const expected = new Set(selection.items.map((item) => item.externalId));
   const actual = new Set(synthesis.postAnalyses.map((item) => item.postExternalId));
   const deep = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
-  const readyDeep = new Set(batch.items.filter((item) => item.state === "ready").map((item) => item.postExternalId));
+  const readyDeep = new Set(batch.items.filter((item) => ["verified", "ready"].includes(item.state))
+    .map((item) => item.postExternalId));
+  const builtDeep = new Set(batch.items.filter((item) =>
+    ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state))
+    .map((item) => item.postExternalId));
   const deepRows = synthesis.postAnalyses.filter((item) => deep.has(item.postExternalId));
   const unavailableDeep = new Set(batch.items.filter((item) => item.state === "blocked"
     && item.failedGateIds.includes("media_verification")).map((item) => item.postExternalId));
   const policyGroups = new Map<string, number>();
-  for (const item of batch.items.filter((candidate) => candidate.state === "ready")) {
+  for (const item of batch.items.filter((candidate) => builtDeep.has(candidate.postExternalId))) {
     policyGroups.set(item.evaluationPolicy, (policyGroups.get(item.evaluationPolicy) ?? 0) + 1);
   }
   const policyBoundary = synthesis.boundaries.join(" ");
@@ -55,6 +59,8 @@ export function validateCreatorSynthesis(input: {
     { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
       readyDeep.has(item.postExternalId)
         ? item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
+        : builtDeep.has(item.postExternalId)
+          ? item.evidenceStatus === "deep_provisional" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
         : unavailableDeep.has(item.postExternalId) && item.evidenceStatus === "surface_only"
           && item.unknowns.some((unknown) => /媒体|视频.*(不可|无法|未知)|无法.*视频/.test(unknown))),
       message: "可得视频必须绑定重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确视频内容未知。" },

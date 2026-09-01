@@ -55,6 +55,30 @@ async function fixtureServer() {
 }
 
 describe("content knowledge API", () => {
+  it("accepts a quarantined cognitive-loop observation without promoting it", async () => {
+    const { base } = await fixtureServer();
+    const response = await fetch(`${base}/api/v1/research-analysis-revisions`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+        analysisRevisionId: "quality-loop-video-1", subjectType: "video", subjectId: "video-1",
+        creatorId: "creator-1", videoId: "video-1", deepReconstruction: true,
+        lensGates: { contentRestoration: "partial", directingLogic: "partial", visualEditingLogic: "ready" },
+        observations: [{
+          concept: { slug: "quantified-promise-closure", kind: "failure_mode", name: "数量承诺闭环",
+            definition: "开头承诺若干项时，后文需要逐项对应；证据不足则保留未知。",
+            exclusions: ["不把相邻编号自动当作开头承诺的对应项。"] },
+          relation: "confirm", statement: "样本的两项承诺没有形成可核验的一一对应。",
+          evidenceRefs: ["artifact:reconstruction", "artifact:evaluation"], confidence: "medium"
+        }]
+      })
+    });
+    expect(response.status).toBe(201);
+    const value = await response.json() as { sourceGateState: string; observations: Array<{ eligibility: string }> };
+    expect(value.sourceGateState).toBe("partial");
+    expect(value.observations[0]?.eligibility).not.toBe("eligible");
+    const concepts = await fetch(`${base}/api/v1/research-concepts`).then((item) => item.json()) as { concepts: unknown[] };
+    expect(concepts.concepts).toHaveLength(1);
+  });
+
   it("compiles, lists, searches, and resolves lineage without duplicate ingestion", async () => {
     const { base } = await fixtureServer();
     const body = {

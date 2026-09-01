@@ -9,6 +9,8 @@ import type { CreatorResearchRepository, ResearchJobLane } from "./repository.js
 import type { CreatorArtifactStore } from "./artifact-store.js";
 import {
   creatorPortfolioAnalysisSchema,
+  creatorPortfolioAnnotationsSchema,
+  buildCreatorPortfolioAnnotations,
   creatorSelectionSchema,
   creatorDetailCollectionSchema,
   videoReconstructionBatchSchema,
@@ -298,17 +300,20 @@ export class CreatorResearchService {
   portfolio(id: string) {
     const run = this.projectRun(this.repository.get(id));
     if (!run) return null;
-    if (!run.portfolioArtifactRef || !run.selectionArtifactRef) return { run, pipeline: buildCreatorResearchPipeline(run), analysis: null, selection: null, details: null,
+    if (!run.portfolioArtifactRef || !run.selectionArtifactRef) return { run, pipeline: buildCreatorResearchPipeline(run), analysis: null, annotations: null, selection: null, details: null,
       mediaManifest: null, reconstructionBatch: null, synthesis: null, synthesisGate: null };
+    const reconstructionBatch = run.reconstructionBatchArtifactRef
+      ? videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef)) : null;
     return {
       run,
-      pipeline: buildCreatorResearchPipeline(run),
+      pipeline: buildCreatorResearchPipeline(run, undefined, reconstructionBatch),
       analysis: creatorPortfolioAnalysisSchema.parse(this.artifacts.read(run.portfolioArtifactRef)),
+      annotations: run.portfolioAnnotationsArtifactRef
+        ? creatorPortfolioAnnotationsSchema.parse(this.artifacts.read(run.portfolioAnnotationsArtifactRef)) : null,
       selection: creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef)),
       details: run.detailArtifactRef ? creatorDetailCollectionSchema.parse(this.artifacts.read(run.detailArtifactRef)) : null,
       mediaManifest: run.mediaManifestArtifactRef ? deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef)) : null,
-      reconstructionBatch: run.reconstructionBatchArtifactRef
-        ? videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef)) : null,
+      reconstructionBatch,
       synthesis: run.synthesisArtifactRef ? creatorSynthesisSchema.parse(this.artifacts.read(run.synthesisArtifactRef)) : null,
       synthesisGate: run.synthesisGateArtifactRef ? creatorSynthesisGateSchema.parse(this.artifacts.read(run.synthesisGateArtifactRef)) : null
     };
@@ -370,7 +375,7 @@ export class CreatorResearchService {
     if (!run) throw new Error("博主分析任务不存在");
     if (!run.inventoryArtifactRef) throw new Error("任务缺少可复算的版本化清单");
     const timestamp = now();
-    const invalidated = [run.portfolioArtifactRef, run.selectionArtifactRef, run.detailArtifactRef,
+    const invalidated = [run.portfolioArtifactRef, run.portfolioAnnotationsArtifactRef, run.selectionArtifactRef, run.detailArtifactRef,
       run.mediaManifestArtifactRef, run.reconstructionBatchArtifactRef, run.synthesisArtifactRef,
       run.synthesisGateArtifactRef].filter((ref): ref is string => Boolean(ref));
     const job = this.repository.enqueue({
@@ -386,6 +391,7 @@ export class CreatorResearchService {
     run.coverage = { ...run.coverage, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 };
     run.collectionPolicy.budgets.maxMediaDownloads = 12;
     run.portfolioArtifactRef = null;
+    run.portfolioAnnotationsArtifactRef = null;
     run.selectionArtifactRef = null;
     run.detailArtifactRef = null;
     run.mediaManifestArtifactRef = null;
@@ -455,7 +461,10 @@ export class CreatorResearchService {
       ...batch.limitations,
       `bounded_media_retry_once:${mediaRefreshItems.map((item) => item.postExternalId).join(",")}`
     ])];
-    batch.readyPosts = batch.items.filter((item) => item.state === "ready").length;
+    batch.builtPosts = batch.items.filter((item) =>
+      ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length;
+    batch.verifiedPosts = batch.items.filter((item) => ["verified", "ready"].includes(item.state)).length;
+    batch.readyPosts = batch.verifiedPosts;
     batch.pendingPosts = reconstructionRetryItems.length;
     batch.failedPosts = mediaRefreshItems.length;
     const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, [previousBatchRef]);
@@ -477,24 +486,98 @@ export class CreatorResearchService {
         idempotencyKey: `${run.id}:video.reconstruct:retry:${batch.revision}:${item.postExternalId}:${item.sourceMediaArtifactRef}`,
         attempts: 0, maxAttempts: 2, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
         payload: { postExternalId: item.postExternalId, sourceUrl: `https://www.xiaohongshu.com/explore/${item.postExternalId}`,
-          sourceMediaArtifactRef: item.sourceMediaArtifactRef }, lastError: null, createdAt: timestamp, updatedAt: timestamp });
+          sourceMediaArtifactRef: item.sourceMediaArtifactRef,
+          evaluationOnly: item.evaluationPolicy === "single_pass@37a03aae",
+          evaluationPolicy: item.evaluationPolicy === "single_pass@37a03aae" ? "single_pass" : "skip" },
+        lastError: null, createdAt: timestamp, updatedAt: timestamp });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
         message: "未通过视频已保留证据并重新进入持久队列。", payload: { nodeKey: job.nodeKey, postExternalId: item.postExternalId } });
     }
     run.status = "collecting";
     run.currentStage = "deep_capture";
     run.updatedAt = timestamp;
-    run.coverage.reconstructedPosts = batch.readyPosts;
+    run.coverage.reconstructedPosts = batch.builtPosts;
     run.videoWork = { concurrencyLimit: this.videoConcurrencyLimit, activePostExternalIds: [], queuedPosts: reconstructionRetryItems.length,
-      analyzedPosts: batch.readyPosts, failedPosts: mediaRefreshItems.length };
+      analyzedPosts: batch.builtPosts, failedPosts: mediaRefreshItems.length };
     run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null };
     run.blockers = [];
-    run.nextAction = `仅重试 ${failedItems.length} 条未通过视频（媒体补取 ${mediaRefreshItems.length}，视频重试 ${reconstructionRetryItems.length}）；已通过 ${batch.readyPosts} 条不会重跑。`;
+    run.nextAction = `仅重试 ${failedItems.length} 条未通过视频（媒体补取 ${mediaRefreshItems.length}，视频重试 ${reconstructionRetryItems.length}）；其余 ${batch.builtPosts} 条 Builder 结果不会重跑。`;
     stage(run, "deep_capture").status = "running";
     stage(run, "deep_capture").message = run.nextAction;
     this.repository.save(run);
     this.repository.appendEvent({ runId: run.id, jobId: null, type: "run.resumed", createdAt: timestamp,
       message: "视频基础设施修复后，仅重新排队未通过项。", payload: { previousBatchRef, batchRef, retriedPosts: failedItems.map((item) => item.postExternalId) } });
+    return run;
+  }
+
+  evaluateBuiltVideos(id: string, postExternalIds: string[]): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
+    const requestedIds = [...new Set(postExternalIds.map((value) => value.trim()).filter(Boolean))];
+    if (requestedIds.length === 0) throw new Error("至少选择一条 Builder 已完成的视频");
+    if (requestedIds.length > 12) throw new Error("单次最多补做 12 条视频评估");
+    const previousBatchRef = run.reconstructionBatchArtifactRef;
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
+    if (batch.items.some((item) => ["queued", "running"].includes(item.state))) {
+      throw new Error("视频批次仍在运行，暂不能补做独立评估");
+    }
+    const selectedItems = requestedIds.map((postExternalId) => {
+      const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
+      if (!item) throw new Error(`视频不在当前重建批次中：${postExternalId}`);
+      if (!["built_unevaluated", "evaluated_with_findings"].includes(item.state)) {
+        throw new Error(`视频不是可补评或可重验的 Builder 结果：${postExternalId}`);
+      }
+      if (!item.sourceMediaArtifactRef || !item.reconstructionArtifactRef || !item.builderValidationArtifactRef) {
+        throw new Error(`视频缺少可复用的 Builder 证据：${postExternalId}`);
+      }
+      return item;
+    });
+    const timestamp = now();
+    batch.revision += 1;
+    batch.generatedAt = timestamp;
+    for (const item of selectedItems) Object.assign(item, {
+      state: "queued",
+      evaluationPolicy: "single_pass@37a03aae",
+      failedGateIds: [],
+      message: "保留 Builder 与原始证据，重新执行 Host 契约检查并补做一次独立 Evaluator。",
+      updatedAt: timestamp
+    });
+    batch.pendingPosts = selectedItems.length;
+    batch.builtPosts = batch.items.filter((item) =>
+      ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length;
+    batch.verifiedPosts = batch.items.filter((item) => ["verified", "ready"].includes(item.state)).length;
+    batch.readyPosts = batch.verifiedPosts;
+    batch.failedPosts = batch.items.filter((item) => ["not_ready", "blocked"].includes(item.state)).length;
+    const dependencies = [previousBatchRef, ...batch.items.flatMap((item) => [
+      item.sourceMediaArtifactRef, item.reconstructionArtifactRef, item.articleArtifactRef,
+      item.builderValidationArtifactRef, item.evaluationArtifactRef, item.gateReportArtifactRef,
+      item.threeLensEvaluationArtifactRef, item.threeLensGateReportArtifactRef
+    ])].filter((ref): ref is string => Boolean(ref));
+    const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, dependencies);
+    run.reconstructionBatchArtifactRef = batchRef;
+    for (const item of selectedItems) {
+      const job = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "video.reconstruct", status: "queued",
+        idempotencyKey: `${run.id}:video.evaluate:${batch.revision}:${item.postExternalId}:${item.reconstructionArtifactRef}`,
+        attempts: 0, maxAttempts: 2, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+        payload: { postExternalId: item.postExternalId, sourceUrl: `https://www.xiaohongshu.com/explore/${item.postExternalId}`,
+          sourceMediaArtifactRef: item.sourceMediaArtifactRef, evaluationOnly: true, evaluationPolicy: "single_pass" },
+        lastError: null, createdAt: timestamp, updatedAt: timestamp });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "job.queued", createdAt: timestamp,
+        message: "Builder 结果已保留，Host 契约重验与独立 Evaluator 进入持久队列。",
+        payload: { nodeKey: job.nodeKey, postExternalId: item.postExternalId, evaluationOnly: true } });
+    }
+    run.status = "collecting";
+    run.currentStage = "deep_capture";
+    run.updatedAt = timestamp;
+    run.videoWork = { concurrencyLimit: this.videoConcurrencyLimit, activePostExternalIds: [],
+      queuedPosts: selectedItems.length, analyzedPosts: batch.builtPosts, failedPosts: batch.failedPosts };
+    run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: null };
+    run.blockers = [];
+    run.nextAction = `正在为 ${selectedItems.length} 条代表性视频重验 Host 契约并补做独立 Evaluator；不会重跑 Builder。`;
+    stage(run, "deep_capture").status = "running";
+    stage(run, "deep_capture").message = run.nextAction;
+    this.repository.save(run);
     return run;
   }
 
@@ -600,6 +683,36 @@ export class CreatorResearchService {
     return run;
   }
 
+  annotatePortfolio(id: string, resynthesize = true): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    if (!run.portfolioArtifactRef || !run.selectionArtifactRef) throw new Error("任务缺少冻结的作品基本盘");
+    const analysis = creatorPortfolioAnalysisSchema.parse(this.artifacts.read(run.portfolioArtifactRef));
+    const generatedAt = now();
+    const annotations = buildCreatorPortfolioAnnotations(
+      this.artifacts.read(analysis.corpusArtifactRef), analysis.corpusArtifactRef, generatedAt
+    );
+    const previousRef = run.portfolioAnnotationsArtifactRef;
+    const annotationsRef = this.artifacts.write(run.id, "portfolio-annotations.json", annotations,
+      [analysis.corpusArtifactRef, ...(previousRef ? [previousRef] : [])]);
+    run.portfolioAnnotationsArtifactRef = annotationsRef;
+    run.updatedAt = generatedAt;
+    this.repository.appendEvent({ runId: run.id, jobId: null, type: "artifact.produced", createdAt: generatedAt,
+      message: `${annotations.denominator.annotatedPosts} 条可见作品已形成一帖一行的表层标注 Artifact。`,
+      payload: { artifactRef: annotationsRef, previousRef, denominator: annotations.denominator } });
+    if (resynthesize && run.reconstructionBatchArtifactRef) {
+      const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+      const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+      run.synthesisArtifactRef = null;
+      run.synthesisGateArtifactRef = null;
+      if (!this.queueSynthesis(run, run.reconstructionBatchArtifactRef, batch, selection, generatedAt)) {
+        throw new Error("当前深度证据尚不足以重新生成博主报告");
+      }
+    }
+    this.repository.save(run);
+    return run;
+  }
+
   async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane | "serial" = "any"): Promise<boolean> {
     return this.jobProcessor.processNext(workerId, executor, lane === "serial" ? "any" : lane);
   }
@@ -612,27 +725,33 @@ export class CreatorResearchService {
     queuedAt: string
   ): boolean {
     const coverage = creatorSynthesisCoverage(selection, batch);
-    if (!coverage.allowed) return false;
+    if (!coverage.provisionalAllowed && !coverage.formalAllowed) return false;
+    const mode = coverage.formalAllowed ? "formal" : "provisional";
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
-      idempotencyKey: `${run.id}:creator.synthesize:${batchRef}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
-      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef },
+      idempotencyKey: `${run.id}:creator.synthesize:${mode}:${batchRef}:${run.portfolioAnnotationsArtifactRef ?? "no-annotations"}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
+      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef, mode },
       lastError: null, createdAt: queuedAt, updatedAt: queuedAt });
     run.status = "collecting";
     run.currentStage = "synthesis";
     run.worker = { state: "queued", attempt: 0, jobId: synthesisJob.id, workerId: null, lastHeartbeatAt: queuedAt };
     run.blockers = [];
-    run.nextAction = coverage.boundedMediaGap
+    run.nextAction = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已完成 Builder；先生成可审阅的单博主完整报告，未验证结论保持 provisional。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条公开媒体完成单轮分析；其余媒体经一次定向补取仍不可得，作为未知证据进入综合。`
       : "四组深度内容均完成单轮还原与独立评估；博主级综合归纳已进入队列。";
     stage(run, "deep_capture").status = "complete";
-    stage(run, "deep_capture").message = coverage.boundedMediaGap
+    stage(run, "deep_capture").message = mode === "provisional"
+      ? `${batch.builtPosts}/${batch.requestedPosts} 条已构建，${batch.verifiedPosts} 条已正式验证。`
+      : coverage.boundedMediaGap
       ? `${batch.readyPosts}/${batch.requestedPosts} 条完成；${batch.failedPosts} 条媒体不可得，禁止据此推断视频内容。`
       : `${batch.readyPosts}/${batch.requestedPosts} 条全部完成单轮分析；质量提醒继续保留。`;
     stage(run, "synthesis").status = "pending";
     stage(run, "synthesis").message = "等待从规范比较集、可用视频与显式未知边界生成研究归纳。";
     this.repository.appendEvent({ runId: run.id, jobId: synthesisJob.id, type: "job.queued", createdAt: queuedAt,
-      message: coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
-      payload: { nodeKey: synthesisJob.nodeKey, boundedMediaGap: coverage.boundedMediaGap,
+      message: mode === "provisional" ? "DOSSIER_READY 单博主报告已进入持久队列。"
+        : coverage.boundedMediaGap ? "带媒体不可得边界的博主级研究归纳已进入持久队列。" : "博主级研究归纳已进入持久队列。",
+      payload: { nodeKey: synthesisJob.nodeKey, mode, boundedMediaGap: coverage.boundedMediaGap,
         readyPosts: batch.readyPosts, requestedPosts: batch.requestedPosts } });
     return true;
   }

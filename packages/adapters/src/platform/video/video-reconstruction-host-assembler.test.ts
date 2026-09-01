@@ -56,4 +56,34 @@ describe("Host-owned video reconstruction assembly", () => {
       fs.rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("synchronizes a matching Builder rationale into the probe without changing semantic units", () => {
+    const root = createFixture();
+    try {
+      const probePath = path.join(root, "probe.json");
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const probe = JSON.parse(fs.readFileSync(probePath, "utf8"));
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      const originalUnits = structuredClone(reconstruction.knowledgeUnits);
+      delete probe.informationCarriers[0].inspectionRationale;
+      probe.informationCarriers[0].inspectionStatus = "unchecked";
+      probe.informationCarriers[0].available = true;
+      probe.informationCarriers[0].inspected = false;
+      fs.writeFileSync(probePath, JSON.stringify(probe));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const assembledProbe = JSON.parse(fs.readFileSync(probePath, "utf8"));
+      const assembledReconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(report.carrierRationalesSynchronized).toBe(1);
+      expect(assembledProbe.informationCarriers[0]).toMatchObject({
+        inspectionStatus: "checked_readable",
+        available: true,
+        inspected: true,
+        inspectionRationale: "Transcript and cue timing were inspected."
+      });
+      expect(assembledReconstruction.knowledgeUnits).toEqual(originalUnits);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
