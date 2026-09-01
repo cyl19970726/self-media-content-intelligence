@@ -119,8 +119,12 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const activeRun = chooseRun(service, requestedId);
   if (!activeRun) return null;
   const sameCreator = service.list(100).filter((run) => run.creatorId && run.creatorId === activeRun.creatorId);
-  const sourceRun = [activeRun, ...sameCreator]
-    .find((run) => Boolean(run.portfolioArtifactRef && run.selectionArtifactRef)) ?? activeRun;
+  const explicitRunRequest = service.get(requestedId)?.id === requestedId;
+  const candidates = [...new Map([activeRun, ...sameCreator].map((run) => [run.id, run])).values()];
+  const sourceRun = explicitRunRequest
+    ? candidates.find((run) => run.id === activeRun.id && run.portfolioArtifactRef && run.selectionArtifactRef) ?? activeRun
+    : candidates.find((run) => run.status === "ready" && run.synthesisArtifactRef && run.portfolioArtifactRef && run.selectionArtifactRef)
+      ?? candidates.find((run) => Boolean(run.portfolioArtifactRef && run.selectionArtifactRef)) ?? activeRun;
   const data = service.portfolio(sourceRun.id);
   const synthesis = data?.synthesis ?? null;
   const analysis = data?.analysis ?? null;
@@ -129,7 +133,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const media = new Map((data?.mediaManifest?.items ?? []).map((item) => [item.externalId, item]));
   const reconstruction = new Map((data?.reconstructionBatch?.items ?? []).map((item) => [item.postExternalId, item]));
   const postAnalysis = new Map((synthesis?.postAnalyses ?? []).map((item) => [item.postExternalId, item]));
-  const capturedAt = activeRun.lastSnapshotAt;
+  const capturedAt = sourceRun.lastSnapshotAt;
   const canonicalId = activeRun.canonicalSlug ?? activeRun.creatorId ?? activeRun.id;
   const items = (selection?.items ?? []).map((item) => {
     const detail = details.get(item.externalId);
@@ -165,7 +169,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
         : item.deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const
     };
   });
-  const synthesisRef = activeRun.synthesisArtifactRef ?? sourceRun.synthesisArtifactRef ?? `run:${sourceRun.id}`;
+  const synthesisRef = sourceRun.synthesisArtifactRef ?? `run:${sourceRun.id}`;
   const identity = synthesis ? {
     name: activeRun.creatorName ?? sourceRun.creatorName ?? "待识别博主",
     profileHref: activeRun.profileUrl,
@@ -194,12 +198,12 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
     canonicalId,
     source: "versioned_run",
     generatedAt: new Date().toISOString(),
-    run: activeRun,
+    run: sourceRun,
     lastGood: { active: sourceRun.id !== activeRun.id, reason: sourceRun.id !== activeRun.id ? "当前刷新尚未形成完整基本盘，页面保留上一版可读档案。" : null,
       revisionLabel: sourceRun.lastSnapshotAt },
     identity,
     corpus: {
-      postCount: analysis ? analysis.metricCoverage.known + analysis.metricCoverage.missing : activeRun.coverage.discoveredPosts,
+      postCount: analysis ? analysis.metricCoverage.known + analysis.metricCoverage.missing : sourceRun.coverage.discoveredPosts,
       likesKnown: analysis?.metricCoverage.known ?? 0,
       coverageRate: analysis?.metricCoverage.rate ?? 0,
       medianLikes: analysis?.likes.median ?? null,

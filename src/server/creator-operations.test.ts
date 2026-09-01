@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { CreatorResearchRun } from "../../packages/contracts/index.js";
-import { buildCreatorRunOperation } from "./creator-operations.js";
+import { buildCreatorRunOperation, buildCreatorRunOperations } from "./creator-operations.js";
 
 function run(overrides: Partial<CreatorResearchRun> = {}): CreatorResearchRun {
   return {
@@ -52,6 +52,16 @@ describe("creator operations projection", () => {
     }] }).action).toBe("continue_with_media_gaps");
   });
 
+  it("closes remaining failed videos after the single targeted retry", () => {
+    const operation = buildCreatorRunOperation(run(), {
+      reconstructionBatch: { requestedPosts: 12, pendingPosts: 0, items: [{ state: "not_ready", failedGateIds: ["runner_execution"] }] },
+      synthesisGate: null,
+      events: [{ sequence: 1, runId: run().id, jobId: null, type: "run.resumed", createdAt: "2026-08-21T01:00:00.000Z",
+        message: "视频基础设施修复后，仅重新排队未通过项。", payload: {} }]
+    });
+    expect(operation).toMatchObject({ action: "none", resolutionState: "provisional", terminal: true });
+  });
+
   it("maps provider failures to the resumable failed stage", () => {
     const operation = buildCreatorRunOperation(run({ status: "failed", blockers: [
       { code: "provider_unavailable", message: "数据源超时", userActionRequired: false }
@@ -70,5 +80,32 @@ describe("creator operations projection", () => {
     }] });
     expect(operation.action).toBe("none");
     expect(operation.waitingReason).toContain("避免重复消耗请求");
+  });
+
+  it("closes synthesis as provisional after deterministic revalidation still fails", () => {
+    const reviewable = run({ blockers: [{ code: "creator_synthesis_not_ready", message: "deep_9_ready", userActionRequired: false }] });
+    const operation = buildCreatorRunOperation(reviewable, { reconstructionBatch: null, synthesisGate: null, events: [{
+      sequence: 3, runId: reviewable.id, jobId: null, type: "artifact.produced", createdAt: "2026-08-21T03:00:00.000Z",
+      message: "博主综合 gate 已在不重跑候选或 evaluator 的情况下重验。", payload: { ready: false }
+    }] });
+    expect(operation).toMatchObject({ action: "none", resolutionState: "provisional", terminal: true });
+  });
+
+  it("keeps the latest ready run canonical while classifying newer refresh and older history", () => {
+    const canonical = run({ id: "11111111-1111-4111-8111-111111111111", status: "ready", updatedAt: "2026-08-20T00:00:00.000Z", blockers: [] });
+    const candidate = run({ id: "22222222-2222-4222-8222-222222222222", updatedAt: "2026-08-22T00:00:00.000Z", blockers: [] });
+    const history = run({ id: "33333333-3333-4333-8333-333333333333", status: "failed", updatedAt: "2026-08-18T00:00:00.000Z" });
+    const operations = buildCreatorRunOperations([candidate, canonical, history], () => ({
+      reconstructionBatch: null, synthesisGate: null, events: []
+    }));
+    expect(operations.find((item) => item.runId === canonical.id)).toMatchObject({
+      authorityState: "canonical", resolutionState: "ready", terminal: true
+    });
+    expect(operations.find((item) => item.runId === candidate.id)).toMatchObject({
+      authorityState: "candidate", resolutionState: "provisional", canonicalRunId: canonical.id, lastGoodRunId: canonical.id, terminal: true
+    });
+    expect(operations.find((item) => item.runId === history.id)).toMatchObject({
+      authorityState: "superseded", supersededByRunId: canonical.id, terminal: true
+    });
   });
 });
