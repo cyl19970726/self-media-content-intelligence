@@ -12,10 +12,18 @@ export function CreatorRunRow({ run, operation, busy, onOperate }: {
   const current = run.stages.find((stage) => stage.id === run.currentStage);
   const blocker = run.blockers[0];
   const diagnostic = blocker ? null : failureReason(run);
-  const detailHref = `/creators/${encodeURIComponent(run.canonicalSlug ?? run.creatorId ?? run.id)}`;
-  return <article className={`creator-run creator-run--${run.status}`}>
+  const detailId = operation && operation.authorityState !== "canonical" ? run.id : run.canonicalSlug ?? run.creatorId ?? run.id;
+  const detailHref = `/creators/${encodeURIComponent(detailId)}`;
+  const authorityLabel = operation?.authorityState === "canonical" ? "权威版本"
+    : operation?.authorityState === "candidate" ? "刷新候选" : operation?.authorityState === "superseded" ? "历史版本" : null;
+  const resolutionLabel = operation?.resolutionState === "provisional" ? "暂定关闭"
+    : operation?.resolutionState === "waiting_external" ? "等待外部恢复"
+      : operation?.resolutionState === "actionable" ? "可以继续" : null;
+  return <article className={`creator-run creator-run--${run.status} creator-run--authority-${operation?.authorityState ?? "unknown"}`}>
     <div className="creator-run__status">
+      {authorityLabel && <em className={`creator-run__authority creator-run__authority--${operation?.authorityState}`}>{authorityLabel}</em>}
       <span className={`status status--${run.status}`}><i/>{creatorStatusLabels[run.status]}</span>
+      {resolutionLabel && <small>{resolutionLabel}</small>}
       <time>{new Date(run.updatedAt).toLocaleString("zh-CN", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })}</time>
     </div>
     <div className="creator-run__main">
@@ -37,12 +45,14 @@ export function CreatorRunRow({ run, operation, busy, onOperate }: {
       <span>WORKER · {run.worker.state.toUpperCase()} · ATTEMPT {run.worker.attempt}</span>
       {blocker && <span className={blocker.userActionRequired ? "creator-run__blocker creator-run__blocker--user" : "creator-run__blocker"}><AlertTriangle size={13}/>{blocker.message}</span>}
       {operation?.waitingReason && <span className="creator-run__waiting"><AlertTriangle size={13}/>{operation.waitingReason}</span>}
+      {operation?.authorityState === "candidate" && operation.lastGoodRunId && <span className="creator-run__last-good"><ShieldCheck size={13}/>工作台继续使用已通过的 last-good 版本</span>}
+      {operation?.authorityState === "superseded" && <span className="creator-run__superseded">已由权威版本替代 · 历史证据仍可追溯</span>}
       {diagnostic && <span className="creator-run__diagnostic"><AlertTriangle size={13}/>原因：{diagnostic}</span>}
       {completionNotice(run) && <span className="creator-run__completion"><ShieldCheck size={13}/>{completionNotice(run)}</span>}
       {operation && operation.action !== "none" && <button type="button" className="creator-run__resume" disabled={busy} onClick={() => void onOperate(run.id, operation.action)}>
         {busy ? <LoaderCircle className="spin" size={12}/> : <RefreshCw size={12}/>}{busy ? "正在提交" : operation.actionLabel}
       </button>}
-      <Link to={detailHref}>{run.status === "ready" ? "查看完成研究" : "查看任务详情"}<ArrowRight size={13}/></Link>
+      <Link to={detailHref}>{operation?.authorityState === "superseded" ? "检查历史版本" : run.status === "ready" ? "查看完成研究" : "查看任务详情"}<ArrowRight size={13}/></Link>
     </footer>
   </article>;
 }

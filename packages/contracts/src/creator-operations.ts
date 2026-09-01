@@ -5,8 +5,19 @@ export const creatorRunOperationActionSchema = z.enum([
   "none", "resume", "retry_failed_videos", "continue_with_media_gaps", "revalidate_synthesis"
 ]);
 
+export const creatorRunAuthorityStateSchema = z.enum(["canonical", "candidate", "superseded"]);
+export const creatorRunResolutionStateSchema = z.enum([
+  "ready", "active", "actionable", "waiting_external", "provisional", "failed_terminal"
+]);
+
 export const creatorRunOperationSchema = z.object({
   runId: z.string().uuid(),
+  creatorKey: z.string(),
+  authorityState: creatorRunAuthorityStateSchema,
+  resolutionState: creatorRunResolutionStateSchema,
+  canonicalRunId: z.string().uuid(),
+  lastGoodRunId: z.string().uuid().nullable(),
+  supersededByRunId: z.string().uuid().nullable(),
   status: creatorResearchStatusSchema,
   currentStageLabel: z.string(),
   coverage: z.object({
@@ -30,3 +41,5 @@ export const creatorRunOperationSchema = z.object({
 
 export type CreatorRunOperation = z.infer<typeof creatorRunOperationSchema>;
 export type CreatorRunOperationAction = z.infer<typeof creatorRunOperationActionSchema>;
+export type CreatorRunAuthorityState = z.infer<typeof creatorRunAuthorityStateSchema>;
+export type CreatorRunResolutionState = z.infer<typeof creatorRunResolutionStateSchema>;

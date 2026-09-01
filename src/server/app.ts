@@ -25,7 +25,7 @@ import { registerEvidenceRoutes } from "./routes/evidence.js";
 import { registerWorkspaceRoutes } from "./routes/workspace.js";
 import { registerCreatorResearchBatchRoutes } from "./routes/creator-research-batches.js";
 import type { EvidenceAccessPort } from "../../packages/contracts/index.js";
-import { buildCreatorRunOperation } from "./creator-operations.js";
+import { buildCreatorRunOperations } from "./creator-operations.js";
 
 export interface AppDependencies {
   analysis: AnalysisService;
@@ -92,13 +92,14 @@ export function createApp({
 
   app.get("/api/creator-run-operations", (request, response) => {
     const limit = Math.min(100, Math.max(1, Number(request.query.limit ?? 50)));
-    const operations = creatorResearchService.list(limit).map((run) => {
+    const runs = creatorResearchService.list(limit);
+    const operations = buildCreatorRunOperations(runs, (run) => {
       const portfolio = creatorResearchService.portfolio(run.id);
-      return buildCreatorRunOperation(run, {
+      return {
         reconstructionBatch: portfolio?.reconstructionBatch ?? null,
         synthesisGate: portfolio?.synthesisGate ?? null,
         events: creatorResearchService.events(run.id)
-      });
+      };
     });
     response.json({ operations });
   });
