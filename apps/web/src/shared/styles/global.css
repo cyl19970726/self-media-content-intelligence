@@ -607,6 +607,7 @@ details.console-section > .console-section__inner { padding: 22px 0; }
 .launch-step b { color: var(--paper); font-size: 13px; } .launch-step p { margin: 4px 0 0; color: #b9c0bc; font-size: 12px; line-height: 1.6; }
 .boundary-list { margin-top: 16px; } .boundary-list p { padding: 11px 0; margin: 0; border-bottom: 1px solid var(--line); color: var(--coal); font-size: 13px; line-height: 1.6; }
 .creator-dossier .console-rail { top: 122px; }
+.creator-dossier > .knowledge-contribution-block { grid-column: 1 / -1; margin-bottom: 0; }
 .dossier-main { max-width: 1480px; }
 .dossier-hero { padding-block: 28px 22px; border-bottom: 1px solid var(--ink); }
 .dossier-hero > a { padding: 12px 15px; display: inline-flex; gap: 8px; align-items: center; color: var(--paper); background: var(--ink); font-size: 12px; }
