@@ -7,7 +7,7 @@ import {
   legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
   type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding, type KnowledgeCompilationProposal,
   type KnowledgeConceptView, type KnowledgeContribution, type KnowledgeContributionManifest,
-  type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
+  type KnowledgeBindingLineage, type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
 } from "./contracts.js";
 import type { ContentKnowledgeRepository } from "./repository.js";
 
@@ -256,6 +256,35 @@ export class ContentKnowledgeService {
 
   listBindings(packageId: string): KnowledgeBinding[] {
     return this.repository.listBindings(packageId).map((binding) => this.resolveBindingStatus(binding));
+  }
+
+  bindingLineage(packageId: string): KnowledgeBindingLineage[] {
+    const concepts = this.research.list();
+    return this.listBindings(packageId).map((binding) => {
+      const targets = concepts.flatMap((research) => research.revisions.flatMap((revision) => {
+        const eligibleObservationIds = new Set(revision.eligibleObservationIds);
+        const observations = research.observations.filter((observation) => {
+          if (binding.targetType === "concept_revision") {
+            return revision.id === binding.targetId
+              && (eligibleObservationIds.has(observation.id) || observation.conceptRevisionId === revision.id);
+          }
+          if (observation.conceptRevisionId !== revision.id) return false;
+          if (binding.targetType === "analysis_revision") return observation.analysisRevisionId === binding.targetId;
+          return observation.evidenceRefs.includes(binding.targetId);
+        });
+        if (binding.targetType !== "concept_revision" && observations.length === 0) return [];
+        if (binding.targetType === "concept_revision" && revision.id !== binding.targetId) return [];
+        const observationIds = new Set(observations.map((item) => item.id));
+        const analysisRevisionIds = new Set(observations.map((item) => item.analysisRevisionId));
+        const contributions = this.contributionsForConcept(research.concept.id).filter(({ manifest, contribution }) =>
+          observationIds.has(contribution.observationId ?? "") || analysisRevisionIds.has(manifest.analysisRevisionId));
+        return [{ concept: research.concept, pinnedRevision: revision, observations, contributions }];
+      }));
+      const resolution: KnowledgeBindingLineage["resolution"] = targets.length === 0 ? "missing"
+        : binding.status === "stale_available" ? "stale_available"
+          : binding.status === "invalidated" ? "invalidated" : "resolved";
+      return { binding, resolution, targets };
+    });
   }
 
   createHypothesis(raw: unknown): CreationHypothesis {

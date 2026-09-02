@@ -27,6 +27,7 @@ import {
   evidenceAccessProjectionSchema, evidenceCatalogPageSchema, workspaceOverviewSchema,
   type EvidenceAccessProjection, type EvidenceCatalogPage, type WorkspaceOverview
 } from "../contracts/core";
+import { contentPackageLineageSchema, type ContentPackageLineage } from "../contracts/content-lineage";
 
 async function json<T>(response: Response, parse: (value: unknown) => T): Promise<T> {
   const value: unknown = await response.json();
@@ -144,6 +145,12 @@ export async function getPackageKnowledge(packageId: string, snapshotId?: string
     if (!value || typeof value !== "object" || !("bindings" in value) || !("hypotheses" in value)) throw new Error("创作知识上下文无效");
     return { bindings: knowledgeBindingSchema.array().parse(value.bindings), hypotheses: creationHypothesisSchema.array().parse(value.hypotheses) };
   });
+}
+
+export async function getContentPackageLineage(packageId: string, snapshotId: string): Promise<ContentPackageLineage> {
+  return json(await fetch(`/api/v1/content-packages/${encodeURIComponent(packageId)}/snapshots/${encodeURIComponent(snapshotId)}/lineage`, {
+    cache: "no-store"
+  }), (value) => contentPackageLineageSchema.parse(value));
 }
 
 export async function createKnowledgeBinding(packageId: string, input: Omit<KnowledgeBinding, "id" | "contentPackageId" | "status" | "createdAt"> & { operationKey: string }): Promise<KnowledgeBinding> {

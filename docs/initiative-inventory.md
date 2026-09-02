@@ -2,7 +2,7 @@
 
 Status: **Canonical initiative classification**
 
-Last audited: **2026-08-30**
+Last audited: **2026-09-02**
 
 Implementation maturity describes shipped behavior, lifecycle describes whether
 work remains active, and verification describes the strongest evidence currently
@@ -10,6 +10,7 @@ available. A design document is never implementation proof by itself.
 
 | Initiative | Implementation maturity | Lifecycle | Verification level | Canonical destination |
 | --- | --- | --- | --- | --- |
+| Knowledge → Creation → Practice Wave 4 | Partial; three real content packages, pinned Knowledge lineage, hypotheses, frozen variants and guarded Ego Browser handoff exist; user login, preview confirmation, publication and practice adjudication remain | Active | Full repository gate 61 files/295 tests; three idempotent real packages with 7 resolved Knowledge bindings; desktop browser lineage evidence; publication correctly stopped at user login boundary | [Active record](initiatives/active/knowledge-creation-practice-wave-4/requirements.md) |
 | Creator Batch Pipeline V2 | Partial implementation; batch control plane, fixed 1–20 manual entry, five capability pools and workbench exist; RedFox incremental checkpoint, distributed failure closure and paid rollout remain | Active | Targeted gate 27/27; full repository gate 54 files/235 tests; isolated desktop/mobile browser passed without RedFox calls; paid live-unverified and requires 2 approved creators plus checkpoint before up to 20 | [Active record](initiatives/active/creator-batch-pipeline-v2/README.md) |
 | Content Knowledge System V1 | Partial; the single-post research → revisioned Knowledge → creation → practice loop is operational, while production creator/comparison compilation remains | Active | Full repository gate plus desktop/390 px/empty/error browser evidence; 12/13 task groups checked | [Active record](initiatives/active/content-knowledge-system-v1/requirements.md) |
 | Creator Analysis OS V1 | Partial product implementation; normative research and UI contracts remain active, six task groups unresolved | Active | Automated projections/gates plus recorded depth-parity evidence; 38/44 tasks checked | [Active record](initiatives/active/creator-analysis-os-v1/README.md) |
