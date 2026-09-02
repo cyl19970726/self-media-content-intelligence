@@ -413,7 +413,7 @@ export class CreatorResearchService {
     return run;
   }
 
-  retryFailedReconstructions(id: string): CreatorResearchRun {
+  retryFailedReconstructions(id: string, builderContractRevision: string | null = null): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
     if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
@@ -506,7 +506,9 @@ export class CreatorResearchService {
     stage(run, "deep_capture").message = run.nextAction;
     this.repository.save(run);
     this.repository.appendEvent({ runId: run.id, jobId: null, type: "run.resumed", createdAt: timestamp,
-      message: "视频基础设施修复后，仅重新排队未通过项。", payload: { previousBatchRef, batchRef, retriedPosts: failedItems.map((item) => item.postExternalId) } });
+      message: "视频基础设施修复后，仅重新排队未通过项。", payload: {
+        previousBatchRef, batchRef, retriedPosts: failedItems.map((item) => item.postExternalId), builderContractRevision
+      } });
     return run;
   }
 

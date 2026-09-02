@@ -6,7 +6,12 @@ import { AnalysisService } from "../core/service.js";
 import { CreatorResearchService } from "../core/creator-research-service.js";
 import { ComparisonProjectService, type CreatorResearchBatchService } from "../../packages/research/index.js";
 import { PublishingService } from "../../packages/creation/index.js";
-import { evidenceResearchRoot, projectRoot, runtimeDir } from "../../packages/adapters/index.js";
+import {
+  builderIntegrityContractRevision,
+  evidenceResearchRoot,
+  projectRoot,
+  runtimeDir
+} from "../../packages/adapters/index.js";
 import { createCreatorResearchRunInputSchema, createRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
 import { defaultAiCreatorKeywords, RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { loadCreatorSummaries } from "./creators.js";
@@ -98,7 +103,8 @@ export function createApp({
       return {
         reconstructionBatch: portfolio?.reconstructionBatch ?? null,
         synthesisGate: portfolio?.synthesisGate ?? null,
-        events: creatorResearchService.events(run.id)
+        events: creatorResearchService.events(run.id),
+        builderContractRevision: builderIntegrityContractRevision()
       };
     });
     response.json({ operations });
@@ -207,7 +213,9 @@ export function createApp({
 
   app.post("/api/creator-runs/:id/retry-failed-videos", (request, response) => {
     try {
-      return response.status(202).json(creatorResearchService.retryFailedReconstructions(request.params.id));
+      return response.status(202).json(creatorResearchService.retryFailedReconstructions(
+        request.params.id, builderIntegrityContractRevision()
+      ));
     } catch (error) {
       const message = error instanceof Error ? error.message : "无法重试未通过视频";
       return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });

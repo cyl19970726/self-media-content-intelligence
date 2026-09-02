@@ -4,6 +4,8 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   assertCandidateArtifactsUnchanged,
+  builderIntegrityContractRevision,
+  builderIntegrityRepairPrompt,
   candidatePrompt,
   candidateArtifactFingerprints,
   codexInvocationArgs,
@@ -256,6 +258,18 @@ describe("Evaluator role contract", () => {
     } finally {
       fs.rmSync(outputDir, { recursive: true, force: true });
     }
+  });
+});
+
+describe("Builder integrity contract", () => {
+  it("fingerprints the repair contract used to authorize bounded reruns", () => {
+    expect(builderIntegrityContractRevision()).toMatch(/^[a-f0-9]{64}$/);
+  });
+
+  it("keeps checked-but-unproven relationships as unknowns instead of meta-gate omissions", () => {
+    const prompt = builderIntegrityRepairPrompt("/tmp/video.mp4", "/tmp/run", "BUILDER_INTEGRITY_META_GATE");
+    expect(prompt).toContain("inspected but cannot be established");
+    expect(prompt).toMatch(/explicit\s+unknown or boundary/);
   });
 });
 

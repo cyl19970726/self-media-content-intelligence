@@ -22,6 +22,7 @@ describe("Host-owned video reconstruction assembly", () => {
       const reconstructionPath = path.join(root, "reconstruction.json");
       const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
       const originalUnits = structuredClone(reconstruction.knowledgeUnits);
+      const originalAccountability = structuredClone(reconstruction.coverageMatrix.cueAccountability);
       reconstruction.transcript.cues[0].representativeFrame = "invented-frame-id";
       reconstruction.coverageMatrix.channels[0] = {
         ...reconstruction.coverageMatrix.channels[0], available: false, inspected: false,
@@ -38,6 +39,7 @@ describe("Host-owned video reconstruction assembly", () => {
       expect(assembled.coverageMatrix.channels[0]).toMatchObject({ available: true, inspected: true, inspectionStatus: "checked_readable" });
       expect(assembled.metaGate).toMatchObject({ questionId: "uncovered_information_audit", question: "Localized display question" });
       expect(assembled.knowledgeUnits).toEqual(originalUnits);
+      expect(assembled.coverageMatrix.cueAccountability).toEqual(originalAccountability);
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }
@@ -82,6 +84,81 @@ describe("Host-owned video reconstruction assembly", () => {
         inspectionRationale: "Transcript and cue timing were inspected."
       });
       expect(assembledReconstruction.knowledgeUnits).toEqual(originalUnits);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("restores one mechanical accountability row for every frozen transcript cue", () => {
+    const root = createFixture();
+    try {
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.coverageMatrix.cueAccountability = [];
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const assembled = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(report.cueAccountabilityRowsRestored).toBe(2);
+      expect(assembled.coverageMatrix.cueAccountability).toEqual([
+        {
+          cueId: "CUE-001", disposition: "knowledge", unitIds: ["KU-001", "KU-002"],
+          rationale: "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
+        },
+        {
+          cueId: "CUE-002", disposition: "knowledge", unitIds: ["KU-002"],
+          rationale: "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
+        }
+      ]);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("upgrades legacy cue rows without replacing their existing unit mapping", () => {
+    const root = createFixture();
+    try {
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.coverageMatrix.cueAccountability = [
+        { cueId: "CUE-001", unitIds: ["KU-002"] },
+        { cueId: "CUE-002", unitIds: [] }
+      ];
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const assembled = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(report.cueAccountabilityRowsRestored).toBe(2);
+      expect(assembled.coverageMatrix.cueAccountability).toMatchObject([
+        { cueId: "CUE-001", disposition: "knowledge", unitIds: ["KU-002"] },
+        { cueId: "CUE-002", disposition: "uncertain", unitIds: [] }
+      ]);
+      expect(assembled.coverageMatrix.cueAccountability[0].rationale).toContain("Host");
+      expect(assembled.coverageMatrix.cueAccountability[1].rationale).toContain("Host");
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("removes an unregistered absolute source path while preserving valid evidence", () => {
+    const root = createFixture();
+    try {
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.knowledgeUnits[0].evidence.push({
+        refType: "source",
+        ref: "/private/runtime/source-video.mp4",
+        supports: "Legacy runtime path must not become a durable evidence ID."
+      });
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const assembled = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(report.invalidAbsoluteSourceRefsRemoved).toBe(1);
+      expect(assembled.knowledgeUnits[0].evidence).not.toContainEqual(
+        expect.objectContaining({ ref: "/private/runtime/source-video.mp4" })
+      );
+      expect(assembled.knowledgeUnits[0].evidence.length).toBeGreaterThan(0);
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }

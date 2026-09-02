@@ -22,7 +22,28 @@ type Probe = {
 
 type Reconstruction = {
   transcript?: { origin?: string; cues?: Array<Record<string, unknown>> };
-  coverageMatrix?: { channels?: Carrier[]; uncheckedChannels?: string[]; [key: string]: unknown };
+  knowledgeUnits?: Array<{
+    id?: string;
+    timeRange?: { start?: number; end?: number };
+    evidence?: Array<{ refType?: string; ref?: string; [key: string]: unknown }>;
+  }>;
+  relations?: Array<{
+    evidence?: Array<{ refType?: string; ref?: string; [key: string]: unknown }>;
+    [key: string]: unknown;
+  }>;
+  derivedSources?: Array<{ id?: string; [key: string]: unknown }>;
+  coverageMatrix?: {
+    channels?: Carrier[];
+    cueAccountability?: Array<{
+      cueId?: string;
+      disposition?: "knowledge" | "context" | "nonsemantic" | "uncertain";
+      unitIds?: string[];
+      rationale?: string;
+      [key: string]: unknown;
+    }>;
+    uncheckedChannels?: string[];
+    [key: string]: unknown;
+  };
   metaGate?: {
     questionId?: string;
     question?: string;
@@ -37,6 +58,8 @@ type Reconstruction = {
 
 export type HostAssemblyReport = {
   transcriptCuesRestored: number;
+  cueAccountabilityRowsRestored: number;
+  invalidAbsoluteSourceRefsRemoved: number;
   carriersNormalized: number;
   carrierRationalesSynchronized: number;
   probeWarnings: string[];
@@ -59,6 +82,24 @@ function normalizeCarrier(carrier: Carrier): Carrier {
 
 function isClosed(carrier: Carrier): boolean {
   return ["checked_readable", "checked_unreadable"].includes(inspectionStatus(carrier));
+}
+
+function finiteNumber(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function overlappingUnitIds(
+  cue: Record<string, unknown>,
+  units: NonNullable<Reconstruction["knowledgeUnits"]>
+): string[] {
+  const cueStart = finiteNumber(cue.start);
+  const cueEnd = finiteNumber(cue.end) ?? cueStart;
+  if (cueStart === null || cueEnd === null) return [];
+  return units.filter((unit) => {
+    const unitStart = finiteNumber(unit.timeRange?.start);
+    const unitEnd = finiteNumber(unit.timeRange?.end);
+    return Boolean(unit.id) && unitStart !== null && unitEnd !== null && cueEnd > unitStart && cueStart < unitEnd;
+  }).map((unit) => unit.id).filter((id): id is string => Boolean(id));
 }
 
 export function assembleHostOwnedReconstruction(outputDir: string): HostAssemblyReport {
@@ -98,6 +139,46 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
     !carrier.discoveredIn?.length || carrier.discoveredIn.some((id) => !sweepIds.has(id))
       ? [`probe_carrier_sweep_trace:${carrier.id ?? "unknown"}`]
       : []);
+  const existingAccountability = new Map((reconstruction.coverageMatrix?.cueAccountability ?? [])
+    .filter((row): row is typeof row & { cueId: string } => Boolean(row.cueId))
+    .map((row) => [row.cueId, row]));
+  let cueAccountabilityRowsRestored = 0;
+  const cueAccountability = frozenCues.flatMap((cue) => {
+    const cueId = typeof cue.id === "string" ? cue.id : null;
+    if (!cueId) return [];
+    const existing = existingAccountability.get(cueId);
+    if (existing?.disposition && existing.rationale?.trim()) {
+      return [{ ...existing, cueId, unitIds: existing.unitIds ?? [] }];
+    }
+    cueAccountabilityRowsRestored += 1;
+    const unitIds = existing?.unitIds ?? overlappingUnitIds(cue, reconstruction.knowledgeUnits ?? []);
+    return [{
+      ...(existing ?? {}),
+      cueId,
+      disposition: unitIds.length > 0 ? "knowledge" as const : "uncertain" as const,
+      unitIds,
+      rationale: unitIds.length > 0
+        ? "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
+        : "Host 已登记该冻结 Cue；没有知识单元时间范围与其重叠，语义归属保持未知。"
+    }];
+  });
+  const derivedSourceIds = new Set((reconstruction.derivedSources ?? [])
+    .map((source) => source.id).filter((id): id is string => Boolean(id)));
+  let invalidAbsoluteSourceRefsRemoved = 0;
+  const removeInvalidAbsoluteSourceRefs = (
+    evidence: Array<{ refType?: string; ref?: string; [key: string]: unknown }> | undefined
+  ) => (evidence ?? []).filter((reference) => {
+    const invalid = reference.refType === "source" && typeof reference.ref === "string" &&
+      path.isAbsolute(reference.ref) && !derivedSourceIds.has(reference.ref);
+    if (invalid) invalidAbsoluteSourceRefsRemoved += 1;
+    return !invalid;
+  });
+  for (const unit of reconstruction.knowledgeUnits ?? []) {
+    unit.evidence = removeInvalidAbsoluteSourceRefs(unit.evidence);
+  }
+  for (const relation of reconstruction.relations ?? []) {
+    relation.evidence = removeInvalidAbsoluteSourceRefs(relation.evidence);
+  }
 
   probe.informationCarriers = probeCarriers;
   reconstruction.transcript = {
@@ -114,6 +195,7 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
   reconstruction.coverageMatrix = {
     ...(reconstruction.coverageMatrix ?? {}),
     channels: reconstructionCarriers,
+    cueAccountability,
     uncheckedChannels
   };
   reconstruction.metaGate = {
@@ -129,6 +211,8 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
   fs.writeFileSync(reconstructionPath, `${JSON.stringify(reconstruction, null, 2)}\n`, "utf8");
   return {
     transcriptCuesRestored: frozenCues.length,
+    cueAccountabilityRowsRestored,
+    invalidAbsoluteSourceRefsRemoved,
     carriersNormalized: probeCarriers.length + reconstructionCarriers.length,
     carrierRationalesSynchronized,
     probeWarnings

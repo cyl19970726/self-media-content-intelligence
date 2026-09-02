@@ -12,6 +12,7 @@ export type OperationEvidence = {
   reconstructionBatch: ReconstructionBatch | null;
   synthesisGate: { ready: boolean; failedGateIds: string[] } | null;
   events: CreatorResearchEvent[];
+  builderContractRevision?: string;
 };
 
 type AuthorityContext = {
@@ -33,7 +34,9 @@ function selectAction(run: CreatorResearchRun, evidence: OperationEvidence): Cre
   const mediaRetryCompleted = evidence.events.some((event) =>
     event.type === "job.queued" && event.message === "媒体核验失败项已进入一次定向补取。");
   const failedVideoRetryCompleted = evidence.events.some((event) => event.type === "run.resumed"
-    && event.message === "视频基础设施修复后，仅重新排队未通过项。");
+    && event.message === "视频基础设施修复后，仅重新排队未通过项。"
+    && (!evidence.builderContractRevision ||
+      (event.payload as { builderContractRevision?: unknown }).builderContractRevision === evidence.builderContractRevision));
   if (pureMediaGaps && mediaRetryCompleted && evidence.reconstructionBatch?.pendingPosts === 0) return "continue_with_media_gaps";
   if (failedItems.length > 0 && evidence.reconstructionBatch?.pendingPosts === 0 && !failedVideoRetryCompleted) return "retry_failed_videos";
   const synthesisRevalidated = evidence.events.some((event) => event.type === "artifact.produced"

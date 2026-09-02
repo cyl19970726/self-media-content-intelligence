@@ -6,6 +6,8 @@ import {
 import type { CreatorResearchRepository } from "./repository.js";
 import type { CreatorArtifactStore } from "./artifact-store.js";
 import {
+  creatorPortfolioAnalysisSchema,
+  buildCreatorPortfolioAnnotations,
   creatorSelectionSchema,
   videoReconstructionRequestSchema,
   videoReconstructionBatchSchema,
@@ -403,6 +405,29 @@ export class CreatorResearchVideoSynthesisProcessor {
 
   async processSynthesis(run: CreatorResearchRun, job: ResearchJob, workerId: string): Promise<void> {
     const startedAt = now();
+    if (!run.portfolioAnnotationsArtifactRef && run.portfolioArtifactRef) {
+      const analysis = creatorPortfolioAnalysisSchema.parse(this.artifacts.read(run.portfolioArtifactRef));
+      const annotations = buildCreatorPortfolioAnnotations(
+        this.artifacts.read(analysis.corpusArtifactRef), analysis.corpusArtifactRef, startedAt
+      );
+      run.portfolioAnnotationsArtifactRef = this.artifacts.write(
+        run.id, "portfolio-annotations.json", annotations, [analysis.corpusArtifactRef]
+      );
+      run.updatedAt = startedAt;
+      this.repository.save(run);
+      this.repository.appendEvent({
+        runId: run.id,
+        jobId: job.id,
+        type: "artifact.produced",
+        createdAt: startedAt,
+        message: "旧任务缺失的全量表层标注已从冻结作品基本盘确定性补齐。",
+        payload: {
+          kind: "creator.portfolio_annotations",
+          artifactRef: run.portfolioAnnotationsArtifactRef,
+          annotated: annotations.denominator.annotatedPosts
+        }
+      });
+    }
     if (!run.portfolioArtifactRef || !run.portfolioAnnotationsArtifactRef || !run.selectionArtifactRef
       || !run.detailArtifactRef || !run.reconstructionBatchArtifactRef) {
       return this.failRun(run, job, workerId, "博主归纳缺少固定输入 artifact");

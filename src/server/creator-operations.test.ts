@@ -62,6 +62,36 @@ describe("creator operations projection", () => {
     expect(operation).toMatchObject({ action: "none", resolutionState: "provisional", terminal: true });
   });
 
+  it("offers one new bounded retry after the Builder contract revision changes", () => {
+    const operation = buildCreatorRunOperation(run(), {
+      reconstructionBatch: { requestedPosts: 12, pendingPosts: 0, items: [
+        { state: "not_ready", failedGateIds: ["builder_integrity_evidence_time_range"] }
+      ] },
+      synthesisGate: null,
+      builderContractRevision: "builder-v2",
+      events: [{ sequence: 1, runId: run().id, jobId: null, type: "run.resumed",
+        createdAt: "2026-08-21T01:00:00.000Z",
+        message: "视频基础设施修复后，仅重新排队未通过项。",
+        payload: { builderContractRevision: "builder-v1" } }]
+    });
+    expect(operation).toMatchObject({ action: "retry_failed_videos", resolutionState: "actionable", terminal: false });
+  });
+
+  it("does not offer another retry for the same Builder contract revision", () => {
+    const operation = buildCreatorRunOperation(run(), {
+      reconstructionBatch: { requestedPosts: 12, pendingPosts: 0, items: [
+        { state: "not_ready", failedGateIds: ["builder_integrity_evidence_time_range"] }
+      ] },
+      synthesisGate: null,
+      builderContractRevision: "builder-v2",
+      events: [{ sequence: 1, runId: run().id, jobId: null, type: "run.resumed",
+        createdAt: "2026-08-21T01:00:00.000Z",
+        message: "视频基础设施修复后，仅重新排队未通过项。",
+        payload: { builderContractRevision: "builder-v2" } }]
+    });
+    expect(operation).toMatchObject({ action: "none", resolutionState: "provisional", terminal: true });
+  });
+
   it("maps provider failures to the resumable failed stage", () => {
     const operation = buildCreatorRunOperation(run({ status: "failed", blockers: [
       { code: "provider_unavailable", message: "数据源超时", userActionRequired: false }
