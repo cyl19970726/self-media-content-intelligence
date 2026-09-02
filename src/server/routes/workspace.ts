@@ -23,6 +23,10 @@ function statusCounts(items: Array<{ status?: string }>): Record<string, number>
   }, {});
 }
 
+function platformLabel(platform: "xiaohongshu" | "wechat_channels" | "x"): string {
+  return platform === "x" ? "X" : platform === "wechat_channels" ? "微信视频号" : "小红书";
+}
+
 export function registerWorkspaceRoutes(app: express.Express, dependencies: WorkspaceDependencies): void {
   app.get("/api/v1/workspace-overview", (_request, response) => {
     const postRuns = dependencies.analysis.list(200);
@@ -35,7 +39,7 @@ export function registerWorkspaceRoutes(app: express.Express, dependencies: Work
     const evidence = dependencies.evidence.summary();
     const recent = [
       ...postRuns.slice(0, 4).map((item) => ({ id: item.id, kind: "post" as const, title: item.title,
-        meta: `${item.platform === "x" ? "X" : "小红书"} · ${item.authorName}`, status: item.status,
+        meta: `${platformLabel(item.platform)} · ${item.authorName}`, status: item.status,
         updatedAt: item.updatedAt, href: `/runs/${item.id}` })),
       ...creatorRuns.slice(0, 4).map((item) => ({ id: item.id, kind: "creator" as const, title: item.creatorName ?? "等待识别博主",
         meta: `${item.coverage.discoveredPosts} 条作品 · ${item.coverage.reconstructedPosts} 条深度视频`, status: item.status,
