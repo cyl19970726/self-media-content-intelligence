@@ -76,13 +76,13 @@ const blueprints: PackageBlueprint[] = [
       expectedSignals: ["收藏", "询问知识链或开源地址的评论"],
       unavailableSignals: ["曝光", "图片停留时长", "转化"],
       baselineDeclaration: "以此前工作台截图类内容为基线；若历史数据不可取得，则本帖只建立首轮基线，不做胜负判断。",
-      confounders: ["20 个博主的数量承诺可能影响点击", "开源项目本身可能带来额外关注"]
+      confounders: ["19 个博主的数量承诺可能影响点击", "开源项目本身可能带来额外关注"]
     },
     variant: {
       platform: "xiaohongshu", title: "我把19个AI博主做成内容Wiki",
       body: "我不想再让 AI 每次分析完就失忆。\n\n所以我把 19 个 AI 博主和他们的帖子放进一个工作台：\n1. 先还原单帖讲了什么、怎么编排、画面怎么证明；\n2. 再找出一个博主稳定有效和反复失效的模式；\n3. 最后才比较不同博主之间共同成立的机制。\n\n每个结论都能回到原帖、时间点和证据；创作时固定使用哪一版知识，发布后再把真实结果送回来验证。\n\n这才是我理解的 LLM Wiki：不是 AI 替人写百科，而是一套能持续学习、又不会偷偷改写历史的内容决策系统。",
       contentType: "image",
-      media: ["actual-creators.png", "actual-creator.png", "actual-video.png"].map((file) => ({ kind: "image" as const, localPath: path.join(projectRoot, file), mimeType: "image/png" })),
+      media: ["actual-creator.png", "actual-creators.png", "actual-video.png"].map((file) => ({ kind: "image" as const, localPath: path.join(projectRoot, file), mimeType: "image/png" })),
       tags: ["AI工作台", "内容创作", "LLMWiki", "小红书运营"], visibility: "public", scheduledAt: null,
       platformOptions: { xiaohongshu: { location: null, allowDownload: true, allowCopy: true } }
     }
