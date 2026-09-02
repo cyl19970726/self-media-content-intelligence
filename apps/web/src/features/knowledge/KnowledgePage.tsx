@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, BookOpen, CircleAlert, GitBranch, LoaderCircle, Search, ShieldAlert } from "lucide-react";
 import { getKnowledge, listKnowledge, listKnowledgeGaps, listKnowledgeInvalidations } from "../../shared/api/client";
 import type { KnowledgeConceptView, KnowledgeGap, KnowledgeInvalidationRecord } from "../../shared/contracts/knowledge";
+import { KnowledgeActivationWorkbench } from "./KnowledgeActivationWorkbench";
 
 const scopeLabels = {
   video_specific: "单帖观察", creator_specific: "博主模式", conditional: "条件规律", track_wide: "跨博主规律"
@@ -33,6 +34,7 @@ export default function KnowledgeWorkspace() {
   const [scope, setScope] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function KnowledgeWorkspace() {
       .then(([nextConcepts, nextGaps]) => { setConcepts(nextConcepts); setGaps(nextGaps); setError(null); })
       .catch((cause) => setError(cause instanceof Error ? cause.message : "知识索引读取失败"))
       .finally(() => setLoading(false));
-  }, [query, scope, status]);
+  }, [query, scope, status, refresh]);
 
   useEffect(() => {
     if (!conceptId) { setDetail(null); return; }
@@ -56,6 +58,8 @@ export default function KnowledgeWorkspace() {
     contradicted: concepts.filter((item) => item.research.counts.contradict > 0).length,
     stale: concepts.filter((item) => ["invalidated", "retired"].includes(item.research.concept.status)).length
   }), [concepts]);
+  const visibleConcepts = useMemo(() => status ? concepts
+    : concepts.filter((item) => !["invalidated", "retired"].includes(item.research.concept.status)), [concepts, status]);
 
   if (detail && conceptId) return <main className="knowledge-detail">
     <aside className="knowledge-context">
@@ -124,7 +128,7 @@ export default function KnowledgeWorkspace() {
 
   return <main className="knowledge-workspace">
     <aside className="knowledge-filters">
-      <header><BookOpen size={18}/><div><span>CONTENT KNOWLEDGE</span><strong>{String(concepts.length).padStart(2, "0")}</strong></div></header>
+      <header><BookOpen size={18}/><div><span>CONTENT KNOWLEDGE</span><strong>{String(visibleConcepts.length).padStart(2, "0")}</strong></div></header>
       <label><Search size={14}/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索概念、定义、排除项"/></label>
       <span>范围</span>
       <button className={!scope ? "active" : ""} onClick={() => setScope("")}>全部范围</button>
@@ -135,10 +139,11 @@ export default function KnowledgeWorkspace() {
     <section className="knowledge-index">
       <header><div><span>KNOWLEDGE REGISTER / CURRENT</span><h1>我们现在<br/><em>相信什么？</em></h1></div><p>每条知识都带着成立条件、反例、来源和版本。这里展示的是当前可审计判断，不是模型记忆。</p></header>
       <div className="knowledge-health">{Object.entries(health).map(([key, value]) => <div key={key}><span>{key}</span><strong>{String(value).padStart(2, "0")}</strong></div>)}</div>
+      <KnowledgeActivationWorkbench onApplied={() => { setScope(""); setStatus(""); setQuery(""); setRefresh((value) => value + 1); }} />
       {loading ? <div className="knowledge-empty"><LoaderCircle className="spin"/><p>正在重建知识索引</p></div>
         : error ? <div className="knowledge-empty"><CircleAlert/><p>{error}</p></div>
-          : concepts.length === 0 ? <div className="knowledge-empty"><BookOpen/><h2>知识真相源尚为空</h2><p>通过研究闸门的分析会在这里留下贡献清单；系统不会用旧报告文案补造规律。</p><Link to="/creators">查看可贡献的 Ready 研究</Link></div>
-            : <div className="concept-register">{concepts.map((item, index) => <button key={item.research.concept.id} onClick={() => navigate(`/knowledge/${item.research.concept.id}`)}>
+          : visibleConcepts.length === 0 ? <div className="knowledge-empty"><BookOpen/><h2>知识真相源尚为空</h2><p>通过研究闸门的分析会在这里留下贡献清单；系统不会用旧报告文案补造规律。</p><Link to="/creators">查看可贡献的 Ready 研究</Link></div>
+            : <div className="concept-register">{visibleConcepts.map((item, index) => <button key={item.research.concept.id} onClick={() => navigate(`/knowledge/${item.research.concept.id}`)}>
               <span>{String(index + 1).padStart(2, "0")}</span><div><small>{item.research.concept.kind.replaceAll("_", " ")}</small><h2>{item.research.concept.name}</h2><p>{item.research.currentRevision.definition}</p></div>
               <div><b>{scopeLabels[item.research.concept.scope]}</b><strong>{item.research.counts.confirm}/{item.research.counts.qualify}/{item.research.counts.contradict}</strong><small>支持 / 限定 / 反驳</small></div>
             </button>)}</div>}

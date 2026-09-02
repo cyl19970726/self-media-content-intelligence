@@ -12,9 +12,9 @@ import { videoResearchSchema, type VideoResearch } from "../contracts/core";
 import { comparisonDossierSchema, type ComparisonDossier } from "../contracts/core";
 import { z } from "zod";
 import {
-  knowledgeConceptViewSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema,
+  knowledgeCompilationProposalSchema, knowledgeConceptViewSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema,
   creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema, knowledgeContributionSchema, practiceValidationSchema,
-  type CreationHypothesis, type KnowledgeBinding, type KnowledgeConceptView, type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation
+  type CreationHypothesis, type KnowledgeBinding, type KnowledgeCompilationProposal, type KnowledgeConceptView, type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation
 } from "../contracts/knowledge";
 import { learningLoopRunSchema, type LearningLoopRun } from "../contracts/core";
 import { creatorResearchPipelineSchema, type CreatorResearchPipeline } from "../contracts/core";
@@ -100,6 +100,39 @@ export async function listKnowledgeContributions(subjectType: "video" | "creator
   return json(await fetch(`/api/v1/knowledge/contributions?${query.toString()}`, { cache: "no-store" }), (value) => {
     const items = value && typeof value === "object" && "manifests" in value ? value.manifests : [];
     return z.array(z.object({ manifest: knowledgeContributionManifestSchema, contributions: z.array(knowledgeContributionSchema) })).parse(items);
+  });
+}
+
+export async function listKnowledgeProposals(status?: string): Promise<KnowledgeCompilationProposal[]> {
+  const suffix = status ? `?status=${encodeURIComponent(status)}` : "";
+  return json(await fetch(`/api/v1/knowledge/proposals${suffix}`, { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "proposals" in value ? value.proposals : [];
+    return knowledgeCompilationProposalSchema.array().parse(items);
+  });
+}
+
+export async function getKnowledgeActivationPlan(): Promise<{
+  totals: { stage: number; already_recorded: number; await_evidence: number; reject: number };
+  items: Array<{ subjectType: "video" | "creator" | "comparison"; subjectId: string; label: string; action: string }>;
+}> {
+  return json(await fetch("/api/v1/knowledge/activation-plan", { cache: "no-store" }), (value) => z.object({
+    totals: z.object({ stage: z.number(), already_recorded: z.number(), await_evidence: z.number(), reject: z.number() }),
+    items: z.array(z.object({ subjectType: z.enum(["video", "creator", "comparison"]), subjectId: z.string(), label: z.string(), action: z.string() }))
+  }).parse(value));
+}
+
+export async function adjudicateKnowledgeProposal(
+  proposal: KnowledgeCompilationProposal,
+  decision: "apply" | "retain_local" | "await_evidence" | "reject",
+  reason: string
+): Promise<KnowledgeCompilationProposal> {
+  return json(await fetch(`/api/v1/knowledge/proposals/${encodeURIComponent(proposal.id)}/adjudicate`, {
+    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ operationKey: `knowledge-review:${proposal.id}:${decision}`, expectedFingerprint: proposal.inputFingerprint,
+      decision, reason, reviewerId: "signal-room-operator" })
+  }), (value) => {
+    if (!value || typeof value !== "object" || !("proposal" in value)) throw new Error("知识提案裁决响应无效");
+    return knowledgeCompilationProposalSchema.parse(value.proposal);
   });
 }
 

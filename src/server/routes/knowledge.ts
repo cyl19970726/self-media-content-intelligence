@@ -48,6 +48,18 @@ export function registerKnowledgeRoutes(
     return response.json({ manifests: knowledge.listContributions(subjectType, subjectId, analysisRevisionId) });
   });
 
+  app.get("/api/v1/knowledge/proposals", (request, response) => {
+    const subjectType = typeof request.query.subjectType === "string" ? request.query.subjectType : undefined;
+    const subjectId = typeof request.query.subjectId === "string" ? request.query.subjectId : undefined;
+    const status = typeof request.query.status === "string" ? request.query.status : undefined;
+    return response.json({ proposals: knowledge.listProposals({ subjectType, subjectId, status }) });
+  });
+
+  app.post("/api/v1/knowledge/proposals/:id/adjudicate", (request, response) => {
+    try { return response.status(202).json(knowledge.adjudicateProposal(request.params.id, request.body)); }
+    catch (error) { return knowledgeError(response, error); }
+  });
+
   app.get("/api/v1/knowledge/:conceptId", (request, response) => {
     const value = knowledge.getKnowledge(request.params.conceptId);
     return value ? response.json(value) : response.status(404).json({ error: "知识概念不存在" });
@@ -61,6 +73,10 @@ export function registerKnowledgeRoutes(
 
   app.post("/api/v1/knowledge/compilations", (request, response) => {
     try { return response.status(201).json(knowledge.compile(request.body)); }
+    catch (error) { return knowledgeError(response, error); }
+  });
+  app.post("/api/v1/knowledge/proposals", (request, response) => {
+    try { return response.status(201).json(knowledge.stage(request.body)); }
     catch (error) { return knowledgeError(response, error); }
   });
   app.post("/api/v1/knowledge/legacy-manifests", (request, response) => {

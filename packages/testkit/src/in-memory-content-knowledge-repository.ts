@@ -1,9 +1,10 @@
 import type {
   ContentKnowledgeRepository, CreationHypothesis, KnowledgeBinding, KnowledgeContribution,
-  KnowledgeContributionManifest, KnowledgeInvalidationRecord, PracticeValidation, SemanticEdge
+  KnowledgeCompilationProposal, KnowledgeContributionManifest, KnowledgeInvalidationRecord, PracticeValidation, SemanticEdge
 } from "../../knowledge/index.js";
 
 export class InMemoryContentKnowledgeRepository implements ContentKnowledgeRepository {
+  private proposals: KnowledgeCompilationProposal[] = [];
   private manifests: KnowledgeContributionManifest[] = [];
   private contributions: KnowledgeContribution[] = [];
   private edges: SemanticEdge[] = [];
@@ -15,6 +16,12 @@ export class InMemoryContentKnowledgeRepository implements ContentKnowledgeRepos
   private conceptSearch = new Map<string, string>();
 
   transaction<T>(operation: () => T): T { return operation(); }
+
+  getProposal(id: string) { return this.proposals.find((item) => item.id === id) ?? null; }
+  getProposalByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string) { return this.proposals.find((item) => item.analysisRevisionId === analysisRevisionId && item.compilerPolicyVersion === compilerPolicyVersion) ?? null; }
+  saveProposal(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, proposal, () => this.proposals.push(proposal)); }
+  saveProposalState(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, proposal, () => { const index = this.proposals.findIndex((item) => item.id === proposal.id); if (index !== -1) this.proposals[index] = proposal; }); }
+  listProposals(subjectType?: string, subjectId?: string) { return this.proposals.filter((item) => (!subjectType || item.subjectType === subjectType) && (!subjectId || item.subjectId === subjectId)); }
 
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string) { return this.manifests.find((item) => item.analysisRevisionId === analysisRevisionId && item.compilerPolicyVersion === compilerPolicyVersion) ?? null; }
   saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string) { return this.write(operationKey, commandHash, manifest, () => { this.manifests.push(manifest); this.contributions.push(...contributions); }); }

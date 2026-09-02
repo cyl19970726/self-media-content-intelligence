@@ -8,7 +8,7 @@ import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { ComparisonProjectService } from "../../packages/research/index.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { PublishingService } from "../../packages/creation/index.js";
-import { ContentKnowledgeService, knowledgeConceptViewSchema, knowledgeContributionManifestSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema, practiceValidationSchema } from "../../packages/knowledge/index.js";
+import { ContentKnowledgeService, knowledgeCompilationProposalSchema, knowledgeConceptViewSchema, knowledgeContributionManifestSchema, knowledgeGapSchema, knowledgeInvalidationRecordSchema, practiceValidationSchema } from "../../packages/knowledge/index.js";
 import { SQLiteContentKnowledgeRepository, SQLitePublishingRepository } from "../../packages/adapters/index.js";
 import { RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { ResearchLearningService } from "./research-learning.js";
@@ -55,6 +55,27 @@ async function fixtureServer() {
 }
 
 describe("content knowledge API", () => {
+  it("stages a frozen proposal and requires an explicit review before compilation", async () => {
+    const { base } = await fixtureServer();
+    const body = { operationKey: "compile-proposal-api-1", compilerPolicyVersion: "proposal-v1", inputFingerprint: "sha256:proposal-api-1",
+      analysis: { analysisRevisionId: "analysis-proposal-api-1", subjectType: "video", subjectId: "video-proposal-api-1",
+        creatorId: "creator-api-1", videoId: "video-api-1", deepReconstruction: true,
+        lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
+        observations: [{ concept: { slug: "review-first", kind: "proof_mode", name: "先审核再入库", definition: "提案先由人审核。", exclusions: ["未审核输入。"] },
+          relation: "confirm", statement: "当前输入已冻结。", evidenceRefs: ["frame:review:1"], confidence: "high" }] } };
+    const staged = await fetch(`${base}/api/v1/knowledge/proposals`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    expect(staged.status).toBe(201);
+    const proposal = knowledgeCompilationProposalSchema.parse((await staged.json() as { proposal: unknown }).proposal);
+    expect(proposal.status).toBe("pending_review");
+    expect((await fetch(`${base}/api/v1/knowledge`).then((response) => response.json()) as { concepts: unknown[] }).concepts).toHaveLength(0);
+    const reviewed = await fetch(`${base}/api/v1/knowledge/proposals/${proposal.id}/adjudicate`, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ operationKey: "review-proposal-api-1", expectedFingerprint: proposal.inputFingerprint,
+        decision: "apply", reason: "证据和边界已核对。", reviewerId: "api-reviewer" }) });
+    expect(reviewed.status).toBe(202);
+    expect(knowledgeCompilationProposalSchema.parse((await reviewed.json() as { proposal: unknown }).proposal).status).toBe("applied");
+    expect((await fetch(`${base}/api/v1/knowledge`).then((response) => response.json()) as { concepts: unknown[] }).concepts).toHaveLength(1);
+  });
+
   it("accepts a quarantined cognitive-loop observation without promoting it", async () => {
     const { base } = await fixtureServer();
     const response = await fetch(`${base}/api/v1/research-analysis-revisions`, {
@@ -119,7 +140,7 @@ describe("content knowledge API", () => {
     const invalidations = await fetch(`${base}/api/v1/knowledge/invalidations?conceptId=${concept.research.concept.id}`).then((response) => response.json()) as { invalidations: unknown[] };
     expect(knowledgeInvalidationRecordSchema.array().parse(invalidations.invalidations)).toHaveLength(1);
     const lint = await fetch(`${base}/api/v1/knowledge/lint`).then((response) => response.json()) as { items: unknown[] };
-    expect(knowledgeGapSchema.array().parse(lint.items).some((item) => item.code === "orphan-concept")).toBe(true);
+    expect(knowledgeGapSchema.array().parse(lint.items).some((item) => item.code === "orphan-concept")).toBe(false);
   });
 
   it("freezes package knowledge decisions into the variant and publication lineage", async () => {

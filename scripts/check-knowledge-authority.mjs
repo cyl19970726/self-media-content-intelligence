@@ -18,6 +18,7 @@ const privilegedImports = new Set([
   "src/server/composition-root.ts",
   "src/server/content-knowledge.ts",
   "src/server/knowledge-backfill.ts",
+  "src/server/knowledge-activation.ts",
   "src/server/knowledge-recovery.ts",
   "src/server/routes/knowledge.ts",
   "apps/cli/src/main.ts",

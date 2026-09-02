@@ -25,6 +25,8 @@ import { importNextWaveCreatorSnapshot } from "./next-wave-import.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { registerPublishingRoutes } from "./routes/publishing.js";
 import { registerKnowledgeRoutes } from "./routes/knowledge.js";
+import { registerKnowledgeActivationRoutes } from "./routes/knowledge-activation.js";
+import { KnowledgeActivationService } from "./knowledge-activation.js";
 import { registerLearningLoopRoutes } from "./routes/learning-loop.js";
 import { registerEvidenceRoutes } from "./routes/evidence.js";
 import { registerWorkspaceRoutes } from "./routes/workspace.js";
@@ -345,6 +347,8 @@ export function createApp({
     return response.json(concept);
   });
 
+  registerKnowledgeActivationRoutes(app, new KnowledgeActivationService(service, creatorResearchService,
+    comparisonProjectService, contentKnowledgeService));
   registerKnowledgeRoutes(app, contentKnowledgeService, publishingService);
 
   registerLearningLoopRoutes(app, learningLoopControlPlane);

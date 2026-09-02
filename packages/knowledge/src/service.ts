@@ -1,11 +1,11 @@
 import { createHash, randomUUID } from "node:crypto";
 import type { KnowledgeResearchPort } from "./ports.js";
 import {
-  adjudicatePracticeValidationInputSchema, adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
+  adjudicateKnowledgeProposalInputSchema, adjudicatePracticeValidationInputSchema, adjudicateSemanticEdgeInputSchema, compileKnowledgeInputSchema, createHypothesisInputSchema,
   createKnowledgeBindingInputSchema, createPracticeValidationInputSchema,
-  knowledgeConceptViewSchema, knowledgeInvalidationCommandSchema, knowledgeInvalidationRecordSchema,
+  knowledgeCompilationProposalSchema, knowledgeConceptViewSchema, knowledgeInvalidationCommandSchema, knowledgeInvalidationRecordSchema,
   legacyKnowledgeManifestInputSchema, practiceValidationSchema, submitPracticeValidationInputSchema,
-  type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding,
+  type CompileKnowledgeInput, type CreationHypothesis, type KnowledgeBinding, type KnowledgeCompilationProposal,
   type KnowledgeConceptView, type KnowledgeContribution, type KnowledgeContributionManifest,
   type KnowledgeGap, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
 } from "./contracts.js";
@@ -55,6 +55,49 @@ export class ContentKnowledgeService {
       bindings: this.bindingsForConcept(research).map((binding) => this.resolveBindingStatus(binding)),
       contributions: this.contributionsForConcept(conceptId)
     }) : null;
+  }
+
+  stage(raw: CompileKnowledgeInput): { proposal: KnowledgeCompilationProposal; idempotent: boolean } {
+    const input = compileKnowledgeInputSchema.parse(raw);
+    const prior = this.repository.getProposalByAnalysis(input.analysis.analysisRevisionId, input.compilerPolicyVersion);
+    if (prior) {
+      if (prior.inputFingerprint !== input.inputFingerprint) throw new Error("knowledge proposal conflicts with an existing analysis revision");
+      return { proposal: prior, idempotent: true };
+    }
+    const existingManifest = this.repository.getManifestByAnalysis(input.analysis.analysisRevisionId, input.compilerPolicyVersion);
+    const timestamp = this.now();
+    const proposal = knowledgeCompilationProposalSchema.parse({
+      id: this.makeId(), subjectType: input.analysis.subjectType, subjectId: input.analysis.subjectId,
+      analysisRevisionId: input.analysis.analysisRevisionId, compilerPolicyVersion: input.compilerPolicyVersion,
+      inputFingerprint: input.inputFingerprint, status: existingManifest ? "applied" : "pending_review",
+      compileInput: input, candidateCount: input.analysis.observations.length,
+      promotionRequestCount: input.promotionRequests.length, reviewReason: existingManifest ? "该版本已经存在正式贡献清单。" : null,
+      reviewedBy: existingManifest ? "system-existing-manifest" : null, manifestId: existingManifest?.id ?? null,
+      createdAt: timestamp, reviewedAt: existingManifest ? timestamp : null
+    });
+    return { proposal: this.repository.saveProposal(proposal, `knowledge-stage:${proposal.analysisRevisionId}:${proposal.compilerPolicyVersion}`,
+      commandHash({ inputFingerprint: input.inputFingerprint })), idempotent: false };
+  }
+
+  listProposals(filters: { subjectType?: string; subjectId?: string; status?: string } = {}): KnowledgeCompilationProposal[] {
+    return this.repository.listProposals(filters.subjectType, filters.subjectId)
+      .filter((item) => !filters.status || item.status === filters.status);
+  }
+
+  adjudicateProposal(id: string, raw: unknown): { proposal: KnowledgeCompilationProposal; manifest: KnowledgeContributionManifest | null } {
+    const input = adjudicateKnowledgeProposalInputSchema.parse(raw);
+    const current = this.repository.getProposal(id);
+    if (!current) throw new Error("knowledge proposal not found");
+    if (current.inputFingerprint !== input.expectedFingerprint) throw new Error("knowledge proposal fingerprint is stale");
+    if (current.status !== "pending_review") throw new Error("knowledge proposal has already been reviewed");
+    const manifest = input.decision === "apply" ? this.compile(current.compileInput).manifest : null;
+    const status = input.decision === "apply" ? "applied" as const
+      : input.decision === "retain_local" ? "retained_local" as const : input.decision;
+    const decided = knowledgeCompilationProposalSchema.parse({
+      ...current, status, reviewReason: input.reason, reviewedBy: input.reviewerId,
+      manifestId: manifest?.id ?? null, reviewedAt: this.now()
+    });
+    return { proposal: this.repository.saveProposalState(decided, input.operationKey, commandHash({ id, ...input })), manifest };
   }
 
   compile(raw: CompileKnowledgeInput): { manifest: KnowledgeContributionManifest; contributions: KnowledgeContribution[]; idempotent: boolean } {
@@ -438,11 +481,12 @@ export class ContentKnowledgeService {
     const push = (item: Omit<KnowledgeGap, "id">) => gaps.push({ ...item, id: `${item.code}:${item.subjectType}:${item.subjectId}` });
     for (const view of this.listKnowledge()) {
       const conceptId = view.research.concept.id;
+      if (["invalidated", "retired"].includes(view.research.concept.status)) continue;
       if (view.research.currentRevision.exclusions.length === 0) push({ code: "missing-exclusions", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "概念缺少明确排除项", suggestedAction: "补充不适用边界并创建新的概念 revision。", lineageRefs: [view.research.currentRevision.id] });
       if (view.research.concept.scope === "conditional" && Object.values(view.research.currentRevision.condition).every((value) => value === null)) {
         push({ code: "missing-condition", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "条件规律尚未声明成立条件", suggestedAction: "补齐条件字段后提交人工裁决。", lineageRefs: [view.research.currentRevision.id] });
       }
-      if (view.research.counts.contradict > 0 && !["invalidated", "retired"].includes(view.research.concept.status)) push({ code: "unresolved-contradiction", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "当前知识仍有尚未解决的反例", suggestedAction: "检查反例，选择限定、降级或失效该概念。", lineageRefs: view.research.observations.filter((item) => item.relation === "contradict" && item.gateState === "eligible").map((item) => item.id) });
+      if (view.research.counts.contradict > 0) push({ code: "unresolved-contradiction", severity: "attention", subjectType: "concept", subjectId: conceptId, conceptId, message: "当前知识仍有尚未解决的反例", suggestedAction: "检查反例，选择限定、降级或失效该概念。", lineageRefs: view.research.observations.filter((item) => item.relation === "contradict" && item.gateState === "eligible").map((item) => item.id) });
       if (!view.research.observations.some((item) => item.gateState === "eligible")) push({ code: "orphan-concept", severity: "blocked", subjectType: "concept", subjectId: conceptId, conceptId, message: "概念已经没有可用观察证据", suggestedAction: "补充有效证据，或人工失效/退役该概念。", lineageRefs: view.research.observations.map((item) => item.id) });
     }
     for (const edge of this.repository.listEdges()) {

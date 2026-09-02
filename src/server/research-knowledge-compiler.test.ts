@@ -25,7 +25,12 @@ function creatorCompletion(): CreatorResearchCompletion {
     synthesis: {
       schemaVersion: "1.0.0", creatorRunId: runId, generatedAt: "2026-08-30T00:00:00Z",
       inputs: { portfolioArtifactRef: "p", selectionArtifactRef: "s", detailArtifactRef: "d", reconstructionBatchArtifactRef: "r" },
-      identity: {} as never, contentSystem: {} as never, performance: {} as never,
+      identity: {} as never,
+      contentSystem: { recurringStructure: [{
+        statement: "先展示结果，再解释方法。", factClass: "inference", confidence: "high",
+        evidenceRefs: Array.from({ length: 21 }, (_, index) => `/artifacts/${runId}/video-reconstructions/post-${index + 1}/reconstruction.json`), caveat: null
+      }] } as never,
+      performance: {} as never,
       postAnalyses: Array.from({ length: 21 }, (_, index) => ({ postExternalId: `post-${index + 1}`,
         tier: index < 7 ? "high" as const : index < 14 ? "base" as const : "low" as const, tierRank: index % 7 + 1,
         title: null, evidenceStatus: index % 3 === 0 ? "deep_validated" as const : "surface_only" as const,
@@ -37,12 +42,21 @@ function creatorCompletion(): CreatorResearchCompletion {
 }
 
 describe("production research knowledge compilers", () => {
+  const applyPending = (knowledge: ContentKnowledgeService) => {
+    const proposal = knowledge.listProposals({ status: "pending_review" })[0]!;
+    knowledge.adjudicateProposal(proposal.id, { operationKey: `review:${proposal.id}`,
+      expectedFingerprint: proposal.inputFingerprint, decision: "apply", reason: "测试审核通过。", reviewerId: "test-reviewer" });
+  };
+
   it("compiles per-post creator evidence, promotes deterministically, and is idempotent", () => {
     const { knowledge } = system();
     const compiler = new CreatorKnowledgeCompiler(knowledge);
     const completion = creatorCompletion();
     compiler.publish(completion);
     compiler.publish(completion);
+    expect(knowledge.listKnowledge()).toHaveLength(0);
+    expect(knowledge.listProposals()).toHaveLength(1);
+    applyPending(knowledge);
     const concepts = knowledge.listKnowledge();
     expect(concepts).toHaveLength(1);
     expect(concepts[0]?.research.concept.scope).toBe("creator_specific");
@@ -56,8 +70,9 @@ describe("production research knowledge compilers", () => {
   it("leaves insufficient creator support as a candidate with an explicit gate decision", () => {
     const { knowledge } = system();
     const completion = creatorCompletion();
-    completion.synthesis.postAnalyses.forEach((post, index) => { post.contentRole = `role-${index}`; });
+    completion.synthesis.contentSystem.recurringStructure[0]!.evidenceRefs = completion.synthesis.contentSystem.recurringStructure[0]!.evidenceRefs.slice(0, 2);
     new CreatorKnowledgeCompiler(knowledge).publish(completion);
+    applyPending(knowledge);
     expect(knowledge.listKnowledge().every((item) => item.research.concept.scope === "video_specific")).toBe(true);
     const decisions = knowledge.listContributions("creator", completion.creatorRunId)[0]!.manifest.promotionDecisions;
     expect(decisions.every((item) => item.status === "gate_failed")).toBe(true);
@@ -83,6 +98,7 @@ describe("production research knowledge compilers", () => {
     const compiler = new ComparisonKnowledgeCompiler(knowledge);
     compiler.publish(completion);
     compiler.publish(completion);
+    applyPending(knowledge);
     const concept = knowledge.listKnowledge()[0]!;
     expect(concept.research.concept.scope).toBe("track_wide");
     expect(concept.research.counts.distinctEligibleCreators).toBe(3);
@@ -104,6 +120,7 @@ describe("production research knowledge compilers", () => {
         contentPatterns: [{ role: "条件角色", classification: "conditional", statement: "两个博主在口播条件下出现共同角色。",
           boundary: "只适用于口播固定样本。", creatorIds: ["creator-a", "creator-b"], condition: { format: "口播" }, support }] } } as ComparisonResearchCompletion;
     new ComparisonKnowledgeCompiler(knowledge).publish(completion);
+    applyPending(knowledge);
     const concept = knowledge.listKnowledge()[0]!;
     expect(concept.research.concept.scope).toBe("conditional");
     expect(concept.research.currentRevision.condition.format).toBe("口播");

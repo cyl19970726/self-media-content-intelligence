@@ -7,7 +7,7 @@ import type {
 } from "../../packages/research/index.js";
 import type { CompileKnowledgeInput, ContentKnowledgeService, KnowledgeCompilerPort } from "../../packages/knowledge/index.js";
 
-const CREATOR_POLICY = "creator-synthesis-v1";
+const CREATOR_POLICY = "creator-synthesis-recurring-structure-v3";
 const COMPARISON_POLICY = "creator-comparison-v1";
 
 function sha(value: unknown): string {
@@ -20,8 +20,18 @@ function token(value: string): string {
   return ascii.slice(0, 72) || sha(normalized).slice(0, 16);
 }
 
-function creatorRoleSlug(creatorId: string, role: string): string {
-  return `creator-${token(creatorId)}-${token(role)}`;
+function creatorPatternSlug(creatorId: string, statement: string): string {
+  return `creator-${token(creatorId).slice(0, 32)}-pattern-${sha(statement).slice(0, 16)}`;
+}
+
+function refSupportsPost(reference: string, postExternalId: string): boolean {
+  return reference.includes(`/${postExternalId}/`) || reference.endsWith(`#${postExternalId}`)
+    || reference.includes(`#${postExternalId}:`);
+}
+
+function patternName(statement: string): string {
+  const first = statement.split(/[：；。]/u)[0]?.trim() || statement.trim();
+  return first.length > 54 ? `${first.slice(0, 53)}…` : first;
 }
 
 export function proposeCreatorKnowledge(completion: Readonly<CreatorResearchCompletion>): CompileKnowledgeInput {
@@ -30,40 +40,40 @@ export function proposeCreatorKnowledge(completion: Readonly<CreatorResearchComp
   }
   const fingerprint = sha({ synthesis: completion.synthesis, gate: completion.gate,
     synthesisArtifactRef: completion.synthesisArtifactRef, gateArtifactRef: completion.gateArtifactRef });
-  const groups = new Map<string, typeof completion.synthesis.postAnalyses>();
-  for (const post of completion.synthesis.postAnalyses) {
-    const key = post.contentRole.normalize("NFKC").trim().toLocaleLowerCase();
-    groups.set(key, [...(groups.get(key) ?? []), post]);
-  }
-  const bounded = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).slice(0, 12);
+  const patterns = completion.synthesis.contentSystem.recurringStructure.slice(0, 12).map((claim) => ({
+    claim,
+    posts: completion.synthesis.postAnalyses.filter((post) =>
+      claim.evidenceRefs.some((reference) => refSupportsPost(reference, post.postExternalId)))
+  })).filter((pattern) => pattern.posts.length > 0);
   return {
     operationKey: `knowledge-compile:creator:${completion.creatorRunId}:${fingerprint}:${CREATOR_POLICY}`,
     compilerPolicyVersion: CREATOR_POLICY,
     inputFingerprint: `sha256:${fingerprint}`,
     evidenceGate: [completion.synthesisArtifactRef, completion.gateArtifactRef].map((ref) => ({ ref, availability: "available" as const })),
-    promotionRequests: bounded.map(([role]) => ({
-      conceptSlug: creatorRoleSlug(completion.creatorId, role),
+    promotionRequests: patterns.map(({ claim, posts }) => ({
+      conceptSlug: creatorPatternSlug(completion.creatorId, claim.statement),
       targetScope: "creator_specific" as const,
       creatorId: completion.creatorId,
+      condition: new Set(posts.map((post) => post.tier)).size === 1 ? { tier: posts[0]!.tier } : undefined,
       decision: `Deterministic creator-specific gate passed for independently evaluated creator run ${completion.creatorRunId}.`
     })),
     analysis: {
-      analysisRevisionId: `creator:${completion.creatorRunId}:${fingerprint.slice(0, 20)}`,
+      analysisRevisionId: `creator:${completion.creatorRunId}:${fingerprint.slice(0, 20)}:${CREATOR_POLICY}`,
       subjectType: "creator",
       subjectId: completion.creatorRunId,
       creatorId: completion.creatorId,
       videoId: null,
       deepReconstruction: false,
       lensGates: { contentRestoration: "ready", directingLogic: "ready", visualEditingLogic: "ready" },
-      observations: bounded.flatMap(([role, posts]) => posts.map((post) => ({
+      observations: patterns.flatMap(({ claim, posts }) => posts.map((post) => ({
         creatorId: completion.creatorId,
         videoId: post.postExternalId,
         deepReconstruction: post.evidenceStatus === "deep_validated",
         concept: {
-          slug: creatorRoleSlug(completion.creatorId, role),
+          slug: creatorPatternSlug(completion.creatorId, claim.statement),
           kind: "content_mechanism" as const,
-          name: post.contentRole,
-          definition: `该博主反复使用「${post.contentRole}」承担稳定的内容角色。`,
+          name: patternName(claim.statement),
+          definition: claim.statement,
           exclusions: [...new Set([
             "不外推为其他博主或赛道的通用规律。",
             "不把公开表现相关性表述为因果关系。",
@@ -72,9 +82,9 @@ export function proposeCreatorKnowledge(completion: Readonly<CreatorResearchComp
         },
         relation: "confirm" as const,
         condition: { tier: post.tier, format: post.contentForm[0] },
-        statement: `${post.contentRole}：${post.performanceInterpretation}`,
-        evidenceRefs: [...new Set([...post.evidenceRefs, completion.synthesisArtifactRef, completion.gateArtifactRef])],
-        confidence: post.evidenceStatus === "deep_validated" ? "high" as const : "medium" as const
+        statement: `重复结构证据｜${post.contentRole}｜${post.performanceInterpretation}`,
+        evidenceRefs: [...new Set([...claim.evidenceRefs, ...post.evidenceRefs, completion.synthesisArtifactRef, completion.gateArtifactRef])],
+        confidence: claim.confidence === "low" || post.evidenceStatus !== "deep_validated" ? "medium" as const : "high" as const
       })) )
     }
   };
@@ -82,13 +92,13 @@ export function proposeCreatorKnowledge(completion: Readonly<CreatorResearchComp
 
 export class CreatorKnowledgeCompiler implements CreatorResearchCompletionPort, KnowledgeCompilerPort<CreatorResearchCompletion> {
   constructor(private readonly knowledge: ContentKnowledgeService) {}
-  publish(completion: Readonly<CreatorResearchCompletion>): void { this.knowledge.compile(this.propose(completion)); }
+  publish(completion: Readonly<CreatorResearchCompletion>): void { this.knowledge.stage(this.propose(completion)); }
   propose(completion: Readonly<CreatorResearchCompletion>): CompileKnowledgeInput { return proposeCreatorKnowledge(completion); }
 }
 
 export class ComparisonKnowledgeCompiler implements ComparisonResearchCompletionPort, KnowledgeCompilerPort<ComparisonResearchCompletion> {
   constructor(private readonly knowledge: ContentKnowledgeService) {}
-  publish(completion: Readonly<ComparisonResearchCompletion>): void { this.knowledge.compile(this.propose(completion)); }
+  publish(completion: Readonly<ComparisonResearchCompletion>): void { this.knowledge.stage(this.propose(completion)); }
   propose(completion: Readonly<ComparisonResearchCompletion>): CompileKnowledgeInput {
     const fingerprint = sha(completion);
     const patterns = completion.comparison.contentPatterns;

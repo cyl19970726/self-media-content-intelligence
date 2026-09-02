@@ -76,7 +76,13 @@ export async function seedContentKnowledgeV1Fixture(runtimeInput: string): Promi
   try {
     const creators = [0, 1, 2].map(creatorCompletion);
     const creatorCompiler = new CreatorKnowledgeCompiler(knowledge);
-    for (const creator of creators) { creatorCompiler.publish(creator); creatorCompiler.publish(creator); }
+    for (const creator of creators) {
+      creatorCompiler.publish(creator); creatorCompiler.publish(creator);
+      const proposal = knowledge.listProposals({ subjectType: "creator", subjectId: creator.creatorRunId })[0];
+      if (!proposal) throw new Error(`fixture creator ${creator.creatorRunId} did not stage a review proposal`);
+      knowledge.adjudicateProposal(proposal.id, { operationKey: `fixture:v1:creator-review:${proposal.id}`,
+        expectedFingerprint: proposal.inputFingerprint, decision: "apply", reason: "隔离 fixture 显式审核链路。", reviewerId: "fixture-reviewer" });
+    }
     const support = creators.flatMap((creator) => [0, 7, 14].map((postIndex) => creator.synthesis.postAnalyses[postIndex]!)
       .filter((post): post is typeof post & { evidenceStatus: "deep_validated" | "surface_only" } =>
         post.evidenceStatus !== "deep_provisional").map((post) => ({
@@ -119,6 +125,10 @@ export async function seedContentKnowledgeV1Fixture(runtimeInput: string): Promi
       job: { state: "succeeded", attempt: 1, leaseOwner: null, leaseExpiresAt: null, lastHeartbeatAt: at }, error: null });
     comparisonCompiler.publish(comparison);
     comparisonCompiler.publish(comparison);
+    const proposal = knowledge.listProposals({ subjectType: "comparison", subjectId: comparison.comparisonProjectId })[0];
+    if (!proposal) throw new Error("fixture comparison did not stage a review proposal");
+    knowledge.adjudicateProposal(proposal.id, { operationKey: `fixture:v1:review:${proposal.id}`,
+      expectedFingerprint: proposal.inputFingerprint, decision: "apply", reason: "隔离 fixture 显式审核链路。", reviewerId: "fixture-reviewer" });
     const concept = knowledge.listKnowledge().find((item) => item.research.concept.scope === "track_wide");
     if (!concept) throw new Error("fixture comparison did not promote a track-wide concept");
 

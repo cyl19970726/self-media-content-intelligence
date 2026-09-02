@@ -62,6 +62,36 @@ export const compileKnowledgeInputSchema = z.object({
   analysis: ingestAnalysisRevisionSchema
 });
 
+export const knowledgeProposalStatusSchema = z.enum([
+  "pending_review", "applied", "retained_local", "awaiting_evidence", "rejected"
+]);
+
+export const knowledgeCompilationProposalSchema = z.object({
+  id: z.string().uuid(),
+  subjectType: z.enum(["video", "creator", "comparison"]),
+  subjectId: z.string().min(1),
+  analysisRevisionId: z.string().min(1),
+  compilerPolicyVersion: z.string().min(1),
+  inputFingerprint: z.string().min(1),
+  status: knowledgeProposalStatusSchema,
+  compileInput: compileKnowledgeInputSchema,
+  candidateCount: z.number().int().nonnegative(),
+  promotionRequestCount: z.number().int().nonnegative(),
+  reviewReason: z.string().min(1).nullable(),
+  reviewedBy: z.string().min(1).nullable(),
+  manifestId: z.string().uuid().nullable(),
+  createdAt: z.string().datetime(),
+  reviewedAt: z.string().datetime().nullable()
+});
+
+export const adjudicateKnowledgeProposalInputSchema = z.object({
+  operationKey: z.string().min(1),
+  expectedFingerprint: z.string().min(1),
+  decision: z.enum(["apply", "retain_local", "await_evidence", "reject"]),
+  reason: z.string().min(1),
+  reviewerId: z.string().min(1)
+});
+
 export const legacyKnowledgeManifestInputSchema = z.object({
   operationKey: z.string().min(1),
   subjectType: z.enum(["video", "creator", "comparison"]),
@@ -261,6 +291,8 @@ export const knowledgeInvalidationRecordSchema = z.object({
 export type KnowledgeContribution = z.infer<typeof knowledgeContributionSchema>;
 export type KnowledgeContributionManifest = z.infer<typeof knowledgeContributionManifestSchema>;
 export type CompileKnowledgeInput = z.input<typeof compileKnowledgeInputSchema>;
+export type KnowledgeCompilationProposal = z.infer<typeof knowledgeCompilationProposalSchema>;
+export type AdjudicateKnowledgeProposalInput = z.infer<typeof adjudicateKnowledgeProposalInputSchema>;
 export type LegacyKnowledgeManifestInput = z.infer<typeof legacyKnowledgeManifestInputSchema>;
 export type SemanticEdge = z.infer<typeof semanticEdgeSchema>;
 export type KnowledgeBinding = z.infer<typeof knowledgeBindingSchema>;

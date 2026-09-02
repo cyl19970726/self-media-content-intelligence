@@ -1,6 +1,6 @@
 import type {
   CreationHypothesis, KnowledgeBinding, KnowledgeContribution, KnowledgeContributionManifest,
-  KnowledgeInvalidationRecord, PracticeValidation, SemanticEdge
+  KnowledgeCompilationProposal, KnowledgeInvalidationRecord, PracticeValidation, SemanticEdge
 } from "./contracts.js";
 import type { ResearchConceptRead } from "../../contracts/index.js";
 
@@ -17,6 +17,11 @@ export interface KnowledgeProjectionParity {
 
 export interface ContentKnowledgeRepository {
   transaction<T>(operation: () => T): T;
+  getProposal(id: string): KnowledgeCompilationProposal | null;
+  getProposalByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeCompilationProposal | null;
+  saveProposal(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string): KnowledgeCompilationProposal;
+  saveProposalState(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string): KnowledgeCompilationProposal;
+  listProposals(subjectType?: string, subjectId?: string): KnowledgeCompilationProposal[];
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeContributionManifest | null;
   saveManifest(manifest: KnowledgeContributionManifest, contributions: KnowledgeContribution[], operationKey: string, commandHash: string): KnowledgeContributionManifest;
   saveManifestState(manifest: KnowledgeContributionManifest, operationKey: string, commandHash: string): KnowledgeContributionManifest;
