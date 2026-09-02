@@ -96,13 +96,15 @@ describe("ego-browser publishing scripts", () => {
     expectValidScript(buildSubmitScript({ runId: "submit-official", taskSpaceId: 19, variant: official }));
   });
 
-  it("emits the structured worker result before transferring TaskSpace ownership", () => {
+  it("flushes the structured worker result before transferring TaskSpace ownership", () => {
     const expectResultBeforeEveryHandoff = (script: string) => {
       let previousHandoff = -1;
       for (const match of script.matchAll(/handOffTaskSpace\(task\.id\)/g)) {
         const handoff = match.index;
         const result = script.lastIndexOf("result(", handoff);
+        const flush = script.lastIndexOf("await wait(0.2)", handoff);
         expect(result).toBeGreaterThan(previousHandoff);
+        expect(flush).toBeGreaterThan(result);
         previousHandoff = handoff;
       }
     };

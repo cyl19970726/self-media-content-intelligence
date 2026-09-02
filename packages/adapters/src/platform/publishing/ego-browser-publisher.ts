@@ -83,6 +83,7 @@ try {
   const challenge = await js(${JSON.stringify(challengeExpression())})
   if (challenge) {
     result({ state: 'needs_user', taskSpaceId: task.id, code: challenge.code, message: challenge.message })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   } else {
     let tree = await snapshotText()
@@ -125,13 +126,14 @@ try {
       url: info.url, pageTitle: info.title || '视频号助手', preparedTitle: ${JSON.stringify(input.variant.title)},
       preparedBody: ${JSON.stringify(body)}, mediaCount: 1, capturedAt: new Date().toISOString()
     } })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   }
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: /user is controlling|inactive|not assigned/i.test(message) ? 'user_control' : 'channels_form_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -149,6 +151,7 @@ try {
   const challenge = await js(${JSON.stringify(challengeExpression())})
   if (challenge) {
     result({ state: 'needs_user', taskSpaceId: task.id, code: challenge.code, message: challenge.message })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   } else {
     const token = await js(String.raw\`(() => {
@@ -276,13 +279,14 @@ try {
       url: info.url || editorUrl, pageTitle: info.title || '微信公众号一张图编辑器', preparedTitle: proof.title || titleValue,
       preparedBody: '一张图文章 · 封面已设置 · 作者字段已清空', mediaCount: proof.imageCount, capturedAt: new Date().toISOString()
     } })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   }
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: /user is controlling|inactive|not assigned/i.test(message) ? 'user_control' : 'wechat_draft_gate_failed', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -311,6 +315,7 @@ try {
   const challenge = await js(${JSON.stringify(challengeExpression())})
   if (challenge) {
     result({ state: 'needs_user', taskSpaceId: task.id, code: challenge.code, message: challenge.message })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   } else {
     const markedTab = await js(String.raw\`(() => {
@@ -403,13 +408,14 @@ try {
       url: info.url || publishUrl, pageTitle: info.title || '', preparedTitle: filled.titleReadback || titleValue,
       preparedBody: filled.bodyReadback || bodyValue, mediaCount: files.length, capturedAt: new Date().toISOString()
     } })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   }
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: /user is controlling|inactive|not assigned/i.test(message) ? 'user_control' : 'page_shape_unknown', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -438,6 +444,7 @@ try {
   })()\`)
   if (!marked) {
     result({ state: 'needs_user', taskSpaceId: task.id, code: 'save_draft_control_missing', message: '没有找到公众号“保存为草稿”按钮，请检查页面提示。' })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   } else {
     await click('[data-self-media-final-save-draft="true"]', { label: 'save official account draft' })
@@ -460,10 +467,12 @@ try {
       } })
     } else if (verification && /不能|失败|为空|图片不能为空/.test(verification.toast)) {
       result({ state: 'needs_user', taskSpaceId: task.id, code: 'wechat_draft_rejected', message: '公众号拒绝保存草稿：' + verification.toast })
+      await wait(0.2)
       await handOffTaskSpace(task.id)
     } else {
       result({ state: 'submission_unknown', taskSpaceId: task.id, code: 'wechat_draft_not_verifiable',
         message: '已点击保存为草稿，但 URL 未返回 appmsgid。系统不会重试，请在当前页面人工核对。' })
+      await wait(0.2)
       await handOffTaskSpace(task.id)
     }
   }
@@ -471,7 +480,7 @@ try {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'submission_unknown', taskSpaceId: task.id,
     code: /user is controlling|inactive|not assigned/i.test(message) ? 'user_control' : 'wechat_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -495,6 +504,7 @@ try {
   const challenge = await js(${JSON.stringify(challengeExpression())})
   if (challenge) {
     result({ state: 'needs_user', taskSpaceId: task.id, code: challenge.code, message: challenge.message })
+    await wait(0.2)
     await handOffTaskSpace(task.id)
   } else {
     const marked = await js(String.raw\`(() => {
@@ -511,6 +521,7 @@ try {
     })()\`)
     if (!marked) {
       result({ state: 'needs_user', taskSpaceId: task.id, code: 'publish_control_missing', message: '没有找到可用的最终发布按钮，请检查平台校验提示。' })
+      await wait(0.2)
       await handOffTaskSpace(task.id)
     } else {
       await click('[data-self-media-final-submit="true"]', { label: 'confirm final publish' })
@@ -538,6 +549,7 @@ try {
       } else {
         result({ state: 'submission_unknown', taskSpaceId: task.id, code: 'result_not_verifiable',
           message: '已经点击发布，但平台没有返回可验证结果。任务不会自动重试，请在当前页面或账号主页确认。' })
+        await wait(0.2)
         await handOffTaskSpace(task.id)
       }
     }
@@ -547,7 +559,7 @@ try {
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'submission_unknown', taskSpaceId: task.id,
     code: /user is controlling|inactive|not assigned/i.test(message) ? 'user_control' : 'submit_error',
     message: /user is controlling|inactive|not assigned/i.test(message) ? message : '提交过程中出现异常，无法判断是否已发布。系统不会自动重试。' })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -583,12 +595,13 @@ try {
   const saved = tree.includes('保存成功') && tree.includes('草稿箱(') && tree.includes(${JSON.stringify(input.variant.title)})
   if (!saved) throw new Error('小红书没有返回可核验的草稿箱记录。')
   result({ state: 'canceled', taskSpaceId: task.id, draftSaved: true })
+  await wait(0.2)
   await handOffTaskSpace(task.id)
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: 'xhs_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -608,12 +621,13 @@ try {
   const saved = tree.includes('上次未发布') || tree.includes('是否继续编辑') || tree.includes('继续编辑')
   if (!saved) throw new Error('抖音没有返回“上次未发布的作品”证据。')
   result({ state: 'canceled', taskSpaceId: task.id, draftSaved: true })
+  await wait(0.2)
   await handOffTaskSpace(task.id)
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: 'douyin_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -648,12 +662,13 @@ try {
   const saved = /草稿箱 \\(\\d+\\)/.test(tree) && tree.includes(${JSON.stringify(input.variant.body.trim())})
   if (!saved) throw new Error('视频号草稿箱没有出现当前草稿。')
   result({ state: 'canceled', taskSpaceId: task.id, draftSaved: true })
+  await wait(0.2)
   await handOffTaskSpace(task.id)
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: 'channels_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -671,12 +686,13 @@ try {
   const saved = /草稿|保存成功|稿件管理/.test(tree)
   if (!saved) throw new Error('B站没有返回可核验的稿件草稿状态。')
   result({ state: 'canceled', taskSpaceId: task.id, draftSaved: true })
+  await wait(0.2)
   await handOffTaskSpace(task.id)
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: 'bilibili_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
@@ -703,12 +719,13 @@ try {
   }
   if (!saved) throw new Error('公众号 G3 未通过：URL 没有返回 appmsgid。')
   result({ state: 'canceled', taskSpaceId: task.id, draftSaved: true })
+  await wait(0.2)
   await handOffTaskSpace(task.id)
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   result({ state: /user is controlling|inactive|not assigned/i.test(message) ? 'needs_user' : 'failed', taskSpaceId: task.id,
     code: 'official_account_draft_error', message })
-  try { await handOffTaskSpace(task.id) } catch {}
+  try { await wait(0.2); await handOffTaskSpace(task.id) } catch {}
 }
 `;
 }
