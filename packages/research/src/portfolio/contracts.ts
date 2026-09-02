@@ -134,7 +134,7 @@ export const creatorSelectionSchema = z.object({
   runId: z.string().uuid(),
   generatedAt: z.string(),
   sourceCorpusArtifactRef: z.string(),
-  ruleVersion: z.enum(["ranked-7x3-v1", "four-groups-3-each-v2", "four-groups-video-refined-v3"]),
+  ruleVersion: z.enum(["ranked-7x3-v1", "four-groups-3-each-v2", "four-groups-video-refined-v3", "four-groups-media-refined-v4"]),
   rules: z.object({
     targetPerTier: z.literal(7),
     deepCandidatesPerTier: z.literal(3),

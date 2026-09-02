@@ -10,11 +10,14 @@ import {
   buildCreatorPortfolioAnnotations,
   creatorSelectionSchema,
   videoReconstructionRequestSchema,
+  videoReconstructionOutcomeSchema,
   videoReconstructionBatchSchema,
+  deepMediaManifestSchema,
   creatorSynthesisGateSchema,
   creatorSynthesisSchema,
   type ResearchJob,
   type VideoReconstructionExecutor,
+  type ImagePostReconstructionExecutor,
   type VideoReconstructionLifecycleEvent,
   type VideoReconstructionOutcome,
   type CreatorSynthesisExecutor,
@@ -80,7 +83,8 @@ export class CreatorResearchVideoSynthesisProcessor {
     private readonly videoReconstructor: VideoReconstructionExecutor,
     private readonly synthesisExecutor: CreatorSynthesisExecutor,
     private readonly videoConcurrencyLimit: number,
-    private readonly completionPort?: CreatorResearchCompletionPort
+    private readonly completionPort?: CreatorResearchCompletionPort,
+    private readonly imagePostReconstructor?: ImagePostReconstructionExecutor
   ) {}
 
   private queueSynthesis(
@@ -163,7 +167,7 @@ export class CreatorResearchVideoSynthesisProcessor {
     run.worker = { state: "running", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: startedAt };
     run.nextAction = evaluationOnly
       ? `正在复用 Builder 结果，为 ${postExternalId} 补做独立 Evaluator。`
-      : `正在运行深度视频 Builder ${postExternalId}；独立 Evaluator 当前为可选阶段。`;
+      : `正在运行深度${item.evidenceKind === "image_post" ? "图文" : "视频"} Builder ${postExternalId}；独立 Evaluator 当前为可选阶段。`;
     stage(run, "deep_capture").status = "running";
     stage(run, "deep_capture").message = `已构建 ${batch.builtPosts}/${batch.requestedPosts}；正在处理 ${postExternalId}。`;
     item.state = "running";
@@ -178,7 +182,7 @@ export class CreatorResearchVideoSynthesisProcessor {
     this.repository.save(run);
     this.repository.updateJobStatus({ jobId: job.id, status: "running", updatedAt: startedAt });
     this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.started", createdAt: startedAt,
-      message: "开始单视频 Builder 内容还原。", payload: { postExternalId } });
+      message: `开始单${item.evidenceKind === "image_post" ? "图文" : "视频"} Builder 内容还原。`, payload: { postExternalId } });
     let lastSubstage = "runner_start";
     const heartbeat = setInterval(() => {
       const at = now();
@@ -187,7 +191,7 @@ export class CreatorResearchVideoSynthesisProcessor {
       if (substage !== lastSubstage) {
         lastSubstage = substage;
         this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.progress", createdAt: at,
-          message: `视频重建进入 ${substage}。`, payload: { postExternalId, substage } });
+          message: `${item.evidenceKind === "image_post" ? "图文" : "视频"}重建进入 ${substage}。`, payload: { postExternalId, substage } });
       }
       const latest = this.repository.get(run.id);
       if (latest?.worker.jobId === job.id) {
@@ -197,11 +201,7 @@ export class CreatorResearchVideoSynthesisProcessor {
       }
     }, 20_000);
     try {
-      const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
-        postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
-        evaluationPolicy,
-        contractVersion: "video-content-reconstruction@1" });
-      const outcome: VideoReconstructionOutcome = await this.videoReconstructor.reconstruct(request, (event) => {
+      const observeChild = (event: VideoReconstructionLifecycleEvent) => {
         const eventType = `child.${event.status}` as CreatorResearchEvent["type"];
         this.repository.appendEvent({
           runId: run.id,
@@ -227,7 +227,25 @@ export class CreatorResearchVideoSynthesisProcessor {
           stage(latest, "deep_capture").message = `${postExternalId} · ${videoChildRoleLabel[event.role]}${videoChildStatusLabel[event.status]} · 已通过 ${latest.coverage.reconstructedPosts}/${batch.requestedPosts}`;
           this.repository.save(latest);
         }
-      });
+      };
+      let rawOutcome: VideoReconstructionOutcome;
+      if (item.evidenceKind === "image_post") {
+        if (!this.imagePostReconstructor || !run.detailArtifactRef || !run.mediaManifestArtifactRef) {
+          throw new Error("图文 Builder 或固定输入尚未配置");
+        }
+        const manifest = deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef));
+        const media = manifest.items.find((candidate) => candidate.externalId === postExternalId);
+        if (!media || (media.imageArtifactRefs?.length ?? 0) === 0) throw new Error("图文节点缺少本地图片证据");
+        rawOutcome = await this.imagePostReconstructor.reconstruct({ runId: job.id, creatorRunId: run.id,
+          postExternalId, sourceUrl, detailArtifactRef: run.detailArtifactRef,
+          imageArtifactRefs: media.imageArtifactRefs ?? [] }, observeChild);
+      } else {
+        const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
+          postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
+          evaluationPolicy, contractVersion: "video-content-reconstruction@1" });
+        rawOutcome = await this.videoReconstructor.reconstruct(request, observeChild);
+      }
+      const outcome = videoReconstructionOutcomeSchema.parse(rawOutcome);
       const completedAt = now();
       const latestRun = this.repository.get(run.id);
       if (!latestRun?.reconstructionBatchArtifactRef) throw new Error("视频批次在执行期间丢失注册指针");
@@ -326,7 +344,7 @@ export class CreatorResearchVideoSynthesisProcessor {
         run.status = "collecting";
         run.worker = { state: "queued", attempt: 0, jobId: null, workerId: null, lastHeartbeatAt: completedAt };
         run.blockers = [];
-        run.nextAction = `深度视频已构建 ${latestBatch.builtPosts}/${latestBatch.requestedPosts}，后台继续处理剩余 ${latestBatch.pendingPosts} 条。`;
+        run.nextAction = `深度帖子已构建 ${latestBatch.builtPosts}/${latestBatch.requestedPosts}，后台继续处理剩余 ${latestBatch.pendingPosts} 条。`;
         stage(run, "deep_capture").message = run.nextAction;
       } else {
         run.status = "reviewable";

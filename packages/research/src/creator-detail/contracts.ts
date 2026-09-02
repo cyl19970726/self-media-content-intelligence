@@ -14,6 +14,7 @@ export const creatorDetailCollectionSchema = z.object({
     description: z.string().nullable(),
     publishedLabel: z.string().nullable(),
     mediaType: z.enum(["video", "image", "unknown"]),
+    imageCount: z.number().int().nonnegative().default(0),
     inspectedAt: z.string(),
     warnings: z.array(z.string())
   })),

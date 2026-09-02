@@ -18,6 +18,7 @@ import {
   LocalDeepMediaResolver,
   LocalPublicationMediaAccess,
   CodexVideoReconstructionExecutor,
+  CodexImagePostReconstructionExecutor,
   CodexCreatorSynthesisExecutor
 } from "../../packages/adapters/index.js";
 import { LocalEvidenceAccess } from "../../packages/adapters/index.js";
@@ -87,7 +88,8 @@ export function createSignalRoomComposition(
     new CodexVideoReconstructionExecutor(),
     new CodexCreatorSynthesisExecutor(artifacts),
     videoConcurrency(),
-    creatorKnowledgeCompiler
+    creatorKnowledgeCompiler,
+    new CodexImagePostReconstructionExecutor(artifacts)
   );
   const creatorResearchBatchRepository = new SQLiteCreatorResearchBatchRepository();
   const creatorResearchBatches = new CreatorResearchBatchService(

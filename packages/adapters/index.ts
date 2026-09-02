@@ -15,6 +15,7 @@ export * from "./src/platform/database/sqlite-research-learning-event-store.js";
 export * from "./src/platform/evidence/local-evidence-access.js";
 export * from "./src/platform/media/local-deep-media-resolver.js";
 export * from "./src/platform/media/local-publication-media-access.js";
+export * from "./src/platform/image/codex-image-post-reconstruction-executor.js";
 export * from "./src/platform/network/system-proxy.js";
 export * from "./src/platform/publishing/ego-browser-publisher.js";
 export * from "./src/platform/redfox/redfox-client.js";

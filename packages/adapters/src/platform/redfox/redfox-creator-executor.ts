@@ -168,6 +168,10 @@ export class RedFoxCreatorExecutor implements CreatorBrowserExecutor {
         const combined = { ...cached, ...detail };
         const type = mediaType(combined.noteType ?? combined.mediaType ?? combined.type);
         const picList = Array.isArray(combined.picList) ? combined.picList.filter(isRecord) : [];
+        const imageCandidateUrls = [...new Set(picList.flatMap((picture) => {
+          const candidate = firstMediaCandidate(picture, ["sourceUrl", "hdUrl", "defaultUrl", "previewUrl"]);
+          return candidate ? [candidate] : [];
+        }))];
         const firstPic = picList[0];
         const cover = firstMediaCandidate(combined, ["coverImage", "thumbnail", "coverImageUri"])
           ?? (firstPic ? firstMediaCandidate(firstPic, ["defaultUrl", "hdUrl", "previewUrl", "sourceUrl"]) : null);
@@ -185,6 +189,7 @@ export class RedFoxCreatorExecutor implements CreatorBrowserExecutor {
           mediaType: type,
           videoCandidateUrl: video,
           coverCandidateUrl: cover,
+          imageCandidateUrls: type === "image" ? (imageCandidateUrls.length > 0 ? imageCandidateUrls : cover ? [cover] : []) : [],
           inspectedAt: new Date().toISOString(),
           warnings: [
             "source:redfox:noteDetail",

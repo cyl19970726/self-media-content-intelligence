@@ -24,6 +24,7 @@ import {
   type CreatorBrowserExecutor,
   type DeepMediaResolver,
   type VideoReconstructionExecutor,
+  type ImagePostReconstructionExecutor,
   type CreatorSynthesisExecutor,
   type CreatorResearchCompletionPort,
   type CreatorInventoryPost,
@@ -37,7 +38,7 @@ const stages: CreatorResearchRun["stages"] = [
   { id: "preflight", label: "身份与登录预检", status: "pending", message: null },
   { id: "inventory", label: "全量作品清单", status: "pending", message: null },
   { id: "tiering", label: "High / Base / Low 分层", status: "pending", message: null },
-  { id: "deep_capture", label: "重点视频内容还原", status: "pending", message: null },
+  { id: "deep_capture", label: "重点帖子内容还原", status: "pending", message: null },
   { id: "synthesis", label: "博主内容系统归纳", status: "pending", message: null },
   { id: "dashboard", label: "发布到原有 Dashboard", status: "pending", message: null }
 ];
@@ -99,7 +100,8 @@ export class CreatorResearchService {
     videoReconstructor: VideoReconstructionExecutor,
     synthesisExecutor: CreatorSynthesisExecutor,
     private readonly videoConcurrencyLimit: number,
-    completionPort?: CreatorResearchCompletionPort
+    completionPort?: CreatorResearchCompletionPort,
+    imagePostReconstructor?: ImagePostReconstructionExecutor
   ) {
     this.jobProcessor = new CreatorResearchJobProcessor(
       repository,
@@ -108,7 +110,8 @@ export class CreatorResearchService {
       videoReconstructor,
       synthesisExecutor,
       videoConcurrencyLimit,
-      completionPort
+      completionPort,
+      imagePostReconstructor
     );
     this.recoverLocalWorkerProjection();
   }
@@ -487,6 +490,7 @@ export class CreatorResearchService {
         attempts: 0, maxAttempts: 2, availableAt: timestamp, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
         payload: { postExternalId: item.postExternalId, sourceUrl: `https://www.xiaohongshu.com/explore/${item.postExternalId}`,
           sourceMediaArtifactRef: item.sourceMediaArtifactRef,
+          evidenceKind: item.evidenceKind,
           evaluationOnly: item.evaluationPolicy === "single_pass@37a03aae",
           evaluationPolicy: item.evaluationPolicy === "single_pass@37a03aae" ? "single_pass" : "skip" },
         lastError: null, createdAt: timestamp, updatedAt: timestamp });
@@ -530,6 +534,7 @@ export class CreatorResearchService {
       if (!["built_unevaluated", "evaluated_with_findings"].includes(item.state)) {
         throw new Error(`视频不是可补评或可重验的 Builder 结果：${postExternalId}`);
       }
+      if (item.evidenceKind === "image_post") throw new Error(`图文 Builder 暂不进入视频 Evaluator：${postExternalId}`);
       if (!item.sourceMediaArtifactRef || !item.reconstructionArtifactRef || !item.builderValidationArtifactRef) {
         throw new Error(`视频缺少可复用的 Builder 证据：${postExternalId}`);
       }
@@ -611,7 +616,7 @@ export class CreatorResearchService {
     batch.limitations = [...new Set([
       ...batch.limitations,
       `bounded_media_retry_once:${unavailable.map((item) => item.postExternalId).join(",")}`,
-      `${unavailable.length} 条注册深度样本经一次定向补取仍无可核验媒体；只保留 surface_only，视频内容保持未知。`
+      `${unavailable.length} 条注册深度样本经一次定向补取仍无可核验媒体；只保留 surface_only，帖子内容保持未知。`
     ])];
     const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, [previousBatchRef]);
     run.reconstructionBatchArtifactRef = batchRef;

@@ -5,7 +5,7 @@ import type { CreatorArtifactStore } from "./artifact-store.js";
 import {
   buildCreatorPortfolio,
   buildCreatorPortfolioAnnotations,
-  refineDeepSelectionForVerifiedVideos,
+  refineDeepSelectionForVerifiedMedia,
   creatorPortfolioAnalysisSchema,
   creatorSelectionSchema,
   creatorDetailCollectionSchema,
@@ -17,6 +17,7 @@ import {
   type ResearchJob,
   type DeepMediaResolver,
   type VideoReconstructionExecutor,
+  type ImagePostReconstructionExecutor,
   type CreatorSynthesisExecutor,
   type CreatorResearchCompletionPort
 } from "../../index.js";
@@ -57,7 +58,8 @@ export class CreatorResearchJobProcessor {
     videoReconstructor: VideoReconstructionExecutor,
     synthesisExecutor: CreatorSynthesisExecutor,
     private readonly videoConcurrencyLimit: number,
-    completionPort?: CreatorResearchCompletionPort
+    completionPort?: CreatorResearchCompletionPort,
+    imagePostReconstructor?: ImagePostReconstructionExecutor
   ) {
     this.videoProcessor = new CreatorResearchVideoSynthesisProcessor(
       repository,
@@ -65,7 +67,8 @@ export class CreatorResearchJobProcessor {
       videoReconstructor,
       synthesisExecutor,
       videoConcurrencyLimit,
-      completionPort
+      completionPort,
+      imagePostReconstructor
     );
   }
 
@@ -280,7 +283,7 @@ export class CreatorResearchJobProcessor {
         likes: corpus.likes,
         tierCounts: selection.tierCounts,
         anchors: selection.anchors,
-        interpretationBoundary: "本节点回答表现分布与样本结构；内容为何爆发或失效必须等待逐条详情与视频证据。",
+        interpretationBoundary: "本节点回答表现分布与样本结构；内容为何爆发或失效必须等待逐条详情与深度媒体证据。",
         unknowns: corpus.unknowns
       });
       const portfolioRef = this.artifacts.write(run.id, "corpus-analysis.json", analysis, [corpusRef, selectionRef]);
@@ -466,6 +469,7 @@ export class CreatorResearchJobProcessor {
           description: post.description,
           publishedLabel: post.publishedLabel,
           mediaType: selected?.mediaType !== "unknown" ? selected?.mediaType ?? post.mediaType : post.mediaType,
+          imageCount: post.imageCandidateUrls?.length ?? 0,
           inspectedAt: post.inspectedAt,
           warnings: selected && selected.mediaType !== "unknown" && selected.mediaType !== post.mediaType
             ? [...post.warnings, `详情 DOM 判为 ${post.mediaType}，主页卡片判为 ${selected.mediaType}；暂以明确的主页播放标识为准。`]
@@ -497,7 +501,9 @@ export class CreatorResearchJobProcessor {
           externalId: post.externalId,
           videoCandidateUrl: post.videoCandidateUrl,
           coverCandidateUrl: post.coverCandidateUrl,
-          downloadVideo: deepIds.has(post.externalId)
+          imageCandidateUrls: post.imageCandidateUrls ?? [],
+          downloadVideo: deepIds.has(post.externalId) && post.mediaType === "video",
+          downloadImages: deepIds.has(post.externalId) && post.mediaType === "image"
         }))
       });
       const previousMedia = run.mediaManifestArtifactRef
@@ -507,9 +513,11 @@ export class CreatorResearchJobProcessor {
       const mergedMediaItems = [...(previousMedia?.items.filter((item) => !resolvedIds.has(item.externalId)) ?? []), ...resolvedMedia.items]
         .map((item) => deepIds.has(item.externalId) ? item : {
           ...item, videoRequested: false, state: "not_requested" as const, videoArtifactRef: null,
+          imageRequested: false, imageState: "not_requested" as const, imageArtifactRefs: [],
+          imageMessage: "未进入当前深度证据集。",
           verificationArtifactRef: null, sha256: null, bytes: null, durationSeconds: null,
           width: null, height: null, hasAudio: null,
-          message: "详情核验后未进入四组深度视频集；旧版本证据保留但不再参与当前投影。"
+          message: "详情核验后未进入四组深度证据集；旧版本证据保留但不再参与当前投影。"
         });
       const mediaManifest = deepMediaManifestSchema.parse({
         schemaVersion: "1.0.0", runId: run.id, generatedAt: completedAt,
@@ -550,13 +558,19 @@ export class CreatorResearchJobProcessor {
       }
       if (!mediaRefresh) {
         const mediaTypes = new Map(details.posts.map((item) => [item.externalId, item.mediaType]));
-        const refined = refineDeepSelectionForVerifiedVideos(selection, mediaTypes, completedAt);
+        const refined = refineDeepSelectionForVerifiedMedia(selection, mediaTypes, completedAt);
         const refinedRef = this.artifacts.write(run.id, "creator-selection-video-refined.json", refined,
           [run.selectionArtifactRef, detailRef]);
         selection = refined;
         run.selectionArtifactRef = refinedRef;
         const currentMedia = new Map(mediaManifest.items.map((item) => [item.externalId, item]));
-        const mediaIds = selection.items.filter((item) => item.deepCandidate && currentMedia.get(item.externalId)?.state !== "verified_complete")
+        const mediaIds = selection.items.filter((item) => {
+          if (!item.deepCandidate) return false;
+          const media = currentMedia.get(item.externalId);
+          return item.mediaType === "image"
+            ? !media || !["ready", "partial"].includes(media.imageState ?? "not_requested") || (media.imageArtifactRefs?.length ?? 0) === 0
+            : media?.state !== "verified_complete";
+        })
           .map((item) => item.externalId);
         if (mediaIds.length > 0) {
           const [firstBatch, ...rest] = Array.from({ length: Math.ceil(mediaIds.length / 3) }, (_, index) => mediaIds.slice(index * 3, index * 3 + 3));
@@ -575,15 +589,15 @@ export class CreatorResearchJobProcessor {
           run.coverage.enrichedPosts = details.inspectedPosts;
           run.worker = { state: "queued", attempt: 0, jobId: nextJob.id, workerId: null, lastHeartbeatAt: completedAt };
           run.blockers = [];
-          run.nextAction = `媒体类型已核验并重算四组深样本；正在补取 ${mediaIds.length} 条视频媒体。`;
+          run.nextAction = `媒体类型已核验并重算四组深样本；正在补取 ${mediaIds.length} 条深度媒体。`;
           stage(run, "deep_capture").status = "pending";
           stage(run, "deep_capture").message = run.nextAction;
           this.repository.save(run);
           this.repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: completedAt });
           this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
-            message: "详情核验后的四组视频选样已登记。", payload: { artifactRef: refinedRef, deepCount: mediaIds.length } });
+            message: "详情核验后的四组深度选样已登记。", payload: { artifactRef: refinedRef, deepCount: mediaIds.length } });
           this.repository.appendEvent({ runId: run.id, jobId: nextJob.id, type: "job.queued", createdAt: completedAt,
-            message: "深度视频媒体补取已进入持久队列。", payload: { nodeKey: nextJob.nodeKey, remaining: mediaIds.length } });
+            message: "深度媒体补取已进入持久队列。", payload: { nodeKey: nextJob.nodeKey, remaining: mediaIds.length } });
           return;
         }
       } else if (remainingMediaIds.length > 0) {
@@ -624,14 +638,22 @@ export class CreatorResearchJobProcessor {
         const previous = previousItems.get(item.externalId);
         if (previous && ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(previous.state)) return previous;
         const media = mediaById.get(item.externalId);
-        const verified = media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
+        const evidenceKind = item.mediaType === "image" ? "image_post" as const : "video" as const;
+        const verified = evidenceKind === "image_post"
+          ? Boolean(media && ["ready", "partial"].includes(media.imageState ?? "not_requested") && (media.imageArtifactRefs?.length ?? 0) > 0)
+          : media?.state === "verified_complete" && Boolean(media.videoArtifactRef);
+        const sourceMediaArtifactRef = evidenceKind === "image_post"
+          ? media?.imageArtifactRefs?.[0] ?? media?.coverArtifactRef ?? null
+          : media?.videoArtifactRef ?? null;
         return { postExternalId: item.externalId, tier: item.tier, tierRank: item.tierRank,
-          state: verified ? "queued" as const : "blocked" as const, sourceMediaArtifactRef: media?.videoArtifactRef ?? null,
+          evidenceKind, state: verified ? "queued" as const : "blocked" as const, sourceMediaArtifactRef,
           evaluationPolicy: "skip@builder-fast-path-v1" as const,
           reconstructionArtifactRef: null, articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,
           threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
           failedGateIds: verified ? [] : ["media_verification"],
-          message: verified ? "等待独立视频重建 Worker。" : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
+          message: verified ? `等待${evidenceKind === "image_post" ? "图文" : "视频"} Builder。`
+            : evidenceKind === "image_post" ? media?.imageMessage ?? "图文候选缺少可验证页面证据。"
+              : media?.message ?? "深度候选缺少可验证媒体。", updatedAt: completedAt };
       });
       const revision = previousBatch ? previousBatch.revision + 1 : 0;
       const batch = videoReconstructionBatchSchema.parse({
@@ -645,20 +667,21 @@ export class CreatorResearchJobProcessor {
         items: batchItems,
         limitations: [...new Set([
           ...(previousBatch?.limitations ?? []),
-          "每条视频只做一次独立评估；内容缺口保留为质量提醒，只有媒体或产物损坏才阻断。"
+          "每条深度帖子只做一次 Builder；独立评估可选，只有媒体或产物损坏才阻断。"
         ])]
       });
       const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${revision}.json`, batch,
         [run.selectionArtifactRef, detailRef, mediaManifestRef, previousBatchRef].filter((ref): ref is string => Boolean(ref)));
       const queuedJobs = batch.items.filter((item) => item.state === "queued").map((item) => {
         const selected = selection.items.find((candidate) => candidate.externalId === item.postExternalId);
-        if (!selected || !item.sourceMediaArtifactRef) throw new Error(`视频任务 ${item.postExternalId} 缺少选择或媒体引用`);
+        if (!selected || !item.sourceMediaArtifactRef) throw new Error(`深度任务 ${item.postExternalId} 缺少选择或媒体引用`);
         return this.repository.enqueue({
           id: randomUUID(), runId: run.id, nodeKey: "video.reconstruct", status: "queued",
           idempotencyKey: `${run.id}:video.reconstruct:${item.postExternalId}:${item.sourceMediaArtifactRef}`,
           attempts: 0, maxAttempts: 2, availableAt: completedAt, leaseOwner: null, leaseExpiresAt: null,
           heartbeatAt: null, payload: { postExternalId: item.postExternalId, sourceUrl: canonicalXhsPostUrl(item.postExternalId),
-            sourceMediaArtifactRef: item.sourceMediaArtifactRef }, lastError: null, createdAt: completedAt, updatedAt: completedAt
+            sourceMediaArtifactRef: item.sourceMediaArtifactRef, evidenceKind: item.evidenceKind },
+          lastError: null, createdAt: completedAt, updatedAt: completedAt
         });
       });
       run.updatedAt = completedAt;
@@ -678,8 +701,8 @@ export class CreatorResearchJobProcessor {
         run.blockers = [{ code: "video_reconstruction_pending",
           message: `${mediaManifest.readyPosts}/${mediaManifest.requestedPosts} 条深度候选已完成本地媒体验证；内容还原与机制分析仍未完成。`, userActionRequired: false }];
         run.nextAction = queuedJobs.length > 0
-          ? `公开详情与媒体已经可复核；${queuedJobs.length} 条视频重建已进入持久队列。`
-          : "没有新增深度候选通过媒体验证；不可得视频的内容原因保持未知。";
+          ? `公开详情与媒体已经可复核；${queuedJobs.length} 条深度内容重建已进入持久队列。`
+          : "没有新增深度候选通过媒体验证；不可得媒体的内容原因保持未知。";
         stage(run, "deep_capture").status = "pending";
         stage(run, "deep_capture").message = `已补齐 ${details.inspectedPosts}/${details.requestedPosts} 条页面详情；媒体就绪 ${mediaManifest.readyPosts}/${mediaManifest.requestedPosts}，内容还原待执行。`;
       }
@@ -690,9 +713,9 @@ export class CreatorResearchJobProcessor {
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
         message: "深度候选本地媒体清单已写入证据仓。", payload: { artifactRef: mediaManifestRef, readyPosts: mediaManifest.readyPosts } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
-        message: "视频重建批次已经冻结。", payload: { artifactRef: batchRef, queuedPosts: queuedJobs.length } });
+        message: "深度内容重建批次已经冻结。", payload: { artifactRef: batchRef, queuedPosts: queuedJobs.length } });
       for (const queued of queuedJobs) this.repository.appendEvent({ runId: run.id, jobId: queued.id, type: "job.queued", createdAt: completedAt,
-        message: "深度视频重建已进入持久队列。", payload: { nodeKey: queued.nodeKey } });
+        message: "深度内容重建已进入持久队列。", payload: { nodeKey: queued.nodeKey } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
         message: "选择集公开详情采集完成。", payload: { requested: details.requestedPosts, inspected: details.inspectedPosts } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "run.reviewable", createdAt: completedAt,

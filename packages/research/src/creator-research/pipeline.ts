@@ -19,10 +19,10 @@ const stageSeeds: StageSeed[] = [
   { id: "portfolio_annotation", label: "全量内容标注", skillId: "creator-portfolio-annotation", workerKind: "annotation-worker", dashboardSections: ["system", "portfolio"] },
   { id: "corpus_statistics", label: "全量统计与数据健康", skillId: null, workerKind: "statistics-worker", dashboardSections: ["corpus", "tiers", "rhythm"] },
   { id: "sample_selection", label: "高 / 中位 / 均值附近 / 低表现选样", skillId: "creator-sample-selection", workerKind: "selection-worker", dashboardSections: ["tiers", "portfolio", "deep"] },
-  { id: "media_verification", label: "代表视频媒体获取与核验", skillId: "xiaohongshu-creator-acquisition", workerKind: "media-worker", dashboardSections: ["portfolio", "deep"] },
-  { id: "video_reconstruction", label: "单视频 Builder 重建", skillId: "video-content-reconstruction", workerKind: "video-reconstruction-worker", dashboardSections: ["deep", "engines"] },
-  { id: "video_evaluation", label: "可选单视频独立评估", skillId: "video-content-reconstruction", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
-  { id: "creator_synthesis", label: "跨视频与跨层级博主综合", skillId: "creator-research-synthesis", workerKind: "creator-synthesis-worker", dashboardSections: ["identity", "system", "tiers", "rhythm", "audience", "engines", "business"] },
+  { id: "media_verification", label: "代表帖子媒体获取与核验", skillId: "xiaohongshu-creator-acquisition", workerKind: "media-worker", dashboardSections: ["portfolio", "deep"] },
+  { id: "video_reconstruction", label: "单帖子 Builder 重建", skillId: "video-content-reconstruction", workerKind: "video-reconstruction-worker", dashboardSections: ["deep", "engines"] },
+  { id: "video_evaluation", label: "可选单帖子独立评估", skillId: "video-content-reconstruction", workerKind: "independent-video-evaluator", dashboardSections: ["deep", "engines"] },
+  { id: "creator_synthesis", label: "跨帖子与跨层级博主综合", skillId: "creator-research-synthesis", workerKind: "creator-synthesis-worker", dashboardSections: ["identity", "system", "tiers", "rhythm", "audience", "engines", "business"] },
   { id: "creator_evaluation", label: "博主研究独立评测", skillId: "creator-research-evaluator", workerKind: "independent-creator-evaluator", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] },
   { id: "dashboard_projection", label: "Creator Dossier 投影", skillId: null, workerKind: "projection-worker", dashboardSections: ["identity", "corpus", "system", "tiers", "portfolio", "deep", "rhythm", "audience", "engines", "business"] }
 ];
@@ -190,7 +190,7 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
       : { state: verifiedMediaCount > 0 || mediaItems > 0 ? "partial" : "pending", gateState: verifiedMediaCount > 0 || mediaItems > 0 ? "partial" : "not_checked", artifactRefs: [run?.mediaManifestArtifactRef],
           missingInputs: [`可核验深度媒体：${boundedMediaGap ? verifiedMediaCount : Math.min(mediaItems, deepItems.length)}/${requiredDeepSamples}`],
           message: boundedMediaGap
-            ? `${verifiedMediaCount}/${deepSampleCount} 条媒体通过核验；${unavailableDeepCount} 条经一次定向补取仍不可得，视频内容保持未知。`
+            ? `${verifiedMediaCount}/${deepSampleCount} 条媒体通过核验；${unavailableDeepCount} 条经一次定向补取仍不可得，帖子内容保持未知。`
             : "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
           nextAction: boundedMediaGap ? "不再重试不可得媒体；综合只使用 surface_only 公开证据并保留未知。" : "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
     stage(seed("video_reconstruction"), reconstructionComplete
@@ -198,14 +198,14 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
       : { state: builtDeepCount + pendingDeepCount > 0 ? "partial" : "pending", gateState: builtDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
           missingInputs: [`完成 Builder 三镜头分析：${builtDeepCount}/${requiredDeepSamples}`],
           message: boundedMediaGap ? `${builtDeepCount} 条已构建；${unavailableDeepCount} 条媒体不可得，未生成视频内容结论。` : `${builtDeepCount} 条已构建，${validatedDeepCount} 条已正式验证，其余尚未还原。`,
-          nextAction: boundedMediaGap ? "不可得成员保持 surface_only；不得从可用视频借用机制。" : "由单视频重建 Skill 继续生成逐字稿、知识关系、编导逻辑和画面剪辑证据。" }),
+          nextAction: boundedMediaGap ? "不可得成员保持 surface_only；不得从可用媒体借用机制。" : "由单帖子重建 Skill 继续生成文字、知识关系、编导逻辑和画面证据。" }),
     stage(seed("video_evaluation"), evaluatedDeepCount >= verifiedMediaCount && verifiedMediaCount > 0
       ? { state: "complete", gateState: evaluatedWithFindingsCount ? "partial" : "passed", artifactRefs: [run?.reconstructionBatchArtifactRef],
           message: `${evaluatedDeepCount}/${deepSampleCount} 条可用深度样本完成一次独立评估；${evaluatedWithFindingsCount} 条保留 findings。` }
       : { state: evaluatedDeepCount > 0 ? "partial" : "pending", gateState: evaluatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
           missingInputs: [`单轮独立评估：${evaluatedDeepCount}/${requiredDeepSamples}`],
-          message: boundedMediaGap ? `${evaluatedDeepCount}/${deepSampleCount} 条可用视频完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估视频内容。` : `${evaluatedDeepCount}/${deepSampleCount} 条完成独立评估；Evaluator 可跳过，未评估结果保持 provisional。`,
-          nextAction: boundedMediaGap ? "不对不可得视频生成或补造 evaluator 结论。" : "由独立 Evaluator 对每条视频做一次通用与三镜头检查；内容缺口不触发自动修复。" }),
+          message: boundedMediaGap ? `${evaluatedDeepCount}/${deepSampleCount} 条可用帖子完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估帖子内容。` : `${evaluatedDeepCount}/${deepSampleCount} 条完成独立评估；Evaluator 可跳过，未评估结果保持 provisional。`,
+          nextAction: boundedMediaGap ? "不对不可得媒体生成或补造 evaluator 结论。" : "需要正式入 Wiki 时，由独立 Evaluator 对每条帖子做一次证据检查；内容缺口不触发自动修复。" }),
     stage(seed("creator_synthesis"), synthesisReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.synthesisArtifactRef], message: "定位、人群、价值、内容系统与表现差异已写入博主综合 Artifact。" }
       : { state: dossier?.growthEngines.statements.length ? "partial" : "pending", gateState: "not_checked", artifactRefs: [run?.synthesisArtifactRef],
@@ -214,13 +214,13 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
     stage(seed("creator_evaluation"), creatorGateReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.synthesisGateArtifactRef], message: "博主研究已通过独立硬闸。" }
       : { state: run?.synthesisGateArtifactRef ? "partial" : "pending", gateState: run?.synthesisGateArtifactRef ? "partial" : "not_checked", artifactRefs: [run?.synthesisGateArtifactRef],
-          missingInputs: ["独立 creator gate report"], message: "尚不能把当前研究升级为完整 Creator Dossier。",
-          nextAction: "由独立博主研究 Evaluator 检查采集、选样、三镜头、综合与页面保真。" }),
+          missingInputs: ["正式 Wiki 所需的独立 creator gate report"], message: "当前 Creator Dossier 已可审阅，但仍是 provisional，尚不能进入正式 Wiki。",
+          nextAction: "需要正式入 Wiki 时，再由独立博主研究 Evaluator 检查采集、选样、深度证据、综合与页面保真。" }),
     stage(seed("dashboard_projection"), creatorGateReady
       ? { state: "complete", gateState: "passed", artifactRefs: [run?.dashboardPath, `route:/creators/${dossier?.canonicalId ?? run?.creatorId ?? run?.id}`], message: "最后一版有效研究已投影到唯一 Creator Dashboard。" }
       : { state: dossier ? "partial" : "pending", gateState: dossier ? "partial" : "not_checked", artifactRefs: dossier ? [`route:/creators/${dossier.canonicalId}`] : [],
-          missingInputs: ["creator_evaluation passed"], message: "页面可展示部分研究，但不会把它标成完整闭环。",
-          nextAction: "补齐上游失败或缺失阶段后，Projection Worker 将在同一路由刷新。" })
+          missingInputs: ["正式 Wiki：creator_evaluation passed"], message: "页面已展示可审阅的 provisional Creator Dossier，并明确保留未验证边界。",
+          nextAction: "需要升级为正式 Wiki 时，补齐独立评估与必要数据后在同一路由刷新。" })
   ];
 
   const coarseMappings: Array<[CreatorPipelineStageId[], CreatorResearchRun["stages"][number]["id"][]]> = [

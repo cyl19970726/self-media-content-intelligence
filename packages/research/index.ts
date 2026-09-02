@@ -10,6 +10,7 @@ export * from "./src/creator-research/worker.js";
 export * from "./src/creator-synthesis/contracts.js";
 export * from "./src/creator-synthesis/validate.js";
 export * from "./src/media-resolution/contracts.js";
+export * from "./src/image-analysis/contracts.js";
 export * from "./src/learning-loop/repository.js";
 export * from "./src/learning-loop/service.js";
 export * from "./src/orchestration/contracts.js";

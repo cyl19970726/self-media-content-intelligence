@@ -24,6 +24,7 @@
     "docs/initiatives/active/creator-analysis-os-v1/creator-depth-parity.md",
     "packages/adapters/index.ts",
     "packages/adapters/src/core/artifacts.ts",
+    "packages/adapters/src/platform/image/codex-image-post-reconstruction-executor.ts",
     "packages/adapters/src/platform/synthesis/codex-creator-synthesis-executor.ts",
     "packages/contracts/src/evidence.ts",
     "packages/research/src/portfolio/analyzer.ts",
