@@ -1,4 +1,5 @@
 import { parsedSourceSchema, type ParsedSource } from "../shared/schema.js";
+import { createHash } from "node:crypto";
 
 export class UnsupportedUrlError extends Error {
   constructor(message: string) {
@@ -22,7 +23,8 @@ export function parseSourceUrl(input: string): ParsedSource {
   }
 
   if (url.protocol === "fixture:") {
-    const fixturePlatform = url.hostname === "x" ? "x" : "xiaohongshu";
+    const fixturePlatform = url.hostname === "x" ? "x"
+      : url.hostname === "wechat_channels" ? "wechat_channels" : "xiaohongshu";
     return parsedSourceSchema.parse({
       platform: fixturePlatform,
       sourceUrl: url.toString(),
@@ -34,6 +36,25 @@ export function parseSourceUrl(input: string): ParsedSource {
   }
 
   const host = url.hostname.toLowerCase().replace(/^www\./, "");
+  if ((host === "weixin.qq.com" || host.endsWith(".weixin.qq.com")) && url.pathname.includes("/sph/")) {
+    const slug = url.pathname.match(/\/sph\/([^/?#]+)/)?.[1];
+    if (!slug) throw new UnsupportedUrlError("无法从视频号分享链接中识别作品 ID");
+    return parsedSourceSchema.parse({
+      platform: "wechat_channels", sourceUrl: url.toString(), externalId: slug,
+      xsecToken: null, shareTitle, fixture: false
+    });
+  }
+
+  if (host === "channels.weixin.qq.com" || host.endsWith(".channels.weixin.qq.com")) {
+    const explicitId = url.searchParams.get("video_id") ?? url.searchParams.get("videoId") ?? url.searchParams.get("id");
+    const lastPathSegment = url.pathname.split("/").filter(Boolean).at(-1);
+    const externalId = explicitId ?? lastPathSegment
+      ?? createHash("sha256").update(url.toString()).digest("hex").slice(0, 20);
+    return parsedSourceSchema.parse({
+      platform: "wechat_channels", sourceUrl: url.toString(), externalId,
+      xsecToken: null, shareTitle, fixture: false
+    });
+  }
   if (host === "x.com" || host === "twitter.com" || host.endsWith(".x.com")) {
     const match = url.pathname.match(/\/status\/(\d+)/);
     if (!match?.[1]) {
@@ -73,5 +94,5 @@ export function parseSourceUrl(input: string): ParsedSource {
     });
   }
 
-  throw new UnsupportedUrlError("当前只支持小红书和 X/Twitter 公开链接");
+  throw new UnsupportedUrlError("当前支持小红书、微信视频号和 X/Twitter 公开链接");
 }

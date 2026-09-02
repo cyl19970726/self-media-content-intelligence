@@ -15,7 +15,7 @@ import {
 } from "../../../src/server/knowledge-recovery.js";
 
 const program = new Command();
-program.name("selfmedia").description("小红书 / X 内容证据分析工作台").version("0.1.0");
+program.name("selfmedia").description("小红书 / 微信视频号 / X 内容证据分析工作台").version("0.1.0");
 
 function createAnalysisService(): AnalysisService { return new AnalysisService(new RunStore()); }
 
@@ -34,7 +34,7 @@ function printReport(report: ReturnType<AnalysisService["get"]>): void {
 
 program.command("analyze")
   .description("分析一条公开链接")
-  .argument("<url>", "小红书或 X 链接")
+  .argument("<url>", "小红书、微信视频号或 X 链接")
   .option("--video <path>", "本地视频文件，用于补充拉片")
   .option("--open", "完成后打开 Dashboard")
   .action(async (url: string, options: { video?: string; open?: boolean }) => {

@@ -17,6 +17,12 @@ const statusLabels: Record<RunStatus, string> = {
   blocked: "待授权", failed: "失败"
 };
 
+function platformLabel(platform: ReportEnvelope["platform"]): string {
+  if (platform === "x") return "X / TWITTER";
+  if (platform === "wechat_channels") return "微信视频号";
+  return "小红书";
+}
+
 function StatusMark({ status }: { status: RunStatus }) {
   return <span className={`status status--${status}`}><i />{statusLabels[status]}</span>;
 }
@@ -28,7 +34,7 @@ function RunRail({ runs, activeId }: { runs: RunSummary[]; activeId?: string }) 
       {runs.length === 0 ? <div className="rail-empty">还没有分析档案。<br/>提交一条链接开始。</div> : runs.map((run, index) =>
         <Link key={run.id} to={`/runs/${run.id}`} className={`run-item ${activeId === run.id ? "active" : ""}`}>
           <span className="run-item__number">{String(index + 1).padStart(2, "0")}</span>
-          <div><strong>{run.title}</strong><small>{run.platform === "x" ? "X / TWITTER" : "小红书"} · {run.authorName}</small></div>
+          <div><strong>{run.title}</strong><small>{platformLabel(run.platform)} · {run.authorName}</small></div>
           <StatusMark status={run.status}/>
         </Link>)}
     </div>
@@ -59,12 +65,12 @@ function Intake({ onCreated }: { onCreated: (report: ReportEnvelope) => void }) 
   return <section className="intake">
     <div className="eyebrow"><span>NEW ANALYSIS</span><span>URL → EVIDENCE → REPORT</span></div>
     <h1>给我一条链接。<br/><em>拿回一份可复用的判断。</em></h1>
-    <p className="intake__lede">支持小红书与 X。可直接粘贴小红书分享文案和短链；系统会拆解单帖，并沿作者主页生成跨帖组合画像。</p>
+    <p className="intake__lede">支持小红书、微信视频号与 X。可直接粘贴平台分享文案或公开链接；系统会拆解单帖，并在平台数据允许时补充作者和同题材基线。</p>
     <form onSubmit={submit} className="intake-form">
       <label htmlFor="source-url">公开内容链接</label>
       <div className="input-row">
         <input id="source-url" value={url} onChange={(event) => setUrl(event.target.value)}
-          placeholder="粘贴小红书分享文案 / 完整链接，或 X 帖子链接" required/>
+          placeholder="粘贴小红书或视频号分享文案，或 X 帖子链接" required/>
         <button className="primary-button" disabled={submitting}>
           {submitting ? <LoaderCircle className="spin" size={18}/> : <ArrowRight size={18}/>} 开始分析
         </button>
@@ -98,7 +104,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
       <div><StatusMark status={report.status}/><span className="run-code">RUN {report.id.slice(0, 8).toUpperCase()}</span></div>
     </div>
     <header className="report-header">
-      <div className="report-kicker"><span>{report.platform === "x" ? "X / TWITTER" : "小红书"}</span><span>{source?.author.name ?? "等待作者信息"}</span>{report.sourceUrl.startsWith("fixture:") && <b>DEMO FIXTURE / 演示数据</b>}</div>
+      <div className="report-kicker"><span>{platformLabel(report.platform)}</span><span>{source?.author.name ?? "等待作者信息"}</span>{report.sourceUrl.startsWith("fixture:") && <b>DEMO FIXTURE / 演示数据</b>}</div>
       <h1>{source?.title ?? report.executiveSummary}</h1>
       <p>{report.schemaVersion === "1.0.0" ? "这是旧版档案，尚未包含作者/题材基线、证据覆盖和可审计的数据口径。旧结论已暂停展示，请重新分析后再用于决策。" : report.executiveSummary}</p>
       <div className="report-actions">
