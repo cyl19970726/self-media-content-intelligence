@@ -48,7 +48,7 @@ export default function WorkspaceOverviewPage() {
     const incompleteCreators = overview.assets.creatorRuns.total - (overview.assets.creatorRuns.statuses.ready ?? 0);
     return [
       !overview.evidence.storeReadable ? { tone: "danger", title: "Evidence Store 未就绪", body: "深度报告和证据回跳可能不可用。", href: "/evidence", action: "检查 Evidence" } : null,
-      incompleteCreators > 0 ? { tone: "warning", title: `${incompleteCreators} 个博主尚未 Ready`, body: "先收口阻塞和深度视频缺口，再扩大样本。", href: "/creators", action: "处理研究任务" } : null,
+      incompleteCreators > 0 ? { tone: "warning", title: `${incompleteCreators} 个博主尚未 Ready`, body: "先收口阻塞和深度帖子缺口，再扩大样本。", href: "/creators", action: "处理研究任务" } : null,
       overview.assets.knowledge.total === 0 ? { tone: "quiet", title: "真实 Wiki 尚未激活", body: "已有研究还没有经过贡献清单审核进入 Knowledge。", href: "/knowledge", action: "查看知识缺口" } : null,
       overview.assets.contentPackages.total === 0 ? { tone: "quiet", title: "还没有创作项目", body: "应在真实 Knowledge 可引用后创建第一份内容包。", href: "/creation", action: "查看创作边界" } : null
     ].filter((item): item is NonNullable<typeof item> => item !== null);
@@ -74,7 +74,7 @@ export default function WorkspaceOverviewPage() {
       <div className="overview-section-heading"><span>01</span><div><h2 id="asset-heading">真实资产</h2><p>来自当前运行库，不包含隔离 Fixture。</p></div><Link to="/analyze">分析新链接 <ArrowRight size={14}/></Link></div>
       <div className="overview-asset-grid">
         <AssetCard label="单帖分析" value={assets.postRuns.total} href="/analyze" icon={<FileSearch/>} detail={<StatusLine statuses={assets.postRuns.statuses}/>}/>
-        <AssetCard label="博主研究" value={assets.creatorRuns.total} href="/creators" icon={<Users/>} detail={<><StatusLine statuses={assets.creatorRuns.statuses}/><span>{assets.creatorRuns.reconstructedPosts} 条深度视频</span></>}/>
+        <AssetCard label="博主研究" value={assets.creatorRuns.total} href="/creators" icon={<Users/>} detail={<><StatusLine statuses={assets.creatorRuns.statuses}/><span>{assets.creatorRuns.reconstructedPosts} 条深度帖子</span></>}/>
         <AssetCard label="多博主比较" value={assets.comparisons.total} href="/comparisons" icon={<GitCompareArrows/>} detail={<StatusLine statuses={assets.comparisons.statuses}/>}/>
         <AssetCard label="内容知识" value={assets.knowledge.total} href="/knowledge" icon={<BookOpen/>} detail={<StatusLine statuses={assets.knowledge.statuses}/>}/>
         <AssetCard label="创作项目" value={assets.contentPackages.total} href="/creation" icon={<Sparkles/>} detail={<StatusLine statuses={assets.contentPackages.statuses}/>}/>

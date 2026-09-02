@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { buildCreatorPortfolio, refineDeepSelectionForVerifiedVideos } from "./analyzer.js";
+import {
+  buildCreatorPortfolio,
+  refineDeepSelectionForVerifiedMedia,
+  refineDeepSelectionForVerifiedVideos
+} from "./analyzer.js";
 
 function inventory(likes: Array<number | null>) {
   return {
@@ -97,5 +101,20 @@ describe("buildCreatorPortfolio", () => {
     expect(refined.items.find((item) => item.externalId === formerLow!.externalId)?.mediaType).toBe("image");
     expect(refined.items.filter((item) => item.deepCandidate).every((item) => item.mediaType === "video")).toBe(true);
     expect(refined.items.filter((item) => item.deepGroups.includes("low"))).toHaveLength(3);
+  });
+
+  it("uses image posts as the four-group deep carrier for an image-only portfolio", () => {
+    const values = Array.from({ length: 30 }, (_, index) => (index + 1) * 100);
+    const { selection } = buildCreatorPortfolio(inventory(values),
+      "/artifacts/11111111-1111-4111-8111-111111111111/creator-inventory.json", "2026-08-20T01:00:00.000Z");
+    const mediaTypes = new Map<string, "video" | "image" | "unknown">(
+      selection.items.map((item) => [item.externalId, "image" as const])
+    );
+    const refined = refineDeepSelectionForVerifiedMedia(selection, mediaTypes, "2026-08-20T02:00:00.000Z");
+    expect(refined.ruleVersion).toBe("four-groups-media-refined-v4");
+    expect(refined.items.filter((item) => item.deepCandidate).every((item) => item.mediaType === "image")).toBe(true);
+    for (const group of ["high", "median", "mean", "low"] as const) {
+      expect(refined.items.filter((item) => item.deepGroups.includes(group))).toHaveLength(3);
+    }
   });
 });

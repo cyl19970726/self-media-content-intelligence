@@ -51,6 +51,8 @@ export function validateCreatorSynthesis(input: {
     selection.items.filter((item) => item.deepGroups.includes(group) && readyDeep.has(item.externalId)).length
   ])) as Record<typeof requiredGroups[number], number>;
   const boundedCoverageReady = boundedMediaGap && requiredGroups.every((group) => readyGroupCoverage[group] >= 1);
+  const hasDeepReconstructionRef = (refs: string[]) => refs.some((ref) =>
+    ref.includes("video-reconstructions") || ref.includes("image-post-reconstruction"));
   const gates = [
     { id: "canonical_21_coverage", pass: expected.size === 21 && actual.size === 21 && [...expected].every((id) => actual.has(id)),
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
@@ -58,12 +60,12 @@ export function validateCreatorSynthesis(input: {
       message: "历史 gate ID；四组各保留 3 个注册成员并允许重叠。全部可得媒体须完成单轮分析；仅当一次定向补取后仍不可得、四组各至少有 1 条已验证视频且缺口显式保留时，才允许带边界通过。" },
     { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
       readyDeep.has(item.postExternalId)
-        ? item.evidenceStatus === "deep_validated" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
+        ? item.evidenceStatus === "deep_validated" && hasDeepReconstructionRef(item.evidenceRefs)
         : builtDeep.has(item.postExternalId)
-          ? item.evidenceStatus === "deep_provisional" && item.evidenceRefs.some((ref) => ref.includes("video-reconstructions"))
+          ? item.evidenceStatus === "deep_provisional" && hasDeepReconstructionRef(item.evidenceRefs)
         : unavailableDeep.has(item.postExternalId) && item.evidenceStatus === "surface_only"
           && item.unknowns.some((unknown) => /媒体|视频.*(不可|无法|未知)|无法.*视频/.test(unknown))),
-      message: "可得视频必须绑定重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确视频内容未知。" },
+      message: "可得深度帖子必须绑定对应媒体重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确内容未知。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),
       message: "High / Base / Low 三档必须同时存在。" },
     { id: "evidence_classification", pass: JSON.stringify(synthesis).includes("factClass") && synthesis.postAnalyses.every((item) => item.evidenceRefs.length > 0),

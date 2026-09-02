@@ -248,3 +248,40 @@ export function refineDeepSelectionForVerifiedVideos(
       ...(missing.length ? [`比较集中的已核验视频不足，未满足组别：${missing.join(" / ")}。`] : [])]
   });
 }
+
+/** Select the real deep-evidence carrier. Video remains preferred when present; image-only
+ * portfolios receive the same four-group contract instead of an impossible video gate. */
+export function refineDeepSelectionForVerifiedMedia(
+  input: CreatorSelection,
+  mediaTypes: Map<string, "video" | "image" | "unknown">,
+  generatedAt: string
+): CreatorSelection {
+  const selection = creatorSelectionSchema.parse(input);
+  const videos = selection.items.filter((item) => mediaTypes.get(item.externalId) === "video" && item.likes !== null);
+  if (videos.length > 0) return refineDeepSelectionForVerifiedVideos(selection, mediaTypes, generatedAt);
+  const images = selection.items.filter((item) => mediaTypes.get(item.externalId) === "image" && item.likes !== null);
+  const high = [...images].sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0)).slice(0, 3);
+  const low = [...images].sort((a, b) => (a.likes ?? 0) - (b.likes ?? 0)).slice(0, 3);
+  const median = closest(images, selection.anchors.median);
+  const mean = closest(images, selection.anchors.mean);
+  const groups = new Map<string, Array<"high" | "median" | "mean" | "low">>();
+  for (const [group, candidates] of [["high", high], ["median", median], ["mean", mean], ["low", low]] as const) {
+    for (const candidate of candidates) groups.set(candidate.externalId, [...(groups.get(candidate.externalId) ?? []), group]);
+  }
+  const missing = (["high", "median", "mean", "low"] as const)
+    .filter((group) => selection.items.filter((item) => groups.get(item.externalId)?.includes(group)).length < 3);
+  return creatorSelectionSchema.parse({
+    ...selection,
+    generatedAt,
+    ruleVersion: "four-groups-media-refined-v4",
+    items: selection.items.map((item) => ({
+      ...item,
+      mediaType: mediaTypes.get(item.externalId) ?? item.mediaType,
+      deepCandidate: groups.has(item.externalId),
+      deepGroups: groups.get(item.externalId) ?? []
+    })),
+    limitations: [...selection.limitations,
+      "比较集没有已核验视频；深度候选改由图文页与正文承载，图文 Builder 不借用视频分析结论。",
+      ...(missing.length ? [`比较集中的已核验图文不足，未满足组别：${missing.join(" / ")}。`] : [])]
+  });
+}

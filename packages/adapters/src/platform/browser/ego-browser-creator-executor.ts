@@ -294,6 +294,7 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
       !["video", "image", "unknown"].includes(String(post.mediaType)) ||
       (post.videoCandidateUrl !== null && typeof post.videoCandidateUrl !== "string") ||
       (post.coverCandidateUrl !== null && typeof post.coverCandidateUrl !== "string") ||
+      (post.imageCandidateUrls !== undefined && !Array.isArray(post.imageCandidateUrls)) ||
       typeof post.inspectedAt !== "string" || !Array.isArray(post.warnings)) {
       throw new Error("详情采集条目结构无效");
     }
@@ -317,6 +318,11 @@ function normalizeDetailResult(value: unknown): CreatorDetailResult {
       mediaType: post.mediaType as "video" | "image" | "unknown",
       videoCandidateUrl: transientUrl(post.videoCandidateUrl, "video"),
       coverCandidateUrl: transientUrl(post.coverCandidateUrl, "cover"),
+      imageCandidateUrls: (Array.isArray(post.imageCandidateUrls) ? post.imageCandidateUrls : [])
+        .flatMap((candidate) => {
+          const resolved = transientUrl(candidate, "cover");
+          return resolved ? [resolved] : [];
+        }),
       inspectedAt: post.inspectedAt,
       warnings: post.warnings.filter((warning): warning is string => typeof warning === "string")
     };
