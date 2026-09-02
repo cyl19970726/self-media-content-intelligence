@@ -95,6 +95,7 @@ export type CreatorDetailOutputPost = {
   mediaType: "video" | "image" | "unknown";
   videoCandidateUrl: string | null;
   coverCandidateUrl: string | null;
+  imageCandidateUrls?: string[];
   inspectedAt: string;
   warnings: string[];
 };

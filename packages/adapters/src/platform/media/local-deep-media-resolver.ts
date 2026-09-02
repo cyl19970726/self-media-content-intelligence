@@ -26,7 +26,8 @@ async function download(url: string, target: string, limit: number): Promise<Buf
 }
 
 export class LocalDeepMediaResolver implements DeepMediaResolver {
-  async resolve(input: { runId: string; posts: Array<{ externalId: string; videoCandidateUrl: string | null; coverCandidateUrl: string | null; downloadVideo: boolean }> }): Promise<DeepMediaManifest> {
+  async resolve(input: { runId: string; posts: Array<{ externalId: string; videoCandidateUrl: string | null;
+    coverCandidateUrl: string | null; imageCandidateUrls?: string[]; downloadVideo: boolean; downloadImages?: boolean }> }): Promise<DeepMediaManifest> {
     const root = path.join(runArtifactDir(input.runId), "deep-media");
     fs.mkdirSync(root, { recursive: true });
     const items: DeepMediaManifest["items"] = [];
@@ -44,15 +45,37 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
           coverMessage = "封面已下载到本地证据仓。";
         } catch (error) { coverArtifactRef = null; coverMessage = error instanceof Error ? error.message : "封面下载失败"; }
       }
+      const requestedImages = post.downloadImages ? [...new Set(post.imageCandidateUrls ?? [])] : [];
+      const imageArtifactRefs: string[] = [];
+      let imageState: DeepMediaManifest["items"][number]["imageState"] = post.downloadImages ? "missing" : "not_requested";
+      let imageMessage = post.downloadImages ? "详情页没有解析到可下载的图文页。" : "未请求图文页证据。";
+      for (let index = 0; index < requestedImages.length; index += 1) {
+        const target = path.join(directory, `image-${String(index + 1).padStart(2, "0")}.webp`);
+        try {
+          await download(requestedImages[index]!, target, 25 * 1024 * 1024);
+          imageArtifactRefs.push(artifactRef(input.runId,
+            `deep-media/${post.externalId}/image-${String(index + 1).padStart(2, "0")}.webp`));
+        } catch {
+          // Keep successful gallery pages and expose partial coverage in the manifest.
+        }
+      }
+      if (post.downloadImages) {
+        imageState = imageArtifactRefs.length === 0 ? (requestedImages.length === 0 ? "missing" : "download_failed")
+          : imageArtifactRefs.length === requestedImages.length ? "ready" : "partial";
+        imageMessage = imageState === "ready" ? `${imageArtifactRefs.length} 张图文页已下载到本地证据仓。`
+          : imageState === "partial" ? `${imageArtifactRefs.length}/${requestedImages.length} 张图文页可用；缺页保持未知。`
+            : requestedImages.length === 0 ? "详情页没有解析到可下载的图文页。" : "图文页下载失败。";
+      }
+      const imageFields = { imageRequested: post.downloadImages === true, imageState, imageArtifactRefs, imageMessage };
       if (!post.downloadVideo) {
         items.push({ externalId: post.externalId, videoRequested: false, state: "not_requested", coverState, coverMessage,
-          videoArtifactRef: null, coverArtifactRef, sha256: null, bytes: null, durationSeconds: null,
+          ...imageFields, videoArtifactRef: null, coverArtifactRef, sha256: null, bytes: null, durationSeconds: null,
           width: null, height: null, hasAudio: null, message: "封面按统一比较集获取；该记录不在四组深度视频下载集。" });
         continue;
       }
       if (!post.videoCandidateUrl) {
         items.push({ externalId: post.externalId, videoRequested: true, state: "missing", coverState, coverMessage,
-          videoArtifactRef: null, coverArtifactRef,
+          ...imageFields, videoArtifactRef: null, coverArtifactRef,
           sha256: null, bytes: null, durationSeconds: null, width: null, height: null, hasAudio: null,
           message: "详情页没有解析到可下载的视频候选。" });
         continue;
@@ -63,7 +86,7 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
         video = await download(post.videoCandidateUrl, videoPath, 250 * 1024 * 1024);
       } catch (error) {
         items.push({ externalId: post.externalId, videoRequested: true, state: "download_failed", coverState, coverMessage,
-          videoArtifactRef: null, coverArtifactRef,
+          ...imageFields, videoArtifactRef: null, coverArtifactRef,
           sha256: null, bytes: null, durationSeconds: null, width: null, height: null, hasAudio: null,
           message: error instanceof Error ? error.message : "视频下载失败" });
         continue;
@@ -76,7 +99,7 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
         const stream = verification.container.streams.find((entry) => entry.codecType === "video");
         if (!stream) throw new Error("媒体完整性报告未确认视频流");
         items.push({ externalId: post.externalId, videoRequested: true, state: "verified_complete", coverState, coverMessage,
-          videoArtifactRef: artifactRef(input.runId, `deep-media/${post.externalId}/source-video.mp4`), coverArtifactRef,
+          ...imageFields, videoArtifactRef: artifactRef(input.runId, `deep-media/${post.externalId}/source-video.mp4`), coverArtifactRef,
           verificationArtifactRef: artifactRef(input.runId, `deep-media/${post.externalId}/media-verification.json`),
           sha256: verification.transport.sha256, bytes: verification.transport.bytes,
           durationSeconds: verification.container.durationSec, width: stream.width, height: stream.height,
@@ -84,7 +107,7 @@ export class LocalDeepMediaResolver implements DeepMediaResolver {
           message: "下载、全流解码、时间轴抽帧与尾段连续性硬闸通过。" });
       } catch (error) {
         items.push({ externalId: post.externalId, videoRequested: true, state: "verification_failed", coverState, coverMessage,
-          videoArtifactRef: null, coverArtifactRef,
+          ...imageFields, videoArtifactRef: null, coverArtifactRef,
           sha256: createHash("sha256").update(video).digest("hex"), bytes: video.byteLength,
           durationSeconds: null, width: null, height: null, hasAudio: null,
           message: error instanceof Error ? error.message : "媒体验证失败" });

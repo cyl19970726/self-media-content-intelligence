@@ -83,7 +83,7 @@ export default function CreatorsOverview() {
 
   return <main className="workspace workspace--solo"><section className="creators-page creator-research-v2">
     <div className="eyebrow"><span>CREATOR ANALYSIS OS</span><span>批量指定 · 独立推进 · 统一证据</span></div>
-    <header className="creator-control-head"><div><h1>二十个博主，<em>一张研究工作台。</em></h1><p className="intake__lede">先建立可比较的公开数据基本盘，再让每个博主独立完成分层、视频重建与内容系统归纳。</p></div>
+    <header className="creator-control-head"><div><h1>二十个博主，<em>一张研究工作台。</em></h1><p className="intake__lede">先建立可比较的公开数据基本盘，再让每个博主独立完成分层、深度内容重建与内容系统归纳。</p></div>
       <ol aria-label="批次研究流程"><li><span>01</span>指定 1–20 人</li><li><span>02</span>本地预检</li><li><span>03</span>并行独立分析</li><li><span>04</span>完整档案与对比</li></ol></header>
     <CreatorBatchIntake runs={runs} submitting={submitting} submitError={submitError} onSubmit={submitBatch}/>
     <CreatorBatchWorkbench batches={batches} loading={loading} error={loadError} filter={filter} onFilter={setFilter} onRefresh={loadOverview}/>

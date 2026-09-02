@@ -17,6 +17,10 @@ export const deepMediaManifestSchema = z.object({
     videoArtifactRef: z.string().nullable(),
     verificationArtifactRef: z.string().nullable().optional(),
     coverArtifactRef: z.string().nullable(),
+    imageRequested: z.boolean().optional(),
+    imageState: z.enum(["not_requested", "ready", "partial", "missing", "download_failed"]).optional(),
+    imageArtifactRefs: z.array(z.string()).optional(),
+    imageMessage: z.string().optional(),
     sha256: z.string().nullable(),
     bytes: z.number().int().nonnegative().nullable(),
     durationSeconds: z.number().nonnegative().nullable(),
@@ -32,6 +36,7 @@ export type DeepMediaManifest = z.infer<typeof deepMediaManifestSchema>;
 export interface DeepMediaResolver {
   resolve(input: {
     runId: string;
-    posts: Array<{ externalId: string; videoCandidateUrl: string | null; coverCandidateUrl: string | null; downloadVideo: boolean }>;
+    posts: Array<{ externalId: string; videoCandidateUrl: string | null; coverCandidateUrl: string | null;
+      imageCandidateUrls?: string[]; downloadVideo: boolean; downloadImages?: boolean }>;
   }): Promise<DeepMediaManifest>;
 }

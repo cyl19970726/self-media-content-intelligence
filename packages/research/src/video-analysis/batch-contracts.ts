@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const videoBatchItemSchema = z.object({
   postExternalId: z.string(),
+  evidenceKind: z.enum(["video", "image_post"]).optional(),
   tier: z.enum(["high", "base", "low"]),
   tierRank: z.number().int().positive(),
   state: z.enum(["queued", "running", "built_unevaluated", "evaluated_with_findings", "verified", "ready", "not_ready", "blocked"]),

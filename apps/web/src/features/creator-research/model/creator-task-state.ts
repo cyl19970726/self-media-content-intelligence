@@ -7,8 +7,8 @@ export const creatorStatusLabels: Record<CreatorResearchStatus, string> = {
 
 const batchSignalLabels: Record<string, string> = {
   video_reconstruction_pending: "视频重建正在排队或执行",
-  creator_synthesis_not_ready: "等待视频重建达到综合条件",
-  video_reconstruction_incomplete: "部分视频重建未完成",
+  creator_synthesis_not_ready: "等待深度内容重建达到综合条件",
+  video_reconstruction_incomplete: "部分深度内容重建未完成",
   synthesis_runner_unavailable: "综合分析服务暂不可用",
   provider_unavailable: "采集服务暂不可用"
 };
@@ -97,7 +97,7 @@ export function taskPhases(run: CreatorResearchRun): TaskPhase[] {
     { id: "queue", label: "排队", detail: "持久队列等待或已被 Worker 接管", state: queueState },
     { id: "collection", label: "采集", detail: "身份/登录预检与公开作品清单", state: phaseState(run, ["preflight", "inventory"]) },
     { id: "tiering", label: "分层", detail: "全量统计与 High / Base / Low 选择集", state: phaseState(run, ["tiering"]) },
-    { id: "reconstruction", label: "深度重建", detail: "选择集详情、媒体核验与重点视频还原", state: phaseState(run, ["deep_capture"]) },
+    { id: "reconstruction", label: "深度重建", detail: "选择集详情、媒体核验与重点帖子还原", state: phaseState(run, ["deep_capture"]) },
     { id: "synthesis", label: "合成", detail: "账号定位、价值与内容系统归纳", state: phaseState(run, ["synthesis"]) },
     { id: "completion", label: "完成", detail: "发布到同一 Dashboard", state: phaseState(run, ["dashboard"]) }
   ];
