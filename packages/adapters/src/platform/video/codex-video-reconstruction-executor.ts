@@ -34,6 +34,7 @@ import {
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
   path.join(projectRoot, ".agents", "skills", "video-content-reconstruction");
 const evaluatorPromptVersion = "single-pass-v2-evidence-budget";
+const builderIntegrityContractVersion = "builder-integrity-v6-host-reference-sanitization";
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
@@ -360,7 +361,7 @@ Write evaluation.md and every human-readable JSON finding, note, and message in 
 `;
 }
 
-function builderIntegrityRepairPrompt(videoPath: string, outputDir: string, failure: string): string {
+export function builderIntegrityRepairPrompt(videoPath: string, outputDir: string, failure: string): string {
   return `
 You are the Builder contract-repair role. Read ${skillDir}/SKILL.md and ${skillDir}/references/builder-operator.md completely.
 
@@ -368,13 +369,19 @@ Source video: ${videoPath}
 Candidate root: ${outputDir}
 Deterministic integrity failure: ${failure}
 
-The evidence collection is frozen. Do not modify media-preparation.json, evidence/, probe.json, capture-protocol.json,
-targeted-evidence/, article.md, or any evaluator artifact. Inspect the existing evidence and repair only reconstruction.json.
-Correct the stated integrity violation without deleting supported knowledge merely to make validation pass. Preserve unknowns,
-all transcript cues, evidence identity, and source boundaries. For carrier-state failures, make availability, inspection status,
-and rationale mutually consistent with evidence already present. For evidence-time failures, bind the evidence to the correct
-knowledge unit or correct that unit's truthful time range; never fabricate timestamps. Run the canonical schema validator once
-before finishing. Do not create an evaluation or report.
+The evidence collection is frozen. Do not modify media-preparation.json, evidence/, capture-protocol.json,
+targeted-evidence/, article.md, or any evaluator artifact. Inspect the existing evidence and repair every violation listed in
+the failure, not only the first one. Normally modify only reconstruction.json. For CARRIER_STATUS, probe.json is also a
+Builder-owned artifact and may be corrected together with the matching reconstruction coverage channel; do not change carrier
+semantics merely to pass validation. Correct the stated integrity violation without deleting supported knowledge. Preserve
+unknowns, all transcript cues, evidence identity, and source boundaries. For carrier-state failures, make availability,
+inspection status, and rationale mutually consistent with evidence already present in both probe and reconstruction. For
+evidence-time failures, bind each listed reference to the correct knowledge unit or correct that unit's truthful time range;
+never fabricate timestamps. For META_GATE, overlookedMeaningChanges and overlookedRelationships contain only items the protocol
+genuinely failed to inspect. A relationship that was inspected but cannot be established from available evidence is an explicit
+unknown or boundary, not an overlooked relationship; preserve that limitation in the appropriate knowledge unit or coverage
+unknowns and remove it from the overlooked arrays. Run the canonical schema validator once before finishing. Do not create an
+evaluation or report.
 `;
 }
 
@@ -453,6 +460,16 @@ export function evaluatorContractRevision(): string {
     path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")
   ];
   const hash = crypto.createHash("sha256").update(evaluatorPromptVersion);
+  for (const file of contractFiles) hash.update(fs.readFileSync(file));
+  return hash.digest("hex");
+}
+
+export function builderIntegrityContractRevision(): string {
+  const contractFiles = [
+    path.join(skillDir, "references/builder-operator.md"),
+    path.join(skillDir, "schemas/reconstruction.schema.json")
+  ];
+  const hash = crypto.createHash("sha256").update(builderIntegrityContractVersion);
   for (const file of contractFiles) hash.update(fs.readFileSync(file));
   return hash.digest("hex");
 }

@@ -179,6 +179,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }
 
   const duration = Number(pack.media?.duration ?? 0);
+  const evidenceTimeViolations: string[] = [];
   for (const unit of units) {
     const start = Number(unit.timeRange?.start);
     const end = Number(unit.timeRange?.end);
@@ -188,10 +189,11 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     for (const reference of unit.evidence ?? []) {
       const evidenceTime = reference.ref ? frameTimes.get(reference.ref) : undefined;
       if (evidenceTime !== undefined && (evidenceTime < start - 0.5 || evidenceTime > end + 0.5)) {
-        fail("EVIDENCE_TIME_RANGE", `${unit.id}:${reference.ref}`);
+        evidenceTimeViolations.push(`${unit.id}:${reference.ref}`);
       }
     }
   }
+  if (evidenceTimeViolations.length > 0) fail("EVIDENCE_TIME_RANGE", evidenceTimeViolations.join(","));
   for (const source of reconstruction.derivedSources ?? []) {
     if (!source.path) fail("DERIVED_SOURCE_PATH");
     const resolved = path.resolve(outputDir, source.path);

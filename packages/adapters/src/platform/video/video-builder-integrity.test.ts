@@ -119,6 +119,25 @@ describe("Builder deterministic integrity gate", () => {
     }
   });
 
+  it("reports every out-of-range frame reference in one repairable failure", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.knowledgeUnits[0].timeRange.end = 2;
+      reconstruction.knowledgeUnits[0].evidence.push(
+        { refType: "targeted_frame", ref: "TARGET-0003", supports: "outside the unit" },
+        { refType: "targeted_frame", ref: "TARGET-0004", supports: "outside the unit" }
+      );
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath)).toThrow(
+        "BUILDER_INTEGRITY_EVIDENCE_TIME_RANGE:KU-001:TARGET-0003,KU-001:TARGET-0004"
+      );
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
   it("rejects an inspection status that contradicts compatibility booleans", () => {
     const item = createFixture();
     try {
