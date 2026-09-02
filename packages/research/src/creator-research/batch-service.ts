@@ -7,6 +7,7 @@ import {
   type CreatorAcquisitionAdapter,
   type CreatorResearchBatch,
   type CreatorResearchBatchCounts,
+  type CreatorResearchBatchItemMaturity,
   type CreatorResearchBatchProjection,
   type CreatorResearchBatchStatus,
   type CreatorResearchRun,
@@ -47,10 +48,15 @@ function increment(counts: CreatorResearchBatchCounts, status: CreatorResearchRu
   else counts[status] += 1;
 }
 
-function aggregateStatus(counts: CreatorResearchBatchCounts, total: number): CreatorResearchBatchStatus {
+function aggregateStatus(
+  counts: CreatorResearchBatchCounts,
+  total: number,
+  dossierReadyRuns: number,
+  wikiReadyRuns: number
+): CreatorResearchBatchStatus {
   if (counts.queued === total) return "queued";
-  if (counts.ready === total) return "ready";
-  if (counts.reviewable + counts.ready === total) return "reviewable";
+  if (wikiReadyRuns === total) return "ready";
+  if (dossierReadyRuns === total) return "reviewable";
   if (counts.failed === total) return "failed";
   if (counts.stale === total) return "stale";
 
@@ -58,6 +64,15 @@ function aggregateStatus(counts: CreatorResearchBatchCounts, total: number): Cre
   if (terminal === total) return "partial";
   if (counts.needsUser > 0) return "needs_user";
   return "running";
+}
+
+function runMaturity(run: CreatorResearchRun): CreatorResearchBatchItemMaturity {
+  if (!run.synthesisArtifactRef) return "incomplete";
+  if (run.status === "ready") return "wiki_ready";
+  if (run.status === "reviewable" && !run.blockers.some((blocker) => blocker.code === "creator_synthesis_not_ready")) {
+    return "dossier_ready";
+  }
+  return "incomplete";
 }
 
 export class CreatorResearchBatchService {
@@ -99,6 +114,7 @@ export class CreatorResearchBatchService {
       const run = this.runs.get(runId);
       if (!run) throw new Error(`creator research batch ${batch.id} references missing run ${runId}`);
       increment(counts, run.status);
+      const maturity = runMaturity(run);
       return {
         position: index + 1,
         runId: run.id,
@@ -106,6 +122,7 @@ export class CreatorResearchBatchService {
         adapter: run.collectionPolicy.adapter,
         creatorName: run.creatorName,
         status: run.status,
+        maturity,
         currentStage: run.currentStage,
         coverage: run.coverage,
         blockerCodes: run.blockers.map((blocker) => blocker.code),
@@ -116,19 +133,24 @@ export class CreatorResearchBatchService {
     });
     const totalRuns = items.length;
     const completedRuns = counts.reviewable + counts.ready + counts.failed + counts.stale;
-    const successfulRuns = counts.reviewable + counts.ready;
+    const dossierReadyRuns = items.filter((item) => item.maturity !== "incomplete").length;
+    const wikiReadyRuns = items.filter((item) => item.maturity === "wiki_ready").length;
+    const successfulRuns = dossierReadyRuns;
     const updatedAt = items.reduce(
       (latest, item) => Date.parse(item.updatedAt) > Date.parse(latest) ? item.updatedAt : latest,
       items[0]?.updatedAt ?? batch.createdAt
     );
     return creatorResearchBatchProjectionSchema.parse({
       batch,
-      status: aggregateStatus(counts, totalRuns),
+      status: aggregateStatus(counts, totalRuns, dossierReadyRuns, wikiReadyRuns),
       counts,
       totalRuns,
       completedRuns,
       successfulRuns,
       progressPercent: Math.round(completedRuns / totalRuns * 100),
+      dossierReadyRuns,
+      wikiReadyRuns,
+      dossierProgressPercent: Math.round(dossierReadyRuns / totalRuns * 100),
       items,
       updatedAt
     });

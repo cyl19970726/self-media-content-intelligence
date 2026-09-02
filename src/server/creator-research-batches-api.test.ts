@@ -34,6 +34,9 @@ function projection(): CreatorResearchBatchProjection {
     completedRuns: 0,
     successfulRuns: 0,
     progressPercent: 0,
+    dossierReadyRuns: 0,
+    wikiReadyRuns: 0,
+    dossierProgressPercent: 0,
     items: [{
       position: 1,
       runId,
@@ -41,6 +44,7 @@ function projection(): CreatorResearchBatchProjection {
       adapter: "redfox",
       creatorName: null,
       status: "queued",
+      maturity: "incomplete",
       currentStage: "preflight",
       coverage: { discoveredPosts: 0, enrichedPosts: 0, comparisonPosts: 0, reconstructedPosts: 0 },
       blockerCodes: [],

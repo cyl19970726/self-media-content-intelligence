@@ -71,6 +71,12 @@ export const creatorResearchBatchCountsSchema = z.object({
   stale: z.number().int().nonnegative()
 });
 
+export const creatorResearchBatchItemMaturitySchema = z.enum([
+  "incomplete",
+  "dossier_ready",
+  "wiki_ready"
+]);
+
 export const creatorResearchBatchItemProjectionSchema = z.object({
   position: z.number().int().min(1).max(20),
   runId: z.string().uuid(),
@@ -78,6 +84,7 @@ export const creatorResearchBatchItemProjectionSchema = z.object({
   adapter: creatorAcquisitionAdapterSchema,
   creatorName: z.string().nullable(),
   status: creatorResearchStatusSchema,
+  maturity: creatorResearchBatchItemMaturitySchema,
   currentStage: creatorResearchStageIdSchema,
   coverage: z.object({
     discoveredPosts: z.number().int().nonnegative(),
@@ -99,6 +106,9 @@ export const creatorResearchBatchProjectionSchema = z.object({
   completedRuns: z.number().int().nonnegative(),
   successfulRuns: z.number().int().nonnegative(),
   progressPercent: z.number().int().min(0).max(100),
+  dossierReadyRuns: z.number().int().nonnegative(),
+  wikiReadyRuns: z.number().int().nonnegative(),
+  dossierProgressPercent: z.number().int().min(0).max(100),
   items: z.array(creatorResearchBatchItemProjectionSchema).min(1).max(20),
   updatedAt: z.string()
 });
@@ -109,5 +119,6 @@ export type ParsedCreateCreatorResearchBatchInput = z.output<typeof createCreato
 export type CreatorResearchBatch = z.infer<typeof creatorResearchBatchSchema>;
 export type CreatorResearchBatchStatus = z.infer<typeof creatorResearchBatchStatusSchema>;
 export type CreatorResearchBatchCounts = z.infer<typeof creatorResearchBatchCountsSchema>;
+export type CreatorResearchBatchItemMaturity = z.infer<typeof creatorResearchBatchItemMaturitySchema>;
 export type CreatorResearchBatchItemProjection = z.infer<typeof creatorResearchBatchItemProjectionSchema>;
 export type CreatorResearchBatchProjection = z.infer<typeof creatorResearchBatchProjectionSchema>;
