@@ -616,7 +616,7 @@ export class CreatorResearchService {
     batch.limitations = [...new Set([
       ...batch.limitations,
       `bounded_media_retry_once:${unavailable.map((item) => item.postExternalId).join(",")}`,
-      `${unavailable.length} 条注册深度样本经一次定向补取仍无可核验媒体；只保留 surface_only，视频内容保持未知。`
+      `${unavailable.length} 条注册深度样本经一次定向补取仍无可核验媒体；只保留 surface_only，帖子内容保持未知。`
     ])];
     const batchRef = this.artifacts.write(run.id, `video-reconstruction-batch-r${batch.revision}.json`, batch, [previousBatchRef]);
     run.reconstructionBatchArtifactRef = batchRef;

@@ -283,7 +283,7 @@ export class CreatorResearchJobProcessor {
         likes: corpus.likes,
         tierCounts: selection.tierCounts,
         anchors: selection.anchors,
-        interpretationBoundary: "本节点回答表现分布与样本结构；内容为何爆发或失效必须等待逐条详情与视频证据。",
+        interpretationBoundary: "本节点回答表现分布与样本结构；内容为何爆发或失效必须等待逐条详情与深度媒体证据。",
         unknowns: corpus.unknowns
       });
       const portfolioRef = this.artifacts.write(run.id, "corpus-analysis.json", analysis, [corpusRef, selectionRef]);

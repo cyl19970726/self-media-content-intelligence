@@ -22,7 +22,7 @@ const pipelineGateLabels = { not_checked: "未评测", running: "评测中", pas
 const workerLabels: Record<string, string> = {
   orchestrator: "任务编排器", "ego-browser-worker": "浏览器采集 Worker", "detail-comment-worker": "详情与评论 Worker",
   "annotation-worker": "内容标注 Worker", "statistics-worker": "确定性统计 Worker", "selection-worker": "分层选样 Worker",
-  "media-worker": "媒体核验 Worker", "video-reconstruction-worker": "视频重建 Worker", "independent-video-evaluator": "独立视频评审",
+  "media-worker": "媒体核验 Worker", "video-reconstruction-worker": "帖子重建 Worker", "independent-video-evaluator": "独立帖子评审",
   "creator-synthesis-worker": "博主综合 Worker", "independent-creator-evaluator": "独立博主评审", "projection-worker": "Dashboard 投影器"
 };
 
@@ -140,7 +140,7 @@ export default function CreatorDossierPage() {
           {(data.run.videoWork.activePostExternalIds.length > 0 || data.run.videoWork.queuedPosts > 0 || data.run.videoWork.analyzedPosts > 0) &&
             <p className="creator-run-progress__current"><b>Builder 并发</b>{data.run.videoWork.activePostExternalIds.length} 条执行 · {data.run.videoWork.queuedPosts} 条排队 · {data.run.videoWork.analyzedPosts} 条已构建 · {data.run.videoWork.failedPosts} 条失败 · 上限 {data.run.videoWork.concurrencyLimit}</p>}
         </div>
-        <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.label}</span>)}</div>
+        <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.id === "deep_capture" ? "重点帖子内容还原" : stage.label}</span>)}</div>
         {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}
         {data.run.status === "needs_user" && <div className="creator-run-progress__actions">
           <span>在已交接的小红书页面完成提示动作后，再从这里恢复同一任务。</span>
@@ -152,10 +152,10 @@ export default function CreatorDossierPage() {
       </section>}
       {data.pipeline && <details className={`research-pipeline research-pipeline--${data.pipeline.state}`} open={!data.pipeline.ready}>
         <summary>
-          <div><span>RESEARCH PIPELINE · 13 STAGES</span><strong>{data.pipeline.ready ? "完整研究闭环已通过" : "当前是部分研究投影"}</strong></div>
+          <div><span>RESEARCH PIPELINE · 13 STAGES</span><strong>{data.pipeline.ready ? "完整研究闭环已通过" : data.run?.status === "reviewable" ? "可审阅报告已生成 · 正式知识闸门未通过" : "当前是部分研究投影"}</strong></div>
           <div><b>{data.pipeline.completedStages}/{data.pipeline.totalStages}</b><small>阶段通过 · 点击{data.pipeline.ready ? "查看" : "检查缺口"}</small></div>
         </summary>
-        <div className="research-pipeline__intro"><p>Skill 决定研究方法，Worker 生成证据，Evaluator 独立把关；Dashboard 只展示最后一版有效结果。</p><span>当前停在：{data.pipeline.stages.find((stage) => stage.id === data.pipeline?.currentStageId)?.label}</span></div>
+        <div className="research-pipeline__intro"><p>Skill 决定研究方法，Worker 生成证据，Evaluator 独立把关；Dashboard 只展示最后一版有效结果。</p><span>优先缺口：{data.pipeline.stages.find((stage) => stage.id === data.pipeline?.currentStageId)?.label}</span></div>
         <div className="research-pipeline__stages">{data.pipeline.stages.map((stage, index) => <article key={stage.id} className={`pipeline-stage pipeline-stage--${stage.state}`}>
           <header><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{stage.label}</h3><small>{pipelineStateLabels[stage.state]} · {pipelineGateLabels[stage.gateState]}</small></div></header>
           <p>{stage.message}</p>

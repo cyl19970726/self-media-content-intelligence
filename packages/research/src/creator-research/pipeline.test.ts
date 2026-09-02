@@ -138,9 +138,9 @@ describeWithExternalEvidence("creator research pipeline projection", () => {
     });
 
     expect(projected.stages.find((stage) => stage.id === "media_verification")).toMatchObject({
-      state: "partial", gateState: "partial", message: "4/6 条媒体通过核验；2 条经一次定向补取仍不可得，视频内容保持未知。"
+      state: "partial", gateState: "partial", message: "4/6 条媒体通过核验；2 条经一次定向补取仍不可得，帖子内容保持未知。"
     });
     expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.message).toContain("2 条媒体不可得");
-    expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.message).toContain("2 条媒体不可得且未评估视频内容");
+    expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.message).toContain("2 条媒体不可得且未评估帖子内容");
   });
 });
