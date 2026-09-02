@@ -5,6 +5,7 @@ import { getVideoResearch } from "../../shared/api/client";
 import type { VideoResearch } from "../../shared/contracts/core";
 import { friendlyArticleHeading, withoutEmbeddedTranscript } from "./model/video-evidence-copy";
 import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
+import { PostSourceFactsCard } from "../../entities/source-facts/PostSourceFactsCard";
 
 const evidenceLabels = {
   raw_fact: "原始事实", visual_observation: "画面观察", author_claim: "作者主张", system_inference: "系统推断", unknown: "未知"
@@ -114,6 +115,7 @@ export default function VideoEvidencePage() {
             <div><p className="eyebrow"><span>VIDEO RESEARCH</span><span>{data.sourceLabel}</span></p><h1>{data.title}</h1><p className="evidence-head__lead">{data.thesis}</p><a className="evidence-source" href={data.sourceHref} target="_blank" rel="noreferrer">查看原始内容<ExternalLink size={13}/></a></div>
             <div className="evidence-health-card"><span className={data.gate.ready ? "is-ready" : "is-partial"}>{data.gate.ready ? "三镜头硬闸通过" : "三镜头未闭环"}</span><b>{data.coverage.coreCovered}/{data.coverage.coreTotal}</b><small>核心知识覆盖</small><p>{data.evidenceHealth.note}</p></div>
           </header>
+          <PostSourceFactsCard facts={data.sourceFacts}/>
 
           <section className="post-truth-strip" aria-label="帖子知识版本状态">
             <article className={`post-truth post-truth--${data.quality.buildState}`}><span>BUILD</span><b>{qualityCopy.build[data.quality.buildState]}</b><small>是否已有可读、可引用的 Builder 产物</small></article>

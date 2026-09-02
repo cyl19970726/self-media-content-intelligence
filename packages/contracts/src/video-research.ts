@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { missingPostSourceFacts, postSourceFactsSchema } from "./post-source-facts.js";
 
 const evidenceClassSchema = z.enum(["raw_fact", "visual_observation", "author_claim", "system_inference", "unknown"]);
 const lensCoverageSchema = z.object({
@@ -65,6 +66,7 @@ export const videoResearchSchema = z.object({
   title: z.string(),
   sourceHref: z.string(),
   sourceLabel: z.string(),
+  sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts),
   thesis: z.string(),
   article: z.string().nullable(),
   reports: z.object({

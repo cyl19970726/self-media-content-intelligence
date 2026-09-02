@@ -6,6 +6,7 @@ import { loadCreatorConsole } from "./console.js";
 import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
 import { loadNextWaveDossier } from "./next-wave-dossier.js";
 import { buildCreatorResearchPipeline } from "../../packages/research/index.js";
+import { projectPostSourceFacts } from "./post-source-facts.js";
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
 
@@ -167,7 +168,22 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       selectionReason: item.selectionReason,
       evidenceStatus: reconstructed && ["verified", "ready"].includes(reconstructed.state) ? "deep_validated" as const
         : ["built_unevaluated", "evaluated_with_findings"].includes(reconstructed?.state ?? "") ? "deep_built" as const
-        : item.deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const
+        : item.deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const,
+      sourceFacts: projectPostSourceFacts({
+        sourceUrl: detail?.finalUrl ?? item.url,
+        capturedAt: detail?.inspectedAt ?? capturedAt,
+        title: detail?.title ?? item.title,
+        caption: detail?.description ?? null,
+        coverHref: mediaItem?.coverArtifactRef ?? null,
+        mediaType: detail?.mediaType ?? item.mediaType,
+        imageCount: detail?.imageCount ?? 0,
+        publishedLabel: detail?.publishedLabel ?? null,
+        likes: item.likes,
+        collections: null,
+        comments: null,
+        shares: null,
+        sourceRefs: [sourceRun.inventoryArtifactRef, sourceRun.detailArtifactRef, sourceRun.mediaManifestArtifactRef]
+      })
     };
   });
   const synthesisRef = sourceRun.synthesisArtifactRef ?? `run:${sourceRun.id}`;

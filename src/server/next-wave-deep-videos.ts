@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
 import { researchDir } from "./creator-meta.js";
+import { projectPostSourceFacts } from "./post-source-facts.js";
 
 type Row = Record<string, unknown>;
 
@@ -70,6 +71,25 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
   const percentileRank = engagementLikes === null || !knownLikes.length ? null : Math.round(knownLikes.filter((item) => item <= engagementLikes).length / knownLikes.length * 1000) / 10;
   const corpusPost = corpusPosts.find((item) => text(item.id) === videoId);
   const sourceHref = text(detail.stableUrl) || text(corpusPost?.sourceUrl) || `https://www.xiaohongshu.com/explore/${videoId}`;
+  const sourceFacts = projectPostSourceFacts({
+    sourceUrl: sourceHref,
+    capturedAt: text(detail.observedAt) || null,
+    title: text(post.title, text(corpusPost?.title)) || null,
+    caption: text(post.description) || null,
+    coverHref: null,
+    mediaType: text(post.mediaType) === "video" || text(corpusPost?.mediaType) === "video" ? "video"
+      : text(post.mediaType) === "image" || text(corpusPost?.mediaType) === "image" ? "image" : "unknown",
+    imageCount: number(post.imageCount) ?? 0,
+    publishedLabel: text(post.publishedLabel, text(corpusPost?.publishedLabel)) || null,
+    likes: engagementLikes,
+    collections: number(metrics.collections),
+    comments: number(metrics.comments),
+    shares: number(metrics.shares),
+    sourceRefs: [
+      `artifact:creator-research/next-wave/${creatorId}/creator-corpus.json`,
+      `artifact:creator-research/next-wave/${creatorId}/deep-samples/${videoId}/detail-observation.json`
+    ]
+  });
 
   const units = rows(reconstruction.knowledgeUnits).map((unit) => {
     const timeRange = row(unit.timeRange);
@@ -132,7 +152,7 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
     const unknowns = units.flatMap((unit) => unit.unknowns).filter((value, index, values) => values.indexOf(value) === index);
     const missingReview = "独立内容评测尚未执行；现有结构只能作为待审重建，不能升级为已验证结论。";
     return videoResearchSchema.parse({
-      schemaVersion: "1.0.0", id: videoId, creatorId, creatorName: text(creator.name, creatorId), title: text(post.title, videoId), sourceHref,
+      schemaVersion: "1.0.0", id: videoId, creatorId, creatorName: text(creator.name, creatorId), title: text(post.title, videoId), sourceHref, sourceFacts,
       sourceLabel: "video-content-reconstruction · 三镜头待独立评测", thesis: text(viewerChange.after), article,
       engagement: { likes: engagementLikes, collections: number(metrics.collections), comments: number(metrics.comments), shares: number(metrics.shares) },
       evidenceHealth: { state: "partial", transcript: transcript.length > 0, frames: false, ocr: true, audio: checkedChannels.some((channel) => text(channel.id).includes("10") && channel.inspected === true), baseline: medianLikes !== null,
@@ -186,7 +206,7 @@ export function loadNextWaveDeepVideo(creatorId: string, videoId: string): Video
   const cutsPerMinute = shots.length > 1 && number(media.duration) ? Math.round(((shots.length - 1) * 60 / number(media.duration)!) * 10) / 10 : null;
 
   return videoResearchSchema.parse({
-    schemaVersion: "1.0.0", id: videoId, creatorId, creatorName: text(creator.name, creatorId), title: text(post.title, videoId), sourceHref,
+    schemaVersion: "1.0.0", id: videoId, creatorId, creatorName: text(creator.name, creatorId), title: text(post.title, videoId), sourceHref, sourceFacts,
     sourceLabel: directingReady && visualReady ? "video-content-reconstruction · 三镜头硬闸通过" : "video-content-reconstruction · 内容硬闸通过", thesis: text(viewerChange.after), article,
     engagement: { likes: engagementLikes, collections: number(metrics.collections), comments: number(metrics.comments), shares: number(metrics.shares) },
     evidenceHealth: { state: "ready", transcript: transcript.length > 0, frames: denseFrames.length > 0, ocr: true, audio: true, baseline: medianLikes !== null,

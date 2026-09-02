@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { creatorResearchRunSchema, dataHealthSchema } from "./schema.js";
 import { creatorResearchPipelineSchema } from "./creator-pipeline.js";
+import { missingPostSourceFacts, postSourceFactsSchema } from "./post-source-facts.js";
 
 export const researchStatementSchema = z.object({
   statement: z.string(),
@@ -46,7 +47,8 @@ export const creatorDossierItemSchema = z.object({
   contentArchitecture: z.array(z.string()),
   mechanismHypothesis: z.string().nullable(),
   selectionReason: z.string(),
-  evidenceStatus: z.enum(["deep_validated", "deep_built", "deep_pending", "surface_only", "missing"])
+  evidenceStatus: z.enum(["deep_validated", "deep_built", "deep_pending", "surface_only", "missing"]),
+  sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts)
 });
 
 export const creatorDossierSchema = z.object({

@@ -8,6 +8,8 @@ import { createRun, getRun, listRuns, retryRun } from "../../shared/api/client";
 import { ReportV2 } from "./ReportV2";
 import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../../shared/contracts/core";
+import { PostSourceFactsCard } from "../../entities/source-facts/PostSourceFactsCard";
+import { sourceSnapshotFacts } from "../../entities/source-facts/model";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
 const statusLabels: Record<RunStatus, string> = {
@@ -106,6 +108,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
         {(report.status === "blocked" || report.status === "failed") && <button onClick={onRetry}><RefreshCw size={15}/> 重试</button>}
       </div>
     </header>
+    {source && <PostSourceFactsCard facts={sourceSnapshotFacts(source)}/>}
     <section className="stage-line" aria-label="运行阶段">
       {report.stages.map((item, index) => <div key={item.id} className={`stage stage--${item.status}`}>
         <span>{item.status === "complete" ? <Check size={15}/> : item.status === "running" ? <LoaderCircle className="spin" size={15}/> : `0${index + 1}`}</span>

@@ -12,6 +12,7 @@ import { videoResearchSchema, type VideoResearch } from "../shared/video-researc
 import { loadVideoEvidence } from "./console.js";
 import { loadLegacyDeepVideo } from "./legacy-deep-videos.js";
 import { loadNextWaveDeepVideo } from "./next-wave-deep-videos.js";
+import { projectPostSourceFacts } from "./post-source-facts.js";
 
 function record(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
 function text(value: unknown, fallback = ""): string { return typeof value === "string" ? value : fallback; }
@@ -111,6 +112,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   if (!batchItem?.reconstructionArtifactRef) return legacyVideo(creatorId, videoId);
   const selection = portfolio?.selection?.items.find((item) => item.externalId === videoId);
   const detail = portfolio?.details?.posts.find((item) => item.externalId === videoId);
+  const sourceMedia = portfolio?.mediaManifest?.items.find((item) => item.externalId === videoId);
   const synthesis = portfolio?.synthesis?.postAnalyses.find((item) => item.postExternalId === videoId);
   const analysis = portfolio?.analysis;
   const reconstruction = record(readJson(batchItem.reconstructionArtifactRef));
@@ -192,6 +194,18 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     schemaVersion: "1.0.0", id: videoId, creatorId: run.creatorId ?? creatorId, creatorName: run.creatorName ?? "待识别博主",
     title: detail?.title ?? selection?.title ?? synthesis?.title ?? "标题未识别", sourceHref: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
+    sourceFacts: projectPostSourceFacts({
+      sourceUrl: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
+      capturedAt: detail?.inspectedAt ?? run.lastSnapshotAt,
+      title: detail?.title ?? selection?.title ?? synthesis?.title ?? null,
+      caption: detail?.description ?? selection?.visibleText ?? null,
+      coverHref: sourceMedia?.coverArtifactRef ?? null,
+      mediaType: detail?.mediaType ?? selection?.mediaType ?? "unknown",
+      imageCount: detail?.imageCount ?? sourceMedia?.imageArtifactRefs?.length ?? 0,
+      publishedLabel: detail?.publishedLabel ?? null,
+      likes: selection?.likes ?? null,
+      sourceRefs: [run.inventoryArtifactRef, run.detailArtifactRef, run.mediaManifestArtifactRef]
+    }),
     thesis: text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")), article,
     reports: { builder: article, evaluator: evaluatorReport },
     quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],

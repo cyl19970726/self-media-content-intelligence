@@ -53,9 +53,15 @@ describeWithExternalEvidence("next-wave inventory dossier", () => {
     expect(high?.deepSample).toBe(true);
     expect(high?.evidenceStatus).toBe("deep_validated");
     expect(high?.evidenceHref).toBe("/creators/cyber-duck-aigc/videos/67b012c40000000017038a99");
+    expect(high?.sourceFacts.title).toBe("用Deepseek学英语太好学了~！");
+    expect(high?.sourceFacts.caption).toBe("各种题型 轻松出题自学好用");
+    expect(high?.sourceFacts.availability.caption).toBe("available");
+    expect(high?.sourceFacts.metrics.collections).toBe(62_000);
+    expect(high?.sourceFacts.coverHref).toBe(high?.coverHref);
     const meanNear = dossier?.portfolio.items.find((item) => item.id === "658bfdde000000001000fcea");
     expect(meanNear?.deepSample).toBe(true);
     expect(meanNear?.evidenceStatus).toBe("deep_pending");
+    expect(meanNear?.sourceFacts.availability.caption).toBe("missing");
     expect(dossier?.portfolio.deepCount).toBe(2);
     expect(dossier?.portfolio.items.filter((item) => item.coverHref !== null)).toHaveLength(20);
     expect(high?.coverHref).toContain("/research/next-wave/cyber-duck-aigc/");
