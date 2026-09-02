@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
 import { researchDir } from "./creator-meta.js";
+import { projectPostSourceFacts } from "./post-source-facts.js";
 
 const metricSchema = z.object({
   likes: z.number().nonnegative().nullable(),
@@ -157,12 +158,16 @@ function candidateItem(creatorSlug: string, corpus: Corpus, candidate: Candidate
   const detailMedia = detail && typeof detail.media === "object" && detail.media ? detail.media as Record<string, unknown> : {};
   const deepPresent = Boolean(reconstruction) && hasTrustedFile(deepRoot, "article.md");
   const deepReady = gate?.ready === true && lensOverall.ready === true && Boolean(reconstruction);
+  const sourceHref = post?.sourceUrl ?? `https://www.xiaohongshu.com/explore/${candidate.id}`;
+  const coverHref = covers.get(candidate.id) ?? null;
+  const mediaType = detailPost.mediaType === "video" || post?.mediaType === "video" ? "video" as const
+    : detailPost.mediaType === "image" || post?.mediaType === "image" ? "image" as const : "unknown" as const;
   return {
     id: candidate.id,
     title: post?.title ?? candidate.title,
-    sourceHref: post?.sourceUrl ?? `https://www.xiaohongshu.com/explore/${candidate.id}`,
+    sourceHref,
     evidenceHref: deepPresent ? `/creators/${creatorSlug}/videos/${candidate.id}` : null,
-    coverHref: covers.get(candidate.id) ?? (deepReady ? `/research/next-wave/${creatorSlug}/deep-samples/${candidate.id}/targeted-evidence/highres/HR-01-5.0.jpg` : null),
+    coverHref,
     tier,
     tierRank,
     anchors: anchor ? [anchor] : [],
@@ -182,7 +187,26 @@ function candidateItem(creatorSlug: string, corpus: Corpus, candidate: Candidate
     selectionReason: deepReady ? "账号最高赞样本；内容还原、编导逻辑和画面剪辑三镜头均已通过独立评测。" : deepPresent ? "已完成内容还原与证据采集，三镜头独立评测尚未闭环。" : tier === "high" ? "主页可见点赞高位候选；尚未读取详情，不能解释爆发原因。"
       : tier === "low" ? "主页可见点赞低位候选；尚未读取详情，不能解释失效原因。"
         : anchor === "mean_near" ? "最接近可见作品点赞均值的候选。" : "最接近可见作品点赞中位数的候选。",
-    evidenceStatus: deepReady ? "deep_validated" as const : deepPresent ? "deep_pending" as const : "surface_only" as const
+    evidenceStatus: deepReady ? "deep_validated" as const : deepPresent ? "deep_pending" as const : "surface_only" as const,
+    sourceFacts: projectPostSourceFacts({
+      sourceUrl: sourceHref,
+      capturedAt: typeof detail?.observedAt === "string" ? detail.observedAt : corpus.snapshotAt,
+      title: typeof detailPost.title === "string" ? detailPost.title : post?.title ?? candidate.title,
+      caption: typeof detailPost.description === "string" ? detailPost.description : null,
+      coverHref,
+      mediaType,
+      imageCount: typeof detailMedia.imageCount === "number" ? detailMedia.imageCount : 0,
+      publishedLabel: typeof detailPost.publishedLabel === "string" ? detailPost.publishedLabel : post?.publishedLabel ?? null,
+      likes: typeof detailMetrics.likes === "number" ? detailMetrics.likes : candidate.likes,
+      collections: typeof detailMetrics.collections === "number" ? detailMetrics.collections : post?.metrics.collections ?? null,
+      comments: typeof detailMetrics.comments === "number" ? detailMetrics.comments : post?.metrics.comments ?? null,
+      shares: typeof detailMetrics.shares === "number" ? detailMetrics.shares : post?.metrics.shares ?? null,
+      sourceRefs: [
+        `artifact:creator-research/next-wave/${creatorSlug}/creator-corpus.json`,
+        detail ? `artifact:creator-research/next-wave/${creatorSlug}/deep-samples/${candidate.id}/detail-observation.json` : null,
+        coverHref ? `artifact:creator-research/next-wave/${creatorSlug}/cover-manifest.json` : null
+      ]
+    })
   };
 }
 

@@ -111,6 +111,31 @@ export function registerKnowledgeRoutes(
     });
   });
 
+  app.get("/api/v1/content-packages/:id/snapshots/:snapshotId/lineage", (request, response) => {
+    const detail = publishing.getPackage(request.params.id);
+    const snapshot = publishing.getPackageSnapshot(request.params.id, request.params.snapshotId);
+    if (!detail || !snapshot) return response.status(404).json({ error: "内容包快照不存在" });
+    const bindings = knowledge.bindingLineage(request.params.id)
+      .filter((item) => item.binding.contentPackageSnapshotId === snapshot.id);
+    const hypotheses = knowledge.listHypotheses(request.params.id)
+      .filter((item) => item.contentPackageSnapshotId === snapshot.id);
+    const variants = detail.variants.filter((item) => item.contentPackageSnapshotId === snapshot.id);
+    const variantIds = new Set(variants.map((item) => item.id));
+    const publications = publishing.listRuns(200).filter((item) => variantIds.has(item.variantId)).map((run) => ({
+      run, validations: knowledge.listValidations(run.id)
+    }));
+    const blockers = [
+      ...(bindings.length === 0 ? ["尚未绑定知识 revision"] : []),
+      ...(bindings.some((item) => item.resolution === "missing" || item.resolution === "invalidated") ? ["存在无法解析或已失效的知识绑定"] : []),
+      ...(hypotheses.length === 0 ? ["尚未声明创作假设"] : []),
+      ...(variants.length === 0 ? ["尚未冻结平台版本"] : [])
+    ];
+    return response.json({
+      package: detail.package, snapshot, bindings, hypotheses, variants, publications,
+      readiness: { readyForPublication: blockers.length === 0, blockers }
+    });
+  });
+
   app.post("/api/v1/content-packages/:id/snapshots/:snapshotId/knowledge-bindings", (request, response) => {
     try {
       const snapshot = requireWorkingSnapshot(request.params.id, request.params.snapshotId);

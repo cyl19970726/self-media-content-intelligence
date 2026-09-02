@@ -27,13 +27,17 @@ export function KnowledgeDecisionPanel({ contentPackage }: { contentPackage: Con
     const selectedSnapshot = nextSnapshots.find((item) => item.id === preferredSnapshotId)
       ?? nextSnapshots.find((item) => item.status === "working") ?? nextSnapshots[0] ?? null;
     const context = selectedSnapshot ? await getPackageKnowledge(contentPackage.id, selectedSnapshot.id) : { bindings: [], hypotheses: [] };
+    const selectable = nextConcepts.filter((item) => ["active", "qualified", "contradicted"].includes(item.research.concept.status));
     setSnapshots(nextSnapshots); setSnapshot(selectedSnapshot);
     setConcepts(nextConcepts); setBindings(context.bindings); setHypotheses(context.hypotheses);
-    setSelectedConceptId((current) => current || nextConcepts[0]?.research.concept.id || "");
+    setSelectedConceptId((current) => selectable.some((item) => item.research.concept.id === current)
+      ? current : selectable[0]?.research.concept.id || "");
   }, [contentPackage.id]);
   useEffect(() => { void refresh().catch((cause) => setError(cause instanceof Error ? cause.message : "知识决策读取失败")); }, [refresh]);
 
   const selectedConcept = concepts.find((item) => item.research.concept.id === selectedConceptId) ?? null;
+  const selectableConcepts = useMemo(() => concepts.filter((item) =>
+    ["active", "qualified", "contradicted"].includes(item.research.concept.status)), [concepts]);
   const currentBindings = useMemo(() => bindings.filter((item) => item.contentPackageSnapshotId === snapshot?.id), [bindings, snapshot?.id]);
   const writable = snapshot?.status === "working";
 
@@ -82,12 +86,16 @@ export function KnowledgeDecisionPanel({ contentPackage }: { contentPackage: Con
       <form onSubmit={(event) => void bind(event)}>
         <span>01 / 选择并绑定</span>
         <label>知识概念<select value={selectedConceptId} onChange={(event) => setSelectedConceptId(event.target.value)} required>
-          {concepts.map((item) => <option value={item.research.concept.id} key={item.research.concept.id}>{item.research.concept.name} · r{item.research.currentRevision.revision}</option>)}
+          {selectableConcepts.map((item) => <option value={item.research.concept.id} key={item.research.concept.id}>{item.research.concept.name} · r{item.research.currentRevision.revision}</option>)}
         </select></label>
         <label>使用方式<select value={usage} onChange={(event) => setUsage(event.target.value as KnowledgeBinding["usage"])}><option value="adopt">采用</option><option value="adapt">改编</option><option value="reject">拒绝</option><option value="test">测试</option></select></label>
         <label>为什么这样用<textarea value={rationale} onChange={(event) => setRationale(event.target.value)} rows={2} required/></label>
         <button disabled={busy || !selectedConcept || !writable}><Link2 size={14}/> 锁定 revision</button>
-        <div className="pinned-list">{currentBindings.map((item) => <p key={item.id} className={`binding-${item.status}`}><Check size={13}/><span>{item.usage} · {item.status}<small>{item.targetId}</small><small>{item.rationale}</small></span></p>)}</div>
+        <div className="pinned-list">{currentBindings.map((item) => {
+          const owner = concepts.find((concept) => concept.research.revisions.some((revision) => revision.id === item.targetId));
+          const revision = owner?.research.revisions.find((candidate) => candidate.id === item.targetId);
+          return <p key={item.id} className={`binding-${item.status}`}><Check size={13}/><span>{owner?.research.concept.name ?? item.targetId}<small>{item.usage} · {item.status} · r{revision?.revision ?? "?"}</small><small>{item.rationale}</small></span></p>;
+        })}</div>
       </form>
       <form onSubmit={(event) => void declareHypothesis(event)}>
         <span>02 / 声明创作假设</span>

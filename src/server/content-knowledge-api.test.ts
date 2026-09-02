@@ -207,6 +207,19 @@ describe("content knowledge API", () => {
     const run = await request("/api/v1/publications", { variantId: variant.value.id });
     expect(run.response.status).toBe(201);
     expect(run.value.contentPackageSnapshotId).toBe(snapshotId);
+    const lineageBeforePublication = await fetch(`${base}/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/lineage`)
+      .then((response) => response.json()) as {
+        readiness: { readyForPublication: boolean; blockers: string[] };
+        bindings: Array<{ resolution: string; targets: Array<{ concept: { id: string }; pinnedRevision: { id: string }; observations: unknown[] }> }>;
+        publications: Array<{ run: { id: string }; validations: unknown[] }>;
+      };
+    expect(lineageBeforePublication.readiness).toEqual({ readyForPublication: true, blockers: [] });
+    expect(lineageBeforePublication.bindings[0]).toMatchObject({
+      resolution: "resolved",
+      targets: [{ concept: { id: concept.research.concept.id }, pinnedRevision: { id: concept.research.currentRevision.id } }]
+    });
+    expect(lineageBeforePublication.bindings[0]?.targets[0]?.observations).toHaveLength(1);
+    expect(lineageBeforePublication.publications[0]?.run.id).toBe(run.value.id);
 
     const premature = await request(`/api/v1/publications/${run.value.id}/practice-validations`, {
       operationKey: "validation-before-execution", hypothesisId: hypothesis.value.id, observedSignals: [], unavailableMetrics: [], executionDeviations: [], confounders: []
@@ -258,6 +271,9 @@ describe("content knowledge API", () => {
       expect(adjudicated.response.status).toBe(202);
       expect(practiceValidationSchema.parse(adjudicated.value).status).toBe(["promoted", "completed_no_promotion", "blocked", "invalidated"][index]);
     }
+    const lineageAfterPractice = await fetch(`${base}/api/v1/content-packages/${packageId}/snapshots/${snapshotId}/lineage`)
+      .then((response) => response.json()) as { publications: Array<{ run: { id: string }; validations: unknown[] }> };
+    expect(lineageAfterPractice.publications.find((item) => item.run.id === run.value.id)?.validations).toHaveLength(4);
     const learned = await fetch(`${base}/api/v1/knowledge/${concept.research.concept.id}`).then((response) => response.json());
     const learnedView = knowledgeConceptViewSchema.parse(learned);
     expect(learnedView.research.counts.distinctEligibleVideos).toBe(1);

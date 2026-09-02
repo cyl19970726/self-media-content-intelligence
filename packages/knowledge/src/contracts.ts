@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { ingestAnalysisRevisionSchema, researchConceptReadSchema, researchConditionSchema } from "../../contracts/index.js";
+import {
+  ingestAnalysisRevisionSchema, researchConceptReadSchema, researchConditionSchema,
+  researchConceptRevisionSchema, researchConceptSchema, researchObservationSchema
+} from "../../contracts/index.js";
 
 export const knowledgeMaturitySchema = z.enum([
   "raw_fact", "single_post_observation", "creator_pattern", "conditional_pattern",
@@ -129,6 +132,22 @@ export const knowledgeBindingSchema = z.object({
   rationale: z.string().min(1),
   status: z.enum(["current", "stale_available", "invalidated"]),
   createdAt: z.string().datetime()
+});
+
+export const knowledgeBindingLineageTargetSchema = z.object({
+  concept: researchConceptSchema,
+  pinnedRevision: researchConceptRevisionSchema,
+  observations: z.array(researchObservationSchema),
+  contributions: z.array(z.object({
+    manifest: knowledgeContributionManifestSchema,
+    contribution: knowledgeContributionSchema
+  }))
+});
+
+export const knowledgeBindingLineageSchema = z.object({
+  binding: knowledgeBindingSchema,
+  resolution: z.enum(["resolved", "stale_available", "invalidated", "missing"]),
+  targets: z.array(knowledgeBindingLineageTargetSchema)
 });
 
 export const createKnowledgeBindingInputSchema = knowledgeBindingSchema.omit({ id: true, status: true, createdAt: true }).extend({
@@ -296,6 +315,7 @@ export type AdjudicateKnowledgeProposalInput = z.infer<typeof adjudicateKnowledg
 export type LegacyKnowledgeManifestInput = z.infer<typeof legacyKnowledgeManifestInputSchema>;
 export type SemanticEdge = z.infer<typeof semanticEdgeSchema>;
 export type KnowledgeBinding = z.infer<typeof knowledgeBindingSchema>;
+export type KnowledgeBindingLineage = z.infer<typeof knowledgeBindingLineageSchema>;
 export type CreationHypothesis = z.infer<typeof creationHypothesisSchema>;
 export type PracticeValidation = z.infer<typeof practiceValidationSchema>;
 export type KnowledgeConceptView = z.infer<typeof knowledgeConceptViewSchema>;

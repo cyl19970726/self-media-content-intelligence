@@ -95,4 +95,24 @@ describe("ego-browser publishing scripts", () => {
     expectValidScript(buildPrepareScript({ runId: "prepare-official", taskSpaceId: null, variant: official }));
     expectValidScript(buildSubmitScript({ runId: "submit-official", taskSpaceId: 19, variant: official }));
   });
+
+  it("flushes the structured worker result before transferring TaskSpace ownership", () => {
+    const expectResultBeforeEveryHandoff = (script: string) => {
+      let previousHandoff = -1;
+      for (const match of script.matchAll(/handOffTaskSpace\(task\.id\)/g)) {
+        const handoff = match.index;
+        const result = script.lastIndexOf("result(", handoff);
+        const flush = script.lastIndexOf("await wait(0.2)", handoff);
+        expect(result).toBeGreaterThan(previousHandoff);
+        expect(flush).toBeGreaterThan(result);
+        previousHandoff = handoff;
+      }
+    };
+    for (const platform of ["xiaohongshu", "douyin", "wechat_channels", "bilibili"] as const) {
+      const value = variant(platform);
+      expectResultBeforeEveryHandoff(buildPrepareScript({ runId: `prepare-order-${platform}`, taskSpaceId: null, variant: value }));
+      expectResultBeforeEveryHandoff(buildSubmitScript({ runId: `submit-order-${platform}`, taskSpaceId: 31, variant: value }));
+      expectResultBeforeEveryHandoff(buildCancelScript({ runId: `cancel-order-${platform}`, taskSpaceId: 31, variant: value }));
+    }
+  });
 });
