@@ -108,7 +108,7 @@ export class SinglePostKnowledgeCompiler implements AnalysisCompletionPort, Know
 
   publish(report: ReportEnvelope): void {
     if (!report.source || !["complete", "partial"].includes(report.status)) return;
-    this.knowledge.compile(this.propose(report));
+    this.knowledge.stage(this.propose(report));
   }
 
   propose(report: Readonly<ReportEnvelope>): CompileKnowledgeInput {

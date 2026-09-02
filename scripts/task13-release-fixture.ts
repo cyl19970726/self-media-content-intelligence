@@ -65,6 +65,10 @@ export async function seedTask13ReleaseFixture(input: {
   let directPublishing: SQLitePublishingRepository | null = null;
   try {
     const report = await analysis.createAndRun("fixture://xiaohongshu/task13-release-candidate");
+    const proposal = knowledge.listProposals({ subjectType: "video", subjectId: report.id })[0];
+    if (!proposal) throw new Error("Task 13 fixture did not stage a current concept proposal");
+    knowledge.adjudicateProposal(proposal.id, { operationKey: `task13:review:${proposal.id}`,
+      expectedFingerprint: proposal.inputFingerprint, decision: "apply", reason: "隔离 fixture 显式审核链路。", reviewerId: "fixture-reviewer" });
     const currentConcept = knowledge.listKnowledge().find((item) => item.research.observations.some((observation) =>
       observation.analysisRevisionId === `analysis:${report.id}:${report.updatedAt}`
     )) ?? knowledge.listKnowledge()[0];

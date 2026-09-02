@@ -3,9 +3,9 @@ import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { z } from "zod";
 import {
-  creationHypothesisSchema, knowledgeBindingSchema, knowledgeContributionManifestSchema,
+  creationHypothesisSchema, knowledgeBindingSchema, knowledgeCompilationProposalSchema, knowledgeContributionManifestSchema,
   knowledgeContributionSchema, knowledgeInvalidationRecordSchema, practiceValidationSchema, semanticEdgeSchema,
-  type CreationHypothesis, type KnowledgeBinding, type KnowledgeContribution,
+  type CreationHypothesis, type KnowledgeBinding, type KnowledgeCompilationProposal, type KnowledgeContribution,
   type KnowledgeContributionManifest, type KnowledgeInvalidationRecord, type PracticeValidation, type SemanticEdge
 } from "../../../../knowledge/index.js";
 import type { ContentKnowledgeRepository } from "../../../../knowledge/index.js";
@@ -32,6 +32,12 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
     this.db = new DatabaseSync(filePath);
     this.db.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON");
     this.db.exec(`
+      CREATE TABLE IF NOT EXISTS knowledge_compilation_proposals (
+        id TEXT PRIMARY KEY, analysis_revision_id TEXT NOT NULL, compiler_policy_version TEXT NOT NULL,
+        subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, created_at TEXT NOT NULL, value_json TEXT NOT NULL,
+        UNIQUE(analysis_revision_id, compiler_policy_version)
+      );
+      CREATE INDEX IF NOT EXISTS idx_knowledge_proposals_subject ON knowledge_compilation_proposals(subject_type, subject_id, created_at DESC);
       CREATE TABLE IF NOT EXISTS knowledge_manifests (
         id TEXT PRIMARY KEY, analysis_revision_id TEXT NOT NULL, compiler_policy_version TEXT NOT NULL,
         subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, created_at TEXT NOT NULL, value_json TEXT NOT NULL,
@@ -118,6 +124,41 @@ export class SQLiteContentKnowledgeRepository implements ContentKnowledgeReposit
   load(): ResearchLearningEvent[] {
     const rows = this.db.prepare("SELECT event_json FROM research_learning_events ORDER BY sequence ASC").all() as unknown as ResearchEventRow[];
     return rows.map((row) => researchLearningEventSchema.parse(JSON.parse(row.event_json) as unknown));
+  }
+
+  getProposal(id: string): KnowledgeCompilationProposal | null {
+    const row = this.db.prepare("SELECT value_json FROM knowledge_compilation_proposals WHERE id = ?").get(id) as JsonRow | undefined;
+    return row ? knowledgeCompilationProposalSchema.parse(JSON.parse(row.value_json) as unknown) : null;
+  }
+
+  getProposalByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeCompilationProposal | null {
+    const row = this.db.prepare("SELECT value_json FROM knowledge_compilation_proposals WHERE analysis_revision_id = ? AND compiler_policy_version = ?")
+      .get(analysisRevisionId, compilerPolicyVersion) as JsonRow | undefined;
+    return row ? knowledgeCompilationProposalSchema.parse(JSON.parse(row.value_json) as unknown) : null;
+  }
+
+  saveProposal(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string): KnowledgeCompilationProposal {
+    const parsed = knowledgeCompilationProposalSchema.parse(proposal);
+    return this.write(operationKey, commandHash, "proposal_saved", parsed.id, parsed, () => {
+      this.db.prepare(`INSERT INTO knowledge_compilation_proposals
+        (id, analysis_revision_id, compiler_policy_version, subject_type, subject_id, created_at, value_json)
+        VALUES (?, ?, ?, ?, ?, ?, ?)`).run(parsed.id, parsed.analysisRevisionId, parsed.compilerPolicyVersion,
+          parsed.subjectType, parsed.subjectId, parsed.createdAt, JSON.stringify(parsed));
+    }, knowledgeCompilationProposalSchema);
+  }
+
+  saveProposalState(proposal: KnowledgeCompilationProposal, operationKey: string, commandHash: string): KnowledgeCompilationProposal {
+    const parsed = knowledgeCompilationProposalSchema.parse(proposal);
+    return this.write(operationKey, commandHash, "proposal_state_saved", parsed.id, parsed, () => {
+      this.db.prepare("UPDATE knowledge_compilation_proposals SET value_json = ? WHERE id = ?").run(JSON.stringify(parsed), parsed.id);
+    }, knowledgeCompilationProposalSchema);
+  }
+
+  listProposals(subjectType?: string, subjectId?: string): KnowledgeCompilationProposal[] {
+    const rows = subjectType && subjectId
+      ? this.db.prepare("SELECT value_json FROM knowledge_compilation_proposals WHERE subject_type = ? AND subject_id = ? ORDER BY created_at DESC").all(subjectType, subjectId)
+      : this.db.prepare("SELECT value_json FROM knowledge_compilation_proposals ORDER BY created_at DESC").all();
+    return (rows as unknown as JsonRow[]).map((row) => knowledgeCompilationProposalSchema.parse(JSON.parse(row.value_json) as unknown));
   }
 
   getManifestByAnalysis(analysisRevisionId: string, compilerPolicyVersion: string): KnowledgeContributionManifest | null {

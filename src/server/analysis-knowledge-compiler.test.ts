@@ -13,7 +13,7 @@ const directories: string[] = [];
 afterEach(() => { for (const directory of directories.splice(0)) fs.rmSync(directory, { recursive: true, force: true }); });
 
 describe("single-post knowledge compiler", () => {
-  it("automatically emits one idempotent manifest after analysis completion", async () => {
+  it("stages one idempotent proposal and writes knowledge only after review", async () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "single-post-knowledge-"));
     directories.push(directory);
     const repository = new SQLiteContentKnowledgeRepository(path.join(directory, "knowledge.sqlite"));
@@ -21,10 +21,13 @@ describe("single-post knowledge compiler", () => {
     const knowledge = new ContentKnowledgeService(repository, research);
     const service = new AnalysisService(new RunStore(path.join(directory, "runs.sqlite")), new SinglePostKnowledgeCompiler(knowledge));
     const report = await service.createAndRun("fixture://xiaohongshu/three-layer-demo");
-    const first = knowledge.listContributions("video", report.id);
+    const first = knowledge.listProposals({ subjectType: "video", subjectId: report.id });
     expect(first).toHaveLength(1);
-    expect(first[0]?.manifest.compilerPolicyVersion).toBe("single-post-report-v1");
-    expect(first[0]?.contributions.length).toBeGreaterThan(0);
+    expect(first[0]?.compilerPolicyVersion).toBe("single-post-report-v1");
+    expect(first[0]?.candidateCount).toBeGreaterThan(0);
+    expect(knowledge.listContributions("video", report.id)).toHaveLength(0);
+    knowledge.adjudicateProposal(first[0]!.id, { operationKey: `review:${first[0]!.id}`,
+      expectedFingerprint: first[0]!.inputFingerprint, decision: "apply", reason: "测试审核通过。", reviewerId: "test-reviewer" });
     new SinglePostKnowledgeCompiler(knowledge).publish(report);
     expect(knowledge.listContributions("video", report.id)).toHaveLength(1);
     expect(knowledge.listKnowledge().length).toBeGreaterThan(0);
