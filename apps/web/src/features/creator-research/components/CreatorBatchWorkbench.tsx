@@ -12,8 +12,8 @@ const batchStatusLabel: Record<CreatorResearchBatchProjection["status"], string>
 
 function itemMatches(item: CreatorResearchBatchItemProjection, filter: BatchFilter): boolean {
   if (filter === "active") return ["queued", "preflight", "collecting", "backoff"].includes(item.status);
-  if (filter === "attention") return ["needs_user", "reviewable", "failed", "stale"].includes(item.status);
-  if (filter === "ready") return item.status === "ready";
+  if (filter === "attention") return item.maturity === "incomplete" && ["needs_user", "reviewable", "failed", "stale"].includes(item.status);
+  if (filter === "ready") return item.maturity !== "incomplete";
   return true;
 }
 
@@ -28,18 +28,19 @@ function BatchPanel({ projection, filter }: { projection: CreatorResearchBatchPr
   const { batch, counts, items } = projection;
   const filtered = items.filter((item) => itemMatches(item, filter));
   return <details className="batch-panel" open={projection.status !== "ready"}>
-    <summary><div className="batch-panel__identity"><span>{new Date(batch.createdAt).toLocaleDateString("zh-CN")}</span><h3>{batch.name}</h3><small>{projection.completedRuns}/{projection.totalRuns} 已到终态 · 更新于 {new Date(projection.updatedAt).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" })}</small></div>
-      <div className="batch-panel__progress"><b>{projection.progressPercent}%</b><span><i style={{ width: `${projection.progressPercent}%` }}/></span></div>
+    <summary><div className="batch-panel__identity"><span>{new Date(batch.createdAt).toLocaleDateString("zh-CN")}</span><h3>{batch.name}</h3><small>{projection.dossierReadyRuns}/{projection.totalRuns} 完整档案 · {projection.completedRuns}/{projection.totalRuns} 已到终态 · 更新于 {new Date(projection.updatedAt).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" })}</small></div>
+      <div className="batch-panel__progress"><b>{projection.dossierProgressPercent}%</b><span><i style={{ width: `${projection.dossierProgressPercent}%` }}/></span></div>
       <em className={`batch-state batch-state--${projection.status}`}>{batchStatusLabel[projection.status]}</em></summary>
     <div className="batch-panel__metrics" aria-label="批次进度汇总">
       <div><b>{projection.totalRuns}</b><span>全部</span></div><div><b>{counts.queued + counts.preflight + counts.collecting + counts.backoff}</b><span>进行中</span></div>
-      <div><b>{counts.ready}</b><span>分析完成</span></div><div><b>{counts.reviewable}</b><span>等待复核</span></div><div><b>{counts.needsUser}</b><span>需要你处理</span></div><div><b>{counts.failed + counts.stale}</b><span>系统异常</span></div>
+      <div><b>{projection.dossierReadyRuns}</b><span>完整档案</span></div><div><b>{projection.wikiReadyRuns}</b><span>Wiki Ready</span></div><div><b>{projection.completedRuns - projection.dossierReadyRuns}</b><span>终态未完成</span></div><div><b>{counts.failed + counts.stale}</b><span>系统异常</span></div>
     </div>
     <div className="batch-member-list">{filtered.map((item) => <article key={item.runId}>
       <span className="batch-member__position">{String(item.position).padStart(2, "0")}</span><div><strong>{item.creatorName ?? "待识别博主"}</strong>
         <a href={item.profileUrl} target="_blank" rel="noreferrer">{item.profileUrl}<ExternalLink size={11}/></a><small>{item.nextAction}</small></div>
       <div className="batch-member__coverage"><span><b>{item.coverage.discoveredPosts}</b>发现</span><span><b>{item.coverage.enrichedPosts}</b>详情</span><span><b>{item.coverage.reconstructedPosts}</b>深度</span></div>
       <div className="batch-member__action"><em className={`status status--${item.status}`}><i/>{creatorStatusLabels[item.status]}</em><small>{item.adapter === "redfox" ? "REDFOX" : "EGO"}</small>
+        <small>{item.maturity === "wiki_ready" ? "WIKI_READY" : item.maturity === "dossier_ready" ? "DOSSIER_READY" : "INCOMPLETE"}</small>
         <Link to={`/creators/${encodeURIComponent(item.runId)}`}>任务详情<ArrowRight size={12}/></Link></div>
       <BatchMemberSignal item={item}/>
     </article>)}</div>

@@ -166,6 +166,7 @@ describe("CreatorResearchBatchService", () => {
       status: "ready",
       currentStage: "dashboard",
       creatorName: "博主一",
+      synthesisArtifactRef: "/artifacts/creator-one/creator-analysis.json",
       coverage: { discoveredPosts: 100, enrichedPosts: 21, comparisonPosts: 21, reconstructedPosts: 12 },
       updatedAt: "2026-08-31T01:00:00.000Z"
     }));
@@ -182,8 +183,36 @@ describe("CreatorResearchBatchService", () => {
     expect(projected.completedRuns).toBe(2);
     expect(projected.successfulRuns).toBe(1);
     expect(projected.progressPercent).toBe(100);
-    expect(projected.items[0]!).toMatchObject({ creatorName: "博主一", status: "ready" });
+    expect(projected.dossierReadyRuns).toBe(1);
+    expect(projected.wikiReadyRuns).toBe(1);
+    expect(projected.dossierProgressPercent).toBe(50);
+    expect(projected.items[0]!).toMatchObject({ creatorName: "博主一", status: "ready", maturity: "wiki_ready" });
+    expect(projected.items[1]!.maturity).toBe("incomplete");
     expect(projected.items[1]!.blockerCodes).toEqual(["provider_unavailable"]);
     expect(projected.updatedAt).toBe("2026-08-31T01:00:00.000Z");
+  });
+
+  it("does not count a terminal reviewable run without a synthesis artifact as a completed dossier", () => {
+    const repository = new MemoryBatchRepository();
+    const runs = new MemoryRuns();
+    const service = new CreatorResearchBatchService(repository, runs, runs);
+    const created = service.create({ operationKey: "batch:truth", creators: [{ profileUrl: profile(1) }] });
+    const runId = created.batch.runIds[0]!;
+    const run = runs.get(runId)!;
+    runs.values.set(runId, creatorResearchRunSchema.parse({
+      ...run,
+      status: "reviewable",
+      currentStage: "deep_capture",
+      coverage: { discoveredPosts: 100, enrichedPosts: 21, comparisonPosts: 21, reconstructedPosts: 2 },
+      blockers: [{ code: "video_reconstruction_incomplete", message: "2/12", userActionRequired: false }]
+    }));
+
+    const projected = service.get(created.batch.id)!;
+    expect(projected.status).toBe("partial");
+    expect(projected.completedRuns).toBe(1);
+    expect(projected.successfulRuns).toBe(0);
+    expect(projected.dossierReadyRuns).toBe(0);
+    expect(projected.dossierProgressPercent).toBe(0);
+    expect(projected.items[0]!.maturity).toBe("incomplete");
   });
 });
