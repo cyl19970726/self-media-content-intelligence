@@ -201,7 +201,9 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
           nextAction: boundedMediaGap ? "不可得成员保持 surface_only；不得从可用媒体借用机制。" : "由单帖子重建 Skill 继续生成文字、知识关系、编导逻辑和画面证据。" }),
     stage(seed("video_evaluation"), evaluatedDeepCount >= verifiedMediaCount && verifiedMediaCount > 0
       ? { state: "complete", gateState: evaluatedWithFindingsCount ? "partial" : "passed", artifactRefs: [run?.reconstructionBatchArtifactRef],
-          message: `${evaluatedDeepCount}/${deepSampleCount} 条可用深度样本完成一次独立评估；${evaluatedWithFindingsCount} 条保留 findings。` }
+          message: boundedMediaGap
+            ? `${evaluatedDeepCount}/${deepSampleCount} 条可用帖子完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估帖子内容；${evaluatedWithFindingsCount} 条保留 findings。`
+            : `${evaluatedDeepCount}/${deepSampleCount} 条可用深度样本完成一次独立评估；${evaluatedWithFindingsCount} 条保留 findings。` }
       : { state: evaluatedDeepCount > 0 ? "partial" : "pending", gateState: evaluatedDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
           missingInputs: [`单轮独立评估：${evaluatedDeepCount}/${requiredDeepSamples}`],
           message: boundedMediaGap ? `${evaluatedDeepCount}/${deepSampleCount} 条可用帖子完成独立评估；${unavailableDeepCount} 条媒体不可得且未评估帖子内容。` : `${evaluatedDeepCount}/${deepSampleCount} 条完成独立评估；Evaluator 可跳过，未评估结果保持 provisional。`,

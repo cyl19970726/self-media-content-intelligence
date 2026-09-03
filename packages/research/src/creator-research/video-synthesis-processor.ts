@@ -242,7 +242,7 @@ export class CreatorResearchVideoSynthesisProcessor {
       } else {
         const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
           postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
-          evaluationPolicy, contractVersion: "video-content-reconstruction@1" });
+          evaluationPolicy, contractVersion: "video-content-reconstruction@2" });
         rawOutcome = await this.videoReconstructor.reconstruct(request, observeChild);
       }
       const outcome = videoReconstructionOutcomeSchema.parse(rawOutcome);

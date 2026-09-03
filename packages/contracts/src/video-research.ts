@@ -69,6 +69,25 @@ export const videoResearchSchema = z.object({
   sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts),
   thesis: z.string(),
   article: z.string().nullable(),
+  contentBlocks: z.array(z.object({
+    id: z.string(),
+    type: z.enum(["text", "single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip", "claim_boundary", "unknown", "paragraph", "key_frame", "detail_crop", "boundary"]),
+    title: z.string(),
+    body: z.string(),
+    start: z.number().nullable(),
+    end: z.number().nullable(),
+    evidenceRefs: z.array(z.string()),
+    media: z.array(z.object({
+      ref: z.string(), src: z.string(), label: z.string(), time: z.number().nullable(), role: z.string(),
+      focus: z.string(), proves: z.string(), cannotProve: z.string(),
+      crop: z.object({ x: z.number(), y: z.number(), width: z.number(), height: z.number() }).nullable()
+    })),
+    steps: z.array(z.object({
+      label: z.string(), description: z.string(),
+      media: z.array(z.object({ ref: z.string(), src: z.string(), label: z.string(), time: z.number().nullable() }))
+    })),
+    boundary: z.string().nullable()
+  })).default([]),
   reports: z.object({
     builder: z.string().nullable(),
     evaluator: z.string().nullable()
@@ -117,6 +136,7 @@ export const videoResearchSchema = z.object({
   visualEditing: z.object({
     orientation: z.string().nullable(), composition: z.string().nullable(),
     shotCount: z.number().int().nonnegative().nullable(), cutsPerMinute: z.number().nonnegative().nullable(),
+    shotMetricBasis: z.string().nullable().default(null),
     resultFirstAt: z.number().nonnegative().nullable(),
     carriers: z.array(z.object({
       name: z.string(), roles: z.array(z.string()), start: z.number().nullable(), end: z.number().nullable()
@@ -127,6 +147,15 @@ export const videoResearchSchema = z.object({
     uiProcedureStates: z.array(z.object({
       label: z.string(), before: z.string(), during: z.string(), after: z.string(), input: z.string().nullable(),
       parameters: z.array(z.string()), output: z.string().nullable(), continuity: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
+    })).default([]),
+    transitions: z.array(z.object({
+      from: z.string(), to: z.string(), mechanism: z.string(), function: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
+    })).default([]),
+    rhythm: z.array(z.object({
+      pace: z.string(), density: z.string(), function: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
+    })).default([]),
+    missingBridges: z.array(z.object({
+      statement: z.string(), impact: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
     })).default([]),
     audioRole: z.string().nullable(),
     notes: z.array(z.string())

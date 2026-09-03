@@ -12,7 +12,7 @@ export const videoReconstructionRequestSchema = z.object({
   sourceMediaArtifactRef: z.string(),
   evidencePackArtifactRef: z.string().nullable(),
   evaluationPolicy: z.enum(["skip", "single_pass"]).default("skip"),
-  contractVersion: z.literal("video-content-reconstruction@1")
+  contractVersion: z.enum(["video-content-reconstruction@1", "video-content-reconstruction@2"])
 });
 export type VideoReconstructionRequest = z.infer<typeof videoReconstructionRequestSchema>;
 

@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["schemaVersion", "evidencePack", "probe", "protocol", "scopeStatement", "viewerChange", "derivedSources", "transcript", "knowledgeUnits", "relations", "coverageMatrix", "metaGate"],
   "properties": {
-    "schemaVersion": { "const": "video-reconstruction-1.0" },
+    "schemaVersion": { "enum": ["video-reconstruction-1.0", "video-reconstruction-2.0"] },
     "evidencePack": { "type": "string" },
     "probe": { "type": "string" },
     "protocol": { "type": "string" },
@@ -49,6 +49,7 @@
       }
     },
     "knowledgeUnits": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/unit" } },
+    "builderLenses": { "$ref": "#/$defs/builderLenses" },
     "relations": {
       "type": "array",
       "items": {
@@ -77,6 +78,12 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "schemaVersion": { "const": "video-reconstruction-2.0" } } },
+      "then": { "required": ["builderLenses"] }
+    }
+  ],
   "$defs": {
     "range": {
       "type": "object",
@@ -163,6 +170,238 @@
         "counterexamples": { "type": "array", "items": { "type": "string" } },
         "actions": { "type": "array", "items": { "type": "string" } },
         "limits": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "builderLenses": {
+      "type": "object",
+      "required": ["contentRestoration", "directingLogic", "visualEditing"],
+      "properties": {
+        "contentRestoration": {
+          "type": "object",
+          "required": ["summary", "blocks", "unknowns"],
+          "properties": {
+            "summary": { "type": "string", "minLength": 1 },
+            "blocks": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contentBlock" } },
+            "unknowns": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "directingLogic": { "$ref": "#/$defs/directingLogic" },
+        "visualEditing": { "$ref": "#/$defs/visualEditing" }
+      }
+    },
+    "contentBlock": {
+      "type": "object",
+      "required": ["id", "type", "title", "body", "timeRange", "evidenceRefs"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["text", "single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip", "claim_boundary", "unknown", "paragraph", "key_frame", "detail_crop", "boundary"] },
+        "title": { "type": "string", "minLength": 1 },
+        "body": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "frameRefs": { "type": "array", "items": { "type": "string" } },
+        "visuals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "role", "focus", "proves", "cannotProve"],
+            "properties": {
+              "ref": { "type": "string", "minLength": 1 },
+              "role": { "enum": ["key_frame", "detail_crop", "before", "during", "after", "sequence"] },
+              "focus": { "type": "string", "minLength": 1 },
+              "proves": { "type": "string", "minLength": 1 },
+              "cannotProve": { "type": "string", "minLength": 1 },
+              "crop": {
+                "type": "object",
+                "required": ["x", "y", "width", "height"],
+                "properties": {
+                  "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "y": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "width": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+                  "height": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+                }
+              }
+            }
+          }
+        },
+        "beforeFrameRef": { "type": "string" },
+        "afterFrameRef": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "description", "frameRefs"],
+            "properties": {
+              "label": { "type": "string", "minLength": 1 },
+              "description": { "type": "string", "minLength": 1 },
+              "frameRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+            }
+          }
+        },
+        "boundary": { "type": "string" }
+      }
+    },
+    "directingLogic": {
+      "type": "object",
+      "required": ["viewerBefore", "viewerAfter", "activatedQuestion", "promise", "payoff", "endingResolution", "stages", "informationDesign", "proofDesign", "loadAndPayoff", "notes"],
+      "properties": {
+        "viewerBefore": { "type": "string", "minLength": 1 },
+        "viewerAfter": { "type": "string", "minLength": 1 },
+        "activatedQuestion": { "type": "string", "minLength": 1 },
+        "promise": { "type": "string", "minLength": 1 },
+        "payoff": { "type": "string", "minLength": 1 },
+        "endingResolution": { "type": "string", "minLength": 1 },
+        "stages": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/directingStage" } },
+        "informationDesign": { "type": "array", "items": { "$ref": "#/$defs/timedStatement" } },
+        "proofDesign": { "type": "array", "items": { "$ref": "#/$defs/proofStatement" } },
+        "loadAndPayoff": {
+          "type": "object",
+          "required": ["compression", "repetition", "payoffDistance", "comprehensionCosts"],
+          "properties": {
+            "compression": { "type": "string", "minLength": 1 },
+            "repetition": { "type": "string", "minLength": 1 },
+            "payoffDistance": { "type": "string", "minLength": 1 },
+            "comprehensionCosts": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "directingStage": {
+      "type": "object",
+      "required": ["label", "timeRange", "viewerQuestion", "function", "proof", "cognitiveChange", "comprehensionLoad", "payoff", "evidenceRefs"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "viewerQuestion": { "type": "string", "minLength": 1 },
+        "function": { "type": "string", "minLength": 1 },
+        "proof": { "type": "string", "minLength": 1 },
+        "cognitiveChange": { "type": "string", "minLength": 1 },
+        "comprehensionLoad": { "type": "string", "minLength": 1 },
+        "payoff": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "timedStatement": {
+      "type": "object",
+      "required": ["kind", "statement", "timeRange", "evidenceRefs"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "proofStatement": {
+      "type": "object",
+      "required": ["proofType", "statement", "boundary", "timeRange", "evidenceRefs"],
+      "properties": {
+        "proofType": { "enum": ["visible_proof", "creator_claim", "system_inference"] },
+        "statement": { "type": "string", "minLength": 1 },
+        "boundary": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "visualEditing": {
+      "type": "object",
+      "required": ["orientation", "composition", "shotCount", "cutsPerMinute", "resultFirstAt", "analyzedDuration", "carriers", "claims", "shotSemantics", "uiProcedureStates", "transitions", "rhythm", "missingBridges", "audioRole", "notes"],
+      "properties": {
+        "orientation": { "type": ["string", "null"] },
+        "composition": { "type": "string", "minLength": 1 },
+        "shotCount": { "type": "integer", "minimum": 0 },
+        "cutsPerMinute": { "type": "number", "minimum": 0 },
+        "shotMetricBasis": { "type": "string", "minLength": 1 },
+        "resultFirstAt": { "type": ["number", "null"], "minimum": 0 },
+        "analyzedDuration": { "type": "number", "minimum": 0 },
+        "carriers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/visualCarrier" } },
+        "claims": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/visualClaim" } },
+        "shotSemantics": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/shotSemantic" } },
+        "uiProcedureStates": { "type": "array", "items": { "$ref": "#/$defs/uiProcedureState" } },
+        "transitions": { "type": "array", "items": { "$ref": "#/$defs/visualTransition" } },
+        "rhythm": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/rhythmSegment" } },
+        "missingBridges": { "type": "array", "items": { "$ref": "#/$defs/missingBridge" } },
+        "audioRole": { "type": ["string", "null"] },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "visualCarrier": {
+      "type": "object",
+      "required": ["name", "roles", "timeRange"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "roles": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "timeRange": { "$ref": "#/$defs/range" }
+      }
+    },
+    "visualClaim": {
+      "type": "object",
+      "required": ["statement", "function", "timeRange", "evidenceRefs"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 1 },
+        "function": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "shotSemantic": {
+      "type": "object",
+      "required": ["timeRange", "role", "carrier", "meaningChange", "evidenceRefs"],
+      "properties": {
+        "timeRange": { "$ref": "#/$defs/range" },
+        "role": { "type": "string", "minLength": 1 },
+        "carrier": { "type": "string", "minLength": 1 },
+        "meaningChange": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "uiProcedureState": {
+      "type": "object",
+      "required": ["label", "before", "during", "after", "parameters", "continuity", "timeRange", "evidenceRefs"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "before": { "type": "string", "minLength": 1 },
+        "during": { "type": "string", "minLength": 1 },
+        "after": { "type": "string", "minLength": 1 },
+        "input": { "type": ["string", "null"] },
+        "parameters": { "type": "array", "items": { "type": "string" } },
+        "output": { "type": ["string", "null"] },
+        "continuity": { "type": "string", "minLength": 1 },
+        "timeRange": { "$ref": "#/$defs/range" },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "visualTransition": {
+      "type": "object",
+      "required": ["timeRange", "from", "to", "mechanism", "function", "evidenceRefs"],
+      "properties": {
+        "timeRange": { "$ref": "#/$defs/range" },
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "mechanism": { "type": "string", "minLength": 1 },
+        "function": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "rhythmSegment": {
+      "type": "object",
+      "required": ["timeRange", "pace", "density", "function", "evidenceRefs"],
+      "properties": {
+        "timeRange": { "$ref": "#/$defs/range" },
+        "pace": { "type": "string", "minLength": 1 },
+        "density": { "type": "string", "minLength": 1 },
+        "function": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "missingBridge": {
+      "type": "object",
+      "required": ["timeRange", "statement", "impact", "evidenceRefs"],
+      "properties": {
+        "timeRange": { "$ref": "#/$defs/range" },
+        "statement": { "type": "string", "minLength": 1 },
+        "impact": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
       }
     }
   }

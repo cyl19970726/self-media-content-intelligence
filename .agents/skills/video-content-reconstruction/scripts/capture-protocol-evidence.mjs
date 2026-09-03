@@ -13,7 +13,7 @@ ensureInputFile(protocolPath, "protocol");
 mkdirSync(out, { recursive: true });
 
 const protocol = readJson(protocolPath);
-if (protocol.schemaVersion !== "capture-protocol-1.0") throw new Error("Unsupported protocol schemaVersion");
+if (!["capture-protocol-1.0", "capture-protocol-2.0"].includes(protocol.schemaVersion)) throw new Error("Unsupported protocol schemaVersion");
 const media = probeMedia(video);
 const frames = [];
 const actionFrameIds = new Map();
@@ -89,7 +89,12 @@ const manifest = {
   video,
   protocol: protocolPath,
   frames,
-  actions: (protocol.captureActions || []).map((action) => ({ id: action.id, frameIds: actionFrameIds.get(action.id) || [] })),
+  actions: (protocol.captureActions || []).map((action) => ({
+    id: action.id,
+    frameIds: actionFrameIds.get(action.id) || [],
+    consumers: action.consumers ?? [],
+    presentationIntent: action.presentationIntent ?? "analysis_only"
+  })),
   contactSheet,
   deduplication: { exactTimeReuses, exactContentReuses, uniqueFrames: frames.length }
 };

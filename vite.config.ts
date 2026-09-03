@@ -11,9 +11,9 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 5173,
     proxy: {
-      "/api": "http://127.0.0.1:4310",
-      "/artifacts": "http://127.0.0.1:4310",
-      "/research": "http://127.0.0.1:4310"
+      "/api": process.env.SELF_MEDIA_API_URL ?? "http://127.0.0.1:4310",
+      "/artifacts": process.env.SELF_MEDIA_API_URL ?? "http://127.0.0.1:4310",
+      "/research": process.env.SELF_MEDIA_API_URL ?? "http://127.0.0.1:4310"
     }
   },
   build: {

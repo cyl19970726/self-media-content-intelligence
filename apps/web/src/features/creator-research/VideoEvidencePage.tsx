@@ -6,6 +6,7 @@ import type { VideoResearch } from "../../shared/contracts/core";
 import { friendlyArticleHeading, withoutEmbeddedTranscript } from "./model/video-evidence-copy";
 import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
 import { PostSourceFactsCard } from "../../entities/source-facts/PostSourceFactsCard";
+import { ContentRestorationReport } from "./ContentRestorationReport";
 
 const evidenceLabels = {
   raw_fact: "原始事实", visual_observation: "画面观察", author_claim: "作者主张", system_inference: "系统推断", unknown: "未知"
@@ -143,8 +144,13 @@ export default function VideoEvidencePage() {
           <div className="video-research-layout">
             <div className="video-research-main">
               {data.quality.findings.length > 0 && <section className="quality-findings" aria-label="评估发现"><header><div><span>EVALUATOR FINDINGS</span><h2>本版本需要保留的质量边界</h2></div><b>{data.quality.findings.length}</b></header><div>{data.quality.findings.map((finding) => <article key={finding.id}><span>{finding.id}</span><p>{finding.message === finding.id ? gateLabel(finding.id) : finding.message}</p><EvidenceRefs refs={finding.evidenceRefs}/></article>)}</div></section>}
-              {(data.reports.builder || data.reports.evaluator) && <section className="video-evidence-section" id="reports"><header><span>01</span><div><h2>Builder 与 Evaluator 报告</h2><p>先看 Builder 如何还原，再看独立 Evaluator 发现了什么；两份报告不互相覆盖。</p></div></header>
-                {data.reports.builder ? <details open><summary>Builder 内容还原报告</summary><ArticleBody markdown={data.reports.builder}/></details> : <p className="evidence-empty">当前版本尚未生成可读 Builder 报告。</p>}
+              <section className="video-evidence-section" id="content"><header><span>01</span><div><h2>内容还原</h2><p>先读视频真正讲清楚的内容；关键画面、操作前后与局部证据直接放在相关结论旁边。</p></div></header>
+                {data.contentBlocks.length > 0 ? <ContentRestorationReport blocks={data.contentBlocks}/>
+                  : data.reports.builder ? <ArticleBody markdown={data.reports.builder}/>
+                    : <p className="evidence-empty">当前版本尚未生成可读内容还原。</p>}
+              </section>
+              {(data.reports.builder || data.reports.evaluator) && <section className="video-evidence-section" id="reports"><header><span>附</span><div><h2>原始报告与评估记录</h2><p>用于追溯 Builder 和 Evaluator 原文，默认收起，不打断正文阅读。</p></div></header>
+                {data.reports.builder ? <details><summary>Builder 原始报告</summary><ArticleBody markdown={data.reports.builder}/></details> : <p className="evidence-empty">当前版本尚未生成可读 Builder 报告。</p>}
                 {data.reports.evaluator ? <details><summary>Evaluator 独立评估报告</summary><ArticleBody markdown={data.reports.evaluator}/></details> : <p className="evidence-empty">当前版本未运行 Evaluator，或尚未生成可读评估报告。</p>}
               </section>}
               <section className="video-evidence-section" id="directing"><header><span>02</span><div><h2>编导逻辑</h2><p>沿观众认知变化恢复每一阶段的任务、观众问题和证明动作；意义段落不冒充技术切镜。</p></div></header>
@@ -158,11 +164,15 @@ export default function VideoEvidencePage() {
               </section>
               <section className="video-evidence-section" id="visual-editing"><header><span>03</span><div><h2>画面与剪辑</h2><p>画面载体承担什么信息、何时变化、技术镜头密度和哪些桥接被剪掉，分别呈现。</p></div><div className="view-switch"><button className={frameMode === "sparse" ? "active" : ""} onClick={() => setFrameMode("sparse")}><ScrollText size={13}/>稀疏</button><button className={frameMode === "dense" ? "active" : ""} onClick={() => setFrameMode("dense")}><Grid2X2 size={13}/>密集</button></div></header>
                 <div className="visual-stat-strip"><article><span>画幅</span><b>{data.visualEditing.orientation ?? "未知"}</b></article><article><span>技术镜头</span><b>{data.visualEditing.shotCount ?? "—"}</b></article><article><span>每分钟切换</span><b>{data.visualEditing.cutsPerMinute ?? "—"}</b></article><article><span>结果首次出现</span><b>{timestamp(data.visualEditing.resultFirstAt)}</b></article></div>
+                {data.visualEditing.shotMetricBasis && <p className="composition-line">指标口径：{data.visualEditing.shotMetricBasis}</p>}
                 {data.visualEditing.composition && <p className="composition-line">画面语法：{data.visualEditing.composition}</p>}
                 <div className="carrier-grid">{data.visualEditing.carriers.map((carrier) => <article key={`${carrier.name}-${carrier.start}`}><header><b>{carrier.name}</b><time>{timestamp(carrier.start)}–{timestamp(carrier.end)}</time></header>{carrier.roles.map((role) => <p key={role}>{role}</p>)}</article>)}</div>
                 {data.visualEditing.claims.length > 0 && <div className="visual-claims">{data.visualEditing.claims.map((claim, index) => <article key={`${claim.statement}-${index}`}><time>{timestamp(claim.start)}–{timestamp(claim.end)}</time><h3>{claim.statement}</h3><p>{claim.function}</p><EvidenceRefs refs={claim.evidenceRefs}/></article>)}</div>}
                 {data.visualEditing.shotSemantics.length > 0 && <div className="shot-semantics">{data.visualEditing.shotSemantics.map((shot, index) => <article key={`${shot.start}-${index}`}><time>{timestamp(shot.start)}–{timestamp(shot.end)}</time><div><b>{shot.role}</b><span>{shot.carrier}</span><p>{shot.meaningChange}</p><EvidenceRefs refs={shot.evidenceRefs}/></div></article>)}</div>}
                 {data.visualEditing.uiProcedureStates.length > 0 && <div className="visual-claims">{data.visualEditing.uiProcedureStates.map((state, index) => <article key={`${state.label}-${index}`}><time>{timestamp(state.start)}–{timestamp(state.end)}</time><h3>{state.label}</h3><p><strong>操作前：</strong>{state.before}</p><p><strong>操作中：</strong>{state.during}</p><p><strong>操作后：</strong>{state.after}</p>{state.input && <small>输入：{state.input}</small>}{state.output && <small>输出：{state.output}</small>}<small>连续性边界：{state.continuity}</small><EvidenceRefs refs={state.evidenceRefs}/></article>)}</div>}
+                {data.visualEditing.transitions.length > 0 && <div className="visual-claims">{data.visualEditing.transitions.map((transition, index) => <article key={`${transition.start}-${index}`}><time>{timestamp(transition.start)}–{timestamp(transition.end)}</time><h3>{transition.from} → {transition.to}</h3><p>{transition.mechanism}：{transition.function}</p><EvidenceRefs refs={transition.evidenceRefs}/></article>)}</div>}
+                {data.visualEditing.rhythm.length > 0 && <div className="shot-semantics">{data.visualEditing.rhythm.map((rhythm, index) => <article key={`${rhythm.start}-${index}`}><time>{timestamp(rhythm.start)}–{timestamp(rhythm.end)}</time><div><b>{rhythm.pace}</b><span>{rhythm.density}</span><p>{rhythm.function}</p><EvidenceRefs refs={rhythm.evidenceRefs}/></div></article>)}</div>}
+                {data.visualEditing.missingBridges.length > 0 && <div className="lens-notes lens-notes--warning">{data.visualEditing.missingBridges.map((bridge, index) => <p key={`${bridge.statement}-${index}`}><strong>{timestamp(bridge.start)}–{timestamp(bridge.end)}：</strong>{bridge.statement}；影响：{bridge.impact}</p>)}</div>}
                 {data.visualEditing.audioRole && <p className="composition-line">非旁白音频：{data.visualEditing.audioRole}</p>}
                 <div className={`frame-list frame-list--${frameMode}`}>{data.frames[frameMode].map((frame) => <figure id={`evidence-${frame.id}`} key={frame.id} className="frame-card"><img src={frame.src} loading="lazy" alt={frame.reason ?? frame.id}/><figcaption><b>{frame.id}</b><time>{timestamp(frame.time)}</time></figcaption>{frame.reason && <p>{frame.reason}</p>}</figure>)}</div>
                 {data.visualEditing.notes.length > 0 && <div className="lens-notes lens-notes--warning">{data.visualEditing.notes.map((note) => <p key={note}>{note}</p>)}</div>}

@@ -23,6 +23,8 @@ const targeted = targetedPath ? JSON.parse(fs.readFileSync(targetedPath, 'utf8')
 const targetedRoot = targetedPath ? path.dirname(targetedPath) : null
 const targetedMap = new Map((targeted.frames ?? []).map((frame) => [frame.id, frame]))
 const evidenceRoot = path.dirname(evidencePackPath)
+const evidencePack = JSON.parse(fs.readFileSync(evidencePackPath, 'utf8'))
+const evidenceFrameMap = new Map((evidencePack.frameIndex ?? []).map((frame) => [frame.id, frame]))
 const fmt = (seconds) => {
   const value = Math.max(0, Number(seconds) || 0)
   const minutes = Math.floor(value / 60)
@@ -35,6 +37,20 @@ const unitImage = (unit) => {
   if (!ref) return null
   return path.resolve(targetedRoot, targetedMap.get(ref.ref).frame)
 }
+const imageForRef = (ref) => {
+  const targetedFrame = targetedMap.get(ref)
+  if (targetedFrame?.frame && targetedRoot) return path.resolve(targetedRoot, targetedFrame.frame)
+  const evidenceFrame = evidenceFrameMap.get(ref)
+  if (evidenceFrame?.frame) return path.resolve(evidenceRoot, evidenceFrame.frame)
+  return null
+}
+const blockFrameRefs = (block) => [...new Set([
+  ...(block.frameRefs ?? []),
+  ...(block.visuals ?? []).map((visual) => visual.ref),
+  ...(block.beforeFrameRef ? [block.beforeFrameRef] : []),
+  ...(block.afterFrameRef ? [block.afterFrameRef] : []),
+  ...(block.steps ?? []).flatMap((step) => step.frameRefs ?? [])
+])]
 
 const lines = []
 lines.push(`# ${args.title}`)
@@ -46,6 +62,21 @@ lines.push('')
 lines.push(`- 看前：${reconstruction.viewerChange?.before ?? ''}`)
 lines.push(`- 看后：${reconstruction.viewerChange?.after ?? ''}`)
 for (const change of reconstruction.viewerChange?.intendedChanges ?? []) lines.push(`- 认知变化：${change}`)
+
+const builderLenses = reconstruction.builderLenses
+if (builderLenses?.contentRestoration?.blocks?.length) {
+  lines.push('', '## 内容还原', '', builderLenses.contentRestoration.summary, '')
+  for (const block of builderLenses.contentRestoration.blocks) {
+    lines.push(`### ${block.title}`, '', block.body, '')
+    const images = blockFrameRefs(block).map((ref) => ({ ref, image: imageForRef(ref) })).filter((item) => item.image)
+    for (const item of images) lines.push(`![${esc(`${block.title} · ${item.ref}`)}](${item.image})`, '')
+    if (block.steps?.length) {
+      block.steps.forEach((step, index) => lines.push(`${index + 1}. **${step.label}**：${step.description}`))
+      lines.push('')
+    }
+    if (block.boundary) lines.push(`> 证据边界：${block.boundary}`, '')
+  }
+}
 
 for (const group of [
   { importance: 'core', title: '核心内容' },
@@ -92,6 +123,41 @@ for (const relation of reconstruction.relations ?? []) {
 }
 lines.push('', '## 明确不能从视频判断', '')
 for (const item of reconstruction.coverageMatrix?.unknowns ?? []) lines.push(`- ${item}`)
+
+if (builderLenses?.directingLogic) {
+  const directing = builderLenses.directingLogic
+  lines.push('', '## 编导逻辑', '')
+  lines.push(`- 激活的问题：${directing.activatedQuestion}`)
+  lines.push(`- 内容承诺：${directing.promise}`)
+  lines.push(`- 回报：${directing.payoff}`)
+  lines.push(`- 结尾闭合：${directing.endingResolution}`, '')
+  for (const stage of directing.stages ?? []) {
+    lines.push(`### ${fmt(stage.timeRange.start)}–${fmt(stage.timeRange.end)} · ${stage.label}`, '')
+    lines.push(stage.function, '')
+    lines.push(`- 观众问题：${stage.viewerQuestion}`)
+    lines.push(`- 证明：${stage.proof}`)
+    lines.push(`- 认知变化：${stage.cognitiveChange}`)
+    lines.push(`- 理解负荷：${stage.comprehensionLoad}`)
+    lines.push(`- 本段回报：${stage.payoff}`, '')
+  }
+}
+
+if (builderLenses?.visualEditing) {
+  const visual = builderLenses.visualEditing
+  lines.push('', '## 画面与剪辑', '')
+  lines.push(`- 画幅：${visual.orientation ?? '未知'}`)
+  lines.push(`- 画面语法：${visual.composition}`)
+  lines.push(`- 技术镜头：${visual.shotCount}；每分钟切换：${visual.cutsPerMinute}`)
+  lines.push(`- 结果首次出现：${visual.resultFirstAt == null ? '未确认' : fmt(visual.resultFirstAt)}`)
+  lines.push(`- 非旁白音频：${visual.audioRole ?? '没有可读语义证据'}`, '')
+  for (const shot of visual.shotSemantics ?? []) {
+    lines.push(`### ${fmt(shot.timeRange.start)}–${fmt(shot.timeRange.end)} · ${shot.role}`, '', `${shot.carrier}：${shot.meaningChange}`, '')
+    for (const ref of shot.evidenceRefs ?? []) {
+      const image = imageForRef(ref)
+      if (image) lines.push(`![${esc(`${shot.role} · ${ref}`)}](${image})`, '')
+    }
+  }
+}
 
 lines.push('', '## 语音、字幕与画面依据', '')
 if (reconstruction.transcript.cues.length === 0) {
