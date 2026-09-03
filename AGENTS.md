@@ -10,5 +10,6 @@
 - Evaluator 只负责独立评估、问题定位和晋升状态，不改写 Builder 三部分。Evaluator、Gate、知识单元、逐字稿和原始 Artifact 属于研究审计层，默认不占据主报告。
 - `evidenceRefs`、关键帧、局部裁切、操作前后状态和转场画面必须在其对应结论附近解析展示；独立帧图库只能作为附录。
 - Builder 字段缺失时如实显示“未产出/未知”，不得由前端或投影层猜测补齐。
+- 工作台可以在三个 Lens 之间切换，但 `contentRestoration` 内部必须保持一份连续报告并完整渲染全部内容块。目录只能做锚点定位，不能筛选、分页或隐藏其他内容块。
 
 权威格式见 `.agents/skills/video-content-reconstruction/schemas/reconstruction.schema.json`。

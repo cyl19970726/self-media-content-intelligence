@@ -43,7 +43,7 @@ function EvidenceMedia({ block }: { block: ContentBlock }) {
 }
 
 export function ContentRestorationReport({ blocks }: { blocks: ContentBlock[] }) {
-  return <div className="content-restoration-report">{blocks.map((block) => <article key={block.id} className={`content-block content-block--${block.type}`}>
+  return <div className="content-restoration-report">{blocks.map((block) => <article id={`content-${block.id}`} key={block.id} className={`content-block content-block--${block.type}`}>
     <header><span>{timestamp(block.start)}–{timestamp(block.end)}</span><h3>{block.title}</h3></header>
     <p>{block.body}</p>
     <EvidenceMedia block={block}/>
