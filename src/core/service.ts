@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { fixtureAdapter } from "./adapters/fixture.js";
 import { xAdapter } from "./adapters/x.js";
 import { xiaohongshuAdapter } from "./adapters/xiaohongshu.js";
+import { wechatChannelsAdapter } from "./adapters/wechat-channels.js";
 import type { PlatformAdapter } from "./adapters/types.js";
 import { writeArtifact } from "../../packages/adapters/index.js";
 import { analyzeMedia, resolveVideo } from "./media.js";
@@ -69,7 +70,8 @@ export class AnalysisService {
     this.store.save(report);
     try {
       const adapter: PlatformAdapter = parsed.fixture
-        ? fixtureAdapter : parsed.platform === "x" ? xAdapter : xiaohongshuAdapter;
+        ? fixtureAdapter : parsed.platform === "x" ? xAdapter
+          : parsed.platform === "wechat_channels" ? wechatChannelsAdapter : xiaohongshuAdapter;
       const collected = await adapter.collect(parsed, id);
       const rawRef = writeArtifact(id, "source-raw.json", collected.rawPayload);
       collectStage.artifactRefs = [rawRef];

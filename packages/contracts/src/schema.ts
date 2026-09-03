@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const platformSchema = z.enum(["xiaohongshu", "x"]);
+export const platformSchema = z.enum(["xiaohongshu", "wechat_channels", "x"]);
 export type Platform = z.infer<typeof platformSchema>;
 
 export const runStatusSchema = z.enum([

@@ -14,6 +14,19 @@ describe("parseSourceUrl", () => {
 
   it("supports deterministic fixtures", () => {
     expect(parseSourceUrl("fixture://x/demo")).toMatchObject({ platform: "x", fixture: true });
+    expect(parseSourceUrl("fixture://wechat_channels/demo")).toMatchObject({ platform: "wechat_channels", fixture: true });
+  });
+
+  it("routes WeChat Channels share copy", () => {
+    const parsed = parseSourceUrl("这个视频讲得很清楚 https://weixin.qq.com/sph/AbCdEf123 复制后打开微信");
+    expect(parsed).toMatchObject({
+      platform: "wechat_channels", externalId: "AbCdEf123", shareTitle: "这个视频讲得很清楚", fixture: false
+    });
+  });
+
+  it("routes WeChat Channels web links", () => {
+    expect(parseSourceUrl("https://channels.weixin.qq.com/web/pages/feed?video_id=video-123"))
+      .toMatchObject({ platform: "wechat_channels", externalId: "video-123", fixture: false });
   });
 
   it("accepts Xiaohongshu share copy with a short link", () => {

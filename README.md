@@ -4,7 +4,7 @@
 > [GitHub Issue #13](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
 > 分阶段跟踪；目标目录不代表当前代码已经完成迁移。
 
-一个本地优先的小红书 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策位于独立的 Creation Workspace，不混入客观研究页面。
+一个本地优先的小红书 / 微信视频号 / X 内容情报工作台。输入公开链接或博主主页后，系统按“采集 → 基本盘 → High / Base / Low 代表集 → 视频内容还原 → 跨档诊断”运行，保存可公开复核的证据，并生成可在 Dashboard 中审计的内容复盘档案。发帖与创作决策位于独立的 Creation Workspace，不混入客观研究页面。
 
 当前仓库同时包含：
 
@@ -69,7 +69,10 @@ npm run dev
 npm run selfmedia -- analyze fixture://xiaohongshu/three-layer-demo
 
 # 分析真实链接；本地视频可用于补充拉片
-npm run selfmedia -- analyze "<小红书或 X 链接>" --video /absolute/path/video.mp4
+npm run selfmedia -- analyze "<小红书、微信视频号或 X 链接>" --video /absolute/path/video.mp4
+
+# 视频号分享链接通过 RedFox 获取公开详情与媒体后进入同一拉片流程
+npm run selfmedia -- analyze "https://weixin.qq.com/sph/<share-id>"
 
 # 查询档案
 npm run selfmedia -- list
@@ -109,6 +112,7 @@ API 的只读 `/research/...` 兼容路径提供，例如：
 ## 真实平台说明
 
 - 小红书公开信息采集使用本机 `ego-browser` 的独立任务空间并复用用户登录状态；详情链接的临时签名与会话信息只保留在本地，不进入 Git 仓库。
+- 微信视频号单帖采集使用 RedFox 的分享链接详情、视频下载、作者作品与关键词搜索接口；帖子元数据与视频内部字幕/画面证据分层保存。需要在本机 `.env` 配置 `REDFOX_API_KEY`。
 - X 复用本机 `twitter-mcp` 的只读 API 配置，或环境变量 `TWITTER_API_KEY`；分析会尽力补采回复、作者时间线和同题材搜索样本。
 - 采集不可用时任务会停在“待授权”，不会补造指标、评论或内容。
 - 公开链接通常无法提供曝光、停留、完播、流量来源与关注转化。缺少这些账号后台指标时，报告会把“平台分发”和“真实留存”标为未知，不会把相关假设伪装成结论。
