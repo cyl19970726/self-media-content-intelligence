@@ -68,6 +68,7 @@ export const videoResearchSchema = z.object({
   sourceLabel: z.string(),
   sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts),
   thesis: z.string(),
+  contentUnknowns: z.array(z.string()).default([]),
   readerSummary: z.object({
     productState: z.enum(["gold", "analysis_ready", "provisional"]),
     statusLabel: z.string(),

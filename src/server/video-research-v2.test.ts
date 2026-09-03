@@ -69,6 +69,7 @@ describe("video reconstruction V2 projection", () => {
 
     const result = loadVideoResearch(service, "fixture-creator", videoId, runId);
     expect(result?.contentBlocks).toHaveLength(2);
+    expect(result?.contentUnknowns).toEqual(["隐藏设置没有展示"]);
     expect(result?.contentBlocks[0]?.type).toBe("before_after");
     expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0002", "TARGET-0004"]);
     expect(result?.contentBlocks[0]?.media.map((item) => item.role)).toEqual(["before", "during", "after"]);

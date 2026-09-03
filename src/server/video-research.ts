@@ -323,6 +323,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     sourceFacts,
     thesis,
+    contentUnknowns: strings(builderContent.unknowns),
     readerSummary: {
       productState,
       statusLabel: productState === "gold" ? "单帖 Gold" : productState === "analysis_ready" ? "分析完成 · 原帖资料待补" : "分析尚未闭环",
