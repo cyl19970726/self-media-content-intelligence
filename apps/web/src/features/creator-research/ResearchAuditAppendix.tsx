@@ -24,11 +24,11 @@ function AuditState({ data }: { data: VideoResearch }) {
   </div>;
 }
 
-export function ResearchAuditAppendix({ data }: { data: VideoResearch }) {
+export function ResearchAuditAppendix({ data, defaultOpen = false }: { data: VideoResearch; defaultOpen?: boolean }) {
   const lenses = [["内容还原", data.lensCoverage.contentRestoration], ["编导逻辑", data.lensCoverage.directingLogic], ["画面与剪辑", data.lensCoverage.visualEditingLogic]] as const;
   return <section className="research-audit" id="audit" aria-labelledby="audit-title">
     <header><span>附录</span><div><p>研究审计</p><h2 id="audit-title">需要追溯时，再进入系统内部</h2></div></header>
-    <details className="audit-disclosure"><summary><span>展开完整研究审计</span><small>来源、门禁、知识单元、逐字稿与原始报告</small></summary>
+    <details className="audit-disclosure" open={defaultOpen}><summary><span>完整研究审计</span><small>来源、门禁、知识单元、逐字稿与原始报告</small></summary>
       <div className="audit-body">
         <AuditState data={data}/>
         <details><summary>原帖来源记录</summary><PostSourceFactsCard facts={data.sourceFacts}/></details>

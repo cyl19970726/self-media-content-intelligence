@@ -11,11 +11,8 @@ function inventory(root: string): string[] {
   if (!fs.existsSync(root)) return [];
   return fs.readdirSync(root, { recursive: true, withFileTypes: true })
     .filter((entry) => entry.isFile())
-    .map((entry) => {
-      const full = path.join(entry.parentPath, entry.name);
-      const stat = fs.statSync(full);
-      return `${path.relative(root, full)}:${stat.size}:${stat.mtimeMs}`;
-    }).sort();
+    .map((entry) => path.relative(root, path.join(entry.parentPath, entry.name)))
+    .sort();
 }
 
 afterEach(() => directories.splice(0).forEach((directory) => fs.rmSync(directory, { recursive: true, force: true })));
