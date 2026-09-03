@@ -217,6 +217,12 @@ describe("Evaluator role contract", () => {
     expect(prompt).toContain("reconstruction.json");
     expect(prompt).toContain("Do not modify candidate files");
     expect(prompt).toContain("Inspect overviews/contact sheets at high detail, never original detail");
+    expect(prompt).toContain("Host-built source overview");
+    expect(prompt).toContain("Do not create or read a global /tmp overview");
+    expect(prompt).toContain("inspect two named source frames");
+    expect(prompt).toContain("do not read SKILL.md");
+    expect(prompt).toContain("Aim to finish in 5–8 evidence calls");
+    expect(prompt).toContain("Do not require fake listening");
     expect(prompt).toContain("critical-question plus scene/carrier coverage");
     expect(prompt).toContain("do not search the repository for alternate rule definitions");
   });

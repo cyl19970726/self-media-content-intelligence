@@ -72,8 +72,8 @@ gate("no_global_completeness_score", banned.length === 0, banned.length ? "Found
 
 const schemaPass = evidence.schemaVersion === "video-evidence-pack-1.0"
   && probe.schemaVersion === "video-probe-1.0"
-  && protocol.schemaVersion === "capture-protocol-1.0"
-  && reconstruction.schemaVersion === "video-reconstruction-1.0"
+  && ["capture-protocol-1.0", "capture-protocol-2.0"].includes(protocol.schemaVersion)
+  && ["video-reconstruction-1.0", "video-reconstruction-2.0"].includes(reconstruction.schemaVersion)
   && evaluation.schemaVersion === "reconstruction-evaluation-1.0"
   && (!ocrPath || ocr.schemaVersion === "ocr-evidence-1.0")
   && evaluation.independent === true;

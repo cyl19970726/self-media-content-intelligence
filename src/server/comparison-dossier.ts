@@ -14,8 +14,8 @@ export function loadComparisonDossier(
   const pinnedInputArtifactRef = stored.project.inputArtifactRef;
   const dossiers = stored.project.members.map((member) => ({ member, dossier: loadCreatorDossier(creators, member.creatorId) }));
   const creatorIdsByRun = new Map(stored.project.members.map((member) => [member.creatorRunId, member.creatorId]));
-  const rowsByRun = new Map(stored.comparison?.members.map((row) => [row.creatorRunId, row]) ?? []);
-  const profilesByRun = new Map(stored.comparison?.creatorProfiles.map((profile) => [profile.creatorRunId, profile]) ?? []);
+  const rowsByRun = new Map(stored.comparison?.members?.map((row) => [row.creatorRunId, row]) ?? []);
+  const profilesByRun = new Map(stored.comparison?.creatorProfiles?.map((profile) => [profile.creatorRunId, profile]) ?? []);
   const unknown = (statement: string): ResearchStatement => ({ statement, factClass: "unknown", confidence: "low", evidenceRefs: [pinnedInputArtifactRef], caveat: "固定比较输入未包含这一维度。" });
   const cells = (
     selectProfile: (profile: CreatorComparison["creatorProfiles"][number]) => ResearchStatement[],
@@ -29,7 +29,7 @@ export function loadComparisonDossier(
   const warnings = [
     "比较使用各博主自身中位数与档位，不以原始点赞直接排名。",
     "当前项目固定成员版本；账号年龄、粉丝规模、投流和商业内容差异仍可能混杂。",
-    ...(stored.comparison?.comparability.warnings ?? []),
+    ...(stored.comparison?.comparability?.warnings ?? []),
     ...dossiers.filter(({ dossier }) => dossier && dossier.corpus.health.status !== "full").map(({ dossier }) => `${dossier!.identity.name} 的全量基本盘为${dossier!.corpus.health.status === "partial" ? "部分覆盖" : "未覆盖"}。`)
   ];
   const members = stored.project.members.map((member) => {
@@ -62,7 +62,7 @@ export function loadComparisonDossier(
   const ledger = [...observationLedger, ...patternLedger, ...exceptionLedger, ...gapLedger];
   return comparisonDossierSchema.parse({
     schemaVersion: "1.0.0", id: stored.project.id, name: stored.project.name, status: stored.project.status, generatedAt: stored.project.updatedAt,
-    scope: { platform: stored.comparison?.comparability.platform ?? "小红书", windowLabel: stored.comparison?.comparability.timeWindowAligned ? "固定任务快照；发布时间窗已对齐" : "固定任务快照；尚未对齐统一发布时间窗", memberCount: stored.project.members.length,
+    scope: { platform: stored.comparison?.comparability?.platform ?? "小红书", windowLabel: stored.comparison?.comparability?.timeWindowAligned ? "固定任务快照；发布时间窗已对齐" : "固定任务快照；尚未对齐统一发布时间窗", memberCount: stored.project.members.length,
       comparability: stored.project.members.length < 2 ? "blocked" : warnings.length > 2 ? "partial" : "aligned", warnings },
     members,
     matrices: {

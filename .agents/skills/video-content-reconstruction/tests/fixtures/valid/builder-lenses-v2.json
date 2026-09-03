@@ -1,0 +1,89 @@
+{
+  "contentRestoration": {
+    "summary": "视频展示从设置入口到结果状态的变化。",
+    "blocks": [
+      {
+        "id": "BLOCK-001",
+        "type": "before_after",
+        "title": "设置前后变化",
+        "body": "先打开设置，再看到结果。",
+        "timeRange": { "start": 0, "end": 10 },
+        "evidenceRefs": ["CUE-001", "TARGET-0004"],
+        "beforeFrameRef": "TARGET-0001",
+        "afterFrameRef": "TARGET-0004"
+      }
+    ],
+    "unknowns": ["隐藏设置没有展示"]
+  },
+  "directingLogic": {
+    "viewerBefore": "不知道入口",
+    "viewerAfter": "知道如何得到结果",
+    "activatedQuestion": "入口在哪里？",
+    "promise": "展示最短路径",
+    "payoff": "结果状态出现",
+    "endingResolution": "用结果完成闭环",
+    "stages": [
+      {
+        "label": "提出问题",
+        "timeRange": { "start": 0, "end": 5 },
+        "viewerQuestion": "入口在哪里？",
+        "function": "建立操作目标",
+        "proof": "口播要求打开设置",
+        "cognitiveChange": "从未知变成知道入口",
+        "comprehensionLoad": "低",
+        "payoff": "路径明确",
+        "evidenceRefs": ["CUE-001"]
+      },
+      {
+        "label": "展示结果",
+        "timeRange": { "start": 5, "end": 10 },
+        "viewerQuestion": "操作是否成功？",
+        "function": "用结果状态验证操作",
+        "proof": "结果帧可见",
+        "cognitiveChange": "从理解步骤变成确认结果",
+        "comprehensionLoad": "低",
+        "payoff": "看到结果",
+        "evidenceRefs": ["CUE-002", "TARGET-0004"]
+      }
+    ],
+    "informationDesign": [],
+    "proofDesign": [],
+    "loadAndPayoff": {
+      "compression": "一步一信息",
+      "repetition": "口播与界面互补",
+      "payoffDistance": "五秒内",
+      "comprehensionCosts": ["隐藏参数未知"]
+    },
+    "notes": []
+  },
+  "visualEditing": {
+    "orientation": "landscape",
+    "composition": "界面录屏承担操作与结果证明",
+    "shotCount": 2,
+    "cutsPerMinute": 12,
+    "shotMetricBasis": "证据包技术分段，仅用于观察变化密度，不等同真实剪辑点。",
+    "resultFirstAt": 5,
+    "analyzedDuration": 10,
+    "carriers": [
+      { "name": "UI", "roles": ["操作路径", "结果证明"], "timeRange": { "start": 0, "end": 10 } }
+    ],
+    "claims": [
+      { "statement": "结果状态在操作后出现", "function": "证明操作闭环", "timeRange": { "start": 5, "end": 10 }, "evidenceRefs": ["TARGET-0004"] }
+    ],
+    "shotSemantics": [
+      { "timeRange": { "start": 0, "end": 10 }, "role": "步骤到结果", "carrier": "UI", "meaningChange": "从设置入口切换到结果", "evidenceRefs": ["TARGET-0001", "TARGET-0004"] }
+    ],
+    "uiProcedureStates": [],
+    "transitions": [
+      { "timeRange": { "start": 4.5, "end": 5.5 }, "from": "设置界面", "to": "结果界面", "mechanism": "界面状态切换", "function": "把操作转成可见回报", "evidenceRefs": ["TARGET-0002", "TARGET-0004"] }
+    ],
+    "rhythm": [
+      { "timeRange": { "start": 0, "end": 10 }, "pace": "稳定", "density": "一步一状态", "function": "降低操作理解成本", "evidenceRefs": ["TARGET-0001", "TARGET-0004"] }
+    ],
+    "missingBridges": [
+      { "timeRange": { "start": 0, "end": 10 }, "statement": "隐藏设置没有展示", "impact": "无法完整复现参数", "evidenceRefs": ["TARGET-0001", "TARGET-0004"] }
+    ],
+    "audioRole": null,
+    "notes": ["非旁白音频无可读语义证据"]
+  }
+}

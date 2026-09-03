@@ -12,7 +12,7 @@ Reconstruct what a viewer can know, do, decide, believe, or feel after watching 
 Do not begin from a fixed video category. Run two rounds:
 
 1. **Probe** the video's information structure.
-2. **Derive and execute** a capture protocol specific to this video.
+2. **Derive and execute** one merged capture protocol specific to this video, then read the same evidence through three Builder lenses.
 
 Keep reconstruction separate from downstream analysis such as “why it went viral” or “what to copy.” A Builder result may support explicitly provisional downstream analysis after deterministic validation; only independently evaluated results may be promoted as verified Wiki knowledge.
 
@@ -54,7 +54,7 @@ The script produces media metadata, verbatim subtitle cues, scene-derived shots,
 
 If no subtitles exist, transcribe with the available media/transcription capability first and mark its origin as machine transcription.
 
-## Step 2 — Round-one probe
+## Step 2 — Round-one probe: discover three kinds of unanswered questions
 
 Read [probe.md](references/probe.md) and [evidence-policy.md](references/evidence-policy.md). Inspect the transcript, contact frames, shot boundaries, overlays, UI states, gestures, before/after states, and result shots.
 
@@ -70,7 +70,11 @@ Write `probe.json` against [probe.schema.json](schemas/probe.schema.json). The p
 
 Before closing the probe, run a **referent, boundary, and absence audit**. Resolve what each visible person/avatar, application, document, environment, inserted clip, disclaimer, and CTA element refers to; keep spoken generic labels separate from visible product identity; record meaning-bearing elements that are absent across the inspected timeline when their absence changes the viewer's decision. This is open-ended carrier discovery, not a category template.
 
-The probe must not produce the final summary and must not choose a closed category template.
+The probe must not produce the final summary and must not choose a closed category template. It must leave three explicit question sets for round two:
+
+- **内容问题：** 哪些知识、参数、操作、结果、边界还无法还原；
+- **编导问题：** 哪些钩子、承诺、推进、证明、高潮或收束还无法解释观众认知变化；
+- **画面与剪辑问题：** 哪些信息载体、切换、前后状态、结果出现、字幕/UI/口播分工或声音作用还无法解释。
 
 ## Step 3 — Derive the video-specific capture protocol
 
@@ -84,6 +88,8 @@ Define for this video:
 - whether arguments require claim/evidence/condition/counterexample/action links;
 - which OCR, UI, parameter, example, or visual-result evidence must be captured;
 - stopping rules and explicit unknowns.
+
+Each V2 capture action must declare `consumers` and `presentationIntent`. Merge actions that ask for the same time range and carrier: one observation may feed content restoration, directing logic, and visual editing. Do not run three independent full-video capture sweeps.
 
 Do not use a generic extraction checklist as the protocol. Every requested field and capture action must trace to a probe finding or omission risk.
 
@@ -110,9 +116,9 @@ node <SKILL_DIR>/scripts/run-ocr.mjs \
 
 Inspect OCR against the frames. OCR output is a proposal, not ground truth: preserve confidence, correct nothing silently, and cite accepted rows with `refType: "ocr"`. If OCR fails or small text remains unreadable, resample/crop or mark the field unknown. A sampled screenshot without an executed text/UI reading does not close that channel.
 
-## Step 5 — Reconstruct
+## Step 5 — Reconstruct through three Builder lenses
 
-Read [reconstruction.md](references/reconstruction.md). Write `reconstruction.json` against [reconstruction.schema.json](schemas/reconstruction.schema.json).
+Read [reconstruction.md](references/reconstruction.md). Write `reconstruction.json` as `video-reconstruction-2.0` against [reconstruction.schema.json](schemas/reconstruction.schema.json).
 
 For every core knowledge unit:
 
@@ -127,6 +133,14 @@ Account for the full verbatim transcript. The Host restores each cue's exact tex
 Account for every cue in `coverageMatrix.cueAccountability`; a cue may be knowledge, context, nonsemantic, or uncertain, but it may not silently disappear from the knowledge model. Recheck the opening and closing cues, all short on-screen cards, observable likeness/symbols, counted result groups, claim scope, and global cross-segment relationships before writing the article.
 
 Also reconcile speech labels with visible UI identity, literal failure signatures with result states, edited chronology with the claimed or inferred procedure, every visible qualifier/disclaimer, avatar or setting referents, and decision-relevant absences. A statement that something is absent requires a documented full-scope inspection; silence or a missed sample is not negative evidence.
+
+After the shared knowledge model is stable, produce all three `builderLenses`:
+
+1. **contentRestoration** — a readable, multimodal report. Put key frames, detail crops, before/after states and operation sequences next to the claim they establish. A separate frame gallery is only a secondary index.
+2. **directingLogic** — explain the viewer's before/after state and the hook, problem, promise, progression, proof, payoff and ending. Every stage needs a distinct function, cognitive change and evidence; do not rephrase one generic sentence across stages.
+3. **visualEditing** — explain what each visual carrier communicates, technical shot/meaning changes, subtitle/UI/voice division of labor, pacing, result timing, transitions, continuity gaps and readable non-speech audio. Do not infer editing technique from transcript alone.
+
+These are three readings of the same frozen evidence, not three unrelated summaries. Builder produces them before any optional Evaluator starts.
 
 ## Step 6 — Coverage matrix and meta-gate
 
@@ -190,7 +204,7 @@ Builder fast path must deliver:
 - `capture-protocol.json`;
 - `targeted-evidence/targeted-evidence.json`;
 - `targeted-evidence/ocr-evidence.json` when OCR/UI capture was requested;
-- `reconstruction.json`;
+- `reconstruction.json` using `video-reconstruction-2.0`, including `builderLenses.contentRestoration`, `builderLenses.directingLogic`, and `builderLenses.visualEditing`;
 - `builder-validation.json` from the host-side deterministic validator.
 
 Verified mode additionally delivers:
@@ -199,7 +213,7 @@ Verified mode additionally delivers:
 - `gate-report.json`;
 - the required independent lens artifacts.
 
-A human-readable article or report is a deferred renderer output generated only from the fixed reconstruction; it is not required on the synchronous Builder fast path.
+A human-readable report is a deterministic renderer output generated from the fixed multimodal content blocks. It embeds the selected evidence near the relevant explanation and is required after Builder validation, but is not authored as a separate source of truth.
 
 Use `BUILT_UNEVALUATED` after Builder validation passes without evaluation or when the optional Evaluator itself fails; distinguish the two with `evaluationMode`. Use `EVALUATED_WITH_FINDINGS` when evaluation completes with quality findings, and `VERIFIED` only when its gate passes. Both non-verified states remain visible in the workbench but cannot enter the formal Wiki. Use `NOT_READY` only when no minimum valid candidate can be assembled.
 

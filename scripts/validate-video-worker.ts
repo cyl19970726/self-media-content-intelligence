@@ -7,6 +7,6 @@ if (!creatorRunId || !postExternalId || !sourceMediaArtifactRef || !sourceUrl) {
 
 const outcome = await new CodexVideoReconstructionExecutor().reconstruct({
   runId: crypto.randomUUID(), creatorRunId, postExternalId, sourceUrl, sourceMediaArtifactRef,
-  evidencePackArtifactRef: null, contractVersion: "video-content-reconstruction@1"
+  evidencePackArtifactRef: null, contractVersion: "video-content-reconstruction@2"
 });
 process.stdout.write(`${JSON.stringify(outcome)}\n`);

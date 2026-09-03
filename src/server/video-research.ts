@@ -124,6 +124,8 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const evaluatorReport = fs.existsSync(evaluatorReportPath) ? fs.readFileSync(evaluatorReportPath, "utf8") : null;
   const targetedPath = path.join(rootPath, "targeted-evidence", "targeted-evidence.json");
   const targeted = fs.existsSync(targetedPath) ? record(JSON.parse(fs.readFileSync(targetedPath, "utf8")) as unknown) : {};
+  const evidencePackPath = path.join(rootPath, "evidence", "evidence-pack.json");
+  const evidencePack = fs.existsSync(evidencePackPath) ? record(JSON.parse(fs.readFileSync(evidencePackPath, "utf8")) as unknown) : {};
   const probePath = path.join(rootPath, "probe.json");
   const probe = fs.existsSync(probePath) ? record(JSON.parse(fs.readFileSync(probePath, "utf8")) as unknown) : {};
   const denseFrames = list(targeted.frames).map((raw) => {
@@ -132,6 +134,11 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative ? `${rootRef}targeted-evidence/${relative}` : "", reason: text(frame.reason) || null };
   }).filter((frame) => frame.src);
   const sparseFrames = denseFrames.filter((_frame, index) => index === 0 || index === denseFrames.length - 1 || index % Math.max(1, Math.ceil(denseFrames.length / 12)) === 0);
+  const evidenceFrames = list(evidencePack.frameIndex).map((raw) => {
+    const frame = record(raw); const relative = text(frame.frame);
+    return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative ? `${rootRef}evidence/${relative}` : "", reason: text(frame.purpose) || null };
+  }).filter((frame) => frame.src);
+  const frameLookup = new Map([...evidenceFrames, ...denseFrames].map((frame) => [frame.id, frame]));
   const transcript = record(reconstruction.transcript);
   const cues = list(transcript.cues).map((raw) => {
     const cue = record(raw);
@@ -152,6 +159,44 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     evidenceRefs: list(relation.evidence).map((item) => text(record(item).ref)).filter(Boolean)
   }; });
   const viewerChange = record(reconstruction.viewerChange);
+  const builderLenses = record(reconstruction.builderLenses);
+  const builderContent = record(builderLenses.contentRestoration);
+  const builderDirecting = record(builderLenses.directingLogic);
+  const builderVisual = record(builderLenses.visualEditing);
+  const hasBuilderThreeLenses = list(builderContent.blocks).length > 0 && list(builderDirecting.stages).length >= 2 &&
+    list(builderVisual.carriers).length > 0 && list(builderVisual.shotSemantics).length > 0;
+  const mediaForRefs = (refs: string[]) => refs.flatMap((ref) => {
+    const frame = frameLookup.get(ref);
+    return frame ? [{ ref, src: frame.src, label: frame.reason ?? ref, time: frame.time, role: "evidence",
+      focus: frame.reason ?? ref, proves: "支持相邻内容结论", cannotProve: "单帧不能证明未展示的连续操作或外部结果", crop: null }] : [];
+  });
+  const contentBlocks = list(builderContent.blocks).map((raw) => {
+    const block = record(raw); const timeRange = record(block.timeRange);
+    const evidenceRefs = strings(block.evidenceRefs);
+    const frameRefs = [...new Set([
+      ...strings(block.frameRefs),
+      ...(text(block.beforeFrameRef) ? [text(block.beforeFrameRef)] : []),
+      ...(text(block.afterFrameRef) ? [text(block.afterFrameRef)] : [])
+    ])];
+    const visuals = list(block.visuals).map((rawVisual) => record(rawVisual));
+    const media = visuals.length ? visuals.flatMap((visual) => {
+      const ref = text(visual.ref); const frame = frameLookup.get(ref); const crop = record(visual.crop);
+      return frame ? [{ ref, src: frame.src, label: text(visual.focus, frame.reason ?? ref), time: frame.time,
+        role: text(visual.role, "evidence"), focus: text(visual.focus, frame.reason ?? ref),
+        proves: text(visual.proves, "支持相邻内容结论"), cannotProve: text(visual.cannotProve, "不能替代完整时间序列"),
+        crop: number(crop.x) !== null && number(crop.y) !== null && number(crop.width) !== null && number(crop.height) !== null
+          ? { x: number(crop.x)!, y: number(crop.y)!, width: number(crop.width)!, height: number(crop.height)! } : null }] : [];
+    }) : mediaForRefs(frameRefs);
+    return {
+      id: text(block.id), type: text(block.type, "text"), title: text(block.title), body: text(block.body),
+      start: number(timeRange.start), end: number(timeRange.end), evidenceRefs,
+      media,
+      steps: list(block.steps).map((rawStep) => { const step = record(rawStep); return {
+        label: text(step.label), description: text(step.description), media: mediaForRefs(strings(step.frameRefs))
+      }; }),
+      boundary: text(block.boundary) || null
+    };
+  });
   const coverage = record(reconstruction.coverageMatrix);
   const coreEvidence = record(coverage.coreEvidence);
   const metaGate = record(reconstruction.metaGate);
@@ -159,10 +204,11 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const threeLens = safeThreeLens(batchItem);
   const allUnknowns = [...strings(coverage.unknowns), ...units.flatMap((unit) => unit.unknowns)];
   const conflicts = units.filter((unit) => /冲突|误识别|不一致/.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
-  const contentReady = threeLens ? threeLens.evaluation.lenses.contentRestoration.rules.every((rule) => rule.status === "pass") : gate.ready === true && metaGate.pass === true;
+  const contentReady = threeLens ? threeLens.evaluation.lenses.contentRestoration.rules.every((rule) => rule.status === "pass") : hasBuilderThreeLenses && metaGate.pass === true;
   const stageRows = list(probe.meaningChanges);
-  const directingReady = contentReady && stageRows.length >= 2 && text(viewerChange.before).length > 0 && text(viewerChange.after).length > 0;
-  const visualReady = threeLens ? threeLens.evaluation.lenses.visualEditing.rules.every((rule) => rule.status === "pass") : false;
+  const directingReady = threeLens ? threeLens.evaluation.lenses.directingLogic.rules.every((rule) => rule.status === "pass")
+    : hasBuilderThreeLenses && list(builderDirecting.stages).length >= 2;
+  const visualReady = threeLens ? threeLens.evaluation.lenses.visualEditing.rules.every((rule) => rule.status === "pass") : hasBuilderThreeLenses;
   const projectionGateFailures = [...new Set([
     ...(threeLens ? [] : strings(gate.failedGateIds)),
     ...(directingReady ? [] : ["directing_logic_projection_incomplete"]),
@@ -206,7 +252,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       likes: selection?.likes ?? null,
       sourceRefs: [run.inventoryArtifactRef, run.detailArtifactRef, run.mediaManifestArtifactRef]
     }),
-    thesis: text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")), article,
+    thesis: text(builderContent.summary, text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。"))), article, contentBlocks,
     reports: { builder: article, evaluator: evaluatorReport },
     quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
       lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef,
@@ -223,14 +269,60 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       ocr: fs.existsSync(path.join(rootPath, "targeted-evidence", "ocr-evidence.json")), audio: strings(coverage.uncheckedChannels).length === 0,
       baseline: selection?.likes != null, note: text(reconstruction.scopeStatement, batchItem.message) },
     knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: denseFrames },
-    directingLogic: { viewerBefore: text(viewerChange.before) || null, viewerAfter: text(viewerChange.after) || null,
-      activatedQuestion: null, promise: null, payoff: null, endingResolution: null,
-      stages: list(probe.meaningChanges).map((raw) => { const stage = record(raw); const range = record(stage.range); return {
+    directingLogic: { viewerBefore: text(builderDirecting.viewerBefore, text(viewerChange.before)) || null, viewerAfter: text(builderDirecting.viewerAfter, text(viewerChange.after)) || null,
+      activatedQuestion: text(builderDirecting.activatedQuestion) || null, promise: text(builderDirecting.promise) || null,
+      payoff: text(builderDirecting.payoff) || null, endingResolution: text(builderDirecting.endingResolution) || null,
+      stages: (hasBuilderThreeLenses ? list(builderDirecting.stages) : list(probe.meaningChanges)).map((raw) => { const stage = record(raw); const range = record(stage.timeRange ?? stage.range); return {
         label: text(stage.description, text(stage.id)), start: number(range.start), end: number(range.end), viewerQuestion: null,
-        function: text(stage.description), proof: text(stage.trigger) || null, cognitiveChange: text(stage.description) || null, comprehensionLoad: null, payoff: null, evidenceRefs: strings(stage.evidenceHints)
-      }; }), informationDesign: [], notes: strings(viewerChange.intendedChanges) },
-    visualEditing: { orientation: null, composition: null, shotCount: null, cutsPerMinute: null, resultFirstAt: null, carriers: [], analyzedDuration: null,
-      claims: [], shotSemantics: [], audioRole: null, notes: ["画面、UI、OCR 与音频证据已保留；结构化剪辑指标未进入当前 run 投影。"] },
+        function: text(stage.function, text(stage.description)), proof: text(stage.proof, text(stage.trigger)) || null,
+        cognitiveChange: text(stage.cognitiveChange, text(stage.description)) || null,
+        comprehensionLoad: text(stage.comprehensionLoad) || null, payoff: text(stage.payoff) || null,
+        evidenceRefs: strings(stage.evidenceRefs).length ? strings(stage.evidenceRefs) : strings(stage.evidenceHints),
+        ...(hasBuilderThreeLenses ? { label: text(stage.label), viewerQuestion: text(stage.viewerQuestion) || null } : {})
+      }; }),
+      informationDesign: list(builderDirecting.informationDesign).map((raw) => { const item = record(raw); const range = record(item.timeRange); return {
+        kind: text(item.kind), statement: text(item.statement), start: number(range.start), end: number(range.end), evidenceRefs: strings(item.evidenceRefs)
+      }; }),
+      proofDesign: list(builderDirecting.proofDesign).map((raw) => { const item = record(raw); const range = record(item.timeRange); return {
+        proofType: text(item.proofType), statement: text(item.statement), boundary: text(item.boundary), start: number(range.start), end: number(range.end), evidenceRefs: strings(item.evidenceRefs)
+      }; }),
+      loadAndPayoff: { compression: text(record(builderDirecting.loadAndPayoff).compression, "尚未分析"),
+        repetition: text(record(builderDirecting.loadAndPayoff).repetition, "尚未分析"),
+        payoffDistance: text(record(builderDirecting.loadAndPayoff).payoffDistance, "尚未分析"),
+        comprehensionCosts: strings(record(builderDirecting.loadAndPayoff).comprehensionCosts) },
+      notes: hasBuilderThreeLenses ? strings(builderDirecting.notes) : strings(viewerChange.intendedChanges) },
+    visualEditing: { orientation: text(builderVisual.orientation) || null, composition: text(builderVisual.composition) || null,
+      shotCount: number(builderVisual.shotCount), cutsPerMinute: number(builderVisual.cutsPerMinute), resultFirstAt: number(builderVisual.resultFirstAt),
+      shotMetricBasis: text(builderVisual.shotMetricBasis) || (hasBuilderThreeLenses
+        ? "Builder 依据证据包技术分段估算变化密度；不等同经逐切点核实的真实剪辑数。" : null),
+      analyzedDuration: number(builderVisual.analyzedDuration),
+      carriers: list(builderVisual.carriers).map((raw) => { const carrier = record(raw); const range = record(carrier.timeRange); return {
+        name: text(carrier.name), roles: strings(carrier.roles), start: number(range.start), end: number(range.end)
+      }; }),
+      claims: list(builderVisual.claims).map((raw) => { const claim = record(raw); const range = record(claim.timeRange); return {
+        statement: text(claim.statement), function: text(claim.function), start: number(range.start), end: number(range.end), evidenceRefs: strings(claim.evidenceRefs)
+      }; }),
+      shotSemantics: list(builderVisual.shotSemantics).map((raw) => { const shot = record(raw); const range = record(shot.timeRange); return {
+        start: number(range.start), end: number(range.end), role: text(shot.role), carrier: text(shot.carrier), meaningChange: text(shot.meaningChange), evidenceRefs: strings(shot.evidenceRefs)
+      }; }),
+      uiProcedureStates: list(builderVisual.uiProcedureStates).map((raw) => { const state = record(raw); const range = record(state.timeRange); return {
+        label: text(state.label), before: text(state.before), during: text(state.during), after: text(state.after), input: text(state.input) || null,
+        parameters: strings(state.parameters), output: text(state.output) || null, continuity: text(state.continuity),
+        start: number(range.start), end: number(range.end), evidenceRefs: strings(state.evidenceRefs)
+      }; }),
+      transitions: list(builderVisual.transitions).map((raw) => { const transition = record(raw); const range = record(transition.timeRange); return {
+        from: text(transition.from), to: text(transition.to), mechanism: text(transition.mechanism), function: text(transition.function),
+        start: number(range.start), end: number(range.end), evidenceRefs: strings(transition.evidenceRefs)
+      }; }),
+      rhythm: list(builderVisual.rhythm).map((raw) => { const rhythm = record(raw); const range = record(rhythm.timeRange); return {
+        pace: text(rhythm.pace), density: text(rhythm.density), function: text(rhythm.function),
+        start: number(range.start), end: number(range.end), evidenceRefs: strings(rhythm.evidenceRefs)
+      }; }),
+      missingBridges: list(builderVisual.missingBridges).map((raw) => { const bridge = record(raw); const range = record(bridge.timeRange); return {
+        statement: text(bridge.statement), impact: text(bridge.impact), start: number(range.start), end: number(range.end), evidenceRefs: strings(bridge.evidenceRefs)
+      }; }),
+      audioRole: text(builderVisual.audioRole) || null,
+      notes: hasBuilderThreeLenses ? strings(builderVisual.notes) : ["V1 产物只保留画面证据，尚未生成 Builder 画面与剪辑镜头。"] },
     performanceContext: { tier: selection?.tier ?? "unknown", creatorMedianLikes: analysis?.likes.median ?? null,
       medianMultiple: selection?.likes != null && analysis?.likes.median ? selection.likes / analysis.likes.median : null, percentileRank: null,
       interpretation: synthesis?.performanceInterpretation ?? "公开表现只按账号内部基线解释。", confounds: [analysis?.interpretationBoundary ?? "公开互动不等于播放、留存、涨粉或成交。"] },
@@ -240,11 +332,18 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       visualEditingLogic: projectLens(threeLens.evaluation, threeLens.report, "visualEditing", strings(coverage.uncheckedChannels))
     } : {
       contentRestoration: { state: contentReady ? "ready" : "partial", covered: number(coreEvidence.covered) ?? 0, total: number(coreEvidence.total) ?? 0,
-        evidenceRefs: units.flatMap((unit) => unit.evidenceRefs), conflicts, uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: contentReady ? [] : strings(gate.failedGateIds), note: "由当前 reconstruction 与内容 gate 投影。", evaluator: null, rules: [] },
-      directingLogic: { state: directingReady ? "ready" : "partial", covered: stageRows.length, total: stageRows.length, evidenceRefs: units.flatMap((unit) => unit.evidenceRefs).slice(0, 24),
-        conflicts: [], uncheckedChannels: [], failedGateIds: directingReady ? [] : ["directing_logic_projection_incomplete"], note: "已恢复认知阶段；仅在内容 gate 与阶段证据同时闭环时通过。", evaluator: null, rules: [] },
-      visualEditingLogic: { state: "partial", covered: denseFrames.length, total: denseFrames.length, evidenceRefs: denseFrames.slice(0, 24).map((frame) => frame.id),
-        conflicts: [], uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: ["visual_editing_projection_incomplete"], note: "真实帧已保留，结构化画面/剪辑评测尚未进入 versioned run。", evaluator: null, rules: [] }
+        evidenceRefs: contentBlocks.length ? contentBlocks.flatMap((block) => block.evidenceRefs) : units.flatMap((unit) => unit.evidenceRefs),
+        conflicts, uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: contentReady ? [] : strings(gate.failedGateIds),
+        note: hasBuilderThreeLenses ? "Builder 已完成多模态内容还原；尚未独立评估。" : "由 V1 reconstruction 与内容 gate 投影。", evaluator: null, rules: [] },
+      directingLogic: { state: directingReady ? "ready" : "partial", covered: hasBuilderThreeLenses ? list(builderDirecting.stages).length : stageRows.length,
+        total: hasBuilderThreeLenses ? list(builderDirecting.stages).length : stageRows.length,
+        evidenceRefs: hasBuilderThreeLenses ? list(builderDirecting.stages).flatMap((item) => strings(record(item).evidenceRefs)) : units.flatMap((unit) => unit.evidenceRefs).slice(0, 24),
+        conflicts: [], uncheckedChannels: [], failedGateIds: directingReady ? [] : ["directing_logic_projection_incomplete"],
+        note: hasBuilderThreeLenses ? "Builder 已完成编导逻辑镜头；尚未独立评估。" : "V1 仅从 Probe 恢复认知阶段。", evaluator: null, rules: [] },
+      visualEditingLogic: { state: visualReady ? "ready" : "partial", covered: list(builderVisual.shotSemantics).length, total: list(builderVisual.shotSemantics).length,
+        evidenceRefs: list(builderVisual.shotSemantics).flatMap((item) => strings(record(item).evidenceRefs)),
+        conflicts: [], uncheckedChannels: strings(coverage.uncheckedChannels), failedGateIds: visualReady ? [] : ["visual_editing_projection_incomplete"],
+        note: visualReady ? "Builder 已完成画面与剪辑镜头；尚未独立评估。" : "V1 只保留真实帧，未生成结构化画面与剪辑镜头。", evaluator: null, rules: [] }
     },
     coverage: { coreCovered: number(coreEvidence.covered) ?? 0, coreTotal: number(coreEvidence.total) ?? 0,
       uncheckedChannels: strings(coverage.uncheckedChannels) },

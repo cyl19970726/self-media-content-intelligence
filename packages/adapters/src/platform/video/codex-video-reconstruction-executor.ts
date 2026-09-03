@@ -33,7 +33,7 @@ import {
 
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
   path.join(projectRoot, ".agents", "skills", "video-content-reconstruction");
-const evaluatorPromptVersion = "single-pass-v2-evidence-budget";
+const evaluatorPromptVersion = "single-pass-v3-isolated-source-overview";
 const builderIntegrityContractVersion = "builder-integrity-v6-host-reference-sanitization";
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
@@ -299,8 +299,16 @@ Resume contract:
 - Treat media-preparation.json and evidence/evidence-pack.json as frozen host inputs.
 - When probe, protocol, or targeted evidence already exists, treat it as frozen input and inspect it directly.
 
-Execute only the missing Builder closures: first-round open probe, video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured reconstruction, coverage/meta-gate self-audit, and schema validation. Preserve the transcript provenance recorded in media-preparation.json. Machine transcription remains a lower-confidence proposal and must be checked against audible speech and visible captions when consequential.
+Execute only the missing Builder closures: first-round open probe, one merged video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured three-lens reconstruction, coverage/meta-gate self-audit, and schema validation. New protocol output must use capture-protocol-2.0; new reconstruction output must use video-reconstruction-2.0. Preserve the transcript provenance recorded in media-preparation.json. Machine transcription remains a lower-confidence proposal and must be checked against audible speech and visible captions when consequential.
 Every evidence item with refType "source" must use the exact ID of a matching top-level derivedSources entry, never a file path or JSON pointer. If media-preparation.json supports a technical fact, register it in derivedSources first and cite that registered ID.
+
+Three-lens Builder contract:
+- Round one leaves explicit unanswered questions for content restoration, directing logic, and visual editing.
+- Round two merges capture requests for the same time range/carrier. Every capture-protocol-2.0 action declares consumers and presentationIntent. Never perform three independent full-video sweeps.
+- reconstruction.builderLenses.contentRestoration is a multimodal reading path. Put key frames, detail crops, before/after states, and operation sequences beside the knowledge they establish; a separate frame gallery is not a substitute.
+- reconstruction.builderLenses.directingLogic must explain distinct hook/problem/promise/progression/proof/payoff/ending functions and viewer cognitive changes. Do not repeat one generic description across stages.
+- reconstruction.builderLenses.visualEditing must explain carrier roles, technical/semantic changes, subtitle/UI/voice division, pacing, result timing, continuity gaps, transitions, and only model-readable audio semantics.
+- All lens evidenceRefs and frame refs must resolve to this revision's frozen cues/shots/frames/TARGET/OCR/registered sources.
 
 Isolation and evidence rules:
 - Do not read any previous report, creator analysis, audit, evaluation, or sibling video directory.
@@ -330,26 +338,30 @@ export function evaluatorPrompt(
   candidateFingerprints: Record<string, string>
 ): string {
   return `
-You are the optional Evaluator in a fresh process, independent from the Builder. Read ${skillDir}/references/evaluator-operator.md and ${skillDir}/schemas/evaluation.schema.json completely. Do not modify candidate files.
+You are the optional Evaluator in a fresh process, independent from the Builder. Read ${skillDir}/references/evaluator-operator.md and ${skillDir}/schemas/evaluation.schema.json completely. Those files plus the runtime lens contract below are the complete runtime instruction: do not read SKILL.md, references/evaluation.md, prior evaluation files, or repository-wide alternatives. Do not modify candidate files.
 Read ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")} completely as the authoritative CR/DL/VE rule contract; do not search the repository for alternate rule definitions.
 
 Source video: ${videoPath}
 Candidate root: ${outputDir}
 Frozen candidate revision: ${candidateRevisionFingerprint}
 Frozen candidate artifact fingerprints: ${JSON.stringify(candidateFingerprints)}
+Host-built source overview: ${path.join(outputDir, "evaluator-evidence", "source-overview.jpg")}
+Host-built source overview manifest: ${path.join(outputDir, "evaluator-evidence", "manifest.json")}
 
-Independently inspect the source video, media-preparation.json, evidence/evidence-pack.json, targeted-evidence manifests and frames, OCR when present, probe.json, capture-protocol.json, reconstruction.json, and article.md only when it exists. You did not see the Builder's hidden context and must not read any prior report/audit/evaluation outside this directory.
+Independently inspect the host-built source overview, its manifest, media-preparation.json, evidence/evidence-pack.json, targeted-evidence manifests and frames, OCR when present, probe.json, capture-protocol.json, reconstruction.json, and article.md only when it exists. You did not see the Builder's hidden context and must not read any prior report/audit/evaluation outside this directory. Do not create or read a global /tmp overview. The exact namespaced Host-built overview above is the only source-wide overview for this evaluation. Before reporting source/evidence mismatch, compare its manifest SHA-256 with media-preparation.json and inspect two named source frames under evaluator-evidence/frames; a visual impression from another image is not enough.
 
 Evaluate GATE first: critical-question recall, core evidence coverage, unsupported positive inference, timestamp accuracy, applicable process dependencies, correct unknown discipline, unchecked channels, and the exact meta-gate. Only if every hard gate passes, run JUDGE for readability, knowledge prioritization, evidence usefulness, execution value, and compression without loss.
 
 Carrier and OCR rules:
 - Accept checked_unreadable as a closed carrier only when its rationale names the completed check and the candidate preserves the unavailable semantics as unknown without making claims from it. Do not convert checked_unreadable back to unchecked merely because semantic extraction was unavailable.
+- Inspecting evidence-pack audio metadata, establishing that no model-readable semantic audio evidence exists, and preserving music/sound meaning as unknown is a completed availability/readability check. Do not require fake listening, source separation, or semantic classification when the Host supplied no model-readable audio evidence.
 - OCR frame statuses processed and failed both prove one recognition execution for that immutable frame revision. Failed OCR supplies no text evidence; independently inspect consequential visibly legible text and fail genuine omissions.
 
 Evidence-view budget:
-- Build at most one source-wide overview when no suitable overview exists. Inspect overviews/contact sheets at high detail, never original detail.
+- The Host already built one namespaced source-wide overview. Never build another. Inspect overviews/contact sheets at high detail, never original detail.
 - Open original frames only for consequential exact text or visual state that remains unresolved after the overview. Normally inspect no more than 8 originals total.
 - The lower bound is complete critical-question plus scene/carrier coverage. Exceed 8 originals only when that coverage remains unresolved, and record the reason in evaluator notes; never reduce evidence merely to satisfy the budget.
+- Keep evidence reads bounded: do not enumerate the repository, dump the full transcript, dump all of reconstruction.json, or reread the full deterministic article. Use selected JSON fields and only read article.md when testing a suspected rendering divergence. Aim to finish in 5–8 evidence calls.
 
 Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
 - ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
@@ -446,6 +458,24 @@ async function renderBuilderReport(outputDir: string, title: string): Promise<vo
   }
 }
 
+async function prepareEvaluatorOverview(videoPath: string, outputDir: string): Promise<string> {
+  const evidenceDir = path.join(outputDir, "evaluator-evidence");
+  const overviewPath = path.join(evidenceDir, "source-overview.jpg");
+  const manifestPath = path.join(evidenceDir, "manifest.json");
+  const sourceFingerprint = sha256(videoPath);
+  const existingManifest = readJsonIfPresent(manifestPath) as { sourceVideoSha256?: string } | null;
+  if (!exists(overviewPath) || existingManifest?.sourceVideoSha256 !== sourceFingerprint) {
+    await runFile(process.execPath, [
+      path.join(skillDir, "scripts/build-evaluator-overview.mjs"),
+      "--video", videoPath,
+      "--out", overviewPath
+    ], { cwd: outputDir, timeout: 10 * 60_000 });
+  }
+  const manifest = readJsonIfPresent(manifestPath) as { sourceVideoSha256?: string } | null;
+  if (manifest?.sourceVideoSha256 !== sourceFingerprint) throw new Error("EVALUATOR_SOURCE_OVERVIEW_MISMATCH");
+  return overviewPath;
+}
+
 export function candidateArtifactFingerprints(outputDir: string): Record<string, string> {
   return Object.fromEntries(frozenCandidateFiles.flatMap((relative) => {
     const absolute = path.join(outputDir, relative);
@@ -457,6 +487,7 @@ export function evaluatorContractRevision(): string {
   const contractFiles = [
     path.join(skillDir, "references/evaluator-operator.md"),
     path.join(skillDir, "schemas/evaluation.schema.json"),
+    path.join(skillDir, "scripts/build-evaluator-overview.mjs"),
     path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")
   ];
   const hash = crypto.createHash("sha256").update(evaluatorPromptVersion);
@@ -467,6 +498,7 @@ export function evaluatorContractRevision(): string {
 export function builderIntegrityContractRevision(): string {
   const contractFiles = [
     path.join(skillDir, "references/builder-operator.md"),
+    path.join(skillDir, "schemas/capture-protocol.schema.json"),
     path.join(skillDir, "schemas/reconstruction.schema.json")
   ];
   const hash = crypto.createHash("sha256").update(builderIntegrityContractVersion);
@@ -709,6 +741,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       ];
       if (!gate || !evaluatorMatchesCandidate ||
           singlePassLensFiles.some((relative) => !exists(path.join(outputDir, relative)))) {
+        await prepareEvaluatorOverview(videoPath, outputDir);
         const frozenFingerprints = currentFingerprints;
         const candidateRevision = currentCandidateRevision;
         const evaluatorReceipt = await runCodex(

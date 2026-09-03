@@ -28,8 +28,10 @@ Each action must specify:
 - density or exact times;
 - expected observation;
 - probe finding it covers.
+- every Builder lens that consumes it (`content_restoration`, `directing_logic`, `visual_editing`);
+- whether the evidence should appear inline, as a crop, a before/after pair, an operation sequence, or only support analysis.
 
-If `times` is present and non-empty, the capture script treats those timestamps as authoritative for every mode. Omit `times` only when interval sampling is intended. The script rejects more than 120 frames for one action or 600 frames in one protocol by default; split, crop, merge overlaps, or refine intervals instead of sampling an entire video at UI/OCR density. Raise the caps explicitly only when the omission risk justifies the cost.
+If `times` is present and non-empty, the capture script treats those timestamps as authoritative for every mode. Omit `times` only when interval sampling is intended. The script rejects more than 60 frames for one action or 180 unique frames in one protocol by default; split, crop, merge overlaps, or refine intervals instead of sampling an entire video at UI/OCR density. Equal timestamps and byte-identical frames are reused across actions, so the three lenses share one evidence base. Raise the caps explicitly only when the omission risk justifies the cost.
 
 Use denser capture around short overlays, UI transitions, parameter changes, steps, comparisons, and before/after reveals. For operations, capture before, during, and after states. For motion-dependent proof, capture a frame sequence rather than a single pose.
 

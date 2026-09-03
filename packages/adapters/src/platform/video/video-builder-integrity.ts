@@ -14,6 +14,7 @@ type Carrier = {
   inspectionRationale?: string;
 };
 type ReconstructionLike = {
+  schemaVersion?: string;
   transcript?: { cues?: Array<Record<string, unknown>> };
   knowledgeUnits?: Array<{
     id?: string;
@@ -34,6 +35,36 @@ type ReconstructionLike = {
     uncheckedChannels?: string[];
     overlookedMeaningChanges?: string[];
     overlookedRelationships?: string[];
+  };
+  builderLenses?: {
+    contentRestoration?: {
+      summary?: string;
+      blocks?: Array<{
+        id?: string;
+        type?: string;
+        body?: string;
+        evidenceRefs?: string[];
+        frameRefs?: string[];
+        visuals?: Array<{ ref?: string }>;
+        beforeFrameRef?: string;
+        afterFrameRef?: string;
+        steps?: Array<{ frameRefs?: string[] }>;
+      }>;
+    };
+    directingLogic?: {
+      stages?: Array<{ label?: string; function?: string; cognitiveChange?: string; evidenceRefs?: string[] }>;
+      informationDesign?: Array<{ evidenceRefs?: string[] }>;
+      proofDesign?: Array<{ evidenceRefs?: string[] }>;
+    };
+    visualEditing?: {
+      carriers?: Array<Record<string, unknown>>;
+      claims?: Array<{ evidenceRefs?: string[] }>;
+      shotSemantics?: Array<{ evidenceRefs?: string[] }>;
+      uiProcedureStates?: Array<{ evidenceRefs?: string[] }>;
+      transitions?: Array<{ evidenceRefs?: string[] }>;
+      rhythm?: Array<{ evidenceRefs?: string[] }>;
+      missingBridges?: Array<{ evidenceRefs?: string[] }>;
+    };
   };
 };
 
@@ -94,7 +125,36 @@ export type BuilderIntegrityReport = {
   evidenceReferences: number;
   availableChannels: number;
   inspectedChannels: number;
+  builderLensEvidenceReferences: number;
 };
+
+function normalizedMeaning(value: string | undefined): string {
+  return (value ?? "").toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, "");
+}
+
+function builderLensRefs(reconstruction: ReconstructionLike): string[] {
+  const lenses = reconstruction.builderLenses;
+  if (!lenses) return [];
+  const content = lenses.contentRestoration?.blocks ?? [];
+  return [
+    ...content.flatMap((block) => [
+      ...(block.evidenceRefs ?? []), ...(block.frameRefs ?? []),
+      ...(block.visuals ?? []).flatMap((visual) => visual.ref ? [visual.ref] : []),
+      ...(block.beforeFrameRef ? [block.beforeFrameRef] : []),
+      ...(block.afterFrameRef ? [block.afterFrameRef] : []),
+      ...(block.steps ?? []).flatMap((step) => step.frameRefs ?? [])
+    ]),
+    ...(lenses.directingLogic?.stages ?? []).flatMap((stage) => stage.evidenceRefs ?? []),
+    ...(lenses.directingLogic?.informationDesign ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.directingLogic?.proofDesign ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.claims ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.shotSemantics ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.uiProcedureStates ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.transitions ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.rhythm ?? []).flatMap((item) => item.evidenceRefs ?? []),
+    ...(lenses.visualEditing?.missingBridges ?? []).flatMap((item) => item.evidenceRefs ?? [])
+  ];
+}
 
 export function validateBuilderIntegrity(outputDir: string, videoPath: string): BuilderIntegrityReport {
   const manifest = readJson<{
@@ -148,6 +208,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   const ocrIds = new Set((ocr?.frames ?? []).flatMap((item) => item.lines ?? [])
     .map((item) => item.id).filter((id): id is string => Boolean(id)));
   const sourceIds = ids(reconstruction.derivedSources);
+  const allEvidenceIds = new Set([...sourceCueIds, ...shotIds, ...frameIds, ...targetedIds, ...ocrIds, ...sourceIds]);
   const frameTimes = new Map<string, number>();
   for (const frame of pack.frameIndex ?? []) if (frame.id && Number.isFinite(frame.time)) frameTimes.set(frame.id, Number(frame.time));
   for (const frame of targeted.frames ?? []) if (frame.id && Number.isFinite(frame.time)) frameTimes.set(frame.id, Number(frame.time));
@@ -172,6 +233,30 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   for (const relation of reconstruction.relations ?? []) {
     if (!relation.from || !unitIds.has(relation.from) || !relation.to || !unitIds.has(relation.to)) {
       fail("RELATION_UNIT_REFERENCE");
+    }
+  }
+
+  const lensReferences = builderLensRefs(reconstruction);
+  if (reconstruction.schemaVersion === "video-reconstruction-2.0") {
+    const lenses = reconstruction.builderLenses;
+    if (!lenses?.contentRestoration?.blocks?.length || !lenses.directingLogic?.stages?.length ||
+        !lenses.visualEditing?.carriers?.length || !lenses.visualEditing?.claims?.length ||
+        !lenses.visualEditing?.shotSemantics?.length || !lenses.visualEditing?.rhythm?.length) fail("BUILDER_LENSES_INCOMPLETE");
+    const danglingLensRefs = [...new Set(lensReferences.filter((ref) => !allEvidenceIds.has(ref)))];
+    if (danglingLensRefs.length > 0) fail("BUILDER_LENS_DANGLING_REFERENCE", danglingLensRefs.join(","));
+    const contentBlocks = lenses.contentRestoration.blocks;
+    if (contentBlocks.some((block) => !(block.body?.trim()) || !(block.evidenceRefs?.length))) {
+      fail("CONTENT_BLOCK_EVIDENCE");
+    }
+    const visualBlockTypes = new Set(["single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip"]);
+    if (contentBlocks.some((block) => visualBlockTypes.has(block.type ?? "") &&
+      !(block.visuals?.length || block.frameRefs?.length || block.beforeFrameRef || block.afterFrameRef || block.steps?.length))) {
+      fail("CONTENT_BLOCK_VISUAL_MISSING");
+    }
+    const stages = lenses.directingLogic.stages ?? [];
+    const meanings = stages.map((stage) => normalizedMeaning(`${stage.function} ${stage.cognitiveChange}`));
+    if (meanings.some((value) => !value) || new Set(meanings).size !== meanings.length) {
+      fail("DIRECTING_STAGE_REPETITION");
     }
   }
   for (const question of reconstruction.coverageMatrix?.criticalQuestions ?? []) {
@@ -227,6 +312,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     coreUnits: units.filter((unit) => unit.importance === "core").length,
     evidenceReferences: references.length,
     availableChannels: availableChannels.length,
-    inspectedChannels: availableChannels.filter((channel) => ["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel))).length
+    inspectedChannels: availableChannels.filter((channel) => ["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel))).length,
+    builderLensEvidenceReferences: lensReferences.length
   };
 }
