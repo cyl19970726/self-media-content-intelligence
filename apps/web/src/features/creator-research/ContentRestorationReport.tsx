@@ -44,7 +44,7 @@ export function ContentRestorationReport({ blocks }: { blocks: ContentBlock[] })
     <EvidenceMedia block={block}/>
     {block.steps.length > 0 && <ol className="content-operation-sequence">{block.steps.map((step, index) => <li key={`${step.label}-${index}`}>
       <div><b>{step.label}</b><p>{step.description}</p></div>
-      {step.media.length > 0 && <div className="content-step-media">{step.media.map((item) => <figure id={`evidence-${item.ref}`} key={item.ref}><img src={item.src} loading="lazy" alt={item.label}/><figcaption>{item.label}</figcaption></figure>)}</div>}
+      {step.media.length > 0 && <div className="content-step-media">{step.media.map((item) => <figure key={item.ref}><img src={item.src} loading="lazy" alt={`${step.label}：${step.description}`}/><figcaption><span>步骤证据</span><time>{timestamp(item.time)}</time></figcaption></figure>)}</div>}
     </li>)}</ol>}
     {block.boundary && <aside><b>证据边界</b><p>{block.boundary}</p></aside>}
   </article>)}</div>;

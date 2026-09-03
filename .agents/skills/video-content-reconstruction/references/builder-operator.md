@@ -18,7 +18,7 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 3. 从 probe 推导本视频 `capture-protocol-2.0`；每个动作必须追溯到 probe 发现或遗漏风险，并声明 `consumers` 与 `presentationIntent`。同一时间范围、同一载体的需求合并采集，禁止为三个镜头各扫一遍全片。
 4. 先复用 evidence pack 的 gap-free dense/shot/cue frames，只让 capture protocol 补尚未回答的关键问题；不得把整段 dense sweep 再包装成 targeted action。只通过 `capture-protocol-evidence.mjs` 执行定向采集。命令路径从当前冻结根目录推导，不要反复手抄长 run ID。
 5. 需要 OCR/UI 时，对同一份 targeted manifest 最多运行一次 `node scripts/run-ocr.mjs` 并人工核对提案；不得直接调用 Swift 实现。wrapper 把编译缓存放在可写的临时目录，避免把宿主权限问题误判成 OCR 能力失败。完整 OCR artifact 对该 revision 是终态：成功不得重跑；逐帧失败也保留为“已检查但不可用”，不得用同输入重试。
-6. 写 `video-reconstruction-2.0`：先保留全部 cue、cue↔frame↔shot 映射、知识单元、关系、未知项、逐 cue 归责与分范围 coverage，再基于同一证据完成三个 Builder 镜头：
+6. 写 `video-reconstruction-2.0`：先写知识单元、关系、未知项与分范围 coverage，再基于同一证据完成三个 Builder 镜头。逐 cue 的机械回链由 Host 根据冻结 cue 与知识单元时间范围生成；Builder 不要手工枚举几十行重复映射，只在 `coverageMatrix.cueAccountability` 中写需要覆盖机械候选的语义例外（`nonsemantic`、`uncertain`、跨单元或明确不同归属）。Host 最终恢复全部 cue 与 cue↔frame↔shot 映射，并把缺失或退化的 `knowledge/context + unitIds: []` 修复为可审计回链：
    - `contentRestoration`：按读者理解顺序使用 `text`、`single_frame`、`annotated_crop`、`before_after`、`operation_sequence`、`frame_strip`、`claim_boundary`、`unknown` 八种多模态内容块；关键帧、局部裁切、前后状态和操作序列必须紧邻其证明的知识，不能只放在独立图库。每个 `visuals` 项写清重点看什么、证明什么、不能证明什么。
    - `directingLogic`：写清观看前后、激活问题、承诺、推进、证明、高潮/回报和收束；每个阶段必须有不同的功能、认知变化和证据，禁止机械同义改写。
    - `visualEditing`：写清每段画面载体的信息职责、镜头/意义切换、字幕/UI/口播分工、节奏、结果首次出现、连续性缺口、转场与可读声音作用；不能只凭字幕推断画面剪辑。
@@ -38,6 +38,7 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 - 一张中点截图不能证明整个区间；连续操作、隐藏点击、网络调用和剪辑顺序不得脑补。
 - Targeted capture 默认每 action 60 张、全协议 180 张唯一帧。同一时刻与字节完全相同的帧跨 action 复用。预算不是覆盖率上限：若关键语义变化、小字可读性或 before/during/after 关系确需更多帧，先在 protocol 写出理由，再显式提高；否则细化范围而不是全段 0.25–0.75 秒扫图。
 - 负面结论必须写清被完整检查的时间范围与载体。
+- 一个知识单元的 `timeRange` 必须表示语义连续的区间。片头提示与结尾主张即使主题相同，也不得为了包住两端证据而把单元扩成整条视频；应拆成两个单元或把证据放回各自真实区间。修复证据越界时，禁止用扩大区间掩盖不连续语义。
 - `builderLenses` 内所有 `evidenceRefs`、`frameRefs`、前后帧与步骤帧必须引用当前 revision 中真实存在的 cue、shot、frame、TARGET、OCR 或 registered source ID。一个内容块至少引用一条证据。
 - 不联网核实产品主张，不读同级视频、博主报告、旧 audit/evaluation。
 

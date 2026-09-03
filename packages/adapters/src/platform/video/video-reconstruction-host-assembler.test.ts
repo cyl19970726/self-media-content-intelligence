@@ -102,12 +102,14 @@ describe("Host-owned video reconstruction assembly", () => {
       expect(report.cueAccountabilityRowsRestored).toBe(2);
       expect(assembled.coverageMatrix.cueAccountability).toEqual([
         {
-          cueId: "CUE-001", disposition: "knowledge", unitIds: ["KU-001", "KU-002"],
-          rationale: "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
+          cueId: "CUE-001", disposition: "knowledge", unitIds: ["KU-001"],
+          rationale: "Host 按冻结 Cue 与知识单元时间范围生成机械候选回链。",
+          assignmentSource: "host_time_overlap"
         },
         {
           cueId: "CUE-002", disposition: "knowledge", unitIds: ["KU-002"],
-          rationale: "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
+          rationale: "Host 按冻结 Cue 与知识单元时间范围生成机械候选回链。",
+          assignmentSource: "host_time_overlap"
         }
       ]);
     } finally {
@@ -131,10 +133,63 @@ describe("Host-owned video reconstruction assembly", () => {
       expect(report.cueAccountabilityRowsRestored).toBe(2);
       expect(assembled.coverageMatrix.cueAccountability).toMatchObject([
         { cueId: "CUE-001", disposition: "knowledge", unitIds: ["KU-002"] },
-        { cueId: "CUE-002", disposition: "uncertain", unitIds: [] }
+        { cueId: "CUE-002", disposition: "knowledge", unitIds: ["KU-002"] }
       ]);
       expect(assembled.coverageMatrix.cueAccountability[0].rationale).toContain("Host");
       expect(assembled.coverageMatrix.cueAccountability[1].rationale).toContain("Host");
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("repairs Builder template rows that classify cues but leave every unit link empty", () => {
+    const root = createFixture();
+    try {
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.coverageMatrix.cueAccountability = reconstruction.coverageMatrix.cueAccountability.map(
+        (row: Record<string, unknown>) => ({
+          ...row,
+          disposition: "context",
+          unitIds: [],
+          rationale: "其信息已在相邻知识单元中归纳。"
+        })
+      );
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const assembled = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(report.cueAccountabilityRowsRepaired).toBe(2);
+      expect(report.cueAccountabilityRowsRestored).toBe(0);
+      expect(report.cueAccountabilityRowsHostOwned).toBe(2);
+      expect(assembled.coverageMatrix.cueAccountability).toMatchObject([
+        { cueId: "CUE-001", disposition: "context", unitIds: ["KU-001"], assignmentSource: "host_time_overlap" },
+        { cueId: "CUE-002", disposition: "context", unitIds: ["KU-002"] }
+      ]);
+      expect(assembled.coverageMatrix.cueAccountability[0].rationale).toContain("补全 Builder 的空回链");
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("recomputes Host-owned mappings after a Builder repair changes unit ranges", () => {
+    const root = createFixture();
+    try {
+      const reconstructionPath = path.join(root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.coverageMatrix.cueAccountability = [];
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+      assembleHostOwnedReconstruction(root);
+
+      const first = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(first.coverageMatrix.cueAccountability[0].unitIds).toEqual(["KU-001"]);
+      first.knowledgeUnits[0].timeRange = { start: 20, end: 25 };
+      fs.writeFileSync(reconstructionPath, JSON.stringify(first));
+
+      const report = assembleHostOwnedReconstruction(root);
+      const second = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      expect(second.coverageMatrix.cueAccountability[0].unitIds).toEqual(["KU-002"]);
+      expect(report.cueAccountabilityRowsHostOwned).toBe(2);
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }

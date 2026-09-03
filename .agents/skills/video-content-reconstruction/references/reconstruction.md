@@ -9,7 +9,7 @@
 5. Run the meta-gate.
 6. Generate prose only after the structured reconstruction validates.
 
-Preserve every transcript cue exactly as supplied, including its representative frame and all overlapping shots. Add one `coverageMatrix.cueAccountability` row per cue. Mark it `knowledge`, `context`, `nonsemantic`, or `uncertain`; link knowledge/context cues to unit IDs and explain every other disposition. Reinspect the opening and final cue groups after drafting because hooks and closing reframes are common omission points.
+Preserve every transcript cue exactly as supplied, including its representative frame and all overlapping shots. Host generates the complete `coverageMatrix.cueAccountability` ledger from cue/unit time overlap. Builder supplies only semantic overrides: `nonsemantic`, `uncertain`, boundary-spanning cues, or a deliberate mapping different from that mechanical candidate. Every final knowledge/context row must link unit IDs, while every other disposition must explain why it remains outside a knowledge unit. Reinspect the opening and final cue groups after drafting because hooks and closing reframes are common omission points.
 
 ## Knowledge units
 

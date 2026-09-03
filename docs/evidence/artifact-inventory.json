@@ -38,7 +38,8 @@
     "scripts/migrate-evidence.mjs",
     "scripts/migrate-evidence.test.mjs",
     "scripts/render-report-preview.mjs",
-    "scripts/rerun-video-evaluator.ts"
+    "scripts/rerun-video-evaluator.ts",
+    "scripts/run-video-three-lens-regression.ts"
   ],
   "largestFiles": []
 }

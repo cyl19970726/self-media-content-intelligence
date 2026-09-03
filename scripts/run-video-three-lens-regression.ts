@@ -78,38 +78,59 @@ function option(name: string): string | null {
 
 function requiredIds(): string[] {
   const values = (option("--ids") ?? "").split(",").map((value) => value.trim()).filter(Boolean);
-  if (!values.length) throw new Error("Usage: tsx scripts/run-video-three-lens-regression.ts --ids <id,id,id> [--builder-only]");
+  if (!values.length) throw new Error("Usage: tsx scripts/run-video-three-lens-regression.ts --ids <id,id,id> [--builder-only] [--source-video <file>]");
   return [...new Set(values)];
 }
 
 async function main() {
   const ids = requiredIds();
+  const sourceVideo = option("--source-video");
+  if (sourceVideo && ids.length !== 1) throw new Error("--source-video requires exactly one --ids value");
   const runId = crypto.randomUUID();
   const evaluationPolicy = process.argv.includes("--builder-only") ? "skip" as const : "single_pass" as const;
-  const provider = new RedFoxCreatorExecutor();
-  const details = await provider.enrich({
-    adapter: "redfox", runId, profileUrl: "https://www.xiaohongshu.com",
-    posts: ids.map((externalId) => ({
-      externalId, url: `https://www.xiaohongshu.com/explore/${externalId}`, resolveMedia: true
-    })),
-    taskSpaceId: null
-  });
-  const detailPosts = details.state === "ready" ? details.posts : "partialPosts" in details ? details.partialPosts : [];
+  const details = sourceVideo ? null : await new RedFoxCreatorExecutor().enrich({
+      adapter: "redfox", runId, profileUrl: "https://www.xiaohongshu.com",
+      posts: ids.map((externalId) => ({
+        externalId, url: `https://www.xiaohongshu.com/explore/${externalId}`, resolveMedia: true
+      })),
+      taskSpaceId: null
+    });
+  const detailPosts = details
+    ? details.state === "ready" ? details.posts : "partialPosts" in details ? details.partialPosts : []
+    : [];
   const byId = new Map(detailPosts.map((post) => [post.externalId, post]));
-  const media = await new LocalDeepMediaResolver().resolve({
-    runId,
-    posts: ids.map((externalId) => {
-      const detail = byId.get(externalId);
-      return {
+  const media = sourceVideo ? (() => {
+    const externalId = ids[0]!;
+    const source = path.resolve(sourceVideo);
+    if (!fs.existsSync(source)) throw new Error(`Source video does not exist: ${source}`);
+    const extension = path.extname(source) || ".mp4";
+    const relative = `deep-media/${externalId}/source-video${extension}`;
+    const target = path.join(runtimeDir(), "runs", runId, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.copyFileSync(source, target);
+    return {
+      readyPosts: 1,
+      items: [{
         externalId,
-        videoCandidateUrl: detail?.videoCandidateUrl ?? null,
-        coverCandidateUrl: null,
-        imageCandidateUrls: [],
-        downloadVideo: true,
-        downloadImages: false
-      };
-    })
-  });
+        state: "verified_complete" as const,
+        videoArtifactRef: `/artifacts/${runId}/${relative}`,
+        message: "复用显式提供且随后会被 Host 指纹锁定的本地源视频。"
+      }]
+    };
+  })() : await new LocalDeepMediaResolver().resolve({
+      runId,
+      posts: ids.map((externalId) => {
+        const detail = byId.get(externalId);
+        return {
+          externalId,
+          videoCandidateUrl: detail?.videoCandidateUrl ?? null,
+          coverCandidateUrl: null,
+          imageCandidateUrls: [],
+          downloadVideo: true,
+          downloadImages: false
+        };
+      })
+    });
   const executor = new CodexVideoReconstructionExecutor();
   const results: Result[] = await Promise.all(media.items.map(async (item) => {
     const detail = byId.get(item.externalId);
