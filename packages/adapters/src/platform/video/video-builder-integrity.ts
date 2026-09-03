@@ -26,7 +26,11 @@ type ReconstructionLike = {
   derivedSources?: Array<{ id?: string; path?: string }>;
   coverageMatrix?: {
     channels?: Carrier[];
-    cueAccountability?: Array<{ cueId?: string; unitIds?: string[] }>;
+    cueAccountability?: Array<{
+      cueId?: string;
+      disposition?: "knowledge" | "context" | "nonsemantic" | "uncertain";
+      unitIds?: string[];
+    }>;
     criticalQuestions?: Array<{ unitIds?: string[] }>;
     uncheckedChannels?: string[];
   };
@@ -200,6 +204,9 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
       accountedIds.some((id) => !sourceCueIds.has(id))) fail("CUE_ACCOUNTABILITY");
   for (const row of accountability) {
     if ((row.unitIds ?? []).some((id) => !unitIds.has(id))) fail("CUE_UNIT_REFERENCE", row.cueId);
+    if ((row.disposition === "knowledge" || row.disposition === "context") && !(row.unitIds ?? []).length) {
+      fail("CUE_UNIT_LINK_MISSING", row.cueId);
+    }
   }
 
   const shotIds = ids(pack.shots);

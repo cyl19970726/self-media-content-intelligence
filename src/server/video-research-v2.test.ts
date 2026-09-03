@@ -23,6 +23,19 @@ describe("video reconstruction V2 projection", () => {
     const reconstruction = JSON.parse(fs.readFileSync(path.join(fixtureRoot, "reconstruction.json"), "utf8")) as Record<string, unknown>;
     reconstruction.schemaVersion = "video-reconstruction-2.0";
     reconstruction.builderLenses = JSON.parse(fs.readFileSync(path.join(fixtureRoot, "builder-lenses-v2.json"), "utf8"));
+    const lenses = reconstruction.builderLenses as { contentRestoration: { blocks: Array<Record<string, unknown>> } };
+    lenses.contentRestoration.blocks[0]!.visuals = [{
+      ref: "TARGET-0002", role: "during", focus: "操作中的界面", proves: "中间状态可见", cannotProve: "隐藏点击未知"
+    }];
+    lenses.contentRestoration.blocks.push({
+      id: "BLOCK-002", type: "operation_sequence", title: "操作步骤", body: "三个可见状态组成操作序列。",
+      timeRange: { start: 0, end: 10 }, evidenceRefs: ["TARGET-0001", "TARGET-0002", "TARGET-0004"],
+      frameRefs: ["TARGET-0001", "TARGET-0002", "TARGET-0004"],
+      steps: [
+        { label: "打开设置", description: "先看到设置入口。", frameRefs: ["TARGET-0001"] },
+        { label: "完成操作", description: "结果界面已经出现。", frameRefs: ["TARGET-0004"] }
+      ]
+    });
     fs.writeFileSync(path.join(root, "reconstruction.json"), JSON.stringify(reconstruction));
     fs.writeFileSync(path.join(root, "article.md"), "# Builder report\n\nFixture");
     fs.writeFileSync(path.join(root, "targeted-evidence", "targeted-evidence.json"), JSON.stringify({
@@ -54,9 +67,12 @@ describe("video reconstruction V2 projection", () => {
     } as unknown as CreatorResearchService;
 
     const result = loadVideoResearch(service, "fixture-creator", videoId, runId);
-    expect(result?.contentBlocks).toHaveLength(1);
+    expect(result?.contentBlocks).toHaveLength(2);
     expect(result?.contentBlocks[0]?.type).toBe("before_after");
-    expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0004"]);
+    expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0002", "TARGET-0004"]);
+    expect(result?.contentBlocks[0]?.media.map((item) => item.role)).toEqual(["before", "during", "after"]);
+    expect(result?.contentBlocks[1]?.media).toEqual([]);
+    expect(result?.contentBlocks[1]?.steps[0]?.media[0]).toMatchObject({ label: "打开设置" });
     expect(result?.directingLogic.stages).toHaveLength(2);
     expect(result?.directingLogic.activatedQuestion).toBe("入口在哪里？");
     expect(result?.visualEditing.shotSemantics).toHaveLength(1);

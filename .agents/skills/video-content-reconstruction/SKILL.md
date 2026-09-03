@@ -130,7 +130,7 @@ For every core knowledge unit:
 - list what the video does not establish.
 
 Account for the full verbatim transcript. The Host restores each cue's exact text, representative frame, and overlapping shots from the frozen evidence pack; Builder owns semantic cue accountability, not mechanical copying accuracy.
-Account for every cue in `coverageMatrix.cueAccountability`; a cue may be knowledge, context, nonsemantic, or uncertain, but it may not silently disappear from the knowledge model. Recheck the opening and closing cues, all short on-screen cards, observable likeness/symbols, counted result groups, claim scope, and global cross-segment relationships before writing the article.
+Account for every cue in `coverageMatrix.cueAccountability`; a cue may be knowledge, context, nonsemantic, or uncertain, but it may not silently disappear from the knowledge model. The Host generates the ordinary cue→knowledge-unit candidate map deterministically from frozen time ranges. Builder should spend judgment only on semantic exceptions such as nonsemantic/uncertain cues, boundary-spanning cues, or an intentional assignment that differs from the time-overlap candidate. Recheck the opening and closing cues, all short on-screen cards, observable likeness/symbols, counted result groups, claim scope, and global cross-segment relationships before writing the article.
 
 Also reconcile speech labels with visible UI identity, literal failure signatures with result states, edited chronology with the claimed or inferred procedure, every visible qualifier/disclaimer, avatar or setting referents, and decision-relevant absences. A statement that something is absent requires a documented full-scope inspection; silence or a missed sample is not negative evidence.
 

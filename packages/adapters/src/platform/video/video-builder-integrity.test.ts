@@ -145,6 +145,25 @@ describe("Builder deterministic integrity gate", () => {
     }
   });
 
+  it("rejects knowledge or context cues that claim semantic use without a unit link", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.coverageMatrix.cueAccountability[0] = {
+        cueId: "CUE-001",
+        disposition: "context",
+        unitIds: [],
+        rationale: "其信息已在相邻知识单元中归纳。"
+      };
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_CUE_UNIT_LINK_MISSING:CUE-001");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
   it("requires OCR evidence to reference a recognized OCR line rather than its TARGET frame", () => {
     const item = createFixture();
     try {

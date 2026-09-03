@@ -179,21 +179,57 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       ...(text(block.afterFrameRef) ? [text(block.afterFrameRef)] : [])
     ])];
     const visuals = list(block.visuals).map((rawVisual) => record(rawVisual));
-    const media = visuals.length ? visuals.flatMap((visual) => {
+    const visualMedia = visuals.flatMap((visual) => {
       const ref = text(visual.ref); const frame = frameLookup.get(ref); const crop = record(visual.crop);
       return frame ? [{ ref, src: frame.src, label: text(visual.focus, frame.reason ?? ref), time: frame.time,
         role: text(visual.role, "evidence"), focus: text(visual.focus, frame.reason ?? ref),
         proves: text(visual.proves, "支持相邻内容结论"), cannotProve: text(visual.cannotProve, "不能替代完整时间序列"),
         crop: number(crop.x) !== null && number(crop.y) !== null && number(crop.width) !== null && number(crop.height) !== null
           ? { x: number(crop.x)!, y: number(crop.y)!, width: number(crop.width)!, height: number(crop.height)! } : null }] : [];
-    }) : mediaForRefs(frameRefs);
+    });
+    const visualRefs = new Set(visualMedia.map((item) => item.ref));
+    const fallbackMedia = mediaForRefs(frameRefs.filter((ref) => !visualRefs.has(ref))).map((item) => {
+      const isBefore = item.ref === text(block.beforeFrameRef);
+      const isAfter = item.ref === text(block.afterFrameRef);
+      const stateLabel = isBefore ? "变化前" : isAfter ? "变化后" : text(block.title, "画面证据");
+      return {
+        ...item,
+        role: isBefore ? "before" : isAfter ? "after" : "evidence",
+        label: stateLabel,
+        focus: isBefore || isAfter ? `${stateLabel}的可见界面状态` : text(block.title, item.focus),
+        proves: isBefore || isAfter ? `为“${text(block.title)}”提供${stateLabel}状态` : text(block.body, item.proves),
+        cannotProve: text(block.boundary, item.cannotProve)
+      };
+    });
+    const steps = list(block.steps).map((rawStep) => {
+      const step = record(rawStep);
+      const label = text(step.label);
+      const description = text(step.description);
+      return {
+        label,
+        description,
+        media: mediaForRefs(strings(step.frameRefs)).map((item) => ({
+          ...item,
+          label,
+          focus: description,
+          proves: description
+        }))
+      };
+    });
+    const combinedMedia = [...visualMedia, ...fallbackMedia];
+    const media = text(block.type) === "operation_sequence" && steps.length > 0
+      ? visualMedia
+      : text(block.type) === "before_after"
+        ? combinedMedia.sort((left, right) => {
+          const order = (role: string) => role === "before" ? 0 : role === "after" ? 2 : 1;
+          return order(left.role) - order(right.role) || (left.time ?? 0) - (right.time ?? 0);
+        })
+        : combinedMedia;
     return {
       id: text(block.id), type: text(block.type, "text"), title: text(block.title), body: text(block.body),
       start: number(timeRange.start), end: number(timeRange.end), evidenceRefs,
       media,
-      steps: list(block.steps).map((rawStep) => { const step = record(rawStep); return {
-        label: text(step.label), description: text(step.description), media: mediaForRefs(strings(step.frameRefs))
-      }; }),
+      steps,
       boundary: text(block.boundary) || null
     };
   });

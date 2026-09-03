@@ -39,6 +39,7 @@ type Reconstruction = {
       disposition?: "knowledge" | "context" | "nonsemantic" | "uncertain";
       unitIds?: string[];
       rationale?: string;
+      assignmentSource?: "builder_override" | "host_time_overlap" | "host_unresolved";
       [key: string]: unknown;
     }>;
     uncheckedChannels?: string[];
@@ -59,6 +60,8 @@ type Reconstruction = {
 export type HostAssemblyReport = {
   transcriptCuesRestored: number;
   cueAccountabilityRowsRestored: number;
+  cueAccountabilityRowsRepaired: number;
+  cueAccountabilityRowsHostOwned: number;
   invalidAbsoluteSourceRefsRemoved: number;
   carriersNormalized: number;
   carrierRationalesSynchronized: number;
@@ -95,11 +98,19 @@ function overlappingUnitIds(
   const cueStart = finiteNumber(cue.start);
   const cueEnd = finiteNumber(cue.end) ?? cueStart;
   if (cueStart === null || cueEnd === null) return [];
-  return units.filter((unit) => {
+  const candidates = units.filter((unit) => {
     const unitStart = finiteNumber(unit.timeRange?.start);
     const unitEnd = finiteNumber(unit.timeRange?.end);
     return Boolean(unit.id) && unitStart !== null && unitEnd !== null && cueEnd > unitStart && cueStart < unitEnd;
-  }).map((unit) => unit.id).filter((id): id is string => Boolean(id));
+  }).map((unit) => ({
+    id: unit.id!,
+    span: Number(unit.timeRange!.end) - Number(unit.timeRange!.start)
+  })).filter((unit) => Number.isFinite(unit.span) && unit.span >= 0)
+    .sort((left, right) => left.span - right.span || left.id.localeCompare(right.id));
+  const smallestSpan = candidates[0]?.span;
+  return smallestSpan === undefined ? [] : candidates
+    .filter((unit) => Math.abs(unit.span - smallestSpan) < 0.001)
+    .map((unit) => unit.id);
 }
 
 export function assembleHostOwnedReconstruction(outputDir: string): HostAssemblyReport {
@@ -143,23 +154,41 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
     .filter((row): row is typeof row & { cueId: string } => Boolean(row.cueId))
     .map((row) => [row.cueId, row]));
   let cueAccountabilityRowsRestored = 0;
+  let cueAccountabilityRowsRepaired = 0;
   const cueAccountability = frozenCues.flatMap((cue) => {
     const cueId = typeof cue.id === "string" ? cue.id : null;
     if (!cueId) return [];
     const existing = existingAccountability.get(cueId);
-    if (existing?.disposition && existing.rationale?.trim()) {
+    const existingWasHostOwned = existing?.assignmentSource?.startsWith("host_") === true
+      || existing?.rationale?.startsWith("Host ") === true;
+    const existingUnitIds = existing?.unitIds ?? [];
+    const isSemanticException = existing?.disposition === "nonsemantic" || existing?.disposition === "uncertain";
+    const hasCompleteSemanticMapping = (existing?.disposition === "knowledge" || existing?.disposition === "context")
+      && existingUnitIds.length > 0;
+    if (!existingWasHostOwned && existing?.rationale?.trim() && (isSemanticException || hasCompleteSemanticMapping)) {
       return [{ ...existing, cueId, unitIds: existing.unitIds ?? [] }];
     }
-    cueAccountabilityRowsRestored += 1;
-    const unitIds = existing?.unitIds ?? overlappingUnitIds(cue, reconstruction.knowledgeUnits ?? []);
+    const repairsInvalidSemanticRow = Boolean(existing?.rationale?.trim())
+      && (existing?.disposition === "knowledge" || existing?.disposition === "context")
+      && existingUnitIds.length === 0;
+    if (repairsInvalidSemanticRow) cueAccountabilityRowsRepaired += 1;
+    else cueAccountabilityRowsRestored += 1;
+    const unitIds = !existingWasHostOwned && existingUnitIds.length > 0
+      ? existingUnitIds
+      : overlappingUnitIds(cue, reconstruction.knowledgeUnits ?? []);
     return [{
       ...(existing ?? {}),
       cueId,
-      disposition: unitIds.length > 0 ? "knowledge" as const : "uncertain" as const,
+      disposition: unitIds.length > 0
+        ? existing?.disposition === "context" ? "context" as const : "knowledge" as const
+        : "uncertain" as const,
       unitIds,
       rationale: unitIds.length > 0
-        ? "Host 按冻结 Cue 与知识单元时间范围的重叠关系恢复机械账本。"
-        : "Host 已登记该冻结 Cue；没有知识单元时间范围与其重叠，语义归属保持未知。"
+        ? repairsInvalidSemanticRow
+          ? `Host 按冻结 Cue 与知识单元时间范围补全 Builder 的空回链；保留原分类 ${existing?.disposition}。`
+          : "Host 按冻结 Cue 与知识单元时间范围生成机械候选回链。"
+        : "Host 已登记该冻结 Cue；没有知识单元时间范围与其重叠，语义归属保持未知。",
+      assignmentSource: unitIds.length > 0 ? "host_time_overlap" as const : "host_unresolved" as const
     }];
   });
   const derivedSourceIds = new Set((reconstruction.derivedSources ?? [])
@@ -212,6 +241,8 @@ export function assembleHostOwnedReconstruction(outputDir: string): HostAssembly
   return {
     transcriptCuesRestored: frozenCues.length,
     cueAccountabilityRowsRestored,
+    cueAccountabilityRowsRepaired,
+    cueAccountabilityRowsHostOwned: cueAccountability.filter((row) => row.assignmentSource?.startsWith("host_")).length,
     invalidAbsoluteSourceRefsRemoved,
     carriersNormalized: probeCarriers.length + reconstructionCarriers.length,
     carrierRationalesSynchronized,

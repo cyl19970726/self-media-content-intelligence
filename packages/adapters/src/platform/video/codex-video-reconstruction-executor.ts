@@ -34,10 +34,23 @@ import {
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
   path.join(projectRoot, ".agents", "skills", "video-content-reconstruction");
 const evaluatorPromptVersion = "single-pass-v3-isolated-source-overview";
-const builderIntegrityContractVersion = "builder-integrity-v6-host-reference-sanitization";
+const builderIntegrityContractVersion = "builder-integrity-v7-host-cue-candidates";
 type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
+
+function mergeHostAssemblyReports(previous: HostAssemblyReport, current: HostAssemblyReport): HostAssemblyReport {
+  return {
+    ...current,
+    transcriptCuesRestored: Math.max(previous.transcriptCuesRestored, current.transcriptCuesRestored),
+    cueAccountabilityRowsRestored: previous.cueAccountabilityRowsRestored + current.cueAccountabilityRowsRestored,
+    cueAccountabilityRowsRepaired: previous.cueAccountabilityRowsRepaired + current.cueAccountabilityRowsRepaired,
+    cueAccountabilityRowsHostOwned: current.cueAccountabilityRowsHostOwned,
+    invalidAbsoluteSourceRefsRemoved: previous.invalidAbsoluteSourceRefsRemoved + current.invalidAbsoluteSourceRefsRemoved,
+    carrierRationalesSynchronized: previous.carrierRationalesSynchronized + current.carrierRationalesSynchronized,
+    probeWarnings: [...new Set([...previous.probeWarnings, ...current.probeWarnings])]
+  };
+}
 
 type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string }> };
 type TargetedEvidenceLike = { frames?: Array<{ id?: string }> };
@@ -389,7 +402,9 @@ semantics merely to pass validation. Correct the stated integrity violation with
 unknowns, all transcript cues, evidence identity, and source boundaries. For carrier-state failures, make availability,
 inspection status, and rationale mutually consistent with evidence already present in both probe and reconstruction. For
 evidence-time failures, bind each listed reference to the correct knowledge unit or correct that unit's truthful time range;
-never fabricate timestamps. For META_GATE, overlookedMeaningChanges and overlookedRelationships contain only items the protocol
+never fabricate timestamps. A timeRange is one semantically continuous interval: never stretch it across disjoint opening and
+closing evidence merely to make every reference fit. Split the unit or move each reference to the unit that owns its actual
+interval. For META_GATE, overlookedMeaningChanges and overlookedRelationships contain only items the protocol
 genuinely failed to inspect. A relationship that was inspected but cannot be established from available evidence is an explicit
 unknown or boundary, not an overlooked relationship; preserve that limitation in the appropriate knowledge unit or coverage
 unknowns and remove it from the overlooked arrays. Run the canonical schema validator once before finishing. Do not create an
@@ -693,7 +708,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
             builderIntegrityRepairPrompt(videoPath, outputDir, failure), outputDir, "candidate",
             request.sourceMediaArtifactRef, observeLifecycle
           );
-          hostAssembly = assembleHostOwnedReconstruction(outputDir);
+          hostAssembly = mergeHostAssemblyReports(hostAssembly, assembleHostOwnedReconstruction(outputDir));
         }
       }
       await renderBuilderReport(outputDir, `Builder 内容还原｜${request.postExternalId}`);
