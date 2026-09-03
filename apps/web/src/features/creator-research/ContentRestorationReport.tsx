@@ -4,6 +4,11 @@ import type { VideoResearch } from "../../shared/contracts/core";
 
 type ContentBlock = VideoResearch["contentBlocks"][number];
 
+const roleLabels: Record<string, string> = {
+  key_frame: "关键画面", evidence: "结论证据", before: "操作前", during: "操作中", after: "操作后",
+  detail: "局部细节", context: "上下文"
+};
+
 function timestamp(value: number | null) {
   if (value === null) return "—";
   return `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, "0")}`;
@@ -33,7 +38,7 @@ function EvidenceMedia({ block }: { block: ContentBlock }) {
   const className = block.type === "before_after" ? "content-evidence content-evidence--paired" : "content-evidence";
   return <div className={className}>{block.media.map((item) => <figure id={`evidence-${item.ref}`} key={item.ref}>
     <EvidenceImage item={item}/>
-    <figcaption><div><b>{item.role}</b><span>{item.focus}</span><small>证明：{item.proves}</small><small>不能证明：{item.cannotProve}</small></div><time>{timestamp(item.time)}</time></figcaption>
+    <figcaption><div><b>{roleLabels[item.role] ?? "视觉证据"}</b><span>{item.focus}</span><small>画面支持：{item.proves}</small><small>不能据此证明：{item.cannotProve}</small></div><time>{timestamp(item.time)}</time></figcaption>
   </figure>)}</div>;
 }
 

@@ -19,6 +19,20 @@ function text(value: unknown, fallback = ""): string { return typeof value === "
 function number(value: unknown): number | null { return typeof value === "number" && Number.isFinite(value) ? value : null; }
 function list(value: unknown): unknown[] { return Array.isArray(value) ? value : []; }
 function strings(value: unknown): string[] { return list(value).filter((item): item is string => typeof item === "string"); }
+function uniqueText(values: Array<string | null | undefined>, limit: number): string[] {
+  return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))].slice(0, limit);
+}
+
+function hasReadableOcr(rootPath: string): boolean {
+  const ocrPath = path.join(rootPath, "targeted-evidence", "ocr-evidence.json");
+  if (!fs.existsSync(ocrPath)) return false;
+  const ocr = record(JSON.parse(fs.readFileSync(ocrPath, "utf8")) as unknown);
+  return list(ocr.frames).some((raw) => list(record(raw).lines).some((line) => text(record(line).text).trim().length > 0));
+}
+
+function hasSemanticAudio(value: string | null): boolean {
+  return Boolean(value && !/(未知|没有可读语义|未获得语义|不可判断|无法确认)/u.test(value));
+}
 
 type LensKey = keyof RuntimeThreeLensEvaluation["lenses"];
 
@@ -133,11 +147,12 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     const relative = text(frame.frame);
     return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative ? `${rootRef}targeted-evidence/${relative}` : "", reason: text(frame.reason) || null };
   }).filter((frame) => frame.src);
-  const sparseFrames = denseFrames.filter((_frame, index) => index === 0 || index === denseFrames.length - 1 || index % Math.max(1, Math.ceil(denseFrames.length / 12)) === 0);
   const evidenceFrames = list(evidencePack.frameIndex).map((raw) => {
     const frame = record(raw); const relative = text(frame.frame);
     return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative ? `${rootRef}evidence/${relative}` : "", reason: text(frame.purpose) || null };
   }).filter((frame) => frame.src);
+  const navigationFrames = evidenceFrames.length > 0 ? evidenceFrames : denseFrames;
+  const sparseFrames = navigationFrames.filter((_frame, index) => index === 0 || index === navigationFrames.length - 1 || index % Math.max(1, Math.ceil(navigationFrames.length / 12)) === 0);
   const frameLookup = new Map([...evidenceFrames, ...denseFrames].map((frame) => [frame.id, frame]));
   const transcript = record(reconstruction.transcript);
   const cues = list(transcript.cues).map((raw) => {
@@ -272,23 +287,56 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     ...referencedEvidence.map((reference) => [reference.refId, { id: reference.refId, kind: reference.kind, label: reference.refId,
       anchorId: anchorIds.has(reference.refId) ? reference.refId : null, artifactRef: reference.artifactRef }] as const)
   ]).values()];
+  const selectionRecord = record(selection);
+  const sourceFacts = projectPostSourceFacts({
+    sourceUrl: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
+    capturedAt: detail?.inspectedAt ?? run.lastSnapshotAt,
+    title: detail?.title ?? selection?.title ?? synthesis?.title ?? null,
+    caption: detail?.description ?? selection?.visibleText ?? null,
+    coverHref: sourceMedia?.coverArtifactRef ?? null,
+    mediaType: detail?.mediaType ?? selection?.mediaType ?? "unknown",
+    imageCount: detail?.imageCount ?? sourceMedia?.imageArtifactRefs?.length ?? 0,
+    publishedLabel: detail?.publishedLabel ?? (text(selectionRecord.publishedLabel) || null),
+    likes: selection?.likes ?? null,
+    collections: number(selectionRecord.collections), comments: number(selectionRecord.comments), shares: number(selectionRecord.shares),
+    sourceRefs: [run.inventoryArtifactRef, run.detailArtifactRef, run.mediaManifestArtifactRef]
+  });
+  const thesis = text(builderContent.summary, text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")));
+  const stageLabels = list(builderDirecting.stages).map((raw) => text(record(raw).label)).filter(Boolean);
+  const limitations = uniqueText([
+    ...strings(record(builderDirecting.loadAndPayoff).comprehensionCosts),
+    ...list(builderVisual.missingBridges).map((raw) => text(record(raw).statement)),
+    ...allUnknowns
+  ], 4);
+  const positiveEnding = text(builderDirecting.endingResolution);
+  const strengths = uniqueText([
+    text(builderDirecting.promise), text(builderDirecting.payoff),
+    ...list(builderVisual.claims).map((raw) => text(record(raw).statement)),
+    /(?:没有|未|不能|未知|缺少)/.test(positiveEnding) ? "" : positiveEnding
+  ], 3);
+  const representativeMedia = contentBlocks.flatMap((block) => block.media).find((item) => item.src) ?? sparseFrames[0] ?? null;
+  const productState = !contentReady || !directingReady || !visualReady || qualityStates.evaluationState !== "verified" ? "provisional" as const
+    : sourceFacts.availability.overall === "available" && selection?.likes != null ? "gold" as const : "analysis_ready" as const;
   return videoResearchSchema.parse({
     schemaVersion: "1.0.0", id: videoId, creatorId: run.creatorId ?? creatorId, creatorName: run.creatorName ?? "待识别博主",
     title: detail?.title ?? selection?.title ?? synthesis?.title ?? "标题未识别", sourceHref: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
-    sourceFacts: projectPostSourceFacts({
-      sourceUrl: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
-      capturedAt: detail?.inspectedAt ?? run.lastSnapshotAt,
-      title: detail?.title ?? selection?.title ?? synthesis?.title ?? null,
-      caption: detail?.description ?? selection?.visibleText ?? null,
-      coverHref: sourceMedia?.coverArtifactRef ?? null,
-      mediaType: detail?.mediaType ?? selection?.mediaType ?? "unknown",
-      imageCount: detail?.imageCount ?? sourceMedia?.imageArtifactRefs?.length ?? 0,
-      publishedLabel: detail?.publishedLabel ?? null,
-      likes: selection?.likes ?? null,
-      sourceRefs: [run.inventoryArtifactRef, run.detailArtifactRef, run.mediaManifestArtifactRef]
-    }),
-    thesis: text(builderContent.summary, text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。"))), article, contentBlocks,
+    sourceFacts,
+    thesis,
+    readerSummary: {
+      productState,
+      statusLabel: productState === "gold" ? "单帖 Gold" : productState === "analysis_ready" ? "分析完成 · 原帖资料待补" : "分析尚未闭环",
+      verdict: thesis,
+      strengths,
+      limitations,
+      reusableStructure: stageLabels,
+      representativeFrame: representativeMedia ? {
+        src: representativeMedia.src,
+        label: "focus" in representativeMedia ? representativeMedia.focus : representativeMedia.reason ?? "视频代表画面",
+        time: representativeMedia.time
+      } : null
+    },
+    article, contentBlocks,
     reports: { builder: article, evaluator: evaluatorReport },
     quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
       lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef,
@@ -300,9 +348,9 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
         threeLensEvaluationArtifactRef: batchItem.threeLensEvaluationArtifactRef, threeLensGateReportArtifactRef: batchItem.threeLensGateReportArtifactRef,
         candidateRevisionFingerprint: threeLens?.evaluation.candidateRevision.fingerprint ?? null } },
     evidenceIndex,
-    engagement: { likes: selection?.likes ?? null, collections: null, comments: null, shares: null },
+    engagement: { likes: selection?.likes ?? null, collections: number(selectionRecord.collections), comments: number(selectionRecord.comments), shares: number(selectionRecord.shares) },
     evidenceHealth: { state: qualityStates.promotionState === "wiki_eligible" ? "ready" : qualityStates.buildState === "built" ? "partial" : "missing", transcript: cues.length > 0, frames: denseFrames.length > 0,
-      ocr: fs.existsSync(path.join(rootPath, "targeted-evidence", "ocr-evidence.json")), audio: strings(coverage.uncheckedChannels).length === 0,
+      ocr: hasReadableOcr(rootPath), audio: hasSemanticAudio(text(builderVisual.audioRole) || null),
       baseline: selection?.likes != null, note: text(reconstruction.scopeStatement, batchItem.message) },
     knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: denseFrames },
     directingLogic: { viewerBefore: text(builderDirecting.viewerBefore, text(viewerChange.before)) || null, viewerAfter: text(builderDirecting.viewerAfter, text(viewerChange.after)) || null,
