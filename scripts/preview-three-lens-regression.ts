@@ -12,11 +12,33 @@ function option(name: string, fallback?: string): string {
   return value;
 }
 
+function optionalOption(name: string): string | null {
+  const index = process.argv.indexOf(name);
+  return index >= 0 ? process.argv[index + 1] ?? null : null;
+}
+
+function numericOption(name: string): number | null {
+  const value = optionalOption(name);
+  if (value === null) return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) throw new Error(`Invalid ${name}`);
+  return parsed;
+}
+
 const creatorRunId = option("--creator-run");
 const postExternalId = option("--post");
 const creatorId = option("--creator", "three-lens-preview");
 const creatorName = option("--name", "三镜头回归样本");
 const port = Number(option("--port", "4311"));
+const profileUrl = option("--profile", "https://www.xiaohongshu.com");
+const sourceUrl = option("--source-url", `https://www.xiaohongshu.com/explore/${postExternalId}`);
+const sourceTitle = optionalOption("--title");
+const sourceCaption = optionalOption("--caption");
+const publishedLabel = optionalOption("--published");
+const likes = numericOption("--likes");
+const collections = numericOption("--collections");
+const comments = numericOption("--comments");
+const shares = numericOption("--shares");
 const relativeRoot = `video-reconstructions/${postExternalId}`;
 const root = path.join(runArtifactDir(creatorRunId), relativeRoot);
 const has = (name: string) => fs.existsSync(path.join(root, name));
@@ -28,7 +50,7 @@ const evaluation = has("runtime-three-lens-gate-report.json")
 const state = evaluation?.ready ? "verified" : has("evaluation.json") ? "evaluated_with_findings" : "built_unevaluated";
 const ref = (name: string) => has(name) ? artifactRef(creatorRunId, `${relativeRoot}/${name}`) : null;
 const run = {
-  id: creatorRunId, creatorId, creatorName, profileUrl: "https://www.xiaohongshu.com",
+  id: creatorRunId, creatorId, creatorName, profileUrl,
   lastSnapshotAt: new Date().toISOString(), inventoryArtifactRef: null, detailArtifactRef: null, mediaManifestArtifactRef: null
 };
 const portfolio = {
@@ -39,8 +61,11 @@ const portfolio = {
     gateReportArtifactRef: ref("gate-report.json"), threeLensEvaluationArtifactRef: ref("runtime-three-lens-evaluation.json"),
     threeLensGateReportArtifactRef: ref("runtime-three-lens-gate-report.json")
   }] },
-  selection: { items: [{ externalId: postExternalId, title: `真实视频 ${postExternalId}`, url: `https://www.xiaohongshu.com/explore/${postExternalId}`, likes: null, tier: "unknown" }] },
-  details: { posts: [] }, mediaManifest: { items: [] }, synthesis: { postAnalyses: [] }, analysis: null
+  selection: { items: [{ externalId: postExternalId, title: sourceTitle, visibleText: sourceCaption, url: sourceUrl, mediaType: "video", likes,
+    collections, comments, shares, publishedLabel, tier: likes === null ? "unknown" : "high" }] },
+  details: { posts: [{ externalId: postExternalId, finalUrl: sourceUrl, title: sourceTitle, description: sourceCaption,
+    publishedLabel, mediaType: "video", imageCount: 0, inspectedAt: new Date().toISOString(), warnings: [] }] },
+  mediaManifest: { items: [] }, synthesis: { postAnalyses: [] }, analysis: null
 };
 const service = { list: () => [run], get: () => run, portfolio: () => portfolio } as unknown as CreatorResearchService;
 const projection = loadVideoResearch(service, creatorId, postExternalId, creatorRunId);

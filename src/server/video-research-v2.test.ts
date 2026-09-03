@@ -46,6 +46,7 @@ describe("video reconstruction V2 projection", () => {
       ]
     }));
     fs.writeFileSync(path.join(root, "evidence", "evidence-pack.json"), JSON.stringify({ frameIndex: [] }));
+    fs.writeFileSync(path.join(root, "ocr-evidence.json"), JSON.stringify({ frames: [{ lines: [] }] }));
     const reconstructionArtifactRef = `/artifacts/${runId}/video-reconstructions/${videoId}/reconstruction.json`;
     const service = {
       list: () => [],
@@ -80,5 +81,15 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.visualEditing.missingBridges).toHaveLength(1);
     expect(result?.lensCoverage.contentRestoration.note).toContain("尚未独立评估");
     expect(result?.quality.promotionState).toBe("provisional");
+    expect(result?.readerSummary).toMatchObject({
+      productState: "provisional",
+      statusLabel: "分析尚未闭环",
+      strengths: ["展示最短路径", "结果状态出现", "结果状态在操作后出现"],
+      limitations: expect.arrayContaining(["隐藏参数未知", "隐藏设置没有展示"])
+    });
+    expect(result?.readerSummary.reusableStructure).toEqual(["提出问题", "展示结果"]);
+    expect(result?.readerSummary.representativeFrame?.src).toContain("before.jpg");
+    expect(result?.evidenceHealth.ocr).toBe(false);
+    expect(result?.evidenceHealth.audio).toBe(false);
   });
 });

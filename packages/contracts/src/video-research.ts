@@ -68,6 +68,18 @@ export const videoResearchSchema = z.object({
   sourceLabel: z.string(),
   sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts),
   thesis: z.string(),
+  readerSummary: z.object({
+    productState: z.enum(["gold", "analysis_ready", "provisional"]),
+    statusLabel: z.string(),
+    verdict: z.string(),
+    strengths: z.array(z.string()),
+    limitations: z.array(z.string()),
+    reusableStructure: z.array(z.string()),
+    representativeFrame: z.object({ src: z.string(), label: z.string(), time: z.number().nullable() }).nullable()
+  }).default({
+    productState: "provisional", statusLabel: "资料待补", verdict: "尚未形成读者结论",
+    strengths: [], limitations: [], reusableStructure: [], representativeFrame: null
+  }),
   article: z.string().nullable(),
   contentBlocks: z.array(z.object({
     id: z.string(),
