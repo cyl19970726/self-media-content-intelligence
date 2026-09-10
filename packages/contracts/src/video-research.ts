@@ -96,6 +96,10 @@ export const videoResearchSchema = z.object({
     start: z.number().nullable(),
     end: z.number().nullable(),
     evidenceRefs: z.array(z.string()),
+    unresolvedVisuals: z.array(z.object({
+      ref: z.string(), role: z.string(), focus: z.string(), proves: z.string(), cannotProve: z.string(),
+      crop: z.object({ x: z.number(), y: z.number(), width: z.number(), height: z.number() }).nullable().optional()
+    })).default([]),
     media: z.array(z.object({
       ref: z.string(), src: z.string(), label: z.string(), time: z.number().nullable(), role: z.string(),
       focus: z.string(), proves: z.string(), cannotProve: z.string(),
@@ -103,6 +107,7 @@ export const videoResearchSchema = z.object({
     })),
     steps: z.array(z.object({
       label: z.string(), description: z.string(),
+      unresolvedFrameRefs: z.array(z.string()).default([]),
       media: z.array(z.object({ ref: z.string(), src: z.string(), label: z.string(), time: z.number().nullable() }))
     })),
     boundary: z.string().nullable()

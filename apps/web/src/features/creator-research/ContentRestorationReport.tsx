@@ -7,7 +7,7 @@ type ContentBlock = VideoResearch["contentBlocks"][number];
 
 const roleLabels: Record<string, string> = {
   key_frame: "关键画面", evidence: "结论证据", before: "前状态（报告标注）", during: "中间状态（报告标注）", after: "后状态（报告标注）",
-  detail: "局部细节", context: "上下文"
+  detail: "局部细节", detail_crop: "局部裁切", sequence: "连续画面", context: "上下文"
 };
 
 function timestamp(value: number | null) {
@@ -48,9 +48,16 @@ export function ContentRestorationReport({ blocks, data }: { blocks: ContentBloc
     <header><span>{timestamp(block.start)}–{timestamp(block.end)}</span><h3>{block.title}</h3></header>
     <p>{block.body}</p>
     <EvidenceMedia block={block}/>
+    {block.unresolvedVisuals?.map((visual, index) => <aside key={`${visual.ref}-${index}`}>
+      <b>{visual.ref} · 图片引用未解析</b>
+      <p>{roleLabels[visual.role] ?? visual.role}：{visual.focus}</p>
+      <p>报告标注的支持范围：{visual.proves}</p><p>报告标注的证明边界：{visual.cannotProve}</p>
+      {visual.crop && <p>原始裁切范围（归一化）：x {visual.crop.x}，y {visual.crop.y}，宽 {visual.crop.width}，高 {visual.crop.height}</p>}
+    </aside>)}
     {data && <DepthEvidence data={data} refs={block.evidenceRefs.filter(ref => ![...block.media, ...block.steps.flatMap(step => step.media)].some(item => item.ref === ref))}/>}
     {block.steps.length > 0 && <ol className="content-operation-sequence">{block.steps.map((step, index) => <li key={`${step.label}-${index}`}>
       <div><b>{step.label}</b><p>{step.description}</p></div>
+      {!!step.unresolvedFrameRefs?.length && <p>步骤画面引用未解析：{step.unresolvedFrameRefs.join("、")}</p>}
       {step.media.length > 0 && <div className="content-step-media">{step.media.map((item) => <figure key={item.ref}><a href={item.src} target="_blank" rel="noreferrer"><img src={item.src} loading="lazy" alt={`${step.label}：${step.description}`}/></a><figcaption><span>步骤证据</span><time>{timestamp(item.time)}</time></figcaption></figure>)}</div>}
     </li>)}</ol>}
     {block.boundary && <aside><b>证据边界</b><p>{block.boundary}</p></aside>}

@@ -33,7 +33,7 @@ describe("report reading", () => {
     expect(html.slice(html.indexOf('id="visual-continuity"'))).toContain('href="/frame-3.jpg"');
   });
   it("opens content evidence and keeps all content blocks in the document", () => {
-    const block = { id: "one", type: "text", title: "标题", body: "原文", start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null,
+    const block = { id: "one", type: "text", title: "标题", body: "原文", start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null, unresolvedVisuals: [],
       media: [{ ref: "F1", src: "/frame-1.jpg", label: "证据", time: 1, role: "evidence", focus: "细节", proves: "支持", cannotProve: "边界", crop: null }] } as VideoResearch["contentBlocks"][number];
     const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block, { ...block, id: "two" }] }));
     expect(html).toContain('href="/frame-1.jpg"');
@@ -43,6 +43,17 @@ describe("report reading", () => {
     const html = renderToStaticMarkup(createElement(DepthEvidence, { data, refs: ["F1", "F1", "absent"] }));
     expect(html.match(/href="\/frame-1.jpg"/g)).toHaveLength(1);
     expect(html).toContain("来源未解析");
+  });
+  it("preserves visual annotations and step references when images cannot be resolved", () => {
+    const block: VideoResearch["contentBlocks"][number] = {
+      id: "missing", type: "operation_sequence", title: "原始标题", body: "原始正文", start: 0, end: 1,
+      evidenceRefs: [], media: [], boundary: null,
+      unresolvedVisuals: [{ ref: "CROP-MISSING", role: "detail_crop", focus: "按钮文字", proves: "可见参数", cannotProve: "运行效果未知" }],
+      steps: [{ label: "步骤", description: "原始步骤", media: [], unresolvedFrameRefs: ["STEP-MISSING"] }]
+    };
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block] }));
+    for (const text of ["按钮文字", "可见参数", "运行效果未知", "CROP-MISSING", "STEP-MISSING", "原始步骤"]) expect(html).toContain(text);
+    expect(html).not.toContain("<img");
   });
 });
 

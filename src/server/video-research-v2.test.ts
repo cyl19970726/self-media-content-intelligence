@@ -112,6 +112,18 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.readerSummary.representativeFrame?.src).toContain("before.jpg");
     expect(result?.evidenceHealth.ocr).toBe(false);
     expect(result?.evidenceHealth.audio).toBe(false);
+
+    // An unavailable frame must not erase the Builder's explanation or step reference.
+    lenses.contentRestoration.blocks[0]!.visuals = [{
+      ref: "MISSING-CROP", role: "detail_crop", focus: "原始细节说明",
+      proves: "原始支持范围", cannotProve: "原始证明边界",
+      crop: { x: 0.1, y: 0.2, width: 0.3, height: 0.4 }
+    }];
+    lenses.contentRestoration.blocks[1]!.steps = [{ label: "未取得画面", description: "保留步骤说明", frameRefs: ["MISSING-STEP"] }];
+    fs.writeFileSync(path.join(root, "reconstruction.json"), JSON.stringify(reconstruction));
+    const missing = loadVideoResearch(service, "fixture-creator", videoId, runId);
+    expect(missing?.contentBlocks[0]?.unresolvedVisuals).toEqual(lenses.contentRestoration.blocks[0]!.visuals);
+    expect(missing?.contentBlocks[1]?.steps[0]?.unresolvedFrameRefs).toEqual(["MISSING-STEP"]);
   });
 });
 

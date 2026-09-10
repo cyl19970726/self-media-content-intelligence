@@ -236,6 +236,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
       return {
         label,
         description,
+        unresolvedFrameRefs: strings(step.frameRefs).filter((ref) => !frameLookup.has(ref)),
         media: mediaForRefs(strings(step.frameRefs)).map((item) => ({
           ...item,
           label,
@@ -255,7 +256,9 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
         : combinedMedia;
     return {
       id: text(block.id), type: text(block.type, "text"), title: text(block.title), body: text(block.body),
-      start: number(timeRange.start), end: number(timeRange.end), evidenceRefs,
+      start: number(timeRange.start), end: number(timeRange.end),
+      evidenceRefs: [...new Set([...evidenceRefs, ...frameRefs.filter((ref) => !frameLookup.has(ref))])],
+      unresolvedVisuals: visuals.filter((visual) => !frameLookup.has(text(visual.ref))),
       media,
       steps,
       boundary: text(block.boundary) || null
