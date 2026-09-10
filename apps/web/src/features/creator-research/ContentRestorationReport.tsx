@@ -1,3 +1,4 @@
+import { DepthEvidence } from "./DepthReports";
 import { useState } from "react";
 import type { CSSProperties } from "react";
 import type { VideoResearch } from "../../shared/contracts/core";
@@ -36,20 +37,21 @@ function EvidenceImage({ item }: { item: ContentBlock["media"][number] }) {
 function EvidenceMedia({ block }: { block: ContentBlock }) {
   if (!block.media.length) return null;
   const className = block.type === "before_after" ? "content-evidence content-evidence--paired" : "content-evidence";
-  return <div className={className}>{block.media.map((item) => <figure id={`evidence-${item.ref}`} key={item.ref}>
-    <EvidenceImage item={item}/>
+  return <div className={className}>{block.media.map((item) => <figure id={`evidence-${block.id}-${item.ref}`} key={item.ref}>
+    <a href={item.src} target="_blank" rel="noreferrer" aria-label={`打开原图：${item.label}`}><EvidenceImage item={item}/></a>
     <figcaption><div><b>{roleLabels[item.role] ?? "视觉证据"}</b><span>{item.focus}</span><small>画面支持：{item.proves}</small><small>不能据此证明：{item.cannotProve}</small></div><time>{timestamp(item.time)}</time></figcaption>
   </figure>)}</div>;
 }
 
-export function ContentRestorationReport({ blocks }: { blocks: ContentBlock[] }) {
+export function ContentRestorationReport({ blocks, data }: { blocks: ContentBlock[]; data?: VideoResearch }) {
   return <div className="content-restoration-report">{blocks.map((block) => <article id={`content-${block.id}`} key={block.id} className={`content-block content-block--${block.type}`}>
     <header><span>{timestamp(block.start)}–{timestamp(block.end)}</span><h3>{block.title}</h3></header>
     <p>{block.body}</p>
     <EvidenceMedia block={block}/>
+    {data && <DepthEvidence data={data} refs={block.evidenceRefs.filter(ref => ![...block.media, ...block.steps.flatMap(step => step.media)].some(item => item.ref === ref))}/>}
     {block.steps.length > 0 && <ol className="content-operation-sequence">{block.steps.map((step, index) => <li key={`${step.label}-${index}`}>
       <div><b>{step.label}</b><p>{step.description}</p></div>
-      {step.media.length > 0 && <div className="content-step-media">{step.media.map((item) => <figure key={item.ref}><img src={item.src} loading="lazy" alt={`${step.label}：${step.description}`}/><figcaption><span>步骤证据</span><time>{timestamp(item.time)}</time></figcaption></figure>)}</div>}
+      {step.media.length > 0 && <div className="content-step-media">{step.media.map((item) => <figure key={item.ref}><a href={item.src} target="_blank" rel="noreferrer"><img src={item.src} loading="lazy" alt={`${step.label}：${step.description}`}/></a><figcaption><span>步骤证据</span><time>{timestamp(item.time)}</time></figcaption></figure>)}</div>}
     </li>)}</ol>}
     {block.boundary && <aside><b>证据边界</b><p>{block.boundary}</p></aside>}
   </article>)}</div>;

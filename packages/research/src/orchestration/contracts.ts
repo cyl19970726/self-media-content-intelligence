@@ -67,6 +67,8 @@ export type ChildWorkerLifecycleEvent = z.infer<typeof childWorkerLifecycleEvent
 export type ChildWorkerLifecycleObserver<T extends ChildWorkerLifecycleEvent = ChildWorkerLifecycleEvent> = (event: T) => void;
 
 export type CreatorAcquisitionPost = {
+  isPinned?: boolean | null;
+  isOwn?: boolean | null;
   externalId: string;
   url: string;
   title: string | null;

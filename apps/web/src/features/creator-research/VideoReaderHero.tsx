@@ -1,3 +1,4 @@
+import { PostPerformance } from "./PostPerformance";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { VideoResearch } from "../../shared/contracts/core";
@@ -16,6 +17,7 @@ export function VideoReaderHero({ data, returnTo }: { data: VideoResearch; retur
           <span>{sourcePartial ? "原帖资料部分取得" : "原帖资料完整"}</span>
           <span>{metric(data.engagement.likes)} 赞</span>
           <span>{metric(data.engagement.collections)} 收藏</span>
+          <span>{metric(data.engagement.comments)} 评论</span>
           <a href={data.sourceHref} target="_blank" rel="noreferrer">查看原帖 <ExternalLink size={12}/></a>
         </div>
       </div>
@@ -24,5 +26,6 @@ export function VideoReaderHero({ data, returnTo }: { data: VideoResearch; retur
         <figcaption><span>视频代表画面</span><time>{timestamp(summary.representativeFrame.time)}</time></figcaption>
       </figure>}
     </header>
+    <PostPerformance data={data}/>
   </>;
 }

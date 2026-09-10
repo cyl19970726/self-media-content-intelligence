@@ -6,6 +6,10 @@ export const creatorInventoryPostSchema = z.object({
   title: z.string().nullable(),
   visibleText: z.string().nullable(),
   mediaType: z.enum(["video", "image", "unknown"]),
+  isPinned: z.boolean().nullable().optional(),
+  isOwn: z.boolean().nullable().optional(),
+  collections: z.number().nonnegative().nullable().optional(),
+  comments: z.number().nonnegative().nullable().optional(),
   likesLabel: z.string().nullable(),
   likes: z.number().int().nonnegative().nullable()
 });

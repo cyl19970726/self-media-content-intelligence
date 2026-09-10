@@ -1,3 +1,6 @@
+import { loadReportOverview } from "./report-overview.js";
+import { postSourceFactsSchema } from "../../packages/contracts/index.js";
+import { buildPostPerformance, creatorInventorySchema } from "../../packages/research/index.js";
 import fs from "node:fs";
 import path from "node:path";
 import { artifactPath } from "../../packages/adapters/index.js";
@@ -173,12 +176,11 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     from: text(relation.from), to: text(relation.to), relation: text(relation.relation),
     evidenceRefs: list(relation.evidence).map((item) => text(record(item).ref)).filter(Boolean)
   }; });
-  const viewerChange = record(reconstruction.viewerChange);
   const builderLenses = record(reconstruction.builderLenses);
   const builderContent = record(builderLenses.contentRestoration);
   const builderDirecting = record(builderLenses.directingLogic);
   const builderVisual = record(builderLenses.visualEditing);
-  const hasBuilderThreeLenses = list(builderContent.blocks).length > 0 && list(builderDirecting.stages).length >= 2 &&
+  const hasBuilderThreeLenses = list(builderContent.blocks).length > 0 && list(builderDirecting.stages).length >= 1 &&
     list(builderVisual.carriers).length > 0 && list(builderVisual.shotSemantics).length > 0;
   const mediaForRefs = (refs: string[]) => refs.flatMap((ref) => {
     const frame = frameLookup.get(ref);
@@ -258,7 +260,7 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const contentReady = threeLens ? threeLens.evaluation.lenses.contentRestoration.rules.every((rule) => rule.status === "pass") : hasBuilderThreeLenses && metaGate.pass === true;
   const stageRows = list(probe.meaningChanges);
   const directingReady = threeLens ? threeLens.evaluation.lenses.directingLogic.rules.every((rule) => rule.status === "pass")
-    : hasBuilderThreeLenses && list(builderDirecting.stages).length >= 2;
+    : hasBuilderThreeLenses && list(builderDirecting.stages).length >= 1;
   const visualReady = threeLens ? threeLens.evaluation.lenses.visualEditing.rules.every((rule) => rule.status === "pass") : hasBuilderThreeLenses;
   const projectionGateFailures = [...new Set([
     ...(threeLens ? [] : strings(gate.failedGateIds)),
@@ -281,14 +283,26 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const anchorIds = new Set([...cues.map((cue) => cue.id), ...denseFrames.map((frame) => frame.id), ...units.map((unit) => unit.id)]);
   const referencedEvidence = threeLens ? Object.values(threeLens.evaluation.lenses).flatMap((lens) => lens.rules.flatMap((rule) => rule.evidenceRefs)) : [];
   const evidenceIndex = [...new Map<string, VideoResearch["evidenceIndex"][number]>([
+    ...list(evidencePack.shots).flatMap(raw => {
+      const shot = record(raw); const relative = text(shot.representativeFrame);
+      if (!relative || path.isAbsolute(relative) || relative.split(/[\\/]/).includes("..")) return [];
+      const id = text(shot.id);
+      return [[id, { id, kind: "shot", label: `${number(shot.start) ?? "?"}–${number(shot.end) ?? "?"} 秒镜头 · 代表帧 ${number(shot.representativeTime) ?? "?"} 秒（非切点画面）`, anchorId: null, artifactRef: `${rootRef}evidence/${relative}` }] as const];
+    }),
     ...cues.map((cue) => [cue.id, { id: cue.id, kind: "subtitle_cue", label: cue.text.slice(0, 80), anchorId: cue.id, artifactRef: null }] as const),
+    ...evidenceFrames.map((frame) => [frame.id, { id: frame.id, kind: "frame", label: frame.reason ?? frame.id, anchorId: null, artifactRef: frame.src }] as const),
+    ...list(reconstruction.derivedSources).map(raw => { const source = record(raw); const relative = text(source.path);
+      const safe = relative && !path.isAbsolute(relative) && !relative.split(/[\\/]/).includes("..");
+      return [text(source.id), { id: text(source.id), kind: "source", label: text(source.id), anchorId: null, artifactRef: safe ? `${rootRef}${relative}` : batchItem.reconstructionArtifactRef }] as const; }),
     ...denseFrames.map((frame) => [frame.id, { id: frame.id, kind: "frame", label: frame.reason ?? frame.id, anchorId: frame.id, artifactRef: frame.src }] as const),
     ...units.map((unit) => [unit.id, { id: unit.id, kind: "claim", label: unit.title, anchorId: unit.id, artifactRef: batchItem.reconstructionArtifactRef }] as const),
     ...referencedEvidence.map((reference) => [reference.refId, { id: reference.refId, kind: reference.kind, label: reference.refId,
       anchorId: anchorIds.has(reference.refId) ? reference.refId : null, artifactRef: reference.artifactRef }] as const)
   ]).values()];
   const selectionRecord = record(selection);
-  const sourceFacts = projectPostSourceFacts({
+  const frozenSourcePath = path.join(rootPath, "post-source-input.json");
+  const frozenSource = fs.existsSync(frozenSourcePath) ? record(JSON.parse(fs.readFileSync(frozenSourcePath, "utf8"))) : null;
+  const sourceFacts = frozenSource?.facts ? postSourceFactsSchema.parse(frozenSource.facts) : projectPostSourceFacts({
     sourceUrl: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
     capturedAt: detail?.inspectedAt ?? run.lastSnapshotAt,
     title: detail?.title ?? selection?.title ?? synthesis?.title ?? null,
@@ -301,7 +315,11 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     collections: number(selectionRecord.collections), comments: number(selectionRecord.comments), shares: number(selectionRecord.shares),
     sourceRefs: [run.inventoryArtifactRef, run.detailArtifactRef, run.mediaManifestArtifactRef]
   });
-  const thesis = text(builderContent.summary, text(viewerChange.after, synthesis?.contentRole ?? text(reconstruction.scopeStatement, "内容已完成证据化重建。")));
+  const inventory = run.inventoryArtifactRef ? creatorInventorySchema.safeParse(readJson(run.inventoryArtifactRef)) : null;
+  const observation = buildPostPerformance({ externalId: videoId, ...sourceFacts.metrics },
+    inventory?.success ? inventory.data.posts : [], sourceFacts.capturedAt,
+    inventory?.success ? inventory.data.capturedAt : null, "已冻结作者清单中的可核验视频");
+  const thesis = text(builderContent.summary, "Builder 未产出内容还原报告；旧知识单元仅供研究审计。");
   const stageLabels = list(builderDirecting.stages).map((raw) => text(record(raw).label)).filter(Boolean);
   const limitations = uniqueText([
     ...strings(record(builderDirecting.loadAndPayoff).comprehensionCosts),
@@ -319,10 +337,11 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
     : sourceFacts.availability.overall === "available" && selection?.likes != null ? "gold" as const : "analysis_ready" as const;
   return videoResearchSchema.parse({
     schemaVersion: "1.0.0", id: videoId, creatorId: run.creatorId ?? creatorId, creatorName: run.creatorName ?? "待识别博主",
-    title: detail?.title ?? selection?.title ?? synthesis?.title ?? "标题未识别", sourceHref: detail?.finalUrl ?? selection?.url ?? run.profileUrl,
+    title: sourceFacts.title ?? "标题未识别", sourceHref: sourceFacts.sourceUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     sourceFacts,
     thesis,
+    overview: loadReportOverview(artifactPath(batchItem.reconstructionArtifactRef)),
     contentUnknowns: strings(builderContent.unknowns),
     readerSummary: {
       productState,
@@ -349,15 +368,15 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
         threeLensEvaluationArtifactRef: batchItem.threeLensEvaluationArtifactRef, threeLensGateReportArtifactRef: batchItem.threeLensGateReportArtifactRef,
         candidateRevisionFingerprint: threeLens?.evaluation.candidateRevision.fingerprint ?? null } },
     evidenceIndex,
-    engagement: { likes: selection?.likes ?? null, collections: number(selectionRecord.collections), comments: number(selectionRecord.comments), shares: number(selectionRecord.shares) },
+    engagement: sourceFacts.metrics,
     evidenceHealth: { state: qualityStates.promotionState === "wiki_eligible" ? "ready" : qualityStates.buildState === "built" ? "partial" : "missing", transcript: cues.length > 0, frames: denseFrames.length > 0,
       ocr: hasReadableOcr(rootPath), audio: hasSemanticAudio(text(builderVisual.audioRole) || null),
       baseline: selection?.likes != null, note: text(reconstruction.scopeStatement, batchItem.message) },
-    knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: denseFrames },
-    directingLogic: { viewerBefore: text(builderDirecting.viewerBefore, text(viewerChange.before)) || null, viewerAfter: text(builderDirecting.viewerAfter, text(viewerChange.after)) || null,
+    knowledgeUnits: units, relations, transcript: cues, frames: { sparse: sparseFrames, dense: [...frameLookup.values()] },
+    directingLogic: { packagingAnalysis: builderDirecting.packagingAnalysis ?? null, viewerBefore: text(builderDirecting.viewerBefore) || null, viewerAfter: text(builderDirecting.viewerAfter) || null,
       activatedQuestion: text(builderDirecting.activatedQuestion) || null, promise: text(builderDirecting.promise) || null,
       payoff: text(builderDirecting.payoff) || null, endingResolution: text(builderDirecting.endingResolution) || null,
-      stages: (hasBuilderThreeLenses ? list(builderDirecting.stages) : list(probe.meaningChanges)).map((raw) => { const stage = record(raw); const range = record(stage.timeRange ?? stage.range); return {
+      stages: list(builderDirecting.stages).map((raw) => { const stage = record(raw); const range = record(stage.timeRange ?? stage.range); return {
         label: text(stage.description, text(stage.id)), start: number(range.start), end: number(range.end), viewerQuestion: null,
         function: text(stage.function, text(stage.description)), proof: text(stage.proof, text(stage.trigger)) || null,
         cognitiveChange: text(stage.cognitiveChange, text(stage.description)) || null,
@@ -375,8 +394,8 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
         repetition: text(record(builderDirecting.loadAndPayoff).repetition, "尚未分析"),
         payoffDistance: text(record(builderDirecting.loadAndPayoff).payoffDistance, "尚未分析"),
         comprehensionCosts: strings(record(builderDirecting.loadAndPayoff).comprehensionCosts) },
-      notes: hasBuilderThreeLenses ? strings(builderDirecting.notes) : strings(viewerChange.intendedChanges) },
-    visualEditing: { orientation: text(builderVisual.orientation) || null, composition: text(builderVisual.composition) || null,
+      notes: strings(builderDirecting.notes) },
+    visualEditing: { openingAnalysis: builderVisual.openingAnalysis ?? null, orientation: text(builderVisual.orientation) || null, composition: text(builderVisual.composition) || null,
       shotCount: number(builderVisual.shotCount), cutsPerMinute: number(builderVisual.cutsPerMinute), resultFirstAt: number(builderVisual.resultFirstAt),
       shotMetricBasis: text(builderVisual.shotMetricBasis) || (hasBuilderThreeLenses
         ? "Builder 依据证据包技术分段估算变化密度；不等同经逐切点核实的真实剪辑数。" : null),
@@ -408,8 +427,8 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       }; }),
       audioRole: text(builderVisual.audioRole) || null,
       notes: hasBuilderThreeLenses ? strings(builderVisual.notes) : ["V1 产物只保留画面证据，尚未生成 Builder 画面与剪辑镜头。"] },
-    performanceContext: { tier: selection?.tier ?? "unknown", creatorMedianLikes: analysis?.likes.median ?? null,
-      medianMultiple: selection?.likes != null && analysis?.likes.median ? selection.likes / analysis.likes.median : null, percentileRank: null,
+    performanceContext: { observation, tier: selection?.tier ?? "unknown", creatorMedianLikes: observation.metrics[0]?.median ?? null,
+      medianMultiple: observation.metrics[0]?.multiple ?? null, percentileRank: null,
       interpretation: synthesis?.performanceInterpretation ?? "公开表现只按账号内部基线解释。", confounds: [analysis?.interpretationBoundary ?? "公开互动不等于播放、留存、涨粉或成交。"] },
     lensCoverage: threeLens ? {
       contentRestoration: projectLens(threeLens.evaluation, threeLens.report, "contentRestoration", strings(coverage.uncheckedChannels)),

@@ -10,6 +10,9 @@ export const videoReconstructionRequestSchema = z.object({
   postExternalId: z.string(),
   sourceUrl: z.string().url(),
   sourceMediaArtifactRef: z.string(),
+  detailArtifactRef: z.string().nullable().optional(),
+  mediaManifestArtifactRef: z.string().nullable().optional(),
+  selectionArtifactRef: z.string().nullable().optional(),
   evidencePackArtifactRef: z.string().nullable(),
   evaluationPolicy: z.enum(["skip", "single_pass"]).default("skip"),
   contractVersion: z.enum(["video-content-reconstruction@1", "video-content-reconstruction@2"])

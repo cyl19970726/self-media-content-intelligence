@@ -50,6 +50,7 @@
     },
     "knowledgeUnits": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/unit" } },
     "builderLenses": { "$ref": "#/$defs/builderLenses" },
+    "depthContractVersion": { "const": "single-post-depth@1" },
     "relations": {
       "type": "array",
       "items": {
@@ -82,9 +83,305 @@
     {
       "if": { "properties": { "schemaVersion": { "const": "video-reconstruction-2.0" } } },
       "then": { "required": ["builderLenses"] }
-    }
+    },
+    {"if": {"required": ["depthContractVersion"]}, "then": {"properties": {"builderLenses": {"properties": {"directingLogic": {"required": ["packagingAnalysis"]}, "visualEditing": {"required": ["openingAnalysis"]}}}}}}
   ],
   "$defs": {
+    "packagingAnalysis": {
+      "type": "object",
+      "required": [
+        "title",
+        "cover",
+        "firstFrame",
+        "fulfillment",
+        "unknowns"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/packagingSurface"
+        },
+        "cover": {
+          "$ref": "#/$defs/packagingSurface"
+        },
+        "firstFrame": {
+          "$ref": "#/$defs/packagingSurface"
+        },
+        "fulfillment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "origin",
+              "promise",
+              "status",
+              "bodyEvidenceRefs",
+              "explanation"
+            ],
+            "properties": {
+              "origin": {
+                "enum": [
+                  "title",
+                  "cover",
+                  "first_sentence"
+                ]
+              },
+              "promise": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "fulfilled",
+                  "partial",
+                  "not_shown",
+                  "unknown"
+                ]
+              },
+              "bodyEvidenceRefs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "explanation": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "packagingSurface": {
+      "type": "object",
+      "required": [
+        "state",
+        "sourceRef",
+        "audience",
+        "promise",
+        "tension",
+        "specificity",
+        "searchTerms",
+        "composition",
+        "typeHierarchy",
+        "smallSizeReadability",
+        "evidenceRefs",
+        "unknowns"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "available",
+            "partial",
+            "missing"
+          ]
+        },
+        "sourceRef": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "audience": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "promise": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tension": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "specificity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "searchTerms": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "composition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "typeHierarchy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "smallSizeReadability": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "openingAnalysis": {
+      "type": "object",
+      "required": [
+        "duration",
+        "inspectionBasis",
+        "segments",
+        "unknowns"
+      ],
+      "properties": {
+        "duration": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        },
+        "inspectionBasis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "timeRange",
+              "boundaryReason",
+              "spokenWords",
+              "burnedCaptions",
+              "composition",
+              "motion",
+              "audioRole",
+              "evidenceArrival",
+              "viewerQuestion",
+              "meaningChange",
+              "alignmentStatus",
+              "evidenceRefs",
+              "frameRefs",
+              "unknowns"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "timeRange": {
+                "$ref": "#/$defs/range"
+              },
+              "boundaryReason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "spokenWords": {
+                "type": "string",
+                "minLength": 1
+              },
+              "burnedCaptions": {
+                "type": "string",
+                "minLength": 1
+              },
+              "composition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "motion": {
+                "type": "string",
+                "minLength": 1
+              },
+              "audioRole": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidenceArrival": {
+                "type": "string",
+                "minLength": 1
+              },
+              "viewerQuestion": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaningChange": {
+                "type": "string",
+                "minLength": 1
+              },
+              "alignmentStatus": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidenceRefs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "frameRefs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "unknowns": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "range": {
       "type": "object",
       "required": ["start", "end"],
@@ -245,13 +542,14 @@
       "type": "object",
       "required": ["viewerBefore", "viewerAfter", "activatedQuestion", "promise", "payoff", "endingResolution", "stages", "informationDesign", "proofDesign", "loadAndPayoff", "notes"],
       "properties": {
+        "packagingAnalysis": { "$ref": "#/$defs/packagingAnalysis" },
         "viewerBefore": { "type": "string", "minLength": 1 },
         "viewerAfter": { "type": "string", "minLength": 1 },
         "activatedQuestion": { "type": "string", "minLength": 1 },
         "promise": { "type": "string", "minLength": 1 },
         "payoff": { "type": "string", "minLength": 1 },
         "endingResolution": { "type": "string", "minLength": 1 },
-        "stages": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/directingStage" } },
+        "stages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/directingStage" } },
         "informationDesign": { "type": "array", "items": { "$ref": "#/$defs/timedStatement" } },
         "proofDesign": { "type": "array", "items": { "$ref": "#/$defs/proofStatement" } },
         "loadAndPayoff": {
@@ -307,6 +605,7 @@
       "type": "object",
       "required": ["orientation", "composition", "shotCount", "cutsPerMinute", "resultFirstAt", "analyzedDuration", "carriers", "claims", "shotSemantics", "uiProcedureStates", "transitions", "rhythm", "missingBridges", "audioRole", "notes"],
       "properties": {
+        "openingAnalysis": { "$ref": "#/$defs/openingAnalysis" },
         "orientation": { "type": ["string", "null"] },
         "composition": { "type": "string", "minLength": 1 },
         "shotCount": { "type": "integer", "minimum": 0 },

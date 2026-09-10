@@ -23,6 +23,13 @@ describe("video reconstruction V2 projection", () => {
     const reconstruction = JSON.parse(fs.readFileSync(path.join(fixtureRoot, "reconstruction.json"), "utf8")) as Record<string, unknown>;
     reconstruction.schemaVersion = "video-reconstruction-2.0";
     reconstruction.builderLenses = JSON.parse(fs.readFileSync(path.join(fixtureRoot, "builder-lenses-v2.json"), "utf8"));
+    const rawLenses = reconstruction.builderLenses as Record<string, Record<string, unknown>>;
+    const opening = { duration: 10, inspectionBasis: "原样保留 Builder 的时间冲突", unknowns: ["声音未知"], segments: [{
+      id: "opening-1", timeRange: {start:0,end:10}, boundaryReason: "字幕变化", spokenWords: "ASR 原文含错字",
+      burnedCaptions: "画面原文不同", composition: "竖屏", motion: "未判断", audioRole: "未知", evidenceArrival: "尚无结果",
+      viewerQuestion: "是否兑现？", meaningChange: "提出主张", alignmentStatus: "ASR 错时，未改写", evidenceRefs: ["TARGET-0001"],
+      frameRefs: ["TARGET-0001", "TARGET-0002", "TARGET-0004"], unknowns: ["确切切点未知"] }] };
+    rawLenses.visualEditing!.openingAnalysis = opening;
     const lenses = reconstruction.builderLenses as { contentRestoration: { blocks: Array<Record<string, unknown>> } };
     lenses.contentRestoration.blocks[0]!.visuals = [{
       ref: "TARGET-0002", role: "during", focus: "操作中的界面", proves: "中间状态可见", cannotProve: "隐藏点击未知"
@@ -68,6 +75,9 @@ describe("video reconstruction V2 projection", () => {
     } as unknown as CreatorResearchService;
 
     const result = loadVideoResearch(service, "fixture-creator", videoId, runId);
+    expect(result?.visualEditing.openingAnalysis).toEqual(opening);
+    expect(result?.directingLogic.packagingAnalysis).toBeNull();
+    expect(result?.performanceContext.observation?.metrics[0]?.median).toBeNull();
     expect(result?.contentBlocks).toHaveLength(2);
     expect(result?.contentUnknowns).toEqual(["隐藏设置没有展示"]);
     expect(result?.contentBlocks[0]?.type).toBe("before_after");

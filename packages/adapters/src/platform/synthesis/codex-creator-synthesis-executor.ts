@@ -77,8 +77,8 @@ async function runSynthesisChild(input: {
   try {
     const environment = await withSystemProxy();
     const model = input.role === "creator_synthesis"
-      ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-5.6-terra"
-      : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL ?? "gpt-5.6-terra";
+      ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-6-astra"
+      : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL ?? "gpt-6-astra";
     const reasoningEffort = input.role === "creator_synthesis"
       ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_REASONING_EFFORT ?? "medium"
       : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_REASONING_EFFORT ?? "medium";

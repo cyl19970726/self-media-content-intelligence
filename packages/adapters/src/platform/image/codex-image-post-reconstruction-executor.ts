@@ -62,7 +62,7 @@ All human-readable JSON values must be concise natural Chinese. Do not write adv
     try {
       const environment = await withSystemProxy();
       const args = ["exec", "-", "--skip-git-repo-check", "--color", "never", "--approve-for-me",
-        "-m", environment.SELF_MEDIA_IMAGE_POST_MODEL ?? "gpt-5.6-terra",
+        "-m", environment.SELF_MEDIA_IMAGE_POST_MODEL ?? "gpt-6-astra",
         "-c", `model_reasoning_effort=${JSON.stringify(environment.SELF_MEDIA_IMAGE_POST_REASONING_EFFORT ?? "medium")}`,
         "-C", outputDir, "-o", lastMessagePath];
       if (environment.SELF_MEDIA_CODEX_EPHEMERAL !== "false") args.splice(2, 0, "--ephemeral");

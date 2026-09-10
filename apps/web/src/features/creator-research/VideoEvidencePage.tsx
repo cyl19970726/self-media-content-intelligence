@@ -1,22 +1,26 @@
+import { ReportOverview } from "./ReportOverview";
+import { ReportCoverageNotice } from "./ReportCoverageNotice";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, LoaderCircle } from "lucide-react";
 import { getVideoResearch } from "../../shared/api/client";
 import type { VideoResearch } from "../../shared/contracts/core";
+import { OpeningReport, PackagingReport } from "./DepthReports";
 import { ContentRestorationReport } from "./ContentRestorationReport";
 import { DirectingStoryReport } from "./DirectingStoryReport";
 import { VideoReaderHero } from "./VideoReaderHero";
 import { VisualEditingReport } from "./VisualEditingReport";
 import { ResearchAuditAppendix } from "./ResearchAuditAppendix";
 import { LensWorkspace, type LensOutlineItem } from "./LensWorkspace";
-import { timestamp } from "./video-reader-utils";
+import { timestamp, stageReadingLabel } from "./video-reader-utils";
 import "./video-reader-report.css";
 
-type Lens = "content" | "directing" | "visual" | "audit";
+type Lens = "content" | "opening" | "directing" | "visual" | "audit";
 
 const lensLabels: Array<{ id: Lens; label: string; hash: string }> = [
   { id: "content", label: "内容还原", hash: "content" },
-  { id: "directing", label: "编导逻辑", hash: "directing" },
+  { id: "opening", label: "开头与包装", hash: "opening" },
+  { id: "directing", label: "编导结构", hash: "directing" },
   { id: "visual", label: "画面与剪辑", hash: "visual-editing" },
   { id: "audit", label: "研究审计", hash: "audit" }
 ];
@@ -37,9 +41,10 @@ function ContentStory({ data }: { data: VideoResearch }) {
   return <section className="reader-section content-story" id="content" aria-labelledby="content-title">
     <header><span>01</span><div><p>Builder · 内容还原</p><h2 id="content-title">它到底讲了什么、展示了什么</h2></div></header>
     <p className="builder-lens-summary" id="content-summary">{data.thesis}</p>
+    <ReportCoverageNotice data={data}/>
     {data.contentBlocks.length > 0
-      ? <ContentRestorationReport blocks={data.contentBlocks}/>
-      : <p className="reader-empty">当前 Builder 尚未产出内容还原块。</p>}
+      ? <ContentRestorationReport blocks={data.contentBlocks} data={data}/>
+      : <p className="reader-empty">该报告未产出结构化内容还原块。若存在旧版原始报告，可在“研究审计”中查看。</p>}
     {data.contentUnknowns.length > 0 && <aside className="builder-unknowns" id="content-unknowns"><span>Builder 保留的未知项</span>{data.contentUnknowns.map((item) => <p key={item}>{item}</p>)}</aside>}
   </section>;
 }
@@ -50,9 +55,10 @@ function outlineFor(data: VideoResearch, lens: Lens): LensOutlineItem[] {
     ...data.contentBlocks.map((block) => ({ href: `#content-${block.id}`, label: block.title, meta: `${timestamp(block.start)}–${timestamp(block.end)}` })),
     ...(data.contentUnknowns.length ? [{ href: "#content-unknowns", label: "保留的未知项" }] : [])
   ];
+  if (lens === "opening") return [{ href: "#visual-opening", label: "开头连续拆解" }, { href: "#directing-packaging", label: "标题、封面与兑现" }];
   if (lens === "directing") return [
     { href: "#directing-journey", label: "观看前后" }, { href: "#directing-overview", label: "问题、承诺与回报" },
-    ...data.directingLogic.stages.map((stage, index) => ({ href: `#directing-stage-${index + 1}`, label: stage.label, meta: `${timestamp(stage.start)}–${timestamp(stage.end)}` })),
+    ...data.directingLogic.stages.map((stage, index) => ({ href: `#directing-stage-${index + 1}`, label: stageReadingLabel(stage.label), meta: `${timestamp(stage.start)}–${timestamp(stage.end)}` })),
     ...(data.directingLogic.informationDesign.length ? [{ href: "#directing-information", label: "信息设计" }] : []),
     ...(data.directingLogic.proofDesign.length ? [{ href: "#directing-proof", label: "证明设计" }] : []),
     { href: "#directing-load", label: "信息负荷与回报" },
@@ -81,29 +87,41 @@ export default function VideoEvidencePage() {
   const [error, setError] = useState<string | null>(null);
   const runId = search.get("run") ?? undefined;
   const requestedLens = search.get("lens");
-  const currentLens: Lens = requestedLens === "content" || requestedLens === "directing" || requestedLens === "visual" || requestedLens === "audit"
+  const legacyOpening = location.hash === "#visual-opening" || location.hash === "#directing-packaging";
+  const currentLens: Lens = legacyOpening ? "opening" : requestedLens === "opening" || requestedLens === "content" || requestedLens === "directing" || requestedLens === "visual" || requestedLens === "audit"
     ? requestedLens : location.hash.startsWith("#directing") ? "directing" : location.hash.startsWith("#visual") ? "visual" : location.hash.startsWith("#audit") ? "audit" : "content";
 
   useEffect(() => {
-    setError(null);
-    getVideoResearch(id, videoId, runId).then(setData).catch((cause) => {
+    let active = true;
+    setError(null); setData(null);
+    getVideoResearch(id, videoId, runId).then(value => { if (active) setData(value); }).catch((cause) => {
+      if (!active) return;
       setError(cause instanceof Error ? cause.message : "无法读取视频证据");
     });
+    return () => { active = false; };
   }, [id, videoId, runId]);
+
+  useEffect(() => {
+    if (!data || !location.hash) return;
+    const target = document.getElementById(location.hash.slice(1));
+    target?.scrollIntoView({ block: "start" });
+  }, [data, location.hash, location.key, currentLens]);
 
   const rawReturnTo = search.get("returnTo");
   const returnTo = data && rawReturnTo?.startsWith(`/creators/${encodeURIComponent(data.creatorId)}`)
     ? rawReturnTo : data ? `/creators/${data.creatorId}#portfolio` : "/creators";
 
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div></main>;
-  if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一视频研究投影</p></div></main>;
+  if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在加载报告</p></div></main>;
 
   return <main className="video-reader-shell">
     <article className="video-reader-report">
       <VideoReaderHero data={data} returnTo={returnTo}/>
+      <ReportOverview data={data}/>
       <ReaderNavigation current={currentLens} search={search}/>
       <LensWorkspace label={lensLabels.find((lens) => lens.id === currentLens)?.label ?? "报告"} items={outlineFor(data, currentLens)}>
         {currentLens === "content" && <ContentStory data={data}/>}
+        {currentLens === "opening" && <section className="reader-section" id="opening"><header><span>02</span><div><p>开头与包装</p><h2>怎样建立期待，又如何兑现</h2></div></header><OpeningReport data={data}/><PackagingReport data={data}/></section>}
         {currentLens === "directing" && <DirectingStoryReport data={data}/>}
         {currentLens === "visual" && <VisualEditingReport data={data}/>}
         {currentLens === "audit" && <ResearchAuditAppendix data={data} defaultOpen/>}

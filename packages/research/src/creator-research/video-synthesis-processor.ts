@@ -242,6 +242,8 @@ export class CreatorResearchVideoSynthesisProcessor {
       } else {
         const request = videoReconstructionRequestSchema.parse({ runId: job.id, creatorRunId: run.id,
           postExternalId, sourceUrl, sourceMediaArtifactRef, evidencePackArtifactRef: null,
+          detailArtifactRef: run.detailArtifactRef, mediaManifestArtifactRef: run.mediaManifestArtifactRef,
+          selectionArtifactRef: run.selectionArtifactRef,
           evaluationPolicy, contractVersion: "video-content-reconstruction@2" });
         rawOutcome = await this.videoReconstructor.reconstruct(request, observeChild);
       }

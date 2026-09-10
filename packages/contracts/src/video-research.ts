@@ -1,3 +1,5 @@
+import { reportOverviewSchema } from "./report-overview.js";
+import { openingAnalysisSchema, packagingAnalysisSchema } from "./single-post-depth.js";
 import { z } from "zod";
 import { missingPostSourceFacts, postSourceFactsSchema } from "./post-source-facts.js";
 
@@ -68,6 +70,7 @@ export const videoResearchSchema = z.object({
   sourceLabel: z.string(),
   sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts),
   thesis: z.string(),
+  overview: z.object({ state: z.enum(["ready", "missing", "stale", "invalid"]), overview: reportOverviewSchema.nullable() }).default({ state: "missing", overview: null }),
   contentUnknowns: z.array(z.string()).default([]),
   readerSummary: z.object({
     productState: z.enum(["gold", "analysis_ready", "provisional"]),
@@ -125,6 +128,7 @@ export const videoResearchSchema = z.object({
     evidenceRefs: z.array(z.string()), unknowns: z.array(z.string())
   })),
   directingLogic: z.object({
+    packagingAnalysis: packagingAnalysisSchema.nullable().default(null),
     viewerBefore: z.string().nullable(),
     viewerAfter: z.string().nullable(),
     activatedQuestion: z.string().nullable(),
@@ -147,6 +151,7 @@ export const videoResearchSchema = z.object({
     notes: z.array(z.string())
   }),
   visualEditing: z.object({
+    openingAnalysis: openingAnalysisSchema.nullable().default(null),
     orientation: z.string().nullable(), composition: z.string().nullable(),
     shotCount: z.number().int().nonnegative().nullable(), cutsPerMinute: z.number().nonnegative().nullable(),
     shotMetricBasis: z.string().nullable().default(null),
@@ -174,6 +179,14 @@ export const videoResearchSchema = z.object({
     notes: z.array(z.string())
   }),
   performanceContext: z.object({
+    observation: z.object({
+      observedAt: z.string().nullable(), sampleObservedAt: z.string().nullable(), scope: z.string(),
+      observedCount: z.number(), eligibleCount: z.number(), topicSampleSize: z.number(),
+      excluded: z.array(z.object({ id: z.string(), reason: z.string() })),
+      metrics: z.array(z.object({ key: z.enum(["likes", "collections", "comments"]), subject: z.number().nullable(), denominator: z.number(), median: z.number().nullable(), multiple: z.number().nullable() })),
+      collectionLikeRatio: z.number().nullable(), exposureInteractionRate: z.number().nullable(), retention: z.number().nullable(),
+      ageMatched: z.boolean(), limitations: z.array(z.string())
+    }).nullable().default(null),
     tier: z.enum(["high", "base", "low", "unknown"]),
     creatorMedianLikes: z.number().nullable(), medianMultiple: z.number().nullable(), percentileRank: z.number().nullable(),
     interpretation: z.string(), confounds: z.array(z.string())

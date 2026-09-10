@@ -171,11 +171,21 @@ describe("Builder model contract", () => {
     }
   });
 
-  it("passes Terra medium explicitly and keeps ordinary sessions ephemeral", () => {
+  it("passes Astra medium explicitly and keeps ordinary sessions ephemeral", () => {
     const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/run/last.txt", {});
-    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain("gpt-6-astra");
     expect(args).toContain('model_reasoning_effort="medium"');
     expect(args).toContain("--ephemeral");
+  });
+
+  it("uses Astra for evaluation and preserves explicit role overrides", () => {
+    expect(codexInvocationArgs("generic_evaluator", "/tmp/run", "/tmp/last.txt", {})).toContain("gpt-6-astra");
+    const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/last.txt", {
+      SELF_MEDIA_BUILDER_MODEL: "gpt-5.6-terra",
+      SELF_MEDIA_BUILDER_REASONING_EFFORT: "high"
+    });
+    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain('model_reasoning_effort="high"');
   });
 
   it("can retain a bounded diagnostic session without changing the model", () => {
@@ -183,7 +193,7 @@ describe("Builder model contract", () => {
       SELF_MEDIA_CODEX_EPHEMERAL: "false"
     });
     expect(args).not.toContain("--ephemeral");
-    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain("gpt-6-astra");
   });
 });
 
@@ -298,6 +308,11 @@ describe("child worker lifecycle", () => {
 
       await runCodex("prompt", outputDir, "candidate", "source-revision-1", (event) => events.push(event));
 
+      const trace = JSON.parse(fs.readFileSync(path.join(outputDir, "candidate-trace.json"), "utf8")) as { childRunId: string; traceDir: string };
+      expect(trace.childRunId).toBe(events[0]?.childRunId);
+      expect(fs.readFileSync(path.join(trace.traceDir, "events.jsonl"), "utf8")).toContain("working");
+      expect(fs.readFileSync(path.join(trace.traceDir, "prompt.txt"), "utf8")).toBe("prompt");
+      fs.rmSync(trace.traceDir, { recursive: true, force: true });
       const statuses = events.map((event) => event.status);
       expect(statuses[0]).toBe("started");
       expect(statuses).toContain("stale");

@@ -25,3 +25,8 @@ export function firstFrameForRange(data: VideoResearch, refs: string[], start: n
     .filter((frame) => frame.time !== null)
     .sort((left, right) => Math.abs((left.time ?? 0) - center) - Math.abs((right.time ?? 0) - center))[0] ?? null;
 }
+
+export function stageReadingLabel(label: string) {
+  const labels: Record<string, string> = { Hook: "开场吸引", "Problem-to-method": "从问题到方法", "Proof sample": "成果样本", "Process proof": "过程证明", "Extended payoff": "展开成果", Ending: "结尾收束" };
+  return labels[label] ?? label;
+}

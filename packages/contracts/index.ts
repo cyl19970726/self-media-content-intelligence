@@ -10,3 +10,6 @@ export * from "./src/research-learning.js";
 export * from "./src/schema.js";
 export * from "./src/video-research.js";
 export * from "./src/workspace.js";
+
+export * from "./src/single-post-depth.js";
+export * from "./src/report-overview.js";

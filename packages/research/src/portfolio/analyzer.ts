@@ -8,7 +8,7 @@ import {
   type CreatorSelection
 } from "./contracts.js";
 
-function quantile(sorted: number[], point: number): number | null {
+export function quantile(sorted: number[], point: number): number | null {
   if (sorted.length === 0) return null;
   const index = (sorted.length - 1) * point;
   const lower = Math.floor(index);

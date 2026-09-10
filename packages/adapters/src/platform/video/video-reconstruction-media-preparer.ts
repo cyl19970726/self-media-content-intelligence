@@ -158,6 +158,9 @@ export async function prepareBuilderInputs(options: PrepareBuilderInputsOptions)
     throw new Error("MEDIA_PREPARATION_SOURCE_REVISION_MISMATCH");
   }
 
+  if (previous && (!exists(evidencePath) || previous.evidencePack.fingerprint !== sha256(evidencePath))) {
+    throw new Error("MEDIA_PREPARATION_EVIDENCE_REVISION_MISMATCH");
+  }
   fs.mkdirSync(options.outputDir, { recursive: true });
   const pack = exists(evidencePath) ? readJson(evidencePath) as EvidencePackLike | null : null;
   const summary = mediaSummary(pack) ?? await probeAudio(options.videoPath, executeFile);
@@ -166,6 +169,10 @@ export async function prepareBuilderInputs(options: PrepareBuilderInputsOptions)
     ? (subtitle.startsWith(path.dirname(options.videoPath)) ? "provided_subtitles" : "reused_subtitles")
     : "none";
   let provider: string | null = null;
+  if (pack?.source?.subtitleOrigin?.startsWith("machine_transcription") && subtitle) {
+    origin = "machine_transcription";
+    provider = pack.source.subtitleOrigin;
+  }
 
   if (!subtitle && summary.present) {
     subtitle = path.join(options.outputDir, "source-video.srt");
@@ -192,6 +199,11 @@ export async function prepareBuilderInputs(options: PrepareBuilderInputsOptions)
   }
   if (!exists(evidencePath)) throw new Error("MEDIA_PREPARATION_EVIDENCE_PACK_MISSING");
 
+  // Source enrichment belongs to preparation, before the immutable manifest is written.
+  if (exists(path.join(options.outputDir, "post-source-input.json")) && !previous) {
+    await executeFile(process.execPath, [path.join(options.skillDir, "scripts", "prepare-opening-evidence.mjs"),
+      "--video", options.videoPath, "--pack", evidencePath], { cwd: options.outputDir, timeout: 120_000 });
+  }
   const manifest: MediaPreparationManifest = {
     schemaVersion: "video-media-preparation@1",
     preparedAt: now().toISOString(),

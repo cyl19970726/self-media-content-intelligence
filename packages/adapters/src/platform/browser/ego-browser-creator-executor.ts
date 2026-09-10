@@ -117,7 +117,9 @@ function normalizeResult(value: unknown): CreatorAcquisitionResult {
       visibleText: post.visibleText,
       mediaType: post.mediaType as "video" | "image" | "unknown",
       likesLabel: post.likesLabel,
-      likes: post.likes
+      likes: post.likes,
+      isPinned: typeof post.isPinned === "boolean" ? post.isPinned : null,
+      isOwn: typeof post.isOwn === "boolean" ? post.isOwn : null
     };
   });
   const diagnostics = Array.isArray(value.diagnostics)
@@ -183,11 +185,15 @@ const inspect = async () => await js(String.raw\`(() => {
       if (!Number.isFinite(base)) return null
       return Math.round(base * (match[2] ? 10000 : 1))
     }
-    const mediaType = /视频|播放/.test(visibleText) || Boolean(container?.querySelector('video,[class*="play"]')) ? 'video' : cover?.querySelector('img') ? 'image' : 'unknown'
+    const mediaType = /视频|播放/.test(visibleText) || Boolean(container?.querySelector('video,[class*="play"]')) ? 'video' : /图文/.test(visibleText) ? 'image' : 'unknown'
+    const ownLink = [...document.querySelectorAll('a[href*="/user/profile/"]')].find(a => a.textContent.trim() === '我')
+    const ownPath = ownLink ? new URL(ownLink.href).pathname : null
+    const isOwn = ownPath && location.pathname.includes('/user/profile/') ? ownPath === location.pathname : null
     const url = new URL('/explore/' + externalId, location.origin)
     return {
       externalId, url: url.toString(), title: title?.slice(0, 180) || null,
-      visibleText: visibleText || null, mediaType, likesLabel, likes: parseCount(likesLabel)
+      visibleText: visibleText || null, mediaType, likesLabel, likes: parseCount(likesLabel),
+      isPinned: lines.includes('置顶'), isOwn
     }
   }).filter(Boolean)
   return {

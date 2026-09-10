@@ -27,3 +27,5 @@ export * from "./src/comparison/project-contracts.js";
 export * from "./src/comparison/repository.js";
 export * from "./src/comparison/service.js";
 export * from "./src/comparison/worker.js";
+
+export * from "./src/portfolio/post-performance.js";

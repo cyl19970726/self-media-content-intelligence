@@ -1,3 +1,4 @@
+import { validateVideoDepth } from "./video-depth-integrity.js";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -243,6 +244,13 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     }
   }
 
+  const sourcePath = path.join(outputDir, "post-source-input.json");
+  const postSource = exists(sourcePath) ? readJson<{ facts: { title: string | null; coverHref: string | null }; cover: { path: string; sha256: string } | null }>(sourcePath) : null;
+  if (postSource?.cover) {
+    const coverPath = path.resolve(outputDir, postSource.cover.path);
+    if (!coverPath.startsWith(path.resolve(outputDir) + path.sep) || !exists(coverPath) || sha256(coverPath) !== postSource.cover.sha256) fail("POST_COVER_FINGERPRINT");
+  }
+  validateVideoDepth(reconstruction, Number(pack.media?.duration), allEvidenceIds, frameTimes, postSource);
   const lensReferences = builderLensRefs(reconstruction);
   if (reconstruction.schemaVersion === "video-reconstruction-2.0") {
     const lenses = reconstruction.builderLenses;

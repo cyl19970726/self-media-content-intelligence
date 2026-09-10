@@ -92,6 +92,20 @@ describe("video reconstruction media preparation", () => {
     }
   });
 
+  it("preserves machine provenance when reusing a subtitle under the source directory", async () => {
+    const item = fixture();
+    try {
+      fs.mkdirSync(path.join(item.outputDir, "evidence"), { recursive: true });
+      fs.writeFileSync(path.join(item.inputDir, "source-video.srt"), "1\n00:00:00,000 --> 00:00:01,000\n提案\n");
+      fs.writeFileSync(path.join(item.outputDir, "evidence/evidence-pack.json"), JSON.stringify({
+        media: { duration: 1, hasAudio: true }, source: { subtitleOrigin: "machine_transcription" }
+      }));
+      const manifest = await prepareBuilderInputs({ videoPath: item.videoPath, outputDir: item.outputDir,
+        skillDir: "/skill", executeFile: async () => { throw new Error("No provider process should run"); } });
+      expect(manifest.transcript.origin).toBe("machine_transcription");
+    } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
+  });
+
   it("includes a supplied subtitle next to the source video in the reusable candidates", () => {
     const item = fixture();
     try {

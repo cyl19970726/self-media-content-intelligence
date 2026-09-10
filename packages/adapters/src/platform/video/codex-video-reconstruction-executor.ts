@@ -1,8 +1,9 @@
+import { freezePostSourceInput } from "./video-post-source-input.js";
 import fs from "node:fs";
 import crypto from "node:crypto";
 import path from "node:path";
 import { artifactPath, artifactRef } from "../../core/artifacts.js";
-import { projectRoot, runArtifactDir } from "../../core/config.js";
+import { projectRoot, runArtifactDir, runtimeDir } from "../../core/config.js";
 import { runFile, runFileInput } from "../../core/process.js";
 import {
   videoReconstructionOutcomeSchema,
@@ -197,14 +198,14 @@ export function codexInvocationArgs(
 ): string[] {
   const isBuilder = role === "candidate";
   const model = isBuilder
-    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
-    : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-terra";
+    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-6-astra"
+    : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-6-astra";
   const reasoningEffort = isBuilder
     ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
     : environment.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium";
   const sessionArgs = environment.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? [] : ["--ephemeral"];
   return [
-    "exec", "-", "--skip-git-repo-check", ...sessionArgs, "--color", "never",
+    "exec", "-", "--skip-git-repo-check", ...sessionArgs, "--json", "--color", "never",
     "-m", model, "-c", `model_reasoning_effort=${JSON.stringify(reasoningEffort)}`,
     "--approve-for-me", "-C", cwd, "-o", lastMessage
   ];
@@ -230,6 +231,12 @@ export async function runCodex(
   const role = childRole(label);
   const policy = childPolicy(role);
   const childRunId = crypto.randomUUID();
+  const traceDir = path.join(runtimeDir(), "worker-traces", childRunId);
+  fs.mkdirSync(traceDir, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(path.join(traceDir, "prompt.txt"), prompt, { mode: 0o600 });
+  fs.writeFileSync(path.join(cwd, `${label}-trace.json`), JSON.stringify({ childRunId, traceDir,
+    sessionMode: process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
+    startedAt: new Date().toISOString() }, null, 2));
   const startedAt = new Date().toISOString();
   let lastProgressAt = startedAt;
   let lastProgressEmittedAt = 0;
@@ -252,7 +259,8 @@ export async function runCodex(
       cwd,
       timeout: policy.timeoutMs,
       env: environment,
-      onOutput: () => {
+      onOutput: (stream, chunk) => {
+        fs.appendFileSync(path.join(traceDir, stream === "stdout" ? "events.jsonl" : "stderr.log"), chunk, { mode: 0o600 });
         const at = Date.now();
         lastProgressAt = new Date(at).toISOString();
         staleEmitted = false;
@@ -302,6 +310,8 @@ Input media: ${videoPath}
 Writable output root: ${outputDir}
 Prepared media manifest: ${mediaPreparationPath}
 Frozen evidence pack: ${path.join(outputDir, "evidence", "evidence-pack.json")}
+Frozen post identity and independent cover: ${path.join(outputDir, "post-source-input.json")}
+Read ${skillDir}/references/single-post-depth.md and fulfill depthContractVersion: single-post-depth@1.
 Missing artifacts that this resume run is allowed to create: ${JSON.stringify(missingArtifacts)}
 Existing canonical artifacts that must be reused: ${JSON.stringify(existingArtifacts)}
 
@@ -393,6 +403,7 @@ You are the Builder contract-repair role. Read ${skillDir}/SKILL.md and ${skillD
 Source video: ${videoPath}
 Candidate root: ${outputDir}
 Deterministic integrity failure: ${failure}
+For DEPTH failures read ${skillDir}/references/single-post-depth.md and frozen post-source-input.json. Never modify post-source-input.json or its cover. If legacy evidence cannot support depth, keep the candidate failed; do not fabricate missing observations.
 
 The evidence collection is frozen. Do not modify media-preparation.json, evidence/, capture-protocol.json,
 targeted-evidence/, article.md, or any evaluator artifact. Inspect the existing evidence and repair every violation listed in
@@ -436,6 +447,7 @@ function sha256(file: string): string {
 }
 
 const frozenCandidateFiles = [
+  "post-source-input.json",
   "media-preparation.json",
   "evidence/evidence-pack.json",
   "probe.json",
@@ -513,6 +525,7 @@ export function evaluatorContractRevision(): string {
 export function builderIntegrityContractRevision(): string {
   const contractFiles = [
     path.join(skillDir, "references/builder-operator.md"),
+    path.join(skillDir, "references/single-post-depth.md"),
     path.join(skillDir, "schemas/capture-protocol.schema.json"),
     path.join(skillDir, "schemas/reconstruction.schema.json")
   ];
@@ -540,6 +553,7 @@ async function validateBuilder(outputDir: string, videoPath: string, hostAssembl
   if (schemaValidation.pass !== true) throw new Error("BUILDER_SCHEMA_VALIDATION_FAILED");
   const requiredEvidence = [
     "media-preparation.json",
+    ...(exists(path.join(outputDir, "post-source-input.json")) ? ["post-source-input.json"] : []),
     "evidence/evidence-pack.json",
     "probe.json",
     "capture-protocol.json",
@@ -673,6 +687,12 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
     fs.mkdirSync(outputDir, { recursive: true });
     let builderAccepted = false;
     try {
+      const existingCandidate = readJsonIfPresent(path.join(outputDir, "reconstruction.json")) as { depthContractVersion?: string } | null;
+      if (existingCandidate && existingCandidate.depthContractVersion !== "single-post-depth@1") {
+        throw new Error("BUILDER_INTEGRITY_DEPTH_LEGACY_REBUILD_REQUIRED");
+      }
+      const sourceInput = freezePostSourceInput(request, outputDir);
+      const sourceInputHash = sha256(path.join(outputDir, "post-source-input.json"));
       await prepareBuilderInputs({
         videoPath,
         outputDir,
@@ -693,6 +713,10 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       if (missing.length > 0) return { state: "not_ready", reconstructionArtifactRef: null, evaluationArtifactRef: null,
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
+      if (sha256(path.join(outputDir, "post-source-input.json")) !== sourceInputHash ||
+          (sourceInput.cover && sha256(path.join(outputDir, sourceInput.cover.path)) !== sourceInput.cover.sha256)) {
+        throw new Error("BUILDER_INTEGRITY_POST_SOURCE_MUTATED");
+      }
       await refreshOcrEvidenceIfNeeded(outputDir);
       let hostAssembly = assembleHostOwnedReconstruction(outputDir);
       let integrityRepairAttempts = 0;
@@ -773,7 +797,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
           schemaVersion: "video-evaluator-run@1",
           evaluatorRunId: evaluatorReceipt.childRunId,
           modelRole: evaluatorReceipt.role,
-          model: process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-terra",
+          model: process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-6-astra",
           reasoningEffort: process.env.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium",
           sessionMode: process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
           startedAt: evaluatorReceipt.startedAt,
@@ -858,7 +882,9 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         });
       }
       if (commandUnavailable(message)) return { state: "blocked", code: "runner_unavailable", message, userActionRequired: true };
-      const publicMessage = /DETERMINISTIC_VALIDATOR_FAILED/.test(message)
+      const publicMessage = message.includes("DEPTH_LEGACY_REBUILD_REQUIRED")
+        ? "旧版报告已保留。新增深度合同需要在新运行中重建，不能在原冻结目录补写。"
+        : /DETERMINISTIC_VALIDATOR_FAILED/.test(message)
         ? "确定性验证器没有产生 gate report。"
         : failedGateId.startsWith("builder_integrity_")
           ? `Builder 确定性完整性检查未通过：${failedGateId}。候选产物已保留。`

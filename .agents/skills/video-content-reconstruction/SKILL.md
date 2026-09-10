@@ -23,6 +23,8 @@ This Skill owns both single-video roles:
 - **Builder (required):** inspect the source, build evidence, reconstruct the content, and close the internal coverage/meta-gate.
 - **Evaluator (optional):** run in a fresh process, independently inspect the source and Builder artifacts, and decide whether the candidate can be promoted as verified knowledge.
 
+New single-post depth runs also follow [single-post-depth.md](references/single-post-depth.md): frozen independent post sources, contiguous opening evidence, and packaging fulfillment. Legacy V1/V2 without the depth marker remains visibly incomplete for this extension.
+
 Runtime agents enter through the concise role contracts: [builder-operator.md](references/builder-operator.md) and [evaluator-operator.md](references/evaluator-operator.md). The host prepares and fingerprints media inputs before Builder starts. Builder does not own ASR/OCR provider discovery or transcription process lifecycle; Evaluator is one fresh independent process that performs the general gate and all three content/directing/visual lenses without pretending they were three processes.
 
 Deterministic schema and reference validation is required in both modes. The Host owns immutable transcript/frame mappings and mechanical execution state, and assembles them with the Builder's semantic output before validation. The default fast path may stop after Builder validation and return `BUILT_UNEVALUATED`. Run the optional Evaluator to reach `VERIFIED`; when evaluation finds quality problems, preserve the usable candidate as `EVALUATED_WITH_FINDINGS`. Use `NOT_READY` only when the Host cannot assemble a minimum valid candidate.
