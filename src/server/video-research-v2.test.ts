@@ -1,14 +1,24 @@
 import fs from "node:fs";
 import path from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import os from "node:os";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { runArtifactDir } from "../../packages/adapters/index.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import { loadVideoResearch } from "./video-research.js";
 
 const runIds: string[] = [];
+const originalRuntime = process.env.SELF_MEDIA_RUNTIME_DIR;
+let testRuntime: string;
+beforeEach(() => {
+  testRuntime = fs.mkdtempSync(path.join(os.tmpdir(), "video-projection-test-"));
+  process.env.SELF_MEDIA_RUNTIME_DIR = testRuntime;
+});
 
 afterEach(() => {
   for (const runId of runIds.splice(0)) fs.rmSync(runArtifactDir(runId), { recursive: true, force: true });
+  fs.rmSync(testRuntime, { recursive: true, force: true });
+  if (originalRuntime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR;
+  else process.env.SELF_MEDIA_RUNTIME_DIR = originalRuntime;
 });
 
 describe("video reconstruction V2 projection", () => {
