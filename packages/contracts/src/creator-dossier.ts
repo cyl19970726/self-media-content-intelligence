@@ -83,7 +83,7 @@ export const creatorDossierSchema = z.object({
     videoCount: z.number().int().nonnegative().nullable(),
     highCount: z.number().int().nonnegative().nullable(),
     percentiles: z.object({ p10: z.number().nullable(), p25: z.number().nullable(), p75: z.number().nullable(), p90: z.number().nullable() }),
-    distribution: z.array(z.object({ label: z.string(), count: z.number().int().nonnegative(), share: z.number() })),
+    distribution: z.array(z.object({ label: z.string(), count: z.number().int().nonnegative(), share: z.number().min(0).max(1) })),
     notes: z.array(z.string()),
     health: dataHealthSchema,
     annotationCoverage: z.object({

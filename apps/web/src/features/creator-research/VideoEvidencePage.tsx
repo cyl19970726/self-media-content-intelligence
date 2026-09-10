@@ -1,3 +1,4 @@
+import { singlePostReturnHref } from "./model/creator-reading";
 import { ReportFormatNotice } from "./ReportFormatNotice";
 import { OriginalReport } from "./OriginalReport";
 import { originalReportOutline } from "./original-report-utils";
@@ -115,8 +116,7 @@ export default function VideoEvidencePage() {
   }, [data, location.hash, location.key, currentLens]);
 
   const rawReturnTo = search.get("returnTo");
-  const returnTo = data && rawReturnTo?.startsWith(`/creators/${encodeURIComponent(data.creatorId)}`)
-    ? rawReturnTo : data ? `/creators/${data.creatorId}#portfolio` : "/creators";
+  const returnTo = data ? singlePostReturnHref(data.creatorId, runId, rawReturnTo) : "/creators";
 
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在加载报告</p></div></main>;

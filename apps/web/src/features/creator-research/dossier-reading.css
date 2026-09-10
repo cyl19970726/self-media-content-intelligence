@@ -1,0 +1,7 @@
+.dossier-reading-scope { padding: 20px; margin: 24px 0; border: 1px solid var(--line); background: var(--paper); overflow-wrap: anywhere; }
+.dossier-reading-scope p { margin: 8px 0; font-size: 13px; line-height: 1.7; }
+.creator-dossier .statement details { margin-top: 10px; font-size: 12px; }
+.creator-dossier .statement details ul { padding-left: 20px; overflow-wrap: anywhere; }
+.creator-dossier .statement details li { margin: 8px 0; line-height: 1.7; }
+.creator-dossier .statement details a { color: var(--teal); text-decoration: underline; }
+.creator-dossier .tier-label small { display: block; margin-top: 6px; font-weight: normal; white-space: normal; }

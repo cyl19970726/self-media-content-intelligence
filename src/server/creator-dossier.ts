@@ -1,3 +1,4 @@
+import { distributionFractions, selectedTierMetrics } from "./creator-distribution.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { CreatorSynthesis } from "../../packages/research/index.js";
 import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
@@ -84,7 +85,7 @@ export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorD
       videoCount: data.baseline?.postCount ?? null,
       highCount: null,
       percentiles: { p10: null, p25: null, p75: null, p90: null },
-      distribution: data.baseline?.distribution ?? [],
+      distribution: distributionFractions(data.baseline?.distribution ?? []),
       notes: [data.baseline?.averageNote].filter((value): value is string => Boolean(value)),
       health: data.baselineHealth ?? health("missing", "基本盘未覆盖。", data.meta.capturedAt)
     },
@@ -162,7 +163,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       durationSeconds: mediaItem?.durationSeconds ?? null,
       topic: analyzed?.contentRole ?? null,
       format: analyzed?.contentForm.join(" / ") ?? (detail?.mediaType ?? item.mediaType),
-      coreContent: analyzed?.performanceInterpretation ?? detail?.description ?? null,
+      coreContent: analyzed?.contentRole ?? null,
       contentArchitecture: [],
       mechanismHypothesis: analyzed?.performanceInterpretation ?? null,
       selectionReason: item.selectionReason,
@@ -242,10 +243,10 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       formats: synthesis?.contentSystem.formatClusters.map(claim) ?? [],
       visualLanguage: synthesis?.contentSystem.visualLanguage.map(claim) ?? [],
       recurringStructures: synthesis?.contentSystem.recurringStructure.map(claim) ?? [],
-      health: health(synthesis ? "full" : "missing", synthesis ? "内容系统来自通过验证的博主综合。" : "等待博主综合硬闸。", capturedAt)
+      health: health(synthesis ? "partial" : "missing", synthesis ? "本页提供文字综合；尚未提供主题与形式的可复算聚类统计。" : "等待博主综合硬闸。", capturedAt)
     },
     tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tierLabels[tier], conclusion: tierClaims(tier), mechanisms: [], failurePatterns: [],
-      metrics: { medianLikes: null, meanLikes: null, minLikes: null, maxLikes: null },
+      metrics: selectedTierMetrics(items.filter(item => item.tier === tier).map(item => item.likes)),
       count: selection?.items.filter((item) => item.tier === tier).length ?? 0 })),
     portfolio: { items, deepCount: items.filter((item) => item.deepSample).length,
       health: health(items.length === 21 ? "full" : items.length ? "partial" : "missing", `${items.length}/21 条 canonical 记录可读。`, capturedAt) },
