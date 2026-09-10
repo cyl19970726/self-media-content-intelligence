@@ -6,6 +6,17 @@ import type { VideoResearch } from '../../shared/contracts/core';
 
 const data = { frames: { dense: [{id:'TARGET-0001',src:'/artifacts/frame.jpg',time:1,reason:null}], sparse:[] }, transcript:[], evidenceIndex:[], sourceFacts:{coverHref:null} } as unknown as VideoResearch;
 describe('original report reading', () => {
+  it('resolves explicitly cited knowledge units to their original evidence without adding uncited units', () => {
+    const report = { ...data, knowledgeUnits: [
+      { id: 'KU-032', title: '画面', statement: '原始观察', evidenceRefs: ['TARGET-0001'], unknowns: ['连续动作未知'] },
+      { id: 'KU-033', title: '未引用', statement: '不应自动加入', evidenceRefs: [], unknowns: [] }
+    ] } as VideoResearch;
+    const html = renderToStaticMarkup(createElement(OriginalReport, {data: report, markdown: '正文依据 KU-032。'}));
+    expect(html).toContain('原始观察');
+    expect(html).toContain('连续动作未知');
+    expect(html).toContain('href="/artifacts/frame.jpg"');
+    expect(html).not.toContain('不应自动加入');
+  });
   it('preserves headings, transcript and qualifiers while resolving evidence beside the paragraph', () => {
     const html = renderToStaticMarkup(createElement(OriginalReport, { data, markdown:'# 标题\n\n不能证明效果（TARGET-0001）。\n\n## 完整逐字稿\n\n必须保留的原话。' }));
     expect(html).toContain('不能证明效果（TARGET-0001）。');

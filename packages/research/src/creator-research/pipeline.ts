@@ -130,9 +130,10 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   const evaluatedWithFindingsCount = batch?.items.filter((item) => item.state === "evaluated_with_findings").length ?? 0;
   const pendingDeepCount = dossier ? pendingDeep.length : Math.max(0,
     runDeepSampleCount - validatedDeepCount - (run?.videoWork.failedPosts ?? 0));
-  const boundedMediaGap = Boolean(dossier?.boundaries.some((item) => item.includes("bounded_media_retry_once")));
-  const unavailableDeepCount = boundedMediaGap ? run?.videoWork.failedPosts ?? Math.max(0,
+  const boundedMediaPolicy = Boolean(dossier?.boundaries.some((item) => item.includes("bounded_media_retry_once")));
+  const unavailableDeepCount = boundedMediaPolicy ? run?.videoWork.failedPosts ?? Math.max(0,
     deepSampleCount - validatedDeepCount - pendingDeepCount) : 0;
+  const boundedMediaGap = boundedMediaPolicy && unavailableDeepCount > 0;
   const verifiedMediaCount = boundedMediaGap ? Math.max(0, deepSampleCount - unavailableDeepCount) : deepSampleCount;
   const datedItems = dossier?.portfolio.items.filter((item) => item.publishedLabel !== null).length ?? run?.coverage.enrichedPosts ?? 0;
   const commentedItems = dossier?.portfolio.items.filter((item) => item.comments !== null).length ?? 0;
@@ -194,7 +195,7 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
             : "代表样本尚未全部取得，或媒体未全部通过文件、哈希和解码核验。",
           nextAction: boundedMediaGap ? "不再重试不可得媒体；综合只使用 surface_only 公开证据并保留未知。" : "由媒体 Worker 获取并验证选中视频；不持久化签名 URL。" }),
     stage(seed("video_reconstruction"), reconstructionComplete
-      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `${builtDeepCount}/${deepSampleCount} 条深度样本完成 Builder 内容、编导和画面分析；${validatedDeepCount} 条已正式验证。` }
+      ? { state: "complete", gateState: "passed", artifactRefs: [run?.reconstructionBatchArtifactRef], message: `${builtDeepCount}/${deepSampleCount} 条深度样本已有重建完成记录；${validatedDeepCount} 条有原任务验证记录。此处统计任务产物，不保证当前三部分字段齐全；具体内容与评估版本见单帖。` }
       : { state: builtDeepCount + pendingDeepCount > 0 ? "partial" : "pending", gateState: builtDeepCount > 0 ? "partial" : "not_checked", artifactRefs: [run?.reconstructionBatchArtifactRef],
           missingInputs: [`完成 Builder 三镜头分析：${builtDeepCount}/${requiredDeepSamples}`],
           message: boundedMediaGap ? `${builtDeepCount} 条已构建；${unavailableDeepCount} 条媒体不可得，未生成视频内容结论。` : `${builtDeepCount} 条已构建，${validatedDeepCount} 条已正式验证，其余尚未还原。`,

@@ -9,10 +9,12 @@ export function KnowledgeContributionBlock({ subjectType, subjectId }: { subject
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    setLoaded(false); setError(null);
-    void listKnowledgeContributions(subjectType, subjectId).then(setRows)
-      .catch((cause) => setError(cause instanceof Error ? cause.message : "贡献清单读取失败"))
-      .finally(() => setLoaded(true));
+    let active = true;
+    setLoaded(false); setError(null); setRows([]);
+    void listKnowledgeContributions(subjectType, subjectId).then(value => { if (active) setRows(value); })
+      .catch((cause) => { if (active) setError(cause instanceof Error ? cause.message : "贡献清单读取失败"); })
+      .finally(() => { if (active) setLoaded(true); });
+    return () => { active = false; };
   }, [subjectType, subjectId]);
   return <section className="knowledge-contribution-block">
     <header><BookOpen size={16}/><div><span>KNOWLEDGE CONTRIBUTION</span><h2>这份研究为知识系统贡献了什么</h2></div><Link to="/knowledge">打开知识索引</Link></header>

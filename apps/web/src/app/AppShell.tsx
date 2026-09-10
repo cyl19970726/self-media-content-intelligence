@@ -21,7 +21,6 @@ export function AppShell({ children }: { children: ReactNode }) {
       <Link className={location.pathname.startsWith("/knowledge") ? "active" : ""} to="/knowledge"><BookOpen size={16}/> 内容知识</Link>
       <Link className={location.pathname.startsWith("/evidence") ? "active" : ""} to="/evidence"><Database size={16}/> 证据存储</Link>
       <Link className={location.pathname.startsWith("/creation") ? "active" : ""} to="/creation"><Send size={16}/> 创作发布</Link>
-      <span className="section-nav__soon">Notion 同步 · NEXT</span>
     </nav>
     {children}
   </div>;

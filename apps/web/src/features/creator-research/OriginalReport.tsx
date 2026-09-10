@@ -14,6 +14,17 @@ function inline(text: string, data: VideoResearch): ReactNode[] {
   });
 }
 
+function CitedUnits({ text, data }: { text: string; data: VideoResearch }) {
+  const refs = new Set(text.match(/\bKU[-_]?\d+\b/g) ?? []);
+  const units = (data.knowledgeUnits ?? []).filter(unit => refs.has(unit.id));
+  return <>{units.map(unit => <details key={unit.id} className="original-report-citation">
+    <summary>{unit.id} · 查看原引用与依据</summary>
+    <h4>{unit.title}</h4><p>{unit.statement}</p>
+    {unit.unknowns.map((unknown, index) => <p key={index}>原记录未知：{unknown}</p>)}
+    <DepthEvidence data={data} refs={unit.evidenceRefs}/>
+  </details>)}</>;
+}
+
 /** Reading-only presentation: no heading rewriting, summary, or transcript removal. */
 export function OriginalReport({ markdown, data }: { markdown: string; data: VideoResearch }) {
   return <div className="original-report">{originalReportBlocks(markdown).map((block, index) => {
@@ -24,7 +35,7 @@ export function OriginalReport({ markdown, data }: { markdown: string; data: Vid
     if (block.startsWith('```')) return <pre key={index}><code>{block.replace(/^```[^\n]*\n/, '').replace(/\n```$/, '')}</code></pre>;
     if (/^\|/m.test(block)) {
       const rows = block.split('\n').filter(line => !/^\s*\|?\s*:?-+/.test(line));
-      return <div className="original-report-table" key={index}><table><tbody>{rows.map((line, rowIndex) => <tr key={rowIndex}>{line.replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map((cell, cellIndex) => rowIndex === 0 ? <th key={cellIndex}>{inline(cell, data)}</th> : <td key={cellIndex}>{inline(cell, data)}</td>)}</tr>)}</tbody></table></div>;
+      return <div className="original-report-table" key={index}><table><tbody>{rows.map((line, rowIndex) => <tr key={rowIndex}>{line.replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map((cell, cellIndex) => rowIndex === 0 ? <th key={cellIndex}>{inline(cell, data)}</th> : <td key={cellIndex}>{inline(cell, data)}</td>)}</tr>)}</tbody></table><CitedUnits text={block} data={data}/></div>;
     }
     const refs = [...new Set(block.replace(/!?\[[^\]]*\]\([^\s)]+\)/g, '').match(/\b(?:TARGET|HIRES|CUE|SHOT|FRAME|ACT|DENSE|SPARSE)-[A-Za-z0-9-]+\b/g) ?? [])];
     const parts = block.split(/(!\[[^\]]*\]\([^\s)]+\))/g);
@@ -39,6 +50,6 @@ export function OriginalReport({ markdown, data }: { markdown: string; data: Vid
       if (lines.every(line => /^[-*] /.test(line))) return <ul key={partIndex}>{lines.map((line, i) => <li key={i}>{inline(line.slice(2), data)}</li>)}</ul>;
       if (lines.every(line => /^\d+\. /.test(line))) return <ol key={partIndex}>{lines.map((line, i) => <li key={i} value={Number.parseInt(line)}>{inline(line.replace(/^\d+\. /, ''), data)}</li>)}</ol>;
       return part.startsWith('> ') ? <blockquote key={partIndex}>{inline(part.replace(/^> ?/gm, ''), data)}</blockquote> : <p key={partIndex}>{inline(part, data)}</p>;
-    })}{refs.length > 0 && <DepthEvidence data={data} refs={refs}/>}</Fragment>;
+    })}{refs.length > 0 && <DepthEvidence data={data} refs={refs}/>}<CitedUnits text={block} data={data}/></Fragment>;
   })}</div>;
 }

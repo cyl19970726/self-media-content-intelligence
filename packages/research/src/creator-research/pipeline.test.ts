@@ -142,5 +142,13 @@ describeWithExternalEvidence("creator research pipeline projection", () => {
     });
     expect(projected.stages.find((stage) => stage.id === "video_reconstruction")?.message).toContain("2 条媒体不可得");
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")?.message).toContain("2 条媒体不可得且未评估帖子内容");
+    run.videoWork.analyzedPosts = 6;
+    run.videoWork.failedPosts = 0;
+    const recovered = buildCreatorResearchPipeline(run, {
+      ...base, boundaries: ["bounded_media_retry_once：沿用采集策略"],
+      portfolio: { ...base.portfolio, items, deepCount: 6 }
+    });
+    expect(recovered.stages.find((stage) => stage.id === "media_verification")).toMatchObject({ state: "complete", missingInputs: [], nextAction: null });
+    expect(recovered.stages.find((stage) => stage.id === "video_reconstruction")?.message).toContain("不保证当前三部分字段齐全");
   });
 });

@@ -124,6 +124,13 @@ describe("video reconstruction V2 projection", () => {
     const missing = loadVideoResearch(service, "fixture-creator", videoId, runId);
     expect(missing?.contentBlocks[0]?.unresolvedVisuals).toEqual(lenses.contentRestoration.blocks[0]!.visuals);
     expect(missing?.contentBlocks[1]?.steps[0]?.unresolvedFrameRefs).toEqual(["MISSING-STEP"]);
+    rawLenses.visualEditing!.carriers = [];
+    rawLenses.visualEditing!.notes = ["部分字段尚缺，原始说明仍应可读"];
+    fs.writeFileSync(path.join(root, "reconstruction.json"), JSON.stringify(reconstruction));
+    const partial = loadVideoResearch(service, "fixture-creator", videoId, runId);
+    expect(partial?.directingLogic.stages[0]?.label).toBe(result?.directingLogic.stages[0]?.label);
+    expect(partial?.directingLogic.stages[0]?.viewerQuestion).toBe(result?.directingLogic.stages[0]?.viewerQuestion);
+    expect(partial?.visualEditing.notes).toEqual(["部分字段尚缺，原始说明仍应可读"]);
   });
 });
 

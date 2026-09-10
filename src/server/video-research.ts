@@ -393,12 +393,11 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
       activatedQuestion: text(builderDirecting.activatedQuestion) || null, promise: text(builderDirecting.promise) || null,
       payoff: text(builderDirecting.payoff) || null, endingResolution: text(builderDirecting.endingResolution) || null,
       stages: list(builderDirecting.stages).map((raw) => { const stage = record(raw); const range = record(stage.timeRange ?? stage.range); return {
-        label: text(stage.description, text(stage.id)), start: number(range.start), end: number(range.end), viewerQuestion: null,
+        label: text(stage.label, text(stage.description, text(stage.id))), start: number(range.start), end: number(range.end), viewerQuestion: text(stage.viewerQuestion) || null,
         function: text(stage.function, text(stage.description)), proof: text(stage.proof, text(stage.trigger)) || null,
         cognitiveChange: text(stage.cognitiveChange, text(stage.description)) || null,
         comprehensionLoad: text(stage.comprehensionLoad) || null, payoff: text(stage.payoff) || null,
-        evidenceRefs: strings(stage.evidenceRefs).length ? strings(stage.evidenceRefs) : strings(stage.evidenceHints),
-        ...(hasBuilderThreeLenses ? { label: text(stage.label), viewerQuestion: text(stage.viewerQuestion) || null } : {})
+        evidenceRefs: strings(stage.evidenceRefs).length ? strings(stage.evidenceRefs) : strings(stage.evidenceHints)
       }; }),
       informationDesign: list(builderDirecting.informationDesign).map((raw) => { const item = record(raw); const range = record(item.timeRange); return {
         kind: text(item.kind), statement: text(item.statement), start: number(range.start), end: number(range.end), evidenceRefs: strings(item.evidenceRefs)
@@ -442,7 +441,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
         statement: text(bridge.statement), impact: text(bridge.impact), start: number(range.start), end: number(range.end), evidenceRefs: strings(bridge.evidenceRefs)
       }; }),
       audioRole: text(builderVisual.audioRole) || null,
-      notes: hasBuilderThreeLenses ? strings(builderVisual.notes) : ["V1 产物只保留画面证据，尚未生成 Builder 画面与剪辑镜头。"] },
+      notes: strings(builderVisual.notes) },
     performanceContext: { observation, tier: selection?.tier ?? "unknown", creatorMedianLikes: observation.metrics[0]?.median ?? null,
       medianMultiple: observation.metrics[0]?.multiple ?? null, percentileRank: null,
       interpretation: synthesis?.performanceInterpretation ?? "公开表现只按账号内部基线解释。", confounds: [analysis?.interpretationBoundary ?? "公开互动不等于播放、留存、涨粉或成交。"] },

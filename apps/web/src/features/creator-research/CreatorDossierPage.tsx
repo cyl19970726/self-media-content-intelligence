@@ -123,7 +123,7 @@ export default function CreatorDossierPage() {
   const activeRunStage = data.run?.stages.find((stage) => stage.id === data.run?.currentStage);
 
   return <main className="console creator-dossier">
-    <KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/>
+    <details><summary>研究审计 · 知识贡献记录</summary><KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/></details>
     <aside className="console-rail">
       <div className="console-rail__head"><span>CREATOR DOSSIER</span><b>V1</b></div>
       <nav aria-label="博主研究目录">{sections.map(([sectionId, index, label]) => <a href={`#${sectionId}`} key={sectionId}><span>{index}</span>{sectionId === "portfolio" ? comparisonSetLabel(data.portfolio.items.length).replace("统一 ", "") : label}</a>)}</nav>
