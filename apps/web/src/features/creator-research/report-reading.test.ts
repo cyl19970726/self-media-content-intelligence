@@ -5,7 +5,7 @@ import type { VideoResearch } from "../../shared/contracts/core";
 import { VisualEditingReport } from "./VisualEditingReport";
 import { ContentRestorationReport } from "./ContentRestorationReport";
 import { ReportCard } from "./ReportDetails";
-import { DepthEvidence } from "./DepthReports";
+import { DepthEvidence, OpeningReport } from "./DepthReports";
 
 const frames = [1, 2, 3].map(n => ({ id: `F${n}`, src: `/frame-${n}.jpg`, time: n, reason: null }));
 const data = {
@@ -21,6 +21,17 @@ const data = {
 } as unknown as VideoResearch;
 
 describe("report reading", () => {
+  it("labels an untimed transcript reference as unknown rather than undefined seconds", () => {
+    const untimed = { ...data, transcript: [{ id: "CUE-1", start: null, end: null, text: "原始转写" }] } as VideoResearch;
+    const html = renderToStaticMarkup(createElement(DepthEvidence, { data: untimed, refs: ["CUE-1"] }));
+    expect(html).toContain("时间未知");
+    expect(html).not.toContain("undefineds");
+  });
+  it("does not require a rerun merely because an old report lacks structured opening fields", () => {
+    const html = renderToStaticMarkup(createElement(OpeningReport, { data }));
+    expect(html).toContain("结构化字段");
+    expect(html).not.toContain("需重新分析");
+  });
   it("renders all transition references and keeps source statements intact", () => {
     const html = renderToStaticMarkup(createElement(VisualEditingReport, { data }));
     expect(html).toContain('href="/frame-3.jpg"');

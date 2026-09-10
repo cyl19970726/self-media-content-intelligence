@@ -246,8 +246,9 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
       };
     });
     const combinedMedia = [...visualMedia, ...fallbackMedia];
+    const stepRefs = new Set(steps.flatMap(step => step.media.map(item => item.ref)));
     const media = text(block.type) === "operation_sequence" && steps.length > 0
-      ? visualMedia
+      ? [...visualMedia, ...fallbackMedia.filter(item => !stepRefs.has(item.ref))]
       : text(block.type) === "before_after"
         ? combinedMedia.sort((left, right) => {
           const order = (role: string) => role === "before" ? 0 : role === "after" ? 2 : 1;

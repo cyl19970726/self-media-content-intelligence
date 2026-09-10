@@ -13,12 +13,12 @@ export function DepthEvidence({ data, refs }: { data: VideoResearch; refs: strin
       const cue = data.transcript.find(item => item.id === ref);
       const evidence = data.evidenceIndex.find(item => item.id === ref);
       const href = ref === "POST-COVER" ? data.sourceFacts.coverHref : evidence?.artifactRef;
-      return <span key={ref}>{cue ? `${cue.start?.toFixed(2)}s · ${cue.text}` : href ? <a href={href} target="_blank" rel="noreferrer">{ref} · 查看来源</a> : `${ref} · 来源未解析`}</span>;
+      return <span key={ref}>{cue ? `${cue.start == null ? "时间未知" : `${cue.start.toFixed(2)}s`} · ${cue.text}` : href ? <a href={href} target="_blank" rel="noreferrer">{ref} · 查看来源</a> : `${ref} · 来源未解析`}</span>;
     })}</div>;
 }
 export function OpeningReport({ data }: { data: VideoResearch }) {
   const opening = data.visualEditing.openingAnalysis;
-  return <div id="visual-opening" className="depth-report"><h3>前 10 秒 · 连续视听拆解</h3>{!opening ? <p>Builder 未产出前 10 秒深度分析；旧版报告需重新分析。</p> : <>
+  return <div id="visual-opening" className="depth-report"><h3>前 10 秒 · 连续视听拆解</h3>{!opening ? <p>该报告未提供开头分析的结构化字段。已有描述可在内容还原及原始报告中查阅；是否需要补充分析，应依据实际信息缺口判断。</p> : <>
     <p>实际覆盖 0–{opening.duration.toFixed(2)} 秒 · {opening.inspectionBasis}</p>
     {opening.segments.map(segment => <article key={segment.id}><h4>{segment.timeRange.start.toFixed(2)}–{segment.timeRange.end.toFixed(2)}s · {segment.boundaryReason}</h4><dl>
       {([['spokenWords','口播原文 / 提案'],['burnedCaptions','烧录字幕'],['alignmentStatus','时间对齐'],['composition','构图'],['motion','动作与运动'],['audioRole','声音作用'],['evidenceArrival','证据出现'],['viewerQuestion','观众问题'],['meaningChange','意义变化']] as const).map(([key,label]) => <div key={key}><dt>{label}</dt><dd>{segment[key]}</dd></div>)}</dl>

@@ -46,7 +46,7 @@ describe("video reconstruction V2 projection", () => {
     }];
     lenses.contentRestoration.blocks.push({
       id: "BLOCK-002", type: "operation_sequence", title: "操作步骤", body: "三个可见状态组成操作序列。",
-      timeRange: { start: 0, end: 10 }, evidenceRefs: ["TARGET-0001", "TARGET-0002", "TARGET-0004"],
+      timeRange: { start: 0, end: 10 }, evidenceRefs: ["TARGET-0001", "TARGET-0004"],
       frameRefs: ["TARGET-0001", "TARGET-0002", "TARGET-0004"],
       steps: [
         { label: "打开设置", description: "先看到设置入口。", frameRefs: ["TARGET-0001"] },
@@ -93,7 +93,8 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.contentBlocks[0]?.type).toBe("before_after");
     expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0002", "TARGET-0004"]);
     expect(result?.contentBlocks[0]?.media.map((item) => item.role)).toEqual(["before", "during", "after"]);
-    expect(result?.contentBlocks[1]?.media).toEqual([]);
+    // A block-level frame that is not repeated in a step must remain reachable.
+    expect(result?.contentBlocks[1]?.media.map(item => item.ref)).toEqual(["TARGET-0002"]);
     expect(result?.contentBlocks[1]?.steps[0]?.media[0]).toMatchObject({ label: "打开设置" });
     expect(result?.directingLogic.stages).toHaveLength(2);
     expect(result?.directingLogic.activatedQuestion).toBe("入口在哪里？");
