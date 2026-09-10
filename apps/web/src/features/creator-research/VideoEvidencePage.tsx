@@ -1,3 +1,6 @@
+import { ReportFormatNotice } from "./ReportFormatNotice";
+import { OriginalReport } from "./OriginalReport";
+import { originalReportOutline } from "./original-report-utils";
 import { ReportOverview } from "./ReportOverview";
 import { ReportCoverageNotice } from "./ReportCoverageNotice";
 import { useEffect, useState } from "react";
@@ -39,12 +42,14 @@ function ReaderNavigation({ current, search }: { current: Lens; search: URLSearc
 
 function ContentStory({ data }: { data: VideoResearch }) {
   return <section className="reader-section content-story" id="content" aria-labelledby="content-title">
-    <header><span>01</span><div><p>Builder · 内容还原</p><h2 id="content-title">它到底讲了什么、展示了什么</h2></div></header>
+    <header><span>01</span><div><p>{data.reportFormat === "legacy_report" ? "历史报告 · 原文" : "Builder · 内容还原"}</p><h2 id="content-title">它到底讲了什么、展示了什么</h2></div></header>
     <p className="builder-lens-summary" id="content-summary">{data.thesis}</p>
     <ReportCoverageNotice data={data}/>
     {data.contentBlocks.length > 0
       ? <ContentRestorationReport blocks={data.contentBlocks} data={data}/>
-      : <p className="reader-empty">该报告未产出结构化内容还原块。若存在旧版原始报告，可在“研究审计”中查看。</p>}
+      : data.reportFormat === "legacy_report" && (data.reports.builder || data.article)
+        ? <><aside className="report-coverage"><b>历史格式 · 原文阅读</b><p>以下完整显示已保存的原始报告。它尚未提供当前三部分的结构化字段；其他入口的“未产出”指这些字段缺失，不代表没有正文。</p></aside><OriginalReport markdown={data.reports.builder ?? data.article!} data={data}/></>
+        : <p className="reader-empty">该报告未产出结构化内容还原块。若存在原始报告，可在“研究审计”中查看。</p>}
     {data.contentUnknowns.length > 0 && <aside className="builder-unknowns" id="content-unknowns"><span>Builder 保留的未知项</span>{data.contentUnknowns.map((item) => <p key={item}>{item}</p>)}</aside>}
   </section>;
 }
@@ -52,6 +57,7 @@ function ContentStory({ data }: { data: VideoResearch }) {
 function outlineFor(data: VideoResearch, lens: Lens): LensOutlineItem[] {
   if (lens === "content") return [
     { href: "#content-summary", label: "总体还原" },
+    ...(data.reportFormat === "legacy_report" && !data.contentBlocks.length ? originalReportOutline(data.reports.builder ?? data.article ?? "") : []),
     ...data.contentBlocks.map((block) => ({ href: `#content-${block.id}`, label: block.title, meta: `${timestamp(block.start)}–${timestamp(block.end)}` })),
     ...(data.contentUnknowns.length ? [{ href: "#content-unknowns", label: "保留的未知项" }] : [])
   ];
@@ -74,6 +80,7 @@ function outlineFor(data: VideoResearch, lens: Lens): LensOutlineItem[] {
     ...(data.visualEditing.rhythm.length ? [{ href: "#visual-rhythm", label: "节奏" }] : []),
     ...(data.visualEditing.missingBridges.length ? [{ href: "#visual-continuity", label: "连续性缺口" }] : []),
     { href: "#visual-audio", label: "声音" },
+    ...(data.visualEditing.omissionRisks.length ? [{ href: "#visual-risks", label: "遗漏与误读风险" }] : []),
     ...(data.visualEditing.notes.length ? [{ href: "#visual-notes", label: "Builder 说明" }] : [])
   ];
   return [{ href: "#audit", label: "研究审计" }];
@@ -117,6 +124,7 @@ export default function VideoEvidencePage() {
   return <main className="video-reader-shell">
     <article className="video-reader-report">
       <VideoReaderHero data={data} returnTo={returnTo}/>
+      <ReportFormatNotice data={data}/>
       <ReportOverview data={data}/>
       <ReaderNavigation current={currentLens} search={search}/>
       <LensWorkspace label={lensLabels.find((lens) => lens.id === currentLens)?.label ?? "报告"} items={outlineFor(data, currentLens)}>

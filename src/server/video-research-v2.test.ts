@@ -104,3 +104,27 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.evidenceHealth.audio).toBe(false);
   });
 });
+
+it("keeps legacy original reports and evidence readable without promoting incompatible evaluations", () => {
+  const runId = '00000000-0000-4000-8000-000000000066';
+  runIds.push(runId);
+  const root = runArtifactDir(runId);
+  fs.mkdirSync(path.join(root,'targeted-evidence'), {recursive:true});
+  const article = '# 原文\n\n原文限定（HIRES-001）。';
+  fs.writeFileSync(path.join(root,'article.md'),article);
+  fs.writeFileSync(path.join(root,'reconstruction.json'),JSON.stringify({schemaVersion:'video-reconstruction-1.0'}));
+  fs.writeFileSync(path.join(root,'targeted-evidence','hires-manifest.json'),JSON.stringify({frames:[{id:'HIRES-001',time:2,frame:'hires/ui.png'}]}));
+  fs.writeFileSync(path.join(root,'evaluation.json'),JSON.stringify({schemaVersion:'runtime-three-lens-evaluation@1'}));
+  const prefix = `/artifacts/${runId}/`;
+  const service = {
+    list:()=>[],get:()=>({id:runId,creatorId:'legacy',creatorName:'原作者',profileUrl:'https://example.com',lastSnapshotAt:null,inventoryArtifactRef:null}),
+    portfolio:()=>({ reconstructionBatch:{items:[{postExternalId:'post',state:'ready',failedGateIds:[],evaluationArtifactRef:null,gateReportArtifactRef:null,reconstructionArtifactRef:`${prefix}reconstruction.json`,articleArtifactRef:`${prefix}article.md`,threeLensEvaluationArtifactRef:`${prefix}evaluation.json`,threeLensGateReportArtifactRef:`${prefix}evaluation.json`}]} })
+  } as unknown as CreatorResearchService;
+  const report = loadVideoResearch(service,'legacy','post',runId);
+  expect(report?.reportFormat).toBe('legacy_report');
+  expect(report?.article).toBe(article);
+  expect(report?.contentBlocks).toEqual([]);
+  expect(report?.quality.evaluationReadIssue).toContain('runtime-three-lens-evaluation@2');
+  expect(report?.quality.promotionState).toBe('provisional');
+  expect(report?.frames.dense).toContainEqual({id:'HIRES-001',time:2,src:`${prefix}targeted-evidence/hires/ui.png`,reason:null});
+});

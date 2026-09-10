@@ -164,7 +164,7 @@ function expectVideoDepth(value: VideoResearch) {
 
   expectMeaningfulText(value.visualEditing.orientation, `${label}.visualEditing.orientation`, 2);
   expectMeaningfulText(value.visualEditing.composition, `${label}.visualEditing.composition`, 2);
-  expect.soft(value.visualEditing.notes.length, `${label} needs concrete picture/editing observations`).toBeGreaterThan(0);
+  expect.soft(value.visualEditing.carriers.length, `${label} preserves observed picture/editing carriers`).toBeGreaterThan(0);
   value.visualEditing.notes.forEach((note, index) => expectMeaningfulText(note, `${label}.visualEditing.notes[${index}]`));
 
   expect.soft(value.evidenceHealth.state, `${label} may be partial when evidence is genuinely missing, but not empty`).not.toBe("missing");
@@ -192,7 +192,10 @@ describeWithExternalEvidence("representative single-video depth parity", () => {
   });
 
   it("restores content, directing, picture/editing and evidence for 张咋啦", () => {
-    expectVideoDepth(representativeVideo("zhang-zala", "6a31edc300000000200387f4"));
+    const report = representativeVideo("zhang-zala", "6a31edc300000000200387f4");
+    expectVideoDepth(report);
+    expect(report.visualEditing.omissionRisks.length).toBeGreaterThan(0);
+    expect(report.visualEditing.omissionRisks.some(risk => report.visualEditing.notes.includes(risk))).toBe(false);
   });
 
   it("restores content, directing, picture/editing and evidence for 人类最强编导", () => {

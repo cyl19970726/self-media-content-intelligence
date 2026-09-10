@@ -15,7 +15,7 @@ export function overviewSourceTarget(pointer: string, data: VideoResearch): { le
     return { lens: "directing", anchor: parts[3] === "stages" && index !== null ? `directing-stage-${index + 1}` : `directing-${anchors[parts[3] ?? ""] ?? "overview"}`, label: parts[3] === "stages" && index !== null && data.directingLogic.stages[index] ? stageReadingLabel(data.directingLogic.stages[index]!.label) : "编导结构" };
   }
   const anchors: Record<string, string> = { carriers: "carriers", claims: "claims", shotSemantics: "semantics", uiProcedureStates: "ui-states", transitions: "transitions", rhythm: "rhythm", missingBridges: "continuity", audioRole: "audio", notes: "notes" };
-  return { lens: "visual", anchor: `visual-${anchors[parts[3] ?? ""] ?? "overview"}`, label: "画面与剪辑" };
+  return { lens: "visual", anchor: `visual-${anchors[parts[3] ?? ""] ?? "overview"}`, label: ({ carriers: "画面载体", claims: "画面主张", shotSemantics: "镜头语义", uiProcedureStates: "界面操作状态", transitions: "关键转场", rhythm: "节奏与信息密度", missingBridges: "连续性缺口", audioRole: "声音", notes: "分析说明" } as Record<string, string>)[parts[3] ?? ""] ?? "画面与剪辑" };
 }
 
 

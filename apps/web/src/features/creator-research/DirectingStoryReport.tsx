@@ -7,6 +7,7 @@ export function DirectingStoryReport({ data }: { data: VideoResearch }) {
   const logic = data.directingLogic;
   return <section className="reader-section directing-story" id="directing" aria-labelledby="directing-title">
     <header><span>03</span><div><p>编导结构</p><h2 id="directing-title">内容怎样一步步展开</h2></div></header>
+    {data.reportFormat === "legacy_report" && <aside className="report-coverage"><p>以下为历史编导投影，保留原始记录的措辞与已有评审。规范名称和转写冲突需结合原文与画面核对；缺失字段未补写。</p></aside>}
     <div className="report-card" id="directing-journey"><h3>观众的观看前后</h3><ReportFields fields={[["观看前", logic.viewerBefore], ["观看后", logic.viewerAfter]]}/></div>
     <div className="report-card" id="directing-overview"><h3>问题、承诺与回报</h3><ReportFields fields={[["激活问题", logic.activatedQuestion], ["内容承诺", logic.promise], ["最终回报", logic.payoff], ["结尾收束", logic.endingResolution]]}/></div>
     <div className="report-sequence">{logic.stages.map((stage, index) => <ReportCard key={index} id={`directing-stage-${index + 1}`} title={stageReadingLabel(stage.label)} start={stage.start} end={stage.end} data={data} refs={stage.evidenceRefs}>

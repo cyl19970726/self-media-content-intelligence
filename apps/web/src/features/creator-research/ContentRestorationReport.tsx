@@ -6,7 +6,7 @@ import type { VideoResearch } from "../../shared/contracts/core";
 type ContentBlock = VideoResearch["contentBlocks"][number];
 
 const roleLabels: Record<string, string> = {
-  key_frame: "关键画面", evidence: "结论证据", before: "操作前", during: "操作中", after: "操作后",
+  key_frame: "关键画面", evidence: "结论证据", before: "前状态（报告标注）", during: "中间状态（报告标注）", after: "后状态（报告标注）",
   detail: "局部细节", context: "上下文"
 };
 

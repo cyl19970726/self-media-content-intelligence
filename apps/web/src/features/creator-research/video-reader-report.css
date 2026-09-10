@@ -195,3 +195,18 @@
   .lens-workspace__body [id] { scroll-margin-top: 110px; }
 }
 .legacy-report-original { white-space: pre-wrap; overflow-wrap: anywhere; padding: 20px; font-size: 14px; line-height: 1.8; font-family: inherit; }
+
+.original-report { max-width: 860px; overflow-wrap: anywhere; line-height: 1.85; }
+.original-report h3 { margin: 2.8rem 0 1rem; font-size: 1.4rem; scroll-margin-top: 100px; }
+.original-report h4 { margin: 2rem 0 1rem; font-size: 1.15rem; scroll-margin-top: 100px; }
+.original-report p { margin: 1rem 0; white-space: pre-wrap; }
+.original-report figure { margin: 1.5rem 0; }
+.original-report figure img { max-width: 100%; max-height: 520px; border-radius: 8px; }
+.original-report figcaption { color: var(--muted); font-size: .85rem; }
+.original-report blockquote { margin: 1rem 0; padding: .4rem 1rem; border-left: 3px solid currentColor; }
+.original-report pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 1rem; background: #f4f4f1; }
+.original-report code { font-size: .9em; }
+.original-report-unresolved { font-size: .85rem; }
+.original-report-table { max-width: 100%; overflow-x: auto; }
+.original-report-table table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.original-report-table th, .original-report-table td { padding: .7rem; border-bottom: 1px solid #ddd; text-align: left; min-width: 5rem; }

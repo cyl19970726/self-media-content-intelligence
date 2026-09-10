@@ -22,6 +22,7 @@ const postQualitySchema = z.object({
   evaluationState: z.enum(["skipped", "failed", "findings", "verified"]),
   promotionState: z.enum(["provisional", "wiki_eligible", "ineligible"]),
   aggregateState: z.string(),
+  evaluationReadIssue: z.string().nullable().default(null),
   findings: z.array(z.object({
     id: z.string(),
     source: z.enum(["builder", "generic_evaluator", "content_restoration", "directing_logic", "visual_editing", "projection"]),
@@ -85,6 +86,8 @@ export const videoResearchSchema = z.object({
     strengths: [], limitations: [], reusableStructure: [], representativeFrame: null
   }),
   article: z.string().nullable(),
+  originalReportMedia: z.record(z.string(), z.string()).default({}),
+  reportFormat: z.enum(["builder_lenses", "legacy_report", "unknown"]).default("unknown"),
   contentBlocks: z.array(z.object({
     id: z.string(),
     type: z.enum(["text", "single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip", "claim_boundary", "unknown", "paragraph", "key_frame", "detail_crop", "boundary"]),
@@ -176,6 +179,7 @@ export const videoResearchSchema = z.object({
       statement: z.string(), impact: z.string(), start: z.number().nullable(), end: z.number().nullable(), evidenceRefs: z.array(z.string())
     })).default([]),
     audioRole: z.string().nullable(),
+    omissionRisks: z.array(z.string()).default([]),
     notes: z.array(z.string())
   }),
   performanceContext: z.object({

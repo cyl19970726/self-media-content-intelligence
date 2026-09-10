@@ -1,3 +1,4 @@
+import { projectOriginalReportMedia } from "./original-report-media.js";
 import { loadReportOverview } from "./report-overview.js";
 import { postSourceFactsSchema } from "../../packages/contracts/index.js";
 import { buildPostPerformance, creatorInventorySchema } from "../../packages/research/index.js";
@@ -71,14 +72,14 @@ function projectLens(
   };
 }
 
-function safeThreeLens(batchItem: { threeLensEvaluationArtifactRef: string | null; threeLensGateReportArtifactRef: string | null }) {
-  if (!batchItem.threeLensEvaluationArtifactRef || !batchItem.threeLensGateReportArtifactRef) return null;
+function safeThreeLens(batchItem: { threeLensEvaluationArtifactRef: string | null; threeLensGateReportArtifactRef: string | null }): { evaluation: RuntimeThreeLensEvaluation; report: RuntimeThreeLensGateReport } | { error: string } {
+  if (!batchItem.threeLensEvaluationArtifactRef || !batchItem.threeLensGateReportArtifactRef) return { error: "未记录当前三部分评估或门禁文件。" };
   try {
     const evaluation = runtimeThreeLensEvaluationSchema.parse(readJson(batchItem.threeLensEvaluationArtifactRef));
     const report = runtimeThreeLensGateReportSchema.parse(readJson(batchItem.threeLensGateReportArtifactRef));
-    if (evaluation.postExternalId !== report.postExternalId || evaluation.candidateRevision.fingerprint !== report.candidateRevision.fingerprint) return null;
+    if (evaluation.postExternalId !== report.postExternalId || evaluation.candidateRevision.fingerprint !== report.candidateRevision.fingerprint) return { error: "评估与门禁所指作品或报告版本不一致。" };
     return { evaluation, report };
-  } catch { return null; }
+  } catch (error) { return { error: error instanceof Error ? error.message : "评估资料无法读取。" }; }
 }
 
 function legacyVideo(creatorId: string, videoId: string): VideoResearch | null {
@@ -115,11 +116,17 @@ function legacyVideo(creatorId: string, videoId: string): VideoResearch | null {
 function readJson(reference: string): unknown { return JSON.parse(fs.readFileSync(artifactPath(reference), "utf8")) as unknown; }
 
 export function loadVideoResearch(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
+  const data = loadVideoResearchSource(service, creatorId, videoId, requestedRunId);
+  if (!data) return null;
+  return { ...data, originalReportMedia: projectOriginalReportMedia(data.reports.builder ?? data.article ?? "", data.quality.lineage.builderReportArtifactRef?.replace(/[^/]+$/, "")) };
+}
+
+function loadVideoResearchSource(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
   if (!requestedRunId) {
     const nextWaveDeep = loadNextWaveDeepVideo(creatorId, videoId);
-    if (nextWaveDeep) return nextWaveDeep;
+    if (nextWaveDeep) return { ...nextWaveDeep, reportFormat: "legacy_report" };
     const deepLegacy = loadLegacyDeepVideo(creatorId, videoId);
-    if (deepLegacy) return deepLegacy;
+    if (deepLegacy) return { ...deepLegacy, reportFormat: "legacy_report" };
   }
   const runs = service.list(100);
   const run = (requestedRunId ? service.get(requestedRunId) : null) ?? service.get(creatorId) ?? runs.find((item) => item.creatorId === creatorId) ?? null;
@@ -145,10 +152,14 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const evidencePack = fs.existsSync(evidencePackPath) ? record(JSON.parse(fs.readFileSync(evidencePackPath, "utf8")) as unknown) : {};
   const probePath = path.join(rootPath, "probe.json");
   const probe = fs.existsSync(probePath) ? record(JSON.parse(fs.readFileSync(probePath, "utf8")) as unknown) : {};
-  const denseFrames = list(targeted.frames).map((raw) => {
+  const supplementalFrames = ["hires-manifest.json", "highres-manifest.json"].flatMap(name => {
+    const manifest = path.join(rootPath, "targeted-evidence", name);
+    return fs.existsSync(manifest) ? list(record(JSON.parse(fs.readFileSync(manifest, "utf8"))).frames) : [];
+  });
+  const denseFrames = [...list(targeted.frames), ...supplementalFrames].map((raw) => {
     const frame = record(raw);
     const relative = text(frame.frame);
-    return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative ? `${rootRef}targeted-evidence/${relative}` : "", reason: text(frame.reason) || null };
+    return { id: text(frame.id, "FRAME"), time: number(frame.time), src: relative && !path.isAbsolute(relative) && !relative.split(/[\\/]/).includes("..") ? `${rootRef}targeted-evidence/${relative}` : "", reason: text(frame.reason) || null };
   }).filter((frame) => frame.src);
   const evidenceFrames = list(evidencePack.frameIndex).map((raw) => {
     const frame = record(raw); const relative = text(frame.frame);
@@ -254,7 +265,8 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   const coreEvidence = record(coverage.coreEvidence);
   const metaGate = record(reconstruction.metaGate);
   const gate = batchItem.gateReportArtifactRef ? record(readJson(batchItem.gateReportArtifactRef)) : {};
-  const threeLens = safeThreeLens(batchItem);
+  const evaluationRead = safeThreeLens(batchItem);
+  const threeLens = "evaluation" in evaluationRead ? evaluationRead : null;
   const allUnknowns = [...strings(coverage.unknowns), ...units.flatMap((unit) => unit.unknowns)];
   const conflicts = units.filter((unit) => /冲突|误识别|不一致/.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
   const contentReady = threeLens ? threeLens.evaluation.lenses.contentRestoration.rules.every((rule) => rule.status === "pass") : hasBuilderThreeLenses && metaGate.pass === true;
@@ -357,8 +369,9 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
       } : null
     },
     article, contentBlocks,
+    reportFormat: Object.keys(builderLenses).length ? "builder_lenses" : "legacy_report",
     reports: { builder: article, evaluator: evaluatorReport },
-    quality: { ...qualityStates, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
+    quality: { ...qualityStates, evaluationReadIssue: "error" in evaluationRead ? evaluationRead.error : null, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
       lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef,
         builderReportArtifactRef: article ? `${rootRef}article.md` : null,
         builderValidationArtifactRef: batchItem.builderValidationArtifactRef ?? null,

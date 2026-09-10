@@ -15,6 +15,7 @@ export function VisualEditingReport({ data }: { data: VideoResearch }) {
     <div id="visual-rhythm" className="report-group"><h3>节奏与信息密度</h3>{visual.rhythm.map((item, index) => <ReportCard key={index} title={item.pace} start={item.start} end={item.end} data={data} refs={item.evidenceRefs}><ReportFields fields={[["信息密度", item.density], ["节奏作用", item.function]]}/></ReportCard>)}{!visual.rhythm.length && <p>未产出节奏分析。</p>}</div>
     <div id="visual-continuity" className="report-group"><h3>连续性缺口</h3>{visual.missingBridges.map((item, index) => <ReportCard key={index} title="未展示的过程" start={item.start} end={item.end} data={data} refs={item.evidenceRefs}><ReportFields fields={[["缺口", item.statement], ["影响", item.impact]]}/></ReportCard>)}{!visual.missingBridges.length && <p>该报告未记录连续性缺口，不代表已验证全程连续。</p>}</div>
     <div className="report-card" id="visual-audio"><h3>声音</h3><p>{visual.audioRole ?? "未产出声音作用分析。"}</p></div>
+    {!!visual.omissionRisks?.length && <aside className="report-card" id="visual-risks"><h3>重建时应避免的遗漏与误读</h3><p>原始探查记录列出的风险，以下文字不是推荐做法或已证实结论。</p>{visual.omissionRisks.map((item, index) => <p key={index}>{item}</p>)}</aside>}
     {visual.notes.length > 0 && <aside className="report-card" id="visual-notes"><h3>分析补充说明</h3>{visual.notes.map((item, index) => <p key={index}>{item}</p>)}</aside>}
   </section>;
 }

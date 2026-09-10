@@ -8,7 +8,7 @@ export function DepthEvidence({ data, refs }: { data: VideoResearch; refs: strin
     const item = data.evidenceIndex.find(row => row.id === ref && (row.kind === "frame" || row.kind === "shot"));
     return item?.artifactRef ? [{ id: ref, src: item.artifactRef, time: null, reason: item.label }] : [];
   })];
-  return <div className="depth-evidence">{frames.map(frame => <a key={frame.id} href={frame.src} target="_blank" rel="noreferrer"><img src={frame.src} loading="lazy" alt={`证据 ${frame.id}${frame.time === null ? " · 镜头或来源画面" : ` · ${frame.time.toFixed(2)} 秒`}`}/><small>{frame.time === null ? (data.evidenceIndex.some(item => item.id === frame.id && item.kind === "shot") ? "镜头代表帧" : "时间未知") : `${frame.time.toFixed(2)}s`} · {frame.id}</small>{frame.reason && <small>{frame.reason}</small>}</a>)}
+  return <div className="depth-evidence">{frames.map(frame => <a key={frame.id} href={frame.src} target="_blank" rel="noreferrer"><img src={frame.src} loading="lazy" alt={`证据 ${frame.id}${frame.time === null ? " · 镜头或来源画面" : ` · ${frame.time.toFixed(2)} 秒`}`}/><small>{frame.time === null ? (data.evidenceIndex.some(item => item.id === frame.id && item.kind === "shot") ? "镜头代表帧" : "时间未知") : `${frame.time.toFixed(2)}s`} · {frame.id}</small>{frame.reason && <small>证据记录：{frame.reason}</small>}</a>)}
     {refs.filter(ref => !frames.some(frame => frame.id === ref)).map(ref => {
       const cue = data.transcript.find(item => item.id === ref);
       const evidence = data.evidenceIndex.find(item => item.id === ref);
