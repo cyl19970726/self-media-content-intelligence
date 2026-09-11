@@ -4,19 +4,24 @@ import os from "node:os";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { runArtifactDir } from "../../packages/adapters/index.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
+import { sourceDigest } from "./report-source-revision.js";
 import { loadVideoResearch } from "./video-research.js";
 
 const runIds: string[] = [];
+const originalRevisions = process.env.SELF_MEDIA_REPORT_REVISIONS_DIR;
 const originalRuntime = process.env.SELF_MEDIA_RUNTIME_DIR;
 let testRuntime: string;
 beforeEach(() => {
   testRuntime = fs.mkdtempSync(path.join(os.tmpdir(), "video-projection-test-"));
   process.env.SELF_MEDIA_RUNTIME_DIR = testRuntime;
+  process.env.SELF_MEDIA_REPORT_REVISIONS_DIR = path.join(testRuntime, "revisions");
 });
 
 afterEach(() => {
   for (const runId of runIds.splice(0)) fs.rmSync(runArtifactDir(runId), { recursive: true, force: true });
   fs.rmSync(testRuntime, { recursive: true, force: true });
+  if (originalRevisions === undefined) delete process.env.SELF_MEDIA_REPORT_REVISIONS_DIR;
+  else process.env.SELF_MEDIA_REPORT_REVISIONS_DIR = originalRevisions;
   if (originalRuntime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR;
   else process.env.SELF_MEDIA_RUNTIME_DIR = originalRuntime;
 });
@@ -132,6 +137,23 @@ describe("video reconstruction V2 projection", () => {
     expect(partial?.directingLogic.stages[0]?.label).toBe(result?.directingLogic.stages[0]?.label);
     expect(partial?.directingLogic.stages[0]?.viewerQuestion).toBe(result?.directingLogic.stages[0]?.viewerQuestion);
     expect(partial?.visualEditing.notes).toEqual(["部分字段尚缺，原始说明仍应可读"]);
+    const original = fs.readFileSync(path.join(root, "reconstruction.json"));
+    rawLenses.visualEditing!.notes = ["源报告已明确修订"];
+    const revised = JSON.stringify(reconstruction);
+    const revisionDir = path.join(process.env.SELF_MEDIA_REPORT_REVISIONS_DIR!, sourceDigest(original));
+    fs.mkdirSync(revisionDir, { recursive: true });
+    fs.writeFileSync(path.join(revisionDir, "revised-source"), revised);
+    fs.writeFileSync(path.join(revisionDir, "revision.json"), JSON.stringify({
+      schemaVersion: "report-source-revision@1", originalSha256: sourceDigest(original),
+      revisedSha256: sourceDigest(revised), revisionId: "review-1", reason: "核对证据"
+    }));
+    const corrected = loadVideoResearch(service, "fixture-creator", videoId, runId);
+    expect(corrected?.sourceRevision).toBe("review-1：核对证据");
+    expect(corrected?.visualEditing.notes).toEqual(["源报告已明确修订"]);
+    expect(corrected?.overview).toMatchObject({ state: "stale", overview: null });
+    expect(corrected?.quality.promotionState).toBe("provisional");
+    expect(fs.readFileSync(path.join(root, "reconstruction.json"))).toEqual(original);
+
   });
 });
 

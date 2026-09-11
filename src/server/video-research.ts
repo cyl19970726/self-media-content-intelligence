@@ -1,4 +1,5 @@
 import { projectOriginalReportMedia } from "./original-report-media.js";
+import { readReportSource } from "./report-source-revision.js";
 import { loadReportOverview } from "./report-overview.js";
 import { postSourceFactsSchema } from "../../packages/contracts/index.js";
 import { buildPostPerformance, creatorInventorySchema } from "../../packages/research/index.js";
@@ -139,11 +140,12 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
   const sourceMedia = portfolio?.mediaManifest?.items.find((item) => item.externalId === videoId);
   const synthesis = portfolio?.synthesis?.postAnalyses.find((item) => item.postExternalId === videoId);
   const analysis = portfolio?.analysis;
-  const reconstruction = record(readJson(batchItem.reconstructionArtifactRef));
+  const sourceRead = readReportSource(artifactPath(batchItem.reconstructionArtifactRef));
+  const reconstruction = record(JSON.parse(sourceRead.text));
   const rootRef = batchItem.reconstructionArtifactRef.replace(/reconstruction\.json$/, "");
   const rootPath = path.dirname(artifactPath(batchItem.reconstructionArtifactRef));
   const articlePath = batchItem.articleArtifactRef ? artifactPath(batchItem.articleArtifactRef) : path.join(rootPath, "article.md");
-  const article = fs.existsSync(articlePath) ? fs.readFileSync(articlePath, "utf8") : null;
+  const article = fs.existsSync(articlePath) ? readReportSource(articlePath).text : null;
   const evaluatorReportPath = path.join(rootPath, "evaluation.md");
   const evaluatorReport = fs.existsSync(evaluatorReportPath) ? fs.readFileSync(evaluatorReportPath, "utf8") : null;
   const targetedPath = path.join(rootPath, "targeted-evidence", "targeted-evidence.json");
@@ -269,7 +271,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
   const coreEvidence = record(coverage.coreEvidence);
   const metaGate = record(reconstruction.metaGate);
   const gate = batchItem.gateReportArtifactRef ? record(readJson(batchItem.gateReportArtifactRef)) : {};
-  const evaluationRead = safeThreeLens(batchItem);
+  const evaluationRead = sourceRead.revision ? { error: "源报告已修订，原评估不适用于当前修订。" } : safeThreeLens(batchItem);
   const threeLens = "evaluation" in evaluationRead ? evaluationRead : null;
   const allUnknowns = [...strings(coverage.unknowns), ...units.flatMap((unit) => unit.unknowns)];
   const conflicts = units.filter((unit) => /冲突|误识别|不一致/.test(`${unit.title}${unit.statement}`)).map((unit) => unit.statement);
@@ -285,7 +287,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     ...(threeLens?.report.failedGateIds ?? []),
     ...(threeLens?.report.uncheckedGateIds ?? [])
   ])];
-  const qualityStates = projectPostQualityStates(batchItem.state, Boolean(threeLens));
+  const qualityStates = projectPostQualityStates(sourceRead.revision ? "built_unevaluated" : batchItem.state, Boolean(threeLens));
   const lensFindings = threeLens ? (Object.entries(threeLens.evaluation.lenses) as Array<[LensKey, RuntimeThreeLensEvaluation["lenses"][LensKey]]>)
     .flatMap(([key, lens]) => lens.rules.filter((rule) => rule.status !== "pass").map((rule) => ({
       id: rule.ruleId,
@@ -357,7 +359,8 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     sourceFacts,
     thesis,
-    overview: loadReportOverview(artifactPath(batchItem.reconstructionArtifactRef)),
+    sourceRevision: sourceRead.revision,
+    overview: sourceRead.revision ? { state: "stale", overview: null } : loadReportOverview(artifactPath(batchItem.reconstructionArtifactRef)),
     contentUnknowns: strings(builderContent.unknowns),
     readerSummary: {
       productState,

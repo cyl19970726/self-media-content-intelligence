@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { readReportSource, sourceRevisionNote } from "./report-source-revision.js";
 import path from "node:path";
 import { evidenceArtifactsRoot } from "../../packages/adapters/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
@@ -26,12 +27,13 @@ function num(value: unknown): number | null { return typeof value === "number" &
 function strList(value: unknown): string[] { return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : []; }
 
 function readJson(file: string): Row | null {
-  try { return JSON.parse(fs.readFileSync(file, "utf8")) as Row; } catch { return null; }
+  if (!fs.existsSync(file)) return null;
+  return JSON.parse(readReportSource(file).text) as Row;
 }
 
 function readMarkdown(...files: string[]): string {
   const file = files.find((candidate) => fs.existsSync(candidate));
-  return file ? fs.readFileSync(file, "utf8") : "";
+  return file ? readReportSource(file).text : "";
 }
 
 function parseClock(value: unknown): number | null {
@@ -319,6 +321,7 @@ function zhangZala(videoId: string): VideoResearch | null {
   const zhangOverallGate = { ready: zhangContent.state === "ready" && zhangDirecting.state === "ready" && zhangVisual.state === "ready", failedGateIds: [...new Set([...zhangContent.failedGateIds, ...zhangDirecting.failedGateIds, ...zhangVisual.failedGateIds])] };
   return videoResearchSchema.parse({
     schemaVersion: "1.0.0", id: videoId, creatorId: "zhang-zala", creatorName: "张咋啦", title: str(post.title), sourceHref: str(post.sourceUrl),
+    sourceRevision: sourceRevisionNote(["probe.json", "reconstruction.json", "report.md"].map(file => path.join(root, "skill-run", file))),
     sourceLabel: `dashboard deepDive + video-content-reconstruction · THREE-LENS ${zhangOverallGate.ready ? "READY" : "NOT_READY"}`,
     thesis: str(row(reconstruction.viewerChange).after, str(post.coreMessage)), article: readMarkdown(path.join(root, "skill-run", "report.md")),
     engagement: { likes, collections: num(post.collections), comments: num(post.comments), shares: num(post.shares) },

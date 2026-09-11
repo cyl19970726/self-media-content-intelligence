@@ -88,6 +88,7 @@ export const videoResearchSchema = z.object({
   article: z.string().nullable(),
   originalReportMedia: z.record(z.string(), z.string()).default({}),
   reportFormat: z.enum(["builder_lenses", "legacy_report", "unknown"]).default("unknown"),
+  sourceRevision: z.string().nullable().default(null),
   contentBlocks: z.array(z.object({
     id: z.string(),
     type: z.enum(["text", "single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip", "claim_boundary", "unknown", "paragraph", "key_frame", "detail_crop", "boundary"]),

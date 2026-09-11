@@ -44,6 +44,13 @@ Register every locally derived artifact used as `refType: "source"` in top-level
 
 ## Coverage matrix
 
+### Evidence and coverage checks before closing a revision
+
+- Distinguish complete source-file decoding, a transcription run over the full audio, presence of timestamped cues, and semantically understood speech. None implies the next. If cues have gaps, preserve their exact intervals; inspect available burned captions before calling the whole interval unknown. Keep caption observations separate from verbatim speech.
+- For every directing stage, select references that actually express its function and cognitive change. First/last cue IDs are not a sufficient default. Check the key assertion against the cited cue or original frame.
+- Compare each timed claim with referenced frame times. A later example can support a cross-segment comparison only when that relation is explicit; it cannot prove the first appearance in an earlier interval. Technical shot boundaries and midpoint frames do not establish semantic onset times.
+- A source correction creates a new revision and invalidates earlier derived summaries and evaluation applicability. Preserve the prior source and exact changed fields; do not carry a verified label into the revision without fresh applicable review.
+
 Report scoped counts, never a single global percentage:
 
 - available vs inspected information carriers;

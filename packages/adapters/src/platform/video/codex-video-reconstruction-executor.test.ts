@@ -294,6 +294,7 @@ describe("child worker lifecycle", () => {
     const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-child-lifecycle-"));
     const binary = path.join(outputDir, "fake-codex.mjs");
     const previous = {
+      runtime: process.env.SELF_MEDIA_RUNTIME_DIR,
       binary: process.env.SELF_MEDIA_CODEX_BIN,
       stale: process.env.SELF_MEDIA_CHILD_STALE_MS,
       timeout: process.env.SELF_MEDIA_CHILD_TIMEOUT_MS
@@ -301,6 +302,7 @@ describe("child worker lifecycle", () => {
     try {
       fs.writeFileSync(binary, `#!/usr/bin/env node\nsetTimeout(() => { process.stdout.write("working\\n"); setTimeout(() => process.exit(0), 30); }, 80);\n`);
       fs.chmodSync(binary, 0o755);
+      process.env.SELF_MEDIA_RUNTIME_DIR = outputDir;
       process.env.SELF_MEDIA_CODEX_BIN = binary;
       process.env.SELF_MEDIA_CHILD_STALE_MS = "25";
       process.env.SELF_MEDIA_CHILD_TIMEOUT_MS = "5000";
@@ -309,6 +311,7 @@ describe("child worker lifecycle", () => {
       await runCodex("prompt", outputDir, "candidate", "source-revision-1", (event) => events.push(event));
 
       const trace = JSON.parse(fs.readFileSync(path.join(outputDir, "candidate-trace.json"), "utf8")) as { childRunId: string; traceDir: string };
+      expect(path.relative(outputDir, trace.traceDir)).toBe(path.join("worker-traces", trace.childRunId));
       expect(trace.childRunId).toBe(events[0]?.childRunId);
       expect(fs.readFileSync(path.join(trace.traceDir, "events.jsonl"), "utf8")).toContain("working");
       expect(fs.readFileSync(path.join(trace.traceDir, "prompt.txt"), "utf8")).toBe("prompt");
@@ -323,6 +326,8 @@ describe("child worker lifecycle", () => {
       expect(new Set(events.map((event) => event.inputRevision))).toEqual(new Set(["source-revision-1"]));
       expect(events.every((event) => event.role === "candidate")).toBe(true);
     } finally {
+      if (previous.runtime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR;
+      else process.env.SELF_MEDIA_RUNTIME_DIR = previous.runtime;
       if (previous.binary === undefined) delete process.env.SELF_MEDIA_CODEX_BIN;
       else process.env.SELF_MEDIA_CODEX_BIN = previous.binary;
       if (previous.stale === undefined) delete process.env.SELF_MEDIA_CHILD_STALE_MS;
