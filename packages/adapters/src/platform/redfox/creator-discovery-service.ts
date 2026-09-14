@@ -103,5 +103,3 @@ export class RedFoxCreatorDiscoveryService {
     });
   }
 }
-
-export { searchEndpoint as redFoxSearchEndpoint };

@@ -32,7 +32,7 @@ export class RedFoxClient {
   private readonly timeoutMs: number;
   private readonly fetchImpl: RedFoxFetch;
   private readonly proxyAgent: ProxyAgent | null;
-  private usage = new Map<string, number>();
+  private successfulRequestCount = 0;
 
   constructor(options: RedFoxClientOptions = {}) {
     this.apiKey = options.apiKey ?? process.env.REDFOX_API_KEY ?? "";
@@ -52,11 +52,7 @@ export class RedFoxClient {
   }
 
   requestCount(): number {
-    return [...this.usage.values()].reduce((sum, value) => sum + value, 0);
-  }
-
-  usageSnapshot(): Record<string, number> {
-    return Object.fromEntries(this.usage);
+    return this.successfulRequestCount;
   }
 
   async post(endpoint: string, body: Record<string, unknown>): Promise<unknown> {
@@ -94,7 +90,7 @@ export class RedFoxClient {
       if (/频率|限流|rate/i.test(message)) throw new RedFoxError("rate_limit", message, response.status);
       throw new RedFoxError("unavailable", message, response.status);
     }
-    this.usage.set(endpoint, (this.usage.get(endpoint) ?? 0) + 1);
+    this.successfulRequestCount += 1;
     return value;
   }
 }

@@ -213,5 +213,3 @@ export class RedFoxCreatorExecutor implements CreatorBrowserExecutor {
     }
   }
 }
-
-export { endpoints as redFoxCreatorEndpoints };

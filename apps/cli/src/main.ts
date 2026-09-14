@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import "dotenv/config";
-import type { Server } from "node:http";
+import { startSignalRoomServer } from "../../../src/server/http-runtime.js";
 import path from "node:path";
 import { Command } from "commander";
 import { AnalysisService } from "../../../src/core/service.js";
@@ -144,17 +144,7 @@ program.command("serve")
   .action((options: { port?: string }) => {
     const port = Number(options.port ?? apiPort());
     const composition = createSignalRoomComposition();
-    const server: Server = composition.app.listen(port, "127.0.0.1", () => {
-      console.log(`Self Media Intelligence API: http://127.0.0.1:${port}`);
-    });
-    let closing = false;
-    const shutdown = () => {
-      if (closing) return;
-      closing = true;
-      server.close(() => void composition.close());
-    };
-    process.once("SIGINT", shutdown);
-    process.once("SIGTERM", shutdown);
+    startSignalRoomServer(composition, port);
   });
 
 await program.parseAsync();

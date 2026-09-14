@@ -41,9 +41,17 @@ npm run dev
 
 生产构建可使用 `npm run build && npm start`，随后打开 `http://127.0.0.1:4310`。详情页地址为 `http://127.0.0.1:4310/runs/<run-id>`。
 
-**博主研究总览**：`http://127.0.0.1:4310/creators` —— 可直接粘贴小红书博主主页。服务器会把任务写入持久队列，由后台 ego-browser Worker 完成登录预检和公开作品清单采集；遇到登录或验证码时，任务停在 `needs_user` 并从同一页面恢复。现有已完成档案继续从 `/research/*` 只读提供，迁移期间不会被覆盖。
+**博主研究总览**：`http://127.0.0.1:4310/creators`。采集支持 RedFox 与 ego-browser；RedFox 使用 `REDFOX_API_KEY`，浏览器登录或验证码需要用户接管。已有历史报告和新研究批次在同一工作台保留独立入口及证据范围。
 
-当前自动闭环覆盖“创建任务 → Worker 租约/心跳 → ego-browser 采集 → 冻结清单 → 全量统计 → High / Base / Low 统一 21 条 → 21 条详情与本地封面 → 9 条媒体校验 → 视频候选重建 → 独立评审与定向修复 → 博主综合 → 同一 Dashboard 的 List/Gallery 投影”。任一深度视频未通过硬闸时，博主综合不会发布。多博主比较使用独立持久 Worker，并在创建项目时固定每位博主的 Portfolio 与选择集 revision。运行只会在证据实际到位的阶段标为 `reviewable` 或 `ready`。
+流程为“创建任务 → 采集可见清单 → 统计与表层标注 → High / Base / Low 选择集 → 详情和媒体 → 高/中位附近/均值附近/低四组深读 → 博主综合 → Dashboard”。默认每组3条深读，重叠样本复用。Builder完成与独立评估分别计数；未评估报告可以审阅，但不获得正式验证资格。
+
+API、Worker 和 CLI 均使用 dotenv 的标准配置入口。工作树需要复用主项目凭据时，显式指定现有配置文件，不复制 Key 或增加备用配置加载器：
+
+```bash
+DOTENV_CONFIG_PATH=/absolute/path/to/main-project/.env npm run dev
+```
+
+`SELF_MEDIA_EMBED_WORKERS=false` 只启动检查预览；正式执行还需启动 `npm run dev:worker`。单独的 CLI `serve` 同样只提供 API。运行库由 `SELF_MEDIA_RUNTIME_DIR` 指定，默认是当前项目的 `.runtime`。
 
 代码边界：
 

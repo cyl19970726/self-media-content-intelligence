@@ -74,10 +74,6 @@ export class CreatorResearchWorker {
     this.timer = setInterval(() => void this.tick(), intervalMs);
   }
 
-  async runOnce(): Promise<boolean> {
-    return this.service.processNext(this.workerId, this.executor);
-  }
-
   async runLane(lane: ResearchJobLane, slot = 0): Promise<boolean> {
     return this.service.processNext(`${this.workerId}-${lane}-${slot + 1}`, this.executor, lane);
   }
