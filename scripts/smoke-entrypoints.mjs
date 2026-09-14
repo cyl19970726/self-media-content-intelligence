@@ -80,7 +80,7 @@ try {
   const health = await fetch(`http://127.0.0.1:${port}/api/health`);
   if (!health.ok || (await health.json()).ok !== true) throw new Error("Compiled API health check failed");
   const html = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
-  if (!html.includes("<title>内容研究工作台</title>")) throw new Error("Compiled API did not serve the Web build");
+  if (!html.includes("<title>Content Dossier</title>")) throw new Error("Compiled API did not serve the Web build");
   await stop(api, "Compiled API");
 
   const worker = spawn(process.execPath, ["dist-server/apps/worker/src/main.js"], {

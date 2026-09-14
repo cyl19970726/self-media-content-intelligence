@@ -5,7 +5,7 @@ import { timestamp } from "./video-reader-utils";
 export function VisualEditingReport({ data }: { data: VideoResearch }) {
   const visual = data.visualEditing;
   return <section className="reader-section visual-story" id="visual-editing" aria-labelledby="visual-title">
-    <header><span>03</span><div><p>画面与剪辑</p><h2 id="visual-title">画面和声音怎样传达信息</h2></div></header>
+    <header><span>04</span><div><p>画面与剪辑</p><h2 id="visual-title">画面和声音怎样传达信息</h2></div></header>
     <div className="report-card" id="visual-overview"><h3>视听总览</h3><p>{visual.composition ?? "未产出画面总览。"}</p><ReportFields fields={[["画幅", visual.orientation], ["技术分段", visual.shotCount ?? "未知"], ["每分钟变化", visual.cutsPerMinute ?? "未知"], ["分析时长", timestamp(visual.analyzedDuration)], ["结果首次出现", timestamp(visual.resultFirstAt)]]}/>{visual.shotMetricBasis && <p className="report-boundary">统计口径：{visual.shotMetricBasis}</p>}</div>
     <div id="visual-carriers" className="report-group"><h3>画面载体</h3>{visual.carriers.map((item, index) => <ReportCard key={index} title={item.name} start={item.start} end={item.end} data={data}><ReportFields fields={[["承担作用", item.roles.join(" · ")]]}/></ReportCard>)}{!visual.carriers.length && <p>未产出画面载体分析。</p>}</div>
     <div id="visual-claims" className="report-group"><h3>画面表达的主张</h3>{visual.claims.map((item, index) => <ReportCard key={index} title={item.statement} start={item.start} end={item.end} data={data} refs={item.evidenceRefs}><ReportFields fields={[["表达作用", item.function]]}/></ReportCard>)}{!visual.claims.length && <p>未产出画面主张。</p>}</div>
