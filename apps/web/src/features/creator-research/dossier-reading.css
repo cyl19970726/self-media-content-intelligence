@@ -7,3 +7,44 @@
 .creator-dossier .tier-label small { display: block; margin-top: 6px; font-weight: normal; white-space: normal; }
 
 .creator-dossier > .dossier-audit-strip { grid-column: 1 / -1; }
+.dossier-main { display: flex; flex-direction: column; }
+.dossier-technical-audit { margin-top: 36px; border: 1px solid var(--ink); background: #e7e1d5; }
+.dossier-technical-audit > summary { padding: 16px 20px; cursor: pointer; font-weight: 600; }
+.dossier-technical-audit .creator-run-progress { border-width: 1px 0 0; }
+.dossier-technical-audit .research-pipeline { border-width: 1px 0 0; }
+.dossier-main > .dossier-audit-strip { margin-top: 12px; border: 1px solid var(--ink); background: var(--paper); }
+.dossier-main > .dossier-audit-strip > summary { padding: 15px 18px; cursor: pointer; }
+.dossier-hero--source { border-top: 1px solid var(--ink); }
+.creator-source-bio { max-width: 760px; margin: 12px 0 0; color: #4f5853; font-size: 15px; line-height: 1.65; }
+.creator-source-facts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); border-bottom: 1px solid var(--ink); }
+.creator-source-facts article { padding: 16px 18px; border-right: 1px solid var(--line); }
+.creator-source-facts article:last-child { border-right: 0; }
+.creator-source-facts span, .creator-source-facts b { display: block; }
+.creator-source-facts span { color: var(--muted); font: 500 9px "IBM Plex Mono"; }
+.creator-source-facts b { margin-top: 7px; font-size: 22px; }
+.creator-research-status { padding: 17px 20px; border-bottom: 1px solid var(--ink); background: #e7e1d5; }
+.creator-research-status header { display: flex; justify-content: space-between; gap: 18px; }
+.creator-research-status header span { color: var(--teal); font: 600 9px "IBM Plex Mono"; }
+.creator-research-status > div { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin-top: 13px; border: 1px solid var(--line); background: var(--paper); }
+.creator-research-status article { padding: 11px 13px; border-right: 1px solid var(--line); }
+.creator-research-status article:last-child { border-right: 0; }
+.creator-research-status article b, .creator-research-status article span { display: block; }
+.creator-research-status article b { font: 600 20px "IBM Plex Mono"; }.creator-research-status article span { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.creator-research-status p { margin: 10px 0 0; color: #615e56; font-size: 11px; }
+.dossier-portfolio-first { padding-top: 30px; }
+.portfolio-list--reading { overflow-x: auto; border: 1px solid var(--line); }
+.portfolio-list--reading .portfolio-list__head, .portfolio-list--reading .portfolio-list__row { min-width: 920px; grid-template-columns: 86px minmax(220px,1.3fr) 130px 180px 145px 110px; }
+.portfolio-list--reading .portfolio-list__row { background: var(--paper); }
+.portfolio-list--reading a { color: var(--ink); }
+.portfolio-list--reading strong { font-size: 13px; }
+.portfolio-local-media { margin-top: 9px; }
+.portfolio-local-media summary { color: var(--teal); cursor: pointer; font-size: 10px; }
+.portfolio-local-media video { width: min(100%,520px); max-height: 360px; margin-top: 9px; display: block; background: #111; }
+.portfolio-gallery > article > a { color: inherit; }
+.dossier-analysis-empty { padding: 24px; margin-top: 24px; border: 1px solid var(--line); background: #eee9de; }
+.dossier-analysis-empty h2 { margin: 0; font-size: 18px; }.dossier-analysis-empty p { margin: 9px 0 0; color: #616965; line-height: 1.65; }
+@media (max-width: 720px) {
+  .creator-source-facts, .creator-research-status > div { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .creator-source-facts article:nth-child(2), .creator-research-status article:nth-child(2) { border-right: 0; }
+  .creator-source-facts article:nth-child(-n+2), .creator-research-status article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}

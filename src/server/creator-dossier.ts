@@ -26,6 +26,67 @@ type CorpusIntegrity = {
   stopReason?: "explicit_end" | "quiescent_incomplete" | "budget_reached";
 };
 
+type PortfolioAnnotations = NonNullable<ReturnType<CreatorResearchService["portfolio"]>>["annotations"];
+
+function localVideoHref(runId: string, mediaItem: { state?: string; videoArtifactRef?: string | null } | undefined): string | null {
+  const reference = mediaItem?.videoArtifactRef;
+  const prefix = `/artifacts/${runId}/`;
+  if (mediaItem?.state !== "verified_complete" || !reference?.startsWith(prefix)) return null;
+  const relative = reference.slice(prefix.length);
+  const segments = relative.split("/");
+  return segments.length === 3
+    && segments[0] === "deep-media"
+    && segments[2] === "source-video.mp4"
+    && segments.every((segment) => Boolean(segment) && segment !== "." && segment !== ".." && !segment.includes("\\"))
+    ? reference : null;
+}
+
+function annotationClusters(
+  annotations: PortfolioAnnotations,
+  field: "topics" | "formats"
+) {
+  if (!annotations) return [];
+  const clusters = new Map<string, { postIds: Set<string>; likes: Map<string, number | null>; evidenceRefs: Set<string> }>();
+  for (const row of annotations.rows) {
+    for (const value of row[field]) {
+      const cluster = clusters.get(value.value) ?? {
+        postIds: new Set<string>(), likes: new Map<string, number | null>(), evidenceRefs: new Set<string>()
+      };
+      cluster.postIds.add(row.postExternalId);
+      cluster.likes.set(row.postExternalId, row.likes);
+      value.evidenceRefs.forEach((reference) => cluster.evidenceRefs.add(reference));
+      clusters.set(value.value, cluster);
+    }
+  }
+  return [...clusters.entries()].map(([name, cluster]) => {
+    const metrics = selectedTierMetrics([...cluster.likes.values()]);
+    return {
+      name,
+      count: cluster.postIds.size,
+      share: annotations.denominator.annotatedPosts ? cluster.postIds.size / annotations.denominator.annotatedPosts : null,
+      measuredCount: [...cluster.likes.values()].filter((likes): likes is number => likes !== null).length,
+      medianLikes: metrics.medianLikes,
+      meanLikes: metrics.meanLikes,
+      maxLikes: metrics.maxLikes,
+      highCount: null,
+      interpretation: null,
+      evidenceRefs: [...cluster.evidenceRefs]
+    };
+  }).sort((left, right) => right.count - left.count || left.name.localeCompare(right.name, "zh-CN"));
+}
+
+function annotationDistribution(annotations: PortfolioAnnotations, p25: number | null, p75: number | null) {
+  if (!annotations || p25 === null || p75 === null) return [];
+  const likes = annotations.rows.flatMap((row) => row.likes === null ? [] : [row.likes]);
+  if (!likes.length) return [];
+  const buckets = [
+    { label: "低于 P25", count: likes.filter((value) => value < p25).length },
+    { label: "P25–P75", count: likes.filter((value) => value >= p25 && value <= p75).length },
+    { label: "高于 P75", count: likes.filter((value) => value > p75).length }
+  ];
+  return buckets.map((bucket) => ({ ...bucket, share: bucket.count / likes.length }));
+}
+
 function corpusHealth(analysis: { metricCoverage: { rate: number } } & CorpusIntegrity, capturedAt: string | null) {
   const completeness = analysis.corpusCompleteness;
   const stopReason = analysis.stopReason;
@@ -68,6 +129,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const media = new Map((data?.mediaManifest?.items ?? []).map((item) => [item.externalId, item]));
   const reconstruction = new Map((data?.reconstructionBatch?.items ?? []).map((item) => [item.postExternalId, item]));
   const postAnalysis = new Map((synthesis?.postAnalyses ?? []).map((item) => [item.postExternalId, item]));
+  const topicClusters = annotationClusters(annotations, "topics");
+  const formatClusters = annotationClusters(annotations, "formats");
   const capturedAt = sourceRun.lastSnapshotAt;
   const canonicalId = activeRun.canonicalSlug ?? activeRun.creatorId ?? activeRun.id;
   const items = (selection?.items ?? []).map((item) => {
@@ -82,6 +145,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       evidenceHref: reconstructed && ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(reconstructed.state)
         ? `/creators/${canonicalId}/videos/${item.externalId}?run=${sourceRun.id}` : null,
       coverHref: mediaItem?.coverArtifactRef ?? null,
+      localVideoHref: localVideoHref(sourceRun.id, mediaItem),
       tier: item.tier,
       tierRank: item.tierRank,
       anchors: item.anchors,
@@ -159,23 +223,25 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       medianLikes: analysis?.likes.median ?? null,
       meanLikes: analysis?.likes.mean ?? null,
       maxLikes: analysis?.likes.max ?? null,
-      videoCount: null,
+      videoCount: annotations ? annotations.rows.filter((row) => row.mediaType === "video").length : null,
       highCount: null,
-      percentiles: { p10: null, p25: null, p75: null, p90: null },
-      distribution: [],
+      percentiles: { p10: null, p25: analysis?.likes.p25 ?? null, p75: analysis?.likes.p75 ?? null, p90: null },
+      distribution: annotationDistribution(annotations, analysis?.likes.p25 ?? null, analysis?.likes.p75 ?? null),
       notes: [analysis?.interpretationBoundary].filter((value): value is string => Boolean(value)),
       annotationCoverage: annotations ? { ...annotations.denominator, artifactRef: sourceRun.portfolioAnnotationsArtifactRef! } : null,
       health: analysis ? corpusHealth(analysis, capturedAt)
         : health("missing", "全量基本盘尚未生成。", capturedAt)
     },
     contentSystem: {
-      topicClusters: [],
-      formatClusters: [],
+      topicClusters,
+      formatClusters,
       topics: synthesis?.contentSystem.topicClusters.map(claim) ?? [],
       formats: synthesis?.contentSystem.formatClusters.map(claim) ?? [],
       visualLanguage: synthesis?.contentSystem.visualLanguage.map(claim) ?? [],
       recurringStructures: synthesis?.contentSystem.recurringStructure.map(claim) ?? [],
-      health: health(synthesis ? "partial" : "missing", synthesis ? "本页提供文字综合；尚未提供主题与形式的可复算聚类统计。" : "等待博主综合硬闸。", capturedAt)
+      health: health(synthesis || annotations ? "partial" : "missing", annotations
+        ? "主题与形式聚类直接按全量表层标注的确定性标签计数；不替代深度内容结论。"
+        : synthesis ? "本页提供文字综合；尚未提供主题与形式的可复算聚类统计。" : "等待博主综合硬闸。", capturedAt)
     },
     tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tierLabels[tier], conclusion: tierClaims(tier), mechanisms: [], failurePatterns: [],
       metrics: selectedTierMetrics(items.filter(item => item.tier === tier).map(item => item.likes)),

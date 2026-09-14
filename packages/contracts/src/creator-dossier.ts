@@ -30,6 +30,7 @@ export const creatorDossierItemSchema = z.object({
   sourceHref: z.string(),
   evidenceHref: z.string().nullable(),
   coverHref: z.string().nullable(),
+  localVideoHref: z.string().nullable().default(null),
   tier: z.enum(["high", "base", "low"]),
   tierRank: z.number().int().positive(),
   anchors: z.array(z.enum(["median_near", "mean_near", "typical_form"])),
