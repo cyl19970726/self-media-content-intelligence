@@ -88,15 +88,13 @@ export class CreatorResearchBatchService {
     const prior = this.batches.getByOperationKey(parsed.operationKey, hash);
     if (prior) return this.project(prior);
 
-    const runIds = parsed.creators.map((creator) => this.intake.create(creator.profileUrl, creator.adapter).id);
-    const batch = creatorResearchBatchSchema.parse({
-      schemaVersion: "creator-research-batch@1",
-      id: randomUUID(),
-      name: parsed.name,
-      runIds,
-      createdAt: new Date().toISOString()
-    });
-    return this.project(this.batches.create(batch, parsed.operationKey, hash));
+    return this.project(this.batches.create(() => {
+      const runIds = parsed.creators.map((creator) => this.intake.create(creator.profileUrl, creator.adapter).id);
+      return creatorResearchBatchSchema.parse({
+        schemaVersion: "creator-research-batch@1", id: randomUUID(), name: parsed.name,
+        runIds, createdAt: new Date().toISOString()
+      });
+    }, parsed.operationKey, hash));
   }
 
   get(batchId: string): CreatorResearchBatchProjection | null {

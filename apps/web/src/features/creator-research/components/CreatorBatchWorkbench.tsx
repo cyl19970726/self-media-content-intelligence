@@ -38,7 +38,7 @@ function BatchPanel({ projection, filter }: { projection: CreatorResearchBatchPr
     <div className="batch-member-list">{filtered.map((item) => <article key={item.runId}>
       <span className="batch-member__position">{String(item.position).padStart(2, "0")}</span><div><strong>{item.creatorName ?? "待识别博主"}</strong>
         <a href={item.profileUrl} target="_blank" rel="noreferrer">{item.profileUrl}<ExternalLink size={11}/></a><small>{item.nextAction}</small></div>
-      <div className="batch-member__coverage"><span><b>{item.coverage.discoveredPosts}</b>发现</span><span><b>{item.coverage.enrichedPosts}</b>详情</span><span><b>{item.coverage.reconstructedPosts}</b>深度</span></div>
+      <div className="batch-member__coverage"><span><b>{item.coverage.discoveredPosts}</b>发现</span><span><b>{item.coverage.enrichedPosts}</b>详情</span><span><b>{item.coverage.reconstructedPosts}</b>Builder 已构建</span></div>
       <div className="batch-member__action"><em className={`status status--${item.status}`}><i/>{creatorStatusLabels[item.status]}</em><small>{item.adapter === "redfox" ? "REDFOX" : "EGO"}</small>
         <small>{item.maturity === "wiki_ready" ? "WIKI_READY" : item.maturity === "dossier_ready" ? "DOSSIER_READY" : "INCOMPLETE"}</small>
         <Link to={`/creators/${encodeURIComponent(item.runId)}`}>任务详情<ArrowRight size={12}/></Link></div>

@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   buildCreatorPortfolio,
+  corpusIntegrityFromCorpus,
   refineDeepSelectionForVerifiedMedia,
   refineDeepSelectionForVerifiedVideos
 } from "./analyzer.js";
+import { creatorPortfolioAnalysisSchema } from "./contracts.js";
 
 function inventory(likes: Array<number | null>) {
   return {
@@ -71,6 +73,23 @@ describe("buildCreatorPortfolio", () => {
     expect(selection.denominator.excludedMissingLikes).toBe(2);
     expect(selection.items.some((item) => item.likes === null)).toBe(false);
     expect(corpus.unknowns.join(" ")).toMatch(/未按 0/);
+  });
+
+  it("carries corpus completeness into analysis metadata without losing the stop reason", () => {
+    const { corpus } = buildCreatorPortfolio(inventory([10, 20, 30]),
+      "/artifacts/11111111-1111-4111-8111-111111111111/creator-inventory.json",
+      "2026-08-20T01:00:00.000Z");
+    const metadata = corpusIntegrityFromCorpus(corpus);
+    const analysis = creatorPortfolioAnalysisSchema.parse({
+      schemaVersion: "1.0.0", runId: corpus.runId, generatedAt: corpus.generatedAt,
+      corpusArtifactRef: corpus.sourceArtifactRef, selectionArtifactRef: "/artifacts/selection.json",
+      metricCoverage: { known: 3, missing: 0, rate: 1 }, likes: corpus.likes,
+      tierCounts: { high: 1, base: 1, low: 1 },
+      anchors: { median: 20, mean: 20, medianNearPostId: "post-02", meanNearPostId: "post-02", meanGap: false, meanGapReason: null },
+      interpretationBoundary: "fixture", unknowns: [], ...metadata
+    });
+    expect(analysis.stopReason).toBe("quiescent_incomplete");
+    expect(analysis.corpusCompleteness).toBe("bounded_partial");
   });
 
   it("declares a mean gap when head outliers make the mean non-representative", () => {

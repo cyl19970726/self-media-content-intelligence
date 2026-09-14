@@ -247,13 +247,14 @@ export function buildCreatorResearchPipeline(run: CreatorResearchRun | null, dos
   }
 
   const projection = result.find((candidate) => candidate.id === "dashboard_projection")!;
-  const upstreamComplete = result.filter((candidate) => candidate.id !== "dashboard_projection")
-    .every((candidate) => candidate.state === "complete" && candidate.gateState === "passed");
+  const incompleteUpstream = result.filter((candidate) => candidate.id !== "dashboard_projection"
+    && (candidate.state !== "complete" || candidate.gateState !== "passed"));
+  const upstreamComplete = incompleteUpstream.length === 0;
   if (!upstreamComplete && projection.state === "complete") {
     Object.assign(projection, {
       state: "partial",
       gateState: "partial",
-      missingInputs: ["全部上游阶段通过"],
+      missingInputs: incompleteUpstream.map(candidate => candidate.label),
       message: "页面已生成，但仍是部分研究投影；不会标成完整 Creator Dossier。",
       nextAction: "先修复上游未通过阶段，再刷新同一路由。"
     });

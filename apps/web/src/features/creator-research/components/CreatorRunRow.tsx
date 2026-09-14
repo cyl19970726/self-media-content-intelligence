@@ -35,7 +35,7 @@ export function CreatorRunRow({ run, operation, busy, onOperate }: {
       <span><b>{operation?.coverage.discovered ?? run.coverage.discoveredPosts}</b>发现</span>
       <span><b>{operation ? `${operation.coverage.enriched}/${operation.coverage.enrichedTarget}` : run.coverage.enrichedPosts}</b>详情</span>
       <span><b>{operation ? `${operation.coverage.compared}/${operation.coverage.comparedTarget}` : run.coverage.comparisonPosts}</b>对比</span>
-      <span><b>{operation ? `${operation.coverage.reconstructed}/${operation.coverage.reconstructedTarget}` : run.coverage.reconstructedPosts}</b>深度</span>
+      <span><b>{operation ? `${operation.coverage.reconstructed}/${operation.coverage.reconstructedTarget}` : run.coverage.reconstructedPosts}</b>Builder 已构建</span>
     </div>
     <div className="creator-run__pipeline" aria-label="分析阶段">
       {taskPhases(run).map((phase) => <span className={`creator-run__stage creator-run__stage--${phase.state}`} key={phase.id} title={phase.detail}>{phase.label}</span>)}

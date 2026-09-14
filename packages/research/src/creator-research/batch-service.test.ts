@@ -23,9 +23,10 @@ class MemoryBatchRepository implements CreatorResearchBatchRepository {
     return this.batches.get(operation.batchId) ?? null;
   }
 
-  create(batch: CreatorResearchBatch, operationKey: string, commandHash: string): CreatorResearchBatch {
+  create(candidate: CreatorResearchBatch | (() => CreatorResearchBatch), operationKey: string, commandHash: string): CreatorResearchBatch {
     const prior = this.getByOperationKey(operationKey, commandHash);
     if (prior) return prior;
+    const batch = typeof candidate === "function" ? candidate() : candidate;
     this.batches.set(batch.id, batch);
     this.operations.set(operationKey, { hash: commandHash, batchId: batch.id });
     return batch;

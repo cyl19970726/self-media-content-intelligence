@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { CreatorSummary } from "../../../shared/contracts/core";
 
 function CreatorCard({ creator, index }: { creator: CreatorSummary; index: number }) {
+  const [currentEntry, ...historyEntries] = creator.entries;
   return <article className="creator-card">
     <header className="creator-card__head"><span className="creator-card__number">{String(index + 1).padStart(2, "0")}</span>
       <div><h2>{creator.name}</h2><p className="creator-card__position">{creator.positioning}</p></div>
@@ -12,7 +13,12 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
       {creator.stats.slice(0, 1).map((stat) => <div key={stat.label}><b>{stat.value}</b><span>{stat.label}</span></div>)}</div>
     <p className="creator-card__summary">{creator.summary}</p>
     <div className="creator-card__tags">{creator.tags.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
-    <nav className="creator-card__entries"><Link to={`/creators/${creator.id}`}><span>进入唯一研究页</span><small>定位 · 基本盘 · 统一选择集 · 深度证据</small><ArrowRight size={15}/></Link></nav>
+    <nav className="creator-card__entries">
+      <Link to={currentEntry?.href ?? `/creators/${creator.id}`}><span>{currentEntry?.label ?? "查看当前研究"}</span><small>{currentEntry?.note ?? "定位 · 基本盘 · 统一选择集 · 深度证据"}</small><ArrowRight size={15}/></Link>
+      {historyEntries.length > 0 && <details className="creator-card__history"><summary>历史档案与批次 · {historyEntries.length}</summary>
+        {historyEntries.map((entry) => <Link to={entry.href} key={`${entry.href}-${entry.label}`}><span>{entry.label}</span><small>{entry.note ?? "保留原始研究口径与证据"}</small><ArrowRight size={13}/></Link>)}
+      </details>}
+    </nav>
   </article>;
 }
 

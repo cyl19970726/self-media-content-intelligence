@@ -28,6 +28,30 @@ function health(status: "full" | "partial" | "missing", reason: string, captured
   return { status, reason, capturedAt } as const;
 }
 
+type CorpusIntegrity = {
+  corpusCompleteness?: "observed_converged" | "bounded_partial";
+  stopReason?: "explicit_end" | "quiescent_incomplete" | "budget_reached";
+};
+
+function corpusHealth(analysis: { metricCoverage: { rate: number } } & CorpusIntegrity, capturedAt: string | null) {
+  const completeness = analysis.corpusCompleteness;
+  const stopReason = analysis.stopReason;
+  const integrityReason = stopReason === "explicit_end" && completeness === "observed_converged"
+    ? "采集明确结束且已达到观察收敛。"
+    : stopReason === "budget_reached"
+      ? "采集因预算停止，当前清单不是平台历史全量。"
+      : stopReason === "quiescent_incomplete"
+        ? "页面静默后停止，当前清单可能仍不完整。"
+        : "采集完整性字段缺失，不能宣称平台历史全量。";
+  const coveragePercent = Math.round(analysis.metricCoverage.rate * 100);
+  const coverageReason = analysis.metricCoverage.rate >= 0.8
+    ? `公开点赞覆盖 ${coveragePercent}%。`
+    : `公开点赞覆盖 ${coveragePercent}%，低于 full 所需的 80% 门槛。`;
+  const status = analysis.metricCoverage.rate >= 0.8
+    && completeness === "observed_converged" && stopReason === "explicit_end" ? "full" : "partial";
+  return health(status, `${coverageReason}${integrityReason}`, capturedAt);
+}
+
 export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorDossier {
   const ref = `legacy:creator-console:${id}`;
   const items = data.tiers.flatMap((tier) => tier.videos.map((video, index) => ({
@@ -233,8 +257,8 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       distribution: [],
       notes: [analysis?.interpretationBoundary].filter((value): value is string => Boolean(value)),
       annotationCoverage: annotations ? { ...annotations.denominator, artifactRef: sourceRun.portfolioAnnotationsArtifactRef! } : null,
-      health: health(analysis ? analysis.metricCoverage.rate >= 0.8 ? "full" : "partial" : "missing",
-        analysis ? `公开点赞覆盖 ${Math.round(analysis.metricCoverage.rate * 100)}%。` : "全量基本盘尚未生成。", capturedAt)
+      health: analysis ? corpusHealth(analysis, capturedAt)
+        : health("missing", "全量基本盘尚未生成。", capturedAt)
     },
     contentSystem: {
       topicClusters: [],

@@ -1,13 +1,14 @@
 import "./dossier-reading.css";
 import { StatementList } from "./DossierStatements";
 import { sampleRoleLabel, canonicalCreatorHref } from "./model/creator-reading";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, ArrowRight, ExternalLink, Grid2X2, List, LoaderCircle, RefreshCw } from "lucide-react";
-import { getCreatorDossier, resumeCreatorResearchRun } from "../../shared/api/client";
-import type { CreatorDossier } from "../../shared/contracts/core";
+import { getCreatorDossier, listCreatorRunOperations, runCreatorOperation } from "../../shared/api/client";
+import type { CreatorDossier, CreatorRunOperation } from "../../shared/contracts/core";
 import { comparisonSetLabel, comparisonSetNote, deepSetNote } from "./model/creator-sample-copy";
 import { creatorEvidenceHref } from "./model/creator-evidence-link";
+import { creatorRecoveryPresentation } from "./model/creator-recovery";
 import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
 import { SourceCaptionPreview } from "../../entities/source-facts/PostSourceFactsCard";
 
@@ -69,15 +70,40 @@ export default function CreatorDossierPage() {
   const navigate = useNavigate();
   const [search, setSearch] = useSearchParams();
   const [data, setData] = useState<CreatorDossier | null>(null);
+  const [operation, setOperation] = useState<CreatorRunOperation | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [resuming, setResuming] = useState(false);
   const [resumeError, setResumeError] = useState<string | null>(null);
+  const loadGeneration = useRef(0);
   const requestedRun = search.get("run");
   const load = useCallback(async () => {
-    try { setData(await getCreatorDossier(requestedRun ?? id)); setError(null); }
-    catch (cause) { setError(cause instanceof Error ? cause.message : "无法读取博主档案"); }
+    const generation = ++loadGeneration.current;
+    try {
+      const dossier = await getCreatorDossier(requestedRun ?? id);
+      if (generation !== loadGeneration.current) return;
+      setData(dossier);
+      setOperation(null);
+      setError(null);
+      if (!dossier.run) return;
+      try {
+        const operations = await listCreatorRunOperations();
+        if (generation !== loadGeneration.current) return;
+        setOperation(operations.find((item) => item.runId === dossier.run?.id) ?? null);
+      } catch {
+        if (generation === loadGeneration.current) setOperation(null);
+      }
+    }
+    catch (cause) {
+      if (generation !== loadGeneration.current) return;
+      setData(null); setOperation(null);
+      setError(cause instanceof Error ? cause.message : "无法读取博主档案");
+    }
   }, [id, requestedRun]);
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    setResuming(false); setResumeError(null);
+    void load();
+    return () => { loadGeneration.current += 1; };
+  }, [load]);
   useEffect(() => {
     if (!data?.run || ["ready", "reviewable", "failed"].includes(data.run.status)) return undefined;
     const stream = new EventSource(`/api/creator-runs/${encodeURIComponent(data.run.id)}/events/stream`);
@@ -109,18 +135,29 @@ export default function CreatorDossierPage() {
   const itemHref = (item: CreatorDossier["portfolio"]["items"][number]) => item.evidenceHref
     ? creatorEvidenceHref(item.evidenceHref, data?.run ? `${canonicalCreatorHref(data.canonicalId, data.run.id, location.search)}#portfolio` : `${location.pathname}${location.search}#portfolio`)
     : item.sourceHref;
-  const resume = async () => {
-    if (!data?.run || resuming) return;
+  const resume = async (action = operation?.action) => {
+    if (!data?.run || !action || action === "none" || resuming) return;
+    const generation = loadGeneration.current;
     setResuming(true);
-    try { await resumeCreatorResearchRun(data.run.id); await load(); setResumeError(null); }
-    catch (cause) { setResumeError(cause instanceof Error ? cause.message : "无法恢复博主研究"); }
-    finally { setResuming(false); }
+    try {
+      await runCreatorOperation(data.run.id, action);
+      if (generation !== loadGeneration.current) return;
+      setResumeError(null); setResuming(false);
+      await load();
+    }
+    catch (cause) {
+      if (generation === loadGeneration.current) setResumeError(cause instanceof Error ? cause.message : "无法恢复博主研究");
+    }
+    finally {
+      if (generation === loadGeneration.current) setResuming(false);
+    }
   };
 
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>博主档案读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
   const deepItems = data.portfolio.items.filter((item) => item.deepSample);
   const activeRunStage = data.run?.stages.find((stage) => stage.id === data.run?.currentStage);
+  const recovery = data.run ? creatorRecoveryPresentation(data.run, operation) : null;
 
   return <main className="console creator-dossier">
     <details><summary>研究审计 · 知识贡献记录</summary><KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/></details>
@@ -139,12 +176,13 @@ export default function CreatorDossierPage() {
         </div>
         <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.id === "deep_capture" ? "重点帖子内容还原" : stage.label}</span>)}</div>
         {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}
-        {data.run.status === "needs_user" && <div className="creator-run-progress__actions">
-          <span>在已交接的小红书页面完成提示动作后，再从这里恢复同一任务。</span>
-          <button type="button" onClick={() => void resume()} disabled={resuming}>
-            {resuming ? <LoaderCircle className="spin" size={13}/> : <RefreshCw size={13}/>}{resuming ? "正在恢复" : "我已完成，继续"}
+        {recovery && <div className="creator-run-progress__actions">
+          <span>{recovery.help}</span>
+          <button type="button" onClick={() => void resume(recovery.action)} disabled={resuming}>
+            {resuming ? <LoaderCircle className="spin" size={13}/> : <RefreshCw size={13}/>}{resuming ? "正在恢复" : recovery.label}
           </button>
         </div>}
+        {operation?.resolutionState === "waiting_external" && operation.waitingReason && <small>{operation.waitingReason}</small>}
         {resumeError && <small role="alert">{resumeError}</small>}
       </section>}
       {data.pipeline && <details className={`research-pipeline research-pipeline--${data.pipeline.state}`} open={!data.pipeline.ready}>

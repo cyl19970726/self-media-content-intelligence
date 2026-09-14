@@ -147,6 +147,18 @@ describe("validateCreatorSynthesis", () => {
     expect(gate.failedGateIds).toEqual([]);
   });
 
+  it.each(["wrong-post", "wrong-run", "missing-artifact"])("rejects %s deep evidence bindings", (kind) => {
+    const candidate = synthesis();
+    const sourceBatch = batch();
+    const row = candidate.postAnalyses[0]!;
+    if (kind === "wrong-post") row.evidenceRefs = candidate.postAnalyses[1]!.evidenceRefs;
+    if (kind === "wrong-run") row.evidenceRefs = row.evidenceRefs.map(ref => ref.replace(runId, "22222222-2222-4222-8222-222222222222"));
+    if (kind === "missing-artifact") sourceBatch.items[0]!.reconstructionArtifactRef = null;
+    const gate = validateCreatorSynthesis({ creatorRunId: runId, selection: selection(), batch: sourceBatch,
+      synthesis: candidate, checkedAt });
+    expect(gate.failedGateIds).toContain("deep_evidence_binding");
+  });
+
   it("rejects creation advice inside a research artifact", () => {
     const candidate = synthesis();
     candidate.performance.high[0]!.statement = "我们下一条应该直接复制这个标题公式";
@@ -196,7 +208,7 @@ describe("validateCreatorSynthesis", () => {
     expect(gate.failedGateIds).not.toContain("deep_evidence_binding");
   });
 
-  it("accepts an explicit bounded media gap when every performance group retains ready video evidence", () => {
+  it.each(["ready", "verified"] as const)("accepts a bounded media gap with %s evidence in every group", (state) => {
     const selected = creatorSelectionSchema.parse(selection());
     selected.ruleVersion = "four-groups-video-refined-v3";
     for (const item of selected.items) item.deepGroups = [];
@@ -204,6 +216,7 @@ describe("validateCreatorSynthesis", () => {
     for (const item of selected.items.filter((item) => item.tier === "base" && item.deepCandidate)) item.deepGroups = ["median", "mean"];
     for (const item of selected.items.filter((item) => item.tier === "low" && item.deepCandidate)) item.deepGroups = ["low"];
     const bounded = batch();
+    for (const item of bounded.items) item.state = state;
     const unavailable = bounded.items.at(-1)!;
     Object.assign(unavailable, { state: "blocked", sourceMediaArtifactRef: null, reconstructionArtifactRef: null,
       articleArtifactRef: null, evaluationArtifactRef: null, gateReportArtifactRef: null,

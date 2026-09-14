@@ -216,6 +216,13 @@ export function buildCreatorPortfolio(input: unknown, sourceArtifactRef: string,
   };
 }
 
+export function corpusIntegrityFromCorpus(corpus: Pick<CreatorCorpus, "denominator">) {
+  return {
+    stopReason: corpus.denominator.stopReason,
+    corpusCompleteness: corpus.denominator.corpusCompleteness
+  } as const;
+}
+
 export function refineDeepSelectionForVerifiedVideos(
   input: CreatorSelection,
   mediaTypes: Map<string, "video" | "image" | "unknown">,

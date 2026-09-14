@@ -168,6 +168,36 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     expect(recovered?.attempts).toBe(2);
   });
 
+  it("stops reclaiming an expired job at its retry limit, records an actionable run failure, and keeps the lane moving", () => {
+    const exhaustedRun = createRun("redfox", "retry-limit-exhausted");
+    const first = repository.claimNext("expired-worker-1", timestamp(), timestamp(1_000), "redfox");
+    expect(first?.runId).toBe(exhaustedRun.id);
+    const second = repository.claimNext("expired-worker-2", timestamp(2_000), timestamp(3_000), "redfox");
+    expect(second?.id).toBe(first?.id);
+    const third = repository.claimNext("expired-worker-3", timestamp(4_000), timestamp(5_000), "redfox");
+    expect(third?.id).toBe(first?.id);
+    expect(third?.attempts).toBe(third?.maxAttempts);
+
+    const unaffectedRun = createRun("redfox", "retry-limit-unaffected");
+    const replacement = repository.claimNext("replacement-worker", timestamp(6_000), timestamp(96_000), "redfox");
+    expect(replacement?.runId).toBe(unaffectedRun.id);
+
+    const exhausted = repository.get(exhaustedRun.id)!;
+    expect(exhausted.status).toBe("failed");
+    expect(exhausted.blockers).toMatchObject([{ code: "retry_limit_exhausted", userActionRequired: false }]);
+    expect(exhausted.nextAction).toContain("Dashboard");
+    expect(repository.listEvents(exhaustedRun.id)).toEqual(expect.arrayContaining([
+      expect.objectContaining({ type: "run.failed", payload: expect.objectContaining({
+        code: "retry_limit_exhausted", attempts: 3, maxAttempts: 3
+      }) })
+    ]));
+
+    repository.updateJobStatus({ jobId: replacement!.id, status: "succeeded", updatedAt: timestamp(6_100) });
+    const resumed = service.resume(exhaustedRun.id);
+    expect(resumed.status).toBe("queued");
+    expect(repository.claimNext("manual-retry", timestamp(7_000), timestamp(97_000), "redfox")?.id).toBe(first?.id);
+  });
+
   it("normalizes every expired lease before filling the available worker slots", () => {
     const runs = [createRun("redfox", "expired-many-1"), createRun("redfox", "expired-many-2")];
     for (const run of runs) completeAcquisition(run.id, "redfox");
@@ -213,5 +243,14 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     const replacement = repository.claimNext("redfox-replacement", timestamp(), timestamp(90_000), "redfox");
     expect(replacement).not.toBeNull();
     expect(replacement?.runId).not.toBe(failedRun.id);
+  });
+
+  it("does not close a caller-owned SQLite connection", () => {
+    const externalFile = path.join(directory, "external.sqlite");
+    const external = new DatabaseSync(externalFile);
+    const externalRepository = new SQLiteCreatorResearchRepository(external);
+    externalRepository.close();
+    expect(() => external.prepare("SELECT 1").get()).not.toThrow();
+    external.close();
   });
 });

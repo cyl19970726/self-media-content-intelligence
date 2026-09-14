@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { CreatorResearchService } from "./service.js";
 import type { CreatorResearchRun } from "../../../contracts/index.js";
-import { loadCreatorDossier } from "../../../../src/server/creator-dossier.js";
+import { loadCreatorDossier, projectRunDossier } from "../../../../src/server/creator-dossier.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
 
@@ -37,6 +37,22 @@ function activeVideoRun(): CreatorResearchRun {
   };
 }
 
+function projectedAnalysis(corpusCompleteness: "observed_converged" | "bounded_partial", stopReason: "explicit_end" | "quiescent_incomplete" | "budget_reached", rate = 1) {
+  return {
+    schemaVersion: "1.0.0", runId: activeVideoRun().id, generatedAt: "2026-08-26T01:00:00.000Z",
+    corpusArtifactRef: "/artifacts/corpus.json", selectionArtifactRef: "/artifacts/selection.json",
+    metricCoverage: { known: rate === 1 ? 30 : 15, missing: rate === 1 ? 0 : 15, rate },
+    likes: { min: 1, p25: 1, median: 1, mean: 1, p75: 1, max: 1 },
+    tierCounts: { high: 10, base: 10, low: 10 },
+    anchors: { median: 1, mean: 1, medianNearPostId: "post-1", meanNearPostId: "post-1", meanGap: false, meanGapReason: null },
+    interpretationBoundary: "fixture", unknowns: [], corpusCompleteness, stopReason
+  };
+}
+
+function projectionService(run: CreatorResearchRun, analysis: unknown): CreatorResearchService {
+  return { get: () => run, list: () => [run], portfolio: () => ({ analysis }) } as unknown as CreatorResearchService;
+}
+
 describe("creator research pipeline evaluation truth", () => {
   it("does not call Builder-only videos independently evaluated", () => {
     const run = activeVideoRun();
@@ -52,6 +68,34 @@ describe("creator research pipeline evaluation truth", () => {
     expect(projected.stages.find((stage) => stage.id === "video_evaluation")).toMatchObject({
       state: "partial", gateState: "partial", missingInputs: ["单轮独立评估：3/12"]
     });
+  });
+
+  it("names the actual incomplete stages when a historic gate has passed", () => {
+    const run = activeVideoRun();
+    run.status = "ready";
+    run.worker.jobId = null;
+    run.synthesisArtifactRef = "/artifacts/synthesis.json";
+    run.synthesisGateArtifactRef = "/artifacts/gate.json";
+    const pipeline = buildCreatorResearchPipeline(run);
+    const missing = pipeline.stages.find(item => item.id === "dashboard_projection")?.missingInputs;
+    expect(missing).toContain("逐帖详情、日期、指标与评论");
+    expect(missing).not.toContain("全部上游阶段通过");
+  });
+
+  it("keeps a fully liked bounded corpus partial and preserves full status for converged collection", () => {
+    const run = activeVideoRun();
+    run.worker.jobId = null;
+    const bounded = projectRunDossier(projectionService(run, projectedAnalysis("bounded_partial", "budget_reached")), run.id);
+    expect(bounded?.corpus.coverageRate).toBe(1);
+    expect(bounded?.corpus.health.status).toBe("partial");
+    expect(bounded?.corpus.health.reason).toContain("预算");
+
+    const complete = projectRunDossier(projectionService(run, projectedAnalysis("observed_converged", "explicit_end")), run.id);
+    expect(complete?.corpus.health.status).toBe("full");
+
+    const incompleteLikes = projectRunDossier(projectionService(run, projectedAnalysis("observed_converged", "explicit_end", 0.5)), run.id);
+    expect(incompleteLikes?.corpus.health.status).toBe("partial");
+    expect(incompleteLikes?.corpus.health.reason).toContain("80%");
   });
 });
 

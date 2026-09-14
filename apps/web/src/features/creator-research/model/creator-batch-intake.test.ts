@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseCreatorBatchDraft } from "./creator-batch-intake";
+import { creatorBatchSubmitLabel, parseCreatorBatchDraft } from "./creator-batch-intake";
 
 describe("creator batch intake", () => {
   it("accepts labels, CRLF and removes harmless URL noise", () => {
@@ -35,5 +35,11 @@ describe("creator batch intake", () => {
     const draft = parseCreatorBatchDraft("https://www.xiaohongshu.com/user/profile/reused", existing);
     expect(draft).toMatchObject({ validCount: 0, existingCount: 1, canSubmit: true });
     expect(draft.entries[0]?.message).toContain("纳入这个批次");
+  });
+
+  it("names the final action by new and reused task counts", () => {
+    expect(creatorBatchSubmitLabel({ validCount: 0, existingCount: 2 })).toBe("建立批次并复用 2 个现有任务");
+    expect(creatorBatchSubmitLabel({ validCount: 3, existingCount: 0 })).toBe("新建并分析 3 个博主");
+    expect(creatorBatchSubmitLabel({ validCount: 2, existingCount: 4 })).toBe("新建 2 个，复用 4 个");
   });
 });

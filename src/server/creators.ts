@@ -109,14 +109,14 @@ function versionedRunSummaries(service: CreatorResearchService): CreatorSummary[
     positioning: run.status === "ready"
       ? "版本化研究已通过博主级硬闸。"
       : "公开基本盘已进入版本化任务；账号定位与内容机制等待深度证据闭环。",
-    summary: `${run.coverage.discoveredPosts} 条作品已登记；${run.coverage.comparisonPosts} 条进入比较；${run.coverage.reconstructedPosts} 条完成深度分析。当前状态：${run.status}。`,
-    tags: ["版本化 Run", "Artifact 已登记", run.status === "needs_user" ? "等待人工恢复" : "持续运行"],
+    summary: `${run.coverage.discoveredPosts} 条作品已登记；${run.coverage.comparisonPosts} 条进入比较；${run.coverage.reconstructedPosts} 条已构建单帖（独立评估另计）。当前状态：${run.status}。`,
+    tags: ["版本化 Run", "Artifact 已登记", ({ ready: "原研究评估通过", reviewable: "报告可审阅", failed: "任务失败", stale: "需刷新", needs_user: "等待人工恢复", queued: "等待执行", backoff: "等待重试", preflight: "预检中", collecting: "执行中" })[run.status]],
     stats: [
       { label: "已登记作品", value: String(run.coverage.discoveredPosts) },
       { label: "比较样本", value: String(run.coverage.comparisonPosts) },
-      { label: "深度分析", value: String(run.coverage.reconstructedPosts) }
+      { label: "已构建单帖", value: String(run.coverage.reconstructedPosts) }
     ],
-    entries: [{ label: "进入版本化研究页", href: `/creators/${run.canonicalSlug ?? run.creatorId}`, note: run.nextAction }]
+    entries: [{ label: "查看当前研究批次", href: `/creators/${run.canonicalSlug ?? run.creatorId}?run=${encodeURIComponent(run.id)}`, note: `${run.lastSnapshotAt ?? run.createdAt} · ${run.nextAction}` }]
   }));
 }
 
@@ -124,8 +124,29 @@ export function loadCreatorSummaries(service?: CreatorResearchService): CreatorS
   const legacy = Object.values(loaders)
     .map((load) => load())
     .filter((summary): summary is CreatorSummary => summary !== null);
-  const existingIds = new Set(legacy.map((summary) => summary.id));
-  const dynamic = (service ? versionedRunSummaries(service) : loadNextWaveCreatorSummaries())
-    .filter((summary) => !existingIds.has(summary.id));
-  return [...legacy, ...dynamic];
+  const dynamic = service ? versionedRunSummaries(service) : loadNextWaveCreatorSummaries();
+  return mergeCreatorSummaries(legacy, dynamic);
+}
+
+/** Keep one primary entry per profile, with explicit links to preserved historical evidence. */
+export function mergeCreatorSummaries(legacy: CreatorSummary[], current: CreatorSummary[]): CreatorSummary[] {
+  const identity = (summary: CreatorSummary) => {
+    try {
+      const url = new URL(summary.profileUrl);
+      return `${url.hostname.replace(/^www\./, "")}${url.pathname.replace(/\/+$/, "")}`;
+    } catch { return summary.id; }
+  };
+  const currentByProfile = new Map(current.map(summary => [identity(summary), summary]));
+  const used = new Set<string>();
+  const merged = legacy.map(old => {
+    const key = identity(old);
+    const latest = currentByProfile.get(key) ?? current.find(item => item.id === old.id);
+    if (!latest) return old;
+    used.add(identity(latest));
+    return { ...latest, entries: [...latest.entries, {
+      label: `历史档案 · ${old.stats[0]?.value ?? "未知"} 条作品`,
+      href: `/creators/${old.id}`, note: `历史独立样本，不与当前批次合并：${old.summary}`
+    }] };
+  });
+  return [...merged, ...current.filter(summary => !used.has(identity(summary)))];
 }

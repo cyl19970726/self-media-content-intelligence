@@ -1,9 +1,11 @@
+import { DatabaseSync } from "node:sqlite";
 import { AnalysisService } from "../core/service.js";
 import { RunStore } from "../core/store.js";
 import { CreatorResearchBatchService, CreatorResearchService, CreatorResearchWorker } from "../../packages/research/index.js";
 import { ComparisonProjectService, ComparisonProjectWorker } from "../../packages/research/index.js";
 import { PublishingService, PublicationWorker, type PlatformPublishers } from "../../packages/creation/index.js";
 import {
+  databasePath,
   creatorWorkerConcurrency,
   videoConcurrency,
   EgoBrowserCreatorExecutor,
@@ -80,7 +82,8 @@ export function createSignalRoomComposition(
   const { researchLearning, contentKnowledge } = createDurableKnowledgeSystem();
   const creatorKnowledgeCompiler = new CreatorKnowledgeCompiler(contentKnowledge);
   const comparisonKnowledgeCompiler = new ComparisonKnowledgeCompiler(contentKnowledge);
-  const creatorResearchRepository = new SQLiteCreatorResearchRepository();
+  const creatorDatabase = new DatabaseSync(databasePath());
+  const creatorResearchRepository = new SQLiteCreatorResearchRepository(creatorDatabase);
   const creatorResearch = new CreatorResearchService(
     creatorResearchRepository,
     artifacts,
@@ -91,7 +94,7 @@ export function createSignalRoomComposition(
     creatorKnowledgeCompiler,
     new CodexImagePostReconstructionExecutor(artifacts)
   );
-  const creatorResearchBatchRepository = new SQLiteCreatorResearchBatchRepository();
+  const creatorResearchBatchRepository = new SQLiteCreatorResearchBatchRepository(creatorDatabase);
   const creatorResearchBatches = new CreatorResearchBatchService(
     creatorResearchBatchRepository,
     creatorResearch,
@@ -126,6 +129,6 @@ export function createSignalRoomComposition(
   return new SignalRoomComposition(
     { analysis, creatorResearch, creatorResearchBatches, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
     workers,
-    [analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge, creatorResearchBatchRepository]
+    [{ close: () => creatorDatabase.close() }, analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge, creatorResearchBatchRepository]
   );
 }

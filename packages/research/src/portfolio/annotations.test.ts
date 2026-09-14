@@ -21,4 +21,26 @@ describe("buildCreatorPortfolioAnnotations", () => {
     expect(result.rows[1]?.topics[0]?.value).toBe("未归类主题");
     expect(result.rows.every((row) => row.unknowns.length > 0)).toBe(true);
   });
+
+  it("uses the actual text field for inferred labels and visible text when title is missing", () => {
+    const result = buildCreatorPortfolioAnnotations({
+      schemaVersion: "1.0.0", runId, generatedAt: "2026-09-02T00:00:00.000Z", sourceArtifactRef: "inventory",
+      denominator: { discoveredPosts: 3, likesKnown: 3, likesMissing: 0, likesCoverage: 1,
+        stopReason: "budget_reached", corpusCompleteness: "bounded_partial" },
+      likes: { min: 3, p25: 3, median: 3, mean: 3, p75: 3, max: 3 }, mediaTypes: { video: 3 },
+      records: [
+        { externalId: "title", url: "https://www.xiaohongshu.com/explore/title", title: "怎么使用 Agent", visibleText: null, mediaType: "video", likesLabel: "3", likes: 3 },
+        { externalId: "visible", url: "https://www.xiaohongshu.com/explore/visible", title: null, visibleText: "怎么使用 Agent", mediaType: "video", likesLabel: "3", likes: 3 },
+        { externalId: "fallback", url: "https://www.xiaohongshu.com/explore/fallback", title: null, visibleText: null, mediaType: "video", likesLabel: "3", likes: 3 }
+      ], unknowns: []
+    }, "/artifacts/run/corpus.json", "2026-09-02T00:01:00.000Z");
+
+    expect(result.rows[0]?.formats[0]?.evidenceRefs).toEqual(["/artifacts/run/corpus.json#/records/0/title"]);
+    expect(result.rows[1]?.formats[0]?.value).toBe("操作教程");
+    expect(result.rows[1]?.formats[0]?.evidenceRefs).toEqual(["/artifacts/run/corpus.json#/records/1/visibleText"]);
+    expect(result.rows[1]?.evidenceScope).toContain("visible_text");
+    expect(result.rows[1]?.evidenceScope).not.toContain("title");
+    expect(result.rows[2]?.formats[0]?.value).toBe("视频（内容形式未知）");
+    expect(result.rows[2]?.formats[0]?.evidenceRefs).toEqual(["/artifacts/run/corpus.json#/records/2/mediaType"]);
+  });
 });

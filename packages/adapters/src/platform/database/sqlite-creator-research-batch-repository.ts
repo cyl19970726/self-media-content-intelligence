@@ -22,9 +22,12 @@ interface BatchItemRow { run_id: string }
 export class SQLiteCreatorResearchBatchRepository implements CreatorResearchBatchRepository {
   private readonly db: DatabaseSync;
 
-  constructor(filePath = databasePath()) {
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    this.db = new DatabaseSync(filePath);
+  private readonly ownsDatabase: boolean;
+
+  constructor(filePath: string | DatabaseSync = databasePath()) {
+    this.ownsDatabase = typeof filePath === "string";
+    if (typeof filePath === "string") fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    this.db = typeof filePath === "string" ? new DatabaseSync(filePath) : filePath;
     this.db.exec("PRAGMA journal_mode = WAL");
     this.db.exec("PRAGMA foreign_keys = ON");
     this.db.exec(`
@@ -53,11 +56,10 @@ export class SQLiteCreatorResearchBatchRepository implements CreatorResearchBatc
   }
 
   create(
-    batch: CreatorResearchBatch,
+    batch: CreatorResearchBatch | (() => CreatorResearchBatch),
     operationKey: string,
     commandHash: string
   ): CreatorResearchBatch {
-    const parsed = creatorResearchBatchSchema.parse(batch);
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const existing = this.operation(operationKey);
@@ -67,6 +69,7 @@ export class SQLiteCreatorResearchBatchRepository implements CreatorResearchBatc
         this.db.exec("COMMIT");
         return result;
       }
+      const parsed = creatorResearchBatchSchema.parse(typeof batch === "function" ? batch() : batch);
       this.db.prepare(`
         INSERT INTO creator_research_batches (
           id, schema_version, name, created_at, operation_key, command_hash
@@ -110,7 +113,7 @@ export class SQLiteCreatorResearchBatchRepository implements CreatorResearchBatc
     return rows.map((row) => this.read(row));
   }
 
-  close(): void { this.db.close(); }
+  close(): void { if (this.ownsDatabase) this.db.close(); }
 
   private operation(operationKey: string): BatchRow | null {
     return (this.db.prepare(`

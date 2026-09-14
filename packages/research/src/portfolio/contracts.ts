@@ -180,6 +180,10 @@ export const creatorPortfolioAnalysisSchema = z.object({
   tierCounts: z.object({ high: z.number().int(), base: z.number().int(), low: z.number().int() }),
   anchors: creatorSelectionSchema.shape.anchors,
   interpretationBoundary: z.string(),
-  unknowns: z.array(z.string())
+  unknowns: z.array(z.string()),
+  // Older analysis artifacts do not carry collection completeness metadata.
+  // Keep these optional so they remain readable without implying full coverage.
+  stopReason: z.enum(["explicit_end", "quiescent_incomplete", "budget_reached"]).optional(),
+  corpusCompleteness: z.enum(["observed_converged", "bounded_partial"]).optional()
 });
 export type CreatorPortfolioAnalysis = z.infer<typeof creatorPortfolioAnalysisSchema>;

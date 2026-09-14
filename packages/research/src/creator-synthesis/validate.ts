@@ -46,13 +46,16 @@ export function validateCreatorSynthesis(input: {
     : deep.size === 9;
   const boundedMediaGap = batch.limitations.some((item) => item.startsWith("bounded_media_retry_once:"))
     && unavailableDeep.size > 0
-    && batch.items.filter((item) => item.state !== "ready").every((item) => unavailableDeep.has(item.postExternalId));
+    && batch.items.filter((item) => !["ready", "verified"].includes(item.state)).every((item) => unavailableDeep.has(item.postExternalId));
   const readyGroupCoverage = Object.fromEntries(requiredGroups.map((group) => [group,
     selection.items.filter((item) => item.deepGroups.includes(group) && readyDeep.has(item.externalId)).length
   ])) as Record<typeof requiredGroups[number], number>;
   const boundedCoverageReady = boundedMediaGap && requiredGroups.every((group) => readyGroupCoverage[group] >= 1);
-  const hasDeepReconstructionRef = (refs: string[]) => refs.some((ref) =>
-    ref.includes("video-reconstructions") || ref.includes("image-post-reconstruction"));
+  const reconstructionByPost = new Map(batch.items.map(item => [item.postExternalId, item.reconstructionArtifactRef]));
+  const hasDeepReconstructionRef = (postId: string, refs: string[]) => {
+    const expectedRef = reconstructionByPost.get(postId);
+    return Boolean(expectedRef && refs.some(ref => ref.split("#")[0] === expectedRef));
+  };
   const gates = [
     { id: "canonical_21_coverage", pass: expected.size === 21 && actual.size === 21 && [...expected].every((id) => actual.has(id)),
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
@@ -60,9 +63,9 @@ export function validateCreatorSynthesis(input: {
       message: "历史 gate ID；四组各保留 3 个注册成员并允许重叠。全部可得媒体须完成单轮分析；仅当一次定向补取后仍不可得、四组各至少有 1 条已验证视频且缺口显式保留时，才允许带边界通过。" },
     { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
       readyDeep.has(item.postExternalId)
-        ? item.evidenceStatus === "deep_validated" && hasDeepReconstructionRef(item.evidenceRefs)
+        ? item.evidenceStatus === "deep_validated" && hasDeepReconstructionRef(item.postExternalId, item.evidenceRefs)
         : builtDeep.has(item.postExternalId)
-          ? item.evidenceStatus === "deep_provisional" && hasDeepReconstructionRef(item.evidenceRefs)
+          ? item.evidenceStatus === "deep_provisional" && hasDeepReconstructionRef(item.postExternalId, item.evidenceRefs)
         : unavailableDeep.has(item.postExternalId) && item.evidenceStatus === "surface_only"
           && item.unknowns.some((unknown) => /媒体|视频.*(不可|无法|未知)|无法.*视频/.test(unknown))),
       message: "可得深度帖子必须绑定对应媒体重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确内容未知。" },

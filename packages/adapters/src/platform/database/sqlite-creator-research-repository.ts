@@ -18,6 +18,8 @@ import {
 
 interface CreatorResearchRow { run_json: string }
 
+interface ExpiredJobRunRow extends ResearchJobRow { run_json: string }
+
 interface ResearchJobRow {
   id: string;
   run_id: string;
@@ -91,10 +93,12 @@ function lanePredicate(lane: ResearchJobLane, jobAlias: string, runAlias: string
 
 export class SQLiteCreatorResearchRepository implements CreatorResearchRepository {
   private readonly db: DatabaseSync;
+  private readonly ownsDatabase: boolean;
 
-  constructor(filePath = databasePath()) {
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    this.db = new DatabaseSync(filePath);
+  constructor(filePath: string | DatabaseSync = databasePath()) {
+    this.ownsDatabase = typeof filePath === "string";
+    if (typeof filePath === "string") fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    this.db = typeof filePath === "string" ? new DatabaseSync(filePath) : filePath;
     this.db.exec("PRAGMA journal_mode = WAL");
     this.db.exec("PRAGMA foreign_keys = ON");
     this.db.exec(`
@@ -238,10 +242,20 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
   claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any"): ResearchJob | null {
     this.db.exec("BEGIN IMMEDIATE");
     try {
+      const exhausted = this.db.prepare(`
+        SELECT expired.*, run.run_json
+        FROM research_jobs expired
+        JOIN creator_research_runs run ON run.id = expired.run_id
+        WHERE expired.status IN ('leased','running')
+          AND expired.lease_expires_at IS NOT NULL AND expired.lease_expires_at <= ?
+          AND expired.attempts >= expired.max_attempts
+      `).all(now) as unknown as ExpiredJobRunRow[];
+      for (const expired of exhausted) this.exhaustRetryBudget(parseJob(expired), expired.run_json, now);
       this.db.prepare(`
         UPDATE research_jobs SET status = 'backoff', available_at = ?, lease_owner = NULL,
           lease_expires_at = NULL, heartbeat_at = NULL, last_error = 'lease_expired', updated_at = ?
         WHERE status IN ('leased','running') AND lease_expires_at IS NOT NULL AND lease_expires_at <= ?
+          AND attempts < max_attempts
       `).run(now, now, now);
       if (lane !== "any") {
         const limits = creatorWorkerConcurrency();
@@ -336,5 +350,45 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
     return rows.map(parseEvent);
   }
 
-  close(): void { this.db.close(); }
+  close(): void {
+    if (this.ownsDatabase) this.db.close();
+  }
+
+  private exhaustRetryBudget(job: ResearchJob, runJson: string, timestamp: string): void {
+    const run = creatorResearchRunSchema.parse(JSON.parse(runJson) as unknown);
+    const failedStage = job.nodeKey === "creator.portfolio" ? "tiering"
+      : ["creator.enrich", "video.reconstruct"].includes(job.nodeKey) ? "deep_capture"
+        : job.nodeKey === "creator.synthesize" ? "synthesis" : "preflight";
+    const message = `任务租约连续过期，已达到自动重试上限 ${job.maxAttempts} 次。请检查 Worker 或 Runner 后在 Dashboard 点击继续。`;
+    const stage = run.stages.find((candidate) => candidate.id === failedStage);
+    if (stage) {
+      stage.status = "failed";
+      stage.message = message;
+    }
+    run.status = "failed";
+    run.updatedAt = timestamp;
+    run.worker = {
+      state: "failed",
+      attempt: job.attempts,
+      jobId: job.id,
+      workerId: null,
+      lastHeartbeatAt: timestamp
+    };
+    run.blockers = [{ code: "retry_limit_exhausted", message, userActionRequired: false }];
+    run.nextAction = "自动重试已停止；检查失败原因后可在 Dashboard 点击继续。";
+    this.save(run);
+    this.db.prepare(`
+      UPDATE research_jobs SET status = 'failed', lease_owner = NULL, lease_expires_at = NULL,
+        heartbeat_at = NULL, last_error = 'retry_limit_exhausted', updated_at = ?
+      WHERE id = ?
+    `).run(timestamp, job.id);
+    this.appendEvent({
+      runId: run.id,
+      jobId: job.id,
+      type: "run.failed",
+      createdAt: timestamp,
+      message,
+      payload: { code: "retry_limit_exhausted", attempts: job.attempts, maxAttempts: job.maxAttempts, nodeKey: job.nodeKey }
+    });
+  }
 }

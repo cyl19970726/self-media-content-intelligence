@@ -26,6 +26,12 @@ export type CreatorBatchDraft = {
   canSubmit: boolean;
 };
 
+export function creatorBatchSubmitLabel(draft: Pick<CreatorBatchDraft, "validCount" | "existingCount">): string {
+  if (draft.validCount === 0) return `建立批次并复用 ${draft.existingCount} 个现有任务`;
+  if (draft.existingCount === 0) return `新建并分析 ${draft.validCount} 个博主`;
+  return `新建 ${draft.validCount} 个，复用 ${draft.existingCount} 个`;
+}
+
 const urlPattern = /https:\/\/[^\s，,]+/iu;
 
 function existingUrlMap(runs: CreatorResearchRun[] | null): Map<string, CreatorResearchRun> {

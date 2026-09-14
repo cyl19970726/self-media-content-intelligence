@@ -1,7 +1,7 @@
 import { AlertTriangle, Check, ChevronDown, Database, LoaderCircle, Server, ShieldCheck, UserRound, X } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
 import type { CreatorAcquisitionAdapter, CreatorResearchRun } from "../../../shared/contracts/core";
-import { CREATOR_BATCH_LIMIT, parseCreatorBatchDraft } from "../model/creator-batch-intake";
+import { CREATOR_BATCH_LIMIT, creatorBatchSubmitLabel, parseCreatorBatchDraft } from "../model/creator-batch-intake";
 
 const entryLabels = {
   valid: "可创建", invalid: "需修正", duplicate_in_batch: "本批重复", existing_run: "已有任务"
@@ -69,6 +69,6 @@ export function CreatorBatchIntake({ runs, submitting, submitError, onSubmit }: 
     {submitError && <p className="batch-intake__error" role="alert"><AlertTriangle size={14}/>{submitError}</p>}
     <footer><p>{reviewing ? draft.canSubmit ? `确认后将 ${draft.validCount + draft.existingCount} 个博主纳入同一批次。` : "请先修正无效或超量输入。" : "预检不会产生 RedFox 请求或费用。"}</p>
       {!reviewing ? <button type="submit" disabled={draft.lineCount === 0}>检查这批博主</button>
-        : <button type="button" disabled={!draft.canSubmit || submitting} onClick={() => void submit()}>{submitting && <LoaderCircle className="spin" size={15}/>}{submitting ? "正在创建批次" : `开始分析 ${draft.validCount + draft.existingCount} 个博主`}</button>}</footer>
+        : <button type="button" disabled={!draft.canSubmit || submitting} onClick={() => void submit()}>{submitting && <LoaderCircle className="spin" size={15}/>}{submitting ? "正在创建批次" : creatorBatchSubmitLabel(draft)}</button>}</footer>
   </form>;
 }

@@ -40,19 +40,21 @@ function fields(values: string[], evidenceRefs: string[]) {
 function annotate(corpus: CreatorCorpus, source: string, index: number): CreatorPortfolioAnnotationRow {
   const post = corpus.records[index]!;
   const title = post.title?.trim() ?? "";
-  const titleRefs = refs(source, index, post.title ? "title" : "visibleText");
-  const topics = matches(title, topicRules);
-  const problems = matches(title, problemRules);
+  const visibleText = post.visibleText?.trim() ?? "";
+  const text = title || visibleText;
+  const textRefs = refs(source, index, title ? "title" : "visibleText");
+  const topics = matches(text, topicRules);
+  const problems = matches(text, problemRules);
   const formats = [
-    ...(/什么是|区别|原理|讲清楚|为什么|到底/i.test(title) ? ["概念解释"] : []),
-    ...(/怎么|如何|教程|步骤|使用|搭建|实现|分钟/i.test(title) ? ["操作教程"] : []),
-    ...(/对比|区别|哪个好|vs/i.test(title) ? ["对比判断"] : []),
-    ...(/不要|必须|真正|避坑|门槛|最/i.test(title) ? ["观点判断"] : [])
+    ...(/什么是|区别|原理|讲清楚|为什么|到底/i.test(text) ? ["概念解释"] : []),
+    ...(/怎么|如何|教程|步骤|使用|搭建|实现|分钟/i.test(text) ? ["操作教程"] : []),
+    ...(/对比|区别|哪个好|vs/i.test(text) ? ["对比判断"] : []),
+    ...(/不要|必须|真正|避坑|门槛|最/i.test(text) ? ["观点判断"] : [])
   ];
   const promises = [
-    ...(/分钟|快速|一次|从头到尾|讲清楚/i.test(title) ? ["降低理解或操作成本"] : []),
-    ...(/怎么|如何|教程|步骤|使用|搭建|实现/i.test(title) ? ["给出可执行方法"] : []),
-    ...(/区别|对比|哪个好|选择|值得/i.test(title) ? ["帮助做选择"] : [])
+    ...(/分钟|快速|一次|从头到尾|讲清楚/i.test(text) ? ["降低理解或操作成本"] : []),
+    ...(/怎么|如何|教程|步骤|使用|搭建|实现/i.test(text) ? ["给出可执行方法"] : []),
+    ...(/区别|对比|哪个好|选择|值得/i.test(text) ? ["帮助做选择"] : [])
   ];
   const values = [
     ...(problems.includes("理解一个 AI 概念") ? ["建立理解"] : []),
@@ -61,9 +63,9 @@ function annotate(corpus: CreatorCorpus, source: string, index: number): Creator
     ...(problems.includes("跟上产品与行业变化") ? ["提供变化感知"] : [])
   ];
   const architecture = [
-    ...(/[？?]|什么是|为什么|怎么|如何/i.test(title) ? ["标题以问题或任务建立入口"] : []),
-    ...(/分钟|\d+个|\d+步|第一|最/i.test(title) ? ["标题使用数字或强程度词压缩承诺"] : []),
-    ...(/不要|必须|真正|区别|对比|但|却/i.test(title) ? ["标题使用冲突或判断制造张力"] : [])
+    ...(/[？?]|什么是|为什么|怎么|如何/i.test(text) ? ["标题以问题或任务建立入口"] : []),
+    ...(/分钟|\d+个|\d+步|第一|最/i.test(text) ? ["标题使用数字或强程度词压缩承诺"] : []),
+    ...(/不要|必须|真正|区别|对比|但|却/i.test(text) ? ["标题使用冲突或判断制造张力"] : [])
   ];
   const classified = topics.length + problems.length + formats.length + promises.length + values.length + architecture.length > 0;
   return creatorPortfolioAnnotationRowSchema.parse({
@@ -74,15 +76,15 @@ function annotate(corpus: CreatorCorpus, source: string, index: number): Creator
     likes: post.likes,
     classification: classified ? "classified" : "unclassified",
     confidence: title && post.visibleText ? "medium" : "low",
-    evidenceScope: [post.title ? "title" : "visible_text", "media_type", ...(post.likes === null ? [] : ["public_metric" as const])],
-    topics: fields(topics.length ? topics : ["未归类主题"], titleRefs),
-    formats: fields(formats.length ? formats : [post.mediaType === "video" ? "视频（内容形式未知）" : "图文（内容形式未知）"], refs(source, index, "mediaType")),
-    audienceProblems: fields(problems.length ? problems : ["受众问题未知"], titleRefs),
-    promises: fields(promises.length ? promises : ["标题未表达明确承诺"], titleRefs),
-    values: fields(values.length ? values : ["用户价值未知"], titleRefs),
-    proofModes: fields(["标题层未见可验证证明"], titleRefs),
+    evidenceScope: [...(title ? ["title" as const] : visibleText ? ["visible_text" as const] : []), "media_type", ...(post.likes === null ? [] : ["public_metric" as const])],
+    topics: fields(topics.length ? topics : ["未归类主题"], textRefs),
+    formats: fields(formats.length ? formats : [post.mediaType === "video" ? "视频（内容形式未知）" : "图文（内容形式未知）"], formats.length ? textRefs : refs(source, index, "mediaType")),
+    audienceProblems: fields(problems.length ? problems : ["受众问题未知"], textRefs),
+    promises: fields(promises.length ? promises : ["标题未表达明确承诺"], textRefs),
+    values: fields(values.length ? values : ["用户价值未知"], textRefs),
+    proofModes: fields(["标题层未见可验证证明"], textRefs),
     visualSignals: fields(["未检查封面与正文画面"], refs(source, index, "mediaType")),
-    contentArchitectureSignals: fields(architecture.length ? architecture : ["正文结构未知"], titleRefs),
+    contentArchitectureSignals: fields(architecture.length ? architecture : ["正文结构未知"], textRefs),
     conflicts: [],
     unknowns: [
       "表层标注不能证明正文实际讲了什么、如何论证或如何剪辑。",
