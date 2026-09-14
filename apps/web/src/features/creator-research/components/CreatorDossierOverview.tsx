@@ -7,7 +7,6 @@ function metric(value: number | null) {
 
 export function CreatorDossierOverview({ data }: { data: CreatorDossier }) {
   const profile = data.run?.publicProfile;
-  const work = data.run?.videoWork ?? { activePostExternalIds: [], queuedPosts: 0, analyzedPosts: 0, failedPosts: 0, concurrencyLimit: 0 };
   return <>
     <header id="identity" className="console-hero dossier-hero dossier-hero--source">
       <div>
@@ -23,15 +22,6 @@ export function CreatorDossierOverview({ data }: { data: CreatorDossier }) {
       <article><span>主页显示作品</span><b>{metric(profile?.displayedPostCount ?? null)}</b></article>
       <article><span>已入库作品</span><b>{data.corpus.postCount}</b></article>
     </div>
-    {data.run && <section className="creator-research-status" aria-label="研究状态">
-      <header><span>本次研究状态</span><strong>{data.run.status === "ready" ? "研究已完成" : data.run.status === "reviewable" ? "报告可审阅" : "研究尚未完成"}</strong></header>
-      <div>
-        <article><b>{data.corpus.postCount}</b><span>已入库</span></article>
-        <article><b>{data.run.coverage.enrichedPosts}</b><span>已取得详情</span></article>
-        <article><b>{work.queuedPosts}</b><span>等待执行</span></article>
-        <article><b>{work.analyzedPosts}</b><span>已构建</span></article>
-      </div>
-      <p>{work.activePostExternalIds.length > 0 ? `${work.activePostExternalIds.length} 条记录为执行中。` : "目前没有帖子正在分析。"} {work.queuedPosts > 0 && "排队任务尚未开始。"}</p>
-    </section>}
+
   </>;
 }

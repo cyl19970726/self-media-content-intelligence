@@ -21,12 +21,10 @@ function dossier(): CreatorDossier {
 }
 
 describe("博主档案阅读组件", () => {
-  it("先展示主页来源事实，并把排队明确为尚未开始", () => {
+  it("展示博主主页来源事实", () => {
     const html = renderToStaticMarkup(createElement(CreatorDossierOverview, { data: dossier() }));
-    expect(html.indexOf("省钱不踩坑，科技更有趣")).toBeLessThan(html.indexOf("本次研究状态"));
-    expect(html).toContain("12</b><span>等待执行");
-    expect(html).toContain("目前没有帖子正在分析");
-    expect(html).toContain("排队任务尚未开始");
+    expect(html).toContain("省钱不踩坑，科技更有趣");
+    expect(html).toContain("博主主页来源事实");
   });
 
   it("作品列表显示中文日期、视频标签、本地素材和比较指标", () => {

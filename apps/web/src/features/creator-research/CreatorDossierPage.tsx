@@ -10,6 +10,7 @@ import { comparisonSetLabel, deepSetNote } from "./model/creator-sample-copy";
 import { creatorEvidenceHref } from "./model/creator-evidence-link";
 import { creatorRecoveryPresentation } from "./model/creator-recovery";
 import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
+import { CreatorResearchProgress, CreatorTechnicalChecks } from "./components/CreatorResearchProgress";
 import { CreatorDossierOverview } from "./components/CreatorDossierOverview";
 import { CreatorPortfolioLibrary } from "./components/CreatorPortfolioLibrary";
 
@@ -21,14 +22,6 @@ const sections = [
 ] as const;
 
 const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as const;
-const pipelineStateLabels = { pending: "未开始", running: "执行中", partial: "部分完成", complete: "已通过", blocked: "待接管", failed: "失败", stale: "需重跑" } as const;
-const pipelineGateLabels = { not_checked: "未评测", running: "评测中", passed: "硬闸通过", partial: "部分通过", failed: "硬闸失败", blocked: "评测阻塞" } as const;
-const workerLabels: Record<string, string> = {
-  orchestrator: "任务编排器", "ego-browser-worker": "浏览器采集 Worker", "detail-comment-worker": "详情与评论 Worker",
-  "annotation-worker": "内容标注 Worker", "statistics-worker": "确定性统计 Worker", "selection-worker": "分层选样 Worker",
-  "media-worker": "媒体核验 Worker", "video-reconstruction-worker": "帖子重建 Worker", "independent-video-evaluator": "独立帖子评审",
-  "creator-synthesis-worker": "博主综合 Worker", "independent-creator-evaluator": "独立博主评审", "projection-worker": "Dashboard 投影器"
-};
 
 function metric(value: number | null) {
   return value === null ? "—" : new Intl.NumberFormat("zh-CN", { notation: "compact", maximumFractionDigits: 1 }).format(value);
@@ -151,7 +144,6 @@ export default function CreatorDossierPage() {
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>博主档案读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
   const deepItems = data.portfolio.items.filter((item) => item.deepSample);
-  const activeRunStage = data.run?.stages.find((stage) => stage.id === data.run?.currentStage);
   const recovery = data.run ? creatorRecoveryPresentation(data.run, operation) : null;
   const produced = (values: Array<{ factClass: string }>) => values.some((value) => value.factClass !== "unknown");
   const identityProduced = produced([data.identity.positioning, ...data.identity.audience, ...data.identity.valuesProvided, ...data.identity.trustSources, data.identity.lifecycle]);
@@ -180,6 +172,11 @@ export default function CreatorDossierPage() {
     <article className="console-main dossier-main">
       <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><b>{data.identity.name}</b></nav>
       <CreatorDossierOverview data={data}/>
+      <CreatorResearchProgress data={data}>
+        {recovery && <div className="creator-progress-action"><p>{recovery.help}</p><button type="button" onClick={() => void resume(recovery.action)} disabled={resuming}>{resuming ? "正在处理" : recovery.label}</button></div>}
+        {operation?.resolutionState === "waiting_external" && operation.waitingReason && <p>{operation.waitingReason}</p>}
+        {resumeError && <p role="alert">{resumeError}</p>}
+      </CreatorResearchProgress>
       <CreatorPortfolioLibrary data={data} items={items} view={view} tier={tier ?? "all"} topic={topic} format={format} evidence={evidence} topicOptions={topicOptions} formatOptions={formatOptions} setOption={setOption} itemHref={itemHref}/>
       {data.lastGood.active && <div className="last-good-banner"><RefreshCw size={15}/><div><strong>保留上一版可读档案</strong><p>{data.lastGood.reason}{data.lastGood.revisionLabel ? ` · ${data.lastGood.revisionLabel}` : ""}</p></div></div>}
 
@@ -220,40 +217,7 @@ export default function CreatorDossierPage() {
       {produced(data.growthEngines.statements) && <DossierSection id="engines" index="09" title="观察到的内容系统" note="描述哪些结构与价值反复出现；不输出我们应该复制什么。" health={data.growthEngines.health}><StatementList data={data} values={data.growthEngines.statements} empty=""/></DossierSection>}
       {(produced(data.businessPath.statements.length ? data.businessPath.statements : data.identity.commercialPaths) || data.boundaries.length > 0) && <DossierSection id="business" index="10" title="商业路径、证据边界与未知" note="商业化迹象、账号能力和无法判断的后台指标在这里收口。" health={data.businessPath.health}><StatementList data={data} values={data.businessPath.statements.length ? data.businessPath.statements : data.identity.commercialPaths} empty="未产出商业路径结论。"/><div className="boundary-list">{data.boundaries.map((boundary, index) => <p key={`${boundary}-${index}`}>{boundary}</p>)}</div></DossierSection>}
       {emptyAnalysis.length > 0 && <section className="dossier-analysis-empty"><h2>尚未产出的分析</h2><p>{emptyAnalysis.join("、")}尚无可靠结论。页面保留已有来源事实和统计，不据此补写或猜测。</p></section>}
-      <details className="dossier-technical-audit"><summary>研究进度与 13 阶段技术审计</summary>
-      {data.run && <section className={`creator-run-progress creator-run-progress--${data.run.status}`}>
-        <div><span>PIPELINE · {data.run.id.slice(0, 8).toUpperCase()}</span><strong>{data.run.status === "ready" ? "原任务已完成 · 评估口径见报告" : data.run.nextAction}</strong>
-          {data.run.status !== "ready" && activeRunStage?.message && <p className="creator-run-progress__current"><b>{activeRunStage.status === "running" ? "当前阶段" : "阶段记录"}</b>{activeRunStage.message}</p>}
-          {(data.run.videoWork.activePostExternalIds.length > 0 || data.run.videoWork.queuedPosts > 0 || data.run.videoWork.analyzedPosts > 0) &&
-            <p className="creator-run-progress__current"><b>帖子任务记录</b>{data.run.videoWork.activePostExternalIds.length} 条执行中 · {data.run.videoWork.queuedPosts} 条等待执行 · {data.run.videoWork.analyzedPosts} 条已构建 · {data.run.videoWork.failedPosts} 条失败</p>}
-        </div>
-        <div className="creator-run-progress__stages">{data.run.stages.map((stage) => <span key={stage.id} className={`is-${stage.status}`}>{stage.id === "deep_capture" ? "重点帖子内容还原" : stage.label}</span>)}</div>
-        {data.run.blockers.map((blocker) => <small key={blocker.code}>{blocker.message}</small>)}
-        {recovery && <div className="creator-run-progress__actions">
-          <span>{recovery.help}</span>
-          <button type="button" onClick={() => void resume(recovery.action)} disabled={resuming}>
-            {resuming ? <LoaderCircle className="spin" size={13}/> : <RefreshCw size={13}/>}{resuming ? "正在恢复" : recovery.label}
-          </button>
-        </div>}
-        {operation?.resolutionState === "waiting_external" && operation.waitingReason && <small>{operation.waitingReason}</small>}
-        {resumeError && <small role="alert">{resumeError}</small>}
-      </section>}
-      {data.pipeline && <details className={`research-pipeline research-pipeline--${data.pipeline.state}`}>
-        <summary>
-          <div><span>RESEARCH PIPELINE · 13 STAGES</span><strong>{data.pipeline.ready ? "完整研究闭环已通过" : data.run?.status === "reviewable" ? "可审阅报告已生成 · 正式知识闸门未通过" : "当前是部分研究投影"}</strong></div>
-          <div><b>{data.pipeline.completedStages}/{data.pipeline.totalStages}</b><small>阶段通过 · 点击{data.pipeline.ready ? "查看" : "检查缺口"}</small></div>
-        </summary>
-        <div className="research-pipeline__intro"><p>Skill 决定研究方法，Worker 生成证据，Evaluator 独立把关；Dashboard 只展示最后一版有效结果。</p><span>优先缺口：{data.pipeline.stages.find((stage) => stage.id === data.pipeline?.currentStageId)?.label}</span></div>
-        <div className="research-pipeline__stages">{data.pipeline.stages.map((stage, index) => <article key={stage.id} className={`pipeline-stage pipeline-stage--${stage.state}`}>
-          <header><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{stage.label}</h3><small>{pipelineStateLabels[stage.state]} · {pipelineGateLabels[stage.gateState]}</small></div></header>
-          <p>{stage.message}</p>
-          <dl><div><dt>研究方法</dt><dd>{stage.skillId ?? "确定性基础设施"}</dd></div><div><dt>执行者</dt><dd>{workerLabels[stage.workerKind] ?? stage.workerKind}</dd></div></dl>
-          {stage.missingInputs.length > 0 && <div className="pipeline-stage__missing"><b>还缺什么</b>{stage.missingInputs.map((item) => <span key={item}>{item}</span>)}</div>}
-          {stage.nextAction && <p className="pipeline-stage__next"><b>下一步：</b>{stage.nextAction}</p>}
-          <footer><span>影响页面：{stage.dashboardSections.join(" · ")}</span>{stage.artifactRefs.length > 0 && <details><summary>证据产物 {stage.artifactRefs.length}</summary>{stage.artifactRefs.map((ref) => <code key={ref}>{ref}</code>)}</details>}</footer>
-        </article>)}</div>
-      </details>}
-      </details>
+      <CreatorTechnicalChecks data={data}/>
       <details className="dossier-audit-strip"><summary>知识贡献记录</summary><KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/></details>
     </article>
   </main>;
