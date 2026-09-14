@@ -1,4 +1,3 @@
-import { PostPerformance } from "./PostPerformance";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { VideoResearch } from "../../shared/contracts/core";
@@ -13,6 +12,7 @@ export function VideoReaderHero({ data, returnTo }: { data: VideoResearch; retur
       <div className="reader-hero__copy">
         <p className="reader-kicker"><span>{data.reportFormat === "legacy_report" ? "历史格式 · 原文可读" : data.quality.buildState === "built" && data.quality.evaluationState === "skipped" ? "分析已生成 · 尚未独立评估" : summary.statusLabel}</span><span>{data.sourceFacts.publishedLabel ?? "发布时间未知"}</span></p>
         <h1>{data.title}</h1>
+        <p className="reader-hero__thesis"><span>先看懂这条内容</span>{data.thesis || "Builder 未产出总体还原。请直接阅读下方内容块与保留的未知项。"}</p>
         <div className="reader-source-line">
           <span>{sourcePartial ? "原帖资料部分取得" : "原帖资料完整"}</span>
           <span>{metric(data.engagement.likes)} 赞</span>
@@ -26,6 +26,5 @@ export function VideoReaderHero({ data, returnTo }: { data: VideoResearch; retur
         <figcaption><span>视频代表画面</span><time>{timestamp(summary.representativeFrame.time)}</time></figcaption>
       </figure>}
     </header>
-    <PostPerformance data={data}/>
   </>;
 }

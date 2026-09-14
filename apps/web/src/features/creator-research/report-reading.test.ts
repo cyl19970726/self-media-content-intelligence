@@ -68,25 +68,9 @@ describe("report reading", () => {
   });
 });
 
-import { MemoryRouter } from "react-router-dom";
-import { ReportOverview } from "./ReportOverview";
-import { contentRangeGaps, overviewSourceTarget } from "./report-reading-utils";
+import { contentRangeGaps } from "./report-reading-utils";
 
-describe("report compatibility", () => {
-  it("keeps old reports readable without a generated overview", () => {
-    const html = renderToStaticMarkup(createElement(MemoryRouter, {}, createElement(ReportOverview, { data })));
-    expect(html).toContain("尚未生成综合总览");
-  });
-  it("does not display stale synthesized text", () => {
-    const stale = { ...data, overview: { state: "stale", overview: null } } as VideoResearch;
-    const html = renderToStaticMarkup(createElement(MemoryRouter, {}, createElement(ReportOverview, { data: stale })));
-    expect(html).toContain("原报告已更新");
-  });
-  it("routes overview references to the exact content block and opening workspace", () => {
-    const withBlocks = { ...data, contentBlocks: [{ id: "block-2", title: "原段落" }] } as VideoResearch;
-    expect(overviewSourceTarget("/builderLenses/contentRestoration/blocks/0/body", withBlocks).anchor).toBe("content-block-2");
-    expect(overviewSourceTarget("/builderLenses/visualEditing/openingAnalysis/segments/0", withBlocks).lens).toBe("opening");
-  });
+describe("content coverage", () => {
   it("reports time-range gaps without sorting or modifying source blocks", () => {
     const blocks = [{ start: 5, end: 10 }, { start: 0, end: 2 }] as VideoResearch["contentBlocks"];
     expect(contentRangeGaps(blocks, 12)).toEqual({ outOfOrder: true, gaps: [{ start: 2, end: 5 }, { start: 10, end: 12 }] });

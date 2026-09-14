@@ -1,27 +1,22 @@
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BarChart3, BookOpen, Database, GitBranch, LayoutDashboard, Search, Send, Users } from "lucide-react";
+import { Activity, Compass, ScanText, Users } from "lucide-react";
+import "./study-shell.css";
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const location = useLocation();
-  return <div className="app-shell">
-    <header className="masthead">
-      <Link to="/" className="brand">
-        <span className="brand__index">01</span>
-        <span><strong>SIGNAL ROOM</strong><small>SELF-MEDIA INTELLIGENCE</small></span>
-      </Link>
-      <div className="masthead__meta"><span>PRIVATE WORKSPACE</span><span className="live-dot">LOCAL</span></div>
-    </header>
-    <nav className="section-nav" aria-label="主导航">
-      <Link className={location.pathname === "/" ? "active" : ""} to="/"><LayoutDashboard size={16}/> 工作总览</Link>
-      <Link className={location.pathname.startsWith("/analyze") || location.pathname.startsWith("/runs") ? "active" : ""} to="/analyze"><Search size={16}/> 链接分析</Link>
-      <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
-      <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
-      <Link className={location.pathname.startsWith("/learning-loop") ? "active" : ""} to="/learning-loop"><GitBranch size={16}/> 迭代验证</Link>
-      <Link className={location.pathname.startsWith("/knowledge") ? "active" : ""} to="/knowledge"><BookOpen size={16}/> 内容知识</Link>
-      <Link className={location.pathname.startsWith("/evidence") ? "active" : ""} to="/evidence"><Database size={16}/> 证据存储</Link>
-      <Link className={location.pathname.startsWith("/creation") ? "active" : ""} to="/creation"><Send size={16}/> 创作发布</Link>
-    </nav>
-    {children}
+  const { pathname, search } = useLocation();
+  const progress = pathname === "/creators" && new URLSearchParams(search).get("view") === "progress";
+  const post = pathname.startsWith("/analyze") || pathname.startsWith("/runs") || pathname.includes("/videos/");
+  return <div className="study-shell">
+    <aside className="study-sidebar">
+      <Link to="/creators" className="study-brand"><Compass size={25}/><span>内容研究<small>研究工作台</small></span></Link>
+      <nav aria-label="主导航">
+        <Link to="/creators" aria-current={!post && !progress && pathname.startsWith("/creators") ? "page" : undefined}><Users size={19}/>博主研究</Link>
+        <Link to="/analyze" aria-current={post ? "page" : undefined}><ScanText size={19}/>帖子研究</Link>
+        <Link to="/creators?view=progress" aria-current={progress ? "page" : undefined}><Activity size={19}/>分析进度</Link>
+      </nav>
+      <div className="study-sidebar-note"><span>从内容到认知</span><p>认识创作者，追溯证据，留下自己的判断。</p></div>
+    </aside>
+    <div className="study-surface">{children}</div>
   </div>;
 }

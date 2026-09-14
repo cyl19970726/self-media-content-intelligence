@@ -2,14 +2,15 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ArrowRight, Check, CircleAlert, Clipboard, ExternalLink,
-  LoaderCircle, Play, RefreshCw, Users
+  LoaderCircle, RefreshCw, Users
 } from "lucide-react";
-import { createRun, getRun, listRuns, retryRun } from "../../shared/api/client";
+import { createRun, getRun, listRuns, retryRun } from "../../shared/api/posts";
 import { ReportV2 } from "./ReportV2";
-import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeContributionBlock";
+import { ResearchNotebook } from "../../entities/research/ResearchNotebook";
 import type { ReportEnvelope, RunStatus, RunSummary } from "../../shared/contracts/core";
 import { PostSourceFactsCard } from "../../entities/source-facts/PostSourceFactsCard";
 import { sourceSnapshotFacts } from "../../entities/source-facts/model";
+import "./standalone-analysis.css";
 
 const activeStatuses: RunStatus[] = ["queued", "running"];
 const statusLabels: Record<RunStatus, string> = {
@@ -37,13 +38,19 @@ function RunRail({ runs, activeId }: { runs: RunSummary[]; activeId?: string }) 
 
 function useRuns() {
   const [runs, setRuns] = useState<RunSummary[]>([]);
-  const refresh = useCallback(async () => setRuns(await listRuns()), []);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const refresh = useCallback(async () => {
+    try { setRuns(await listRuns()); setError(null); }
+    catch (cause) { setError(cause instanceof Error ? cause.message : "无法读取分析记录"); }
+    finally { setLoading(false); }
+  }, []);
   useEffect(() => {
     void refresh();
     const timer = window.setInterval(() => void refresh(), 3000);
     return () => window.clearInterval(timer);
   }, [refresh]);
-  return { runs, refresh };
+  return { runs, refresh, loading, error };
 }
 
 function Intake({ onCreated }: { onCreated: (report: ReportEnvelope) => void }) {
@@ -57,9 +64,9 @@ function Intake({ onCreated }: { onCreated: (report: ReportEnvelope) => void }) 
     finally { setSubmitting(false); }
   };
   return <section className="intake">
-    <div className="eyebrow"><span>NEW ANALYSIS</span><span>URL → EVIDENCE → REPORT</span></div>
-    <h1>给我一条链接。<br/><em>拿回一份可复用的判断。</em></h1>
-    <p className="intake__lede">支持小红书与 X。可直接粘贴小红书分享文案和短链；系统会拆解单帖，并沿作者主页生成跨帖组合画像。</p>
+    <div className="eyebrow"><span>单帖研究</span><span>来源 → 证据 → 三类阅读</span></div>
+    <h1>从一条帖子，<br/><em>看懂内容与做法。</em></h1>
+    <p className="intake__lede">粘贴公开的小红书或 X 链接。系统会尽力取得原帖、视频和可见指标，再分别还原内容、编导逻辑、画面与剪辑；取得不到的信息会明确标为未知。</p>
     <form onSubmit={submit} className="intake-form">
       <label htmlFor="source-url">公开内容链接</label>
       <div className="input-row">
@@ -71,11 +78,8 @@ function Intake({ onCreated }: { onCreated: (report: ReportEnvelope) => void }) 
       </div>
       {error && <p className="form-error"><CircleAlert size={16}/>{error}</p>}
     </form>
-    <button type="button" className="demo-link" onClick={() => setUrl("fixture://xiaohongshu/three-layer-demo")}>
-      <Play size={15}/> 填入完整演示样例
-    </button>
     <div className="process-strip" aria-label="分析流程">
-      {["采集原文与指标", "转录与镜头拆解", "生成证据化报告"].map((label, index) =>
+      {["保存公开来源", "读取视频信息", "生成可追溯研究"].map((label, index) =>
         <div key={label}><span>0{index + 1}</span><strong>{label}</strong></div>)}
     </div>
   </section>;
@@ -83,10 +87,10 @@ function Intake({ onCreated }: { onCreated: (report: ReportEnvelope) => void }) 
 
 export function SinglePostHome() {
   const navigate = useNavigate();
-  const { runs, refresh } = useRuns();
-  return <main className="workspace"><RunRail runs={runs}/><Intake onCreated={(report) => {
+  const { runs, refresh, loading, error } = useRuns();
+  return <main className="workspace"><RunRail runs={runs}/><div>{loading && <p className="run-list-state"><LoaderCircle className="spin" size={16}/>正在读取分析记录</p>}{error && <p className="run-list-state run-list-state--error"><CircleAlert size={16}/>{error}<button onClick={() => void refresh()}>重试</button></p>}<Intake onCreated={(report) => {
     void refresh(); navigate(`/runs/${report.id}`);
-  }}/></main>;
+  }}/></div></main>;
 }
 
 function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () => void }) {
@@ -122,7 +126,7 @@ function DetailBody({ report, onRetry }: { report: ReportEnvelope; onRetry: () =
       <CircleAlert size={28}/><div><span>LEGACY REPORT / 数据迁移保护</span><h2>这份旧档案不能直接套用新版报告。</h2>
       <p>新版字段在旧数据中不存在。系统不会把缺失值显示成 0，也不会继续展示无法审计的旧版“为什么有效”结论。</p>
       <button className="primary-button" onClick={onRetry}><RefreshCw size={16}/> 重新采集并升级报告</button></div>
-    </section> : <><ReportV2 report={report}/><KnowledgeContributionBlock subjectType="video" subjectId={report.id}/></>}
+    </section> : <><ReportV2 report={report}/><ResearchNotebook subjectId={report.id} title={source.title ?? report.executiveSummary} sourceUrl={report.sourceUrl}/></>}
   </article>;
 }
 

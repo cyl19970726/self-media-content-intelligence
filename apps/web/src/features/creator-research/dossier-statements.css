@@ -1,0 +1,10 @@
+.statement-list { display: grid; gap: 18px; }
+.statement { min-width: 0; }
+.statement > span { color: #78909d; font-size: 11px; }
+.statement > p { margin: 7px 0; color: #344d5c; font-size: 14px; line-height: 1.8; }
+.statement > small { display: block; color: #7a8994; font-size: 12px; line-height: 1.7; }
+.statement > details { margin-top: 8px; }
+.statement > details > summary { color: #237f7a; font-size: 12px; }
+.statement ul { display: grid; gap: 8px; list-style: none; padding: 12px; background: #f0f6f6; border-radius: 8px; }
+.statement li { font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.statement li a { color: #137976; text-decoration: underline; text-underline-offset: 3px; }

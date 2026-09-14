@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { AlertTriangle, CheckCircle2, Database, LoaderCircle, Search } from "lucide-react";
 import type { EvidenceAccessProjection, EvidenceAvailability } from "../../shared/contracts/core";
 import type { EvidenceCatalogPage } from "../../shared/contracts/core";
-import { getEvidenceAccess, listEvidenceCatalog } from "../../shared/api/client";
+import { getEvidenceAccess, listEvidenceCatalog } from "../../shared/api/evidence";
 import "./evidence-catalog.css";
 
 const availabilityLabels: Record<EvidenceAvailability, string> = {

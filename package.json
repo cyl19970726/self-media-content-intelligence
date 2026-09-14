@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.2.6",
-    "@fontsource/ibm-plex-sans-condensed": "^5.2.6",
     "commander": "^14.0.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
