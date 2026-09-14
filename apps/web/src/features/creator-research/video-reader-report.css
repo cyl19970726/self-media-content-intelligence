@@ -112,7 +112,6 @@
 .audit-lenses { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }.audit-lenses > article { padding: 16px; border-right: 1px solid var(--line); }.audit-lenses > article:last-child { border: 0; }.audit-lenses header { display: flex; justify-content: space-between; }.audit-lenses h3 { margin: 0; font-size: 15px; }.audit-lenses p { font-size: 11px; line-height: 1.45; }.audit-lenses .is-pass span, .audit-lenses .is-fail span { margin-right: 6px; font: 500 8px "IBM Plex Mono"; }.audit-lenses .is-fail { color: #96392f; }
 .audit-knowledge { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); border-top: 1px solid var(--line); }.audit-knowledge article { padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }.audit-knowledge header { display: flex; justify-content: space-between; color: var(--teal); font: 500 9px "IBM Plex Mono"; }.audit-knowledge h3 { font-size: 17px; }.audit-knowledge p { font-size: 12px; line-height: 1.55; }.audit-transcript article { min-height: 86px; padding: 9px 0; display: grid; grid-template-columns: 90px 56px 1fr; gap: 14px; align-items: center; border-bottom: 1px solid var(--line); }.audit-transcript time { color: var(--teal); font: 500 9px "IBM Plex Mono"; }.audit-transcript img { width: 56px; height: 72px; object-fit: cover; }.audit-transcript p { margin: 0; font-size: 12px; }
 .audit-frames { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; }.audit-frames figure { margin: 0; }.audit-frames img { width: 100%; aspect-ratio: 9/13; display: block; object-fit: cover; background: var(--ink); }.audit-frames figcaption { padding-top: 5px; display: flex; justify-content: space-between; color: #707773; font: 500 8px "IBM Plex Mono"; }
-.audit-reports > details { margin-bottom: 10px; border: 1px solid var(--line); }.audit-reports summary { padding: 12px; cursor: pointer; }.audit-markdown { max-width: 760px; padding: 20px; }.audit-markdown h4 { margin-top: 26px; }.audit-markdown p, .audit-markdown li { font-size: 12px; line-height: 1.6; }
 .reader-footer { margin-top: 70px; padding-top: 18px; display: flex; justify-content: space-between; gap: 30px; border-top: 1px solid var(--ink); color: #68706b; font-size: 11px; }.reader-footer a { color: var(--orange); }
 .reader-empty { margin-left: 76px; padding: 30px 0; color: #6c736f; }
 
@@ -194,19 +193,5 @@
 @media (max-width: 900px) {
   .lens-workspace__body [id] { scroll-margin-top: 110px; }
 }
-.legacy-report-original { white-space: pre-wrap; overflow-wrap: anywhere; padding: 20px; font-size: 14px; line-height: 1.8; font-family: inherit; }
-
-.original-report { max-width: 860px; overflow-wrap: anywhere; line-height: 1.85; }
-.original-report h3 { margin: 2.8rem 0 1rem; font-size: 1.4rem; scroll-margin-top: 100px; }
-.original-report h4 { margin: 2rem 0 1rem; font-size: 1.15rem; scroll-margin-top: 100px; }
-.original-report p { margin: 1rem 0; white-space: pre-wrap; }
-.original-report figure { margin: 1.5rem 0; }
-.original-report figure img { max-width: 100%; max-height: 520px; border-radius: 8px; }
-.original-report figcaption { color: var(--muted); font-size: .85rem; }
-.original-report blockquote { margin: 1rem 0; padding: .4rem 1rem; border-left: 3px solid currentColor; }
-.original-report pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 1rem; background: #f4f4f1; }
-.original-report code { font-size: .9em; }
-.original-report-unresolved { font-size: .85rem; }
-.original-report-table { max-width: 100%; overflow-x: auto; }
-.original-report-table table { border-collapse: collapse; width: 100%; font-size: .9rem; }
-.original-report-table th, .original-report-table td { padding: .7rem; border-bottom: 1px solid #ddd; text-align: left; min-width: 5rem; }
+.audit-raw-text { white-space: pre-wrap; overflow-wrap: anywhere; padding: 20px; font-size: 14px; line-height: 1.8; font-family: inherit; }
+.audit-reports > a { display: block; margin: 10px 0; color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }

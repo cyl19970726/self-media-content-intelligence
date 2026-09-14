@@ -1,4 +1,3 @@
-import { projectOriginalReportMedia } from "./original-report-media.js";
 import { readReportSource } from "./report-source-revision.js";
 import { loadReportOverview } from "./report-overview.js";
 import { postSourceFactsSchema } from "../../packages/contracts/index.js";
@@ -14,9 +13,6 @@ import {
   type RuntimeThreeLensGateReport
 } from "../../packages/research/index.js";
 import { videoResearchSchema, type VideoResearch } from "../shared/video-research.js";
-import { loadVideoEvidence } from "./console.js";
-import { loadLegacyDeepVideo } from "./legacy-deep-videos.js";
-import { loadNextWaveDeepVideo } from "./next-wave-deep-videos.js";
 import { projectPostSourceFacts } from "./post-source-facts.js";
 
 function record(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
@@ -83,65 +79,70 @@ function safeThreeLens(batchItem: { threeLensEvaluationArtifactRef: string | nul
   } catch (error) { return { error: error instanceof Error ? error.message : "评估资料无法读取。" }; }
 }
 
-function legacyVideo(creatorId: string, videoId: string): VideoResearch | null {
-  const data = loadVideoEvidence(creatorId, videoId);
-  if (!data) return null;
-  const frames = data.frames.map((frame) => ({ id: frame.id, time: frame.time ? Number.parseFloat(frame.time) || null : null, src: frame.src, reason: null }));
-  return videoResearchSchema.parse({
-    schemaVersion: "1.0.0", id: data.id, creatorId: data.creatorId,
-    creatorName: data.creatorId === "ai-red-witch" ? "AI红发魔女" : data.creatorId === "human-director" ? "人类最强编导" : data.creatorId,
-    title: data.title, sourceHref: data.reportHref ?? "#", sourceLabel: `${data.sourceLabel} · legacy adapter`,
-    thesis: data.lead, article: data.lead,
-    engagement: data.engagement ?? { likes: null, collections: null, comments: null, shares: null },
-    evidenceHealth: { state: data.knowledgeUnits.length && data.cues.length ? "partial" : "missing", transcript: data.cues.length > 0,
-      frames: frames.length > 0, ocr: false, audio: false, baseline: Boolean(data.engagement), note: "兼容页面只投影已迁移的旧证据字段。" },
-    knowledgeUnits: data.knowledgeUnits.map((unit) => ({ ...unit, importance: "unknown", evidenceClass: "system_inference", confidence: "medium",
-      start: null, end: null, evidenceRefs: [], unknowns: [] })),
-    directingLogic: { viewerBefore: null, viewerAfter: data.lead, activatedQuestion: null, promise: null, payoff: null, endingResolution: null,
-      stages: data.architecture ? [{ label: data.architecture, start: null, end: null, viewerQuestion: null, function: data.lead, proof: null, cognitiveChange: null, comprehensionLoad: null, payoff: null, evidenceRefs: [] }] : [], informationDesign: [], notes: ["兼容投影尚未恢复完整编导逻辑。"] },
-    visualEditing: { orientation: null, composition: null, shotCount: null, cutsPerMinute: null, resultFirstAt: null, carriers: [], analyzedDuration: null,
-      claims: [], shotSemantics: [], audioRole: null, notes: ["兼容投影尚未恢复画面与剪辑分析。"] },
-    performanceContext: { tier: "unknown", creatorMedianLikes: null, medianMultiple: null, percentileRank: null, interpretation: "仅有作品公开互动，缺少统一账号基线。", confounds: ["公开互动不等于播放、留存、涨粉或成交。"] },
-    relations: [],
-    transcript: data.cues.map((cue) => ({ id: cue.id, start: cue.start, end: null, text: cue.text, representativeFrame: cue.frame, overlappingShots: [] })),
-    frames: { sparse: frames, dense: frames },
-    lensCoverage: {
-      contentRestoration: { state: "partial", covered: data.knowledgeUnits.length, total: data.knowledgeUnits.length, evidenceRefs: [], conflicts: [], uncheckedChannels: [], failedGateIds: ["legacy_evidence_projection"], note: "仅迁移了旧知识单元，未通过内容还原硬闸。" },
-      directingLogic: { state: "missing", covered: 0, total: 1, evidenceRefs: [], conflicts: [], uncheckedChannels: [], failedGateIds: ["directing_logic_missing"], note: "旧投影未恢复编导逻辑。" },
-      visualEditingLogic: { state: "missing", covered: 0, total: 1, evidenceRefs: [], conflicts: [], uncheckedChannels: ["visual", "audio.non_speech"], failedGateIds: ["visual_editing_missing"], note: "旧投影未恢复画面与剪辑逻辑。" }
-    }, coverage: { coreCovered: data.knowledgeUnits.length, coreTotal: data.knowledgeUnits.length, uncheckedChannels: [] },
-    conflicts: [], unknowns: data.unknowns, gate: { ready: false, failedGateIds: ["legacy_evidence_projection"] }
+function readJson(reference: string): unknown { return JSON.parse(fs.readFileSync(artifactPath(reference), "utf8")) as unknown; }
+
+function researchOwnerId(run: ReturnType<CreatorResearchService["list"]>[number]): string {
+  return run.creatorId ?? run.canonicalSlug ?? `run-${run.id}`;
+}
+
+export function loadVideoResearch(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
+  return loadVideoResearchSource(service, creatorId, videoId, requestedRunId);
+}
+
+export function listLatestVideoResearch(service: CreatorResearchService) {
+  const latestRuns = new Map<string, ReturnType<CreatorResearchService["list"]>[number]>();
+  for (const run of service.list(100)) {
+    const ownerId = researchOwnerId(run);
+    if (!latestRuns.has(ownerId)) latestRuns.set(ownerId, run);
+  }
+  return [...latestRuns.values()].flatMap((run) => {
+    const ownerId = researchOwnerId(run);
+    const batch = service.portfolio(run.id)?.reconstructionBatch?.items ?? [];
+    return batch.flatMap((item) => {
+      const report = loadVideoResearchSource(service, ownerId, item.postExternalId, run.id);
+      if (!report) return [];
+      return [{
+        creatorId: report.creatorId,
+        creatorName: report.creatorName,
+        videoId: report.id,
+        title: report.title,
+        runId: run.id,
+        href: `/creators/${encodeURIComponent(report.creatorId)}/videos/${encodeURIComponent(report.id)}?run=${encodeURIComponent(run.id)}`
+      }];
+    });
   });
 }
 
-function readJson(reference: string): unknown { return JSON.parse(fs.readFileSync(artifactPath(reference), "utf8")) as unknown; }
-
-export function loadVideoResearch(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
-  const data = loadVideoResearchSource(service, creatorId, videoId, requestedRunId);
-  if (!data) return null;
-  return { ...data, originalReportMedia: projectOriginalReportMedia(data.reports.builder ?? data.article ?? "", data.quality.lineage.builderReportArtifactRef?.replace(/[^/]+$/, "")) };
-}
-
 function loadVideoResearchSource(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
-  if (!requestedRunId) {
-    const nextWaveDeep = loadNextWaveDeepVideo(creatorId, videoId);
-    if (nextWaveDeep) return { ...nextWaveDeep, reportFormat: "legacy_report" };
-    const deepLegacy = loadLegacyDeepVideo(creatorId, videoId);
-    if (deepLegacy) return { ...deepLegacy, reportFormat: "legacy_report" };
-  }
-  const runs = service.list(100);
-  const run = (requestedRunId ? service.get(requestedRunId) : null) ?? service.get(creatorId) ?? runs.find((item) => item.creatorId === creatorId) ?? null;
-  if (!run) return legacyVideo(creatorId, videoId);
+  const run = requestedRunId
+    ? service.get(requestedRunId)
+    : service.list(100).find((item) => researchOwnerId(item) === creatorId) ?? null;
+  if (!run || researchOwnerId(run) !== creatorId) return null;
   const portfolio = service.portfolio(run.id);
   const batchItem = portfolio?.reconstructionBatch?.items.find((item) => item.postExternalId === videoId);
-  if (!batchItem?.reconstructionArtifactRef) return legacyVideo(creatorId, videoId);
+  if (!batchItem?.reconstructionArtifactRef) return null;
   const selection = portfolio?.selection?.items.find((item) => item.externalId === videoId);
   const detail = portfolio?.details?.posts.find((item) => item.externalId === videoId);
   const sourceMedia = portfolio?.mediaManifest?.items.find((item) => item.externalId === videoId);
   const synthesis = portfolio?.synthesis?.postAnalyses.find((item) => item.postExternalId === videoId);
   const analysis = portfolio?.analysis;
-  const sourceRead = readReportSource(artifactPath(batchItem.reconstructionArtifactRef));
-  const reconstruction = record(JSON.parse(sourceRead.text));
+  let sourceRead: ReturnType<typeof readReportSource>;
+  let reconstruction: Record<string, unknown>;
+  try {
+    sourceRead = readReportSource(artifactPath(batchItem.reconstructionArtifactRef));
+    reconstruction = record(JSON.parse(sourceRead.text));
+  } catch {
+    return null;
+  }
+  const builderLenses = record(reconstruction.builderLenses);
+  const builderContent = record(builderLenses.contentRestoration);
+  const builderDirecting = record(builderLenses.directingLogic);
+  const builderVisual = record(builderLenses.visualEditing);
+  const hasBuilderThreeLenses = reconstruction.schemaVersion === "video-reconstruction-2.0" &&
+    list(builderContent.blocks).length > 0 && list(builderDirecting.stages).length > 0 &&
+    list(builderVisual.carriers).length > 0 && list(builderVisual.claims).length > 0 &&
+    list(builderVisual.shotSemantics).length > 0 && list(builderVisual.rhythm).length > 0;
+  if (!hasBuilderThreeLenses) return null;
   const rootRef = batchItem.reconstructionArtifactRef.replace(/reconstruction\.json$/, "");
   const rootPath = path.dirname(artifactPath(batchItem.reconstructionArtifactRef));
   const articlePath = batchItem.articleArtifactRef ? artifactPath(batchItem.articleArtifactRef) : path.join(rootPath, "article.md");
@@ -189,12 +190,6 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     from: text(relation.from), to: text(relation.to), relation: text(relation.relation),
     evidenceRefs: list(relation.evidence).map((item) => text(record(item).ref)).filter(Boolean)
   }; });
-  const builderLenses = record(reconstruction.builderLenses);
-  const builderContent = record(builderLenses.contentRestoration);
-  const builderDirecting = record(builderLenses.directingLogic);
-  const builderVisual = record(builderLenses.visualEditing);
-  const hasBuilderThreeLenses = list(builderContent.blocks).length > 0 && list(builderDirecting.stages).length >= 1 &&
-    list(builderVisual.carriers).length > 0 && list(builderVisual.shotSemantics).length > 0;
   const mediaForRefs = (refs: string[]) => refs.flatMap((ref) => {
     const frame = frameLookup.get(ref);
     return frame ? [{ ref, src: frame.src, label: frame.reason ?? ref, time: frame.time, role: "evidence",
@@ -354,7 +349,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
   const productState = !contentReady || !directingReady || !visualReady || qualityStates.evaluationState !== "verified" ? "provisional" as const
     : sourceFacts.availability.overall === "available" && selection?.likes != null ? "gold" as const : "analysis_ready" as const;
   return videoResearchSchema.parse({
-    schemaVersion: "1.0.0", id: videoId, creatorId: run.creatorId ?? creatorId, creatorName: run.creatorName ?? "待识别博主",
+    schemaVersion: "1.0.0", id: videoId, creatorId: researchOwnerId(run), creatorName: run.creatorName ?? "作者未知",
     title: sourceFacts.title ?? "标题未识别", sourceHref: sourceFacts.sourceUrl,
     sourceLabel: `video-content-reconstruction · ${batchItem.state}`,
     sourceFacts,
@@ -375,9 +370,8 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
         time: representativeMedia.time
       } : null
     },
-    article, contentBlocks,
-    reportFormat: Object.keys(builderLenses).length ? "builder_lenses" : "legacy_report",
-    reports: { builder: article, evaluator: evaluatorReport },
+    contentBlocks,
+    reportFormat: "builder_lenses",
     quality: { ...qualityStates, evaluationReadIssue: "error" in evaluationRead ? evaluationRead.error : null, aggregateState: batchItem.state, findings: [...lensFindings, ...genericFindings],
       lineage: { reconstructionArtifactRef: batchItem.reconstructionArtifactRef,
         builderReportArtifactRef: article ? `${rootRef}article.md` : null,

@@ -71,7 +71,7 @@ export default function WorkspaceOverviewPage() {
     </header>
 
     <section className="overview-assets" aria-labelledby="asset-heading">
-      <div className="overview-section-heading"><span>01</span><div><h2 id="asset-heading">真实资产</h2><p>来自当前运行库，不包含隔离 Fixture。</p></div><Link to="/analyze">分析新链接 <ArrowRight size={14}/></Link></div>
+      <div className="overview-section-heading"><span>01</span><div><h2 id="asset-heading">真实资产</h2><p>来自当前运行库，不包含隔离 Fixture。</p></div><Link to="/analyze">查看最新报告 <ArrowRight size={14}/></Link></div>
       <div className="overview-asset-grid">
         <AssetCard label="单帖分析" value={assets.postRuns.total} href="/analyze" icon={<FileSearch/>} detail={<StatusLine statuses={assets.postRuns.statuses}/>}/>
         <AssetCard label="博主研究" value={assets.creatorRuns.total} href="/creators" icon={<Users/>} detail={<><StatusLine statuses={assets.creatorRuns.statuses}/><span>{assets.creatorRuns.reconstructedPosts} 条深度帖子</span></>}/>

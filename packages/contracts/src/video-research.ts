@@ -42,11 +42,11 @@ const postQualitySchema = z.object({
   })
 });
 
-const legacyQuality = {
+const defaultQuality = {
   buildState: "missing" as const,
   evaluationState: "skipped" as const,
   promotionState: "ineligible" as const,
-  aggregateState: "legacy_projection",
+  aggregateState: "unavailable",
   findings: [],
   lineage: {
     reconstructionArtifactRef: null,
@@ -85,9 +85,7 @@ export const videoResearchSchema = z.object({
     productState: "provisional", statusLabel: "资料待补", verdict: "尚未形成读者结论",
     strengths: [], limitations: [], reusableStructure: [], representativeFrame: null
   }),
-  article: z.string().nullable(),
-  originalReportMedia: z.record(z.string(), z.string()).default({}),
-  reportFormat: z.enum(["builder_lenses", "legacy_report", "unknown"]).default("unknown"),
+  reportFormat: z.literal("builder_lenses"),
   sourceRevision: z.string().nullable().default(null),
   contentBlocks: z.array(z.object({
     id: z.string(),
@@ -113,11 +111,7 @@ export const videoResearchSchema = z.object({
     })),
     boundary: z.string().nullable()
   })).default([]),
-  reports: z.object({
-    builder: z.string().nullable(),
-    evaluator: z.string().nullable()
-  }).default({ builder: null, evaluator: null }),
-  quality: postQualitySchema.default(legacyQuality),
+  quality: postQualitySchema.default(defaultQuality),
   evidenceIndex: z.array(z.object({
     id: z.string(),
     kind: z.string(),

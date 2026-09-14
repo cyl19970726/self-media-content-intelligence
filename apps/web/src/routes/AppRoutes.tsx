@@ -10,10 +10,9 @@ const EvidenceInspector = lazy(() => import("../features/evidence/EvidenceInspec
 const KnowledgeWorkspace = lazy(() => import("../features/knowledge/KnowledgePage"));
 const LearningLoopsPage = lazy(() => import("../features/learning-loop/LearningLoopsPage"));
 const WorkspaceOverviewPage = lazy(() => import("../features/workspace-overview/WorkspaceOverviewPage"));
-const SinglePostHome = lazy(() => import("../features/single-post/SinglePostWorkspace")
-  .then((module) => ({ default: module.SinglePostHome })));
-const SinglePostDetail = lazy(() => import("../features/single-post/SinglePostWorkspace")
-  .then((module) => ({ default: module.SinglePostDetail })));
+const LatestPostIndex = lazy(() => import("../features/single-post/LatestPostIndex"));
+const LegacyRunRetired = lazy(() => import("../features/single-post/LatestPostIndex")
+  .then((module) => ({ default: module.LegacyRunRetired })));
 
 function LegacyCreatorRunRedirect() {
   const { id = "" } = useParams();
@@ -23,7 +22,7 @@ function LegacyCreatorRunRedirect() {
 export function AppRoutes() {
   return <Suspense fallback={<div className="page-loader"><LoaderCircle className="spin"/><p>正在加载工作区</p></div>}><Routes>
     <Route path="/" element={<WorkspaceOverviewPage/>}/>
-    <Route path="/analyze" element={<SinglePostHome/>}/>
+    <Route path="/analyze" element={<LatestPostIndex/>}/>
     <Route path="/creators" element={<CreatorsOverview/>}/>
     <Route path="/creators/:id" element={<CreatorDossierPage/>}/>
     <Route path="/creators/:id/videos/:videoId" element={<VideoEvidencePage/>}/>
@@ -36,7 +35,7 @@ export function AppRoutes() {
     <Route path="/knowledge/:conceptId" element={<KnowledgeWorkspace/>}/>
     <Route path="/evidence" element={<EvidenceInspector/>}/>
     <Route path="/benchmark" element={<Navigate replace to="/comparisons"/>}/>
-    <Route path="/runs/:id" element={<SinglePostDetail/>}/>
+    <Route path="/runs/:id" element={<LegacyRunRetired/>}/>
     <Route path="*" element={<WorkspaceOverviewPage/>}/>
   </Routes></Suspense>;
 }

@@ -15,3 +15,6 @@ it('preserves explicit run selection and filters when canonicalizing a dossier U
   expect(canonicalCreatorHref('creator','old','?tier=low')).toBe('/creators/creator?tier=low&run=old');
   expect(singlePostReturnHref('creator','old',null)).toBe('/creators/creator?run=old#portfolio');
 });
+it('returns an independent single-post run to the latest report index', () => {
+  expect(singlePostReturnHref('run-00000000-0000-4000-8000-000000000908','00000000-0000-4000-8000-000000000908',null)).toBe('/analyze');
+});

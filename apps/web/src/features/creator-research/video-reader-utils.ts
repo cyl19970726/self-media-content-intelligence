@@ -30,3 +30,8 @@ export function stageReadingLabel(label: string) {
   const labels: Record<string, string> = { Hook: "开场吸引", "Problem-to-method": "从问题到方法", "Proof sample": "成果样本", "Process proof": "过程证明", "Extended payoff": "展开成果", Ending: "结尾收束" };
   return labels[label] ?? label;
 }
+
+export function evaluationReadingLabel(data: VideoResearch) {
+  if (data.quality.evaluationState === "failed" && ["ready", "verified"].includes(data.quality.aggregateState)) return "当前三部分评估不可用";
+  return { verified: "当前评估通过", failed: "当前评估失败", findings: "评估有待解决项", skipped: "当前评估未执行" }[data.quality.evaluationState];
+}

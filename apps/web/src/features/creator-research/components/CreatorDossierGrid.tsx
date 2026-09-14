@@ -24,7 +24,7 @@ function CreatorCard({ creator, index }: { creator: CreatorSummary; index: numbe
 
 export function CreatorDossierGrid({ creators }: { creators: CreatorSummary[] | null }) {
   return <section className="creator-dossiers" aria-labelledby="creator-dossiers-title">
-    <header><div><span>RESEARCH DOSSIERS</span><h2 id="creator-dossiers-title">已完成的博主档案</h2></div><p>每一份都沿用同一套判断顺序，所有结论回到证据。</p></header>
+    <header><div><span>RESEARCH DOSSIERS</span><h2 id="creator-dossiers-title">当前博主研究</h2></div><p>按每位博主的实际进度查看，已产出的结论均可追溯证据。</p></header>
     {creators === null ? <div className="page-loader"><LoaderCircle className="spin"/><p>正在汇总博主档案</p></div>
       : <div className="creators-grid">{creators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}/>)}
         {creators.length === 0 && <div className="rail-empty"><UserRound size={20}/>还没有完成复核的博主档案。</div>}</div>}

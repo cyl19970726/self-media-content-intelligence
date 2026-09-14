@@ -13,6 +13,7 @@ export function canonicalCreatorHref(id: string, run: string, search: string) {
 }
 
 export function singlePostReturnHref(creatorId: string, run: string | undefined, returnTo: string | null) {
+  if (creatorId.startsWith("run-") && !returnTo) return "/analyze";
   const base = `/creators/${encodeURIComponent(creatorId)}`;
   if (returnTo && [base, ...(run ? [`/creators/${encodeURIComponent(run)}`] : [])].some(prefix => returnTo === prefix || returnTo.startsWith(`${prefix}?`) || returnTo.startsWith(`${prefix}#`))) return returnTo;
   return `${base}${run ? `?run=${encodeURIComponent(run)}` : ''}#portfolio`;

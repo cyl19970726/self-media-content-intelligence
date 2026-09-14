@@ -33,8 +33,6 @@
     "evidence:copy": "node scripts/migrate-evidence.mjs copy",
     "evidence:verify": "node scripts/migrate-evidence.mjs verify",
     "test:skills": "node scripts/validate-creator-skill-system.mjs",
-    "qa:report": "node scripts/render-report-preview.mjs",
-    "task13:fixture": "tsx scripts/task13-release-fixture.ts",
     "knowledge-v1:fixture": "tsx scripts/content-knowledge-v1-fixture.ts",
     "wave4:content-packages": "tsx scripts/wave4-content-packages.ts",
     "smoke:entrypoints": "node scripts/smoke-entrypoints.mjs",

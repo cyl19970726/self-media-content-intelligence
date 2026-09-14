@@ -2,7 +2,6 @@ import fs from "node:fs";
 import express from "express";
 import path from "node:path";
 import { z } from "zod";
-import { AnalysisService } from "../core/service.js";
 import { CreatorResearchService } from "../core/creator-research-service.js";
 import { ComparisonProjectService, type CreatorResearchBatchService } from "../../packages/research/index.js";
 import { PublishingService } from "../../packages/creation/index.js";
@@ -12,16 +11,14 @@ import {
   projectRoot,
   runtimeDir
 } from "../../packages/adapters/index.js";
-import { createCreatorResearchRunInputSchema, createRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
+import { createCreatorResearchRunInputSchema, discoverCreatorsInputSchema } from "../shared/schema.js";
 import { defaultAiCreatorKeywords, RedFoxCreatorDiscoveryService } from "../../packages/adapters/index.js";
 import { loadCreatorSummaries } from "./creators.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
-import { buildCreatorDepthParityManifest } from "./creator-depth-parity.js";
-import { loadVideoResearch } from "./video-research.js";
+import { listLatestVideoResearch, loadVideoResearch } from "./video-research.js";
 import { loadComparisonDossier } from "./comparison-dossier.js";
 import type { ResearchLearningService } from "./research-learning.js";
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
-import { importNextWaveCreatorSnapshot } from "./next-wave-import.js";
 import type { LearningLoopControlPlane } from "./learning-loop.js";
 import { registerPublishingRoutes } from "./routes/publishing.js";
 import { registerKnowledgeRoutes } from "./routes/knowledge.js";
@@ -35,7 +32,6 @@ import { ingestAnalysisRevisionSchema, type EvidenceAccessPort } from "../../pac
 import { buildCreatorRunOperations } from "./creator-operations.js";
 
 export interface AppDependencies {
-  analysis: AnalysisService;
   creatorResearch: CreatorResearchService;
   creatorResearchBatches?: CreatorResearchBatchService;
   comparisons: ComparisonProjectService;
@@ -48,7 +44,6 @@ export interface AppDependencies {
 }
 
 export function createApp({
-  analysis: service,
   creatorResearch: creatorResearchService,
   creatorResearchBatches: creatorResearchBatchService,
   comparisons: comparisonProjectService,
@@ -83,7 +78,7 @@ export function createApp({
   registerEvidenceRoutes(app, evidenceAccess);
   if (creatorResearchBatchService) registerCreatorResearchBatchRoutes(app, creatorResearchBatchService);
   registerWorkspaceRoutes(app, {
-    analysis: service, creators: creatorResearchService, comparisons: comparisonProjectService,
+    creators: creatorResearchService, comparisons: comparisonProjectService,
     learningLoop: learningLoopControlPlane, knowledgeConcepts: () => contentKnowledgeService.listKnowledge(),
     publishing: publishingService, evidence: evidenceAccess
   });
@@ -179,18 +174,6 @@ export function createApp({
       const message = error instanceof z.ZodError
         ? error.issues[0]?.message ?? "发现参数无效"
         : error instanceof Error ? error.message : "无法发现 AI 博主";
-      return response.status(400).json({ error: message });
-    }
-  });
-
-  app.post("/api/creator-runs/import-next-wave/:slug", (request, response) => {
-    try {
-      const taskSpaceId = z.number().int().positive().parse(request.body?.taskSpaceId);
-      return response.status(202).json(importNextWaveCreatorSnapshot(creatorResearchService, request.params.slug, taskSpaceId));
-    } catch (error) {
-      const message = error instanceof z.ZodError
-        ? error.issues[0]?.message ?? "输入无效"
-        : error instanceof Error ? error.message : "无法导入已有快照";
       return response.status(400).json({ error: message });
     }
   });
@@ -307,22 +290,15 @@ export function createApp({
     return response.json(dossier);
   });
 
-  app.get("/api/v1/creators/:id/depth-parity", (request, response) => {
-    if (!["ai-red-witch", "zhang-zala", "human-director"].includes(request.params.id)) {
-      return response.status(404).json({ error: "该博主尚未登记深度迁移合同" });
-    }
-    try {
-      return response.json(buildCreatorDepthParityManifest(request.params.id as "ai-red-witch" | "zhang-zala" | "human-director"));
-    } catch (error) {
-      return response.status(500).json({ error: error instanceof Error ? error.message : "深度迁移清单生成失败" });
-    }
-  });
-
   app.get("/api/v1/creators/:id/videos/:videoId", (request, response) => {
     const requestedRunId = typeof request.query.run === "string" ? request.query.run : undefined;
     const evidence = loadVideoResearch(creatorResearchService, request.params.id, request.params.videoId, requestedRunId);
     if (!evidence) return response.status(404).json({ error: "视频研究证据不存在" });
     return response.json(evidence);
+  });
+
+  app.get("/api/v1/video-research/latest", (_request, response) => {
+    return response.json({ items: listLatestVideoResearch(creatorResearchService) });
   });
 
   app.get("/api/v1/research-concepts", (_request, response) => {
@@ -347,45 +323,20 @@ export function createApp({
     return response.json(concept);
   });
 
-  registerKnowledgeActivationRoutes(app, new KnowledgeActivationService(service, creatorResearchService,
+  registerKnowledgeActivationRoutes(app, new KnowledgeActivationService(creatorResearchService,
     comparisonProjectService, contentKnowledgeService));
   registerKnowledgeRoutes(app, contentKnowledgeService, publishingService);
 
   registerLearningLoopRoutes(app, learningLoopControlPlane);
 
-  app.get("/api/runs", (request, response) => {
-    const limit = Math.min(200, Math.max(1, Number(request.query.limit ?? 100)));
-    response.json({ runs: service.list(limit) });
+  const retiredSinglePost = (_request: express.Request, response: express.Response) => response.status(410).json({
+    error: "旧单帖分析接口已停用；请从当前博主研究批次读取 builderLenses 报告。",
+    code: "LEGACY_SINGLE_POST_RETIRED"
   });
-
-  app.get("/api/runs/:id", (request, response) => {
-    const report = service.get(request.params.id);
-    if (!report) return response.status(404).json({ error: "分析任务不存在" });
-    return response.json(report);
-  });
-
-  app.post("/api/runs", (request, response) => {
-    try {
-      const input = createRunInputSchema.parse(request.body);
-      const report = service.create(input.url);
-      response.status(202).json(report);
-      void service.run(report.id, input.localVideoPath);
-    } catch (error) {
-      const message = error instanceof z.ZodError
-        ? error.issues[0]?.message ?? "输入无效"
-        : error instanceof Error ? error.message : "无法创建分析";
-      response.status(400).json({ error: message });
-    }
-  });
-
-  app.post("/api/runs/:id/retry", (request, response) => {
-    const report = service.get(request.params.id);
-    if (!report) return response.status(404).json({ error: "分析任务不存在" });
-    if (report.status === "running") return response.status(409).json({ error: "任务仍在运行" });
-    response.status(202).json(report);
-    void service.run(report.id, typeof request.body?.localVideoPath === "string" ? request.body.localVideoPath : undefined);
-    return undefined;
-  });
+  app.get("/api/runs", retiredSinglePost);
+  app.get("/api/runs/:id", retiredSinglePost);
+  app.post("/api/runs", retiredSinglePost);
+  app.post("/api/runs/:id/retry", retiredSinglePost);
 
   if (fs.existsSync(path.join(clientDirectory, "index.html"))) {
     app.use(express.static(clientDirectory, {

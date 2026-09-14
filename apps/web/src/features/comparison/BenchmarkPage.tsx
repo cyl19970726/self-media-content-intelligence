@@ -37,22 +37,17 @@ type ComparisonCandidate = ComparisonCreatorSource & {
 };
 
 function candidateFromDossier(dossier: CreatorDossier): ComparisonCandidate {
-  const legacy = dossier.source === "legacy_adapter";
-  const sourceRunId = legacy ? `legacy:${dossier.canonicalId}` : dossier.run?.id ?? "missing-run";
-  const revision = legacy
-    ? dossier.lastGood.revisionLabel ?? dossier.generatedAt
-    : dossier.run?.portfolioArtifactRef && dossier.run.selectionArtifactRef
-      ? `${dossier.run.portfolioArtifactRef}|${dossier.run.selectionArtifactRef}` : "missing-revision";
-  const eligible = legacy
-    ? dossier.corpus.postCount > 0 && dossier.portfolio.items.length > 0
-    : Boolean(dossier.run?.portfolioArtifactRef && dossier.run.selectionArtifactRef);
+  const sourceRunId = dossier.run?.id ?? "missing-run";
+  const revision = dossier.run?.portfolioArtifactRef && dossier.run.selectionArtifactRef
+    ? `${dossier.run.portfolioArtifactRef}|${dossier.run.selectionArtifactRef}` : "missing-revision";
+  const eligible = Boolean(dossier.run?.portfolioArtifactRef && dossier.run.selectionArtifactRef);
   return {
     creatorId: dossier.canonicalId, sourceRunId, revision, name: dossier.identity.name,
     postCount: dossier.corpus.postCount, coverageRate: dossier.corpus.coverageRate,
-    sourceLabel: legacy ? "已发布档案快照" : "Creator Run 快照",
+    sourceLabel: "Creator Run 快照",
     eligible,
     reason: eligible
-      ? `固定于 ${legacy ? (dossier.lastGood.revisionLabel ?? "已发布版本") : "当前 Portfolio + 21 条选择集"}`
+      ? "固定于当前 Portfolio + 21 条选择集"
       : "尚未同时形成全量基本盘与 21 条选择集；不允许加入比较。"
   };
 }

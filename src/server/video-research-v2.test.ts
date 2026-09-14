@@ -130,13 +130,13 @@ describe("video reconstruction V2 projection", () => {
     const missing = loadVideoResearch(service, "fixture-creator", videoId, runId);
     expect(missing?.contentBlocks[0]?.unresolvedVisuals).toEqual(lenses.contentRestoration.blocks[0]!.visuals);
     expect(missing?.contentBlocks[1]?.steps[0]?.unresolvedFrameRefs).toEqual(["MISSING-STEP"]);
+    const originalCarriers = rawLenses.visualEditing!.carriers;
     rawLenses.visualEditing!.carriers = [];
     rawLenses.visualEditing!.notes = ["部分字段尚缺，原始说明仍应可读"];
     fs.writeFileSync(path.join(root, "reconstruction.json"), JSON.stringify(reconstruction));
     const partial = loadVideoResearch(service, "fixture-creator", videoId, runId);
-    expect(partial?.directingLogic.stages[0]?.label).toBe(result?.directingLogic.stages[0]?.label);
-    expect(partial?.directingLogic.stages[0]?.viewerQuestion).toBe(result?.directingLogic.stages[0]?.viewerQuestion);
-    expect(partial?.visualEditing.notes).toEqual(["部分字段尚缺，原始说明仍应可读"]);
+    expect(partial).toBeNull();
+    rawLenses.visualEditing!.carriers = originalCarriers;
     const original = fs.readFileSync(path.join(root, "reconstruction.json"));
     rawLenses.visualEditing!.notes = ["源报告已明确修订"];
     const revised = JSON.stringify(reconstruction);
@@ -157,7 +157,7 @@ describe("video reconstruction V2 projection", () => {
   });
 });
 
-it("keeps legacy original reports and evidence readable without promoting incompatible evaluations", () => {
+it("rejects a legacy reconstruction instead of projecting its article or evidence", () => {
   const runId = '00000000-0000-4000-8000-000000000066';
   runIds.push(runId);
   const root = runArtifactDir(runId);
@@ -173,10 +173,16 @@ it("keeps legacy original reports and evidence readable without promoting incomp
     portfolio:()=>({ reconstructionBatch:{items:[{postExternalId:'post',state:'ready',failedGateIds:[],evaluationArtifactRef:null,gateReportArtifactRef:null,reconstructionArtifactRef:`${prefix}reconstruction.json`,articleArtifactRef:`${prefix}article.md`,threeLensEvaluationArtifactRef:`${prefix}evaluation.json`,threeLensGateReportArtifactRef:`${prefix}evaluation.json`}]} })
   } as unknown as CreatorResearchService;
   const report = loadVideoResearch(service,'legacy','post',runId);
-  expect(report?.reportFormat).toBe('legacy_report');
-  expect(report?.article).toBe(article);
-  expect(report?.contentBlocks).toEqual([]);
-  expect(report?.quality.evaluationReadIssue).toContain('runtime-three-lens-evaluation@2');
-  expect(report?.quality.promotionState).toBe('provisional');
-  expect(report?.frames.dense).toContainEqual({id:'HIRES-001',time:2,src:`${prefix}targeted-evidence/hires/ui.png`,reason:null});
+  expect(report).toBeNull();
+});
+
+it("does not fall back to another run when the requested run is absent or belongs to another creator", () => {
+  const otherRun = { id: "other-run", creatorId: "other-creator" };
+  const service = {
+    list: () => [{ id: "latest-run", creatorId: "fixture-creator" }],
+    get: (id: string) => id === otherRun.id ? otherRun : null,
+    portfolio: () => { throw new Error("a rejected run must not be read"); }
+  } as unknown as CreatorResearchService;
+  expect(loadVideoResearch(service, "fixture-creator", "post", "missing-run")).toBeNull();
+  expect(loadVideoResearch(service, "fixture-creator", "post", otherRun.id)).toBeNull();
 });

@@ -4,18 +4,11 @@ import type { ComparisonProjectRepository } from "./repository.js";
 import { compareCreatorPortfolios } from "./analyzer.js";
 import { comparisonProjectSchema, createComparisonProjectInputSchema, type ComparisonCreatorSource, type ComparisonProject } from "./project-contracts.js";
 import { creatorComparisonSchema, type ComparisonResearchCompletionPort } from "./contracts.js";
-import { creatorPortfolioAnalysisSchema, creatorSelectionSchema, type CreatorPortfolioAnalysis, type CreatorSelection,
-  type CreatorSynthesis, type CreatorSynthesisGate } from "../../index.js";
+import { type CreatorPortfolioAnalysis, type CreatorSelection, type CreatorSynthesis, type CreatorSynthesisGate } from "../../index.js";
 import type { CreatorDossier } from "../../../contracts/index.js";
 
 function now(): string { return new Date().toISOString(); }
 function leaseUntil(): string { return new Date(Date.now() + 90_000).toISOString(); }
-
-const legacyComparisonMemberIds: Record<string, string> = {
-  "ai-red-witch": "87d39505-7b34-4bc1-9344-487c3aa47e5a",
-  "zhang-zala": "f115de23-22b4-42e4-9679-2537570ccef3",
-  "human-director": "9897f92e-da3e-4548-a5df-99c9a3e57917"
-};
 
 type ResolvedComparableSource = {
   creatorRunId: string;
@@ -29,83 +22,10 @@ type ResolvedComparableSource = {
   synthesisGate: CreatorSynthesisGate | null;
   synthesisArtifactRef: string | null;
   synthesisGateArtifactRef: string | null;
-  provenance: "versioned_run" | "legacy_dossier";
+  provenance: "versioned_run";
 };
 
 type DossierLoader = (service: CreatorResearchService, id: string) => CreatorDossier | null;
-
-function validUrl(value: string): string | null {
-  try { return new URL(value).toString(); } catch { return null; }
-}
-
-/**
- * Adapts an already-published legacy dossier into the *same* numeric Portfolio
- * shape used by a Creator Run. Nulls are retained where the old dossier did
- * not preserve a statistic; this keeps old deep research comparable without
- * pretending it was collected by today's run pipeline.
- */
-function legacySnapshot(dossier: CreatorDossier): ResolvedComparableSource {
-  const creatorRunId = legacyComparisonMemberIds[dossier.canonicalId];
-  if (!creatorRunId) throw new Error(`博主 ${dossier.canonicalId} 没有可审计的旧版比较投影`);
-  const sourceRunId = `legacy:${dossier.canonicalId}`;
-  const revision = dossier.lastGood.revisionLabel ?? dossier.generatedAt;
-  const known = Math.min(dossier.corpus.likesKnown, dossier.corpus.postCount);
-  const missing = Math.max(0, dossier.corpus.postCount - known);
-  const selected = dossier.portfolio.items.map((item) => {
-    const url = validUrl(item.sourceHref);
-    if (!url) throw new Error(`${dossier.identity.name} 的「${item.title}」缺少可审计的来源链接，不能固定到比较项目。`);
-    return {
-      externalId: item.id,
-      url,
-      title: item.title,
-      visibleText: item.coreContent,
-      mediaType: item.format?.includes("图") ? "image" as const : "video" as const,
-      likesLabel: item.likes === null ? null : String(item.likes),
-      likes: item.likes,
-      tier: item.tier,
-      tierRank: item.tierRank,
-      anchors: item.anchors,
-      selectionReason: item.selectionReason,
-      deepCandidate: item.deepSample,
-      deepState: "pending" as const,
-      confounds: []
-    };
-  });
-  const tierCounts = (['high', 'base', 'low'] as const).reduce((counts, tier) => {
-    counts[tier] = selected.filter((item) => item.tier === tier).length;
-    return counts;
-  }, { high: 0, base: 0, low: 0 });
-  const medianNear = selected.find((item) => item.anchors.includes("median_near"))?.externalId ?? null;
-  const meanNear = selected.find((item) => item.anchors.includes("mean_near"))?.externalId ?? null;
-  const common = {
-    median: dossier.corpus.medianLikes,
-    mean: dossier.corpus.meanLikes,
-    medianNearPostId: medianNear,
-    meanNearPostId: meanNear,
-    meanGap: false,
-    meanGapReason: null
-  };
-  const sourceRef = `legacy-dossier:${dossier.canonicalId}:${revision}`;
-  const selection = creatorSelectionSchema.parse({
-    schemaVersion: "1.0.0", runId: creatorRunId, generatedAt: dossier.generatedAt,
-    sourceCorpusArtifactRef: sourceRef, ruleVersion: "ranked-7x3-v1",
-    rules: { targetPerTier: 7, deepCandidatesPerTier: 3, high: "legacy high", base: "legacy base", low: "legacy low", unknownMetricPolicy: "exclude_from_metric_tiering" },
-    denominator: { discoveredPosts: dossier.corpus.postCount, eligiblePosts: known, selectedPosts: selected.length, excludedMissingLikes: missing },
-    anchors: common, tierCounts, items: selected,
-    limitations: ["此选择集由已发布旧版 Creator Dossier 固定投影；未迁移的分位统计保持未知。", ...dossier.boundaries]
-  });
-  const analysis = creatorPortfolioAnalysisSchema.parse({
-    schemaVersion: "1.0.0", runId: creatorRunId, generatedAt: dossier.generatedAt,
-    corpusArtifactRef: sourceRef, selectionArtifactRef: sourceRef,
-    metricCoverage: { known, missing, rate: dossier.corpus.coverageRate },
-    likes: { min: null, p25: dossier.corpus.percentiles.p25, median: dossier.corpus.medianLikes, mean: dossier.corpus.meanLikes, p75: dossier.corpus.percentiles.p75, max: dossier.corpus.maxLikes },
-    tierCounts, anchors: common,
-    interpretationBoundary: "来自已发布 legacy Creator Dossier 的固定投影；只比较其已记录公开指标。",
-    unknowns: ["旧版投影未保留完整原始分位统计；缺失项保持 null。", ...dossier.boundaries]
-  });
-  return { creatorRunId, creatorId: dossier.canonicalId, sourceRunId, revision, creatorName: dossier.identity.name, analysis, selection,
-    synthesis: null, synthesisGate: null, synthesisArtifactRef: null, synthesisGateArtifactRef: null, provenance: "legacy_dossier" };
-}
 
 export class ComparisonProjectService {
   constructor(
@@ -119,13 +39,6 @@ export class ComparisonProjectService {
   private resolve(source: ComparisonCreatorSource): ResolvedComparableSource {
     const dossier = this.dossierLoader(this.creators, source.creatorId);
     if (!dossier) throw new Error(`博主 ${source.creatorId} 尚未形成可读研究档案，不能固定版本。`);
-    if (dossier.source === "legacy_adapter") {
-      const legacy = legacySnapshot(dossier);
-      if (source.sourceRunId !== legacy.sourceRunId || source.revision !== legacy.revision) {
-        throw new Error(`${dossier.identity.name} 的旧版研究已更新，请刷新页面后重新选择。`);
-      }
-      return legacy;
-    }
     const run = dossier.run;
     if (!run?.portfolioArtifactRef || !run.selectionArtifactRef) {
       throw new Error(`${dossier.identity.name} 尚未形成可固定的全量基本盘和选择集。`);

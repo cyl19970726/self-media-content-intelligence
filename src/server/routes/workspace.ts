@@ -1,12 +1,11 @@
 import type express from "express";
+import { listLatestVideoResearch } from "../video-research.js";
 import { workspaceOverviewSchema, type EvidenceAccessPort } from "../../../packages/contracts/index.js";
-import type { AnalysisService } from "../../core/service.js";
 import type { CreatorResearchService, ComparisonProjectService } from "../../../packages/research/index.js";
 import type { PublishingService } from "../../../packages/creation/index.js";
 import type { LearningLoopControlPlane } from "../learning-loop.js";
 
 type WorkspaceDependencies = {
-  analysis: AnalysisService;
   creators: CreatorResearchService;
   comparisons: ComparisonProjectService;
   learningLoop: LearningLoopControlPlane;
@@ -25,8 +24,11 @@ function statusCounts(items: Array<{ status?: string }>): Record<string, number>
 
 export function registerWorkspaceRoutes(app: express.Express, dependencies: WorkspaceDependencies): void {
   app.get("/api/v1/workspace-overview", (_request, response) => {
-    const postRuns = dependencies.analysis.list(200);
-    const creatorRuns = dependencies.creators.list(200);
+    const allRuns = dependencies.creators.list(200);
+    const postRuns = listLatestVideoResearch(dependencies.creators).map((item) => ({
+      ...item, id: `${item.runId}:${item.videoId}`, status: "built", updatedAt: allRuns.find((run) => run.id === item.runId)?.updatedAt ?? ""
+    }));
+    const creatorRuns = allRuns.filter((item) => item.creatorId);
     const comparisons = dependencies.comparisons.list(100);
     const learningLoops = dependencies.learningLoop.list(100);
     const concepts = dependencies.knowledgeConcepts();
@@ -35,11 +37,11 @@ export function registerWorkspaceRoutes(app: express.Express, dependencies: Work
     const evidence = dependencies.evidence.summary();
     const recent = [
       ...postRuns.slice(0, 4).map((item) => ({ id: item.id, kind: "post" as const, title: item.title,
-        meta: `${item.platform === "x" ? "X" : "小红书"} · ${item.authorName}`, status: item.status,
-        updatedAt: item.updatedAt, href: `/runs/${item.id}` })),
+        meta: `单帖研究 · ${item.creatorName}`, status: item.status,
+        updatedAt: item.updatedAt, href: item.href })),
       ...creatorRuns.slice(0, 4).map((item) => ({ id: item.id, kind: "creator" as const, title: item.creatorName ?? "等待识别博主",
         meta: `${item.coverage.discoveredPosts} 条作品 · ${item.coverage.reconstructedPosts} 条深度视频`, status: item.status,
-        updatedAt: item.updatedAt, href: `/creators/${encodeURIComponent(item.creatorId ?? item.id)}` })),
+        updatedAt: item.updatedAt, href: `/creators/${encodeURIComponent(item.creatorId ?? item.id)}?run=${encodeURIComponent(item.id)}` })),
       ...comparisons.slice(0, 2).map((item) => ({ id: item.id, kind: "comparison" as const, title: item.name,
         meta: `${item.members.length} 位博主`, status: item.status, updatedAt: item.updatedAt, href: `/comparisons/${item.id}` })),
       ...learningLoops.slice(0, 2).map((item) => ({ id: item.id, kind: "learning_loop" as const, title: item.policyVersion,

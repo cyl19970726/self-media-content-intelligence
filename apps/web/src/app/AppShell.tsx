@@ -14,7 +14,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     </header>
     <nav className="section-nav" aria-label="主导航">
       <Link className={location.pathname === "/" ? "active" : ""} to="/"><LayoutDashboard size={16}/> 工作总览</Link>
-      <Link className={location.pathname.startsWith("/analyze") || location.pathname.startsWith("/runs") ? "active" : ""} to="/analyze"><Search size={16}/> 链接分析</Link>
+      <Link className={location.pathname.startsWith("/analyze") || location.pathname.startsWith("/runs") ? "active" : ""} to="/analyze"><Search size={16}/> 单帖报告</Link>
       <Link className={location.pathname.startsWith("/creators") || location.pathname.startsWith("/creator-runs") ? "active" : ""} to="/creators"><Users size={16}/> 博主研究</Link>
       <Link className={location.pathname.startsWith("/comparisons") ? "active" : ""} to="/comparisons"><BarChart3 size={16}/> 多博主研究</Link>
       <Link className={location.pathname.startsWith("/learning-loop") ? "active" : ""} to="/learning-loop"><GitBranch size={16}/> 迭代验证</Link>

@@ -1,6 +1,4 @@
 import { DatabaseSync } from "node:sqlite";
-import { AnalysisService } from "../core/service.js";
-import { RunStore } from "../core/store.js";
 import { CreatorResearchBatchService, CreatorResearchService, CreatorResearchWorker } from "../../packages/research/index.js";
 import { ComparisonProjectService, ComparisonProjectWorker } from "../../packages/research/index.js";
 import { PublishingService, PublicationWorker, type PlatformPublishers } from "../../packages/creation/index.js";
@@ -37,11 +35,9 @@ import {
 import type { ContentKnowledgeService } from "../../packages/knowledge/index.js";
 import { ManagedRuntime, type ManagedResource, type ManagedWorker } from "../../packages/runtime/index.js";
 import { loadCreatorDossier } from "./creator-dossier.js";
-import { SinglePostKnowledgeCompiler } from "./analysis-knowledge-compiler.js";
 import { ComparisonKnowledgeCompiler, CreatorKnowledgeCompiler } from "./research-knowledge-compiler.js";
 
 export interface SignalRoomServices {
-  analysis: AnalysisService;
   creatorResearch: CreatorResearchService;
   creatorResearchBatches: CreatorResearchBatchService;
   comparisons: ComparisonProjectService;
@@ -111,7 +107,6 @@ export function createSignalRoomComposition(
   const publishers = options.publishers === undefined ? createEgoBrowserPublishers() : options.publishers;
   const publishing = new PublishingService(new SQLitePublishingRepository(), new LocalPublicationMediaAccess(), publishers);
   const creatorDiscovery = new RedFoxCreatorDiscoveryService();
-  const analysis = new AnalysisService(new RunStore(), new SinglePostKnowledgeCompiler(contentKnowledge));
   const evidence = new LocalEvidenceAccess();
   const creatorExecutor = new CreatorProviderRouter({
     "ego-browser": new EgoBrowserCreatorExecutor(),
@@ -127,8 +122,8 @@ export function createSignalRoomComposition(
   seedProductBlindRegressionV2(learningLoop);
 
   return new SignalRoomComposition(
-    { analysis, creatorResearch, creatorResearchBatches, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
+    { creatorResearch, creatorResearchBatches, comparisons, researchLearning, learningLoop, publishing, creatorDiscovery, contentKnowledge, evidence },
     workers,
-    [{ close: () => creatorDatabase.close() }, analysis, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge, creatorResearchBatchRepository]
+    [{ close: () => creatorDatabase.close() }, creatorResearch, comparisons, researchLearning, learningLoop, publishing, contentKnowledge, creatorResearchBatchRepository]
   );
 }

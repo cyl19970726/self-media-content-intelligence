@@ -1,7 +1,5 @@
-import type { AnalysisService } from "../core/service.js";
 import type { ContentKnowledgeService, CompileKnowledgeInput, KnowledgeCompilationProposal } from "../../packages/knowledge/index.js";
 import type { ComparisonProjectService, CreatorResearchCompletion, CreatorResearchService } from "../../packages/research/index.js";
-import { proposeSinglePostKnowledge } from "./analysis-knowledge-compiler.js";
 import { ComparisonKnowledgeCompiler, proposeCreatorKnowledge } from "./research-knowledge-compiler.js";
 
 export type KnowledgeActivationItem = {
@@ -22,14 +20,13 @@ function preview(input: CompileKnowledgeInput) {
 
 export class KnowledgeActivationService {
   constructor(
-    private readonly analysis: AnalysisService,
     private readonly creators: CreatorResearchService,
     private readonly comparisons: ComparisonProjectService,
     private readonly knowledge: ContentKnowledgeService
   ) {}
 
   plan(): { dryRun: true; totals: Record<KnowledgeActivationItem["action"], number>; items: KnowledgeActivationItem[] } {
-    const items = [...this.singlePostItems(), ...this.creatorItems(), ...this.comparisonItems()];
+    const items = [...this.creatorItems(), ...this.comparisonItems()];
     const totals = { stage: 0, already_recorded: 0, await_evidence: 0, reject: 0 };
     for (const item of items) totals[item.action] += 1;
     return { dryRun: true, totals, items };
@@ -62,27 +59,6 @@ export class KnowledgeActivationService {
     return { subjectType, subjectId, label, readiness: "ready", action: proposal ? "already_recorded" : "stage",
       reason: proposal ? `已有 ${proposal.status} 提案。` : "研究版本和证据闸门可解析，可以进入人工审核。",
       proposal, preview: preview(input) };
-  }
-
-  private singlePostItems(): KnowledgeActivationItem[] {
-    return this.analysis.list(1000).map((summary) => {
-      const report = this.analysis.get(summary.id);
-      if (!report) return { subjectType: "video" as const, subjectId: summary.id, label: summary.title,
-        readiness: "not_ready" as const, action: "await_evidence" as const,
-        reason: "单帖完整报告无法读取。", proposal: null, preview: null };
-      if (report.sourceUrl.startsWith("fixture://")) return { subjectType: "video" as const, subjectId: report.id,
-        label: report.shareTitle ?? report.source?.title ?? report.id, readiness: "not_ready" as const,
-        action: "reject" as const, reason: "fixture 只用于产品验证，禁止进入生产 Knowledge。",
-        proposal: null, preview: null };
-      if (report.status !== "complete" || !report.source) return { subjectType: "video" as const, subjectId: report.id,
-        label: report.shareTitle ?? report.source?.title ?? report.id, readiness: "not_ready" as const,
-        action: report.status === "failed" ? "reject" as const : "await_evidence" as const,
-        reason: `单帖状态为 ${report.status}，尚不能形成正式贡献提案。`, proposal: null, preview: null };
-      try { return this.item("video", report.id, report.shareTitle ?? report.source.title, proposeSinglePostKnowledge(report)); }
-      catch (error) { return { subjectType: "video" as const, subjectId: report.id, label: report.shareTitle ?? report.source.title,
-        readiness: "not_ready" as const, action: "await_evidence" as const,
-        reason: error instanceof Error ? error.message : String(error), proposal: null, preview: null }; }
-    });
   }
 
   private creatorItems(): KnowledgeActivationItem[] {
@@ -118,7 +94,7 @@ export class KnowledgeActivationService {
   }
 
   private proposalInput(subjectType: KnowledgeActivationItem["subjectType"], subjectId: string): CompileKnowledgeInput | null {
-    if (subjectType === "video") { const report = this.analysis.get(subjectId); return report ? proposeSinglePostKnowledge(report) : null; }
+    if (subjectType === "video") return null;
     if (subjectType === "creator") {
       const snapshot = this.creators.portfolio(subjectId); const run = snapshot?.run;
       if (!snapshot?.synthesis || !snapshot.synthesisGate || !run?.creatorId || !run.synthesisArtifactRef || !run.synthesisGateArtifactRef) return null;

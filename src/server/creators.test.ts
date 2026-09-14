@@ -1,46 +1,26 @@
 import { describe, expect, it } from "vitest";
-import { mergeCreatorSummaries, loadCreatorSummaries } from "./creators.js";
+import type { CreatorResearchService } from "../../packages/research/index.js";
+import { loadCreatorSummaries } from "./creators.js";
 
-const hasExternalEvidence = Boolean(process.env.SIGNAL_ROOM_EVIDENCE_ROOT);
-const describeWithExternalEvidence = hasExternalEvidence ? describe : describe.skip;
-const describeWithoutExternalEvidence = hasExternalEvidence ? describe.skip : describe;
-
-describeWithExternalEvidence("loadCreatorSummaries", () => {
-  it("keeps the three established creators first and registers verified next-wave artifacts", () => {
-    const summaries = loadCreatorSummaries();
-    expect(summaries.slice(0, 3).map((summary) => summary.id)).toEqual(["ai-red-witch", "zhang-zala", "human-director"]);
-    expect(summaries.map((summary) => summary.id)).toContain("xiaohui-doctor");
-    expect(summaries.find((summary) => summary.id === "xiaohui-doctor")?.summary).toContain("240/251");
+describe("latest creator catalog", () => {
+  it("lists the newest versioned run per creator, including pending runs, without historical report links", () => {
+    const runs = [
+      { id: "redfox-first", creatorId: "redfox", canonicalSlug: "redfox", creatorName: "RedFox", status: "collecting" },
+      { id: "current", creatorId: "creator", canonicalSlug: "creator", creatorName: "Current", status: "ready" },
+      { id: "superseded", creatorId: "creator", canonicalSlug: "creator", creatorName: "Old", status: "ready" }
+    ].map((run) => ({
+      ...run, profileUrl: `https://example.com/${run.creatorId}`, publicProfile: { followers: null, likesAndCollections: null },
+      coverage: { discoveredPosts: 1, comparisonPosts: 1, reconstructedPosts: run.id === "current" ? 1 : 0 },
+      lastSnapshotAt: null, createdAt: "2026-09-14T00:00:00Z", nextAction: "继续"
+    }));
+    const service = { list: () => runs } as unknown as CreatorResearchService;
+    const summaries = loadCreatorSummaries(service);
+    expect(summaries.map((item) => item.id)).toEqual(["redfox", "creator"]);
+    expect(summaries[0]?.entries[0]?.href).toContain("run=redfox-first");
+    expect(summaries.flatMap((item) => item.entries).every((entry) => !entry.href.startsWith("/research/"))).toBe(true);
   });
 
-  it("every summary satisfies the card contract", () => {
-    for (const summary of loadCreatorSummaries()) {
-      expect(summary.name.length).toBeGreaterThan(0);
-      expect(summary.positioning.length).toBeGreaterThan(0);
-      expect(summary.summary.length).toBeGreaterThan(0);
-      expect(summary.tags.length).toBeGreaterThan(0);
-      expect(summary.stats.length).toBeGreaterThan(0);
-      expect(summary.entries.length).toBeGreaterThan(0);
-      for (const entry of summary.entries) expect(entry.href).toMatch(/^\/(research|creators)\//);
-    }
-  });
-});
-
-describeWithoutExternalEvidence("loadCreatorSummaries without an external Evidence store", () => {
-  it("degrades to an empty creator catalog instead of inventing research projections", () => {
+  it("does not resurrect static evidence when no versioned service is supplied", () => {
     expect(loadCreatorSummaries()).toEqual([]);
   });
-});
-
-it("uses one current profile entry and retains a separate historical sample link", () => {
-  const base = { name: "同一博主", followers: "未知", likesAndCollections: "未知", positioning: "待核对",
-    summary: "历史62条", tags: ["历史"], stats: [{ label: "作品", value: "62" }],
-    entries: [{ label: "旧报告", href: "/creators/old-slug", note: "原始样本" }] };
-  const legacy = { ...base, id: "old-slug", profileUrl: "https://www.xiaohongshu.com/user/profile/abc/?source=old" };
-  const current = { ...base, id: "abc", profileUrl: "https://xiaohongshu.com/user/profile/abc",
-    entries: [{ label: "当前批次", href: "/creators/abc?run=current-run", note: "194条" }] };
-  const result = mergeCreatorSummaries([legacy], [current]);
-  expect(result).toHaveLength(1);
-  expect(result[0]?.entries.map(entry => entry.href)).toEqual(["/creators/abc?run=current-run", "/creators/old-slug"]);
-  expect(result[0]?.entries[1]?.label).toContain("62");
 });

@@ -3,9 +3,6 @@ import type { CreatorArtifactStore, CreatorResearchService } from "../../index.j
 import type { ComparisonProject } from "./project-contracts.js";
 import type { ComparisonProjectRepository } from "./repository.js";
 import { ComparisonProjectService } from "./service.js";
-import { loadCreatorDossier } from "../../../../src/server/creator-dossier.js";
-
-const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
 
 class MemoryRepository implements ComparisonProjectRepository {
   values = new Map<string, ComparisonProject>();
@@ -24,8 +21,8 @@ class MemoryRepository implements ComparisonProjectRepository {
   close() {}
 }
 
-describeWithExternalEvidence("ComparisonProjectService", () => {
-  it("pins existing Creator Dossier projections with an auditable source and revision", () => {
+describe("ComparisonProjectService legacy rejection", () => {
+  it("rejects removed legacy creator ids instead of recovering an unversioned projection", () => {
     const creators = { list: () => [], get: () => null, portfolio: () => null } as unknown as CreatorResearchService;
     const values = new Map<string, unknown>();
     const artifacts: CreatorArtifactStore = {
@@ -35,26 +32,12 @@ describeWithExternalEvidence("ComparisonProjectService", () => {
       reconstructionProgress() { return "runner_start"; }
     };
     const repository = new MemoryRepository();
-    const service = new ComparisonProjectService(creators, repository, artifacts, loadCreatorDossier);
-    const sources = ["ai-red-witch", "zhang-zala"].map((creatorId) => {
-      const dossier = loadCreatorDossier(creators, creatorId);
-      expect(dossier).not.toBeNull();
-      return { creatorId, sourceRunId: `legacy:${creatorId}`, revision: dossier!.lastGood.revisionLabel ?? dossier!.generatedAt };
-    });
-    const project = service.create({ name: "AI 博主对照", creatorSources: sources });
-
-    expect(project.status).toBe("queued");
-    expect(project.members.map((member) => member.sourceRunId)).toEqual(["legacy:ai-red-witch", "legacy:zhang-zala"]);
-    expect(project.members.map((member) => member.revision)).toEqual(sources.map((source) => source.revision));
-    expect(project.members.every((member) => member.portfolioArtifactRef === member.selectionArtifactRef)).toBe(true);
-    expect(() => service.create({ name: "过期版本", creatorSources: [
-      { ...sources[0]!, revision: "stale-revision" }, sources[1]!
-    ] })).toThrow(/已更新/);
-    expect(service.processNext("comparison-test")).toBe(true);
-    const completed = service.get(project.id);
-    expect(completed?.project.status).toBe("ready");
-    expect(completed?.comparison?.members).toHaveLength(2);
-    expect(completed?.comparison?.readiness).toBe("portfolio_only");
+    const service = new ComparisonProjectService(creators, repository, artifacts, () => null);
+    expect(() => service.create({ name: "旧博主对照", creatorSources: [
+      { creatorId: "ai-red-witch", sourceRunId: "legacy:ai-red-witch", revision: "legacy-unversioned" },
+      { creatorId: "zhang-zala", sourceRunId: "legacy:zhang-zala", revision: "legacy-unversioned" }
+    ] })).toThrow(/尚未形成可读研究档案/);
+    expect(repository.list()).toEqual([]);
   });
 });
 

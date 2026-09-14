@@ -1,13 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { CreatorResearchService } from "./service.js";
 import type { CreatorResearchRun } from "../../../contracts/index.js";
-import { loadCreatorDossier, projectRunDossier } from "../../../../src/server/creator-dossier.js";
+import { projectRunDossier } from "../../../../src/server/creator-dossier.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import type { VideoReconstructionBatch } from "../video-analysis/batch-contracts.js";
-
-const describeWithExternalEvidence = process.env.SIGNAL_ROOM_EVIDENCE_ROOT ? describe : describe.skip;
-
-const emptyCreatorService = { list: () => [], get: () => null } as unknown as CreatorResearchService;
 
 function activeVideoRun(): CreatorResearchRun {
   return {
@@ -28,7 +24,7 @@ function activeVideoRun(): CreatorResearchRun {
     collectionPolicy: { adapter: "ego-browser", browserProfile: "hhh-01", readOnly: true, incremental: true, bypassChallenges: false,
       cacheTtlHours: 24, budgets: { maxScrollRounds: 30, maxDetailOpens: 24, maxMediaDownloads: 12 } },
     blockers: [], nextAction: "正在重建深度视频。", lastSnapshotAt: "2026-08-26T00:30:00.000Z",
-    worker: { state: "running", attempt: 1, jobId: "video-job", workerId: "creator-worker-video-1", lastHeartbeatAt: "2026-08-26T01:00:00.000Z" },
+    worker: { state: "running", attempt: 1, jobId: "15f23d21-ded1-450f-b609-3cb7c1421e70", workerId: "creator-worker-video-1", lastHeartbeatAt: "2026-08-26T01:00:00.000Z" },
     inventoryArtifactRef: "/artifacts/inventory.json", portfolioArtifactRef: "/artifacts/portfolio.json",
     selectionArtifactRef: "/artifacts/selection.json", detailArtifactRef: "/artifacts/details.json",
     mediaManifestArtifactRef: "/artifacts/media.json", reconstructionBatchArtifactRef: "/artifacts/batch.json",
@@ -47,6 +43,31 @@ function projectedAnalysis(corpusCompleteness: "observed_converged" | "bounded_p
     anchors: { median: 1, mean: 1, medianNearPostId: "post-1", meanNearPostId: "post-1", meanGap: false, meanGapReason: null },
     interpretationBoundary: "fixture", unknowns: [], corpusCompleteness, stopReason
   };
+}
+
+function versionedSelection(run: CreatorResearchRun) {
+  const items = Array.from({ length: 21 }, (_, index) => ({
+    externalId: `post-${index + 1}`, url: `https://www.xiaohongshu.com/explore/post-${index + 1}`, title: `作品 ${index + 1}`,
+    visibleText: null, mediaType: "video" as const, likesLabel: String(index + 1), likes: index + 1,
+    tier: index < 7 ? "high" as const : index < 14 ? "base" as const : "low" as const, tierRank: index % 7 + 1,
+    anchors: [], selectionReason: "versioned fixture", deepCandidate: index < 7, deepGroups: [], deepState: "pending" as const, confounds: []
+  }));
+  return {
+    schemaVersion: "1.0.0", runId: run.id, generatedAt: "2026-08-26T01:00:00.000Z", sourceCorpusArtifactRef: "/artifacts/corpus.json",
+    ruleVersion: "ranked-7x3-v1", rules: { targetPerTier: 7, deepCandidatesPerTier: 3, high: "fixture", base: "fixture", low: "fixture", unknownMetricPolicy: "exclude_from_metric_tiering" },
+    denominator: { discoveredPosts: 21, eligiblePosts: 21, selectedPosts: 21, excludedMissingLikes: 0 },
+    anchors: { median: 11, mean: 11, medianNearPostId: "post-11", meanNearPostId: "post-11", meanGap: false, meanGapReason: null },
+    tierCounts: { high: 7, base: 7, low: 7 }, items, limitations: []
+  };
+}
+
+function versionedDossier(run = activeVideoRun()) {
+  const service = { get: () => run, list: () => [run], portfolio: () => ({
+    analysis: projectedAnalysis("bounded_partial", "budget_reached"), selection: versionedSelection(run)
+  }) } as unknown as CreatorResearchService;
+  const dossier = projectRunDossier(service, run.id);
+  if (!dossier) throw new Error("versioned fixture did not project");
+  return dossier;
 }
 
 function projectionService(run: CreatorResearchRun, analysis: unknown): CreatorResearchService {
@@ -99,42 +120,44 @@ describe("creator research pipeline evaluation truth", () => {
   });
 });
 
-describeWithExternalEvidence("creator research pipeline projection", () => {
+describe("creator research pipeline projection", () => {
   it("exposes the complete 13-stage Skill and runtime ledger", () => {
-    const dossier = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc");
-    expect(dossier?.pipeline?.stages.map((stage) => stage.id)).toEqual([
+    const run = activeVideoRun();
+    const pipeline = buildCreatorResearchPipeline(run, versionedDossier(run));
+    expect(pipeline.stages.map((stage) => stage.id)).toEqual([
       "run_contract", "identity_verification", "inventory_acquisition", "detail_enrichment",
       "portfolio_annotation", "corpus_statistics", "sample_selection", "media_verification",
       "video_reconstruction", "video_evaluation", "creator_synthesis", "creator_evaluation",
       "dashboard_projection"
     ]);
-    expect(dossier?.pipeline?.stages.every((stage) => stage.workerKind.length > 0)).toBe(true);
-    expect(dossier?.pipeline?.stages.find((stage) => stage.id === "corpus_statistics")?.skillId).toBeNull();
-    expect(dossier?.pipeline?.stages.find((stage) => stage.id === "video_reconstruction")?.skillId).toBe("video-content-reconstruction");
+    expect(pipeline.stages.every((stage) => stage.workerKind.length > 0)).toBe(true);
+    expect(pipeline.stages.find((stage) => stage.id === "corpus_statistics")?.skillId).toBeNull();
+    expect(pipeline.stages.find((stage) => stage.id === "video_reconstruction")?.skillId).toBe("video-content-reconstruction");
   });
 
-  it("keeps Cyber Duck partial when detail, evaluation and synthesis evidence are incomplete", () => {
-    const pipeline = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc")?.pipeline;
-    expect(pipeline?.ready).toBe(false);
-    expect(pipeline?.state).toBe("partial");
-    expect(pipeline?.stages.find((stage) => stage.id === "inventory_acquisition")?.state).toBe("partial");
-    expect(pipeline?.stages.find((stage) => stage.id === "detail_enrichment")?.missingInputs.some((item) => /^发布时间：\d+\/319$/.test(item))).toBe(true);
-    expect(pipeline?.stages.find((stage) => stage.id === "sample_selection")?.missingInputs.some((item) => /^代表深度样本：\d+\/12$/.test(item))).toBe(true);
-    expect(pipeline?.stages.find((stage) => stage.id === "video_reconstruction")?.state).toBe("partial");
-    expect(pipeline?.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs.some((item) => /^单轮独立评估：\d+\/12$/.test(item))).toBe(true);
-    expect(pipeline?.stages.find((stage) => stage.id === "creator_evaluation")?.state).toBe("pending");
-    expect(pipeline?.stages.find((stage) => stage.id === "dashboard_projection")?.state).toBe("partial");
+  it("keeps a versioned partial run incomplete when detail, evaluation and synthesis evidence are missing", () => {
+    const run = activeVideoRun();
+    const pipeline = buildCreatorResearchPipeline(run, versionedDossier(run));
+    expect(pipeline.ready).toBe(false);
+    expect(pipeline.state).not.toBe("ready");
+    expect(pipeline.stages.find((stage) => stage.id === "inventory_acquisition")?.state).toBe("partial");
+    expect(pipeline.stages.find((stage) => stage.id === "detail_enrichment")?.missingInputs).toContain("发布时间：0/30");
+    expect(pipeline.stages.find((stage) => stage.id === "video_reconstruction")?.state).toBe("running");
+    expect(pipeline.stages.find((stage) => stage.id === "video_evaluation")?.missingInputs).toContain("单轮独立评估：0/7");
+    expect(pipeline.stages.find((stage) => stage.id === "creator_evaluation")?.state).toBe("pending");
+    expect(pipeline.stages.find((stage) => stage.id === "dashboard_projection")?.state).toBe("partial");
   });
 
   it("does not confuse a visible dashboard with a completed research run", () => {
-    const pipeline = loadCreatorDossier(emptyCreatorService, "xiaohui-doctor")?.pipeline;
-    expect(pipeline?.stages.find((stage) => stage.id === "dashboard_projection")?.artifactRefs).toContain("route:/creators/xiaohui-doctor");
-    expect(pipeline?.stages.find((stage) => stage.id === "dashboard_projection")?.gateState).toBe("partial");
-    expect(pipeline?.ready).toBe(false);
+    const run = activeVideoRun();
+    const pipeline = buildCreatorResearchPipeline(run, versionedDossier(run));
+    expect(pipeline.stages.find((stage) => stage.id === "dashboard_projection")?.artifactRefs).toContain("route:/creators/tester");
+    expect(pipeline.stages.find((stage) => stage.id === "dashboard_projection")?.gateState).toBe("partial");
+    expect(pipeline.ready).toBe(false);
   });
 
   it("projects active video work onto video stages instead of stale detail enrichment", () => {
-    const base = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc")!;
+    const base = versionedDossier();
     const items = base.portfolio.items.map((item, index) => ({
       ...item,
       deepSample: index < 7,
@@ -163,7 +186,7 @@ describeWithExternalEvidence("creator research pipeline projection", () => {
   });
 
   it("projects bounded media gaps as unavailable instead of passed or pending", () => {
-    const base = loadCreatorDossier(emptyCreatorService, "cyber-duck-aigc")!;
+    const base = versionedDossier();
     const items = base.portfolio.items.map((item, index) => ({
       ...item,
       deepSample: index < 6,

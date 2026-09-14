@@ -1,11 +1,8 @@
-import { distributionFractions, selectedTierMetrics } from "./creator-distribution.js";
+import { selectedTierMetrics } from "./creator-distribution.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { CreatorSynthesis } from "../../packages/research/index.js";
-import type { CreatorResearchRun, CreatorConsole } from "../shared/schema.js";
+import type { CreatorResearchRun } from "../shared/schema.js";
 import { creatorDossierSchema, type CreatorDossier, type ResearchStatement } from "../shared/creator-dossier.js";
-import { loadCreatorConsole } from "./console.js";
-import { loadLegacyDeepDossier } from "./legacy-deep-dossiers.js";
-import { loadNextWaveDossier } from "./next-wave-dossier.js";
 import { buildCreatorResearchPipeline } from "../../packages/research/index.js";
 import { projectPostSourceFacts } from "./post-source-facts.js";
 
@@ -13,10 +10,6 @@ const tierLabels = { high: "高表现", base: "基本盘", low: "低表现" } as
 
 function unknown(statement: string): ResearchStatement {
   return { statement, factClass: "unknown", confidence: "low", evidenceRefs: ["system:missing"], caveat: "当前证据未覆盖。" };
-}
-
-function observed(statement: string, evidenceRef: string): ResearchStatement {
-  return { statement, factClass: "observed", confidence: "high", evidenceRefs: [evidenceRef], caveat: null };
 }
 
 function claim(value: CreatorSynthesis["identity"]["positioning"]): ResearchStatement {
@@ -50,91 +43,6 @@ function corpusHealth(analysis: { metricCoverage: { rate: number } } & CorpusInt
   const status = analysis.metricCoverage.rate >= 0.8
     && completeness === "observed_converged" && stopReason === "explicit_end" ? "full" : "partial";
   return health(status, `${coverageReason}${integrityReason}`, capturedAt);
-}
-
-export function projectLegacyDossier(id: string, data: CreatorConsole): CreatorDossier {
-  const ref = `legacy:creator-console:${id}`;
-  const items = data.tiers.flatMap((tier) => tier.videos.map((video, index) => ({
-    id: video.id,
-    title: video.title,
-    sourceHref: data.meta.profileUrl,
-    evidenceHref: video.selected ? `/creators/${id}/videos/${video.id}` : null,
-    coverHref: video.cover,
-    tier: tier.id,
-    tierRank: index + 1,
-    anchors: [],
-    deepSample: video.selected,
-    likes: video.likes,
-    collections: video.collections,
-    comments: null,
-    shares: null,
-    percentileRank: null,
-    publishedLabel: video.publishedLabel,
-    durationSeconds: null,
-    topic: video.archetype,
-    format: null,
-    coreContent: null,
-    contentArchitecture: [],
-    mechanismHypothesis: tier.conclusion,
-    selectionReason: `${tier.name}兼容样本第 ${index + 1} 条`,
-    evidenceStatus: video.selected ? "deep_validated" as const : "surface_only" as const
-  })));
-  const mapped = data.contentMap.items.map((item) => observed(
-    [item.name, item.signal, item.mechanism].filter(Boolean).join("："), ref
-  ));
-  return creatorDossierSchema.parse({
-    schemaVersion: "1.0.0",
-    canonicalId: id,
-    source: "legacy_adapter",
-    generatedAt: new Date().toISOString(),
-    run: null,
-    lastGood: { active: true, reason: "当前页面由已复核旧 Artifact 适配；刷新任务不会覆盖它。", revisionLabel: data.meta.capturedAt },
-    identity: {
-      name: data.meta.name,
-      profileHref: data.meta.profileUrl,
-      positioning: observed(data.meta.positioning, ref),
-      audience: [unknown("服务人群尚未迁移到结构化证据。")],
-      valuesProvided: [unknown("给用户提供的价值尚未迁移到结构化证据。")],
-      trustSources: [unknown("信任来源尚未迁移到结构化证据。")],
-      lifecycle: unknown("账号生命周期尚未形成证据化判断。"),
-      commercialPaths: [unknown("商业路径尚未形成证据化判断。")]
-    },
-    corpus: {
-      postCount: data.baseline?.postCount ?? 0,
-      likesKnown: data.baseline?.postCount ?? 0,
-      coverageRate: data.baseline ? 1 : 0,
-      medianLikes: data.baseline?.medianLikes ?? null,
-      meanLikes: data.baseline?.meanLikes ?? null,
-      maxLikes: data.baseline?.maxLikes ?? null,
-      videoCount: data.baseline?.postCount ?? null,
-      highCount: null,
-      percentiles: { p10: null, p25: null, p75: null, p90: null },
-      distribution: distributionFractions(data.baseline?.distribution ?? []),
-      notes: [data.baseline?.averageNote].filter((value): value is string => Boolean(value)),
-      health: data.baselineHealth ?? health("missing", "基本盘未覆盖。", data.meta.capturedAt)
-    },
-    contentSystem: {
-      topicClusters: [],
-      formatClusters: [],
-      topics: data.contentMap.slotName.includes("内容") ? mapped : [],
-      formats: [],
-      visualLanguage: [],
-      recurringStructures: data.contentMap.slotName.includes("内容") ? [] : mapped,
-      health: health(mapped.length ? "partial" : "missing", `${data.contentMap.slotName}来自兼容 Artifact，尚未统一主题与形式标注。`, data.meta.capturedAt)
-    },
-    tiers: data.tiers.map((tier) => ({ id: tier.id, label: tierLabels[tier.id], conclusion: [observed(tier.conclusion, ref)], mechanisms: [], failurePatterns: [],
-      metrics: { medianLikes: null, meanLikes: null, minLikes: null, maxLikes: null }, count: tier.videos.length })),
-    portfolio: { items, deepCount: items.filter((item) => item.deepSample).length,
-      health: health(items.length === 21 ? "full" : "partial", `兼容数据集包含 ${items.length} 条。`, data.meta.capturedAt) },
-    rhythm: { statements: data.rhythm ? [observed(data.rhythm.conclusion, ref)] : [],
-      weekdays: data.rhythm?.weekdays ?? [], dayparts: data.rhythm?.dayparts ?? [],
-      health: data.rhythmHealth ?? health("missing", "发布节奏未覆盖。", data.meta.capturedAt) },
-    audienceDemand: { statements: [], health: health("missing", "评论与用户需求尚未迁移。", data.meta.capturedAt) },
-    growthEngines: { statements: data.contentMap.slotName.includes("增长") ? mapped : [],
-      health: health(mapped.length && data.contentMap.slotName.includes("增长") ? "partial" : "missing", "只描述已观察内容系统，不生成复刻建议。", data.meta.capturedAt) },
-    businessPath: { statements: [], health: health("missing", "商业路径尚未迁移。", data.meta.capturedAt) },
-    boundaries: data.boundaries
-  });
 }
 
 function chooseRun(service: CreatorResearchService, id: string): CreatorResearchRun | null {
@@ -288,16 +196,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
 
 export function loadCreatorDossier(service: CreatorResearchService, id: string): CreatorDossier | null {
   const runProjection = projectRunDossier(service, id);
-  if (runProjection) {
-    const batch = runProjection.run ? service.portfolio(runProjection.run.id)?.reconstructionBatch ?? null : null;
-    return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection, batch) });
-  }
-  const nextWave = loadNextWaveDossier(id);
-  if (nextWave) return creatorDossierSchema.parse({ ...nextWave, pipeline: buildCreatorResearchPipeline(null, nextWave) });
-  const deepLegacy = loadLegacyDeepDossier(id);
-  if (deepLegacy) return creatorDossierSchema.parse({ ...deepLegacy, pipeline: buildCreatorResearchPipeline(null, deepLegacy) });
-  const legacy = loadCreatorConsole(id);
-  if (!legacy) return null;
-  const projection = projectLegacyDossier(id, legacy);
-  return creatorDossierSchema.parse({ ...projection, pipeline: buildCreatorResearchPipeline(null, projection) });
+  if (!runProjection) return null;
+  const batch = runProjection.run ? service.portfolio(runProjection.run.id)?.reconstructionBatch ?? null : null;
+  return creatorDossierSchema.parse({ ...runProjection, pipeline: buildCreatorResearchPipeline(runProjection.run, runProjection, batch) });
 }

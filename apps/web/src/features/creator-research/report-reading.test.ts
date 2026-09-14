@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import type { VideoResearch } from "../../shared/contracts/core";
 import { VisualEditingReport } from "./VisualEditingReport";
+import { DirectingStoryReport } from "./DirectingStoryReport";
 import { ContentRestorationReport } from "./ContentRestorationReport";
 import { ReportCard } from "./ReportDetails";
 import { DepthEvidence, OpeningReport } from "./DepthReports";
@@ -27,10 +28,24 @@ describe("report reading", () => {
     expect(html).toContain("时间未知");
     expect(html).not.toContain("undefineds");
   });
-  it("does not require a rerun merely because an old report lacks structured opening fields", () => {
+  it("reports an absent opening analysis without inventing replacement content", () => {
     const html = renderToStaticMarkup(createElement(OpeningReport, { data }));
-    expect(html).toContain("结构化字段");
-    expect(html).not.toContain("需重新分析");
+    expect(html).toContain("Builder 未产出开头分析");
+    expect(html).not.toContain("原始报告");
+  });
+  it("renders every directing field and keeps stage evidence beside the source stage", () => {
+    const directing = { ...data, directingLogic: {
+      packagingAnalysis: null,
+      viewerBefore: "观看前状态", viewerAfter: "观看后状态", activatedQuestion: "激活问题", promise: "内容承诺", payoff: "最终回报", endingResolution: "结尾收束",
+      stages: [{ label: "Hook", start: 1, end: 2, viewerQuestion: "阶段问题", function: "阶段作用", proof: "阶段证明", cognitiveChange: "认知变化", comprehensionLoad: "理解成本", payoff: "阶段回报", evidenceRefs: ["F1"] }],
+      informationDesign: [{ kind: "信息种类", statement: "信息陈述", start: 2, end: 3, evidenceRefs: ["F2"] }],
+      proofDesign: [{ proofType: "visible_proof", statement: "证明陈述", boundary: "证明边界", start: 2, end: 3, evidenceRefs: ["F3"] }],
+      loadAndPayoff: { compression: "压缩方式", repetition: "重复方式", payoffDistance: "回报距离", comprehensionCosts: ["成本一"] },
+      notes: ["Builder 原始说明"]
+    }} as VideoResearch;
+    const html = renderToStaticMarkup(createElement(DirectingStoryReport, { data: directing }));
+    for (const value of ["观看前状态", "观看后状态", "激活问题", "内容承诺", "最终回报", "结尾收束", "阶段问题", "阶段作用", "阶段证明", "认知变化", "理解成本", "阶段回报", "信息陈述", "证明陈述", "证明边界", "压缩方式", "重复方式", "回报距离", "成本一", "Builder 原始说明"]) expect(html).toContain(value);
+    expect(html.slice(html.indexOf('id="directing-stage-1"'), html.indexOf('id="directing-information"'))).toContain('href="/frame-1.jpg"');
   });
   it("renders all transition references and keeps source statements intact", () => {
     const html = renderToStaticMarkup(createElement(VisualEditingReport, { data }));

@@ -1,4 +1,4 @@
-import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorRunOperationSchema, creatorSummarySchema, reportEnvelopeSchema, runSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorRunOperation, type CreatorRunOperationAction, type CreatorSummary, type ReportEnvelope, type RunSummary } from "../contracts/core";
+import { creatorDiscoveryResultSchema, creatorResearchEventSchema, creatorResearchRunSchema, creatorRunOperationSchema, creatorSummarySchema, type CreatorAcquisitionAdapter, type CreatorDiscoveryResult, type CreatorResearchEvent, type CreatorResearchRun, type CreatorRunOperation, type CreatorRunOperationAction, type CreatorSummary } from "../contracts/core";
 import {
   creatorPortfolioAnalysisSchema, creatorSelectionSchema, creatorDetailCollectionSchema,
   deepMediaManifestSchema, videoReconstructionBatchSchema, creatorSynthesisGateSchema,
@@ -55,13 +55,6 @@ export async function listEvidenceCatalog(input: { q?: string; classification?: 
 
 export async function getWorkspaceOverview(): Promise<WorkspaceOverview> {
   return json(await fetch("/api/v1/workspace-overview", { cache: "no-store" }), (value) => workspaceOverviewSchema.parse(value));
-}
-
-export async function listRuns(): Promise<RunSummary[]> {
-  return json(await fetch("/api/runs", { cache: "no-store" }), (value) => {
-    const runs = value && typeof value === "object" && "runs" in value ? value.runs : [];
-    return runSummarySchema.array().parse(runs);
-  });
 }
 
 export async function listKnowledge(filters: { q?: string; scope?: string; status?: string } = {}): Promise<KnowledgeConceptView[]> {
@@ -188,22 +181,6 @@ export async function adjudicatePracticeValidation(id: string, input: object): P
   return json(await fetch(`/api/v1/practice-validations/${encodeURIComponent(id)}/adjudicate`, {
     method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input)
   }), (value) => practiceValidationSchema.parse(value));
-}
-
-export async function getRun(id: string): Promise<ReportEnvelope> {
-  return json(await fetch(`/api/runs/${id}`, { cache: "no-store" }), (value) => reportEnvelopeSchema.parse(value));
-}
-
-export async function createRun(url: string): Promise<ReportEnvelope> {
-  return json(await fetch("/api/runs", {
-    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url })
-  }), (value) => reportEnvelopeSchema.parse(value));
-}
-
-export async function retryRun(id: string): Promise<ReportEnvelope> {
-  return json(await fetch(`/api/runs/${id}/retry`, {
-    method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: "{}"
-  }), (value) => reportEnvelopeSchema.parse(value));
 }
 
 export async function listContentPackages(): Promise<ContentPackage[]> {
@@ -405,6 +382,18 @@ export async function getVideoResearch(creatorId: string, videoId: string, runId
   const query = runId ? `?run=${encodeURIComponent(runId)}` : "";
   return json(await fetch(`/api/v1/creators/${encodeURIComponent(creatorId)}/videos/${encodeURIComponent(videoId)}${query}`, { cache: "no-store" }),
     (value) => videoResearchSchema.parse(value));
+}
+
+const latestVideoResearchItemSchema = z.object({
+  creatorId: z.string(), creatorName: z.string(), videoId: z.string(), title: z.string(), runId: z.string(), href: z.string()
+});
+export type LatestVideoResearchItem = z.infer<typeof latestVideoResearchItemSchema>;
+
+export async function listLatestVideoResearch(): Promise<LatestVideoResearchItem[]> {
+  return json(await fetch("/api/v1/video-research/latest", { cache: "no-store" }), (value) => {
+    const items = value && typeof value === "object" && "items" in value ? value.items : [];
+    return latestVideoResearchItemSchema.array().parse(items);
+  });
 }
 
 export async function listComparisonProjects(): Promise<ComparisonProject[]> {

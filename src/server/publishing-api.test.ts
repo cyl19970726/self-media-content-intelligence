@@ -3,7 +3,6 @@ import os from "node:os";
 import path from "node:path";
 import type { Server } from "node:http";
 import { afterEach, describe, expect, it } from "vitest";
-import type { AnalysisService } from "../core/service.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { ComparisonProjectService } from "../../packages/research/index.js";
 import { PublishingService, contentPackageSchema, platformVariantSchema, publicationRunSchema } from "../../packages/creation/index.js";
@@ -36,7 +35,6 @@ async function fixtureServer() {
   publishingServices.push(publishing);
   const unused = {} as unknown;
   const app = createApp({
-    analysis: unused as AnalysisService,
     creatorResearch: unused as CreatorResearchService,
     comparisons: unused as ComparisonProjectService,
     researchLearning: { list: () => [], get: () => null } as unknown as ResearchLearningService,
