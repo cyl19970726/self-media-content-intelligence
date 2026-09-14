@@ -62,3 +62,5 @@
   .creator-directory-row__action, .creator-directory-row__blocker { grid-column: 1; }
   .creator-directory-intake > summary small { display: none; }
 }
+
+.creator-directory-maturity { margin: 16px 0; color: #606762; font-size: 13px; }

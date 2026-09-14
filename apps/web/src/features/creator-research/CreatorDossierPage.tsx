@@ -13,6 +13,7 @@ import { KnowledgeContributionBlock } from "../../entities/knowledge/KnowledgeCo
 import { CreatorResearchProgress, CreatorTechnicalChecks } from "./components/CreatorResearchProgress";
 import { CreatorDossierOverview } from "./components/CreatorDossierOverview";
 import { CreatorPortfolioLibrary } from "./components/CreatorPortfolioLibrary";
+import { CrossPostResearchReading } from "./components/CrossPostResearchReading";
 
 const sections = [
   ["identity", "00", "博主主页"], ["portfolio", "01", "作品内容库"], ["corpus", "02", "全量基本盘"], ["system", "03", "主题与形式"],
@@ -143,6 +144,7 @@ export default function CreatorDossierPage() {
 
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>博主档案读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
+  const research = data.crossPostResearch?.sections.length ? data.crossPostResearch : null;
   const deepItems = data.portfolio.items.filter((item) => item.deepSample);
   const recovery = data.run ? creatorRecoveryPresentation(data.run, operation) : null;
   const produced = (values: Array<{ factClass: string }>) => values.some((value) => value.factClass !== "unknown");
@@ -166,20 +168,26 @@ export default function CreatorDossierPage() {
   return <main className="console creator-dossier">
     <aside className="console-rail">
       <div className="console-rail__head"><span>CREATOR DOSSIER</span><b>V1</b></div>
-      <nav aria-label="博主研究目录">{visibleSections.map(([sectionId, index, label]) => <a href={`#${sectionId}`} key={sectionId}><span>{index}</span>{sectionId === "portfolio" ? comparisonSetLabel(data.portfolio.items.length).replace("统一 ", "") : label}</a>)}</nav>
+      <nav aria-label="博主研究目录">{research ? research.sections.map((section, index) => <a href={`#${section.id}`} key={section.id}><span>{String(index + 1).padStart(2, "0")}</span>{section.title}</a>) : visibleSections.map(([sectionId, index, label]) => <a href={`#${sectionId}`} key={sectionId}><span>{index}</span>{sectionId === "portfolio" ? comparisonSetLabel(data.portfolio.items.length).replace("统一 ", "") : label}</a>)}{research && <a href="#portfolio"><span>06</span>全部样本与单帖分析</a>}</nav>
       <div className="console-rail__foot"><Link to="/creators"><ArrowLeft size={13}/>博主研究</Link><Link to="/comparisons">多博主比较<ArrowRight size={13}/></Link></div>
     </aside>
     <article className="console-main dossier-main">
       <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><b>{data.identity.name}</b></nav>
       <CreatorDossierOverview data={data}/>
+      <details className="dossier-progress-details" open={!research}>
+        <summary>{research ? (data.run?.status === "ready" ? "研究已产出 · 查看执行记录" : "研究已产出 · 尚待完全验证 · 查看执行记录") : "当前研究进度"}</summary>
       <CreatorResearchProgress data={data}>
         {recovery && <div className="creator-progress-action"><p>{recovery.help}</p><button type="button" onClick={() => void resume(recovery.action)} disabled={resuming}>{resuming ? "正在处理" : recovery.label}</button></div>}
         {operation?.resolutionState === "waiting_external" && operation.waitingReason && <p>{operation.waitingReason}</p>}
         {resumeError && <p role="alert">{resumeError}</p>}
       </CreatorResearchProgress>
+      </details>
+      {research && <CrossPostResearchReading data={data} research={research}/>}
       <CreatorPortfolioLibrary data={data} items={items} view={view} tier={tier ?? "all"} topic={topic} format={format} evidence={evidence} topicOptions={topicOptions} formatOptions={formatOptions} setOption={setOption} itemHref={itemHref}/>
       {data.lastGood.active && <div className="last-good-banner"><RefreshCw size={15}/><div><strong>保留上一版可读档案</strong><p>{data.lastGood.reason}{data.lastGood.revisionLabel ? ` · ${data.lastGood.revisionLabel}` : ""}</p></div></div>}
 
+      <details className={`dossier-legacy-reading${research ? "" : " dossier-legacy-reading--always-open"}`} open={!research}>
+      <summary>完整档案与统计</summary>
       <div className="dossier-reading-scope"><b>本次阅读范围</b><p>{data.corpus.postCount} 条可见作品 · {data.corpus.likesKnown} 条点赞已知 · {data.portfolio.items.length} 条选择集 · {deepItems.length} 条深读样本</p><p>{data.run ? `研究批次：${data.run.id} · 来源记录时间：${data.run.lastSnapshotAt ?? "未知"}` : `历史档案 · 来源版本：${data.lastGood.revisionLabel ?? "未知"}`}。当前页面生成时间不等于来源更新时间。</p></div>
       {identityProduced && <div className="identity-grid">
         <article><span>分析定位</span><StatementList data={data} values={[data.identity.positioning]} empty="尚未产出定位分析。"/></article>
@@ -217,6 +225,7 @@ export default function CreatorDossierPage() {
       {produced(data.growthEngines.statements) && <DossierSection id="engines" index="09" title="观察到的内容系统" note="描述哪些结构与价值反复出现；不输出我们应该复制什么。" health={data.growthEngines.health}><StatementList data={data} values={data.growthEngines.statements} empty=""/></DossierSection>}
       {(produced(data.businessPath.statements.length ? data.businessPath.statements : data.identity.commercialPaths) || data.boundaries.length > 0) && <DossierSection id="business" index="10" title="商业路径、证据边界与未知" note="商业化迹象、账号能力和无法判断的后台指标在这里收口。" health={data.businessPath.health}><StatementList data={data} values={data.businessPath.statements.length ? data.businessPath.statements : data.identity.commercialPaths} empty="未产出商业路径结论。"/><div className="boundary-list">{data.boundaries.map((boundary, index) => <p key={`${boundary}-${index}`}>{boundary}</p>)}</div></DossierSection>}
       {emptyAnalysis.length > 0 && <section className="dossier-analysis-empty"><h2>尚未产出的分析</h2><p>{emptyAnalysis.join("、")}尚无可靠结论。页面保留已有来源事实和统计，不据此补写或猜测。</p></section>}
+      </details>
       <CreatorTechnicalChecks data={data}/>
       <details className="dossier-audit-strip"><summary>知识贡献记录</summary><KnowledgeContributionBlock subjectType="creator" subjectId={data.canonicalId}/></details>
     </article>

@@ -7,6 +7,75 @@ import {
   type CreatorSynthesisIndependentEvaluation
 } from "./contracts.js";
 
+const crossPostSectionIds = ["value", "knowledge", "patterns", "performance", "next_questions"] as const;
+const chineseText = /[\u3400-\u9fff]/;
+const noCounterexampleBoundary = /反例|反证|未发现|暂无|不足|未知|无法|不可得|未覆盖/;
+
+export function assertValidCrossPostResearch(input: {
+  selection: unknown;
+  batch: unknown;
+  synthesis: unknown;
+}): void {
+  const selection = creatorSelectionSchema.parse(input.selection);
+  const batch = videoReconstructionBatchSchema.parse(input.batch);
+  const synthesis = creatorSynthesisSchema.parse(input.synthesis);
+  const research = synthesis.crossPostResearch;
+  if (!research) throw new Error("cross_post_research_missing");
+  const sectionIds = research.sections.map((section) => section.id);
+  if (sectionIds.length !== crossPostSectionIds.length
+    || new Set(sectionIds).size !== crossPostSectionIds.length
+    || crossPostSectionIds.some((id) => !sectionIds.includes(id))) {
+    throw new Error("cross_post_research_five_sections_required");
+  }
+  const selectedIds = new Set(selection.items.map((item) => item.externalId));
+  const deepIds = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
+  const reconstructionByPost = new Map(batch.items.map((item) => [item.postExternalId, item.reconstructionArtifactRef]));
+  const builtDeepIds = new Set(batch.items.filter((item) => deepIds.has(item.postExternalId)
+    && ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)
+    && item.reconstructionArtifactRef).map((item) => item.postExternalId));
+  if (!builtDeepIds.size) throw new Error("cross_post_research_no_built_deep_samples");
+  const sharedInputRefs = new Set([
+    synthesis.inputs.portfolioArtifactRef,
+    synthesis.inputs.portfolioAnnotationsArtifactRef,
+    synthesis.inputs.selectionArtifactRef,
+    synthesis.inputs.detailArtifactRef,
+    synthesis.inputs.reconstructionBatchArtifactRef
+  ].filter((reference): reference is string => Boolean(reference)));
+  const citedDeepIds = new Set<string>();
+  const findingIds = new Set<string>();
+  for (const section of research.sections) {
+    if (!chineseText.test(section.title)) throw new Error(`cross_post_research_non_chinese_title:${section.id}`);
+    for (const finding of section.findings) {
+      if (findingIds.has(finding.id)) throw new Error(`cross_post_research_duplicate_finding_id:${finding.id}`);
+      findingIds.add(finding.id);
+      if (![finding.statement, finding.boundary, ...finding.openQuestions].every((text) => chineseText.test(text))) {
+        throw new Error(`cross_post_research_non_chinese_finding:${finding.id}`);
+      }
+      if (!finding.counterexamples.length && !noCounterexampleBoundary.test(finding.boundary)) {
+        throw new Error(`cross_post_research_counterexample_boundary_missing:${finding.id}`);
+      }
+      for (const citation of [...finding.support, ...finding.counterexamples]) {
+        if (!selectedIds.has(citation.postExternalId)) {
+          throw new Error(`cross_post_research_unselected_post:${citation.postExternalId}`);
+        }
+        if (!chineseText.test(citation.observation)) {
+          throw new Error(`cross_post_research_non_chinese_observation:${finding.id}`);
+        }
+        if (!builtDeepIds.has(citation.postExternalId)) continue;
+        citedDeepIds.add(citation.postExternalId);
+        const ownReconstruction = reconstructionByPost.get(citation.postExternalId);
+        const referenceBases = citation.evidenceRefs.map((reference) => reference.split("#")[0]!);
+        if (!ownReconstruction || !referenceBases.includes(ownReconstruction)
+          || referenceBases.some((reference) => reference !== ownReconstruction && !sharedInputRefs.has(reference))) {
+          throw new Error(`cross_post_research_foreign_deep_evidence:${citation.postExternalId}`);
+        }
+      }
+    }
+  }
+  const missingDeep = [...builtDeepIds].filter((id) => !citedDeepIds.has(id));
+  if (missingDeep.length) throw new Error(`cross_post_research_deep_samples_missing:${missingDeep.join(",")}`);
+}
+
 const advicePattern = /(我们(下一条|要发|.*可直接复制)|你可以直接复制|可直接复制(这个|以下)(标题|公式|模板)|需要改造|不能复制|前\s*(10|30)\s*条|标题公式|单变量实验|起号方案|建议(我们|你))/i;
 
 export function validateCreatorSynthesis(input: {
@@ -19,6 +88,14 @@ export function validateCreatorSynthesis(input: {
   const selection = creatorSelectionSchema.parse(input.selection);
   const batch = videoReconstructionBatchSchema.parse(input.batch);
   const synthesis = creatorSynthesisSchema.parse(input.synthesis);
+  let crossPostResearchValid = true;
+  if (synthesis.crossPostResearch) {
+    try {
+      assertValidCrossPostResearch({ selection, batch, synthesis });
+    } catch {
+      crossPostResearchValid = false;
+    }
+  }
   const expected = new Set(selection.items.map((item) => item.externalId));
   const actual = new Set(synthesis.postAnalyses.map((item) => item.postExternalId));
   const deep = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
@@ -61,7 +138,7 @@ export function validateCreatorSynthesis(input: {
       message: "逐条分析必须与规范 21 条同集且无遗漏。" },
     { id: "deep_9_ready", pass: deepContractReady && ((readyDeep.size === deep.size && [...deep].every((id) => readyDeep.has(id))) || boundedCoverageReady),
       message: "历史 gate ID；四组各保留 3 个注册成员并允许重叠。全部可得媒体须完成单轮分析；仅当一次定向补取后仍不可得、四组各至少有 1 条已验证视频且缺口显式保留时，才允许带边界通过。" },
-    { id: "deep_evidence_binding", pass: policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
+    { id: "deep_evidence_binding", pass: crossPostResearchValid && policyProvenanceReady && deepRows.length === deep.size && deepRows.every((item) =>
       readyDeep.has(item.postExternalId)
         ? item.evidenceStatus === "deep_validated" && hasDeepReconstructionRef(item.postExternalId, item.evidenceRefs)
         : builtDeep.has(item.postExternalId)
@@ -71,7 +148,7 @@ export function validateCreatorSynthesis(input: {
       message: "可得深度帖子必须绑定对应媒体重建与 evaluator policy；媒体不可得成员只能使用 surface_only 证据并明确内容未知。" },
     { id: "three_tiers_present", pass: ["high", "base", "low"].every((tier) => synthesis.postAnalyses.some((item) => item.tier === tier)),
       message: "High / Base / Low 三档必须同时存在。" },
-    { id: "evidence_classification", pass: JSON.stringify(synthesis).includes("factClass") && synthesis.postAnalyses.every((item) => item.evidenceRefs.length > 0),
+    { id: "evidence_classification", pass: crossPostResearchValid && JSON.stringify(synthesis).includes("factClass") && synthesis.postAnalyses.every((item) => item.evidenceRefs.length > 0),
       message: "账号级主张必须分事实类别，逐条判断必须有证据引用。" },
     { id: "research_creation_separation", pass: !advicePattern.test(JSON.stringify(synthesis)),
       message: "研究产物不得混入我们该复制什么或下一条怎么发。" },

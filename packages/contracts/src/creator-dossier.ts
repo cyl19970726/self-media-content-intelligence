@@ -2,6 +2,7 @@ import { z } from "zod";
 import { creatorResearchRunSchema, dataHealthSchema } from "./schema.js";
 import { creatorResearchPipelineSchema } from "./creator-pipeline.js";
 import { missingPostSourceFacts, postSourceFactsSchema } from "./post-source-facts.js";
+import { crossPostResearchSchema } from "./cross-post-research.js";
 
 export const researchStatementSchema = z.object({
   statement: z.string(),
@@ -127,6 +128,7 @@ export const creatorDossierSchema = z.object({
   audienceDemand: z.object({ statements: z.array(researchStatementSchema), health: dataHealthSchema }),
   growthEngines: z.object({ statements: z.array(researchStatementSchema), health: dataHealthSchema }),
   businessPath: z.object({ statements: z.array(researchStatementSchema), health: dataHealthSchema }),
+  crossPostResearch: crossPostResearchSchema.optional(),
   boundaries: z.array(z.string())
 });
 

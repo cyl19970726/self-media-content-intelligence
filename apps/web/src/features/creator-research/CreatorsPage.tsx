@@ -98,6 +98,7 @@ export default function CreatorsOverview() {
       <CreatorBatchIntake runs={runs} submitting={submitting} submitError={submitError} onSubmit={submitBatch}/>
     </details>}
 
+    {view === "completed" && <p className="creator-directory-maturity">这里收录已产出的可读研究；是否完成独立验证，请看各条目的状态。</p>}
     {loadError && <p className="creator-directory-error" role="alert">{loadError}</p>}
     {runs === null ? <div className="creator-directory-empty"><p>正在读取研究任务…</p></div>
       : visibleRuns.length > 0 ? <div className="creator-directory-list">{visibleRuns.map((run) => <CreatorDirectoryRow key={run.id} run={run}

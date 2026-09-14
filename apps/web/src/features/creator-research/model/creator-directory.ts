@@ -2,8 +2,9 @@ import type { CreatorDossier, CreatorResearchRun } from "../../../shared/contrac
 import { creatorProgress } from "./creator-progress";
 
 export function isCompletedResearch(run: CreatorResearchRun): boolean {
-  return run.status === "ready" && Boolean(run.synthesisArtifactRef)
-    && run.stages.some((stage) => stage.id === "synthesis" && stage.status === "complete");
+  return ["ready", "reviewable"].includes(run.status) && Boolean(run.synthesisArtifactRef)
+    && run.stages.some((stage) => stage.id === "synthesis" && stage.status === "complete")
+    && run.stages.some((stage) => stage.id === "dashboard" && stage.status === "complete");
 }
 
 /** Keep an earlier completed result available while a newer research run advances. */
@@ -21,5 +22,6 @@ export function splitCreatorResearch(runs: CreatorResearchRun[]) {
 }
 
 export function researchStageLabel(run: CreatorResearchRun): string {
+  if (run.status === "reviewable" && isCompletedResearch(run)) return "研究已产出 · 待验证";
   return creatorProgress({ run } as CreatorDossier).headline;
 }

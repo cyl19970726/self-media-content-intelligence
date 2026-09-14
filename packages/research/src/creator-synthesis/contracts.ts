@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { crossPostResearchSchema } from "../../../contracts/index.js";
 import {
   childWorkerLifecycleEventSchema,
   type ChildWorkerLifecycleObserver
@@ -58,6 +59,7 @@ export const creatorSynthesisSchema = z.object({
     evidenceRefs: z.array(z.string()).min(1),
     unknowns: z.array(z.string())
   })).length(21),
+  crossPostResearch: crossPostResearchSchema.optional(),
   boundaries: z.array(z.string()).min(1)
 });
 export type CreatorSynthesis = z.infer<typeof creatorSynthesisSchema>;

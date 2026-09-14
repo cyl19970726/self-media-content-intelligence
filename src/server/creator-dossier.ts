@@ -255,6 +255,7 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       health: health(synthesis ? "partial" : "missing", "这里只描述观察到的内容系统，不输出复刻建议。", capturedAt) },
     businessPath: { statements: synthesis?.identity.commercialPaths.map(claim) ?? [],
       health: health(synthesis?.identity.commercialPaths.length ? "partial" : "missing", "商业路径只记录可见迹象与未知。", capturedAt) },
+    ...(synthesis?.crossPostResearch ? { crossPostResearch: synthesis.crossPostResearch } : {}),
     boundaries: [analysis?.interpretationBoundary ?? "公开表现不等于曝光、留存、转粉或成交。", ...(analysis?.unknowns ?? []), ...(synthesis?.boundaries ?? []),
       `综合证据：${synthesisRef}`]
   });

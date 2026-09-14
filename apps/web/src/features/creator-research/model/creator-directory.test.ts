@@ -8,13 +8,14 @@ function run(overrides: Partial<CreatorResearchRun> = {}): CreatorResearchRun {
     synthesisArtifactRef: null, stages: [{ id: "synthesis", status: "pending" }], source: { kind: "live_collection" },
     coverage: { reconstructedPosts: 12 }, ...overrides } as CreatorResearchRun;
 }
-const finished = () => run({ status: "ready", synthesisArtifactRef: "synthesis.json", stages: [{ id: "synthesis", status: "complete" }] as CreatorResearchRun["stages"] });
+const finished = () => run({ status: "ready", synthesisArtifactRef: "synthesis.json", stages: [{ id: "synthesis", status: "complete" }, { id: "dashboard", status: "complete" }] as CreatorResearchRun["stages"] });
 
 describe("creator research directory", () => {
-  it("does not equate built single posts or reviewable output with completed research", () => {
+  it("counts ready or reviewable research only after synthesis and dashboard delivery", () => {
     expect(isCompletedResearch(run())).toBe(false);
     expect(isCompletedResearch(run({ status: "ready" }))).toBe(false);
-    expect(isCompletedResearch({ ...finished(), status: "reviewable" })).toBe(false);
+    expect(isCompletedResearch({ ...finished(), status: "reviewable" })).toBe(true);
+    expect(isCompletedResearch({ ...finished(), stages: [{ id: "synthesis", status: "complete" }] as CreatorResearchRun["stages"] })).toBe(false);
     expect(isCompletedResearch(finished())).toBe(true);
   });
   it("shows one latest active row while preserving the last completed result", () => {

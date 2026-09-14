@@ -20,6 +20,7 @@ export function CreatorDirectoryRow({ run, creator, operation, busy, completed, 
 }) {
   const work = run.videoWork;
   const blocker = run.blockers[0]?.message ?? operation?.waitingReason;
+  const stageLabel = completed && run.status !== "reviewable" ? "研究已完成" : researchStageLabel(run);
 
   return <article className={`creator-directory-row creator-directory-row--${completed ? "complete" : "active"}`}>
     <div className="creator-directory-row__identity">
@@ -29,7 +30,7 @@ export function CreatorDirectoryRow({ run, creator, operation, busy, completed, 
     </div>
 
     <div className="creator-directory-row__stage">
-      <span>{completed ? "研究已完成" : researchStageLabel(run)}</span>
+      <span>{stageLabel}</span>
       <b>{run.coverage.discoveredPosts} 篇作品 · {run.coverage.comparisonPosts} 篇进入比较</b>
     </div>
 
