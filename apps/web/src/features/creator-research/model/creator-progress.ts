@@ -1,6 +1,6 @@
 import type { CreatorDossier, CreatorResearchRun } from "../../../shared/contracts/core";
 
-export type CreatorProgressState = "已完成" | "已跳过" | "等待执行" | "执行中" | "失败" | "待处理" | "未开始";
+export type CreatorProgressState = "已完成" | "部分完成" | "已跳过" | "等待执行" | "执行中" | "失败" | "待处理" | "未开始";
 
 export type CreatorProgressRow = {
   id: CreatorResearchRun["stages"][number]["id"];
@@ -27,7 +27,7 @@ const stages: Array<{ id: CreatorProgressRow["id"]; label: string }> = [
 
 function currentState(run: CreatorResearchRun, id: CreatorProgressRow["id"]): CreatorProgressState {
   const stage = run.stages.find((item) => item.id === id);
-  if (stage?.status === "complete") return "已完成";
+  if (stage?.status === "complete") return id === "deep_capture" && run.videoWork.failedPosts > 0 ? "部分完成" : "已完成";
   if (stage?.status === "skipped") return "已跳过";
   if (stage?.status === "failed") return "失败";
   if (stage?.status === "blocked") return "待处理";
@@ -103,6 +103,7 @@ export function creatorProgress(data: CreatorDossier): CreatorProgressModel {
         ? state === "执行中" ? `正在${active.label}`
           : state === "失败" ? `停在${active.label}：执行失败`
             : state === "待处理" ? `停在${active.label}：等待处理`
+              : state === "部分完成" ? `${active.label}部分完成，存在失败任务`
               : state === "已完成" ? `${active.label}已完成，等待进入下一阶段`
                 : `停在${active.label}：等待执行`
         : "研究进度未知";

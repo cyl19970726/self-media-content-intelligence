@@ -1,0 +1,64 @@
+.creator-directory-page { padding-top: 24px; }
+.creator-directory-head { margin-top: 24px; display: flex; justify-content: space-between; gap: 28px; align-items: end; }
+.creator-directory-head h1 { margin: 0; font-size: clamp(30px, 4vw, 52px); line-height: 1; font-weight: 500; letter-spacing: -.035em; }
+.creator-directory-head p { max-width: 570px; margin: 8px 0 0; color: #606762; font-size: 12px; line-height: 1.55; }
+.creator-directory-head button { padding: 9px 12px; display: inline-flex; gap: 7px; align-items: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+
+.creator-directory-intake { margin: 0; border: solid var(--ink); border-width: 0 1px 1px; background: #e9e4d8; }
+.creator-directory-intake > summary { min-height: 58px; padding: 12px 18px; display: flex; justify-content: space-between; gap: 18px; align-items: center; cursor: pointer; list-style: none; }
+.creator-directory-intake > summary::-webkit-details-marker { display: none; }
+.creator-directory-intake > summary span { color: var(--orange); font: 600 11px "IBM Plex Mono"; letter-spacing: .1em; }
+.creator-directory-intake > summary b { display: block; margin-top: 4px; font-size: 16px; }
+.creator-directory-intake > summary small { color: #66706b; font-size: 11px; }
+.creator-directory-intake[open] > summary { border-bottom: 1px solid var(--ink); }
+.creator-directory-intake .batch-intake { margin-top: 0; border: 0; }
+
+.creator-directory-tabs { margin-top: 30px; display: flex; border-bottom: 1px solid var(--ink); }
+.creator-directory-tabs a { min-width: 150px; padding: 12px 18px; color: #646b67; border: 1px solid transparent; border-bottom: 0; font-size: 12px; text-align: center; }
+.creator-directory-tabs a.is-active { margin-bottom: -1px; color: var(--paper); background: var(--ink); }
+.creator-directory-tabs span { margin-left: 7px; color: inherit; font: 500 11px "IBM Plex Mono"; }
+
+.creator-directory-list { border: solid var(--ink); border-width: 0 1px 1px; }
+.creator-directory-row { min-height: 96px; padding: 13px 16px; display: grid; grid-template-columns: minmax(190px, 1.05fr) minmax(220px, 1.25fr) minmax(270px, 1.15fr) 126px; gap: 12px 20px; align-items: center; position: relative; border-top: 1px solid var(--line); background: rgba(248,245,237,.62); }
+.creator-directory-row:first-child { border-top: 0; }
+.creator-directory-row::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--orange); }
+.creator-directory-row--complete::before { background: var(--teal); }
+.creator-directory-row__identity, .creator-directory-row__stage { min-width: 0; }
+.creator-directory-row__identity strong, .creator-directory-row__identity a, .creator-directory-row__identity small { display: block; }
+.creator-directory-row__identity strong { font-size: 17px; }
+.creator-directory-row__identity a { max-width: 100%; margin-top: 4px; display: flex; gap: 5px; align-items: center; overflow: hidden; color: #68706b; font-size: 12px; white-space: nowrap; text-overflow: ellipsis; }
+.creator-directory-row__identity small { margin-top: 5px; color: #767a75; font: 400 11px "IBM Plex Mono"; }
+.creator-directory-row__stage span { display: block; color: var(--orange); font: 600 12px "IBM Plex Mono"; }
+.creator-directory-row--complete .creator-directory-row__stage span { color: var(--teal); }
+.creator-directory-row__stage b { margin-top: 6px; display: block; overflow: hidden; font-size: 11px; font-weight: 400; white-space: nowrap; text-overflow: ellipsis; }
+.creator-directory-row__video-work { display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 7px; }
+.creator-directory-row__counts-label { grid-column: 1 / -1; color: #68706b; font-size: 11px; text-align: center; }
+.creator-directory-row__video-work span { color: #6c736f; font: 400 12px "IBM Plex Mono"; text-align: center; }
+.creator-directory-row__video-work b { margin-bottom: 3px; display: block; color: var(--ink); font: 500 18px "IBM Plex Sans Condensed"; }
+.creator-directory-row__video-work .has-failure, .creator-directory-row__video-work .has-failure b { color: #97392f; }
+.creator-directory-row__action { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.creator-directory-row__action time { color: #777b76; font: 400 11px "IBM Plex Mono"; }
+.creator-directory-row__action a, .creator-directory-row__action button { padding: 6px 8px; display: inline-flex; gap: 5px; align-items: center; border: 1px solid currentColor; color: var(--teal); background: transparent; font: 600 12px "IBM Plex Mono"; cursor: pointer; }
+.creator-directory-row__action button { color: #96382e; }
+.creator-directory-row__action button:disabled { opacity: .55; cursor: wait; }
+.creator-directory-row__blocker { grid-column: 2 / -1; margin: -3px 0 0; display: flex; gap: 6px; align-items: center; color: #92382e; font-size: 11px; }
+.creator-directory-empty { padding: 54px 24px; border: solid var(--ink); border-width: 0 1px 1px; color: #676e6a; text-align: center; }
+.creator-directory-empty svg { margin-bottom: 10px; }
+.creator-directory-empty h2 { margin: 0 0 6px; color: var(--ink); font-size: 20px; }
+.creator-directory-empty p { margin: 0; font-size: 11px; }
+.creator-directory-error { margin-top: 12px; padding: 10px 12px; color: #8e3028; background: #f0dcd3; font-size: 11px; }
+.creator-directory-tools { margin-top: 24px; border-top: 1px solid var(--line); }
+
+@media (max-width: 1050px) {
+  .creator-directory-row { grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr) 250px; }
+  .creator-directory-row__action { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+  .creator-directory-row__action a { margin-left: auto; }
+}
+@media (max-width: 720px) {
+  .creator-directory-head { align-items: flex-start; flex-direction: column; }
+  .creator-directory-tabs a { min-width: 0; flex: 1; }
+  .creator-directory-row { grid-template-columns: 1fr; gap: 14px; }
+  .creator-directory-row__video-work { max-width: 360px; }
+  .creator-directory-row__action, .creator-directory-row__blocker { grid-column: 1; }
+  .creator-directory-intake > summary small { display: none; }
+}

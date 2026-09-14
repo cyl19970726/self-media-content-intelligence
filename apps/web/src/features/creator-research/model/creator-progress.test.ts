@@ -81,3 +81,11 @@ describe("creator progress presentation", () => {
     expect(model.rows.every((row) => row.state === "未开始" && !row.current)).toBe(true);
   });
 });
+
+it("does not label a drained single-post stage with failures as fully complete", () => {
+  const value = run({ currentStage: "synthesis", videoWork: { ...run().videoWork, queuedPosts: 0, analyzedPosts: 11, failedPosts: 1 },
+    stages: run().stages.map((stage) => stage.id === "deep_capture" ? { ...stage, status: "complete" } : stage) });
+  const result = creatorProgress(dossier(value));
+  expect(result.rows.find((row) => row.id === "deep_capture")?.state).toBe("部分完成");
+  expect(result.rows.find((row) => row.id === "deep_capture")?.detail).toContain("1 条失败");
+});

@@ -484,33 +484,7 @@ a { color: inherit; text-decoration: none; }
 .status--reviewable i, .status--ready i { background: var(--teal); }
 .status--needs_user i, .status--failed i { background: #a33b2f; }
 .status--backoff i, .status--stale i { background: #a97520; }
-.creators-grid { margin-top: 46px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: start; }
-.creator-card { display: flex; flex-direction: column; background: var(--paper); }
-.creator-card + .creator-card { border-left: 1px solid var(--ink); }
-.creator-card__head { padding: 16px 20px 0; display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 14px; align-items: start; }
-.creator-card__number { color: var(--muted); font: 400 13px "IBM Plex Mono"; padding-top: 3px; }
-.creator-card__head h2 { margin: 0; font-size: 30px; line-height: 1.02; }
-.creator-card__position { margin: 9px 0 0; color: var(--teal); font-size: 13.5px; line-height: 1.5; }
-.creator-card__profile { padding: 7px; color: var(--ink); border: 1px solid var(--line); background: transparent; }
-.creator-card__metrics { margin: 14px 20px 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-.creator-card__metrics > div { padding: 11px 0; border-right: 1px solid var(--line); text-align: center; }
-.creator-card__metrics > div:last-child { border-right: 0; }
-.creator-card__metrics b { display: block; font-size: 22px; font-weight: 500; }
-.creator-card__metrics span { color: #66706c; font: 400 9px "IBM Plex Mono"; }
-.creator-card__summary { margin: 11px 20px 0; color: var(--coal); font-size: 13px; line-height: 1.6; }
-.creator-card__tags { margin: 10px 20px 0; display: flex; flex-wrap: wrap; gap: 7px; }
 .tag { padding: 4px 8px; color: var(--teal); border: 1px solid rgba(46, 107, 79, .45); background: rgba(46, 107, 79, .06); font: 400 9px "IBM Plex Mono"; letter-spacing: .04em; }
-.creator-card__entries { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
-.creator-card__entries a { padding: 12px 20px; display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; border-right: 1px solid var(--ink); color: var(--ink); transition: background .16s; }
-.creator-card__entries a:last-child { border-right: 0; }
-.creator-card__entries a span { font-size: 14px; font-weight: 600; }
-.creator-card__entries a svg { grid-row: 1 / 3; grid-column: 2; align-self: center; }
-.creator-card__entries a:hover { color: var(--paper); background: var(--ink); }
-.creator-card__entries small { color: #7a817d; font: 400 9px "IBM Plex Mono"; letter-spacing: .04em; }
-.creator-card__entries a:hover small { color: #b9c0bc; }
-.creator-card__history { grid-column: 1 / -1; border-top: 1px solid var(--line); }
-.creator-card__history summary { padding: 10px 20px; cursor: pointer; color: #66706c; font-size: 12px; }
-.creator-card__history a { border-top: 1px solid var(--line); border-right: 0; }
 .benchmark-banner { margin-top: 18px; padding: 18px 24px; display: flex; gap: 16px; align-items: center; border: 1px solid var(--orange); color: var(--paper); background: var(--orange); font-size: 15px; }
 .benchmark-banner span { font-weight: 600; letter-spacing: .02em; }
 .benchmark-banner b { flex: 1; color: rgba(255,255,255,.86); font: 400 10px "IBM Plex Mono"; letter-spacing: .06em; }
@@ -830,7 +804,6 @@ details.console-section > .console-section__inner { padding: 22px 0; }
   .creator-discovery { width: 100%; }.creator-candidate-list { grid-template-columns: 1fr; }.creator-candidate-list article { border-right: 0; }
   .creator-operations-summary { grid-template-columns: repeat(4, 1fr); }.creator-operations-summary p { grid-column: 1 / -1; }
   .creator-run { grid-template-columns: 115px minmax(0,1fr); }.creator-run__coverage { grid-column: 1 / -1; border-top: 1px solid var(--line); border-right: 0; }
-  .creators-grid { grid-template-columns: 1fr; } .creator-card + .creator-card { border-left: 0; border-top: 1px solid var(--ink); }
   .console { grid-template-columns: 1fr; } .console-rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--ink); }
   .console-rail nav { flex-direction: row; flex-wrap: wrap; } .console-rail nav a { border-bottom: 0; border-right: 1px solid var(--line); }
   .console-rail__foot { flex-direction: row; }
