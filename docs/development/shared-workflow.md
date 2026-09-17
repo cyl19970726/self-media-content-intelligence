@@ -52,3 +52,9 @@ git push
 共享测试包含旧版本 SQLite 记录的重放夹具：重用已验证 agent 输出，不再次调用 agent；核验事件、attempt 与资产来源。宿主保留 Codex/SQLite 接入回归，覆盖单帖与博主组合、审阅失败保留候选、一次修订、阶段资产和公开投影。`npm run test:workflow` 在本仓库运行共享包测试。
 
 这些检查验证代码与持久化兼容，不代表新一轮真实模型生成或研究质量验收；迁移不主动重跑付费研究，也不改动生产数据库和历史 trace。历史 workflow 定义仍须保留以支持旧任务恢复。
+
+## 文档与编排 Skill
+
+共享仓库提供[使用文档](../../vendor/agent-workflow/README.md)和 [agent-workflow skill](../../.agents/skills/agent-workflow/SKILL.md)。本项目在 `.agents/skills/agent-workflow` 建立相对符号链接，指向当前 submodule 的同名 skill，随指针升级；未安装到全局目录。
+
+可直接让开发 Agent 使用 `$agent-workflow` 编写或维护流程；会话未发现该名称时，显式读取上述 SKILL.md。运行时业务 Agent 的方法仍由 `config.skills` 声明，不会自动注入编排 skill。详见[调用与安装说明](../../vendor/agent-workflow/docs/using-the-skill.md)。

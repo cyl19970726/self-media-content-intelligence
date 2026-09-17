@@ -31,3 +31,5 @@
 - Shared execution code lives in `vendor/agent-workflow` (Git submodule), accessed through public npm package exports. Read its AGENTS.md before editing it.
 - Keep research workflows, queue dispatch, project method skills and UI here; do not copy the shared runtime back into this repository.
 - Commit and push shared changes before updating the consumer submodule pointer. Run both shared and consumer verification. See [maintenance guide](docs/development/shared-workflow.md).
+
+- For workflow authoring, use the project-local [agent-workflow skill](.agents/skills/agent-workflow/SKILL.md). This relative symlink follows the pinned submodule; do not copy or globally install the skill.
