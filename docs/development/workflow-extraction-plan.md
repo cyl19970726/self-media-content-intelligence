@@ -19,8 +19,8 @@ All five HTML reports under docs/reports are tracked in that commit and remain u
 
 - Preservation: verified committed and pushed; no additional uncommitted source work.
 - Baseline validation: passed (656 tests passed, 1 skipped; complete verify passed).
-- Extraction and integration: in progress.
-- Regression / fresh checkout / publication: pending.
+- Extraction and integration: complete; public shared repository consumed as a pinned submodule.
+- Regression and fresh checkout: passed. Shared repository published; consumer changes prepared for publication.
 
 ## Verified implementation
 
@@ -31,4 +31,7 @@ All five HTML reports under docs/reports are tracked in that commit and remain u
 - Existing data: a read-only SQLite backup verified 458 runs, 5 creator scopes, 1,706 steps, 1,187 reusable steps, and 348 artifact payload hashes against the extracted store. The temporary copy was removed; production data was not changed.
 - Original five HTML report files are byte-unchanged against c460d1cd.
 - No live model generation was run. Research-quality conclusions and existing review status are not promoted by this migration.
-- Remaining: fresh recursive checkout verification, final consumer push.
+- Fresh recursive checkout of consumer revision `582ae268edc0a171f6fb9ce914b0a703a465914c`: `npm ci` and full `npm run verify` passed (636 host tests + 30 shared tests, 1 host skip), including build and compiled Web/API/Worker/CLI entrypoints. No existing node_modules or dist were reused.
+- The staged/committed submodule pointer was verified to equal `5505b3fb1822887a9f3adcf03514a9cb8cd7f0af`, including the shared test-root correction; fresh checkout confirmed that exact revision.
+- Project skill-system validation passed. Existing workbench workflow page and its proxied workflow API returned HTTP 200; API listed 458 existing runs.
+- Both repositories are published on their existing branches; no merge into self-media main is part of this extraction.
