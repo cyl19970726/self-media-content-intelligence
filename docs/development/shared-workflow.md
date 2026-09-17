@@ -53,8 +53,9 @@ git push
 
 这些检查验证代码与持久化兼容，不代表新一轮真实模型生成或研究质量验收；迁移不主动重跑付费研究，也不改动生产数据库和历史 trace。历史 workflow 定义仍须保留以支持旧任务恢复。
 
-## 文档与编排 Skill
 
-共享仓库提供[使用文档](../../vendor/agent-workflow/README.md)和 [agent-workflow skill](../../.agents/skills/agent-workflow/SKILL.md)。本项目在 `.agents/skills/agent-workflow` 建立相对符号链接，指向当前 submodule 的同名 skill，随指针升级；未安装到全局目录。
+## 接入文档与示例
 
-可直接让开发 Agent 使用 `$agent-workflow` 编写或维护流程；会话未发现该名称时，显式读取上述 SKILL.md。运行时业务 Agent 的方法仍由 `config.skills` 声明，不会自动注入编排 skill。详见[调用与安装说明](../../vendor/agent-workflow/docs/using-the-skill.md)。
+直接参考共享仓库的[快速开始](../../vendor/agent-workflow/docs/getting-started.md)、[流程编写](../../vendor/agent-workflow/docs/writing-workflows.md)和[宿主集成](../../vendor/agent-workflow/docs/integration.md)。可运行示例位于 [examples](../../vendor/agent-workflow/examples)。
+
+本项目不安装 workflow 编排 skill；业务 Agent 所需的方法仍通过 `config.skills` 显式配置。
