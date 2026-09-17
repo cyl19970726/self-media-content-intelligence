@@ -1,0 +1,3 @@
+[submodule "vendor/agent-workflow"]
+	path = vendor/agent-workflow
+	url = https://github.com/cyl19970726/agent-workflow.git

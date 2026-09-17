@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MemoryRunStore, runWorkflow, workflow, type AgentRunner, type ArtifactRef } from "../../../workflow/index.js";
+import { MemoryRunStore, runWorkflow, workflow, type AgentRunner, type ArtifactRef } from "@signal-room/workflow";
 import { createResearchAgentDefinitions } from "./agents.js";
 import { createCreatorSynthesisWorkflowSuiteV4, createPostWorkflowSuiteV5, type SimpleSourceCheckOutput } from "./simple-review.js";
 import type { PostWorkflowInput } from "./contracts.js";

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { artifactPath } from "../../packages/adapters/index.js";
 import { creatorSynthesisSchema, videoReconstructionBatchSchema, type CreatorResearchService, type CreatorSynthesisWorkflowStartInput } from "../../packages/research/index.js";
-import type { RunStore } from "../../packages/workflow/index.js";
+import type { RunStore } from "@signal-room/workflow";
 import { loadWorkflowVideoResearch } from "./video-research.js";
 import { loadWorkflowCreatorReader } from "./workflow-creator-reader.js";
 
@@ -20,7 +20,7 @@ async function pinnedPostCandidateHrefs(store: RunStore, payload: (id: string) =
     ? [[item.reconstructionArtifactRef, item.postExternalId] as const] : []));
   const hrefs = new Map<string, string>();
   if (!pinnedByReport.size) return hrefs;
-  const runs = await store.listRuns({ creatorRunId });
+  const runs = await store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } });
   for (const run of runs) {
     for (const artifact of await store.listArtifacts(run.id)) {
       if (artifact.type !== "post-candidate" || artifact.schemaVersion !== "v1") continue;

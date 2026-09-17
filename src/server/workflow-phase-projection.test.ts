@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import type { ArtifactRef } from "../../packages/workflow/index.js";
+import type { ArtifactRef } from "@signal-room/workflow";
 import { projectWorkflowPhases } from "./workflow-phase-projection.js";
 
 const artifact = (id: string, owner: string): ArtifactRef => ({ id, type: "post-candidate", schemaVersion: "v1", revision: "1", sha256: id.padEnd(64, "a"), uri: `workflow://${id}`,

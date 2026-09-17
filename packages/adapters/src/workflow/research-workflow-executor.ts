@@ -5,7 +5,7 @@ import type {
   ResearchWorkflowExecutor, WorkflowQueueReceipt,
 } from "../../../research/index.js";
 import { canonicalWorkflowValue, runWorkflow, workflowFingerprint, type AgentRunner, type ChildWorkflowDispatchRequest, type ChildWorkflowDispatcher,
-  type ChildWorkflowSnapshot, type RunState, type RunStore, type WorkflowDefinition } from "../../../workflow/index.js";
+  type ChildWorkflowSnapshot, type RunState, type RunStore, type WorkflowDefinition } from "@signal-room/workflow";
 
 type WorkflowKind = "post" | "creator_synthesis" | "creator_analysis" | "child";
 type QueueState = WorkflowQueueReceipt["state"];

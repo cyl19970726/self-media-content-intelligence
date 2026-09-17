@@ -2,7 +2,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import path from "node:path";
 import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { MemoryRunStore } from "../../../workflow/index.js";
+import { MemoryRunStore } from "@signal-room/workflow";
 import type { CreatorSynthesisWorkflowStartInput, PostWorkflowStartInput } from "../../../research/index.js";
 
 const fixture = vi.hoisted(() => ({ root: `/tmp/research-inputs-${process.pid}` }));

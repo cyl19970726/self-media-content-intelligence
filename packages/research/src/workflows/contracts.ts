@@ -1,4 +1,4 @@
-import type { ArtifactRef, WorkflowDefinition } from "../../../workflow/index.js";
+import type { ArtifactRef, WorkflowDefinition } from "@signal-room/workflow";
 import { z } from "zod";
 
 const sourceConsistencyProvenanceSchema = z.object({ model: z.literal("gpt-5.6-luna"), reasoningEffort: z.literal("medium"),

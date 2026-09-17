@@ -1,4 +1,4 @@
-import { workflow, type ArtifactRef, type ValidationResult } from "../../../workflow/index.js";
+import { workflow, type ArtifactRef, type ValidationResult } from "@signal-room/workflow";
 import type { ResearchAgentDefinitions } from "./agents.js";
 import type {
   PostBuildOutput, PostCandidateReceipt, PostEvaluationReceipt, PostEvaluationRepairInput,

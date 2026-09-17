@@ -1,4 +1,4 @@
-import { defineAgent, type AgentDefinition } from "../../../workflow/index.js";
+import { defineAgent, type AgentDefinition } from "@signal-room/workflow";
 import type {
   CreatorSynthesisEvaluationReceipt, CreatorSynthesisReceipt, CreatorSynthesisWorkflowInput,
   PostCandidateReceipt, PostEvaluationReceipt, PostWorkflowInput,

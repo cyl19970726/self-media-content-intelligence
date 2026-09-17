@@ -1,6 +1,6 @@
 import { DatabaseSync } from "node:sqlite";
 import { afterEach, describe, expect, it } from "vitest";
-import { artifactPayloadSha256 } from "../../../workflow/index.js";
+import { artifactPayloadSha256 } from "@signal-room/workflow";
 import { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";
 
 const databases: DatabaseSync[] = [];
@@ -18,7 +18,7 @@ describe("SQLite workflow ledger", () => {
     const step = await store.createStep({ runId: run.id, key: "build", kind: "agent", workflowId: "post", workflowRevision: "1", inputFingerprint: "input", configFingerprint: "model+skill", state: "succeeded", validation: "valid", output: { candidate: "one" } });
     await store.createAttempt({ runId: run.id, stepRunId: step.id, state: "succeeded" });
     const reopened = new SQLiteWorkflowRunStore(db);
-    expect(await reopened.listRuns({ creatorRunId: "creator" })).toHaveLength(1);
+    expect(await reopened.listRuns({ metadata: { creatorRunId: "creator" } })).toHaveLength(1);
     expect(await reopened.findReusableStep(step)).toEqual(step);
     expect(await reopened.findReusableStep({ ...step, configFingerprint: "changed-model" })).toBeUndefined();
     expect(await reopened.findReusableStep({ ...step, runId: "another" })).toBeUndefined();

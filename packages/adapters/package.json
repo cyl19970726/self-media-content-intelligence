@@ -7,6 +7,9 @@
     ".": "./index.ts"
   },
   "dependencies": {
-    "@openai/codex-sdk": "0.154.0"
+    "@openai/codex-sdk": "0.154.0",
+    "@signal-room/workflow": "0.1.0",
+    "@signal-room/workflow-codex": "0.1.0",
+    "@signal-room/workflow-sqlite": "0.1.0"
   }
 }

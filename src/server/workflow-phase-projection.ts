@@ -1,5 +1,5 @@
-import type { ArtifactRef, PhaseArtifactBinding, PhaseDefinition, PhaseExpectedArtifact, RunState } from "../../packages/workflow/index.js";
-import type { AttemptRecord, RunRecord, RunStore, StepRecord, WorkflowEvent } from "../../packages/workflow/index.js";
+import type { ArtifactRef, PhaseArtifactBinding, PhaseDefinition, PhaseExpectedArtifact, RunState } from "@signal-room/workflow";
+import type { AttemptRecord, RunRecord, RunStore, StepRecord, WorkflowEvent } from "@signal-room/workflow";
 
 type PhasedStep = StepRecord & { phaseDefinition?: PhaseDefinition; phaseId?: string; phasePath?: readonly string[]; artifactBindings?: readonly PhaseArtifactBinding[] };
 
@@ -30,7 +30,7 @@ function isDefinition(value: unknown): value is PhaseDefinition {
 
 async function relatedRuns(store: RunStore, root: RunRecord): Promise<{ tree: Map<string, RunRecord>; creatorRuns: Map<string, RunRecord> }> {
   const creatorRunId = root.metadata?.creatorRunId;
-  const candidates = await store.listRuns(typeof creatorRunId === "string" ? { creatorRunId } : undefined);
+  const candidates = await store.listRuns(typeof creatorRunId === "string" ? { metadata: { creatorRunId } } : undefined);
   const byId = new Map(candidates.map((run) => [run.id, run])); byId.set(root.id, root);
   const included = new Map<string, RunRecord>([[root.id, root]]);
   let changed = true;

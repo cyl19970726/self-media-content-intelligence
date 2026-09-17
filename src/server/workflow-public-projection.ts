@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { creatorSynthesisGateSchema, researchReviewArtifactSchema, sourceConsistencyCheckSchema, videoReconstructionOutcomeSchema } from "../../packages/research/index.js";
-import type { ArtifactRef } from "../../packages/workflow/index.js";
-import type { AttemptRecord, RunRecord, StepRecord, WorkflowEvent } from "../../packages/workflow/index.js";
+import type { ArtifactRef } from "@signal-room/workflow";
+import type { AttemptRecord, RunRecord, StepRecord, WorkflowEvent } from "@signal-room/workflow";
 
 type PublicDiagnostic = { errorId: string; message: string };
 

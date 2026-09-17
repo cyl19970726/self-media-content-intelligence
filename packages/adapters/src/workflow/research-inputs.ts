@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import type {
   CreatorSynthesisWorkflowStartInput, PostWorkflowStartInput,
 } from "../../../research/index.js";
-import { runWorkflow, workflow, type ArtifactRef, type RunStore } from "../../../workflow/index.js";
+import { runWorkflow, workflow, type ArtifactRef, type RunStore } from "@signal-room/workflow";
 import { artifactPath } from "../core/artifacts.js";
 import { projectRoot } from "../core/config.js";
 

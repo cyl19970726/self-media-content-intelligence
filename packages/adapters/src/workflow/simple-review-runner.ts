@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef } from "../../../workflow/index.js";
+import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef } from "@signal-room/workflow";
 import { CodexSdkRunner } from "./codex-sdk-runner.js";
 import { artifactPath } from "../core/artifacts.js";
 

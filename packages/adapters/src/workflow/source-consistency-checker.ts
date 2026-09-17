@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import type { AgentRunRequest } from "../../../workflow/index.js";
+import type { AgentRunRequest } from "@signal-room/workflow";
 import { sourceConsistencyCheckV2Schema, type PostWorkflowStartInput, type SourceConsistencyReceipt } from "../../../research/index.js";
 import { artifactPath, artifactRef } from "../core/artifacts.js";
 import { projectRoot, runArtifactDir, runtimeDir } from "../core/config.js";

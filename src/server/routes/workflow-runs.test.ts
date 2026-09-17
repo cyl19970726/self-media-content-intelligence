@@ -3,7 +3,7 @@ import type { Server } from "node:http";
 import { DatabaseSync } from "node:sqlite";
 import { afterEach, expect, it, vi } from "vitest";
 import { SQLiteWorkflowRunStore } from "../../../packages/adapters/index.js";
-import { artifactPayloadSha256 } from "../../../packages/workflow/index.js";
+import { artifactPayloadSha256 } from "@signal-room/workflow";
 import { registerWorkflowRoutes } from "./workflow-runs.js";
 
 const servers: Server[] = [];

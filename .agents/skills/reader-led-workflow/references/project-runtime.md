@@ -4,7 +4,7 @@
 
 ## 新的小型 Workflow 路径
 
-- [业务无关运行层](../../../../packages/workflow/README.md) 提供普通 TypeScript 的 task、agent、call、mapSettled、decide、validate 和 publish。单帖/博主定义在 [research workflows](../../../../packages/research/src/workflows/index.ts)，SDK 与实际研究操作通过 [生产适配器](../../../../packages/adapters/src/workflow/production-research-runner.ts) 连接。
+- [业务无关运行层](../../../../vendor/agent-workflow/packages/core/README.md) 提供普通 TypeScript 的 task、agent、call、mapSettled、decide、validate 和 publish。单帖/博主定义在 [research workflows](../../../../packages/research/src/workflows/index.ts)，SDK 与实际研究操作通过 [生产适配器](../../../../packages/adapters/src/workflow/production-research-runner.ts) 连接。
 - 新路径显式使用 Terra medium Builder、Luna medium Reviewer；独立 Reviewer 使用独立会话。Skill 方法与来源哈希随输入冻结，完整 prompt 和 SDK 事件保留在私有 trace。SDK 提供模型执行，现有 research_jobs 仍是唯一队列。
 - 父流程等待子流程时释放执行槽；进程恢复按已验证持久节点重放，不承诺任意 TypeScript 语句或外部副作用恰好一次。
 - 当前 `post.analyze@v5`、`creator.synthesize@v4` 通过 [simple-review](../../../../packages/research/src/workflows/simple-review.ts) 组织独立 Reviewer：无意见跳过修订，有意见交给 Builder 最多修订一次；修订版本登记为 `revised_unverified`，不继承原稿审阅状态。审阅技术失败最多尝试两次，保留候选并标注 `review_incomplete`。旧 `post.repair-evaluation` 仅用于历史 Evaluator 合同；新流程不能重写主报告来掩盖审阅执行或校验问题。

@@ -1,4 +1,4 @@
-import { workflow, type ArtifactRef, type WorkflowDefinition } from "../../../workflow/index.js";
+import { workflow, type ArtifactRef, type WorkflowDefinition } from "@signal-room/workflow";
 import type {
   CreatorAnalysisWorkflowInput, CreatorAnalysisWorkflowOutput, CreatorSynthesisWorkflowInput,
   CreatorSynthesisWorkflowOutput, PostWorkflowInput, PostWorkflowOutput,

@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { afterEach, expect, it, vi } from "vitest";
-import type { RunStore } from "../../packages/workflow/index.js";
+import type { RunStore } from "@signal-room/workflow";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 
 const paths = vi.hoisted(() => new Map<string, string>());

@@ -1,4 +1,4 @@
-import type { ArtifactRef, RunRecord, RunState, RunStore, StepRecord } from "../../packages/workflow/index.js";
+import type { ArtifactRef, RunRecord, RunState, RunStore, StepRecord } from "@signal-room/workflow";
 import type { ResearchReviewState } from "../../packages/contracts/index.js";
 
 export type CreatorWorkflowPostState = "queued" | "source_checking" | "building" | "built_unreviewed" | "reviewing" | "repairing" | "reviewed" | "revised_unverified" | "needs_review" | "failed" | "canceled";
@@ -109,7 +109,7 @@ export async function projectCreatorWorkflowProgress(
   registeredReview?: CreatorRegisteredReview | null,
   registeredPostReviews?: CreatorRegisteredPostReviews
 ): Promise<CreatorWorkflowProgress> {
-  const runs = await store.listRuns({ creatorRunId });
+  const runs = await store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } });
   const roots = runs.filter((run) => run.workflowId === "post.analyze" && typeof run.metadata?.postId === "string");
   const byPost = new Map<string, RunRecord>();
   for (const run of roots) if (!byPost.has(String(run.metadata!.postId))) byPost.set(String(run.metadata!.postId), run);

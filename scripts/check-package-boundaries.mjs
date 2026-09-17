@@ -21,6 +21,13 @@ for (const file of sourceFiles) {
     const specifier = match[2];
     if (!specifier) continue;
     const resolved = resolvedImport(file, specifier);
+    if (resolved?.startsWith("vendor/agent-workflow/") || specifier.startsWith("@signal-room/workflow/") && specifier !== "@signal-room/workflow/contracts") {
+      failures.push(`${file}: shared workflow imports must use public package exports (${specifier})`);
+    }
+    if ((file.startsWith("src/client/") || file.startsWith("apps/web/"))
+      && specifier.startsWith("@signal-room/workflow") && specifier !== "@signal-room/workflow/contracts") {
+      failures.push(`${file}: Web code may import only the browser-safe workflow contracts (${specifier})`);
+    }
 
     if (file.startsWith("packages/") && !file.endsWith(".test.ts") && resolved) {
       if (resolved.startsWith("src/") || resolved.startsWith("apps/")) {
@@ -50,10 +57,16 @@ for (const file of sourceFiles) {
   }
 }
 
-for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research", "adapters", "testkit", "workflow"]) {
+for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research", "adapters", "testkit"]) {
   const packageRoot = path.join(root, "packages", packageName);
   if (!fs.existsSync(path.join(packageRoot, "package.json")) || !fs.existsSync(path.join(packageRoot, "index.ts"))) {
     failures.push(`packages/${packageName}: workspace requires package.json and public index.ts`);
+  }
+}
+
+for (const name of ["core", "codex", "sqlite"]) {
+  if (!fs.existsSync(path.join(root, "vendor/agent-workflow/packages", name, "package.json"))) {
+    failures.push(`Shared workflow package ${name} is missing; run git submodule update --init --recursive`);
   }
 }
 

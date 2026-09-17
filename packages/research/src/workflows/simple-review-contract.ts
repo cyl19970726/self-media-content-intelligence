@@ -1,4 +1,4 @@
-import type { ArtifactRef } from "../../../workflow/index.js";
+import type { ArtifactRef } from "@signal-room/workflow";
 import { z } from "zod";
 
 const artifactBindingSchema = z.object({

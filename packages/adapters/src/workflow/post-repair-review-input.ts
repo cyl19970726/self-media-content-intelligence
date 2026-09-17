@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { ArtifactRef } from "../../../workflow/index.js";
+import type { ArtifactRef } from "@signal-room/workflow";
 import { artifactPath } from "../core/artifacts.js";
 import { fileDigest } from "./research-inputs.js";
 

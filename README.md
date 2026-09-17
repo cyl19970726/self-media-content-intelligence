@@ -127,3 +127,7 @@ API 的只读 `/research/...` 兼容路径提供，例如：
 ## 仓库边界
 
 原始视频、音轨、文字稿、OCR、关键帧、研究报告、平台临时签名、登录信息和模型权重都不会进入代码仓库。仓库只保留源码、Manifest、尺寸受控的 Fixtures、精选 Examples 和可复现脚本；研究 Evidence 由 `SIGNAL_ROOM_EVIDENCE_ROOT` 指向的独立存储持有。
+
+## Shared workflow source
+
+The reusable workflow runtime is pinned at `vendor/agent-workflow`. Clone with `--recurse-submodules`, or run `git submodule update --init --recursive` before `npm ci`. See [shared workflow development](docs/development/shared-workflow.md) for source edits, verification, and coordinated upgrades.

@@ -25,3 +25,9 @@
 - 工作台可以在三个 Lens 之间切换，但 `contentRestoration` 内部必须保持一份连续报告并完整渲染全部内容块。目录只能做锚点定位，不能筛选、分页或隐藏其他内容块。
 
 权威格式见 `.agents/skills/video-content-reconstruction/schemas/reconstruction.schema.json`。
+
+## Shared workflow maintenance
+
+- Shared execution code lives in `vendor/agent-workflow` (Git submodule), accessed through public npm package exports. Read its AGENTS.md before editing it.
+- Keep research workflows, queue dispatch, project method skills and UI here; do not copy the shared runtime back into this repository.
+- Commit and push shared changes before updating the consumer submodule pointer. Run both shared and consumer verification. See [maintenance guide](docs/development/shared-workflow.md).

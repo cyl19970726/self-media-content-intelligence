@@ -1,5 +1,5 @@
 import type express from "express";
-import type { RunStore } from "../../../packages/workflow/index.js";
+import type { RunStore } from "@signal-room/workflow";
 import { projectCreatorWorkflowProgress, type CreatorRegisteredPostReviews, type CreatorRegisteredReview } from "../workflow-creator-progress.js";
 import { projectArtifactPayload, projectWorkflowAttempt, projectWorkflowEvent, projectWorkflowHttpError, projectWorkflowRun, projectWorkflowStep } from "../workflow-public-projection.js";
 import { projectWorkflowPhases } from "../workflow-phase-projection.js";
@@ -47,7 +47,7 @@ export function registerWorkflowRoutes(app: express.Express, service: WorkflowHt
 
   app.get(prefix, handler(async (request, response) => {
     const creatorRunId = typeof request.query.creatorRunId === "string" ? request.query.creatorRunId : undefined;
-    response.json({ runs: (await service.store.listRuns({ creatorRunId })).map(projectWorkflowRun) });
+    response.json({ runs: (await service.store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } })).map(projectWorkflowRun) });
   }));
 
   app.get(`${prefix}/:id`, handler(async (request, response) => {

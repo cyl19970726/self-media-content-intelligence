@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MemoryRunStore, runWorkflow, workflow, type AgentRunner } from "../../../workflow/index.js";
+import { MemoryRunStore, runWorkflow, workflow, type AgentRunner } from "@signal-room/workflow";
 import { createCreatorSynthesisWorkflow, createCreatorSynthesisWorkflowSuite } from "./creator-synthesis.js";
 import { createCreatorAnalysisWorkflow, createCreatorAnalysisWorkflowV3, postWorkflowArtifacts } from "./creator-analysis.js";
 import { createPostWorkflow, createPostWorkflowSuite, createPostWorkflowSuiteV3, createPostWorkflowSuiteV4 } from "./post.js";

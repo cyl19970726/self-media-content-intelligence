@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { afterEach, describe, expect, it } from "vitest";
-import { runWorkflow, workflow, workflowFingerprint, type AgentRunner } from "../../../workflow/index.js";
+import { runWorkflow, workflow, workflowFingerprint, type AgentRunner } from "@signal-room/workflow";
 import { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";
 import { artifactRef, writeArtifact } from "../core/artifacts.js";
 import { creatorReviewRoute, ProductionResearchRunner } from "./production-research-runner.js";

@@ -1,7 +1,7 @@
 import type { CreatorArtifactStore, CreatorResearchRepository, CreatorSynthesisOutcome,
   CreatorSynthesisWorkflowStartInput, PostWorkflowStartInput, RepositoryResearchVersionRegistrar,
   SimpleRegistrationInput, VideoReconstructionOutcome } from "../../../research/index.js";
-import { artifactPayloadSha256, type ArtifactRef } from "../../../workflow/index.js";
+import { artifactPayloadSha256, type ArtifactRef } from "@signal-room/workflow";
 import type { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";
 import { artifactPath } from "../core/artifacts.js";
 import { assertPinnedResearchInput, fileDigest, type PinnedResearchInput } from "./research-inputs.js";

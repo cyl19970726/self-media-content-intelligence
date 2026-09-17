@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { createPostWorkflow } from "../../../research/src/workflows/post.js";
 import { createResearchAgentDefinitions } from "../../../research/src/workflows/agents.js";
 import type { PostWorkflowInput, PostWorkflowOutput, ResearchWorkflowDefinitions } from "../../../research/src/workflows/contracts.js";
-import { artifactPayloadSha256, workflow, workflowFingerprint, type AgentRunRequest, type AgentRunResult, type AgentRunner, type ArtifactRef } from "../../../workflow/index.js";
+import { artifactPayloadSha256, workflow, workflowFingerprint, type AgentRunRequest, type AgentRunResult, type AgentRunner, type ArtifactRef } from "@signal-room/workflow";
 import { SQLiteResearchWorkflowExecutor, type ResearchWorkflowInputFreezer, type WorkflowAdvanceScheduler,
   type WorkflowDefinitionRegistry } from "./research-workflow-executor.js";
 import { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";

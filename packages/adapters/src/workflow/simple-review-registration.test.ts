@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it, vi } from "vitest";
-import { runWorkflow, workflow, type AgentRunner } from "../../../workflow/index.js";
+import { runWorkflow, workflow, type AgentRunner } from "@signal-room/workflow";
 import type { CreatorArtifactStore, CreatorResearchRepository, RepositoryResearchVersionRegistrar,
   SimpleRegistrationInput } from "../../../research/index.js";
 import { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";

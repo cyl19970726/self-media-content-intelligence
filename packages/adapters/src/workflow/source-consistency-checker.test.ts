@@ -9,7 +9,7 @@ import { runArtifactDir, runtimeDir } from "../core/config.js";
 import type { InvokeCodexSdkRequest } from "./codex-sdk-runner.js";
 import type { PinnedResearchInput } from "./research-inputs.js";
 import { runSourceConsistencyCheck } from "./source-consistency-checker.js";
-import type { AgentRunRequest } from "../../../workflow/index.js";
+import type { AgentRunRequest } from "@signal-room/workflow";
 
 const creatorRunId = "11111111-1111-4111-8111-111111111111";
 const workflowRunId = "22222222-2222-4222-8222-222222222222";

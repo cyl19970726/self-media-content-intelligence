@@ -15,7 +15,7 @@ import {
   type CreatorWorkflowRegistrationInput, type ResearchAgentConfig,
   type VideoReconstructionOutcome, type CreatorSynthesisOutcome, type CreatorResearchRepository,
 } from "../../../research/index.js";
-import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef, WorkflowDefinition } from "../../../workflow/index.js";
+import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef, WorkflowDefinition } from "@signal-room/workflow";
 import { artifactPath, artifactRef } from "../core/artifacts.js";
 import { projectRoot, runArtifactDir } from "../core/config.js";
 import { CodexVideoReconstructionExecutor, evaluateRuntimeThreeLens, preservePreparedCandidateInputs } from "../platform/video/codex-video-reconstruction-executor.js";

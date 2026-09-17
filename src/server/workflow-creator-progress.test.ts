@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { ArtifactRef, RunRecord, RunStore, StepRecord } from "../../packages/workflow/index.js";
+import type { ArtifactRef, RunRecord, RunStore, StepRecord } from "@signal-room/workflow";
 import { projectCreatorWorkflowProgress } from "./workflow-creator-progress.js";
 
 function run(id: string, workflowId: string, state: RunRecord["state"], postId?: string, parentRunId?: string): RunRecord {

@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { afterEach, describe, expect, it } from "vitest";
-import type { AgentRunner, ArtifactRef } from "../../../workflow/index.js";
+import type { AgentRunner, ArtifactRef } from "@signal-room/workflow";
 import { reviewOutputSchema, runSimpleReview, simpleReviewReceipt } from "./simple-review-runner.js";
 import { artifactRef } from "../core/artifacts.js";
 
