@@ -94,7 +94,8 @@ export async function runSourceConsistencyCheck(request: AgentRunRequest<unknown
         const name = `source-consistency-input-round-${round}.json`;
         fs.writeFileSync(path.join(output, name), `${JSON.stringify(input, null, 2)}\n`, { mode: 0o600 });
         const instruction = round === 1 ? `Read ${name} and post-source-input.json. Inspect every supplied image. Classify identity separately from claim detail.` : `Read ${name} and post-source-input.json. Independently judge source identity from the newly sampled timestamped context. Detail disagreement alone is not source identity conflict.`;
-        const prompt = attachVerifiedSkillSnapshots(`${instruction} Return only required semantic JSON; the Host binds the immutable input revision.`, [methodPath]);
+        const prompt = attachVerifiedSkillSnapshots(`${instruction} Return only required semantic JSON; the Host binds the immutable input revision.`, [methodPath],
+            { outputDirectory: output });
         fs.writeFileSync(path.join(trace, "input.json"), `${JSON.stringify(input, null, 2)}\n`, { mode: 0o600 });
         fs.writeFileSync(path.join(trace, "prompt.txt"), prompt.prompt, { mode: 0o600 });
         const result = await (dependencies.invoke ?? invokeCodexSdk)(dependencies.sdkFactory ?? defaultCodexSdkFactory, { prompt: prompt.prompt, outputDir: output, role: "post-source-checker", model: "gpt-5.6-luna", reasoningEffort: "medium", outputSchema, signal: request.signal, imagePaths: images.map(ref => path.join(output, ref)), timeoutMs: 180000, observer: event => fs.appendFileSync(path.join(trace, "sdk-events.jsonl"), `${JSON.stringify(event)}\n`, { mode: 0o600 }) });

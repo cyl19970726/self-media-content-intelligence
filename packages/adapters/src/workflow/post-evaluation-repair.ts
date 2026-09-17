@@ -97,7 +97,7 @@ export async function repairPostEvaluation(input: PostEvaluationRepairRequest): 
   if (priorEvaluationSha256 !== sha256(input.invalidEvaluationPath)) throw new Error("POST_EVALUATION_REPAIR_PRIOR_COPY_MISMATCH");
   const fingerprints = candidateArtifactFingerprints(input.candidateDirectory);
   const skill = attachVerifiedSkillSnapshots(repairPrompt(input, attemptDirectory, priorCopy, fingerprints),
-    evaluatorContractSnapshots().map((snapshot) => snapshot.path));
+    evaluatorContractSnapshots().map((snapshot) => snapshot.path), { outputDirectory: attemptDirectory });
   const prompt = skill.prompt;
   writePrivate(path.join(privateTraceDirectory, "prompt.txt"), prompt);
   writePrivate(path.join(privateTraceDirectory, "runtime.json"), `${JSON.stringify({

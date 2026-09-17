@@ -25,7 +25,7 @@ import { CodexCreatorSynthesisExecutor } from "../platform/synthesis/codex-creat
 import { SQLiteWorkflowRunStore } from "./sqlite-run-store.js";
 import { SQLiteResearchWorkflowExecutor } from "./research-workflow-executor.js";
 import { SQLiteResearchVersionRegistrationTransaction } from "./sqlite-research-version-transaction.js";
-import { assertPinnedResearchInput, fileDigest, methodSnapshot, pinResearchInput, registerResearchInput, type PinnedResearchInput } from "./research-inputs.js";
+import { assertPinnedResearchInput, fileDigest, methodSnapshot, pinResearchInput, registerResearchInput, skillPackageSnapshot, type PinnedResearchInput } from "./research-inputs.js";
 import { repairPostEvaluation } from "./post-evaluation-repair.js";
 import { archivePredecessorEvaluation, materializeBoundReview, type BoundReviewInput } from "./post-repair-review-input.js";
 import { runSourceConsistencyCheck } from "./source-consistency-checker.js";
@@ -459,10 +459,11 @@ function isBuilt(outcome: VideoReconstructionOutcome): outcome is Extract<VideoR
 export function createProductionResearchWorkflow(database: DatabaseSync, store: SQLiteWorkflowRunStore, artifacts: CreatorArtifactStore, repository: CreatorResearchRepository) {
   const config = (kind: "post" | "creator") => {
     const methods = methodSnapshot(kind);
-    const digest = createHash("sha256").update(JSON.stringify(methods)).digest("hex");
+    const skillPackages = [skillPackageSnapshot(kind)];
+    const digest = createHash("sha256").update(JSON.stringify({ methods, skillPackages })).digest("hex");
     return { prompt: "Delegates to the pinned production operator; complete prompts and raw SDK events are stored in its private child trace.",
       promptRevision: digest, skillSnapshotsRevision: digest, permissionsRevision: "isolated-production-attempt@1",
-      config: { delegate: "existing-production-operator", methods } };
+      config: { delegate: "existing-production-operator", methods, skillPackages } };
   };
   const configs: ResearchAgentConfig = { postSourceChecker: config("post"), postBuilder: config("post"), postReviewer: config("post"), postRepair: config("post"),
     postEvaluationRepair: config("post"),

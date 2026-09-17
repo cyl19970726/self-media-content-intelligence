@@ -7,12 +7,14 @@ import type {
 import { runWorkflow, workflow, type ArtifactRef, type RunStore } from "@signal-room/workflow";
 import { artifactPath } from "../core/artifacts.js";
 import { projectRoot } from "../core/config.js";
+import { snapshotSkill } from "./codex-sdk-runner.js";
 
 export type PinnedResearchInput = {
   kind: "post" | "creator";
   source: PostWorkflowStartInput | CreatorSynthesisWorkflowStartInput;
   files: Array<{ ref: string; sha256: string }>;
   methods: Array<{ path: string; sha256: string }>;
+  skillPackages?: Array<{ path: string; sha256: string }>;
   researchScope?: { complete: boolean; posts: Array<{ postExternalId: string; candidate: ArtifactRef;
     review?: ArtifactRef; reviewStatus: string; candidateStatus: string }> };
   reuseCandidate?: { artifactRef: string; sha256: string };
@@ -85,6 +87,11 @@ export function methodSnapshot(kind: "post" | "creator") {
     .map((relative) => ({ path: relative, sha256: fileDigest(path.join(projectRoot, relative)) }));
 }
 
+export function skillPackageSnapshot(kind: "post" | "creator"): { path: string; sha256: string } {
+  const relative = `.agents/skills/${kind === "post" ? "video-content-reconstruction" : "creator-synthesis"}`;
+  return { path: relative, sha256: snapshotSkill(path.join(projectRoot, relative)).sha256 };
+}
+
 /** Pins existing references and their complete JSON dependency graph, without inventing content. */
 export function pinResearchInput(kind: "post" | "creator", source: PinnedResearchInput["source"]): PinnedResearchInput {
   const found = new Map<string, string>();
@@ -145,6 +152,7 @@ export function pinResearchInput(kind: "post" | "creator", source: PinnedResearc
     }
   }
   return { kind, source, files: [...found].map(([ref, sha256]) => ({ ref, sha256 })), methods: methodSnapshot(kind),
+    skillPackages: [skillPackageSnapshot(kind)],
     ...(reuseCandidate ? { reuseCandidate } : {}), ...(reuseEvaluation ? { reuseEvaluation } : {}) };
 }
 
@@ -154,6 +162,9 @@ export function assertPinnedResearchInput(input: PinnedResearchInput): void {
   }
   for (const file of input.methods) {
     if (fileDigest(path.join(projectRoot, file.path)) !== file.sha256) throw new Error(`FROZEN_METHOD_CHANGED: ${file.path}`);
+  }
+  for (const skill of input.skillPackages ?? []) {
+    if (snapshotSkill(path.join(projectRoot, skill.path)).sha256 !== skill.sha256) throw new Error(`FROZEN_SKILL_PACKAGE_CHANGED: ${skill.path}`);
   }
 }
 

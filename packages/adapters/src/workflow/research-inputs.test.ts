@@ -165,6 +165,25 @@ describe("research input pinning", () => {
     expect(() => assertPinnedResearchInput(methodPinned)).toThrow(`FROZEN_METHOD_CHANGED: ${evaluatorContract}`);
   });
 
+  it("pins every file in the skill package, including resources not named by an executor", () => {
+    const resource = ".agents/skills/video-content-reconstruction/references/future-resource.md";
+    fs.writeFileSync(path.join(fixture.root, resource), "future-v1", "utf8");
+    const pinned = pinResearchInput("post", postInput());
+    expect(pinned.skillPackages).toEqual([{ path: ".agents/skills/video-content-reconstruction",
+      sha256: expect.stringMatching(/^[a-f0-9]{64}$/u) }]);
+
+    fs.writeFileSync(path.join(fixture.root, resource), "future-v2", "utf8");
+    expect(() => assertPinnedResearchInput(pinned)).toThrow("FROZEN_SKILL_PACKAGE_CHANGED");
+
+    const addedPinned = pinResearchInput("post", postInput());
+    fs.writeFileSync(path.join(fixture.root, ".agents/skills/video-content-reconstruction/references/new-resource.md"), "new");
+    expect(() => assertPinnedResearchInput(addedPinned)).toThrow("FROZEN_SKILL_PACKAGE_CHANGED");
+
+    const modePinned = pinResearchInput("post", postInput());
+    fs.chmodSync(path.join(fixture.root, resource), 0o755);
+    expect(() => assertPinnedResearchInput(modePinned)).toThrow("FROZEN_SKILL_PACKAGE_CHANGED");
+  });
+
   it("registers an immutable, provenance-bearing frozen-input artifact", async () => {
     const pinned = pinResearchInput("post", postInput());
     const store = new MemoryRunStore();

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef } from "@signal-room/workflow";
-import { CodexSdkRunner } from "./codex-sdk-runner.js";
+import { CodexSdkRunner, snapshotSkill } from "./codex-sdk-runner.js";
 import { artifactPath } from "../core/artifacts.js";
 
 export type SimpleReviewFinding = {
@@ -30,6 +30,16 @@ export type SimpleReviewCandidate = {
   reportArtifactRef: string;
   reportSha256: string;
 };
+
+function containingSkillBundle(file: string) {
+  let directory = path.dirname(path.resolve(file));
+  while (true) {
+    if (fs.existsSync(path.join(directory, "SKILL.md"))) return snapshotSkill(directory);
+    const parent = path.dirname(directory);
+    if (parent === directory) return undefined;
+    directory = parent;
+  }
+}
 
 export const reviewOutputSchema = {
   type: "object", additionalProperties: false,
@@ -156,11 +166,12 @@ export async function runSimpleReview<Input>(options: {
   const before = new Map(watched.map((file) => [file, digestFile(file)]));
   if (before.get(options.reportPath) !== options.candidate.reportSha256) throw new Error("CANDIDATE_REVISION_CHANGED");
   const candidateIdentity = { id: options.candidateRef.id, revision: options.candidateRef.revision, sha256: options.candidateRef.sha256 };
+  const reviewerSkill = containingSkillBundle(options.reviewerOperatorPath);
   const definition = {
     ...options.request.definition,
     config: {
       prompt: `Review the immutable candidate for substantive content errors and missing evidence. Return only the requested research-review@1 JSON. Do not modify any file.\nCandidate identity: ${JSON.stringify(candidateIdentity)}\nCandidate report SHA-256: ${options.candidate.reportSha256}\nCandidate report: ${options.reportPath}\nArtifact reference to local-path mappings:\n${(options.sourceMappings ?? []).map((item) => `${item.ref} => ${item.path}`).join("\n")}\nReadable source inputs:\n${options.sourcePaths.join("\n")}`,
-      skills: [{ path: options.reviewerOperatorPath }],
+      skills: [...(reviewerSkill ? [reviewerSkill] : []), { path: options.reviewerOperatorPath }],
       outputSchema: reviewOutputSchema,
       threadOptions: { sandboxMode: "read-only", approvalPolicy: "never" },
       timeoutMs: 10 * 60_000

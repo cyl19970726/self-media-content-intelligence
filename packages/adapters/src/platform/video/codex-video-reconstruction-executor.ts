@@ -274,7 +274,7 @@ export async function runCodex(
         path.join(skillDir, "schemas", "reconstruction.schema.json")]
       : [path.join(skillDir, "SKILL.md"), path.join(skillDir, "references", "builder-operator.md"),
         path.join(skillDir, "references", "single-post-depth.md"), path.join(skillDir, "schemas", "reconstruction.schema.json")];
-  const skill = attachVerifiedSkillSnapshots(prompt, requiredSkillFiles);
+  const skill = attachVerifiedSkillSnapshots(prompt, requiredSkillFiles, { outputDirectory: cwd });
   prompt = skill.prompt;
   const childRunId = crypto.randomUUID();
   const traceDir = path.join(runtimeDir(), "worker-traces", childRunId);

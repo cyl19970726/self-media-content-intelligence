@@ -130,7 +130,7 @@ export async function runSynthesisChild(input: {
   observer?: CreatorSynthesisLifecycleObserver;
   execution?: CreatorSynthesisCodexExecutionOptions;
 }): Promise<void> {
-  const skill = attachVerifiedSkillSnapshots(input.prompt, input.requiredSkillFiles ?? []);
+  const skill = attachVerifiedSkillSnapshots(input.prompt, input.requiredSkillFiles ?? [], { outputDirectory: input.outputDir });
   input = { ...input, prompt: skill.prompt, runtimeMetadata: { ...input.runtimeMetadata, skillLoad: skill.receipt } };
   const lastMessagePath = path.join(input.outputDir, `${input.label}-last-message.txt`);
   const outputFile = input.outputFile ?? (input.role === "creator_synthesis" ? "creator-analysis.json" : "creator-synthesis-evaluation.json");
