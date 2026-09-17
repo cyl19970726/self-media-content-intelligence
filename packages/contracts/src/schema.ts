@@ -190,6 +190,16 @@ const creatorResearchWorkerSchema = z.object({
 export const creatorAcquisitionAdapterSchema = z.enum(["ego-browser", "redfox"]);
 export type CreatorAcquisitionAdapter = z.infer<typeof creatorAcquisitionAdapterSchema>;
 
+export const researchReviewStateSchema = z.object({
+  schemaVersion: z.literal("research-review-state@1"),
+  reviewStatus: z.enum(["completed_no_findings", "completed_with_findings", "failed"]),
+  candidateStatus: z.enum(["original_reviewed", "revised_unverified", "review_incomplete"]),
+  reviewArtifactRef: z.string().nullable(),
+  revisionRecordArtifactRef: z.string().nullable(),
+  candidateReportSha256: z.string().regex(/^[a-f0-9]{64}$/iu)
+});
+export type ResearchReviewState = z.infer<typeof researchReviewStateSchema>;
+
 export const creatorResearchRunSchema = z.object({
   schemaVersion: z.enum(["1.0.0", "1.1.0", "1.2.0", "1.3.0"]),
   id: z.string().uuid(),
@@ -271,6 +281,7 @@ export const creatorResearchRunSchema = z.object({
   reconstructionBatchArtifactRef: z.string().nullable().default(null),
   synthesisArtifactRef: z.string().nullable().default(null),
   synthesisGateArtifactRef: z.string().nullable().default(null),
+  researchReview: researchReviewStateSchema.nullable().optional(),
   browserTaskSpaceId: z.number().int().positive().nullable().default(null)
 });
 export type CreatorResearchRun = z.infer<typeof creatorResearchRunSchema>;

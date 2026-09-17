@@ -31,6 +31,7 @@
 .creator-directory-row__stage span { display: block; color: var(--orange); font: 600 12px "IBM Plex Mono"; }
 .creator-directory-row--complete .creator-directory-row__stage span { color: var(--teal); }
 .creator-directory-row__stage b { margin-top: 6px; display: block; overflow: hidden; font-size: 11px; font-weight: 400; white-space: nowrap; text-overflow: ellipsis; }
+.workflow-creator-progress--compact { margin-top: 7px; display: block; color: var(--teal); font-size: 10px; line-height: 1.4; }
 .creator-directory-row__video-work { display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 7px; }
 .creator-directory-row__counts-label { grid-column: 1 / -1; color: #68706b; font-size: 11px; text-align: center; }
 .creator-directory-row__video-work span { color: #6c736f; font: 400 12px "IBM Plex Mono"; text-align: center; }

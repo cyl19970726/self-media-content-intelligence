@@ -9,10 +9,16 @@
 .cross-post-research__finding { padding: 18px 0 24px; border-bottom: 1px solid var(--line); }
 .cross-post-research__meta { margin: 0 0 8px; }
 .cross-post-research__statement { max-width: 850px; margin: 0; font-size: 16px; line-height: 1.75; white-space: pre-wrap; }
-.cross-post-research__evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 18px; }
-.cross-post-research__evidence > div { min-width: 0; }
+.cross-post-research__scope { margin: 10px 0 0; color: #69716c; font: 11px/1.6 "IBM Plex Mono"; }
+.cross-post-research__scope a { color: var(--teal); text-underline-offset: 3px; }
+.cross-post-research__evidence { margin-top: 16px; }
+.cross-post-research__evidence > summary { color: var(--teal); cursor: pointer; font-size: 12px; }
+.cross-post-research__evidence-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 13px; }
+.cross-post-research__evidence-groups--single { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.cross-post-research__evidence-groups > div { min-width: 0; }
+.cross-post-research__no-counterexamples { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .cross-post-research__evidence h4, .cross-post-research__questions > b { margin: 0 0 8px; font-size: 12px; }
-.cross-post-research__evidence > div > p { margin: 0; color: var(--muted); font-size: 12px; }
+.cross-post-research__evidence-groups > div > p { margin: 0; color: var(--muted); font-size: 12px; }
 .cross-post-research__evidence ul, .cross-post-research__questions ul { margin: 0; padding: 0; list-style: none; }
 .cross-post-research__support { padding: 10px 0; border-top: 1px solid var(--line); }
 .cross-post-research__support > a, .cross-post-research__support > b { color: var(--ink); font-size: 13px; text-decoration: underline; text-decoration-color: var(--teal); text-underline-offset: 3px; }
@@ -26,7 +32,7 @@
 .cross-post-research__questions { margin-top: 12px; font-size: 12px; line-height: 1.65; }
 .cross-post-research__questions li { margin-top: 5px; }
 .cross-post-research__questions li::before { content: "?"; display: inline-block; width: 16px; color: var(--teal); font-family: "IBM Plex Mono"; }
-@media (max-width: 720px) { .cross-post-research__evidence { grid-template-columns: 1fr; gap: 16px; } }
+@media (max-width: 720px) { .cross-post-research__evidence-groups { grid-template-columns: 1fr; gap: 16px; } }
 
 .cross-post-research__audience { margin-top: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .cross-post-research__audience h4 { margin: 0 0 8px; font-size: 13px; }

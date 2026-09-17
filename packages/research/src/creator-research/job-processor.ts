@@ -21,6 +21,7 @@ import {
   type CreatorSynthesisExecutor,
   type CreatorResearchCompletionPort
 } from "../../index.js";
+import type { ResearchWorkflowExecutor } from "../workflows/contracts.js";
 import { CreatorResearchVideoSynthesisProcessor } from "./video-synthesis-processor.js";
 import { creatorSynthesisCoverage } from "./synthesis-coverage.js";
 
@@ -59,7 +60,8 @@ export class CreatorResearchJobProcessor {
     synthesisExecutor: CreatorSynthesisExecutor,
     private readonly videoConcurrencyLimit: number,
     completionPort?: CreatorResearchCompletionPort,
-    imagePostReconstructor?: ImagePostReconstructionExecutor
+    imagePostReconstructor?: ImagePostReconstructionExecutor,
+    private readonly workflowExecutor?: ResearchWorkflowExecutor
   ) {
     this.videoProcessor = new CreatorResearchVideoSynthesisProcessor(
       repository,
@@ -72,9 +74,10 @@ export class CreatorResearchJobProcessor {
     );
   }
 
-  async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane = "any"): Promise<boolean> {
+  async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane = "any",
+    runId?: string): Promise<boolean> {
     const leasedAt = now();
-    const job = this.repository.claimNext(workerId, leasedAt, leaseUntil(), lane);
+    const job = this.repository.claimNext(workerId, leasedAt, leaseUntil(), lane, runId);
     if (!job) return false;
     const run = this.repository.get(job.runId);
     if (!run) {
@@ -96,6 +99,10 @@ export class CreatorResearchJobProcessor {
     }
     if (job.nodeKey === "creator.synthesize") {
       await this.videoProcessor.processSynthesis(run, job, workerId);
+      return true;
+    }
+    if (job.nodeKey === "workflow.advance") {
+      await this.processWorkflowAdvance(run, job, workerId);
       return true;
     }
 
@@ -148,6 +155,46 @@ export class CreatorResearchJobProcessor {
       clearInterval(heartbeat);
     }
     return true;
+  }
+
+  private async processWorkflowAdvance(run: CreatorResearchRun, job: ResearchJob, workerId: string): Promise<void> {
+    const startedAt = now();
+    const workflowRunId = typeof job.payload.workflowRunId === "string" ? job.payload.workflowRunId : null;
+    const generation = typeof job.payload.generation === "number" ? job.payload.generation : 0;
+    if (!workflowRunId || !this.workflowExecutor) {
+      this.repository.updateJobStatus({ jobId: job.id, status: "failed", updatedAt: startedAt,
+        lastError: !workflowRunId ? "workflow_payload_invalid" : "workflow_executor_unavailable" });
+      return;
+    }
+    this.repository.updateJobStatus({ jobId: job.id, status: "running", updatedAt: startedAt });
+    this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.started", createdAt: startedAt,
+      message: "Workflow 节点开始执行。", payload: { workflowRunId, generation } });
+    const controller = new AbortController();
+    const heartbeat = setInterval(() => {
+      if (!this.repository.heartbeat(job.id, workerId, now(), leaseUntil(180))) controller.abort();
+    }, 20_000);
+    try {
+      const receipt = await this.workflowExecutor.advance({ creatorRunId: run.id, workflowRunId, generation,
+        signal: controller.signal });
+      const completedAt = now();
+      this.repository.updateJobStatus({ jobId: job.id,
+        status: receipt.state === "canceled" || receipt.state === "cancel_requested" ? "canceled" : "succeeded",
+        updatedAt: completedAt });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
+        message: "Workflow 节点已释放任务租约。", payload: { workflowRunId, generation, state: receipt.state } });
+    } catch (error) {
+      const completedAt = now();
+      const message = error instanceof Error ? error.message : String(error);
+      const snapshot = await this.workflowExecutor.snapshot(run.id, workflowRunId).catch(() => null);
+      const canceled = controller.signal.aborted || snapshot?.state === "canceled" || snapshot?.state === "cancel_requested";
+      this.repository.updateJobStatus({ jobId: job.id, status: canceled ? "canceled" : "failed",
+        updatedAt: completedAt, lastError: message });
+      this.repository.appendEvent({ runId: run.id, jobId: job.id, type: canceled ? "node.completed" : "child.failed", createdAt: completedAt,
+        message: canceled ? "Workflow 已取消并释放任务租约。" : "Workflow 节点执行失败；已保留成功步骤供恢复。",
+        payload: { workflowRunId, generation, error: message, canceled } });
+    } finally {
+      clearInterval(heartbeat);
+    }
   }
 
   private applyAcquisitionResult(

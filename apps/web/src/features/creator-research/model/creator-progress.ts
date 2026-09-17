@@ -25,6 +25,20 @@ const stages: Array<{ id: CreatorProgressRow["id"]; label: string }> = [
   { id: "dashboard", label: "研究交付" }
 ];
 
+function hasSinglePostWork(run: CreatorResearchRun): boolean {
+  const work = run.videoWork;
+  return Boolean(run.reconstructionBatchArtifactRef)
+    || work.queuedPosts > 0
+    || work.activePostExternalIds.length > 0
+    || work.analyzedPosts > 0
+    || work.failedPosts > 0
+    || run.coverage.reconstructedPosts > 0;
+}
+
+function stageLabel(run: CreatorResearchRun, id: CreatorProgressRow["id"], fallback: string): string {
+  return id === "deep_capture" && !hasSinglePostWork(run) ? "详情与媒体准备" : fallback;
+}
+
 function currentState(run: CreatorResearchRun, id: CreatorProgressRow["id"]): CreatorProgressState {
   const stage = run.stages.find((item) => item.id === id);
   if (stage?.status === "complete") return id === "deep_capture" && run.videoWork.failedPosts > 0 ? "部分完成" : "已完成";
@@ -50,6 +64,9 @@ function stageDetail(run: CreatorResearchRun, id: CreatorProgressRow["id"]): str
     return `已选出 ${run.coverage.comparisonPosts} 篇作品进入分层比较。`;
   }
   if (id === "deep_capture") {
+    if (!hasSinglePostWork(run)) {
+      return `已采集 ${run.coverage.enrichedPosts}/${run.coverage.comparisonPosts} 篇选择集详情，单帖分析批次尚未创建。`;
+    }
     const work = run.videoWork;
     return `${work.queuedPosts} 条等待执行，${work.activePostExternalIds.length} 条执行中，${work.analyzedPosts} 条已完成，${work.failedPosts} 条失败。`;
   }
@@ -70,7 +87,10 @@ function pipelineAssurance(data: CreatorDossier): string | null {
   else if (media?.state === "partial") details.push("媒体核验部分完成");
   else if (media?.state === "failed" || media?.state === "blocked") details.push("媒体核验存在阻塞");
   if (review?.state === "complete" && review.gateState === "passed") details.push("独立复核已完成");
-  else if (review?.state === "running") details.push("独立复核正在进行");
+  // A running Evaluator stage can be projected before the first Builder result
+  // exists. That is upstream bookkeeping, not work the reader can review yet.
+  const builderOutputAvailable = !data.run || data.run.videoWork.analyzedPosts > 0 || data.run.coverage.reconstructedPosts > 0;
+  if (review?.state === "running" && builderOutputAvailable) details.push("独立复核正在进行");
   else if (review?.state === "failed" || review?.state === "blocked") details.push("独立复核存在待处理项");
   return details.length ? `${details.join("；")}。` : null;
 }
@@ -87,6 +107,7 @@ export function creatorProgress(data: CreatorDossier): CreatorProgressModel {
 
   const rows = stages.map((stage): CreatorProgressRow => ({
     ...stage,
+    label: stageLabel(run, stage.id, stage.label),
     state: currentState(run, stage.id),
     detail: stageDetail(run, stage.id),
     current: stage.id === run.currentStage
@@ -115,8 +136,12 @@ export function creatorProgress(data: CreatorDossier): CreatorProgressModel {
   const currentDetail = !active ? "当前阶段未在运行记录中出现。"
     : state === "失败" ? blockers[0] ?? failedMessage ?? "当前阶段执行失败，尚未收到具体原因。"
       : state === "待处理" ? blockers[0] ?? "当前阶段需要处理后才能继续。"
-        : run.currentStage === "deep_capture" && state === "等待执行" ? "等待执行单帖分析；完成后进入博主综合。"
-          : run.currentStage === "deep_capture" && state === "执行中" ? "单帖分析正在执行；完成后进入博主综合。"
+        : run.currentStage === "deep_capture" && !hasSinglePostWork(run)
+          ? state === "执行中"
+            ? "正在补齐选择集详情与媒体；完成后才会创建单帖分析批次。"
+            : "等待补齐选择集详情与媒体；完成后才会创建单帖分析批次。"
+          : run.currentStage === "deep_capture" && state === "等待执行" ? "等待执行单帖分析；完成后进入博主综合。"
+            : run.currentStage === "deep_capture" && state === "执行中" ? "单帖分析正在执行；完成后进入博主综合。"
             : state === "已完成" && run.status === "ready" ? "全部研究阶段已完成并交付。"
               : `${active.label}${state}。`;
   const detail = [currentDetail, assurance].filter(Boolean).join(" ");

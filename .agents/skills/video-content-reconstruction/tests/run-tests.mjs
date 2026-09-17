@@ -67,6 +67,41 @@ if (invalidSchemaRun.status !== 2) throw new Error(`invalid schema fixture did n
 const validRun = spawnSync(process.execPath, [...common, "--reconstruction", join(valid, "reconstruction.json"), "--out", validReportPath], { encoding: "utf8" });
 if (validRun.status !== 0) throw new Error(`valid fixture failed\n${validRun.stdout}\n${validRun.stderr}`);
 
+const audioEvidence = JSON.parse(readFileSync(join(valid, "evidence-pack.json"), "utf8"));
+audioEvidence.media.hasAudio = true;
+const audioEvidencePath = join(outputDir, "audio-evidence-pack.json");
+writeFileSync(audioEvidencePath, JSON.stringify(audioEvidence));
+const runAudioCarrierCase = (name, carrier) => {
+  const audioProbe = JSON.parse(readFileSync(join(valid, "probe.json"), "utf8"));
+  audioProbe.informationCarriers.push({
+    id: "CAR-AUDIO-NONSEMANTIC", name: "非语音音频", modalityKeys: ["audio"],
+    discoveredIn: ["SWEEP-001", "SWEEP-002"], roles: ["环境与节奏载体"], intervals: [{ start: 0, end: 10 }],
+    omissionImpact: "无法判断非语音音频是否承载意义", ...carrier
+  });
+  const probePath = join(outputDir, `${name}-probe.json`);
+  const reportPath = join(outputDir, `${name}-gate-report.json`);
+  writeFileSync(probePath, JSON.stringify(audioProbe));
+  spawnSync(process.execPath, [validator, "--evidence", audioEvidencePath, "--targeted", join(valid, "targeted-evidence.json"),
+    "--probe", probePath, "--protocol", join(valid, "capture-protocol.json"), "--evaluation", join(valid, "evaluation.json"),
+    "--ocr", join(valid, "ocr-evidence.json"), "--reconstruction", join(valid, "reconstruction.json"), "--out", reportPath], { encoding: "utf8" });
+  return JSON.parse(readFileSync(reportPath, "utf8")).gates.find((gate) => gate.id === "full_timeline_carrier_sweep");
+};
+const chineseUnreadableAudio = runAudioCarrierCase("chinese-unreadable-audio", {
+  available: true, inspected: true, inspectionStatus: "checked_unreadable",
+  inspectionRationale: "已检查 AAC 技术元数据，但没有可读的非语音音频语义证据。"
+});
+if (!chineseUnreadableAudio.pass) throw new Error(`Chinese checked-unreadable audio carrier was not recognized: ${JSON.stringify(chineseUnreadableAudio)}`);
+for (const [name, carrier] of [
+  ["absent-audio", { available: false, inspected: false, inspectionStatus: "absent", inspectionRationale: "未发现非语音音频载体。" }],
+  ["unchecked-audio", { available: true, inspected: false, inspectionStatus: "unchecked", inspectionRationale: "尚未检查非语音音频。" }],
+  ["generic-audio", { id: "CAR-AUDIO", name: "audio", available: true, inspected: true, inspectionStatus: "checked_readable", inspectionRationale: "只检查了通用音轨。" }]
+]) {
+  const gate = runAudioCarrierCase(name, carrier);
+  if (gate.pass || !gate.examples.includes("non_speech_audio:not_explicitly_inspected")) {
+    throw new Error(`${name} incorrectly closed non-speech audio: ${JSON.stringify(gate)}`);
+  }
+}
+
 const validV2ReportPath = join(outputDir, "valid-v2-gate-report.json");
 const validV2Run = spawnSync(process.execPath, [
   validator,

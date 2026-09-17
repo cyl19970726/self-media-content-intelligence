@@ -86,9 +86,47 @@ function lanePredicate(lane: ResearchJobLane, jobAlias: string, runAlias: string
       AND json_extract(${runAlias}.run_json, '$.collectionPolicy.adapter') = '${lane}'`;
   }
   if (lane === "portfolio") return `${jobAlias}.node_key = 'creator.portfolio'`;
-  if (lane === "video") return `${jobAlias}.node_key = 'video.reconstruct'`;
-  if (lane === "synthesis") return `${jobAlias}.node_key = 'creator.synthesize'`;
+  if (lane === "video") return allVideoWorkPredicate(jobAlias);
+  if (lane === "synthesis") return `(${jobAlias}.node_key = 'creator.synthesize'
+    OR (${jobAlias}.node_key = 'workflow.advance'
+      AND json_extract(${jobAlias}.payload_json, '$.workflowId') IN (
+        'creator.analyze','creator.synthesize','creator.build','creator.review','creator.repair'))
+    OR (${jobAlias}.node_key = 'workflow.advance'
+      AND json_extract(${jobAlias}.payload_json, '$.workflowId') = 'post.analyze'
+      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN ('v2','v3','v4','v5')))`;
   return "1 = 1";
+}
+
+function legacyPostAnalyzePredicate(jobAlias: string): string {
+  return `(${jobAlias}.node_key = 'workflow.advance'
+    AND json_extract(${jobAlias}.payload_json, '$.workflowId') = 'post.analyze'
+    AND COALESCE(json_extract(${jobAlias}.payload_json, '$.workflowRevision'), 'v1') = 'v1')`;
+}
+
+function allVideoWorkPredicate(jobAlias: string): string {
+  return `(${videoLanePredicate(jobAlias)} OR ${legacyPostAnalyzePredicate(jobAlias)})`;
+}
+
+function postVideoWorkflowPredicate(jobAlias: string): string {
+  return `(${postWorkerWorkflowPredicate(jobAlias)} OR ${legacyPostAnalyzePredicate(jobAlias)})`;
+}
+
+function videoLanePredicate(jobAlias: string): string {
+  return `(${jobAlias}.node_key = 'video.reconstruct'
+    OR ${postWorkerWorkflowPredicate(jobAlias)})`;
+}
+
+function postWorkerWorkflowPredicate(jobAlias: string): string {
+  return `(${jobAlias}.node_key = 'workflow.advance'
+    AND json_extract(${jobAlias}.payload_json, '$.workflowId') IN (
+      'post.source-check','post.build','post.review','post.repair','post.repair-evaluation'))`;
+}
+
+function workflowControlPredicate(jobAlias: string): string {
+  return `(${jobAlias}.node_key = 'workflow.advance' AND (
+    json_extract(${jobAlias}.payload_json, '$.workflowId') = 'creator.analyze'
+    OR (json_extract(${jobAlias}.payload_json, '$.workflowId') IN ('post.analyze','creator.synthesize')
+      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN ('v2','v3','v4','v5'))))`;
 }
 
 export class SQLiteCreatorResearchRepository implements CreatorResearchRepository {
@@ -223,6 +261,17 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
     return parseJob(stored);
   }
 
+  cancelWorkflowJobs(runId: string, workflowRunId: string, updatedAt: string): number {
+    const result = this.db.prepare(`
+      UPDATE research_jobs SET status = 'canceled', lease_owner = NULL, lease_expires_at = NULL,
+        heartbeat_at = NULL, last_error = 'workflow_canceled', updated_at = ?
+      WHERE run_id = ? AND node_key = 'workflow.advance'
+        AND json_extract(payload_json, '$.workflowRunId') = ?
+        AND status IN ('queued','backoff','needs_user')
+    `).run(updatedAt, runId, workflowRunId);
+    return Number(result.changes);
+  }
+
   requeueRun(runId: string, availableAt: string): ResearchJob | null {
     const row = this.db.prepare(`
       SELECT * FROM research_jobs
@@ -239,7 +288,8 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
     return parseJob(updated);
   }
 
-  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any"): ResearchJob | null {
+  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane: ResearchJobLane = "any",
+    runId?: string): ResearchJob | null {
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const exhausted = this.db.prepare(`
@@ -249,14 +299,17 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
         WHERE expired.status IN ('leased','running')
           AND expired.lease_expires_at IS NOT NULL AND expired.lease_expires_at <= ?
           AND expired.attempts >= expired.max_attempts
-      `).all(now) as unknown as ExpiredJobRunRow[];
+          AND (? IS NULL OR expired.run_id = ?)
+      `).all(now, runId ?? null, runId ?? null) as unknown as ExpiredJobRunRow[];
       for (const expired of exhausted) this.exhaustRetryBudget(parseJob(expired), expired.run_json, now);
       this.db.prepare(`
         UPDATE research_jobs SET status = 'backoff', available_at = ?, lease_owner = NULL,
           lease_expires_at = NULL, heartbeat_at = NULL, last_error = 'lease_expired', updated_at = ?
         WHERE status IN ('leased','running') AND lease_expires_at IS NOT NULL AND lease_expires_at <= ?
           AND attempts < max_attempts
-      `).run(now, now, now);
+          AND (? IS NULL OR run_id = ?)
+      `).run(now, now, now, runId ?? null, runId ?? null);
+      let laneAtCapacity = false;
       if (lane !== "any") {
         const limits = creatorWorkerConcurrency();
         const active = this.db.prepare(`
@@ -266,11 +319,9 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
           WHERE active.status IN ('leased','running')
             AND COALESCE(active.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
             AND ${lanePredicate(lane, "active", "active_run")}
+            AND NOT ${workflowControlPredicate("active")}
         `).get(now) as { count: number };
-        if (active.count >= limits[lane]) {
-          this.db.exec("COMMIT");
-          return null;
-        }
+        laneAtCapacity = active.count >= limits[lane];
       }
       const row = this.db.prepare(`
         SELECT candidate.* FROM research_jobs candidate
@@ -278,15 +329,27 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
         WHERE ((candidate.status IN ('queued','backoff') AND candidate.available_at <= ?)
           OR (candidate.status IN ('leased','running') AND candidate.lease_expires_at IS NOT NULL
             AND candidate.lease_expires_at <= ?))
-          AND candidate_run.status IN ('queued','preflight','collecting','backoff','reviewable')
+          AND (candidate_run.status IN ('queued','preflight','collecting','backoff','reviewable')
+            OR (candidate.node_key = 'workflow.advance' AND candidate_run.status = 'ready'))
           AND ${lanePredicate(lane, "candidate", "candidate_run")}
+          AND (? = 0 OR ${workflowControlPredicate("candidate")})
+          AND (? IS NULL OR candidate.run_id = ?)
+          AND (NOT ${postVideoWorkflowPredicate("candidate")}
+            OR (SELECT COUNT(*) FROM research_jobs post_active
+              WHERE post_active.status IN ('leased','running')
+                AND COALESCE(post_active.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
+                AND ${postVideoWorkflowPredicate("post_active")}) < 2)
           AND NOT EXISTS (
             SELECT 1 FROM research_jobs active_job
             WHERE active_job.run_id = candidate.run_id
               AND active_job.id != candidate.id
               AND active_job.status IN ('leased','running')
               AND COALESCE(active_job.lease_expires_at, '9999-12-31T23:59:59.999Z') > ?
-              AND (candidate.node_key != 'video.reconstruct' OR active_job.node_key != 'video.reconstruct')
+              AND NOT (
+                ${workflowControlPredicate("candidate")}
+                OR ${workflowControlPredicate("active_job")}
+                OR (${allVideoWorkPredicate("candidate")} AND ${allVideoWorkPredicate("active_job")})
+              )
           )
         ORDER BY
           CASE WHEN candidate.status IN ('leased','running') THEN 0 ELSE 1 END ASC,
@@ -294,7 +357,7 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
           candidate.available_at ASC,
           candidate.created_at ASC
         LIMIT 1
-      `).get(now, now, now) as ResearchJobRow | undefined;
+      `).get(now, now, laneAtCapacity ? 1 : 0, runId ?? null, runId ?? null, now, now) as ResearchJobRow | undefined;
       if (!row) {
         this.db.exec("COMMIT");
         return null;
@@ -312,6 +375,19 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
       this.db.exec("ROLLBACK");
       throw error;
     }
+  }
+
+  activeVideoPostExternalIds(runId: string, at: string): string[] {
+    const rows = this.db.prepare(`
+      SELECT payload_json FROM research_jobs
+      WHERE run_id = ? AND node_key = 'video.reconstruct'
+        AND status IN ('leased','running')
+        AND lease_expires_at IS NOT NULL AND lease_expires_at > ?
+    `).all(runId, at) as Array<{ payload_json: string }>;
+    return [...new Set(rows.flatMap((row) => {
+      const payload = JSON.parse(row.payload_json) as { postExternalId?: unknown };
+      return typeof payload.postExternalId === "string" && payload.postExternalId ? [payload.postExternalId] : [];
+    }))];
   }
 
   updateJobStatus(input: { jobId: string; status: ResearchJobStatus; updatedAt: string; lastError?: string | null }): void {

@@ -4,6 +4,28 @@ import {
   type ChildWorkerLifecycleObserver
 } from "../orchestration/contracts.js";
 
+export const researchReviewArtifactSchema = z.object({
+  schemaVersion: z.literal("research-review@1"),
+  kind: z.enum(["post", "creator"]),
+  candidate: z.object({
+    id: z.string(),
+    revision: z.string(),
+    sha256: z.string().regex(/^[a-f0-9]{64}$/iu)
+  }),
+  candidateReportSha256: z.string().regex(/^[a-f0-9]{64}$/iu),
+  summary: z.string(),
+  findings: z.array(z.object({
+    id: z.string(),
+    location: z.string(),
+    issue: z.string(),
+    evidenceRefs: z.array(z.string()),
+    suggestedChange: z.string(),
+    priority: z.enum(["minor", "major"]),
+    kind: z.enum(["content", "missing_evidence"])
+  }))
+});
+export type ResearchReviewArtifact = z.infer<typeof researchReviewArtifactSchema>;
+
 export const videoReconstructionRequestSchema = z.object({
   runId: z.string().uuid(),
   creatorRunId: z.string().uuid(),

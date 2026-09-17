@@ -11,7 +11,7 @@ export function VideoReaderHero({ data, returnTo, returnLabel }: { data: VideoRe
     <nav className="reader-breadcrumb"><Link to={returnTo}><ArrowLeft size={14}/> {returnLabel}</Link><span>单帖研究</span></nav>
     <header className="reader-hero">
       <div className="reader-hero__copy">
-        <p className="reader-kicker"><span>{data.quality.buildState === "built" && data.quality.evaluationState === "skipped" ? "分析已生成 · 尚未独立评估" : summary.statusLabel}</span><span>{data.sourceFacts.publishedLabel ?? "发布时间未知"}</span></p>
+        <p className="reader-kicker"><span>{summary.statusLabel}</span><span>{data.sourceFacts.publishedLabel ?? "发布时间未知"}</span></p>
         <h1>{data.title}</h1>
         <div className="reader-source-line">
           <span>{sourcePartial ? "原帖资料部分取得" : "原帖资料完整"}</span>

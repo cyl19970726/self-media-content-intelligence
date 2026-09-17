@@ -3,12 +3,14 @@ import { loadReportOverview } from "./report-overview.js";
 import { postSourceFactsSchema } from "../../packages/contracts/index.js";
 import { buildPostPerformance, creatorInventorySchema } from "../../packages/research/index.js";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { artifactPath } from "../../packages/adapters/index.js";
 import {
   runtimeThreeLensEvaluationSchema,
   runtimeThreeLensGateReportSchema,
   type CreatorResearchService,
+  type VideoReconstructionBatch,
   type RuntimeThreeLensEvaluation,
   type RuntimeThreeLensGateReport
 } from "../../packages/research/index.js";
@@ -22,6 +24,13 @@ function list(value: unknown): unknown[] { return Array.isArray(value) ? value :
 function strings(value: unknown): string[] { return list(value).filter((item): item is string => typeof item === "string"); }
 function uniqueText(values: Array<string | null | undefined>, limit: number): string[] {
   return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))].slice(0, limit);
+}
+
+/** Keep the first, source-resolved projection when evaluator refs reuse its ID. */
+export function firstEvidenceEntryById<T>(entries: ReadonlyArray<readonly [string, T]>): T[] {
+  const byId = new Map<string, T>();
+  for (const [id, value] of entries) if (!byId.has(id)) byId.set(id, value);
+  return [...byId.values()];
 }
 
 function hasReadableOcr(rootPath: string): boolean {
@@ -46,6 +55,18 @@ export function projectPostQualityStates(state: string, hasEvaluation: boolean) 
   const promotionState = evaluationState === "verified" ? "wiki_eligible" as const
     : buildState === "built" ? "provisional" as const : "ineligible" as const;
   return { buildState, evaluationState, promotionState };
+}
+
+export function readerStatusLabel(productState: "gold" | "analysis_ready" | "provisional", quality: ReturnType<typeof projectPostQualityStates>, review?: {
+  reviewStatus: "completed_no_findings" | "completed_with_findings" | "failed";
+  candidateStatus: "original_reviewed" | "revised_unverified" | "review_incomplete";
+} | null) {
+  if (review?.reviewStatus === "failed" || review?.candidateStatus === "review_incomplete") return "Reviewer 技术失败·待处理";
+  if (review?.candidateStatus === "revised_unverified") return "已按意见修订·未再次独立复核";
+  if (review?.reviewStatus === "completed_no_findings") return "Reviewer 已完成·无意见";
+  if (review?.reviewStatus === "completed_with_findings") return "Reviewer 已完成·有修改意见";
+  if (quality.buildState === "built" && quality.evaluationState === "skipped") return "分析已生成 · 尚未独立评估";
+  return productState === "gold" ? "单帖 Gold" : productState === "analysis_ready" ? "分析完成 · 原帖资料待补" : "分析尚未闭环";
 }
 
 function projectLens(
@@ -89,6 +110,25 @@ export function loadVideoResearch(service: CreatorResearchService, creatorId: st
   return loadVideoResearchSource(service, creatorId, videoId, requestedRunId);
 }
 
+/** Read an immutable workflow candidate without promoting it over the current report. */
+export function loadWorkflowVideoResearch(service: CreatorResearchService, runId: string, postId: string,
+  candidate: { reportArtifactRef: string; reportSha256: string; outcome: Record<string, unknown> }): VideoResearch | null {
+  const run = service.get(runId);
+  const original = service.portfolio(runId)?.reconstructionBatch?.items.find((item) => item.postExternalId === postId);
+  if (!run || !original || !candidate.reportArtifactRef.startsWith(`/artifacts/${runId}/workflow-reconstructions/`)) return null;
+  if (createHash("sha256").update(fs.readFileSync(artifactPath(candidate.reportArtifactRef))).digest("hex") !== candidate.reportSha256) {
+    throw new Error("CANDIDATE_REVISION_CHANGED");
+  }
+  const item: VideoReconstructionBatch["items"][number] = { ...original,
+    state: "built_unevaluated", reconstructionArtifactRef: candidate.reportArtifactRef,
+    articleArtifactRef: typeof candidate.outcome.articleArtifactRef === "string" ? candidate.outcome.articleArtifactRef : null,
+    builderValidationArtifactRef: typeof candidate.outcome.builderValidationArtifactRef === "string" ? candidate.outcome.builderValidationArtifactRef : null,
+    evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
+    threeLensGateReportArtifactRef: null, failedGateIds: [], message: "候选正文已登记；独立复核状态见工作流。",
+  };
+  return loadVideoResearchSource(service, researchOwnerId(run), postId, runId, item);
+}
+
 export function listLatestVideoResearch(service: CreatorResearchService) {
   const latestRuns = new Map<string, ReturnType<CreatorResearchService["list"]>[number]>();
   for (const run of service.list(100)) {
@@ -113,13 +153,14 @@ export function listLatestVideoResearch(service: CreatorResearchService) {
   });
 }
 
-function loadVideoResearchSource(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string): VideoResearch | null {
+function loadVideoResearchSource(service: CreatorResearchService, creatorId: string, videoId: string, requestedRunId?: string,
+  candidateItem?: VideoReconstructionBatch["items"][number]): VideoResearch | null {
   const run = requestedRunId
     ? service.get(requestedRunId)
     : service.list(100).find((item) => researchOwnerId(item) === creatorId) ?? null;
   if (!run || researchOwnerId(run) !== creatorId) return null;
   const portfolio = service.portfolio(run.id);
-  const batchItem = portfolio?.reconstructionBatch?.items.find((item) => item.postExternalId === videoId);
+  const batchItem = candidateItem ?? portfolio?.reconstructionBatch?.items.find((item) => item.postExternalId === videoId);
   if (!batchItem?.reconstructionArtifactRef) return null;
   const selection = portfolio?.selection?.items.find((item) => item.externalId === videoId);
   const detail = portfolio?.details?.posts.find((item) => item.externalId === videoId);
@@ -193,7 +234,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
   const mediaForRefs = (refs: string[]) => refs.flatMap((ref) => {
     const frame = frameLookup.get(ref);
     return frame ? [{ ref, src: frame.src, label: frame.reason ?? ref, time: frame.time, role: "evidence",
-      focus: frame.reason ?? ref, proves: "支持相邻内容结论", cannotProve: "单帧不能证明未展示的连续操作或外部结果", crop: null }] : [];
+      focus: "", proves: "", cannotProve: "", crop: null }] : [];
   });
   const contentBlocks = list(builderContent.blocks).map((raw) => {
     const block = record(raw); const timeRange = record(block.timeRange);
@@ -208,7 +249,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
       const ref = text(visual.ref); const frame = frameLookup.get(ref); const crop = record(visual.crop);
       return frame ? [{ ref, src: frame.src, label: text(visual.focus, frame.reason ?? ref), time: frame.time,
         role: text(visual.role, "evidence"), focus: text(visual.focus, frame.reason ?? ref),
-        proves: text(visual.proves, "支持相邻内容结论"), cannotProve: text(visual.cannotProve, "不能替代完整时间序列"),
+        proves: text(visual.proves), cannotProve: text(visual.cannotProve),
         crop: number(crop.x) !== null && number(crop.y) !== null && number(crop.width) !== null && number(crop.height) !== null
           ? { x: number(crop.x)!, y: number(crop.y)!, width: number(crop.width)!, height: number(crop.height)! } : null }] : [];
     });
@@ -221,9 +262,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
         ...item,
         role: isBefore ? "before" : isAfter ? "after" : "evidence",
         label: stateLabel,
-        focus: isBefore || isAfter ? `${stateLabel}的可见界面状态` : text(block.title, item.focus),
-        proves: isBefore || isAfter ? `为“${text(block.title)}”提供${stateLabel}状态` : text(block.body, item.proves),
-        cannotProve: text(block.boundary, item.cannotProve)
+        focus: item.focus
       };
     });
     const steps = list(block.steps).map((rawStep) => {
@@ -237,8 +276,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
         media: mediaForRefs(strings(step.frameRefs)).map((item) => ({
           ...item,
           label,
-          focus: description,
-          proves: description
+          focus: description
         }))
       };
     });
@@ -295,7 +333,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
   }));
   const anchorIds = new Set([...cues.map((cue) => cue.id), ...denseFrames.map((frame) => frame.id), ...units.map((unit) => unit.id)]);
   const referencedEvidence = threeLens ? Object.values(threeLens.evaluation.lenses).flatMap((lens) => lens.rules.flatMap((rule) => rule.evidenceRefs)) : [];
-  const evidenceIndex = [...new Map<string, VideoResearch["evidenceIndex"][number]>([
+  const evidenceIndex = firstEvidenceEntryById<VideoResearch["evidenceIndex"][number]>([
     ...list(evidencePack.shots).flatMap(raw => {
       const shot = record(raw); const relative = text(shot.representativeFrame);
       if (!relative || path.isAbsolute(relative) || relative.split(/[\\/]/).includes("..")) return [];
@@ -311,7 +349,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     ...units.map((unit) => [unit.id, { id: unit.id, kind: "claim", label: unit.title, anchorId: unit.id, artifactRef: batchItem.reconstructionArtifactRef }] as const),
     ...referencedEvidence.map((reference) => [reference.refId, { id: reference.refId, kind: reference.kind, label: reference.refId,
       anchorId: anchorIds.has(reference.refId) ? reference.refId : null, artifactRef: reference.artifactRef }] as const)
-  ]).values()];
+  ]);
   const selectionRecord = record(selection);
   const frozenSourcePath = path.join(rootPath, "post-source-input.json");
   const frozenSource = fs.existsSync(frozenSourcePath) ? record(JSON.parse(fs.readFileSync(frozenSourcePath, "utf8"))) : null;
@@ -359,7 +397,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     contentUnknowns: strings(builderContent.unknowns),
     readerSummary: {
       productState,
-      statusLabel: productState === "gold" ? "单帖 Gold" : productState === "analysis_ready" ? "分析完成 · 原帖资料待补" : "分析尚未闭环",
+      statusLabel: readerStatusLabel(productState, qualityStates, batchItem.researchReview),
       verdict: thesis,
       strengths,
       limitations,

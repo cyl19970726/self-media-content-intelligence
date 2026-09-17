@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { registerWorkflowRoutes, type WorkflowHttpService } from "./routes/workflow-runs.js";
 import express from "express";
 import path from "node:path";
 import { z } from "zod";
@@ -32,6 +33,7 @@ import { ingestAnalysisRevisionSchema, type EvidenceAccessPort } from "../../pac
 import { buildCreatorRunOperations } from "./creator-operations.js";
 
 export interface AppDependencies {
+  workflows?: WorkflowHttpService;
   creatorResearch: CreatorResearchService;
   creatorResearchBatches?: CreatorResearchBatchService;
   comparisons: ComparisonProjectService;
@@ -44,6 +46,7 @@ export interface AppDependencies {
 }
 
 export function createApp({
+  workflows,
   creatorResearch: creatorResearchService,
   creatorResearchBatches: creatorResearchBatchService,
   comparisons: comparisonProjectService,
@@ -74,6 +77,7 @@ export function createApp({
     response.json({ ok: true });
   });
 
+  if (workflows) registerWorkflowRoutes(app, workflows);
   registerPublishingRoutes(app, publishingService);
   registerEvidenceRoutes(app, evidenceAccess);
   if (creatorResearchBatchService) registerCreatorResearchBatchRoutes(app, creatorResearchBatchService);
@@ -233,6 +237,15 @@ export function createApp({
       return response.status(202).json(creatorResearchService.revalidateSynthesis(request.params.id));
     } catch (error) {
       const message = error instanceof Error ? error.message : "无法重验博主综合";
+      return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
+    }
+  });
+
+  app.post("/api/creator-runs/:id/resynthesize", (request, response) => {
+    try {
+      return response.status(202).json(creatorResearchService.resynthesize(request.params.id));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "无法重新生成博主综合";
       return response.status(message.includes("不存在") ? 404 : 409).json({ error: message });
     }
   });

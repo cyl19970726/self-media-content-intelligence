@@ -92,6 +92,30 @@ describe("Builder deterministic integrity gate", () => {
     }
   });
 
+  it("rejects stale core evidence counts and accepts the mechanically derived count", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      for (let index = 3; index <= 5; index += 1) {
+        reconstruction.knowledgeUnits.push({
+          ...structuredClone(reconstruction.knowledgeUnits[0]),
+          id: `KU-00${index}`
+        });
+      }
+      reconstruction.coverageMatrix.coreEvidence = { covered: 4, total: 4 };
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_CORE_EVIDENCE_COUNT:4/4!=5/5");
+
+      reconstruction.coverageMatrix.coreEvidence = { covered: 5, total: 5 };
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(validateBuilderIntegrity(item.root, item.videoPath)).toMatchObject({ coreUnits: 5 });
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
   it("accepts a complete V2 Builder result with three evidence-bound lenses", () => {
     const item = createFixture();
     try {
@@ -176,6 +200,35 @@ describe("Builder deterministic integrity gate", () => {
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath))
         .toThrow("BUILDER_INTEGRITY_DANGLING_REFERENCE:ocr:TARGET-0001");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
+  it("reports every dangling evidence reference together while retaining valid references", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.knowledgeUnits[0].evidence.push(
+        { refType: "frame", ref: "FRAME-MISSING-001", supports: "invalid frame" },
+        { refType: "source", ref: "SOURCE-MISSING-002", supports: "invalid source" }
+      );
+      reconstruction.relations[0].evidence.push(
+        { refType: "ocr", ref: "OCR-MISSING-003", supports: "invalid OCR line" },
+        { refType: "cue", ref: "CUE-002", supports: "valid cue" }
+      );
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath)).toThrow(
+        "BUILDER_INTEGRITY_DANGLING_REFERENCE:" +
+        "frame:FRAME-MISSING-001@knowledgeUnits[0].evidence[1]," +
+        "source:SOURCE-MISSING-002@knowledgeUnits[0].evidence[2]," +
+        "ocr:OCR-MISSING-003@relations[0].evidence[2]"
+      );
+      reconstruction.knowledgeUnits[0].evidence.splice(1, 2);
+      reconstruction.relations[0].evidence.splice(2, 1);
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(validateBuilderIntegrity(item.root, item.videoPath)).toMatchObject({ evidenceReferences: 7 });
     } finally {
       fs.rmSync(item.root, { recursive: true, force: true });
     }

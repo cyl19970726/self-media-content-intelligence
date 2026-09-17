@@ -6,6 +6,7 @@ import { DatabaseSync } from "node:sqlite";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   CreatorResearchService,
+  type CreatorBrowserExecutor,
   type CreatorArtifactStore,
   type CreatorResearchRepository,
   type DeepMediaResolver,
@@ -24,13 +25,23 @@ function timestamp(offsetMs = 0): string {
   return new Date(Date.now() + offsetMs).toISOString();
 }
 
-function enqueue(runId: string, nodeKey: ResearchJob["nodeKey"], suffix = randomUUID()): ResearchJob {
+function enqueue(runId: string, nodeKey: ResearchJob["nodeKey"], suffix: string = randomUUID()): ResearchJob {
   const createdAt = timestamp();
   return repository.enqueue({
     id: randomUUID(), runId, nodeKey, status: "queued", idempotencyKey: `${runId}:${nodeKey}:${suffix}`,
     attempts: 0, maxAttempts: 3, availableAt: createdAt, leaseOwner: null, leaseExpiresAt: null,
     heartbeatAt: null, payload: {}, lastError: null, createdAt, updatedAt: createdAt
   });
+}
+
+function enqueueWorkflow(runId: string, workflowId: string,
+  suffix: string = randomUUID(), workflowRevision: string | null = "v2"): ResearchJob {
+  const createdAt = timestamp();
+  return repository.enqueue({ id: randomUUID(), runId, nodeKey: "workflow.advance", status: "queued",
+    idempotencyKey: `${runId}:workflow.advance:${suffix}`, attempts: 0, maxAttempts: 2,
+    availableAt: createdAt, leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null,
+    payload: { workflowRunId: randomUUID(), workflowId, ...(workflowRevision ? { workflowRevision } : {}), generation: 1 }, lastError: null,
+    createdAt, updatedAt: createdAt });
 }
 
 function createRun(adapter: "redfox" | "ego-browser", slug: string = randomUUID()) {
@@ -65,6 +76,55 @@ afterEach(() => {
 });
 
 describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
+  it("constrains an optional run scope before selecting work in any lane", () => {
+    const unrelated = createRun("redfox", "run-scope-unrelated");
+    const target = createRun("redfox", "run-scope-target");
+
+    expect(repository.claimNext("scoped-redfox", timestamp(), timestamp(90_000), "redfox", target.id)?.runId)
+      .toBe(target.id);
+    expect(repository.claimNext("scoped-any", timestamp(), timestamp(90_000), "any", target.id)).toBeNull();
+    expect(repository.claimNext("unscoped", timestamp(), timestamp(90_000), "redfox")?.runId).toBe(unrelated.id);
+  });
+
+  it("forwards a run scope through the service and job processor", async () => {
+    const unrelated = createRun("redfox", "service-scope-unrelated");
+    const target = createRun("redfox", "service-scope-target");
+    const acquiredRunIds: string[] = [];
+    const executor = {
+      async acquire(input) {
+        acquiredRunIds.push(input.runId);
+        return { state: "blocked" as const, finalUrl: input.profileUrl, taskSpaceId: null,
+          code: "provider_unavailable" as const, message: "stop after scoped claim", retryable: false };
+      },
+      async enrich() { throw new Error("unexpected enrich"); }
+    } satisfies CreatorBrowserExecutor;
+
+    expect(await service.processNext("scoped-service", executor, "redfox", target.id)).toBe(true);
+    expect(acquiredRunIds).toEqual([target.id]);
+    expect(repository.claimNext("unscoped-after-service", timestamp(), timestamp(90_000), "redfox")?.runId)
+      .toBe(unrelated.id);
+  });
+
+  it("leaves an unrelated exhausted lease untouched during a scoped claim", () => {
+    const unrelated = createRun("redfox", "scope-exhausted-unrelated");
+    const target = createRun("redfox", "scope-exhausted-target");
+    const database = new DatabaseSync(databaseFile);
+    database.prepare("UPDATE research_jobs SET max_attempts = 1 WHERE id = ?")
+      .run(unrelated.worker.jobId!);
+    const leasedAt = timestamp();
+    const expiresAt = new Date(Date.parse(leasedAt) + 1).toISOString();
+    const afterExpiry = new Date(Date.parse(leasedAt) + 2).toISOString();
+    const unrelatedJob = repository.claimNext("unrelated-worker", leasedAt, expiresAt, "redfox", unrelated.id);
+    expect(unrelatedJob?.runId).toBe(unrelated.id);
+
+    expect(repository.claimNext("target-worker", afterExpiry, timestamp(90_000), "redfox", target.id)?.runId)
+      .toBe(target.id);
+    expect(database.prepare("SELECT status FROM research_jobs WHERE id = ?").get(unrelatedJob!.id))
+      .toEqual({ status: "leased" });
+    expect(repository.get(unrelated.id)?.status).toBe("queued");
+    database.close();
+  });
+
   it("routes acquisition and enrichment by provider, and compute jobs by node", () => {
     const redfox = createRun("redfox", "redfox-route");
     const ego = createRun("ego-browser", "ego-route");
@@ -85,6 +145,114 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
 
     expect(repository.claimNext("redfox", timestamp(), timestamp(90_000), "redfox")?.nodeKey).toBe("creator.acquire");
     expect(repository.claimNext("portfolio", timestamp(), timestamp(90_000), "portfolio")).toBeNull();
+  });
+
+  it("claims two v2 post worker workflows concurrently and caps the third", () => {
+    const run = createRun("redfox", "post-workflow-concurrency");
+    completeAcquisition(run.id, "redfox");
+    enqueueWorkflow(run.id, "post.build", "post-1");
+    enqueueWorkflow(run.id, "post.review", "post-2");
+    enqueueWorkflow(run.id, "post.repair-evaluation", "post-3");
+    const first = repository.claimNext("post-1", timestamp(), timestamp(90_000), "video");
+    const second = repository.claimNext("post-2", timestamp(), timestamp(90_000), "video");
+    expect(first?.payload.workflowId).toBe("post.build");
+    expect(second?.payload.workflowId).toBe("post.review");
+    expect(repository.claimNext("post-3", timestamp(), timestamp(90_000), "video")).toBeNull();
+  });
+
+  it("a waiting parent releases its queue job before child work is claimed", () => {
+    const run = createRun("redfox", "waiting-parent-release");
+    completeAcquisition(run.id, "redfox");
+    const parent = enqueueWorkflow(run.id, "creator.analyze", "parent");
+    expect(repository.claimNext("parent", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(parent.id);
+    repository.updateJobStatus({ jobId: parent.id, status: "succeeded", updatedAt: timestamp() });
+    const child = enqueueWorkflow(run.id, "post.build", "child");
+    expect(repository.claimNext("child", timestamp(), timestamp(90_000), "video")?.id).toBe(child.id);
+  });
+
+  it("claims orchestration advances beside active post model work without consuming a model slot", () => {
+    process.env.SELF_MEDIA_VIDEO_CONCURRENCY = "1";
+    const run = createRun("redfox", "control-beside-model");
+    completeAcquisition(run.id, "redfox");
+    const model = enqueueWorkflow(run.id, "post.build", "model");
+    expect(repository.claimNext("post-model", timestamp(), timestamp(90_000), "video")?.id).toBe(model.id);
+
+    const creatorControl = enqueueWorkflow(run.id, "creator.analyze", "creator-control");
+    expect(repository.claimNext("creator-control", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(creatorControl.id);
+
+    const postControl = enqueueWorkflow(run.id, "post.analyze", "post-control", "v2");
+    expect(repository.claimNext("post-control", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(postControl.id);
+    expect(repository.claimNext("another-model", timestamp(), timestamp(90_000), "video")).toBeNull();
+  });
+
+  it("treats v3 post and creator suite roots as slot-free orchestration advances", () => {
+    process.env.SELF_MEDIA_VIDEO_CONCURRENCY = "1";
+    const run = createRun("redfox", "v3-control-beside-model");
+    completeAcquisition(run.id, "redfox");
+    const model = enqueueWorkflow(run.id, "post.build", "model");
+    expect(repository.claimNext("post-model", timestamp(), timestamp(90_000), "video")?.id).toBe(model.id);
+
+    for (const workflowId of ["post.analyze", "creator.synthesize", "creator.analyze"]) {
+      const control = enqueueWorkflow(run.id, workflowId, `v3-${workflowId}`, "v3");
+      expect(repository.claimNext(`v3-${workflowId}`, timestamp(), timestamp(90_000), "synthesis")?.id)
+        .toBe(control.id);
+    }
+    expect(repository.claimNext("another-model", timestamp(), timestamp(90_000), "video")).toBeNull();
+  });
+
+  it.each(["v4", "v5"])("routes %s orchestration to control and source checking to the video model slot", (revision) => {
+    process.env.SELF_MEDIA_VIDEO_CONCURRENCY = "1";
+    const run = createRun("redfox", "v4-source-check-lanes");
+    completeAcquisition(run.id, "redfox");
+    const control = enqueueWorkflow(run.id, "post.analyze", "v4-control", revision);
+    expect(repository.claimNext("v4-control", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(control.id);
+    const sourceCheck = enqueueWorkflow(run.id, "post.source-check", "source-check", "v1");
+    expect(repository.claimNext("source-check", timestamp(), timestamp(90_000), "video")?.id).toBe(sourceCheck.id);
+    const build = enqueueWorkflow(run.id, "post.build", "blocked-by-source-check", "v1");
+    expect(repository.claimNext("second-video", timestamp(), timestamp(90_000), "video")).toBeNull();
+    repository.updateJobStatus({ jobId: sourceCheck.id, status: "succeeded", updatedAt: timestamp() });
+    expect(repository.claimNext("second-video", timestamp(), timestamp(90_000), "video")?.id).toBe(build.id);
+  });
+
+  it("does not let control advances consume or block the synthesis model slot", () => {
+    const run = createRun("redfox", "control-before-synthesis-model");
+    completeAcquisition(run.id, "redfox");
+    const control = enqueueWorkflow(run.id, "creator.synthesize", "suite-control", "v2");
+    expect(repository.claimNext("suite-control", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(control.id);
+    const model = enqueueWorkflow(run.id, "creator.build", "creator-model");
+    expect(repository.claimNext("creator-model", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(model.id);
+  });
+
+  it("routes every v2 workflow node to its executable lane", () => {
+    const synthesisIds = ["post.analyze", "creator.analyze", "creator.synthesize", "creator.build", "creator.review", "creator.repair"];
+    for (const workflowId of synthesisIds) {
+      const run = createRun("redfox", `synthesis-${workflowId}`);
+      completeAcquisition(run.id, "redfox");
+      const job = enqueueWorkflow(run.id, workflowId);
+      const claimed = repository.claimNext(`worker-${workflowId}`, timestamp(), timestamp(90_000), "synthesis");
+      expect(claimed?.id, workflowId).toBe(job.id);
+      repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: timestamp() });
+    }
+    const videoIds = ["post.source-check", "post.build", "post.review", "post.repair", "post.repair-evaluation"];
+    for (const workflowId of videoIds) {
+      const run = createRun("redfox", `video-${workflowId}`);
+      completeAcquisition(run.id, "redfox");
+      const job = enqueueWorkflow(run.id, workflowId);
+      const claimed = repository.claimNext(`worker-${workflowId}`, timestamp(), timestamp(90_000), "video");
+      expect(claimed?.id, workflowId).toBe(job.id);
+      repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: timestamp() });
+    }
+  });
+
+  it("keeps v1 and revisionless post orchestrators on the video lane", () => {
+    for (const revision of ["v1", undefined]) {
+      const run = createRun("redfox", `legacy-post-${revision ?? "missing"}`);
+      completeAcquisition(run.id, "redfox");
+      const job = enqueueWorkflow(run.id, "post.analyze", revision ?? "missing", revision ?? null);
+      expect(repository.claimNext("synthesis", timestamp(), timestamp(90_000), "synthesis")).toBeNull();
+      expect(repository.claimNext("video", timestamp(), timestamp(90_000), "video")?.id).toBe(job.id);
+      repository.updateJobStatus({ jobId: job.id, status: "succeeded", updatedAt: timestamp() });
+    }
   });
 
   it("prevents video and synthesis from overlapping in either claim order", () => {

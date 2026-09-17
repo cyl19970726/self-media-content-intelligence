@@ -39,7 +39,7 @@ for (const file of sourceFiles) {
 
     if ((file.startsWith("src/client/") || file.startsWith("apps/web/")) && resolved?.startsWith("packages/")) {
       const browserSafe = /^packages\/contracts\/(?:index(?:\.js)?)?$/u.test(resolved)
-        || /^packages\/(?:research|knowledge|creation)\/contracts(?:\.js)?$/u.test(resolved);
+        || /^packages\/(?:research|knowledge|creation|workflow)\/contracts(?:\.js)?$/u.test(resolved);
       if (!browserSafe) failures.push(`${file}: Web code may import only browser-safe contract entrypoints (${specifier})`);
     }
 
@@ -50,7 +50,7 @@ for (const file of sourceFiles) {
   }
 }
 
-for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research", "adapters", "testkit"]) {
+for (const packageName of ["contracts", "knowledge", "creation", "runtime", "research", "adapters", "testkit", "workflow"]) {
   const packageRoot = path.join(root, "packages", packageName);
   if (!fs.existsSync(path.join(packageRoot, "package.json")) || !fs.existsSync(path.join(packageRoot, "index.ts"))) {
     failures.push(`packages/${packageName}: workspace requires package.json and public index.ts`);

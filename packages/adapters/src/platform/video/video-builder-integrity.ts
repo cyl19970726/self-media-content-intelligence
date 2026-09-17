@@ -26,6 +26,7 @@ type ReconstructionLike = {
   relations?: Array<{ from?: string; to?: string; evidence?: EvidenceRef[] }>;
   derivedSources?: Array<{ id?: string; path?: string }>;
   coverageMatrix?: {
+    coreEvidence?: { covered?: number; total?: number };
     channels?: Carrier[];
     cueAccountability?: Array<{
       cueId?: string;
@@ -223,11 +224,13 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   for (const frame of ocr?.frames ?? []) for (const line of frame.lines ?? []) {
     if (line.id && Number.isFinite(frame.time)) frameTimes.set(line.id, Number(frame.time));
   }
+  const relations = reconstruction.relations ?? [];
   const references = [
     ...units.flatMap((unit) => unit.evidence ?? []),
-    ...(reconstruction.relations ?? []).flatMap((relation) => relation.evidence ?? [])
+    ...relations.flatMap((relation) => relation.evidence ?? [])
   ];
-  for (const reference of references) {
+  const danglingReferences: string[] = [];
+  const checkReference = (reference: EvidenceRef, sourcePath: string): void => {
     const ref = reference.ref;
     if (!ref) fail("EMPTY_REFERENCE");
     const valid = reference.refType === "cue" ? sourceCueIds.has(ref)
@@ -236,7 +239,26 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
           : reference.refType === "targeted_frame" ? targetedIds.has(ref)
             : reference.refType === "ocr" ? ocrIds.has(ref)
               : reference.refType === "source" ? sourceIds.has(ref) : false;
-    if (!valid) fail("DANGLING_REFERENCE", `${reference.refType}:${ref}`);
+    if (!valid) danglingReferences.push(`${reference.refType}:${ref}@${sourcePath}`);
+  };
+  units.forEach((unit, unitIndex) => {
+    (unit.evidence ?? []).forEach((reference, evidenceIndex) => {
+      checkReference(reference, `knowledgeUnits[${unitIndex}].evidence[${evidenceIndex}]`);
+    });
+  });
+  relations.forEach((relation, relationIndex) => {
+    (relation.evidence ?? []).forEach((reference, evidenceIndex) => {
+      checkReference(reference, `relations[${relationIndex}].evidence[${evidenceIndex}]`);
+    });
+  });
+  if (danglingReferences.length > 0) fail("DANGLING_REFERENCE", danglingReferences.join(","));
+  const coreUnits = units.filter((unit) => unit.importance === "core");
+  const coveredCoreUnits = coreUnits.filter((unit) => (unit.evidence ?? []).length > 0);
+  const reportedCoreEvidence = reconstruction.coverageMatrix?.coreEvidence;
+  if (reportedCoreEvidence?.covered !== coveredCoreUnits.length || reportedCoreEvidence.total !== coreUnits.length) {
+    fail("CORE_EVIDENCE_COUNT",
+      `${reportedCoreEvidence?.covered ?? "missing"}/${reportedCoreEvidence?.total ?? "missing"}` +
+      `!=${coveredCoreUnits.length}/${coreUnits.length}`);
   }
   for (const relation of reconstruction.relations ?? []) {
     if (!relation.from || !unitIds.has(relation.from) || !relation.to || !unitIds.has(relation.to)) {
@@ -324,7 +346,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     transcriptCues: sourceCues.length,
     accountableCues: accountability.length,
     knowledgeUnits: units.length,
-    coreUnits: units.filter((unit) => unit.importance === "core").length,
+    coreUnits: coreUnits.length,
     evidenceReferences: references.length,
     availableChannels: availableChannels.length,
     inspectedChannels: availableChannels.filter((channel) => ["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel))).length,

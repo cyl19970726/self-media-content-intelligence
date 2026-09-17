@@ -116,9 +116,11 @@ for (const carrier of probe.informationCarriers || []) {
   if (!carrier.modalityKeys?.length || !carrier.discoveredIn?.length || carrier.discoveredIn.some((id) => !sweepIds.has(id))) sweepProblems.push(`${carrier.id}:missing_sweep_trace`);
 }
 if (evidence.media?.hasAudio === true) {
-  const audioCarrier = (probe.informationCarriers || []).find((item) => /non[._ -]?speech|music|sound[._ -]?effect/i.test(
-    [item.id, item.name, ...(item.modalityKeys || [])].join(" ")
-  ));
+  const audioCarrier = (probe.informationCarriers || []).find((item) => {
+    const descriptor = [item.id, item.name, ...(item.modalityKeys || [])].join(" ");
+    return /non[._ -]?speech|music|sound[._ -]?effect|非语音(?:音频)?|音乐|音效/i.test(descriptor)
+      || /(?:audio.*non[._ -]?semantic|non[._ -]?semantic.*audio)/i.test(descriptor);
+  });
   if (!audioCarrier || !carrierIsClosed(audioCarrier)) sweepProblems.push("non_speech_audio:not_explicitly_inspected");
 }
 gate("full_timeline_carrier_sweep", sweepProblems.length === 0, sweepProblems.length ? "Carrier discovery did not close the full timeline or audio channel" : "Carrier sweep covers the source and traces every discovered carrier", sweepProblems);

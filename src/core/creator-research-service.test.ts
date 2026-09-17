@@ -15,9 +15,11 @@ function serviceForTest(options: {
   reconstruct?: VideoReconstructionExecutor["reconstruct"];
   synthesize?: CreatorSynthesisExecutor["synthesize"];
   completion?: CreatorResearchCompletionPort;
+  databasePath?: string;
 } = {}): CreatorResearchService {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
-  temporaryDirectories.push(directory);
+  const directory = options.databasePath ? path.dirname(options.databasePath)
+    : fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-"));
+  if (!options.databasePath) temporaryDirectories.push(directory);
   const values = options.values ?? new Map<string, unknown>();
   const artifacts: CreatorArtifactStore = {
     write(runId, filename, value) {
@@ -111,7 +113,7 @@ function serviceForTest(options: {
     }
   };
   return new CreatorResearchService(
-    new CreatorResearchStore(path.join(directory, "test.sqlite")),
+    new CreatorResearchStore(options.databasePath ?? path.join(directory, "test.sqlite")),
     artifacts,
     mediaResolver,
     videoReconstructor,
@@ -126,6 +128,40 @@ afterEach(() => {
 });
 
 describe("CreatorResearchService", () => {
+  it.each([
+    { leaseState: "live", leaseOffset: 60_000, expectedActive: ["post-live"], expectedQueued: 2, expectedWorker: "running" },
+    { leaseState: "expired", leaseOffset: -60_000, expectedActive: [], expectedQueued: 3, expectedWorker: "queued" }
+  ])("startup recovery preserves only $leaseState video leases", ({ leaseOffset, expectedActive, expectedQueued, expectedWorker }) => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "creator-research-recovery-"));
+    temporaryDirectories.push(directory);
+    const databasePath = path.join(directory, "test.sqlite");
+    const values = new Map<string, unknown>();
+    const initial = serviceForTest({ databasePath, values });
+    const run = initial.create("https://www.xiaohongshu.com/user/profile/recovery-creator");
+    initial.close();
+
+    const timestamp = new Date().toISOString();
+    const repository = new CreatorResearchStore(databasePath);
+    run.videoWork = { concurrencyLimit: 3, activePostExternalIds: ["post-live"], queuedPosts: 2,
+      analyzedPosts: 0, failedPosts: 0 };
+    run.worker = { state: "running", attempt: 1, jobId: "11111111-1111-4111-8111-111111111112",
+      workerId: "worker-one", lastHeartbeatAt: timestamp };
+    repository.save(run);
+    repository.enqueue({ id: "11111111-1111-4111-8111-111111111112", runId: run.id,
+      nodeKey: "video.reconstruct", status: "running", idempotencyKey: `${run.id}:video:post-live`,
+      attempts: 1, maxAttempts: 3, availableAt: timestamp, leaseOwner: "worker-one",
+      leaseExpiresAt: new Date(Date.now() + leaseOffset).toISOString(), heartbeatAt: timestamp,
+      payload: { postExternalId: "post-live" }, lastError: null, createdAt: timestamp, updatedAt: timestamp });
+    repository.close();
+
+    const recovered = serviceForTest({ databasePath, values });
+    expect(recovered.get(run.id)?.videoWork).toMatchObject({
+      activePostExternalIds: expectedActive, queuedPosts: expectedQueued
+    });
+    expect(recovered.get(run.id)?.worker.state).toBe(expectedWorker);
+    recovered.close();
+  });
+
   it("creates and persists a transparent queued run", () => {
     const service = serviceForTest();
     const run = service.create("https://www.xiaohongshu.com/user/profile/creator-123");

@@ -13,6 +13,60 @@ export const evidenceClaimSchema = z.object({
   caveat: z.string().nullable()
 });
 
+const adaptiveClassificationAxisSchema = z.enum(["topic", "format", "commercial_signal"]);
+const adaptiveClassificationSourceSchema = z.enum(["surface_title", "deep_builder"]);
+export const portfolioClassificationSchema = z.object({
+  schemaVersion: z.literal("creator-portfolio-classification@1"),
+  sourceCorpusArtifactRef: z.string().min(1),
+  observedPosts: z.number().int().nonnegative(),
+  labelRegistry: z.array(z.object({
+    id: z.string().regex(/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/),
+    axis: adaptiveClassificationAxisSchema,
+    name: z.string().trim().min(1),
+    definition: z.string().trim().min(1),
+    evidenceRefs: z.array(z.string().min(1)).min(1),
+    boundary: z.string().trim().min(1)
+  })),
+  rows: z.array(z.object({
+    postExternalId: z.string().min(1),
+    memberships: z.array(z.object({
+      labelId: z.string().min(1),
+      sourceLevel: adaptiveClassificationSourceSchema,
+      evidenceRefs: z.array(z.string().min(1)).min(1),
+      boundary: z.string().trim().min(1)
+    })),
+    unknowns: z.array(z.string().min(1))
+  })),
+  boundaries: z.array(z.string().min(1)).min(1)
+}).superRefine((value, context) => {
+  const labelIds = value.labelRegistry.map((label) => label.id);
+  if (new Set(labelIds).size !== labelIds.length) {
+    context.addIssue({ code: "custom", path: ["labelRegistry"], message: "自适应分类 label id 必须唯一。" });
+  }
+  const labelNames = value.labelRegistry.map((label) => `${label.axis}:${label.name.toLocaleLowerCase("zh-CN")}`);
+  if (new Set(labelNames).size !== labelNames.length) {
+    context.addIssue({ code: "custom", path: ["labelRegistry"], message: "同一分类轴不能登记重名标签。" });
+  }
+  const knownLabels = new Set(labelIds);
+  const postIds = value.rows.map((row) => row.postExternalId);
+  if (new Set(postIds).size !== postIds.length || value.observedPosts !== value.rows.length) {
+    context.addIssue({ code: "custom", path: ["rows"], message: "自适应分类必须一帖一行并与 observedPosts 一致。" });
+  }
+  value.rows.forEach((row, rowIndex) => {
+    const memberships = row.memberships.map((membership) => membership.labelId);
+    if (new Set(memberships).size !== memberships.length) {
+      context.addIssue({ code: "custom", path: ["rows", rowIndex, "memberships"], message: "同一帖子不能重复登记同一标签。" });
+    }
+    row.memberships.forEach((membership, membershipIndex) => {
+      if (!knownLabels.has(membership.labelId)) context.addIssue({ code: "custom",
+        path: ["rows", rowIndex, "memberships", membershipIndex, "labelId"], message: "帖子分类引用了未登记标签。" });
+    });
+    if (row.memberships.length === 0 && row.unknowns.length === 0) context.addIssue({ code: "custom",
+      path: ["rows", rowIndex, "unknowns"], message: "零分类帖子必须说明未知原因。" });
+  });
+});
+export type PortfolioClassification = z.infer<typeof portfolioClassificationSchema>;
+
 export const creatorSynthesisSchema = z.object({
   schemaVersion: z.literal("1.0.0"),
   creatorRunId: z.string().uuid(),
@@ -59,6 +113,7 @@ export const creatorSynthesisSchema = z.object({
     evidenceRefs: z.array(z.string()).min(1),
     unknowns: z.array(z.string())
   })).length(21),
+  portfolioClassification: portfolioClassificationSchema.optional(),
   crossPostResearch: crossPostResearchSchema.optional(),
   boundaries: z.array(z.string()).min(1)
 });

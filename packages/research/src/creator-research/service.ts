@@ -30,6 +30,10 @@ import {
   type CreatorInventoryPost,
   type CreatorAcquisitionAdapter
 } from "../../index.js";
+import type {
+  ResearchWorkflowExecutor, WorkflowQueueReceipt
+} from "../workflows/contracts.js";
+import { CreatorResearchWorkflowScheduler } from "../workflows/queue-scheduler.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import { CreatorResearchJobProcessor } from "./job-processor.js";
 import { creatorSynthesisCoverage } from "./synthesis-coverage.js";
@@ -51,18 +55,25 @@ function stage(run: CreatorResearchRun, id: CreatorResearchRun["stages"][number]
   return value;
 }
 
+function clearSynthesisVersion(run: CreatorResearchRun): void {
+  run.synthesisArtifactRef = null;
+  run.synthesisGateArtifactRef = null;
+  run.researchReview = null;
+}
+
 export function recoveredVideoWorkProjection(
   run: CreatorResearchRun,
   batch: ReturnType<typeof videoReconstructionBatchSchema.parse> | null,
-  concurrencyLimit: number
+  concurrencyLimit: number,
+  activePostExternalIds: string[] = []
 ): CreatorResearchRun["videoWork"] {
   const items = batch?.items ?? [];
   const derivedBuiltPosts = items.filter((item) => ["built_unevaluated", "evaluated_with_findings", "verified", "ready"].includes(item.state)).length;
   return {
     concurrencyLimit,
-    activePostExternalIds: [],
-    queuedPosts: batch ? items.filter((item) => ["queued", "running"].includes(item.state)).length
-      : run.videoWork.queuedPosts + run.videoWork.activePostExternalIds.length,
+    activePostExternalIds,
+    queuedPosts: batch ? Math.max(0, items.filter((item) => ["queued", "running"].includes(item.state)).length - activePostExternalIds.length)
+      : Math.max(0, run.videoWork.queuedPosts + run.videoWork.activePostExternalIds.length - activePostExternalIds.length),
     analyzedPosts: batch ? Math.max(batch.builtPosts, derivedBuiltPosts)
       : run.videoWork.analyzedPosts,
     failedPosts: batch ? items.filter((item) => ["not_ready", "blocked"].includes(item.state)).length
@@ -90,8 +101,18 @@ export type ImportedCreatorSnapshot = {
   };
 };
 
+export type SourceIdentityConflict = {
+  postExternalId: string;
+  message: string;
+  evidenceRef: string;
+};
+
+const sourceIdentityConflictCode = "source_identity_conflict";
+const sourceIdentityConflictNextAction = "需独立核对媒体与原帖身份后，才能继续启动单帖或综合 Workflow。";
+
 export class CreatorResearchService {
   private readonly jobProcessor: CreatorResearchJobProcessor;
+  private readonly workflowScheduler: CreatorResearchWorkflowScheduler;
 
   constructor(
     private readonly repository: CreatorResearchRepository,
@@ -101,8 +122,10 @@ export class CreatorResearchService {
     synthesisExecutor: CreatorSynthesisExecutor,
     private readonly videoConcurrencyLimit: number,
     completionPort?: CreatorResearchCompletionPort,
-    imagePostReconstructor?: ImagePostReconstructionExecutor
+    imagePostReconstructor?: ImagePostReconstructionExecutor,
+    private readonly workflowExecutor?: ResearchWorkflowExecutor
   ) {
+    this.workflowScheduler = new CreatorResearchWorkflowScheduler(repository);
     this.jobProcessor = new CreatorResearchJobProcessor(
       repository,
       artifacts,
@@ -111,15 +134,172 @@ export class CreatorResearchService {
       synthesisExecutor,
       videoConcurrencyLimit,
       completionPort,
-      imagePostReconstructor
+      imagePostReconstructor,
+      workflowExecutor
     );
     this.recoverLocalWorkerProjection();
   }
 
+  async startPostWorkflow(id: string, postExternalId: string,
+    options: { evaluationMode?: "fresh" | "repair_existing_invalid"; importedEvaluationArtifactRef?: string } = {}): Promise<WorkflowQueueReceipt> {
+    const run = this.workflowOwner(id);
+    this.assertWorkflowStartAllowed(run);
+    if (!run.detailArtifactRef || !run.mediaManifestArtifactRef || !run.selectionArtifactRef || !run.reconstructionBatchArtifactRef) {
+      throw new Error("博主任务尚未冻结单帖 Workflow 输入");
+    }
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+    const item = batch.items.find((candidate) => candidate.postExternalId === postExternalId);
+    if (!item?.sourceMediaArtifactRef) throw new Error("单帖不存在或尚无可用媒体证据");
+    const evidenceKind = resolveWorkflowEvidenceKind(item.evidenceKind, item.sourceMediaArtifactRef,
+      deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef)), postExternalId);
+    const receipt = await this.requireWorkflowExecutor().createPost({ creatorRunId: run.id, postExternalId,
+      evidenceKind,
+      ...(options.evaluationMode ? { evaluationMode: options.evaluationMode } : {}),
+      ...(options.importedEvaluationArtifactRef ? { importedEvaluationArtifactRef: options.importedEvaluationArtifactRef } : {}),
+      sourceUrl: `https://www.xiaohongshu.com/explore/${encodeURIComponent(postExternalId)}`,
+      sourceMediaArtifactRef: item.sourceMediaArtifactRef,
+      detailArtifactRef: run.detailArtifactRef, mediaManifestArtifactRef: run.mediaManifestArtifactRef,
+      selectionArtifactRef: run.selectionArtifactRef, reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef });
+    return this.enqueueWorkflowAdvance(run, receipt);
+  }
+
+  async startCreatorSynthesisWorkflow(id: string): Promise<WorkflowQueueReceipt> {
+    const run = this.workflowOwner(id);
+    this.assertWorkflowStartAllowed(run);
+    if (!run.portfolioArtifactRef || !run.portfolioAnnotationsArtifactRef || !run.selectionArtifactRef
+      || !run.detailArtifactRef || !run.reconstructionBatchArtifactRef) {
+      throw new Error("博主任务尚未冻结综合 Workflow 输入");
+    }
+    const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+    const readiness = creatorSynthesisCoverage(selection, batch);
+    if (!readiness.provisionalAllowed && !readiness.formalAllowed) {
+      throw new Error("当前单帖子任务尚未达到综合输入门槛");
+    }
+    const receipt = await this.requireWorkflowExecutor().createSynthesis({ creatorRunId: run.id,
+      portfolioArtifactRef: run.portfolioArtifactRef, portfolioAnnotationsArtifactRef: run.portfolioAnnotationsArtifactRef,
+      selectionArtifactRef: run.selectionArtifactRef, detailArtifactRef: run.detailArtifactRef,
+      reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef,
+      previousSynthesisArtifactRef: run.synthesisArtifactRef, previousSynthesisGateArtifactRef: run.synthesisGateArtifactRef });
+    return this.enqueueWorkflowAdvance(run, receipt);
+  }
+
+  async startCreatorAnalysisWorkflow(id: string): Promise<WorkflowQueueReceipt> {
+    const run = this.workflowOwner(id);
+    this.assertWorkflowStartAllowed(run);
+    if (!run.portfolioArtifactRef || !run.portfolioAnnotationsArtifactRef || !run.selectionArtifactRef
+      || !run.detailArtifactRef || !run.mediaManifestArtifactRef || !run.reconstructionBatchArtifactRef) {
+      throw new Error("博主任务尚未冻结完整 Workflow 输入");
+    }
+    const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+    const selectedIds = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
+    const posts = batch.items.filter((item) => selectedIds.has(item.postExternalId)).map((item) => {
+      if (!item.sourceMediaArtifactRef) throw new Error(`单帖 ${item.postExternalId} 缺少可冻结的媒体来源`);
+      const manifest = deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef!));
+      const evidenceKind = resolveWorkflowEvidenceKind(item.evidenceKind, item.sourceMediaArtifactRef, manifest, item.postExternalId);
+      return { creatorRunId: run.id, postExternalId: item.postExternalId,
+        evidenceKind,
+        sourceUrl: `https://www.xiaohongshu.com/explore/${encodeURIComponent(item.postExternalId)}`,
+        sourceMediaArtifactRef: item.sourceMediaArtifactRef, detailArtifactRef: run.detailArtifactRef!,
+        mediaManifestArtifactRef: run.mediaManifestArtifactRef!, selectionArtifactRef: run.selectionArtifactRef!,
+        reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef! };
+    });
+    if (posts.length !== selectedIds.size) throw new Error("冻结重建批次未覆盖全部深读选样");
+    const receipt = await this.requireWorkflowExecutor().createAnalysis({ creatorRunId: run.id,
+      portfolioArtifactRef: run.portfolioArtifactRef, portfolioAnnotationsArtifactRef: run.portfolioAnnotationsArtifactRef,
+      selectionArtifactRef: run.selectionArtifactRef, detailArtifactRef: run.detailArtifactRef,
+      reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef,
+      previousSynthesisArtifactRef: run.synthesisArtifactRef, previousSynthesisGateArtifactRef: run.synthesisGateArtifactRef, posts });
+    return this.enqueueWorkflowAdvance(run, receipt);
+  }
+
+  async retryWorkflowStep(id: string, workflowRunId: string, stepKey: string): Promise<WorkflowQueueReceipt> {
+    const run = this.workflowOwner(id);
+    this.assertWorkflowStartAllowed(run);
+    const receipt = await this.requireWorkflowExecutor().prepareRetry({ creatorRunId: run.id, workflowRunId, stepKey });
+    return this.enqueueWorkflowAdvance(run, receipt);
+  }
+
+  recordSourceIdentityConflict(id: string, conflict: SourceIdentityConflict): CreatorResearchRun {
+    const run = this.workflowOwner(id);
+    const timestamp = now();
+    const blockerMessage = `帖子 ${conflict.postExternalId} 的来源身份冲突：${conflict.message}`;
+    const existing = run.blockers.some((blocker) => blocker.code === sourceIdentityConflictCode && blocker.message === blockerMessage);
+    if (!existing) run.blockers = [...run.blockers, {
+      code: sourceIdentityConflictCode,
+      message: blockerMessage,
+      userActionRequired: true
+    }];
+    run.status = "needs_user";
+    run.currentStage = "deep_capture";
+    run.worker = { ...run.worker, state: "needs_user", workerId: null };
+    stage(run, "deep_capture").status = "blocked";
+    stage(run, "deep_capture").message = sourceIdentityConflictNextAction;
+    run.nextAction = sourceIdentityConflictNextAction;
+    run.updatedAt = timestamp;
+    this.repository.save(run);
+    this.repository.appendEvent({
+      runId: run.id,
+      jobId: null,
+      type: "handoff.required",
+      createdAt: timestamp,
+      message: `已记录帖子 ${conflict.postExternalId} 的来源身份冲突；保留现有 Artifact，暂停新的下游 Workflow。`,
+      payload: {
+        blockerCode: sourceIdentityConflictCode,
+        postExternalId: conflict.postExternalId,
+        evidenceRef: conflict.evidenceRef,
+        message: conflict.message
+      }
+    });
+    return run;
+  }
+
+  async cancelWorkflow(id: string, workflowRunId: string): Promise<WorkflowQueueReceipt> {
+    const run = this.workflowOwner(id);
+    const executor = this.requireWorkflowExecutor();
+    const snapshot = await executor.snapshot(run.id, workflowRunId);
+    if (!snapshot) throw new Error("Workflow 运行不存在");
+    this.repository.cancelWorkflowJobs?.(run.id, workflowRunId, now());
+    await executor.cancel(workflowRunId);
+    return await executor.snapshot(run.id, workflowRunId) ?? { ...snapshot, state: "cancel_requested" };
+  }
+
+  async getWorkflowQueue(id: string, workflowRunId: string): Promise<WorkflowQueueReceipt | null> {
+    const run = this.workflowOwner(id);
+    return this.requireWorkflowExecutor().snapshot(run.id, workflowRunId);
+  }
+
+  private workflowOwner(id: string): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    return run;
+  }
+
+  private assertWorkflowStartAllowed(run: CreatorResearchRun): void {
+    if (run.blockers.some((blocker) => blocker.code === sourceIdentityConflictCode)) {
+      throw new Error("该博主任务存在来源身份冲突；需独立核对媒体与原帖身份后才能启动或重试 Workflow。");
+    }
+  }
+
+  private requireWorkflowExecutor(): ResearchWorkflowExecutor {
+    if (!this.workflowExecutor) throw new Error("Workflow 执行器尚未配置");
+    return this.workflowExecutor;
+  }
+
+  private enqueueWorkflowAdvance(run: CreatorResearchRun, receipt: WorkflowQueueReceipt): WorkflowQueueReceipt {
+    this.workflowScheduler.enqueue({ creatorRunId: run.id, workflowRunId: receipt.workflowRunId,
+      workflowId: receipt.workflowId, workflowRevision: receipt.workflowRevision, generation: receipt.generation,
+      idempotencyKey: `${run.id}:workflow.advance:${receipt.workflowRunId}:${receipt.generation}` });
+    return { ...receipt, state: "queued" };
+  }
+
   private recoverLocalWorkerProjection(): void {
+    const recoveredAt = now();
     for (const run of this.repository.list(100)) {
       if (run.videoWork.activePostExternalIds.length === 0) continue;
       const recoveredActivePostExternalIds = [...run.videoWork.activePostExternalIds];
+      const liveActivePostExternalIds = this.repository.activeVideoPostExternalIds(run.id, recoveredAt);
       let batch: ReturnType<typeof videoReconstructionBatchSchema.parse> | null = null;
       if (run.reconstructionBatchArtifactRef) {
         try {
@@ -128,9 +308,8 @@ export class CreatorResearchService {
           // Keep the durable projection counts when an old batch cannot be read during startup recovery.
         }
       }
-      const recoveredAt = now();
-      run.videoWork = recoveredVideoWorkProjection(run, batch, this.videoConcurrencyLimit);
-      if (run.worker.state === "running") {
+      run.videoWork = recoveredVideoWorkProjection(run, batch, this.videoConcurrencyLimit, liveActivePostExternalIds);
+      if (run.worker.state === "running" && liveActivePostExternalIds.length === 0) {
         run.worker = { state: "queued", attempt: run.worker.attempt, jobId: run.worker.jobId,
           workerId: null, lastHeartbeatAt: run.worker.lastHeartbeatAt };
       }
@@ -141,8 +320,10 @@ export class CreatorResearchService {
         jobId: run.worker.jobId,
         type: "run.resumed",
         createdAt: recoveredAt,
-        message: "本地 Worker 启动时已清理上次进程遗留的运行中投影；持久任务按租约继续恢复。",
-        payload: { recoveredActivePostExternalIds, pendingPosts: run.videoWork.queuedPosts }
+        message: liveActivePostExternalIds.length > 0
+          ? "本地 Worker 启动时保留了仍有有效租约的运行中投影；过期任务将按租约恢复。"
+          : "本地 Worker 启动时已清理上次进程遗留的运行中投影；持久任务按租约继续恢复。",
+        payload: { recoveredActivePostExternalIds, liveActivePostExternalIds, pendingPosts: run.videoWork.queuedPosts }
       });
     }
   }
@@ -343,6 +524,7 @@ export class CreatorResearchService {
   resume(id: string): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     const retryableSynthesis = run.status === "reviewable"
       && run.blockers.some((blocker) => blocker.code === "creator_synthesis_not_ready");
     if (!["needs_user", "backoff", "failed"].includes(run.status) && !retryableSynthesis) return run;
@@ -376,6 +558,7 @@ export class CreatorResearchService {
   rebuildSelection(id: string): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.inventoryArtifactRef) throw new Error("任务缺少可复算的版本化清单");
     const timestamp = now();
     const invalidated = [run.portfolioArtifactRef, run.portfolioAnnotationsArtifactRef, run.selectionArtifactRef, run.detailArtifactRef,
@@ -399,8 +582,7 @@ export class CreatorResearchService {
     run.detailArtifactRef = null;
     run.mediaManifestArtifactRef = null;
     run.reconstructionBatchArtifactRef = null;
-    run.synthesisArtifactRef = null;
-    run.synthesisGateArtifactRef = null;
+    clearSynthesisVersion(run);
     run.worker = { state: "queued", attempt: 0, jobId: job.id, workerId: null, lastHeartbeatAt: null };
     run.blockers = [];
     run.nextAction = "选样合同已升级；从登记清单重算四组各 3 条深度候选，旧 Artifact 保留但不再投影。";
@@ -419,6 +601,7 @@ export class CreatorResearchService {
   retryFailedReconstructions(id: string, builderContractRevision: string | null = null): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
     const previousBatchRef = run.reconstructionBatchArtifactRef;
     const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
@@ -519,6 +702,7 @@ export class CreatorResearchService {
   evaluateBuiltVideos(id: string, postExternalIds: string[]): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.reconstructionBatchArtifactRef) throw new Error("任务缺少视频重建批次");
     const requestedIds = [...new Set(postExternalIds.map((value) => value.trim()).filter(Boolean))];
     if (requestedIds.length === 0) throw new Error("至少选择一条 Builder 已完成的视频");
@@ -591,6 +775,7 @@ export class CreatorResearchService {
   continueWithBoundedMediaGaps(id: string): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.reconstructionBatchArtifactRef || !run.selectionArtifactRef) throw new Error("任务缺少视频批次或选择集");
     const previousBatchRef = run.reconstructionBatchArtifactRef;
     const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(previousBatchRef));
@@ -638,6 +823,7 @@ export class CreatorResearchService {
   revalidateSynthesis(id: string): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.portfolioArtifactRef || !run.selectionArtifactRef || !run.detailArtifactRef
       || !run.reconstructionBatchArtifactRef || !run.synthesisArtifactRef || !run.synthesisGateArtifactRef) {
       throw new Error("任务缺少可重验的博主综合 artifact");
@@ -690,9 +876,35 @@ export class CreatorResearchService {
     return run;
   }
 
+  resynthesize(id: string): CreatorResearchRun {
+    const run = this.repository.get(id);
+    if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
+    if (run.currentStage === "synthesis" && ["queued", "running"].includes(run.worker.state)) return run;
+    if (!run.selectionArtifactRef || !run.reconstructionBatchArtifactRef) {
+      throw new Error("任务缺少可重新综合的固定输入 artifact");
+    }
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
+    const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
+    const queuedAt = now();
+    const previousSynthesisArtifactRef = run.synthesisArtifactRef;
+    const previousSynthesisGateArtifactRef = run.synthesisGateArtifactRef;
+    if (!this.queueSynthesis(run, run.reconstructionBatchArtifactRef, batch, selection, queuedAt,
+      `source-revision-${queuedAt}`, { previousSynthesisArtifactRef, previousSynthesisGateArtifactRef })) {
+      throw new Error("当前深度证据尚不足以重新生成博主报告");
+    }
+    this.repository.save(run);
+    this.repository.appendEvent({ runId: run.id, jobId: run.worker.jobId, type: "run.resumed", createdAt: queuedAt,
+      message: "已保留旧综合并排队生成绑定当前报告源 revision 的新综合。",
+      payload: { previousSynthesisArtifactRef, previousSynthesisGateArtifactRef,
+        reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef } });
+    return run;
+  }
+
   annotatePortfolio(id: string, resynthesize = true): CreatorResearchRun {
     const run = this.repository.get(id);
     if (!run) throw new Error("博主分析任务不存在");
+    this.assertWorkflowStartAllowed(run);
     if (!run.portfolioArtifactRef || !run.selectionArtifactRef) throw new Error("任务缺少冻结的作品基本盘");
     const analysis = creatorPortfolioAnalysisSchema.parse(this.artifacts.read(run.portfolioArtifactRef));
     const generatedAt = now();
@@ -710,8 +922,7 @@ export class CreatorResearchService {
     if (resynthesize && run.reconstructionBatchArtifactRef) {
       const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
       const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
-      run.synthesisArtifactRef = null;
-      run.synthesisGateArtifactRef = null;
+      clearSynthesisVersion(run);
       if (!this.queueSynthesis(run, run.reconstructionBatchArtifactRef, batch, selection, generatedAt)) {
         throw new Error("当前深度证据尚不足以重新生成博主报告");
       }
@@ -720,8 +931,9 @@ export class CreatorResearchService {
     return run;
   }
 
-  async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane | "serial" = "any"): Promise<boolean> {
-    return this.jobProcessor.processNext(workerId, executor, lane === "serial" ? "any" : lane);
+  async processNext(workerId: string, executor: CreatorBrowserExecutor, lane: ResearchJobLane | "serial" = "any",
+    runId?: string): Promise<boolean> {
+    return this.jobProcessor.processNext(workerId, executor, lane === "serial" ? "any" : lane, runId);
   }
 
   private queueSynthesis(
@@ -729,14 +941,16 @@ export class CreatorResearchService {
     batchRef: string,
     batch: ReturnType<typeof videoReconstructionBatchSchema.parse>,
     selection: ReturnType<typeof creatorSelectionSchema.parse>,
-    queuedAt: string
+    queuedAt: string,
+    idempotencyRevision?: string,
+    previous?: { previousSynthesisArtifactRef: string | null; previousSynthesisGateArtifactRef: string | null }
   ): boolean {
     const coverage = creatorSynthesisCoverage(selection, batch);
     if (!coverage.provisionalAllowed && !coverage.formalAllowed) return false;
     const mode = coverage.formalAllowed ? "formal" : "provisional";
     const synthesisJob = this.repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.synthesize", status: "queued",
-      idempotencyKey: `${run.id}:creator.synthesize:${mode}:${batchRef}:${run.portfolioAnnotationsArtifactRef ?? "no-annotations"}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
-      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef, mode },
+      idempotencyKey: `${run.id}:creator.synthesize:${mode}:${batchRef}:${run.portfolioAnnotationsArtifactRef ?? "no-annotations"}${idempotencyRevision ? `:${idempotencyRevision}` : ""}`, attempts: 0, maxAttempts: 2, availableAt: queuedAt,
+      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: { reconstructionBatchArtifactRef: batchRef, mode, ...previous },
       lastError: null, createdAt: queuedAt, updatedAt: queuedAt });
     run.status = "collecting";
     run.currentStage = "synthesis";
@@ -764,4 +978,17 @@ export class CreatorResearchService {
   }
 
   close(): void { this.repository.close(); }
+}
+
+function resolveWorkflowEvidenceKind(
+  frozenKind: "video" | "image_post" | undefined,
+  sourceMediaArtifactRef: string,
+  manifest: ReturnType<typeof deepMediaManifestSchema.parse>,
+  postExternalId: string,
+): "video" | "image_post" {
+  if (frozenKind) return frozenKind;
+  const item = manifest.items.find((candidate) => candidate.externalId === postExternalId);
+  if (item?.videoArtifactRef === sourceMediaArtifactRef) return "video";
+  if (item?.imageArtifactRefs?.includes(sourceMediaArtifactRef)) return "image_post";
+  throw new Error(`单帖 ${postExternalId} 的媒体类型无法从冻结清单确认`);
 }

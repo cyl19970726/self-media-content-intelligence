@@ -51,6 +51,16 @@ describe("cross-post research validation", () => {
     expect(() => assertValidCrossPostResearch(value)).not.toThrow();
   });
 
+  it("rejects a no-counterexample sentence alongside an actual counterexample", () => {
+    const value = fixture();
+    const finding = value.synthesis.crossPostResearch.sections[0]!.findings[0]!;
+    Object.assign(finding, { counterexamples: [finding.support[0]!] });
+    finding.boundary = "当前未发现反例；反例只反对所有素材都能证明连续操作。";
+    expect(() => assertValidCrossPostResearch(value)).toThrow(/cross_post_research_counterexample_boundary_conflict/);
+    finding.boundary = "反例只反对所有素材都能证明连续操作，不反对常用口播结构。";
+    expect(() => assertValidCrossPostResearch(value)).not.toThrow();
+  });
+
   it("rejects evidence borrowed from another deep post", () => {
     const value = fixture();
     value.synthesis.crossPostResearch.sections[0]!.findings[0]!.support[0]!.evidenceRefs = [

@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
+import { WorkflowPostReader } from "../features/creator-research/WorkflowPostReader";
+import { WorkflowCreatorReader } from "../features/creator-research/WorkflowCreatorReader";
 
 const BenchmarkPage = lazy(() => import("../features/comparison/BenchmarkPage"));
 const CreatorDossierPage = lazy(() => import("../features/creator-research/CreatorDossierPage"));
@@ -11,6 +13,7 @@ const KnowledgeWorkspace = lazy(() => import("../features/knowledge/KnowledgePag
 const LearningLoopsPage = lazy(() => import("../features/learning-loop/LearningLoopsPage"));
 const WorkspaceOverviewPage = lazy(() => import("../features/workspace-overview/WorkspaceOverviewPage"));
 const LatestPostIndex = lazy(() => import("../features/single-post/LatestPostIndex"));
+const WorkflowRunsPage = lazy(() => import("../features/workflow-runs/WorkflowRunsPage"));
 const LegacyRunRetired = lazy(() => import("../features/single-post/LatestPostIndex")
   .then((module) => ({ default: module.LegacyRunRetired })));
 
@@ -27,6 +30,8 @@ export function AppRoutes() {
     <Route path="/creators/:id" element={<CreatorDossierPage/>}/>
     <Route path="/creators/:id/videos/:videoId" element={<VideoEvidencePage/>}/>
     <Route path="/creator-runs/:id" element={<LegacyCreatorRunRedirect/>}/>
+    <Route path="/workflow-runs" element={<WorkflowRunsPage PostReader={WorkflowPostReader} CreatorReader={WorkflowCreatorReader}/>}/>
+    <Route path="/workflow-runs/:id" element={<WorkflowRunsPage PostReader={WorkflowPostReader} CreatorReader={WorkflowCreatorReader}/>}/>
     <Route path="/comparisons" element={<BenchmarkPage/>}/>
     <Route path="/comparisons/:comparisonId" element={<BenchmarkPage/>}/>
     <Route path="/learning-loop" element={<LearningLoopsPage/>}/>

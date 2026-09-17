@@ -57,3 +57,9 @@
 
 .dossier-progress-details { margin: 20px 0; border-block: 1px solid var(--line); }
 .dossier-progress-details > summary { padding: 12px 0; color: var(--teal); font-size: 13px; cursor: pointer; }
+.workflow-creator-progress { margin: 16px 0; padding: 12px 14px; border: 1px solid var(--line); background: #eee9de; }
+.workflow-creator-progress header { display: flex; justify-content: space-between; gap: 12px; }.workflow-creator-progress p { margin: 6px 0 0; color: #59615c; font-size: 12px; }
+
+.creator-source-conflict { margin: 24px 0; padding: 4px 0 4px 16px; border-left: 3px solid #ae7130; }
+.creator-source-conflict strong { display: block; margin-bottom: 8px; }
+.creator-source-conflict p { margin: 6px 0; max-width: 80ch; line-height: 1.65; overflow-wrap: anywhere; }

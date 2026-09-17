@@ -26,6 +26,8 @@ export function runFileInput(
     timeout?: number;
     env?: NodeJS.ProcessEnv;
     maxBuffer?: number;
+    /** Stream output to onOutput without retaining a second in-memory copy. */
+    captureOutput?: boolean;
     onOutput?: (stream: "stdout" | "stderr", chunk: string) => void;
   } = {}
 ): Promise<{ stdout: string; stderr: string }> {
@@ -41,11 +43,11 @@ export function runFileInput(
       return next;
     };
     child.stdout.on("data", (chunk: Buffer) => { try {
-      stdout = append(stdout, chunk);
+      if (options.captureOutput !== false) stdout = append(stdout, chunk);
       options.onOutput?.("stdout", chunk.toString("utf8"));
     } catch (error) { child.kill("SIGTERM"); reject(error); } });
     child.stderr.on("data", (chunk: Buffer) => { try {
-      stderr = append(stderr, chunk);
+      if (options.captureOutput !== false) stderr = append(stderr, chunk);
       options.onOutput?.("stderr", chunk.toString("utf8"));
     } catch (error) { child.kill("SIGTERM"); reject(error); } });
     child.on("error", (error) => { clearTimeout(timeout); reject(error); });

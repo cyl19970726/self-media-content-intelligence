@@ -54,6 +54,11 @@ export function assertValidCrossPostResearch(input: {
       if (!finding.counterexamples.length && !noCounterexampleBoundary.test(finding.boundary)) {
         throw new Error(`cross_post_research_counterexample_boundary_missing:${finding.id}`);
       }
+      // Reject an explicit no-counterexample sentence when a counterexample is actually supplied.
+      // This narrow check does not decide whether the example semantically refutes the claim.
+      if (finding.counterexamples.length && /(?:^|[。；;])\s*(?:当前|目前)?(?:证据)?未发现反例[。；;]/.test(finding.boundary)) {
+        throw new Error(`cross_post_research_counterexample_boundary_conflict:${finding.id}`);
+      }
       for (const citation of [...finding.support, ...finding.counterexamples]) {
         if (!selectedIds.has(citation.postExternalId)) {
           throw new Error(`cross_post_research_unselected_post:${citation.postExternalId}`);

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { researchReviewStateSchema } from "../../../contracts/index.js";
 
 export const videoBatchItemSchema = z.object({
   postExternalId: z.string(),
@@ -17,6 +18,7 @@ export const videoBatchItemSchema = z.object({
   threeLensEvaluationArtifactRef: z.string().nullable(),
   threeLensGateReportArtifactRef: z.string().nullable(),
   failedGateIds: z.array(z.string()),
+  researchReview: researchReviewStateSchema.nullable().optional(),
   message: z.string(),
   updatedAt: z.string()
 });

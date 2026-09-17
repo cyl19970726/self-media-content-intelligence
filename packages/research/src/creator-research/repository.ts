@@ -11,8 +11,11 @@ export interface CreatorResearchRepository {
   findLatestByProfileUrl(profileUrl: string): CreatorResearchRun | null;
   findLatestByProfileUrlAndAdapter(profileUrl: string, adapter: CreatorAcquisitionAdapter): CreatorResearchRun | null;
   enqueue(job: ResearchJob): ResearchJob;
+  cancelWorkflowJobs?(runId: string, workflowRunId: string, updatedAt: string): number;
   requeueRun(runId: string, availableAt: string): ResearchJob | null;
-  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane?: ResearchJobLane): ResearchJob | null;
+  claimNext(workerId: string, now: string, leaseExpiresAt: string, lane?: ResearchJobLane,
+    runId?: string): ResearchJob | null;
+  activeVideoPostExternalIds(runId: string, at: string): string[];
   updateJobStatus(input: {
     jobId: string;
     status: ResearchJobStatus;

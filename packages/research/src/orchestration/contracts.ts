@@ -34,7 +34,7 @@ export const researchJobStatusSchema = z.enum([
 export const researchJobSchema = z.object({
   id: z.string().uuid(),
   runId: z.string().uuid(),
-  nodeKey: z.enum(["creator.acquire", "creator.portfolio", "creator.enrich", "video.reconstruct", "creator.synthesize"]),
+  nodeKey: z.enum(["creator.acquire", "creator.portfolio", "creator.enrich", "video.reconstruct", "creator.synthesize", "workflow.advance"]),
   status: researchJobStatusSchema,
   idempotencyKey: z.string(),
   attempts: z.number().int().nonnegative(),

@@ -29,8 +29,10 @@ describe("Content Knowledge V1 isolated fixture", () => {
     expect(manifest.practiceObservationId).toBeTruthy();
     expect(fs.existsSync(path.join(directory, "content-knowledge-v1-manifest.json"))).toBe(true);
     const after = inventory(realRuntime);
-    expect(before.filter((entry) => !after.includes(entry)), "files removed from the real runtime during the isolated fixture").toEqual([]);
-    expect(after.filter((entry) => !before.includes(entry)).every((entry) =>
+    const beforeSet = new Set(before);
+    const afterSet = new Set(after);
+    expect(before.filter((entry) => !afterSet.has(entry)), "files removed from the real runtime during the isolated fixture").toEqual([]);
+    expect(after.filter((entry) => !beforeSet.has(entry)).every((entry) =>
       !/content-knowledge-v1|fixture-creator|fixture-local-only/u.test(entry))).toBe(true);
   }, 30_000);
 });

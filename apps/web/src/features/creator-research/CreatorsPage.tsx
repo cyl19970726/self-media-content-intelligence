@@ -9,6 +9,7 @@ import { CreatorDirectoryRow } from "./components/CreatorDirectoryRow";
 import { CreatorDiscoveryRadar } from "./components/CreatorDiscoveryRadar";
 import { splitCreatorResearch } from "./model/creator-directory";
 import { findExistingCreatorRun } from "./model/creator-task-state";
+import { getCreatorWorkflowProgressBatch, type CreatorWorkflowProgress } from "./model/workflow-progress";
 import "./creator-research.css";
 import "./creator-directory.css";
 
@@ -18,6 +19,7 @@ export default function CreatorsOverview() {
   const [creators, setCreators] = useState<CreatorSummary[] | null>(null);
   const [runs, setRuns] = useState<CreatorResearchRun[] | null>(null);
   const [operations, setOperations] = useState<CreatorRunOperation[] | null>(null);
+  const [workflowProgress, setWorkflowProgress] = useState(new Map<string, CreatorWorkflowProgress>());
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -32,7 +34,8 @@ export default function CreatorsOverview() {
     setLoading(true);
     try {
       const [creatorData, runData, operationData] = await Promise.all([listCreators(), listCreatorResearchRuns(), listCreatorRunOperations()]);
-      setCreators(creatorData); setRuns(runData); setOperations(operationData); setLoadError(null);
+      const progress = await getCreatorWorkflowProgressBatch(runData.map((run) => run.id)).catch(() => new Map<string, CreatorWorkflowProgress>());
+      setCreators(creatorData); setRuns(runData); setOperations(operationData); setWorkflowProgress(progress); setLoadError(null);
     } catch (cause) { setLoadError(cause instanceof Error ? cause.message : "无法读取博主研究台"); }
     finally { setLoading(false); }
   }, []);
@@ -103,7 +106,7 @@ export default function CreatorsOverview() {
     {runs === null ? <div className="creator-directory-empty"><p>正在读取研究任务…</p></div>
       : visibleRuns.length > 0 ? <div className="creator-directory-list">{visibleRuns.map((run) => <CreatorDirectoryRow key={run.id} run={run}
         creator={creatorFor(run)} operation={operations?.find((item) => item.runId === run.id)} busy={operatingId === run.id}
-        completed={view === "completed"} onOperate={operate}/>)}</div>
+        workflowProgress={workflowProgress.get(run.id)} completed={view === "completed"} onOperate={operate}/>)}</div>
         : <div className="creator-directory-empty"><Database size={20}/><h2>{view === "completed" ? "还没有完成的研究" : "当前没有进行中的研究"}</h2>
           <p>{view === "completed" ? "只有综合阶段真正完成并产出研究成果后，才会出现在这里。" : "从上方添加博主，研究任务会在这里显示实际进度。"}</p></div>}
 

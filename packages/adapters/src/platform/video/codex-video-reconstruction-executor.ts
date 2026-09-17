@@ -5,6 +5,7 @@ import path from "node:path";
 import { artifactPath, artifactRef } from "../../core/artifacts.js";
 import { projectRoot, runArtifactDir, runtimeDir } from "../../core/config.js";
 import { runFile, runFileInput } from "../../core/process.js";
+import { attachVerifiedSkillSnapshots, codexInstalledVersions, defaultCodexSdkFactory, invokeCodexSdk } from "../../workflow/codex-sdk-runner.js";
 import {
   videoReconstructionOutcomeSchema,
   videoReconstructionRequestSchema,
@@ -31,12 +32,22 @@ import {
   assembleHostOwnedReconstruction,
   type HostAssemblyReport
 } from "./video-reconstruction-host-assembler.js";
+import {
+  safeOutputRelativeRoot,
+  preservedHostAssembly,
+  sdkModel,
+  sdkReasoningEffort,
+  type VideoCodexExecutionOptions
+} from "./video-codex-execution.js";
+import { validateEvaluationArtifacts, type GateReport } from "./video-evaluation-contract.js";
+
+export { safeOutputRelativeRoot, type VideoCodexExecutionOptions } from "./video-codex-execution.js";
+export { validateEvaluationArtifacts } from "./video-evaluation-contract.js";
 
 const skillDir = process.env.SELF_MEDIA_VIDEO_RECONSTRUCTION_SKILL_DIR ??
   path.join(projectRoot, ".agents", "skills", "video-content-reconstruction");
 const evaluatorPromptVersion = "single-pass-v3-isolated-source-overview";
 const builderIntegrityContractVersion = "builder-integrity-v7-host-cue-candidates";
-type GateReport = { ready?: boolean; gates?: Array<{ id?: string; pass?: boolean }>; failedGateIds?: string[] };
 
 function exists(file: string): boolean { return fs.existsSync(file) && fs.statSync(file).isFile(); }
 
@@ -126,6 +137,10 @@ function commandUnavailable(message: string): boolean {
   return /CODEX_RUNNER_UNAVAILABLE|ENOENT|not found|command not found|authentication|login required|unauthorized/i.test(message);
 }
 
+function definedEnvironment(environment: NodeJS.ProcessEnv): Record<string, string> {
+  return Object.fromEntries(Object.entries(environment).filter((entry): entry is [string, string] => typeof entry[1] === "string"));
+}
+
 export function reconstructionFailureGateId(message: string): string {
   const builderIntegrity = message.match(/BUILDER_INTEGRITY_([A-Z0-9_]+)/)?.[1];
   if (builderIntegrity) return `builder_integrity_${builderIntegrity.toLowerCase()}`;
@@ -198,8 +213,8 @@ export function codexInvocationArgs(
 ): string[] {
   const isBuilder = role === "candidate";
   const model = isBuilder
-    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-6-astra"
-    : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-6-astra";
+    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
+    : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
   const reasoningEffort = isBuilder
     ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
     : environment.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium";
@@ -219,24 +234,55 @@ export type CodexRunReceipt = {
   inputRevision: string;
 };
 
+/** Relocates only path projections in a copied manifest; every frozen content digest must already match. */
+export function preservePreparedCandidateInputs(outputDir: string, videoPath: string): void {
+  const required = ["post-source-input.json", "media-preparation.json", "evidence/evidence-pack.json", "probe.json",
+    "capture-protocol.json", "targeted-evidence/targeted-evidence.json", "reconstruction.json"];
+  const missing = required.filter((relative) => !exists(path.join(outputDir, relative)));
+  if (missing.length) throw new Error(`PRESERVED_CANDIDATE_INCOMPLETE:${missing.join(",")}`);
+  const manifestPath = path.join(outputDir, "media-preparation.json");
+  const manifest = readJsonIfPresent(manifestPath) as { sourceMedia?: { fingerprint?: string }; evidencePack?: { path?: string; fingerprint?: string }; transcript?: { path?: string | null; fingerprint?: string | null } } | null;
+  const evidencePath = path.join(outputDir, "evidence/evidence-pack.json");
+  if (!manifest || manifest.sourceMedia?.fingerprint !== sha256(videoPath)
+    || manifest.evidencePack?.fingerprint !== sha256(evidencePath)) throw new Error("PRESERVED_CANDIDATE_PREPARATION_MISMATCH");
+  if (manifest.transcript?.path && manifest.transcript.fingerprint !== sha256(manifest.transcript.path)) {
+    throw new Error("PRESERVED_CANDIDATE_TRANSCRIPT_MISMATCH");
+  }
+  if (manifest.evidencePack.path !== evidencePath) {
+    manifest.evidencePack.path = evidencePath;
+    fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  }
+}
+
 export async function runCodex(
   prompt: string,
   cwd: string,
   label: string,
   inputRevision: string,
-  observer?: VideoReconstructionLifecycleObserver
+  observer?: VideoReconstructionLifecycleObserver,
+  options: VideoCodexExecutionOptions = {}
 ): Promise<CodexRunReceipt> {
   const binary = process.env.SELF_MEDIA_CODEX_BIN ?? "codex";
   const lastMessage = path.join(cwd, `${label}-last-message.txt`);
   const role = childRole(label);
   const policy = childPolicy(role);
+  const requiredSkillFiles = !(role === "candidate" || role === "generic_repair" || role === "runtime_repair")
+    ? [path.join(skillDir, "references", "evaluator-operator.md"), path.join(skillDir, "schemas", "evaluation.schema.json"),
+      path.join(projectRoot, "packages", "research", "src", "video-analysis", "runtime-three-lens-contracts.ts")]
+    : role === "candidate"
+      ? [path.join(skillDir, "references", "builder-operator.md"), path.join(skillDir, "references", "single-post-depth.md"), path.join(skillDir, "schemas", "capture-protocol.schema.json"),
+        path.join(skillDir, "schemas", "reconstruction.schema.json")]
+      : [path.join(skillDir, "SKILL.md"), path.join(skillDir, "references", "builder-operator.md"),
+        path.join(skillDir, "references", "single-post-depth.md"), path.join(skillDir, "schemas", "reconstruction.schema.json")];
+  const skill = attachVerifiedSkillSnapshots(prompt, requiredSkillFiles);
+  prompt = skill.prompt;
   const childRunId = crypto.randomUUID();
   const traceDir = path.join(runtimeDir(), "worker-traces", childRunId);
   fs.mkdirSync(traceDir, { recursive: true, mode: 0o700 });
   fs.writeFileSync(path.join(traceDir, "prompt.txt"), prompt, { mode: 0o600 });
   fs.writeFileSync(path.join(cwd, `${label}-trace.json`), JSON.stringify({ childRunId, traceDir,
     sessionMode: process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
-    startedAt: new Date().toISOString() }, null, 2));
+    executionMode: options.executionMode ?? "cli", ...codexInstalledVersions(), startedAt: new Date().toISOString() }, null, 2));
   const startedAt = new Date().toISOString();
   let lastProgressAt = startedAt;
   let lastProgressEmittedAt = 0;
@@ -254,8 +300,35 @@ export async function runCodex(
     });
   }, Math.min(60_000, policy.staleAfterMs));
   const environment = await withSystemProxy({ ...process.env, SELF_MEDIA_CHILD_ROLE: label, SELF_MEDIA_CHILD_OUTPUT: cwd });
+  const actualModel = options.executionMode === "sdk" ? sdkModel(role, options)
+    : role === "candidate" ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
+      : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
+  const actualReasoningEffort = options.executionMode === "sdk" ? sdkReasoningEffort(role, options)
+    : role === "candidate" ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
+      : environment.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium";
+  fs.writeFileSync(path.join(traceDir, "runtime.json"), JSON.stringify({ childRunId, role, label, startedAt, inputRevision,
+    executionMode: options.executionMode ?? "cli", model: actualModel, reasoningEffort: actualReasoningEffort, skillLoad: skill.receipt,
+    sessionMode: options.executionMode === "sdk" ? "sdk_fresh_thread"
+      : environment.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral", ...codexInstalledVersions() }, null, 2), { mode: 0o600 });
   try {
-    await runFileInput(binary, codexInvocationArgs(role, cwd, lastMessage, environment), prompt, {
+    if (options.executionMode === "sdk") {
+      const model = sdkModel(role, options);
+      const reasoningEffort = sdkReasoningEffort(role, options);
+      fs.writeFileSync(path.join(cwd, `${label}-trace.json`), JSON.stringify({ childRunId, traceDir,
+        sessionMode: "sdk_fresh_thread", executionMode: "sdk", model, reasoningEffort,
+        ...codexInstalledVersions(), startedAt }, null, 2), { mode: 0o600 });
+      const result = await invokeCodexSdk(options.sdkFactory ?? defaultCodexSdkFactory, {
+        prompt, outputDir: cwd, role, model, reasoningEffort, lastMessage, signal: options.signal ?? new AbortController().signal,
+        timeoutMs: policy.timeoutMs, codexOptions: { codexPathOverride: process.env.SELF_MEDIA_CODEX_BIN, env: definedEnvironment(environment) },
+        observer: (event) => {
+          fs.appendFileSync(path.join(traceDir, "events.jsonl"), `${JSON.stringify(event)}\n`, { mode: 0o600 });
+          const at = Date.now();
+          lastProgressAt = new Date(at).toISOString();
+          staleEmitted = false;
+        }
+      });
+      fs.writeFileSync(path.join(traceDir, "result.json"), JSON.stringify({ threadId: result.threadId, usage: result.usage }, null, 2), { mode: 0o600 });
+    } else await runFileInput(binary, codexInvocationArgs(role, cwd, lastMessage, environment), prompt, {
       cwd,
       timeout: policy.timeoutMs,
       env: environment,
@@ -282,6 +355,7 @@ export async function runCodex(
   catch (error) {
     const message = error instanceof Error ? error.message : "";
     lastProgressAt = new Date().toISOString();
+    fs.writeFileSync(path.join(traceDir, "failure.json"), JSON.stringify({ message: error instanceof Error ? error.message : "unknown runner failure" }, null, 2), { mode: 0o600 });
     observeSafely(observer, {
       ...baseEvent, status: "failed", lastProgressAt,
       outputArtifactRevisions: outputArtifactRevisions(cwd, lastMessage),
@@ -329,6 +403,7 @@ Three-lens Builder contract:
 - Round one leaves explicit unanswered questions for content restoration, directing logic, and visual editing.
 - Round two merges capture requests for the same time range/carrier. Every capture-protocol-2.0 action declares consumers and presentationIntent. Never perform three independent full-video sweeps.
 - reconstruction.builderLenses.contentRestoration is a multimodal reading path. Put key frames, detail crops, before/after states, and operation sequences beside the knowledge they establish; a separate frame gallery is not a substitute.
+- Perform a reader-retelling check: when the report says the author lists N capabilities, steps, configurations, or a choice framework, restore the actual supported items, meanings, conditions, and key examples in contentRestoration. Merely saying that a list or framework was presented is not knowledge restoration. Check core knowledge units and cues for specifics stranded only in the audit layer. Mark individual unreadable items unknown; do not fill them from general knowledge. The directing lens's claimed viewer-after understanding must have corresponding content in the restoration. Make visual focus and limits specific to each frame instead of repeating generic caveats.
 - reconstruction.builderLenses.directingLogic must explain distinct hook/problem/promise/progression/proof/payoff/ending functions and viewer cognitive changes. Do not repeat one generic description across stages.
 - reconstruction.builderLenses.visualEditing must explain carrier roles, technical/semantic changes, subtitle/UI/voice division, pacing, result timing, continuity gaps, transitions, and only model-readable audio semantics.
 - All lens evidenceRefs and frame refs must resolve to this revision's frozen cues/shots/frames/TARGET/OCR/registered sources.
@@ -342,7 +417,7 @@ Isolation and evidence rules:
 - For one unchanged targeted-evidence manifest, execute OCR at most once. A complete OCR artifact is terminal for that revision, including when its frames record failures; never rerun successful OCR.
 - targeted_frame references use TARGET-* frame IDs; ocr references use the recognized line's OCR-* ID, never a TARGET frame ID. Every frame/OCR evidence time must fall inside its knowledge unit's time range (±0.5s).
 - Targeted capture produces targeted-evidence/contact-sheet.jpg. Inspect that overview first, then open at most 4 originals per unresolved question and normally no more than 12 originals total; never load dozens of full-resolution frames at once.
-- When every OCR frame failed there is no valid OCR line ID: cite targeted_frame evidence and preserve text as unknown; never invent an OCR-* placeholder.
+- When every OCR frame failed there is no valid OCR line ID: never invent an OCR-* placeholder. OCR failure does not mean visible text is unreadable. Personally inspect the relevant targeted frames; restore text you can actually read as a visual observation citing that frame, and mark only unreadable text unknown. Preserve the frozen ASR transcript unchanged, but use clearly readable frame text to identify names in Builder lenses, explicitly noting any ASR discrepancy and without claiming external verification.
 - Never use afplay, a GUI player, or system speakers as proof that the model heard audio. Inspect only model-readable audio evidence and non-speech transcript labels; when only technical audio presence is available, preserve music/sound semantics as unknown.
 - For every carrier, write inspectionStatus and inspectionRationale while retaining compatible available/inspected booleans. Technical audio presence without model-readable semantics is available:true, inspected:true, inspectionStatus:"checked_unreadable"; it must remain an explicit unknown and must not support semantic audio claims.
 - informationCarriers[].discoveredIn contains only carrierSweep IDs. Put media/evidence file provenance in inspectionRationale or evidenceHints. An absent carrier is available:false and may be inspected:true when frozen host evidence was checked to establish absence.
@@ -356,20 +431,21 @@ Write candidate outputs only under ${outputDir}: evidence/, probe.json, capture-
 
 export function evaluatorPrompt(
   videoPath: string,
-  outputDir: string,
+  candidateDirectory: string,
   candidateRevisionFingerprint: string,
-  candidateFingerprints: Record<string, string>
+  candidateFingerprints: Record<string, string>,
+  evaluationOutputDirectory = candidateDirectory
 ): string {
   return `
 You are the optional Evaluator in a fresh process, independent from the Builder. Read ${skillDir}/references/evaluator-operator.md and ${skillDir}/schemas/evaluation.schema.json completely. Those files plus the runtime lens contract below are the complete runtime instruction: do not read SKILL.md, references/evaluation.md, prior evaluation files, or repository-wide alternatives. Do not modify candidate files.
 Read ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")} completely as the authoritative CR/DL/VE rule contract; do not search the repository for alternate rule definitions.
 
 Source video: ${videoPath}
-Candidate root: ${outputDir}
+Candidate root: ${candidateDirectory}
 Frozen candidate revision: ${candidateRevisionFingerprint}
 Frozen candidate artifact fingerprints: ${JSON.stringify(candidateFingerprints)}
-Host-built source overview: ${path.join(outputDir, "evaluator-evidence", "source-overview.jpg")}
-Host-built source overview manifest: ${path.join(outputDir, "evaluator-evidence", "manifest.json")}
+Host-built source overview: ${path.join(candidateDirectory, "evaluator-evidence", "source-overview.jpg")}
+Host-built source overview manifest: ${path.join(candidateDirectory, "evaluator-evidence", "manifest.json")}
 
 Independently inspect the host-built source overview, its manifest, media-preparation.json, evidence/evidence-pack.json, targeted-evidence manifests and frames, OCR when present, probe.json, capture-protocol.json, reconstruction.json, and article.md only when it exists. You did not see the Builder's hidden context and must not read any prior report/audit/evaluation outside this directory. Do not create or read a global /tmp overview. The exact namespaced Host-built overview above is the only source-wide overview for this evaluation. Before reporting source/evidence mismatch, compare its manifest SHA-256 with media-preparation.json and inspect two named source frames under evaluator-evidence/frames; a visual impression from another image is not enough.
 
@@ -378,6 +454,7 @@ Evaluate GATE first: critical-question recall, core evidence coverage, unsupport
 Carrier and OCR rules:
 - Accept checked_unreadable as a closed carrier only when its rationale names the completed check and the candidate preserves the unavailable semantics as unknown without making claims from it. Do not convert checked_unreadable back to unchecked merely because semantic extraction was unavailable.
 - Inspecting evidence-pack audio metadata, establishing that no model-readable semantic audio evidence exists, and preserving music/sound meaning as unknown is a completed availability/readability check. Do not require fake listening, source separation, or semantic classification when the Host supplied no model-readable audio evidence.
+- Distinguish frozen ASR preservation from content restoration: readable names or text in a cited frame may be restored in Builder lenses even when ASR differs or OCR failed. Check the frame yourself; do not reward avoidable unknowns or require correcting the frozen transcript. Unreadable text remains unknown, and visible author wording is not external fact verification.
 - OCR frame statuses processed and failed both prove one recognition execution for that immutable frame revision. Failed OCR supplies no text evidence; independently inspect consequential visibly legible text and fail genuine omissions.
 
 Evidence-view budget:
@@ -386,10 +463,10 @@ Evidence-view budget:
 - The lower bound is complete critical-question plus scene/carrier coverage. Exceed 8 originals only when that coverage remains unresolved, and record the reason in evaluator notes; never reduce evidence merely to satisfy the budget.
 - Keep evidence reads bounded: do not enumerate the repository, dump the full transcript, dump all of reconstruction.json, or reread the full deterministic article. Use selected JSON fields and only read article.md when testing a suspected rendering divergence. Aim to finish in 5–8 evidence calls.
 
-Write ${outputDir}/evaluation.json against the canonical schema and ${outputDir}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
-- ${outputDir}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
-- ${outputDir}/runtime-three-lens/directing-logic.json with DL-01 through DL-06
-- ${outputDir}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
+Write ${evaluationOutputDirectory}/evaluation.json against the canonical schema and ${evaluationOutputDirectory}/evaluation.md. Also perform one concise three-lens review in this same process and write these three JSON arrays:
+- ${evaluationOutputDirectory}/runtime-three-lens/content-restoration.json with CR-01 through CR-06
+- ${evaluationOutputDirectory}/runtime-three-lens/directing-logic.json with DL-01 through DL-06
+- ${evaluationOutputDirectory}/runtime-three-lens/visual-editing.json with VE-01 through VE-07
 
 This single Evaluator process owns all three lenses; do not claim three independent processes. Each three-lens item must contain ruleId, status (pass|fail|not_checked), a specific finding, evidenceRefs, and evaluatorNotes, following the runtime contracts in ${path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")}. Keep the review short and evidence-bound. Do not write gate-report.json and do not repair the candidate. Record concrete discrepancies as quality warnings instead of triggering another evaluator or repair pass.
 Write evaluation.md and every human-readable JSON finding, note, and message in concise, natural Chinese. Keep schema keys, IDs, enum values, paths, and evidence refs unchanged in English.
@@ -511,15 +588,20 @@ export function candidateArtifactFingerprints(outputDir: string): Record<string,
 }
 
 export function evaluatorContractRevision(): string {
-  const contractFiles = [
+  const hash = crypto.createHash("sha256").update(evaluatorPromptVersion);
+  for (const snapshot of evaluatorContractSnapshots()) hash.update(snapshot.sha256);
+  return hash.digest("hex");
+}
+
+/** Exact evaluator method files loaded into a private per-attempt trace. */
+export function evaluatorContractSnapshots(): Array<{ path: string; sha256: string }> {
+  const files = [
     path.join(skillDir, "references/evaluator-operator.md"),
     path.join(skillDir, "schemas/evaluation.schema.json"),
     path.join(skillDir, "scripts/build-evaluator-overview.mjs"),
     path.join(projectRoot, "packages/research/src/video-analysis/runtime-three-lens-contracts.ts")
   ];
-  const hash = crypto.createHash("sha256").update(evaluatorPromptVersion);
-  for (const file of contractFiles) hash.update(fs.readFileSync(file));
-  return hash.digest("hex");
+  return files.map((file) => ({ path: file, sha256: sha256(file) }));
 }
 
 export function builderIntegrityContractRevision(): string {
@@ -576,17 +658,18 @@ async function validateBuilder(outputDir: string, videoPath: string, hostAssembl
   }, null, 2)}\n`, "utf8");
 }
 
-async function evaluateRuntimeThreeLens(
-  outputDir: string,
+export async function evaluateRuntimeThreeLens(
+  candidateDirectory: string,
+  evaluationDirectory: string,
   postExternalId: string,
   reconstructionArtifactRef: string,
   evaluationArtifactRef: string,
   evaluatorRunId: string
 ): Promise<RuntimeThreeLensGateReport> {
-  const reconstructionPath = path.join(outputDir, "reconstruction.json");
+  const reconstructionPath = path.join(candidateDirectory, "reconstruction.json");
   const fingerprint = sha256(reconstructionPath);
-  const evaluationPath = path.join(outputDir, "runtime-three-lens-evaluation.json");
-  const gatePath = path.join(outputDir, "runtime-three-lens-gate-report.json");
+  const evaluationPath = path.join(evaluationDirectory, "runtime-three-lens-evaluation.json");
+  const gatePath = path.join(evaluationDirectory, "runtime-three-lens-gate-report.json");
 
   if (exists(evaluationPath) && exists(gatePath)) {
     try {
@@ -608,7 +691,7 @@ async function evaluateRuntimeThreeLens(
     }
   }
 
-  const lensDir = path.join(outputDir, "runtime-three-lens");
+  const lensDir = path.join(evaluationDirectory, "runtime-three-lens");
   fs.mkdirSync(lensDir, { recursive: true });
   const definitions = [
     { key: "contentRestoration" as const, lens: "content_restoration" as const, file: "content-restoration.json", schema: contentRestorationRuleResultsSchema },
@@ -645,35 +728,15 @@ async function evaluateRuntimeThreeLens(
   return gate;
 }
 
-async function validate(outputDir: string): Promise<GateReport> {
-  const evaluationPath = path.join(outputDir, "evaluation.json");
-  const gatePath = path.join(outputDir, "gate-report.json");
-  const validationArgs = [
-    path.join(skillDir, "scripts/validate-reconstruction.mjs"),
-    "--evidence", path.join(outputDir, "evidence/evidence-pack.json"),
-    "--targeted", path.join(outputDir, "targeted-evidence/targeted-evidence.json"),
-    "--probe", path.join(outputDir, "probe.json"),
-    "--protocol", path.join(outputDir, "capture-protocol.json"),
-    "--reconstruction", path.join(outputDir, "reconstruction.json"),
-    "--evaluation", evaluationPath,
-    "--out", gatePath
-  ];
-  const ocrPath = path.join(outputDir, "targeted-evidence/ocr-evidence.json");
-  if (exists(ocrPath)) validationArgs.splice(validationArgs.length - 2, 0, "--ocr", ocrPath);
-  try { await runFile(process.execPath, validationArgs, { cwd: outputDir, timeout: 10 * 60_000 }); }
-  catch { if (!exists(gatePath)) throw new Error("DETERMINISTIC_VALIDATOR_FAILED"); }
-  return JSON.parse(fs.readFileSync(gatePath, "utf8")) as GateReport;
-}
-
 export class CodexVideoReconstructionExecutor implements VideoReconstructionExecutor {
+  constructor(private readonly execution: VideoCodexExecutionOptions = {}) {}
   async reconstruct(
     rawRequest: unknown,
     observeLifecycle?: VideoReconstructionLifecycleObserver
   ): Promise<VideoReconstructionOutcome> {
     const request = videoReconstructionRequestSchema.parse(rawRequest);
-    const evaluationPolicy = process.env.SELF_MEDIA_VIDEO_EVALUATION_POLICY === "single_pass"
-      ? "single_pass"
-      : request.evaluationPolicy;
+    const evaluationPolicy = this.execution.evaluationPolicy
+      ?? (process.env.SELF_MEDIA_VIDEO_EVALUATION_POLICY === "single_pass" ? "single_pass" : request.evaluationPolicy);
     let videoPath: string;
     try { videoPath = artifactPath(request.sourceMediaArtifactRef); }
     catch (error) {
@@ -682,7 +745,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
     }
     if (!exists(videoPath)) return { state: "blocked", code: "media_missing", message: "本地源视频不存在。", userActionRequired: false };
 
-    const relativeRoot = `video-reconstructions/${request.postExternalId}`;
+    const relativeRoot = safeOutputRelativeRoot(this.execution.outputRelativeRoot ?? `video-reconstructions/${request.postExternalId}`);
     const outputDir = path.join(runArtifactDir(request.creatorRunId), relativeRoot);
     fs.mkdirSync(outputDir, { recursive: true });
     let builderAccepted = false;
@@ -693,49 +756,78 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       }
       const sourceInput = freezePostSourceInput(request, outputDir);
       const sourceInputHash = sha256(path.join(outputDir, "post-source-input.json"));
-      await prepareBuilderInputs({
-        videoPath,
-        outputDir,
-        skillDir
-      });
+      if (this.execution.preservePreparedCandidate) preservePreparedCandidateInputs(outputDir, videoPath);
+      else await prepareBuilderInputs({ videoPath, outputDir, skillDir });
+      // A copied candidate may need its manifest's local path projection updated,
+      // but none of the frozen candidate contents may change after that point.
+      const preservedCandidateFingerprints = this.execution.preservePreparedCandidate
+        ? candidateArtifactFingerprints(outputDir) : null;
       const requiredCandidate = [
         "evidence/evidence-pack.json", "probe.json", "capture-protocol.json",
         "targeted-evidence/targeted-evidence.json", "reconstruction.json"
       ];
       let missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       if (missing.length > 0) {
+        if (this.execution.reviewerOnly || this.execution.preservePreparedCandidate) throw new Error("REVIEWER_CANDIDATE_INCOMPLETE");
         await runCodex(
           candidatePrompt(videoPath, outputDir, missing, path.join(outputDir, "media-preparation.json")), outputDir, "candidate",
-          request.sourceMediaArtifactRef, observeLifecycle
+          request.sourceMediaArtifactRef, observeLifecycle, this.execution
         );
         missing = requiredCandidate.filter((item) => !exists(path.join(outputDir, item)));
       }
       if (missing.length > 0) return { state: "not_ready", reconstructionArtifactRef: null, evaluationArtifactRef: null,
         gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
         failedGateIds: ["candidate_output_contract"], message: `候选重建缺少：${missing.join("、")}` };
+      if (this.execution.reviewerOnly && (!this.execution.expectedCandidateSha256
+        || sha256(path.join(outputDir, "reconstruction.json")) !== this.execution.expectedCandidateSha256)) {
+        throw new Error("REVIEWER_CANDIDATE_FINGERPRINT_MISMATCH");
+      }
+      if (this.execution.repairFindings !== undefined) {
+        if (this.execution.reviewerOnly) throw new Error("REVIEWER_CANNOT_REPAIR_CANDIDATE");
+        const repairPrompt = `${candidatePrompt(videoPath, outputDir, [], path.join(outputDir, "media-preparation.json"))}
+
+Bounded repair scope: read the existing frozen evidence and reconstruction. Repair only the reported Builder findings below; do not rerun media preparation, replace source inputs, or perform independent evaluation.
+Findings: ${JSON.stringify(this.execution.repairFindings)}
+Revalidate the repaired reconstruction and preserve all unaffected evidence bindings.
+When these findings contain a research-review@1 review, also write ${path.join(outputDir, "revision-response.json")} as a JSON array with exactly one Builder-owned disposition for every finding: {"id":"finding id","status":"changed|disputed|missing_evidence","reason":"specific evidence-based reason"}. For this bounded repair, revision-response.json is the sole additional permitted output and this permission overrides the earlier candidate-output-only list. Do not claim changed unless you actually changed the candidate.`;
+        await runCodex(repairPrompt, outputDir, "repair-findings", request.sourceMediaArtifactRef, observeLifecycle, this.execution);
+      }
       if (sha256(path.join(outputDir, "post-source-input.json")) !== sourceInputHash ||
           (sourceInput.cover && sha256(path.join(outputDir, sourceInput.cover.path)) !== sourceInput.cover.sha256)) {
         throw new Error("BUILDER_INTEGRITY_POST_SOURCE_MUTATED");
       }
-      await refreshOcrEvidenceIfNeeded(outputDir);
-      let hostAssembly = assembleHostOwnedReconstruction(outputDir);
+      if (!this.execution.preservePreparedCandidate) await refreshOcrEvidenceIfNeeded(outputDir);
+      let hostAssembly = this.execution.preservePreparedCandidate ? preservedHostAssembly() : assembleHostOwnedReconstruction(outputDir);
+      if (this.execution.reviewerOnly && sha256(path.join(outputDir, "reconstruction.json")) !== this.execution.expectedCandidateSha256) {
+        throw new Error("REVIEWER_CANDIDATE_FINGERPRINT_MISMATCH");
+      }
       let integrityRepairAttempts = 0;
       while (true) {
         try {
           await validateBuilder(outputDir, videoPath, hostAssembly);
           break;
         } catch (error) {
+          if (this.execution.reviewerOnly || this.execution.preservePreparedCandidate) throw error;
           const failure = error instanceof Error ? error.message : "unknown builder integrity failure";
           if (!failure.startsWith("BUILDER_INTEGRITY_") || integrityRepairAttempts >= 2) throw error;
           integrityRepairAttempts += 1;
           await runCodex(
             builderIntegrityRepairPrompt(videoPath, outputDir, failure), outputDir, "candidate",
-            request.sourceMediaArtifactRef, observeLifecycle
+            request.sourceMediaArtifactRef, observeLifecycle, this.execution
           );
           hostAssembly = mergeHostAssemblyReports(hostAssembly, assembleHostOwnedReconstruction(outputDir));
         }
       }
-      await renderBuilderReport(outputDir, `Builder 内容还原｜${request.postExternalId}`);
+      if (preservedCandidateFingerprints) {
+        if (JSON.stringify(preservedCandidateFingerprints) !== JSON.stringify(candidateArtifactFingerprints(outputDir))) {
+          throw new Error("PRESERVED_CANDIDATE_MUTATED");
+        }
+      }
+      // article.md is part of the candidate revision when supplied. Do not silently
+      // regenerate it for imported/reviewer candidates.
+      if (!this.execution.preservePreparedCandidate || !exists(path.join(outputDir, "article.md"))) {
+        await renderBuilderReport(outputDir, `Builder 内容还原｜${request.postExternalId}`);
+      }
       builderAccepted = true;
 
       const evaluationPath = path.join(outputDir, "evaluation.json");
@@ -778,28 +870,31 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
         "runtime-three-lens/directing-logic.json",
         "runtime-three-lens/visual-editing.json"
       ];
-      if (!gate || !evaluatorMatchesCandidate ||
+      if (this.execution.forceEvaluation || !gate || !evaluatorMatchesCandidate ||
           singlePassLensFiles.some((relative) => !exists(path.join(outputDir, relative)))) {
         await prepareEvaluatorOverview(videoPath, outputDir);
         const frozenFingerprints = currentFingerprints;
         const candidateRevision = currentCandidateRevision;
         const evaluatorReceipt = await runCodex(
           evaluatorPrompt(videoPath, outputDir, candidateRevision, frozenFingerprints), outputDir, "evaluator-1",
-          candidateRevision, observeLifecycle
+          candidateRevision, observeLifecycle, this.execution
         );
         assertCandidateArtifactsUnchanged(frozenFingerprints, outputDir);
         if (!exists(evaluationPath)) return { state: "not_ready", reconstructionArtifactRef: refs.reconstructionArtifactRef,
           evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
           threeLensGateReportArtifactRef: null, failedGateIds: ["independent_evaluation_missing"],
           message: "单轮独立评估没有产生 evaluation.json。" };
-        gate = await validate(outputDir);
+        gate = await validateEvaluationArtifacts(outputDir, outputDir);
         fs.writeFileSync(path.join(outputDir, "evaluator-run.json"), `${JSON.stringify({
           schemaVersion: "video-evaluator-run@1",
           evaluatorRunId: evaluatorReceipt.childRunId,
           modelRole: evaluatorReceipt.role,
-          model: process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-6-astra",
-          reasoningEffort: process.env.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium",
-          sessionMode: process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
+          model: this.execution.executionMode === "sdk" ? sdkModel(evaluatorReceipt.role, this.execution)
+            : process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna",
+          reasoningEffort: this.execution.executionMode === "sdk" ? sdkReasoningEffort(evaluatorReceipt.role, this.execution)
+            : process.env.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium",
+          sessionMode: this.execution.executionMode === "sdk" ? "sdk_fresh_thread"
+            : process.env.SELF_MEDIA_CODEX_EPHEMERAL === "false" ? "retained" : "ephemeral",
           startedAt: evaluatorReceipt.startedAt,
           completedAt: evaluatorReceipt.completedAt,
           candidateRevision,
@@ -814,7 +909,7 @@ export class CodexVideoReconstructionExecutor implements VideoReconstructionExec
       let threeLensGate: RuntimeThreeLensGateReport;
       try {
         threeLensGate = await evaluateRuntimeThreeLens(
-          outputDir,
+          outputDir, outputDir,
           request.postExternalId,
           refs.reconstructionArtifactRef,
           refs.threeLensEvaluationArtifactRef,

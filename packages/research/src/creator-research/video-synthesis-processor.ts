@@ -76,6 +76,57 @@ const synthesisChildRoleLabel: Record<CreatorSynthesisLifecycleEvent["role"], st
   creator_synthesis: "博主综合候选",
   creator_synthesis_evaluator: "博主综合独立评估"
 };
+
+export function synthesisFailureArtifactRefs(input: {
+  payload: Record<string, unknown>;
+  candidateArtifactRef: string | null;
+  candidateGateArtifactRef: string | null;
+}): { synthesisArtifactRef: string | null; synthesisGateArtifactRef: string | null } {
+  const previousSynthesisArtifactRef = typeof input.payload.previousSynthesisArtifactRef === "string"
+    ? input.payload.previousSynthesisArtifactRef : null;
+  const previousSynthesisGateArtifactRef = typeof input.payload.previousSynthesisGateArtifactRef === "string"
+    ? input.payload.previousSynthesisGateArtifactRef : null;
+  return {
+    synthesisArtifactRef: previousSynthesisArtifactRef ?? input.candidateArtifactRef,
+    synthesisGateArtifactRef: previousSynthesisGateArtifactRef ?? input.candidateGateArtifactRef
+  };
+}
+
+export function projectBuiltUnevaluatedOutcome(
+  outcome: Extract<VideoReconstructionOutcome, { state: "built_unevaluated" }>,
+  updatedAt: string
+) {
+  const evaluationFailed = outcome.evaluationMode === "failed";
+  const warnings = outcome.qualityWarningGateIds ?? [];
+  return {
+    state: "built_unevaluated" as const,
+    reconstructionArtifactRef: outcome.reconstructionArtifactRef,
+    articleArtifactRef: outcome.articleArtifactRef,
+    builderValidationArtifactRef: outcome.builderValidationArtifactRef,
+    evaluationArtifactRef: null,
+    gateReportArtifactRef: null,
+    threeLensEvaluationArtifactRef: null,
+    threeLensGateReportArtifactRef: null,
+    evaluationPolicy: evaluationFailed ? "single_pass@37a03aae" : "skip@builder-fast-path-v1",
+    failedGateIds: evaluationFailed ? warnings : [],
+    message: evaluationFailed
+      ? `Builder 与确定性校验已完成；独立 Evaluator 未完成：${outcome.message ?? "未提供失败原因"}${warnings.length ? `；保留 ${warnings.length} 项质量提醒。` : "。"}`
+      : "Builder 与确定性校验已完成；独立 Evaluator 已跳过，结果仅作暂定分析。",
+    updatedAt
+  };
+}
+
+export function dossierReadyNextAction(states: readonly string[]): string {
+  const unevaluatedCount = states.filter((state) => state === "built_unevaluated").length;
+  if (unevaluatedCount > 0) {
+    return `DOSSIER_READY：单博主完整报告可审阅；仍有 ${unevaluatedCount} 条 Builder 结果未完成独立评估，正式进入 Wiki 和跨博主结论前需补齐 Evaluator。`;
+  }
+  const findingsCount = states.filter((state) => state === "evaluated_with_findings").length;
+  if (findingsCount > 0) {
+    return `DOSSIER_READY：单博主完整报告可审阅；${findingsCount} 条已完成独立评估并保留质量问题，正式进入 Wiki 和跨博主结论前需处理质量问题并复评。`;
+  }
+  return "DOSSIER_READY：单博主完整报告可审阅；正式进入 Wiki 和跨博主结论前仍需满足正式性 gate。";
+}
 export class CreatorResearchVideoSynthesisProcessor {
   constructor(
     private readonly repository: CreatorResearchRepository,
@@ -264,20 +315,7 @@ export class CreatorResearchVideoSynthesisProcessor {
       const runtimeThreeLensComplete = evaluatedOutcome && Boolean(
         outcome.threeLensEvaluationArtifactRef && outcome.threeLensGateReportArtifactRef && outcome.threeLensGateCount === 19
       );
-      if (outcome.state === "built_unevaluated") Object.assign(latestItem, {
-        state: "built_unevaluated",
-        reconstructionArtifactRef: outcome.reconstructionArtifactRef,
-        articleArtifactRef: outcome.articleArtifactRef,
-        builderValidationArtifactRef: outcome.builderValidationArtifactRef,
-        evaluationArtifactRef: null,
-        gateReportArtifactRef: null,
-        threeLensEvaluationArtifactRef: null,
-        threeLensGateReportArtifactRef: null,
-        evaluationPolicy: "skip@builder-fast-path-v1",
-        failedGateIds: [],
-        message: "Builder 与确定性校验已完成；独立 Evaluator 已跳过，结果仅作暂定分析。",
-        updatedAt: completedAt
-      });
+      if (outcome.state === "built_unevaluated") Object.assign(latestItem, projectBuiltUnevaluatedOutcome(outcome, completedAt));
       else if (outcome.state === "evaluated_with_findings" && runtimeThreeLensComplete) Object.assign(latestItem, {
         state: "evaluated_with_findings", reconstructionArtifactRef: outcome.reconstructionArtifactRef,
         articleArtifactRef: outcome.articleArtifactRef, evaluationArtifactRef: outcome.evaluationArtifactRef,
@@ -368,7 +406,10 @@ export class CreatorResearchVideoSynthesisProcessor {
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "artifact.produced", createdAt: completedAt,
         message: "视频重建批次 revision 已更新。", payload: { artifactRef: batchRef, postExternalId, state: outcome.state } });
       this.repository.appendEvent({ runId: run.id, jobId: job.id, type: "node.completed", createdAt: completedAt,
-        message: outcome.state === "built_unevaluated" ? "视频 Builder 已完成，独立 Evaluator 已跳过。"
+        message: outcome.state === "built_unevaluated"
+          ? outcome.evaluationMode === "failed"
+            ? `视频 Builder 已完成，但独立 Evaluator 未完成：${outcome.message ?? "未提供失败原因"}`
+            : "视频 Builder 已完成，独立 Evaluator 已跳过。"
           : evaluatedOutcome ? "视频已形成可用还原并完成独立评估。" : "视频未进入下游机制归纳。",
         payload: { postExternalId, state: outcome.state } });
     } catch (error) {
@@ -452,6 +493,7 @@ export class CreatorResearchVideoSynthesisProcessor {
       || !run.detailArtifactRef || !run.reconstructionBatchArtifactRef) {
       return this.failRun(run, job, workerId, "博主归纳缺少固定输入 artifact");
     }
+    const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
     run.status = "collecting";
     run.currentStage = "synthesis";
     run.updatedAt = startedAt;
@@ -510,7 +552,7 @@ export class CreatorResearchVideoSynthesisProcessor {
         run.synthesisGateArtifactRef = outcome.gateArtifactRef;
         run.worker = { state: "succeeded", attempt: job.attempts, jobId: job.id, workerId, lastHeartbeatAt: completedAt };
         run.blockers = [];
-        run.nextAction = "DOSSIER_READY：单博主完整报告可审阅；正式进入 Wiki 和跨博主结论前仍需补齐 Evaluator。";
+        run.nextAction = dossierReadyNextAction(batch.items.map((item) => item.state));
         run.dashboardPath = `/creators/${encodeURIComponent(run.creatorId ?? run.id)}`;
         stage(run, "synthesis").status = "complete";
         stage(run, "synthesis").message = "单博主报告已生成；未验证的深度结论均标为 provisional。";
@@ -553,8 +595,10 @@ export class CreatorResearchVideoSynthesisProcessor {
         const message = outcome.state === "not_ready" ? outcome.message : outcome.message;
         run.status = "reviewable";
         if (outcome.state === "not_ready") {
-          run.synthesisArtifactRef = outcome.synthesisArtifactRef;
-          run.synthesisGateArtifactRef = outcome.gateArtifactRef;
+          const retained = synthesisFailureArtifactRefs({ payload: job.payload,
+            candidateArtifactRef: outcome.synthesisArtifactRef, candidateGateArtifactRef: outcome.gateArtifactRef });
+          run.synthesisArtifactRef = retained.synthesisArtifactRef;
+          run.synthesisGateArtifactRef = retained.synthesisGateArtifactRef;
         }
         run.worker = { state: "failed", attempt: job.attempts, jobId: job.id, workerId: null, lastHeartbeatAt: completedAt };
         run.blockers = [{ code: "creator_synthesis_not_ready", message: `${message} (${failed.join(", ")})`, userActionRequired: false }];

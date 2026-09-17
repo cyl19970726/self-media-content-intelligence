@@ -18,6 +18,8 @@ Keep reconstruction separate from downstream analysis such as “why it went vir
 
 ## Roles and execution modes
 
+新 dynamic workflow 使用 [Reviewer 方法](references/reviewer-operator.md)：Builder → 独立 Reviewer → 有意见才修订一次。仅程序校验不代表修订后独立复核；Reviewer 执行失败与正文质量分开保留。调用方指定 `research-review@1` 时，以此方法为准，不运行下述旧评分式 Evaluator。以下 Evaluator 合同保留给历史运行和明确指定的旧模式。
+
 This Skill owns both single-video roles:
 
 - **Builder (required):** inspect the source, build evidence, reconstruct the content, and close the internal coverage/meta-gate.

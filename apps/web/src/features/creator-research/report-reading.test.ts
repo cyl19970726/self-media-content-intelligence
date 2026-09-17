@@ -65,6 +65,24 @@ describe("report reading", () => {
     expect(html).toContain('href="/frame-1.jpg"');
     expect(html).toContain('id="content-two"');
   });
+  it("renders a seven-column Markdown table between the original prose paragraphs", () => {
+    const block = { id: "table", type: "text", title: "表格", start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null, unresolvedVisuals: [], media: [],
+      body: "表前原文。\n\n| 显卡型号 | 架构 | 应用领域 | 模型 | 精度 | 速度 | 价格 |\n| --- | --- | --- | --- | --- | --- | --- |\n| V100 32G | Volta | 推理 | 上下文推理 | FP16 | 22–28 | 4–6K |\n| RTX8000 48G | Turing | 工作站 | 文生视频（慢） | FP16 | 30–36 | 1.6–1.8W |\n\n表后原文。" } as VideoResearch["contentBlocks"][number];
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block] }));
+    expect(html).toContain('class="content-markdown-table"');
+    expect(html).toContain("<th scope=\"col\">显卡型号</th>");
+    expect(html).toContain("<td>RTX8000 48G</td>");
+    expect(html).toContain("表前原文。");
+    expect(html).toContain("表后原文。");
+  });
+  it("keeps malformed Markdown table text as prose", () => {
+    const body = "保留原文\n| 列一 | 列二 |\n| --- | 不是分隔行 |\n| 内容 | 不应转表 |";
+    const block = { id: "malformed-table", type: "text", title: "原文", body, start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null, unresolvedVisuals: [], media: [] } as VideoResearch["contentBlocks"][number];
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block] }));
+    expect(html).not.toContain('class="content-markdown-table"');
+    expect(html).toContain("| 列一 | 列二 |");
+    expect(html).toContain("| --- | 不是分隔行 |");
+  });
   it("deduplicates references and explicitly labels missing evidence", () => {
     const html = renderToStaticMarkup(createElement(DepthEvidence, { data, refs: ["F1", "F1", "absent"] }));
     expect(html.match(/href="\/frame-1.jpg"/g)).toHaveLength(1);
@@ -81,6 +99,22 @@ describe("report reading", () => {
     for (const text of ["按钮文字", "可见参数", "运行效果未知", "CROP-MISSING", "STEP-MISSING", "原始步骤"]) expect(html).toContain(text);
     expect(html).not.toContain("<img");
   });
+  it("resolves an unresolved shot visual from its existing representative-frame artifact", () => {
+    const shotData = { ...data,
+      evidenceIndex: [{ id: "SHOT-004", kind: "shot", label: "9.533–12.933 秒镜头 · 代表帧 11.233 秒（非切点画面）", anchorId: null, artifactRef: "/shot-004.jpg" }]
+    } as VideoResearch;
+    const block: VideoResearch["contentBlocks"][number] = {
+      id: "shot", type: "frame_strip", title: "镜头", body: "原始正文", start: 9, end: 13,
+      evidenceRefs: [], media: [], boundary: null,
+      unresolvedVisuals: [{ ref: "SHOT-004", role: "key_frame", focus: "宠物画面", proves: "画面", cannotProve: "连续动作" }],
+      steps: []
+    };
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block], data: shotData }));
+    expect(html).toContain('<img src="/shot-004.jpg"');
+    expect(html).toContain("镜头代表帧");
+    expect(html).toContain("11.233 秒");
+    expect(html).not.toContain("图片引用未解析");
+  });
 });
 
 import { MemoryRouter } from "react-router-dom";
@@ -90,7 +124,7 @@ import { contentRangeGaps, overviewSourceTarget } from "./report-reading-utils";
 describe("report compatibility", () => {
   it("keeps old reports readable without a generated overview", () => {
     const html = renderToStaticMarkup(createElement(MemoryRouter, {}, createElement(ReportOverview, { data })));
-    expect(html).toContain("尚未生成综合总览");
+    expect(html).toBe("");
   });
   it("does not display stale synthesized text", () => {
     const stale = { ...data, overview: { state: "stale", overview: null } } as VideoResearch;

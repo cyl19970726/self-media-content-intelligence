@@ -14,6 +14,9 @@ import { CreatorResearchProgress, CreatorTechnicalChecks } from "./components/Cr
 import { CreatorDossierOverview } from "./components/CreatorDossierOverview";
 import { CreatorPortfolioLibrary } from "./components/CreatorPortfolioLibrary";
 import { CrossPostResearchReading } from "./components/CrossPostResearchReading";
+import { matchesPortfolioClassification, matchesPortfolioEvidence } from "./model/creator-portfolio-filter";
+import { getCreatorWorkflowProgress, type CreatorWorkflowProgress } from "./model/workflow-progress";
+import { WorkflowCreatorProgress } from "./components/WorkflowCreatorProgress";
 
 const sections = [
   ["identity", "00", "博主主页"], ["portfolio", "01", "作品内容库"], ["corpus", "02", "全量基本盘"], ["system", "03", "主题与形式"],
@@ -60,10 +63,12 @@ export default function CreatorDossierPage() {
   const [search, setSearch] = useSearchParams();
   const [data, setData] = useState<CreatorDossier | null>(null);
   const [operation, setOperation] = useState<CreatorRunOperation | null>(null);
+  const [workflowProgress, setWorkflowProgress] = useState<CreatorWorkflowProgress>();
   const [error, setError] = useState<string | null>(null);
   const [resuming, setResuming] = useState(false);
   const [resumeError, setResumeError] = useState<string | null>(null);
   const loadGeneration = useRef(0);
+  const pendingAnchor = useRef<string | null>(null);
   const requestedRun = search.get("run");
   const load = useCallback(async () => {
     const generation = ++loadGeneration.current;
@@ -74,6 +79,9 @@ export default function CreatorDossierPage() {
       setOperation(null);
       setError(null);
       if (!dossier.run) return;
+      getCreatorWorkflowProgress(dossier.run.id).then((progress) => {
+        if (generation === loadGeneration.current) setWorkflowProgress(progress);
+      }).catch(() => { if (generation === loadGeneration.current) setWorkflowProgress(undefined); });
       try {
         const operations = await listCreatorRunOperations();
         if (generation !== loadGeneration.current) return;
@@ -101,20 +109,49 @@ export default function CreatorDossierPage() {
     return () => stream.close();
   }, [data?.run, load]);
   useEffect(() => {
+    const runId = data?.run?.id;
+    if (!runId || !workflowProgress || (!workflowProgress.posts.some((post) => ["queued", "source_checking", "building", "reviewing", "repairing"].includes(post.state))
+      && !workflowProgress.synthesis?.state.match(/queued|running|waiting/u))) return undefined;
+    const refresh = () => { if (!document.hidden) void getCreatorWorkflowProgress(runId).then(setWorkflowProgress).catch(() => undefined); };
+    const timer = window.setInterval(refresh, 5_000);
+    return () => window.clearInterval(timer);
+  }, [data?.run?.id, workflowProgress]);
+  useEffect(() => {
     if (!data || data.canonicalId === id || data.run?.id !== id) return;
     navigate(`${canonicalCreatorHref(data.canonicalId, data.run.id, window.location.search)}${window.location.hash}`, { replace: true });
   }, [data, id, navigate]);
+  useEffect(() => {
+    const anchorKey = `${location.key}:${location.hash}`;
+    if (!location.hash) {
+      pendingAnchor.current = null;
+      return;
+    }
+
+    // An initial visit (or return from a single-post page) has no dossier DOM
+    // when the browser processes its hash. Remember only those deferred anchors;
+    // ordinary in-page navigation continues to use the browser's native scroll.
+    if (!data || (data.canonicalId !== id && data.run?.id !== id)) {
+      pendingAnchor.current = anchorKey;
+      return;
+    }
+    if (pendingAnchor.current !== anchorKey) return;
+
+    const target = document.getElementById(location.hash.slice(1));
+    if (!target) return;
+    target.scrollIntoView({ block: "start" });
+    pendingAnchor.current = null;
+  }, [data, id, location.hash, location.key]);
 
   const view = search.get("view") === "gallery" ? "gallery" : "list";
   const tier = ["high", "base", "low"].includes(search.get("tier") ?? "") ? search.get("tier") : "all";
   const topic = search.get("topic") ?? "all";
   const format = search.get("format") ?? "all";
   const evidence = search.get("evidence") ?? "all";
-  const topicOptions = useMemo(() => [...new Set(data?.portfolio.items.map((item) => item.topic).filter((value): value is string => Boolean(value)) ?? [])], [data]);
-  const formatOptions = useMemo(() => [...new Set(data?.portfolio.items.map((item) => item.format).filter((value): value is string => Boolean(value)) ?? [])], [data]);
+  const topicOptions = useMemo(() => [...new Set(data?.portfolio.items.flatMap((item) => item.topics.length ? item.topics : item.topic ? [item.topic] : []) ?? [])], [data]);
+  const formatOptions = useMemo(() => [...new Set(data?.portfolio.items.flatMap((item) => item.formats.length ? item.formats : item.format ? [item.format] : []) ?? [])], [data]);
   const items = useMemo(() => data?.portfolio.items.filter((item) => (tier === "all" || item.tier === tier)
-    && (topic === "all" || item.topic === topic) && (format === "all" || item.format === format)
-    && (evidence === "all" || (evidence === "deep" ? item.deepSample : item.evidenceStatus === evidence))) ?? [], [data, tier, topic, format, evidence]);
+    && matchesPortfolioClassification(item, topic, format)
+    && matchesPortfolioEvidence(item, evidence)) ?? [], [data, tier, topic, format, evidence]);
   const setOption = (key: string, value: string) => {
     const next = new URLSearchParams(search);
     if (value === "all") next.delete(key);
@@ -146,7 +183,11 @@ export default function CreatorDossierPage() {
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在生成统一研究投影</p></div></main>;
   const research = data.crossPostResearch?.sections.length ? data.crossPostResearch : null;
   const deepItems = data.portfolio.items.filter((item) => item.deepSample);
+  const sourceConflicts = data.run?.blockers.filter((blocker) => blocker.code === "source_identity_conflict") ?? [];
   const recovery = data.run ? creatorRecoveryPresentation(data.run, operation) : null;
+  const dossierReturnTo = data.run
+    ? canonicalCreatorHref(data.canonicalId, data.run.id, location.search)
+    : `${location.pathname}${location.search}`;
   const produced = (values: Array<{ factClass: string }>) => values.some((value) => value.factClass !== "unknown");
   const identityProduced = produced([data.identity.positioning, ...data.identity.audience, ...data.identity.valuesProvided, ...data.identity.trustSources, data.identity.lifecycle]);
   const emptyAnalysis = [
@@ -174,15 +215,22 @@ export default function CreatorDossierPage() {
     <article className="console-main dossier-main">
       <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><b>{data.identity.name}</b></nav>
       <CreatorDossierOverview data={data}/>
+      {data.run && <p className="dossier-workflow-link"><Link to={`/workflow-runs?creatorRunId=${encodeURIComponent(data.run.id)}`}>查看关联工作流执行进度 <ArrowRight size={13}/></Link></p>}
+      <WorkflowCreatorProgress value={workflowProgress}/>
+      {sourceConflicts.length > 0 && <aside role="alert" className="creator-source-conflict">
+        <strong>来源身份冲突 · 研究已暂停</strong>
+        {sourceConflicts.map((conflict) => <p key={conflict.message}>{conflict.message}</p>)}
+        <p>下方保留历史研究供追溯，受影响样本及其综合结论尚不能作为可靠研究成果。</p>
+      </aside>}
       <details className="dossier-progress-details" open={!research}>
-        <summary>{research ? (data.run?.status === "ready" ? "研究已产出 · 查看执行记录" : "研究已产出 · 尚待完全验证 · 查看执行记录") : "当前研究进度"}</summary>
+        <summary>{research ? (data.run?.status === "collecting" && data.run.currentStage === "synthesis" ? "博主综合更新中 · 当前保留上一版 · 查看执行记录" : data.run?.status === "ready" ? "研究已产出 · 查看执行记录" : "研究已产出 · 尚待完全验证 · 查看执行记录") : "当前研究进度"}</summary>
       <CreatorResearchProgress data={data}>
         {recovery && <div className="creator-progress-action"><p>{recovery.help}</p><button type="button" onClick={() => void resume(recovery.action)} disabled={resuming}>{resuming ? "正在处理" : recovery.label}</button></div>}
         {operation?.resolutionState === "waiting_external" && operation.waitingReason && <p>{operation.waitingReason}</p>}
         {resumeError && <p role="alert">{resumeError}</p>}
       </CreatorResearchProgress>
       </details>
-      {research && <CrossPostResearchReading data={data} research={research}/>}
+      {research && <CrossPostResearchReading data={data} research={research} returnTo={dossierReturnTo}/>}
       <CreatorPortfolioLibrary data={data} items={items} view={view} tier={tier ?? "all"} topic={topic} format={format} evidence={evidence} topicOptions={topicOptions} formatOptions={formatOptions} setOption={setOption} itemHref={itemHref}/>
       {data.lastGood.active && <div className="last-good-banner"><RefreshCw size={15}/><div><strong>保留上一版可读档案</strong><p>{data.lastGood.reason}{data.lastGood.revisionLabel ? ` · ${data.lastGood.revisionLabel}` : ""}</p></div></div>}
 
@@ -201,7 +249,7 @@ export default function CreatorDossierPage() {
         <div className="metric-band"><div><b>{data.corpus.postCount}</b><span>可见作品</span></div><div><b>{metric(data.corpus.medianLikes)}</b><span>点赞中位</span></div><div><b>{metric(data.corpus.meanLikes)}</b><span>平均点赞</span></div><div><b>{metric(data.corpus.maxLikes)}</b><span>最高点赞</span></div><div><b>{data.corpus.highCount ?? "—"}</b><span>≥1 万作品</span></div><div><b>{data.corpus.coverageRate === 1 ? "100" : (data.corpus.coverageRate * 100).toFixed(1)}%</b><span>指标覆盖</span></div></div>
         <div className="percentile-strip"><span>P10 <b>{metric(data.corpus.percentiles.p10)}</b></span><span>P25 <b>{metric(data.corpus.percentiles.p25)}</b></span><span>P75 <b>{metric(data.corpus.percentiles.p75)}</b></span><span>P90 <b>{metric(data.corpus.percentiles.p90)}</b></span><span>视频 <b>{data.corpus.videoCount ?? "—"}</b></span><span>已知点赞 <b>{data.corpus.likesKnown}</b></span></div>
         <p className="console-note"><AlertTriangle size={14}/>{data.corpus.health.reason}</p>
-        {data.corpus.annotationCoverage && <p className="console-note"><b>全量表层标注</b> {data.corpus.annotationCoverage.annotatedPosts}/{data.corpus.annotationCoverage.observedPosts} 条；其中 {data.corpus.annotationCoverage.unclassifiedPosts} 条明确保留为未归类，不用猜测补齐。</p>}
+        {data.corpus.annotationCoverage && <p className="console-note"><b>{data.corpus.annotationCoverage.method === "builder_adaptive" ? "Builder 分类" : "标题规则初分"}</b> 已观察范围内 {data.corpus.annotationCoverage.classifiedPosts}/{data.corpus.annotationCoverage.observedPosts} 条至少分配一个标签；{data.corpus.annotationCoverage.unclassifiedPosts} 条零标签并保留为未知。</p>}
         <div className="corpus-notes">{data.corpus.notes.map((note) => <p key={note}>{note}</p>)}</div>
         <div className="distribution-view"><header><b>公开点赞分布</b><span>不同区间的作品数量与占比</span></header>{data.corpus.distribution.map((bucket) => { const share = bucket.share * 100; return <div key={bucket.label}><span>{bucket.label}</span><i><em style={{ width: `${Math.max(0, share)}%` }}/></i><b>{bucket.count}</b><small>{share.toFixed(1)}%</small></div>; })}</div>
       </DossierSection>

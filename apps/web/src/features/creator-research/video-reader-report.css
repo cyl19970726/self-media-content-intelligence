@@ -60,7 +60,11 @@
 .content-story .content-block > header span { color: var(--teal); font: 500 10px "IBM Plex Mono"; }
 .content-story .content-block > header h3 { margin: 0; font-size: 29px; font-weight: 500; letter-spacing: -.02em; }
 .content-story .content-block > p, .content-story .content-block > aside, .content-story .content-evidence, .content-story .content-operation-sequence { grid-column: 2; margin-left: 0; }
-.content-story .content-block > p { max-width: 720px; margin-block: 0 8px; font-size: 16px; line-height: 1.7; }
+.content-story .content-block > p { max-width: 720px; margin-block: 0 8px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.content-story .content-markdown-table { grid-column: 2; max-width: 100%; margin: 8px 0 16px; overflow-x: auto; border: 1px solid var(--line); }
+.content-markdown-table table { width: max-content; min-width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; line-height: 1.45; }
+.content-markdown-table th, .content-markdown-table td { padding: 10px 12px; white-space: nowrap; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.content-markdown-table th { color: var(--paper); background: var(--teal); font-weight: 600; }.content-markdown-table tr:last-child td { border-bottom: 0; }.content-markdown-table th:last-child, .content-markdown-table td:last-child { border-right: 0; }
 .content-story .content-evidence { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
 .content-story .content-evidence--paired { grid-template-columns: 1fr 1fr; }
 .content-story .content-evidence figure { margin: 0; background: #e6e0d4; }

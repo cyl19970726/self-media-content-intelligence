@@ -2,6 +2,8 @@ import { AlertTriangle, ArrowRight, ExternalLink, LoaderCircle, RefreshCw } from
 import { Link } from "react-router-dom";
 import type { CreatorResearchRun, CreatorRunOperation, CreatorRunOperationAction, CreatorSummary } from "../../../shared/contracts/core";
 import { researchStageLabel } from "../model/creator-directory";
+import type { CreatorWorkflowProgress } from "../model/workflow-progress";
+import { WorkflowCreatorProgress } from "./WorkflowCreatorProgress";
 
 function detailHref(run: CreatorResearchRun, operation?: CreatorRunOperation): string {
   const id = operation && operation.authorityState !== "canonical"
@@ -10,10 +12,11 @@ function detailHref(run: CreatorResearchRun, operation?: CreatorRunOperation): s
   return `/creators/${encodeURIComponent(id)}?run=${encodeURIComponent(run.id)}`;
 }
 
-export function CreatorDirectoryRow({ run, creator, operation, busy, completed, onOperate }: {
+export function CreatorDirectoryRow({ run, creator, operation, workflowProgress, busy, completed, onOperate }: {
   run: CreatorResearchRun;
   creator?: CreatorSummary;
   operation?: CreatorRunOperation;
+  workflowProgress?: CreatorWorkflowProgress;
   busy: boolean;
   completed: boolean;
   onOperate: (id: string, action: CreatorRunOperationAction) => Promise<void>;
@@ -32,6 +35,7 @@ export function CreatorDirectoryRow({ run, creator, operation, busy, completed, 
     <div className="creator-directory-row__stage">
       <span>{stageLabel}</span>
       <b>{run.coverage.discoveredPosts} 篇作品 · {run.coverage.comparisonPosts} 篇进入比较</b>
+      <WorkflowCreatorProgress value={workflowProgress} compact/>
     </div>
 
     <div className="creator-directory-row__video-work" aria-label="单帖构建任务">

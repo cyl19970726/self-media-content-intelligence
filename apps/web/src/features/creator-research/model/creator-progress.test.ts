@@ -34,6 +34,36 @@ describe("creator progress presentation", () => {
     expect(creatorProgress(dossier(value)).rows.find((row) => row.id === "deep_capture")?.state).toBe("执行中");
   });
 
+  it("shows partial detail collection as media preparation before a reconstruction batch exists", () => {
+    const value = run({
+      worker: { ...run().worker, state: "running" },
+      coverage: { ...run().coverage, enrichedPosts: 3, reconstructedPosts: 0 },
+      reconstructionBatchArtifactRef: null,
+      videoWork: { ...run().videoWork, queuedPosts: 0, activePostExternalIds: [], analyzedPosts: 0, failedPosts: 0 }
+    });
+    const model = creatorProgress(dossier(value));
+    expect(model.headline).toBe("正在详情与媒体准备");
+    expect(model.detail).toBe("正在补齐选择集详情与媒体；完成后才会创建单帖分析批次。");
+    expect(model.rows.find((row) => row.id === "deep_capture")).toMatchObject({
+      label: "详情与媒体准备",
+      state: "执行中",
+      detail: "已采集 3/21 篇选择集详情，单帖分析批次尚未创建。"
+    });
+  });
+
+  it("uses single-post analysis language once real video work exists", () => {
+    const value = run({
+      worker: { ...run().worker, state: "running" },
+      reconstructionBatchArtifactRef: "/artifacts/run/video-reconstruction-batch.json",
+      videoWork: { ...run().videoWork, queuedPosts: 2, activePostExternalIds: ["post-1"], analyzedPosts: 0, failedPosts: 0 }
+    });
+    const model = creatorProgress(dossier(value));
+    expect(model.headline).toBe("正在单帖分析");
+    expect(model.detail).toBe("单帖分析正在执行；完成后进入博主综合。");
+    expect(model.rows.find((row) => row.id === "deep_capture")?.detail)
+      .toContain("2 条等待执行，1 条执行中");
+  });
+
   it("makes a failed stage and reason explicit", () => {
     const value = run({ status: "failed", blockers: [{ code: "builder_failed", message: "两条帖子构建失败", userActionRequired: false }],
       stages: run().stages.map((stage) => stage.id === "deep_capture" ? { ...stage, status: "failed", message: "Builder 返回失败" } : stage) });
@@ -72,6 +102,18 @@ describe("creator progress presentation", () => {
     expect(model.detail).toContain("媒体核验已完成");
     expect(model.detail).not.toContain("旧的采集备注");
     expect(model.headline).not.toMatch(/13|%/);
+  });
+
+  it("does not call Evaluator running while Builder has produced no posts", () => {
+    const value = run({
+      coverage: { ...run().coverage, reconstructedPosts: 0 },
+      videoWork: { ...run().videoWork, analyzedPosts: 0, queuedPosts: 12 },
+    });
+    const pipeline = { stages: [
+      { id: "media_verification", state: "complete", gateState: "passed" },
+      { id: "video_evaluation", state: "running", gateState: "running" }
+    ] } as CreatorDossier["pipeline"];
+    expect(creatorProgress(dossier(value, pipeline)).detail).toBe("等待执行单帖分析；完成后进入博主综合。 媒体核验已完成。");
   });
 
   it("is transparent when no run is available", () => {

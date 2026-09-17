@@ -1,4 +1,5 @@
 import { selectedTierMetrics } from "./creator-distribution.js";
+import { creatorSourceChanges } from "./creator-source-changes.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import type { CreatorSynthesis } from "../../packages/research/index.js";
 import type { CreatorResearchRun } from "../shared/schema.js";
@@ -27,6 +28,21 @@ type CorpusIntegrity = {
 };
 
 type PortfolioAnnotations = NonNullable<ReturnType<CreatorResearchService["portfolio"]>>["annotations"];
+
+function evidenceStatus(reconstructed: { state: string; researchReview?: {
+  reviewStatus: "completed_no_findings" | "completed_with_findings" | "failed";
+  candidateStatus: "original_reviewed" | "revised_unverified" | "review_incomplete";
+} | null } | undefined, deepCandidate: boolean, analyzed: unknown) {
+  const review = reconstructed?.researchReview;
+  if (review?.reviewStatus === "failed" || review?.candidateStatus === "review_incomplete") return "deep_review_failed" as const;
+  if (review?.candidateStatus === "revised_unverified") return "deep_revised_unverified" as const;
+  if (review?.reviewStatus === "completed_no_findings" && review.candidateStatus === "original_reviewed") return "deep_reviewed_no_findings" as const;
+  if (review?.reviewStatus === "completed_with_findings" && review.candidateStatus === "original_reviewed") return "deep_reviewed_with_findings" as const;
+  return reconstructed && ["verified", "ready"].includes(reconstructed.state) ? "deep_validated" as const
+    : reconstructed?.state === "evaluated_with_findings" ? "deep_evaluated_with_findings" as const
+    : reconstructed?.state === "built_unevaluated" ? "deep_built" as const
+    : deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const;
+}
 
 function localVideoHref(runId: string, mediaItem: { state?: string; videoArtifactRef?: string | null } | undefined): string | null {
   const reference = mediaItem?.videoArtifactRef;
@@ -73,6 +89,38 @@ function annotationClusters(
       evidenceRefs: [...cluster.evidenceRefs]
     };
   }).sort((left, right) => right.count - left.count || left.name.localeCompare(right.name, "zh-CN"));
+}
+
+type AdaptiveClassification = NonNullable<CreatorSynthesis["portfolioClassification"]>;
+
+function adaptiveClusters(
+  classification: AdaptiveClassification,
+  annotations: PortfolioAnnotations,
+  axis: "topic" | "format"
+) {
+  const labels = new Map(classification.labelRegistry.filter((label) => label.axis === axis)
+    .map((label) => [label.id, label]));
+  const likes = new Map((annotations?.rows ?? []).map((row) => [row.postExternalId, row.likes]));
+  return [...labels.values()].map((label) => {
+    const memberRows = classification.rows.filter((row) => row.memberships.some((item) => item.labelId === label.id));
+    const postLikes = memberRows.map((row) => likes.get(row.postExternalId) ?? null);
+    const metrics = selectedTierMetrics(postLikes);
+    const membershipRefs = memberRows.flatMap((row) => row.memberships
+      .filter((item) => item.labelId === label.id).flatMap((item) => item.evidenceRefs));
+    return {
+      name: label.name,
+      count: memberRows.length,
+      share: classification.observedPosts ? memberRows.length / classification.observedPosts : null,
+      measuredCount: postLikes.filter((value): value is number => value !== null).length,
+      medianLikes: metrics.medianLikes,
+      meanLikes: metrics.meanLikes,
+      maxLikes: metrics.maxLikes,
+      highCount: null,
+      interpretation: `${label.definition} 边界：${label.boundary}`,
+      evidenceRefs: [...new Set([...label.evidenceRefs, ...membershipRefs])]
+    };
+  }).filter((cluster) => cluster.count > 0)
+    .sort((left, right) => right.count - left.count || left.name.localeCompare(right.name, "zh-CN"));
 }
 
 function annotationDistribution(annotations: PortfolioAnnotations, p25: number | null, p75: number | null) {
@@ -129,8 +177,13 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
   const media = new Map((data?.mediaManifest?.items ?? []).map((item) => [item.externalId, item]));
   const reconstruction = new Map((data?.reconstructionBatch?.items ?? []).map((item) => [item.postExternalId, item]));
   const postAnalysis = new Map((synthesis?.postAnalyses ?? []).map((item) => [item.postExternalId, item]));
-  const topicClusters = annotationClusters(annotations, "topics");
-  const formatClusters = annotationClusters(annotations, "formats");
+  const adaptiveClassification = synthesis?.portfolioClassification ?? null;
+  const adaptiveLabels = new Map((adaptiveClassification?.labelRegistry ?? []).map((label) => [label.id, label]));
+  const adaptiveRows = new Map((adaptiveClassification?.rows ?? []).map((row) => [row.postExternalId, row]));
+  const topicClusters = adaptiveClassification
+    ? adaptiveClusters(adaptiveClassification, annotations, "topic") : annotationClusters(annotations, "topics");
+  const formatClusters = adaptiveClassification
+    ? adaptiveClusters(adaptiveClassification, annotations, "format") : annotationClusters(annotations, "formats");
   const capturedAt = sourceRun.lastSnapshotAt;
   const canonicalId = activeRun.canonicalSlug ?? activeRun.creatorId ?? activeRun.id;
   const items = (selection?.items ?? []).map((item) => {
@@ -138,6 +191,14 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
     const mediaItem = media.get(item.externalId);
     const reconstructed = reconstruction.get(item.externalId);
     const analyzed = postAnalysis.get(item.externalId);
+    const classificationRow = adaptiveRows.get(item.externalId);
+    const memberships = classificationRow?.memberships.flatMap((membership) => {
+      const label = adaptiveLabels.get(membership.labelId);
+      return label ? [{ ...membership, label }] : [];
+    }) ?? [];
+    const topics = memberships.filter((membership) => membership.label.axis === "topic").map((membership) => membership.label.name);
+    const formats = memberships.filter((membership) => membership.label.axis === "format").map((membership) => membership.label.name);
+    const commercialSignals = memberships.filter((membership) => membership.label.axis === "commercial_signal").map((membership) => membership.label.name);
     return {
       id: item.externalId,
       title: detail?.title ?? item.title ?? "标题未识别",
@@ -157,15 +218,29 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       percentileRank: null,
       publishedLabel: detail?.publishedLabel ?? null,
       durationSeconds: mediaItem?.durationSeconds ?? null,
-      topic: analyzed?.contentRole ?? null,
-      format: analyzed?.contentForm.join(" / ") ?? (detail?.mediaType ?? item.mediaType),
+      topic: adaptiveClassification ? topics[0] ?? null : analyzed?.contentRole ?? null,
+      format: adaptiveClassification ? formats[0] ?? null : analyzed?.contentForm.join(" / ") ?? (detail?.mediaType ?? item.mediaType),
+      topics: adaptiveClassification ? topics : analyzed?.contentRole ? [analyzed.contentRole] : [],
+      formats: adaptiveClassification ? formats : analyzed?.contentForm ?? [],
+      commercialSignals,
+      classificationSources: [...new Set(memberships.map((membership) => membership.sourceLevel))],
+      classificationDetails: memberships.map((membership) => ({
+        label: membership.label.name,
+        axis: membership.label.axis,
+        sourceLevel: membership.sourceLevel,
+        membershipBoundary: membership.boundary,
+        registryBoundary: membership.label.boundary
+      })),
+      classificationBoundary: adaptiveClassification
+        ? classificationRow?.memberships.length
+          ? "模型自适应多标签；表层标签只描述标题/可见文字，深层标签只来自该帖 Builder。"
+          : classificationRow?.unknowns.join("；") || "该帖证据不足，未分配自适应标签。"
+        : null,
       coreContent: analyzed?.contentRole ?? null,
       contentArchitecture: [],
       mechanismHypothesis: analyzed?.performanceInterpretation ?? null,
       selectionReason: item.selectionReason,
-      evidenceStatus: reconstructed && ["verified", "ready"].includes(reconstructed.state) ? "deep_validated" as const
-        : ["built_unevaluated", "evaluated_with_findings"].includes(reconstructed?.state ?? "") ? "deep_built" as const
-        : item.deepCandidate ? "deep_pending" as const : analyzed ? "surface_only" as const : "missing" as const,
+      evidenceStatus: evidenceStatus(reconstructed, item.deepCandidate, analyzed),
       sourceFacts: projectPostSourceFacts({
         sourceUrl: detail?.finalUrl ?? item.url,
         capturedAt: detail?.inspectedAt ?? capturedAt,
@@ -228,7 +303,14 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       percentiles: { p10: null, p25: analysis?.likes.p25 ?? null, p75: analysis?.likes.p75 ?? null, p90: null },
       distribution: annotationDistribution(annotations, analysis?.likes.p25 ?? null, analysis?.likes.p75 ?? null),
       notes: [analysis?.interpretationBoundary].filter((value): value is string => Boolean(value)),
-      annotationCoverage: annotations ? { ...annotations.denominator, artifactRef: sourceRun.portfolioAnnotationsArtifactRef! } : null,
+      annotationCoverage: adaptiveClassification ? {
+        observedPosts: adaptiveClassification.observedPosts,
+        annotatedPosts: adaptiveClassification.rows.length,
+        classifiedPosts: adaptiveClassification.rows.filter((row) => row.memberships.length > 0).length,
+        unclassifiedPosts: adaptiveClassification.rows.filter((row) => row.memberships.length === 0).length,
+        artifactRef: sourceRun.synthesisArtifactRef!,
+        method: "builder_adaptive" as const
+      } : annotations ? { ...annotations.denominator, artifactRef: sourceRun.portfolioAnnotationsArtifactRef!, method: "title_rules" as const } : null,
       health: analysis ? corpusHealth(analysis, capturedAt)
         : health("missing", "全量基本盘尚未生成。", capturedAt)
     },
@@ -239,8 +321,9 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
       formats: synthesis?.contentSystem.formatClusters.map(claim) ?? [],
       visualLanguage: synthesis?.contentSystem.visualLanguage.map(claim) ?? [],
       recurringStructures: synthesis?.contentSystem.recurringStructure.map(claim) ?? [],
-      health: health(synthesis || annotations ? "partial" : "missing", annotations
-        ? "主题与形式聚类直接按全量表层标注的确定性标签计数；不替代深度内容结论。"
+      health: health(synthesis || annotations ? "partial" : "missing", adaptiveClassification
+        ? "主题与形式按 Builder 对本次已观察清单的开放多标签分类计数；一帖可进入多个标签。"
+        : annotations ? "主题与形式按标题规则初分计数；不替代深度内容结论。"
         : synthesis ? "本页提供文字综合；尚未提供主题与形式的可复算聚类统计。" : "等待博主综合硬闸。", capturedAt)
     },
     tiers: (["high", "base", "low"] as const).map((tier) => ({ id: tier, label: tierLabels[tier], conclusion: tierClaims(tier), mechanisms: [], failurePatterns: [],
@@ -256,7 +339,9 @@ export function projectRunDossier(service: CreatorResearchService, requestedId: 
     businessPath: { statements: synthesis?.identity.commercialPaths.map(claim) ?? [],
       health: health(synthesis?.identity.commercialPaths.length ? "partial" : "missing", "商业路径只记录可见迹象与未知。", capturedAt) },
     ...(synthesis?.crossPostResearch ? { crossPostResearch: synthesis.crossPostResearch } : {}),
-    boundaries: [analysis?.interpretationBoundary ?? "公开表现不等于曝光、留存、转粉或成交。", ...(analysis?.unknowns ?? []), ...(synthesis?.boundaries ?? []),
+    synthesisSourceChanges: synthesis ? creatorSourceChanges(data?.reconstructionBatch?.items ?? [], synthesis.inputs.reconstructionBatchArtifactRef) : [],
+    boundaries: [analysis?.interpretationBoundary ?? "公开表现不等于曝光、留存、转粉或成交。", ...(analysis?.unknowns ?? []),
+      ...(adaptiveClassification?.boundaries ?? ["当前综合未产出模型自适应分类；主题基本盘沿用标题表层规则。"]), ...(synthesis?.boundaries ?? []),
       `综合证据：${synthesisRef}`]
   });
 }

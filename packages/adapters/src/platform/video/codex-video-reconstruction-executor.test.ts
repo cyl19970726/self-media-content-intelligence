@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -15,9 +16,12 @@ import {
   normalizeRuntimeLensEvidence,
   reconstructionFailureGateId,
   runtimeThreeLensBoundToEvaluator,
+  safeOutputRelativeRoot,
+  preservePreparedCandidateInputs,
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
+import { validateBuilderIntegrity } from "./video-builder-integrity.js";
 import { videoReconstructionOutcomeSchema, type VideoReconstructionLifecycleEvent } from "../../../../research/index.js";
 
 const protocol = { captureActions: [{ mode: "ocr_review" }] };
@@ -57,6 +61,64 @@ describe("video reconstruction failure diagnostics", () => {
 
   it("keeps unknown process failures generic", () => {
     expect(reconstructionFailureGateId("unexpected child failure")).toBe("runner_execution");
+  });
+});
+
+describe("workflow output isolation", () => {
+  it("rejects absolute and traversal output roots", () => {
+    expect(() => safeOutputRelativeRoot("../other-run")).toThrow("WORKFLOW_OUTPUT_ROOT_INVALID");
+    expect(() => safeOutputRelativeRoot("/tmp/other-run")).toThrow("WORKFLOW_OUTPUT_ROOT_INVALID");
+    expect(safeOutputRelativeRoot("workflow-reconstructions/run-1/post-1")).toBe("workflow-reconstructions/run-1/post-1");
+  });
+});
+
+describe("preserved candidate import", () => {
+  it("relocates only the copied evidence path and retains a valid frozen candidate", () => {
+    const fixtureRoot = path.join(process.cwd(), ".agents", "skills", "video-content-reconstruction", "tests", "fixtures", "valid");
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "video-preserved-candidate-"));
+    const sourcePath = path.join(root, "source-video.mp4");
+    const original = path.join(root, "original");
+    const copied = path.join(root, "copied");
+    try {
+      fs.writeFileSync(sourcePath, "source-video");
+      fs.mkdirSync(path.join(original, "evidence"), { recursive: true });
+      fs.mkdirSync(path.join(original, "targeted-evidence"), { recursive: true });
+      for (const file of ["evidence-pack.json", "probe.json", "capture-protocol.json", "reconstruction.json"]) {
+        const destination = file === "evidence-pack.json" ? path.join(original, "evidence", file) : path.join(original, file);
+        fs.copyFileSync(path.join(fixtureRoot, file), destination);
+      }
+      fs.copyFileSync(path.join(fixtureRoot, "targeted-evidence.json"), path.join(original, "targeted-evidence", "targeted-evidence.json"));
+      fs.writeFileSync(path.join(original, "post-source-input.json"), JSON.stringify({
+        facts: { title: null, coverHref: null }, cover: null
+      }));
+      const originalEvidence = path.join(original, "evidence", "evidence-pack.json");
+      const digest = (file: string) => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+      fs.writeFileSync(path.join(original, "media-preparation.json"), JSON.stringify({
+        sourceMedia: { fingerprint: digest(sourcePath) }, transcript: { path: null, fingerprint: null },
+        evidencePack: { path: originalEvidence, fingerprint: digest(originalEvidence) }
+      }));
+      fs.cpSync(original, copied, { recursive: true });
+      const preservedContent = Object.fromEntries([
+        "post-source-input.json", "evidence/evidence-pack.json", "probe.json", "capture-protocol.json",
+        "targeted-evidence/targeted-evidence.json", "reconstruction.json"
+      ].map((relative) => [relative, digest(path.join(copied, relative))]));
+
+      preservePreparedCandidateInputs(copied, sourcePath);
+      expect(JSON.parse(fs.readFileSync(path.join(copied, "media-preparation.json"), "utf8")).evidencePack.path)
+        .toBe(path.join(copied, "evidence", "evidence-pack.json"));
+      // This legacy fixture predates the depth contract. Validate the same copied
+      // evidence/reconstruction candidate with the optional source snapshot absent;
+      // production imports retain and validate their already depth-valid snapshot.
+      const sourceSnapshot = path.join(copied, "post-source-input.json");
+      const sourceSnapshotContents = fs.readFileSync(sourceSnapshot);
+      fs.rmSync(sourceSnapshot);
+      expect(validateBuilderIntegrity(copied, sourcePath)).toMatchObject({ transcriptCues: 2, knowledgeUnits: 2 });
+      fs.writeFileSync(sourceSnapshot, sourceSnapshotContents);
+      expect(Object.fromEntries(Object.keys(preservedContent).map((relative) => [relative, digest(path.join(copied, relative))])))
+        .toEqual(preservedContent);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 
@@ -171,15 +233,15 @@ describe("Builder model contract", () => {
     }
   });
 
-  it("passes Astra medium explicitly and keeps ordinary sessions ephemeral", () => {
+  it("passes Terra medium explicitly and keeps ordinary sessions ephemeral", () => {
     const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/run/last.txt", {});
-    expect(args).toContain("gpt-6-astra");
+    expect(args).toContain("gpt-5.6-terra");
     expect(args).toContain('model_reasoning_effort="medium"');
     expect(args).toContain("--ephemeral");
   });
 
-  it("uses Astra for evaluation and preserves explicit role overrides", () => {
-    expect(codexInvocationArgs("generic_evaluator", "/tmp/run", "/tmp/last.txt", {})).toContain("gpt-6-astra");
+  it("uses Luna for evaluation and preserves explicit role overrides", () => {
+    expect(codexInvocationArgs("generic_evaluator", "/tmp/run", "/tmp/last.txt", {})).toContain("gpt-5.6-luna");
     const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/last.txt", {
       SELF_MEDIA_BUILDER_MODEL: "gpt-5.6-terra",
       SELF_MEDIA_BUILDER_REASONING_EFFORT: "high"
@@ -193,7 +255,7 @@ describe("Builder model contract", () => {
       SELF_MEDIA_CODEX_EPHEMERAL: "false"
     });
     expect(args).not.toContain("--ephemeral");
-    expect(args).toContain("gpt-6-astra");
+    expect(args).toContain("gpt-5.6-terra");
   });
 });
 
@@ -314,7 +376,11 @@ describe("child worker lifecycle", () => {
       expect(path.relative(outputDir, trace.traceDir)).toBe(path.join("worker-traces", trace.childRunId));
       expect(trace.childRunId).toBe(events[0]?.childRunId);
       expect(fs.readFileSync(path.join(trace.traceDir, "events.jsonl"), "utf8")).toContain("working");
-      expect(fs.readFileSync(path.join(trace.traceDir, "prompt.txt"), "utf8")).toBe("prompt");
+      const effectivePrompt = fs.readFileSync(path.join(trace.traceDir, "prompt.txt"), "utf8");
+      expect(effectivePrompt).toContain("prompt");
+      expect(effectivePrompt).toContain("Verified required method snapshots");
+      const runtime = JSON.parse(fs.readFileSync(path.join(trace.traceDir, "runtime.json"), "utf8"));
+      expect(runtime.skillLoad.files).toHaveLength(4);
       fs.rmSync(trace.traceDir, { recursive: true, force: true });
       const statuses = events.map((event) => event.status);
       expect(statuses[0]).toBe("started");

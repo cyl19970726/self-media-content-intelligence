@@ -45,11 +45,34 @@ export const creatorDossierItemSchema = z.object({
   durationSeconds: z.number().nonnegative().nullable(),
   topic: z.string().nullable(),
   format: z.string().nullable(),
+  topics: z.array(z.string()).default([]),
+  formats: z.array(z.string()).default([]),
+  commercialSignals: z.array(z.string()).default([]),
+  classificationSources: z.array(z.enum(["surface_title", "deep_builder"])).default([]),
+  classificationBoundary: z.string().nullable().default(null),
+  classificationDetails: z.array(z.object({
+    label: z.string(),
+    axis: z.enum(["topic", "format", "commercial_signal"]),
+    sourceLevel: z.enum(["surface_title", "deep_builder"]),
+    membershipBoundary: z.string(),
+    registryBoundary: z.string()
+  })).default([]),
   coreContent: z.string().nullable(),
   contentArchitecture: z.array(z.string()),
   mechanismHypothesis: z.string().nullable(),
   selectionReason: z.string(),
-  evidenceStatus: z.enum(["deep_validated", "deep_built", "deep_pending", "surface_only", "missing"]),
+  evidenceStatus: z.enum([
+    "deep_validated",
+    "deep_evaluated_with_findings",
+    "deep_reviewed_no_findings",
+    "deep_reviewed_with_findings",
+    "deep_revised_unverified",
+    "deep_review_failed",
+    "deep_built",
+    "deep_pending",
+    "surface_only",
+    "missing"
+  ]),
   sourceFacts: postSourceFactsSchema.default(missingPostSourceFacts)
 });
 
@@ -93,7 +116,8 @@ export const creatorDossierSchema = z.object({
       annotatedPosts: z.number().int().nonnegative(),
       classifiedPosts: z.number().int().nonnegative(),
       unclassifiedPosts: z.number().int().nonnegative(),
-      artifactRef: z.string()
+      artifactRef: z.string(),
+      method: z.enum(["builder_adaptive", "title_rules"]).default("title_rules")
     }).nullable().default(null)
   }),
   contentSystem: z.object({
@@ -129,6 +153,7 @@ export const creatorDossierSchema = z.object({
   growthEngines: z.object({ statements: z.array(researchStatementSchema), health: dataHealthSchema }),
   businessPath: z.object({ statements: z.array(researchStatementSchema), health: dataHealthSchema }),
   crossPostResearch: crossPostResearchSchema.optional(),
+  synthesisSourceChanges: z.array(z.object({ postExternalId: z.string(), note: z.string() })).optional(),
   boundaries: z.array(z.string())
 });
 

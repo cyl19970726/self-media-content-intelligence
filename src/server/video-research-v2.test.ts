@@ -5,7 +5,8 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { runArtifactDir } from "../../packages/adapters/index.js";
 import type { CreatorResearchService } from "../../packages/research/index.js";
 import { sourceDigest } from "./report-source-revision.js";
-import { loadVideoResearch } from "./video-research.js";
+import { firstEvidenceEntryById, loadVideoResearch, loadWorkflowVideoResearch } from "./video-research.js";
+import { createHash } from "node:crypto";
 
 const runIds: string[] = [];
 const originalRevisions = process.env.SELF_MEDIA_REPORT_REVISIONS_DIR;
@@ -27,6 +28,16 @@ afterEach(() => {
 });
 
 describe("video reconstruction V2 projection", () => {
+  it("keeps a resolved shot frame when an evaluator reuses the same evidence ID with a manifest ref", () => {
+    const resolvedShot = { id: "SHOT-017", kind: "shot", artifactRef: "/artifacts/run/evidence/frames/shots/shot-017.jpg" };
+    const evaluatorRef = { id: "SHOT-017", kind: "shot", artifactRef: "evidence/evidence-pack.json" };
+
+    expect(firstEvidenceEntryById([
+      [resolvedShot.id, resolvedShot],
+      [evaluatorRef.id, evaluatorRef]
+    ])).toEqual([resolvedShot]);
+  });
+
   it("projects multimodal content and direct Builder directing/editing lenses", () => {
     const runId = "00000000-0000-4000-8000-000000000064";
     const videoId = "video-v2-fixture";
@@ -90,6 +101,18 @@ describe("video reconstruction V2 projection", () => {
     } as unknown as CreatorResearchService;
 
     const result = loadVideoResearch(service, "fixture-creator", videoId, runId);
+    const candidateRoot = path.join(runArtifactDir(runId), "workflow-reconstructions", "workflow", "attempt", videoId);
+    fs.cpSync(root, candidateRoot, { recursive: true });
+    const candidateRef = `/artifacts/${runId}/workflow-reconstructions/workflow/attempt/${videoId}/reconstruction.json`;
+    const candidateBytes = fs.readFileSync(path.join(candidateRoot, "reconstruction.json"));
+    const candidate = { reportArtifactRef: candidateRef, reportSha256: createHash("sha256").update(candidateBytes).digest("hex"), outcome: {} };
+    const candidateReader = loadWorkflowVideoResearch(service, runId, videoId, candidate);
+    expect(candidateReader?.quality.evaluationState).toBe("skipped");
+    expect(candidateReader?.contentBlocks[0]?.media[0]?.src).toContain("/workflow-reconstructions/workflow/attempt/");
+    expect(candidateReader?.visualEditing.openingAnalysis).toEqual(opening);
+    expect(loadVideoResearch(service, "fixture-creator", videoId, runId)?.quality.lineage.reconstructionArtifactRef).toBe(reconstructionArtifactRef);
+    fs.appendFileSync(path.join(candidateRoot, "reconstruction.json"), " ");
+    expect(() => loadWorkflowVideoResearch(service, runId, videoId, candidate)).toThrow("CANDIDATE_REVISION_CHANGED");
     expect(result?.visualEditing.openingAnalysis).toEqual(opening);
     expect(result?.directingLogic.packagingAnalysis).toBeNull();
     expect(result?.performanceContext.observation?.metrics[0]?.median).toBeNull();
@@ -98,6 +121,8 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.contentBlocks[0]?.type).toBe("before_after");
     expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0002", "TARGET-0004"]);
     expect(result?.contentBlocks[0]?.media.map((item) => item.role)).toEqual(["before", "during", "after"]);
+    expect(result?.contentBlocks[0]?.media.map((item) => item.proves)).toEqual(["", "中间状态可见", ""]);
+    expect(result?.contentBlocks[0]?.media.map((item) => item.cannotProve)).toEqual(["", "隐藏点击未知", ""]);
     // A block-level frame that is not repeated in a step must remain reachable.
     expect(result?.contentBlocks[1]?.media.map(item => item.ref)).toEqual(["TARGET-0002"]);
     expect(result?.contentBlocks[1]?.steps[0]?.media[0]).toMatchObject({ label: "打开设置" });
@@ -110,7 +135,7 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.quality.promotionState).toBe("provisional");
     expect(result?.readerSummary).toMatchObject({
       productState: "provisional",
-      statusLabel: "分析尚未闭环",
+      statusLabel: "分析已生成 · 尚未独立评估",
       strengths: ["展示最短路径", "结果状态出现", "结果状态在操作后出现"],
       limitations: expect.arrayContaining(["隐藏参数未知", "隐藏设置没有展示"])
     });
