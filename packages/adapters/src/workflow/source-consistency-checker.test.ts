@@ -37,6 +37,14 @@ function outputDirectory(attemptId: string): string {
   return path.join(runArtifactDir(creatorRunId), "workflow-source-checks", workflowRunId, attemptId, postExternalId);
 }
 
+function enableCover(): void {
+  fs.writeFileSync(path.join(runArtifactDir(creatorRunId), "cover.webp"), "frozen cover bytes");
+  const mediaManifestArtifactRef = writeArtifact(creatorRunId, "media-with-cover.json", { items: [{
+    externalId: postExternalId, coverState: "ready", coverArtifactRef: artifactRef(creatorRunId, "cover.webp")
+  }] });
+  pinned = { ...pinned, source: { ...pinned.source, mediaManifestArtifactRef } };
+}
+
 function modelResponse(_invocation: InvokeCodexSdkRequest, overrides: Record<string, unknown> = {}): string {
   return JSON.stringify({
     schemaVersion: "post-source-consistency@2",
@@ -110,6 +118,34 @@ afterEach(() => {
 });
 
 describe("runSourceConsistencyCheck", () => {
+  it("includes the frozen cover in both round manifests and image submissions, and accepts its citation", async () => {
+    enableCover();
+    const first = { verdict: "uncertain", comparisons: [{ postClaim: "来源身份", bearing: "identity", relation: "insufficient",
+      evidenceRefs: ["post-cover.webp", "frames/sample-1.jpg"], reason: "封面与抽帧仍需补充核对。" }] };
+    const second = { comparisons: [{ postClaim: "来源身份", bearing: "identity", relation: "supports",
+      evidenceRefs: ["post-cover.webp", "contact-sheets/sheet-1.jpg"], reason: "封面与视频上下文一致。" }] };
+    const mock = sequenceInvoke([first, second]);
+    const attemptId = crypto.randomUUID();
+    const result = await runSourceConsistencyCheck(request(attemptId), pinned, { invoke: mock.invoke });
+    expect(result.artifact.verdict).toBe("consistent");
+    expect(result.artifact.comparisons[0]?.evidenceRefs).toContain(artifactRef(creatorRunId,
+      `workflow-source-checks/${workflowRunId}/${attemptId}/${postExternalId}/post-cover.webp`));
+    for (const round of [1, 2]) {
+      const manifest = JSON.parse(fs.readFileSync(path.join(outputDirectory(attemptId),
+        `source-consistency-input-round-${round}.json`), "utf8")) as { evidence: Array<{ ref: string; sha256: string }> };
+      const cover = manifest.evidence.find(item => item.ref === "post-cover.webp");
+      expect(cover?.sha256).toBe(crypto.createHash("sha256").update("frozen cover bytes").digest("hex"));
+      expect(mock.calls[round - 1]?.imagePaths).toContain(path.join(outputDirectory(attemptId), "post-cover.webp"));
+    }
+  });
+
+  it("rejects mutation of the frozen cover during inspection", async () => {
+    enableCover();
+    await expect(runSourceConsistencyCheck(request(), pinned, { invoke: fakeInvoke(invocation => {
+      fs.appendFileSync(path.join(invocation.outputDir, "post-cover.webp"), "tampered");
+    }) })).rejects.toThrow("SOURCE_CONSISTENCY_INPUT_MUTATED");
+  });
+
   it("overwrites a model-supplied input hash with the Host-authoritative revision", async () => {
     const attemptId = crypto.randomUUID();
     const result = await runSourceConsistencyCheck(request(attemptId), pinned, { invoke: fakeInvoke(undefined, {
@@ -273,6 +309,7 @@ describe("runSourceConsistencyCheck", () => {
   });
 
   it("returns uncertain without invoking the SDK when no frame can be extracted", async () => {
+    enableCover();
     fs.writeFileSync(path.join(runArtifactDir(creatorRunId), "source.mp4"), "not-a-video");
     let invoked = false;
     const events: Array<{ type: string; data: unknown }> = [];

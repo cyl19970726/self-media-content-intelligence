@@ -1,10 +1,30 @@
-import type { WorkflowArtifact, WorkflowAttemptRecord, WorkflowEvent, WorkflowRunState, WorkflowStepRecord } from "./contracts";
+import type { WorkflowArtifact, WorkflowAttemptRecord, WorkflowEvent, WorkflowPhase, WorkflowRunState, WorkflowStepRecord } from "./contracts";
 
 const stateLabels: Record<WorkflowRunState, string> = {
   queued: "等待执行", running: "执行中", waiting: "等待子流程", blocked: "已阻塞", needs_review: "待处理", succeeded: "执行完成", failed: "执行失败", canceled: "已取消"
 };
 export const workflowStateLabel = (state: WorkflowRunState) => stateLabels[state];
+export const workflowReaderLabel = (workflowId: string): string => workflowId.startsWith("post.") ? "单帖研究"
+  : workflowId.startsWith("creator.") ? "博主研究" : "工作流执行";
+
+export function originalPostReportHref(creatorId: string | null | undefined, creatorRunId: string | null | undefined,
+  postId: string | null | undefined): string | null {
+  return creatorId && creatorRunId && postId
+    ? `/creators/${encodeURIComponent(creatorId)}/videos/${encodeURIComponent(postId)}?run=${encodeURIComponent(creatorRunId)}` : null;
+}
 export const activeWorkflowState = (state: WorkflowRunState) => state === "queued" || state === "running" || state === "waiting";
+
+export function reusedCandidateWithoutModel(phase: WorkflowPhase, steps: WorkflowStepRecord[], events: WorkflowEvent[]): boolean {
+  if (phase.path.at(-1) !== "candidate-build") return false;
+  const buildStepIds = new Set(steps.filter(step => step.key === "build" || step.key === "candidate-build:builder").map(step => step.id));
+  if (!buildStepIds.size) return false;
+  const buildEvents = events.filter(event => event.stepRunId && buildStepIds.has(event.stepRunId));
+  const copied = buildEvents.some(event => event.type === "candidate.copied"
+    && record(event.data)?.reason === "reuse_existing_candidate");
+  const invoked = buildEvents.some(event => event.type === "agent.started" || event.type === "agent.usage"
+    || event.type === "agent.lifecycle" && record(event.data)?.status === "started");
+  return copied && !invoked;
+}
 
 function text(value: unknown): string | null {
   if (typeof value === "string" && value.trim()) return value.trim();

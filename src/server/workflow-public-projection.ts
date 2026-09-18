@@ -11,7 +11,13 @@ function diagnosticId(scope: string, raw: unknown, identity: string): string {
 }
 
 function errorProjection(scope: string, raw: unknown, identity: string): PublicDiagnostic {
-  return { errorId: diagnosticId(scope, raw, identity), message: "执行未能完成；可凭诊断编号在本地查看详情。" };
+  const known: Record<string, string> = {
+    SOURCE_CONSISTENCY_EVIDENCE_REF_INVALID: "来源核对引用了未登记的证据，结果尚未采用。修复证据登记后可重试来源核对步骤。",
+    SOURCE_CONSISTENCY_INPUT_MUTATED: "来源核对期间输入证据发生变化，结果尚未采用。请确认当前证据后发起新的研究。",
+    CODEX_SDK_TIMEOUT: "模型执行超时，尚未产生可采用的结果。可以重试失败步骤。",
+  };
+  return { errorId: diagnosticId(scope, raw, identity), message: typeof raw === "string" && Object.hasOwn(known, raw)
+    ? known[raw]! : "执行未能完成；可凭诊断编号在本地查看详情。" };
 }
 
 function safeIdentifier(value: unknown): string | undefined {

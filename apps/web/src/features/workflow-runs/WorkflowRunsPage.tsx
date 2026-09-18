@@ -2,10 +2,11 @@ import { useCallback, useEffect, useRef, useState, type ComponentType, type Reac
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, LoaderCircle, RefreshCw, RotateCcw, XCircle } from "lucide-react";
 import { cancelWorkflowRun, getWorkflowArtifact, getWorkflowArtifactReader, getWorkflowEvents, getWorkflowRun, listWorkflowRuns, retryWorkflowStep } from "./workflow-runs-api";
-import type { WorkflowArtifact, WorkflowEvent, WorkflowPhase, WorkflowRunDetail, WorkflowRunRecord } from "./model/contracts";
+import type { WorkflowArtifact, WorkflowEvent, WorkflowPhase, WorkflowRunDetail, WorkflowRunRecord, WorkflowStepRecord } from "./model/contracts";
 import type { VideoResearch } from "../../shared/contracts/core";
+import { getCreatorResearchRun, getVideoResearch } from "../../shared/api/client";
 import type { WorkflowArtifactReader, WorkflowCreatorReaderData } from "../../shared/contracts/workflow-reader";
-import { activeWorkflowState, artifactLabel, attemptPresentation, emptyArtifactMessage, eventSummary, isKnownArtifactType, stepCanRetry, stepLabel, stepSummary, workflowStateLabel } from "./model/presentation";
+import { activeWorkflowState, artifactLabel, attemptPresentation, emptyArtifactMessage, eventSummary, isKnownArtifactType, originalPostReportHref, reusedCandidateWithoutModel, stepCanRetry, stepLabel, stepSummary, workflowReaderLabel, workflowStateLabel } from "./model/presentation";
 import "./workflow-runs.css";
 
 function ArtifactPayload({ ownerRunId, artifact, anchor: suppliedAnchor, PostReader, CreatorReader }: { anchor?: string; ownerRunId: string; artifact: WorkflowArtifact; PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
@@ -35,7 +36,7 @@ function ArtifactPayload({ ownerRunId, artifact, anchor: suppliedAnchor, PostRea
     }
     catch (cause) { setError(cause instanceof Error ? cause.message : "无法读取资产"); }
   };
-  return <details ref={element} id={anchor} open={expanded} className={`workflow-artifact${artifact.type === "post-candidate" || artifact.type === "creator-synthesis" ? " workflow-artifact--post-candidate" : ""}`} onToggle={(event) => { const open = event.currentTarget.open; setExpanded(open); if (open) { void load(); if (location.hash !== `#${anchor}`) void navigate({ hash: anchor }, { replace: true, preventScrollReset: true }); } }}>
+  return <details ref={element} id={anchor} open={expanded} className={`workflow-artifact${artifact.type === "post-candidate" || artifact.type === "creator-synthesis" ? " workflow-artifact--post-candidate" : ""}`} onToggle={(event) => { const open = event.currentTarget.open; setExpanded(open); if (open) { void load(); if (location.hash !== `#${anchor}`) void navigate({ pathname: location.pathname, search: location.search, hash: anchor }, { replace: true, preventScrollReset: true }); } }}>
     <summary>{artifactLabel(artifact)}</summary>
     {error && <p className="workflow-error">{error}</p>}
     {payload !== undefined && (artifact.type === "post-candidate"
@@ -127,9 +128,13 @@ function ArtifactContent({ value, depth = 0 }: { value: unknown; depth?: number 
   })}</dl>;
 }
 
-function RunList({ runs, selected }: { runs: WorkflowRunRecord[]; selected?: string }) {
+function runHref(id: string, creatorRunId?: string | null): string {
+  return `/workflow-runs/${encodeURIComponent(id)}${creatorRunId ? `?creatorRunId=${encodeURIComponent(creatorRunId)}` : ""}`;
+}
+
+function RunList({ runs, selected, creatorRunId }: { runs: WorkflowRunRecord[]; selected?: string; creatorRunId?: string }) {
   if (!runs.length) return <p className="workflow-empty">这里没有关联工作流记录。系统不会为尚未执行的流程补造进度。</p>;
-  return <div className="workflow-run-list">{runs.map((run) => <Link key={run.id} to={`/workflow-runs/${encodeURIComponent(run.id)}`} className={selected === run.id ? "active" : ""}>
+  return <div className="workflow-run-list">{runs.map((run) => <Link key={run.id} to={runHref(run.id, creatorRunId)} className={selected === run.id ? "active" : ""}>
     <span className={`workflow-state workflow-state--${run.state}`}>{workflowStateLabel(run.state)}</span><strong>{run.workflowId}</strong><small>{run.workflowRevision} · {run.id}</small>
   </Link>)}</div>;
 }
@@ -138,23 +143,47 @@ function phaseAssetAnchor(phaseId: string, artifactId: string, role: string): st
   return `phase-asset-${encodeURIComponent(phaseId)}-${encodeURIComponent(role)}-${artifactId}`;
 }
 
-function PhaseBoard({ phases, PostReader, CreatorReader }: { phases: WorkflowPhase[]; PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
+function PhaseBoard({ phases, steps, events, PostReader, CreatorReader }: { phases: WorkflowPhase[]; steps: WorkflowStepRecord[]; events: WorkflowEvent[]; PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
+  const location = useLocation();
   if (!phases.length) return <section className="workflow-section"><header><span>阶段</span><h2>未记录阶段编排</h2><p>这条历史运行没有 Phase 数据；下方保留原始执行审计和已登记资产。</p></header></section>;
   return <section className="workflow-section workflow-phases"><header><span>阶段</span><h2>研究路径与成果</h2><p>候选报告、独立审阅和修订记录分别展示；修订稿标明尚未再次独立审阅，保留意见处理记录。</p></header>{phases.map((phase) => {
     const roles = new Set(phase.artifacts.map((asset) => asset.role));
     const counts = Object.entries(phase.stepCounts).map(([state, count]) => `${workflowStateLabel(state as WorkflowPhase["state"])} ${count}`).join(" · ");
-    const usage = phase.usage.attempts ? `实际用量：输入 ${phase.usage.inputTokens ?? "未记录"} · 输出 ${phase.usage.outputTokens ?? "未记录"}${phase.usage.unknown ? "（部分未记录）" : ""}` : "无模型调用";
+    const reused = reusedCandidateWithoutModel(phase, steps, events);
+    const usage = reused ? "无生成模型调用" : phase.usage.attempts ? `实际用量：输入 ${phase.usage.inputTokens ?? "未记录"} · 输出 ${phase.usage.outputTokens ?? "未记录"}${phase.usage.unknown ? "（部分未记录）" : ""}` : "无模型调用";
     const subject = phase.subjectTitle ?? phase.subjectId;
-    return <details className="workflow-phase" key={phase.id} open style={{ marginLeft: `${phase.depth * 18}px` }}><summary><span className={`workflow-state workflow-state--${phase.state}`}>{workflowStateLabel(phase.state)}</span><b>{phase.title}{subject && ` · ${subject}`}</b><small>{phase.purpose}<br/>{counts} · {usage}（含子阶段） · 耗时 {phase.elapsedMs === null ? "未记录" : `${Math.floor(phase.elapsedMs / 60000)}分${Math.floor(phase.elapsedMs / 1000) % 60}秒`}</small></summary>
+    return <details className="workflow-phase" key={phase.id} open style={{ marginLeft: `${phase.depth * 18}px` }}><summary><span className={`workflow-state workflow-state--${phase.state}`}>{workflowStateLabel(phase.state)}</span><b>{reused ? "复用已有候选" : phase.title}{subject && ` · ${subject}`}</b><small>{reused ? "复用已有候选；本阶段未调用生成模型" : phase.purpose}<br/>{counts} · {usage}（含子阶段） · 耗时 {phase.elapsedMs === null ? "未记录" : `${Math.floor(phase.elapsedMs / 60000)}分${Math.floor(phase.elapsedMs / 1000) % 60}秒`}</small></summary>
       {phase.reason && <p className="workflow-phase-reason">{phase.reason}</p>}
       <div className="workflow-phase-expected">{phase.expectedArtifacts.map((expected) => <span key={expected.role} className={roles.has(expected.role) ? "present" : expected.required ? "missing" : "pending"}>{expected.title ?? expected.role} · {roles.has(expected.role) ? "已登记" : expected.required ? "预期未产出" : "尚未产出"}</span>)}</div>
-      {phase.artifacts.length ? <div className="workflow-phase-artifacts">{phase.artifacts.map((asset) => <div className="workflow-phase-artifact" key={`${asset.ownerRunId}:${asset.artifact.id}:${asset.role}`}><header><span>{asset.title ?? asset.role}</span><Link to={`#${phaseAssetAnchor(phase.id, asset.artifact.id, asset.role)}`}>定位此资产</Link></header><ArtifactPayload anchor={phaseAssetAnchor(phase.id, asset.artifact.id, asset.role)} ownerRunId={asset.ownerRunId} artifact={asset.artifact} PostReader={PostReader} CreatorReader={CreatorReader}/></div>)}</div> : <p className="workflow-empty">该阶段尚未登记可读资产。</p>}
+      {phase.artifacts.length ? <div className="workflow-phase-artifacts">{phase.artifacts.map((asset) => <div className="workflow-phase-artifact" key={`${asset.ownerRunId}:${asset.artifact.id}:${asset.role}`}><header><span>{asset.title ?? asset.role}</span><Link to={`${location.pathname}${location.search}#${phaseAssetAnchor(phase.id, asset.artifact.id, asset.role)}`}>定位此资产</Link></header><ArtifactPayload anchor={phaseAssetAnchor(phase.id, asset.artifact.id, asset.role)} ownerRunId={asset.ownerRunId} artifact={asset.artifact} PostReader={PostReader} CreatorReader={CreatorReader}/></div>)}</div> : <p className="workflow-empty">该阶段尚未登记可读资产。</p>}
     </details>;
   })}</section>;
 }
 
 function RunDetail({ detail, events, runs, refresh, PostReader, CreatorReader }: { detail: WorkflowRunDetail; events: WorkflowEvent[]; runs: WorkflowRunRecord[]; refresh: () => Promise<void>; PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
   const location = useLocation();
+  const [search] = useSearchParams();
+  const scopedCreatorRunId = search.get("creatorRunId");
+  const creatorRunId = typeof detail.run.metadata?.creatorRunId === "string" ? detail.run.metadata.creatorRunId : null;
+  const postId = typeof detail.run.metadata?.postId === "string" ? detail.run.metadata.postId : null;
+  const [postIdentity, setPostIdentity] = useState<{ creatorId: string | null; title: string | null }>({ creatorId: null, title: null });
+  useEffect(() => {
+    let active = true;
+    setPostIdentity({ creatorId: null, title: null });
+    if (!creatorRunId || !postId || !detail.run.workflowId.startsWith("post.")) return;
+    getCreatorResearchRun(creatorRunId).then(async (owner) => {
+      if (!active) return;
+      setPostIdentity({ creatorId: owner.creatorId, title: null });
+      if (!owner.creatorId) return;
+      try {
+        const report = await getVideoResearch(owner.creatorId, postId, creatorRunId);
+        if (active) setPostIdentity({ creatorId: owner.creatorId, title: report.title });
+      } catch { /* A historical report may be unavailable; retain the verified source ID. */ }
+    }).catch(() => { /* Keep the workflow record usable if creator metadata is unavailable. */ });
+    return () => { active = false; };
+  }, [creatorRunId, postId, detail.run.workflowId]);
+  const reportHref = originalPostReportHref(postIdentity.creatorId, creatorRunId, postId);
+  const readerLabel = workflowReaderLabel(detail.run.workflowId);
   const [actionError, setActionError] = useState<string | null>(null);
   const [acting, setActing] = useState<string | null>(null);
   const operationLock = useRef(new Set<string>());
@@ -178,16 +207,28 @@ function RunDetail({ detail, events, runs, refresh, PostReader, CreatorReader }:
   };
   const attempts = (id: string) => detail.attempts.filter((attempt) => attempt.stepRunId === id);
   const childRuns = runs.filter((run) => run.parentRunId === detail.run.id);
+  const buildChild = childRuns.find((run) => run.workflowId === "post.build");
+  const buildChildId = buildChild?.id;
+  const [linkedBuild, setLinkedBuild] = useState<{ runId: string; steps: WorkflowStepRecord[]; events: WorkflowEvent[] } | null>(null);
+  useEffect(() => {
+    let active = true;
+    if (!buildChildId) { setLinkedBuild(null); return; }
+    Promise.all([getWorkflowRun(buildChildId), getWorkflowEvents(buildChildId)]).then(([child, response]) => {
+      if (active) setLinkedBuild({ runId: buildChildId, steps: child.steps, events: response.events });
+    }).catch(() => { if (active) setLinkedBuild(null); });
+    return () => { active = false; };
+  }, [buildChildId, buildChild?.state]);
+  const buildEvidence = linkedBuild?.runId === buildChildId ? linkedBuild : null;
   return <article className="workflow-detail">
-    <nav className="breadcrumb"><Link to="/workflow-runs"><ArrowLeft size={14}/>全部工作流</Link><span>/</span><b>{detail.run.workflowId}</b></nav>
-    <header className="workflow-hero"><div><span>WORKFLOW RUN</span><h1>{detail.run.workflowId}</h1><p>执行记录显示流程状态、已登记资产与可恢复步骤。执行完成不表示研究已经验收。</p></div><div className={`workflow-state-box workflow-state--${detail.run.state}`}><strong>{workflowStateLabel(detail.run.state)}</strong><small>{detail.run.workflowRevision} · {detail.run.id}</small>{activeWorkflowState(detail.run.state) && <button onClick={() => void cancel()} disabled={acting !== null}><XCircle size={14}/>取消运行</button>}</div></header>
+    <nav className="breadcrumb"><Link to={scopedCreatorRunId ? `/workflow-runs?creatorRunId=${encodeURIComponent(scopedCreatorRunId)}` : "/workflow-runs"}><ArrowLeft size={14}/>全部工作流</Link><span>/</span><b>{readerLabel}</b></nav>
+    <header className="workflow-hero"><div><span>WORKFLOW RUN</span><h1>{postIdentity.title ? `${readerLabel} · ${postIdentity.title}` : postId ? `${readerLabel} · ${postId}` : readerLabel}</h1><p>执行记录显示流程状态、已登记资产与可恢复步骤。执行完成不表示研究已经验收。</p>{reportHref && <Link className="workflow-return-report" to={reportHref}><ArrowLeft size={14}/>返回单帖报告</Link>}</div><div className={`workflow-state-box workflow-state--${detail.run.state}`}><strong>{workflowStateLabel(detail.run.state)}</strong><small>{detail.run.workflowId} · {detail.run.workflowRevision} · {detail.run.id}</small>{activeWorkflowState(detail.run.state) && <button onClick={() => void cancel()} disabled={acting !== null}><XCircle size={14}/>取消运行</button>}</div></header>
     {actionError && <p className="workflow-error"><AlertTriangle size={15}/>{actionError}</p>}
     {detail.run.error && <p className="workflow-error"><AlertTriangle size={15}/>{detail.run.error}{detail.run.errorId && <small>诊断编号：{detail.run.errorId}</small>}</p>}
     {(detail.run.parentRunId || childRuns.length > 0) && <nav className="workflow-lineage" aria-label="工作流父子关系">
-      {detail.run.parentRunId && <Link to={`/workflow-runs/${encodeURIComponent(detail.run.parentRunId)}`}>查看父运行 <small>{detail.run.parentRunId}</small></Link>}
-      {childRuns.map((run) => <Link key={run.id} to={`/workflow-runs/${encodeURIComponent(run.id)}`}>子运行 · {run.workflowId}{run.metadata?.postId ? ` · ${run.metadata.postId}` : ""} <span className={`workflow-state workflow-state--${run.state}`}>{workflowStateLabel(run.state)}</span></Link>)}
+      {detail.run.parentRunId && <Link to={runHref(detail.run.parentRunId, scopedCreatorRunId)}>查看父运行 <small>{detail.run.parentRunId}</small></Link>}
+      {childRuns.map((run) => <Link key={run.id} to={runHref(run.id, scopedCreatorRunId)}>子运行 · {run.workflowId}{run.metadata?.postId ? ` · ${run.metadata.postId}` : ""} <span className={`workflow-state workflow-state--${run.state}`}>{workflowStateLabel(run.state)}</span></Link>)}
     </nav>}
-    <PhaseBoard phases={detail.phases ?? []} PostReader={PostReader} CreatorReader={CreatorReader}/>
+    <PhaseBoard phases={detail.phases ?? []} steps={[...detail.steps, ...(buildEvidence?.steps ?? [])]} events={[...events, ...(buildEvidence?.events ?? [])]} PostReader={PostReader} CreatorReader={CreatorReader}/>
     <details className="workflow-audit" open={location.hash.startsWith("#artifact-") || undefined}><summary>执行审计 · {detail.steps.length} 个步骤 / {detail.attempts.length} 次尝试</summary><section className="workflow-section"><header><span>步骤</span><h2>当前执行路径</h2><p>只展示各步骤的最新摘要；原始 trace 不在此处展开。</p></header><div className="workflow-step-table"><div className="workflow-step-row workflow-step-row--head"><span>步骤</span><span>状态 / 尝试</span><span>资产与判断</span><span>操作</span></div>{detail.steps.map((step) => {
       const relatedArtifacts = detail.artifacts.filter((artifact) => artifact.producedBy.stepRunId === step.id);
       const stepAttempts = attempts(step.id);
@@ -249,5 +290,5 @@ export default function WorkflowRunsPage({ PostReader, CreatorReader }: { PostRe
     return () => { window.clearInterval(interval); document.removeEventListener("visibilitychange", refreshWhenVisible); };
   }, [detail, poll]);
   if (loading && !detail) return <div className="page-loader"><LoaderCircle className="spin"/><p>正在读取工作流记录</p></div>;
-  return <main className="workflow-page"><aside><header><span>WORKFLOW RUNS</span><button title="刷新" onClick={() => void load()}><RefreshCw size={14}/></button></header><RunList runs={runs} selected={id}/></aside>{error ? <p className="workflow-error"><AlertTriangle size={15}/>{error}</p> : detail ? <RunDetail detail={detail} events={events} runs={runs} refresh={load} PostReader={PostReader} CreatorReader={CreatorReader}/> : <article className="workflow-detail workflow-detail--empty"><h1>工作流执行记录</h1><p>选择一条记录查看步骤、资产和可恢复操作。</p></article>}</main>;
+  return <main className="workflow-page"><aside><header><span>WORKFLOW RUNS</span><button title="刷新" onClick={() => void load()}><RefreshCw size={14}/></button></header><RunList runs={runs} selected={id} creatorRunId={creatorRunId}/></aside>{error ? <p className="workflow-error"><AlertTriangle size={15}/>{error}</p> : detail ? <RunDetail detail={detail} events={events} runs={runs} refresh={load} PostReader={PostReader} CreatorReader={CreatorReader}/> : <article className="workflow-detail workflow-detail--empty"><h1>工作流执行记录</h1><p>选择一条记录查看步骤、资产和可恢复操作。</p></article>}</main>;
 }

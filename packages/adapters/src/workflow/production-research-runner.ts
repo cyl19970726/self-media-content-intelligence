@@ -237,7 +237,11 @@ export class ProductionResearchRunner implements AgentRunner {
       if (fileDigest(artifactPath(original)) !== pinned.reuseCandidate.sha256) throw new Error("REUSE_CANDIDATE_CHANGED");
     }
     if (original) {
-      fs.cpSync(path.dirname(artifactPath(original)), directory, { recursive: true });
+      const predecessorDirectory = path.dirname(artifactPath(original));
+      // `.agents` is a per-attempt staged skill cache.  Never inherit it with
+      // the candidate: the current frozen method package must stage afresh.
+      fs.cpSync(predecessorDirectory, directory, { recursive: true,
+        filter: (source) => path.relative(predecessorDirectory, source) !== ".agents" });
       if (repair || coreEvidenceRecovery) archivePredecessorEvaluation(directory, original);
       preservePreparedCandidateInputs(directory, artifactPath(source.sourceMediaArtifactRef));
       await request.emit("candidate.copied", { sourceArtifactRef: original, reason: reviewer ? "independent_review"

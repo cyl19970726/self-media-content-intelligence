@@ -3,7 +3,7 @@ import { ReportStatusNotice } from "./ReportStatusNotice";
 import { ReportOverview } from "./ReportOverview";
 import { ReportCoverageNotice } from "./ReportCoverageNotice";
 import { useEffect, useState } from "react";
-import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, LoaderCircle } from "lucide-react";
 import { getVideoResearch } from "../../shared/api/client";
 import type { VideoResearch } from "../../shared/contracts/core";
@@ -15,6 +15,7 @@ import { VisualEditingReport } from "./VisualEditingReport";
 import { ResearchAuditAppendix } from "./ResearchAuditAppendix";
 import { LensWorkspace, type LensOutlineItem } from "./LensWorkspace";
 import { timestamp, stageReadingLabel } from "./video-reader-utils";
+import { startFreshPostWorkflow } from "../../shared/api/post-workflows";
 import "./video-reader-report.css";
 
 type Lens = "content" | "opening" | "directing" | "visual" | "audit";
@@ -84,10 +85,13 @@ function outlineFor(data: VideoResearch, lens: Lens): LensOutlineItem[] {
 
 export default function VideoEvidencePage() {
   const { id = "", videoId = "" } = useParams();
+  const navigate = useNavigate();
   const location = useLocation();
   const [search] = useSearchParams();
   const [data, setData] = useState<VideoResearch | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [starting, setStarting] = useState(false);
+  const [startError, setStartError] = useState<string | null>(null);
   const runId = search.get("run") ?? undefined;
   const requestedLens = search.get("lens");
   const legacyOpening = location.hash === "#visual-opening" || location.hash === "#directing-packaging";
@@ -114,12 +118,32 @@ export default function VideoEvidencePage() {
   const returnTo = data ? singlePostReturnHref(data.creatorId, runId, rawReturnTo) : "/creators";
   const returnLabel = returnTo === "/analyze" ? "单帖报告" : `${data?.creatorName ?? "博主"} 的博主研究`;
 
+  async function startFreshResearch() {
+    if (!runId || !videoId || starting) return;
+    setStarting(true); setStartError(null);
+    try {
+      const receipt = await startFreshPostWorkflow(runId, videoId);
+      if (!receipt.workflowRunId) throw new Error("工作流已创建，但未返回运行记录 ID");
+      navigate(`/workflow-runs/${encodeURIComponent(receipt.workflowRunId)}?creatorRunId=${encodeURIComponent(runId)}`);
+    } catch (cause) {
+      setStartError(cause instanceof Error ? cause.message : "无法启动单帖研究");
+      setStarting(false);
+    }
+  }
+
   if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div></main>;
   if (!data) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在加载报告</p></div></main>;
 
   return <main className="video-reader-shell">
     <article className="video-reader-report">
       <VideoReaderHero data={data} returnTo={returnTo} returnLabel={returnLabel}/>
+      {runId && <div className="reader-research-action">
+        <div><b>继续研究这条视频</b><p>基于当前原帖与媒体证据启动新工作流并重新评估。已有候选报告可能被复用，继续接受审核。</p></div>
+        <button type="button" onClick={() => void startFreshResearch()} disabled={starting}>
+          {starting ? "正在启动…" : "用当前方法重新研究"}
+        </button>
+        {startError && <p className="reader-research-action__error" role="alert">{startError}</p>}
+      </div>}
       <ReportStatusNotice data={data}/>
       <ReportOverview data={data}/>
       <ReaderNavigation current={currentLens} search={search}/>

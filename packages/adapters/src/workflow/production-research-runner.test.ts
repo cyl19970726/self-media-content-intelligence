@@ -80,6 +80,9 @@ describe("core evidence count Builder recovery", () => {
     fs.writeFileSync(path.join(candidateDirectory, "reconstruction.json"), "{\"candidate\":true}");
     fs.writeFileSync(path.join(candidateDirectory, "evaluation.json"), "{\"predecessor\":true}");
     fs.writeFileSync(path.join(candidateDirectory, "gate-report.json"), "{\"ready\":false}");
+    fs.writeFileSync(path.join(candidateDirectory, ".frozen-evidence"), "preserve this hidden candidate input");
+    fs.mkdirSync(path.join(candidateDirectory, ".agents", "skills", "video-content-reconstruction"), { recursive: true });
+    fs.writeFileSync(path.join(candidateDirectory, ".agents", "skills", "video-content-reconstruction", "SKILL.md"), "old staged method");
     fs.mkdirSync(path.join(candidateDirectory, "runtime-three-lens"));
     fs.writeFileSync(path.join(candidateDirectory, "runtime-three-lens/content-restoration.json"), "{\"old\":true}");
     fs.writeFileSync(path.join(candidateDirectory, "media-preparation.json"), JSON.stringify({ sourceMedia: { fingerprint: digest(sourcePath) },
@@ -95,6 +98,8 @@ describe("core evidence count Builder recovery", () => {
         expect(fs.existsSync(path.join(recoveryDirectory, "evaluation.json"))).toBe(false);
         expect(fs.existsSync(path.join(recoveryDirectory, "gate-report.json"))).toBe(false);
         expect(fs.existsSync(path.join(recoveryDirectory, "runtime-three-lens"))).toBe(false);
+        expect(fs.existsSync(path.join(recoveryDirectory, ".agents"))).toBe(false);
+        expect(fs.readFileSync(path.join(recoveryDirectory, ".frozen-evidence"), "utf8")).toBe("preserve this hidden candidate input");
         const predecessor = path.join(recoveryDirectory, "predecessor-evaluation", "immediate-predecessor");
         expect(JSON.parse(fs.readFileSync(path.join(predecessor, "evaluation.json"), "utf8"))).toEqual({ predecessor: true });
         expect(JSON.parse(fs.readFileSync(path.join(predecessor, "gate-report.json"), "utf8"))).toEqual({ ready: false });
@@ -125,6 +130,7 @@ describe("core evidence count Builder recovery", () => {
       data: expect.objectContaining({ reason: "core_evidence_count_repair" }) }));
     expect(fs.existsSync(path.join(candidateDirectory, "evaluation.json"))).toBe(true);
     expect(fs.existsSync(path.join(candidateDirectory, "gate-report.json"))).toBe(true);
+    expect(fs.readFileSync(path.join(candidateDirectory, ".agents", "skills", "video-content-reconstruction", "SKILL.md"), "utf8")).toBe("old staged method");
     expect(digest(sourcePath)).toBe(sourceBefore);
     if (previousRuntime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR; else process.env.SELF_MEDIA_RUNTIME_DIR = previousRuntime;
   });

@@ -89,3 +89,12 @@ it("projects only the public disposition fields from research revisions", () => 
     dispositions: [{ id: "finding-1", status: "changed", reason: "已补证据。" }], validation: { valid: true } });
   expect(JSON.stringify(result)).not.toContain("/Users/private");
 });
+
+
+it("explains allowlisted source failures without echoing unknown private diagnostics", () => {
+  const event = (error: string) => projectWorkflowEvent({ id: "failure", runId: "run", seq: 1, type: "step.failed", timestamp: "2026-09-18T00:00:00Z", data: { error } } as never);
+  expect(event("SOURCE_CONSISTENCY_EVIDENCE_REF_INVALID").data).toMatchObject({ message: expect.stringContaining("未登记的证据"), errorId: expect.stringMatching(/^wf-/) });
+  const unknown = JSON.stringify(event("SOURCE_CONSISTENCY_EVIDENCE_REF_INVALID /Users/private/secret"));
+  expect(unknown).not.toContain("/Users/private");
+  expect(unknown).toContain("诊断编号");
+});

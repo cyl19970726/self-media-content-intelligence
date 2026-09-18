@@ -12,6 +12,13 @@
 .reader-hero__visual { margin: 0; position: relative; background: var(--ink); }
 .reader-hero__visual img { width: 100%; height: 218px; display: block; object-fit: cover; object-position: center; }
 .reader-hero__visual figcaption { padding: 10px 12px; display: flex; justify-content: space-between; color: #d9ded9; background: var(--ink); font: 500 9px "IBM Plex Mono"; }
+.reader-research-action { margin: 8px 0 28px; padding: 18px 22px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; border: 1px solid var(--line); background: #ebe8df; }
+.reader-research-action > div { flex: 1 1 320px; }
+.reader-research-action b { font-size: 15px; font-weight: 600; }
+.reader-research-action p { margin: 5px 0 0; color: #626963; font-size: 12px; line-height: 1.5; }
+.reader-research-action button { padding: 11px 16px; border: 0; background: var(--teal); color: white; font-size: 12px; cursor: pointer; }
+.reader-research-action button:disabled { opacity: .6; cursor: wait; }
+.reader-research-action .reader-research-action__error { flex-basis: 100%; margin: 0; color: #9b3d30; }
 
 .reader-navigation { position: sticky; top: 0; z-index: 5; min-height: 48px; display: flex; align-items: stretch; overflow-x: auto; border-block: 1px solid var(--ink); background: rgba(243,240,232,.96); backdrop-filter: blur(10px); }
 .reader-navigation a { padding: 0 20px; display: inline-flex; align-items: center; flex: 0 0 auto; border-right: 1px solid var(--line); color: #5f6762; font-size: 12px; }

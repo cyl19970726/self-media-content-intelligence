@@ -63,10 +63,12 @@ export async function runSourceConsistencyCheck(request: AgentRunRequest<unknown
     const privateRoot = path.join(runtimeDir(), "source-check-traces", request.runId, request.stepRunId, request.attemptId);
     fs.mkdirSync(path.join(output, "frames"), { recursive: true });
     fs.mkdirSync(privateRoot, { recursive: true, mode: 0o700 });
-    freezePostSourceInput(source, output);
+    const frozenSource = freezePostSourceInput(source, output);
     const sourceMediaSha256 = fileSha(video);
     const seconds = await duration(video);
     const evidence: Evidence[] = [{ ref: "post-source-input.json", sha256: fileSha(path.join(output, "post-source-input.json")) }];
+    const coverRef = frozenSource.cover?.path;
+    if (coverRef) evidence.push({ ref: coverRef, sha256: fileSha(path.join(output, coverRef)) });
     const sampleTimes: number[] = [];
     if (seconds !== null)
         for (const [i, ratio] of [0.05, 0.3, 0.55, 0.8].entries()) {
@@ -78,7 +80,7 @@ export async function runSourceConsistencyCheck(request: AgentRunRequest<unknown
             }
         }
     const methodSha256 = fileSha(methodPath);
-    if (evidence.length === 1) {
+    if (sampleTimes.length === 0) {
         const inputSha256 = sha(stable({ sourceMediaSha256: sourceMediaSha256, evidence }));
         const artifact = sourceConsistencyCheckV2Schema.parse({ schemaVersion: "post-source-consistency@2", inputSha256, verdict: "uncertain", summary: "源视频未能生成可读抽帧，无法确认来源一致性。", comparisons: [{ postClaim: "原帖标题与正文", bearing: "identity", relation: "insufficient", evidenceRefs: [artifactRef(source.creatorRunId, `${relativeRoot}/post-source-input.json`)], reason: "缺少可直接核对的视频帧。" }], provenance: { model: "gpt-5.6-luna", reasoningEffort: "medium", methodSha256, threadId: null } });
         fs.writeFileSync(path.join(privateRoot, "result.json"), `${JSON.stringify({ state: "not_invoked", reason: "no_frames", usage: null, artifact }, null, 2)}\n`, { mode: 0o600 });
@@ -119,7 +121,7 @@ export async function runSourceConsistencyCheck(request: AgentRunRequest<unknown
         fs.writeFileSync(path.join(trace, "result.json"), `${JSON.stringify({ threadId: result.threadId, usage: result.usage, artifact: check }, null, 2)}\n`, { mode: 0o600 });
         return check;
     };
-    const first = await runRound(1, evidence, evidence.filter(e => e.ref.startsWith("frames/")).map(e => e.ref));
+    const first = await runRound(1, evidence, evidence.filter(e => e.ref === coverRef || e.ref.startsWith("frames/")).map(e => e.ref));
     let final = first;
     const needsContext = first.verdict !== "consistent" || first.comparisons.some(c => c.bearing === "claim_detail" && c.relation === "contradicts");
     if (needsContext && seconds !== null) {
@@ -142,7 +144,8 @@ export async function runSourceConsistencyCheck(request: AgentRunRequest<unknown
                 sheets.push({ ref, sha256: fileSha(path.join(output, ref)) });
         }
         if (sheets.length)
-            final = await runRound(2, [evidence[0]!, ...contexts, ...sheets], sheets.map(e => e.ref));
+            final = await runRound(2, evidence.filter(e => e.ref === "post-source-input.json" || e.ref === coverRef).concat(contexts, sheets),
+                [...(coverRef ? [coverRef] : []), ...sheets.map(e => e.ref)]);
         else
             final = sourceConsistencyCheckV2Schema.parse({ schemaVersion: "post-source-consistency@2", inputSha256: first.inputSha256, verdict: "uncertain", summary: "补充上下文证据生成失败，无法确认来源一致性。", comparisons: [{ postClaim: "原帖标题与正文", bearing: "identity", relation: "insufficient", evidenceRefs: ["post-source-input.json"], reason: "需要补充上下文，但未能生成可供核对的联系表。" }], provenance: first.provenance });
     }

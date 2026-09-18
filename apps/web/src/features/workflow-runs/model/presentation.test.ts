@@ -1,5 +1,19 @@
 import { expect, it } from "vitest";
-import { artifactLabel, attemptPresentation, emptyArtifactMessage, eventSummary, isKnownArtifactType, stepCanRetry, stepLabel, workflowStateLabel } from "./presentation";
+import { artifactLabel, attemptPresentation, emptyArtifactMessage, eventSummary, isKnownArtifactType, reusedCandidateWithoutModel, stepCanRetry, stepLabel, workflowStateLabel } from "./presentation";
+
+it("identifies a reused candidate only from its build step event without model invocation", () => {
+  const phase = { path: ["candidate-build"] } as never;
+  const steps = [{ id: "build-1", key: "build" }, { id: "review-1", key: "review:0" }] as never;
+  const copied = { stepRunId: "build-1", type: "candidate.copied", data: { reason: "reuse_existing_candidate" } } as never;
+  expect(reusedCandidateWithoutModel(phase, steps, [copied])).toBe(true);
+  expect(reusedCandidateWithoutModel(phase, steps, [copied, { stepRunId: "review-1", type: "agent.started" } as never])).toBe(true);
+  expect(reusedCandidateWithoutModel(phase, steps, [copied, { stepRunId: "build-1", type: "agent.started" } as never])).toBe(false);
+  expect(reusedCandidateWithoutModel(phase, steps, [{ stepRunId: "build-1", type: "candidate.copied", data: { reason: "targeted_repair" } } as never])).toBe(false);
+  expect(reusedCandidateWithoutModel({ path: ["independent-review"] } as never, steps, [copied])).toBe(false);
+  const childSteps = [{ id: "child-builder", key: "candidate-build:builder" }] as never;
+  const childEvents = [{ stepRunId: "child-builder", type: "candidate.copied", data: { reason: "reuse_existing_candidate" } }] as never;
+  expect(reusedCandidateWithoutModel(phase, childSteps, childEvents)).toBe(true);
+});
 
 it("keeps execution completion distinct from research review", () => {
   expect(workflowStateLabel("succeeded")).toBe("执行完成");

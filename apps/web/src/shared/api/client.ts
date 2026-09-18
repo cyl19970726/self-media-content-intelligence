@@ -280,6 +280,11 @@ export async function listCreatorResearchRuns(): Promise<CreatorResearchRun[]> {
   });
 }
 
+export async function getCreatorResearchRun(id: string): Promise<CreatorResearchRun> {
+  return json(await fetch(`/api/creator-runs/${encodeURIComponent(id)}`, { cache: "no-store" }),
+    (value) => creatorResearchRunSchema.parse(value));
+}
+
 export async function listCreatorRunOperations(): Promise<CreatorRunOperation[]> {
   return json(await fetch("/api/creator-run-operations", { cache: "no-store" }), (value) => {
     const operations = value && typeof value === "object" && "operations" in value ? value.operations : [];

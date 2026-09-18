@@ -45,6 +45,25 @@ export interface AppDependencies {
   evidence: EvidenceAccessPort;
 }
 
+export function registerSpaFallback(app: express.Express, clientDirectory: string): void {
+  if (!fs.existsSync(path.join(clientDirectory, "index.html"))) return;
+  app.use(express.static(clientDirectory, {
+    setHeaders: (response, filePath) => {
+      // SPA entry must never be cached — stale bundles show outdated pages.
+      if (filePath.endsWith("index.html")) response.setHeader("Cache-Control", "no-cache");
+    }
+  }));
+  app.use((request, response, next) => {
+    if (request.method === "GET" && !request.path.startsWith("/api") && !request.path.startsWith("/artifacts")) {
+      response.setHeader("Cache-Control", "no-cache");
+      // A relative filename avoids sendFile's dotfile check on hidden ancestors
+      // such as a Codex worktree rooted beneath .codex.
+      return response.sendFile("index.html", { root: clientDirectory });
+    }
+    return next();
+  });
+}
+
 export function createApp({
   workflows,
   creatorResearch: creatorResearchService,
@@ -351,21 +370,7 @@ export function createApp({
   app.post("/api/runs", retiredSinglePost);
   app.post("/api/runs/:id/retry", retiredSinglePost);
 
-  if (fs.existsSync(path.join(clientDirectory, "index.html"))) {
-    app.use(express.static(clientDirectory, {
-      setHeaders: (response, filePath) => {
-        // SPA entry must never be cached — stale bundles show outdated pages.
-        if (filePath.endsWith("index.html")) response.setHeader("Cache-Control", "no-cache");
-      }
-    }));
-    app.use((request, response, next) => {
-      if (request.method === "GET" && !request.path.startsWith("/api") && !request.path.startsWith("/artifacts")) {
-        response.setHeader("Cache-Control", "no-cache");
-        return response.sendFile(path.join(clientDirectory, "index.html"));
-      }
-      return next();
-    });
-  }
+  registerSpaFallback(app, clientDirectory);
 
   app.use((error: unknown, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
     void _next;
