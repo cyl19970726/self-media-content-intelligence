@@ -8,7 +8,6 @@ const phaseStateLabel: Record<string, string> = {
 
 export function workflowReviewLabel(reading: PostWorkflowReading): string {
   if (reading.candidate?.revisionStatus === "revision_unverified") return "修订稿尚未再次独立审阅";
-  if (reading.candidate?.revisionStatus === "revision_recorded" && reading.candidate.reviewStatus !== "reviewed") return "修订稿尚未再次独立审阅";
   if (reading.candidate?.reviewStatus === "reviewed") return "独立复核已完成";
   if (reading.candidate?.reviewStatus === "findings") return "独立复核发现问题";
   if (reading.candidate?.reviewStatus === "pending") return "等待独立复核";
@@ -31,7 +30,13 @@ export function PostWorkflowReadingPanel({ reading, creatorRunId, version, wants
     ? reading.phases.findIndex(phase => ["queued", "running", "waiting", "needs_review", "blocked"].includes(phase.state)) : -1;
   const currentPhase = activeIndex >= 0 ? reading.phases[activeIndex] : reading.phases.at(-1);
   const completedCount = reading.phases.filter(phase => phase.state === "succeeded").length;
-  const progress = reading.phases.length ? `${completedCount}/${reading.phases.length} 步已完成${activeIndex >= 0 ? ` · 当前第 ${activeIndex + 1} 步` : ""}` : "阶段尚未登记";
+  const progress = reading.progress
+    ? reading.progress.closed
+      ? reading.progress.planned !== undefined
+        ? `${reading.progress.completed}/${reading.progress.planned} 个计划阶段完成`
+        : `流程已结束，共登记 ${reading.progress.registered} 个阶段，其中 ${reading.progress.completed} 个完成`
+      : `已登记 ${reading.progress.registered} 个阶段，其中 ${reading.progress.completed} 个完成；后续阶段数尚未确定`
+    : reading.phases.length ? `已登记 ${reading.phases.length} 个阶段，其中 ${completedCount} 个完成；后续阶段数未知${activeIndex >= 0 ? ` · 当前第 ${activeIndex + 1} 步` : ""}` : "阶段尚未登记";
   const headline = workflow?.state === "failed" ? "本次研究未完成" : workflow?.state === "canceled" ? "本次研究已取消"
     : workflow?.state === "succeeded" ? "研究流程已结束" : currentPhase ? `${currentPhase.title} · ${phaseStateLabel[currentPhase.state] ?? currentPhase.state}` : "研究流程准备中";
   return <section className="post-workflow-reading" aria-label="本次研究进度">

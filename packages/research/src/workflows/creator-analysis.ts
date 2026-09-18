@@ -72,7 +72,15 @@ export function createCreatorAnalysisWorkflowV6(
   return createCreatorAnalysisWorkflowPhased("v6", postWorkflow, synthesisWorkflow, prepareSynthesis);
 }
 
-function createCreatorAnalysisWorkflowPhased(revision: "v3" | "v4" | "v5" | "v6",
+export function createCreatorAnalysisWorkflowV7(
+  postWorkflow: WorkflowDefinition<PostWorkflowInput, PostWorkflowOutput>,
+  synthesisWorkflow: WorkflowDefinition<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput>,
+  prepareSynthesis: (input: CreatorAnalysisWorkflowInput, posts: PostWorkflowOutput[]) => Promise<CreatorSynthesisWorkflowInput>,
+) {
+  return createCreatorAnalysisWorkflowPhased("v7", postWorkflow, synthesisWorkflow, prepareSynthesis);
+}
+
+function createCreatorAnalysisWorkflowPhased(revision: "v3" | "v4" | "v5" | "v6" | "v7",
   postWorkflow: WorkflowDefinition<PostWorkflowInput, PostWorkflowOutput>,
   synthesisWorkflow: WorkflowDefinition<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput>,
   prepareSynthesis: (input: CreatorAnalysisWorkflowInput, posts: PostWorkflowOutput[]) => Promise<CreatorSynthesisWorkflowInput>,

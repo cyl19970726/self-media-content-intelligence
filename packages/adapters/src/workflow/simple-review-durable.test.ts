@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { MemoryRunStore, runWorkflow, workflow, type AgentRunner, type ChildWorkflowDispatcher, type ChildWorkflowDispatchRequest } from "@signal-room/workflow";
 import { createResearchAgentDefinitions } from "../../../research/src/workflows/agents.js";
 import type { PostWorkflowInput } from "../../../research/src/workflows/contracts.js";
-import { createPostWorkflowSuiteV6, type SimpleSourceCheckOutput } from "../../../research/src/workflows/simple-review.js";
+import { createPostWorkflowSuiteV6, createPostWorkflowSuiteV7, type SimpleSourceCheckOutput } from "../../../research/src/workflows/simple-review.js";
 
 const noAgent: AgentRunner = { async run() { throw new Error("agent runner must not execute durable children"); } };
 const config = { prompt: "test", promptRevision: "1", skillSnapshotsRevision: "1", permissionsRevision: "1", config: { simpleReview: true } };
@@ -17,7 +17,7 @@ describe("simple review durable retries", () => {
       const artifact = await ctx.publish("source", "post-source-check", {}, { validation: "valid" });
       return { ok: true, artifact, receipt: { artifact: { verdict: "consistent" } } };
     });
-    const suite = createPostWorkflowSuiteV6({ candidate: () => ({ valid: true }), evaluation: () => ({ valid: true }) }, agents, { sourceCheck: source });
+    const suite = createPostWorkflowSuiteV7({ candidate: () => ({ valid: true }), evaluation: () => ({ valid: true }) }, agents, { sourceCheck: source });
     const counts = new Map<string, number>();
     const reviewInputs: unknown[] = [];
     const dispatcher: ChildWorkflowDispatcher = { async ensureChild<Input, Output>(request: ChildWorkflowDispatchRequest<Input>) {
@@ -35,13 +35,32 @@ describe("simple review durable retries", () => {
     expect(callsFor("review:1")).toBe(1);
     expect(callsFor("review:2")).toBe(1);
     expect(reviewInputs).toEqual([
-      { candidate, evidence },
-      { candidate, evidence, retryFeedback: "review unavailable" },
+      { candidate, evidence, retryLink: { key: `simple-review:${candidate.id}:${candidate.revision}:${candidate.sha256}`, attempt: 1 } },
+      { candidate, evidence, retryFeedback: "review unavailable", retryLink: { key: `simple-review:${candidate.id}:${candidate.revision}:${candidate.sha256}`, attempt: 2, reason: "SIMPLE_REVIEW_UNACCEPTED_RESULT" } },
     ]);
     const resumed = await runWorkflow({ workflow: suite.analyze, input, store, agentRunner: noAgent, childDispatcher: dispatcher, resumeRunId: first.run.id });
     expect(resumed.run.state).toBe("needs_review");
     expect(callsFor("build")).toBe(1);
     expect(callsFor("review:1")).toBe(1);
     expect(callsFor("review:2")).toBe(1);
+  });
+
+  it("keeps the pre-link V6 retry input stable for durable replay", async () => {
+    const store = new MemoryRunStore();
+    const evidence = await store.publishArtifact({ type: "evidence", schemaVersion: "v1", revision: "1", sha256: "evidence", uri: "memory://evidence", payload: {}, producedBy: { workflowRunId: "seed", stepRunId: "seed", attemptId: "seed" }, dependsOn: [], validation: "valid", review: "not_applicable" });
+    const candidate = await store.publishArtifact({ type: "post-candidate", schemaVersion: "v1", revision: "1", sha256: "candidate", uri: "memory://candidate", payload: {}, producedBy: { workflowRunId: "seed", stepRunId: "seed", attemptId: "seed" }, dependsOn: [], validation: "valid", review: "pending" });
+    const source = workflow<PostWorkflowInput, SimpleSourceCheckOutput>("post.source-check", { revision: "v3" }, async (ctx) => {
+      const artifact = await ctx.publish("source", "post-source-check", {}, { validation: "valid" });
+      return { ok: true, artifact, receipt: { artifact: { verdict: "consistent" } } };
+    });
+    const suite = createPostWorkflowSuiteV6({ candidate: () => ({ valid: true }), evaluation: () => ({ valid: true }) }, agents, { sourceCheck: source });
+    const reviewInputs: unknown[] = [];
+    const dispatcher: ChildWorkflowDispatcher = { async ensureChild<Input, Output>(request: ChildWorkflowDispatchRequest<Input>) {
+      if (request.definition.id === "post.review") { reviewInputs.push(request.input); return { childRunId: request.key, state: "failed", error: "review unavailable" }; }
+      if (request.definition.id === "post.source-check") return { childRunId: "source", state: "succeeded", output: { ok: true, artifact: evidence, receipt: { artifact: { verdict: "consistent" } } } as Output };
+      return { childRunId: "build", state: "succeeded", output: { ok: true, candidate, receipt: { artifact: {} } } as Output };
+    } };
+    await runWorkflow({ workflow: suite.analyze, input: { creatorRunId: "creator", postExternalId: "post", evidenceKind: "video" as const, evidence }, store, agentRunner: noAgent, childDispatcher: dispatcher });
+    expect(reviewInputs).toEqual([{ candidate, evidence }, { candidate, evidence, retryFeedback: "review unavailable" }]);
   });
 });

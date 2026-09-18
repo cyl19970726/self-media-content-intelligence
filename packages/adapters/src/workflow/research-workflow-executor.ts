@@ -23,6 +23,7 @@ type ExecutionRecord = {
   parentWorkflowRunId?: string;
   parentStepRunId?: string;
   error?: string;
+  retryLink?: { key: string; attempt: 1 | 2; reason?: string };
 };
 
 export interface ResearchWorkflowInputFreezer {
@@ -150,6 +151,13 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
     if (!this.registry || !this.scheduler) throw new Error("Durable child dispatch is not configured");
     const parent = this.read(request.parentRunId);
     if (!parent) throw new Error("Durable child parent execution not found");
+    const retryLink = retryLinkFrom(request.input);
+    const retryTargets = retryLink?.attempt === 2
+      ? this.readByRetryLink(request.parentRunId, request.definition.id, retryLink.key, 1) : [];
+    if (retryLink?.attempt === 2 && retryTargets.length !== 1) {
+      throw new Error(retryTargets.length ? "Durable retry link target is ambiguous" : "Durable retry link target is missing");
+    }
+    const retryOf = retryTargets[0];
     let child = this.readByParentStep(request.parentStepRunId);
     if (!child) {
       const definition = this.registry.resolve(request.definition.id, request.definition.revision);
@@ -161,11 +169,19 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
           workflowKind: "child", ...childNavigation } });
       child = { id: run.id, creatorRunId: parent.creatorRunId, kind: "child", definitionRevision: definition.revision,
         workflowId: definition.id, generation: 1, state: "queued", frozenInput: canonicalWorkflowValue(request.input),
-        parentWorkflowRunId: parent.id, parentStepRunId: request.parentStepRunId };
+        parentWorkflowRunId: parent.id, parentStepRunId: request.parentStepRunId, ...(retryLink ? { retryLink } : {}) };
       this.insert(child);
     } else if (child.workflowId !== request.definition.id || child.definitionRevision !== request.definition.revision) {
       throw new Error("Durable child definition mismatch for parent step");
+    } else {
+      const frozenLink = retryLinkFrom(child.frozenInput);
+      if ((retryLink?.key ?? undefined) !== (frozenLink?.key ?? undefined)
+        || (retryLink?.attempt ?? undefined) !== (frozenLink?.attempt ?? undefined)
+        || (retryLink?.reason ?? undefined) !== (frozenLink?.reason ?? undefined)) {
+        throw new Error("Durable retry link does not match frozen child input");
+      }
     }
+    if (retryOf?.parentStepRunId) await this.ensureRetryEvent(request.parentRunId, request.parentStepRunId, retryOf.parentStepRunId, retryLink!.reason!);
     if (child.state === "queued" || child.state === "running" || child.state === "waiting") {
       await this.scheduler.enqueue({ creatorRunId: child.creatorRunId, workflowRunId: child.id, generation: child.generation,
         workflowId: child.workflowId,
@@ -348,6 +364,26 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
       idempotencyKey: `workflow-wake:${record.id}:${record.generation}:${record.state}` });
   }
 
+  private readByRetryLink(parentWorkflowRunId: string, workflowId: string, key: string, attempt: 1 | 2): ExecutionRecord[] {
+    const rows = this.database.prepare(`SELECT document FROM research_workflow_executions
+      WHERE json_extract(document, '$.parentWorkflowRunId') = ?
+        AND json_extract(document, '$.workflowId') = ?
+        AND json_extract(document, '$.retryLink.key') = ?
+        AND json_extract(document, '$.retryLink.attempt') = ?`).all(parentWorkflowRunId, workflowId, key, attempt) as Array<{ document: string }>;
+    return rows.map((row) => JSON.parse(String(row.document)) as ExecutionRecord).filter((record) => {
+      const frozen = retryLinkFrom(record.frozenInput);
+      return frozen?.key === key && frozen.attempt === attempt && record.retryLink?.key === key && record.retryLink.attempt === attempt;
+    });
+  }
+
+  private async ensureRetryEvent(runId: string, stepRunId: string, retryOf: string, reason: string): Promise<void> {
+    const existing = await this.store.listEvents(runId);
+    const alreadyRecorded = existing.some((event) => event.type === "read-model.retry" && event.stepRunId === stepRunId
+      && event.data && typeof event.data === "object" && (event.data as { retryOf?: unknown; reason?: unknown }).retryOf === retryOf
+      && (event.data as { retryOf?: unknown; reason?: unknown }).reason === reason);
+    if (!alreadyRecorded) await this.store.appendEvent({ runId, stepRunId, type: "read-model.retry", data: { retryOf, reason } });
+  }
+
   private readByParentStep(parentStepRunId: string): ExecutionRecord | undefined {
     const row = this.database.prepare("SELECT document FROM research_workflow_executions WHERE json_extract(document, '$.parentStepRunId') = ? LIMIT 1").get(parentStepRunId);
     return row ? JSON.parse(String(row.document)) as ExecutionRecord : undefined;
@@ -375,6 +411,20 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
       .run(JSON.stringify(updated), record.id);
     return updated;
   }
+}
+
+function safeRetryReason(value: unknown): string {
+  return typeof value === "string" && /^[A-Z][A-Z0-9_]*(?::[A-Z0-9_-]+)?$/.test(value)
+    ? value : "SIMPLE_REVIEW_UNACCEPTED_RESULT";
+}
+
+function retryLinkFrom(input: unknown): { key: string; attempt: 1 | 2; reason?: string } | undefined {
+  if (!input || typeof input !== "object") return undefined;
+  const link = (input as { retryLink?: unknown }).retryLink;
+  if (!link || typeof link !== "object") return undefined;
+  const value = link as { key?: unknown; attempt?: unknown; reason?: unknown };
+  if (typeof value.key !== "string" || !value.key || (value.attempt !== 1 && value.attempt !== 2)) return undefined;
+  return { key: value.key, attempt: value.attempt, ...(value.attempt === 2 ? { reason: safeRetryReason(value.reason) } : {}) };
 }
 
 function receipt(record: ExecutionRecord): WorkflowQueueReceipt {

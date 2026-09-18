@@ -1,7 +1,8 @@
+import { createResearchReadingService, resolveReadingRoot } from "../workflow-reading-service.js";
 import type express from "express";
 import type { RunStore } from "@signal-room/workflow";
 import { projectCreatorWorkflowProgress, type CreatorRegisteredPostReviews, type CreatorRegisteredReview } from "../workflow-creator-progress.js";
-import { projectArtifactPayload, projectWorkflowAttempt, projectWorkflowEvent, projectWorkflowHttpError, projectWorkflowRun, projectWorkflowStep } from "../workflow-public-projection.js";
+import { projectArtifactPayload, projectWorkflowArtifact, projectWorkflowAttempt, projectWorkflowEvent, projectWorkflowHttpError, projectWorkflowRun, projectWorkflowStep } from "../workflow-public-projection.js";
 import { projectWorkflowPhases } from "../workflow-phase-projection.js";
 import { projectPostWorkflowReading } from "../post-workflow-reading.js";
 
@@ -27,6 +28,7 @@ function afterCursor(value: unknown): number {
 /** Raw prompts, command output and private trace files are never served here. */
 export function registerWorkflowRoutes(app: express.Express, service: WorkflowHttpService): void {
   const prefix = "/api/workflow-runs";
+  const reading = createResearchReadingService(service.store, service.artifactPayload);
   const handler = (fn: (request: express.Request, response: express.Response) => Promise<unknown>): express.RequestHandler =>
     (request, response) => { void fn(request, response).catch((error: unknown) => {
       if (response.headersSent) { response.end(); return; }
@@ -60,12 +62,41 @@ export function registerWorkflowRoutes(app: express.Express, service: WorkflowHt
     response.json({ runs: (await service.store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } })).map(projectWorkflowRun) });
   }));
 
+  const readingRoot = async (request: express.Request) => {
+    const root = await resolveReadingRoot(service.store, String(request.params.id));
+    const scope = typeof request.query.creatorRunId === "string" ? request.query.creatorRunId : undefined;
+    return root && (!scope || root.metadata?.creatorRunId === scope) ? root : undefined;
+  };
+  app.get(`${prefix}/:id/reading`, handler(async (request, response) => {
+    const root = await readingRoot(request);
+    if (!root) { response.status(404).json({ error: "未找到本次研究" }); return; }
+    const snapshot = await reading.getSnapshot({ rootRunId: root.id, selectedRunId: String(request.params.id) });
+    const creatorRunId = root.metadata?.creatorRunId; const postId = root.metadata?.postId;
+    response.json({ ...snapshot, title: "本次研究", subject: {
+      creatorRunId: typeof creatorRunId === "string" && /^[a-zA-Z0-9-]+$/.test(creatorRunId) ? creatorRunId : undefined,
+      postId: typeof postId === "string" && /^[a-zA-Z0-9-]+$/.test(postId) ? postId : undefined
+    } });
+  }));
+  app.get(`${prefix}/:id/reading/changes`, handler(async (request, response) => {
+    const root = await readingRoot(request);
+    if (!root) { response.status(404).json({ error: "未找到本次研究" }); return; }
+    response.json(await reading.getChanges({ rootRunId: root.id, cursor: String(request.query.cursor ?? "") }));
+  }));
+  app.get(`${prefix}/:id/reading/stages/:phaseId`, handler(async (request, response) => {
+    const root = await readingRoot(request);
+    if (!root) { response.status(404).json({ error: "未找到本次研究" }); return; }
+    const limit = request.query.limit === undefined ? 25 : Number(request.query.limit);
+    if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100) throw new Error("Invalid page size");
+    response.json(await reading.getStageDetails({ rootRunId: root.id, phaseId: String(request.params.phaseId),
+      cursor: typeof request.query.cursor === "string" ? request.query.cursor : undefined, limit }));
+  }));
+
   app.get(`${prefix}/:id`, handler(async (request, response) => {
     const run = await service.store.getRun(String(request.params.id));
     if (!run) { response.status(404).json({ error: "工作流不存在" }); return; }
     const [steps, artifacts, phases] = await Promise.all([service.store.listSteps(run.id), service.store.listArtifacts(run.id), projectWorkflowPhases(service.store, run)]);
     const attempts = (await Promise.all(steps.map((step) => service.store.listAttempts(step.id)))).flat();
-    response.json({ run: projectWorkflowRun(run), steps: steps.map(projectWorkflowStep), attempts: attempts.map(projectWorkflowAttempt), artifacts, phases });
+    response.json({ run: projectWorkflowRun(run), steps: steps.map(projectWorkflowStep), attempts: attempts.map(projectWorkflowAttempt), artifacts: artifacts.map(projectWorkflowArtifact), phases: phases.map(phase => ({ ...phase, artifacts: phase.artifacts.map(binding => ({ ...binding, artifact: projectWorkflowArtifact(binding.artifact) })) })) });
   }));
 
   app.get(`${prefix}/:id/events`, handler(async (request, response) => {
@@ -77,7 +108,7 @@ export function registerWorkflowRoutes(app: express.Express, service: WorkflowHt
   app.get(`${prefix}/:id/artifacts`, handler(async (request, response) => {
     const id = String(request.params.id);
     if (!await service.store.getRun(id)) { response.status(404).json({ error: "工作流不存在" }); return; }
-    response.json({ artifacts: await service.store.listArtifacts(id) });
+    response.json({ artifacts: (await service.store.listArtifacts(id)).map(projectWorkflowArtifact) });
   }));
 
   app.get(`${prefix}/:id/artifacts/:artifactId`, handler(async (request, response) => {
@@ -85,7 +116,7 @@ export function registerWorkflowRoutes(app: express.Express, service: WorkflowHt
     if (!artifact || artifact.producedBy.workflowRunId !== request.params.id) {
       response.status(404).json({ error: "资产不属于该工作流" }); return;
     }
-    response.json({ artifact, payload: projectArtifactPayload(artifact, await service.artifactPayload(artifact.id)) });
+    response.json({ artifact: projectWorkflowArtifact(artifact), payload: projectArtifactPayload(artifact, await service.artifactPayload(artifact.id)) });
   }));
 
   app.get(`${prefix}/:id/artifacts/:artifactId/reader`, handler(async (request, response) => {

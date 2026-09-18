@@ -56,7 +56,11 @@ it("only serves assets belonging to the requested workflow", async () => {
   const artifact = await store.publishArtifact({ type: "unknown/custom", schemaVersion: "2026", revision: "1", sha256: await artifactPayloadSha256(payload), uri: "private://reference", payload, producedBy: { workflowRunId: run.id, stepRunId: step.id, attemptId: attempt.id }, dependsOn: [], validation: "valid", review: "pending" });
   const response = await fetch(`${url}/${run.id}/artifacts/${artifact.id}`);
   expect(response.status).toBe(200);
-  expect((await response.json()).payload).toMatchObject({ kind: "withheld" });
+  const publicArtifact = await response.json();
+  expect(publicArtifact.payload).toMatchObject({ kind: "withheld" });
+  expect(JSON.stringify(publicArtifact)).not.toContain("private://reference");
+  expect(JSON.stringify(await fetch(`${url}/${run.id}`).then(r => r.json()))).not.toContain("private://reference");
+  expect(JSON.stringify(await fetch(`${url}/${run.id}/artifacts`).then(r => r.json()))).not.toContain("private://reference");
   expect((await fetch(`${url}/another/artifacts/${artifact.id}`)).status).toBe(404);
   expect((await fetch(`${url}/another/artifacts/${artifact.id}/reader`)).status).toBe(404);
   expect(artifactReader).not.toHaveBeenCalled();
@@ -83,7 +87,7 @@ it("returns persisted phase reading data with the artifact owner's run id", asyn
   await new Promise<void>((resolve) => server.once("listening", resolve));
   const address = server.address(); if (!address || typeof address === "string") throw new Error("No test server port");
   const detail = await fetch(`http://127.0.0.1:${address.port}/api/workflow-runs/${root.id}`).then((response) => response.json());
-  expect(detail.phases).toMatchObject([{ id: "phase:research", state: "waiting", artifacts: [{ role: "published-output", ownerRunId: child.id, artifact: { id: artifact.id } }] }]);
+  expect(detail.phases).toMatchObject([{ id: "phase-control", state: "waiting", artifacts: [{ role: "published-output", ownerRunId: child.id, artifact: { id: artifact.id } }] }]);
 });
 
 it("reads an explicitly selected post child through its root and only exposes a revision bound to the current candidate", async () => {
@@ -101,16 +105,25 @@ it("reads an explicitly selected post child through its root and only exposes a 
     type, schemaVersion: "v1", revision: type === "post-candidate" ? crypto.randomUUID() : "revision-1",
     sha256: await artifactPayloadSha256(payload), uri: "workflow://test", payload, producedBy: { workflowRunId: root.id, stepRunId: step.id, attemptId: attempt.id }, dependsOn, validation: "valid", review
   });
-  const old = await publish({ report: "old" }, "post-candidate", "passed");
+  const oldHash = "a".repeat(64);
+  const old = await publish({ report: "old", reportSha256: oldHash }, "post-candidate", "pending");
   const current = await publish({ report: "current" }, "post-candidate", "pending", [{ artifactId: old.id, revision: old.revision, sha256: old.sha256 }]);
-  await publish({ schemaVersion: "research-revision@1", baseCandidate: old, review: old, candidate: current,
-    dispositions: [{ id: "finding-1", status: "changed", reason: "已补证据。" }], validation: { valid: true } }, "research-revision", "findings");
+  const reviewPayload = { kind: "post", schemaVersion: "research-review@1", candidate: { id: old.id, revision: old.revision, sha256: old.sha256 }, candidateReportSha256: oldHash,
+    summary: "需要补证", findings: [{ id: "finding-1", location: "/builderLenses/contentRestoration", issue: "证据不足", evidenceRefs: [], suggestedChange: "补充证据", priority: "major", kind: "missing_evidence" }] };
+  const review = await store.publishArtifact({ type: "post-review", schemaVersion: "research-review@1", revision: "review-1",
+    sha256: await artifactPayloadSha256(reviewPayload), uri: "workflow://review", payload: reviewPayload,
+    producedBy: { workflowRunId: root.id, stepRunId: step.id, attemptId: attempt.id },
+    dependsOn: [{ artifactId: old.id, revision: old.revision, sha256: old.sha256 }], validation: "valid", review: "findings" });
+  await publish({ schemaVersion: "research-revision@1", baseCandidate: old, review, candidate: current,
+    dispositions: [{ id: "finding-1", status: "changed", reason: "已补证据。" }], validation: { valid: true } }, "research-revision", "findings",
+    [old, review, current].map(a => ({ artifactId: a.id, revision: a.revision, sha256: a.sha256 })));
 
+  await store.updateRun(root.id, { output: { candidate: current } });
   const base = url.replace("/api/workflow-runs", "");
   const response = await fetch(`${base}/api/creator-runs/creator-a/posts/post-a/workflow-reading?workflowRunId=${child.id}`);
   expect(response.status).toBe(200);
   expect(await response.json()).toMatchObject({ workflow: { rootRunId: root.id, selectedFrom: "explicit" },
-    candidate: { ownerRunId: root.id, artifactId: current.id, reviewStatus: "pending", revisionStatus: "revision_unverified" },
+    candidate: { ownerRunId: root.id, artifactId: current.id, reviewStatus: "unknown", revisionStatus: "revision_unverified" },
     baseCandidate: { ownerRunId: root.id, artifactId: old.id },
     dispositions: [{ id: "finding-1", status: "changed" }] });
   expect((await fetch(`${base}/api/creator-runs/creator-a/posts/post-b/workflow-reading?workflowRunId=${child.id}`)).status).toBe(404);
@@ -139,6 +152,7 @@ it("projects review status only from a valid receipt bound to the exact current 
   const candidate = await store.publishArtifact({ type: "post-candidate", schemaVersion: "v1", revision: "current", sha256: await artifactPayloadSha256(candidatePayload),
     uri: "workflow://current", payload: candidatePayload, producedBy: buildProducer,
     dependsOn: [{ artifactId: old.id, revision: old.revision, sha256: old.sha256 }], validation: "valid", review: "pending" });
+  await store.updateRun(root.id, { output: { candidate } });
   const publishReview = async (boundCandidate: typeof candidate, hash: string, review: "passed" | "findings") => {
     const payload = { kind: "post", schemaVersion: "research-review@1", candidate: {
       id: boundCandidate.id, revision: boundCandidate.revision, sha256: boundCandidate.sha256 }, candidateReportSha256: hash,
@@ -151,9 +165,9 @@ it("projects review status only from a valid receipt bound to the exact current 
   const reading = async () => fetch(`${url.replace("/api/workflow-runs", "")}/api/creator-runs/creator/posts/post/workflow-reading?workflowRunId=${root.id}`)
     .then((response) => response.json()) as Promise<{ candidate: { reviewStatus: string } }>;
   await publishReview(old, oldPayload.reportSha256, "passed");
-  expect((await reading()).candidate.reviewStatus).toBe("pending");
+  expect((await reading()).candidate.reviewStatus).toBe("unknown");
   await publishReview(candidate, "c".repeat(64), "passed");
-  expect((await reading()).candidate.reviewStatus).toBe("pending");
+  expect((await reading()).candidate.reviewStatus).toBe("unknown");
   await publishReview(candidate, reportSha256, "passed");
   expect((await reading()).candidate.reviewStatus).toBe("reviewed");
 });
@@ -177,6 +191,7 @@ it("preserves legacy evaluation status for the exact candidate without requiring
     .then((response) => response.json()) as Promise<{ candidate: { reviewStatus: string } }>;
   expect((await reading()).candidate.reviewStatus).toBe("reviewed");
   const repaired = await publish("post-candidate", [{ artifactId: candidate.id, revision: candidate.revision, sha256: candidate.sha256 }], "pending");
+  await store.updateRun(root.id, { output: { candidate: repaired } });
   expect((await reading()).candidate.reviewStatus).toBe("pending");
   expect(repaired.id).not.toBe(candidate.id);
 });
@@ -255,4 +270,23 @@ it("projects raw failures and unknown SDK events into public-safe diagnostics", 
   expect(creatorEvaluationResponse.payload).toMatchObject({ kind: "creator-evaluation", gate: { ready: false, failedGateIds: ["deep_9_ready"],
     gates: [{ id: "deep_9_ready", pass: false, message: "仍缺少九篇深度研究。" }] } });
   expect(retryResponse).toMatchObject({ error: "执行未能完成；可凭诊断编号在本地查看详情。", errorId: expect.stringMatching(/^wf-/) });
+});
+
+
+it("scopes reading to nearest post root, excludes sibling history, and resets foreign cursors", async () => {
+  const { store, url } = await setup();
+  const root = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v6", inputFingerprint: "a", state: "running", metadata: { creatorRunId: "creator", postId: "post" } });
+  const sibling = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v6", inputFingerprint: "b", state: "succeeded", metadata: { creatorRunId: "creator", postId: "post" } });
+  const child = await store.createRun({ workflowId: "post.review", workflowRevision: "v3", inputFingerprint: "c", state: "failed", parentRunId: root.id, metadata: { creatorRunId: "creator", postId: "post" } });
+  const first = await fetch(`${url}/${child.id}/reading`).then(r => r.json());
+  expect(first.rootRunId).toBe(root.id);
+  expect(first.selectedRunId).toBe(child.id);
+  expect(first.runs.map((r: { id: string }) => r.id)).toEqual([root.id, child.id]);
+  expect(first.progress).toEqual({ registered: 0, completed: 0, closed: false });
+  expect(await fetch(`${url}/${sibling.id}/reading/changes?cursor=${first.cursor}`).then(r => r.json())).toEqual({ resetRequired: true });
+  expect((await fetch(`${url}/${child.id}/reading?creatorRunId=foreign`)).status).toBe(404);
+  const next = await store.createRun({ workflowId: "post.review", workflowRevision: "v3", inputFingerprint: "d", state: "running", parentRunId: root.id, metadata: { creatorRunId: "creator", postId: "post" } });
+  const change = await fetch(`${url}/${child.id}/reading/changes?cursor=${first.cursor}`).then(r => r.json());
+  expect(change.resetRequired).toBe(false);
+  expect(change.changed.runs.map((r: { id: string }) => r.id)).toContain(next.id);
 });

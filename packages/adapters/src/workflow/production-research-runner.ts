@@ -6,8 +6,9 @@ import type { DatabaseSync } from "node:sqlite";
 import {
   createPostWorkflow, createPostWorkflowSuite, createPostWorkflowSuiteV3, createPostWorkflowSuiteV4, createCreatorSynthesisWorkflow, createCreatorSynthesisWorkflowSuite,
   createCreatorSynthesisWorkflowSuiteV3, createCreatorAnalysisWorkflow, createCreatorAnalysisWorkflowV2, createCreatorAnalysisWorkflowV3, createCreatorAnalysisWorkflowV4,
-  createPostWorkflowSuiteV5, createPostWorkflowSuiteV6, createCreatorSynthesisWorkflowSuiteV4, createCreatorSynthesisWorkflowSuiteV5,
-  createCreatorAnalysisWorkflowV5, createCreatorAnalysisWorkflowV6,
+  createPostWorkflowSuiteV5, createPostWorkflowSuiteV6, createPostWorkflowSuiteV7,
+  createCreatorSynthesisWorkflowSuiteV4, createCreatorSynthesisWorkflowSuiteV5, createCreatorSynthesisWorkflowSuiteV6,
+  createCreatorAnalysisWorkflowV5, createCreatorAnalysisWorkflowV6, createCreatorAnalysisWorkflowV7,
   postWorkflowArtifacts, createResearchAgentDefinitions,
   CreatorResearchWorkflowScheduler, RepositoryResearchVersionRegistrar,
   videoReconstructionBatchSchema, videoReconstructionOutcomeSchema, creatorSynthesisSchema, creatorSynthesisGateSchema,
@@ -595,8 +596,11 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
     sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV5>[2]>["sourceCheck"] });
   const postSuiteV6 = createPostWorkflowSuiteV6(validators, simpleAgents, { registerCandidate,
     sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV6>[2]>["sourceCheck"] });
+  const postSuiteV7 = createPostWorkflowSuiteV7(validators, simpleAgents, { registerCandidate,
+    sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV7>[2]>["sourceCheck"] });
   const creatorSuiteV4 = createCreatorSynthesisWorkflowSuiteV4(validators, simpleAgents, { registerCandidate });
   const creatorSuiteV5 = createCreatorSynthesisWorkflowSuiteV5(validators, simpleAgents, { registerCandidate });
+  const creatorSuiteV6 = createCreatorSynthesisWorkflowSuiteV6(validators, simpleAgents, { registerCandidate });
   const prepareSynthesisV5: Parameters<typeof createCreatorAnalysisWorkflowV5>[2] = async (input, posts) => {
     const original = await store.getArtifactPayload(input.source.id) as PinnedResearchInput;
     assertPinnedResearchInput(original);
@@ -618,12 +622,14 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
   };
   const creatorAnalysisV5 = createCreatorAnalysisWorkflowV5(postSuiteV5.analyze, creatorSuiteV4.analyze, prepareSynthesisV5);
   const creatorAnalysisV6 = createCreatorAnalysisWorkflowV6(postSuiteV6.analyze, creatorSuiteV5.analyze, prepareSynthesisV5);
-  const definitions = { post: postSuiteV6.analyze, creatorSynthesis: creatorSuiteV5.analyze, creatorAnalysis: creatorAnalysisV6 };
+  const creatorAnalysisV7 = createCreatorAnalysisWorkflowV7(postSuiteV7.analyze, creatorSuiteV6.analyze, prepareSynthesisV5);
+  const definitions = { post: postSuiteV7.analyze, creatorSynthesis: creatorSuiteV6.analyze, creatorAnalysis: creatorAnalysisV7 };
   const registeredDefinitions = [postV1, creatorSynthesisV1, creatorAnalysisV1,
     ...postSuite.definitions, ...creatorSuite.definitions, creatorAnalysisV2,
     ...postSuiteV3.definitions, ...postSuiteV4.definitions, ...creatorSuiteV3.definitions, creatorAnalysisV3, creatorAnalysisV4,
-    ...postSuiteV5.definitions, ...postSuiteV6.definitions, ...creatorSuiteV4.definitions, ...creatorSuiteV5.definitions,
-    creatorAnalysisV5, creatorAnalysisV6];
+    ...postSuiteV5.definitions, ...postSuiteV6.definitions, ...postSuiteV7.definitions,
+    ...creatorSuiteV4.definitions, ...creatorSuiteV5.definitions, ...creatorSuiteV6.definitions,
+    creatorAnalysisV5, creatorAnalysisV6, creatorAnalysisV7];
   const registry = { resolve: (id: string, revision: string) => registeredDefinitions
     .find((definition) => definition.id === id && definition.revision === revision) as WorkflowDefinition<unknown, unknown> | undefined };
   const scheduler = new CreatorResearchWorkflowScheduler(repository);

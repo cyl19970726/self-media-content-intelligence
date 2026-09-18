@@ -37,6 +37,8 @@ owned by schemas and code.
   backup, legacy Research Learning migration, projection parity and rollback.
 - [Development workflow](development/workflow.md) — branch, Worktree, validation,
   PR, merge, and initiative lifecycle.
+- [Workflow read model integration](development/workflow-read-model-integration.md) — root-scoped snapshots,
+  retry lineage, safe reader URLs, compatibility, and local acceptance.
 - [Repository overhaul record](https://github.com/cyl19970726/self-media-content-intelligence/issues/13)
   — the completed execution record for the repository migration.
 

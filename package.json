@@ -41,7 +41,7 @@
     "verify": "npm run check:docs && npm run check:repo && npm run check:knowledge-authority && npm run check:artifacts && npm run typecheck && npm test && npm run test:workflow && npm run lint && npm run build && npm run smoke:entrypoints",
     "start": "SELF_MEDIA_WEB_URL=http://127.0.0.1:4310 NODE_ENV=production node dist-server/apps/api/src/main.js",
     "start:worker": "NODE_ENV=production node dist-server/apps/worker/src/main.js",
-    "build:workflow": "npm run build -w @signal-room/workflow && npm run build -w @signal-room/workflow-codex && npm run build -w @signal-room/workflow-sqlite",
+    "build:workflow": "npm run build -w @signal-room/workflow && npm run build -w @signal-room/workflow-codex && npm run build -w @signal-room/workflow-sqlite && npm run build -w @signal-room/workflow-read-model",
     "prepare": "npm run build:workflow",
     "predev": "npm run build:workflow",
     "predev:api": "npm run build:workflow",
@@ -67,7 +67,8 @@
     "zod": "^3.25.76",
     "@signal-room/workflow": "0.1.0",
     "@signal-room/workflow-codex": "0.1.0",
-    "@signal-room/workflow-sqlite": "0.1.0"
+    "@signal-room/workflow-sqlite": "0.1.0",
+    "@signal-room/workflow-read-model": "0.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

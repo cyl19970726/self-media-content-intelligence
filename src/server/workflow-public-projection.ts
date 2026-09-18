@@ -324,3 +324,14 @@ function withheldEvaluation(kind: string) {
 export function projectWorkflowHttpError(error: unknown): PublicDiagnostic {
   return errorProjection("http", error instanceof Error ? error.message : error, "workflow-http");
 }
+
+
+/** Compatibility references never disclose storage locations, even in advanced audit. */
+export function projectWorkflowArtifact(artifact: ArtifactRef): ArtifactRef {
+  return { id: artifact.id, type: artifact.type, schemaVersion: artifact.schemaVersion,
+    revision: artifact.revision, sha256: artifact.sha256,
+    uri: `workflow://${encodeURIComponent(artifact.id)}`,
+    producedBy: { workflowRunId: artifact.producedBy.workflowRunId, stepRunId: artifact.producedBy.stepRunId, attemptId: artifact.producedBy.attemptId },
+    dependsOn: artifact.dependsOn.map(({ artifactId, revision, sha256 }) => ({ artifactId, revision, sha256 })),
+    validation: artifact.validation, review: artifact.review };
+}

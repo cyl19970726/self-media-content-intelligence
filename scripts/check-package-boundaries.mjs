@@ -25,7 +25,7 @@ for (const file of sourceFiles) {
       failures.push(`${file}: shared workflow imports must use public package exports (${specifier})`);
     }
     if ((file.startsWith("src/client/") || file.startsWith("apps/web/"))
-      && specifier.startsWith("@signal-room/workflow") && specifier !== "@signal-room/workflow/contracts") {
+      && specifier.startsWith("@signal-room/workflow") && !["@signal-room/workflow/contracts", "@signal-room/workflow-read-model/contracts"].includes(specifier)) {
       failures.push(`${file}: Web code may import only the browser-safe workflow contracts (${specifier})`);
     }
 

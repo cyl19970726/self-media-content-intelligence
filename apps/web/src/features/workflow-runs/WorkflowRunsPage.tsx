@@ -8,6 +8,7 @@ import { getCreatorResearchRun, getVideoResearch } from "../../shared/api/client
 import type { WorkflowArtifactReader, WorkflowCreatorReaderData } from "../../shared/contracts/workflow-reader";
 import { activeWorkflowState, artifactLabel, attemptPresentation, emptyArtifactMessage, eventSummary, isKnownArtifactType, originalPostReportHref, reusedCandidateWithoutModel, stepCanRetry, stepLabel, stepSummary, workflowReaderLabel, workflowStateLabel } from "./model/presentation";
 import "./workflow-runs.css";
+import { WorkflowReadingPage } from "./WorkflowReadingPage";
 
 function ArtifactPayload({ ownerRunId, artifact, anchor: suppliedAnchor, PostReader, CreatorReader }: { anchor?: string; ownerRunId: string; artifact: WorkflowArtifact; PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
   const location = useLocation();
@@ -241,7 +242,7 @@ function RunDetail({ detail, events, runs, refresh, PostReader, CreatorReader }:
   </article>;
 }
 
-export default function WorkflowRunsPage({ PostReader, CreatorReader }: { PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
+function WorkflowRunsAuditPage({ PostReader, CreatorReader }: { PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
   const { id } = useParams();
   const [search] = useSearchParams();
   const creatorRunId = search.get("creatorRunId") ?? undefined;
@@ -292,4 +293,10 @@ export default function WorkflowRunsPage({ PostReader, CreatorReader }: { PostRe
   }, [detail, poll]);
   if (loading && !detail) return <div className="page-loader"><LoaderCircle className="spin"/><p>正在读取工作流记录</p></div>;
   return <main className="workflow-page"><aside><header><span>WORKFLOW RUNS</span><button title="刷新" onClick={() => void load()}><RefreshCw size={14}/></button></header><RunList runs={runs} selected={id} creatorRunId={creatorRunId}/></aside>{error ? <p className="workflow-error"><AlertTriangle size={15}/>{error}</p> : detail ? <RunDetail detail={detail} events={events} runs={runs} refresh={load} PostReader={PostReader} CreatorReader={CreatorReader}/> : <article className="workflow-detail workflow-detail--empty"><h1>工作流执行记录</h1><p>选择一条记录查看步骤、资产和可恢复操作。</p></article>}</main>;
+}
+
+export default function WorkflowRunsPage(props: { PostReader?: ComponentType<{ data: VideoResearch }>; CreatorReader?: ComponentType<{ data: WorkflowCreatorReaderData }> }) {
+  const { id } = useParams();
+  const [search] = useSearchParams();
+  return id && search.get("audit") !== "1" ? <WorkflowReadingPage runId={id} {...props}/> : <WorkflowRunsAuditPage {...props}/>;
 }

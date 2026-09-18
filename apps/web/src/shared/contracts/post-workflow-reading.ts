@@ -1,6 +1,7 @@
 export type PostWorkflowReadingState = "queued" | "running" | "waiting" | "blocked" | "needs_review" | "succeeded" | "failed" | "canceled";
 
 export type PostWorkflowReading = {
+  progress?: { registered: number; completed: number; planned?: number; closed: boolean };
   workflow: {
     rootRunId: string;
     state: PostWorkflowReadingState;

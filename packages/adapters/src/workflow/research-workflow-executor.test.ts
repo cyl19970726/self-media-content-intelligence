@@ -366,6 +366,42 @@ describe("SQLiteResearchWorkflowExecutor", () => {
     expect(await executor.snapshot("creator-1", canceledParent.workflowRunId)).toMatchObject({ state: "canceled" });
     expect(await executor.snapshot("creator-1", canceledChildJob.workflowRunId)).toMatchObject({ state: "canceled" });
   });
+
+  it("persists an explicit cross-child retry event across executor recreation", async () => {
+    const database = new DatabaseSync(":memory:");
+    databases.push(database);
+    const store = new SQLiteWorkflowRunStore(database);
+    const evidence = await seedEvidence(store);
+    const child = workflow("post.review", { revision: "v3" }, async () => ({ ok: true }));
+    const registry: WorkflowDefinitionRegistry = { resolve: (id, revision) => id === child.id && revision === child.revision
+      ? child as unknown as ReturnType<WorkflowDefinitionRegistry["resolve"]> : undefined };
+    const scheduler: WorkflowAdvanceScheduler = { enqueue: async () => {} };
+    let executor = new SQLiteResearchWorkflowExecutor(database, store, noAgentRunner(), definitions(() => true), freezer(evidence), registry, scheduler);
+    const parent = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v7", inputFingerprint: "parent", state: "waiting" });
+    database.prepare("INSERT INTO research_workflow_executions(id, creator_run_id, document) VALUES (?, ?, ?)").run(parent.id, "creator-1", JSON.stringify({
+      id: parent.id, creatorRunId: "creator-1", kind: "post", workflowId: "post.analyze", definitionRevision: "v7",
+      generation: 1, state: "waiting", frozenInput: { creatorRunId: "creator-1", postExternalId: "post", evidenceKind: "video", evidence },
+    }));
+    const step = async (key: string) => store.createStep({ runId: parent.id, key, kind: "workflow", workflowId: parent.workflowId,
+      workflowRevision: parent.workflowRevision, inputFingerprint: key, configFingerprint: key, state: "running", validation: "pending" });
+    const first = await step("simple-review/review:1");
+    const second = await step("simple-review/review:2");
+    const link = { key: "simple-review:candidate:1:sha", attempt: 1 as const };
+    await executor.ensureChild({ parentRunId: parent.id, parentStepRunId: first.id, key: first.key,
+      definition: { id: child.id, revision: child.revision }, input: { retryLink: link }, metadata: {} });
+    executor = new SQLiteResearchWorkflowExecutor(database, store, noAgentRunner(), definitions(() => true), freezer(evidence), registry, scheduler);
+    const retryRequest = { parentRunId: parent.id, parentStepRunId: second.id, key: second.key,
+      definition: { id: child.id, revision: child.revision }, input: { retryLink: { ...link, attempt: 2 as const, reason: "SIMPLE_REVIEW_LOCATION_MISSING:FINDING-001" } }, metadata: {} };
+    await executor.ensureChild(retryRequest);
+    // Simulate a crash after the child envelope persisted but before the event write.
+    database.prepare("DELETE FROM workflow_events WHERE run_id = ? AND json_extract(document, '$.type') = 'read-model.retry'").run(parent.id);
+    executor = new SQLiteResearchWorkflowExecutor(database, store, noAgentRunner(), definitions(() => true), freezer(evidence), registry, scheduler);
+    await executor.ensureChild(retryRequest);
+    await executor.ensureChild(retryRequest);
+    const retries = (await store.listEvents(parent.id)).filter((event) => event.type === "read-model.retry");
+    expect(retries).toHaveLength(1);
+    expect(retries[0]).toMatchObject({ stepRunId: second.id, data: { retryOf: first.id, reason: "SIMPLE_REVIEW_LOCATION_MISSING:FINDING-001" } });
+  });
 });
 
 function noAgentRunner(): AgentRunner {

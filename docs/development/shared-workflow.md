@@ -56,6 +56,8 @@ git push
 
 ## 接入文档与示例
 
+报告页、增量读取、重试血缘、历史兼容与宿主验收见[Workflow Read Model 集成指南](workflow-read-model-integration.md)。该指南只描述已接入的读取合同；真实模型验收应另行记录。
+
 直接参考共享仓库的[快速开始](../../vendor/agent-workflow/docs/getting-started.md)、[流程编写](../../vendor/agent-workflow/docs/writing-workflows.md)和[宿主集成](../../vendor/agent-workflow/docs/integration.md)。可运行示例位于 [examples](../../vendor/agent-workflow/examples)。
 
 本项目不安装 workflow 编排 skill；业务 Agent 所需的方法仍通过 `config.skills` 显式配置。
