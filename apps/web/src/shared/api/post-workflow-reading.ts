@@ -17,6 +17,13 @@ export async function getPostWorkflowReading(creatorRunId: string, postId: strin
   return await responseJson(await fetch(url, { cache: "no-store" })) as PostWorkflowReading;
 }
 
+export async function getOptionalBatchVideoResearch(creatorId: string, postId: string, creatorRunId?: string): Promise<VideoResearch | null> {
+  const query = creatorRunId ? `?run=${encodeURIComponent(creatorRunId)}` : "";
+  const response = await fetch(`/api/v1/creators/${encodeURIComponent(creatorId)}/videos/${encodeURIComponent(postId)}${query}`, { cache: "no-store" });
+  if (response.status === 404) return null;
+  return videoResearchSchema.parse(await responseJson(response));
+}
+
 export async function getPostCandidateReader(readerHref: string): Promise<VideoResearch> {
   if (!/^\/api\/workflow-runs\/[^/?#]+\/artifacts\/[^/?#]+\/reader$/u.test(readerHref)) throw new Error("候选报告读取地址无效");
   const value = await responseJson(await fetch(readerHref, { cache: "no-store" }));

@@ -1,4 +1,5 @@
 import type { ArtifactRef, RunRecord, RunStore } from "@signal-room/workflow";
+import { researchReviewArtifactSchema } from "../../packages/research/index.js";
 import { projectWorkflowPhases } from "./workflow-phase-projection.js";
 
 type ReadingState = "queued" | "running" | "waiting" | "blocked" | "needs_review" | "succeeded" | "failed" | "canceled";
@@ -83,11 +84,29 @@ async function runTree(store: RunStore, root: RunRecord): Promise<RunRecord[]> {
   return result;
 }
 
-function reviewStatus(artifact: ArtifactRef): "unknown" | "pending" | "findings" | "reviewed" {
-  if (artifact.review === "pending") return "pending";
-  if (artifact.review === "findings") return "findings";
-  if (artifact.review === "passed") return "reviewed";
-  return "unknown";
+async function boundPostReviewStatus(candidate: ArtifactRef, assets: ArtifactRef[], artifactPayload: (id: string) => Promise<unknown>, legacyWorkflow: boolean): Promise<"pending" | "findings" | "reviewed"> {
+  const payload = await artifactPayload(candidate.id);
+  const reportSha256 = payload && typeof payload === "object" && "reportSha256" in payload ? (payload as { reportSha256?: unknown }).reportSha256 : null;
+  const statuses = new Set<"findings" | "reviewed">();
+  for (const asset of assets) {
+    if (asset.validation !== "valid" || !asset.dependsOn.some((link) => link.artifactId === candidate.id
+      && link.revision === candidate.revision && link.sha256 === candidate.sha256)) continue;
+    if (legacyWorkflow && asset.type === "post-evaluation" && asset.schemaVersion === "v1") {
+      if (asset.review === "passed") statuses.add("reviewed");
+      else if (asset.review === "findings") statuses.add("findings");
+      continue;
+    }
+    if (asset.type !== "post-review" || asset.schemaVersion !== "research-review@1"
+      || typeof reportSha256 !== "string" || !/^[a-f0-9]{64}$/iu.test(reportSha256)) continue;
+    const parsed = researchReviewArtifactSchema.safeParse(await artifactPayload(asset.id));
+    if (!parsed.success || parsed.data.kind !== "post") continue;
+    const review = parsed.data;
+    if (review.candidate.id !== candidate.id || review.candidate.revision !== candidate.revision || review.candidate.sha256 !== candidate.sha256
+      || review.candidateReportSha256 !== reportSha256) continue;
+    if (review.findings.length === 0 && asset.review === "passed") statuses.add("reviewed");
+    else if (review.findings.length > 0 && asset.review === "findings") statuses.add("findings");
+  }
+  return statuses.size === 1 ? [...statuses][0]! : "pending";
 }
 
 function currentCandidate(candidates: ArtifactRef[]): ArtifactRef | undefined {
@@ -167,13 +186,14 @@ export async function projectPostWorkflowReading(store: RunStore, artifactPayloa
       }
     }
   }
+  const selectedReviewStatus = selected ? await boundPostReviewStatus(selected, assets, artifactPayload, ["v1", "v2", "v3", "v4"].includes(root.workflowRevision)) : null;
   return {
     workflow: { rootRunId: root.id, state: root.state as ReadingState, workflowId: root.workflowId, workflowRevision: root.workflowRevision, selectedFrom },
     phases: phases.filter((phase) => isUserPostPhase(phase, postId)).map((phase) => ({ id: phase.id, title: phase.title, state: phase.state as ReadingState, purpose: phase.purpose,
       ...(phase.reason ? { reason: phase.reason } : {}), usage: { attempts: phase.usage.attempts, inputTokens: phase.usage.inputTokens,
         outputTokens: phase.usage.outputTokens, unknown: phase.usage.unknown }, ...(reusedPhaseIds.has(phase.id) ? { reusedCandidate: true } : {}) })),
     candidate: selected ? { ownerRunId: selected.producedBy.workflowRunId, artifactId: selected.id, artifactType: "post-candidate",
-      revision: selected.revision, sha256: selected.sha256, reviewStatus: reviewStatus(selected), revisionStatus,
+      revision: selected.revision, sha256: selected.sha256, reviewStatus: selectedReviewStatus!, revisionStatus,
       readerHref: `/api/workflow-runs/${encodeURIComponent(selected.producedBy.workflowRunId)}/artifacts/${encodeURIComponent(selected.id)}/reader` } : null,
     baseCandidate: baseCandidate ? { ownerRunId: baseCandidate.producedBy.workflowRunId, artifactId: baseCandidate.id,
       readerHref: `/api/workflow-runs/${encodeURIComponent(baseCandidate.producedBy.workflowRunId)}/artifacts/${encodeURIComponent(baseCandidate.id)}/reader` } : null,

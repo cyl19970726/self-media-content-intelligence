@@ -5,7 +5,6 @@ import { ReportCoverageNotice } from "./ReportCoverageNotice";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AlertTriangle, LoaderCircle } from "lucide-react";
-import { getVideoResearch } from "../../shared/api/client";
 import type { VideoResearch } from "../../shared/contracts/core";
 import { OpeningReport, PackagingReport } from "./DepthReports";
 import { ContentRestorationReport } from "./ContentRestorationReport";
@@ -16,8 +15,8 @@ import { ResearchAuditAppendix } from "./ResearchAuditAppendix";
 import { LensWorkspace, type LensOutlineItem } from "./LensWorkspace";
 import { timestamp, stageReadingLabel } from "./video-reader-utils";
 import { startFreshPostWorkflow } from "../../shared/api/post-workflows";
-import { getPostCandidateReader, getPostWorkflowReading, type PostWorkflowReading } from "../../shared/api/post-workflow-reading";
-import { PostWorkflowReadingPanel, workflowReviewLabel } from "./PostWorkflowReadingPanel";
+import { getOptionalBatchVideoResearch, getPostCandidateReader, getPostWorkflowReading, type PostWorkflowReading } from "../../shared/api/post-workflow-reading";
+import { PostWorkflowReadingPanel, workflowIsActive, workflowReviewLabel } from "./PostWorkflowReadingPanel";
 import "./video-reader-report.css";
 
 type Lens = "content" | "opening" | "directing" | "visual" | "audit";
@@ -92,10 +91,12 @@ export default function VideoEvidencePage() {
   const [search] = useSearchParams();
   const [data, setData] = useState<VideoResearch | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [reportLoaded, setReportLoaded] = useState(false);
   const [starting, setStarting] = useState(false);
   const [startError, setStartError] = useState<string | null>(null);
   const [reading, setReading] = useState<PostWorkflowReading | null>(null);
   const [readingError, setReadingError] = useState<string | null>(null);
+  const [readingLoaded, setReadingLoaded] = useState(false);
   const [candidate, setCandidate] = useState<{ href: string; data: VideoResearch } | null>(null);
   const [candidateError, setCandidateError] = useState<string | null>(null);
   const [baseCandidate, setBaseCandidate] = useState<{ href: string; data: VideoResearch } | null>(null);
@@ -110,32 +111,33 @@ export default function VideoEvidencePage() {
 
   useEffect(() => {
     let active = true;
-    setError(null); setData(null);
-    getVideoResearch(id, videoId, runId).then(value => { if (active) setData(value); }).catch((cause) => {
+    setError(null); setData(null); setReportLoaded(false);
+    getOptionalBatchVideoResearch(id, videoId, runId).then(value => { if (active) { setData(value); setReportLoaded(true); } }).catch((cause) => {
       if (!active) return;
       setError(cause instanceof Error ? cause.message : "无法读取视频证据");
+      setReportLoaded(true);
     });
     return () => { active = false; };
   }, [id, videoId, runId]);
 
   useEffect(() => {
     let active = true;
-    setReading(null); setReadingError(null);
-    if (!runId) return () => { active = false; };
+    setReading(null); setReadingError(null); setReadingLoaded(false);
+    if (!runId) { setReadingLoaded(true); return () => { active = false; }; }
     let timer: number | undefined;
     const load = async () => {
       window.clearTimeout(timer);
       try {
         const value = await getPostWorkflowReading(runId, videoId, workflowRunId);
         if (active) {
-          setReading(value); setReadingError(null);
+          setReading(value); setReadingError(null); setReadingLoaded(true);
           if (value.workflow && ["queued", "running", "waiting"].includes(value.workflow.state)) {
             timer = window.setTimeout(() => { if (document.visibilityState === "visible") void load(); }, 5000);
           }
         }
       } catch (cause) {
         if (active) {
-          setReadingError(cause instanceof Error ? cause.message : "无法读取研究进度");
+          setReadingError(cause instanceof Error ? cause.message : "无法读取研究进度"); setReadingLoaded(true);
           timer = window.setTimeout(() => { if (document.visibilityState === "visible") void load(); }, 15000);
         }
       }
@@ -149,11 +151,19 @@ export default function VideoEvidencePage() {
   const candidateHref = reading?.candidate?.readerHref;
   useEffect(() => {
     let active = true;
+    let retryTimer: number | undefined;
+    let failures = 0;
     setCandidate(null); setCandidateError(null);
     if (!candidateHref) return () => { active = false; };
-    getPostCandidateReader(candidateHref).then(value => { if (active) setCandidate({ href: candidateHref, data: value }); })
-      .catch(cause => { if (active) setCandidateError(cause instanceof Error ? cause.message : "候选报告读取失败"); });
-    return () => { active = false; };
+    const load = () => getPostCandidateReader(candidateHref).then(value => {
+      if (active) { setCandidate({ href: candidateHref, data: value }); setCandidateError(null); }
+    }).catch(cause => {
+      if (!active) return;
+      setCandidateError(cause instanceof Error ? cause.message : "候选报告读取失败");
+      if (++failures < 6) retryTimer = window.setTimeout(load, 5000);
+    });
+    void load();
+    return () => { active = false; window.clearTimeout(retryTimer); };
   }, [candidateHref]);
 
   const baseHref = reading?.baseCandidate?.readerHref;
@@ -167,15 +177,16 @@ export default function VideoEvidencePage() {
   }, [baseHref]);
 
   useEffect(() => {
-    if (!data || !location.hash) return;
+    if ((!data && !candidate && !baseCandidate) || !location.hash) return;
     const target = document.getElementById(location.hash.slice(1));
     target?.scrollIntoView({ block: "start" });
-  }, [data, location.hash, location.key, currentLens]);
+  }, [data, candidate, baseCandidate, location.hash, location.key, currentLens]);
 
   const rawReturnTo = search.get("returnTo");
-  const returnTo = data ? singlePostReturnHref(data.creatorId, runId, rawReturnTo) : "/creators";
+  const returnTo = singlePostReturnHref(data?.creatorId ?? id, runId, rawReturnTo);
   const returnLabel = returnTo === "/analyze" ? "单帖报告" : `${data?.creatorName ?? "博主"} 的博主研究`;
   const candidateReady = Boolean(candidate && candidate.href === candidateHref);
+  const activeWorkflow = workflowIsActive(reading);
   const baseReady = Boolean(baseCandidate && baseCandidate.href === baseHref);
   const visibleVersion = requestedVersion === "candidate" && candidateReady ? "candidate" : "original";
   const displayed = visibleVersion === "candidate" ? candidate!.data : baseReady && requestedVersion === "original" ? baseCandidate!.data : data;
@@ -192,7 +203,7 @@ export default function VideoEvidencePage() {
   }
 
   async function startFreshResearch() {
-    if (!runId || !videoId || starting) return;
+    if (!runId || !videoId || starting || activeWorkflow) return;
     setStarting(true); setStartError(null);
     try {
       const receipt = await startFreshPostWorkflow(runId, videoId);
@@ -208,8 +219,21 @@ export default function VideoEvidencePage() {
     }
   }
 
-  if (error) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>证据读取失败</h1><p>{error}</p></div></main>;
-  if (!data || !displayed) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在加载报告</p></div></main>;
+  if (!reportLoaded || !readingLoaded) return <main className="console console--solo"><div className="page-loader"><LoaderCircle className="spin"/><p>正在读取单帖研究</p></div></main>;
+  if (!displayed) {
+    if (error || readingError) return <main className="console console--solo"><div className="page-error"><AlertTriangle/><h1>单帖研究暂时无法读取</h1><p>{error ?? readingError}</p><Link to={returnTo}>返回{returnLabel}</Link></div></main>;
+    const emptyTitle = candidateError ? "候选报告暂时无法读取" : activeWorkflow ? "报告正在生成，暂时没有可读正文"
+      : reading?.workflow ? "本次研究尚无可读报告" : "这条视频还没有可读报告";
+    return <main className="video-reader-shell"><article className="video-reader-report">
+      <nav className="reader-breadcrumb"><Link to={returnTo}>返回{returnLabel}</Link><span>单帖研究</span></nav>
+      {reading?.workflow && runId && <PostWorkflowReadingPanel reading={reading} creatorRunId={runId} version="original" wantsCandidate={false} onVersionChange={selectVersion} candidateReady={false} baseReady={false} hasBatchReport={false} candidateError={candidateError} baseError={baseError}/>}
+      <section className="post-workflow-empty"><span>单帖报告</span><h1>{emptyTitle}</h1>
+        <p>{activeWorkflow ? "本次研究的进度显示在上方；候选报告登记后会在此自动展示。" : reading?.workflow ? "上方保留了本次研究的状态和执行记录。" : "可以从当前媒体证据启动单帖研究，生成后在此查看完整报告。"}</p>
+        {runId && <button type="button" onClick={() => void startFreshResearch()} disabled={starting || activeWorkflow}>{starting ? "正在启动…" : activeWorkflow ? "本次研究进行中" : "用当前方法开始研究"}</button>}
+        {startError && <p className="reader-research-action__error" role="alert">{startError}</p>}
+      </section>
+    </article></main>;
+  }
 
   return <main className="video-reader-shell">
     <article className="video-reader-report">
@@ -219,13 +243,13 @@ export default function VideoEvidencePage() {
       {readingError && <p className="post-workflow-reading__error" role="alert">本次研究进度暂时无法读取：{readingError}。下方报告仍可阅读。</p>}
       {runId && <div className="reader-research-action">
         <div><b>继续研究这条视频</b><p>基于当前原帖与媒体证据启动新工作流并重新评估。已有候选报告可能被复用，继续接受审核。</p></div>
-        <button type="button" onClick={() => void startFreshResearch()} disabled={starting}>
-          {starting ? "正在启动…" : "用当前方法重新研究"}
+        <button type="button" onClick={() => void startFreshResearch()} disabled={starting || activeWorkflow}>
+          {starting ? "正在启动…" : activeWorkflow ? "本次研究进行中" : "用当前方法重新研究"}
         </button>
         {startError && <p className="reader-research-action__error" role="alert">{startError}</p>}
       </div>}
-      {displayed === data && <ReportStatusNotice data={data}/>}
-      {displayed === data && <ReportOverview data={data}/>}
+      {data && displayed === data && <ReportStatusNotice data={data}/>}
+      {data && displayed === data && <ReportOverview data={data}/>}
       <ReaderNavigation current={currentLens} search={search}/>
       <LensWorkspace label={lensLabels.find((lens) => lens.id === currentLens)?.label ?? "报告"} items={outlineFor(displayed, currentLens)}>
         {currentLens === "content" && <ContentStory data={displayed}/>}

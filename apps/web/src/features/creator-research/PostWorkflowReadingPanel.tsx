@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type { PostWorkflowReading } from "../../shared/api/post-workflow-reading";
 
 const phaseStateLabel: Record<string, string> = {
-  queued: "待开始", running: "进行中", waiting: "等待下阶段", succeeded: "已完成",
+  queued: "待开始", running: "进行中", waiting: "子流程执行中", succeeded: "已完成",
   needs_review: "待处理", blocked: "已阻塞", failed: "未完成", canceled: "已取消"
 };
 
@@ -15,9 +15,13 @@ export function workflowReviewLabel(reading: PostWorkflowReading): string {
   return "复核状态未知";
 }
 
-export function PostWorkflowReadingPanel({ reading, creatorRunId, version, wantsCandidate, onVersionChange, candidateReady, baseReady, candidateError, baseError }: {
+export function workflowIsActive(reading: PostWorkflowReading | null): boolean {
+  return reading?.workflow?.state === "queued" || reading?.workflow?.state === "running" || reading?.workflow?.state === "waiting";
+}
+
+export function PostWorkflowReadingPanel({ reading, creatorRunId, version, wantsCandidate, onVersionChange, candidateReady, baseReady, hasBatchReport = true, candidateError, baseError }: {
   reading: PostWorkflowReading; creatorRunId: string; version: "candidate" | "original"; wantsCandidate: boolean; onVersionChange: (next: "candidate" | "original") => void;
-  candidateReady: boolean; baseReady: boolean; candidateError: string | null; baseError: string | null;
+  candidateReady: boolean; baseReady: boolean; hasBatchReport?: boolean; candidateError: string | null; baseError: string | null;
 }) {
   const workflow = reading.workflow;
   const candidate = reading.candidate;
@@ -32,14 +36,15 @@ export function PostWorkflowReadingPanel({ reading, creatorRunId, version, wants
     : workflow?.state === "succeeded" ? "研究流程已结束" : currentPhase ? `${currentPhase.title} · ${phaseStateLabel[currentPhase.state] ?? currentPhase.state}` : "研究流程准备中";
   return <section className="post-workflow-reading" aria-label="本次研究进度">
     <div className="post-workflow-reading__top"><div><span>本次研究 · {progress}</span><h2>{headline}</h2>
-      <p>{candidate ? workflowReviewLabel(reading) : "当前显示批次报告；候选版本尚未可读。"}</p></div>
+      <p>{candidate ? workflowReviewLabel(reading) : hasBatchReport ? "当前显示批次报告；候选版本尚未可读。" : "候选报告尚未可读。"}</p></div>
       {workflow && <span className={`post-workflow-reading__state post-workflow-reading__state--${workflow.state}`}>{phaseStateLabel[workflow.state] ?? workflow.state}</span>}
     </div>
     {reading.phases.length > 0 && <ol className="post-workflow-reading__phases">{reading.phases.map(phase => <li key={phase.id} className={`is-${phase.state}`}><span>{phaseStateLabel[phase.state] ?? phase.state}</span><b>{phase.reusedCandidate ? "复用已有候选" : phase.title}</b></li>)}</ol>}
     <div className="post-workflow-reading__versions"><span>阅读版本</span><div role="group" aria-label="选择报告版本">
       <button type="button" aria-pressed={version === "candidate"} disabled={!candidate || !candidateReady} onClick={() => onVersionChange("candidate")}>{revised ? "修订稿" : "当前候选"}</button>
-      <button type="button" aria-pressed={version === "original"} onClick={() => onVersionChange("original")}>{originalLabel}</button>
+      <button type="button" aria-pressed={version === "original" && (hasBatchReport || baseReady)} disabled={!hasBatchReport && !baseReady} onClick={() => onVersionChange("original")}>{originalLabel}</button>
     </div><p>{version === "candidate" && candidateReady ? workflowReviewLabel(reading)
+      : !hasBatchReport && !baseReady ? "当前没有可读正文；候选版本登记后会自动展示。"
       : wantsCandidate && candidate && !candidateReady && !candidateError ? "候选版本正在载入；下方暂显示批次报告。"
         : !wantsCandidate && reading.baseCandidate && !baseReady && !baseError ? "修订前报告正在载入；下方暂显示批次报告。"
           : `当前阅读${originalLabel}。新研究的状态见上方进度。`}</p></div>

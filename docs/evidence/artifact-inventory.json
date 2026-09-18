@@ -51,6 +51,7 @@
     "scripts/rerun-video-evaluator.ts",
     "scripts/run-video-three-lens-regression.ts",
     "src/server/creator-dossier.ts",
+    "src/server/post-workflow-reading.ts",
     "src/server/routes/workflow-runs.ts",
     "src/server/video-research.ts",
     "src/server/workflow-artifact-reader.ts",

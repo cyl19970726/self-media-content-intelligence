@@ -116,6 +116,71 @@ it("reads an explicitly selected post child through its root and only exposes a 
   expect((await fetch(`${base}/api/creator-runs/creator-a/posts/post-b/workflow-reading?workflowRunId=${child.id}`)).status).toBe(404);
 });
 
+it("projects review status only from a valid receipt bound to the exact current candidate and report hash", async () => {
+  const { store, url } = await setup();
+  const root = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v5", inputFingerprint: "root", state: "succeeded",
+    metadata: { creatorRunId: "creator", postId: "post" } });
+  const builder = await store.createRun({ workflowId: "post.build", workflowRevision: "v1", inputFingerprint: "builder", state: "succeeded",
+    parentRunId: root.id, metadata: { creatorRunId: "creator", postId: "post" } });
+  const reviewer = await store.createRun({ workflowId: "post.review", workflowRevision: "v2", inputFingerprint: "reviewer", state: "succeeded",
+    parentRunId: root.id, metadata: { creatorRunId: "creator", postId: "post" } });
+  const producer = async (runId: string) => {
+    const step = await store.createStep({ runId, key: "publish", kind: "publish", workflowId: "post.analyze", workflowRevision: "v5",
+      inputFingerprint: "input", configFingerprint: "config", state: "succeeded", validation: "valid" });
+    const attempt = await store.createAttempt({ runId, stepRunId: step.id, state: "succeeded" });
+    return { workflowRunId: runId, stepRunId: step.id, attemptId: attempt.id };
+  };
+  const buildProducer = await producer(builder.id); const reviewProducer = await producer(reviewer.id);
+  const reportSha256 = "a".repeat(64);
+  const oldPayload = { reportSha256: "b".repeat(64) };
+  const old = await store.publishArtifact({ type: "post-candidate", schemaVersion: "v1", revision: "old", sha256: await artifactPayloadSha256(oldPayload),
+    uri: "workflow://old", payload: oldPayload, producedBy: buildProducer, dependsOn: [], validation: "valid", review: "pending" });
+  const candidatePayload = { reportSha256 };
+  const candidate = await store.publishArtifact({ type: "post-candidate", schemaVersion: "v1", revision: "current", sha256: await artifactPayloadSha256(candidatePayload),
+    uri: "workflow://current", payload: candidatePayload, producedBy: buildProducer,
+    dependsOn: [{ artifactId: old.id, revision: old.revision, sha256: old.sha256 }], validation: "valid", review: "pending" });
+  const publishReview = async (boundCandidate: typeof candidate, hash: string, review: "passed" | "findings") => {
+    const payload = { kind: "post", schemaVersion: "research-review@1", candidate: {
+      id: boundCandidate.id, revision: boundCandidate.revision, sha256: boundCandidate.sha256 }, candidateReportSha256: hash,
+      summary: "独立复核", findings: review === "passed" ? [] : [{ id: "f1", location: "contentRestoration",
+        issue: "证据不足", evidenceRefs: [], suggestedChange: "补充可核对证据", priority: "major", kind: "missing_evidence" }] };
+    return store.publishArtifact({ type: "post-review", schemaVersion: "research-review@1", revision: crypto.randomUUID(),
+      sha256: await artifactPayloadSha256(payload), uri: "workflow://review", payload, producedBy: reviewProducer,
+      dependsOn: [{ artifactId: boundCandidate.id, revision: boundCandidate.revision, sha256: boundCandidate.sha256 }], validation: "valid", review });
+  };
+  const reading = async () => fetch(`${url.replace("/api/workflow-runs", "")}/api/creator-runs/creator/posts/post/workflow-reading?workflowRunId=${root.id}`)
+    .then((response) => response.json()) as Promise<{ candidate: { reviewStatus: string } }>;
+  await publishReview(old, oldPayload.reportSha256, "passed");
+  expect((await reading()).candidate.reviewStatus).toBe("pending");
+  await publishReview(candidate, "c".repeat(64), "passed");
+  expect((await reading()).candidate.reviewStatus).toBe("pending");
+  await publishReview(candidate, reportSha256, "passed");
+  expect((await reading()).candidate.reviewStatus).toBe("reviewed");
+});
+
+it("preserves legacy evaluation status for the exact candidate without requiring a research-review receipt", async () => {
+  const { store, url } = await setup();
+  const root = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v4", inputFingerprint: "legacy", state: "succeeded",
+    metadata: { creatorRunId: "creator", postId: "post" } });
+  const step = await store.createStep({ runId: root.id, key: "publish", kind: "publish", workflowId: root.workflowId,
+    workflowRevision: root.workflowRevision, inputFingerprint: "input", configFingerprint: "config", state: "succeeded", validation: "valid" });
+  const attempt = await store.createAttempt({ runId: root.id, stepRunId: step.id, state: "succeeded" });
+  const producedBy = { workflowRunId: root.id, stepRunId: step.id, attemptId: attempt.id };
+  const publish = async (type: string, dependsOn: Array<{ artifactId: string; revision: string; sha256: string }>, review: "pending" | "passed") => {
+    const payload = { legacy: type, nonce: crypto.randomUUID() };
+    return store.publishArtifact({ type, schemaVersion: "v1", revision: crypto.randomUUID(), sha256: await artifactPayloadSha256(payload),
+      uri: `workflow://${type}`, payload, producedBy, dependsOn, validation: "valid", review });
+  };
+  const candidate = await publish("post-candidate", [], "pending");
+  await publish("post-evaluation", [{ artifactId: candidate.id, revision: candidate.revision, sha256: candidate.sha256 }], "passed");
+  const reading = async () => fetch(`${url.replace("/api/workflow-runs", "")}/api/creator-runs/creator/posts/post/workflow-reading?workflowRunId=${root.id}`)
+    .then((response) => response.json()) as Promise<{ candidate: { reviewStatus: string } }>;
+  expect((await reading()).candidate.reviewStatus).toBe("reviewed");
+  const repaired = await publish("post-candidate", [{ artifactId: candidate.id, revision: candidate.revision, sha256: candidate.sha256 }], "pending");
+  expect((await reading()).candidate.reviewStatus).toBe("pending");
+  expect(repaired.id).not.toBe(candidate.id);
+});
+
 it("selects the newest post root by creation time and never falls back to an older candidate", async () => {
   const { store, url } = await setup();
   const older = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v5", inputFingerprint: "old", state: "succeeded",

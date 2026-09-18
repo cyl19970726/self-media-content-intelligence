@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { expect, it } from "vitest";
 import type { PostWorkflowReading } from "../../shared/contracts/post-workflow-reading";
-import { PostWorkflowReadingPanel, workflowReviewLabel } from "./PostWorkflowReadingPanel";
+import { PostWorkflowReadingPanel, workflowIsActive, workflowReviewLabel } from "./PostWorkflowReadingPanel";
 
 const reading: PostWorkflowReading = {
   workflow: { rootRunId: "workflow-1", state: "running", workflowId: "post.analyze", workflowRevision: "v5", selectedFrom: "explicit" },
@@ -51,4 +51,28 @@ it("does not call a failed run ready or completed", () => {
   expect(html).toContain("本次研究未完成");
   expect(html).toContain("1/3 步已完成");
   expect(html).not.toContain("研究流程已结束");
+});
+
+it("does not imply a batch report exists in the empty-report state", () => {
+  const empty: PostWorkflowReading = { ...reading, candidate: null, baseCandidate: null };
+  const html = renderToStaticMarkup(createElement(MemoryRouter, null,
+    createElement(PostWorkflowReadingPanel, { reading: empty, creatorRunId: "creator-1", version: "original",
+      wantsCandidate: false, onVersionChange: () => undefined, candidateReady: false, baseReady: false,
+      hasBatchReport: false, candidateError: null, baseError: null })));
+  expect(html).toContain("候选报告尚未可读");
+  expect(html).toContain("当前没有可读正文");
+  expect(html).not.toContain("当前显示批次报告");
+});
+
+it("treats a parent waiting on a child as active execution and keeps fresh-start locked", () => {
+  const waiting: PostWorkflowReading = { ...reading, workflow: { ...reading.workflow!, state: "waiting" },
+    phases: reading.phases.map((phase, index) => index === 1 ? { ...phase, state: "waiting" } : phase) };
+  const html = renderToStaticMarkup(createElement(MemoryRouter, null,
+    createElement(PostWorkflowReadingPanel, { reading: waiting, creatorRunId: "creator-1", version: "original",
+      wantsCandidate: false, onVersionChange: () => undefined, candidateReady: false, baseReady: false,
+      candidateError: null, baseError: null })));
+  expect(html).toContain("候选构建 · 子流程执行中");
+  expect(html).not.toContain("等待下阶段");
+  expect(workflowIsActive(waiting)).toBe(true);
+  expect(workflowIsActive({ ...waiting, workflow: { ...waiting.workflow!, state: "succeeded" } })).toBe(false);
 });
