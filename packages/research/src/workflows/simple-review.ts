@@ -70,12 +70,21 @@ async function register(ctx: Pick<WorkflowContext, "task">, callback: SimplePost
   }), null);
 }
 
-async function retryReview<Input>(ctx: WorkflowContext, key: string, definition: WorkflowDefinition<Input, SimpleReviewOutput>, input: Input) {
+function rejectionFeedback(reason: unknown): string {
+  if (reason instanceof Error) return reason.message;
+  if (typeof reason === "string" && reason.trim()) return reason;
+  return "SIMPLE_REVIEW_UNACCEPTED_RESULT";
+}
+
+async function retryReview<Input extends { retryFeedback?: string }>(ctx: WorkflowContext, key: string,
+  definition: WorkflowDefinition<Input, SimpleReviewOutput>, input: Input, includeRetryFeedback: boolean) {
+  let attemptInput = input;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     const settled = await ctx.mapSettled(`${key}:attempt:${attempt + 1}`, [attempt], { concurrency: 1, itemKey: (value: number) => String(value) },
-      () => ctx.call(`${key}:${attempt + 1}`, definition, input));
+      () => ctx.call(`${key}:${attempt + 1}`, definition, attemptInput));
     const result = settled[0]!;
     if (result.status === "fulfilled" && result.value.ok) return result.value;
+    if (attempt === 0 && includeRetryFeedback) attemptInput = { ...input, retryFeedback: rejectionFeedback(result.status === "rejected" ? result.reason : undefined) };
   }
   return undefined;
 }
@@ -87,12 +96,15 @@ async function settledCall<Input, Output>(ctx: WorkflowContext, key: string, def
   return result;
 }
 
-export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
+type SimpleReviewWorkflowVersion = { analyze: "v5" | "v6"; review: "v2" | "v3"; retryFeedback: boolean };
+
+function createSimplePostWorkflowSuite(version: SimpleReviewWorkflowVersion, validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
   const legacy = createPostWorkflowSuite(validators, agents);
-  const review = workflow<{ candidate: ArtifactRef; evidence: ArtifactRef }, SimpleReviewOutput>("post.review", { revision: "v2" }, async (ctx, input) => {
-    const produced = await ctx.agent("reviewer", agents.postReviewer, { candidate: input.candidate, evidence: input.evidence });
+  const review = workflow<{ candidate: ArtifactRef; evidence: ArtifactRef; retryFeedback?: string }, SimpleReviewOutput>("post.review", { revision: version.review }, async (ctx, input) => {
+    const produced = await ctx.agent("reviewer", agents.postReviewer, { candidate: input.candidate, evidence: input.evidence,
+      ...(version.retryFeedback && input.retryFeedback ? { retryFeedback: input.retryFeedback } : {}) });
     const parsed = researchReviewReceiptSchema.safeParse(produced.artifact);
     if (!parsed.success || !candidateBindingMatches(parsed.data, input.candidate, "post") ||
       (produced.candidateRevisionSha256 !== undefined && produced.candidateRevisionSha256 !== parsed.data.candidateReportSha256)) return ctx.needsReview({
@@ -113,7 +125,7 @@ export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
     { schemaVersion: "research-revision@1", dependsOn: deps(input.candidate, input.review, candidate), validation: "valid", review: "findings" });
     return { ok: true, candidate, receipt: produced, revisionRecord };
   });
-  const analyze = workflow<PostWorkflowInput, PostWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus }>("post.analyze", { revision: "v5" }, async (ctx, input) => {
+  const analyze = workflow<PostWorkflowInput, PostWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus }>("post.analyze", { revision: version.analyze }, async (ctx, input) => {
     if (input.evidenceKind !== "video") return ctx.blocked({ kind: "unsupported_media_review", evidence: input.evidence }) as PostWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus };
     if (!options.sourceCheck) return ctx.needsReview({ kind: "source_check_missing" }) as PostWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus };
     const source = await ctx.phase("source-consistency", { title: "来源一致性核对", purpose: "在构建前确认原帖与冻结视频来源一致。", order: 1 }, async (phase) => {
@@ -130,7 +142,7 @@ export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
     });
     if (!built.ok) return built as PostWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus };
     const reviewed = await ctx.phase("simple-review", { title: "独立复核", purpose: "输出结构化 findings 或明确无 findings。", order: 3 }, async (phase) => {
-      const value = await retryReview(phase, "review", review, { candidate: built.candidate, evidence: input.evidence });
+      const value = await retryReview(phase, "review", review, { candidate: built.candidate, evidence: input.evidence }, version.retryFeedback);
       if (value?.ok) await phase.bindArtifact(value.review, { role: "review", title: "复核回执", primary: true });
       return value ?? { stageStatus: "review_incomplete" as const };
     });
@@ -158,12 +170,25 @@ export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
   return { build: legacy.build, sourceCheck: options.sourceCheck, review, repair, analyze, definitions: [legacy.build, review, repair, analyze] as const };
 }
 
-export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthesisWorkflowValidators,
+export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
+  options: SimplePostWorkflowSuiteOptions = {}) {
+  return createSimplePostWorkflowSuite({ analyze: "v5", review: "v2", retryFeedback: false }, validators, agents, options);
+}
+
+export function createPostWorkflowSuiteV6(validators: PostWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
+  options: SimplePostWorkflowSuiteOptions = {}) {
+  return createSimplePostWorkflowSuite({ analyze: "v6", review: "v3", retryFeedback: true }, validators, agents, options);
+}
+
+function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v5"; review: "v2" | "v3"; retryFeedback: boolean }, validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
   options: SimpleCreatorWorkflowSuiteOptions = {}) {
   const legacy = createCreatorSynthesisWorkflowSuite(validators, agents);
-  const review = workflow<{ candidate: ArtifactRef; frozenInputs: ArtifactRef }, SimpleReviewOutput>("creator.review", { revision: "v2" }, async (ctx, input) => {
-    const produced = await ctx.agent("reviewer", agents.creatorReviewer, { candidate: input.candidate, frozenInputs: input.frozenInputs });
+  const review = workflow<{ candidate: ArtifactRef; frozenInputs: ArtifactRef; retryFeedback?: string }, SimpleReviewOutput>("creator.review", { revision: version.review }, async (ctx, input) => {
+    const produced = await ctx.agent("reviewer", agents.creatorReviewer, { candidate: input.candidate, frozenInputs: input.frozenInputs,
+      ...(version.retryFeedback && input.retryFeedback ? { retryFeedback: input.retryFeedback } : {}) });
     const parsed = researchReviewReceiptSchema.safeParse(produced.artifact);
     if (!parsed.success || !candidateBindingMatches(parsed.data, input.candidate, "creator")) return ctx.needsReview({ kind: "review_contract", candidate: input.candidate, produced, checked: parsed.success ? "candidate_binding_mismatch" : parsed.error.flatten() }) as SimpleReviewOutput;
     const reviewArtifact = await ctx.publish("receipt", "creator-review", parsed.data, { schemaVersion: parsed.data.schemaVersion,
@@ -181,7 +206,7 @@ export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthes
     { schemaVersion: "research-revision@1", dependsOn: deps(input.candidate, input.review, candidate), validation: "valid", review: "findings" });
     return { ok: true, candidate, receipt: produced, revisionRecord };
   });
-  const analyze = workflow<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus }>("creator.synthesize", { revision: "v4" }, async (ctx, input) => {
+  const analyze = workflow<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus }>("creator.synthesize", { revision: version.analyze }, async (ctx, input) => {
     const built = await ctx.phase("candidate-build", { title: "博主综合", purpose: "基于冻结输入生成博主综合候选。", order: 1 }, async (phase) => {
       const value = await phase.call("build", legacy.build, input);
       if (value.ok) await phase.bindArtifact(value.candidate, { role: "candidate", title: "综合候选", primary: true });
@@ -189,7 +214,7 @@ export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthes
     });
     if (!built.ok) return built as CreatorSynthesisWorkflowOutput & { reviewStatus?: ReviewStatus; candidateStatus?: CandidateStatus };
     const reviewed = await ctx.phase("simple-review", { title: "独立复核", purpose: "输出结构化 findings 或明确无 findings。", order: 2 }, async (phase) => {
-      const value = await retryReview(phase, "review", review, { candidate: built.candidate, frozenInputs: input.frozenInputs });
+      const value = await retryReview(phase, "review", review, { candidate: built.candidate, frozenInputs: input.frozenInputs }, version.retryFeedback);
       if (value?.ok) await phase.bindArtifact(value.review, { role: "review", title: "复核回执", primary: true });
       return value ?? { stageStatus: "review_incomplete" as const };
     });
@@ -209,4 +234,16 @@ export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthes
     return { ok: true, synthesis: repairedValue.candidate, evaluation: reviewed.review, reviewStatus: "completed_with_findings", candidateStatus: "revised_unverified" };
   });
   return { build: legacy.build, review, repair, analyze, definitions: [legacy.build, review, repair, analyze] as const };
+}
+
+export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthesisWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
+  options: SimpleCreatorWorkflowSuiteOptions = {}) {
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v4", review: "v2", retryFeedback: false }, validators, agents, options);
+}
+
+export function createCreatorSynthesisWorkflowSuiteV5(validators: CreatorSynthesisWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
+  options: SimpleCreatorWorkflowSuiteOptions = {}) {
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v5", review: "v3", retryFeedback: true }, validators, agents, options);
 }

@@ -46,6 +46,47 @@ describe("simple review runner", () => {
     inspect(reviewOutputSchema);
   });
 
+  it("uses the RFC 6901 location pattern while allowing a semicolon in a member name", async () => {
+    const location = reviewOutputSchema.properties.findings.items.properties.location;
+    expect(location.pattern).toBe("^(?:/(?:[^~/]|~[01])*)+$");
+    expect(new RegExp(location.pattern).test("/builderLenses/contentRestoration/title;source")).toBe(true);
+    // A semicolon is ordinary member-name data; semantic lookup rejects a combined non-existent path.
+    expect(new RegExp(location.pattern).test("/bad~2escape")).toBe(false);
+
+    const value = fixture();
+    (value.report.builderLenses.contentRestoration as Record<string, unknown>)["title;source"] = "claim";
+    fs.writeFileSync(value.reportPath, JSON.stringify(value.report));
+    value.candidate.reportSha256 = sha(value.reportPath);
+    const runner = { run: async () => ({ output: {
+      schemaVersion: "research-review@1", kind: "post",
+      candidate: { id: value.candidateRef.id, revision: value.candidateRef.revision, sha256: value.candidateRef.sha256 },
+      candidateReportSha256: value.candidate.reportSha256, summary: "one issue", findings: [{ id: "F-1",
+        location: "/builderLenses/contentRestoration/title;source", issue: "claim lacks support",
+        evidenceRefs: ["#/builderLenses/contentRestoration/blocks/0/evidenceRefs/0"],
+        suggestedChange: "bind the claim", priority: "major", kind: "missing_evidence" }]
+    } }) } as unknown as AgentRunner;
+    await expect(runSimpleReview({ request: value.request, candidateRef: value.candidateRef, candidate: value.candidate,
+      reportPath: value.reportPath, reviewerOperatorPath: value.operatorPath, sourcePaths: [value.sourcePath], runner }))
+      .resolves.toMatchObject({ findings: [{ location: "/builderLenses/contentRestoration/title;source" }] });
+  });
+
+  it("includes deterministic rejection feedback in the retry prompt", async () => {
+    const value = fixture();
+    let prompt = "";
+    const runner = { run: async (request: typeof value.request) => {
+      prompt = (request.definition.config as Record<string, unknown>).prompt as string;
+      return { output: { schemaVersion: "research-review@1", kind: "post",
+        candidate: { id: value.candidateRef.id, revision: value.candidateRef.revision, sha256: value.candidateRef.sha256 },
+        candidateReportSha256: value.candidate.reportSha256, summary: "ok", findings: [] } };
+    } } as unknown as AgentRunner;
+    await runSimpleReview({ request: value.request, candidateRef: value.candidateRef, candidate: value.candidate,
+      reportPath: value.reportPath, reviewerOperatorPath: value.operatorPath, sourcePaths: [value.sourcePath],
+      retryFeedback: "SIMPLE_REVIEW_LOCATION_MISSING:FINDING-001", runner });
+    expect(prompt).toContain("SIMPLE_REVIEW_LOCATION_MISSING:FINDING-001");
+    expect(prompt).toContain("exactly one RFC 6901 JSON Pointer");
+    expect(prompt).toContain("do not return empty findings merely to avoid the prior validation error");
+  });
+
   it("returns a candidate-bound review and routes findings to one repair", async () => {
     const value = fixture();
     const runner = { run: async (request: typeof value.request) => ({ output: {

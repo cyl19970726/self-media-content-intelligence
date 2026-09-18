@@ -6,7 +6,8 @@ import type { DatabaseSync } from "node:sqlite";
 import {
   createPostWorkflow, createPostWorkflowSuite, createPostWorkflowSuiteV3, createPostWorkflowSuiteV4, createCreatorSynthesisWorkflow, createCreatorSynthesisWorkflowSuite,
   createCreatorSynthesisWorkflowSuiteV3, createCreatorAnalysisWorkflow, createCreatorAnalysisWorkflowV2, createCreatorAnalysisWorkflowV3, createCreatorAnalysisWorkflowV4,
-  createPostWorkflowSuiteV5, createCreatorSynthesisWorkflowSuiteV4, createCreatorAnalysisWorkflowV5,
+  createPostWorkflowSuiteV5, createPostWorkflowSuiteV6, createCreatorSynthesisWorkflowSuiteV4, createCreatorSynthesisWorkflowSuiteV5,
+  createCreatorAnalysisWorkflowV5, createCreatorAnalysisWorkflowV6,
   postWorkflowArtifacts, createResearchAgentDefinitions,
   CreatorResearchWorkflowScheduler, RepositoryResearchVersionRegistrar,
   videoReconstructionBatchSchema, videoReconstructionOutcomeSchema, creatorSynthesisSchema, creatorSynthesisGateSchema,
@@ -43,7 +44,7 @@ type CandidatePayload = {
   relativeRoot: string;
   outcome: unknown;
 };
-type ReviewInput = { candidate: ArtifactRef; review?: ArtifactRef; evidence?: ArtifactRef; frozenInputs?: ArtifactRef; findings?: unknown };
+type ReviewInput = { candidate: ArtifactRef; review?: ArtifactRef; evidence?: ArtifactRef; frozenInputs?: ArtifactRef; findings?: unknown; retryFeedback?: string };
 type EvaluationRepairInput = ReviewInput & { prior: { receipt: { artifact?: unknown } }; failure: { details: unknown } };
 
 
@@ -81,7 +82,7 @@ export class ProductionResearchRunner implements AgentRunner {
       reasoningEffort: request.definition.reasoningEffort, methods: pinned.methods, inputRevision: evidence.sha256 });
     if (reviewer && simpleReview) {
       if (!prior) throw new Error("SIMPLE_REVIEW_CANDIDATE_REQUIRED");
-      const review = await this.simpleReview(request, pinned, (request.input as ReviewInput).candidate, prior);
+      const review = await this.simpleReview(request, pinned, reviewInput.candidate, prior, reviewInput.retryFeedback);
       const registeredAgain = await this.payload<CandidatePayload>((request.input as ReviewInput).candidate);
       const pinnedAgain = await this.payload<PinnedResearchInput>(evidence);
       assertPinnedResearchInput(pinnedAgain);
@@ -100,7 +101,7 @@ export class ProductionResearchRunner implements AgentRunner {
   }
 
   private async simpleReview<Input>(request: AgentRunRequest<Input>, pinned: PinnedResearchInput,
-    candidateRef: ArtifactRef, prior: CandidatePayload): Promise<SimpleReview> {
+    candidateRef: ArtifactRef, prior: CandidatePayload, retryFeedback?: string): Promise<SimpleReview> {
     const sourceRefs = prior.kind === "post"
       ? (() => { const source = pinned.source as PostWorkflowStartInput; return [source.detailArtifactRef,
         source.selectionArtifactRef, source.reconstructionBatchArtifactRef, source.sourceMediaArtifactRef,
@@ -121,7 +122,7 @@ export class ProductionResearchRunner implements AgentRunner {
     const reviewerOperatorPath = path.join(projectRoot, ".agents", "skills",
       prior.kind === "post" ? "video-content-reconstruction" : "creator-synthesis", "references", "reviewer-operator.md");
     return runSimpleReview({ request, candidateRef, candidate: prior, reportPath: artifactPath(prior.reportArtifactRef),
-      reviewerOperatorPath, sourcePaths, sourceMappings: sourceRefs.filter((ref): ref is string => typeof ref === "string" && ref.length > 0)
+      reviewerOperatorPath, sourcePaths, retryFeedback, sourceMappings: sourceRefs.filter((ref): ref is string => typeof ref === "string" && ref.length > 0)
         .map((ref) => ({ ref, path: artifactPath(ref) })) });
   }
 
@@ -592,7 +593,10 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
   const sourceCheck = postSuiteV4.definitions.find((definition) => definition.id === "post.source-check");
   const postSuiteV5 = createPostWorkflowSuiteV5(validators, simpleAgents, { registerCandidate,
     sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV5>[2]>["sourceCheck"] });
+  const postSuiteV6 = createPostWorkflowSuiteV6(validators, simpleAgents, { registerCandidate,
+    sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV6>[2]>["sourceCheck"] });
   const creatorSuiteV4 = createCreatorSynthesisWorkflowSuiteV4(validators, simpleAgents, { registerCandidate });
+  const creatorSuiteV5 = createCreatorSynthesisWorkflowSuiteV5(validators, simpleAgents, { registerCandidate });
   const prepareSynthesisV5: Parameters<typeof createCreatorAnalysisWorkflowV5>[2] = async (input, posts) => {
     const original = await store.getArtifactPayload(input.source.id) as PinnedResearchInput;
     assertPinnedResearchInput(original);
@@ -613,11 +617,13 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
     return { creatorRunId: input.creatorRunId, frozenInputs: await registerResearchInput(store, pinned) };
   };
   const creatorAnalysisV5 = createCreatorAnalysisWorkflowV5(postSuiteV5.analyze, creatorSuiteV4.analyze, prepareSynthesisV5);
-  const definitions = { post: postSuiteV5.analyze, creatorSynthesis: creatorSuiteV4.analyze, creatorAnalysis: creatorAnalysisV5 };
+  const creatorAnalysisV6 = createCreatorAnalysisWorkflowV6(postSuiteV6.analyze, creatorSuiteV5.analyze, prepareSynthesisV5);
+  const definitions = { post: postSuiteV6.analyze, creatorSynthesis: creatorSuiteV5.analyze, creatorAnalysis: creatorAnalysisV6 };
   const registeredDefinitions = [postV1, creatorSynthesisV1, creatorAnalysisV1,
     ...postSuite.definitions, ...creatorSuite.definitions, creatorAnalysisV2,
     ...postSuiteV3.definitions, ...postSuiteV4.definitions, ...creatorSuiteV3.definitions, creatorAnalysisV3, creatorAnalysisV4,
-    ...postSuiteV5.definitions, ...creatorSuiteV4.definitions, creatorAnalysisV5];
+    ...postSuiteV5.definitions, ...postSuiteV6.definitions, ...creatorSuiteV4.definitions, ...creatorSuiteV5.definitions,
+    creatorAnalysisV5, creatorAnalysisV6];
   const registry = { resolve: (id: string, revision: string) => registeredDefinitions
     .find((definition) => definition.id === id && definition.revision === revision) as WorkflowDefinition<unknown, unknown> | undefined };
   const scheduler = new CreatorResearchWorkflowScheduler(repository);

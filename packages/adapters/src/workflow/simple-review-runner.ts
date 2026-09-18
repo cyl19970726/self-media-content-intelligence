@@ -41,6 +41,8 @@ function containingSkillBundle(file: string) {
   }
 }
 
+const jsonPointerPattern = "^(?:/(?:[^~/]|~[01])*)+$";
+
 export const reviewOutputSchema = {
   type: "object", additionalProperties: false,
   required: ["schemaVersion", "kind", "candidate", "candidateReportSha256", "summary", "findings"],
@@ -54,7 +56,7 @@ export const reviewOutputSchema = {
     summary: { type: "string", minLength: 1 },
     findings: { type: "array", items: { type: "object", additionalProperties: false,
       required: ["id", "location", "issue", "evidenceRefs", "suggestedChange", "priority", "kind"], properties: {
-        id: { type: "string", minLength: 1 }, location: { type: "string", minLength: 1 },
+        id: { type: "string", minLength: 1 }, location: { type: "string", minLength: 1, pattern: jsonPointerPattern },
         issue: { type: "string", minLength: 1 }, evidenceRefs: { type: "array", items: { type: "string", minLength: 1 } },
         suggestedChange: { type: "string", minLength: 1 }, priority: { type: "string", enum: ["minor", "major"] },
         kind: { type: "string", enum: ["content", "missing_evidence"] }
@@ -157,6 +159,8 @@ export async function runSimpleReview<Input>(options: {
   reviewerOperatorPath: string;
   sourcePaths: string[];
   sourceMappings?: Array<{ ref: string; path: string }>;
+  /** Deterministic rejection from the preceding attempt, supplied to the retry only. */
+  retryFeedback?: string;
   runner?: AgentRunner;
 }): Promise<SimpleReview> {
   for (const sourcePath of [options.reportPath, ...options.sourcePaths]) {
@@ -170,7 +174,7 @@ export async function runSimpleReview<Input>(options: {
   const definition = {
     ...options.request.definition,
     config: {
-      prompt: `Review the immutable candidate for substantive content errors and missing evidence. Return only the requested research-review@1 JSON. Do not modify any file.\nCandidate identity: ${JSON.stringify(candidateIdentity)}\nCandidate report SHA-256: ${options.candidate.reportSha256}\nCandidate report: ${options.reportPath}\nArtifact reference to local-path mappings:\n${(options.sourceMappings ?? []).map((item) => `${item.ref} => ${item.path}`).join("\n")}\nReadable source inputs:\n${options.sourcePaths.join("\n")}`,
+      prompt: `Review the immutable candidate for substantive content errors and missing evidence. Return only the requested research-review@1 JSON. Do not modify any file.\nEach finding.location must be exactly one RFC 6901 JSON Pointer into the candidate report, beginning with /. If one issue concerns multiple locations, emit separate findings instead of joining paths with separators or prose. A semicolon is valid only when it is part of an actual JSON object member name.\n${options.retryFeedback?.trim() ? `The previous review attempt was rejected by deterministic validation. Correct this specific error: ${options.retryFeedback.trim()}\nA validation-format error does not make a substantive concern invalid. Independently re-check the candidate and retain any supported finding; do not return empty findings merely to avoid the prior validation error.\n` : ""}Candidate identity: ${JSON.stringify(candidateIdentity)}\nCandidate report SHA-256: ${options.candidate.reportSha256}\nCandidate report: ${options.reportPath}\nArtifact reference to local-path mappings:\n${(options.sourceMappings ?? []).map((item) => `${item.ref} => ${item.path}`).join("\n")}\nReadable source inputs:\n${options.sourcePaths.join("\n")}`,
       skills: [...(reviewerSkill ? [reviewerSkill] : []), { path: options.reviewerOperatorPath }],
       outputSchema: reviewOutputSchema,
       threadOptions: { sandboxMode: "read-only", approvalPolicy: "never" },

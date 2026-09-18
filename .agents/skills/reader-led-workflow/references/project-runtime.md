@@ -7,7 +7,8 @@
 - [业务无关运行层](../../../../vendor/agent-workflow/packages/core/README.md) 提供普通 TypeScript 的 task、agent、call、mapSettled、decide、validate 和 publish。单帖/博主定义在 [research workflows](../../../../packages/research/src/workflows/index.ts)，SDK 与实际研究操作通过 [生产适配器](../../../../packages/adapters/src/workflow/production-research-runner.ts) 连接。
 - 新路径显式使用 Terra medium Builder、Luna medium Reviewer；独立 Reviewer 使用独立会话。Skill 方法与来源哈希随输入冻结，完整 prompt 和 SDK 事件保留在私有 trace。SDK 提供模型执行，现有 research_jobs 仍是唯一队列。
 - 父流程等待子流程时释放执行槽；进程恢复按已验证持久节点重放，不承诺任意 TypeScript 语句或外部副作用恰好一次。
-- 当前 `post.analyze@v5`、`creator.synthesize@v4` 通过 [simple-review](../../../../packages/research/src/workflows/simple-review.ts) 组织独立 Reviewer：无意见跳过修订，有意见交给 Builder 最多修订一次；修订版本登记为 `revised_unverified`，不继承原稿审阅状态。审阅技术失败最多尝试两次，保留候选并标注 `review_incomplete`。旧 `post.repair-evaluation` 仅用于历史 Evaluator 合同；新流程不能重写主报告来掩盖审阅执行或校验问题。
+- 当前 `post.analyze@v6`、`creator.synthesize@v5` 通过 [simple-review](../../../../packages/research/src/workflows/simple-review.ts) 组织独立 Reviewer：无意见跳过修订，有意见交给 Builder 最多修订一次；修订版本登记为 `revised_unverified`，不继承原稿审阅状态。审阅技术失败最多尝试两次，保留候选并标注 `review_incomplete`。旧 `post.repair-evaluation` 仅用于历史 Evaluator 合同；新流程不能重写主报告来掩盖审阅执行或校验问题。
+- 2026-09-18 新帖实跑后，`post.review@v3` / `creator.review@v3` 在第二次尝试中接收首次校验失败反馈；`creator.analyze@v6` 使用新版子流程。旧 `post.analyze@v5`、`creator.synthesize@v4` 与 `review@v2` 仍注册以保留持久运行恢复语义。本次新帖真实运行使用的是修复前v5，不能把后续测试通过说成该运行已使用新重试机制。
 - 修复校验代码后若复用已经保存的审阅，必须重新验证原始意见的候选绑定、实际引用和输入版本，并保留原 trace 与恢复来源；不得删除不方便处理的意见、把 Host 改写的意见称为原始 Reviewer 输出，或把恢复校验当作新一轮独立审阅。
 - 中间候选可在工作流页直接阅读；是否完成执行、通过结构校验、允许带边界展示或已经验证是不同状态。登记时重新检查来源版本；provisional 不能改称 verified。
 - 当前迁移及真实验收边界见 [issue 71 实施记录](../../../../docs/development/issue-71-workflow-implementation.md) 与 [Reviewer 阅读迭代](../../../../docs/development/reviewer-reader-next-20260917.md)。不要把小样本成功说成所有博主已迁移；既有运行继续使用原定义。
