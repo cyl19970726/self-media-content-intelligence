@@ -3,6 +3,7 @@ import type { RunStore } from "@signal-room/workflow";
 import { projectCreatorWorkflowProgress, type CreatorRegisteredPostReviews, type CreatorRegisteredReview } from "../workflow-creator-progress.js";
 import { projectArtifactPayload, projectWorkflowAttempt, projectWorkflowEvent, projectWorkflowHttpError, projectWorkflowRun, projectWorkflowStep } from "../workflow-public-projection.js";
 import { projectWorkflowPhases } from "../workflow-phase-projection.js";
+import { projectPostWorkflowReading } from "../post-workflow-reading.js";
 
 export interface WorkflowHttpService {
   store: RunStore;
@@ -43,6 +44,15 @@ export function registerWorkflowRoutes(app: express.Express, service: WorkflowHt
   app.get("/api/creator-runs/:id/workflow-progress", handler(async (request, response) => {
     const creatorRunId = String(request.params.id);
     response.json(await projectCreatorWorkflowProgress(service.store, creatorRunId, service.registeredReview?.(creatorRunId), service.registeredPostReviews?.(creatorRunId)));
+  }));
+
+  app.get("/api/creator-runs/:creatorRunId/posts/:postId/workflow-reading", handler(async (request, response) => {
+    const requested = typeof request.query.workflowRunId === "string" && request.query.workflowRunId.length > 0
+      ? request.query.workflowRunId : undefined;
+    const reading = await projectPostWorkflowReading(service.store, service.artifactPayload,
+      String(request.params.creatorRunId), String(request.params.postId), requested);
+    if (!reading) { response.status(404).json({ error: "未找到该单帖对应的工作流" }); return; }
+    response.json(reading);
   }));
 
   app.get(prefix, handler(async (request, response) => {

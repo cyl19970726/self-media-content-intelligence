@@ -182,7 +182,8 @@ function RunDetail({ detail, events, runs, refresh, PostReader, CreatorReader }:
     }).catch(() => { /* Keep the workflow record usable if creator metadata is unavailable. */ });
     return () => { active = false; };
   }, [creatorRunId, postId, detail.run.workflowId]);
-  const reportHref = originalPostReportHref(postIdentity.creatorId, creatorRunId, postId);
+  const originalReportHref = originalPostReportHref(postIdentity.creatorId, creatorRunId, postId);
+  const reportHref = originalReportHref ? `${originalReportHref}&workflow=${encodeURIComponent(detail.run.id)}` : null;
   const readerLabel = workflowReaderLabel(detail.run.workflowId);
   const [actionError, setActionError] = useState<string | null>(null);
   const [acting, setActing] = useState<string | null>(null);
@@ -221,7 +222,7 @@ function RunDetail({ detail, events, runs, refresh, PostReader, CreatorReader }:
   const buildEvidence = linkedBuild?.runId === buildChildId ? linkedBuild : null;
   return <article className="workflow-detail">
     <nav className="breadcrumb"><Link to={scopedCreatorRunId ? `/workflow-runs?creatorRunId=${encodeURIComponent(scopedCreatorRunId)}` : "/workflow-runs"}><ArrowLeft size={14}/>全部工作流</Link><span>/</span><b>{readerLabel}</b></nav>
-    <header className="workflow-hero"><div><span>WORKFLOW RUN</span><h1>{postIdentity.title ? `${readerLabel} · ${postIdentity.title}` : postId ? `${readerLabel} · ${postId}` : readerLabel}</h1><p>执行记录显示流程状态、已登记资产与可恢复步骤。执行完成不表示研究已经验收。</p>{reportHref && <Link className="workflow-return-report" to={reportHref}><ArrowLeft size={14}/>返回单帖报告</Link>}</div><div className={`workflow-state-box workflow-state--${detail.run.state}`}><strong>{workflowStateLabel(detail.run.state)}</strong><small>{detail.run.workflowId} · {detail.run.workflowRevision} · {detail.run.id}</small>{activeWorkflowState(detail.run.state) && <button onClick={() => void cancel()} disabled={acting !== null}><XCircle size={14}/>取消运行</button>}</div></header>
+    <header className="workflow-hero"><div><span>WORKFLOW RUN</span><h1>{postIdentity.title ? `${readerLabel} · ${postIdentity.title}` : postId ? `${readerLabel} · ${postId}` : readerLabel}</h1><p>执行记录显示流程状态、已登记资产与可恢复步骤。执行完成不表示研究已经验收。</p>{reportHref && <Link className="workflow-return-report" to={reportHref}><ArrowLeft size={14}/>打开报告工作台</Link>}</div><div className={`workflow-state-box workflow-state--${detail.run.state}`}><strong>{workflowStateLabel(detail.run.state)}</strong><small>{detail.run.workflowId} · {detail.run.workflowRevision} · {detail.run.id}</small>{activeWorkflowState(detail.run.state) && <button onClick={() => void cancel()} disabled={acting !== null}><XCircle size={14}/>取消运行</button>}</div></header>
     {actionError && <p className="workflow-error"><AlertTriangle size={15}/>{actionError}</p>}
     {detail.run.error && <p className="workflow-error"><AlertTriangle size={15}/>{detail.run.error}{detail.run.errorId && <small>诊断编号：{detail.run.errorId}</small>}</p>}
     {(detail.run.parentRunId || childRuns.length > 0) && <nav className="workflow-lineage" aria-label="工作流父子关系">

@@ -19,6 +19,24 @@
 .reader-research-action button { padding: 11px 16px; border: 0; background: var(--teal); color: white; font-size: 12px; cursor: pointer; }
 .reader-research-action button:disabled { opacity: .6; cursor: wait; }
 .reader-research-action .reader-research-action__error { flex-basis: 100%; margin: 0; color: #9b3d30; }
+.post-workflow-reading { margin: 8px 0 28px; border: 1px solid #b5c9bd; background: #eff4ec; color: var(--ink); }
+.post-workflow-reading__top { padding: 22px 24px 18px; display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+.post-workflow-reading__top span:first-child, .post-workflow-reading__versions > span { color: var(--teal); font: 600 10px "IBM Plex Mono"; letter-spacing: .08em; }
+.post-workflow-reading__top h2 { margin: 8px 0 5px; font-size: clamp(21px, 2.7vw, 30px); font-weight: 500; line-height: 1.2; }
+.post-workflow-reading__top p, .post-workflow-reading__versions p { margin: 0; color: #53645a; font-size: 12px; line-height: 1.6; }
+.post-workflow-reading__state { flex: 0 0 auto; padding: 6px 9px; border: 1px solid #89a895; color: var(--teal); font-size: 11px; }
+.post-workflow-reading__state--failed, .post-workflow-reading__state--blocked { color: #9b3d30; border-color: #d2a49a; }
+.post-workflow-reading__phases { margin: 0; padding: 0 24px 18px; display: flex; gap: 5px; overflow-x: auto; list-style: none; }
+.post-workflow-reading__phases li { min-width: 128px; padding: 9px 11px; border-top: 2px solid #bcc9be; background: rgba(255,255,255,.6); }
+.post-workflow-reading__phases li.is-succeeded { border-color: var(--teal); }.post-workflow-reading__phases li.is-running { border-color: var(--orange); }
+.post-workflow-reading__phases li span { display: block; margin-bottom: 4px; color: #6f7b70; font-size: 10px; }.post-workflow-reading__phases li b { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.post-workflow-reading__versions { padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; border-block: 1px solid #cad5c9; }
+.post-workflow-reading__versions > div { display: flex; gap: 4px; }.post-workflow-reading__versions button { padding: 8px 11px; border: 1px solid #b8c8ba; background: white; color: #4b5c50; font-size: 12px; cursor: pointer; }
+.post-workflow-reading__versions button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: white; }.post-workflow-reading__versions button:disabled { opacity: .45; cursor: default; }
+.post-workflow-reading__versions p { flex: 1 1 250px; }.post-workflow-reading__error { margin: 0; padding: 10px 24px; color: #9b3d30; font-size: 12px; }
+.post-workflow-reading__changes, .post-workflow-reading__audit { padding: 12px 24px; border-bottom: 1px solid #cad5c9; font-size: 12px; }.post-workflow-reading__audit { border-bottom: 0; }
+.post-workflow-reading__changes summary, .post-workflow-reading__audit summary { cursor: pointer; color: var(--teal); font-weight: 600; }.post-workflow-reading__changes ol, .post-workflow-reading__audit ol { margin: 12px 0 0; padding-left: 22px; }.post-workflow-reading__changes li { margin-bottom: 10px; }.post-workflow-reading__changes li b { color: var(--orange); }.post-workflow-reading__changes li p { margin: 4px 0; line-height: 1.6; }.post-workflow-reading__audit p { color: #69756c; }.post-workflow-reading__audit a { display: inline-block; margin-top: 10px; color: var(--teal); text-decoration: underline; }
+.post-workflow-reading__loading { padding: 16px 20px; border: 1px solid #b5c9bd; background: #eff4ec; color: #53645a; font-size: 12px; }
 
 .reader-navigation { position: sticky; top: 0; z-index: 5; min-height: 48px; display: flex; align-items: stretch; overflow-x: auto; border-block: 1px solid var(--ink); background: rgba(243,240,232,.96); backdrop-filter: blur(10px); }
 .reader-navigation a { padding: 0 20px; display: inline-flex; align-items: center; flex: 0 0 auto; border-right: 1px solid var(--line); color: #5f6762; font-size: 12px; }

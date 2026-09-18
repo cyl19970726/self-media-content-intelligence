@@ -1,4 +1,5 @@
 import express from "express";
+import crypto from "node:crypto";
 import type { Server } from "node:http";
 import { DatabaseSync } from "node:sqlite";
 import { afterEach, expect, it, vi } from "vitest";
@@ -83,6 +84,51 @@ it("returns persisted phase reading data with the artifact owner's run id", asyn
   const address = server.address(); if (!address || typeof address === "string") throw new Error("No test server port");
   const detail = await fetch(`http://127.0.0.1:${address.port}/api/workflow-runs/${root.id}`).then((response) => response.json());
   expect(detail.phases).toMatchObject([{ id: "phase:research", state: "waiting", artifacts: [{ role: "published-output", ownerRunId: child.id, artifact: { id: artifact.id } }] }]);
+});
+
+it("reads an explicitly selected post child through its root and only exposes a revision bound to the current candidate", async () => {
+  const { store, url } = await setup();
+  const creator = await store.createRun({ workflowId: "creator.analyze", workflowRevision: "v5", inputFingerprint: "creator", state: "running",
+    metadata: { creatorRunId: "creator-a" } });
+  const root = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v5", inputFingerprint: "root", state: "succeeded",
+    parentRunId: creator.id, metadata: { creatorRunId: "creator-a", postId: "post-a", createdAt: "2026-09-18T01:00:00.000Z" } });
+  const child = await store.createRun({ workflowId: "post.repair", workflowRevision: "v5", inputFingerprint: "child", state: "succeeded",
+    parentRunId: root.id, metadata: { creatorRunId: "creator-a", postId: "post-a" } });
+  const step = await store.createStep({ runId: root.id, key: "build", kind: "agent", workflowId: root.workflowId,
+    workflowRevision: root.workflowRevision, inputFingerprint: "input", configFingerprint: "config", state: "succeeded", validation: "valid" });
+  const attempt = await store.createAttempt({ runId: root.id, stepRunId: step.id, state: "succeeded" });
+  const publish = async (payload: unknown, type: string, review: "pending" | "passed" | "findings" = "pending", dependsOn = [] as Array<{ artifactId: string; revision: string; sha256: string }>) => store.publishArtifact({
+    type, schemaVersion: "v1", revision: type === "post-candidate" ? crypto.randomUUID() : "revision-1",
+    sha256: await artifactPayloadSha256(payload), uri: "workflow://test", payload, producedBy: { workflowRunId: root.id, stepRunId: step.id, attemptId: attempt.id }, dependsOn, validation: "valid", review
+  });
+  const old = await publish({ report: "old" }, "post-candidate", "passed");
+  const current = await publish({ report: "current" }, "post-candidate", "pending", [{ artifactId: old.id, revision: old.revision, sha256: old.sha256 }]);
+  await publish({ schemaVersion: "research-revision@1", baseCandidate: old, review: old, candidate: current,
+    dispositions: [{ id: "finding-1", status: "changed", reason: "已补证据。" }], validation: { valid: true } }, "research-revision", "findings");
+
+  const base = url.replace("/api/workflow-runs", "");
+  const response = await fetch(`${base}/api/creator-runs/creator-a/posts/post-a/workflow-reading?workflowRunId=${child.id}`);
+  expect(response.status).toBe(200);
+  expect(await response.json()).toMatchObject({ workflow: { rootRunId: root.id, selectedFrom: "explicit" },
+    candidate: { ownerRunId: root.id, artifactId: current.id, reviewStatus: "pending", revisionStatus: "revision_unverified" },
+    baseCandidate: { ownerRunId: root.id, artifactId: old.id },
+    dispositions: [{ id: "finding-1", status: "changed" }] });
+  expect((await fetch(`${base}/api/creator-runs/creator-a/posts/post-b/workflow-reading?workflowRunId=${child.id}`)).status).toBe(404);
+});
+
+it("selects the newest post root by creation time and never falls back to an older candidate", async () => {
+  const { store, url } = await setup();
+  const older = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v5", inputFingerprint: "old", state: "succeeded",
+    metadata: { creatorRunId: "creator-a", postId: "post-a", createdAt: "2026-09-18T01:00:00.000Z" } });
+  const oldStep = await store.createStep({ runId: older.id, key: "build", kind: "agent", workflowId: older.workflowId, workflowRevision: "v5", inputFingerprint: "i", configFingerprint: "c", state: "succeeded", validation: "valid" });
+  const oldAttempt = await store.createAttempt({ runId: older.id, stepRunId: oldStep.id, state: "succeeded" });
+  const oldPayload = {};
+  await store.publishArtifact({ type: "post-candidate", schemaVersion: "v1", revision: "old", sha256: await artifactPayloadSha256(oldPayload), uri: "workflow://old", payload: oldPayload, producedBy: { workflowRunId: older.id, stepRunId: oldStep.id, attemptId: oldAttempt.id }, dependsOn: [], validation: "valid", review: "passed" });
+  const newest = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v5", inputFingerprint: "new", state: "failed",
+    metadata: { creatorRunId: "creator-a", postId: "post-a", createdAt: "2026-09-18T02:00:00.000Z" } });
+  const base = url.replace("/api/workflow-runs", "");
+  const body = await fetch(`${base}/api/creator-runs/creator-a/posts/post-a/workflow-reading`).then((response) => response.json());
+  expect(body).toMatchObject({ workflow: { rootRunId: newest.id, state: "failed", selectedFrom: "latest" }, candidate: null, baseCandidate: null, dispositions: [] });
 });
 
 it("projects raw failures and unknown SDK events into public-safe diagnostics", async () => {
