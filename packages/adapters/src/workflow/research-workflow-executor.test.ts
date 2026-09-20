@@ -70,6 +70,53 @@ function postStart() {
 }
 
 describe("SQLiteResearchWorkflowExecutor", () => {
+  it("cancels a queued retried grandchild through a failed parent while preserving prior failure evidence", async () => {
+    const database = new DatabaseSync(":memory:");
+    databases.push(database);
+    const store = new SQLiteWorkflowRunStore(database);
+    const rootRun = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v1", inputFingerprint: "root", state: "waiting" });
+    const failedParent = await store.createRun({ workflowId: "nested-parent", workflowRevision: "v1", inputFingerprint: "parent",
+      state: "failed", parentRunId: rootRun.id, error: "nested child failed" });
+    const failedStep = await store.createStep({ runId: failedParent.id, key: "nested", kind: "workflow", workflowId: "nested-parent",
+      workflowRevision: "v1", inputFingerprint: "nested", configFingerprint: "nested", state: "failed", validation: "invalid" });
+    const failedAttempt = await store.createAttempt({ runId: failedParent.id, stepRunId: failedStep.id, state: "failed", error: "nested child failed" });
+    const failedGrandchild = await store.createRun({ workflowId: "nested-child", workflowRevision: "v1", inputFingerprint: "grandchild",
+      state: "failed", parentRunId: failedParent.id, error: "generation one failed" });
+    const grandchildStep = await store.createStep({ runId: failedGrandchild.id, key: "work", kind: "task", workflowId: "nested-child",
+      workflowRevision: "v1", inputFingerprint: "work", configFingerprint: "work", state: "failed", validation: "invalid" });
+    const grandchildAttempt = await store.createAttempt({ runId: failedGrandchild.id, stepRunId: grandchildStep.id,
+      state: "failed", error: "generation one failed" });
+    const payload = { priorFailureEvidence: true };
+    await store.publishArtifact({ type: "failure-evidence", schemaVersion: "v1", revision: "1",
+      sha256: await artifactPayloadSha256(payload), uri: "artifact://prior-failure", payload,
+      producedBy: { workflowRunId: failedGrandchild.id, stepRunId: grandchildStep.id, attemptId: grandchildAttempt.id },
+      dependsOn: [], validation: "valid", review: "not_applicable" });
+    const envelope = (run: typeof rootRun, parentWorkflowRunId?: string, state: string = run.state, generation = 1) => ({
+      id: run.id, creatorRunId: "creator-1", kind: run.id === rootRun.id ? "post" : "child",
+      workflowId: run.workflowId, definitionRevision: run.workflowRevision, generation, state,
+      frozenInput: {}, ...(parentWorkflowRunId ? { parentWorkflowRunId } : {}),
+    });
+    const executor = new SQLiteResearchWorkflowExecutor(database, store, noAgentRunner(), definitions(() => true),
+      freezer({} as ArtifactRef));
+    for (const [run, parentId, state, generation] of [
+      [rootRun, undefined, "waiting", 1], [failedParent, rootRun.id, "failed", 1], [failedGrandchild, failedParent.id, "queued", 2]
+    ] as const) {
+      database.prepare("INSERT INTO research_workflow_executions(id, creator_run_id, document) VALUES (?, ?, ?)")
+        .run(run.id, "creator-1", JSON.stringify(envelope(run, parentId, state, generation)));
+    }
+
+    await executor.cancel(rootRun.id);
+
+    const execution = (id: string) => JSON.parse(String(database.prepare("SELECT document FROM research_workflow_executions WHERE id = ?")
+      .get(id)?.document)) as { state: string };
+    expect(execution(failedParent.id).state).toBe("failed");
+    expect(execution(failedGrandchild.id).state).toBe("canceled");
+    expect(await store.listArtifacts(failedGrandchild.id)).toHaveLength(1);
+    expect(await store.listAttempts(grandchildStep.id)).toEqual([expect.objectContaining({ state: "failed", error: "generation one failed" })]);
+    expect(await store.listAttempts(failedStep.id)).toEqual([expect.objectContaining({ id: failedAttempt.id,
+      state: "failed", error: "nested child failed" })]);
+  });
+
   it("freezes input across recreation and retries only invalid nodes", async () => {
     const database = new DatabaseSync(":memory:");
     databases.push(database);

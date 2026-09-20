@@ -298,7 +298,13 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
       .all(parentRunId);
     for (const row of rows) {
       const child = JSON.parse(String(row.document)) as ExecutionRecord;
-      if (isTerminal(child.state)) continue;
+      if (isTerminal(child.state)) {
+        // A failed parent may already be terminal while its retry generation
+        // has queued descendants. Preserve that result, but keep walking the
+        // execution tree so cancellation reaches the live retry envelope.
+        await this.cancelChildren(child.id, reason);
+        continue;
+      }
       const controller = this.active.get(child.id);
       const state = controller ? "cancel_requested" : "canceled";
       this.patch(child, { state, error: safeError(reason) });
