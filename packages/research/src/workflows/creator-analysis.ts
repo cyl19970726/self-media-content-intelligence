@@ -80,7 +80,15 @@ export function createCreatorAnalysisWorkflowV7(
   return createCreatorAnalysisWorkflowPhased("v7", postWorkflow, synthesisWorkflow, prepareSynthesis);
 }
 
-function createCreatorAnalysisWorkflowPhased(revision: "v3" | "v4" | "v5" | "v6" | "v7",
+export function createCreatorAnalysisWorkflowV8(
+  postWorkflow: WorkflowDefinition<PostWorkflowInput, PostWorkflowOutput>,
+  synthesisWorkflow: WorkflowDefinition<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput>,
+  prepareSynthesis: (input: CreatorAnalysisWorkflowInput, posts: PostWorkflowOutput[]) => Promise<CreatorSynthesisWorkflowInput>,
+) {
+  return createCreatorAnalysisWorkflowPhased("v8", postWorkflow, synthesisWorkflow, prepareSynthesis);
+}
+
+function createCreatorAnalysisWorkflowPhased(revision: "v3" | "v4" | "v5" | "v6" | "v7" | "v8",
   postWorkflow: WorkflowDefinition<PostWorkflowInput, PostWorkflowOutput>,
   synthesisWorkflow: WorkflowDefinition<CreatorSynthesisWorkflowInput, CreatorSynthesisWorkflowOutput>,
   prepareSynthesis: (input: CreatorAnalysisWorkflowInput, posts: PostWorkflowOutput[]) => Promise<CreatorSynthesisWorkflowInput>,

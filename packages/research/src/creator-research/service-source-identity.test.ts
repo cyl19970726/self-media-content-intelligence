@@ -49,7 +49,7 @@ class MemoryRepository implements CreatorResearchRepository {
 
 class MemoryArtifacts implements CreatorArtifactStore {
   write(): string { return "artifact"; }
-  read(): unknown { return null; }
+  read(reference?: string): unknown { void reference; return null; }
   archiveReconstructionEvaluations(): void {}
   reconstructionProgress(): string { return "test"; }
 }
@@ -130,6 +130,69 @@ it("allows an ordinary workflow retry when no source identity blocker exists", a
   const { calls, service } = fixture();
   await expect(service.retryWorkflowStep(runId, "workflow-1", "repair")).resolves.toMatchObject({ state: "queued" });
   expect(calls.retry).toBe(1);
+});
+
+it("passes explicit rebuild mode to every selected post in creator analysis", async () => {
+  const { run, service } = fixture();
+  const timestamp = "2026-09-16T00:00:00.000Z";
+  Object.assign(run, { portfolioArtifactRef: "/portfolio", portfolioAnnotationsArtifactRef: "/annotations",
+    selectionArtifactRef: "/selection", detailArtifactRef: "/details", mediaManifestArtifactRef: "/media",
+    reconstructionBatchArtifactRef: "/batch", blockers: [] });
+  const selection = { schemaVersion: "1.0.0", runId, generatedAt: timestamp, sourceCorpusArtifactRef: "/corpus",
+    ruleVersion: "four-groups-3-each-v2", rules: { targetPerTier: 7, deepCandidatesPerTier: 3,
+      deepCandidatesPerGroup: 3, deepGroupContract: "test", high: "test", base: "test", low: "test",
+      unknownMetricPolicy: "exclude_from_metric_tiering" }, denominator: { discoveredPosts: 1, eligiblePosts: 1,
+      selectedPosts: 1, excludedMissingLikes: 0 }, anchors: { median: 1, mean: 1, medianNearPostId: "p1",
+      meanNearPostId: "p1", meanGap: false, meanGapReason: null }, tierCounts: { high: 1, base: 0, low: 0 },
+    items: [{ externalId: "p1", url: "https://example.test/p1", title: "p1", visibleText: null, mediaType: "video",
+      likesLabel: null, likes: 1, tier: "high", tierRank: 1, anchors: [], selectionReason: "test", deepCandidate: true,
+      deepGroups: ["high"], deepState: "pending", confounds: [] }], limitations: [] };
+  const supplemental = { postExternalId: "p2", tier: "base", tierRank: 1, state: "built_unevaluated",
+    evaluationPolicy: "skip@builder-fast-path-v1", sourceMediaArtifactRef: "/video-2",
+    reconstructionArtifactRef: "/old-candidate-2", articleArtifactRef: null, evaluationArtifactRef: null,
+    gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null, threeLensGateReportArtifactRef: null,
+    failedGateIds: [], message: "supplemental", updatedAt: timestamp };
+  const batch = { schemaVersion: "1.0.0", creatorRunId: runId, revision: 1, generatedAt: timestamp, requestedPosts: 2,
+    builtPosts: 2, verifiedPosts: 0, readyPosts: 0, pendingPosts: 0, failedPosts: 0, limitations: [], items: [{
+      postExternalId: "p1", tier: "high", tierRank: 1, state: "built_unevaluated", evaluationPolicy: "skip@builder-fast-path-v1",
+      sourceMediaArtifactRef: "/video", reconstructionArtifactRef: "/old-candidate", articleArtifactRef: null,
+      evaluationArtifactRef: null, gateReportArtifactRef: null, threeLensEvaluationArtifactRef: null,
+      threeLensGateReportArtifactRef: null, failedGateIds: [], message: "test", updatedAt: timestamp }, supplemental] };
+  const media = { schemaVersion: "1.0.0", runId, generatedAt: timestamp, requestedPosts: 2, readyPosts: 2,
+    requestedCovers: 0, readyCovers: 0, items: [{ externalId: "p1", videoRequested: true, state: "verified_complete",
+      coverState: "missing", coverMessage: "none", videoArtifactRef: "/video", coverArtifactRef: null,
+      sha256: "a".repeat(64), bytes: 1, durationSeconds: 1, width: 1, height: 1, hasAudio: true, message: "ready" },
+    { externalId: "p2", videoRequested: true, state: "verified_complete", coverState: "missing", coverMessage: "none",
+      videoArtifactRef: "/video-2", coverArtifactRef: null, sha256: "b".repeat(64), bytes: 1, durationSeconds: 1,
+      width: 1, height: 1, hasAudio: true, message: "ready" }], unknowns: [] };
+  let currentBatch: unknown = batch;
+  const artifacts = (service as unknown as { artifacts: MemoryArtifacts }).artifacts;
+  artifacts.read = (reference?: string) => reference
+    ? ({ "/selection": selection, "/batch": currentBatch, "/media": media }[reference] ?? null) : null;
+  let captured: unknown;
+  const executor = (service as unknown as { workflowExecutor: ResearchWorkflowExecutor }).workflowExecutor;
+  executor.createAnalysis = async (input) => { captured = input; return receipt; };
+
+  await service.startCreatorAnalysisWorkflow(runId, { candidateMode: "rebuild" });
+
+  expect(captured).toMatchObject({ posts: [{ postExternalId: "p1", candidateMode: "rebuild" }] });
+
+  await service.startCreatorAnalysisWorkflow(runId, { candidateMode: "rebuild", scope: "available_deep" });
+  expect(captured).toMatchObject({ posts: [
+    { postExternalId: "p1", candidateMode: "rebuild" },
+    { postExternalId: "p2", candidateMode: "rebuild" }
+  ] });
+
+  let capturedPost: unknown;
+  executor.createPost = async (input) => { capturedPost = input; return receipt; };
+  await service.startPostWorkflow(runId, "p1", { candidateMode: "rebuild" });
+  expect(capturedPost).toMatchObject({ postExternalId: "p1", candidateMode: "rebuild" });
+  await service.startPostWorkflow(runId, "p1");
+  expect(capturedPost).not.toHaveProperty("candidateMode");
+
+  currentBatch = { ...batch, items: [batch.items[0], { ...supplemental, sourceMediaArtifactRef: null }] };
+  await expect(service.startCreatorAnalysisWorkflow(runId, { candidateMode: "rebuild", scope: "available_deep" }))
+    .rejects.toThrow("单帖 p2 存在旧报告但缺少可冻结的媒体来源");
 });
 
 it.each(legacyEntrypoints)("does not let %s clear a source identity blocker", (_name, invoke) => {

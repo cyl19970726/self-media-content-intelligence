@@ -215,8 +215,16 @@ export default function CreatorDossierPage() {
     <article className="console-main dossier-main">
       <nav className="breadcrumb"><Link to="/creators">博主研究</Link><span>/</span><b>{data.identity.name}</b></nav>
       <CreatorDossierOverview data={data}/>
-      {data.run && <p className="dossier-workflow-link"><Link to={`/workflow-runs?creatorRunId=${encodeURIComponent(data.run.id)}`}>查看关联工作流执行进度 <ArrowRight size={13}/></Link></p>}
+      {data.run && <p className="dossier-workflow-link"><Link to={workflowProgress?.workflowRootRunId
+        ? `/workflow-runs/${encodeURIComponent(workflowProgress.workflowRootRunId)}?creatorRunId=${encodeURIComponent(data.run.id)}`
+        : `/workflow-runs?creatorRunId=${encodeURIComponent(data.run.id)}`}>查看关联工作流执行进度 <ArrowRight size={13}/></Link></p>}
       <WorkflowCreatorProgress value={workflowProgress}/>
+      {research && workflowProgress?.displayedReportIsPreviousVersion && <div className="last-good-banner"><RefreshCw size={15}/><div>
+        <strong>{workflowProgress.reanalysisInProgress ? "本轮重分析进行中" : "本轮重分析未登记新报告"}</strong>
+        <p>{workflowProgress.reanalysisInProgress
+          ? "下方展示此前已登记版本；新报告完成并登记后再替换。"
+          : `本轮执行状态：${workflowProgress.workflowRootState ?? "未知"}。下方继续展示此前已登记版本。`}</p>
+      </div></div>}
       {sourceConflicts.length > 0 && <aside role="alert" className="creator-source-conflict">
         <strong>来源身份冲突 · 研究已暂停</strong>
         {sourceConflicts.map((conflict) => <p key={conflict.message}>{conflict.message}</p>)}

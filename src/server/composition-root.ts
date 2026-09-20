@@ -131,9 +131,27 @@ export function createSignalRoomComposition(
       if (importedEvaluationArtifactRef && evaluationMode !== "repair_existing_invalid") {
         throw new Error("importedEvaluationArtifactRef 仅能与 repair_existing_invalid 一起使用");
       }
-      return creatorResearch.startPostWorkflow(creatorRunId, input.postExternalId, { evaluationMode, importedEvaluationArtifactRef });
+      const candidateMode = "candidateMode" in input ? input.candidateMode : undefined;
+      if (candidateMode !== undefined && candidateMode !== "rebuild" && candidateMode !== "reuse") {
+        throw new Error("candidateMode 必须是 rebuild 或 reuse");
+      }
+      return creatorResearch.startPostWorkflow(creatorRunId, input.postExternalId, { evaluationMode, importedEvaluationArtifactRef, candidateMode });
     },
-    startCreatorAnalysis: (creatorRunId) => creatorResearch.startCreatorAnalysisWorkflow(creatorRunId),
+    startCreatorAnalysis: (creatorRunId, input) => {
+      if (input !== undefined && (!input || typeof input !== "object" || Array.isArray(input))) {
+        throw new Error("creator-analyze 请求体必须是对象");
+      }
+      const options = (input ?? {}) as Record<string, unknown>;
+      const candidateMode = options.candidateMode;
+      if (candidateMode !== undefined && candidateMode !== "rebuild" && candidateMode !== "reuse") {
+        throw new Error("candidateMode 必须是 rebuild 或 reuse");
+      }
+      const scope = options.scope;
+      if (scope !== undefined && scope !== "selected" && scope !== "available_deep") {
+        throw new Error("scope 必须是 selected 或 available_deep");
+      }
+      return creatorResearch.startCreatorAnalysisWorkflow(creatorRunId, { candidateMode, scope });
+    },
     startSynthesis: (creatorRunId) => creatorResearch.startCreatorSynthesisWorkflow(creatorRunId)
   };
   const creatorResearchBatchRepository = new SQLiteCreatorResearchBatchRepository(creatorDatabase);

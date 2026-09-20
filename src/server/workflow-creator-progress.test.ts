@@ -13,6 +13,13 @@ function step(id: string, runId: string, key: string, state: StepRecord["state"]
     inputFingerprint: id, configFingerprint: id, validation: "pending" };
 }
 
+function registrationStep(runId: string, state: StepRecord["state"] = "succeeded"): StepRecord {
+  return { ...step(`registration-${runId}`, runId, "register-candidate", state), kind: "task",
+    validation: state === "succeeded" ? "valid" : "invalid",
+    ...(state === "succeeded" ? { output: { state: "registered", synthesisArtifactRef: "/artifacts/creator/synthesis.json",
+      synthesisGateArtifactRef: null, publication: "provisional" } } : {}) };
+}
+
 function artifact(id: string, runId: string, type: string): ArtifactRef {
   return { id, type, schemaVersion: "v1", revision: "1", sha256: id, uri: `memory://${id}`,
     producedBy: { workflowRunId: runId, stepRunId: "step", attemptId: "attempt" }, dependsOn: [],
@@ -30,6 +37,75 @@ const registeredRecoveryOutput = { ok: true, synthesis: {}, review: {}, revision
 const revisedReview = { reviewStatus: "completed_with_findings" as const, candidateStatus: "revised_unverified" as const };
 
 describe("projectCreatorWorkflowProgress", () => {
+  it("scopes progress to the latest creator analysis root instead of mixing registered history", async () => {
+    const value = await projectCreatorWorkflowProgress(store([
+      run("current-analysis", "creator.analyze", "waiting"),
+      run("current-post-1", "post.analyze", "waiting", "post-1", "current-analysis"),
+      run("current-source", "post.source-check", "running", undefined, "current-post-1"),
+      run("current-post-2", "post.analyze", "queued", "post-2", "current-analysis"),
+      { ...run("old-synthesis", "creator.synthesize", "succeeded"), output: registeredRecoveryOutput },
+      { ...run("old-post", "post.analyze", "succeeded", "post-1"), output: {
+        ok: true, reviewStatus: "completed_with_findings", candidateStatus: "revised_unverified" } },
+    ], [], [artifact("old-candidate", "old-post", "post-candidate")]), "creator", revisedReview, () => revisedReview);
+
+    expect(value).toMatchObject({ workflowRootRunId: "current-analysis", workflowRootState: "waiting",
+      reanalysisInProgress: true, displayedReportIsPreviousVersion: true,
+      counts: { total: 2, built: 0, revised: 0, running: 1, queued: 1 }, synthesis: null });
+    expect(value.posts.map((post) => post.workflowRunId)).toEqual(["current-post-1", "current-post-2"]);
+  });
+
+  it("keeps the previous-version marker after the latest creator analysis fails without registering synthesis", async () => {
+    const value = await projectCreatorWorkflowProgress(store([
+      run("failed-analysis", "creator.analyze", "failed"),
+      run("failed-post", "post.analyze", "failed", "post-1", "failed-analysis"),
+      { ...run("old-synthesis", "creator.synthesize", "succeeded"), output: registeredRecoveryOutput },
+    ]), "creator", revisedReview);
+
+    expect(value).toMatchObject({ workflowRootRunId: "failed-analysis", workflowRootState: "failed",
+      reanalysisInProgress: false, displayedReportIsPreviousVersion: true, synthesis: null });
+  });
+
+  it("keeps legacy post progress when an independent post root is newer than an old creator analysis", async () => {
+    const value = await projectCreatorWorkflowProgress(store([
+      run("new-independent-post", "post.analyze", "waiting", "post-new"),
+      run("new-source", "post.source-check", "running", undefined, "new-independent-post"),
+      run("old-analysis", "creator.analyze", "succeeded"),
+      run("old-analysis-post", "post.analyze", "succeeded", "post-old", "old-analysis"),
+    ]), "creator");
+
+    expect(value).toMatchObject({ workflowRootRunId: null, reanalysisInProgress: false,
+      displayedReportIsPreviousVersion: false, counts: { running: 1 } });
+    expect(value.posts.map((post) => post.workflowRunId)).toContain("new-independent-post");
+  });
+
+  it.each([
+    ["completed_no_findings", "original_reviewed", "succeeded"],
+    ["completed_with_findings", "revised_unverified", "succeeded"],
+    ["failed", "review_incomplete", "needs_review"],
+  ] as const)("recognizes v6 registration for %s / %s", async (reviewStatus, candidateStatus, state) => {
+    const synthesis = { ...run("current-synthesis", "creator.synthesize", state, undefined, "current-analysis"),
+      output: state === "needs_review"
+        ? { ok: false, details: { kind: "review_incomplete", reviewStatus, candidateStatus } }
+        : { ok: true, synthesis: {}, evaluation: {}, reviewStatus, candidateStatus } };
+    const value = await projectCreatorWorkflowProgress(store([
+      run("current-analysis", "creator.analyze", state), synthesis,
+    ], [registrationStep("current-synthesis")]), "creator", revisedReview);
+
+    expect(value).toMatchObject({ displayedReportIsPreviousVersion: false,
+      synthesis: { workflowRunId: "current-synthesis", terminalStatus: candidateStatus } });
+  });
+
+  it("does not treat a v6 candidate output as registered when the registration task failed", async () => {
+    const synthesis = { ...run("current-synthesis", "creator.synthesize", "failed", undefined, "current-analysis"),
+      output: { ok: true, synthesis: {}, evaluation: {}, reviewStatus: "completed_no_findings", candidateStatus: "original_reviewed" } };
+    const value = await projectCreatorWorkflowProgress(store([
+      run("current-analysis", "creator.analyze", "failed"), synthesis,
+    ], [registrationStep("current-synthesis", "failed")]), "creator", revisedReview);
+
+    expect(value).toMatchObject({ displayedReportIsPreviousVersion: true,
+      synthesis: { terminalStatus: "original_reviewed" } });
+  });
+
   it("does not count a waiting parent as an occupied worker slot", async () => {
     const value = await projectCreatorWorkflowProgress(store([
       run("parent", "post.analyze", "waiting", "post-1"), run("build", "post.build", "queued", undefined, "parent"),

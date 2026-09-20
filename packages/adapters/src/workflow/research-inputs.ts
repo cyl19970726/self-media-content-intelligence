@@ -66,6 +66,8 @@ export function methodSnapshot(kind: "post" | "creator") {
     ".agents/skills/video-content-reconstruction/scripts/validate-reconstruction.mjs",
     ".agents/skills/video-content-reconstruction/scripts/build-evaluator-overview.mjs",
     "packages/adapters/src/platform/video/codex-video-reconstruction-executor.ts",
+    "packages/adapters/src/platform/video/video-ocr-host-recovery.ts",
+    "packages/adapters/src/platform/video/video-ocr-builder-continuation.ts",
     "packages/adapters/src/platform/video/video-codex-execution.ts",
     "packages/adapters/src/workflow/post-evaluation-repair.ts",
     "packages/adapters/src/workflow/source-consistency-checker.ts",
@@ -83,7 +85,9 @@ export function methodSnapshot(kind: "post" | "creator") {
     `.agents/skills/${kind === "post" ? "video-content-reconstruction" : "creator-synthesis"}/references/reviewer-operator.md`,
     "packages/research/src/workflows/simple-review-contract.ts",
     "packages/adapters/src/workflow/simple-review-runner.ts",
-    "packages/adapters/src/workflow/codex-sdk-runner.ts"]
+    "packages/adapters/src/workflow/codex-sdk-runner.ts",
+    "vendor/agent-workflow/packages/codex/src/runner.ts",
+    "vendor/agent-workflow/packages/codex/src/skill-bundle.ts"]
     .map((relative) => ({ path: relative, sha256: fileDigest(path.join(projectRoot, relative)) }));
 }
 
@@ -123,18 +127,22 @@ export function pinResearchInput(kind: "post" | "creator", source: PinnedResearc
   let reuseCandidate: PinnedResearchInput["reuseCandidate"];
   let reuseEvaluation: PinnedResearchInput["reuseEvaluation"];
   if (kind === "post") {
+    const postSource = source as PostWorkflowStartInput;
+    if (postSource.candidateMode === "rebuild" && postSource.evaluationMode === "repair_existing_invalid") {
+      throw new Error("REBUILD_CANDIDATE_CANNOT_REPAIR_EXISTING_EVALUATION");
+    }
     found.set(reconstructionBatchArtifactRef, fileDigest(artifactPath(reconstructionBatchArtifactRef)));
     const batch = JSON.parse(fs.readFileSync(artifactPath(reconstructionBatchArtifactRef), "utf8")) as { items: Array<{
       postExternalId: string; reconstructionArtifactRef?: string | null; evaluationArtifactRef?: string | null;
     }> };
-    const ref = batch.items.find((item) => item.postExternalId === (source as PostWorkflowStartInput).postExternalId)?.reconstructionArtifactRef;
-    if (ref) {
+    const ref = batch.items.find((item) => item.postExternalId === postSource.postExternalId)?.reconstructionArtifactRef;
+    if (ref && postSource.candidateMode !== "rebuild") {
       visit(ref);
       reuseCandidate = { artifactRef: ref, sha256: found.get(ref)! };
     }
-    if ((source as PostWorkflowStartInput).evaluationMode === "repair_existing_invalid") {
-      const item = batch.items.find((entry) => entry.postExternalId === (source as PostWorkflowStartInput).postExternalId);
-      const explicitEvaluationRef = (source as PostWorkflowStartInput).importedEvaluationArtifactRef;
+    if (postSource.evaluationMode === "repair_existing_invalid") {
+      const item = batch.items.find((entry) => entry.postExternalId === postSource.postExternalId);
+      const explicitEvaluationRef = postSource.importedEvaluationArtifactRef;
       const evaluationRef = explicitEvaluationRef ?? item?.evaluationArtifactRef;
       if (!item?.reconstructionArtifactRef || !evaluationRef || item.reconstructionArtifactRef !== ref) {
         throw new Error("REUSE_EVALUATION_BATCH_BINDING_MISSING");

@@ -6,6 +6,10 @@ export type CreatorWorkflowPostProgress = { postId: string; workflowRunId: strin
   currentNode: string | null; built: boolean; reviewed: boolean };
 export type CreatorWorkflowProgress = {
   creatorRunId: string;
+  workflowRootRunId: string | null;
+  workflowRootState: RunState | null;
+  reanalysisInProgress: boolean;
+  displayedReportIsPreviousVersion: boolean;
   posts: CreatorWorkflowPostProgress[];
   counts: { total: number; queued: number; running: number; built: number; reviewed: number; revised: number; needsReview: number; failed: number; canceled: number };
   activeSlots: number;
@@ -60,6 +64,15 @@ function isRegisteredSynthesis(run: RunRecord): boolean {
   return output.ok === true && "synthesis" in output && "review" in output && "revisionRecord" in output;
 }
 
+function hasSuccessfulRegistration(steps: StepRecord[]): boolean {
+  return steps.some((step) => {
+    const output = step.output && typeof step.output === "object" && !Array.isArray(step.output)
+      ? step.output as Record<string, unknown> : {};
+    return step.key.endsWith("register-candidate") && step.state === "succeeded"
+      && output.state === "registered" && typeof output.synthesisArtifactRef === "string";
+  });
+}
+
 function isRegisteredPostRevision(run: RunRecord, postId: string): boolean {
   return run.metadata?.postId === postId && !run.parentRunId && run.state === "succeeded"
     && (run.workflowId === "post.targeted-revision" || run.workflowId === "post.structural-revision");
@@ -109,19 +122,24 @@ export async function projectCreatorWorkflowProgress(
   registeredReview?: CreatorRegisteredReview | null,
   registeredPostReviews?: CreatorRegisteredPostReviews
 ): Promise<CreatorWorkflowProgress> {
-  const runs = await store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } });
+  const allRuns = await store.listRuns({ metadata: creatorRunId === undefined ? undefined : { creatorRunId } });
+  const latestBusinessRoot = allRuns.find((run) => !run.parentRunId
+    && ["post.analyze", "creator.analyze", "creator.synthesize"].includes(run.workflowId));
+  const creatorAnalysisRoot = latestBusinessRoot?.workflowId === "creator.analyze" ? latestBusinessRoot : undefined;
+  const scopedToCreatorAnalysis = Boolean(creatorAnalysisRoot);
+  const runs = creatorAnalysisRoot ? [creatorAnalysisRoot, ...descendants(creatorAnalysisRoot, allRuns)] : allRuns;
   const roots = runs.filter((run) => run.workflowId === "post.analyze" && typeof run.metadata?.postId === "string");
   const byPost = new Map<string, RunRecord>();
   for (const run of roots) if (!byPost.has(String(run.metadata!.postId))) byPost.set(String(run.metadata!.postId), run);
   const latest = [...byPost.values()];
   const posts = await Promise.all(latest.map(async (originalRoot): Promise<CreatorWorkflowPostProgress> => {
     const postId = String(originalRoot.metadata!.postId);
-    const authoritativeReview = registeredPostReviews?.(postId);
+    const authoritativeReview = scopedToCreatorAnalysis ? undefined : registeredPostReviews?.(postId);
     const registeredIndex = authoritativeReview ? runs.findIndex((run) => isRegisteredPostRevision(run, postId)) : -1;
     const activeIndex = runs.findIndex((run) => postIdFor(run, runs) === postId && active.has(run.state));
     // listRuns is newest-first: active work only wins if it began after the registered version.
     const activeIsNewer = activeIndex >= 0 && (registeredIndex < 0 || activeIndex < registeredIndex);
-    const root = activeIsNewer ? rootFor(runs[activeIndex]!, runs)
+    const root = scopedToCreatorAnalysis ? originalRoot : activeIsNewer ? rootFor(runs[activeIndex]!, runs)
       : registeredIndex >= 0 ? runs[registeredIndex]! : originalRoot;
     const family = descendants(root, runs);
     const related = [root, ...family];
@@ -150,19 +168,23 @@ export async function projectCreatorWorkflowProgress(
         && artifacts.some((artifact) => artifact.type === "post-evaluation" && artifact.validation === "valid")) };
   }));
   // creator.analyze may still be dispatching posts; only its actual synthesis child belongs here.
-  const registeredIndex = registeredReview ? runs.findIndex(isRegisteredSynthesis) : -1;
+  const registeredIndex = !scopedToCreatorAnalysis && registeredReview ? runs.findIndex(isRegisteredSynthesis) : -1;
   const activeIndex = runs.findIndex((run) => run.workflowId === "creator.synthesize" && active.has(run.state));
   // listRuns is newest-first. A stale waiting run must not mask a later registered revision.
   const registeredSynthesis = registeredIndex >= 0 ? runs[registeredIndex] : undefined;
   const activeSynthesis = activeIndex >= 0 && (registeredIndex < 0 || activeIndex < registeredIndex) ? runs[activeIndex] : undefined;
   const synthesisRoot = activeSynthesis ?? registeredSynthesis ?? runs.find((run) => run.workflowId === "creator.synthesize");
   let synthesis: CreatorWorkflowProgress["synthesis"] = null;
+  let currentSynthesisRegistered = false;
   if (synthesisRoot) {
     const family = descendants(synthesisRoot, runs);
     const current = family.find((run) => active.has(run.state));
     const steps = (await Promise.all([synthesisRoot, ...family].map((run) => store.listSteps(run.id)))).flat();
+    currentSynthesisRegistered = scopedToCreatorAnalysis && hasSuccessfulRegistration(steps);
+    const outputReview = postReviewStatus(synthesisRoot);
     synthesis = { state: synthesisRoot.state, workflowRunId: synthesisRoot.id, currentNode: nodeLabel(current, steps),
-      ...(registeredSynthesis && !activeSynthesis ? { terminalStatus: registeredReview!.candidateStatus } : {}) };
+      ...(outputReview ? { terminalStatus: outputReview.candidateStatus }
+        : registeredSynthesis && !activeSynthesis ? { terminalStatus: registeredReview!.candidateStatus } : {}) };
   }
   const counts = { total: posts.length, queued: 0, running: 0, built: 0, reviewed: 0, revised: 0, needsReview: 0, failed: 0, canceled: 0 };
   for (const post of posts) {
@@ -178,5 +200,9 @@ export async function projectCreatorWorkflowProgress(
   const currentPostRuns = latest.flatMap((root) => descendants(root, runs));
   const activeSlots = currentPostRuns.filter((run) => run.workflowId !== "post.analyze" && run.state === "running"
     && ["post.source-check", "post.build", "post.review", "post.repair", "post.repair-evaluation"].includes(run.workflowId)).length;
-  return { creatorRunId, posts, counts, activeSlots, synthesis };
+  return { creatorRunId, workflowRootRunId: creatorAnalysisRoot?.id ?? null,
+    workflowRootState: creatorAnalysisRoot?.state ?? null,
+    reanalysisInProgress: Boolean(creatorAnalysisRoot && !["succeeded", "failed", "blocked", "needs_review", "canceled"].includes(creatorAnalysisRoot.state)),
+    displayedReportIsPreviousVersion: Boolean(creatorAnalysisRoot && !currentSynthesisRegistered),
+    posts, counts, activeSlots, synthesis };
 }

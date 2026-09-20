@@ -87,6 +87,47 @@ describe("simple review runner", () => {
     expect(prompt).toContain("do not return empty findings merely to avoid the prior validation error");
   });
 
+  it("activates only the reviewer operator while staging its complete package in a private cwd", async () => {
+    const value = fixture();
+    const skillRoot = path.join(value.root, "review-skill");
+    const references = path.join(skillRoot, "references");
+    fs.mkdirSync(references, { recursive: true });
+    fs.writeFileSync(path.join(skillRoot, "SKILL.md"), "Main workflow entrypoint that the reviewer must not activate.");
+    fs.writeFileSync(path.join(skillRoot, "schemas.json"), JSON.stringify({ title: "complete-resource" }));
+    value.operatorPath = path.join(references, "reviewer-operator.md");
+    fs.writeFileSync(value.operatorPath, "Reviewer operator selected-marker.");
+    const previousRuntime = process.env.SELF_MEDIA_RUNTIME_DIR;
+    process.env.SELF_MEDIA_RUNTIME_DIR = path.join(value.root, "runtime");
+    let config: Record<string, unknown> = {};
+    const runner = { run: async (request: typeof value.request) => {
+      config = request.definition.config as Record<string, unknown>;
+      return { output: { schemaVersion: "research-review@1", kind: "post",
+        candidate: { id: value.candidateRef.id, revision: value.candidateRef.revision, sha256: value.candidateRef.sha256 },
+        candidateReportSha256: value.candidate.reportSha256, summary: "ok", findings: [] } };
+    } } as unknown as AgentRunner;
+    try {
+      await runSimpleReview({ request: value.request, candidateRef: value.candidateRef, candidate: value.candidate,
+        reportPath: value.reportPath, reviewerOperatorPath: value.operatorPath, sourcePaths: [value.sourcePath], runner });
+      const prompt = String(config.prompt);
+      expect(prompt).toContain("Reviewer operator selected-marker");
+      expect(prompt).toContain("Activate only the verified Reviewer operator snapshot");
+      expect(prompt).not.toContain("Read each SKILL.md");
+      expect(config.skills).toEqual([]);
+      expect(config.threadOptions).toEqual({ sandboxMode: "read-only", approvalPolicy: "never" });
+      const outputDirectory = String(config.outputDirectory);
+      expect(outputDirectory).toBe(path.join(process.env.SELF_MEDIA_RUNTIME_DIR!, "workflow-reviews", "run", "step", "attempt"));
+      const stagedFiles = fs.readdirSync(outputDirectory, { recursive: true }).map(String);
+      expect(stagedFiles.some((file) => file.endsWith("schemas.json"))).toBe(true);
+      const receipt = JSON.parse(fs.readFileSync(path.join(outputDirectory, "reviewer-skill-load.json"), "utf8"));
+      expect(receipt.files).toEqual([expect.objectContaining({ path: value.operatorPath })]);
+      expect(receipt.packages[0].files.some((file: { path: string }) => file.path === "schemas.json")).toBe(true);
+      expect(outputDirectory).not.toBe(path.dirname(value.reportPath));
+    } finally {
+      if (previousRuntime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR;
+      else process.env.SELF_MEDIA_RUNTIME_DIR = previousRuntime;
+    }
+  });
+
   it("returns a candidate-bound review and routes findings to one repair", async () => {
     const value = fixture();
     const runner = { run: async (request: typeof value.request) => ({ output: {

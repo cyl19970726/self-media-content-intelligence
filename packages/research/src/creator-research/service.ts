@@ -33,6 +33,7 @@ import {
 import type {
   ResearchWorkflowExecutor, WorkflowQueueReceipt
 } from "../workflows/contracts.js";
+import { creatorAnalysisItems, type CreatorAnalysisStartOptions } from "./analysis-scope.js";
 import { CreatorResearchWorkflowScheduler } from "../workflows/queue-scheduler.js";
 import { buildCreatorResearchPipeline } from "./pipeline.js";
 import { CreatorResearchJobProcessor } from "./job-processor.js";
@@ -141,7 +142,8 @@ export class CreatorResearchService {
   }
 
   async startPostWorkflow(id: string, postExternalId: string,
-    options: { evaluationMode?: "fresh" | "repair_existing_invalid"; importedEvaluationArtifactRef?: string } = {}): Promise<WorkflowQueueReceipt> {
+    options: { evaluationMode?: "fresh" | "repair_existing_invalid"; importedEvaluationArtifactRef?: string;
+      candidateMode?: "rebuild" | "reuse" } = {}): Promise<WorkflowQueueReceipt> {
     const run = this.workflowOwner(id);
     this.assertWorkflowStartAllowed(run);
     if (!run.detailArtifactRef || !run.mediaManifestArtifactRef || !run.selectionArtifactRef || !run.reconstructionBatchArtifactRef) {
@@ -154,6 +156,7 @@ export class CreatorResearchService {
       deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef)), postExternalId);
     const receipt = await this.requireWorkflowExecutor().createPost({ creatorRunId: run.id, postExternalId,
       evidenceKind,
+      ...(options.candidateMode ? { candidateMode: options.candidateMode } : {}),
       ...(options.evaluationMode ? { evaluationMode: options.evaluationMode } : {}),
       ...(options.importedEvaluationArtifactRef ? { importedEvaluationArtifactRef: options.importedEvaluationArtifactRef } : {}),
       sourceUrl: `https://www.xiaohongshu.com/explore/${encodeURIComponent(postExternalId)}`,
@@ -184,7 +187,8 @@ export class CreatorResearchService {
     return this.enqueueWorkflowAdvance(run, receipt);
   }
 
-  async startCreatorAnalysisWorkflow(id: string): Promise<WorkflowQueueReceipt> {
+  async startCreatorAnalysisWorkflow(id: string,
+    options: CreatorAnalysisStartOptions = {}): Promise<WorkflowQueueReceipt> {
     const run = this.workflowOwner(id);
     this.assertWorkflowStartAllowed(run);
     if (!run.portfolioArtifactRef || !run.portfolioAnnotationsArtifactRef || !run.selectionArtifactRef
@@ -193,19 +197,18 @@ export class CreatorResearchService {
     }
     const selection = creatorSelectionSchema.parse(this.artifacts.read(run.selectionArtifactRef));
     const batch = videoReconstructionBatchSchema.parse(this.artifacts.read(run.reconstructionBatchArtifactRef));
-    const selectedIds = new Set(selection.items.filter((item) => item.deepCandidate).map((item) => item.externalId));
-    const posts = batch.items.filter((item) => selectedIds.has(item.postExternalId)).map((item) => {
+    const posts = creatorAnalysisItems(selection, batch, options.scope).map((item) => {
       if (!item.sourceMediaArtifactRef) throw new Error(`单帖 ${item.postExternalId} 缺少可冻结的媒体来源`);
       const manifest = deepMediaManifestSchema.parse(this.artifacts.read(run.mediaManifestArtifactRef!));
       const evidenceKind = resolveWorkflowEvidenceKind(item.evidenceKind, item.sourceMediaArtifactRef, manifest, item.postExternalId);
       return { creatorRunId: run.id, postExternalId: item.postExternalId,
         evidenceKind,
+        ...(options.candidateMode ? { candidateMode: options.candidateMode } : {}),
         sourceUrl: `https://www.xiaohongshu.com/explore/${encodeURIComponent(item.postExternalId)}`,
         sourceMediaArtifactRef: item.sourceMediaArtifactRef, detailArtifactRef: run.detailArtifactRef!,
         mediaManifestArtifactRef: run.mediaManifestArtifactRef!, selectionArtifactRef: run.selectionArtifactRef!,
         reconstructionBatchArtifactRef: run.reconstructionBatchArtifactRef! };
     });
-    if (posts.length !== selectedIds.size) throw new Error("冻结重建批次未覆盖全部深读选样");
     const receipt = await this.requireWorkflowExecutor().createAnalysis({ creatorRunId: run.id,
       portfolioArtifactRef: run.portfolioArtifactRef, portfolioAnnotationsArtifactRef: run.portfolioAnnotationsArtifactRef,
       selectionArtifactRef: run.selectionArtifactRef, detailArtifactRef: run.detailArtifactRef,

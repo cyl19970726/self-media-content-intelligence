@@ -45,6 +45,7 @@ export type PostWorkflowInput = {
   postExternalId: string;
   evidenceKind?: "video" | "image_post";
   evaluationMode?: "fresh" | "repair_existing_invalid";
+  candidateMode?: "rebuild" | "reuse";
   importedEvaluationArtifactRef?: string;
   evidence: ArtifactRef;
 };
@@ -54,6 +55,7 @@ export type PostWorkflowStartInput = {
   postExternalId: string;
   evidenceKind?: "video" | "image_post";
   evaluationMode?: "fresh" | "repair_existing_invalid";
+  candidateMode?: "rebuild" | "reuse";
   importedEvaluationArtifactRef?: string;
   sourceUrl: string;
   sourceMediaArtifactRef: string;

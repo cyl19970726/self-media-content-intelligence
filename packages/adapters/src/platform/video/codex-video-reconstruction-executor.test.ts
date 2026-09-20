@@ -21,17 +21,20 @@ import {
   runCodex,
   shouldRefreshOcrEvidence
 } from "./codex-video-reconstruction-executor.js";
+import { recoverOcrWithBuilderContinuation } from "./video-ocr-builder-continuation.js";
 import { validateBuilderIntegrity } from "./video-builder-integrity.js";
 import { videoReconstructionOutcomeSchema, type VideoReconstructionLifecycleEvent } from "../../../../research/index.js";
+import { sdkModel } from "./video-codex-execution.js";
 
 const protocol = { captureActions: [{ mode: "ocr_review" }] };
 const targeted = { frames: [{ id: "FRAME-1" }, { id: "FRAME-2" }] };
 
 describe("video reconstruction OCR recovery", () => {
-  it("keeps a complete failed OCR pass as checked evidence", () => {
+  it("allows one host retry for a complete nilError pass", () => {
     expect(shouldRefreshOcrEvidence(protocol, targeted, {
-      frames: [{ frameId: "FRAME-1", status: "failed" }, { frameId: "FRAME-2", status: "failed" }]
-    })).toBe(false);
+      frames: [{ frameId: "FRAME-1", status: "failed", error: "nilError" },
+        { frameId: "FRAME-2", status: "failed", error: "nilError" }]
+    })).toBe(true);
   });
 
   it("refreshes OCR when a repair adds targeted frames", () => {
@@ -46,8 +49,91 @@ describe("video reconstruction OCR recovery", () => {
     })).toBe(false);
   });
 
+  it("keeps processed empty OCR as a completed attempt", () => {
+    expect(shouldRefreshOcrEvidence(protocol, targeted, {
+      frames: [{ frameId: "FRAME-1", status: "processed", lines: [] },
+        { frameId: "FRAME-2", status: "processed", lines: [] }]
+    })).toBe(false);
+  });
+
   it("does not invent an OCR requirement for a visual-only protocol", () => {
     expect(shouldRefreshOcrEvidence({ captureActions: [{ mode: "exact_times" }] }, targeted, null)).toBe(false);
+  });
+});
+
+describe("host OCR Builder continuation", () => {
+  function recoveryDirectory(): { root: string; video: string } {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "video-ocr-continuation-"));
+    fs.mkdirSync(path.join(root, "evidence"), { recursive: true });
+    fs.mkdirSync(path.join(root, "targeted-evidence/frames"), { recursive: true });
+    fs.writeFileSync(path.join(root, "post-source-input.json"), "{}");
+    fs.writeFileSync(path.join(root, "media-preparation.json"), "{}");
+    fs.writeFileSync(path.join(root, "evidence/evidence-pack.json"), "{}");
+    fs.writeFileSync(path.join(root, "capture-protocol.json"), "{}");
+    fs.writeFileSync(path.join(root, "targeted-evidence/targeted-evidence.json"), "{}");
+    fs.writeFileSync(path.join(root, "targeted-evidence/ocr-evidence.json"), "{}");
+    fs.writeFileSync(path.join(root, "reconstruction.json"), "{}");
+    const video = path.join(root, "source.mp4");
+    fs.writeFileSync(video, "video");
+    return { root, video };
+  }
+
+  it("runs exactly one bounded Builder continuation after recovered text", async () => {
+    const item = recoveryDirectory();
+    const calls: string[] = [];
+    const result = await recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
+      skillDir: "/unused", recover: async () => {
+        calls.push("host-ocr");
+        return { attempted: true, recoveredText: true, reason: "recovered_text", receipt: null };
+      }, continueBuilder: async (prompt, label) => {
+        calls.push(label);
+        expect(prompt).toContain("Repair only report conclusions");
+        fs.writeFileSync(path.join(item.root, "reconstruction.json"), "{\"repaired\":true}");
+      } });
+    expect(result.recoveredText).toBe(true);
+    expect(calls).toEqual(["host-ocr", "repair-ocr-evidence"]);
+    const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
+    expect(receipt).toMatchObject({ status: "completed", inputCandidateSha256: expect.any(String),
+      afterCandidateSha256: expect.any(String), error: null });
+
+    const repeated = await recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
+      skillDir: "/unused", recover: async () => { throw new Error("host must not repeat"); },
+      continueBuilder: async () => { throw new Error("Builder must not repeat"); } });
+    expect(repeated).toMatchObject({ attempted: false, recoveredText: true, reason: "continuation_already_completed" });
+    expect(calls).toEqual(["host-ocr", "repair-ocr-evidence"]);
+  });
+
+  it("does not call Builder when host OCR adds no text", async () => {
+    const item = recoveryDirectory();
+    let builderCalls = 0;
+    await recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video, skillDir: "/unused",
+      recover: async () => ({ attempted: true, recoveredText: false, reason: "no_new_text", receipt: null }),
+      continueBuilder: async () => { builderCalls += 1; } });
+    expect(builderCalls).toBe(0);
+  });
+
+  it("rejects mutation of frozen OCR inputs by the continuation", async () => {
+    const item = recoveryDirectory();
+    await expect(recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video, skillDir: "/unused",
+      recover: async () => ({ attempted: true, recoveredText: true, reason: "recovered_text", receipt: null }),
+      continueBuilder: async () => { fs.writeFileSync(path.join(item.root, "targeted-evidence/ocr-evidence.json"), "mutated"); } }))
+      .rejects.toThrow("OCR_RECOVERY_IMMUTABLE_INPUT_MUTATED");
+  });
+
+  it("records a failed continuation and refuses to silently reuse or repeat it", async () => {
+    const item = recoveryDirectory();
+    let builderCalls = 0;
+    const invoke = () => recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
+      skillDir: "/unused", recover: async () => ({ attempted: true, recoveredText: true,
+        reason: "recovered_text", receipt: null }), continueBuilder: async () => {
+        builderCalls += 1;
+        throw new Error("Builder stopped");
+      } });
+    await expect(invoke()).rejects.toThrow("Builder stopped");
+    expect(JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8")))
+      .toMatchObject({ status: "failed", error: "Builder stopped", inputCandidateSha256: expect.any(String) });
+    await expect(invoke()).rejects.toThrow("OCR_RECOVERY_CONTINUATION_FAILED_REQUIRES_NEW_OCR_REVISION");
+    expect(builderCalls).toBe(1);
   });
 });
 
@@ -240,6 +326,11 @@ describe("Builder model contract", () => {
     expect(args).toContain("--ephemeral");
   });
 
+  it("routes the OCR continuation repair role to the configured Builder model", () => {
+    expect(sdkModel("generic_repair", { builderModel: "gpt-5.6-terra", evaluatorModel: "gpt-5.6-luna" }))
+      .toBe("gpt-5.6-terra");
+  });
+
   it("uses Luna for evaluation and preserves explicit role overrides", () => {
     expect(codexInvocationArgs("generic_evaluator", "/tmp/run", "/tmp/last.txt", {})).toContain("gpt-5.6-luna");
     const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/last.txt", {
@@ -352,6 +443,44 @@ describe("Builder integrity contract", () => {
 });
 
 describe("child worker lifecycle", () => {
+  it("runs OCR repair with Builder snapshots and model without activating the main skill entry", async () => {
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-ocr-repair-role-"));
+    const binary = path.join(outputDir, "fake-codex.mjs");
+    const previous = { runtime: process.env.SELF_MEDIA_RUNTIME_DIR, binary: process.env.SELF_MEDIA_CODEX_BIN,
+      builder: process.env.SELF_MEDIA_BUILDER_MODEL, evaluator: process.env.SELF_MEDIA_EVALUATOR_MODEL };
+    try {
+      fs.writeFileSync(binary, "#!/usr/bin/env node\nprocess.exit(0);\n");
+      fs.chmodSync(binary, 0o755);
+      process.env.SELF_MEDIA_RUNTIME_DIR = outputDir;
+      process.env.SELF_MEDIA_CODEX_BIN = binary;
+      process.env.SELF_MEDIA_BUILDER_MODEL = "gpt-5.6-terra";
+      process.env.SELF_MEDIA_EVALUATOR_MODEL = "gpt-5.6-luna";
+
+      await runCodex("OCR repair sentinel", outputDir, "repair-ocr-evidence", "source-revision-1");
+
+      const trace = JSON.parse(fs.readFileSync(path.join(outputDir, "repair-ocr-evidence-trace.json"), "utf8"));
+      const runtime = JSON.parse(fs.readFileSync(path.join(trace.traceDir, "runtime.json"), "utf8"));
+      const prompt = fs.readFileSync(path.join(trace.traceDir, "prompt.txt"), "utf8");
+      expect(runtime).toMatchObject({ role: "generic_repair", model: "gpt-5.6-terra" });
+      expect(runtime.skillLoad.files).toHaveLength(4);
+      expect(runtime.skillLoad.files.map((file: { path: string }) => path.basename(file.path)))
+        .toEqual(["builder-operator.md", "single-post-depth.md", "capture-protocol.schema.json", "reconstruction.schema.json"]);
+      expect(prompt).toContain("OCR repair sentinel");
+      expect(prompt).not.toContain("Read each SKILL.md below");
+      expect(runtime.skillLoad.files.some((file: { path: string }) => file.path.endsWith("/SKILL.md"))).toBe(false);
+    } finally {
+      if (previous.runtime === undefined) delete process.env.SELF_MEDIA_RUNTIME_DIR;
+      else process.env.SELF_MEDIA_RUNTIME_DIR = previous.runtime;
+      if (previous.binary === undefined) delete process.env.SELF_MEDIA_CODEX_BIN;
+      else process.env.SELF_MEDIA_CODEX_BIN = previous.binary;
+      if (previous.builder === undefined) delete process.env.SELF_MEDIA_BUILDER_MODEL;
+      else process.env.SELF_MEDIA_BUILDER_MODEL = previous.builder;
+      if (previous.evaluator === undefined) delete process.env.SELF_MEDIA_EVALUATOR_MODEL;
+      else process.env.SELF_MEDIA_EVALUATOR_MODEL = previous.evaluator;
+      fs.rmSync(outputDir, { recursive: true, force: true });
+    }
+  });
+
   it("reports started, stale, progress, and completed against one input revision", async () => {
     const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "video-child-lifecycle-"));
     const binary = path.join(outputDir, "fake-codex.mjs");

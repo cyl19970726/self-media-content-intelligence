@@ -21,6 +21,7 @@
     "docs/development/issue-71-source-preflight-pilot.md",
     "docs/development/issue-71-workflow-implementation.md",
     "docs/development/reviewer-reader-next-20260917.md",
+    "docs/development/workflow-read-model-integration.md",
     "docs/evidence/evidence-manifest.schema.json",
     "docs/evidence/history-strategy.md",
     "docs/evidence/migration-report.json",
@@ -55,7 +56,8 @@
     "src/server/routes/workflow-runs.ts",
     "src/server/video-research.ts",
     "src/server/workflow-artifact-reader.ts",
-    "src/server/workflow-public-projection.ts"
+    "src/server/workflow-public-projection.ts",
+    "src/server/workflow-reading-service.ts"
   ],
   "largestFiles": []
 }

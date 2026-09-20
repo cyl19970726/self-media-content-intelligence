@@ -155,8 +155,7 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     enqueueWorkflow(run.id, "post.repair-evaluation", "post-3");
     const first = repository.claimNext("post-1", timestamp(), timestamp(90_000), "video");
     const second = repository.claimNext("post-2", timestamp(), timestamp(90_000), "video");
-    expect(first?.payload.workflowId).toBe("post.build");
-    expect(second?.payload.workflowId).toBe("post.review");
+    expect([first?.payload.workflowId, second?.payload.workflowId]).toEqual(["post.review", "post.repair-evaluation"]);
     expect(repository.claimNext("post-3", timestamp(), timestamp(90_000), "video")).toBeNull();
   });
 
@@ -212,6 +211,65 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
     expect(repository.claimNext("second-video", timestamp(), timestamp(90_000), "video")).toBeNull();
     repository.updateJobStatus({ jobId: sourceCheck.id, status: "succeeded", updatedAt: timestamp() });
     expect(repository.claimNext("second-video", timestamp(), timestamp(90_000), "video")?.id).toBe(build.id);
+  });
+
+  it.each([
+    ["post.analyze", "v7"],
+    ["post.analyze", "v8"],
+    ["creator.synthesize", "v6"],
+    ["creator.synthesize", "v7"],
+  ])("claims current %s@%s control while two post models remain active", (workflowId, revision) => {
+    process.env.SELF_MEDIA_VIDEO_CONCURRENCY = "2";
+    const run = createRun("redfox", `current-control-${workflowId}-${revision}`);
+    completeAcquisition(run.id, "redfox");
+    const first = enqueueWorkflow(run.id, "post.build", "model-1", "v1");
+    const second = enqueueWorkflow(run.id, "post.build", "model-2", "v1");
+    expect(repository.claimNext("model-1", timestamp(), timestamp(90_000), "video")?.id).toBe(first.id);
+    expect(repository.claimNext("model-2", timestamp(), timestamp(90_000), "video")?.id).toBe(second.id);
+    expect(repository.claimNext("model-limit", timestamp(), timestamp(90_000), "video")).toBeNull();
+
+    const control = enqueueWorkflow(run.id, workflowId, "current-control", revision);
+    expect(repository.claimNext("current-control", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(control.id);
+  });
+
+  it("reviews an existing candidate before an older queued build without widening model concurrency", () => {
+    process.env.SELF_MEDIA_VIDEO_CONCURRENCY = "2";
+    const run = createRun("redfox", "review-before-build");
+    completeAcquisition(run.id, "redfox");
+    const olderBuild = enqueueWorkflow(run.id, "post.build", "older-build", "v1");
+    const newerReview = enqueueWorkflow(run.id, "post.review", "newer-review", "v1");
+    const secondBuild = enqueueWorkflow(run.id, "post.build", "second-build", "v1");
+
+    expect(repository.claimNext("review-first", timestamp(), timestamp(90_000), "video")?.id).toBe(newerReview.id);
+    expect(repository.claimNext("build-second", timestamp(), timestamp(90_000), "video")?.id).toBe(olderBuild.id);
+    expect(repository.claimNext("model-limit", timestamp(), timestamp(90_000), "video")).toBeNull();
+    expect(secondBuild.status).toBe("queued");
+  });
+
+  it("claims a newer workflow control before an older synthesis model job", () => {
+    const run = createRun("redfox", "control-priority");
+    completeAcquisition(run.id, "redfox");
+    const olderModel = enqueueWorkflow(run.id, "creator.build", "older-model", "v1");
+    const newerControl = enqueueWorkflow(run.id, "creator.synthesize", "newer-control", "v6");
+
+    expect(repository.claimNext("control-first", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(newerControl.id);
+    repository.updateJobStatus({ jobId: newerControl.id, status: "succeeded", updatedAt: timestamp() });
+    expect(repository.claimNext("model-second", timestamp(), timestamp(90_000), "synthesis")?.id).toBe(olderModel.id);
+  });
+
+  it("does not claim future work early and keeps ordinary queued jobs in availability order", () => {
+    const run = createRun("redfox", "stable-ordinary-order");
+    completeAcquisition(run.id, "redfox");
+    const first = enqueue(run.id, "creator.portfolio", "ordinary-first");
+    const createdAt = timestamp();
+    const future = repository.enqueue({ id: randomUUID(), runId: run.id, nodeKey: "creator.portfolio", status: "queued",
+      idempotencyKey: `${run.id}:future`, attempts: 0, maxAttempts: 3, availableAt: timestamp(60_000),
+      leaseOwner: null, leaseExpiresAt: null, heartbeatAt: null, payload: {}, lastError: null, createdAt, updatedAt: createdAt });
+
+    expect(repository.claimNext("ordinary", timestamp(), timestamp(90_000), "portfolio")?.id).toBe(first.id);
+    repository.updateJobStatus({ jobId: first.id, status: "succeeded", updatedAt: timestamp() });
+    expect(repository.claimNext("future-too-early", timestamp(), timestamp(90_000), "portfolio")).toBeNull();
+    expect(future.status).toBe("queued");
   });
 
   it("does not let control advances consume or block the synthesis model slot", () => {

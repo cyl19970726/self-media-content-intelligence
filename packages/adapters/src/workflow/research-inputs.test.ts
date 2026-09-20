@@ -26,11 +26,15 @@ const methodFiles = [
   ".agents/skills/video-content-reconstruction/scripts/validate-reconstruction.mjs",
   ".agents/skills/video-content-reconstruction/scripts/build-evaluator-overview.mjs",
   "packages/adapters/src/platform/video/codex-video-reconstruction-executor.ts",
+  "packages/adapters/src/platform/video/video-ocr-host-recovery.ts",
+  "packages/adapters/src/platform/video/video-ocr-builder-continuation.ts",
   "packages/adapters/src/platform/video/video-codex-execution.ts",
   "packages/adapters/src/workflow/post-evaluation-repair.ts",
   "packages/adapters/src/workflow/source-consistency-checker.ts",
   "packages/research/src/video-analysis/runtime-three-lens-contracts.ts",
   "packages/adapters/src/workflow/codex-sdk-runner.ts",
+  "vendor/agent-workflow/packages/codex/src/runner.ts",
+  "vendor/agent-workflow/packages/codex/src/skill-bundle.ts",
   ".agents/skills/video-content-reconstruction/references/reviewer-operator.md",
   "packages/research/src/workflows/simple-review-contract.ts",
   "packages/adapters/src/workflow/simple-review-runner.ts",
@@ -82,6 +86,7 @@ beforeEach(() => {
   write(ref("creator-1", "annotations.json"), { annotations: [] });
   write(ref("creator-1", "selection.json"), { selected: [] });
   write(ref("creator-1", "detail.json"), { creator: "creator-1" });
+  write(ref("creator-1", "batch.json"), { items: [] });
 });
 afterAll(() => fs.rmSync(fixture.root, { recursive: true, force: true }));
 
@@ -94,6 +99,29 @@ describe("research input pinning", () => {
       ref("candidate-evidence", "evidence.json"), ref("deep-source", "source.json"),
     ]));
     expect(pinned.files.map((file) => file.ref)).not.toContain(ref("candidate-other", "reconstruction.json"));
+  });
+
+  it("keeps the batch digest but excludes an existing candidate and its graph when rebuild is explicit", () => {
+    const pinned = pinResearchInput("post", { ...postInput(), candidateMode: "rebuild" });
+    const refs = pinned.files.map((file) => file.ref);
+
+    expect(pinned.reuseCandidate).toBeUndefined();
+    expect(refs).toContain(ref("batch", "reconstruction-batch.json"));
+    expect(refs).not.toContain(ref("candidate-own", "reconstruction.json"));
+    expect(refs).not.toContain(ref("candidate-evidence", "evidence.json"));
+  });
+
+  it("keeps explicit reuse and the compatibility default bound to the existing candidate", () => {
+    for (const candidateMode of [undefined, "reuse" as const]) {
+      const pinned = pinResearchInput("post", { ...postInput(), ...(candidateMode ? { candidateMode } : {}) });
+      expect(pinned.reuseCandidate?.artifactRef).toBe(ref("candidate-own", "reconstruction.json"));
+      expect(pinned.files.map((file) => file.ref)).toContain(ref("candidate-evidence", "evidence.json"));
+    }
+  });
+
+  it("rejects rebuilding a candidate while repairing its existing invalid evaluation", () => {
+    expect(() => pinResearchInput("post", { ...postInput(), candidateMode: "rebuild",
+      evaluationMode: "repair_existing_invalid" })).toThrow("REBUILD_CANDIDATE_CANNOT_REPAIR_EXISTING_EVALUATION");
   });
 
   it("pins an explicitly requested imported invalid evaluation only when it is bound to this candidate revision", () => {
@@ -163,6 +191,30 @@ describe("research input pinning", () => {
     const evaluatorContract = ".agents/skills/video-content-reconstruction/schemas/evaluation.schema.json";
     fs.appendFileSync(path.join(fixture.root, evaluatorContract), "\nchanged", "utf8");
     expect(() => assertPinnedResearchInput(methodPinned)).toThrow(`FROZEN_METHOD_CHANGED: ${evaluatorContract}`);
+  });
+
+  it.each([
+    "packages/adapters/src/platform/video/video-ocr-host-recovery.ts",
+    "packages/adapters/src/platform/video/video-ocr-builder-continuation.ts",
+  ])("pins the OCR runtime helper digest: %s", (helper) => {
+    const pinned = pinResearchInput("post", postInput());
+    expect(pinned.methods).toContainEqual({ path: helper, sha256: expect.stringMatching(/^[a-f0-9]{64}$/u) });
+
+    fs.appendFileSync(path.join(fixture.root, helper), "\nchanged", "utf8");
+    expect(() => assertPinnedResearchInput(pinned)).toThrow(`FROZEN_METHOD_CHANGED: ${helper}`);
+  });
+
+  it.each([
+    ["post" as const, "vendor/agent-workflow/packages/codex/src/runner.ts"],
+    ["post" as const, "vendor/agent-workflow/packages/codex/src/skill-bundle.ts"],
+    ["creator" as const, "vendor/agent-workflow/packages/codex/src/runner.ts"],
+    ["creator" as const, "vendor/agent-workflow/packages/codex/src/skill-bundle.ts"],
+  ])("pins the shared Codex runtime for %s inputs: %s", (kind, sharedSource) => {
+    const pinned = pinResearchInput(kind, kind === "post" ? postInput() : creatorInput());
+    expect(pinned.methods).toContainEqual({ path: sharedSource, sha256: expect.stringMatching(/^[a-f0-9]{64}$/u) });
+
+    fs.appendFileSync(path.join(fixture.root, sharedSource), "\nchanged", "utf8");
+    expect(() => assertPinnedResearchInput(pinned)).toThrow(`FROZEN_METHOD_CHANGED: ${sharedSource}`);
   });
 
   it("pins every file in the skill package, including resources not named by an executor", () => {

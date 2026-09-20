@@ -48,6 +48,9 @@ interface ResearchEventRow {
   payload_json: string;
 }
 
+const postAnalyzeControlRevisions = "'v2','v3','v4','v5','v6','v7','v8'";
+const creatorSynthesisControlRevisions = "'v2','v3','v4','v5','v6','v7'";
+
 function parseJob(row: ResearchJobRow): ResearchJob {
   return researchJobSchema.parse({
     id: row.id,
@@ -93,7 +96,7 @@ function lanePredicate(lane: ResearchJobLane, jobAlias: string, runAlias: string
         'creator.analyze','creator.synthesize','creator.build','creator.review','creator.repair'))
     OR (${jobAlias}.node_key = 'workflow.advance'
       AND json_extract(${jobAlias}.payload_json, '$.workflowId') = 'post.analyze'
-      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN ('v2','v3','v4','v5')))`;
+      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN (${postAnalyzeControlRevisions})))`;
   return "1 = 1";
 }
 
@@ -125,8 +128,10 @@ function postWorkerWorkflowPredicate(jobAlias: string): string {
 function workflowControlPredicate(jobAlias: string): string {
   return `(${jobAlias}.node_key = 'workflow.advance' AND (
     json_extract(${jobAlias}.payload_json, '$.workflowId') = 'creator.analyze'
-    OR (json_extract(${jobAlias}.payload_json, '$.workflowId') IN ('post.analyze','creator.synthesize')
-      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN ('v2','v3','v4','v5'))))`;
+    OR (json_extract(${jobAlias}.payload_json, '$.workflowId') = 'post.analyze'
+      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN (${postAnalyzeControlRevisions}))
+    OR (json_extract(${jobAlias}.payload_json, '$.workflowId') = 'creator.synthesize'
+      AND json_extract(${jobAlias}.payload_json, '$.workflowRevision') IN (${creatorSynthesisControlRevisions}))))`;
 }
 
 export class SQLiteCreatorResearchRepository implements CreatorResearchRepository {
@@ -354,6 +359,12 @@ export class SQLiteCreatorResearchRepository implements CreatorResearchRepositor
         ORDER BY
           CASE WHEN candidate.status IN ('leased','running') THEN 0 ELSE 1 END ASC,
           CASE WHEN candidate.status = 'backoff' AND candidate.last_error = 'lease_expired' THEN 0 ELSE 1 END ASC,
+          CASE WHEN ${workflowControlPredicate("candidate")} THEN 0
+            WHEN candidate.node_key = 'workflow.advance'
+              AND json_extract(candidate.payload_json, '$.workflowId') IN ('post.review','post.repair','post.repair-evaluation') THEN 1
+            WHEN candidate.node_key = 'workflow.advance'
+              AND json_extract(candidate.payload_json, '$.workflowId') = 'post.build' THEN 2
+            ELSE 1 END ASC,
           candidate.available_at ASC,
           candidate.created_at ASC
         LIMIT 1

@@ -2,8 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import type { AgentRunRequest, AgentRunResult, AgentRunner, ArtifactRef } from "@signal-room/workflow";
-import { CodexSdkRunner, snapshotSkill } from "./codex-sdk-runner.js";
+import { attachVerifiedSkillSnapshots, CodexSdkRunner } from "./codex-sdk-runner.js";
 import { artifactPath } from "../core/artifacts.js";
+import { runtimeDir } from "../core/config.js";
 
 export type SimpleReviewFinding = {
   id: string;
@@ -31,16 +32,6 @@ export type SimpleReviewCandidate = {
   reportSha256: string;
 };
 
-function containingSkillBundle(file: string) {
-  let directory = path.dirname(path.resolve(file));
-  while (true) {
-    if (fs.existsSync(path.join(directory, "SKILL.md"))) return snapshotSkill(directory);
-    const parent = path.dirname(directory);
-    if (parent === directory) return undefined;
-    directory = parent;
-  }
-}
-
 const jsonPointerPattern = "^(?:/(?:[^~/]|~[01])*)+$";
 
 export const reviewOutputSchema = {
@@ -67,6 +58,11 @@ export const reviewOutputSchema = {
 
 function digestFile(file: string): string {
   return createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+}
+
+function safeSegment(value: string): string {
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(value)) throw new Error(`SIMPLE_REVIEW_UNSAFE_RUNTIME_SEGMENT:${value}`);
+  return value;
 }
 
 function pointerExists(root: unknown, pointer: string): boolean {
@@ -170,13 +166,31 @@ export async function runSimpleReview<Input>(options: {
   const before = new Map(watched.map((file) => [file, digestFile(file)]));
   if (before.get(options.reportPath) !== options.candidate.reportSha256) throw new Error("CANDIDATE_REVISION_CHANGED");
   const candidateIdentity = { id: options.candidateRef.id, revision: options.candidateRef.revision, sha256: options.candidateRef.sha256 };
-  const reviewerSkill = containingSkillBundle(options.reviewerOperatorPath);
+  const outputDirectory = path.join(runtimeDir(), "workflow-reviews", safeSegment(options.request.runId),
+    safeSegment(options.request.stepRunId), safeSegment(options.request.attemptId));
+  const attached = attachVerifiedSkillSnapshots(
+    `You are the Reviewer operator. Activate only the verified Reviewer operator snapshot; the staged package is reference material.
+Review the immutable candidate for substantive content errors and missing evidence. Return only the requested research-review@1 JSON. Do not modify any file.
+Each finding.location must be exactly one RFC 6901 JSON Pointer into the candidate report, beginning with /. If one issue concerns multiple locations, emit separate findings instead of joining paths with separators or prose. A semicolon is valid only when it is part of an actual JSON object member name.
+${options.retryFeedback?.trim() ? `The previous review attempt was rejected by deterministic validation. Correct this specific error: ${options.retryFeedback.trim()}
+A validation-format error does not make a substantive concern invalid. Independently re-check the candidate and retain any supported finding; do not return empty findings merely to avoid the prior validation error.
+` : ""}Candidate identity: ${JSON.stringify(candidateIdentity)}
+Candidate report SHA-256: ${options.candidate.reportSha256}
+Candidate report: ${options.reportPath}
+Artifact reference to local-path mappings:
+${(options.sourceMappings ?? []).map((item) => `${item.ref} => ${item.path}`).join("\n")}
+Readable source inputs:
+${options.sourcePaths.join("\n")}`,
+    [options.reviewerOperatorPath], { outputDirectory });
+  fs.mkdirSync(outputDirectory, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(path.join(outputDirectory, "reviewer-skill-load.json"), `${JSON.stringify(attached.receipt, null, 2)}\n`, { mode: 0o600 });
   const definition = {
     ...options.request.definition,
     config: {
-      prompt: `Review the immutable candidate for substantive content errors and missing evidence. Return only the requested research-review@1 JSON. Do not modify any file.\nEach finding.location must be exactly one RFC 6901 JSON Pointer into the candidate report, beginning with /. If one issue concerns multiple locations, emit separate findings instead of joining paths with separators or prose. A semicolon is valid only when it is part of an actual JSON object member name.\n${options.retryFeedback?.trim() ? `The previous review attempt was rejected by deterministic validation. Correct this specific error: ${options.retryFeedback.trim()}\nA validation-format error does not make a substantive concern invalid. Independently re-check the candidate and retain any supported finding; do not return empty findings merely to avoid the prior validation error.\n` : ""}Candidate identity: ${JSON.stringify(candidateIdentity)}\nCandidate report SHA-256: ${options.candidate.reportSha256}\nCandidate report: ${options.reportPath}\nArtifact reference to local-path mappings:\n${(options.sourceMappings ?? []).map((item) => `${item.ref} => ${item.path}`).join("\n")}\nReadable source inputs:\n${options.sourcePaths.join("\n")}`,
-      skills: [...(reviewerSkill ? [reviewerSkill] : []), { path: options.reviewerOperatorPath }],
+      prompt: attached.prompt,
+      skills: [],
       outputSchema: reviewOutputSchema,
+      outputDirectory,
       threadOptions: { sandboxMode: "read-only", approvalPolicy: "never" },
       timeoutMs: 10 * 60_000
     }

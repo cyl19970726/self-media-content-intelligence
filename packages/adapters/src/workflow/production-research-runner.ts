@@ -5,10 +5,11 @@ import { createHash, randomUUID } from "node:crypto";
 import type { DatabaseSync } from "node:sqlite";
 import {
   createPostWorkflow, createPostWorkflowSuite, createPostWorkflowSuiteV3, createPostWorkflowSuiteV4, createCreatorSynthesisWorkflow, createCreatorSynthesisWorkflowSuite,
+  createPostSourceCheckWorkflow,
   createCreatorSynthesisWorkflowSuiteV3, createCreatorAnalysisWorkflow, createCreatorAnalysisWorkflowV2, createCreatorAnalysisWorkflowV3, createCreatorAnalysisWorkflowV4,
-  createPostWorkflowSuiteV5, createPostWorkflowSuiteV6, createPostWorkflowSuiteV7,
-  createCreatorSynthesisWorkflowSuiteV4, createCreatorSynthesisWorkflowSuiteV5, createCreatorSynthesisWorkflowSuiteV6,
-  createCreatorAnalysisWorkflowV5, createCreatorAnalysisWorkflowV6, createCreatorAnalysisWorkflowV7,
+  createPostWorkflowSuiteV5, createPostWorkflowSuiteV6, createPostWorkflowSuiteV7, createPostWorkflowSuiteV8,
+  createCreatorSynthesisWorkflowSuiteV4, createCreatorSynthesisWorkflowSuiteV5, createCreatorSynthesisWorkflowSuiteV6, createCreatorSynthesisWorkflowSuiteV7,
+  createCreatorAnalysisWorkflowV5, createCreatorAnalysisWorkflowV6, createCreatorAnalysisWorkflowV7, createCreatorAnalysisWorkflowV8,
   postWorkflowArtifacts, createResearchAgentDefinitions,
   CreatorResearchWorkflowScheduler, RepositoryResearchVersionRegistrar,
   videoReconstructionBatchSchema, videoReconstructionOutcomeSchema, creatorSynthesisSchema, creatorSynthesisGateSchema,
@@ -598,9 +599,13 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
     sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV6>[2]>["sourceCheck"] });
   const postSuiteV7 = createPostWorkflowSuiteV7(validators, simpleAgents, { registerCandidate,
     sourceCheck: sourceCheck as NonNullable<Parameters<typeof createPostWorkflowSuiteV7>[2]>["sourceCheck"] });
+  const sourceCheckV3 = createPostSourceCheckWorkflow("v3", simpleAgents);
+  const postSuiteV8 = createPostWorkflowSuiteV8(validators, simpleAgents, { registerCandidate,
+    sourceCheck: sourceCheckV3 });
   const creatorSuiteV4 = createCreatorSynthesisWorkflowSuiteV4(validators, simpleAgents, { registerCandidate });
   const creatorSuiteV5 = createCreatorSynthesisWorkflowSuiteV5(validators, simpleAgents, { registerCandidate });
   const creatorSuiteV6 = createCreatorSynthesisWorkflowSuiteV6(validators, simpleAgents, { registerCandidate });
+  const creatorSuiteV7 = createCreatorSynthesisWorkflowSuiteV7(validators, simpleAgents, { registerCandidate });
   const prepareSynthesisV5: Parameters<typeof createCreatorAnalysisWorkflowV5>[2] = async (input, posts) => {
     const original = await store.getArtifactPayload(input.source.id) as PinnedResearchInput;
     assertPinnedResearchInput(original);
@@ -623,13 +628,14 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
   const creatorAnalysisV5 = createCreatorAnalysisWorkflowV5(postSuiteV5.analyze, creatorSuiteV4.analyze, prepareSynthesisV5);
   const creatorAnalysisV6 = createCreatorAnalysisWorkflowV6(postSuiteV6.analyze, creatorSuiteV5.analyze, prepareSynthesisV5);
   const creatorAnalysisV7 = createCreatorAnalysisWorkflowV7(postSuiteV7.analyze, creatorSuiteV6.analyze, prepareSynthesisV5);
-  const definitions = { post: postSuiteV7.analyze, creatorSynthesis: creatorSuiteV6.analyze, creatorAnalysis: creatorAnalysisV7 };
+  const creatorAnalysisV8 = createCreatorAnalysisWorkflowV8(postSuiteV8.analyze, creatorSuiteV7.analyze, prepareSynthesisV5);
+  const definitions = { post: postSuiteV8.analyze, creatorSynthesis: creatorSuiteV7.analyze, creatorAnalysis: creatorAnalysisV8 };
   const registeredDefinitions = [postV1, creatorSynthesisV1, creatorAnalysisV1,
     ...postSuite.definitions, ...creatorSuite.definitions, creatorAnalysisV2,
     ...postSuiteV3.definitions, ...postSuiteV4.definitions, ...creatorSuiteV3.definitions, creatorAnalysisV3, creatorAnalysisV4,
-    ...postSuiteV5.definitions, ...postSuiteV6.definitions, ...postSuiteV7.definitions,
-    ...creatorSuiteV4.definitions, ...creatorSuiteV5.definitions, ...creatorSuiteV6.definitions,
-    creatorAnalysisV5, creatorAnalysisV6, creatorAnalysisV7];
+    ...postSuiteV5.definitions, ...postSuiteV6.definitions, ...postSuiteV7.definitions, sourceCheckV3, ...postSuiteV8.definitions,
+    ...creatorSuiteV4.definitions, ...creatorSuiteV5.definitions, ...creatorSuiteV6.definitions, ...creatorSuiteV7.definitions,
+    creatorAnalysisV5, creatorAnalysisV6, creatorAnalysisV7, creatorAnalysisV8];
   const registry = { resolve: (id: string, revision: string) => registeredDefinitions
     .find((definition) => definition.id === id && definition.revision === revision) as WorkflowDefinition<unknown, unknown> | undefined };
   const scheduler = new CreatorResearchWorkflowScheduler(repository);

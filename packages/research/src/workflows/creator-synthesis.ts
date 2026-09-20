@@ -63,8 +63,8 @@ export type CreatorWorkflowSuiteOptions = {
 /** V2 orchestration over independently retryable synthesis nodes. */
 export function createCreatorSynthesisWorkflowSuite(validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
-  options: CreatorWorkflowSuiteOptions = {}) {
-  const build = workflow<CreatorSynthesisWorkflowInput, CreatorBuildOutput>("creator.build", { revision: "v1" }, async (ctx, input) => {
+  options: CreatorWorkflowSuiteOptions = {}, revisions: { build?: "v1" | "v2" } = {}) {
+  const build = workflow<CreatorSynthesisWorkflowInput, CreatorBuildOutput>("creator.build", { revision: revisions.build ?? "v1" }, async (ctx, input) => {
     const produced = await ctx.agent("builder", agents.creatorBuilder, input);
     const checked = await ctx.validate("candidate-check", produced, validators.candidate);
     if (!checked.valid) return ctx.needsReview({ kind: "synthesis_contract", produced, checked }) as CreatorBuildOutput;

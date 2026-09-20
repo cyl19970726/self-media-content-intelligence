@@ -40,6 +40,7 @@ import {
   type VideoCodexExecutionOptions
 } from "./video-codex-execution.js";
 import { validateEvaluationArtifacts, type GateReport } from "./video-evaluation-contract.js";
+import { recoverOcrWithBuilderContinuation } from "./video-ocr-builder-continuation.js";
 
 export { safeOutputRelativeRoot, type VideoCodexExecutionOptions } from "./video-codex-execution.js";
 export { validateEvaluationArtifacts } from "./video-evaluation-contract.js";
@@ -64,7 +65,7 @@ function mergeHostAssemblyReports(previous: HostAssemblyReport, current: HostAss
   };
 }
 
-type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string }> };
+type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string; error?: string | null }> };
 type TargetedEvidenceLike = { frames?: Array<{ id?: string }> };
 
 export function shouldRefreshOcrEvidence(
@@ -79,9 +80,10 @@ export function shouldRefreshOcrEvidence(
   if (ocrFrames.length === 0) return targetedFrames.length > 0;
   const coveredFrameIds = new Set(ocrFrames.map((frame) => frame.frameId).filter((id): id is string => Boolean(id)));
   const missingTargetedFrame = targetedFrames.some((frame) => Boolean(frame.id) && !coveredFrameIds.has(frame.id as string));
-  // A complete failed OCR artifact still proves that the channel was checked
-  // for this immutable frame revision. Repeating it cannot add information.
-  return missingTargetedFrame;
+  if (missingTargetedFrame) return true;
+  if (ocrFrames.some((frame) => frame.status === "processed")) return false;
+  return ocrFrames.length === targetedFrames.length && ocrFrames.every((frame) =>
+    frame.status === "failed" && frame.error === "nilError");
 }
 
 export function normalizeRuntimeLensEvidence(input: unknown): unknown {
@@ -113,24 +115,6 @@ function readJsonIfPresent(file: string): unknown {
   if (!exists(file)) return null;
   try { return JSON.parse(fs.readFileSync(file, "utf8")); }
   catch { return null; }
-}
-
-async function refreshOcrEvidenceIfNeeded(outputDir: string): Promise<void> {
-  const protocolPath = path.join(outputDir, "capture-protocol.json");
-  const targetedPath = path.join(outputDir, "targeted-evidence/targeted-evidence.json");
-  const ocrPath = path.join(outputDir, "targeted-evidence/ocr-evidence.json");
-  if (!exists(protocolPath) || !exists(targetedPath)) return;
-  if (!shouldRefreshOcrEvidence(
-    readJsonIfPresent(protocolPath),
-    readJsonIfPresent(targetedPath),
-    readJsonIfPresent(ocrPath)
-  )) return;
-  try {
-    await runFile(process.execPath, [path.join(skillDir, "scripts/run-ocr.mjs"),
-      "--manifest", targetedPath, "--out", ocrPath], { cwd: outputDir, timeout: 10 * 60_000 });
-  } catch {
-    // One immutable manifest gets one host attempt; failure remains explicit.
-  }
 }
 
 function commandUnavailable(message: string): boolean {
@@ -211,7 +195,7 @@ export function codexInvocationArgs(
   lastMessage: string,
   environment: NodeJS.ProcessEnv = process.env
 ): string[] {
-  const isBuilder = role === "candidate";
+  const isBuilder = ["candidate", "generic_repair", "runtime_repair"].includes(role);
   const model = isBuilder
     ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
     : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
@@ -266,14 +250,12 @@ export async function runCodex(
   const lastMessage = path.join(cwd, `${label}-last-message.txt`);
   const role = childRole(label);
   const policy = childPolicy(role);
-  const requiredSkillFiles = !(role === "candidate" || role === "generic_repair" || role === "runtime_repair")
+  const builderRole = role === "candidate" || role === "generic_repair" || role === "runtime_repair";
+  const requiredSkillFiles = !builderRole
     ? [path.join(skillDir, "references", "evaluator-operator.md"), path.join(skillDir, "schemas", "evaluation.schema.json"),
       path.join(projectRoot, "packages", "research", "src", "video-analysis", "runtime-three-lens-contracts.ts")]
-    : role === "candidate"
-      ? [path.join(skillDir, "references", "builder-operator.md"), path.join(skillDir, "references", "single-post-depth.md"), path.join(skillDir, "schemas", "capture-protocol.schema.json"),
-        path.join(skillDir, "schemas", "reconstruction.schema.json")]
-      : [path.join(skillDir, "SKILL.md"), path.join(skillDir, "references", "builder-operator.md"),
-        path.join(skillDir, "references", "single-post-depth.md"), path.join(skillDir, "schemas", "reconstruction.schema.json")];
+    : [path.join(skillDir, "references", "builder-operator.md"), path.join(skillDir, "references", "single-post-depth.md"),
+      path.join(skillDir, "schemas", "capture-protocol.schema.json"), path.join(skillDir, "schemas", "reconstruction.schema.json")];
   const skill = attachVerifiedSkillSnapshots(prompt, requiredSkillFiles, { outputDirectory: cwd });
   prompt = skill.prompt;
   const childRunId = crypto.randomUUID();
@@ -301,10 +283,10 @@ export async function runCodex(
   }, Math.min(60_000, policy.staleAfterMs));
   const environment = await withSystemProxy({ ...process.env, SELF_MEDIA_CHILD_ROLE: label, SELF_MEDIA_CHILD_OUTPUT: cwd });
   const actualModel = options.executionMode === "sdk" ? sdkModel(role, options)
-    : role === "candidate" ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
+    : builderRole ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
       : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
   const actualReasoningEffort = options.executionMode === "sdk" ? sdkReasoningEffort(role, options)
-    : role === "candidate" ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
+    : builderRole ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
       : environment.SELF_MEDIA_EVALUATOR_REASONING_EFFORT ?? "medium";
   fs.writeFileSync(path.join(traceDir, "runtime.json"), JSON.stringify({ childRunId, role, label, startedAt, inputRevision,
     executionMode: options.executionMode ?? "cli", model: actualModel, reasoningEffort: actualReasoningEffort, skillLoad: skill.receipt,
@@ -475,7 +457,10 @@ Write evaluation.md and every human-readable JSON finding, note, and message in 
 
 export function builderIntegrityRepairPrompt(videoPath: string, outputDir: string, failure: string): string {
   return `
-You are the Builder contract-repair role. Read ${skillDir}/SKILL.md and ${skillDir}/references/builder-operator.md completely.
+You are the Builder contract-repair role. Read ${skillDir}/references/builder-operator.md and
+${skillDir}/references/single-post-depth.md completely. These selected operator files are the complete runtime instructions:
+do NOT read SKILL.md, evaluation.md, or evaluator-operator.md. Read ${skillDir}/schemas/reconstruction.schema.json and,
+when repairing capture protocol fields, ${skillDir}/schemas/capture-protocol.schema.json.
 
 Source video: ${videoPath}
 Candidate root: ${outputDir}
@@ -495,8 +480,9 @@ closing evidence merely to make every reference fit. Split the unit or move each
 interval. For META_GATE, overlookedMeaningChanges and overlookedRelationships contain only items the protocol
 genuinely failed to inspect. A relationship that was inspected but cannot be established from available evidence is an explicit
 unknown or boundary, not an overlooked relationship; preserve that limitation in the appropriate knowledge unit or coverage
-unknowns and remove it from the overlooked arrays. Run the canonical schema validator once before finishing. Do not create an
-evaluation or report.
+unknowns and remove it from the overlooked arrays. Run the canonical schema validator once before finishing. Do not create
+article.md or any evaluation artifact. Repair the existing reconstruction.json only, plus the matching probe.json carrier fields
+when CARRIER_STATUS requires them.
 `;
 }
 
@@ -796,7 +782,11 @@ When these findings contain a research-review@1 review, also write ${path.join(o
           (sourceInput.cover && sha256(path.join(outputDir, sourceInput.cover.path)) !== sourceInput.cover.sha256)) {
         throw new Error("BUILDER_INTEGRITY_POST_SOURCE_MUTATED");
       }
-      if (!this.execution.preservePreparedCandidate) await refreshOcrEvidenceIfNeeded(outputDir);
+      if (!this.execution.preservePreparedCandidate && !this.execution.reviewerOnly) {
+        await recoverOcrWithBuilderContinuation({ outputDir, videoPath, skillDir,
+          continueBuilder: (prompt, label) => runCodex(prompt, outputDir, label,
+            request.sourceMediaArtifactRef, observeLifecycle, this.execution) });
+      }
       let hostAssembly = this.execution.preservePreparedCandidate ? preservedHostAssembly() : assembleHostOwnedReconstruction(outputDir);
       if (this.execution.reviewerOnly && sha256(path.join(outputDir, "reconstruction.json")) !== this.execution.expectedCandidateSha256) {
         throw new Error("REVIEWER_CANDIDATE_FINGERPRINT_MISMATCH");

@@ -112,12 +112,13 @@ async function settledCall<Input, Output>(ctx: WorkflowContext, key: string, def
   return result;
 }
 
-type SimpleReviewWorkflowVersion = { analyze: "v5" | "v6" | "v7"; review: "v2" | "v3"; retryFeedback: boolean; retryLink: boolean };
+type SimpleReviewWorkflowVersion = { analyze: "v5" | "v6" | "v7" | "v8"; build: "v1" | "v2";
+  review: "v2" | "v3" | "v4"; repair: "v2" | "v3"; retryFeedback: boolean; retryLink: boolean };
 
 function createSimplePostWorkflowSuite(version: SimpleReviewWorkflowVersion, validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
-  const legacy = createPostWorkflowSuite(validators, agents);
+  const legacy = createPostWorkflowSuite(validators, agents, {}, { build: version.build });
   const review = workflow<{ candidate: ArtifactRef; evidence: ArtifactRef; retryFeedback?: string; retryLink?: SimpleReviewRetryLink }, SimpleReviewOutput>("post.review", { revision: version.review }, async (ctx, input) => {
     const produced = await ctx.agent("reviewer", agents.postReviewer, { candidate: input.candidate, evidence: input.evidence,
       ...(version.retryFeedback && input.retryFeedback ? { retryFeedback: input.retryFeedback } : {}) });
@@ -130,7 +131,7 @@ function createSimplePostWorkflowSuite(version: SimpleReviewWorkflowVersion, val
       dependsOn: deps(input.candidate, input.evidence), validation: "valid", review: parsed.data.findings.length ? "findings" : "passed" });
     return { ok: true, review: reviewArtifact, receipt: parsed.data, legacyReceipt: produced };
   });
-  const repair = workflow<{ candidate: ArtifactRef; evidence: ArtifactRef; findings: ResearchReviewReceipt["findings"]; review: ArtifactRef }, SimpleRepairOutput>("post.repair", { revision: "v2" }, async (ctx, input) => {
+  const repair = workflow<{ candidate: ArtifactRef; evidence: ArtifactRef; findings: ResearchReviewReceipt["findings"]; review: ArtifactRef }, SimpleRepairOutput>("post.repair", { revision: version.repair }, async (ctx, input) => {
     const produced = await ctx.agent("repair", agents.postRepair, { candidate: input.candidate, evidence: input.evidence, findings: input.findings, review: input.review });
     const checked = await ctx.validate("candidate-check", produced, validators.candidate);
     const response = revisionResponse(produced, input.findings);
@@ -189,25 +190,32 @@ function createSimplePostWorkflowSuite(version: SimpleReviewWorkflowVersion, val
 export function createPostWorkflowSuiteV5(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
-  return createSimplePostWorkflowSuite({ analyze: "v5", review: "v2", retryFeedback: false, retryLink: false }, validators, agents, options);
+  return createSimplePostWorkflowSuite({ analyze: "v5", build: "v1", review: "v2", repair: "v2", retryFeedback: false, retryLink: false }, validators, agents, options);
 }
 
 export function createPostWorkflowSuiteV6(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
-  return createSimplePostWorkflowSuite({ analyze: "v6", review: "v3", retryFeedback: true, retryLink: false }, validators, agents, options);
+  return createSimplePostWorkflowSuite({ analyze: "v6", build: "v1", review: "v3", repair: "v2", retryFeedback: true, retryLink: false }, validators, agents, options);
 }
 
 export function createPostWorkflowSuiteV7(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
-  return createSimplePostWorkflowSuite({ analyze: "v7", review: "v3", retryFeedback: true, retryLink: true }, validators, agents, options);
+  return createSimplePostWorkflowSuite({ analyze: "v7", build: "v1", review: "v3", repair: "v2", retryFeedback: true, retryLink: true }, validators, agents, options);
 }
 
-function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v5" | "v6"; review: "v2" | "v3"; retryFeedback: boolean; retryLink: boolean }, validators: CreatorSynthesisWorkflowValidators,
+export function createPostWorkflowSuiteV8(validators: PostWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
+  options: SimplePostWorkflowSuiteOptions = {}) {
+  return createSimplePostWorkflowSuite({ analyze: "v8", build: "v2", review: "v4", repair: "v3", retryFeedback: true, retryLink: true }, validators, agents, options);
+}
+
+function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v5" | "v6" | "v7"; build: "v1" | "v2";
+  review: "v2" | "v3" | "v4"; repair: "v2" | "v3"; retryFeedback: boolean; retryLink: boolean }, validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
   options: SimpleCreatorWorkflowSuiteOptions = {}) {
-  const legacy = createCreatorSynthesisWorkflowSuite(validators, agents);
+  const legacy = createCreatorSynthesisWorkflowSuite(validators, agents, {}, { build: version.build });
   const review = workflow<{ candidate: ArtifactRef; frozenInputs: ArtifactRef; retryFeedback?: string; retryLink?: SimpleReviewRetryLink }, SimpleReviewOutput>("creator.review", { revision: version.review }, async (ctx, input) => {
     const produced = await ctx.agent("reviewer", agents.creatorReviewer, { candidate: input.candidate, frozenInputs: input.frozenInputs,
       ...(version.retryFeedback && input.retryFeedback ? { retryFeedback: input.retryFeedback } : {}) });
@@ -217,7 +225,7 @@ function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v
       dependsOn: deps(input.candidate, input.frozenInputs), validation: "valid", review: parsed.data.findings.length ? "findings" : "passed" });
     return { ok: true, review: reviewArtifact, receipt: parsed.data, legacyReceipt: produced };
   });
-  const repair = workflow<{ candidate: ArtifactRef; frozenInputs: ArtifactRef; findings: ResearchReviewReceipt["findings"]; review: ArtifactRef }, SimpleRepairOutput>("creator.repair", { revision: "v2" }, async (ctx, input) => {
+  const repair = workflow<{ candidate: ArtifactRef; frozenInputs: ArtifactRef; findings: ResearchReviewReceipt["findings"]; review: ArtifactRef }, SimpleRepairOutput>("creator.repair", { revision: version.repair }, async (ctx, input) => {
     const produced = await ctx.agent("repair", agents.creatorRepair, { candidate: input.candidate, frozenInputs: input.frozenInputs, findings: input.findings, review: input.review });
     const checked = await ctx.validate("candidate-check", produced, validators.candidate);
     const response = revisionResponse(produced, input.findings);
@@ -261,17 +269,23 @@ function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v
 export function createCreatorSynthesisWorkflowSuiteV4(validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
   options: SimpleCreatorWorkflowSuiteOptions = {}) {
-  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v4", review: "v2", retryFeedback: false, retryLink: false }, validators, agents, options);
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v4", build: "v1", review: "v2", repair: "v2", retryFeedback: false, retryLink: false }, validators, agents, options);
 }
 
 export function createCreatorSynthesisWorkflowSuiteV5(validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
   options: SimpleCreatorWorkflowSuiteOptions = {}) {
-  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v5", review: "v3", retryFeedback: true, retryLink: false }, validators, agents, options);
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v5", build: "v1", review: "v3", repair: "v2", retryFeedback: true, retryLink: false }, validators, agents, options);
 }
 
 export function createCreatorSynthesisWorkflowSuiteV6(validators: CreatorSynthesisWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
   options: SimpleCreatorWorkflowSuiteOptions = {}) {
-  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v6", review: "v3", retryFeedback: true, retryLink: true }, validators, agents, options);
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v6", build: "v1", review: "v3", repair: "v2", retryFeedback: true, retryLink: true }, validators, agents, options);
+}
+
+export function createCreatorSynthesisWorkflowSuiteV7(validators: CreatorSynthesisWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "creatorBuilder" | "creatorReviewer" | "creatorRepair">,
+  options: SimpleCreatorWorkflowSuiteOptions = {}) {
+  return createSimpleCreatorSynthesisWorkflowSuite({ analyze: "v7", build: "v2", review: "v4", repair: "v3", retryFeedback: true, retryLink: true }, validators, agents, options);
 }

@@ -1,12 +1,13 @@
 # 共享 Workflow 源码维护
 
-共享仓库：[agent-workflow](https://github.com/cyl19970726/agent-workflow)。本仓库通过 `vendor/agent-workflow` submodule 固定一个提交；npm workspace 暴露三个公共包。
+共享仓库：[agent-workflow](https://github.com/cyl19970726/agent-workflow)。本仓库通过 `vendor/agent-workflow` submodule 固定一个提交；npm workspace 暴露四个公共包。
 
 | 包 | 源码 | 边界 |
 | --- | --- | --- |
 | `@signal-room/workflow` | [core](../../vendor/agent-workflow/packages/core/README.md) | 编排、恢复、并行、phase、执行与资产合同 |
 | `@signal-room/workflow-codex` | [codex](../../vendor/agent-workflow/packages/codex/index.ts) | SDK 执行、skill 快照、私有 trace |
 | `@signal-room/workflow-sqlite` | [sqlite](../../vendor/agent-workflow/packages/sqlite/index.ts) | 执行记录、事件与资产持久化 |
+| `@signal-room/workflow-read-model` | [read-model](../../vendor/agent-workflow/packages/read-model/index.ts) | 面向读者的阶段、资产和增量状态 |
 
 单帖和博主 workflow、队列、业务 skill、来源校验、审阅策略和工作台均留在 self-media。Codex 本地适配文件仅注入 self-media 的运行目录和环境配置，SQLite 适配文件仅导出共享实现。浏览器只可引用 `@signal-room/workflow/contracts`。禁止跨目录引用共享包内部源码。
 
@@ -20,7 +21,9 @@ npm ci
 npm run verify
 ```
 
-`npm ci` 的 prepare 会按 core、codex、sqlite 顺序编译共享源码。dev、typecheck 和 test 入口也会先编译，确保修改源码后不会静默执行旧 dist。开发进程已启动后若修改共享源码，请重新运行 `npm run build:workflow` 并重启相关服务。
+`npm ci` 的 prepare 会编译 core、codex、sqlite、read-model 共享源码。dev、typecheck 和 test 入口也会先编译，确保修改源码后不会静默执行旧 dist。开发进程已启动后若修改共享源码，请重新运行 `npm run build:workflow` 并重启相关服务。
+
+真实研究运行期间不要修改它绑定的工作树。运行代码、业务 skill 和 submodule 提交应先验证并提交，再在独立固定 checkout 中启动 worker；开发继续使用另一工作树。输入中的方法摘要会检查 live 文件，旧进程已加载模块、旧 workflow revision 仍可解析，都不能代替这一隔离。方法改变后应开新 run，不能绕过 `FROZEN_METHOD_CHANGED`。
 
 ## 直接修改共享源码
 
@@ -60,4 +63,22 @@ git push
 
 直接参考共享仓库的[快速开始](../../vendor/agent-workflow/docs/getting-started.md)、[流程编写](../../vendor/agent-workflow/docs/writing-workflows.md)和[宿主集成](../../vendor/agent-workflow/docs/integration.md)。可运行示例位于 [examples](../../vendor/agent-workflow/examples)。
 
-本项目不安装 workflow 编排 skill；业务 Agent 所需的方法仍通过 `config.skills` 显式配置。
+本项目不安装 workflow 编排 skill。原生 skill 入口使用 `config.skills`；明确选择 Builder/Reviewer operator 的运行使用 `attachVerifiedSkillSnapshots`，只激活选定方法文件，同时交付完整冻结包供引用、脚本、素材和 Schema 按需读取。两种入口不能混用；详见共享包的 [Codex 与 skills](../../vendor/agent-workflow/docs/codex-and-skills.md)。
+
+## 重新研究已有报告
+
+已有候选时默认允许复用；`evaluationMode: "fresh"` 只表达重新评估，不代表重建正文。需要重新分析时显式传入 `candidateMode`：
+
+```ts
+await services.creatorResearch.startPostWorkflow(creatorRunId, postId, {
+  candidateMode: "rebuild"
+});
+await services.creatorResearch.startCreatorAnalysisWorkflow(creatorRunId, {
+  candidateMode: "rebuild",
+  scope: "available_deep"
+});
+```
+
+对应 HTTP 入口是 `POST /api/creator-runs/:id/workflows/post`（正文另含 `postExternalId`）和 `POST /api/creator-runs/:id/workflows/creator-analyze`。两者接受同名选项，枚举错误返回 400。博主默认 `scope: "selected"` 为规范深读选样；`available_deep` 还包括批次里的补充深读媒体，防止综合混入补充帖的旧报告。已有报告缺少源媒体时拒绝全量重建，不能静默跳过。
+
+这些入口要求素材、作品库和选样已准备好，启动后由持久 worker 推进。代码通过不等于研究有效，真实 trace、来源与候选绑定、独立复核和工作台实际阅读的验收方法见[实跑与验收记录](workflow-evaluation-2026-09-20.md)。

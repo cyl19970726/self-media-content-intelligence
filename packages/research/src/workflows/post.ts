@@ -66,8 +66,8 @@ export type PostWorkflowSuiteOptions = {
 /** V2 composes durable, independently retryable workflow nodes; V1 above remains replayable. */
 export function createPostWorkflowSuite(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
-  options: PostWorkflowSuiteOptions = {}) {
-  const build = workflow<PostWorkflowInput, PostBuildOutput>("post.build", { revision: "v1" }, async (ctx, input) => {
+  options: PostWorkflowSuiteOptions = {}, revisions: { build?: "v1" | "v2" } = {}) {
+  const build = workflow<PostWorkflowInput, PostBuildOutput>("post.build", { revision: revisions.build ?? "v1" }, async (ctx, input) => {
     const produced = await ctx.agent("builder", agents.postBuilder, input);
     const checked = await ctx.validate("candidate-check", produced, validators.candidate);
     if (!checked.valid) return ctx.needsReview({ kind: "candidate_contract", produced, checked }) as PostBuildOutput;
@@ -174,23 +174,30 @@ export function createPostWorkflowSuiteV3(validators: PostWorkflowValidators,
   return createPhasedPostWorkflowSuite("v3", validators, agents, options);
 }
 
-function createPhasedPostWorkflowSuite(revision: "v3" | "v4", validators: PostWorkflowValidators,
-  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair"> &
-    Partial<Pick<ResearchAgentDefinitions, "postSourceChecker">>, options: PostWorkflowSuiteOptions) {
-  const suite = createPostWorkflowSuite(validators, agents, options);
-  type SourceCheckOutput = { ok: true; artifact: ArtifactRef; receipt: SourceConsistencyReceipt } |
-    { ok: false; state: "blocked" | "needs_review"; details: unknown };
-  const sourceCheck = workflow<PostWorkflowInput, SourceCheckOutput>("post.source-check", { revision: revision === "v4" ? "v2" : "v1" }, async (ctx, input) => {
-    if (!agents.postSourceChecker) return ctx.blocked({ kind: "source_consistency_checker_missing" }) as SourceCheckOutput;
+export type PostSourceCheckOutput = { ok: true; artifact: ArtifactRef; receipt: SourceConsistencyReceipt } |
+  { ok: false; state: "blocked" | "needs_review"; details: unknown };
+
+/** Source-check revisions track the effective frozen operator independently from post orchestration. */
+export function createPostSourceCheckWorkflow(revision: "v1" | "v2" | "v3",
+  agents: Partial<Pick<ResearchAgentDefinitions, "postSourceChecker">>) {
+  return workflow<PostWorkflowInput, PostSourceCheckOutput>("post.source-check", { revision }, async (ctx, input) => {
+    if (!agents.postSourceChecker) return ctx.blocked({ kind: "source_consistency_checker_missing" }) as PostSourceCheckOutput;
     const receipt = await ctx.agent("check", agents.postSourceChecker, input);
     const validation = sourceConsistencyCheckSchema.safeParse(receipt.artifact);
-    if (!validation.success) return ctx.blocked({ kind: "source_consistency_contract_invalid", details: validation.error.flatten() }) as SourceCheckOutput;
+    if (!validation.success) return ctx.blocked({ kind: "source_consistency_contract_invalid", details: validation.error.flatten() }) as PostSourceCheckOutput;
     const artifact = await ctx.publish("result", "post-source-check", validation.data, {
       schemaVersion: validation.data.schemaVersion, dependsOn: dependencies(input.evidence), validation: "valid",
       review: validation.data.verdict === "consistent" ? "passed" : "findings"
     });
     return { ok: true, artifact, receipt: { artifact: validation.data } };
   });
+}
+
+function createPhasedPostWorkflowSuite(revision: "v3" | "v4", validators: PostWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair"> &
+    Partial<Pick<ResearchAgentDefinitions, "postSourceChecker">>, options: PostWorkflowSuiteOptions) {
+  const suite = createPostWorkflowSuite(validators, agents, options);
+  const sourceCheck = createPostSourceCheckWorkflow(revision === "v4" ? "v2" : "v1", agents);
   const analyze = workflow<PostWorkflowInput, PostWorkflowOutput>("post.analyze", { revision }, async (ctx, input) => {
     if (input.evidenceKind !== "video") return ctx.blocked({ kind: "unsupported_media_review",
       evidenceKind: input.evidenceKind ?? "unknown", evidence: input.evidence }) as PostWorkflowOutput;

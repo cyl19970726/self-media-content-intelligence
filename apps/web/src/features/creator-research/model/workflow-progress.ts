@@ -1,5 +1,9 @@
 export type CreatorWorkflowProgress = {
   creatorRunId: string;
+  workflowRootRunId: string | null;
+  workflowRootState: string | null;
+  reanalysisInProgress: boolean;
+  displayedReportIsPreviousVersion: boolean;
   posts: Array<{ postId: string; workflowRunId: string; state: string; currentNode: string | null; built: boolean; reviewed: boolean }>;
   counts: { total: number; queued: number; running: number; built: number; reviewed: number; revised: number; needsReview: number; failed: number; canceled: number };
   activeSlots: number;

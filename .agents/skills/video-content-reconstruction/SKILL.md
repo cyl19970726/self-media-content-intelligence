@@ -118,7 +118,7 @@ node <SKILL_DIR>/scripts/run-ocr.mjs \
   --out /absolute/path/run/targeted-evidence/ocr-evidence.json
 ```
 
-Inspect OCR against the frames. OCR output is a proposal, not ground truth: preserve confidence, correct nothing silently, and cite accepted rows with `refType: "ocr"`. If OCR fails or small text remains unreadable, resample/crop or mark the field unknown. A sampled screenshot without an executed text/UI reading does not close that channel.
+Inspect OCR against the frames. OCR output is a proposal, not ground truth: preserve confidence, correct nothing silently, and cite accepted rows with `refType: "ocr"`. OCR failure does not establish that the original text is unreadable: inspect consequential text in the original frame and cite that frame for manually read text; mark only still-unreadable fields unknown. The Host may recover an environment failure once outside the restricted Builder environment, preserving the failed attempt and requesting bounded consumption of any newly recovered text. A sampled screenshot without an executed text/UI reading does not close that channel.
 
 ## Step 5 — Reconstruct through three Builder lenses
 

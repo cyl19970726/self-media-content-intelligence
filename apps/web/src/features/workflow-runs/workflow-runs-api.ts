@@ -2,8 +2,10 @@ import type { WorkflowArtifact, WorkflowEvent, WorkflowRunDetail, WorkflowRunRec
 import type { WorkflowArtifactReader } from "../../shared/contracts/workflow-reader";
 import type { StageDetails, WorkflowChanges, WorkflowSnapshot } from "@signal-room/workflow-read-model/contracts";
 
-export type WorkflowReading = WorkflowSnapshot & { selectedRunId: string; subject?: { creatorRunId?: string; postId?: string }; title?: string };
-export function mergeWorkflowReading(previous: WorkflowReading, delta: Extract<WorkflowChanges, { resetRequired: false }>): WorkflowReading {
+export type CreatorPostGroup = { rootRunId: string; postId: string; stageIds: string[]; state: string };
+export type WorkflowReading = WorkflowSnapshot & { selectedRunId: string; subject?: { creatorRunId?: string; postId?: string }; title?: string; creatorPostGroups?: CreatorPostGroup[] };
+export type WorkflowReadingChanges = WorkflowChanges & { creatorPostGroups?: CreatorPostGroup[] };
+export function mergeWorkflowReading(previous: WorkflowReading, delta: Extract<WorkflowReadingChanges, { resetRequired: false }>): WorkflowReading {
   const merge = <T>(before: T[], updates: T[], removed: string[], key: (item: T) => string): T[] => {
     const values = new Map(before.map((item) => [key(item), item]));
     for (const id of removed) values.delete(id);
@@ -17,6 +19,7 @@ export function mergeWorkflowReading(previous: WorkflowReading, delta: Extract<W
     calls: merge(previous.calls, delta.changed.calls, delta.removed.calls, (call) => call.id),
     artifacts: merge(previous.artifacts, delta.changed.artifacts, delta.removed.artifacts, (asset) => asset.identity.id),
     selectedRunId: previous.selectedRunId, subject: previous.subject, title: previous.title,
+    creatorPostGroups: delta.creatorPostGroups ?? previous.creatorPostGroups,
   };
 }
 export function appendWorkflowStageDetails(previous: StageDetails, page: StageDetails): StageDetails {
@@ -46,7 +49,7 @@ export async function listWorkflowRuns(creatorRunId?: string): Promise<WorkflowR
 }
 export const getWorkflowRun = (id: string) => request<WorkflowRunDetail>(`/api/workflow-runs/${encodeURIComponent(id)}`);
 export const getWorkflowReading = (id: string) => request<WorkflowReading>(`/api/workflow-runs/${encodeURIComponent(id)}/reading`);
-export const getWorkflowReadingChanges = (id: string, cursor: string) => request<WorkflowChanges>(`/api/workflow-runs/${encodeURIComponent(id)}/reading/changes?cursor=${encodeURIComponent(cursor)}`);
+export const getWorkflowReadingChanges = (id: string, cursor: string) => request<WorkflowReadingChanges>(`/api/workflow-runs/${encodeURIComponent(id)}/reading/changes?cursor=${encodeURIComponent(cursor)}`);
 export const getWorkflowStageDetails = (id: string, phaseId: string, cursor?: string) => request<StageDetails>(`/api/workflow-runs/${encodeURIComponent(id)}/reading/stages/${encodeURIComponent(phaseId)}${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ""}`);
 export const getWorkflowEvents = (id: string, after = 0) => request<{ events: WorkflowEvent[] }>(`/api/workflow-runs/${encodeURIComponent(id)}/events?after=${after}`);
 export const getWorkflowArtifacts = (id: string) => request<{ artifacts: WorkflowArtifact[] }>(`/api/workflow-runs/${encodeURIComponent(id)}/artifacts`);

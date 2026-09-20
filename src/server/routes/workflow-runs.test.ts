@@ -47,6 +47,36 @@ it("reads persisted progress and incremental events; routes recovery through the
   expect((await fetch(`${url}/${run.id}/events?after=-1`)).status).toBe(409);
 });
 
+it("accepts rebuild options for post and creator analysis while rejecting invalid request schemas", async () => {
+  const database = new DatabaseSync(":memory:"); databases.push(database);
+  const store = new SQLiteWorkflowRunStore(database);
+  const startPost = vi.fn(async () => ({ state: "queued" }));
+  const startCreatorAnalysis = vi.fn(async () => ({ state: "queued" }));
+  const app = express(); app.use(express.json());
+  registerWorkflowRoutes(app, { store, retry: async () => ({}), cancel: async () => ({}),
+    artifactPayload: async () => ({}), startPost, startCreatorAnalysis });
+  const server = app.listen(0, "127.0.0.1"); servers.push(server);
+  await new Promise<void>((resolve) => server.once("listening", resolve));
+  const address = server.address(); if (!address || typeof address === "string") throw new Error("No test server port");
+  const base = `http://127.0.0.1:${address.port}/api/creator-runs/creator/workflows`;
+  const post = await fetch(`${base}/post`, { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ postExternalId: "post-1", candidateMode: "rebuild" }) });
+  expect(post.status).toBe(202);
+  expect(startPost).toHaveBeenCalledWith("creator", { postExternalId: "post-1", candidateMode: "rebuild" });
+
+  const creator = await fetch(`${base}/creator-analyze`, { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ candidateMode: "rebuild", scope: "available_deep" }) });
+  expect(creator.status).toBe(202);
+  expect(startCreatorAnalysis).toHaveBeenCalledWith("creator", { candidateMode: "rebuild", scope: "available_deep" });
+  expect((await fetch(`${base}/creator-analyze`, { method: "POST" })).status).toBe(202);
+  expect(startCreatorAnalysis).toHaveBeenLastCalledWith("creator", {});
+
+  expect((await fetch(`${base}/post`, { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ postExternalId: "post-1", candidateMode: "invalid" }) })).status).toBe(400);
+  expect((await fetch(`${base}/creator-analyze`, { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ scope: "everything" }) })).status).toBe(400);
+});
+
 it("only serves assets belonging to the requested workflow", async () => {
   const { store, artifactReader, url } = await setup();
   const run = await store.createRun({ workflowId: "post", workflowRevision: "1", inputFingerprint: "a", state: "running" });
@@ -88,6 +118,22 @@ it("returns persisted phase reading data with the artifact owner's run id", asyn
   const address = server.address(); if (!address || typeof address === "string") throw new Error("No test server port");
   const detail = await fetch(`http://127.0.0.1:${address.port}/api/workflow-runs/${root.id}`).then((response) => response.json());
   expect(detail.phases).toMatchObject([{ id: "phase-control", state: "waiting", artifacts: [{ role: "published-output", ownerRunId: child.id, artifact: { id: artifact.id } }] }]);
+});
+
+it("projects creator child stages by safe post identity without exposing run metadata", async () => {
+  const { store, url } = await setup();
+  const creator = await store.createRun({ workflowId: "creator.analyze", workflowRevision: "v1", inputFingerprint: "creator", state: "waiting",
+    metadata: { creatorRunId: "creator-a", privateNote: "do-not-serve" } });
+  const post = await store.createRun({ workflowId: "post.analyze", workflowRevision: "v1", inputFingerprint: "post", state: "waiting", parentRunId: creator.id,
+    metadata: { creatorRunId: "creator-a", postId: "post-safe-1", privateNote: "do-not-serve" } });
+  const child = await store.createRun({ workflowId: "post.source-check", workflowRevision: "v1", inputFingerprint: "child", state: "running", parentRunId: post.id,
+    metadata: { creatorRunId: "creator-a", postId: "post-safe-1", privateNote: "do-not-serve" } });
+  await store.createStep({ runId: child.id, key: "source", kind: "phase", workflowId: child.workflowId, workflowRevision: "v1",
+    inputFingerprint: "input", configFingerprint: "config", state: "running", validation: "pending", phaseId: "source-check",
+    phasePath: ["source-check"], phaseDefinition: { title: "来源一致性核对", purpose: "核对来源", expectedArtifacts: [] } });
+  const body = await fetch(`${url}/${creator.id}/reading`).then((response) => response.json());
+  expect(body.creatorPostGroups).toEqual([{ rootRunId: post.id, postId: "post-safe-1", stageIds: [expect.any(String)], state: "running" }]);
+  expect(JSON.stringify(body)).not.toContain("do-not-serve");
 });
 
 it("reads an explicitly selected post child through its root and only exposes a revision bound to the current candidate", async () => {
