@@ -1,13 +1,13 @@
 # 本项目的执行与认知闭环
 
-2026-09-17 核对。这里记录实现位置，使用前以当前代码为准；不复制运行中的 prompt、凭据或私有媒体。
+2026-09-20 核对。这里记录实现位置，使用前以当前代码为准；不复制运行中的 prompt、凭据或私有媒体。
 
 ## 新的小型 Workflow 路径
 
 - [业务无关运行层](../../../../vendor/agent-workflow/packages/core/README.md) 提供普通 TypeScript 的 task、agent、call、mapSettled、decide、validate 和 publish。单帖/博主定义在 [research workflows](../../../../packages/research/src/workflows/index.ts)，SDK 与实际研究操作通过 [生产适配器](../../../../packages/adapters/src/workflow/production-research-runner.ts) 连接。
-- 新路径显式使用 Terra medium Builder、Luna medium Reviewer；独立 Reviewer 使用独立会话。Skill 方法与来源哈希随输入冻结，完整 prompt 和 SDK 事件保留在私有 trace。SDK 提供模型执行，现有 research_jobs 仍是唯一队列。
+- 用户要求全部研究模型使用 Luna；新路径默认 Builder、Reviewer 与修订均为 Luna medium，角色模型及推理强度传到实际 SDK options；独立 Reviewer 使用独立会话。Skill 方法与来源哈希随输入冻结，完整 prompt 和 SDK 事件保留在私有 trace。SDK 提供模型执行，现有 research_jobs 仍是唯一队列。
 - 父流程等待子流程时释放执行槽；进程恢复按已验证持久节点重放，不承诺任意 TypeScript 语句或外部副作用恰好一次。
-- 当前 `post.analyze@v6`、`creator.synthesize@v5` 通过 [simple-review](../../../../packages/research/src/workflows/simple-review.ts) 组织独立 Reviewer：无意见跳过修订，有意见交给 Builder 最多修订一次；修订版本登记为 `revised_unverified`，不继承原稿审阅状态。审阅技术失败最多尝试两次，保留候选并标注 `review_incomplete`。旧 `post.repair-evaluation` 仅用于历史 Evaluator 合同；新流程不能重写主报告来掩盖审阅执行或校验问题。
+- 当前 `post.analyze@v9`、`creator.synthesize@v7`（完整博主入口 `creator.analyze@v9`） 通过 [simple-review](../../../../packages/research/src/workflows/simple-review.ts) 组织独立 Reviewer：无意见跳过修订，有意见交给 Builder 最多修订一次；修订版本登记为 `revised_unverified`，不继承原稿审阅状态。审阅技术失败最多尝试两次，保留候选并标注 `review_incomplete`。旧 `post.repair-evaluation` 仅用于历史 Evaluator 合同；新流程不能重写主报告来掩盖审阅执行或校验问题。
 - 2026-09-18 新帖实跑后，`post.review@v3` / `creator.review@v3` 在第二次尝试中接收首次校验失败反馈；`creator.analyze@v6` 使用新版子流程。旧 `post.analyze@v5`、`creator.synthesize@v4` 与 `review@v2` 仍注册以保留持久运行恢复语义。本次新帖真实运行使用的是修复前v5，不能把后续测试通过说成该运行已使用新重试机制。
 - 修复校验代码后若复用已经保存的审阅，必须重新验证原始意见的候选绑定、实际引用和输入版本，并保留原 trace 与恢复来源；不得删除不方便处理的意见、把 Host 改写的意见称为原始 Reviewer 输出，或把恢复校验当作新一轮独立审阅。
 - 中间候选可在工作流页直接阅读；是否完成执行、通过结构校验、允许带边界展示或已经验证是不同状态。登记时重新检查来源版本；provisional 不能改称 verified。
@@ -58,6 +58,7 @@
 - 新博主或冻结输入变化：走完整综合路径，Builder 同时产出自适配分类、逐帖记录及跨帖研究。不要为新博主设置旧候选的复用路径。
 - 同一冻结输入上重新研究：显式设置 `SELF_MEDIA_CREATOR_SYNTHESIS_REUSE_PATH`；复用的是校验过的固定部分，跨帖研究重新生成。它不是默认模式，也不跳过独立复核。
 - 单次局部修订：可交给有明确字段范围的 subagent；通过 `SELF_MEDIA_CREATOR_SYNTHESIS_CANDIDATE_PATH` 导入完整候选时必须匹配有效批次，并继续校验和复核。记录为 `prepared_candidate`、`generatedWithLoadedSkill: false`，不能把服务读取了 skill 当作候选生成证明。不要同时设置复用和导入路径；当前执行器优先复用分支。
-- 本项目已约定 Terra medium Builder、Luna medium Evaluator。旧 CLI 路径的综合调用需核对 `SELF_MEDIA_CREATOR_SYNTHESIS_MODEL`、`SELF_MEDIA_CREATOR_SYNTHESIS_REASONING_EFFORT`、`SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL`、`SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_REASONING_EFFORT` 的实际值；该旧路径模型默认值仍是 Astra，不能把约定误当作默认配置；新 Workflow 的 SDK 路径已显式固定 Terra/Luna，不读取这些环境变量来静默更换模型。单帖有自己的模型和评估策略配置，需另行核对。
+- 用户于2026-09-20要求全部使用 `gpt-5.6-luna`。视频、图文、综合与总览的默认模型均已改为 Luna，当前 Workflow 定义使用 medium。模型环境配置先进入角色定义，再传到 post/creator SDK executor；检查实际 trace 的 model，而非只看环境或 `agent.delegate` 声明。保留代码层显式覆盖的兼容性不代表可以违背本项目 Luna 约定。来源核对与旧结构评估修复有固定 Luna 合同。
+- `SELF_MEDIA_CODEX_EPHEMERAL` 目前仅控制 CLI 参数；SDK 0.154 路径不传 `--ephemeral`，会保存 native thread。fresh 独立会话不等于不持久化，不应误称为临时无记录。当前 OCR continuation 另开 fresh Builder 会话，尚未实现可验证的同会话恢复。
 
 方法在业务 skill 中维护；阶段、冻结输入、验证、重试与 provenance 在执行服务中维护。一次读者疑问放进带摘要的 research brief，不永久追加成所有博主必答的问题。执行失败先看私有 trace、实际输出和校验结果，判断是材料、执行、合同还是研究方法的问题，再修改对应层，避免只堆 prompt。
