@@ -76,14 +76,16 @@ it("does not imply a batch report exists in the empty-report state", () => {
   expect(html).not.toContain("当前显示批次报告");
 });
 
-it("treats a parent waiting on a child as active execution and keeps fresh-start locked", () => {
+it("describes waiting root and phase without claiming the child is running, and keeps fresh-start locked", () => {
   const waiting: PostWorkflowReading = { ...reading, workflow: { ...reading.workflow!, state: "waiting" },
     phases: reading.phases.map((phase, index) => index === 1 ? { ...phase, state: "waiting" } : phase) };
   const html = renderToStaticMarkup(createElement(MemoryRouter, null,
     createElement(PostWorkflowReadingPanel, { reading: waiting, creatorRunId: "creator-1", version: "original",
       wantsCandidate: false, onVersionChange: () => undefined, candidateReady: false, baseReady: false,
       candidateError: null, baseError: null })));
-  expect(html).toContain("候选构建 · 子流程执行中");
+  expect(html).toContain('post-workflow-reading__state post-workflow-reading__state--waiting">等待流程推进');
+  expect(html).toContain("候选构建 · 等待流程推进");
+  expect(html).not.toContain("子流程执行中");
   expect(html).not.toContain("等待下阶段");
   expect(workflowIsActive(waiting)).toBe(true);
   expect(workflowIsActive({ ...waiting, workflow: { ...waiting.workflow!, state: "succeeded" } })).toBe(false);

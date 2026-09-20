@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type { PostWorkflowReading } from "../../shared/api/post-workflow-reading";
 
 const phaseStateLabel: Record<string, string> = {
-  queued: "待开始", running: "进行中", waiting: "子流程执行中", succeeded: "已完成",
+  queued: "待开始", running: "进行中", waiting: "等待流程推进", succeeded: "已完成",
   needs_review: "待处理", blocked: "已阻塞", failed: "未完成", canceled: "已取消"
 };
 
