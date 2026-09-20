@@ -112,8 +112,8 @@ async function settledCall<Input, Output>(ctx: WorkflowContext, key: string, def
   return result;
 }
 
-type SimpleReviewWorkflowVersion = { analyze: "v5" | "v6" | "v7" | "v8"; build: "v1" | "v2";
-  review: "v2" | "v3" | "v4"; repair: "v2" | "v3"; retryFeedback: boolean; retryLink: boolean };
+type SimpleReviewWorkflowVersion = { analyze: "v5" | "v6" | "v7" | "v8" | "v9"; build: "v1" | "v2" | "v3";
+  review: "v2" | "v3" | "v4"; repair: "v2" | "v3" | "v4"; retryFeedback: boolean; retryLink: boolean };
 
 function createSimplePostWorkflowSuite(version: SimpleReviewWorkflowVersion, validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
@@ -209,6 +209,12 @@ export function createPostWorkflowSuiteV8(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
   options: SimplePostWorkflowSuiteOptions = {}) {
   return createSimplePostWorkflowSuite({ analyze: "v8", build: "v2", review: "v4", repair: "v3", retryFeedback: true, retryLink: true }, validators, agents, options);
+}
+
+export function createPostWorkflowSuiteV9(validators: PostWorkflowValidators,
+  agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
+  options: SimplePostWorkflowSuiteOptions = {}) {
+  return createSimplePostWorkflowSuite({ analyze: "v9", build: "v3", review: "v4", repair: "v4", retryFeedback: true, retryLink: true }, validators, agents, options);
 }
 
 function createSimpleCreatorSynthesisWorkflowSuite(version: { analyze: "v4" | "v5" | "v6" | "v7"; build: "v1" | "v2";

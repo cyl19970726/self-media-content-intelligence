@@ -72,6 +72,31 @@ describe("host OCR recovery", () => {
     expect(result).toMatchObject({ attempted: false, reason: "ocr_not_host_retryable" });
   });
 
+  it("recovers a failed OCR artifact even when the capture mode is exact_times", async () => {
+    const item = fixture();
+    fs.writeFileSync(path.join(item.root, "capture-protocol.json"), JSON.stringify({
+      captureActions: [{ mode: "exact_times" }], stoppingRules: ["同一 manifest 仅执行一次 OCR"]
+    }));
+    let calls = 0;
+    const result = await recoverHostOcr({ outputDir: item.root, skillDir: "/skill", executeFile: async (_file, args) => {
+      calls += 1;
+      fs.writeFileSync(args[args.indexOf("--out") + 1]!, JSON.stringify({ frames: [{ frameId: "FRAME-1",
+        status: "processed", error: null, lines: [{ id: "OCR-1", text: "visible" }] }] }));
+      return { stdout: "ok", stderr: "" };
+    } });
+    expect(result).toMatchObject({ attempted: true, recoveredText: true });
+    expect(calls).toBe(1);
+  });
+
+  it("does not start OCR for exact_times when no prior OCR attempt exists", async () => {
+    const item = fixture();
+    fs.writeFileSync(path.join(item.root, "capture-protocol.json"), JSON.stringify({ captureActions: [{ mode: "exact_times" }] }));
+    fs.rmSync(item.ocr);
+    const result = await recoverHostOcr({ outputDir: item.root, skillDir: "/skill",
+      executeFile: async () => { throw new Error("must not run"); } });
+    expect(result).toMatchObject({ attempted: false, reason: "ocr_not_host_retryable" });
+  });
+
   it("publishes changed OCR text even when the non-empty line count stays equal", async () => {
     const item = fixture();
     fs.writeFileSync(item.ocr, JSON.stringify({ frames: [{ frameId: "FRAME-1", status: "failed", error: "nilError",

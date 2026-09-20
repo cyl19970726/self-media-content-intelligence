@@ -66,7 +66,7 @@ export type PostWorkflowSuiteOptions = {
 /** V2 composes durable, independently retryable workflow nodes; V1 above remains replayable. */
 export function createPostWorkflowSuite(validators: PostWorkflowValidators,
   agents: Pick<ResearchAgentDefinitions, "postBuilder" | "postReviewer" | "postRepair" | "postEvaluationRepair">,
-  options: PostWorkflowSuiteOptions = {}, revisions: { build?: "v1" | "v2" } = {}) {
+  options: PostWorkflowSuiteOptions = {}, revisions: { build?: "v1" | "v2" | "v3" } = {}) {
   const build = workflow<PostWorkflowInput, PostBuildOutput>("post.build", { revision: revisions.build ?? "v1" }, async (ctx, input) => {
     const produced = await ctx.agent("builder", agents.postBuilder, input);
     const checked = await ctx.validate("candidate-check", produced, validators.candidate);

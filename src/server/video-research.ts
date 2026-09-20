@@ -40,6 +40,23 @@ function hasReadableOcr(rootPath: string): boolean {
   return list(ocr.frames).some((raw) => list(record(raw).lines).some((line) => text(record(line).text).trim().length > 0));
 }
 
+function ocrEvidenceEntries(rootPath: string, rootRef: string): Array<[string, VideoResearch["evidenceIndex"][number]]> {
+  const ocrPath = path.join(rootPath, "targeted-evidence", "ocr-evidence.json");
+  if (!fs.existsSync(ocrPath)) return [];
+  const ocr = record(JSON.parse(fs.readFileSync(ocrPath, "utf8")) as unknown);
+  return list(ocr.frames).flatMap((raw) => {
+    const frame = record(raw); const sourceFrame = text(frame.sourceFrame);
+    const safeFrame = sourceFrame && !path.isAbsolute(sourceFrame) && !sourceFrame.split(/[\\/]/).includes("..");
+    const artifactRef = safeFrame ? `${rootRef}targeted-evidence/${sourceFrame}` : null;
+    return list(frame.lines).flatMap((line) => {
+      const value = record(line); const id = text(value.id); const content = text(value.text).trim();
+      if (!id || !content) return [];
+      const entry: [string, VideoResearch["evidenceIndex"][number]] = [id, { id, kind: "ocr", label: content, anchorId: null, artifactRef }];
+      return [entry];
+    });
+  });
+}
+
 function hasSemanticAudio(value: string | null): boolean {
   return Boolean(value && !/(未知|没有可读语义|未获得语义|不可判断|无法确认)/u.test(value));
 }
@@ -342,6 +359,7 @@ function loadVideoResearchSource(service: CreatorResearchService, creatorId: str
     }),
     ...cues.map((cue) => [cue.id, { id: cue.id, kind: "subtitle_cue", label: cue.text.slice(0, 80), anchorId: cue.id, artifactRef: null }] as const),
     ...evidenceFrames.map((frame) => [frame.id, { id: frame.id, kind: "frame", label: frame.reason ?? frame.id, anchorId: null, artifactRef: frame.src }] as const),
+    ...ocrEvidenceEntries(rootPath, rootRef),
     ...list(reconstruction.derivedSources).map(raw => { const source = record(raw); const relative = text(source.path);
       const safe = relative && !path.isAbsolute(relative) && !relative.split(/[\\/]/).includes("..");
       return [text(source.id), { id: text(source.id), kind: "source", label: text(source.id), anchorId: null, artifactRef: safe ? `${rootRef}${relative}` : batchItem.reconstructionArtifactRef }] as const; }),

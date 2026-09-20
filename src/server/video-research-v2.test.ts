@@ -79,7 +79,7 @@ describe("video reconstruction V2 projection", () => {
       ]
     }));
     fs.writeFileSync(path.join(root, "evidence", "evidence-pack.json"), JSON.stringify({ frameIndex: [] }));
-    fs.writeFileSync(path.join(root, "ocr-evidence.json"), JSON.stringify({ frames: [{ lines: [] }] }));
+    fs.writeFileSync(path.join(root, "targeted-evidence", "ocr-evidence.json"), JSON.stringify({ frames: [{ sourceFrame: "frames/during.jpg", lines: [{ id: "OCR-00025", text: "可读 OCR 文本" }] }] }));
     const reconstructionArtifactRef = `/artifacts/${runId}/video-reconstructions/${videoId}/reconstruction.json`;
     const service = {
       list: () => [],
@@ -126,6 +126,7 @@ describe("video reconstruction V2 projection", () => {
     // A block-level frame that is not repeated in a step must remain reachable.
     expect(result?.contentBlocks[1]?.media.map(item => item.ref)).toEqual(["TARGET-0002"]);
     expect(result?.contentBlocks[1]?.steps[0]?.media[0]).toMatchObject({ label: "打开设置" });
+    expect(result?.evidenceIndex.find((item) => item.id === "OCR-00025")).toMatchObject({ kind: "ocr", label: "可读 OCR 文本", artifactRef: expect.stringContaining("targeted-evidence/frames/during.jpg") });
     expect(result?.directingLogic.stages).toHaveLength(2);
     expect(result?.directingLogic.activatedQuestion).toBe("入口在哪里？");
     expect(result?.visualEditing.shotSemantics).toHaveLength(1);
@@ -141,7 +142,7 @@ describe("video reconstruction V2 projection", () => {
     });
     expect(result?.readerSummary.reusableStructure).toEqual(["提出问题", "展示结果"]);
     expect(result?.readerSummary.representativeFrame?.src).toContain("before.jpg");
-    expect(result?.evidenceHealth.ocr).toBe(false);
+    expect(result?.evidenceHealth.ocr).toBe(true);
     expect(result?.evidenceHealth.audio).toBe(false);
 
     // An unavailable frame must not erase the Builder's explanation or step reference.

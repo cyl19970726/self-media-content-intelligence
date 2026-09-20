@@ -11,7 +11,7 @@
 | 交付 | 验收依据 | 状态 |
 | --- | --- | --- |
 | 明确重新构建与复用候选的输入语义 | 批次已有报告时，rebuild 不继承旧候选；默认兼容；回归测试 | 已实现，21 项聚焦测试通过 |
-| 首个 creator.analyze 最新版本实跑 | 冻结选样均有独立新 Builder；调用与输入、输出版本一致；最终综合引用本轮单帖 | 基线运行中；系统 OCR 缺陷确认后停止未开始项，待修复版完整运行 |
+| 首个 creator.analyze 最新版本实跑 | 冻结选样均有独立新 Builder；调用与输入、输出版本一致；最终综合引用本轮单帖 | 基线已取消；固定提交的修复对照样本运行中，尚无完整新综合 |
 | 独立 trace 审计 | 目标原文、配置可得性、真实调用、失败链、修订关系、用量和耗时；原始日志留私有目录 | 进行中 |
 | 工作台实际阅读 | 三个 Lens 全字段可达，证据就近可读；综合包含知识、模式、表现、反例和研究问题；状态与报告版本一致 | 待执行 |
 | 稳定性与效率判断 | 技术失败和内容问题分开统计；每次重试有原因；没有把减少阅读/复核当优化；不能用一次成功推断普遍稳定 | 待执行 |
@@ -87,3 +87,26 @@ await services.creatorResearch.startCreatorAnalysisWorkflow(creatorRunId, {
 修复后的 Host OCR 对独立副本进行了真实验证：原 38 帧 failed / 0 行，恢复后 38 processed / 192 行；第二次调用不重跑。旧失败 artifact 与恢复前后摘要均保存。新增文字必须经过一次有收据的 Builder 修订才能算被消费；修订失败不被静默跳过，Reviewer 仍独立检查具体候选。
 
 新默认版本为 `post.analyze@v8`、`creator.analyze@v8`、`creator.synthesize@v7`；新子步骤也使用独立 revision。旧定义保持可解析，**不意味着旧 frozen input 在 live method 变化后仍可执行**。共享 runner 与 skill-bundle 源码、Host OCR 两个 helper 都纳入方法摘要，版本变化必须新开 run。
+
+
+## 固定提交对照样本与第二处 OCR 漏项
+
+2026-09-20 16:07 CST，以独立干净 checkout 的 `59937682` 和共享包 `67c8d3e` 启动 `post.analyze@v8`，root `401e8811-f098-443d-992e-3382d0c7f46d`。样本仍是拉链装置帖，便于与已封存的 Host 阅读问题比较。冻结 evidence payload 明确包含 `candidateMode: rebuild`，没有 `reuseCandidate`；轻量 root 元数据未重复这个字段，审计必须沿引用读取 payload，不能只看摘要。
+
+运行中观察到潜在 eligibility 漏项：Builder 的中间取证方案使用 `exact_times` / `before_during_after`，并真实执行了 OCR，18 帧均为 `failed/nilError`。v8 宿主恢复以方案中出现特定 OCR mode 为先决条件，会遗漏既有 OCR 但仍保留 exact-times 的合法路径。不过，不能把中间产物当作最终结果：Builder 在 16:17 CST 将文字核对动作改为 `ocr_review`，16:18 CST 真实宿主恢复已完成，18 帧 processed / 93 行，随后进入有界 Builder 修订。因此本轮并没有最终跳过恢复；前述独立副本 smoke 与本轮真实收据分别记录。固定 checkout 始终没有修改。
+
+开发目录已改为统一判断：已有非空 OCR artifact 本身证明发生过 OCR 请求，再按覆盖、processed 状态及已识别的环境失败判断是否重试；没有 OCR artifact 时才要求明确的 OCR capture mode。不从自然语言猜测，也不对所有 exact-times 取证强制执行 OCR。42 项聚焦测试与类型检查通过；修复要通过新的 revision 与新的实际 run 才能完成生产验证。
+
+
+本轮真实 OCR 恢复绑定 manifest `b0afcc6cf213b13ce2d1d0d7b7446a6f82162fd08538d1ad5a0842722df78a37`，新增文字摘要 `e876b5302e7f92c0160477b8dc299487b564e0600b781b8c95f7bb52bfe901b5`，修订前 candidate 摘要 `b21b9578688a03bec56951464f4d2a2e73e8b78c1f21992d4c91e2758202c54f`。截至记录时 continuation 为 pending，尚不能宣称新增文字已经被正文正确消费。
+
+
+后续开发版默认入口提升为 `post.analyze@v9` / `creator.analyze@v9`，只将本次受影响的 video 执行步骤提升为 `post.build@v3` / `post.repair@v4`；来源核对 v3、独立复核 v4、综合 v7 保持不变。旧定义保留解析，不放宽冻结方法校验。当前仍运行固定 v8 对照，开发目录不参与其执行。版本与 eligibility 整合后完整工程检查为 709 项项目测试、62 项共享测试通过，1 项环境跳过；尚不代表完整博主验收。
+
+
+固定 v8 对照的候选构建与 OCR continuation 已完成，独立 Reviewer 已提出问题并进入修订。Host 实际阅读三个 Lens，确认材料与参数设计链条已具体恢复，滑块/条带的数量层级错误未复现；抽查88秒原帧可读“PLA和TPU塑料”。仍发现内容时间段缺漏、已恢复人名与 unknown 字段不一致，已在未读取 Reviewer 意见前封存阅读笔记，待对照复核覆盖面。
+
+工作台还暴露了真实展示缺陷：OCR artifact 已存在，但读取模型没有把 OCR 行加入 evidenceIndex，导致三个 Lens 的 OCR 引用显示“来源未解析”。开发版已补入逐行文字及同一报告内原帧链接，不修改 Builder 正文。OCR continuation 同时补上修订前候选的精确私有副本和路径，失败或备份被改时仍保留原字节；v8 的旧收据只有输入摘要，不能据此伪称已经拥有完整修订前后文本比较。
+
+
+独立 trace 审计确认本轮 Reviewer 使用 fresh Luna 会话，绑定新候选精确摘要，实际打开2张原图且未修改候选。它自行指出耐久测试与早期失败/制造障碍历史链条两项重大遗漏，并未接收 Host 封存问题清单。它先同批查看候选摘要与来源摘要，再读完整字幕，故不能称为完全盲读 source-first。开发修复整合后的最终工程验证：711 项项目测试、62 项共享测试通过，1 项现有环境跳过，2 条既有 lint warning、0 error。

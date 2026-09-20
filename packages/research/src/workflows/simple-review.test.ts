@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { MemoryRunStore, runWorkflow, workflow, type AgentRunner, type ArtifactRef } from "@signal-room/workflow";
 import { createResearchAgentDefinitions } from "./agents.js";
-import { createCreatorSynthesisWorkflowSuiteV4, createPostWorkflowSuiteV5, type SimpleSourceCheckOutput } from "./simple-review.js";
+import { createCreatorSynthesisWorkflowSuiteV4, createPostWorkflowSuiteV5, createPostWorkflowSuiteV9, type SimpleSourceCheckOutput } from "./simple-review.js";
 import type { PostWorkflowInput } from "./contracts.js";
 
 async function seed(store: MemoryRunStore, type: string) {
@@ -26,6 +26,16 @@ function review(candidate: { id: string; revision: string; sha256: string }, fin
 }
 
 describe("simple reviewer workflows", () => {
+  it("maps V9 only to the changed post executor children", () => {
+    const check = sourceCheck();
+    const suite = createPostWorkflowSuiteV9({ candidate: () => ({ valid: true }), evaluation: () => ({ valid: true }) }, agents,
+      { sourceCheck: check });
+    expect({ analyze: suite.analyze.revision, build: suite.build.revision, sourceCheck: suite.sourceCheck?.revision,
+      review: suite.review.revision, repair: suite.repair.revision }).toEqual({
+      analyze: "v9", build: "v3", sourceCheck: "v3", review: "v4", repair: "v4",
+    });
+  });
+
   it("delivers a no-findings candidate without repair", async () => {
     const store = new MemoryRunStore(); const evidence = await seed(store, "evidence"); const calls: string[] = [];
     const runner: AgentRunner = { async run(request) {

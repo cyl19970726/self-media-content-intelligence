@@ -64,11 +64,16 @@ function coversTargetedFrames(value: unknown, targeted: TargetedArtifact): boole
   return expected.size > 0 && expected.size === actual.size && [...expected].every((id) => actual.has(id));
 }
 
-function retryableArtifact(ocr: unknown, targeted: TargetedArtifact): boolean {
+export function shouldRetryHostOcr(protocol: unknown, targetedInput: unknown, ocr: unknown): boolean {
+  const targeted = targetedInput as TargetedArtifact | null;
+  if (!targeted) return false;
   const expected = targeted.frames ?? [];
   const frames = (ocr as OcrArtifact | null)?.frames ?? [];
   if (expected.length === 0) return false;
-  if (frames.length === 0) return true;
+  if (frames.length === 0) {
+    const actions = (protocol as { captureActions?: Array<{ mode?: string }> } | null)?.captureActions ?? [];
+    return actions.some((action) => action.mode === "ocr_review" || action.mode === "ui_state_review");
+  }
   const covered = new Set(frames.map((frame) => frame.frameId).filter(Boolean));
   if (expected.some((frame) => frame.id && !covered.has(frame.id))) return true;
   // A processed frame, including processed-with-no-text, is a completed OCR attempt.
@@ -106,15 +111,12 @@ export async function recoverHostOcr(options: {
   const targetedPath = path.join(options.outputDir, "targeted-evidence/targeted-evidence.json");
   const ocrPath = path.join(options.outputDir, "targeted-evidence/ocr-evidence.json");
   const receiptPath = path.join(options.outputDir, "targeted-evidence/ocr-host-recovery.json");
-  const protocol = fs.existsSync(protocolPath) ? fs.readFileSync(protocolPath, "utf8") : "";
-  if (!/"(?:ocr_review|ui_state_review)"/.test(protocol)) {
-    return { attempted: false, recoveredText: false, reason: "protocol_does_not_request_ocr", receipt: null };
-  }
+  const protocol = fs.existsSync(protocolPath) ? readJson(protocolPath) : null;
   if (!fs.existsSync(targetedPath)) return { attempted: false, recoveredText: false, reason: "targeted_manifest_missing", receipt: null };
   const targeted = readJson(targetedPath) as TargetedArtifact | null;
   if (!targeted) return { attempted: false, recoveredText: false, reason: "targeted_manifest_invalid", receipt: null };
   const beforeValue = fs.existsSync(ocrPath) ? readJson(ocrPath) : null;
-  if (!retryableArtifact(beforeValue, targeted)) {
+  if (!shouldRetryHostOcr(protocol, targeted, beforeValue)) {
     return { attempted: false, recoveredText: false, reason: "ocr_not_host_retryable", receipt: null };
   }
 

@@ -37,6 +37,17 @@ describe("video reconstruction OCR recovery", () => {
     })).toBe(true);
   });
 
+  it("uses an existing failed OCR attempt as eligibility evidence for exact_times", () => {
+    expect(shouldRefreshOcrEvidence({ captureActions: [{ mode: "exact_times" }] }, targeted, {
+      frames: [{ frameId: "FRAME-1", status: "failed", error: "nilError" },
+        { frameId: "FRAME-2", status: "failed", error: "nilError" }]
+    })).toBe(true);
+  });
+
+  it("does not infer a new OCR request from exact_times alone", () => {
+    expect(shouldRefreshOcrEvidence({ captureActions: [{ mode: "exact_times" }] }, targeted, null)).toBe(false);
+  });
+
   it("refreshes OCR when a repair adds targeted frames", () => {
     expect(shouldRefreshOcrEvidence(protocol, targeted, {
       frames: [{ frameId: "FRAME-1", status: "processed" }]
@@ -94,7 +105,10 @@ describe("host OCR Builder continuation", () => {
     expect(calls).toEqual(["host-ocr", "repair-ocr-evidence"]);
     const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
     expect(receipt).toMatchObject({ status: "completed", inputCandidateSha256: expect.any(String),
-      afterCandidateSha256: expect.any(String), error: null });
+      inputCandidatePath: expect.any(String), afterCandidateSha256: expect.any(String),
+      afterCandidatePath: "reconstruction.json", error: null });
+    expect(fs.readFileSync(path.join(item.root, receipt.inputCandidatePath), "utf8")).toBe("{}");
+    expect(fs.readFileSync(path.join(item.root, "reconstruction.json"), "utf8")).toBe("{\"repaired\":true}");
 
     const repeated = await recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
       skillDir: "/unused", recover: async () => { throw new Error("host must not repeat"); },
@@ -134,6 +148,34 @@ describe("host OCR Builder continuation", () => {
       .toMatchObject({ status: "failed", error: "Builder stopped", inputCandidateSha256: expect.any(String) });
     await expect(invoke()).rejects.toThrow("OCR_RECOVERY_CONTINUATION_FAILED_REQUIRES_NEW_OCR_REVISION");
     expect(builderCalls).toBe(1);
+  });
+
+  it("rejects an attempted mutation of the preserved input candidate bytes", async () => {
+    const item = recoveryDirectory();
+    await expect(recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
+      skillDir: "/unused", recover: async () => ({ attempted: true, recoveredText: true,
+        reason: "recovered_text", receipt: null }), continueBuilder: async () => {
+        const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
+        fs.writeFileSync(path.join(item.root, receipt.inputCandidatePath), "tampered");
+      } })).rejects.toThrow("OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED");
+    const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
+    expect(receipt.status).toBe("failed");
+    expect(fs.readFileSync(path.join(item.root, receipt.inputCandidatePath), "utf8")).toBe("{}");
+  });
+
+  it("restores the input backup and preserves both incidents when Builder mutates then throws", async () => {
+    const item = recoveryDirectory();
+    await expect(recoverOcrWithBuilderContinuation({ outputDir: item.root, videoPath: item.video,
+      skillDir: "/unused", recover: async () => ({ attempted: true, recoveredText: true,
+        reason: "recovered_text", receipt: null }), continueBuilder: async () => {
+        const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
+        fs.writeFileSync(path.join(item.root, receipt.inputCandidatePath), "tampered-before-throw");
+        throw new Error("Builder original failure");
+      } })).rejects.toThrow(/Builder original failure; OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED/);
+    const receipt = JSON.parse(fs.readFileSync(path.join(item.root, "ocr-builder-continuation.json"), "utf8"));
+    expect(receipt).toMatchObject({ status: "failed",
+      error: "Builder original failure; OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED" });
+    expect(fs.readFileSync(path.join(item.root, receipt.inputCandidatePath), "utf8")).toBe("{}");
   });
 });
 

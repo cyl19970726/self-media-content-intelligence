@@ -216,6 +216,7 @@ describe("SQLiteCreatorResearchRepository Pipeline V2 claims", () => {
   it.each([
     ["post.analyze", "v7"],
     ["post.analyze", "v8"],
+    ["post.analyze", "v9"],
     ["creator.synthesize", "v6"],
     ["creator.synthesize", "v7"],
   ])("claims current %s@%s control while two post models remain active", (workflowId, revision) => {

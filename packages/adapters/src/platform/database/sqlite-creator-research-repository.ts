@@ -48,7 +48,7 @@ interface ResearchEventRow {
   payload_json: string;
 }
 
-const postAnalyzeControlRevisions = "'v2','v3','v4','v5','v6','v7','v8'";
+const postAnalyzeControlRevisions = "'v2','v3','v4','v5','v6','v7','v8','v9'";
 const creatorSynthesisControlRevisions = "'v2','v3','v4','v5','v6','v7'";
 
 function parseJob(row: ResearchJobRow): ResearchJob {

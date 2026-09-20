@@ -18,7 +18,9 @@ type ContinuationReceipt = {
   hostAttemptKey: string;
   status: "pending" | "completed" | "failed";
   inputCandidateSha256: string;
+  inputCandidatePath?: string;
   afterCandidateSha256: string | null;
+  afterCandidatePath?: string | null;
   error: string | null;
 };
 
@@ -74,29 +76,54 @@ export async function recoverOcrWithBuilderContinuation(options: {
 
   const immutable = immutableOcrRecoveryFingerprints(options.outputDir);
   const sourceSha256 = fileSha256(options.videoPath);
+  const inputCandidateBytes = fs.readFileSync(candidatePath);
+  const inputCandidateSha256 = crypto.createHash("sha256").update(inputCandidateBytes).digest("hex");
+  const inputCandidateRelativePath = `reconstruction.before-ocr-continuation-${inputCandidateSha256.slice(0, 12)}.json`;
+  const inputCandidatePath = path.join(options.outputDir, inputCandidateRelativePath);
+  if (fs.existsSync(inputCandidatePath) && fileSha256(inputCandidatePath) !== inputCandidateSha256) {
+    throw new Error("OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_CONFLICT");
+  }
+  if (!fs.existsSync(inputCandidatePath)) fs.writeFileSync(inputCandidatePath, inputCandidateBytes, { mode: 0o600 });
+  fs.chmodSync(inputCandidatePath, 0o600);
   const receipt: ContinuationReceipt = {
     schemaVersion: "video-ocr-builder-continuation@1",
     ocrSha256: fileSha256(ocrPath),
     hostAttemptKey: recovery.receipt?.attemptKey ?? "injected-recovery",
     status: "pending",
-    inputCandidateSha256: fileSha256(candidatePath),
+    inputCandidateSha256,
+    inputCandidatePath: inputCandidateRelativePath,
     afterCandidateSha256: null,
+    afterCandidatePath: null,
     error: null
   };
   writePrivate(receiptPath, receipt);
   try {
     await options.continueBuilder(ocrRecoveryRepairPrompt(options.videoPath, options.outputDir), "repair-ocr-evidence");
     assertOcrRecoveryInputsUnchanged(immutable, options.outputDir);
+    if (!fs.existsSync(inputCandidatePath) || fileSha256(inputCandidatePath) !== inputCandidateSha256) {
+      throw new Error("OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED");
+    }
     if (fileSha256(options.videoPath) !== sourceSha256) throw new Error("OCR_RECOVERY_SOURCE_VIDEO_MUTATED");
     receipt.status = "completed";
     receipt.afterCandidateSha256 = fileSha256(candidatePath);
+    receipt.afterCandidatePath = "reconstruction.json";
     writePrivate(receiptPath, receipt);
   } catch (caught) {
+    const backupMutated = !fs.existsSync(inputCandidatePath) || fileSha256(inputCandidatePath) !== inputCandidateSha256;
+    if (backupMutated) {
+      fs.writeFileSync(inputCandidatePath, inputCandidateBytes, { mode: 0o600 });
+      fs.chmodSync(inputCandidatePath, 0o600);
+    }
+    const originalError = caught instanceof Error ? caught : new Error(String(caught));
+    const backupIncident = backupMutated && originalError.message !== "OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED"
+      ? new Error("OCR_RECOVERY_INPUT_CANDIDATE_BACKUP_MUTATED") : null;
     receipt.status = "failed";
     receipt.afterCandidateSha256 = fs.existsSync(candidatePath) ? fileSha256(candidatePath) : null;
-    receipt.error = caught instanceof Error ? caught.message : String(caught);
+    receipt.afterCandidatePath = fs.existsSync(candidatePath) ? "reconstruction.json" : null;
+    receipt.error = backupIncident ? `${originalError.message}; ${backupIncident.message}` : originalError.message;
     writePrivate(receiptPath, receipt);
-    throw caught;
+    if (backupIncident) throw new AggregateError([originalError, backupIncident], receipt.error);
+    throw originalError;
   }
   return recovery;
 }

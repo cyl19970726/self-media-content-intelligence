@@ -41,6 +41,7 @@ import {
 } from "./video-codex-execution.js";
 import { validateEvaluationArtifacts, type GateReport } from "./video-evaluation-contract.js";
 import { recoverOcrWithBuilderContinuation } from "./video-ocr-builder-continuation.js";
+import { shouldRetryHostOcr } from "./video-ocr-host-recovery.js";
 
 export { safeOutputRelativeRoot, type VideoCodexExecutionOptions } from "./video-codex-execution.js";
 export { validateEvaluationArtifacts } from "./video-evaluation-contract.js";
@@ -65,25 +66,12 @@ function mergeHostAssemblyReports(previous: HostAssemblyReport, current: HostAss
   };
 }
 
-type OcrEvidenceLike = { frames?: Array<{ frameId?: string; status?: string; error?: string | null }> };
-type TargetedEvidenceLike = { frames?: Array<{ id?: string }> };
-
 export function shouldRefreshOcrEvidence(
   protocolInput: unknown,
   targetedInput: unknown,
   ocrInput: unknown
 ): boolean {
-  const protocolRequestsOcr = /"(?:ocr_review|ui_state_review)"/.test(JSON.stringify(protocolInput));
-  const targetedFrames = (targetedInput as TargetedEvidenceLike | null)?.frames ?? [];
-  const ocrFrames = (ocrInput as OcrEvidenceLike | null)?.frames ?? [];
-  if (!protocolRequestsOcr && ocrFrames.length === 0) return false;
-  if (ocrFrames.length === 0) return targetedFrames.length > 0;
-  const coveredFrameIds = new Set(ocrFrames.map((frame) => frame.frameId).filter((id): id is string => Boolean(id)));
-  const missingTargetedFrame = targetedFrames.some((frame) => Boolean(frame.id) && !coveredFrameIds.has(frame.id as string));
-  if (missingTargetedFrame) return true;
-  if (ocrFrames.some((frame) => frame.status === "processed")) return false;
-  return ocrFrames.length === targetedFrames.length && ocrFrames.every((frame) =>
-    frame.status === "failed" && frame.error === "nilError");
+  return shouldRetryHostOcr(protocolInput, targetedInput, ocrInput);
 }
 
 export function normalizeRuntimeLensEvidence(input: unknown): unknown {
