@@ -4,6 +4,7 @@ import type { ArtifactRelation, CallView, SafeArtifact, StageDetails, StageView 
 import { appendWorkflowStageDetails, getWorkflowArtifactReader, getWorkflowReading, getWorkflowReadingChanges, getWorkflowStageDetails, mergeWorkflowReading, type CreatorPostGroup, type WorkflowReading } from "./workflow-runs-api";
 import { getCreatorDossier, getCreatorResearchRun } from "../../shared/api/client";
 import { originalPostReportHref } from "./model/presentation";
+import { childWorkflowTitle, orderCreatorPostGroups, projectStageProgress } from "./model/creator-post-progress";
 import type { VideoResearch } from "../../shared/contracts/core";
 import type { WorkflowArtifactReader, WorkflowCreatorReaderData } from "../../shared/contracts/workflow-reader";
 import "./workflow-reading.css";
@@ -81,13 +82,14 @@ function StageRecord({ stage, snapshot, runId, readers }: { stage: StageView; sn
     return left !== undefined && right !== undefined ? left - right : a.index - b.index;
   });
   const controls = calls.filter((call) => call.role === "workflow");
+  const progress = projectStageProgress(stage, snapshot.runs);
   const executionCount = agents.reduce((count, { call }) => count + call.attempts.length, 0);
   const countText = executionCount ? `已记录 ${executionCount} 次模型执行${agents.some(({ call }) => !call.attempts.length) ? "；部分调用未记录尝试" : ""}` : `已登记 ${agents.length} 个模型调用，执行尝试尚未记录`;
   const retryContext = (call: CallView) => {
     const parent = controls.find((control) => control.childRunIds.includes(call.runId));
     return parent?.retryOf ? `此调用属于重试子流程：${parent.retryReason ?? "原因未记录"}；前次结果保留在调度记录中。` : undefined;
   };
-  return <details className="workflow-reading-stage" onToggle={(event) => { if (event.currentTarget.open && loadedFor.current !== stage.id) void load(); }}><summary><span className={`workflow-state workflow-state--${stage.state}`}>{label(stage.state)}</span><strong>{stage.title}</strong><small>{stage.purpose}</small></summary><div className="workflow-reading-stage-body"><p>结构 {label(stage.validation)} · 审阅 {label(stage.review)} · 交付 {label(stage.delivery)}</p>{stage.waitingForRunId && <p>正在等待关联子流程完成。</p>}<p>开始：{clock(stage.startedAt)} · 结束：{clock(stage.endedAt)}</p>{stage.expectedArtifacts.length > 0 && <ul className="workflow-reading-expected">{stage.expectedArtifacts.map((expected) => <li key={expected.role}>{expected.title ?? expected.role} · {expected.missing ? expected.required ? "预期未产出" : "尚未产出" : "已登记"}</li>)}</ul>}<h3>实际执行</h3>{agents.length ? <><p className="workflow-reading-count">{countText}{details?.nextCursor ? "（已加载部分记录）" : ""}；失败尝试和重试结果均保留。</p>{agents.map(({ call }, index) => <CallRecord key={call.id} call={call} ordinal={index + 1} retryContext={retryContext(call)} assets={snapshot.artifacts} relations={snapshot.relations} readers={readers}/>)}</> : <p className="workflow-empty">尚无模型执行记录。</p>}{details?.nextCursor && <button disabled={loading} onClick={() => void load(details.nextCursor)}>加载更多调用</button>}{controls.length > 0 && <details className="workflow-reading-controls"><summary>子流程调度 · {controls.length} 条</summary>{controls.map((call) => <CallRecord key={call.id} call={call} assets={snapshot.artifacts} relations={snapshot.relations} readers={readers}/>)}</details>}<h3>阶段产物</h3><ArtifactLinks assets={assets} relations={snapshot.relations} readers={readers}/>{error && <p className="workflow-error">{error}</p>}</div></details>;
+  return <details className="workflow-reading-stage" onToggle={(event) => { if (event.currentTarget.open && loadedFor.current !== stage.id) void load(); }}><summary><span className={`workflow-state workflow-state--${progress.state}`}>{label(progress.state)}</span><strong>{stage.title}</strong><small>{stage.purpose}</small></summary><div className="workflow-reading-stage-body"><p>结构 {label(stage.validation)} · 审阅 {label(stage.review)} · 交付 {label(stage.delivery)}</p>{stage.waitingForRunId && <p>{progress.child ? `关联子流程「${childWorkflowTitle(progress.child.workflowId)}」：${label(progress.child.state)}。` : "正在等待关联子流程；当前状态未记录。"}</p>}<p>开始：{clock(stage.startedAt)} · 结束：{clock(stage.endedAt)}</p>{stage.expectedArtifacts.length > 0 && <ul className="workflow-reading-expected">{stage.expectedArtifacts.map((expected) => <li key={expected.role}>{expected.title ?? expected.role} · {expected.missing ? expected.required ? "预期未产出" : "尚未产出" : "已登记"}</li>)}</ul>}<h3>实际执行</h3>{agents.length ? <><p className="workflow-reading-count">{countText}{details?.nextCursor ? "（已加载部分记录）" : ""}；失败尝试和重试结果均保留。</p>{agents.map(({ call }, index) => <CallRecord key={call.id} call={call} ordinal={index + 1} retryContext={retryContext(call)} assets={snapshot.artifacts} relations={snapshot.relations} readers={readers}/>)}</> : <p className="workflow-empty">尚无模型执行记录。</p>}{details?.nextCursor && <button disabled={loading} onClick={() => void load(details.nextCursor)}>加载更多调用</button>}{controls.length > 0 && <details className="workflow-reading-controls"><summary>子流程调度 · {controls.length} 条</summary>{controls.map((call) => <CallRecord key={call.id} call={call} assets={snapshot.artifacts} relations={snapshot.relations} readers={readers}/>)}</details>}<h3>阶段产物</h3><ArtifactLinks assets={assets} relations={snapshot.relations} readers={readers}/>{error && <p className="workflow-error">{error}</p>}</div></details>;
 }
 
 const activeState = (state: string) => ["running", "waiting", "blocked", "needs_review"].includes(state);
@@ -184,7 +186,7 @@ export function WorkflowReadingPage({ runId, PostReader, CreatorReader }: { runI
   const selected = snapshot.runs.find((run) => run.id === snapshot.selectedRunId);
   const readerStages = snapshot.stages.filter(stage => stage.audience !== "audit");
   const auditStages = snapshot.stages.filter(stage => stage.audience === "audit");
-  const creatorPostGroups = snapshot.creatorPostGroups ?? [];
+  const creatorPostGroups = orderCreatorPostGroups(snapshot.creatorPostGroups ?? []);
   const active = readerStages.find((stage) => creatorPostGroups.some((group) => group.stageIds.includes(stage.id)) && activeState(stage.state))
     ?? readerStages.find((stage) => activeState(stage.state));
   const completedPosts = creatorPostGroups.filter((group) => group.state === "succeeded").length;

@@ -162,3 +162,21 @@ Host 阅读发现 AI 宠物 `CR-UNKNOWN` 的全片时间范围掩盖正文空档
 取消穿透已失败父任务的修复通过真实形态回归：失败父仍保留，queued generation 2孙任务被取消，旧失败attempt和artifact保留。整合后的完整检查为719项项目测试、62项共享测试通过，1项环境跳过，2条既有lint warning。旧混合模型v9的启动前22份产物在取消后逐一摘要比对，22/22未改变。
 
 取证配置另有一项认知校正：设置 `SELF_MEDIA_CODEX_EPHEMERAL=true` 不等于SDK会话临时化；当前SDK路径不传该CLI flag。native会话实际存在，fresh独立性依然成立，但不能声称未持久化。同会话OCR续跑需要明确的线程、角色、输入/方法摘要与次数约束，目前只是尚未验证的优化候选。Vision的host/sandbox差异有同输入A/B证据，尚无具体deny/XPC日志，不能把底层机制写成唯一已证实根因。
+
+
+### 全 Luna 首批调用取证
+
+14次来源核对已全部完成，实际usage共17次（11个核对各1次、3个各2次），模型均为Luna/medium。首个来源核对的原生会话与workflow收据一致；输入5张图片的摘要及规范化inputSha256均与输出绑定相符。来源判断明确限于原帖与视频身份，未将视频中的市场或技术主张当作外部已证实事实。
+
+前两篇Builder的实际调用同为Luna/medium。首篇原生trace证明读取了冻结Builder operator与single-post-depth，并有6次view_image调用；完整skill包已交付，但不据文件存在推断全部被读取。该时点正文尚未产出，不能作质量或完整博主成功结论。
+
+审计的第一次探针只查询root事件，误把父任务waiting理解为尚无模型调用；现已沿workflow_runs.parentRunId和research_workflow_executions.parentWorkflowRunId递归纠正。工作流UUID与Codex线程ID不是同一标识，原生trace须沿真实thread.started定位。审计工具本身也需要用实际子任务物证校准。
+
+
+### 首批 Luna 输出与进度页面验证
+
+首两篇Builder均因builder_integrity_derived_source_missing失败：候选把media-preparation.json内部字段片段拼进derivedSources.path，而合同要求真实相对文件路径。每篇两次有界结构修订后仍未通过，原候选保留，不能登记为合格报告。Host已暂停领取新的工作，允许当时正在构建的远控硬件与眼镜收尾；本轮仍未形成完整博主综合。
+
+Host在独立Reviewer之前阅读AI宠物初稿并实际查看5张冻结原帧，发现耗电高被写成重量高、清楚可读的团队履历被笼统记为未知、悬停/靠近/绕行未完整进入内容正文；桌面/地面对比、情绪例子、商业解释和市场边界已有还原。这是初稿证据，不能扩展成全部Luna能力结论，也不能把失败前的候选当作最终已发布版本。
+
+实际工作台还发现执行中帖子排在排队列表后、阶段等待状态遮住了运行中的子流程。开发版已把运行中与需处理的帖子提前，同级保持原顺序；等待阶段只有在read model存在真实活动子流程时才显示其状态，并展示对应子流程名称。完整verify通过。隔离前端预览连接真实API后，确认两篇运行中优先、两篇失败紧随、候选构建明确显示执行中；冻结worker与API未热更新。
