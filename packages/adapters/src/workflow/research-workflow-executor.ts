@@ -188,9 +188,16 @@ export class SQLiteResearchWorkflowExecutor implements ResearchWorkflowExecutor,
         workflowRevision: child.definitionRevision,
         idempotencyKey: `workflow-child:${request.parentStepRunId}:${child.generation}` });
     }
+    const state: RunState = child.state === "cancel_requested" ? "running" : child.state;
+    if (child.state === "queued" || child.state === "running" || child.state === "waiting" || child.state === "cancel_requested") {
+      // The execution envelope carries the generation. During a retry, the
+      // public run can still contain the preceding generation's terminal
+      // result until the queued generation starts. Never expose that stale
+      // result to a parent that is deciding whether to suspend or fail.
+      return { childRunId: child.id, state };
+    }
     const run = await this.store.getRun(child.id);
-    const state = run?.state ?? (child.state === "cancel_requested" ? "running" : child.state);
-    return { childRunId: child.id, state, output: run?.output as Output | undefined, error: run?.error ?? child.error };
+    return { childRunId: child.id, state, output: run?.output as Output | undefined, error: child.error ?? run?.error };
   }
 
   /**

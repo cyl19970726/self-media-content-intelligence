@@ -367,6 +367,49 @@ describe("SQLiteResearchWorkflowExecutor", () => {
     expect(await executor.snapshot("creator-1", canceledChildJob.workflowRunId)).toMatchObject({ state: "canceled" });
   });
 
+  it("keeps a waiting parent suspended while a failed child retry is queued, then resumes it automatically", async () => {
+    const database = new DatabaseSync(":memory:");
+    databases.push(database);
+    const store = new SQLiteWorkflowRunStore(database);
+    const evidence = await seedEvidence(store);
+    let childRepaired = false;
+    const child = workflow("durable-child", { revision: "v1" }, async (ctx, input: { postExternalId: string }) =>
+      ctx.task("child-work", () => {
+        if (!childRepaired) throw new Error("child generation one failed");
+        return { child: input.postExternalId };
+      }, input));
+    const parent = workflow("post.analyze", { revision: "v1" }, async (ctx, input: { postExternalId: string }) =>
+      ({ ok: true, result: await ctx.call("durable", child, input) }));
+    const configured = { ...definitions(() => true), post: parent as unknown as ResearchWorkflowDefinitions["post"] };
+    const scheduled: Array<{ creatorRunId: string; workflowRunId: string; workflowId: string; generation: number; idempotencyKey: string }> = [];
+    const seen = new Set<string>();
+    const scheduler: WorkflowAdvanceScheduler = { enqueue: async (item) => {
+      if (!seen.has(item.idempotencyKey)) { seen.add(item.idempotencyKey); scheduled.push(item); }
+    } };
+    const registry: WorkflowDefinitionRegistry = { resolve: (id, revision) => id === child.id && revision === child.revision
+      ? child as unknown as ReturnType<WorkflowDefinitionRegistry["resolve"]> : undefined };
+    const executor = new SQLiteResearchWorkflowExecutor(database, store, noAgentRunner(), configured, freezer(evidence), registry, scheduler);
+    const parentRun = await executor.createPost({ ...postStart(), postExternalId: "post-race" });
+    expect(await executor.advance({ ...parentRun, signal: new AbortController().signal })).toMatchObject({ state: "waiting" });
+    const childJob = scheduled.find((item) => item.idempotencyKey.startsWith("workflow-child:"))!;
+    expect(await executor.advance({ ...childJob, signal: new AbortController().signal })).toMatchObject({ state: "failed" });
+    const staleParentWake = scheduled.find((item) => item.idempotencyKey.startsWith("workflow-wake:"))!;
+
+    const childRetry = await executor.prepareRetry({ creatorRunId: "creator-1", workflowRunId: childJob.workflowRunId,
+      stepKey: "child-work" });
+    expect(childRetry).toMatchObject({ generation: 2, state: "queued" });
+    expect(await store.getRun(childJob.workflowRunId)).toMatchObject({ state: "failed", error: "child generation one failed" });
+
+    expect(await executor.advance({ ...staleParentWake, signal: new AbortController().signal })).toMatchObject({ state: "waiting" });
+    expect(await store.getRun(parentRun.workflowRunId)).toMatchObject({ state: "waiting" });
+
+    childRepaired = true;
+    expect(await executor.advance({ ...childRetry, signal: new AbortController().signal })).toMatchObject({ state: "succeeded" });
+    const successfulWake = scheduled.find((item) => item.idempotencyKey.includes(`${childJob.workflowRunId}:2:succeeded`))!;
+    expect(await executor.advance({ ...successfulWake, signal: new AbortController().signal })).toMatchObject({ state: "succeeded" });
+    expect((await store.getRun(parentRun.workflowRunId))?.output).toMatchObject({ ok: true, result: { child: "post-race" } });
+  });
+
   it("persists an explicit cross-child retry event across executor recreation", async () => {
     const database = new DatabaseSync(":memory:");
     databases.push(database);
