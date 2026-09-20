@@ -141,6 +141,14 @@ describe("report compatibility", () => {
     expect(contentRangeGaps(blocks, 12)).toEqual({ outOfOrder: true, gaps: [{ start: 2, end: 5 }, { start: 10, end: 12 }] });
     expect(blocks[0]?.start).toBe(5);
   });
+  it("does not let an explicit unknown block conceal uncovered content time", () => {
+    const blocks = [
+      { type: "text", start: 0, end: 27 },
+      { type: "unknown", start: 0, end: 129 },
+      { type: "text", start: 37, end: 53 }
+    ] as VideoResearch["contentBlocks"];
+    expect(contentRangeGaps(blocks, 53).gaps).toEqual([{ start: 27, end: 37 }]);
+  });
 });
 
 describe("short transitions", () => {

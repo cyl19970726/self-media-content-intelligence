@@ -136,3 +136,7 @@ await services.creatorResearch.startCreatorAnalysisWorkflow(creatorRunId, {
 outer SDK events 没有 `view_image` 项，不能据此断言模型没看图：嵌套 `functions.exec → tools.view_image` 在原生 rollout 中可见。审计沿实际 `thread.started` 定位 native trace，确认 v9 首两篇 Builder 均有 6 次成功看图调用与图像输入；固定 v8 canary 的完整 native thread 也是 6 次去重调用（3 次单图、3 次多图批次），不是早期局部统计的 3 次。工具调用和返回不重复计数。Host 曾因 SDK 视野不足短暂暂停领取新任务，补全物证后恢复；未为该错误判断修改当前冻结方法。SDK 缺席只能记为未知，视觉读取结论必须由实际配置与 native 证据共同支撑。
 
 恢复竞态修复已在开发目录完成：先用回归测试复现“子 gen2 已排队、旧父 wake 仍导致父失败”，修复后父保持 waiting，子 gen2 成功时沿现有 wake 自动完成；原有真实失败传播和历史失败父流程的标准恢复测试仍通过。完整工程验证为 712 项项目测试、62 项共享测试通过，1 项环境跳过，2 条既有 lint warning、0 error；Web/API/Worker/CLI 入口检查通过。当前固定实跑仍使用启动时版本，此修复没有热更新进去。
+
+### 阅读诊断修复
+
+Host 阅读发现 AI 宠物 `CR-UNKNOWN` 的全片时间范围掩盖正文空档。开发版仅在覆盖计算中排除 schema 显式 `type: unknown` 的块；仍完整渲染该块，不按标题或文字猜类别，也不改写 Builder 内容。在独立前端预览连接真实 v9 API 后，页面正确提示 0:27–0:37、1:11–1:17、2:02–2:09 未被正文时间范围覆盖，并保留“是否遗漏内容需回看原视频确认”的边界。时间诊断不是语义完整度判定。
