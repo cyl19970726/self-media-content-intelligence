@@ -110,3 +110,12 @@ await services.creatorResearch.startCreatorAnalysisWorkflow(creatorRunId, {
 
 
 独立 trace 审计确认本轮 Reviewer 使用 fresh Luna 会话，绑定新候选精确摘要，实际打开2张原图且未修改候选。它自行指出耐久测试与早期失败/制造障碍历史链条两项重大遗漏，并未接收 Host 封存问题清单。它先同批查看候选摘要与来源摘要，再读完整字幕，故不能称为完全盲读 source-first。开发修复整合后的最终工程验证：711 项项目测试、62 项共享测试通过，1 项现有环境跳过，2 条既有 lint warning、0 error。
+
+
+## 完整 creator v9 验证启动
+
+2026-09-20 16:30 CST，root `0d0f376e-249b-4c52-85c8-57c632c34a55` / `creator.analyze@v9` 在新独立固定 checkout `6e5793fb` 启动。14 份冻结输入均沿 artifact payload 确認为 rebuild 且没有 reuseCandidate；即使拉链帖刚完成对照，本轮也重新构建，确保跨帖综合依赖同一批次的新单帖链。并发模型上限仍为2，三个 worker 循环只领取该 creatorRunId。
+
+此前 v8 对照完整耗时19分11秒，经历来源核对、Builder（含一次Host OCR恢复及消费）、独立复核和一次修订。累计多请求用量为 input 4,304,616 / cached 3,924,224 / output 49,536；不是唯一上下文长度，不据此推算价格。最终状态为 revised_unverified，单帖功能闭环完成，不代表修订稿已再次独立通过，更不能据此宣称批量就绪。
+
+新 API 已切到固定 v9 checkout，Host 在真实工作台验证 OCR 引用从“来源未解析”变为“查看来源”，并打开修订稿材料帧成功；Builder正文未由前端改写。完整博主综合仍未产出。
