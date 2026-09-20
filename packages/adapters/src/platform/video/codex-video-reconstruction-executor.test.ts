@@ -356,6 +356,14 @@ describe("Builder model contract", () => {
       expect(prompt).toContain("execute OCR at most once");
       expect(prompt).toContain("ocr references use the recognized line's OCR-* ID");
       expect(prompt).toContain("Never use afplay");
+      expect(prompt).toContain('use "media-preparation.json" for its sourceMedia/audio fields');
+      expect(prompt).toContain('post-source-input.json#/facts/title: original post title');
+      expect(prompt).toContain("host integrity gate separately checks that each path names an existing file");
+      expect(prompt).toContain("Frozen ASR preservation protects the input artifact");
+      expect(prompt).toContain("restore what the video says as a visual observation");
+      expect(prompt).toContain("state unknown rather than guessing");
+      expect(prompt).toContain("reliable standard serializer");
+      expect(prompt).toContain("If a serialization/syntax error repeats, change method");
     } finally {
       fs.rmSync(outputDir, { recursive: true, force: true });
     }
@@ -482,6 +490,14 @@ describe("Builder integrity contract", () => {
     const prompt = builderIntegrityRepairPrompt("/tmp/video.mp4", "/tmp/run", "BUILDER_INTEGRITY_META_GATE");
     expect(prompt).toContain("inspected but cannot be established");
     expect(prompt).toMatch(/explicit\s+unknown or boundary/);
+  });
+
+  it("keeps derived source filenames separate from IDs and field pointers during repair", () => {
+    const prompt = builderIntegrityRepairPrompt("/tmp/video.mp4", "/tmp/run", "BUILDER_INTEGRITY_DERIVED_SOURCE_MISSING");
+    expect(prompt).toContain("exact relative filename of a real local file");
+    expect(prompt).toContain('path "media-preparation.json", ref "SRC-MEDIA-TECH"');
+    expect(prompt).toContain('supports "media-preparation.json#/audio: technical audio presence"');
+    expect(prompt).toContain("Do not change IDs or rewrite supports text");
   });
 });
 

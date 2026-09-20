@@ -188,12 +188,22 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   }>(ocrPath) : null;
   const reconstruction = readJson<ReconstructionLike>(reconstructionPath);
   const probe = readJson<ProbeLike>(probePath);
+  // Post identity and cover fingerprints are trusted prerequisites. Stop before
+  // inspecting candidate-derived source references if the frozen cover changed.
+  const sourcePath = path.join(outputDir, "post-source-input.json");
+  const postSource = exists(sourcePath) ? readJson<{ facts: { title: string | null; coverHref: string | null }; cover: { path: string; sha256: string } | null }>(sourcePath) : null;
+  if (postSource?.cover) {
+    const coverPath = path.resolve(outputDir, postSource.cover.path);
+    if (!coverPath.startsWith(path.resolve(outputDir) + path.sep) || !exists(coverPath) || sha256(coverPath) !== postSource.cover.sha256) fail("POST_COVER_FINGERPRINT");
+  }
+  const issues: string[] = [];
+  const problem = (code: string, detail?: string) => issues.push(`BUILDER_INTEGRITY_${code}${detail ? `:${detail}` : ""}`);
   const sourceCues = pack.transcript?.cues ?? [];
   const outputCues = reconstruction.transcript?.cues ?? [];
-  if (sourceCues.length !== outputCues.length) fail("CUE_COUNT", `${outputCues.length}/${sourceCues.length}`);
+  if (sourceCues.length !== outputCues.length) problem("CUE_COUNT", `${outputCues.length}/${sourceCues.length}`);
   for (let index = 0; index < sourceCues.length; index += 1) {
     if (JSON.stringify(cueContract(sourceCues[index] ?? {})) !== JSON.stringify(cueContract(outputCues[index] ?? {}))) {
-      fail("CUE_DRIFT", String(index));
+      problem("CUE_DRIFT", String(index));
     }
   }
 
@@ -203,11 +213,11 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   const accountability = reconstruction.coverageMatrix?.cueAccountability ?? [];
   const accountedIds = accountability.map((row) => row.cueId).filter((id): id is string => Boolean(id));
   if (accountedIds.length !== sourceCueIds.size || new Set(accountedIds).size !== sourceCueIds.size ||
-      accountedIds.some((id) => !sourceCueIds.has(id))) fail("CUE_ACCOUNTABILITY");
+      accountedIds.some((id) => !sourceCueIds.has(id))) problem("CUE_ACCOUNTABILITY");
   for (const row of accountability) {
-    if ((row.unitIds ?? []).some((id) => !unitIds.has(id))) fail("CUE_UNIT_REFERENCE", row.cueId);
+    if ((row.unitIds ?? []).some((id) => !unitIds.has(id))) problem("CUE_UNIT_REFERENCE", row.cueId);
     if ((row.disposition === "knowledge" || row.disposition === "context") && !(row.unitIds ?? []).length) {
-      fail("CUE_UNIT_LINK_MISSING", row.cueId);
+      problem("CUE_UNIT_LINK_MISSING", row.cueId);
     }
   }
 
@@ -232,7 +242,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
   const danglingReferences: string[] = [];
   const checkReference = (reference: EvidenceRef, sourcePath: string): void => {
     const ref = reference.ref;
-    if (!ref) fail("EMPTY_REFERENCE");
+    if (!ref) { problem("EMPTY_REFERENCE", sourcePath); return; }
     const valid = reference.refType === "cue" ? sourceCueIds.has(ref)
       : reference.refType === "shot" ? shotIds.has(ref)
         : reference.refType === "frame" ? frameIds.has(ref)
@@ -251,53 +261,52 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
       checkReference(reference, `relations[${relationIndex}].evidence[${evidenceIndex}]`);
     });
   });
-  if (danglingReferences.length > 0) fail("DANGLING_REFERENCE", danglingReferences.join(","));
+  if (danglingReferences.length > 0) problem("DANGLING_REFERENCE", danglingReferences.join(","));
   const coreUnits = units.filter((unit) => unit.importance === "core");
   const coveredCoreUnits = coreUnits.filter((unit) => (unit.evidence ?? []).length > 0);
   const reportedCoreEvidence = reconstruction.coverageMatrix?.coreEvidence;
   if (reportedCoreEvidence?.covered !== coveredCoreUnits.length || reportedCoreEvidence.total !== coreUnits.length) {
-    fail("CORE_EVIDENCE_COUNT",
+    problem("CORE_EVIDENCE_COUNT",
       `${reportedCoreEvidence?.covered ?? "missing"}/${reportedCoreEvidence?.total ?? "missing"}` +
       `!=${coveredCoreUnits.length}/${coreUnits.length}`);
   }
   for (const relation of reconstruction.relations ?? []) {
     if (!relation.from || !unitIds.has(relation.from) || !relation.to || !unitIds.has(relation.to)) {
-      fail("RELATION_UNIT_REFERENCE");
+      problem("RELATION_UNIT_REFERENCE", `${relation.from ?? "missing"}->${relation.to ?? "missing"}`);
     }
   }
-
-  const sourcePath = path.join(outputDir, "post-source-input.json");
-  const postSource = exists(sourcePath) ? readJson<{ facts: { title: string | null; coverHref: string | null }; cover: { path: string; sha256: string } | null }>(sourcePath) : null;
-  if (postSource?.cover) {
-    const coverPath = path.resolve(outputDir, postSource.cover.path);
-    if (!coverPath.startsWith(path.resolve(outputDir) + path.sep) || !exists(coverPath) || sha256(coverPath) !== postSource.cover.sha256) fail("POST_COVER_FINGERPRINT");
+  try { validateVideoDepth(reconstruction, Number(pack.media?.duration), allEvidenceIds, frameTimes, postSource); }
+  catch (error) {
+    if (!(error instanceof Error) || !error.message.startsWith("BUILDER_INTEGRITY_")) throw error;
+    issues.push(error.message);
   }
-  validateVideoDepth(reconstruction, Number(pack.media?.duration), allEvidenceIds, frameTimes, postSource);
   const lensReferences = builderLensRefs(reconstruction);
   if (reconstruction.schemaVersion === "video-reconstruction-2.0") {
     const lenses = reconstruction.builderLenses;
     if (!lenses?.contentRestoration?.blocks?.length || !lenses.directingLogic?.stages?.length ||
-        !lenses.visualEditing?.carriers?.length || !lenses.visualEditing?.claims?.length ||
-        !lenses.visualEditing?.shotSemantics?.length || !lenses.visualEditing?.rhythm?.length) fail("BUILDER_LENSES_INCOMPLETE");
+        !lenses?.visualEditing?.carriers?.length || !lenses?.visualEditing?.claims?.length ||
+        !lenses?.visualEditing?.shotSemantics?.length || !lenses?.visualEditing?.rhythm?.length) problem("BUILDER_LENSES_INCOMPLETE");
     const danglingLensRefs = [...new Set(lensReferences.filter((ref) => !allEvidenceIds.has(ref)))];
-    if (danglingLensRefs.length > 0) fail("BUILDER_LENS_DANGLING_REFERENCE", danglingLensRefs.join(","));
-    const contentBlocks = lenses.contentRestoration.blocks;
-    if (contentBlocks.some((block) => !(block.body?.trim()) || !(block.evidenceRefs?.length))) {
-      fail("CONTENT_BLOCK_EVIDENCE");
-    }
-    const visualBlockTypes = new Set(["single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip"]);
-    if (contentBlocks.some((block) => visualBlockTypes.has(block.type ?? "") &&
-      !(block.visuals?.length || block.frameRefs?.length || block.beforeFrameRef || block.afterFrameRef || block.steps?.length))) {
-      fail("CONTENT_BLOCK_VISUAL_MISSING");
-    }
-    const stages = lenses.directingLogic.stages ?? [];
-    const meanings = stages.map((stage) => normalizedMeaning(`${stage.function} ${stage.cognitiveChange}`));
-    if (meanings.some((value) => !value) || new Set(meanings).size !== meanings.length) {
-      fail("DIRECTING_STAGE_REPETITION");
+    if (danglingLensRefs.length > 0) problem("BUILDER_LENS_DANGLING_REFERENCE", danglingLensRefs.join(","));
+    {
+      const contentBlocks = lenses?.contentRestoration?.blocks ?? [];
+      if (contentBlocks.some((block) => !(block.body?.trim()) || !(block.evidenceRefs?.length))) {
+        problem("CONTENT_BLOCK_EVIDENCE");
+      }
+      const visualBlockTypes = new Set(["single_frame", "annotated_crop", "before_after", "operation_sequence", "frame_strip"]);
+      if (contentBlocks.some((block) => visualBlockTypes.has(block.type ?? "") &&
+        !(block.visuals?.length || block.frameRefs?.length || block.beforeFrameRef || block.afterFrameRef || block.steps?.length))) {
+        problem("CONTENT_BLOCK_VISUAL_MISSING");
+      }
+      const stages = lenses?.directingLogic?.stages ?? [];
+      const meanings = stages.map((stage) => normalizedMeaning(`${stage.function} ${stage.cognitiveChange}`));
+      if (meanings.some((value) => !value) || new Set(meanings).size !== meanings.length) {
+        problem("DIRECTING_STAGE_REPETITION");
+      }
     }
   }
   for (const question of reconstruction.coverageMatrix?.criticalQuestions ?? []) {
-    if ((question.unitIds ?? []).some((id) => !unitIds.has(id))) fail("QUESTION_UNIT_REFERENCE");
+    if ((question.unitIds ?? []).some((id) => !unitIds.has(id))) problem("QUESTION_UNIT_REFERENCE");
   }
 
   const duration = Number(pack.media?.duration ?? 0);
@@ -306,7 +315,7 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     const start = Number(unit.timeRange?.start);
     const end = Number(unit.timeRange?.end);
     if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end < start || end > duration + 0.5) {
-      fail("UNIT_TIME_RANGE", unit.id);
+      problem("UNIT_TIME_RANGE", unit.id);
     }
     for (const reference of unit.evidence ?? []) {
       const evidenceTime = reference.ref ? frameTimes.get(reference.ref) : undefined;
@@ -315,12 +324,12 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
       }
     }
   }
-  if (evidenceTimeViolations.length > 0) fail("EVIDENCE_TIME_RANGE", evidenceTimeViolations.join(","));
+  if (evidenceTimeViolations.length > 0) problem("EVIDENCE_TIME_RANGE", evidenceTimeViolations.join(","));
   for (const source of reconstruction.derivedSources ?? []) {
-    if (!source.path) fail("DERIVED_SOURCE_PATH");
+    if (!source.path) { problem("DERIVED_SOURCE_PATH", source.id); continue; }
     const resolved = path.resolve(outputDir, source.path);
     const root = path.resolve(outputDir);
-    if (!resolved.startsWith(`${root}${path.sep}`) || !exists(resolved)) fail("DERIVED_SOURCE_MISSING", source.path);
+    if (!resolved.startsWith(`${root}${path.sep}`) || !exists(resolved)) problem("DERIVED_SOURCE_MISSING", source.path);
   }
 
   const channels = reconstruction.coverageMatrix?.channels ?? [];
@@ -330,17 +339,19 @@ export function validateBuilderIntegrity(outputDir: string, videoPath: string): 
     ...channels.filter(invalidCarrierInspectionContract)
       .map((carrier) => `reconstruction:${carrier.id ?? "unknown"}`)
   ];
-  if (invalidCarrierIds.length > 0) fail("CARRIER_STATUS", invalidCarrierIds.join(","));
+  if (invalidCarrierIds.length > 0) problem("CARRIER_STATUS", invalidCarrierIds.join(","));
   const availableChannels = channels.filter((channel) => channel.available);
   if (availableChannels.some((channel) => !["checked_readable", "checked_unreadable"].includes(carrierInspectionStatus(channel)))) {
-    fail("UNCHECKED_AVAILABLE_CHANNEL");
+    problem("UNCHECKED_AVAILABLE_CHANNEL");
   }
-  if ((reconstruction.coverageMatrix?.uncheckedChannels ?? []).length > 0) fail("UNCHECKED_CHANNELS");
+  if ((reconstruction.coverageMatrix?.uncheckedChannels ?? []).length > 0) problem("UNCHECKED_CHANNELS");
   const meta = reconstruction.metaGate;
   if (meta?.pass !== true || (meta.uncheckedChannels ?? []).length > 0 ||
       (meta.overlookedMeaningChanges ?? []).length > 0 || (meta.overlookedRelationships ?? []).length > 0) {
-    fail("META_GATE");
+    problem("META_GATE");
   }
+
+  if (issues.length > 0) throw new Error(issues.join("\n"));
 
   return {
     transcriptCues: sourceCues.length,

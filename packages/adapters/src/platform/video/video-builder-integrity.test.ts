@@ -116,6 +116,50 @@ describe("Builder deterministic integrity gate", () => {
     }
   });
 
+  it("reports independent dangling, core-count, and derived-source path failures in one pass", () => {
+    const item = createFixture();
+    try {
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.knowledgeUnits[0].evidence.push({ refType: "frame", ref: "FRAME-MISSING", supports: "missing frame" });
+      reconstruction.coverageMatrix.coreEvidence = { covered: 0, total: 0 };
+      reconstruction.derivedSources.push(
+        { id: "SRC-MEDIA", path: "media-preparation.json#/sourceMedia" },
+        { id: "POST-TITLE", path: "post-source-input.json#/facts/title" }
+      );
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+
+      let message = "";
+      try { validateBuilderIntegrity(item.root, item.videoPath); }
+      catch (error) { message = error instanceof Error ? error.message : String(error); }
+      expect(message.split("\n")).toEqual(expect.arrayContaining([
+        "BUILDER_INTEGRITY_DANGLING_REFERENCE:frame:FRAME-MISSING@knowledgeUnits[0].evidence[1]",
+        "BUILDER_INTEGRITY_CORE_EVIDENCE_COUNT:0/0!=2/2",
+        "BUILDER_INTEGRITY_DERIVED_SOURCE_MISSING:media-preparation.json#/sourceMedia",
+        "BUILDER_INTEGRITY_DERIVED_SOURCE_MISSING:post-source-input.json#/facts/title"
+      ]));
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
+  it("stops on a frozen media fingerprint failure before collecting candidate integrity issues", () => {
+    const item = createFixture();
+    try {
+      const manifestPath = path.join(item.root, "media-preparation.json");
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+      manifest.sourceMedia.fingerprint = "stale";
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+      const reconstructionPath = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
+      reconstruction.knowledgeUnits[0].evidence.push({ refType: "frame", ref: "FRAME-MISSING", supports: "missing frame" });
+      fs.writeFileSync(reconstructionPath, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath)).toThrow("BUILDER_INTEGRITY_MEDIA_FINGERPRINT");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
   it("accepts a complete V2 Builder result with three evidence-bound lenses", () => {
     const item = createFixture();
     try {
@@ -151,6 +195,29 @@ describe("Builder deterministic integrity gate", () => {
       reconstruction.builderLenses.directingLogic.stages[1].cognitiveChange = reconstruction.builderLenses.directingLogic.stages[0].cognitiveChange;
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath)).toThrow("BUILDER_INTEGRITY_DIRECTING_STAGE_REPETITION");
+    } finally {
+      fs.rmSync(item.root, { recursive: true, force: true });
+    }
+  });
+
+  it("reports content-block failures even when directing stages are missing", () => {
+    const item = createFixture();
+    try {
+      upgradeFixtureToV2(item.root);
+      const file = path.join(item.root, "reconstruction.json");
+      const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
+      reconstruction.builderLenses.contentRestoration.blocks[0].body = " ";
+      reconstruction.builderLenses.contentRestoration.blocks[0].evidenceRefs = [];
+      reconstruction.builderLenses.directingLogic.stages = [];
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+
+      let message = "";
+      try { validateBuilderIntegrity(item.root, item.videoPath); }
+      catch (error) { message = error instanceof Error ? error.message : String(error); }
+      expect(message.split("\n")).toEqual(expect.arrayContaining([
+        "BUILDER_INTEGRITY_BUILDER_LENSES_INCOMPLETE",
+        "BUILDER_INTEGRITY_CONTENT_BLOCK_EVIDENCE"
+      ]));
     } finally {
       fs.rmSync(item.root, { recursive: true, force: true });
     }
@@ -240,16 +307,22 @@ describe("Builder deterministic integrity gate", () => {
       const file = path.join(item.root, "reconstruction.json");
       const reconstruction = JSON.parse(fs.readFileSync(file, "utf8"));
       reconstruction.knowledgeUnits[0].evidence.push({
-        refType: "source", ref: "media-preparation.json#audio", supports: "technical stream presence"
+        refType: "source", ref: "SRC-MEDIA-PREP", supports: "media-preparation.json#/audio: technical stream presence"
       });
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath))
-        .toThrow("BUILDER_INTEGRITY_DANGLING_REFERENCE:source:media-preparation.json#audio");
+        .toThrow("BUILDER_INTEGRITY_DANGLING_REFERENCE:source:SRC-MEDIA-PREP");
 
-      reconstruction.derivedSources.push({ id: "SRC-MEDIA-PREP", path: "media-preparation.json" });
-      reconstruction.knowledgeUnits[0].evidence.at(-1).ref = "SRC-MEDIA-PREP";
+      reconstruction.derivedSources.push({ id: "SRC-MEDIA-PREP", path: "media-preparation.json#/sourceMedia" });
+      fs.writeFileSync(file, JSON.stringify(reconstruction));
+      expect(() => validateBuilderIntegrity(item.root, item.videoPath))
+        .toThrow("BUILDER_INTEGRITY_DERIVED_SOURCE_MISSING:media-preparation.json#/sourceMedia");
+
+      reconstruction.derivedSources[0].path = "media-preparation.json";
       fs.writeFileSync(file, JSON.stringify(reconstruction));
       expect(() => validateBuilderIntegrity(item.root, item.videoPath)).not.toThrow();
+      expect(reconstruction.knowledgeUnits[0].evidence.at(-1)).toEqual({ refType: "source", ref: "SRC-MEDIA-PREP",
+        supports: "media-preparation.json#/audio: technical stream presence" });
     } finally {
       fs.rmSync(item.root, { recursive: true, force: true });
     }

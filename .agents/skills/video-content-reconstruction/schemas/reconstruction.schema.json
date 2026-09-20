@@ -18,7 +18,11 @@
         "required": ["id", "path", "kind", "producedBy", "timeRange", "limitations"],
         "properties": {
           "id": { "type": "string" },
-          "path": { "type": "string" },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Exact relative filename of a real local file under the candidate root, for example media-preparation.json or post-source-input.json. Filename only: do not append a JSON Pointer or URL-style fragment such as #/sourceMedia or #facts/title. Keep the source ID in evidence.ref; put field-level location/context in evidence.supports."
+          },
           "kind": { "type": "string" },
           "producedBy": { "type": "string" },
           "timeRange": { "$ref": "#/$defs/range" },

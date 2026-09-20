@@ -28,6 +28,7 @@ import {
 import { withSystemProxy } from "../network/system-proxy.js";
 import { prepareBuilderInputs } from "./video-reconstruction-media-preparer.js";
 import { validateBuilderIntegrity } from "./video-builder-integrity.js";
+import { withIntegrityRepairReceipt } from "./video-integrity-repair-receipt.js";
 import {
   assembleHostOwnedReconstruction,
   type HostAssemblyReport
@@ -367,7 +368,9 @@ Resume contract:
 - When probe, protocol, or targeted evidence already exists, treat it as frozen input and inspect it directly.
 
 Execute only the missing Builder closures: first-round open probe, one merged video-specific capture protocol, targeted capture, real OCR/UI inspection when required, structured three-lens reconstruction, coverage/meta-gate self-audit, and schema validation. New protocol output must use capture-protocol-2.0; new reconstruction output must use video-reconstruction-2.0. Preserve the transcript provenance recorded in media-preparation.json. Machine transcription remains a lower-confidence proposal and must be checked against audible speech and visible captions when consequential.
-Every evidence item with refType "source" must use the exact ID of a matching top-level derivedSources entry, never a file path or JSON pointer. If media-preparation.json supports a technical fact, register it in derivedSources first and cite that registered ID.
+Frozen ASR preservation protects the input artifact; it does not require copying a demonstrable recognition error into the main report. Inspect directly readable captions and, with a frame citation, restore what the video says as a visual observation. If the caption cannot be read clearly, state unknown rather than guessing. Never alter the frozen ASR file or present an author's claim as externally verified.
+Serialize JSON with a reliable standard serializer (such as JSON.stringify or Python json.dump). Do not hand-build escaped JSON or write the whole report from one giant inline Python object. Construct and parse-check small data sections. If a serialization/syntax error repeats, change method instead of repeating the same write attempt.
+Every evidence item with refType "source" must use the exact ID of a matching top-level derivedSources entry, never a file path or JSON pointer. derivedSources[].path is only the exact relative filename of a real local file under the candidate root, with no #fragment or JSON Pointer: use "media-preparation.json" for its sourceMedia/audio fields, not "media-preparation.json#/sourceMedia". Keep the ID in evidence.ref; put the field location and what it supports in evidence.supports, for example ref "SRC-MEDIA-TECH", supports "media-preparation.json#/audio: technical audio presence". For post identity, use path "post-source-input.json", cite the registered ID in ref (for example "POST-TITLE"), and put "post-source-input.json#/facts/title: original post title" in supports. If the frozen file does not exist in the candidate root, do not register it as a derived source. Schema validation checks structure only; the host integrity gate separately checks that each path names an existing file under the candidate root.
 
 Three-lens Builder contract:
 - Round one leaves explicit unanswered questions for content restoration, directing logic, and visual editing.
@@ -471,6 +474,7 @@ unknown or boundary, not an overlooked relationship; preserve that limitation in
 unknowns and remove it from the overlooked arrays. Run the canonical schema validator once before finishing. Do not create
 article.md or any evaluation artifact. Repair the existing reconstruction.json only, plus the matching probe.json carrier fields
 when CARRIER_STATUS requires them.
+For DERIVED_SOURCE_PATH or DERIVED_SOURCE_MISSING, derivedSources[].path must be the exact relative filename of a real local file under the candidate root, with no JSON Pointer or #fragment (for example "media-preparation.json" or "post-source-input.json"). Keep the registered source ID in evidence.ref and place the field location/context in evidence.supports; e.g. path "media-preparation.json", ref "SRC-MEDIA-TECH", supports "media-preparation.json#/audio: technical audio presence". Do not change IDs or rewrite supports text just to repair the path.
 `;
 }
 
@@ -789,10 +793,15 @@ When these findings contain a research-review@1 review, also write ${path.join(o
           const failure = error instanceof Error ? error.message : "unknown builder integrity failure";
           if (!failure.startsWith("BUILDER_INTEGRITY_") || integrityRepairAttempts >= 2) throw error;
           integrityRepairAttempts += 1;
-          await runCodex(
-            builderIntegrityRepairPrompt(videoPath, outputDir, failure), outputDir, "candidate",
-            request.sourceMediaArtifactRef, observeLifecycle, this.execution
-          );
+          await withIntegrityRepairReceipt({
+            outputDir,
+            attempt: integrityRepairAttempts as 1 | 2,
+            triggeringFailure: failure,
+            run: () => runCodex(
+              builderIntegrityRepairPrompt(videoPath, outputDir, failure), outputDir, "candidate",
+              request.sourceMediaArtifactRef, observeLifecycle, this.execution
+            )
+          });
           hostAssembly = mergeHostAssemblyReports(hostAssembly, assembleHostOwnedReconstruction(outputDir));
         }
       }

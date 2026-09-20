@@ -28,6 +28,10 @@ const methodFiles = [
   "packages/adapters/src/platform/video/codex-video-reconstruction-executor.ts",
   "packages/adapters/src/platform/video/video-ocr-host-recovery.ts",
   "packages/adapters/src/platform/video/video-ocr-builder-continuation.ts",
+  "packages/adapters/src/platform/video/video-builder-integrity.ts",
+  "packages/adapters/src/platform/video/video-depth-integrity.ts",
+  "packages/adapters/src/platform/video/video-reconstruction-host-assembler.ts",
+  "packages/adapters/src/platform/video/video-integrity-repair-receipt.ts",
   "packages/adapters/src/platform/video/video-codex-execution.ts",
   "packages/adapters/src/workflow/post-evaluation-repair.ts",
   "packages/adapters/src/workflow/source-consistency-checker.ts",
@@ -196,7 +200,11 @@ describe("research input pinning", () => {
   it.each([
     "packages/adapters/src/platform/video/video-ocr-host-recovery.ts",
     "packages/adapters/src/platform/video/video-ocr-builder-continuation.ts",
-  ])("pins the OCR runtime helper digest: %s", (helper) => {
+    "packages/adapters/src/platform/video/video-builder-integrity.ts",
+    "packages/adapters/src/platform/video/video-depth-integrity.ts",
+    "packages/adapters/src/platform/video/video-reconstruction-host-assembler.ts",
+    "packages/adapters/src/platform/video/video-integrity-repair-receipt.ts",
+  ])("pins the Builder and OCR runtime helper digest: %s", (helper) => {
     const pinned = pinResearchInput("post", postInput());
     expect(pinned.methods).toContainEqual({ path: helper, sha256: expect.stringMatching(/^[a-f0-9]{64}$/u) });
 

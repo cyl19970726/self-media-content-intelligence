@@ -27,8 +27,13 @@ Builder 是必选的“证据到结构化重建”算子。它不负责下载媒
 
 ## 证据纪律
 
+- `derivedSources[].path` 必须是候选根目录内真实存在的本地文件的精确相对文件名，例如 `media-preparation.json` 或 `post-source-input.json`；禁止追加 JSON Pointer 或 `#fragment`。字段定位写在 `evidence.supports`，证据引用写已注册 ID：例如 `path: "media-preparation.json"`、`ref: "SRC-MEDIA-TECH"`、`supports: "media-preparation.json#/audio: technical audio presence"`。原帖标题同理使用 `path: "post-source-input.json"`、`ref: "POST-TITLE"`、`supports: "post-source-input.json#/facts/title: original post title"`。文件名、source ID 与 supports 中的字段说明不能互相替代；缺少的本地文件不得注册。
+- Schema 校验只验证结构；宿主完整性闸门还会逐项确认 `derivedSources[].path` 指向候选根目录内真实存在的文件。
+
 - 严格区分 `raw_fact`、`visual_observation`、`author_claim`、`system_inference`、`unknown`。
 - ASR 与 OCR 都是提案；保留原文，冲突另记，不静默纠正。
+- 保留冻结 ASR 原文是保护输入证据，不代表主报告必须照搬可由直接可读字幕证明的识别错误。逐句检查画面字幕；能清晰读出的内容可作为 `visual_observation` 还原“视频声称/字幕写着……”，并引用对应帧。读不清的部分明确标 `unknown`，不得猜测。不得改写冻结 ASR 文件，也不得把作者主张写成外部已验证事实。
+- 写 JSON 时使用可靠的标准 JSON 序列化方式（例如 `JSON.stringify` 或 Python `json.dump`），避免手工拼接转义或用巨型内联 Python 对象一次写完整报告；分块构造并在每块后验证 JSON 可解析。若序列化/语法错误重复出现，停止重复同一写法，改用更小、可检查的数据块和标准序列化器。
 - `targeted_frame` 证据引用使用 `TARGET-*` 帧 ID；`ocr` 证据引用只能使用 OCR 行的 `OCR-*` ID，不能把 TARGET 帧 ID 冒充 OCR 行。任何帧/OCR 引用的时间必须落在对应知识单元范围内（允许 ±0.5 秒边界误差）。
 - 定向采集会生成 `targeted-evidence/contact-sheet.jpg`。先用它做全局覆盖核对，再按未决问题查看原图；每批最多 4 张、通常总计不超过 12 张。不得一次把几十张高分辨率图片灌入上下文。
 - OCR 全帧失败时不存在可引用的 OCR 行 ID；人工实际读到的文字引用对应 `targeted_frame`，注明可读范围，只有仍无法辨认的部分留作 unknown。绝不发明 `OCR-*` 占位 ID，也不改写冻结 ASR。
