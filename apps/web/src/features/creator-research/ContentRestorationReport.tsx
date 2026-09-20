@@ -34,10 +34,10 @@ function EvidenceImage({ item }: { item: ContentBlock["media"][number] }) {
   </div>;
 }
 
-function EvidenceMedia({ block }: { block: ContentBlock }) {
-  if (!block.media.length) return null;
-  const className = block.type === "before_after" ? "content-evidence content-evidence--paired" : "content-evidence";
-  return <div className={className}>{block.media.map((item) => <figure id={`evidence-${block.id}-${item.ref}`} key={item.ref}>
+function EvidenceMedia({ block, items = block.media, supplemental = false }: { block: ContentBlock; items?: ContentBlock["media"]; supplemental?: boolean }) {
+  if (!items.length) return null;
+  const className = !supplemental && block.type === "before_after" ? "content-evidence content-evidence--paired" : "content-evidence";
+  return <div className={className}>{items.map((item, index) => <figure id={`evidence-${block.id}-${item.ref}${items.findIndex(other => other.ref === item.ref) === index ? "" : `-${index + 1}`}`} key={`${item.ref}-${index}`}>
     <a href={item.src} target="_blank" rel="noreferrer" aria-label={`打开原图：${item.label}`}><EvidenceImage item={item}/></a>
     <figcaption><div><b>{roleLabels[item.role] ?? "视觉证据"}</b><span>{item.focus}</span>{item.proves || item.cannotProve ? <><small>画面支持：{item.proves || "未产出"}</small><small>不能据此证明：{item.cannotProve || "未产出"}</small></> : <small>该帧未产出单独的证明范围说明。</small>}</div><time>{timestamp(item.time)}</time></figcaption>
   </figure>)}</div>;
@@ -127,7 +127,22 @@ export function ContentRestorationReport({ blocks, data }: { blocks: ContentBloc
     <ContentBlockBody body={block.body}/>
     <EvidenceMedia block={block}/>
     {block.unresolvedVisuals?.map((visual, index) => <UnresolvedVisualEvidence key={`${visual.ref}-${index}`} visual={visual} data={data}/>)}
-    {data && <DepthEvidence data={data} refs={block.evidenceRefs.filter(ref => ![...block.media, ...block.steps.flatMap(step => step.media)].some(item => item.ref === ref))}/>}
+    {(() => {
+      const supplementalMedia = block.supplementalMedia ?? [];
+      const displayedRefs = new Set([
+        ...block.media.map(item => item.ref),
+        ...supplementalMedia.map(item => item.ref),
+        ...(block.unresolvedVisuals ?? []).map(visual => visual.ref),
+        ...block.steps.flatMap(step => [...step.media.map(item => item.ref), ...(step.unresolvedFrameRefs ?? [])])
+      ]);
+      const supplementalRefs = [...new Set(block.evidenceRefs.filter(ref => !displayedRefs.has(ref)))];
+      const count = new Set([...supplementalMedia.map(item => item.ref), ...supplementalRefs]).size;
+      return count > 0 && <details className="content-block-supplemental-evidence">
+        <summary>查看补充证据（{count}条）</summary>
+        <EvidenceMedia block={block} items={supplementalMedia} supplemental/>
+        {data && supplementalRefs.length > 0 && <DepthEvidence data={data} refs={supplementalRefs}/>}
+      </details>;
+    })()}
     {block.steps.length > 0 && <ol className="content-operation-sequence">{block.steps.map((step, index) => <li key={`${step.label}-${index}`}>
       <div><b>{step.label}</b><p>{step.description}</p></div>
       {!!step.unresolvedFrameRefs?.length && <p>步骤画面引用未解析：{step.unresolvedFrameRefs.join("、")}</p>}

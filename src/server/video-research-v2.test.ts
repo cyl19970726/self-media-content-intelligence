@@ -69,13 +69,29 @@ describe("video reconstruction V2 projection", () => {
         { label: "完成操作", description: "结果界面已经出现。", frameRefs: ["TARGET-0004"] }
       ]
     });
+    lenses.contentRestoration.blocks.push({
+      id: "BLOCK-003", type: "operation_sequence", title: "同帧多重标注", body: "显式画面标注与步骤共用同一帧。",
+      timeRange: { start: 0, end: 10 }, evidenceRefs: ["TARGET-0001"], frameRefs: ["TARGET-0001"],
+      visuals: [
+        { ref: "TARGET-0001", role: "focus", focus: "入口按钮", proves: "按钮可见", cannotProve: "按钮可用性未知", crop: { x: 0.1, y: 0.2, width: 0.3, height: 0.4 } },
+        { ref: "TARGET-0001", role: "detail_crop", focus: "按钮文字", proves: "文字可读", cannotProve: "点击结果未知" }
+      ],
+      steps: [{ label: "打开设置", description: "先看到设置入口。", frameRefs: ["TARGET-0001"] }]
+    });
+    const b01Refs = ["OPEN0014", ...Array.from({ length: 11 }, (_value, index) => `OPEN${String(index + 15).padStart(4, "0")}`)];
+    lenses.contentRestoration.blocks.push({
+      id: "B01", type: "frame_strip", title: "开头画面证据", body: "开头画面支持正文结论。",
+      timeRange: { start: 0, end: 10 }, evidenceRefs: b01Refs, frameRefs: b01Refs,
+      visuals: [{ ref: "OPEN0014", role: "key_frame", focus: "关键开头帧", proves: "标注的结论", cannotProve: "连续过程" }]
+    });
     fs.writeFileSync(path.join(root, "reconstruction.json"), JSON.stringify(reconstruction));
     fs.writeFileSync(path.join(root, "article.md"), "# Builder report\n\nFixture");
     fs.writeFileSync(path.join(root, "targeted-evidence", "targeted-evidence.json"), JSON.stringify({
       frames: [
         { id: "TARGET-0001", time: 1, frame: "frames/before.jpg", reason: "设置前" },
         { id: "TARGET-0002", time: 5, frame: "frames/during.jpg", reason: "操作中" },
-        { id: "TARGET-0004", time: 9, frame: "frames/after.jpg", reason: "结果" }
+        { id: "TARGET-0004", time: 9, frame: "frames/after.jpg", reason: "结果" },
+        ...b01Refs.map((id, index) => ({ id, time: index, frame: "frames/during.jpg", reason: `开头辅助帧 ${index + 1}` }))
       ]
     }));
     fs.writeFileSync(path.join(root, "evidence", "evidence-pack.json"), JSON.stringify({ frameIndex: [] }));
@@ -116,7 +132,7 @@ describe("video reconstruction V2 projection", () => {
     expect(result?.visualEditing.openingAnalysis).toEqual(opening);
     expect(result?.directingLogic.packagingAnalysis).toBeNull();
     expect(result?.performanceContext.observation?.metrics[0]?.median).toBeNull();
-    expect(result?.contentBlocks).toHaveLength(2);
+    expect(result?.contentBlocks).toHaveLength(4);
     expect(result?.contentUnknowns).toEqual(["隐藏设置没有展示"]);
     expect(result?.contentBlocks[0]?.type).toBe("before_after");
     expect(result?.contentBlocks[0]?.media.map((item) => item.ref)).toEqual(["TARGET-0001", "TARGET-0002", "TARGET-0004"]);
@@ -126,6 +142,20 @@ describe("video reconstruction V2 projection", () => {
     // A block-level frame that is not repeated in a step must remain reachable.
     expect(result?.contentBlocks[1]?.media.map(item => item.ref)).toEqual(["TARGET-0002"]);
     expect(result?.contentBlocks[1]?.steps[0]?.media[0]).toMatchObject({ label: "打开设置" });
+    expect(result?.contentBlocks[1]?.supplementalMedia).toEqual([]);
+    expect(result?.contentBlocks[2]?.media).toHaveLength(2);
+    expect(result?.contentBlocks[2]?.media[0]).toMatchObject({
+      ref: "TARGET-0001", role: "focus", focus: "入口按钮", proves: "按钮可见", cannotProve: "按钮可用性未知",
+      crop: { x: 0.1, y: 0.2, width: 0.3, height: 0.4 }
+    });
+    expect(result?.contentBlocks[2]?.media[1]).toMatchObject({
+      ref: "TARGET-0001", role: "detail_crop", focus: "按钮文字", proves: "文字可读", cannotProve: "点击结果未知"
+    });
+    expect(result?.contentBlocks[2]?.steps[0]?.media[0]?.ref).toBe("TARGET-0001");
+    const b01 = result?.contentBlocks.find(block => block.id === "B01");
+    expect(b01?.explicitVisualRefs).toEqual(["OPEN0014"]);
+    expect(b01?.media.map(item => item.ref)).toEqual(["OPEN0014"]);
+    expect(b01?.supplementalMedia?.map(item => item.ref)).toEqual(b01Refs.slice(1));
     expect(result?.evidenceIndex.find((item) => item.id === "OCR-00025")).toMatchObject({ kind: "ocr", label: "可读 OCR 文本", artifactRef: expect.stringContaining("targeted-evidence/frames/during.jpg") });
     expect(result?.directingLogic.stages).toHaveLength(2);
     expect(result?.directingLogic.activatedQuestion).toBe("入口在哪里？");

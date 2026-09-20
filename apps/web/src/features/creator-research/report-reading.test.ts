@@ -58,12 +58,62 @@ describe("report reading", () => {
     expect(html.slice(html.indexOf('id="visual-ui-states"'), html.indexOf('id="visual-transitions"'))).toContain('href="/frame-2.jpg"');
     expect(html.slice(html.indexOf('id="visual-continuity"'))).toContain('href="/frame-3.jpg"');
   });
-  it("opens content evidence and keeps all content blocks in the document", () => {
-    const block = { id: "one", type: "text", title: "标题", body: "原文", start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null, unresolvedVisuals: [],
-      media: [{ ref: "F1", src: "/frame-1.jpg", label: "证据", time: 1, role: "evidence", focus: "细节", proves: "支持", cannotProve: "边界", crop: null }] } as VideoResearch["contentBlocks"][number];
-    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block, { ...block, id: "two" }] }));
-    expect(html).toContain('href="/frame-1.jpg"');
+  it("keeps Builder text and explicit visuals visible while folding supplemental cues and references", () => {
+    const block = { id: "one", type: "text", title: "标题", body: "Builder 原始正文", start: 0, end: 1, evidenceRefs: ["CUE-1", "F2"], steps: [], boundary: null, unresolvedVisuals: [],
+      media: [{ ref: "F1", src: "/frame-1.jpg", label: "证据", time: 1, role: "evidence", focus: "按钮细节", proves: "画面显示该按钮", cannotProve: "不能证明效果", crop: null }] } as VideoResearch["contentBlocks"][number];
+    const withSupplementalData = { ...data,
+      transcript: [{ id: "CUE-1", start: 2, end: 3, text: "补充口播原文", representativeFrame: null, overlappingShots: [] }],
+      frames: { dense: [...frames, { id: "F2", src: "/frame-2.jpg", time: 2, reason: "辅助画面" }], sparse: [] }
+    } as VideoResearch;
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block, { ...block, id: "two" }], data: withSupplementalData }));
+    const detailsStart = html.indexOf("<details class=\"content-block-supplemental-evidence\">");
+    const detailsEnd = html.indexOf("</details>", detailsStart);
     expect(html).toContain('id="content-two"');
+    expect(html.slice(0, detailsStart)).toContain("Builder 原始正文");
+    for (const text of ["按钮细节", "画面显示该按钮", "不能证明效果"]) expect(html.slice(0, detailsStart)).toContain(text);
+    expect(html.slice(0, detailsStart)).toContain('href="/frame-1.jpg"');
+    expect(html.slice(detailsStart, detailsEnd)).toContain("查看补充证据（2条）");
+    expect(html.slice(detailsStart, detailsEnd)).toContain("补充口播原文");
+    expect(html.slice(detailsStart, detailsEnd)).toContain('href="/frame-2.jpg"');
+  });
+  it("keeps unannotated visual-block frames and operation steps visible outside supplemental evidence", () => {
+    const block: VideoResearch["contentBlocks"][number] = {
+      id: "sequence", type: "before_after", title: "状态变化", body: "状态变化正文", start: 0, end: 3,
+      evidenceRefs: ["BEFORE", "AFTER", "STEP", "CUE-2", "F3"], boundary: null, unresolvedVisuals: [],
+      media: [
+        { ref: "BEFORE", src: "/before.jpg", label: "变化前", time: 0, role: "before", focus: "", proves: "", cannotProve: "", crop: null },
+        { ref: "AFTER", src: "/after.jpg", label: "变化后", time: 3, role: "after", focus: "", proves: "", cannotProve: "", crop: null }
+      ],
+      steps: [{ label: "操作步骤", description: "执行操作", media: [{ ref: "STEP", src: "/step.jpg", label: "操作步骤", time: 1 }], unresolvedFrameRefs: [] }]
+    };
+    const withSupplementalData = { ...data, transcript: [{ id: "CUE-2", start: 1, end: 2, text: "辅助口播", representativeFrame: null, overlappingShots: [] }] } as VideoResearch;
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block], data: withSupplementalData }));
+    const detailsStart = html.indexOf("<details class=\"content-block-supplemental-evidence\">");
+    const detailsEnd = html.indexOf("</details>", detailsStart);
+    expect(html.slice(0, detailsStart)).toContain('href="/before.jpg"');
+    expect(html.slice(0, detailsStart)).toContain('href="/after.jpg"');
+    expect(html.slice(detailsEnd)).toContain('href="/step.jpg"');
+    expect(html.slice(detailsStart)).toContain("查看补充证据（2条）");
+    expect(html.slice(detailsStart)).toContain("辅助口播");
+  });
+  it("folds the eleven reference-only OPEN frames beside the one explicit B01 visual", () => {
+    const refs = ["OPEN0014", ...Array.from({ length: 11 }, (_value, index) => `OPEN${String(index + 15).padStart(4, "0")}`)];
+    const frame = (ref: string, label: string) => ({ ref, src: `/${ref}.jpg`, label, time: 1, role: "key_frame",
+      focus: label, proves: "标注的结论", cannotProve: "连续过程", crop: null });
+    const block: VideoResearch["contentBlocks"][number] = {
+      id: "B01", type: "frame_strip", title: "开头画面证据", body: "Builder 保留的完整正文。", start: 0, end: 10,
+      evidenceRefs: refs, explicitVisualRefs: ["OPEN0014"], unresolvedVisuals: [], media: [frame("OPEN0014", "关键开头帧")],
+      supplementalMedia: refs.slice(1).map(ref => frame(ref, "仅引用辅助帧")), steps: [], boundary: null
+    };
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block], data }));
+    const detailsStart = html.indexOf("<details class=\"content-block-supplemental-evidence\">");
+    const detailsEnd = html.indexOf("</details>", detailsStart);
+    expect(html.slice(0, detailsStart)).toContain("Builder 保留的完整正文。");
+    expect(html.slice(0, detailsStart)).toContain("关键开头帧");
+    expect(html.slice(0, detailsStart)).toContain('src="/OPEN0014.jpg"');
+    expect(html.slice(0, detailsStart)).not.toContain('src="/OPEN0015.jpg"');
+    expect(html.slice(detailsStart, detailsEnd)).toContain("查看补充证据（11条）");
+    for (const ref of refs.slice(1)) expect(html.slice(detailsStart, detailsEnd)).toContain(`src="/${ref}.jpg"`);
   });
   it("renders a seven-column Markdown table between the original prose paragraphs", () => {
     const block = { id: "table", type: "text", title: "表格", start: 0, end: 1, evidenceRefs: [], steps: [], boundary: null, unresolvedVisuals: [], media: [],
@@ -82,6 +132,18 @@ describe("report reading", () => {
     expect(html).not.toContain('class="content-markdown-table"');
     expect(html).toContain("| 列一 | 列二 |");
     expect(html).toContain("| --- | 不是分隔行 |");
+  });
+  it("preserves each frame anchor and all annotations when a frame is referenced twice", () => {
+    const media = (ref: string, proves: string) => ({ ref, src: `/${ref}.jpg`, label: ref, time: 1, role: "evidence", focus: ref, proves, cannotProve: "边界", crop: null });
+    const block: VideoResearch["contentBlocks"][number] = {
+      id: "repeated", type: "frame_strip", title: "同帧不同说明", body: "完整正文", start: 0, end: 2,
+      evidenceRefs: ["F1", "F2"], steps: [], boundary: null, unresolvedVisuals: [],
+      media: [media("F1", "第一条说明"), media("F2", "第二张画面"), media("F1", "另一条说明")]
+    };
+    const html = renderToStaticMarkup(createElement(ContentRestorationReport, { blocks: [block] }));
+    for (const id of ["evidence-repeated-F1", "evidence-repeated-F2", "evidence-repeated-F1-3"]) expect(html).toContain(`id="${id}"`);
+    for (const description of ["第一条说明", "第二张画面", "另一条说明"]) expect(html).toContain(description);
+    expect(html.match(/id="evidence-repeated-F1"/g)).toHaveLength(1);
   });
   it("deduplicates references and explicitly labels missing evidence", () => {
     const html = renderToStaticMarkup(createElement(DepthEvidence, { data, refs: ["F1", "F1", "absent"] }));
