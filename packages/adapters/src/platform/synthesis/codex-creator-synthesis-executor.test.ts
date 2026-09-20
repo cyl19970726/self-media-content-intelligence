@@ -47,6 +47,29 @@ it("routes an SDK repair through the strongly bound research-only reuse base wit
   })).toBeUndefined();
 });
 
+it.each([
+  [{}, "gpt-5.6-luna", "medium"],
+  [{ builderModel: "gpt-5.6-terra", builderReasoningEffort: "high" }, "gpt-5.6-terra", "high"]
+] as const)("uses the SDK creator Builder model and reasoning settings from execution options", async (settings, model, effort) => {
+  temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "creator-synthesis-sdk-model-"));
+  const outputDir = path.join(temporaryRoot, "output");
+  const runtime = path.join(temporaryRoot, "runtime");
+  fs.mkdirSync(outputDir, { recursive: true });
+  process.env.SELF_MEDIA_RUNTIME_DIR = runtime;
+  const threadSettings: Array<Record<string, unknown>> = [];
+  const sdkFactory = { create: () => ({ startThread: (options: Record<string, unknown>) => {
+    threadSettings.push(options);
+    return { id: "sdk-thread", runStreamed: async () => ({ events: (async function* () {
+      yield { type: "item.completed", item: { id: "message", type: "agent_message", text: "{}" } };
+    })() }) };
+  }, resumeThread: () => { throw new Error("unexpected resume"); } }) };
+  await runSynthesisChild({ creatorRunId: "creator-run", prompt: "test", outputDir, label: "synthesis",
+    role: "creator_synthesis", inputRevision: "revision", execution: { executionMode: "sdk", sdkFactory: sdkFactory as never, ...settings } });
+  expect(threadSettings[0]).toMatchObject({ model, modelReasoningEffort: effort });
+  expect(JSON.parse(fs.readFileSync(path.join(outputDir, "synthesis-runtime.json"), "utf8"))).toMatchObject({ model,
+    reasoningEffort: effort, executionMode: "sdk" });
+});
+
 it("instructs the independent reviewer to judge every specificity signal without mechanical failure", () => {
   const instructions = creatorSynthesisSpecificityReviewInstructions("/attempt/cross-post-specificity-diagnostics.json");
   expect(instructions).toContain("/attempt/cross-post-specificity-diagnostics.json");

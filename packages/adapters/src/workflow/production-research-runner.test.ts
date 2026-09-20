@@ -116,6 +116,7 @@ describe("core evidence count Builder recovery", () => {
     const runner = new ProductionResearchRunner({} as never, { read: () => ({}) } as never, undefined,
       factory as never);
     const request = { runId: "builder-workflow", stepRunId: "builder-step", attemptId: "builder-attempt", input: {},
+      definition: { model: "gpt-5.6-terra", reasoningEffort: "medium" },
       signal: new AbortController().signal, emit: async (type: string, data: unknown) => { events.push({ type, data }); } };
     const pinned = { source: { creatorRunId, postExternalId: "post-1", sourceUrl: "https://example.test/post-1",
       sourceMediaArtifactRef: sourceRef, detailArtifactRef: "detail", mediaManifestArtifactRef: "manifest", selectionArtifactRef: "selection",
@@ -125,6 +126,7 @@ describe("core evidence count Builder recovery", () => {
       .post(request, pinned, { id: "evidence" }, undefined, false, false, true);
     expect(options).toHaveLength(1);
     expect(options[0]).toMatchObject({ executionMode: "sdk", preservePreparedCandidate: false,
+      builderModel: "gpt-5.6-terra", builderReasoningEffort: "medium",
       repairFindings: expect.objectContaining({ gateId: "builder_integrity_core_evidence_count" }) });
     expect(events).toContainEqual(expect.objectContaining({ type: "candidate.copied",
       data: expect.objectContaining({ reason: "core_evidence_count_repair" }) }));

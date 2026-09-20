@@ -297,6 +297,9 @@ export class ProductionResearchRunner implements AgentRunner {
       : coreEvidenceRecovery ? { gateId: "builder_integrity_core_evidence_count",
         instruction: "Correct only the declared core evidence coverage count from the existing knowledge units and evidence bindings." } : undefined;
     const executor = this.videoExecutorFactory({ executionMode: "sdk", signal: request.signal,
+      ...(request.definition?.model ? reviewer ? { evaluatorModel: request.definition.model,
+        evaluatorReasoningEffort: request.definition.reasoningEffort } : { builderModel: request.definition.model,
+        builderReasoningEffort: request.definition.reasoningEffort } : {}),
       evaluationPolicy: reviewer ? "single_pass" : "skip", forceEvaluation: reviewer, outputRelativeRoot: relativeRoot,
       preservePreparedCandidate: Boolean(original) && !repair && !coreEvidenceRecovery,
       ...(reviewer && prior ? { reviewerOnly: true, expectedCandidateSha256: prior.reportSha256 } : {}),
@@ -430,6 +433,9 @@ export class ProductionResearchRunner implements AgentRunner {
     const explicitReview = repair && prior && simpleReview
       ? await this.explicitSimpleReview((request.input as ReviewInput).review, (request.input as ReviewInput).candidate, prior) : null;
     const executor = new CodexCreatorSynthesisExecutor(this.artifacts, { executionMode: "sdk", signal: request.signal,
+      ...(request.definition?.model ? reviewer ? { evaluatorModel: request.definition.model,
+        evaluatorReasoningEffort: request.definition.reasoningEffort } : { builderModel: request.definition.model,
+        builderReasoningEffort: request.definition.reasoningEffort } : {}),
       phase: reviewer ? "evaluate" : "build", outputDirectory: directory,
       ...(reviewer && prior ? { preparedCandidatePath: artifactPath(prior.reportArtifactRef) } : {}),
       ...(repair && prior ? { priorCandidatePath: artifactPath(prior.reportArtifactRef),
@@ -464,17 +470,21 @@ function isBuilt(outcome: VideoReconstructionOutcome): outcome is Extract<VideoR
 }
 
 export function createProductionResearchWorkflow(database: DatabaseSync, store: SQLiteWorkflowRunStore, artifacts: CreatorArtifactStore, repository: CreatorResearchRepository) {
-  const config = (kind: "post" | "creator") => {
+  const config = (kind: "post" | "creator", model: string) => {
     const methods = methodSnapshot(kind);
     const skillPackages = [skillPackageSnapshot(kind)];
     const digest = createHash("sha256").update(JSON.stringify({ methods, skillPackages })).digest("hex");
-    return { prompt: "Delegates to the pinned production operator; complete prompts and raw SDK events are stored in its private child trace.",
+    return { model, prompt: "Delegates to the pinned production operator; complete prompts and raw SDK events are stored in its private child trace.",
       promptRevision: digest, skillSnapshotsRevision: digest, permissionsRevision: "isolated-production-attempt@1",
       config: { delegate: "existing-production-operator", methods, skillPackages } };
   };
-  const configs: ResearchAgentConfig = { postSourceChecker: config("post"), postBuilder: config("post"), postReviewer: config("post"), postRepair: config("post"),
-    postEvaluationRepair: config("post"),
-    creatorBuilder: config("creator"), creatorReviewer: config("creator"), creatorRepair: config("creator") };
+  const postBuilderModel = process.env.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-luna";
+  const postEvaluatorModel = process.env.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
+  const creatorBuilderModel = process.env.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-5.6-luna";
+  const creatorEvaluatorModel = process.env.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL ?? "gpt-5.6-luna";
+  const configs: ResearchAgentConfig = { postSourceChecker: config("post", "gpt-5.6-luna"), postBuilder: config("post", postBuilderModel), postReviewer: config("post", postEvaluatorModel), postRepair: config("post", postBuilderModel),
+    postEvaluationRepair: config("post", "gpt-5.6-luna"),
+    creatorBuilder: config("creator", creatorBuilderModel), creatorReviewer: config("creator", creatorEvaluatorModel), creatorRepair: config("creator", creatorBuilderModel) };
   const agents = createResearchAgentDefinitions(configs);
   const candidate = (value: { artifact: unknown; validation?: unknown }) => {
     try {
@@ -585,12 +595,13 @@ export function createProductionResearchWorkflow(database: DatabaseSync, store: 
   const creatorSuiteV3 = createCreatorSynthesisWorkflowSuiteV3(validators, agents, creatorSuiteOptions);
   const creatorAnalysisV3 = createCreatorAnalysisWorkflowV3(postSuiteV3.analyze, creatorSuiteV3.analyze, prepareSynthesisV2);
   const creatorAnalysisV4 = createCreatorAnalysisWorkflowV4(postSuiteV4.analyze, creatorSuiteV3.analyze, prepareSynthesisV2);
-  const simpleConfig = (kind: "post" | "creator") => {
-    const value = config(kind);
+  const simpleConfig = (kind: "post" | "creator", model: string) => {
+    const value = config(kind, model);
     return { ...value, promptRevision: `${value.promptRevision}:reviewer-v1`, config: { ...value.config, simpleReview: true } };
   };
-  const simpleAgents = createResearchAgentDefinitions({ ...configs, postReviewer: simpleConfig("post"),
-    postRepair: simpleConfig("post"), creatorReviewer: simpleConfig("creator"), creatorRepair: simpleConfig("creator") });
+  const simpleAgents = createResearchAgentDefinitions({ ...configs, postReviewer: simpleConfig("post", postEvaluatorModel),
+    postRepair: simpleConfig("post", postBuilderModel), creatorReviewer: simpleConfig("creator", creatorEvaluatorModel),
+    creatorRepair: simpleConfig("creator", creatorBuilderModel) });
   const registerCandidate = simpleReviewRegistration(store, artifacts, registrar, repository);
   const sourceCheck = postSuiteV4.definitions.find((definition) => definition.id === "post.source-check");
   const postSuiteV5 = createPostWorkflowSuiteV5(validators, simpleAgents, { registerCandidate,

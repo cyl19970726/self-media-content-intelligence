@@ -169,8 +169,8 @@ export async function runSynthesisChild(input: {
     const environment = await withSystemProxy();
     const builder = input.role === "creator_synthesis";
     const model = input.execution?.executionMode === "sdk"
-      ? builder ? input.execution.builderModel ?? "gpt-5.6-terra" : input.execution.evaluatorModel ?? "gpt-5.6-luna"
-      : builder ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-5.6-terra"
+      ? builder ? input.execution.builderModel ?? "gpt-5.6-luna" : input.execution.evaluatorModel ?? "gpt-5.6-luna"
+      : builder ? environment.SELF_MEDIA_CREATOR_SYNTHESIS_MODEL ?? "gpt-5.6-luna"
         : environment.SELF_MEDIA_CREATOR_SYNTHESIS_EVALUATOR_MODEL ?? "gpt-5.6-luna";
     const reasoningEffort = input.execution?.executionMode === "sdk"
       ? builder ? input.execution.builderReasoningEffort ?? "medium" : input.execution.evaluatorReasoningEffort ?? "medium"

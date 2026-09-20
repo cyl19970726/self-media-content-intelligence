@@ -361,14 +361,15 @@ describe("Builder model contract", () => {
     }
   });
 
-  it("passes Terra medium explicitly and keeps ordinary sessions ephemeral", () => {
+  it("passes Luna medium explicitly and keeps ordinary sessions ephemeral", () => {
     const args = codexInvocationArgs("candidate", "/tmp/run", "/tmp/run/last.txt", {});
-    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain("gpt-5.6-luna");
     expect(args).toContain('model_reasoning_effort="medium"');
     expect(args).toContain("--ephemeral");
   });
 
   it("routes the OCR continuation repair role to the configured Builder model", () => {
+    expect(sdkModel("generic_repair", {})).toBe("gpt-5.6-luna");
     expect(sdkModel("generic_repair", { builderModel: "gpt-5.6-terra", evaluatorModel: "gpt-5.6-luna" }))
       .toBe("gpt-5.6-terra");
   });
@@ -388,7 +389,7 @@ describe("Builder model contract", () => {
       SELF_MEDIA_CODEX_EPHEMERAL: "false"
     });
     expect(args).not.toContain("--ephemeral");
-    expect(args).toContain("gpt-5.6-terra");
+    expect(args).toContain("gpt-5.6-luna");
   });
 });
 

@@ -35,7 +35,7 @@ function builderRole(role: VideoReconstructionChildRole): boolean {
 }
 
 export function sdkModel(role: VideoReconstructionChildRole, options: VideoCodexExecutionOptions): string {
-  return builderRole(role) ? options.builderModel ?? "gpt-5.6-terra" : options.evaluatorModel ?? "gpt-5.6-luna";
+  return builderRole(role) ? options.builderModel ?? "gpt-5.6-luna" : options.evaluatorModel ?? "gpt-5.6-luna";
 }
 
 export function sdkReasoningEffort(role: VideoReconstructionChildRole, options: VideoCodexExecutionOptions): string {

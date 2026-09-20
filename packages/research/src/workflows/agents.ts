@@ -17,6 +17,7 @@ export type ResearchAgentDefinitions = {
 };
 
 type AgentConfig = {
+  model?: string;
   prompt: string;
   promptRevision: string;
   skillSnapshotsRevision: string;
@@ -28,19 +29,19 @@ export type ResearchAgentConfig = Record<keyof ResearchAgentDefinitions, AgentCo
 
 /** Requires complete validated prompts, skill snapshots and output schemas from composition. */
 export function createResearchAgentDefinitions(values: ResearchAgentConfig): ResearchAgentDefinitions {
-  const make = <Input, Output>(id: string, model: string, value: AgentConfig) => defineAgent<Input, Output>({
-    id, revision: "v1", model, reasoningEffort: "medium", promptRevision: value.promptRevision,
+  const make = <Input, Output>(id: string, value: AgentConfig) => defineAgent<Input, Output>({
+    id, revision: "v1", model: value.model ?? "gpt-5.6-luna", reasoningEffort: "medium", promptRevision: value.promptRevision,
     skillsRevision: value.skillSnapshotsRevision, permissionsRevision: value.permissionsRevision,
     config: { ...value.config, prompt: value.prompt },
   });
   return {
-    postSourceChecker: make("post-source-checker", "gpt-5.6-luna", values.postSourceChecker),
-    postBuilder: make("post-builder", "gpt-5.6-terra", values.postBuilder),
-    postReviewer: make("post-reviewer", "gpt-5.6-luna", values.postReviewer),
-    postRepair: make("post-repair", "gpt-5.6-terra", values.postRepair),
-    postEvaluationRepair: make("post-evaluation-repair", "gpt-5.6-luna", values.postEvaluationRepair),
-    creatorBuilder: make("creator-synthesis-builder", "gpt-5.6-terra", values.creatorBuilder),
-    creatorReviewer: make("creator-synthesis-reviewer", "gpt-5.6-luna", values.creatorReviewer),
-    creatorRepair: make("creator-synthesis-repair", "gpt-5.6-terra", values.creatorRepair),
+    postSourceChecker: make("post-source-checker", values.postSourceChecker),
+    postBuilder: make("post-builder", values.postBuilder),
+    postReviewer: make("post-reviewer", values.postReviewer),
+    postRepair: make("post-repair", values.postRepair),
+    postEvaluationRepair: make("post-evaluation-repair", values.postEvaluationRepair),
+    creatorBuilder: make("creator-synthesis-builder", values.creatorBuilder),
+    creatorReviewer: make("creator-synthesis-reviewer", values.creatorReviewer),
+    creatorRepair: make("creator-synthesis-repair", values.creatorRepair),
   };
 }

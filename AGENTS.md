@@ -1,5 +1,11 @@
 # Repository agent contract
 
+## Project model policy
+
+- Use `gpt-5.6-luna` for research workflow calls and newly delegated project tasks unless the user explicitly requests another model. This is the user's 2026-09-20 quota preference; do not silently escalate to Terra, Sol, or Astra.
+- Keep Builder, independent Reviewer, repairs, creator synthesis, image research and report overview on the configured Luna policy. Preserve independent sessions and evidence contracts when changing models.
+- Verify the model in actual execution receipts, not only environment settings or the workflow declaration. Keep historical runs' original model provenance.
+
 ## Reader-led research workflow
 
 - Use the Codex built-in browser for this workbench's page acceptance and reader walkthroughs, as requested by the user. Ego task-space recovery is not a prerequisite for local page acceptance.

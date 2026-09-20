@@ -27,6 +27,10 @@ describe("research workflows", () => {
   const agents = createResearchAgentDefinitions({ postSourceChecker: agentConfig, postBuilder: agentConfig, postReviewer: agentConfig,
     postRepair: agentConfig, postEvaluationRepair: agentConfig,
     creatorBuilder: agentConfig, creatorReviewer: agentConfig, creatorRepair: agentConfig });
+  it("defaults every project research agent to Luna at medium effort", () => {
+    expect(Object.values(agents).map(({ model, reasoningEffort }) => ({ model, reasoningEffort })))
+      .toEqual(Array.from({ length: 8 }, () => ({ model: "gpt-5.6-luna", reasoningEffort: "medium" })));
+  });
   it("keeps the post candidate and stops for an invalid evaluation contract", async () => {
     const store = new MemoryRunStore();
     const evidence = await inputArtifact(store, "post-evidence");

@@ -185,7 +185,7 @@ export function codexInvocationArgs(
 ): string[] {
   const isBuilder = ["candidate", "generic_repair", "runtime_repair"].includes(role);
   const model = isBuilder
-    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
+    ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-luna"
     : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
   const reasoningEffort = isBuilder
     ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"
@@ -271,7 +271,7 @@ export async function runCodex(
   }, Math.min(60_000, policy.staleAfterMs));
   const environment = await withSystemProxy({ ...process.env, SELF_MEDIA_CHILD_ROLE: label, SELF_MEDIA_CHILD_OUTPUT: cwd });
   const actualModel = options.executionMode === "sdk" ? sdkModel(role, options)
-    : builderRole ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-terra"
+    : builderRole ? environment.SELF_MEDIA_BUILDER_MODEL ?? "gpt-5.6-luna"
       : environment.SELF_MEDIA_EVALUATOR_MODEL ?? "gpt-5.6-luna";
   const actualReasoningEffort = options.executionMode === "sdk" ? sdkReasoningEffort(role, options)
     : builderRole ? environment.SELF_MEDIA_BUILDER_REASONING_EFFORT ?? "medium"

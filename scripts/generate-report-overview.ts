@@ -28,7 +28,7 @@ async function main() {
   const reconstructionPath = path.resolve(values.reconstruction);
   const sourceBytes = await fs.readFile(reconstructionPath);
   const source = JSON.parse(sourceBytes.toString("utf8")) as { builderLenses?: unknown };
-  const model = process.env.SELF_MEDIA_REPORT_OVERVIEW_MODEL ?? "gpt-5.6-terra";
+  const model = process.env.SELF_MEDIA_REPORT_OVERVIEW_MODEL ?? "gpt-5.6-luna";
   const reasoningEffort = process.env.SELF_MEDIA_REPORT_OVERVIEW_REASONING_EFFORT ?? "medium";
   const metadata = { schemaVersion: "report-overview@1", sourceSha256: sha256(sourceBytes),
     generatedAt: new Date().toISOString(), model, reasoningEffort };
