@@ -457,6 +457,7 @@ Source video: ${videoPath}
 Candidate root: ${outputDir}
 Deterministic integrity failure: ${failure}
 For DEPTH failures read ${skillDir}/references/single-post-depth.md and frozen post-source-input.json. Never modify post-source-input.json or its cover. If legacy evidence cannot support depth, keep the candidate failed; do not fabricate missing observations.
+For DEPTH_REFERENCE, inspect every reported field path and invalid ID. These fields require registered source-evidence IDs, not knowledge-unit or content-block IDs. Use the existing evidence that actually supports the claim; do not rewrite unrelated opening segments or conclusions to repair an ID reference.
 
 The evidence collection is frozen. Do not modify media-preparation.json, evidence/, capture-protocol.json,
 targeted-evidence/, article.md, or any evaluator artifact. Inspect the existing evidence and repair every violation listed in

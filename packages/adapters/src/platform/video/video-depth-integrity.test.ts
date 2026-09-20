@@ -24,6 +24,31 @@ describe("single-post depth integrity", () => {
   it("rejects a midpoint masquerading as a continuous strip", () => { const input=fixture(); input.builderLenses.visualEditing.openingAnalysis.segments[0]!.frameRefs=["FRAME-10"]; expect(() => check(input)).toThrow("FRAME_STRIP_COVERAGE"); });
   it("rejects missing source with generated conclusions", () => { const input = fixture(); Object.assign(input.builderLenses.directingLogic.packagingAnalysis.cover,{promise:"带你省钱"}); expect(() => check(input)).toThrow("MISSING_SOURCE_CLAIM"); });
   it("rejects using the first video frame as independent cover", () => { const input = fixture(); Object.assign(input.builderLenses.directingLogic.packagingAnalysis.cover,{state:"available",sourceRef:"FRAME-1",evidenceRefs:["FRAME-1"]}); expect(() => check(input)).toThrow("INDEPENDENT_COVER"); });
+  it("reports the precise fulfillment evidence field and every invalid ID", () => {
+    const input = fixture();
+    Object.assign(input.builderLenses.directingLogic.packagingAnalysis, { fulfillment: [
+      { origin: "title", promise: "标题承诺", status: "fulfilled", bodyEvidenceRefs: ["KU-02", "KU-05"], explanation: "正文完成承诺" },
+      { origin: "cover", promise: "封面承诺", status: "partial", bodyEvidenceRefs: ["KU-02", "KU-03"], explanation: "正文部分兑现" }
+    ] });
+    expect(() => check(input)).toThrow(
+      "BUILDER_INTEGRITY_DEPTH_REFERENCE:builderLenses.directingLogic.packagingAnalysis.fulfillment[0].bodyEvidenceRefs:KU-02,KU-05"
+    );
+  });
+  it("reports invalid IDs from all fulfillment reference arrays in one failure", () => {
+    const input = fixture();
+    Object.assign(input.builderLenses.directingLogic.packagingAnalysis, { fulfillment: [
+      { origin: "title", promise: "标题承诺", status: "fulfilled", bodyEvidenceRefs: ["BAD-TITLE-A", "BAD-TITLE-B"], explanation: "正文完成承诺" },
+      { origin: "cover", promise: "封面承诺", status: "partial", bodyEvidenceRefs: ["BAD-COVER"], explanation: "正文部分兑现" },
+      { origin: "first_sentence", promise: "开头承诺", status: "not_shown", bodyEvidenceRefs: ["BAD-OPENING"], explanation: "正文未出现" }
+    ] });
+    let message = "";
+    try { check(input); } catch (error) { message = error instanceof Error ? error.message : String(error); }
+    expect(message.split("\n")).toEqual([
+      "BUILDER_INTEGRITY_DEPTH_REFERENCE:builderLenses.directingLogic.packagingAnalysis.fulfillment[0].bodyEvidenceRefs:BAD-TITLE-A,BAD-TITLE-B",
+      "builderLenses.directingLogic.packagingAnalysis.fulfillment[1].bodyEvidenceRefs:BAD-COVER",
+      "builderLenses.directingLogic.packagingAnalysis.fulfillment[2].bodyEvidenceRefs:BAD-OPENING"
+    ]);
+  });
   it("legacy artifacts cannot pass a new depth run", () => expect(() => check({})).toThrow("CONTRACT_MISSING"));
   it("legacy integrity stays compatible without depth inputs", () => expect(() => validateVideoDepth({},83,ids,frames,null)).not.toThrow());
 });

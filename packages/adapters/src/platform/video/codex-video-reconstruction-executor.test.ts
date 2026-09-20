@@ -499,6 +499,15 @@ describe("Builder integrity contract", () => {
     expect(prompt).toContain('supports "media-preparation.json#/audio: technical audio presence"');
     expect(prompt).toContain("Do not change IDs or rewrite supports text");
   });
+
+  it("targets depth reference repairs without redesigning unrelated opening content", () => {
+    const failure = "BUILDER_INTEGRITY_DEPTH_REFERENCE:builderLenses.directingLogic.packagingAnalysis.fulfillment[0].bodyEvidenceRefs:KU-02";
+    const prompt = builderIntegrityRepairPrompt("/tmp/video.mp4", "/tmp/run", failure);
+    expect(prompt).toContain(failure);
+    expect(prompt).toContain("inspect every reported field path and invalid ID");
+    expect(prompt).toContain("registered source-evidence IDs, not knowledge-unit or content-block IDs");
+    expect(prompt).toContain("do not rewrite unrelated opening segments or conclusions");
+  });
 });
 
 describe("child worker lifecycle", () => {

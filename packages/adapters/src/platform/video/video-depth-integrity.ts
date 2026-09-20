@@ -3,7 +3,9 @@ import { openingAnalysisSchema, packagingAnalysisSchema } from "../../../../cont
 export function validateVideoDepth(input: unknown, duration: number, ids: Set<string>, frames: Map<string, number>,
   source: { facts: { title: string | null; coverHref: string | null }; cover?: unknown } | null) {
   const root = input as { depthContractVersion?: string; builderLenses?: { visualEditing?: { openingAnalysis?: unknown }; directingLogic?: { packagingAnalysis?: unknown } } };
-  const fail = (reason: string): never => { throw new Error(`BUILDER_INTEGRITY_DEPTH_${reason}`); };
+  const fail = (reason: string, detail?: string): never => {
+    throw new Error(`BUILDER_INTEGRITY_DEPTH_${reason}${detail ? `:${detail}` : ""}`);
+  };
   if (!root.depthContractVersion && !source) return;
   if (root.depthContractVersion !== "single-post-depth@1") fail("CONTRACT_MISSING");
   const openingResult = openingAnalysisSchema.safeParse(root.builderLenses?.visualEditing?.openingAnalysis);
@@ -11,16 +13,20 @@ export function validateVideoDepth(input: unknown, duration: number, ids: Set<st
   if (!openingResult.success || !packagingResult.success) return fail("SCHEMA");
   const opening = openingResult.data, packaging = packagingResult.data;
   if (!Number.isFinite(duration) || Math.abs(opening.duration - Math.min(10, duration)) > 0.02) fail("DURATION");
-  const checkRefs = (refs: string[]) => { if (refs.some(ref => !ids.has(ref))) fail("REFERENCE"); };
+  const invalidReferenceDetails: string[] = [];
+  const checkRefs = (refs: string[], location: string) => {
+    const invalid = [...new Set(refs.filter(ref => !ids.has(ref)))];
+    if (invalid.length > 0) invalidReferenceDetails.push(`${location}:${invalid.join(",")}`);
+  };
   let cursor = 0;
   const seen = new Set<string>();
-  for (const segment of opening.segments) {
+  for (const [index, segment] of opening.segments.entries()) {
     if (seen.has(segment.id)) fail("DUPLICATE_SEGMENT");
     seen.add(segment.id);
     const { start, end } = segment.timeRange;
     if (Math.abs(start - cursor) > 0.001 || end <= start || end > opening.duration + 0.001) fail("COVERAGE");
     cursor = end;
-    checkRefs(segment.evidenceRefs);
+    checkRefs(segment.evidenceRefs, `builderLenses.visualEditing.openingAnalysis.segments[${index}].evidenceRefs`);
     const times = [...new Set(segment.frameRefs.map(ref => frames.get(ref)).filter((time): time is number => time !== undefined))].sort((a,b) => a-b);
     if (!times.length || times[0]! - start > .55 || end - times.at(-1)! > .55 ||
         times.some((time,index) => index > 0 && time - times[index-1]! > 1.01)) fail("FRAME_STRIP_COVERAGE");
@@ -38,14 +44,16 @@ export function validateVideoDepth(input: unknown, duration: number, ids: Set<st
             surface.composition, surface.typeHierarchy, surface.smallSizeReadability].some(value => value !== null)) fail("MISSING_SOURCE_CLAIM");
     } else {
       if (!surface.sourceRef || !surface.evidenceRefs.length) fail("SOURCE_REFERENCE");
-      checkRefs([...surface.evidenceRefs, surface.sourceRef!]);
+      checkRefs(surface.evidenceRefs, `builderLenses.directingLogic.packagingAnalysis.${key}.evidenceRefs`);
+      checkRefs([surface.sourceRef!], `builderLenses.directingLogic.packagingAnalysis.${key}.sourceRef`);
       if (key === "cover" && (!source?.facts.coverHref || !source.cover || surface.sourceRef !== "POST-COVER")) fail("INDEPENDENT_COVER");
       if (key === "title" && (!source?.facts.title || surface.sourceRef !== "POST-TITLE")) fail("TITLE_SOURCE");
       if (key === "firstFrame" && (frames.get(surface.sourceRef!) ?? Infinity) > 0.5) fail("FIRST_FRAME");
     }
   }
-  for (const item of packaging.fulfillment) {
-    checkRefs(item.bodyEvidenceRefs);
+  for (const [index, item] of packaging.fulfillment.entries()) {
+    checkRefs(item.bodyEvidenceRefs, `builderLenses.directingLogic.packagingAnalysis.fulfillment[${index}].bodyEvidenceRefs`);
     if ((item.status === "fulfilled" || item.status === "partial") && !item.bodyEvidenceRefs.length) fail("FULFILLMENT_EVIDENCE");
   }
+  if (invalidReferenceDetails.length > 0) fail("REFERENCE", invalidReferenceDetails.join("\n"));
 }

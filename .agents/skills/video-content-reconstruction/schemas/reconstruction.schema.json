@@ -143,6 +143,7 @@
               },
               "bodyEvidenceRefs": {
                 "type": "array",
+                "description": "IDs of actual source evidence supporting the body's fulfillment of this promise: registered cues, shots, frames, targeted frames, OCR lines, or derived sources. Do not use knowledge-unit IDs (KU-*), content-block IDs, file paths, or JSON pointers. Resolve a knowledge unit to the specific source evidence that supports the fulfillment claim.",
                 "items": {
                   "type": "string",
                   "minLength": 1
